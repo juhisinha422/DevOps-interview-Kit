@@ -1,0 +1,40 @@
+CI/CD & DevOps Practices
+ ✅ How do you implement Blue-Green deployment using Jenkins or GitLab?
+ ✅ What’s the difference between a declarative and scripted Jenkins pipeline?
+ ✅ How do you handle pipeline failures caused by infrastructure issues?
+ ✅ Explain how to set up a gated code check-in using CI/CD tools.
+
+🚀 Docker & Container Workloads
+ ✅ How do you create a custom Docker network and why is it used?
+ ✅ What’s the difference between a volume and a bind mount in Docker?
+ ✅ How do you troubleshoot network issues between containers?
+ ✅ How do you reduce the size of a large Docker image?
+
+🚀 Kubernetes & Workload Management
+ ✅ What is a Kubernetes Job and how is it different from a Deployment?
+ ✅ How do you manage Kubernetes secrets securely?
+ ✅ How do you implement pod affinity and anti-affinity rules?
+ ✅ What is the use of Kubernetes admission controllers?
+
+🚀 Git & GitOps
+ ✅ How does GitOps differ from traditional CI/CD?
+ ✅ What is a merge strategy and which one would you use for production releases?
+ ✅ How do you manage GitOps sync errors in ArgoCD?
+ ✅ How would you audit Git activity for a security review?
+
+🚀 Cloud Platforms (Azure / AWS / GCP)
+ ✅ How do you implement resource tagging and cost tracking in Azure or AWS?
+ ✅ What’s the difference between Azure Policy and Azure Blueprints?
+ ✅ How do you enforce serverless function timeouts and memory limits in AWS Lambda?
+ ✅ How would you troubleshoot a failed Azure DevOps agent job?
+
+🚀 Monitoring & Reliability
+ ✅ How do you implement synthetic monitoring for APIs?
+ ✅ What’s the purpose of Prometheus AlertManager and how do you customize it?
+ ✅ How would you log and visualize Kubernetes events in Grafana?
+
+🚀 Scripting & Automation
+ ✅ Write a Bash script to restart a service if memory usage exceeds 80%.
+ ✅ Create a Python script that checks EC2 instance status and sends alerts to Slack.
+ ✅ How would you schedule and automate daily database backups using CronJobs in Kubernetes?
+
