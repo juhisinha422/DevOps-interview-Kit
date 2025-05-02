@@ -1,0 +1,26 @@
+CI CD
+
+In interviews how do we answer this, explain the issues or challenges that you faced in your pipelines and how did you resolve it or troubleshoot it. 
+
+And issues and challenges did you faced in kubernetes 
+
+Ans: Issue in kubernetes 
+
+- Pod Crashes or Failing to Start (some misconfiguration issues) 
+- Service discovery issues (Lable & selector) 
+- Node resources exhausted (cpu, memory n all) 
+- image pullbackoff error(either image name Or wrong image pulled) 
+- crashloopbackoff
+
+----------
+Pipeline issues 
+
+- Syntax or indentations error in Jenkins file
+- Workspace space got full due to multiple pipeline failures
+- Timeout issue at any stage
+- Pipeline failing due to dependency issues
+- Secret data or api keys Credentials were hard corded use tools like git secret to check
+- Pipeline triggered for minor changes as well if like someone made a folder or something in github.
+
+Please search in detail take help from chatgpt n YouTube to understand these topics.
+
