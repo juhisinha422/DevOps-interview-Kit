@@ -1,0 +1,58 @@
+General DevOps Concepts
+
+1.	What is DevOps, and how does it differ from traditional IT?
+2.	What are the main principles of DevOps?
+3.	How do continuous integration (CI) and continuous deployment (CD) fit into DevOps?
+4.	What is infrastructure as code (IaC)? How does it work, and what tools are used for it?
+5.	What are the benefits of version control in DevOps pipelines?
+CI/CD Tools and Practices
+
+6.	Which CI/CD tools have you used? Can you explain a typical CI/CD pipeline?
+7.	How do you handle failures in a CI/CD pipeline?
+8.	What is the difference between continuous delivery and continuous deployment?
+9.	How would you implement automated testing in a CI/CD pipeline?
+10.	Can you explain blue-green deployment and how it reduces downtime?
+Monitoring and Logging
+
+11.	How do you monitor the performance of applications and infrastructure?
+12.	What logging tools have you used, and how do you centralize logs for analysis?
+13.	How would you set up alerts for infrastructure issues?
+14.	What metrics are important for monitoring the health of a system?
+Cloud Infrastructure
+
+15.	Which cloud platforms have you worked with (AWS, Azure, GCP)?
+16.	What is the difference between scaling horizontally and scaling vertically?
+17.	How would you secure cloud infrastructure?
+18.	How do you manage costs in a cloud environment?
+19.	What is the difference between containerization and virtualization?
+Configuration Management and Automation
+
+20.	What configuration management tools have you used (Ansible, Puppet, Chef, etc.)?
+21.	How do you ensure that infrastructure is consistent across environments (development, staging, production)?
+22.	What are your best practices for automating infrastructure provisioning?
+23.	How do you handle secrets management (e.g., passwords, API keys)?
+Containers and Orchestration
+
+24.	What is Docker, and how does it work?
+25.	What is Kubernetes, and what are its key components (e.g., pods, services, nodes)?
+26.	How do you monitor the health of Kubernetes clusters?
+27.	What is the difference between Docker Swarm and Kubernetes?
+28.	How do you manage stateful applications in Kubernetes?
+Security and Compliance
+
+29.	What steps do you take to secure a DevOps pipeline?
+30.	How do you handle vulnerabilities in your infrastructure?
+31.	What is role-based access control (RBAC), and how does it apply in DevOps?
+32.	How do you ensure compliance in a highly regulated industry?
+Version Control and Collaboration
+
+33.	How do you manage branching strategies in Git (e.g., GitFlow, trunk-based development)?
+34.	How do you handle merge conflicts during collaboration?
+35.	How do you use Git hooks for automation?
+36.	What’s your experience with managing large-scale code repositories?
+Troubleshooting and Problem Solving
+
+37.	How do you approach troubleshooting issues in production environments?
+38.	What’s the most challenging DevOps issue you’ve resolved, and how did you do it?
+39.	How do you handle failed deployments in a live environment?
+40.	What tools and methods do you use for root cause analysis?
