@@ -1,0 +1,32 @@
+Kubernetes Objects!
+
+1. *Pods*: The smallest and simplest Kubernetes object. A Pod represents a single instance of a running process in your cluster and can contain one or more containers.
+
+2. *Services*: An abstract way to expose an application running on a set of Pods as a network service. With Kubernetes, you don't need to modify your application to use an unfamiliar service discovery mechanism.
+
+3. *Volumes*: An abstraction for managing storage that persists beyond the life of individual containers.
+
+4. *Namespaces*: A way to divide cluster resources between multiple users.
+
+5. *ReplicaSets*: Ensures that a specified number of pod replicas are running at any given time.
+
+6. *Deployments*: Provides declarative updates for Pods and ReplicaSets.
+
+7. *StatefulSets*: Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.
+
+8. *DaemonSets*: Ensures that all (or some) Nodes run a copy of a Pod. As nodes are added to the cluster, Pods are added to them. As nodes are removed from the cluster, those Pods are garbage collected.
+
+9. *Jobs*: Creates one or more Pods and ensures that a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete.
+
+10. *CronJobs*: Manages time-based Jobs, namely: once at a specified point in time or repeatedly at a specified point in time.
+
+11. *ConfigMaps and Secrets*: ConfigMaps are used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume. Secrets let you store and manage sensitive information, such as passwords, OAuth tokens, and ssh keys. Storing confidential information in a Secret is safer and more flexible than putting it verbatim in a Pod definition or in a container image.
+
+12. *Ingress*: Manages external access to the services in a cluster, typically HTTP. Ingress can provide load balancing, SSL termination, and name-based virtual hosting.
+
+13. *Network Policies*: Specifies how groups of Pods are allowed to communicate with each other and other network endpoints. NetworkPolicy resources use labels to select Pods and define rules which specify what traffic is allowed to the selected Pods.
+
+14. *Resource Quotas*: Provides constraints that limit aggregate resource consumption per namespace. It can limit the quantity of objects that can be created in a namespace by type, as well as the total amount of compute resources that may be consumed by resources in that namespace.
+
+15. *Horizontal Pod Autoscaler (HPA)*: Automatically scales the number of Pods in a replication controller, deployment, replica set, or stateful set based on observed CPU utilization (or, with custom metrics support, on some other application-provided metrics).
+
