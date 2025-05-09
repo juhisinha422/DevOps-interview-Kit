@@ -1,0 +1,13 @@
+1. /var partition is 90% full. What’s your immediate action?
+2. You’re locked out via SSH with no root access. How do you recover?
+3. Add 50GB to /opt using LVM without any downtime. What are the steps?
+4. Jenkins is failing to push a Docker image to the registry. How do you troubleshoot?
+5. Ansible playbook times out on one host out of twenty. What do you check?
+6. EC2 instance is unreachable, and it’s not a security group issue. What’s your next step?
+7. An S3 bucket was made public by mistake. How do you secure and audit it?
+8. RDS migration with minimal downtime — how would you approach it?
+9. CI/CD pipeline needs rollback capability. How would you implement it?
+10. Write a shell script that checks if a service is running, restarts it if not, and logs the event.
+11. Terraform script to provision an EC2 instance with a custom security group and user data script.
+12. Design a highly available backend on AWS — what services and architecture would you use?
+
