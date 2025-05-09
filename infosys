@@ -32,3 +32,22 @@ Did you use cronejob in recent project
 Sonarqube
 Kibana
 Error codes?
+
+Interview questions 
+1. Difference between docker engine vs docker container 
+2. awl vs find vs grep
+3 How to do VPC peering of different aws account?
+4. NACL?
+5. VPC components ?
+6. How many SG can be assigned to a EC2?
+7. How many rules can be added to SG?
+8. How to increase EBS volume ?
+9. NAT gateway ?
+10. Docker networking ?
+11. How to know if two docker container connected ?
+12. Top vs Htop 
+13. Linux basic commands ?
+14 ping , netstat, telnet ?
+15. Logs of server 
+16. Default VPC vs custom VPC
+17. COPY vs ADD in dockerfile
