@@ -1,0 +1,55 @@
+Qualcommm 5+ years exp
+
+1. Which component handles service mechanism in K8s?
+2. CoreDNS
+3. TCP handshake, TLS – which happens first?
+4. What is the exact command to get the process details with only a port number?
+5. What is the stable version of Terraform in 2024?
+6. Port range for NodePort
+7. From app to DB connectivity – how do you check using which command in K8s?
+8. What is the command to check DNS resolution?
+9. Port number for LDP
+10. How do you improve parallel processing in Python to use resources effectively?
+11. What are the advantages of declarative pipeline script over scripted pipeline script?
+12. What is the default scripting language for declarative pipeline script?
+13. To check logs of a particular job – what is the default location in Jenkins?
+14. How do you configure a slave node on Jenkins that relates to on-prem (not cloud)?
+15. TCP happens on which layer?
+16. What is the disadvantage of K8s when dealing with more applications in terms of pods always restarting?
+17. What is the use of nslookup or dig command?
+18. Is nameserver registration required on every client machine to reach a website? What happens when a user hits a domain?
+19. How does TLS mechanism work?
+20. What is the default first instruction in a Dockerfile? Can we use any instruction on top of FROM?
+21. What is the difference between ARG and ENV in a Dockerfile?
+22. Can we handle different application processes in a single Dockerfile? If yes, how do you instruct it to run first?
+23. If a Jenkins node goes down, how do you debug?
+24. How do you improve the performance of a Jenkins node if it is getting stuck?
+25. What are other web metrics in terms of node performance issues besides CPU, memory, IO, and network?
+26. In which language is Jenkins developed?
+27. What is the difference between Ingress Controller and API Gateway?
+28. How does AWS Lambda work as serverless?
+29. What is the use of master-slave architecture in Jenkins?
+30. What do you know about Qualcomm?
+31. How do you handle cluster upgrade in AWS EKS?
+32. If you define multiple nodes in the agent block in a single pipeline, how does job orchestration happen?
+33. If one node has many jobs, what happens?
+34. How do you run different stages at the same time?
+35. How do you optimize Dockerfile size?
+36. How does layer caching happen in a Docker image?
+37. Then how can we handle layer caching effectively?
+38. What is the difference between monolith and microservices architectures?
+39. In Ansible, if one of the managed nodes lost connection with the control node, but I still want to perform some task, how will you handle this?
+40. What about bastion mechanism in Ansible? Does that work for the above-mentioned requirement?
+41. Explain us the entire flow for how the request goes from the client browser to the K8s pod?
+42. What are the disadvantages of microservices architecture?
+43. What is your opinion on moving from on prem to cloud, what are the advantages
+44. If I add -y to an existing instruction in a Dockerfile will layer caching work?
+45. What is the difference between Flask and Django frameworks in Python and which is better?
+46. What is the use of Trivy and Checkov tools?
+47. Can we not use Checkov for Docker Image scanning?
+48. How to scan for secrets in Terraform?
+49. What are the common Vulnerabilities identified in Docker images when scanning using Trivy?
+
+
+
+
