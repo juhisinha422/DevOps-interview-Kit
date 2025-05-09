@@ -1,0 +1,40 @@
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 𝐟𝐨𝐫 𝐃𝐞𝐯𝐎𝐩𝐬 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫🤓 
+
+1. Could you introduce yourself?
+2. What types of 𝗽𝗿𝗼𝗷𝗲𝗰𝘁𝘀 have you previously worked on?
+3. Can you describe your project focused on reducing 𝗗𝗼𝗰𝗸𝗲𝗿 𝗶𝗺𝗮𝗴𝗲 sizes?
+4. What is the difference between 𝗖𝗠𝗗 and 𝗘𝗡𝗧𝗥𝗬𝗣𝗢𝗜𝗡𝗧 in a 𝗗𝗼𝗰𝗸𝗲𝗿𝗳𝗶𝗹𝗲?
+5. Have you used 𝗗𝗼𝗰𝗸𝗲𝗿 𝗖𝗼𝗺𝗽𝗼𝘀𝗲? How would you ensure multiple containers start in a specific sequence?
+6. What is the purpose of the 𝗥𝗨𝗡 instruction in a 𝗗𝗼𝗰𝗸𝗲𝗿𝗳𝗶𝗹𝗲?
+7. Can you explain 𝗗𝗼𝗰𝗸𝗲𝗿 𝗻𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴?
+8. Tell me about a recent project you completed using 𝗔𝗺𝗮𝘇𝗼𝗻 𝗘𝗞𝗦.
+9. What are the benefits of using 𝗔𝗺𝗮𝘇𝗼𝗻 𝗘𝗞𝗦?
+10. How did you manage your 𝗘𝗞𝗦 project using the CLI?
+11. What 𝗰𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲𝘀 did you face during this project?
+12. Which components need to communicate with each other in this context?
+13. What are 𝗛𝗲𝗹𝗺 𝗰𝗵𝗮𝗿𝘁𝘀 used for?
+14. Which type of 𝗹𝗼𝗮𝗱 𝗯𝗮𝗹𝗮𝗻𝗰𝗲𝗿 did you use for your EKS project?
+15. How do two containers within the same pod communicate with each other?
+16. Did you implement any 𝗺𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 solutions for your EKS project?
+17. If a container goes down and is automatically restored, how does the end-user maintain access given the 𝗜𝗣 𝗮𝗱𝗱𝗿𝗲𝘀𝘀 changes?
+18. Can you explain how 𝗗𝗡𝗦 works?
+19. What are the different types of 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀?
+20. Which 𝗶𝗻𝗴𝗿𝗲𝘀𝘀 𝗰𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 did you use?
+21. What is an 𝗘𝗹𝗮𝘀𝘁𝗶𝗰 𝗜𝗣?
+22. Where did you run your 𝗘𝗞𝗦 project, on a local machine or in a cloud environment?
+23. Describe a project where you focused on cloud 𝗰𝗼𝘀𝘁 𝗼𝗽𝘁𝗶𝗺𝗶𝘇𝗮𝘁𝗶𝗼𝗻.
+24. What is the purpose of a 𝗟𝗮𝗺𝗯𝗱𝗮 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻?
+25. Which programming language did you use to write your 𝗟𝗮𝗺𝗯𝗱𝗮 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝘀?
+26. Do you have experience with 𝗣𝘆𝘁𝗵𝗼𝗻?
+27. What 𝗽𝗿𝗼𝗴𝗿𝗮𝗺𝗺𝗶𝗻𝗴 𝗹𝗮𝗻𝗴𝘂𝗮𝗴𝗲𝘀 are you proficient in?
+28. Did you run your project manually or on a periodic schedule?
+29. How did you grant permissions for 𝗟𝗮𝗺𝗯𝗱𝗮 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝘀 to access resources?
+30. Do you have experience with 𝗺𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 systems?
+31. Can you explain the workflow of a 𝗖𝗜/𝗖𝗗 project you've worked on?
+32. Tell me about a project involving a 𝗩𝗶𝗿𝘁𝘂𝗮𝗹 𝗣𝗿𝗶𝘃𝗮𝘁𝗲 𝗖𝗹𝗼𝘂𝗱 (𝗩𝗣𝗖).
+33. What is your experience with 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺? Can you describe a project where you used it?
+34. What type of 𝗟𝗶𝗻𝘂𝘅 𝗺𝗮𝗰𝗵𝗶𝗻𝗲 do you use most frequently?
+35. How do you check 𝗱𝗶𝘀𝗸 𝘀𝗽𝗮𝗰𝗲 in Linux? What command do you use?
+36. What command do you use in Linux to check 𝗖𝗣𝗨 𝘂𝘁𝗶𝗹𝗶𝘇𝗮𝘁𝗶𝗼𝗻?
+37. What is a 𝗞𝘂𝗯𝗲𝗖𝗼𝗻𝗳𝗶𝗴 file and how do you access it?
+38. What technical concept have you explored in depth?
