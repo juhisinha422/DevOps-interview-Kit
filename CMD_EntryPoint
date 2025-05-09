@@ -1,0 +1,43 @@
+✅ Difference between CMD and Entrypoint command in Docker?
+➡️In Docker, `CMD` and `ENTRYPOINT` are two instructions that serve a similar purpose: they specify the command to run when a container is started from an image. However, there are key differences between them:
+
+CMD (Command)
+
+- `CMD` sets the default command to run when a container is started.
+- It can be overridden by the user when running the container using the `docker run` command.
+- If `CMD` is not specified, the container will run the default command specified by the base image.
+- `CMD` can be used to provide a default command, but it's not as flexible as `ENTRYPOINT`.
+
+Example:
+```
+FROM ubuntu
+CMD ["echo", "Hello, World!"]
+```
+In this example, when a container is started from this image, it will run the `echo` command with the argument "Hello, World!".
+
+ENTRYPOINT (Entry Point)
+
+- `ENTRYPOINT` sets the command to run when a container is started, and it cannot be overridden by the user.
+- It's used to specify a command that should always be run when the container starts.
+- `ENTRYPOINT` can be used in combination with `CMD` to provide a default command, but with the flexibility to override it.
+- When using `ENTRYPOINT`, the `CMD` instruction is used to provide default arguments.
+
+Example:
+```
+FROM ubuntu
+ENTRYPOINT ["echo"]
+CMD ["Hello, World!"]
+```
+In this example, when a container is started from this image, it will run the `echo` command with the argument "Hello, World!". The user can override the default argument by providing their own argument when running the container:
+```
+docker run -it myimage "Hello, Docker!"
+```
+In summary:
+
+- `CMD` sets a default command that can be overridden.
+- `ENTRYPOINT` sets a command that cannot be overridden, but can be used with `CMD` to provide default arguments.
+
+When to use each:
+
+- Use `CMD` when you want to provide a default command that can be overridden by the user.
+- Use `ENTRYPOINT` when you want to specify a command that should always be run when the container starts, and you want to provide default arguments that can be overridden.
