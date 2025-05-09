@@ -1,0 +1,31 @@
+Interview Experience at Thomson Reuters – DevOps Engineer Role 🚀
+
+1.)Introduce yourself (Tell me about your experience).
+2.)What activities are you supporting currently?
+3.)Are you working more on Linux or Windows environments?
+4.)What scripting experience do you have?
+5.)What are you using to deploy applications?
+6.)How do you create a Jenkins job?
+7.)Explain about pipeline as code.
+8.)What is the difference between freestyle project and pipeline job in Jenkins?
+9.)What plugins have you used in Jenkins?
+10.)What is a build in Jenkins?
+11.)What is an executable artifact?
+12.)How do you deploy a WAR file into an EC2 instance?
+13.)What are the Tomcat important folders?
+14.)What happens internally when Tomcat starts?
+15.)How to check if Tomcat is running? (Commands?)
+16.)What is the use of the sudo command?
+17.)How do you check the file system mount points?
+18.)What is the 'top' command used for?
+19.)What is GitHub Actions?
+20.)Explain GitHub Actions architecture (workflow, job, step, runner, etc.)
+21.)What are your day-to-day tasks?
+22.)Explain infrastructure components in AWS. (like VPC, subnets, SGs, ELB, ASG, AMI etc.)
+23.)How do you perform application re-deployment in AWS? (Launch template/Instance refresh etc.)
+24.)How many Kubernetes clusters are you managing?
+25.)What challenges do you face when multiple people update the same Terraform code?
+26.)How do you structure Terraform code for best practices?
+27.)Explain how you automated infra provisioning using Jenkins.
+28.)What was the recent challenging situation you faced?
+29.)What initiatives have you taken proactively?
