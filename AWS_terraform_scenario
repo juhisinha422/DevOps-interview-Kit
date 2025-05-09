@@ -1,0 +1,18 @@
+#Terraform
+#AWS: Key Scenario-Based Questions***
+
+1. How would you import existing AWS resources into Terraform management?
+2. Describe the steps you would take to manage infrastructure across multiple AWS accounts using Terraform.
+3. How can you implement a blue-green deployment strategy for an application hosted on AWS using Terraform?
+4. What approach would you take to manage state files when working with multiple AWS environments (development, staging, production)?
+5. How do you ensure that your Terraform configurations are compliant with AWS best practices?
+6.Explain how you would set up a VPC with public and private subnets in AWS using Terraform.
+7. How would you handle secrets management for AWS resources in your Terraform configuration?
+8. Describe how you would configure auto-scaling for an application deployed on AWS using Terraform.
+9. What strategies would you use to optimize costs for AWS resources managed by Terraform?
+10. How can you implement a disaster recovery plan for your AWS infrastructure using Terraform?
+11. What methods would you use to document your Terraform configurations for AWS resources?
+12. How do you manage dependencies between AWS resources in your Terraform scripts?
+13. Explain how to use Terraform modules to create reusable components for AWS infrastructure.
+14. Describe how you would set up monitoring and logging for AWS resources provisioned by Terraform.
+15. How do you approach testing your Terraform configurations before deploying them to AWS?
