@@ -1,0 +1,35 @@
+Deloitte 2 + years
+
+1. **What are the day-to-day activities of a DevOps Engineer?**
+2. **How do you overcome hurdles in DevOps?** 
+3. **Why do we need Shell scripting in DevOps?** 
+4. **What’s the difference between a `cron` job and running it under `sudo`?** 
+5. **How do you address security issues in `cron` jobs?** 
+6. **How do you set up Apache on a Linux server?** 
+7. **What are the steps to convert HTTP to HTTPS?** 
+8. **What are some limitations of Shell scripting?** 
+9. **What’s the difference between `$*` and `$@` in Bash?** 
+10. **Explain Primary Key vs. Foreign Key in databases.** 
+11. **What’s the difference between the `HAVING` and `WHERE` clauses in SQL?** 
+12. **Explain different types of JOIN commands in SQL.** 
+13. **What’s the difference between `DROP`, `TRUNCATE`, and `DELETE` in SQL?** 
+14. **How do you handle merging branches in Git?** 
+15. **Explain Continuous Deployment vs. Continuous Delivery.** 
+16. **How do you schedule tasks in Jenkins?** 
+17. **What’s the difference between Cron jobs and Jenkins scheduling?** 
+18. **What are agents in Jenkins, and how are they used?** 
+19. **Explain what EC2 is and how it differs from traditional VMs.** 
+20. **How do you create a server in EC2?** 
+21. **I have my own server; how do I create a VM on it?** 
+22. **What is AWS Lambda, and how does it work?** 
+23. **What is S3, and what are its use cases?** 
+24. **What are nodes in Kubernetes?** 
+25. **What is a Pod in Kubernetes?** 
+26. **What are Services in Kubernetes?** 
+27. **How does a Load Balancer work in Kubernetes?** 
+28. **Explain Blue-Green Deployment.** 
+29. **What are the basic commands in Terraform?** 
+30. **What are Modules in Terraform?** 
+31. **What are some basic Bash commands?** 
+32. **How do you access a service from any directory in Linux?** 
+33. **Where should system services be saved?** 
