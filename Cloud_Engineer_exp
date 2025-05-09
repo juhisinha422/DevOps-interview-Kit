@@ -1,0 +1,43 @@
+1. How would you design a cloud-based architecture using microservices or serverless?
+
+
+2. What approach do you follow for database backup, recovery, and ensuring data integrity?
+
+
+3. Why is configuration management important? Have you used tools like Ansible, Chef, or Puppet?
+
+
+4. How do you explain networking basics like IP addressing, DNS, routing? What steps do you take to troubleshoot connectivity issues?
+
+
+5. What is load balancing and how have you implemented it in real-world projects?
+
+
+6. What is a service mesh and where would you use one?
+
+
+7. Which serverless services have you worked with and how?
+
+
+8. How do CI/CD pipelines improve the development process? Can you describe one you’ve built?
+
+
+9. What is Helm and where does it fit in the Kubernetes ecosystem?
+
+
+10. What are the core use cases for Kubernetes?
+
+
+11. Can you break down common HTTP response codes and their meanings?
+
+
+12. What does the build process look like in the SDLC? Can you relate it to a real-life scenario?
+
+
+13. How do you handle security scanning for code and containers? What steps do you take to protect sensitive information?
+
+
+14. What Infrastructure as Code (IaC) tools have you used and how have you implemented them?
+
+
+15. What is a cron job and how do you use it to automate tasks?
