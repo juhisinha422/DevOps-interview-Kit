@@ -1,0 +1,42 @@
+Walmart interview experience for Senior DevOps Engineer role
+
+Applied via - 5 Referrals / 6 Positions via Job Portal / DMs 
+
+𝐑𝐨𝐮𝐧𝐝𝟏 - 𝐓𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥
+
+1. What are your daily responsibilities as a DevOps engineer?
+2. Have you worked with monitoring and logging tools like Prometheus, Grafana, or ELK Stack?
+3. Can you describe the CI/CD workflow in your project?
+4. How do you handle the continuous delivery (CD) aspect in your projects?
+5. What methods do you use to check for code vulnerabilities?
+6. What AWS services are you proficient in?
+7. How would you access data in an S3 bucket from Account A when your application is running on an EC2 instance in Account B?
+8. How do containerization technologies like Docker and Kubernetes simplify application deployment and management?
+
+𝐑𝐨𝐮𝐧𝐝𝟐 - 𝐓𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥
+
+8. How do you provide access to an S3 bucket, and what permissions need to be set on the bucket side?
+9. How can Instance 2, with a static IP, communicate with Instance 1, which is in a private subnet and mapped to a multi-AZ load balancer?
+10. For an EC2 instance in a private subnet, how can it verify and download required packages from the internet without using a NAT gateway or bastion host? Are there any other AWS services that can facilitate this?
+11. What is the typical latency for a load balancer, and if you encounter high latency, what monitoring steps would you take?
+12. If your application is hosted in S3 and users are in different geographic locations, how can you reduce latency?
+13. Can you share an example of a complex automation script you've written?
+14. How do you approach troubleshooting and debugging automation scripts?
+
+𝐑𝐨𝐮𝐧𝐝𝟑 - 𝐓𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥
+
+15. Which services can be integrated with a CDN (Content Delivery Network)?
+16. How do you dynamically retrieve VPC details from AWS to create an EC2 instance using IaC, can you write the code?
+17. How do you manage unmanaged AWS resources in Terraform?
+16. How do you pass arguments to a VPC while using the `terraform import` command?
+18. What are the prerequisites before importing a VPC in Terraform?
+19. If an S3 bucket was created through Terraform but someone manually added a policy to it, how do you handle this situation using IaC?
+20. Have you upgraded any Kubernetes clusters?
+21. How do you deploy an application in a Kubernetes cluster?
+22. How do you communicate with a Jenkins server and a Kubernetes cluster?
+23. Do you only update Docker images in Kubernetes, or do you also update replicas, storage levels, and CPU allocation?
+
+𝐑𝐨𝐮𝐧𝐝𝟒 - Managerial
+
+𝐑𝐨𝐮𝐧𝐝𝟓 - HR Discussion
+
