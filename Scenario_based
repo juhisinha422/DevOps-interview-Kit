@@ -1,0 +1,29 @@
+Some Scenario based questions: -
+
+Q1. What happens when you delete the /var/lib/docker/overlay directory on a Docker host accidentally?
+A: Deleting the /var/lib/docker/overlay directory on a Docker host could cause issues because the /var/lib/docker directory stores the local system's SCG logs and is used by the SCG user interface container services. If the directory is fully used, the SCG user interface may become inaccessible.
+Instead Use the system prune command
+This command can clean up all Docker objects, including images, containers, volumes, and networks.
+
+Q2. Describe the lifecycle of a Docker container, including how it is created, started, stopped, and deleted.
+A: There are different stages when we create a Docker container which is known as Docker Container Lifecycle. Some of the states are:
+Created: A container that has been created but not started
+Running: A container running with all its processes
+Paused: A container whose processes have been paused
+Stopped: A container whose processes have been stopped
+Deleted: A container in a dead state
+
+Q3. What is the difference between ADD and COPY instructions in a Dockerfile?
+A: Both commands copy the contents of the locally available file or directory to the filesystem inside a Docker image. However, while COPY has no other functionalities, ADD can extract compressed files and copy files from a remote location via a URL.
+
+Q4. Describe the concept of EC2 hibernation and how it enables instances to be restarted from a saved state.
+A: Amazon EC2 hibernation is a feature that allows users to pause and resume their instances while preserving their state. 
+How it works:
+When an instance is hibernated, its EBS root volume and any attached EBS data volumes are saved to disk, along with the data from its memory (RAM)
+
+Q5. Is it possible to run a virtual machine (VM) in AWS without creating an EC2 instance? If so, how?
+A: Yes, we can run a virtual machine (VM) in Amazon Web Services (AWS) without creating an EC2 instance by using Amazon Lightsail with steps: 
+* Create an Amazon Lightsail account
+* Create an instance
+* Configure the instance
+* Connect to the instance using the browser-based SSH terminal in Lightsail
