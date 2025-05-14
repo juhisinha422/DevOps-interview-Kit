@@ -1,0 +1,247 @@
+Scenario-based AWS Cloud Support role questions Part 1😊
+================================================================
+
+A customer cannot SSH into their EC2 instance. How do you troubleshoot?
+
+An S3 bucket is giving a 403 Forbidden error despite public access. What could be the issue?
+
+A Lambda function is timing out. How do you debug this?
+
+An RDS database is running slow. What steps do you take to identify the cause?
+
+A user reports high AWS billing for S3. How do you investigate?
+
+A customer’s CloudFront distribution is not serving updated content. What could be wrong?
+
+An EC2 instance is in a stopped state and won’t start. How do you troubleshoot?
+
+A customer’s website running on AWS goes down. How do you perform an initial diagnosis?
+
+An IAM user is unable to assume a role. What could be the possible reasons?
+
+An Auto Scaling Group is not launching new instances as expected. How do you debug?
+
+A customer is getting ThrottlingException errors in API Gateway. What should they do?
+
+A VPC peering connection is established but instances cannot communicate. Why?
+
+A customer’s ALB (Application Load Balancer) is not routing traffic correctly. How do you troubleshoot?
+
+A Route 53 DNS record is not resolving properly. How do you investigate?
+
+An S3 bucket lifecycle policy is not deleting objects. What could be the issue?
+
+A customer reports intermittent 5XX errors from their API Gateway. How do you debug?
+
+A CloudWatch alarm is not triggering as expected. What steps do you take?
+
+A customer’s ECS tasks keep failing. What could be the root cause?
+
+An EC2 instance has high CPU utilization. How do you troubleshoot and optimize it?
+
+A user is unable to attach an EBS volume to an EC2 instance. What could be wrong?
+Scenario-based AWS Cloud Support role questions Part 2😊
+
+A customer is facing latency issues with their DynamoDB queries. How do you optimize?
+
+A Lambda function is failing due to permissions issues. How do you resolve it?
+
+A VPC endpoint is not working as expected. What do you check first?
+
+A CloudFormation stack deployment fails. How do you troubleshoot?
+
+A user reports that AWS Config is not tracking changes. What could be the issue?
+
+A customer’s ELB is marked as unhealthy for all targets. What do you check?
+
+A CloudTrail log is missing critical events. How do you investigate?
+
+A Redshift cluster is experiencing performance issues. How do you troubleshoot?
+
+An S3 bucket cross-region replication is not working. What could be wrong?
+
+An EKS cluster node is not joining the cluster. How do you debug?
+Git Scenario-based Questions:( Part 1)😊
+
+Basic Git Scenarios
+======================
+
+You accidentally committed sensitive credentials in Git. How do you remove them from history?
+
+How do you undo your last commit without losing your changes?
+
+You need to discard local changes in a specific file. How would you do it?
+
+What happens if you run git reset --hard HEAD~1?
+
+How can you recover a deleted branch?
+
+You accidentally committed changes to the wrong branch. How do you move them to the correct branch?
+
+How do you revert a specific commit without affecting other changes?
+
+You cloned a repository but forgot to specify --recurse-submodules. How do you initialize submodules afterward?
+
+
+Branching & Merging Scenarios
+======================================
+
+How do you rebase a feature branch onto the main branch?
+
+What is the difference between git merge and git rebase? When would you use each?
+
+A merge conflict occurs while merging a feature branch into main. How do you resolve it?
+
+You want to merge only a specific commit from another branch. How do you do that?
+
+How do you delete a remote branch that is no longer needed?
+
+Your main branch is ahead of your local branch. How do you update your branch without affecting your commits?
+
+What happens if you try to merge a branch that has already been merged?
+
+
+Remote Repository & Collaboration Scenarios
+================================================
+
+Your team is working on the same file, and a colleague has already pushed changes. How do you avoid overwriting their work?
+
+You made some local commits but need to push them to a remote branch with a different name. How do you do that?
+
+How do you force push a commit while ensuring you don't overwrite other team members' work?
+
+A team member deleted a remote branch. How can you recover it if you still have it locally?
+
+You need to contribute to an open-source project. What steps will you take to fork and create a pull request?
+
+
+Git Scenario-based Questions:( Part 2)😊
+===============================================
+
+How do you revert a pushed commit that is causing issues in production?
+
+Advanced Git Scenarios
+==========================
+
+You need to squash multiple commits into one before pushing. How do you do that?
+
+How do you rewrite commit history to change a commit message from a few commits ago?
+
+Explain how git cherry-pick works and when you would use it.
+
+How do you create and apply patches in Git?
+
+You have diverged from the remote branch, and your local commits conflict with remote changes. How do you fix this?
+
+You need to find out who made changes to a specific line in a file. What command do you use?
+
+How do you temporarily save changes that are not ready to be committed?
+
+Your Git repository has become very large. How do you reduce its size without affecting its history?
+
+Explain the difference between git revert and git reset. When would you use each?
+
+====================================================================
+🚀 DevOps Interview Questions from my Recent Interview!! 🚀 
+I recent attend an interview for a DevOps Engineer Role, and I wanted to share some of the key Questions asked. 
+
+✅ General & Git
+ 🔷 Introduce your Self
+ 🔷 What was your last Role (if any Experience)
+ 🔷 Tell me architecture of git
+ 🔷 What is git and why we use git ?
+ 🔷 What is add command do
+ 🔷 Difference b/w the merge and rebase
+ 🔷 Why we use merge command ?
+
+👨‍💻 Linux
+ 🔷 What is linux why we use ?
+ 🔷 If I have a file and here is data like a ram and I want print the ram contain into my screen so how would you use a command ?
+ 🔷 I want to check my system file
+ 🔷 I want to see my used and remaining space.
+ 🔷 I want to see my memory
+
+🚢 Docker
+ 🔷 Why we use Docker and What problem has solve Docker.
+ 🔷 What is container.
+ 🔷 Why we use volume in docker.
+ 🔷 How to create a volume and how to attached.
+ 🔷 How to use create container.
+
+📁 S3
+ 🔷 What is s3.
+ 🔷 How to save my file in s3.
+ 🔷 I want to send my file from my instance to s3 bucket how ?
+
+⚖️ Loadbalancer
+ 🔷 Types of load balancer
+ 🔷 Difference b/w ALB & NLB & GLB
+ 🔷 What is OSI model explain it.
+
+Most DevOps engineers fail these Linux questions.
+
+1. How do you trace the system calls a process is making — in real time?
+When an app hangs, logs lie. But syscalls don’t.
+
+strace -p <PID>
+
+⸻
+
+2. How do you find which process is writing to a file — live — without killing anything?
+The log keeps changing. But who’s writing to it?
+
+lsof | grep /path/to/file.log
+
+⸻
+
+3. How do you throttle CPU usage of a process — without stopping it?
+Production server. High load. You can’t kill it. What now?
+
+cpulimit -p <PID> -l 30
+
+⸻
+
+4. How do you permanently restrict memory or CPU usage for a container or service using cgroups?
+No Docker flags. Just real Linux resource control.
+
+cgcreate -g memory,cpu:/mygroup 
+cgset -r memory.limit_in_bytes=500M mygroup 
+cgexec -g memory,cpu:mygroup ./your_script.sh
+
+==========================================================
+Scenario Based Interview Questions For AWS DevOPs-
+========================================================
+
+1-How to increase the time limit for Deployment in k8s?
+2-How to list the contents for server B through server A without login into it?
+3- I have attached ebs volume to ec2 but now the volume is completely 
+ occupied, so how can we increase the size without resizing the server?
+4-Suppose we have launched ec2 instance and so without accesing the 
+ console how can we start and stop the instance?
+5-How to push a downstream job from upstream job in Jenkins?|
+
+
+===================================================================
+
+https://amitsinghh.medium.com/top-50-terraform-interview-questions-and-answers-beginner-to-advanced-80f0336c99b7
+this is part 1 for top 50 terraform interview question, will publish 1 more article and these 2 article will be enough for you to answer the questions in interview
+
+
+Interview question :- 
+Q. What are the common issues did you faced while setting up CICD ?
+
+Ans. 1) cache dependency
+
+Ans. We can tell some more common scenarios while configuring CICD: 
+1) Different versions selected in the pipeline setup CI.. irrespective of your app version in local. "Version conflict"
+
+2) webhook misconfiguration example: GitHub, pipeline won't trigger. 
+
+3) Docker image build failure
+
+4) Long build times: didn't optimised pipeline properly 
+
+5) Secrets not set: forgot to add API KEYS or env variable in CICD settings
+
+issues with communication with agents that are used for deployment
+authentication/access issues
