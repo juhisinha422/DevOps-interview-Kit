@@ -1,0 +1,82 @@
+Kubernetes Challenging Scenario
+
+Scenario: 
+Service Not Accessible – Pod is Running, but the Application Can’t Be Reached
+
+You’ve deployed your application in Kubernetes. The pod is in the "Running" state, and you've created a service (ClusterIP, NodePort, or LoadBalancer) to expose it. However, when you try to access the application using the service, it doesn’t respond or times out.
+
+This issue can be confusing, especially since the pod seems healthy.
+
+Solution:
+
+1. **Verify the Service Exists and Is Correctly Defined:**
+Check all services:
+kubectl get svc
+
+2. **Inspect the Service Details:**
+kubectl describe svc <service-name>
+
+Look for:
+- Correct port mapping
+- Type (ClusterIP, NodePort, LoadBalancer)
+- Selector (does it match the pod labels?)
+
+3. **Check Endpoints:**
+Services forward traffic only to healthy pods that match their selectors.
+Check if the service has endpoints:
+kubectl get endpoints <service-name>
+
+If no endpoints are listed, it means the service isn’t connected to any pod.
+
+4. **Common Root Causes:**
+- The service selector doesn’t match the pod’s labels.
+- The pod is not marked as "Ready" (failing readiness probes).
+- A NetworkPolicy or firewall is blocking traffic.
+- The container is listening on a different port than the service is exposing.
+
+5. **Resolution Steps:**
+
+**Ensure Pod Labels Are Correct:**
+Check the pod:
+kubectl get pods --show-labels
+
+Ensure it includes:
+metadata:
+ labels:
+ app: myapp
+
+**Match the Service Selector:**
+spec:
+ selector:
+ app: myapp
+
+**Check Pod Readiness:**
+kubectl get pods -o wide
+
+If the pod isn't in the "Ready" state, fix the health or readiness probe.
+
+**Validate Port Mapping in the Service:**
+spec:
+ type: NodePort
+ ports:
+ - port: 80
+ targetPort: 8080
+ nodePort: 30007
+
+Make sure:
+- The container listens on `targetPort`
+- The service forwards requests correctly
+
+**Bonus Tip:**
+Use `curl` or `wget` from inside the cluster (e.g., from another pod) to verify connectivity:
+kubectl run test --rm -it --image=busybox -- /bin/sh
+wget <service-name>:<port>
+
+Key Takeaway: 
+A running pod doesn't guarantee service availability. Always validate:
+- **Label-selector match**
+- **Pod readiness**
+- **Endpoint connectivity**
+- **Correct port exposure**
+
+Understanding how services route traffic and depend on pod labels is essential to debugging these issues quickly.
