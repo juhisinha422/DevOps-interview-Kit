@@ -1,0 +1,29 @@
+1) What if your state file is deleted?
+Terraform loses track of infrastructure, leading to duplicates. Recovery needs manual imports or backups. Enable S3 versioning.
+
+2) How to refactor without downtime?
+Use "terraform state mv" for renaming. Control changes with targeted applies and split into non-destructive PRs.
+
+3) What if a resource fails during apply?
+Terraform creates a partial deployment. Use targeted applies and "-refresh-only" to recover.
+
+4) How to manage secrets?
+Utilize external stores (Vault, AWS Secrets Manager), ensure encryption, and mark outputs as sensitive.
+
+5) What if terraform plan shows no changes after external modifications?
+Terraform stays unaware until "terraform refresh" is run. Implement drift detection in CI/CD.
+
+6) What if you delete a resource definition?
+Terraform destroys the infrastructure. Use "terraform state rm" first or "lifecycle { prevent_destroy = true }".
+
+7) What if provider APIs change?
+Compatibility issues may arise. Always check release notes, use version constraints, and test upgrades in lower environments.
+
+8) How to achieve zero-downtime updates?
+Utilize "create_before_destroy", blue-green deployments, and health checks.
+
+9) What if there are circular dependencies?
+Terraform fails with errors. Refactor using data sources or outputs to clarify dependencies.
+
+10) What if you rename a resource?
+Terraform treats this as destruction and recreation. Use "terraform state mv" to avoid downtime.
