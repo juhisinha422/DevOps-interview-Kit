@@ -1,0 +1,86 @@
+1. What is a Pod in Kubernetes?
+
+ A Pod is the smallest deployable unit in Kubernetes. It represents a single instance of a running process in your cluster and can contain one or more containers.
+yaml
+CopyEdit
+# pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+ name: nginx-pod
+spec:
+ containers:
+ - name: nginx
+ image: nginx
+ ports:
+ - containerPort: 80
+
+2. What is a Deployment in Kubernetes? Write a deployment.yaml for deploying 3 replicas of an Nginx container.
+
+ A Deployment is a controller that ensures the desired number of pod replicas are running. It allows rolling updates and rollbacks.
+yaml
+CopyEdit
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: nginx-deployment
+spec:
+ replicas: 3
+ selector:
+ matchLabels:
+ app: nginx
+ template:
+ metadata:
+ labels:
+ app: nginx
+ spec:
+ containers:
+ - name: nginx
+ image: nginx
+ ports:
+ - containerPort: 80
+
+3. What is a Service in Kubernetes, and what are the types?
+
+ A Service exposes a set of pods as a network service.
+ Types:
+ClusterIP (default) – internal access within the cluster
+NodePort – exposes service on each Node’s IP at a static port
+LoadBalancer – exposes service via a cloud provider’s load balancer
+ExternalName – maps service to an external DNS name
+
+4. When would you use each type of Kubernetes Service (ClusterIP, NodePort, LoadBalancer, ExternalName)?
+
+ClusterIP – internal communication (e.g., between microservices)
+NodePort – expose service for testing/dev on a static port
+LoadBalancer – expose to the internet in cloud environments
+ExternalName – route to external services like database.example.com
+
+5. Explain port, targetPort, and nodePort in a Service.
+
+port: Port exposed by the Service (used inside the cluster)
+targetPort: Port on the Pod the traffic is forwarded to
+nodePort: (for NodePort type) External port on the node
+
+6. How would you expose a Kubernetes app externally?
+
+Use a LoadBalancer service (cloud)
+Use NodePort (local/testing)
+Use Ingress with an Ingress Controller
+
+7. What is Helm, and what are its components (Chart, Repository, Release)?
+
+Chart: A packaged Kubernetes application (YAML + templates)
+Repository: Stores charts
+Release: A deployed instance of a chart in a cluster
+
+8. What is the difference between EXPOSE in a Dockerfile and docker run -p?
+
+EXPOSE (Dockerfile): declares the container listens on a port (docs only)
+-p (docker run): actually maps a container port to a host port
+
+9. How do you run Nginx on a Linux server using Docker?
+bash
+CopyEdit
+docker run -d -p 80:80 --name nginx nginx
