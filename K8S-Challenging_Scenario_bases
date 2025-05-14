@@ -1,0 +1,80 @@
+Kubernetes Challenging Scenario
+
+Scenario: 
+Pod in ImagePullBackOff State – Unable to Pull Container Image
+
+You deploy a pod, but it stays stuck in `ImagePullBackOff` or `ErrImagePull`. This is a common issue in real-world environments, especially when using:
+- Private Docker registries
+- Incorrect image names/tags
+- Expired pull secrets
+
+Solution:
+
+1. **Check Pod Events and Logs:**
+```bash
+kubectl describe pod <pod-name>
+```
+Look at the **Events** section. Common messages:
+- `rpc error: code = Unknown desc = Error response from daemon`
+- `pull access denied for <image-name>`
+- `manifest for <image:tag> not found`
+
+2. **Common Root Causes:**
+- Wrong image name or tag
+- Image doesn't exist in the registry
+- Missing or expired imagePullSecret
+- Wrong imagePullPolicy (like Always pulling a tag that doesn’t exist)
+- Private registry access without credentials
+
+3. **Resolution Steps:**
+
+**A. Verify Image Name and Tag:**
+Check for typos:
+```yaml
+containers:
+ - name: my-app
+ image: myrepo/myapp:latest
+```
+Try pulling manually on your local machine to verify:
+```bash
+docker pull myrepo/myapp:latest
+```
+
+**B. Check imagePullPolicy:**
+Use `IfNotPresent` to avoid unnecessary pulls if you’re sure the image exists:
+```yaml
+imagePullPolicy: IfNotPresent
+```
+
+**C. Configure imagePullSecrets for Private Registry:**
+Create a secret:
+```bash
+kubectl create secret docker-registry myregistrykey \
+ --docker-server=https://lnkd.in/gVMiHUby \
+ --docker-username=<your-username> \
+ --docker-password=<your-password> \
+ --docker-email=<your-email>
+```
+
+Reference it in your deployment:
+```yaml
+spec:
+ imagePullSecrets:
+ - name: myregistrykey
+```
+
+**D. Verify Secret Exists and Is in the Right Namespace:**
+```bash
+kubectl get secret myregistrykey
+```
+
+**E. Check Node Connectivity:**
+If the image is hosted externally, ensure your node can reach the internet or registry.
+
+Key Takeaway: 
+Most `ImagePullBackOff` issues are due to missing credentials, incorrect image tags, or network problems. Always:
+- Double-check the image name and tag
+- Ensure proper `imagePullSecrets` are configured
+- Validate the registry is reachable
+
+In production, consider using private image registries with robust CI/CD pipelines and automated credential rotation.
