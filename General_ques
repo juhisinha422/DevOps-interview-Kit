@@ -1,0 +1,15 @@
+1. How would you load balance 3–4 servers running services? Which type of load balancing is preferred and why? 
+
+2. In Nginx, how do you persist a client connected to a specific server? 
+
+3. With sticky session & IP hash enabled — what happens if a server goes down? 
+
+4. How does header management work in Nginx? 
+
+5. Some APIs are unsecured behind an API Gateway — how would you secure them? 
+
+6. How does ArgoCD work in a CI/CD pipeline, and why is it used? 
+
+7. As a DevOps engineer, how do you detect and measure security vulnerabilities for our company? 
+
+8. How do you manage different environments (dev, staging, prod) in CI/CD?
