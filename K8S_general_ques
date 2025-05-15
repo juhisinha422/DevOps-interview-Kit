@@ -1,0 +1,31 @@
+Many DevOps interviews focus on key hashtag#𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀. Here are 𝟲 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 you 𝘯𝘦𝘦𝘥 to know:
+
+𝗤1. 𝗛𝗼𝘄 𝗵𝗮𝘃𝗲 𝘆𝗼𝘂 𝗶𝗻𝗷𝗲𝗰𝘁𝗲𝗱 𝘁𝗵𝗲 𝘀𝗲𝗰𝗿𝗲𝘁𝘀 𝗶𝗻 𝗖𝗼𝗻𝗳𝗶𝗴𝗠𝗮𝗽𝘀?
+𝗔𝗻𝘀𝘄𝗲𝗿: Secrets should not be injected in ConfigMaps as ConfigMaps are not designed for sensitive data. Instead, Kubernetes Secrets should be used. Secrets can be injected into pods via environment variables or mounted as files.
+
+𝗤2. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗳𝗶𝗻𝗱 𝘄𝗵𝗶𝗰𝗵 𝗽𝗼𝗱 𝗶𝘀 𝘁𝗮𝗸𝗶𝗻𝗴 𝗺𝗼𝗿𝗲 𝘀𝘆𝘀𝘁𝗲𝗺 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 𝗮𝗰𝗿𝗼𝘀𝘀 𝗻𝗼𝗱𝗲𝘀 𝘂𝘀𝗶𝗻𝗴 𝗸𝘂𝗯𝗲𝗰𝘁𝗹?
+𝗔𝗻𝘀𝘄𝗲𝗿: Use 𝘬𝘶𝘣𝘦𝘤𝘵𝘭 𝘵𝘰𝘱 𝘱𝘰𝘥 --𝘢𝘭𝘭-𝘯𝘢𝘮𝘦𝘴𝘱𝘢𝘤𝘦𝘴 to list resource usage by pods.
+Combine it with 𝘬𝘶𝘣𝘦𝘤𝘵𝘭 𝘥𝘦𝘴𝘤𝘳𝘪𝘣𝘦 𝘱𝘰𝘥 <𝘱𝘰𝘥-𝘯𝘢𝘮𝘦> to get detailed resource usage.
+
+𝗤3. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗸𝗻𝗼𝘄 𝘄𝗵𝗶𝗰𝗵 𝘄𝗼𝗿𝗸𝗲𝗿 𝗻𝗼𝗱𝗲 𝗶𝘀 𝗰𝗼𝗻𝘀𝘂𝗺𝗶𝗻𝗴 𝗺𝗼𝗿𝗲 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 𝗮𝗰𝗿𝗼𝘀𝘀 𝘁𝗵𝗲 𝗰𝗹𝘂𝘀𝘁𝗲𝗿𝘀 𝘂𝘀𝗶𝗻𝗴 𝗸𝘂𝗯𝗲𝗰𝘁𝗹?
+𝗔𝗻𝘀𝘄𝗲𝗿: Use kubectl top nodes to see resource consumption across nodes. This will show CPU and memory usage on each node.
+
+𝗤4. 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝘁𝗵𝗲 𝘀𝘁𝗲𝗽𝘀 𝗳𝗼𝗿 𝗰𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗶𝗻𝗴 𝗣𝗿𝗼𝗺𝗲𝘁𝗵𝗲𝘂𝘀 𝗮𝗻𝗱 𝗚𝗿𝗮𝗳𝗮𝗻𝗮 𝗳𝗼𝗿 𝗺𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗰𝗹𝘂𝘀𝘁𝗲𝗿𝘀?
+𝗔𝗻𝘀𝘄𝗲𝗿:
+1. Deploy Prometheus using Helm or a custom YAML configuration.
+2. Set up Kubernetes service discovery for Prometheus.
+3. Deploy Grafana and configure it to use Prometheus as a data source.
+4. Import Kubernetes monitoring dashboards in Grafana.
+5. Set up alerting rules in Prometheus as needed.
+
+𝗤5. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝘀𝗲𝘀𝘀𝗶𝗼𝗻 𝗮𝗳𝗳𝗶𝗻𝗶𝘁𝘆?
+𝗔𝗻𝘀𝘄𝗲𝗿: Session affinity, also known as sticky sessions, is a concept in load balancing where requests from a particular user are consistently directed to the same server (or pod) in a multi-server environment.
+This ensures that the user's session data, which might be stored locally on the server, remains accessible throughout the session.
+
+𝗤6. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗽𝗼𝗱 𝗮𝗳𝗳𝗶𝗻𝗶𝘁𝘆 𝗮𝗻𝗱 𝗶𝘁𝘀 𝘂𝘀𝗲 𝗰𝗮𝘀𝗲?
+𝗔𝗻𝘀𝘄𝗲𝗿: Pod affinity is a feature in Kubernetes that allows you to specify rules for scheduling pods to run on
+nodes that have other specified pods running on them. This can be useful when you want certain
+pods to be located together due to factors like data locality, network latency, or shared resources.
+𝗨𝘀𝗲 𝗖𝗮𝘀𝗲: An application where the frontend and backend services communicate frequently might
+use pod affinity to ensure that both are scheduled on the same node to reduce network latency.
+
