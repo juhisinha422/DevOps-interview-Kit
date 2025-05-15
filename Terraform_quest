@@ -1,0 +1,26 @@
+𝗤. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗳𝗼𝗿𝗺𝗮𝘁 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗰𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻 𝗳𝗶𝗹𝗲𝘀?
+𝘵𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮 𝘧𝘮𝘵
+
+𝗤. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝘂𝘀𝗲 𝘀𝗲𝗻𝘀𝗶𝘁𝗶𝘃𝗲 𝗱𝗮𝘁𝗮 𝗹𝗶𝗸𝗲 𝗰𝗿𝗲𝗱𝗲𝗻𝘁𝗶𝗮𝗹𝘀 𝗶𝗻 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺?
+Sensitive data can be managed securely in Terraform using environment variables, secret management tools, or Terraform variables with the sensitive attribute. Avoid hardcoding sensitive values in .tf files. Tools like HashiCorp Vault or AWS Secrets Manager can store and retrieve credentials. Secure your state file as it may contain sensitive outputs. Use .gitignore to exclude sensitive files from version control.
+
+𝗤. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝘃𝗮𝗹𝗶𝗱𝗮𝘁𝗲 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗰𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻 𝗳𝗶𝗹𝗲𝘀?
+𝘵𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮 𝘷𝘢𝘭𝘪𝘥𝘢𝘵𝘦
+
+𝗤. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗹𝗶𝘀𝘁 𝗮𝗹𝗹 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝘄𝗼𝗿𝗸𝘀𝗽𝗮𝗰𝗲𝘀?
+𝘵𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮 𝘸𝘰𝘳𝘬𝘴𝘱𝘢𝘤𝘦 𝘭𝘪𝘴𝘵
+
+𝗤. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗿𝗲𝗺𝗼𝘃𝗲 𝗮 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝗱𝗲𝗹𝗲𝘁𝗶𝗻𝗴 𝗶𝘁 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗶𝗻𝗳𝗿𝗮𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲?
+𝘵𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮 𝘴𝘵𝘢𝘵𝘦 𝘳𝘮 <𝘳𝘦𝘴𝘰𝘶𝘳𝘤𝘦_𝘯𝘢𝘮𝘦>
+
+𝗤. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗰𝗿𝗲𝗮𝘁𝗲 𝗮 𝗻𝗲𝘄 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝘄𝗼𝗿𝗸𝘀𝗽𝗮𝗰𝗲?
+𝘵𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮 𝘸𝘰𝘳𝘬𝘴𝘱𝘢𝘤𝘦 𝘯𝘦𝘸 <𝘸𝘰𝘳𝘬𝘴𝘱𝘢𝘤𝘦_𝘯𝘢𝘮𝘦>
+
+𝗤. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗿𝗲𝗳𝗿𝗲𝘀𝗵 𝘁𝗵𝗲 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝘀𝘁𝗮𝘁𝗲 𝗳𝗶𝗹𝗲 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗰𝘂𝗿𝗿𝗲𝗻𝘁 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝘀𝘁𝗮𝘁𝗲𝘀?
+𝘵𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮 𝘳𝘦𝘧𝘳𝘦𝘴𝘩
+
+𝗤. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗹𝗼𝗰𝗸 𝘁𝗵𝗲 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝘀𝘁𝗮𝘁𝗲 𝗳𝗶𝗹𝗲?
+State locking is enabled by default in remote backends like S3 with DynamoDB. Ensure your backend configuration supports locking. But now you can do state locking with just S3 and dynamoDB is not required.
+
+𝗤. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝘀𝘄𝗶𝘁𝗰𝗵 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝘄𝗼𝗿𝗸𝘀𝗽𝗮𝗰𝗲𝘀?
+𝘵𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮 𝘸𝘰𝘳𝘬𝘴𝘱𝘢𝘤𝘦 𝘴𝘦𝘭𝘦𝘤𝘵 <𝘸𝘰𝘳𝘬𝘴𝘱𝘢𝘤𝘦_𝘯𝘢𝘮𝘦>
