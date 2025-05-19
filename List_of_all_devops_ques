@@ -1,0 +1,70 @@
+General Questions:
+ 1. Introduce yourself.
+ 2. What were your roles and responsibilities in your previous projects or as a DevOps Engineer?
+
+AWS Questions:
+ 1. What is AWS, and why is it widely used?
+ 2. What are the main services provided by AWS?
+ 3. What is an EC2 instance, and how is it used?
+ 4. What is S3 in AWS, and what are its key features?
+ 5. What is the difference between S3 Standard, S3 IA (Infrequent Access), and S3 Glacier?
+ 6. What is the difference between vertical and horizontal scaling?
+ 7. What is AWS Lambda, and when would you use it?
+ 8. What is a security group in AWS? How is it different from a network ACL?
+
+Kubernetes Questions (K8s):
+ 1. What is the K8s architecture?
+ 2. Deployment vs. StatefulSet vs. ReplicaSet.
+ 3. What is a ConfigMap in Kubernetes?
+ 4. What is the role of etcd in Kubernetes?
+ 5. How do rolling updates work in a deployment?
+
+Docker Questions:
+ 1. Explain the structure of a Dockerfile. What are common instructions used in a Dockerfile?
+ 2. How do you build a Docker image using a Dockerfile?
+ 3. What is the difference between the COPY and ADD commands?
+
+Terraform Questions:
+ 1. What does terraform init do?
+ 2. How do you auto-approve Terraform changes?
+ 3. count vs. for_each.
+ 4. How do you import an existing resource into Terraform?
+ 5. What is a Data Block in Terraform?
+ 6. What are provisioners in Terraform?
+ 7. What is a remote backend in Terraform?
+
+Linux Questions:
+ 1. How do you check the list of installed packages?
+ 2. Command to check the kernel version.
+ 3. How do you create a new user and add it as a sudo user?
+ 4. Command to check if a process called “a” is running, and how to stop it.
+ 5. Command to list all files smaller than 5MB.
+ 6. Hard link vs. Soft link.
+ 7. Commands to check disk space usage and free RAM.
+
+Git Questions:
+ 1. What is Git, and why is it used?
+ 2. Differences between Git and GitHub.
+ 3. How do you initialize a Git repository?
+ 4. Difference between git pull and git fetch.
+ 5. How do you check the status of your repository?
+ 6. Difference between git add and git commit.
+ 7. What is a branch in Git? How do you create one?
+ 8. How do you check the commit history in Git?
+ 9. What is the staging area in Git?
+ 10. How do you delete a branch in Git?
+
+CI/CD Questions:
+ 1. Types of pipelines in Jenkins.
+ 2. Scripted vs. Declarative pipelines.
+ 3. Should we use Artifactory to store artifacts, or should we store them in S3?
+ 4. How do you upgrade plugins in Jenkins?
+ 5. User management in Jenkins.
+ 6. Concepts about GitLab runners.
+ 7. How do you upgrade Jenkins?
+
+Ansible Questions:
+ 1. Loops in Ansible.
+ 2. Ansible Roles.
+ 3. Is Ansible idempotent?
+ 4. Ansible script to install Nginx.
