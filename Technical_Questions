@@ -1,0 +1,151 @@
+# Technical Questions [DevOps|System Administration|Mesosphere|Docker]
+
+1. Have you worked with containers? What is a docker basically?
+
+Docker container is an open source software development platform. Its main benefit is to package applications in “containers,” allowing them to be portable among any system running the Linux operating system (OS).
+
+2. What is orchestration in cloud computing?
+
+In most situations, cloud automation describes a task or function accomplished without human intervention. Cloud orchestration describes the arranging and coordination of automated tasks, ultimately resulting in a consolidated process or workflow. It is simplest to see this in an example.
+
+3. What is Docker and what does it do?
+
+Docker is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.
+Docker provides this same capability without the overhead of a virtual machine. It lets you put your environment and configuration into code and deploy it. The same Docker configuration can also be used in a variety of environments. This decouples infrastructure requirements from the application environment.
+
+4. Do you have any expreience with CI tools? Which ones?
+Jenkins, Bamboo, TeamCity, etc.
+
+5. Describe your experience implementing continuous deployment in a production environment
+Answer should describe personal experience on types of jobs run, systems integrated, etc.
+
+6. What function does DNS play on a network?
+The DNS plays a critical role in supporting the Internet infrastructure by providing a distributed and fairly robust mechanism that resolves Internet host names into IP addresses and IP addresses back into host names.
+
+7. What is HTTP?
+The Hypertext Transfer Protocol (HTTP) is an application protocol for distributed, collaborative, hypermedia information systems.[1] HTTP is the foundation of data communication for the World Wide Web.
+Hypertext is structured text that uses logical links (hyperlinks) between nodes containing text. HTTP is the protocol to exchange or transfer hypertext.
+
+8. What commands do you know that can be used to check DNS records?
+$ host example.com
+$ nslookup example.com
+$ dig example.com
+
+9. How to get all environment variables and how can you use them?
+All UNIX-like operating systems such as OpenBSD, Linux, Redhat, CentOS, Debian allows you to set environment variables. When you log in on UNIX, your current shell (login shell) sets a unique working environment for you which is maintained until you log out.
+printenv\env - command to print all or part of environment
+Full command:
+$ printenv PATH HOME
+$PATH - Display lists directories the shell searches, for the commands.
+$HOME - User's home directory to store files.
+
+10. What is version control and why should version control system (VCS) be used?
+
+Define version control and talk about how this system records any changes made to one or more files and saves them in a centralized repository. VCS tools will help you recall previous versions and perform the following:
+Go through the changes made over a period of time and check what works versus what doesn’t.
+Revert specific files or specific projects back to an older version.
+Examine issues or errors that have occurred due to a particular change.
+Using VCS gives developers the flexibility to simultaneously work on a particular file and all modifications can be logically combined later.
+
+11. What is Docker hub?
+
+Docker hub is a cloud-based registry service which allows you to link to code repositories, build your images and test them, stores manually pushed images, and links to Docker cloud so you can deploy images to your hosts. It provides a centralized resource for container image discovery, distribution and change management, user and team collaboration, and workflow automation throughout the development pipeline.
+
+12. What is Dockerfile used for?
+
+Dockerfile is nothing but a set of instructions that have to be passed on to Docker itself, so that it can build images automatically reading these instructions from that specified Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession.
+
+13. Tell us how you have used Docker in your past position?
+
+This is a question that you could bring upon your whole experience with Docker and if you have used any other Container technologies before Docker. You could also explain the ease that this technology has brought in the automation of the development to production lifecycle management. You can also discuss about any other integrations that you might have worked along with Docker such as Puppet, Chef or even the most popular of all technologies – Jenkins. If you do not have any experience with Docker itself but similar tools from this space, you could convey the same and also show in your interest towards learning this leading containerization technology.
+
+14. How to create Docker container?
+
+You can create a Docker container out of any specific Docker image of your choice and the same can be achieved using the command given below:
+docker run -t -i command name
+The command above will create the container and also starts it for you. In order to check whether the Docker container is created and whether it is running or not, you could make use of the following command. This command will list out all the Docker containers along with its statuses on the host that the Docker container runs.
+docker ps -a
+
+15. How to stop and restart the Docker container?
+
+The following command can be used to stop a certain Docker container with the container id as
+
+CONTAINER_ID:
+docker stop CONTAINER_ID
+The following command can be used to restart a certain Docker container with the container id as
+
+CONTAINER_ID:
+docker restart CONTAINER_ID
+
+16.  How far do Docker containers scale?
+
+Best examples in the Web deployments like Google, Twitter and best examples in the Platform Providers like Heroku, dotCloud run on Docker which can scale from the ranges of hundreds of thousands to millions of containers running in parallel, given the condition that the OS and the memory doesn’t run out from the hosts which runs all these innumerable containers hosting your applications.
+
+17. What are the various states that a Docker container can be in at any given point in time?
+
+There are four states that a Docker container can be in, at any given point in time. Those states are as given as follows:
+
+• Running
+• Paused
+• Restarting
+• Exited
+
+19. Can you remove a paused container from Docker?
+
+To answer this question blatantly, No, it is not possible to remove a container from Docker that is just paused. It is a must that a container should be in the stopped state, before it can be removed from the Docker container.
+
+20. What is Mesos?
+
+Mesos is a cluster manager that provides efficient resource isolation and sharing across distributed applications or frameworks. Mesos is a open source software originally developed at the University of California at Berkeley.
+
+21. What is Marathon?
+Marathon is a production-grade container orchestration platform for Mesosphere's Datacenter Operating System (DCOS) and Apache Mesos. 
+
+22. What are the basic parameters you have to pass in a json file to orchestrate a service on Mesos via Marathon?
+Bare minimum parameters would be service name, cpu, memory and application to deploy and the containerizer to be used.
+
+23.  What is Git?
+Git is a Distributed Version Control system (DVCS). It can track changes to a file and allows you to revert back to any particular change.
+
+24. In Git how do you revert a commit that has already been pushed and made public?
+It can be done in two ways:
+
+By removing or fixing the bad file in a new commit and pushing it to the remote repository. Once the necessary changes to the file has been made, commit it to the remote repository. Use: git commit -m “commit message”
+
+By creating a new commit that undoes all changes that were made in the bad commit. To do this, use command: git revert <name of bad commit>
+
+25. What Is Ldap?
+
+A GLDAP (Light-Weight Directory Access Protocol) determines how an object in an Active Directory should be named. LDAP is the industry standard directory access protocol, making Active Directory widely accessible to management and query applications. Active Directory supports LDAPv2 and LDAPv3.
+
+
+26. According to an HTTP monitor, a website is down. You're able to telnet to the port, so how do you resolve the issue?
+
+"Assuming the web page is up, I would investigate what could be wrong with the monitor. It could be a system overload or flapping, among other issues. Identifying the problem helps me prevent it in the future."
+
+27. What are three attributes that make you a great systems engineer?
+This question lends insight into candidates' self-awareness skills as well as whether their values match those of your business. Look for:
+
+Answers that match areas of emphasis in your job description
+At least one soft skill
+Attributes that fit your company culture
+"I'm analytical and curious. I always dig to find out why a problem occurred. Otherwise, it is liable to happen again and hurt the business. I am also a great communicator, able to share my insight with anyone in jargon-free language."
+
+28. A Linux administrator wants to review the messages that scrolled up the screen during a system boot. How can this be accomplished?
+
+The boot kernel messages are saved to the log file /var/log/dmesg. He can check this file.
+
+29. Which utility could you use to repair the corrupted file system?
+
+You can use fsck to repair the corrupted file system.
+
+30. A user can not access a remote server. Which command he can use to verify that remote server is up and which command should he use to check if port 22 is open or closed?
+
+He can use ping command to check whatever remote server is up or not and use the telnet command to check port accessibility.
+
+
+#Fun Questions
+
+- What is your favorite side project?
+- If you could learn any technology now, what would be?
+- How do you keep up with current technology trends?
