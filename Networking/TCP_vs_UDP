@@ -1,0 +1,24 @@
+TCP vs UDP — Which Protocol Does What, and Why It Matters 🌐
+
+TCP and UDP are two core transport protocols that move data across networks — but they behave very differently. Here’s a breakdown to help you understand when and why each one is used:
+
+🟠 TCP – Transmission Control Protocol
+Reliable and secure. TCP is connection-oriented, which means it ensures data is received in order and without errors.
+Used in applications where accuracy matters — like web browsing, email, and file transfers.
+🔹 20-byte header
+🔹 Guarantees delivery and order
+🔹 Includes flow control and retransmission
+
+🔵 UDP – User Datagram Protocol
+Fast but unreliable. UDP skips connection setup to reduce delay, making it ideal for real-time apps like video streaming and online games.
+There’s no delivery guarantee, but it’s perfect when speed is more important than precision.
+🔹 8-byte header
+🔹 No flow control or packet ordering
+🔹 Lightweight and faster
+
+📡 Delivery Modes Matter Too:
+
+Unicast: One-to-one (used by both)
+
+Multicast & Broadcast: One-to-many (often UDP-based)
+
