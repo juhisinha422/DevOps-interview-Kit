@@ -1,0 +1,23 @@
+interview for product based company for hashtag#DevOps role. 
+
+1. Introduce yourself
+2. Explain deployment set, replica set, daemon set, stateful set.
+3. Explain me above with real time use case in your organization
+4. trace me network flow inside k8s to the external custome
+
+5. when you hit kubectl apply –f deployme.yml, what happens at kuberntes, explain me in the light of architecture of k8s.
+
+ 
+5. How to give write and read access to a user and full access to another through RBAC?
+6. what is tent and toleration?
+7. have you participated in troubleshooting of k8s which have taken more than 2 days to resolve? explain me scenario and how you and your team resolved this?
+8. Give me a real case scenario where you have troubleshooted the k8s problem
+9. Explain me CR and CRD
+10. Explain me how to fetch the docker image using command line from dockerhub
+11. Run the container
+12. Access the running application inside the container
+13. Show me how to deploy deployment manifest
+14. Show me how to access the application running inside k8s
+15. Which language have you used for scripting?
+16. Explain me Linux Architecture
+17. Explain docker Networking
