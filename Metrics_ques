@@ -1,0 +1,10 @@
+The Interviewer Asked ‘What Metrics Do You Monitor?’
+
+
+✅ Set up Prometheus + Grafana
+✅ Learned about SLIs/SLOs
+✅ Added alerts for latency, error rates, saturation
+✅ Built dashboards for business impact (not just system health)
+
+
+💭 What’s one metric you always monitor in prod?
