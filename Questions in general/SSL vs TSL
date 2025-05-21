@@ -1,0 +1,14 @@
+🔐 𝐒𝐒𝐋 𝐯𝐬 𝐓𝐋𝐒 – 𝐀 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐋𝐞𝐚𝐫𝐧𝐢𝐧𝐠 ✉️
+
+encountered an issue while 𝒄𝒐𝒏𝒇𝒊𝒈𝒖𝒓𝒊𝒏𝒈 𝑺𝑴𝑻𝑷 𝒆𝒎𝒂𝒊𝒍 𝒔𝒆𝒏𝒅𝒊𝒏𝒈.
+
+I mistakenly used 𝑺𝑺𝑳 instead of 𝑻𝑳𝑺 for the 𝑺𝑴𝑻𝑷 configuration — and the email just wouldn’t go through! 😅
+
+After some debugging and research, I learned a key distinction:
+
+📌 Use 𝑻𝑳𝑺 for sending emails via 𝑺𝑴𝑻𝑷 (𝒖𝒔𝒖𝒂𝒍𝒍𝒚 𝒐𝒏 𝒑𝒐𝒓𝒕 587)
+📌 Use 𝑺𝑺𝑳 for 𝑺𝑴𝑻𝑷𝑺 (SMTP over SSL, 𝒕𝒚𝒑𝒊𝒄𝒂𝒍𝒍𝒚 𝒐𝒏 𝒑𝒐𝒓𝒕 465)
+
+SSL and TLS both provide encryption, but 𝑻𝑳𝑺 𝒊𝒔 𝒎𝒐𝒓𝒆 𝒎𝒐𝒅𝒆𝒓𝒏, 𝒔𝒆𝒄𝒖𝒓𝒆, 𝒂𝒏𝒅 𝒘𝒊𝒅𝒆𝒍𝒚 𝒓𝒆𝒄𝒐𝒎𝒎𝒆𝒏𝒅𝒆𝒅 𝒇𝒐𝒓 𝒎𝒐𝒔𝒕 𝒂𝒑𝒑𝒍𝒊𝒄𝒂𝒕𝒊𝒐𝒏𝒔 𝒕𝒐𝒅𝒂𝒚.
+
+✅ Always double-check protocol requirements and ports when dealing with email or secure communication.
