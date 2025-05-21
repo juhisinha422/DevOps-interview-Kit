@@ -1,0 +1,8 @@
+Q) : my docker image is size is 1GB , now how i can reduce size of the image ?
+
+A): 
+ 1. Use minimal base images like alpine or slim to start with a smaller footprint.
+ 2. Implement multi-stage builds to separate the build environment from the final image, copying only the necessary artifacts.
+ 3. Clean up package manager caches and temporary files to avoid leftover data increasing image size.
+ 4. Combine multiple RUN commands into a single layer to reduce the number of image layers.
+ 5. Use a .dockerignore file and strip binaries (for compiled apps) to exclude unnecessary files and reduce binary sizes.
