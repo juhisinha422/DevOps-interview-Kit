@@ -1,0 +1,37 @@
+🚀 𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐈𝐧𝐬𝐢𝐠𝐡𝐭: 𝐙𝐞𝐫𝐨 𝐃𝐨𝐰𝐧𝐭𝐢𝐦𝐞 𝐃𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭 𝐢𝐧 𝐋𝐨𝐚𝐝-𝐁𝐚𝐥𝐚𝐧𝐜𝐞𝐝 𝐄𝐧𝐯𝐢𝐫𝐨𝐧𝐦𝐞𝐧𝐭𝐬 🔁
+
+One of the most commonly asked DevOps interview questions:
+
+🧐 "𝐇𝐨𝐰 𝐜𝐚𝐧 𝐰𝐞 𝐝𝐞𝐩𝐥𝐨𝐲 𝐚 𝐧𝐞𝐰 𝐯𝐞𝐫𝐬𝐢𝐨𝐧 𝐨𝐟 𝐚𝐧 𝐚𝐩𝐩𝐥𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐰𝐢𝐭𝐡𝐨𝐮𝐭 𝐚𝐧𝐲 𝐝𝐨𝐰𝐧𝐭𝐢𝐦𝐞, 𝐞𝐬𝐩𝐞𝐜𝐢𝐚𝐥𝐥𝐲 𝐢𝐧 𝐚 𝐥𝐨𝐚𝐝-𝐛𝐚𝐥𝐚𝐧𝐜𝐞𝐝 𝐬𝐞𝐭𝐮𝐩?"
+
+A widely used and reliable approach is the:
+
+✅ 𝐁𝐥𝐮𝐞-𝐆𝐫𝐞𝐞𝐧 𝐃𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭 𝐒𝐭𝐫𝐚𝐭𝐞𝐠𝐲
+
+📌Maintain two identical environments: 𝑩𝒍𝒖𝒆 (live) and 𝑮𝒓𝒆𝒆𝒏 (new)
+
+📌Deploy the updated version to Green and validate it
+
+📌Once tested, shift the load balancer traffic from Blue to Green
+
+📌In case of any issues, simply switch back to Blue for instant rollback
+
+⚙️ 𝐂𝐨𝐦𝐦𝐨𝐧 𝐭𝐨𝐨𝐥𝐬 𝐮𝐬𝐞𝐝:
+
+🔥𝑨𝑾𝑺 𝑬𝑳𝑩 with 𝑨𝒖𝒕𝒐 𝑺𝒄𝒂𝒍𝒊𝒏𝒈 𝑮𝒓𝒐𝒖𝒑𝒔
+
+🔥𝑲𝒖𝒃𝒆𝒓𝒏𝒆𝒕𝒆𝒔 with 𝑹𝒐𝒍𝒍𝒊𝒏𝒈 𝑼𝒑𝒅𝒂𝒕𝒆𝒔 or 𝑪𝒂𝒏𝒂𝒓𝒚 𝑫𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕𝒔
+
+🔥𝑵𝒈𝒊𝒏𝒙 configured as a 𝒓𝒆𝒗𝒆𝒓𝒔𝒆 𝒑𝒓𝒐𝒙𝒚
+
+𝐁𝐞𝐬𝐭 𝐏𝐫𝐚𝐜𝐭𝐢𝐜𝐞𝐬:
+
+👉🏼Configure 𝒉𝒆𝒂𝒍𝒕𝒉 𝒄𝒉𝒆𝒄𝒌𝒔 for instance readiness
+
+👉🏼Perform 𝒈𝒓𝒂𝒅𝒖𝒂𝒍 𝒕𝒓𝒂𝒇𝒇𝒊𝒄 𝒔𝒉𝒊𝒇𝒕𝒊𝒏𝒈 using canary if needed
+
+👉🏼Ensure 𝒃𝒂𝒄𝒌𝒘𝒂𝒓𝒅-𝒄𝒐𝒎𝒑𝒂𝒕𝒊𝒃𝒍𝒆 𝒅𝒂𝒕𝒂𝒃𝒂𝒔𝒆 𝒄𝒉𝒂𝒏𝒈𝒆𝒔 to avoid runtime failures
+
+🔧 𝐁𝐨𝐧𝐮𝐬 𝐓𝐢𝐩:
+
+ Integrating this process with 𝑪𝑰/𝑪𝑫 𝒑𝒊𝒑𝒆𝒍𝒊𝒏𝒆𝒔 (like GitLab CI or GitHub Actions) allows for automated, consistent, and error-free releases.
