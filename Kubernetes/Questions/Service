@@ -1,0 +1,23 @@
+✅ 𝐒𝐞𝐫𝐯𝐢𝐜𝐞 𝐍𝐨𝐭 𝐑𝐞𝐚𝐜𝐡𝐢𝐧𝐠 𝐏𝐨𝐝𝐬
+
+🚨 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: You created a 𝑲𝒖𝒃𝒆𝒓𝒏𝒆𝒕𝒆𝒔 𝑺𝒆𝒓𝒗𝒊𝒄𝒆, but 𝒓𝒆𝒒𝒖𝒆𝒔𝒕𝒔 𝒅𝒐𝒏’𝒕 𝒓𝒆𝒂𝒄𝒉 𝒚𝒐𝒖𝒓 𝒑𝒐𝒅𝒔.
+
+🔍 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧: What would you check if a Kubernetes service doesn’t route traffic to its pods?
+
+🧩 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+We had a 𝒑𝒂𝒚𝒎𝒆𝒏𝒕-𝒔𝒆𝒓𝒗𝒊𝒄𝒆 where requests were timing out. The Service selector was targeting 𝒂𝒑𝒑: 𝒑𝒓𝒐𝒅𝒔, but the actual pod label was 𝒂𝒑𝒑: 𝒑𝒓𝒐𝒅. That one character difference caused the whole service to be 𝒏𝒐𝒏-𝒇𝒖𝒏𝒄𝒕𝒊𝒐𝒏𝒂𝒍.
+
+Using 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒈𝒆𝒕 𝒆𝒏𝒅𝒑𝒐𝒊𝒏𝒕𝒔, we saw that 𝒏𝒐 𝒑𝒐𝒅𝒔 were registered with the service.
+
+🛠️ 𝐅𝐢𝐱 𝐂𝐡𝐞𝐜𝐤𝐥𝐢𝐬𝐭:
+
+👉🏼 Run 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒈𝒆𝒕 𝒆𝒏𝒅𝒑𝒐𝒊𝒏𝒕𝒔 <𝒔𝒆𝒓𝒗𝒊𝒄𝒆> should 𝒔𝒉𝒐𝒘 𝑰𝑷𝒔
+
+👉🏼 Ensure the selector in the 𝐒𝐞𝐫𝐯𝐢𝐜𝐞 𝐦𝐚𝐭𝐜𝐡𝐞𝐬 𝐩𝐨𝐝 𝐥𝐚𝐛𝐞𝐥𝐬 exactly
+
+👉🏼 Run 𝒄𝒖𝒓𝒍 or 𝒕𝒆𝒍𝒏𝒆𝒕 from inside another pod to 𝒄𝒉𝒆𝒄𝒌 𝒄𝒐𝒏𝒏𝒆𝒄𝒕𝒊𝒗𝒊𝒕𝒚
+
+👉🏼 Use 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒑𝒐𝒓𝒕-𝒇𝒐𝒓𝒘𝒂𝒓𝒅 to test locally
+
+📌 𝐓𝐢𝐩: Always 𝒅𝒐𝒖𝒃𝒍𝒆-𝒄𝒉𝒆𝒄𝒌 𝒑𝒐𝒅 𝒍𝒂𝒃𝒆𝒍𝒔 𝒂𝒏𝒅 𝒔𝒆𝒓𝒗𝒊𝒄𝒆 𝒔𝒆𝒍𝒆𝒄𝒕𝒐𝒓𝒔.
