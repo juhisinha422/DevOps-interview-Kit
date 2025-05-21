@@ -1,0 +1,23 @@
+𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐒𝐞𝐫𝐢𝐞𝐬 – 𝐌𝐨𝐬𝐭 𝐀𝐬𝐤𝐞𝐝 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧 #1
+
+🎯 𝐐: 𝐖𝐡𝐚𝐭 𝐢𝐬 𝐭𝐡𝐞 𝐝𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐜𝐞 𝐛𝐞𝐭𝐰𝐞𝐞𝐧 𝐚 𝐃𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭 𝐚𝐧𝐝 𝐚 𝐒𝐭𝐚𝐭𝐞𝐟𝐮𝐥𝐒𝐞𝐭 𝐢𝐧 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬?
+
+👉🏼 𝐑𝐞𝐚𝐥-𝐭𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+Let’s say you’re deploying two types of applications:
+
+✅ 𝑫𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕: You’re deploying a 𝑹𝒆𝒂𝒄𝒕 𝒇𝒓𝒐𝒏𝒕𝒆𝒏𝒅. It’s stateless — any replica can serve any user request. So, you use a 𝑫𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕 to ensure high availability and auto-scaling.
+
+✅ 𝑺𝒕𝒂𝒕𝒆𝒇𝒖𝒍𝑺𝒆𝒕: You’re deploying 𝑴𝒐𝒏𝒈𝒐𝑫𝑩 or 𝑴𝒚𝑺𝑸𝑳. These databases are stateful — the identity and order of each pod matter, and each pod has its own 𝒑𝒆𝒓𝒔𝒊𝒔𝒕𝒆𝒏𝒕 𝒗𝒐𝒍𝒖𝒎𝒆. So, you use a 𝑺𝒕𝒂𝒕𝒆𝒇𝒖𝒍𝑺𝒆𝒕 to manage pod identity, hostname, and storage.
+
+🔍 𝐊𝐞𝐲 𝐃𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐜𝐞𝐬:
+
+𝑫𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕: Best for stateless apps.
+
+𝑺𝒕𝒂𝒕𝒆𝒇𝒖𝒍𝑺𝒆𝒕: Best for stateful apps (databases, message queues).
+
+𝑺𝒕𝒐𝒓𝒂𝒈𝒆: Deployments use shared storage (optional), StatefulSets use 𝒔𝒕𝒂𝒃𝒍𝒆, 𝒅𝒆𝒅𝒊𝒄𝒂𝒕𝒆𝒅 𝒗𝒐𝒍𝒖𝒎𝒆𝒔.
+
+𝑷𝒐𝒅 𝑰𝒅𝒆𝒏𝒕𝒊𝒕𝒚: StatefulSets maintain 𝒔𝒕𝒂𝒃𝒍𝒆 𝒑𝒐𝒅 𝒏𝒂𝒎𝒆𝒔 (e.g., mongo-0, mongo-1).
+
+💡 𝐓𝐢𝐩 𝐟𝐨𝐫 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐬: Always back your answer with a real-world use case. It shows practical understanding beyond theory.
