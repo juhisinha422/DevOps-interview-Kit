@@ -1,0 +1,23 @@
+✅ 𝐂𝐫𝐚𝐬𝐡𝐋𝐨𝐨𝐩𝐁𝐚𝐜𝐤𝐎𝐟𝐟 – 𝐂𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫 𝐊𝐞𝐞𝐩𝐬 𝐑𝐞𝐬𝐭𝐚𝐫𝐭𝐢𝐧𝐠
+
+🚨 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Your Kubernetes pod is stuck in a 𝑪𝒓𝒂𝒔𝒉𝑳𝒐𝒐𝒑𝑩𝒂𝒄𝒌𝑶𝒇𝒇 state.
+
+🔍 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧: What steps would you take to diagnose and resolve a CrashLoopBackOff issue?
+
+🧩 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+At one point, our 𝒖𝒔𝒆𝒓-𝒂𝒖𝒕𝒉 𝒎𝒊𝒄𝒓𝒐𝒔𝒆𝒓𝒗𝒊𝒄𝒆 kept crashing immediately after startup. Using 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒍𝒐𝒈𝒔, I saw the app was throwing a 𝑵𝒖𝒍𝒍𝑷𝒐𝒊𝒏𝒕𝒆𝒓𝑬𝒙𝒄𝒆𝒑𝒕𝒊𝒐𝒏 because it was expecting a 𝑱𝑾𝑻_𝑺𝑬𝑪𝑹𝑬𝑻 𝒆𝒏𝒗𝒊𝒓𝒐𝒏𝒎𝒆𝒏𝒕 𝒗𝒂𝒓𝒊𝒂𝒃𝒍𝒆 that wasn’t set.
+
+We fixed it by updating the Deployment YAML to include the missing env var. The pod then started successfully.
+
+🛠️ 𝐖𝐡𝐚𝐭 𝐭𝐨 𝐂𝐡𝐞𝐜𝐤:
+
+👉🏼 Use 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒍𝒐𝒈𝒔 <𝒑𝒐𝒅-𝒏𝒂𝒎𝒆> to view the 𝒆𝒓𝒓𝒐𝒓
+
+👉🏼 Check for missing 𝒆𝒏𝒗𝒊𝒓𝒐𝒏𝒎𝒆𝒏𝒕 𝒗𝒂𝒓𝒊𝒂𝒃𝒍𝒆𝒔, 𝒄𝒐𝒏𝒇𝒊𝒈 𝒇𝒊𝒍𝒆𝒔, or 𝒔𝒆𝒄𝒓𝒆𝒕𝒔
+
+👉🏼 Validate 𝒍𝒊𝒗𝒆𝒏𝒆𝒔𝒔 and 𝒓𝒆𝒂𝒅𝒊𝒏𝒆𝒔𝒔 probes
+
+👉🏼 Run the container locally with the same command to reproduce the issue
+
+📌 Tip: Many issues are related to 𝒎𝒊𝒔𝒄𝒐𝒏𝒇𝒊𝒈𝒖𝒓𝒆𝒅 𝒆𝒏𝒗𝒊𝒓𝒐𝒏𝒎𝒆𝒏𝒕 𝒗𝒂𝒓𝒊𝒂𝒃𝒍𝒆𝒔 𝒐𝒓 𝒅𝒆𝒑𝒆𝒏𝒅𝒆𝒏𝒄𝒚 𝒊𝒔𝒔𝒖𝒆s.
