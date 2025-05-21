@@ -1,0 +1,44 @@
+Most Asked Scenario-Based Linux Interview Questions for DevOps Engineers* 🚀
+
+
+1. Troubleshooting Services:* 💡
+ • Scenario : Your application is running on an Apache web server, but the website is not accessible. What steps would you take to identify and resolve the issue?
+
+2. Disk Space Management* :💡
+ • *Scenario* : You receive an alert that a production server is running low on disk space. How would you identify the files or directories consuming the most space and clean it up safely?
+
+3. Process Monitoring and Optimization:* 💡
+ • *Scenario* : A server is experiencing high CPU usage, and the application performance is degraded. How would you identify the root cause and optimize the processes?
+
+4. User Management and Permissions:* 💡
+ • *Scenario* : A user is unable to access a specific directory even though they belong to the correct group. How would you troubleshoot and resolve this permission issue?
+
+5. Network Connectivity Issues:* 💡
+ • *Scenario* : Your server is unable to reach a specific external IP address. What steps would you take to diagnose and resolve this network connectivity issue?
+
+6. File Recovery* :💡
+ • *Scenario* : An important configuration file has been accidentally deleted. How would you attempt to recover this file if there are no backups?
+
+7. Automating Tasks with Shell Scripts:* 💡
+ • *Scenario* : You need to automate the deployment of an application. How would you use shell scripting to automate the process, including stopping services, copying files, and restarting services?
+
+8. Log Analysis:* 💡
+• *Scenario* : An application is intermittently failing. How would you use Linux command-line tools to analyze logs and identify the root cause of these failures?
+
+9. Service Start-Up Failure:* 💡
+ • *Scenario* : A critical service fails to start after a server reboot. How would you diagnose and resolve the startup failure?
+
+10. Kernel Tuning and Optimization* :💡
+ • *Scenario* : You need to optimize the server’s performance for a high-traffic application. How would you tune kernel parameters to improve system performance?
+
+11. Managing Crontab Entries:* 💡
+ • *Scenario* : A scheduled cron job did not execute as expected. How would you troubleshoot this issue and ensure the job runs correctly in the future?
+
+12. Handling Large File Transfers:* 💡
+• *Scenario* : You need to transfer a large file securely from one server to another. What methods would you use to ensure the transfer is efficient and secure?
+
+13. Deploying Updates with Zero Downtime* :💡
+• *Scenario* : You need to deploy updates to an application without causing downtime. How would you achieve this on a Linux server?
+
+14. Managing System Resources* :💡
+• *Scenario* : The server's memory usage is consistently high, affecting application performance. What steps would you take to identify the cause and manage system resources effectively?
