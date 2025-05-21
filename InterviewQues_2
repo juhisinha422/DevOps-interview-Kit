@@ -1,0 +1,17 @@
+ recent DevOps interview, was asked several practical and in-depth questions covering Linux, Kubernetes, CI/CD, SRE, Git, and monitoring. 
+🔸 What are your roles and responsibilities?
+ 🔸 How do you configure SSH access in Kubernetes and tell me the steps?
+ 🔸 How do you add users in Linux?
+ 🔸 What is CI/CD?
+ 🔸 What is SRE (Site Reliability Engineering)?
+ 🔸 How do you monitor using Prometheus and Grafana?
+ 🔸 What is a critical issue you handled recently?
+ 🔸 What is branching in Git?
+ 🔸 How did you troubleshoot a recent production issue?
+ 🔸 What is the difference between Monolithic and Microservices?
+ 🔸 Do you know YAML scripting?
+ 🔸 What did you do using YAML?
+ 🔸 How do you troubleshoot if pods are not working?
+ 🔸 Do you know MySQL?
+ 🔸 Have you worked on any databases?
+ 🔸 What is the ssh-keygen command in Linux and why is it used?
