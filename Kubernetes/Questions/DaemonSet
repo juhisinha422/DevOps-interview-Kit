@@ -1,0 +1,30 @@
+🚀 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐃𝐚𝐞𝐦𝐨𝐧𝐒𝐞𝐭 – 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞 𝐒𝐢𝐦𝐩𝐥𝐢𝐟𝐢𝐞𝐝!
+
+
+🔧 𝐖𝐡𝐚𝐭 𝐢𝐬 𝐚 𝐃𝐚𝐞𝐦𝐨𝐧𝐒𝐞𝐭?
+
+A DaemonSet ensures that a particular pod runs on every node in your Kubernetes cluster.
+
+👨‍💻 𝑹𝒆𝒂𝒍-𝒕𝒊𝒎𝒆 𝑬𝒙𝒂𝒎𝒑𝒍𝒆:
+
+I was setting up a logging system using 𝑭𝒍𝒖𝒆𝒏𝒕𝒅 to collect logs from all nodes in the cluster and send them to a centralized location (like Elasticsearch).
+
+Instead of manually deploying the log collector to each node, I used a DaemonSet to 𝒂𝒖𝒕𝒐𝒎𝒂𝒕𝒆 it.
+
+✅ 𝑹𝒆𝒔𝒖𝒍𝒕:
+
+🔹As soon as a 𝒏𝒆𝒘 𝒏𝒐𝒅𝒆 𝒘𝒂𝒔 𝒂𝒅𝒅𝒆𝒅 to the cluster, Fluentd 𝒂𝒖𝒕𝒐𝒎𝒂𝒕𝒊𝒄𝒂𝒍𝒍𝒚 𝒔𝒕𝒂𝒓𝒕𝒆𝒅 𝒓𝒖𝒏𝒏𝒊𝒏𝒈 on it.
+
+🔹If a node was 𝒓𝒆𝒎𝒐𝒗𝒆𝒅, the pod was 𝒕𝒆𝒓𝒎𝒊𝒏𝒂𝒕𝒆𝒅 there too.
+
+🔹No manual work. 𝑭𝒖𝒍𝒍 𝒂𝒖𝒕𝒐𝒎𝒂𝒕𝒊𝒐𝒏. 🔄
+
+🎯 𝑫𝒂𝒆𝒎𝒐𝒏𝑺𝒆𝒕𝒔 𝒂𝒓𝒆 𝒂𝒍𝒔𝒐 𝒑𝒆𝒓𝒇𝒆𝒄𝒕 𝒇𝒐𝒓:
+
+✅Monitoring tools (e.g., Prometheus Node Exporter)
+
+✅Security agents (e.g., Falco)
+
+✅Custom scripts you want running everywhere
+
+✅Kubernetes is all about efficiency, scalability, and control, and DaemonSet is a perfect example of that.
