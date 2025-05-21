@@ -1,0 +1,21 @@
+Kubernetes YAML Files — Simplified for DevOps Enthusiasts! 🧵
+
+
+Here’s a quick breakdown of some must-know Kubernetes manifest files:
+
+🧱 pod.yaml – Defines one or more containers to run with shared resources.
+⚙️ deployment.yaml – Manages automated updates and scaling of pods.
+🔗 service.yaml – Connects internal/external services through stable endpoints.
+🔧 configmap.yaml – Keeps configuration data outside of application code.
+🔒 secret.yaml – Stores sensitive data securely (API keys, passwords).
+🌐 ingress.yaml – Controls external access to your services.
+💾 pvc.yaml – Requests persistent storage for stateful apps.
+📈 hpa.yaml – Scales pods based on CPU/memory usage.
+🧑🔧 serviceaccount.yaml – Allows pods to interact with Kubernetes APIs securely.
+🛡️ role.yaml – Sets fine-grained access controls within namespaces.
+🔄 rolebinding.yaml – Binds roles to users or service accounts.
+🏢 clusterrole.yaml – Grants cluster-wide permissions.
+🧩 daemonset.yaml – Ensures a pod runs on all (or specific) nodes.
+⏱️ job.yaml – Executes a task once and stops when complete.
+🚦 networkpolicy.yaml – Controls how pods talk to each other.
+These files are the backbone of Infrastructure as Code (IaC) in Kubernetes!
