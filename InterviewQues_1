@@ -1,0 +1,27 @@
+Interview Questions
+
+Tell me about yourself, Day to day activity, project role,
+1.What is a state file in terraform?
+2.What is Terraform Remote state backend?
+3.What is the Difference between Virtualization and containerization?
+4.What problem does Docker Solves?
+5.What is Dockerfile and why do we use it?
+6.Explain the workflow of how a Docker Container is created?
+7.How do you manage multiple Containers?
+8.What is Ci and CD in CICD?
+9.What CICD tools have you used in the past?
+10.How will you create a CICD pipeline to update the website or app on every commit to a particular branch? (mostly asked in the coding test).
+11.Explain staging, production and testing environment.
+12.What is a Blue Green Deployment?
+13.Explain Canary Deployment?
+14.What is the biggest issue you faced, how did you resolve it.?
+15.How do you scale your application?
+16.How do you rollback if something fails?
+17.How do you automate Deployments?
+18.Which tools have you used for automating deployment?
+19.Your company is moving its infrastructure from on-premises to AWS. What steps would you take to plan the migration?
+20.You need to migrate an existing application from an on-premises server to AWS EC2 instances. How would you approach the migration process?
+21.A company has a web application running on EC2 instances and RDS databases. How would you implement a backup and restore process for the web application?
+22.Your application is deployed to ECS, but you need to implement centralized logging for all containers. How would you integrate ECS with AWS CloudWatch or another logging service?
+23.. What is an EC2 Spot Instance, and how does it differ from On-Demand and Reserved Instances?
+24. How would you secure a Kubernetes cluster running on AWS EKS, considering RBAC, network policies, and secrets management?
