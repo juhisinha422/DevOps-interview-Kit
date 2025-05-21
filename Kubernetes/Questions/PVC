@@ -1,0 +1,21 @@
+✅ 𝐏𝐞𝐫𝐬𝐢𝐬𝐭𝐞𝐧𝐭𝐕𝐨𝐥𝐮𝐦𝐞𝐂𝐥𝐚𝐢𝐦 (𝐏𝐕𝐂) 𝐒𝐭𝐮𝐜𝐤 𝐢𝐧 𝐏𝐞𝐧𝐝𝐢𝐧𝐠
+
+🚨 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: You apply a PersistentVolumeClaim, but it stays in a Pending state.
+
+🔍 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧: What could cause a PVC to stay in Pending, and how do you resolve it?
+
+🧩 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+In a staging environment, a PVC for MongoDB was stuck. The issue? Our cluster didn’t have a 𝒅𝒆𝒇𝒂𝒖𝒍𝒕 𝑺𝒕𝒐𝒓𝒂𝒈𝒆𝑪𝒍𝒂𝒔𝒔, and the 𝑷𝑽𝑪 𝒅𝒊𝒅𝒏’𝒕 𝒆𝒙𝒑𝒍𝒊𝒄𝒊𝒕𝒍𝒚 𝒔𝒑𝒆𝒄𝒊𝒇𝒚 𝒐𝒏𝒆. As soon as we added 𝒔𝒕𝒐𝒓𝒂𝒈𝒆𝑪𝒍𝒂𝒔𝒔𝑵𝒂𝒎𝒆: 𝒈𝒑2 to the claim, it got bound to a volume.
+
+🛠️ 𝐈𝐧𝐯𝐞𝐬𝐭𝐢𝐠𝐚𝐭𝐢𝐨𝐧 𝐒𝐭𝐞𝐩𝐬:
+
+👉🏼 Check with 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒅𝒆𝒔𝒄𝒓𝒊𝒃𝒆 𝒑𝒗𝒄 <𝒏𝒂𝒎𝒆>
+
+👉🏼 Ensure a proper 𝑺𝒕𝒐𝒓𝒂𝒈𝒆𝑪𝒍𝒂𝒔𝒔 𝒆𝒙𝒊𝒔𝒕𝒔 (𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒈𝒆𝒕 𝒔𝒕𝒐𝒓𝒂𝒈𝒆𝒄𝒍𝒂𝒔𝒔)
+
+👉🏼 Make sure your cloud provider has a 𝒑𝒓𝒐𝒗𝒊𝒔𝒊𝒐𝒏𝒆𝒓 𝒊𝒏𝒔𝒕𝒂𝒍𝒍𝒆𝒅
+
+👉🏼 Check 𝒂𝒄𝒄𝒆𝒔𝒔 𝒎𝒐𝒅𝒆𝒔 (ReadWriteOnce, ReadWriteMany)
+
+📌 Tip: For production clusters, always specify the StorageClass explicitly.
