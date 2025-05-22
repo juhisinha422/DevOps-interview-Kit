@@ -1,0 +1,23 @@
+𝐇𝐏𝐀 𝐍𝐨𝐭 𝐒𝐜𝐚𝐥𝐢𝐧𝐠 𝐏𝐨𝐝𝐬
+
+🚨 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: 𝒀𝒐𝒖 𝒄𝒐𝒏𝒇𝒊𝒈𝒖𝒓𝒆𝒅 𝒂 𝑯𝒐𝒓𝒊𝒛𝒐𝒏𝒕𝒂𝒍 𝑷𝒐𝒅 𝑨𝒖𝒕𝒐𝒔𝒄𝒂𝒍𝒆𝒓, 𝒃𝒖𝒕 𝒊𝒕'𝒔 𝒏𝒐𝒕 𝒊𝒏𝒄𝒓𝒆𝒂𝒔𝒊𝒏𝒈 𝒕𝒉𝒆 𝒏𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒑𝒐𝒅𝒔 𝒖𝒏𝒅𝒆𝒓 𝒍𝒐𝒂𝒅.
+
+🔍 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧: Why might the HPA not scale your deployment even under high CPU usage?
+
+🧩 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+Our web frontend had an HPA set with target CPU utilization of 50%. Even when traffic spiked, no new pods were added. The issue? 𝑻𝒉𝒆 𝑫𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕 𝒅𝒊𝒅𝒏’𝒕 𝒉𝒂𝒗𝒆 𝑪𝑷𝑼 𝒓𝒆𝒒𝒖𝒆𝒔𝒕𝒔 𝒔𝒆𝒕, 𝒔𝒐 𝑯𝑷𝑨 𝒉𝒂𝒅 𝒏𝒐𝒕𝒉𝒊𝒏𝒈 𝒕𝒐 𝒎𝒐𝒏𝒊𝒕𝒐𝒓.
+
+Once we added 𝒓𝒆𝒔𝒐𝒖𝒓𝒄𝒆𝒔.𝒓𝒆𝒒𝒖𝒆𝒔𝒕𝒔.𝒄𝒑𝒖, autoscaling kicked in as expected.
+
+🛠️ 𝐂𝐡𝐞𝐜𝐤𝐥𝐢𝐬𝐭:
+
+👉🏼 Ensure the 𝒎𝒆𝒕𝒓𝒊𝒄𝒔-𝒔𝒆𝒓𝒗𝒆𝒓 is installed and running
+
+👉🏼 Set 𝑪𝑷𝑼 or 𝒎𝒆𝒎𝒐𝒓𝒚 requests in your deployment
+
+👉🏼 Run 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒅𝒆𝒔𝒄𝒓𝒊𝒃𝒆 𝒉𝒑𝒂 to check conditions
+
+👉🏼 Monitor metrics with 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒕𝒐𝒑 𝒑𝒐𝒅
+
+📌 𝐓𝐢𝐩: 𝑾𝒊𝒕𝒉𝒐𝒖𝒕 𝒓𝒆𝒔𝒐𝒖𝒓𝒄𝒆 𝒓𝒆𝒒𝒖𝒆𝒔𝒕𝒔, 𝑯𝑷𝑨 𝒘𝒐𝒏’𝒕 𝒉𝒂𝒗𝒆 𝒃𝒂𝒔𝒆𝒍𝒊𝒏𝒆 𝒎𝒆𝒕𝒓𝒊𝒄𝒔 𝒕𝒐 𝒂𝒄𝒕 𝒐𝒏.
