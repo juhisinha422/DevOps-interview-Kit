@@ -1,0 +1,36 @@
+🚀 𝐃𝐨𝐜𝐤𝐞𝐫 𝐈𝐦𝐚𝐠𝐞 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐏𝐮𝐬𝐡𝐞𝐝 𝐭𝐨 𝐀𝐖𝐒 𝐄𝐂𝐑! 🚀 
+
+Taking another step in mastering containerized deployments! Here’s how I streamlined the process: 
+
+🔹 Cloned the project from GitHub 
+🔹 Logged into AWS Elastic Container Registry (ECR) 
+🔹 Built and tagged the Docker image 
+🔹 Pushed the image to AWS ECR 
+🔹 Spun up a container from the hosted image 
+
+🛠 Key Commands Used: 
+
+# Clone the repository 
+git clone <git repository> 
+
+# Login to ECR 
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 
+
+# Build the Docker image 
+docker build -t myimage2:v2 2128 tween_agency 
+
+# Tag the image 
+docker tag myimage2:v2 <image path> 
+
+# Push to ECR 
+docker push <image path> 
+
+# Run the container 
+docker run -itd --name container -p 1234:80 <image path> 
+
+✨ Skills Applied: 
+✅ Jenkins Pipeline Integration 
+✅ AWS ECR Authentication & Image Management 
+✅ Docker Containerization & Deployment 
+
+🔹 Mastering AWS ECR and Docker in real-time deployments is an exciting challenge! What are your go-to strategies for efficient container workflows?
