@@ -1,0 +1,101 @@
+
+hashtag#Day13 of Docker series here - In today’s post, I break down container scaling strategies, resource allocation, monitoring, and essential commands to keep your Docker environment optimized. 
+
+1. Scaling in Docker 🚀
+
+ Scaling: 
+ Scaling is the process of adjusting resources to meet load demands. 
+ - Horizontal Scaling 🔄: Deploy multiple instances of a container to distribute the load. 
+ - Vertical Scaling 📈: Increase the computing resources (CPU/memory) for a container or host.
+
+- Vertical Scaling Command (Allocating More Resources): 
+ 
+ docker run -d --name cont1 --cpus="2.0" --memory="2g" nginx
+ 
+ 2. Allocating CPU and Memory When Creating a Container ⚙️
+
+Use resource flags with `docker run` to assign CPU and memory limits:
+
+docker run -d --name cont2 --cpus="1.0" --memory="512m" nginx
+
+This command limits the container to 1 CPU and 512 MB of memory.
+
+3. Monitoring Container Resource Usage 📊
+
+- Checking CPU Utilization: 
+ Get real-time resource usage information including CPU stats:
+ 
+ docker stats cont2
+ 
+ 4. Inspecting Container Filesystem Changes 🔍
+
+- View Changes Inside a Container: 
+ Track file modifications within your container:
+ 
+ docker diff cont2
+ 
+ 5. Creating a Container Without a Pre-existing Image 🛠️
+
+Create a container 
+docker run -itd –name cont3 -p 3333:80 nginx
+Go to container 
+docker exec -it cont3 bash
+Install all requirements
+apt update -y
+apt install git -y
+apt install vim -y
+create image ffrom container 
+ docker commit cont image1
+
+ 6. Copying Data Between Containers 📤📥
+
+Since Docker doesn’t offer a direct container-to-container copy, use the host as an intermediary:
+- Step 1: Copy from Source Container to Host:
+ 
+ docker cp container1:/app/data /tmp/data
+ 
+- Step 2: Copy from Host to Destination Container:
+ 
+ docker cp /tmp/data container2:/app/destination
+ 
+ 7. Extracting Data from a Container to the Server 🖥️
+
+Simply copy files from the container to a specific location on your host:
+
+docker cp my_app:/var/log/my_log.log /home/ec2-user/my_log.log
+
+ 8. Monitoring the Docker Host 🔎
+
+For a comprehensive overview of Docker’s environment (containers, images, networks, etc.):
+
+docker info
+
+ 9. Auto-Removing a Container When It Stops ♻️
+
+To automatically remove a container once it stops running:
+
+docker run --rm --name temp_container my_image
+
+ 10. Removing a Container Along with Its Volumes 🗑️
+
+When you need to clear both the container and its associated volumes:
+
+docker rm -v container_id
+
+11. Removing Unused Images 🧹
+
+Clean up dangling or unreferenced images to free up space:
+
+docker image prune -a
+
+ 12. Checking Docker State: Images, Networks, and More 📌
+
+For a holistic view of Docker’s current state:
+
+docker info
+
+13. Checking Available EBS Volumes on the Server 🔍
+
+List block devices to view attached EBS volumes (host-level, not Docker-specific):
+
+lsblk
