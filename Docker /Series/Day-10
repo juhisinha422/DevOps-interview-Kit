@@ -1,0 +1,65 @@
+🚀 hashtag#𝐃𝐚𝐲10 𝐨𝐟 𝐃𝐨𝐜𝐤𝐞𝐫 𝐒𝐞𝐫𝐢𝐞𝐬: 𝐒𝐜𝐚𝐥𝐞, 𝐑𝐞𝐩𝐥𝐢𝐜𝐚𝐭𝐞 & 𝐀𝐜𝐜𝐞𝐬𝐬 𝐘𝐨𝐮𝐫 𝐖𝐞𝐛 𝐚𝐩𝐩𝐥𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐨𝐧 𝐚 𝐒𝐢𝐧𝐠𝐥𝐞 𝐒𝐞𝐫𝐯𝐞𝐫
+
+Today I’m diving into creating multiple containers on one server using Docker Compose. 
+
+🔧 Essential Tools for This Setup
+
+For this project, the key tools used are: 
+- Docker 
+- Docker Compose 
+- tree (for visualizing directory structure)
+
+These work in unison to get Docker Compose up and running smoothly on your server.
+
+🌐 A Quick Note on Reverse Proxies
+A reverse proxy sits in front of your containers to handle incoming web requests, directing them to the right service. This provides load balancing, improved security, and centralized logging. 
+
+🐳 Docker Compose: Multi-Container Deployment with Replicas
+Below is a sample Docker Compose file demonstrating my setup:
+
+version: "3"
+services:
+ busticket:
+ build: ./busticket/
+ deploy:
+ replicas: 2
+ ports:
+ - "80”
+
+How It Works :
+
+- Replicas: 
+The line deploy.replicas: 2 instructs Docker to spin up two instances (replicas) of the same service on a single server. Each replica is an independent container instance, so if one fails, the other continues handling the load—ensuring higher availability.
+
+- Port Mapping: 
+By specifying ports: - "80", the container’s port 80 is exposed to the host. To check the exact port assignments and access details, you can use the following command:
+
+docker-compose ps
+ 
+This command lists the running containers along with the host port(s) that map to your container’s port 80. 🚀
+
+📁 The Busticket Dockerfile & Folder Structure
+
+Inside your busticket folder (which also contains your source code), create a Dockerfile with the content below:
+
+dockerfile: 
+FROM httpd
+COPY . /usr/local/apache2/htdocs/
+
+Place your source code alongside this Dockerfile in the busticket folder. To verify your directory structure on the server, simply run:
+
+tree
+
+🔑 Accessing Your Webapps & Checking Host Ports
+
+Once you deploy with Docker Compose, your webapps become accessible via your server’s IP on the mapped port. To determine which port to use (especially if Docker has assigned one dynamically), run:
+
+docker-compose ps
+
+This command will list the container status along with the host port(s) that map to your container’s port 80. Simply open your browser and navigate to:
+
+
+http://<YOUR_SERVER_IP>:<MAPPED_PORT>
+
+
+Replace <YOUR_SERVER_IP> with your server’s IP address and <MAPPED_PORT> with the port shown in the command output.
