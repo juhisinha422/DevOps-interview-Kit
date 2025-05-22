@@ -1,0 +1,62 @@
+🚀 hashtag#Day4: Deploying Multiple Technologies with Docker on EC2 Amazon Linux! 🔥
+
+Today's deep dive covers Dockerizing popular technologies on Amazon Linux EC2, showing step-by-step execution for Nginx, Java, Node.js, and SQL databases!🛠️ 
+
+💡 Before diving into Dockerfiles, ensure your server is ready with:
+✅ Docker installation
+
+yum update -y 
+yum install docker -y 
+systemctl start docker 
+systemctl enable docker 
+
+✅ Git installation (to pull real-time source code) 
+
+yum install git -y 
+ 
+
+📂 How to Use Your Own Source Code:
+Want to try deploying your own application using Docker? Follow these steps: 
+🔹 Step 1: Clone any public repository containing your source code.
+
+git clone <repository-url> 
+cd <repository-directory> 
+
+🔹 Step 2: Modify the Dockerfile according to your application needs.
+🔹 Step 3: Build your custom image 
+🔹 Step 4: Run and deploy your container
+
+
+🚀 Writing 4 Dockerfiles – What’s Included Today? 
+
+📝 Dockerfile for Nginx Deployment:
+
+FROM nginx
+MAINTAINER name jyothisai
+LABEL The nginx web app
+EXPOSE 80
+COPY . /usr/share/nginx/html/
+
+📝 Dockerfile for Java Application: 
+
+FROM tomcat: 8.0.20-jre8
+EXPOSE 8080
+COPY tomcat-users.xml /usr/local/tomcat/conf/
+COPY target/*.war /usr/local/tomcat/webapps/myapp.war
+
+
+📝 Dockerfile for Node.js Deployment:
+
+FROM node: 16
+WORKDIR /myapp
+COPY package*.json./
+RUN npm install
+COPY . .
+CMD ["node", "index.js"]
+
+📝 Dockerfile for SQL Database Creation:
+
+FROM mysql/mysql-server:5.7
+EXPOSE 3306
+ENV MYSQL_USER=root
+ENV MYSQL_ROOT_PASSWORD=admin@123
