@@ -1,0 +1,39 @@
+🚀 Day 2 of the Deep Dive into Docker is LIVE! 🐳 
+🌟 Today, we're exploring Containers, Images, and Essential Commands—the building blocks of Docker mastery.
+
+Container Management 📦 :
+🔻 docker ps -a→ Lists all containers (running and stopped).
+🔻docker images→ Displays all available images.
+🔻docker stop (container_name) → Stops a running container.
+🔻docker start (container_name)→ Starts a stopped container.
+🔻docker rm (container_name)→ Removes a container (must be stopped first).
+🔻docker ps -a -f status=exited→ Filters the list to show only exited containers.
+🔻docker stop $(docker ps -q)→ Stops all running containers.
+🔻docker start $(docker ps -a -q)→ Starts all stopped containers.
+🔻docker rm -f (container_name)→ Forcefully removes a container (even if running).
+
+Image Management 📼:
+🔻docker run (image_name)→ Runs a container from an image.
+🔻docker rmi (repository:tag)→ Removes an unused image.
+🔻docker rm -f (container_ID)→ Forcefully removes a container by ID.
+🔻docker inspect (container_name/ID)→ Shows detailed container information.
+
+
+Docker file 🗃️:
+It is a text based file which contains some set of instructions and it helps to automate the docker image creation.
+There is no syntax for docker file
+
+Important components in docker file ✍️:
+1. FROM: Base image (e.g., `FROM ubuntu:20.04`). 
+2. COPY: Copy the files from host (Local) to container.
+3. ADD: Copy the files from host (Local) to container and also it will download the file from the internet and send those to the container.
+4. RUN: Execute commands during image build (e.g., `RUN apt-get update`). 
+5. CMD: Default command to run when the container starts. 
+6. ENTRYPOINT: Configure a container to run as an executable. 
+7. WORKDIR: Set working directory for subsequent instructions. 
+8. ENV: Set environment variables (e.g., `ENV APP_PORT=8080`). 
+9. ARG: Build-time variables (e.g., `ARG VERSION=1.0`). 
+10. EXPOSE: Document the port the container listens on. 
+11. USER: Switch user for security (e.g., `USER node`). 
+12. LABEL: Add metadata (e.g., `LABEL maintainer="your@email.com"`). 
+13. MAINTAINER : used to specify the author or maintainer of the image.
