@@ -1,0 +1,73 @@
+#Day12- Post 2: Hands-On Docker Stack Deployment on an Amazon Linux Cluster
+
+In this post, I’ll walk you through deploying a Docker Stack on a Swarm cluster running on Amazon Linux servers. We’ll set up a cluster with 1 master (manager) and 2 worker nodes and deploy two web services—web1 and web2—ensuring these run only on the manager node.
+
+Step 1: Initialize the Swarm on the Master Node 
+Log in as the root user on your Amazon Linux master node, then run:
+
+
+docker swarm init --advertise-addr <manager-ip>
+
+
+Replace <manager-ip> with your manager node’s IP address. This command initializes your Swarm and designates the node as the manager.
+
+Step 2: Join the Worker Nodes to the Swarm 
+On each of your two worker nodes (also as root), join the swarm using the token generated during the `swarm init`:
+
+
+docker swarm join --token <worker-token> <manager-ip>:2377
+
+
+You can get the `<worker-token>` by running `docker swarm join-token worker` on your manager node. Verify the nodes with:
+
+ docker node ls 
+
+Step 3: Create Your Docker compose File 
+Create a file named `compose.yml` with the following content. This file defines two services, web1 and web2.
+
+---
+version: "3"
+services:
+ web1:
+ container_name: cont1
+ image: nginx
+ deploy:
+ replicas:3
+ ports:
+ - "8081:80"
+ 
+ web2:
+ image: nginx
+ deploy:
+ replicas:3
+ ports:
+ - "8082:80"
+
+
+
+In this example, we use the nginx image for simplicity. Replace it with your desired image if needed.
+
+Step 4: Deploy the Stack
+Deploy the stack on your manager node by executing:
+
+
+docker stack deploy my_stack –compose-file=compose.yml
+
+
+This command deploys the stack using your YAML file. You can replace `my_stack` with a stack name of your choice.
+
+ Step 5: Verify Your Deployment 
+Check your services’ status:
+
+
+docker service ls
+docker service ps my_stack_web1
+docker service ps my_stack_web2
+
+
+This verification confirms that web1 and web2 are deployed and running exclusively on the manager node, as specified by the placement constraints.
+
+
+
+Final Thoughts: 
+This two-part approach helps in understanding the underlying concepts before diving into a practical demo. With Docker Stack, you simplify complex, multi-service deployments, and tying it with Docker Swarm makes your applications scalable and resilient.
