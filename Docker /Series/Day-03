@@ -1,0 +1,19 @@
+🔥 Day 3 of My Docker Series: Deploying an Application with Amazon EC2 + Jenkins Pipeline! 🔥 
+
+worked on setting up an application inside Amazon EC2 (Amazon Linux Kernel 5.0), crafted a Dockerfile, and integrated Jenkins for CI/CD automation. Here’s how: 
+
+✅ Installed essential tools:
+🔹 Docker 🐳 
+🔹 Jenkins 🤖 
+🔹 Git 
+🔹 Dependencies for smooth deployment 
+
+✅ Where to set up:
+📍 Dockerfile → Inside the EC2 instance root user 💻 
+📍 Jenkins Pipeline → Automating the build & deployment by using repository or creating source code🚀 
+
+✨ Pulled source code from a forked repo, built the Dockerfile, created a container, and configured the pipeline in Jenkins for seamless CI/CD! 
+
+🔗 Automation is key in DevOps—excited to see this pipeline in action! What’s your strategy for efficient deployments? 
+
+
