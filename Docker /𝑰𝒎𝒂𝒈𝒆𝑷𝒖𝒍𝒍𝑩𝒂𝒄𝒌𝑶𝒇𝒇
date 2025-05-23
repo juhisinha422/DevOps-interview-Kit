@@ -1,0 +1,21 @@
+✅ 𝐈𝐦𝐚𝐠𝐞𝐏𝐮𝐥𝐥𝐁𝐚𝐜𝐤𝐎𝐟𝐟 – 𝐃𝐨𝐜𝐤𝐞𝐫 𝐈𝐦𝐚𝐠𝐞 𝐍𝐨𝐭 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠
+
+🚨 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Your pod is stuck with 𝑰𝒎𝒂𝒈𝒆𝑷𝒖𝒍𝒍𝑩𝒂𝒄𝒌𝑶𝒇𝒇 or 𝑬𝒓𝒓𝑰𝒎𝒂𝒈𝒆𝑷𝒖𝒍𝒍.
+
+🔍 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧: How do you fix image pulling issues in Kubernetes?
+
+🧩 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+We once deployed a pod referencing a private image in our internal registry. Since Kubernetes couldn’t authenticate, the image pull failed. We created a 𝑲𝒖𝒃𝒆𝒓𝒏𝒆𝒕𝒆𝒔 𝑺𝒆𝒄𝒓𝒆𝒕 𝒘𝒊𝒕𝒉 𝑫𝒐𝒄𝒌𝒆𝒓 𝒄𝒓𝒆𝒅𝒆𝒏𝒕𝒊𝒂𝒍𝒔 𝒂𝒏𝒅 𝒂𝒅𝒅𝒆𝒅 𝒊𝒕 𝒗𝒊𝒂 𝒊𝒎𝒂𝒈𝒆𝑷𝒖𝒍𝒍𝑺𝒆𝒄𝒓𝒆𝒕𝒔.
+
+🛠️ 𝐓𝐫𝐨𝐮𝐛𝐥𝐞𝐬𝐡𝐨𝐨𝐭𝐢𝐧𝐠 𝐒𝐭𝐞𝐩𝐬:
+
+🔥Run 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒅𝒆𝒔𝒄𝒓𝒊𝒃𝒆 𝒑𝒐𝒅 <𝒏𝒂𝒎𝒆> to view the 𝒆𝒓𝒓𝒐𝒓
+
+🔥Double-check the 𝒊𝒎𝒂𝒈𝒆 𝒏𝒂𝒎𝒆, 𝒕𝒂𝒈, 𝒂𝒏𝒅 𝒓𝒆𝒈𝒊𝒔𝒕𝒓𝒚 𝑼𝑹𝑳
+
+🔥 private, create a 𝑫𝒐𝒄𝒌𝒆𝒓 𝒓𝒆𝒈𝒊𝒔𝒕𝒓𝒚 𝒔𝒆𝒄𝒓𝒆𝒕 𝒂𝒏𝒅 𝒓𝒆𝒇𝒆𝒓𝒆𝒏𝒄𝒆 it in your pod spec
+
+🔥Try 𝒑𝒖𝒍𝒍𝒊𝒏𝒈 𝒕𝒉𝒆 𝒊𝒎𝒂𝒈𝒆 𝒎𝒂𝒏𝒖𝒂𝒍𝒍𝒚 on a test machine
+
+📌 𝐓𝐢𝐩: 𝑨𝒍𝒘𝒂𝒚𝒔 𝒕𝒆𝒔𝒕 𝒑𝒓𝒊𝒗𝒂𝒕𝒆 𝒊𝒎𝒂𝒈𝒆 𝒂𝒄𝒄𝒆𝒔𝒔 𝒇𝒓𝒐𝒎 𝒂 𝒏𝒐𝒅𝒆 𝒘𝒉𝒆𝒏 𝒅𝒆𝒃𝒖𝒈𝒈𝒊𝒏𝒈.
