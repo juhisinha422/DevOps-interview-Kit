@@ -1,0 +1,11 @@
+𝐖𝐡𝐚𝐭 𝐚𝐫𝐞 𝐝𝐚𝐧𝐠𝐥𝐢𝐧𝐠 𝐢𝐦𝐚𝐠𝐞𝐬 𝐢𝐧 𝐃𝐨𝐜𝐤𝐞𝐫, 𝐚𝐧𝐝 𝐡𝐨𝐰 𝐝𝐨 𝐲𝐨𝐮 𝐫𝐞𝐦𝐨𝐯𝐞 𝐭𝐡𝐞𝐦? 
+Dangling images in Docker are unused image layers that no longer have any tags associated with them. They often build up when you create new images with the same name and tag, leaving the old layers without references. 
+
+These images can consume significant disk space, so it’s important to clean them up. 
+
+Here's how: 
+1.) Run the docker images -f dangling=true command to find dangling images. 
+2.) Run the docker image prune -f command to delete all images in one go. 
+3.) If you want to remove images manually, use the docker rmi -f $(docker images -f dangling=true -q) command. 
+
+These steps help keep your system clean and free up storage efficiently.
