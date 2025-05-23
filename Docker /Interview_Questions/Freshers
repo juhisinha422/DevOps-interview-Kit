@@ -1,0 +1,42 @@
+▶️ *Docker interview Question for Freshers* 
+
+
+1. What is Docker? 
+2. What are Docker containers? 
+3. How is Docker different from a virtual machine? 
+4. What is the purpose of Docker images? 
+5. What is Docker Hub?
+6. How do you create a Docker container? 
+7. What is a Dockerfile, and how is it used? 
+8. What is the docker ps command? 
+9. How do you stop and remove a running Docker container? 
+10. What is the difference between docker run and docker exec? 
+11. How do you list all the Docker images on your system? 
+12. What is the docker-compose command used for? 
+13. How do you copy files from a Docker container to the host? 
+14. What is a Docker volume? 
+15. How do you map ports between your Docker container and host? 
+16. How do you attach to a running Docker container? 
+17. What is the Docker Compose file format version? 
+18. What is a Docker registry? 
+19. How do you view Docker container logs? 
+20. What is the docker network command?
+21. What is Docker Desktop, and how does it differ from Docker Engine? 
+22. How do you view Docker container resource usage? 
+23. What is the purpose of the CMD instruction in a Dockerfile? 
+24. How do you pull an image from Docker Hub? 
+25. What is the ENTRYPOINT instruction in a Dockerfile?
+26. How do you share data between Docker containers? 
+27. What is the .dockerignore file used for?
+28. How do you create a Docker image from a Dockerfile? 
+29. What is the docker tag command, and how is it used?
+30. How do you run a Docker container in the background (detached mode)? 
+31. What is the purpose of the EXPOSE instruction in a Dockerfile? 
+32. How do you remove all stopped containers in Docker? 
+33. How do you set environment variables for a running Docker container? 34. What is Docker Swarm? 
+35. How do you check the status of all containers running in Docker? 
+36. What is the difference between Docker’s COPY and ADD instructions in Dockerfile? 
+37. What is the docker system prune command?
+38. What is the docker-compose up command used for? 
+39. How do you limit a container’s CPU and memory usage?
+40. How do you add a volume to a Docker container?
