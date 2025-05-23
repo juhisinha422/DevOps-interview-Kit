@@ -1,0 +1,22 @@
+🌐🔒 Public vs Private IP Address — What’s the Difference?
+
+In networking, public and private IPs serve different purposes — and understanding them is key to managing secure and efficient systems.
+
+🧭 Private IP (Local/Internal):
+🏠 Used by devices inside your home or office network
+📶 Assigned automatically by your router
+🔐 Can’t be accessed from the internet directly
+📲 Found in device settings, typically used for LAN communication
+
+🌍 Public IP (External):
+🌐 Assigned by your Internet Service Provider (ISP)
+🔓 Used to communicate with the outside world (internet)
+📍 This is what websites and apps see when you go online
+🔍 Can be found by Googling “What’s my IP”
+
+⚙️ How They Work Together:
+Your router acts like a middleman — using NAT (Network Address Translation) to map internal (private) IPs to your public IP for internet access, and vice versa.
+
+🚫 Why It Matters:
+Confusing public and private IPs can lead to connectivity issues, security risks, and troubleshooting headaches.
+Understanding this split is foundational for network engineers, IT admins, and even everyday users.
