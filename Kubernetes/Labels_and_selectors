@@ -1,0 +1,35 @@
+In Kubernetes, labels and selectors are used to identify and filter resources, but they serve different purposes:
+
+Labels
+1. *Key-value pairs*: Labels are key-value pairs attached to resources, such as Pods, Services, or Nodes.
+2. *Organize and categorize*: Labels help organize and categorize resources, making it easier to manage and filter them.
+3. *Arbitrary metadata*: Labels can contain arbitrary metadata, such as environment, tier, or app.
+
+Selectors
+1. *Filter resources*: Selectors are used to filter resources based on labels.
+2. *Query resources*: Selectors query resources that match specific label criteria.
+3. *Used in resources*: Selectors are used in resources like Services, Deployments, and ReplicaSets to target specific Pods.
+
+Key differences
+1. *Purpose*: Labels provide metadata, while selectors filter resources based on that metadata.
+2. *Usage*: Labels are attached to resources, while selectors are used to query resources.
+
+Example
+apiVersion: v1
+kind: Pod
+metadata:
+ name: my-pod
+ labels:
+ app: my-app
+ env: dev
+
+In this example, the Pod `my-pod` has labels `app=my-app` and `env=dev`. A selector can then be used to target Pods with these labels:
+apiVersion: v1
+kind: Service
+metadata:
+ name: my-service
+spec:
+ selector:
+ app: my-app
+
+In this example, the Service `my-service` targets Pods with the label `app=my-app`.
