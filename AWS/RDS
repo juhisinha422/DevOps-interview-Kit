@@ -1,1 +1,7 @@
-How can we implement slow query logging in RDS aurora postgresql can anyone provide the insights here
+How can we implement slow query logging in RDS aurora postgresql ?
+
+In parameter group search for 
+
+Slow_query_log 
+
+Parameter and set that
