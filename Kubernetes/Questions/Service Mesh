@@ -1,0 +1,39 @@
+Service Mesh clearly explained !!!
+
+Topics covered
+• 3 major challenge with microservices architecture
+• Service mesh with sidecar pattern
+• Control plane & sidecar proxy 
+
+3 major challenges in microservices architecture are
+
+• How to services find other services & how to ensure newly added services are discoverable instantly ?
+
+• How to ensure service within a cluster/team are able to authenticate each other to maintain security ?
+
+• How to ensure monitoring of service health of so many individual microservices ?
+
+What is sidecar pattern ?
+
+• The sidecar pattern is a design pattern that adds supporting features to a primary application by attaching a separate container, known as a sidecar, to it. 
+
+• The sidecar container runs in the same context as the primary application and enhances its capabilities without requiring any modifications to the service code
+
+Service mesh with sidecar pattern
+
+• The service mesh is formed using a control plan & a sidecar proxy
+
+• The control plane is responsible to automatically injecting sidecar proxies into all the pods
+
+What is sidecar proxy ?
+
+The job of the sidecar proxy is to perform non business logic tasks such as • • Service discovery
+• Load balancing
+• Metrics
+• Security
+• Retries
+• Telemetry
+
+It basically abstracts our all the non business logic which can be commonly written & injected into all microservices by the control plane
+
+Developers can also focus on business logic whilst the sidecar proxy code is handled elsewhere
