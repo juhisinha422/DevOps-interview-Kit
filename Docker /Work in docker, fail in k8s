@@ -1,0 +1,21 @@
+✅ 𝐖𝐨𝐫𝐤𝐬 𝐢𝐧 𝐃𝐨𝐜𝐤𝐞𝐫, 𝐅𝐚𝐢𝐥𝐬 𝐢𝐧 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬
+
+🚨 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: The application runs perfectly in Docker, but fails after deploying to Kubernetes.
+
+🔍 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧: What are the possible causes, and how do you troubleshoot?
+
+🧩 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+A Java service in our monorepo used 𝒍𝒐𝒄𝒂𝒍𝒉𝒐𝒔𝒕:6379 to connect to 𝑹𝒆𝒅𝒊𝒔. It worked in 𝑫𝒐𝒄𝒌𝒆𝒓 𝑪𝒐𝒎𝒑𝒐𝒔𝒆, but failed in 𝑲𝒖𝒃𝒆𝒓𝒏𝒆𝒕𝒆𝒔. The issue was that in 𝑲𝒖𝒃𝒆𝒓𝒏𝒆𝒕𝒆𝒔, 𝒍𝒐𝒄𝒂𝒍𝒉𝒐𝒔𝒕 𝒓𝒆𝒇𝒆𝒓𝒔 𝒕𝒐 𝒕𝒉𝒆 𝒄𝒐𝒏𝒕𝒂𝒊𝒏𝒆𝒓 𝒊𝒕𝒔𝒆𝒍𝒇 𝒏𝒐𝒕 𝒐𝒕𝒉𝒆𝒓 𝒑𝒐𝒅𝒔. We changed it to the 𝑹𝒆𝒅𝒊𝒔 𝒔𝒆𝒓𝒗𝒊𝒄𝒆 𝒏𝒂𝒎𝒆 (𝒓𝒆𝒅𝒊𝒔-𝒔𝒆𝒓𝒗𝒊𝒄𝒆) and it worked.
+
+🛠️ 𝐖𝐡𝐲 𝐓𝐡𝐢𝐬 𝐇𝐚𝐩𝐩𝐞𝐧𝐬:
+
+👉🏼 Misunderstanding of networking , 𝒑𝒐𝒅𝒔 𝒅𝒐𝒏'𝒕 𝒔𝒉𝒂𝒓𝒆 𝒍𝒐𝒄𝒂𝒍𝒉𝒐𝒔𝒕
+
+👉🏼 𝑯𝒂𝒓𝒅𝒄𝒐𝒅𝒆𝒅 𝒄𝒐𝒏𝒇𝒊𝒈 not suitable for K8s
+
+👉🏼 Missing 𝑪𝒐𝒏𝒇𝒊𝒈𝑴𝒂𝒑𝒔 or 𝑺𝒆𝒄𝒓𝒆𝒕𝒔
+
+👉🏼 𝑯𝒆𝒂𝒍𝒕𝒉 𝒄𝒉𝒆𝒄𝒌𝒔 failing
+
+📌 𝐓𝐢𝐩: 𝑼𝒔𝒆 𝒆𝒏𝒗𝒊𝒓𝒐𝒏𝒎𝒆𝒏𝒕 𝒗𝒂𝒓𝒊𝒂𝒃𝒍𝒆𝒔 𝒐𝒓 𝒔𝒆𝒓𝒗𝒊𝒄𝒆 𝒏𝒂𝒎𝒆𝒔 𝒕𝒐 𝒄𝒐𝒏𝒏𝒆𝒄𝒕 𝒕𝒐 𝒐𝒕𝒉𝒆𝒓 𝒔𝒆𝒓𝒗𝒊𝒄𝒆𝒔 𝒊𝒏 𝑲8𝒔.
