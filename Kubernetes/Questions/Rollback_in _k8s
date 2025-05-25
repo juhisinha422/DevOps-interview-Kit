@@ -1,0 +1,21 @@
+✅ 𝐒𝐚𝐟𝐞 𝐑𝐨𝐥𝐥𝐛𝐚𝐜𝐤 𝐢𝐧 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬
+
+🚨 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: You deploy a new version and something goes wrong. How do you roll back safely?
+
+🔍 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧: What’s your strategy for 𝒓𝒐𝒍𝒍𝒊𝒏𝒈 𝒃𝒂𝒄𝒌 𝒂 𝒃𝒂𝒅 𝒅𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕?
+
+🧩 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+We pushed a faulty 𝒇𝒓𝒐𝒏𝒕𝒆𝒏𝒅 𝒖𝒑𝒅𝒂𝒕𝒆 𝒕𝒉𝒂𝒕 𝒄𝒂𝒖𝒔𝒆𝒅 500 𝒆𝒓𝒓𝒐𝒓𝒔. Using 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒓𝒐𝒍𝒍𝒐𝒖𝒕 𝒖𝒏𝒅𝒐 𝒅𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕/𝒇𝒓𝒐𝒏𝒕𝒆𝒏𝒅, we restored the previous stable version in seconds.
+
+🛠️ 𝐁𝐞𝐬𝐭 𝐏𝐫𝐚𝐜𝐭𝐢𝐜𝐞𝐬:
+
+👉🏼 Use rolling updates with 𝒑𝒓𝒐𝒑𝒆𝒓 𝒑𝒓𝒐𝒃𝒆𝒔
+
+👉🏼 Always 𝒕𝒂𝒈 𝒊𝒎𝒂𝒈𝒆𝒔 𝒘𝒊𝒕𝒉 𝒗𝒆𝒓𝒔𝒊𝒐𝒏𝒔, 𝒏𝒐𝒕 𝒍𝒂𝒕𝒆𝒔𝒕
+
+👉🏼 𝑴𝒐𝒏𝒊𝒕𝒐𝒓 the 𝒓𝒐𝒍𝒍𝒐𝒖𝒕 𝒔𝒕𝒂𝒕𝒖𝒔 (𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒓𝒐𝒍𝒍𝒐𝒖𝒕 𝒔𝒕𝒂𝒕𝒖𝒔)
+
+👉🏼 Automate 𝒂𝒍𝒆𝒓𝒕𝒔 for failed rollouts
+
+📌 𝐓𝐢𝐩: 𝑫𝒐𝒏’𝒕 𝒓𝒖𝒔𝒉 𝒂 𝒓𝒐𝒍𝒍𝒃𝒂𝒄𝒌—𝒖𝒏𝒅𝒆𝒓𝒔𝒕𝒂𝒏𝒅 𝒘𝒉𝒂𝒕 𝒇𝒂𝒊𝒍𝒆𝒅 𝒇𝒊𝒓𝒔𝒕, 𝒊𝒇 𝒑𝒐𝒔𝒔𝒊𝒃𝒍𝒆.
