@@ -1,0 +1,12 @@
+What is Networking in DevOps?
+ 
+Networking = how machines talk to each other! As a DevOps engineer, you must understand:
+ 
+- IP → the address of a machine
+ 
+- Port → a specific door on that machine (like port 22 for SSH)
+ 
+- Protocol → the language they use to communicate (TCP, HTTP, etc.)
+ 
+Without these basics, your containers, pipelines, and tools won’t connect.
+ 
