@@ -1,0 +1,72 @@
+🚀 Daily Git Commands I Use as a DevOps Cloud Engineer 🚀
+
+As part of my daily tasks, I rely on Git for version control, collaboration, and managing project workflows.
+ Here are the Git commands I use regularly 👇
+
+🔹 1. Clone a repository
+ git clone https://lnkd.in/dFfrRA8M
+
+🔹 2. Check current branch and repo status
+
+* git branch
+
+* git status
+
+* git remote -v → Check which remote repo is connected
+
+🔹 3. Create or switch branches
+
+* git checkout -b feature-branch → Create and switch to a new branch
+
+* git checkout main → Switch to main branch
+
+🔹 4. Undo local changes in a file
+
+* git checkout <file-path> → Revert any local changes made to a file
+
+🔹 5. Check differences
+
+* git diff <file-path> → View local changes in a specific file
+
+* git diff <commit-id> → See what changes were made in a specific commit
+
+🔹 6. Tag a commit (for safe rollback)
+
+* git tag <tag-name> → Mark a specific point in history
+
+🔹 7. Stage and commit changes
+
+* git add . → Stage all changes
+
+* git commit -m "Your commit message" → Commit with a message
+
+🔹 8. Push and pull changes
+
+* git push → Push changes to remote
+
+* git pull → Pull latest changes from remote
+
+🔹 9. View commit history
+
+* git log → See commit history for the current branch
+
+🔹 10. Merge changes from another branch
+
+* git merge <branch-name> → Merge a feature branch into your current branch
+
+🔹 11. Resolve merge conflicts
+
+* Open the conflicted file using vi <file-name>
+
+* Use dd in Vim to delete conflict lines
+
+* Then run:
+
+git add .
+ git commit -m "Resolved conflicts"
+
+🔹 12. Manage remote access
+
+* Use git remote -v to verify connected remotes
+
+* Restrict or allow branch push access to development teams as needed
