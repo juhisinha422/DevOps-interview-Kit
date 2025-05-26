@@ -1,0 +1,52 @@
+Understanding NGINX Ingress Controller on AWS — Why We Use It & How It Works
+
+When deploying applications on EKS cluster, one common challenge is:
+👉 How do we expose our services to the outside world — in a scalable, manageable, and secure way?
+
+That’s where the NGINX Ingress Controller comes in. Let’s understand why, how, and when to use it.
+
+🧠 Why Use NGINX Ingress Controller on AWS?
+While AWS offers native load balancers (like ALB and NLB), they don’t natively understand Kubernetes Ingress resources.
+
+To fill this gap, we use the NGINX Ingress Controller to:
+✅ Read and enforce Kubernetes Ingress rules
+✅ Route traffic based on host/path
+✅ Enable features like SSL termination, request rewrites, rate limiting, and authentication
+✅ Provide a cloud-agnostic, open-source option that works across all environments
+
+⚙️ What Happens When You Deploy It?
+Bash >>> kubectl apply -f https://lnkd.in/dPja4-dx
+
+This does the following:
+>> Deploys the NGINX Ingress Controller Pod into your cluster
+>> Creates a Service of type LoadBalancer for that pod
+>> AWS provisions a native ELB or NLB, assigning a public IP or DNS name
+>> You map your application’s domain (from the Ingress resource) to this DNS/IP
+
+🌐 Traffic Flow Summary:
+User hits https://yourdomain.com
+ ↓
+AWS Load Balancer (ELB/NLB)
+ ↓
+NGINX Ingress Controller Pod
+ ↓
+Ingress rules determine routing
+ ↓
+ClusterIP Service
+ ↓
+Application Pods
+
+Even if your Kubernetes Service is of type NodePort, traffic will still reach your pods — because the Ingress Controller bridges the outside world with your internal services.
+
+🚪 Other Options?
+Yes — you could use the AWS ALB Ingress Controller. It's a great native alternative when:
+>> You want tight integration with AWS services
+>> You prefer AWS to manage the lifecycle of ALBs
+>> You don't need advanced HTTP features NGINX offers
+But if you value flexibility, cloud-agnostic setups, and custom routing logic, then NGINX is often the better choice.
+
+🔚 Final Thoughts
+Ingress Controllers are powerful tools that abstract the complexity of traffic routing in Kubernetes.
+✅ Use NGINX when you want full control and customization
+✅ Use AWS ALB Ingress for a fully managed AWS-native solution
+Either way, understanding how traffic flows helps you design better, scalable architectures.
