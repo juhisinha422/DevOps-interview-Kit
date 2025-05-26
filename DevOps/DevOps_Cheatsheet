@@ -1,0 +1,62 @@
+🚀 Daily DevOps Commands Cheat Sheet 🔥
+Master these essential commands to streamline your DevOps workflow like a pro! 💻⚡
+
+🖥 Linux Commands 🐧
+ 🔹 Check server uptime: uptime
+ 🔹 Disk usage: df -h
+ 🔹 Memory usage: free -m
+ 🔹 CPU usage: top or htop
+ 🔹 View logs: tail -f /var/log/syslog
+ 🔹 Network connections: netstat -tulpn
+ 🔹 Running processes: ps aux
+ 🔹 Kill a process: kill <pid>
+ 🔹 Check file permissions: ls -l
+ 🔹 Change permissions: chmod <permissions> <file>
+
+☁️ AWS Commands 🚀
+🔹 List EC2 instances:
+aws ec2 describe-instances
+🔹 Create an EC2 instance:
+aws ec2 run-instances --image-id <image_id> --instance-type <instance_type>
+🔹 Start an EC2 instance:
+aws ec2 start-instances --instance-ids <instance_id>
+🛠 Git Commands 📝
+ 🔹 Clone a repo: git clone <repository_url>
+ 🔹 Check status: git status
+ 🔹 Add changes: git add <file_name>
+ 🔹 Commit changes: git commit -m "<commit_message>"
+ 🔹 Push changes: git push <remote_name> <branch_name>
+ 🔹 Pull updates: git pull <remote_name> <branch_name>
+ 🔹 View commit history: git log
+ 🔹 Create a branch: git branch <branch_name>
+ 🔹 Switch branch: git checkout <branch_name>
+ 🔹 Merge branch: git merge <branch_name>
+
+🐳 Docker Commands 📦
+ 🔹 List running containers: docker ps
+ 🔹 Start a container: docker start <container_name>
+ 🔹 Stop a container: docker stop <container_name>
+ 🔹 Remove a container: docker rm <container_name>
+ 🔹 List all containers: docker ps -a
+ 🔹 Pull an image: docker pull <image_name>
+ 🔹 Run a container: docker run -d <image_name>
+ 🔹 Access container shell:
+docker exec -it <container_name> /bin/bash
+ 🔹 View logs: docker logs <container_name>
+ 🔹 Build an image:
+docker build -t <image_name> .
+
+☸️ Kubernetes Commands 🚢
+ 🔹 Get nodes: kubectl get nodes
+ 🔹 Get pods: kubectl get pods
+ 🔹 Get deployments: kubectl get deployments
+ 🔹 Get services: kubectl get svc
+ 🔹 Create a deployment:
+kubectl create deployment <deployment_name> --image=<image_name>
+ 🔹 Apply configuration: kubectl apply -f <config_file>
+ 🔹 View pod logs: kubectl logs <pod_name>
+ 🔹 Access pod shell:
+kubectl exec -it <pod_name> -- /bin/bash
+ 🔹 Scale deployment:
+kubectl scale deployment <deployment_name> --replicas=<replica_count>
+ 🔹 Delete a pod: kubectl delete pod <pod_name>
