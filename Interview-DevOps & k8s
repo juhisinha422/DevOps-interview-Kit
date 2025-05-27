@@ -1,0 +1,11 @@
+🚀 Sharing some common interview questions that interviewers are currently asking about DevOps and Kubernetes:
+1️⃣ ❤️‍🩹 How do you configure auto-healing and auto-scaling in EKS?
+2️⃣ 📈 How do you set up and configure Prometheus and Grafana for monitoring?
+3️⃣ 🔒 How do you securely integrate credentials in a project and ensure they are encrypted in build logs?
+4️⃣ How do you inject SSL/TLS in Kubernetes for security?
+5️⃣ 📂 How do you create and monitor an ingress.yml file, and how does it control traffic?
+6️⃣ 🛠️ How do microservices communicate with each other?
+7️⃣ 📊 How are metrics scraped in a monitoring system?
+8️⃣ ⚡ What is a cache, and which caching mechanisms do you commonly use?
+9️⃣ 🫙 How do you use mount volumes in Kubernetes to store container data persistently so that changes are not lost?
+🔟 📌 Can you explain IAAS, PAAS, and SAAS with examples?
