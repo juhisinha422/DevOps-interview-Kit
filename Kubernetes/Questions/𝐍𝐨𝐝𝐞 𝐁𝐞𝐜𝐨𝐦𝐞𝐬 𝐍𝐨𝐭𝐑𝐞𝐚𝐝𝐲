@@ -1,0 +1,21 @@
+✅ 𝐍𝐨𝐝𝐞 𝐁𝐞𝐜𝐨𝐦𝐞𝐬 𝐍𝐨𝐭𝐑𝐞𝐚𝐝𝐲
+
+🚨 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: A Kubernetes node is marked NotReady, and pods are being evicted.
+
+🔍 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧: How do you identify and resolve the cause?
+
+🧩 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+One node in our AWS EKS cluster went NotReady due to disk pressure. The logs showed kubelet failing with node has disk pressure. We cleaned up unused containers and logs. The node recovered and rejoined the cluster.
+
+🛠️ 𝐒𝐭𝐞𝐩𝐬 𝐭𝐨 𝐂𝐡𝐞𝐜𝐤:
+
+👉🏼 Use 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒅𝒆𝒔𝒄𝒓𝒊𝒃𝒆 𝒏𝒐𝒅𝒆 for conditions
+
+👉🏼 Check 𝒔𝒚𝒔𝒕𝒆𝒎 𝒍𝒐𝒈𝒔 (𝒋𝒐𝒖𝒓𝒏𝒂𝒍𝒄𝒕𝒍 -𝒖 𝒌𝒖𝒃𝒆𝒍𝒆𝒕)
+
+👉🏼 Verify 𝒅𝒊𝒔𝒌, 𝒎𝒆𝒎𝒐𝒓𝒚, and 𝑪𝑷𝑼 𝒉𝒆𝒂𝒍𝒕𝒉
+
+👉🏼 Consider 𝒅𝒓𝒂𝒊𝒏𝒊𝒏𝒈 𝒂𝒏𝒅 𝒓𝒆𝒃𝒐𝒐𝒕𝒊𝒏𝒈 the node
+
+📌 𝐓𝐢𝐩: 𝑬𝒏𝒂𝒃𝒍𝒆 𝒏𝒐𝒅𝒆 𝒂𝒖𝒕𝒐-𝒓𝒆𝒄𝒐𝒗𝒆𝒓𝒚 𝒊𝒏 𝒎𝒂𝒏𝒂𝒈𝒆𝒅 𝑲8𝒔 𝒆𝒏𝒗𝒊𝒓𝒐𝒏𝒎𝒆𝒏𝒕𝒔 𝒍𝒊𝒌𝒆 𝑮𝑲𝑬 𝒐𝒓 𝑬𝑲𝑺.
