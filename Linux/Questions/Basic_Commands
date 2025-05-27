@@ -1,0 +1,83 @@
+Basic LINUX Commands 
+
+📂 File Management & Navigation
+
+🔹 ls – List files and directories
+🔹 ls -l – List with detailed info
+🔹 ls -la – Include hidden files
+🔹 cd dir – Change to directory
+🔹 cd .. – Move to the parent directory
+🔹 cd /dir – Change to an absolute path
+🔹 cd – Go to home directory
+🔹 pwd – Print current directory
+🔹 mkdir dir – Create a directory
+🔹 rm file – Delete a file
+🔹 rm -f file – Force delete file
+🔹 rm -r dir – Delete a directory
+🔹 rm -rf dir – Force remove directory
+🔹 cp file1 file2 – Copy file
+🔹 mv file1 file2 – Rename file
+🔹 mv file dir/ – Move file to directory
+🔹 touch file – Create/update file
+🔹 cat file – View file contents
+🔹 tail -f file – View file as it updates
+
+
+---
+
+🌐 Networking
+
+🔹 ping host – Check connectivity
+🔹 whois domain – Get domain info
+🔹 dig domain – Get DNS records
+🔹 wget file – Download file
+🔹 wget -c file – Resume download
+🔹 curl URL – Fetch webpage content
+🔹 ssh user@host – Remote login
+
+
+---
+
+⚙ System Info
+
+🔹 date – Show date/time
+🔹 uptime – System uptime
+🔹 whoami – Show current user
+🔹 w – Who is online
+🔹 cat /proc/cpuinfo – CPU details
+🔹 cat /proc/meminfo – Memory info
+🔹 free – Check RAM usage
+🔹 du -sh – Show directory size
+🔹 df -h – Disk space usage
+🔹 uname -a – Kernel info
+
+
+---
+
+📦 Compression
+
+🔹 tar -cf file.tar files/ – Create archive
+🔹 tar -xf file.tar – Extract archive
+🔹 tar -tf file.tar – List archive contents
+
+
+---
+
+🔐 Permissions
+
+🔹 chmod 777 file – Full access for all
+🔹 chmod 755 file – rwx for owner, rx for others
+
+
+---
+
+🛠 Process Management
+
+🔹 ps – View running processes
+🔹 ps aux – Detailed process list
+🔹 kill PID – Kill a process
+🔹 killall process – Kill all instances
+🔹 grep "pattern" file – Search for text
+🔹 locate file – Find a file
+🔹 whereis app – Locate application
+🔹 man command – Get command manual
