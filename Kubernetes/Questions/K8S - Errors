@@ -1,0 +1,112 @@
+Most Common Kubernetes Errors & How to Fix Them:
+
+1️⃣ Pods Stuck in "Pending" State
+
+🔹 Issue: Insufficient resources or missing node pools.
+✅ Solution:
+
+Run kubectl describe pod <pod-name> to check for resource constraints.
+
+Scale up the node pool (az aks scale --resource-group <rg> --name <cluster> --node-count <N>).
+
+Check node taints & tolerations preventing scheduling.
+
+
+2️⃣ ImagePullBackOff / ErrImagePull
+
+🔹 Issue: The container image cannot be pulled.
+✅ Solution:
+
+Verify image availability (kubectl describe pod <pod-name>).
+
+Ensure credentials are correct for private registries (kubectl create secret docker-registry).
+
+Check network/firewall rules blocking the registry.
+
+
+3️⃣ CrashLoopBackOff
+
+🔹 Issue: The container repeatedly crashes.
+✅ Solution:
+
+Check logs (kubectl logs <pod-name>) and events (kubectl describe pod).
+
+Debug locally using docker run before deploying.
+
+Ensure readiness/liveness probes are correctly configured.
+
+
+4️⃣ Node Not Ready
+
+🔹 Issue: Node is unavailable in the cluster.
+✅ Solution:
+
+Run kubectl get nodes & kubectl describe node <node-name>.
+
+Check if the VM is healthy in the Azure portal.
+
+Restart or scale up the node pool.
+
+
+5️⃣ OOMKilled (Out of Memory)
+
+🔹 Issue: Container exceeds allocated memory.
+✅ Solution:
+
+Adjust resource requests/limits in your YAML file:
+
+resources:
+ requests:
+ memory: "512Mi"
+ limits:
+ memory: "1Gi"
+
+Use kubectl top pods to identify high memory usage.
+
+
+6️⃣ RBAC Authorization Error (Forbidden)
+
+🔹 Issue: Insufficient permissions for a user or service account.
+✅ Solution:
+
+Assign the correct role using:
+
+kubectl create rolebinding <binding-name> --clusterrole=<role> --user=<user> --namespace=<namespace>
+
+Verify RBAC rules with kubectl auth can-i.
+
+
+7️⃣ Service Not Accessible (Pending or No External IP)
+
+🔹 Issue: LoadBalancer or Ingress controller misconfiguration.
+✅ Solution:
+
+Ensure the service type is correct (kubectl get svc).
+
+Use kubectl describe svc <service-name> to check external IP allocation.
+
+For Ingress, verify Azure Application Gateway/NGINX ingress settings.
+
+
+8️⃣ PersistentVolumeClaim (PVC) Stuck in Pending
+
+🔹 Issue: Storage class or capacity issues.
+✅ Solution:
+
+Ensure the correct storage class is used (kubectl get sc).
+
+Check if the requested storage size is available in Azure Disk/File Share.
+
+Verify kubectl describe pvc for binding errors.
+
+
+9️⃣ DNS Resolution Failure in Pods
+
+🔹 Issue: Pods cannot resolve internal/external domains.
+✅ Solution:
+
+Restart CoreDNS (kubectl rollout restart deployment coredns -n kube-system).
+
+Check kubectl get svc -n kube-system for the DNS service.
+
+Validate resolv.conf inside the pod (kubectl exec -it <pod-name> -- cat /etc/resolv.conf).
