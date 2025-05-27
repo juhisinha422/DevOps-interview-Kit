@@ -1,0 +1,4 @@
+Your Jenkins job triggers on every commit but developers complain it's causing slowdowns. How would you optimize the CI/CD workflow?
+Answer:
+
+"I’d first audit the Jenkins job to identify which commits actually require a build. For example, I can use path-based filters to trigger builds only when relevant directories or files are changed—like backend code triggering only backend builds. I'd also recommend batching commits or triggering jobs only on pull requests, not every push. For performance, I’d introduce parallel builds, caching (e.g., Docker or Maven), and consolidate smaller jobs. Using pipeline stages and conditional logic (when block) helps optimize time and resources while keeping the team happy."
