@@ -1,0 +1,18 @@
+Here are top 5 hashtag#Terraform practices, battle-tested in real-world environments:
+
+1. Use Remote State with Locking
+Never store state files locally, especially in a team or CI/CD setup. Use S3 + DynamoDB (AWS), Terraform Cloud, or Azure Storage with locking enabled to avoid conflicts and ensure consistency.
+
+2. Modularize for Reusability
+Turn repeatable patterns (like VPCs, IAM, ECS, etc.) into modules. It keeps your code hashtag#DRY (Don't Repeat Yourself), enforces standards, and accelerates provisioning across environments.
+
+3. Separate Environments Clearly
+Workspaces are good, but folder-based separation (e.g., live/test, live/dev, live/prod) offers better clarity and CI/CD integration. Reduces the risk of “oops” moments.
+
+ 4. Enforce Code Quality and Policies
+Use tools like tflint, tfsec, checkov, and terraform fmt. Integrate them into your pipelines. Infrastructure is code, treat it like it.
+
+5. Tag Everything + Document Inputs/Outputs
+Tags help with cost allocation, audits, and readability. Document module inputs/outputs with clear descriptions. terraform-docs is your friend here.
+
+These practices have helped me build more secure, maintainable, and scalable infrastructure in fast-moving environments.
