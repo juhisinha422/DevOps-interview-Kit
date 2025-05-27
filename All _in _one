@@ -1,0 +1,50 @@
+1. What is DevOps Lifecycle?
+2. Have you used any Linux Flavors, if yes, which one?
+3. What is the command to change the ownership and permission of a file or directory in Linux?
+4. How do you manage and view running processes in Linux?
+5. What is SSH?
+6. What is DNS (Domain Name System), and how does it work?
+7. What is NAT(Network Address Translatioj), and why is it used?
+8. Explain the difference between TCP and UDP Protocols?
+9. What os Git and how do we use it in DevOps?
+10. Explain the workflow of how to push the code from a local machine?
+11. How do you revert a commit that you made in your repository?
+12. What is a Branch in a Repository?
+13. What cloud you are familiar with?
+14. What is VPC in cloud?
+15. What is the difference between a Private and Public Subnet and what differentiates it?
+16. What is the Deifference between reserved instance and spot instances?
+17. What is CloudFormation (AWS) ?
+18. What are the popular IaC tools have you used?
+19. What is the difference between Terraform & Ansible?
+20. What is a playbook in Ansible?
+21. What is a state file in terraform?
+22. What is Terraform Remote state backend?
+23. What is the Difference between Virtualization and containerization?
+24. What problem does Docker Solves?
+25. What is Dockerfile and why do we use it?
+26. Explain the workflow of how a Docker Container is created?
+27. How do you manage multiple Containers?
+28. What is Ci and CD in CICD?
+29. What CICD tools have you used in the past?
+30. How will you create a CICD pipeline to update the website or app on every commit to a particular branch? (mostly asked in the coding test)?
+31. Explain staging, production and testing environment.?
+32. What is a Blue Green Deployment?
+33. Explain Canary Deployment?
+34. What is the biggest issue you faced, how did you resolve it.?
+35. How do you scale your application?
+36. How do you rollback if something fails?
+37. How do you automate Deployments?
+38. Which tools have you used for automating deployments?
+39. Have you written any Jenkins Pipeline from scratch?
+40. Mention some plugins you have used in Jenkins?
+41. What is CI/CD?
+42. How can you create backup and copy files in Jenkins?
+43. Assume you have 2 Jenkins jobs. So, the first job completed successfully but the 2nd job failed. What will you do?
+44. Can you tell me the process to integrate git with Jenkins?
+45. Can you tell me what is DSL in Jenkins?
+46. Why we use Jenkins instead of Bamboo? Difference between them?
+47. How to deploy a custom build of a code plugin to Jenkins?
+48. What is the use of Jenkins home directory?
+49. How do take backup of Jenkins Jobs?
+50. What is the way to configure Jenkins nodes agent with Jenkins master?
