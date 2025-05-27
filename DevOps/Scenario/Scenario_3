@@ -1,0 +1,4 @@
+You want to automate environment setup for development, staging, and production using Infrastructure as Code. How do you structure your Terraform code for reuse and consistency?
+Answer:
+
+"I follow a modular structure in Terraform. I create reusable modules for components like networking, compute, and databases under a /modules directory. Then, I maintain separate directories for each environment—dev/, staging/, prod/—each containing its own main.tf, variables.tf, and terraform.tfvars. These environments call the shared modules with environment-specific variables. I also use remote backends like S3 and DynamoDB for locking to manage state safely per environment. This structure promotes reuse, consistency, and makes collaboration easier across
