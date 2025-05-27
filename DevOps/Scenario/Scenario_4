@@ -1,0 +1,4 @@
+You have to roll back a deployment after a failed update in Kubernetes. What strategy would you use, and how would you implement it?
+Answer:
+
+"Kubernetes makes rollback easy if we’re using Deployments. I’d first run kubectl rollout status to confirm the update failed, then kubectl rollout undo deployment <name> to revert to the previous stable version. If we use Helm, I’d run helm rollback <release-name> <revision> after checking helm history. I always ensure proper readinessProbes and livenessProbes are configured to catch bad updates early. Also, I recommend tagging image versions and using CI/CD tools to track deployments—making rollbacks predictable and auditable.
