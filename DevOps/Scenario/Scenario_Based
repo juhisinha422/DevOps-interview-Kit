@@ -1,0 +1,8 @@
+1.     You need to deploy a new version of a microservice with minimal downtime, but your Kubernetes cluster is running at full capacity. What steps would you take?
+2.     A developer accidentally pushed sensitive AWS credentials into the public GitHub repository. What immediate actions would you take?
+3.     Your automated build pipeline in Jenkins occasionally fails due to flaky tests. How would you handle this problem to improve reliability?
+4.     You notice high CPU usage on your EC2 instances running containers deployed by ECS. How would you identify and fix the problem?
+5.     You want to automate environment setup for development, staging, and production using Infrastructure as Code. How do you structure your Terraform code for reuse and consistency?
+6.     You have to roll back a deployment after a failed update in Kubernetes. What strategy would you use, and how would you implement it?
+7.     Your Jenkins job triggers on every commit but developers complain it's causing slowdowns. How would you optimize the CI/CD workflow?
+8.     Your Docker image size has grown considerably and is slowing down your build and deployment process. What steps would you take to reduce it?
