@@ -1,0 +1,39 @@
+1) What happens if the k8s master node and worker node firewall gets broken?
+
+Answer: Existing pods will continue running, but you can't deploy new workloads or updates. API server can't communicate with worker nodes, breaking cluster management capabilities.
+
+2) What happens if etcd backup is corrupted during a cluster restore?
+
+Answer: Complete cluster failure. The control plane won't initialize and you can't manage resources. Only options are using an older backup or rebuilding the cluster from scratch.
+
+3) What happens if a node's kubelet crashes but the container runtime continues?
+
+Answer: Existing pods keep running, but the node is marked "NotReady." After grace period (~5min), pods are evicted and rescheduled elsewhere. No new pods will be scheduled to this node.
+
+4) How would applications behave if Kubernetes DNS (CoreDNS) fails?
+
+Answer: Existing connections work but new service discovery fails. Applications show connection timeouts, and probes using DNS names fail, potentially causing cascading pod restarts.
+
+5) What happens during a network partition between control plane and worker nodes?
+
+Answer: Worker nodes continue running existing workloads, but controllers can't manage them. New deployments, scaling, and updates fail. Nodes might eventually be marked unreachable.
+
+6) What happens if your CNI plugin starts dropping packets intermittently?
+
+Answer: Pod-to-pod communication becomes unreliable with sporadic timeouts. Services appear down randomly, causing difficult-to-troubleshoot application failures and inconsistent behavior.
+
+7) What happens to StatefulSets if underlying storage experiences high latency?
+
+Answer: Pod startup times increase dramatically. Database pods may trigger restart loops, write operations timeout, and new pods get stuck in "ContainerCreating" state.
+
+8) What happens if pod resource limits are set too low?
+
+Answer: Containers face OOM kills during peak loads. Applications become unstable with unexpected restarts, and horizontal scaling can't solve the problem since each instance is resource-starved.
+
+9) What happens when control plane can't reach cloud provider's API?
+
+Answer: Cloud-specific features like LoadBalancers and persistent volumes fail. Node initialization is incomplete, and external resource provisioning stops working.
+
+10) What happens if your cluster's certificate authority expires?
+
+Answer: Complete cluster failure. All component communications fail with TLS errors. API server rejects connections, kubectl stops working, and the entire cluster becomes unusable.
