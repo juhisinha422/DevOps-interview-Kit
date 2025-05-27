@@ -1,0 +1,44 @@
+1. Introduction current project and roles and responsibilities
+2.What is CI-CD
+3. What is Yaml file and how did you use in Ansible
+4. What is difference between Ansible and Puppet?
+5.What is the call back plugins in Ansible?
+6. Maven Architecture Explain?
+7.How do You check maven version? What is maven Artifacts?
+8.Why are Maven plugins are used?
+9. What is the maven order of inheritance?
+10.what is meant by term dependencies and repository in maven?
+11. what happen if the dependencies are not accepting in local repositories? what maven do?
+12. what is the snapshot in maven?
+13. What is the build profile?
+14. Kubernetes Architecture?
+15.What do you know docker? and docker container?
+16. How does docker differ to VM?
+17. How do you create docker container?
+18.Difference between docker Run and docker start?
+19. What is the purpose of docker compose for this are you write yaml individual or single Yaml file use for containers? What is docker swarm?
+20. What is container orchestration?
+21. What is the Pod in Kubernetes?
+22. How do rolling updates useful in Deployment?
+23. What is Name space in Kubernetes?
+24.What is Daemon Sets? what is replica set?
+25.What are the advantages of Kubernetes?
+26. How does Kubernetes handle security and access?
+27.What is the Jenkins uses?
+28. what is the pol SCM uses in Jenkins?
+29. what are the build triggers in Jenkins?
+30. what is the language in ci-cd pipeline?
+31. what are key components in Master slave configuration?
+32. What is pipeline in Jenkins?
+33. what is global tool configuration?
+34. How do integrate Jenkins with AWS?
+35. What is RBAC and how do configure RBAC in Jenkins ?
+36. can you explain build life cycle in Jenkins?
+37. What is shared libraries in Jenkins?
+38. Difference between Jenkins pipeline AWS code pipeline?
+39. What is the broken pipeline in Jenkins? how can you trouble shoot?
+40. What is DevOps?
+41. What is Elastic Load Balancer?
+42. Describe the troubleshoot time when you have product issues?
+43.What are the monitoring Tool have you use?
+44. Have worked on resolving production issue?
