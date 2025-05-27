@@ -1,0 +1,43 @@
+🚀 10 Terraform Scenarios Every DevOps Engineer Must Master! 🔥
+
+Terraform is powerful—but it comes with hidden pitfalls that can break your infrastructure if you’re not careful. Are you ready for these real-world challenges? 👇
+
+1️⃣ What if your Terraform state file is deleted?
+
+🛑 Disaster mode activated! Terraform forgets everything it deployed and tries to recreate all resources from scratch. This can lead to conflicts and duplicate infrastructure. Always back up your state!
+
+2️⃣ What if two engineers run terraform apply at the same time?
+
+💥 State file clash! Without proper locking, Terraform risks state corruption, leading to unpredictable infrastructure drift. Use remote state with locking!
+
+3️⃣ What if a Terraform apply fails halfway?
+
+⏳ Partially deployed chaos! Successfully created resources stay live, but failed ones remain in a tainted state. Terraform will retry the failed ones on the next apply. Know how to handle tainted resources!
+
+4️⃣ What if AWS API rate limits are hit during deployment?
+
+⚡ Throttling nightmare! Terraform retries a few times but then fails. Resources already created stay live, leaving you with a half-baked deployment. Optimize batch sizes and handle retries smartly!
+
+5️⃣ What if Terraform plan shows no changes, but someone manually modified infra?
+
+🤯 Invisible drift detected! Terraform won’t notice external changes unless you run terraform refresh. Future applies might overwrite manual updates without warning. Always detect drift before applying!
+
+6️⃣ What if you remove a resource from your Terraform config?
+
+🔥 Terraform sees it as unwanted! On the next apply, Terraform will destroy it unless you manually remove it from the state (terraform state rm). Use prevent_destroy to avoid accidental deletions!
+
+7️⃣ What if a provider API changes between Terraform versions?
+
+🔄 Version mismatch headaches! Unexpected failures, resource re-creations, or broken configs might occur. Always test updates in a staging environment first!
+
+8️⃣ What if your Terraform modules have circular dependencies?
+
+🔄 Infinite loop of doom! Terraform refuses to proceed, throwing dependency cycle errors. Refactor your modules and break cycles!
+
+9️⃣ What if you exceed AWS service quotas during deployment?
+
+🚧 Quota exceeded! Terraform marks resources as failed, leaving your deployment incomplete. Pre-check quotas before large deployments!
+
+🔟 What if you lose access to the remote backend storing your Terraform state?
+
+🔒 Lockdown mode! No Terraform actions can proceed, and your team is stuck. Always have access recovery plans!
