@@ -1,0 +1,4 @@
+A developer accidentally pushed sensitive AWS credentials into the public GitHub repository. What immediate actions would you take?
+Answer:
+
+"The first thing I would do is immediately revoke or rotate the exposed AWS credentials using the AWS CLI or console to prevent misuse. Next, I’d scan the entire Git history using tools like truffleHog or git-secrets to detect any other secrets. I'd use git filter-branch or BFG Repo-Cleaner to scrub the secrets from Git history and then force-push to update the repo. I’d also open a GitHub security advisory if needed. For prevention, I’d enforce pre-commit hooks and secret scanning tools like GitGuardian or AWS’s git-secrets as part of our CI pipeline and developer workflows.
