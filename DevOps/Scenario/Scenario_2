@@ -1,0 +1,4 @@
+Your automated build pipeline in Jenkins occasionally fails due to flaky tests. How would you handle this problem to improve reliability?
+Answer:
+
+"Flaky tests are notorious for breaking pipelines and creating noise. My first step would be to identify and isolate those flaky tests through test reports, Jenkins logs, or tagging them (e.g., @flaky). I’d temporarily quarantine or move them into a non-blocking job while logging their failures. For short-term reliability, I’d configure Jenkins to retry failed steps using the retry directive. Long-term, the goal is to eliminate the root cause—often race conditions, async calls, or environmental inconsistencies. I’d push for better mocking, containerized test environments, and dependency control to reduce flakiness.
