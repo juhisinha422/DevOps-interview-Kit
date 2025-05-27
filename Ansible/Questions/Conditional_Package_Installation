@@ -13,3 +13,16 @@
 Use when conditions with 𝒂𝒏𝒔𝒊𝒃𝒍𝒆_𝒐𝒔_𝒇𝒂𝒎𝒊𝒍𝒚.
 
 🎯 This is commonly asked in interviews and real-life automation.
+
+
+-----
+tasks: 
+- name: Install httpd on RedHat
+  yum:
+    name: httpd
+  when: ansible_os_family == "RedHat"
+
+- name: Install apache2 on Debian
+  apt: 
+    name: apache2
+  when: ansible_os_family == "Debian"
