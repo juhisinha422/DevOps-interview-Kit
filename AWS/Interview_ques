@@ -1,0 +1,12 @@
+1️⃣ EC2: How would you troubleshoot an instance that is unreachable, but the security group allows traffic?
+2️⃣ S3: Explain how you can securely share S3 objects with external users without making the bucket public.
+3️⃣ Lambda: How would you optimize the cold start issue of AWS Lambda functions?
+4️⃣ CloudFormation: Describe how you would handle resource dependency issues in a CloudFormation stack.
+5️⃣ VPC: What are the differences between a NAT Gateway and an Internet Gateway, and when would you use each?
+6️⃣ CloudWatch: How can you set up real-time alerts for memory usage on an EC2 instance?
+7️⃣ Route 53: How can you implement failover routing in Route 53 for a multi-region application?
+8️⃣ DynamoDB: Explain the difference between strongly consistent reads and eventually consistent reads.
+9️⃣ RDS: How would you perform a point-in-time recovery of an Amazon RDS database?
+🔟 ECS/EKS: Compare the use cases of AWS ECS and EKS for container management.
+
+💡 Pro Tip: Always answer using real-world scenarios and explain the reasoning behind your solutions.
