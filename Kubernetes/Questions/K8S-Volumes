@@ -1,0 +1,48 @@
+Kubernetes volumes -
+1.empty dir
+2.hostpath
+3.static provisioning 
+4.dynamic provisoning
+
+
+1. emptyDir
+
+Purpose - Temporary storage shared across containers in a Pod
+
+Lifecycle - Created when the Pod starts, deleted when the Pod stops
+
+Use Cases - inter-container data sharing
+
+Example Use - Shipping the logs from the main container 
+
+
+2. hostPath
+
+Purpose -Mounts a file/directory from the host node into the Pod
+
+Lifecycle - Lives as long as the data exists on the host
+
+Use Cases - Access to host logs, configuration files
+
+
+3. Static PV & PVC (Static Provisioning)
+Feature Details
+
+PV (PersistentVolume) Manually created volume mapped to pre-existing storage like AWS EBS or NFS
+
+PVC (PersistentVolumeClaim) User-created request that matches the static PV
+
+Lifecycle - Admin provisions PV; user creates PVC to bind
+
+Use Cases - When pre-existing storage resources must be reused
+
+
+4. Dynamic PV & PVC (Dynamic Provisioning)
+
+Feature - StorageClass Defines how storage is dynamically provisioned
+
+PV & PVC Lifecycle PVC triggers automatic creation of a PV
+
+Use Cases - Scalable, automated environments where storage should be provisioned on-demand
+
+Kubernetes dynamically creates and binds the PV using the StorageClass.
