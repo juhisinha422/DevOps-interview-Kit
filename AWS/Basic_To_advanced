@@ -1,0 +1,41 @@
+
+🔎 Basic Level AWS Questions
+ • What is AWS?
+ • What is EC2?
+ • What is S3?
+ • What is IAM?
+ • What is VPC?
+ • What is a Security Group?
+ • What are Availability Zones (AZs)?
+
+⸻
+
+🧑‍💻 Intermediate Level AWS Questions
+ • S3 vs. EBS: What are the key differences?
+ • What is Auto Scaling, and how does it work?
+ • Explain the difference between Instance Store and EBS.
+ • What is CloudFront, and when would you use it?
+ • ELB vs. CLB: What’s the difference?
+ • How does AWS Lambda work, and what are its use cases?
+ • Explain public and private subnets in a VPC.
+ • Compare Amazon RDS and DynamoDB.
+ • What is an S3 bucket policy, and how is it used?
+
+⸻
+
+🚀 Advanced Level AWS Questions
+ • How does AWS CloudFormation automate infrastructure management?
+ • What are the advantages of using AWS Organizations?
+ • Explain the working of Amazon Route 53.
+ • AWS Kinesis vs. AWS Lambda: What’s the difference?
+ • What is AWS Elastic Beanstalk, and when should you use it?
+ • Describe the different types of EBS volumes and their use cases.
+ • What is AWS Direct Connect, and why would you need it?
+ • Explain the use cases of Amazon Elastic File System (EFS).
+ • What is AWS Trusted Advisor, and how can it optimize your environment?
+ • Walk me through the AWS Well-Architected Framework and its pillars.
+
+⸻
+
+🌟 Bonus Tip for Interview Success:
+For each of these questions, ensure you understand the underlying concepts, best practices, and real-world applications. Providing practical scenarios from your experience will set you apart!
