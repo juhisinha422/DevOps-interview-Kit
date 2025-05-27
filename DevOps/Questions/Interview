@@ -1,0 +1,125 @@
+New DevOps Interview Q&A.
+
+1. /var partition is 90% full. What’s your immediate action?
+Answer:
+
+Check disk usage with du -sh /var/*
+
+Clear logs: /var/log (e.g., logrotate, delete old logs)
+
+Check for core dumps or large temp files
+
+Move non-critical data to another partition
+
+Consider extending the partition with LVM if necessary
+
+
+2. You’re locked out via SSH with no root access. How do you recover?
+Answer:
+
+Use cloud provider console (e.g., EC2 instance connect or AWS SSM Session Manager)
+
+Mount the volume on another instance and edit /etc/ssh/sshd_config or /etc/sudoers
+
+Reboot into single-user mode (for non-cloud VMs)
+
+
+3. Add 50GB to /opt using LVM without any downtime. What are the steps?
+Answer:
+
+Use lvextend -L +50G /dev/mapper/volume-opt
+
+Resize the filesystem (e.g., resize2fs or xfs_growfs /opt)
+
+Ensure volume group has enough space or extend it first
+
+
+4. Jenkins is failing to push a Docker image to the registry. How do you troubleshoot?
+Answer:
+
+Check credentials and access permissions
+
+Verify Docker daemon is running
+
+Check network connectivity to the registry
+
+Validate tag name and registry URL
+
+Inspect Jenkins logs and pipeline script
+
+
+5. EC2 instance is unreachable, and it’s not a security group issue. What’s your next step?
+Answer:
+
+Check instance status checks in AWS console
+
+Review system logs via EC2 console
+
+Inspect network ACLs, route table, or NACLs
+
+Use SSM Session Manager if enabled
+
+
+6. An S3 bucket was made public by mistake. How do you secure and audit it?
+Answer:
+
+Disable public access using bucket policy/block public access
+
+Use AWS Config and CloudTrail for auditing
+
+Enable S3 server access logging
+
+Set up an S3 Bucket Policy to deny all public access
+
+
+7. RDS migration with minimal downtime – how would you approach it?
+Answer:
+
+Use AWS DMS (Database Migration Service) with continuous replication
+
+Schedule switchover during low-traffic time
+
+Test migration on staging before production
+
+Enable multi-AZ for high availability
+
+
+8. CI/CD pipeline needs rollback capability. How would you implement it?
+Answer:
+
+Use versioned artifacts and rollback to previous version
+
+Maintain deployment history
+
+Integrate approval gates and health checks
+
+Use canary or blue/green deployment strategies
+
+
+9. Write a shell script that checks if a service is running, restarts it if not, and logs the event.
+Answer:
+
+#!/bin/bash
+SERVICE="nginx"
+if ! systemctl is-active --quiet $SERVICE; then
+ echo "$(date): $SERVICE is down. Restarting..." >> /var/log/service_monitor.log
+ systemctl restart $SERVICE
+else
+ echo "$(date): $SERVICE is running." >> /var/log/service_monitor.log
+fi
+
+
+10. Design a highly available backend on AWS – what services and architecture would you use?
+Answer:
+
+Use ELB (Load Balancer)
+
+Deploy EC2 instances in Auto Scaling Groups across multiple AZs
+
+Store data in RDS Multi-AZ or Aurora
+
+Use S3 for object storage
+
+Use CloudFront and Route 53 for distribution and DNS
+
+Consider ECS or EKS for container orchestration
