@@ -6,3 +6,6 @@
 6.     You have to roll back a deployment after a failed update in Kubernetes. What strategy would you use, and how would you implement it?
 7.     Your Jenkins job triggers on every commit but developers complain it's causing slowdowns. How would you optimize the CI/CD workflow?
 8.     Your Docker image size has grown considerably and is slowing down your build and deployment process. What steps would you take to reduce it?
+
+“What happens if your Prometheus setup misses a critical alert window?”
+
