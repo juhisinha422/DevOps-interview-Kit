@@ -1,0 +1,35 @@
+Top Kubernetes Facts to Remember:
+
+1. Pods are ephemeral
+A pod can die and restart at any time. That's why it's recommended to use Deployments, ReplicaSets, or StatefulSets to manage pods.
+
+2. Every node runs a kubelet
+The kubelet ensures that the containers described in PodSpecs are running and healthy.
+
+3. etcd stores the entire cluster state
+etcd is the brain of your cluster. If it goes down and you don’t have a backup, your cluster’s configuration is gone.
+
+4. Services provide stable networking
+Even when pods die and get recreated, Services maintain a consistent endpoint via virtual IPs and DNS.
+
+5. Readiness vs. Liveness Probes
+
+Readiness probe decides when a pod can receive traffic.
+
+Liveness probe checks if the pod should be restarted.
+
+
+6. ConfigMaps and Secrets decouple configuration from code
+Use ConfigMaps for plain-text configs, and Secrets for sensitive data like passwords or tokens.
+
+7. Ingress is more than just routing
+Ingress controllers like NGINX or Traefik can handle SSL termination, path-based routing, and even authentication.
+
+8. Namespaces help with resource isolation
+Namespaces allow you to group resources for different teams or environments (dev, staging, prod).
+
+9. Use Resource Requests and Limits
+These define the minimum and maximum CPU/memory a container can use, which helps Kubernetes with efficient scheduling.
+
+10. Always use kubectl describe before kubectl logs
+It gives you detailed insight into events, statuses, and issues before diving into logs.
