@@ -1,0 +1,19 @@
+✅ 𝐙𝐞𝐫𝐨 𝐃𝐨𝐰𝐧𝐭𝐢𝐦𝐞 𝐃𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭𝐬
+
+🚨 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: You’re updating a live app and want zero downtime.
+
+🔍 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧: How can Kubernetes help you deploy updates without any service interruption?
+
+🧩 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞:
+
+We deployed an update to our shopping cart service using a rolling update strategy with proper readinessProbe. Kubernetes waited for the new pod to be ready before removing the old one — 𝒆𝒏𝒔𝒖𝒓𝒊𝒏𝒈 𝒏𝒐 503𝒔 𝒅𝒖𝒓𝒊𝒏𝒈 𝒓𝒐𝒍𝒍𝒐𝒖𝒕.
+
+🛠️ 𝐊𝐞𝐲 𝐓𝐚𝐜𝐭𝐢𝐜𝐬:
+
+👉🏼 Use 𝒓𝒆𝒂𝒅𝒊𝒏𝒆𝒔𝒔𝑷𝒓𝒐𝒃𝒆 and 𝒍𝒊𝒗𝒆𝒏𝒆𝒔𝒔𝑷𝒓𝒐𝒃𝒆
+
+👉🏼 Configure 𝒓𝒐𝒍𝒍𝒊𝒏𝒈 𝒖𝒑𝒅𝒂𝒕𝒆 𝒔𝒆𝒕𝒕𝒊𝒏𝒈𝒔 (maxSurge, maxUnavailable)
+
+👉🏼 Monitor 𝒌𝒖𝒃𝒆𝒄𝒕𝒍 𝒓𝒐𝒍𝒍𝒐𝒖𝒕 𝒔𝒕𝒂𝒕𝒖𝒔 for safe progress
+
+📌 𝐓𝐢𝐩: 𝑪𝒂𝒏𝒂𝒓𝒚 𝒅𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕𝒔 𝒐𝒓 𝒃𝒍𝒖𝒆-𝒈𝒓𝒆𝒆𝒏 𝒔𝒕𝒓𝒂𝒕𝒆𝒈𝒊𝒆𝒔 𝒐𝒇𝒇𝒆𝒓 𝒆𝒗𝒆𝒏 𝒎𝒐𝒓𝒆 𝒄𝒐𝒏𝒕𝒓𝒐𝒍 𝒇𝒐𝒓 𝒎𝒊𝒔𝒔𝒊𝒐𝒏-𝒄𝒓𝒊𝒕𝒊𝒄𝒂𝒍 𝒔𝒆𝒓𝒗𝒊𝒄𝒆𝒔.
