@@ -1,0 +1,19 @@
+Understanding Modern Deployment Strategies in DevOps
+
+Here are three key deployment strategies used to ensure zero-downtime and safer application releases:
+1. Blue-Green Deployment
+Involves two separate environments:
+Blue is the current live environment
+Green is the new version
+Once the Green environment passes testing, all traffic is switched from Blue to Green.
+Enables quick rollback by redirecting traffic back to Blue if needed.
+2. Canary Deployment
+The new version is initially released to a small subset of users.
+If it performs well, the rollout is gradually expanded to more users.
+Helps identify potential issues with minimal impact.
+3. Rolling Update
+Updates are deployed in phases by replacing old instances with new ones gradually.
+Ensures continuous availability with no downtime.
+Common in containerized environments like Kubernetes.
+
+These strategies are critical for achieving reliable, safe, and continuous delivery in modern software development.
