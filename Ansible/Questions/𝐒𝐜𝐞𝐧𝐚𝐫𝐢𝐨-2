@@ -1,0 +1,29 @@
+✅ 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 #2 – 𝐑𝐮𝐧 𝐚 𝐓𝐚𝐬𝐤 𝐎𝐧𝐥𝐲 𝐨𝐧 𝐭𝐡𝐞 𝐅𝐢𝐫𝐬𝐭 𝐇𝐨𝐬𝐭 𝐢𝐧 𝐚 𝐆𝐫𝐨𝐮𝐩
+
+🧠 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧:
+
+How do you ensure a task runs only once, even when targeting multiple hosts in a group?
+
+💡 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞:
+
+𝑰𝒎𝒂𝒈𝒊𝒏𝒆 𝒚𝒐𝒖'𝒓𝒆 𝒅𝒆𝒑𝒍𝒐𝒚𝒊𝒏𝒈 𝒂 𝒍𝒐𝒂𝒅 𝒃𝒂𝒍𝒂𝒏𝒄𝒆𝒓 𝒐𝒓 𝒊𝒏𝒊𝒕𝒊𝒂𝒍𝒊𝒛𝒊𝒏𝒈 𝒂 𝒅𝒂𝒕𝒂𝒃𝒂𝒔𝒆 𝒎𝒂𝒔𝒕𝒆𝒓 𝒏𝒐𝒅𝒆, 𝒊𝒕 𝒔𝒉𝒐𝒖𝒍𝒅 𝒐𝒏𝒍𝒚 𝒉𝒂𝒑𝒑𝒆𝒏 𝒐𝒏𝒄𝒆, 𝒏𝒐𝒕 𝒐𝒏 𝒆𝒗𝒆𝒓𝒚 𝒔𝒆𝒓𝒗𝒆𝒓. 𝑹𝒖𝒏𝒏𝒊𝒏𝒈 𝒊𝒕 𝒆𝒗𝒆𝒓𝒚𝒘𝒉𝒆𝒓𝒆 𝒄𝒐𝒖𝒍𝒅 𝒃𝒓𝒆𝒂𝒌 𝒕𝒉𝒆 𝒘𝒉𝒐𝒍𝒆 𝒔𝒆𝒕𝒖𝒑.
+
+It's like setting up a 𝒎𝒂𝒔𝒕𝒆𝒓 𝒌𝒆𝒚 𝒇𝒐𝒓 𝒂 𝒍𝒐𝒄𝒌𝒆𝒓, only the 𝒇𝒊𝒓𝒔𝒕 𝒑𝒆𝒓𝒔𝒐𝒏 𝒏𝒆𝒆𝒅𝒔 𝒊𝒕, 𝒏𝒐𝒕 𝒆𝒗𝒆𝒓𝒚𝒐𝒏𝒆 𝒆𝒍𝒔𝒆.
+
+🔧 𝐒𝐨𝐥𝐮𝐭𝐢𝐨𝐧:
+
+Use Ansible’s 𝒊𝒏𝒗𝒆𝒏𝒕𝒐𝒓𝒚_𝒉𝒐𝒔𝒕𝒏𝒂𝒎𝒆 to 𝒕𝒂𝒓𝒈𝒆𝒕 only the 𝒇𝒊𝒓𝒔𝒕 𝒉𝒐𝒔𝒕 𝒊𝒏 𝒂 𝒈𝒓𝒐𝒖𝒑:
+
+This checks:
+
+➡️ “Is the current host the first in the 'webservers' group?”
+
+If yes, the task runs. If not, it's skipped.
+
+💡 𝐏𝐫𝐨 𝐓𝐢𝐩:
+
+Use this method in HA setups or one-time bootstrap steps. It’s cleaner and safer than tagging a host manually as "𝒑𝒓𝒊𝒎𝒂𝒓𝒚."
+
+📣 𝐁𝐨𝐧𝐮𝐬 𝐓𝐢𝐩:
+
+Want to make this more dynamic? Use a variable to define the primary host in inventory or group vars!
