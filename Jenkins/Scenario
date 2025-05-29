@@ -1,0 +1,33 @@
+▶️ What is Jenkins?
+▶️Real World organizational perspective on Jenkins?
+▶️Why do we need jenkins?
+▶️Jenkins Workflow?
+▶️Jenkins Dashboard?
+▶️In Real World DevOps Project, What Role Jenkins Play?
+
+▶️25 Real World Basic Jenkins Real Time Scenario Based Questions And Answers
+-1. What is Jenkins?
+-2. What is CI/CD in Jenkins?
+-3. Is Jenkins free to use?
+-4. What language is Jenkins written in?
+-5. What are Jenkins jobs or projects?
+-6. What is a Jenkins Pipeline?
+-7. What are the different types of Jenkins pipelines?
+-8. How does Jenkins detect code changes in GitHub or GitLab?
+-9. What is a Jenkins plugin? Why are they important?
+-10. Can Jenkins be used with Docker and Kubernetes?
+-11. What is a Jenkinsfile?
+-12. What is the difference between freestyle project and pipeline project in Jenkins?
+-13. How does Jenkins notify users of build status or failures?
+-14. Where does Jenkins store build logs and history?
+-15. How do you secure Jenkins (basic level)?
+-16. What are the system requirements to install Jenkins?
+-17. How can Jenkins be installed?
+-18. What is Jenkins Home Directory?
+-19. What is an agent/slave in Jenkins?
+-20. What is the master-agent architecture in Jenkins?
+-21. Can Jenkins run parallel jobs?
+-22. How do you trigger a Jenkins job manually and automatically?
+-23. What are parameters in Jenkins jobs?
+-24. What happens when a Jenkins build fails?
+-25. Can Jenkins deploy applications?
