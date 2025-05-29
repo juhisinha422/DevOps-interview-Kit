@@ -1,0 +1,102 @@
+🚀 Top Terraform Best Practices with Real Examples 🧠
+ When building secure and scalable infrastructure with Terraform, following structured patterns is crucial. Here's a guide I follow (and recommend) based on hands-on experience with AWS and multi-environment DevOps setups:
+
+🔹 1. Use Modules to Keep Code Reusable & Organised
+ Structure your Terraform like this:
+module "vpc" {
+ source = "./modules/vpc"
+ vpc_config = var.vpc_config
+}
+✅ Reusable modules
+✅ Better collaboration
+
+🔹 2. Group Variables Using object Types for Clarity
+ Instead of dozens of individual variables:
+variable "vpc_config" {
+ type = object({
+ cidr_block = string
+ subnets = list(string)
+ })
+}
+✅ Logical structure
+✅ Easy validation
+
+🔹 3. Always Use Remote State with S3 & DynamoDB Locking
+ In the backend.tf:
+terraform {
+ backend "s3" {
+ bucket = "my-tf-state"
+ key = "env/dev/terraform.tfstate"
+ region = "us-east-1"
+ dynamodb_table = "tf-locks"
+ }
+}
+✅ Prevents state conflicts
+✅ Enables team collaboration
+
+🔹 4. Use Workspaces for Multi-Environment Deployments
+ Create and switch:
+terraform workspace new dev
+terraform workspace select dev
+✅ Avoids duplication
+✅ Keeps states isolated
+
+🔹 5. Manage Secrets Securely — Never Hardcode Them
+ Use Secrets Manager:
+data "aws_secretsmanager_secret_version" "db_pwd" {
+ secret_id = "prod/db-password"
+}
+
+output "db_password" {
+ value = data.aws_secretsmanager_secret_version.db_pwd.secret_string
+ sensitive = true
+}
+✅ No plaintext secrets
+✅ Role-based access control
+
+🔹 6. Validate Variables to Catch Errors Early
+variable "env" {
+ type = string
+ validation {
+ condition = contains(["dev", "prod"], var.env)
+ error_message = "env must be 'dev' or 'prod'"
+ }
+}
+✅ Safe inputs
+✅ Cleaner pipelines
+
+🔹 7. Use locals for Common Tags and Logic
+locals {
+ common_tags = {
+ Project = "MyApp"
+ Environment = var.env
+ }
+}
+✅ DRY principle
+✅ Consistent tagging
+
+🔹 8. Lock Provider Versions to Prevent Breakage
+terraform {
+ required_providers {
+ aws = {
+ source = "hashicorp/aws"
+ version = "~> 5.30"
+ }
+ }
+}
+✅ Avoids unexpected changes
+✅ Reproducible builds
+
+🔹 9. Auto-Document with terraform-docs
+ Run this:
+terraform-docs markdown table ./modules/vpc > README.md
+✅ Up-to-date docs
+✅ Onboard new devs quickly
+
+🔹 10. Scan Code Using tfsec or Checkov
+ Run security scans:
+tfsec .
+# or
+checkov -d .
+✅ Detect misconfigs
+✅ Enforce security best practices
