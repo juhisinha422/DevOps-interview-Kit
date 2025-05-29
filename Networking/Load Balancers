@@ -1,0 +1,9 @@
+Load Balancers in DevOps Networking
+ 
+Think of a load balancer like a receptionist at a busy office. They greet visitors and send them to the right person, so no one gets overwhelmed.
+ 
+In DevOps, a load balancer directs user traffic to different servers. This keeps your app fast and reliable, even when many people visit at once.
+ 
+It sends requests only to servers that are healthy and ready.
+ 
+Load balancers help your app stay up and running smoothly.
