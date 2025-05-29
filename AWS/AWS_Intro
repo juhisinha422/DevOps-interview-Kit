@@ -1,0 +1,128 @@
+🔸 What is AWS Cloud:-
+
+AWS (Amazon Web Services) is a cloud computing platform offered by Amazon. It provides on-demand services like computing power, storage, databases, networking, machine learning, and security over the internet with pay-as-you-go pricing.
+
+
+---
+
+🔸Key Benefits of AWS:-
+
+Cost-effective: Pay only for what you use.
+
+Scalable: Easily increase/decrease resources.
+
+Reliable: Data centers around the world.
+
+Secure: Strong data privacy and security features.
+
+Global Infrastructure: 99 Availability Zones in 31 Regions (as of 2025).
+
+
+
+---
+
+🔸Core AWS Services:-
+
+Here are some major AWS services grouped by category:
+
+a. Compute
+
+EC2 (Elastic Compute Cloud) – Virtual servers
+
+Lambda – Serverless computing
+
+Elastic Beanstalk – Easy app deployment
+
+
+b. Storage
+
+S3 (Simple Storage Service) – Object storage
+
+EBS (Elastic Block Store) – Disk storage for EC2
+
+Glacier – Archival storage
+
+
+c. Databases
+
+RDS – Relational DB (MySQL, PostgreSQL, etc.)
+
+DynamoDB – NoSQL database
+
+Aurora – High-performance DB
+
+
+d. Networking
+
+VPC (Virtual Private Cloud) – Private network in AWS
+
+Route 53 – DNS and domain name service
+
+CloudFront – Content delivery network (CDN)
+
+
+e. Security
+
+IAM (Identity and Access Management) – Manage users and permissions
+
+KMS (Key Management Service) – Encryption key management
+
+Shield – DDoS protection
+
+
+f. Management Tools
+
+CloudWatch – Monitoring
+
+CloudTrail – Logging and tracking API calls
+
+AWS Config – Configuration history
+
+
+
+---
+
+⭕ AWS Certifications
+
+🔸Foundational
+
+🔹Cloud Practitioner (Beginner level)
+
+
+🔸Associate Level
+
+🔹Solutions Architect – Associate
+
+🔸Developer – Associate
+
+🔹SysOps Administrator – Associate
+
+
+🔸Professional Level
+
+🔹Solutions Architect – Professional
+
+🔸DevOps Engineer – Professional
+
+
+🔹Specialty
+
+Security, Big Data, Machine Learning, Networking, etc.
+
+
+
+---
+
+⭕ Career Opportunities
+
+With AWS skills, you can apply for:
+
+-Cloud Engineer
+
+-AWS Solutions Architect
+
+-DevOps Engineer
+
+-Cloud Developer
+
+-Site Reliability Engineer (SRE
