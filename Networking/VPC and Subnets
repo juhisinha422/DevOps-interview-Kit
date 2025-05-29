@@ -1,0 +1,15 @@
+Understanding VPC and Subnets in DevOps
+
+A VPC is your own private network in the cloud. It keeps your resources safe and organized.
+
+Inside a VPC, subnets divide your network into smaller parts.
+
+With subnets you can:
+
+Separate public and private resources
+
+Improve security by isolating sensitive data
+
+Example:
+Put your web servers in a public subnet
+Put your databases in a private subnet
