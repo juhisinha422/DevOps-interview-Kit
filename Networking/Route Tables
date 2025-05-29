@@ -1,0 +1,10 @@
+Route Tables in DevOps
+ 
+Your cloud needs directions. That’s what route tables do.
+ 
+Think of them as maps for your EC2 traffic — guiding it in or out.
+ 
+No route = no connection
+Even if your instance is up and running, it can’t reach the outside world without the right route.
+ 
+Example: Want your EC2 to download updates? It needs a route to send traffic through the Internet Gateway. No path? No internet.
