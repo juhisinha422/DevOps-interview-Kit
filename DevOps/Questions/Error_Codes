@@ -1,0 +1,63 @@
+HTTP status codes to cloud/system errors,  but understanding them quickly can save a lot of time....
+
+
+
+✅ HTTP STATUS CODES
+
+
+🟢 200 OK – Request was successful, everything is working...we like this! 😄
+
+🆕 201 Created – Request succeeded and a new resource was created.
+
+🚫 204 No Content – Request succeeded but nothing to return.
+
+🔁 301 Moved Permanently – Resource has been permanently moved to a new URL.
+
+🔄 302 Found – Temporary redirect to a different URL.
+
+❗ 400 Bad Request – Client sent something invalid (e.g., malformed syntax).
+
+🔒 401 Unauthorized – Request lacks valid authentication credentials.
+
+⛔ 403 Forbidden – Credentials are valid, but user doesn’t have permission.
+
+🔍 404 Not Found – Requested resource doesn’t exist on the server.
+
+⏳ 408 Request Timeout – Server timed out waiting for the client request.
+
+🚦 429 Too Many Requests – Client sent too many requests in a short period.
+
+💥 500 Internal Server Error – Generic error from the server side.
+
+🧱 502 Bad Gateway – Server received an invalid response from upstream.
+
+🛑 503 Service Unavailable – Server is temporarily overloaded or down.
+
+⏱️ 504 Gateway Timeout – Upstream server didn’t respond in time.
+
+
+
+⚙️ SYSTEM / CLOUD ERRORS:
+
+
+🔐 PermissionDenied – Authenticated, but lacks necessary permissions.
+
+🚷 ConnectionRefused – Target server rejected the connection request.
+
+⌛ ConnectionTimedOut – Target server didn’t respond within allowed time.
+
+💾 DiskFull – Operation failed due to lack of disk space.
+
+🧠 OutOfMemory – Application or service exceeded allocated memory.
+
+❌ AuthFailure – Login/token/key-based authentication failed.
+
+📈 InstanceLimitExceeded – Cloud quota limit reached for resource type.
+
+🧩 DependencyError – Failure due to an issue in a required service/component.
+
+⚠️ ServiceUnavailable – Cloud provider or app service is currently down or restarting.
+
+
+
+Not all the codes out there though - just the ones you keep running into!
