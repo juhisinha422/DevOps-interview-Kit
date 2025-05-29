@@ -1,0 +1,18 @@
+Security Groups vs NACL — what’s the deal?
+
+Think of Security Groups as the locks on your doors. 
+NACLs are the fences around your house.
+
+Security Groups protect your EC2 instances.
+NACLs protect your subnets.
+
+A Security Group controls who can reach your server.
+It’s stateful — if traffic comes in, the response goes out automatically.
+You’ll use it daily in DevOps setups.
+
+A NACL filters traffic at the subnet level.
+It’s stateless — you need to allow both inbound and outbound separately.
+It’s helpful for fine control.
+
+Security Groups = your default
+NACLs = your extra shield
