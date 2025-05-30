@@ -1,0 +1,34 @@
+Understanding Kubernetes Resources and Controllers
+
+As Kubernetes (K8s) continues to dominate the container orchestration space, understanding its core components is key to mastering efficient and scalable deployments. 
+
+Today, let us break down two essential concepts that make K8s tick: 
+1) Resources 
+2) Controllers.
+
+Kubernetes Resources:
+Resources in Kubernetes represent the desired state of various components that run in the cluster. 
+
+These include:
+==>Pods: The smallest unit of deployment, representing a set of containers running together.
+==>Deployments: Ensure the right number of replicas of your pods are running and manage updates smoothly.
+==>Services: Enable stable network access to applications, even when pods are dynamically created or destroyed.
+==>ConfigMaps & Secrets: Store and manage application configurations and sensitive data.
+==>Persistent Volumes: Manage storage that outlives individual pod lifecycles.
+
+Kubernetes Controllers:
+Controllers are responsible for ensuring that the actual state of the system matches the desired state.
+If something goes wrong (e.g., a pod crashes or a deployment doesn’t have the right number of replicas), controllers take corrective actions to bring things back into the desired state.
+
+Here are some of the most common ones:
+
+==>Deployment Controller: Ensures the correct number of pod replicas are running, even as updates or changes are made.
+==>ReplicaSet Controller: Maintains a specified number of pod replicas, replacing any pods that are terminated or fail.
+==>StatefulSet Controller: Manages the deployment of stateful applications, providing each pod with a stable identity and persistent storage.
+==>Horizontal Pod Autoscaler (HPA): Automatically adjusts the number of pod replicas based on metrics like CPU or memory usage.
+==>DaemonSet Controller: Ensures a pod runs on every node in the cluster for tasks like monitoring, logging, or networking.
+
+How Resources and Controllers Work Together
+In Kubernetes, the interaction between resources and controllers is dynamic and ongoing. 
+Controllers constantly monitor resources to ensure they match the desired state defined in your configuration files. 
+If there is a discrepancy (e.g., a pod crashes), the controller will take action — like restarting a pod or scaling a deployment — to bring everything back into line.
