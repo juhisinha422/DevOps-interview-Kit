@@ -1,0 +1,27 @@
+✅ 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 #3 – 𝐒𝐤𝐢𝐩 𝐚 𝐓𝐚𝐬𝐤 𝐢𝐟 𝐚 𝐅𝐢𝐥𝐞 𝐃𝐨𝐞𝐬𝐧’𝐭 𝐄𝐱𝐢𝐬𝐭
+
+🧠 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧:
+
+How do you conditionally skip a task in Ansible only if a specific file is missing?
+
+💡 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞:
+
+Let’s say your application generates a config file after installation (/𝒆𝒕𝒄/𝒎𝒚𝒂𝒑𝒑/𝒄𝒐𝒏𝒇𝒊𝒈.𝒚𝒎𝒍).
+
+You don’t want to 𝒓𝒆𝒔𝒕𝒂𝒓𝒕 𝒐𝒓 𝒓𝒆𝒍𝒐𝒂𝒅 𝒕𝒉𝒆 𝒂𝒑𝒑 𝒖𝒏𝒍𝒆𝒔𝒔 𝒕𝒉𝒂𝒕 𝒇𝒊𝒍𝒆 𝒂𝒄𝒕𝒖𝒂𝒍𝒍𝒚 𝒆𝒙𝒊𝒔𝒕𝒔, doing so could cause unnecessary errors.
+
+𝑻𝒉𝒊𝒏𝒌 𝒐𝒇 𝒊𝒕 𝒍𝒊𝒌𝒆 𝒕𝒓𝒚𝒊𝒏𝒈 𝒕𝒐 𝒐𝒑𝒆𝒏 𝒂 𝒅𝒐𝒐𝒓 — 𝒊𝒇 𝒕𝒉𝒆 𝒌𝒆𝒚 𝒊𝒔𝒏'𝒕 𝒕𝒉𝒆𝒓𝒆, 𝒅𝒐𝒏'𝒕 𝒆𝒗𝒆𝒏 .
+
+🔧 𝐒𝐨𝐥𝐮𝐭𝐢𝐨𝐧:
+
+Use the 𝒔𝒕𝒂𝒕 module to check for the file, then apply a 𝒘𝒉𝒆𝒏 condition:
+
+🧪 stat returns metadata about the file. If it doesn't exist, stat.exists will be false, and the task is safely skipped.
+
+💡 𝐏𝐫𝐨 𝐓𝐢𝐩:
+
+Avoid using shell with 𝒍𝒔 and 𝒊𝒈𝒏𝒐𝒓𝒆_𝒆𝒓𝒓𝒐𝒓𝒔. stat is idempotent, clean, and works across platforms.
+
+📣 𝐁𝐨𝐧𝐮𝐬 𝐓𝐢𝐩:
+
+You can use this approach for optional 𝑺𝑺𝑳 𝒄𝒆𝒓𝒕𝒔, 𝒃𝒂𝒄𝒌𝒖𝒑 𝒇𝒊𝒍𝒆𝒔, or 𝒄𝒐𝒏𝒅𝒊𝒕𝒊𝒐𝒏𝒂𝒍 𝒅𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕𝒔.
