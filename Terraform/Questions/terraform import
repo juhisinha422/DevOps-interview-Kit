@@ -1,0 +1,22 @@
+🚀 𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐓𝐢𝐩 𝐨𝐟 𝐭𝐡𝐞 𝐃𝐚𝐲: 𝐔𝐧𝐝𝐞𝐫𝐬𝐭𝐚𝐧𝐝𝐢𝐧𝐠 𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐢𝐦𝐩𝐨𝐫𝐭 🛠️
+
+Ever wondered how to bring existing infrastructure under Terraform management without recreating it?
+
+That’s where terraform import comes in. 🔄
+
+🔹 What is it?
+ terraform import is a command that allows you to import existing infrastructure (like an Azure VM, AWS S3 bucket, etc.) into your Terraform state.
+
+🔹 Why use it?
+ ✅ Migrate resources into IaC without downtime
+ ✅ Avoid “terraform destroying” and recreating existing production resources
+ ✅ Gain visibility and control through versioned infrastructure code
+
+🔹 How it works:
+Define the resource block in your .tf file
+Run terraform import <resource_address> <resource_id>
+Terraform maps the resource into your state file
+Follow up with terraform plan to verify consistency
+
+🧠 Pro Tip:
+ After importing, always run terraform plan and update your .tf files to reflect the full configuration — terraform import doesn't write code, it only updates the state!
