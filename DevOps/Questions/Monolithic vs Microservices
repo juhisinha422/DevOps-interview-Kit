@@ -1,0 +1,19 @@
+Monolithic vs Microservices: Real-Time DevOps Interview Scenarios
+
+Preparing for DevOps interviews? Here's how real-world problems are tackled in both architectures:
+
+Monolithic Architecture
+Deployment failure in one module → impacts the whole app
+Scaling a single feature → requires scaling the entire monolith
+Zero-downtime deployment → needs blue/green strategy & session handling
+
+Microservices Architecture
+One service fails → isolate with retries, circuit breakers
+Shared data across services → use APIs or event-driven updates
+Service discovery in Kubernetes → handled via DNS or service mesh
+CI/CD pipelines → one per service using Docker, Helm, GitOps
+Logging & Monitoring → centralized with ELK/EFK, Prometheus, Grafana
+Rollbacks → easy with versioned deployments and health checks
+
+These scenarios are common in interviews and actual production setups.
+ Understanding them helps you move beyond theory and into real DevOps problem-solving.
