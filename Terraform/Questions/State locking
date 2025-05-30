@@ -1,0 +1,11 @@
+🚀 Terraform Tip: What is State Locking? 🛡️
+
+When working with Terraform, especially in a team environment, managing your infrastructure as code can get tricky. One critical concept to understand is state locking.
+
+🔐 State Locking ensures that only one operation (like terraform apply or terraform plan) can modify the Terraform state at a time. This prevents race conditions, where multiple users or pipelines might try to update the infrastructure simultaneously — potentially leading to corruption or unexpected changes.
+
+🧠 For example, when using a remote backend like Terraform Cloud or Azure Storage with state locking via blob leases, Terraform automatically locks the state file during operations.
+
+👷‍♂️ Imagine two engineers applying changes at the same time — without state locking, Terraform might overwrite or delete resources unpredictably. With locking, one must wait until the lock is released.
+
+💡 Best Practice: Always use a remote backend with state locking enabled when collaborating with others or running Terraform in CI/CD pipelines.
