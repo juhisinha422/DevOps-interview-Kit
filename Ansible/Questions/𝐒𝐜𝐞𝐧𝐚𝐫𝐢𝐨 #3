@@ -25,3 +25,17 @@ Avoid using shell with 𝒍𝒔 and 𝒊𝒈𝒏𝒐𝒓𝒆_𝒆𝒓𝒓𝒐�
 📣 𝐁𝐨𝐧𝐮𝐬 𝐓𝐢𝐩:
 
 You can use this approach for optional 𝑺𝑺𝑳 𝒄𝒆𝒓𝒕𝒔, 𝒃𝒂𝒄𝒌𝒖𝒑 𝒇𝒊𝒍𝒆𝒔, or 𝒄𝒐𝒏𝒅𝒊𝒕𝒊𝒐𝒏𝒂𝒍 𝒅𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕𝒔.
+
+
+# skip-task-file-not-exist.yml
+
+- name: Check for config file
+  stat: 
+    path: /etc/myapp/config.yml
+  register: config_file
+
+- name: Reload app if config exists
+  service: 
+    name: myapp 
+    state: reloaded
+  when: config_file.stat.exists
