@@ -1,0 +1,24 @@
+What are Target groups and Application load balancer brief?
+
+➡️Target Group and Application Load Balancer (ALB) Overview
+A Target Group is a group of resources, such as EC2 instances, containers, or IP addresses, that an Application Load Balancer (ALB) can route traffic to. An ALB operates at the application layer (layer 7) of the OSI model, distributing incoming HTTP and HTTPS traffic across multiple targets based on request attributes.
+
+➡️Application Load Balancer Features
+- *Load Balancing*: ALB distributes traffic across multiple targets, improving application availability and scalability.
+- *Content-based Routing*: ALB can route requests to different target groups based on request attributes, such as hostname, path, or headers.
+- *TLS Termination*: ALB supports TLS termination, allowing you to offload encryption and decryption tasks.
+- *Sticky Sessions*: ALB supports sticky sessions, enabling requests from the same client to be routed to the same target.
+- *Health Checks*: ALB performs health checks on targets, ensuring traffic is only routed to healthy instances.
+
+Pros of Application Load Balancer
+- *Improved Availability*: ALB ensures traffic is distributed across multiple targets, improving application availability.
+- *Scalability*: ALB can handle large volumes of traffic and scale to meet changing demands.
+- *Flexibility*: ALB supports various routing algorithms and can route traffic to different target groups based on request attributes.
+- *Security*: ALB supports TLS termination and integration with AWS Web Application Firewall (WAF) for enhanced security.
+
+Cons of Application Load Balancer
+- *Complexity*: ALB can be complex to configure and manage, especially for large-scale applications.
+- *Cost*: ALB pricing is based on the number of load balancer hours and the amount of data processed.
+- *Performance Overhead*: ALB can introduce latency due to its layer 7 processing.
+
+In summary, ALB is suitable for applications that require advanced routing features, content-based routing, and integration with AWS services. NLB is suitable for applications that require low latency, high performance, and static IP addresses.
