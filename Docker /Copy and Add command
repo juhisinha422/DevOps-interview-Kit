@@ -1,0 +1,24 @@
+The COPY and ADD commands in a Dockerfile are both used to copy files/directories into the image, but there are some key differences between them.
+
+#COPY
+Syntax: COPY <src> <dest>
+Purpose: Copies files and directories.
+Ex:
+COPY app/ /demo
+
+Key Points:
+1.Only supports copying local files and directories.
+2.No automatic unpacking of archives.
+
+
+#ADD 
+Syntax: ADD <src> <dest>
+Purpose: Like COPY, but with extra features.
+Ex:
+ADD demo.tar.gz /demo
+
+Key points:
+1. automatically unpack local .tar, .tar.gz, .tar.bz2, .tar.xz archives.
+2.Can fetch files from remote URLs.
+
+ADD https://lnkd.in/gTxs3dQG /demo
