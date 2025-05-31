@@ -1,0 +1,30 @@
+Jenkins Interview Questions and answers:
+
+1.What is Jenkins?
+Answer: Jenkins is an open-source automation server primarily used for Continuous Integration (CI) and Continuous Delivery (CD). It automates the process of building, testing, and deploying applications, making software development faster and more reliable. It can integrate with many tools to create a fully automated DevOps pipeline.
+
+2.What are the key features of Jenkins?
+Answer: Key features of Jenkins include:
+Automated build and deployment.
+Support for multiple plugins.
+Integration with version control systems (e.g., Git, SVN).
+Easy configuration and extensibility via plugins.
+Distributed builds using master-slave architecture.
+Supports multiple operating systems.
+Ability to create automated pipelines.
+
+3.What are Jenkins Pipelines, and how are they different from freestyle jobs?
+Answer: Jenkins Pipelines are a series of automated steps defined in a Jenkinsfile. Pipelines provide a more flexible, repeatable, and maintainable way to define CI/CD workflows as code. The main difference from freestyle jobs is that freestyle jobs are manually configured and are less flexible, whereas pipelines allow code to define the entire process, improving version control and reproducibility.
+
+4.What are the different types of Jenkins Jobs?
+Answer:
+Freestyle Jobs: Simple jobs configured via the Jenkins UI, good for basic tasks.
+Pipeline Jobs: Defined using a Jenkinsfile, offering flexibility and automation for complex workflows.
+Multi-Configuration Jobs: For testing across multiple environments or configurations.
+Maven Jobs: Jobs specifically designed to work with Maven projects.
+
+5.How does Jenkins integrate with version control systems like Git?
+Answer: Jenkins can integrate with version control systems like Git using plugins like the Git plugin. It can be configured to automatically trigger a build whenever there is a commit or a push to the repository. This can be achieved via SCM polling or webhooks.
+
+6.Explain the concept of a "master-slave" configuration in Jenkins.
+Answer: In Jenkins, the "master" is the central server responsible for orchestrating jobs and managing resources, while "slaves" (also called agents) are machines that offload and execute tasks. This configuration is useful for scaling Jenkins by distributing the workload across multiple machines, improving performance and enabling parallel execution.
