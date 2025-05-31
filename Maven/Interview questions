@@ -1,0 +1,26 @@
+Maven interview basic question and answers.
+
+1. What is Maven and why is it used in Java projects?
+Answer:
+ Maven is a build automation tool primarily used for Java projects. It simplifies the build process by managing dependencies, compiling code, running tests, and packaging artifacts (JAR/WAR files). By using Maven, developers can avoid manual configuration, ensure consistency across builds, and easily integrate with other tools.
+
+2. What is the role of pom.xml in Maven?
+Answer:
+ The pom.xml file in Maven, known as the Project Object Model, serves as the core configuration file for Maven projects. It defines project dependencies, build plugins, goals, and other configurations. It also specifies project metadata, such as version, packaging type, and other necessary details to automate the build lifecycle.
+
+3. What are Maven's three main lifecycles, and what do they do?
+Answer:
+ Maven has three main lifecycles:
+Default Lifecycle: Manages the build process (compilation, testing, packaging, etc.).
+Clean Lifecycle: Removes the target directory to clean up previous builds.
+Site Lifecycle: Generates project documentation.
+Each lifecycle contains phases, such as compile, test, package, install, and deploy.
+
+4. What is a Maven Dependency, and how does it work?
+Answer:
+ A Maven dependency is a JAR or library that your project requires to compile, test, or run. These dependencies are declared in the pom.xml file, and Maven automatically downloads them from remote repositories (like Maven Central). This makes dependency management simple and avoids the need to manually download libraries.
+
+5. What is the difference between mvn install and mvn deploy?
+Answer:
+mvn install: Installs the artifact (JAR/WAR) into your local Maven repository, making it available for other projects on your machine.
+mvn deploy: Deploys the artifact to a remote Maven repository (e.g., Nexus, Artifactory), making it available for other team members or projects.
