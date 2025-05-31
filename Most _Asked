@@ -1,0 +1,39 @@
+most asked interview question and answers.
+1. In the VPC module, why do we use single_nat_gateway = true and enable_nat_gateway = true?
+Answer:
+single_nat_gateway = true: This configuration option is used to create a single NAT Gateway for the entire VPC. It reduces cost and complexity by limiting the number of NAT Gateways to one, instead of creating multiple ones in different availability zones. This is generally used for cost-effective setups when high availability is not a critical requirement.
+
+enable_nat_gateway = true: This parameter enables the creation of a NAT Gateway in the VPC. If this is set to false, Terraform will not create a NAT Gateway, even if other NAT-related configurations are present.
+
+In combination, these two settings help create a simpler VPC design where a single NAT Gateway is shared across multiple availability zones. It's common in smaller, less complex environments or where high availability is managed differently.
+
+2. What is the difference between an ALB (Application Load Balancer) and a NLB (Network Load Balancer) in AWS?
+Answer:
+Application Load Balancer (ALB):
+ALB operates at the application layer (Layer 7) of the OSI model.
+It supports routing based on URL path, hostname, and HTTP headers. This makes it ideal for web applications and microservices architectures.
+ALB also supports WebSocket, HTTP/2, and SSL termination.
+It is often used for HTTP/HTTPS traffic and allows fine-grained control over traffic routing.
+Network Load Balancer (NLB):
+NLB operates at the transport layer (Layer 4) of the OSI model.
+It is designed to handle millions of requests per second with very low latency and is suitable for applications that require high-performance TCP or UDP load balancing.
+NLB supports static IP addresses and can preserve the source IP address, which can be useful for certain types of applications.
+It is often used for non-HTTP protocols or when you need ultra-low latency for your applications.
+
+3. What are the benefits of using locals in Terraform, and how are they different from variables?
+Answer:
+locals: Local values in Terraform are used to define values within a module that can be referenced throughout that module. They are calculated and stored as a local value, and are not passed in from outside the module like variables. Locals are helpful when you need to simplify expressions, avoid repeating the same code, or store intermediate results.
+
+Example:
+locals {
+  instance_type = "t2.micro"
+  region        = "us-west-2"
+}
+
+variables: Variables in Terraform are used to accept input values that come from outside the module (e.g., from the command line, .tfvars files, or environment variables). They allow you to configure the module dynamically.
+
+Example:
+variable "instance_type" {
+  type    = string
+  default = "t2.micro"
+}
