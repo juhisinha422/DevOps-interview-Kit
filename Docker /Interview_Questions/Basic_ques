@@ -1,0 +1,46 @@
+Docker interview question and answers.
+1. What is Docker, and what are its benefits?
+Answer:
+ Docker is an open-source platform that automates the deployment, scaling, and management of applications in lightweight, portable containers. Docker containers encapsulate an application and its dependencies into a single package that can be run consistently across different environments.
+Benefits:
+Portability: Docker containers can run consistently across various environments (development, testing, production).
+Scalability: Docker makes it easier to scale applications by managing containers across multiple machines.
+Isolation: Each container is isolated, providing security and preventing dependency conflicts.
+Faster Development: Docker enables fast deployment and testing of applications.
+Version Control: Docker images can be versioned, allowing for rollback and reproducibility.
+
+2. What is the difference between a Docker image and a Docker container?
+Answer:
+Docker Image: A Docker image is a read-only template used to create Docker containers. It includes everything needed to run an application, such as the code, libraries, environment variables, and dependencies.
+Docker Container: A container is a running instance of a Docker image. Containers are isolated, lightweight, and provide a runtime environment for applications.
+In simple terms, the image is the blueprint, and the container is the running application instance created from that blueprint.
+
+
+3. What is a Dockerfile, and how is it used?
+Answer:
+ A Dockerfile is a text file containing a series of instructions on how to build a Docker image. It defines the base image, application dependencies, environment settings, and commands to run the application within the container.
+Example of a basic Dockerfile:
+FROM ubuntu:20.04
+RUN apt-get update && apt-get install -y python3
+COPY app.py /app.py
+CMD ["python3", "/app.py"]
+To build the image, you run the command docker build -t myimage . from the directory containing the Dockerfile.
+
+
+4. What is the purpose of Docker Compose?
+Answer:
+ Docker Compose is a tool for defining and running multi-container Docker applications. It allows you to define services (containers), networks, and volumes for an application in a single YAML file (docker-compose.yml). Docker Compose simplifies the process of managing multiple containers that depend on each other (e.g., web servers, databases).
+
+Example docker-compose.yml:
+version: '3'
+services:
+ web:
+   image: nginx
+   ports:
+     - "8080:80"
+ db:
+   image: mysql
+   environment:
+     MYSQL_ROOT_PASSWORD: password
+
+To start the application, you run docker-compose up.
