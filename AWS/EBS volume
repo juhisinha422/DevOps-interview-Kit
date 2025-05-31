@@ -1,0 +1,22 @@
+𝐜𝐫𝐞𝐚𝐭𝐞𝐝 𝐚 𝐧𝐞𝐰 𝐄𝐁𝐒 𝐯𝐨𝐥𝐮𝐦𝐞, 𝐚𝐭𝐭𝐚𝐜𝐡𝐞𝐝 𝐢𝐭 𝐭𝐨 𝐦𝐲 𝐄𝐂2 𝐢𝐧𝐬𝐭𝐚𝐧𝐜𝐞… 𝐚𝐧𝐝 𝐧𝐨𝐭𝐡𝐢𝐧𝐠 𝐬𝐡𝐨𝐰𝐞𝐝 𝐮𝐩.
+
+If you’ve worked with AWS long enough, you’ve probably hit this too. The trick isn’t just attaching the volume — you need to format and mount it before it’s usable.
+
+Here’s how I got it sorted 👇
+➡️ 𝐒𝐭𝐞𝐩𝐬 𝐭𝐨 𝐚𝐝𝐝 𝐚𝐧𝐝 𝐮𝐬𝐞 𝐚 𝐧𝐞𝐰 𝐯𝐨𝐥𝐮𝐦𝐞:
+1. Create a volume in EC2 → Volumes (same region as your EC2 instance)
+2. Attach it to your instance via Actions → Attach Volume
+3. Pick device name /dev/sdf and attach
+4. Wait for it to show ‘in-use’
+
+➡️ Now on the instance:
+1. Run 𝐥𝐬𝐛𝐥𝐤 and check for xvdf
+2. Format the volume (convert raw storage to a usable filesystem): 
+𝐦𝐤𝐟𝐬 -𝐭 𝐞𝐱𝐭4 /𝐝𝐞𝐯/𝐱𝐯𝐝𝐟 - What’s happening here?
+ 𝐦𝐤𝐟𝐬 → make filesystem
+ -𝐭 𝐞𝐱𝐭4 → specify the type of filesystem (ext4, xfs, etc.)
+ /𝐝𝐞𝐯/𝐱𝐯𝐝𝐟 → the block device you’re formatting
+3. Mount that volume to a directory: 𝐦𝐨𝐮𝐧𝐭 /𝐝𝐞𝐯/𝐱𝐯𝐝𝐟 /𝐦𝐧𝐭/𝐝𝐞𝐦𝐨
+4. Check again with 𝐥𝐬𝐛𝐥𝐤 — and done ✅
+
+𝐑𝐞𝐦𝐢𝐧𝐝𝐞𝐫: Attaching a volume ≠ it’s ready to use. You always need to format & mount it.
