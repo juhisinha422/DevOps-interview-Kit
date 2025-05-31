@@ -1,0 +1,16 @@
+
+Basic Explanation of Kubernetes Probes: -
+=========================================== 
+
+Liveness Probe (Are you still alive?)
+
+Imagine you are running a bakery. You regularly check if the baker is still active (not passed out or left the shop). If the baker has fainted, you call for a replacement Similarly, Kubernetes uses a liveness probe to check if a container is still running. If it fails, the container is restarted.
+
+Readiness Probe (Are you ready to work?)
+
+Before opening the bakery doors to customers, you make sure the baker has all the ingredients ready, ovens are preheated, and the shop
+is clean. If these aren't done, the bakery remains closed to customers until everything is ready. Kubernetes does the same with a readiness probe-It checks if the container is fully ready to handle traffic and only sends requests once everything is in place.
+
+Startup Probe (Are you ready to start?)
+
+When the baker starts a new recipe, you give extra time for them to prepare the dough and preheat the oven before checking their progress. Kubernetes uses a startup probe for containers that take extra time to initia- lize, ensuring they're given enough time before health checks begin.
