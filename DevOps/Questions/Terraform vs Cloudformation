@@ -1,0 +1,30 @@
+🚀 Terraform vs. CloudFormation: 
+
+What's the Difference?
+When it comes to Infrastructure as Code (IaC), two popular tools often compared are HashiCorp Terraform and AWS CloudFormation. Both serve the same purpose—provisioning and managing infrastructure—but they differ in scope, flexibility, and use cases. 
+
+Here's a quick breakdown:
+🔹 Provider Support
+Terraform: Multi-cloud support (AWS, Azure, GCP, and more)
+CloudFormation: AWS-native only
+
+🔹 Language
+Terraform: Uses HCL (HashiCorp Configuration Language) – easy to read and modular
+CloudFormation: Uses JSON or YAML – can get verbose
+
+🔹 Modularity & Reusability
+Terraform: Strong module support for reusable code
+CloudFormation: Supports nested stacks but less intuitive
+
+🔹 State Management
+Terraform: Maintains its own state file (locally or remotely)
+CloudFormation: AWS manages the state automatically
+
+🔹 Community & Ecosystem
+Terraform: Large open-source community and rich module registry
+
+CloudFormation: Tightly integrated with AWS ecosystem and services
+
+👉 Choose Terraform for multi-cloud strategies and flexibility.
+ 👉 Choose CloudFormation if you're fully invested in AWS and want tight integration.
+💡 Understanding both tools is key for modern DevOps and cloud engineers.
