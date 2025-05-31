@@ -1,0 +1,13 @@
+🚀 AWS Interview Questions You Must Know! 🔥
+
+
+1️⃣ What is cloud computing?
+2️⃣ What is Auto Scaling, and how do you use it for running EC2 instances?
+3️⃣ What is a VPC (Virtual Private Cloud)?
+4️⃣ What is a private subnet? If an instance in a private subnet needs to communicate with the internet, how will you achieve this?
+5️⃣ If you lose the EC2 .pem key, how will you recover it and connect to the instance?
+6️⃣ How do you change the instance type while an EC2 instance is running?
+7️⃣ How can an instance in a private subnet communicate with another AWS service without going through the internet?
+8️⃣ What is the difference between a public and a private subnet?
+9️⃣ If you want to make a private subnet public, how will you do it?
+🔟 What is Amazon S3? What is versioning in S3, and what is the S3 lifecycle?
