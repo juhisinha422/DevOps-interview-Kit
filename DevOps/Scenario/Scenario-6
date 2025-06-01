@@ -1,0 +1,26 @@
+“How would you safely destroy infrastructure in production without downtime?”
+
+Here’s what they actually wanted to hear:
+✅ A blue/green or canary strategy with LB swap
+✅ lifecycle blocks to protect critical resources
+✅ terraform plan, state locking, and guarded apply logic
+✅ How to build resilience into teardown paths
+✅ And how to roll back fast if something breaks
+
+
+Terraform isn’t just “Infrastructure as Code.”
+It’s infrastructure as discipline — especially in prod.
+
+
+=============================================================
+
+
+"In production, I use a Blue/Green or Canary deployment strategy with a Load Balancer (LB) swap. This means I create a new version of the environment (Green), run it alongside the existing one (Blue), and then gradually or instantly switch traffic to the new version using the load balancer. This allows for zero downtime and fast rollback if needed."
+
+"To protect critical infrastructure like databases or storage buckets, I use Terraform's lifecycle blocks with prevent_destroy. This ensures those resources can't be accidentally deleted, even during cleanup."
+
+"When working with Terraform, I always run terraform plan first to review changes, and I use state locking to avoid conflicts when multiple people or systems are working on the infrastructure. I also use approvals and environment-specific guards to make sure changes go through safely."
+
+"Teardown paths are made resilient by carefully ordering the destruction — for example, removing traffic from an old environment before deleting compute resources. I also tag resources, take backups, and use conditional logic in Terraform to avoid destroying anything unless it's explicitly allowed."
+
+"If something goes wrong, rollback is fast — I just point the load balancer back to the previous version, which I keep running for a short time after deployment. This makes it easy to recover quickly without any major disruption."
