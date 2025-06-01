@@ -1,0 +1,25 @@
+Git a powerful tool software developers use to track changes in their code over time. Imagine it like a magic notebook for your code, keeping a history of everything you've done. 
+
+𝐇𝐞𝐫𝐞'𝐬 𝐰𝐡𝐲 𝐆𝐢𝐭 𝐢𝐬 𝐚𝐰𝐞𝐬𝐨𝐦𝐞,
+
+𝐕𝐞𝐫𝐬𝐢𝐨𝐧 𝐜𝐨𝐧𝐭𝐫𝐨𝐥: Git lets you rewind and see older versions of your code if needed.
+
+𝐂𝐨𝐥𝐥𝐚𝐛𝐨𝐫𝐚𝐭𝐢𝐨𝐧: Git allows multiple developers to work on the same codebase without stepping on each other's toes.
+
+𝐒𝐞𝐜𝐮𝐫𝐢𝐭𝐲: Git protects your code from accidental or malicious changes. You can always revert back to a stable version if something goes wrong.
+
+𝐍𝐨𝐰, 𝐥𝐞𝐭'𝐬 𝐮𝐧𝐥𝐨𝐜𝐤 𝐬𝐨𝐦𝐞 𝐞𝐬𝐬𝐞𝐧𝐭𝐢𝐚𝐥 𝐆𝐢𝐭 𝐜𝐨𝐦𝐦𝐚𝐧𝐝𝐬 𝐭𝐨 𝐧𝐚𝐯𝐢𝐠𝐚𝐭𝐞 𝐭𝐡𝐢𝐬 𝐦𝐚𝐠𝐢𝐜𝐚𝐥 𝐧𝐨𝐭𝐞𝐛𝐨𝐨𝐤:
+
+𝐠𝐢𝐭 𝐚𝐝𝐝 : Stage changes to tracked and untracked files
+𝐠𝐢𝐭 𝐝𝐢𝐟𝐟 : See specific local changes. Use -name- only to see filenames
+𝐠𝐢𝐭 𝐜𝐨𝐦𝐦𝐢𝐭 : Create a new commit with changes previously added
+𝐠𝐢𝐭 𝐬𝐭𝐚𝐬𝐡 : Save modified and staged changes
+𝐠𝐢𝐭 𝐫𝐞𝐦𝐨𝐭𝐞-𝐯 :View all config remotes
+𝐠𝐢𝐭 𝐟𝐞𝐭𝐜𝐡 : Fetch changes from remote repository
+𝐠𝐢𝐭 𝐩𝐮𝐬𝐡 : Send changes to your config remote repository
+𝐠𝐢𝐭 𝐜𝐥𝐨𝐧𝐞 : Clone a git repo to your local computer
+𝐠𝐢𝐭 𝐩𝐮𝐥𝐥 : Fetch and merge changes from a remote repository
+𝐠𝐢𝐭 𝐬𝐭𝐚𝐭𝐮𝐬 : See a summary of local changes, remote commits and untracked files
+𝐠𝐢𝐭 𝐛𝐫𝐚𝐧𝐜𝐡 --𝐚𝐥𝐥 : List all local and remote branches
+𝐠𝐢𝐭 𝐩𝐮𝐬𝐡 𝐨𝐫𝐢𝐠𝐢𝐧 𝐇𝐄𝐀𝐃 : Push commits located at the HEAD of your repo to the origin repo
+𝐠𝐢𝐭 𝐥𝐨𝐠 : Shows the commit history for the currently active branch
