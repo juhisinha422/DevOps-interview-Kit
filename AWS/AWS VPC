@@ -1,0 +1,28 @@
+AWS VPC: The Backbone of Secure Cloud Networking
+
+As a DevOps engineer, building resilient, scalable, and secure cloud infrastructure is at the core of what we do. One fundamental service that makes this possible is Amazon Virtual Private Cloud (VPC).
+
+A VPC empowers us to provision a logically isolated network within AWS — where we have full control over IP addressing, subnets, route tables, NAT gateways, and much more. Here’s a crisp breakdown of key components every cloud enthusiast should master:
+
+* Subnets — Segments within a VPC to isolate workloads (Public & Private Subnets).
+
+ * Route Tables — Define traffic flow between subnets and external networks.
+
+ * Internet Gateway (IGW) — Enables internet access for resources in public subnets.
+
+ * NAT Gateway — Allows outbound internet access for private subnet instances, keeping them inaccessible from the internet.
+
+ * Security Groups — Virtual firewalls controlling inbound/outbound traffic at the instance level.
+
+ * Network ACLs — Stateless firewalls managing traffic at the subnet level.
+
+ * VPC Peering — Seamlessly connect VPCs for cross-VPC communication.
+
+ * Endpoints — Securely connect to AWS services without traversing the internet.
+
+ * Elastic IP — Static public IPs for dynamic cloud infrastructure.
+
+In the world of DevOps, understanding and designing VPC architectures is critical for secure CI/CD pipelines, scalable applications, and highly available deployments.
+
+ Whether you’re automating infrastructure with Terraform, orchestrating containers in EKS, or deploying applications with EC2, a strong grasp of AWS VPC is your foundation.
+-- Let’s keep learning, building, and securing the cloud — one VPC at a time.
