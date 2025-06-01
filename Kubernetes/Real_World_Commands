@@ -1,0 +1,72 @@
+10 Real-World Kubernetes Commands You Wish You Knew Earlier
+
+ Not your usual kubectl get pods guide – these are production-level gems! 
+
+Whether you're debugging, optimizing, or automating—here are powerful kubectl commands that go beyond the basics:
+
+1. Trace a Pod’s Lifecycle
+
+kubectl get events --field-selector involvedObject.name=<pod-name> --sort-by='.lastTimestamp'
+
+Track why a pod crashed, restarted, or failed scheduling—chronologically.
+
+2. Understand Why a Pod Isn’t Scheduling
+
+kubectl describe pod <pod-name> | grep -A10 "Events"
+
+Find node constraints, affinity issues, or taints blocking your pod.
+
+3. Get All Resources in a Namespace (Not Just Pods)
+
+kubectl api-resources --verbs=list --namespaced -o name | \
+xargs -n 1 kubectl get -n <namespace>
+
+Audit everything in a namespace (Secrets, Services, PVCs, etc.) in one go.
+
+4. Who Did What? Audit Changes via Annotations
+
+kubectl get <resource> -o json | jq '.metadata.annotations'
+
+Useful with GitOps or tooling like ArgoCD—track who/what applied the last change.
+
+5. Quickly Delete All Pods in CrashLoopBackOff
+
+kubectl get pods --all-namespaces | grep CrashLoopBackOff | \
+awk '{print $1, $2}' | xargs -n2 bash -c 'kubectl delete pod -n $0 $1'
+
+Clean up misbehaving pods cluster-wide instantly.
+
+6. Edit a Secret Inline (Base64 Decoded)
+
+kubectl get secret <secret-name> -o json | \
+jq '.data | map_values(@base64d)'
+
+Decode secrets on the fly without needing an external tool.
+
+7. Restart a Deployment Without Changing YAML
+
+kubectl rollout restart deployment <deployment-name>
+
+Handy when secrets/configs change or you want to re-pull images.
+
+8. Port-Forward a Pod Without Knowing Its Name
+
+kubectl port-forward svc/<service-name> <local-port>:<service-port>
+
+Directly connect to services (like DBs or APIs) without finding pod names.
+
+9. View Pod Resource Usage (If Metrics Server is Enabled)
+
+kubectl top pod --all-namespaces
+
+Identify resource hogs and optimize scaling proactively.
+
+10. Dry Run Any Change Before You Apply
+
+kubectl apply -f <file>.yaml --dry-run=server
+
+Validate your manifests against the API server without impacting the cluster.
+
+Tip: Wrap these into shell scripts or aliases to supercharge your daily operations.
+
+ Kubernetes mastery isn’t just YAML—it’s knowing the right commands at the right time.
