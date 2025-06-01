@@ -1,0 +1,22 @@
+“What happens if terraform apply fails halfway through?”
+
+✅ About Terraform state files
+✅ The dangers of partial state writes
+✅ How terraform taint works
+✅ Why locking & plan vs apply separation matters
+✅ The power of lifecycle blocks
+
+💡 Terraform isn’t just IaC—it’s a state machine. And if you don’t respect the state, you’ll destroy infra without warning.
+
+
+====================================
+
+"When terraform apply fails midway, it can leave the infrastructure in a partially updated state. That's why Terraform’s state file is so important — it records the current known state of every resource. But if the state file is partially written, it can cause Terraform to ‘think’ something exists or is correct, when in reality it's broken or missing. This is one of the key risks of partial state writes."
+
+"To manage this safely, I use remote state storage with state locking — for example, an S3 bucket with DynamoDB for locking. This prevents two people or pipelines from applying changes at the same time, which could corrupt the state."
+
+"Also, I always separate terraform plan and apply. Running a plan gives us a clear preview of changes, which can be peer-reviewed and approved before anything is actually applied. This helps catch unintended changes and avoids surprises in production."
+
+"If a resource gets into a broken state due to a failed apply, I can use terraform taint to mark it for recreation. This forces Terraform to destroy and re-create that resource cleanly on the next apply, which is safer than manual edits."
+
+"Finally, I use lifecycle blocks in Terraform to protect critical resources. For example, I often set prevent_destroy = true on production databases or S3 buckets to avoid accidental deletion, even if something in the code tries to remove them."
