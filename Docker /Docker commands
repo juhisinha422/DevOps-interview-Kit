@@ -1,0 +1,32 @@
+Top Docker Commands Every DevOps Engineer Should Know 🐳
+🔧 Most Used Docker Commands:
+
+docker ps – List running containers
+📘 Docs - https://lnkd.in/gizyukqC
+
+docker images – List all images on your system
+📘 Docs - https://lnkd.in/gFTJ4r2J
+
+docker run – Run a command in a new container
+📘 Docs - https://lnkd.in/ghrBm3Rk
+
+docker exec – Execute a command in a running container
+📘 Docs - https://lnkd.in/gb4eYpPH
+
+docker logs – View logs from a container
+📘 Docs - https://lnkd.in/gf5aVmEJ
+
+docker build – Build an image from a Dockerfile
+📘 Docs - https://lnkd.in/gTUswrX4
+
+docker stop / docker start – Manage container lifecycle
+📘 Stop | Start - https://lnkd.in/gasjetEd
+
+docker rm / docker rmi – Remove containers or images
+📘 rm | rmi - https://lnkd.in/g2FGcSkH
+
+docker-compose up – Start services defined in docker-compose.yml
+📘 Docs - https://lnkd.in/g5BstjaZ
+
+docker network ls – List Docker networks
+📘 Docs - https://lnkd.in/gJknH-73
