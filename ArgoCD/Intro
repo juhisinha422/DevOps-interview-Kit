@@ -1,0 +1,19 @@
+Argo CD in a Nutshell: What, Why & How
+
+Recently completed the "Argo CD Essential Guide for End Users with Practice" on Udemy — here’s a quick KT for anyone exploring GitOps and Kubernetes:
+
+📌 What is Argo CD?
+ A declarative, GitOps-based continuous delivery tool for Kubernetes. It ensures your cluster state matches the Git repository — your single source of truth.
+
+📌 Why use Argo CD?
+Automates and simplifies Kubernetes deployments
+Supports rollback, sync strategies, and health checks
+Visual UI + CLI support
+Enables safer, auditable, and version-controlled deployments
+
+📌 How does it work?
+You define app configurations in Git
+Argo CD continuously monitors the repo
+Any drift from the desired state? Argo CD syncs it back automatically
+
+If you're into CI/CD, Infrastructure as Code, or just want a cleaner way to manage K8s apps — Argo CD is worth exploring! 🚀
