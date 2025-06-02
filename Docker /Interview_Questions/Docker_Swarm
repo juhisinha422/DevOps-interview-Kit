@@ -1,0 +1,31 @@
+Docker Swarm 
+
+1. _What is Docker Swarm?_
+Docker Swarm is a container orchestration tool that allows users to manage and deploy multiple containers across a cluster of machines.
+
+2. _How does Docker Swarm work?_
+Docker Swarm works by creating a cluster of nodes, where each node can be a manager or a worker. Managers manage the cluster, while workers run containers.
+
+3. _What are the benefits of using Docker Swarm?_
+Benefits include high availability, scalability, load balancing, and simplified container management.
+
+4. _How do you create a Docker Swarm cluster?_
+Use the command `docker swarm init` to initialize a swarm, and `docker swarm join` to add nodes to the cluster.
+
+5. _What is a service in Docker Swarm?_
+A service is a definition of the tasks to be executed on the nodes in the swarm.
+
+6. _How do you deploy a service in Docker Swarm?_
+Use the command `docker service create` to deploy a service.
+
+7. _What is the difference between Docker Swarm and Kubernetes?_
+Docker Swarm is a simpler, more lightweight orchestration tool, while Kubernetes is more complex and feature-rich.
+
+8. _How do you manage node availability in Docker Swarm?_
+Use the command `docker node update` to manage node availability.
+
+9. _What is load balancing in Docker Swarm?_
+Docker Swarm provides built-in load balancing, which distributes traffic across containers.
+
+10. _How do you monitor Docker Swarm?_
+Use tools like Docker Swarm CLI, Docker Enterprise Dashboard, or third-party monitoring tools.
