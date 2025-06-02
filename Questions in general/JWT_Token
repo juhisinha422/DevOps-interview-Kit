@@ -1,0 +1,13 @@
+🔐 What is JWT (JSON Web Token)?
+
+JWT is a compact, self-contained way to securely transmit information between parties as a JSON object. It’s commonly used for authentication and authorization in web applications.
+
+A JWT consists of three parts:
+Header: Contains the token type and signing algorithm.
+Payload: Holds user data and claims (like user ID, roles, or permissions).
+Signature: Ensures the token hasn’t been tampered with.
+
+How it works:
+When a user logs in, the server generates a JWT and sends it to the client. The client includes this token in future requests, and the server verifies it to grant access—no need to store session data on the server!
+
+JWTs help build stateless, scalable, and secure APIs.
