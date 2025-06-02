@@ -1,0 +1,48 @@
+𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 #4 – 𝐑𝐞𝐭𝐫𝐲 𝐚 𝐓𝐚𝐬𝐤 𝐔𝐧𝐭𝐢𝐥 𝐈𝐭 𝐒𝐮𝐜𝐜𝐞𝐞𝐝𝐬
+
+🧠 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧:
+
+How do you handle a task in Ansible that might fail temporarily but succeed if retried?
+
+💡 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞:
+
+You’ve just deployed a service, but it takes a few seconds to fully start. If you immediately check its status or hit its API, it might fail — even though everything is fine.
+
+𝒀𝒐𝒖 𝒏𝒆𝒆𝒅 𝑨𝒏𝒔𝒊𝒃𝒍𝒆 𝒕𝒐 𝒘𝒂𝒊𝒕 𝒑𝒂𝒕𝒊𝒆𝒏𝒕𝒍𝒚 𝒂𝒏𝒅 𝒕𝒓𝒚 𝒂𝒈𝒂𝒊𝒏 𝒖𝒏𝒕𝒊𝒍 𝒊𝒕'𝒔 𝒓𝒆𝒂𝒅𝒚.
+
+📦 Think of it like waiting for your coffee machine to warm up — you don’t throw it out if it doesn’t brew in the first 3 seconds ☕.
+
+🔧 𝐒𝐨𝐥𝐮𝐭𝐢𝐨𝐧:
+
+Use 𝒖𝒏𝒕𝒊𝒍, 𝒓𝒆𝒕𝒓𝒊𝒆𝒔, and 𝒅𝒆𝒍𝒂𝒚 to re-check the condition:
+
+🌀 This tries 5 times with a 5-second pause between tries, stopping as soon as it gets a 200 OK.
+
+💡 𝐏𝐫𝐨 𝐓𝐢𝐩:
+
+For even more control, combine with 𝒇𝒂𝒊𝒍𝒆𝒅_𝒘𝒉𝒆𝒏: to define custom failure logic (e.g., checking response body or timeout).
+
+📣 𝐁𝐨𝐧𝐮𝐬 𝐓𝐢𝐩:
+
+𝑼𝒔𝒆 𝒕𝒉𝒊𝒔 𝒑𝒂𝒕𝒕𝒆𝒓𝒏 𝒇𝒐𝒓:
+
+➡️ Health checks
+
+➡️ Database readiness
+
+➡️ Docker container startup validation
+
++++++++++
+
+retry-until-succeed.yaml 
+
+
+- name: Wait for app to come online
+  uri:
+    url: http://localhost:8080
+    status_code: 200
+  register: result
+  retries: 5
+  delay: 5
+  until: result.status == 200
+  failed_when: result.status != 200
