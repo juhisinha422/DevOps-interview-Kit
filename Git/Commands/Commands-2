@@ -1,0 +1,20 @@
+Master Git Like a Pro – Must-Know Commands for Every Developer
+
+Whether you're a beginner starting your DevOps or development journey or an experienced engineer brushing up your Git skills, these essential Git commands will boost your productivity and confidence when working with version control. 
+
+ Here's a quick cheat sheet with examples:
+1. git init – Initialize a new Git repository
+ 2. git clone <repo_url> – Clone a remote repo to your local
+ 3. git add file.txt – Stage file(s) for commit
+ 4. git commit -m "message" – Commit your staged changes
+ 5. git branch branchname – Create a new branch
+ 6. git checkout branchname – Switch between branches
+ 7. git merge branchname – Merge a branch into the current one
+ 8. git push origin branchname – Push changes to remote repo
+ 9. git pull origin branchname – Pull and merge from remote
+ 10. git fetch origin – Fetch updates without merging
+ 11. git stash – Save local changes temporarily
+ 12. git stash pop – Reapply last stashed changes
+ 13. git cherry-pick <commit_hash> – Apply a specific commit
+ 14. git rebase branchname – Reapply commits on a new base
+ 15. git reflog – View history of reference changes
