@@ -1,0 +1,23 @@
+Reduced Server Disk Usage from 83% ➡️ 38% (Real-World DevOps Optimization)
+
+As a DevOps Engineer, I recently tackled a performance issue on one of our production servers where disk usage hit 83% due to heavy Docker usage — containers, images, CI/CD pipelines, and build cache piling up over time.
+
+🔍 Root Cause:
+Docker had accumulated dangling images and unused build cache
+CI/CD pipelines left behind large build artifacts
+
+🛠️ What I Did:
+
+# Checked disk usage and Docker's footprint
+sudo df -h
+sudo docker system df
+
+# Cleaned up unused Docker resources
+sudo docker image prune -a -f       # Removed unused & dangling images
+sudo docker builder prune -a -f     # Cleared build cache
+
+📉 Result:
+
+ ✅ Brought down disk usage from 83% to 38%
+ ✅ Optimized Docker environment for faster builds and better resource availability
+💡 Docker + CI/CD can fill your disk faster than expected — regular cleanup is essential for stable infrastructure!
