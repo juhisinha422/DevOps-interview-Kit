@@ -1,0 +1,15 @@
+“What do you do when production crashes at 2AM?”
+
+If your mind jumps to:
+“Check logs”
+“Rollback”
+“Restart the pod”
+…then you’re still thinking in tutorials — not in real-life chaos.
+
+==================================================================
+You're absolutely right—real-life incidents are never as neat as tutorials make them seem. At 2AM, when production crashes, you're dealing with uncertainty, stress, and often incomplete information. 
+
+The real-world approach starts with **triage**: How bad is the impact? Are customers affected? Is revenue at risk? Next, you need **communication**: Who needs to be informed? Do you need to wake up more people? Then comes **investigation**: Yes, you'll check logs, but also metrics, recent deployments, dependencies, and external factors. **Containment** is the next step—minimizing damage without making things worse. A rollback or restart might be necessary, but not before understanding the root cause. Finally, there's **post-mortem**: what went wrong, how do we prevent it, and how do we make our response smoother next time?
+
+Production incidents are a **human problem** as much as a technical one. Staying calm, clear-headed, and communicative is just as crucial as having technical expertise.
+
