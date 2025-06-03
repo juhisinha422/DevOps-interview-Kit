@@ -1,0 +1,67 @@
+Kubernetes Storage: PV, PVC & StorageClass Simplified 📦
+
+🔹 1. Persistent Volume (PV)
+ A PV is a piece of storage in the K8s cluster that has been provisioned by an admin or dynamically via StorageClass.
+ It's like a pre-configured "USB drive" plugged into the cluster.
+pv.yaml
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+ name: my-pv
+spec:
+ capacity:
+ storage: 10Gi
+ accessModes:
+ - ReadWriteMany
+ PersistentvolumeClaimPolicy: Retain
+ hostPath:
+ path: "/mnt/data"
+
+🔹 2. Persistent Volume Claim (PVC)
+ A PVC is a request by a user for storage. It’s like asking, “I need 5Gi of storage with ReadWriteOnce access.”
+Kubernetes matches this request with an available PV (if it fits).
+pvc.yaml
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: my-pvc
+spec:
+ accessModes:
+ - ReadWriteMany
+ resources:
+ requests:
+ storage: 5Gi
+
+💡 PVCs decouple your app from the actual storage backend, making it portable!
+
+🔹 3. StorageClass – The Magic of Dynamic Provisioning ✨
+ Want Kubernetes to automatically provision storage on demand? Enter StorageClass!
+This defines how the storage should be dynamically provisioned (e.g., SSDs, HDDs, NFS, cloud volumes).
+sc.yaml
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+ name: fast
+provisioner: kubernetes.io/aws-ebs
+parameters:
+ type: gp2
+
+PVCs can then reference a StorageClass:
+pvc.yaml
+
+spec:
+ storageClassName: fast
+
+📊 Flow Summary
+ 1️⃣ You define a StorageClass (optional, but enables dynamic provisioning).
+ 2️⃣ Your app defines a PVC requesting storage.
+ 3️⃣ Kubernetes either finds a matching PV, or dynamically provisions one using the StorageClass.
+ 4️⃣ The PVC gets bound to the PV, and your pod can now mount it!
+
+🔁 Why it matters:
+PVCs keep your storage needs declarative & app-specific
+PVs abstract the actual hardware
+StorageClasses let you scale storage like a pro 🌩️
