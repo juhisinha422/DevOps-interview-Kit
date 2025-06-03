@@ -1,0 +1,16 @@
+𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗦𝗶𝗺𝗽𝗹𝗶𝗳𝗶𝗲𝗱: 𝗩𝗡𝗲𝘁, 𝗦𝘂𝗯𝗻𝗲𝘁 & 𝗬𝗼𝘂𝗿 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻!
+
+Ever wondered how cloud networking works? Think of it like an apartment building!
+
+𝗩𝗡𝗲𝘁 (𝗔𝘇𝘂𝗿𝗲) / 𝗩𝗣𝗖 (𝗔𝗪𝗦) - The entire building
+𝗦𝘂𝗯𝗻𝗲𝘁𝘀 - Different floors organizing rooms
+𝗣𝘂𝗯𝗹𝗶𝗰 𝘃𝘀. 𝗣𝗿𝗶𝘃𝗮𝘁𝗲 𝗦𝘂𝗯𝗻𝗲𝘁 - Who can access what?
+
+𝐖𝐡𝐲 𝐝𝐨𝐞𝐬 𝐭𝐡𝐢𝐬 𝐦𝐚𝐭𝐭𝐞𝐫?
+
+Imagine you’re launching an application:
+Public subnet – Web server (users access this)
+Private subnet – Database (keeps data secure)
+Security rules – Control access like keycards!
+
+By setting up networks properly, we protect our applications, scale better, and manage traffic efficiently.
