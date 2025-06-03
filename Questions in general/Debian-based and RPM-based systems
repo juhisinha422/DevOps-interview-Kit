@@ -1,0 +1,58 @@
+Comparison between Debian-based and RPM-based systems in Linux:
+
+---
+
+Debian-based Systems
+
+Package Format: .deb
+
+Package Manager: dpkg (low-level), apt (high-level)
+
+Popular Distros: Ubuntu, Debian, Linux Mint, Kali
+
+Repositories: Use APT repositories
+
+Command Examples:
+
+Install: sudo apt install package-name
+
+Remove: sudo apt remove package-name
+
+Update: sudo apt update && sudo apt upgrade
+
+
+Dependency Handling: Strong dependency resolution via apt
+
+---
+
+RPM-based Systems
+
+Package Format: .rpm
+
+Package Manager: rpm (low-level), yum or dnf (high-level)
+
+Popular Distros: Red Hat Enterprise Linux (RHEL), CentOS, Fedora, openSUSE
+
+Repositories: Use YUM/DNF repositories
+
+Command Examples:
+
+Install: sudo dnf install package-name
+
+Remove: sudo dnf remove package-name
+
+Update: sudo dnf update
+
+
+Dependency Handling: Also good, but historically weaker than Debian-based systems (now much improved)
+
+---
+
+Key Differences Summary
+
+Feature Debian-based RPM-based
+
+Package Format .deb .rpm
+Tools dpkg, apt rpm, yum, dnf
+Popular Distros Ubuntu, Debian RHEL, CentOS, Fedora
+Dependency Mgmt Excellent via apt Good via dnf/yum
