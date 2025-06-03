@@ -1,0 +1,26 @@
+𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗦𝗲𝘁 𝘃𝘀 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗭𝗼𝗻𝗲 – 𝗪𝗵𝗮𝘁’𝘀 𝘁𝗵𝗲 𝗗𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲?
+
+Think of your VMs like lightbulbs. If all of them go out at once, that’s a problem. But if you plan things right, you can keep some lights on no matter what happens.
+
+𝟭. 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗦𝗲𝘁 – 𝗣𝗿𝗼𝘁𝗲𝗰𝘁𝗶𝗼𝗻 𝗜𝗻𝘀𝗶𝗱𝗲 𝗮 𝗦𝗶𝗻𝗴𝗹𝗲 𝗗𝗮𝘁𝗮 𝗖𝗲𝗻𝘁𝗲𝗿
+
+Imagine you have a tall apartment building. You put some lights on different floors. Now, even if one floor loses power, the rest of the building stays lit.
+
+- Spreads VMs across multiple servers within the same data center.
+- Protects against hardware failures or maintenance downtime.
+
+Example: You’re running a web app with 3 VMs. If one physical server crashes, the other VMs keep your app running.
+
+𝟮. 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗭𝗼𝗻𝗲 – 𝗣𝗿𝗼𝘁𝗲𝗰𝘁𝗶𝗼𝗻 𝗔𝗰𝗿𝗼𝘀𝘀 𝗗𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗗𝗮𝘁𝗮 𝗖𝗲𝗻𝘁𝗲𝗿𝘀
+
+Now, imagine you place your lightbulbs in three separate buildings across the city. Even if one entire building loses power, the others still shine.
+
+- Spreads VMs across physically separate data centers in a region.
+- Each zone has independent power, cooling, and networking.
+
+Example: If you host a critical banking app in 3 availability zones, even if an entire data center goes down, your app stays online.
+
+Which One Should You Use?
+
+𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗦𝗲𝘁 – Good if you need protection from local failures and want to save costs.
+𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗭𝗼𝗻𝗲 – Best for mission-critical apps that need the highest level of redundancy.
