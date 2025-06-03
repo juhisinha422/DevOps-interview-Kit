@@ -1,0 +1,33 @@
+Here are the 15 most important advanced Terraform interview questions you must be ready for:
+
+1. What’s the difference between terraform plan, terraform apply, and terraform refresh?
+
+2. How does Terraform handle resource dependencies? Explain depends_on.
+
+3. What is the purpose of terraform state? How do you manage large/shared state files?
+
+4. How do you manage secrets in Terraform securely?
+
+5. What’s the use of terraform import, and when should you use it?
+
+6. What are modules in Terraform? How do you create and version them effectively?
+
+7. How to implement multi-environment infrastructure (dev/stage/prod) in Terraform?
+
+8. What is remote state? How do you configure S3 backends with state locking?
+
+9. What’s the difference between count, for_each, and dynamic blocks?
+
+10. How do you debug Terraform errors and failed plans efficiently?
+
+11. What causes Terraform drift, and how do you detect and fix it?
+
+12. What is a data source in Terraform? Share real-world use cases.
+
+13. How to implement blue-green or canary deployments using Terraform?
+
+14. How should you structure large Terraform projects?
+
+15. How do you integrate CI/CD with Terraform (GitHub Actions, GitLab CI, Jenkins, etc.)?
+
+✅ Pro Tip: Always back your answers with real-world project examples for maximum impact.
