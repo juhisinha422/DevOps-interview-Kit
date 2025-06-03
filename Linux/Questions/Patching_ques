@@ -1,0 +1,62 @@
+Basic patching questions 
+
+1. What is Linux patching?
+
+Linux patching is the process of updating the system by applying security fixes, bug fixes, or performance improvements to the kernel, software packages, or libraries.
+
+
+2. Why is patching important in Linux?
+
+Patching helps fix security vulnerabilities, improve system stability, and ensure compliance with security policies.
+
+
+3. What are the common ways to apply patches in Linux?
+
+Using package managers like yum, dnf, apt, zypper, or manually applying patches with tools like patch and rpm.
+
+
+4. What is the difference between a security patch and a kernel patch?
+
+A security patch fixes vulnerabilities, while a kernel patch updates the Linux kernel for performance, security, or feature enhancements.
+
+
+5. How do you check the current version of a package before patching?
+
+Use commands like:
+
+rpm -qa | grep <package> (RHEL-based)
+
+dpkg -l | grep <package> (Debian-based)
+
+yum list installed <package>
+
+
+6. How do you update all packages on a Linux system?
+
+Use:
+yum update -y (RHEL-based)
+
+apt update && apt upgrade -y (Debian-based)
+
+7. How do you check available updates on a Linux system?
+
+Use:
+yum check-update (RHEL)
+apt list --upgradable (Debian)
+
+8. How can you roll back a patch if something goes wrong?
+
+Use:
+yum history undo <transaction_id>
+dpkg --remove <package> and reinstall the previous version.
+
+9. How do you apply a kernel patch in Linux?
+
+Install the new kernel using:
+yum update kernel (RHEL)
+apt install linux-image-<version> (Debian)
+Then reboot the system.
+
+10. What is live patching in Linux?
+
+Live patching allows applying kernel updates without rebooting, using tools like kpatch, ksplice, or Livepatch.
