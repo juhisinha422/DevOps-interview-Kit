@@ -1,0 +1,34 @@
+Q)What is Terraform Workspaces?
+
+Terraform workspaces provide a way to manage multiple environments (like dev,
+staging, and prod) using the same configuration without duplicating code.
+
+
+Why Use Terraform Workspaces?
+
+1)Manage multiple environments without copying .tf files.
+
+2)Keep a single state file per workspace.
+Easy to switch between different environments.
+
+3)How Terraform Workspaces Work
+Terraform maintains a default workspace but allows you to create and switch
+between multiple workspaces.
+
+
+Commands:
+
+# Check Current Workspace
+terraform workspace show
+
+# List All Workspaces
+terraform workspace list
+
+# Create a New Workspace
+terraform workspace new dev
+
+# Switch to an Existing Workspace
+terraform workspace select dev
+
+# Delete a Workspace
+terraform workspace delete dev
