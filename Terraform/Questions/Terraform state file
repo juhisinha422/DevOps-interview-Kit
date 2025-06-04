@@ -1,0 +1,35 @@
+𝗪𝗵𝗮𝘁 𝗶𝘀 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗦𝘁𝗮𝘁𝗲 𝗙𝗶𝗹𝗲?
+
+𝘐𝘯 𝘛𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮, 𝘵𝘩𝘦 𝘴𝘵𝘢𝘵𝘦 𝘧𝘪𝘭𝘦 (*.𝘵𝘧𝘴𝘵𝘢𝘵𝘦) 𝘬𝘦𝘦𝘱𝘴 𝘵𝘳𝘢𝘤𝘬 𝘰𝘧 𝘢𝘭𝘭 𝘵𝘩𝘦 𝘳𝘦𝘴𝘰𝘶𝘳𝘤𝘦𝘴 𝘛𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮 𝘮𝘢𝘯𝘢𝘨𝘦𝘴.
+𝘐𝘵 𝘴𝘵𝘰𝘳𝘦𝘴 𝘪𝘯𝘧𝘰𝘳𝘮𝘢𝘵𝘪𝘰𝘯 𝘢𝘣𝘰𝘶𝘵 𝘺𝘰𝘶𝘳 𝘪𝘯𝘧𝘳𝘢𝘴𝘵𝘳𝘶𝘤𝘵𝘶𝘳𝘦 𝘪𝘯 𝘑𝘚𝘖𝘕 𝘧𝘰𝘳𝘮𝘢𝘵 𝘢𝘯𝘥 𝘢𝘤𝘵𝘴 𝘢𝘴 𝘵𝘩𝘦 𝘴𝘪𝘯𝘨𝘭𝘦 𝘴𝘰𝘶𝘳𝘤𝘦 𝘰𝘧 𝘵𝘳𝘶𝘵𝘩.
+
+🌐 𝗥𝗲𝗺𝗼𝘁𝗲 𝗦𝘁𝗮𝘁𝗲 𝗦𝘁𝗼𝗿𝗮𝗴𝗲
+Instead of storing the state file locally, it is best practice to store it remotely for team collaboration.
+Terraform supports storing the state file in cloud storage services like:
+
+𝘼𝙒𝙎 𝙎3
+𝘼𝙯𝙪𝙧𝙚 𝘽𝙡𝙤𝙗 𝙎𝙩𝙤𝙧𝙖𝙜𝙚
+𝙂𝙤𝙤𝙜𝙡𝙚 𝘾𝙡𝙤𝙪𝙙 𝙎𝙩𝙤𝙧𝙖𝙜𝙚
+𝙏𝙚𝙧𝙧𝙖𝙛𝙤𝙧𝙢 𝘾𝙡𝙤𝙪𝙙
+𝘾𝙤𝙣𝙨𝙪𝙡
+
+𝘙𝘦𝘮𝘰𝘵𝘦 𝘣𝘢𝘤𝘬𝘦𝘯𝘥 𝘴𝘵𝘰𝘳𝘢𝘨𝘦 𝘦𝘯𝘴𝘶𝘳𝘦𝘴 𝘵𝘩𝘦 𝘴𝘵𝘢𝘵𝘦 𝘧𝘪𝘭𝘦 𝘪𝘴 𝘢𝘤𝘤𝘦𝘴𝘴𝘪𝘣𝘭𝘦, 𝘴𝘦𝘤𝘶𝘳𝘦, 𝘢𝘯𝘥 𝘷𝘦𝘳𝘴𝘪𝘰𝘯𝘦𝘥 𝘱𝘳𝘰𝘱𝘦𝘳𝘭𝘺.
+
+🔒 𝗦𝘁𝗮𝘁𝗲 𝗟𝗼𝗰𝗸𝗶𝗻𝗴 𝗠𝗲𝗰𝗵𝗮𝗻𝗶𝘀𝗺
+𝘞𝘩𝘦𝘯 𝘮𝘶𝘭𝘵𝘪𝘱𝘭𝘦 𝘶𝘴𝘦𝘳𝘴 𝘢𝘱𝘱𝘭𝘺 𝘤𝘩𝘢𝘯𝘨𝘦𝘴 𝘢𝘵 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘵𝘪𝘮𝘦, 𝘪𝘵 𝘤𝘢𝘯 𝘤𝘰𝘳𝘳𝘶𝘱𝘵 𝘵𝘩𝘦 𝘴𝘵𝘢𝘵𝘦 𝘧𝘪𝘭𝘦.
+𝘛𝘰 𝘱𝘳𝘦𝘷𝘦𝘯𝘵 𝘵𝘩𝘪𝘴, 𝘛𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮 𝘶𝘴𝘦𝘴 𝘢 𝘴𝘵𝘢𝘵𝘦 𝘭𝘰𝘤𝘬𝘪𝘯𝘨 𝘮𝘦𝘤𝘩𝘢𝘯𝘪𝘴𝘮.
+
+𝗔𝗰𝗾𝘂𝗶𝗿𝗲 𝗟𝗼𝗰𝗸: Before making any changes, Terraform acquires a lock on the state file.
+𝗥𝗲𝗹𝗲𝗮𝘀𝗲 𝗟𝗼𝗰𝗸: Once the operation is completed, the lock is released.
+
+Tools like DynamoDB (AWS) are often used to maintain these locks safely.
+
+⚡ 𝗪𝗵𝘆 𝗦𝘁𝗮𝘁𝗲 𝗟𝗼𝗰𝗸𝗶𝗻𝗴 𝗶𝘀 𝗜𝗺𝗽𝗼𝗿𝘁𝗮𝗻𝘁?
+✅ 𝘗𝘳𝘦𝘷𝘦𝘯𝘵𝘴 𝘳𝘢𝘤𝘦 𝘤𝘰𝘯𝘥𝘪𝘵𝘪𝘰𝘯𝘴 𝘢𝘯𝘥 𝘤𝘰𝘯𝘧𝘭𝘪𝘤𝘵𝘴
+✅ 𝘌𝘯𝘴𝘶𝘳𝘦𝘴 𝘰𝘯𝘭𝘺 𝘰𝘯𝘦 𝘰𝘱𝘦𝘳𝘢𝘵𝘪𝘰𝘯 𝘮𝘰𝘥𝘪𝘧𝘪𝘦𝘴 𝘵𝘩𝘦 𝘪𝘯𝘧𝘳𝘢𝘴𝘵𝘳𝘶𝘤𝘵𝘶𝘳𝘦 𝘢𝘵 𝘢 𝘵𝘪𝘮𝘦
+✅ 𝘒𝘦𝘦𝘱𝘴 𝘵𝘩𝘦 𝘴𝘵𝘢𝘵𝘦 𝘧𝘪𝘭𝘦 𝘴𝘢𝘧𝘦 𝘢𝘯𝘥 𝘤𝘰𝘯𝘴𝘪𝘴𝘵𝘦𝘯𝘵
+✅ 𝘏𝘦𝘭𝘱𝘴 𝘵𝘦𝘢𝘮𝘴 𝘸𝘰𝘳𝘬 𝘤𝘰𝘭𝘭𝘢𝘣𝘰𝘳𝘢𝘵𝘪𝘷𝘦𝘭𝘺 𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘪𝘴𝘴𝘶𝘦𝘴
+
+🛡️ 𝗙𝗶𝗻𝗮𝗹 𝗧𝗵𝗼𝘂𝗴𝗵𝘁
+Proper remote storage and state locking are critical for Terraform to work safely in a team environment.
+They make your infrastructure reliable, scalable, and resilient.
