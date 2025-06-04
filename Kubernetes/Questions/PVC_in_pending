@@ -1,0 +1,76 @@
+Scenario:  
+PersistentVolumeClaim (PVC) Stuck in Pending State
+
+You deploy an application that needs persistent storage, but the PVC remains in a **Pending** state. As a result, the pod cannot mount the required volume and fails to start.
+
+This is a frequent issue, especially in clusters with dynamic storage provisioning.
+
+Solution:
+
+1. **Check PVC Status:**
+```bash
+kubectl get pvc
+kubectl describe pvc <pvc-name>
+```
+Look for events like:
+```
+Warning  ProvisioningFailed  no persistent volumes available
+```
+
+2. **Common Root Causes:**
+- No available PersistentVolumes (PVs) matching the PVC’s storage class, size, or access mode
+- StorageClass misconfiguration
+- Cloud provider dynamic provisioning errors
+- Storage backend (EBS, AzureDisk, Ceph, etc.) not available or misconfigured
+
+3. **Immediate Remediation Steps:**
+
+**A. Validate StorageClass:**
+```bash
+kubectl get storageclass
+```
+Ensure the correct StorageClass exists and is default (if required).
+
+**B. Check Available PVs:**
+```bash
+kubectl get pv
+```
+Look for:
+- Bound vs Available status
+- Correct storage class and access modes
+
+**C. Check Dynamic Provisioner Logs:**
+If using AWS EBS, Azure Disk, etc., inspect the provisioner/controller logs:
+```bash
+kubectl logs -n kube-system <provisioner-pod-name>
+```
+
+4. **How to Fix:**
+- Correct the PVC’s StorageClass if wrong.
+- Create static PVs manually if dynamic provisioning isn’t working.
+- Increase quotas if your cloud account has hit limits.
+- Fix permissions if cloud IAM roles are missing.
+
+**Example Static PV:**
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: manual-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+```
+
+5. **Best Practices:**
+- Always define StorageClass explicitly in PVC specs.
+- Monitor PVC provisioning using alerts.
+- Implement retry logic in apps that depend on persistent volumes.
+
+Key Takeaway:  
+**PVCs stuck in Pending can silently block deployments.**  
+Always validate StorageClasses, check available PVs, and ensure proper cloud integration!
