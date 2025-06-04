@@ -1,0 +1,6 @@
+Devops Interview question 
+
+Q) what is the difference between  https1 and https2 in target groups of Aws load balancer ?
+
+A) : https1 will load deafult aws certificates 
+       https2 can be load external certificates like third party certificates.
