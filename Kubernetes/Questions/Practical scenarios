@@ -1,0 +1,38 @@
+Kubernetes Interview Questions: Scenario-Based & Practical Answers
+
+✅ 1. Scenario: Pod CrashLoopBackOff
+Q: A pod keeps restarting with CrashLoopBackOff. How would you troubleshoot this issue?
+Solution:
+• Run kubectl describe pod to review events and diagnose the issue.
+• Use kubectl logs --previous to inspect crash logs.
+• Check the container’s liveness probes and image configurations for potential errors.
+• Validate environment variables and secrets to ensure they are correctly set.
+
+✅ 2. Scenario: Rolling Update Gone Wrong
+Q: After deploying a new version, users report failures. How would you respond?
+Solution:
+• Execute kubectl rollout undo deployment to revert to the previous stable version.
+• Review the deployment’s status with kubectl rollout status to monitor the update process.
+• Confirm that readiness and liveness probes are configured correctly to prevent faulty pods from joining the load balancer.
+
+✅ 3. Scenario: App Needs Persistent Storage
+Q: Your application requires persistent storage. How would you configure the pod specification?
+Solution:
+• Create a PersistentVolume (PV) and PersistentVolumeClaim (PVC) for storage management.
+• Attach the PVC to the pod specification under the volumes and volumeMounts sections.
+• Choose the appropriate storage class (e.g., gp2 for AWS, azurefile for Azure) based on workload requirements.
+
+✅ 4. Scenario: Multi-Environment Deployments
+Q: How would you manage Kubernetes deployments across dev, staging, and production environments?
+Solution:
+• Leverage Helm or Kustomize to parameterize your manifests for environment-specific configurations.
+• Maintain environment-specific values, such as values-dev.yaml, in version control.
+• Use namespaces or separate clusters to isolate resources for each environment, ensuring proper access control.
+
+✅ 5. Scenario: Pod Can’t Reach External Services
+Q: Your pod is unable to access external APIs. What steps would you take to investigate?
+Solution:
+• Verify the network policies in place to ensure no restrictions are blocking egress traffic.
+• Test DNS resolution inside the pod using tools like nslookup or dig to ensure proper connectivity.
+• Confirm the node’s egress and firewall rules to rule out any external network issues.
+• Check the service account and proxy settings to ensure the pod has the correct permissions and network configuration.
