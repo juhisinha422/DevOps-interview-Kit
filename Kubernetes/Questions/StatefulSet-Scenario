@@ -1,0 +1,36 @@
+☸️ Kubernetes Scenario Based Interview☸️ ☸️ Stateful set ☸️
+
+💥  A Stateful Set Using EBS Volumes Is Recreated, But Data Is Lost. Why? 💥 
+📌 We recreate a Stateful Set, expecting your app to come back with its EBS-backed volumes… but the data is gone. Could you guess may be the reason behind it ?? 
+
+Before diving deep into troubleshoot, first we get basic context of stateful sets for new learners.
+
+✅A Stateful Set is designed for workloads that need stable identities and persistent storage — like databases.
+ ✅ Each pod in a Stateful Set usually gets its own Persistent Volume Claim (PVC), dynamically backed by an AWS EBS volume.
+
+We are protecting our Stateful Sets with Fixed Storage and stable networking using Headless service for ordered deployment..........Yet we Lost our DATA 💾. List out the reasons behind that 
+
+📦 1. Volume Reclaim Policy Is “Delete”
+By default, dynamically provisioned volumes via AWS EBS use a Delete reclaim policy.
+ 🔻 When the PVC is deleted, the backing EBS volume is also deleted.
+ ✅ Consider changing it to Retain if you want to preserve the volume manually.
+
+🛠️ 2. PVCs Are Deleted with Stateful Set
+If you delete the Stateful Set without setting orphanDependents=true, Kubernetes may delete the PVCs associated with the pods.
+ ➡️ Result: The EBS volumes backing those PVCs are deleted too.
+ 📌 Always double-check deletion behavior before running kubectl delete stateful set.
+
+⚙️ 3. PVC Templates Changed
+If the PVC spec (e.g., name, access mode, storage class) in the Stateful Set YAML is modified, new PVCs will be created.
+ Old PVCs may still exist — but your pods won't mount them anymore.
+ 🧠 Pro Tip: Avoid changing PVC templates unless absolutely necessary.
+
+🛡️ How to prevent this To safe our DATA in Stateful Set ? 
+✅ Use Retain reclaim policy for critical volumes.
+ ✅ Always verify PVC status before deleting Stateful Sets.
+ ✅ Backup data using EBS snapshots or External tools like Velero .
+ ✅ Use kubectl delete statefulset <name> --cascade=orphan # This command only deletes Stateful set and preserve PVC.
+
+And final My Conclusion is 
+
+💬 Stateful workloads need extra care — treat Stateful Set storage like gold 😅 . Jokes apart Take more precautions while recreating or deleting Stateful Sets 😊 .
