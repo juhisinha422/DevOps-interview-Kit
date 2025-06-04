@@ -1,0 +1,11 @@
+Q)What is the difference between Horizontal Pod Autoscaler (HPA) and
+Vertical Pod Autoscaler (VPA)?
+
+A): 
+HPA – Adjusts the number of pods based on CPU/memory usage.
+
+VPA – Adjusts the resource requests/limits of a running pod.
+
+Enable HPA:
+
+kubectl autoscale deployment my-app --cpu-percent=50 --min=2 --max=10
