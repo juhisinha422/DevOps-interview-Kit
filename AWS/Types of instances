@@ -1,0 +1,44 @@
+Q) can you explain me what type of instances are available in aws and explain them?
+
+A)types of ec2 instances to purchase or provision 
+1. on-demand Instances
+2. Reserved Instances
+3. Spot Instances 
+4. Dedicated Instances
+5. Dedicated Hosts
+6. Savings Plans
+
+lets discuss each and every instance type in shortly.
+
+1.on-demand Instances :
+Pay by the second/minute with no long-term commitment.
+"Best for flexibility and testing environments, as you only pay for what you use."
+Use Case: Short-term, unpredictable workloads.
+
+2.Reserved Instances:
+Commit to 1 or 3 years in exchange for a big discount.
+"Ideal for production environments to reduce cost with predictable usage."
+Use Case: Long-running applications with predictable usage.
+
+3.Spot Instances:
+Spare capacity with up to 90% discount, but AWS can reclaim it anytime.
+"Cost-effective for flexible or interruptible workloads like big data or CI/CD pipelines."
+Batch jobs, stateless workloads, fault-tolerant apps.
+
+4.Dedicated Instances:
+Run on hardware dedicated to a single customer (not shared).
+"Useful when isolation is needed but still want EC2 flexibility."
+Use Case: Regulatory/compliance or licensing needs.
+
+5. Dedicated Hosts:
+Physical servers dedicated entirely to you.
+"Provides full visibility and control over the physical host—great for license management."
+Your Own License (BYOL), compliance-heavy apps.
+
+6.Savings Plans
+Flexible pricing model; commit to spend per hour (not to specific instance types).
+"More flexible than Reserved Instances; ideal when workloads or instance types change often."
+Use Case: Dynamic workloads that change instance types frequently.
+
+
+When purchasing EC2 instances, I evaluate the workload first. For development, I prefer On-Demand for flexibility. For steady-state production workloads, Reserved Instances save cost. Spot Instances are perfect for test, batch, or CI/CD pipelines. If isolation or compliance is key, I go for Dedicated Instances or Hosts. For mixed or unpredictable environments, I choose Savings Plans.
