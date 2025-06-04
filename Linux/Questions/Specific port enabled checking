@@ -1,0 +1,3 @@
+Q) Command to check whether specific port is enabled or not?
+A): netstat -tuln | grep <Port Number>
+ lsof  -i :<Port Number>
