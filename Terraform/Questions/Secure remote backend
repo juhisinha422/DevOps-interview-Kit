@@ -1,0 +1,27 @@
+Terraform Tip for Secure Remote Backend Configuration
+
+🆕 INTERVIEW QUESTION 
+ Q: When you use a remote backend that needs authentication, what does HashiCorp recommend?
+
+Options:
+ A. Write the authentication credentials in the Terraform configuration files
+ B. Keep the Terraform configuration files in a secret store
+ C. Push your Terraform configuration to an encrypted git repository
+ ✅ D. Use partial configuration to load the authentication credentials outside of the Terraform code
+
+🧠 Explanation:
+ When using remote backends (like S3, Terraform Cloud, GCS, etc.), embedding credentials directly in Terraform code is a bad security practice.
+
+✅ Instead, HashiCorp recommends using partial configuration, where backend credentials (like AWS access keys or tokens) are sourced externally — via environment variables, shared credentials files, or CLI prompts — not hardcoded in code.
+
+💡 Best Practice Example:
+terraform {
+  backend "s3" {}
+}
+
+Then load credentials securely:
+
+export AWS_ACCESS_KEY_ID=...
+export AWS_SECRET_ACCESS_KEY=...
+
+This approach improves security, portability, and team collaboration.
