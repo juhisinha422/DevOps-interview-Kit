@@ -1,0 +1,75 @@
+Scenario:  
+Pod Stuck in Terminating State and Won’t Get Deleted
+
+You try to delete a pod (e.g., during a deployment or troubleshooting), but it gets stuck in `Terminating` status for a long time and doesn't go away. Force deletion feels risky because you don't know what’s causing it.
+
+This happens often in production clusters when finalizers, volume detach issues, or network disconnects occur.
+
+Solution:
+
+1. **Check Pod Deletion Status and Finalizers:**
+```bash
+kubectl get pod <pod-name> -o yaml
+```
+Look for a `finalizers` field:
+```yaml
+metadata:
+  finalizers:
+    - https://lnkd.in/gBshApHW
+```
+If finalizers are stuck, Kubernetes waits forever for them to clean up.
+
+2. **Common Root Causes:**
+- PVC (Persistent Volume Claim) finalizer stuck
+- Custom finalizers added by controllers (e.g., Istio, Service Meshes)
+- Node hosting the pod is unreachable
+- CNI/network plugin failure during pod shutdown
+- PreStop hooks not completing properly
+
+3. **Resolution Steps:**
+
+**A. If Node is Unreachable (NotReady):**
+Force delete pod from API Server (bypasses kubelet):
+```bash
+kubectl delete pod <pod-name> --grace-period=0 --force
+```
+
+**B. Remove Stuck Finalizers Manually (Use Carefully):**
+Edit the pod and delete the finalizer block:
+```bash
+kubectl edit pod <pod-name>
+```
+Delete the finalizers section, save and exit.
+
+**C. Check Volume Attachments:**
+If pod uses a PVC, check if volume detachment is stuck:
+```bash
+kubectl describe pvc <pvc-name>
+kubectl get https://lnkd.in/g3Uc9E6Z
+```
+Manually delete orphaned volume attachments if safe.
+
+**D. Investigate PreStop Hook Hangs:**
+If your pod defines `preStop` lifecycle hooks, and the hook hangs (e.g., database disconnection logic), the pod won’t terminate until the hook finishes.
+
+Increase your preStop timeout or make hooks idempotent.
+
+Example preStop:
+```yaml
+lifecycle:
+  preStop:
+    exec:
+      command: ["/bin/sh", "-c", "sleep 5"]
+```
+
+4. **Preventive Measures:**
+- Avoid heavy/slow preStop hooks
+- Monitor and clean up orphaned PVCs
+- Watch for CNI plugin health (Calico, Cilium, etc.)
+- Handle finalizers cleanly in custom resources
+
+Key Takeaway:  
+A pod stuck in Terminating state is usually caused by finalizers, volumes, or node issues. Force deletion is safe **only if you’re sure** there’s no critical operation in progress. Always:
+- Inspect finalizers before forcing
+- Check node and network health
+- Understand implications on storage if using PVCs
