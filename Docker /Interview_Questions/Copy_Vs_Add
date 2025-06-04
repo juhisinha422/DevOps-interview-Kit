@@ -1,0 +1,8 @@
+What differences between copy and add in dockerfile ?
+
+A) copy and add both are used to copy files and ditectories into docker images 
+
+But add can down load the files from remote urld as well 
+
+Syntax : COPY SRC DEST
+                ADD SRC DEST
