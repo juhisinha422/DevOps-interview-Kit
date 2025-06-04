@@ -1,0 +1,24 @@
+Devops Recent interview questions:
+
+
+
+1. What is the difference between Scripted and Declarative Jenkins pipelines, and when would you use each?
+2. What is a Jenkinsfile and how is it used in a CI/CD pipeline?
+3. Can you write a Jenkinsfile that includes Build, Environment setup, Testing, and Deployment stages, and explain each stage?
+4. Write a Dockerfile using Ubuntu as the base image, and install Python. Explain each instruction used.
+5. What is the difference between CMD and ENTRYPOINT in Docker? Provide examples of when to use each.
+6. Explain the difference between ADD and COPY in a Dockerfile.
+7. What is the Docker command to build an image from a Dockerfile? Also, explain the flags commonly used.
+8. How do you set up Jenkins from scratch on a fresh server?
+9. What are the different ways to trigger a Jenkins pipeline automatically?
+10. Have you ever encountered the "detached HEAD" state in Git? What causes it, and how do you resolve it?
+11. If you need to give a specific team member access to a GitHub repository, how would you do that?
+12. How do you grant write permissions to a contributor in a GitHub repository?
+13. How do you find the OS version on a Linux system using the command line?
+14. How do you search for a specific file inside subfolders in Linux?
+15. What is the difference between Public and Private repositories in GitHub? When would you use each?
+16. How do you set up a GitHub Webhook to trigger Jenkins jobs?
+17. Explain how Git squash works. When would you use it, and what command do you run?
+18. Describe the Git merge process. How do you resolve merge conflicts?
+19. How do you install Jenkins plugins? What are the most commonly used plugins in a CI/CD setup?
+20. What is the difference between Docker and Kubernetes? How do they complement each other in production?
