@@ -1,0 +1,15 @@
+Top  Common Kubernetes Errors
+
+1. ImagePullBackOff / ErrImagePull: Issues pulling the container image which may be due to registry auth issue or wrong image configuration.
+
+2. CrashLoopBackOff: Container repeatedly crashing and restarting.
+
+3. Pending Pods: Kubernetes unable to schedule the Pod onto a Node.
+
+4. OOMKilled: Container terminated because it exceeded its memory limit. 
+
+5. NodeNotReady: The node is not ready for scheduling
+6. Node Memory Pressure: Node is running out of memory resource
+
+The Takeaway: 
+To be a better devops engineer, a strong understanding of both application logs and common Kubernetes error states is crucial for efficient troubleshooting and faster incident recovery.
