@@ -1,0 +1,36 @@
+AWS VPC Interview Questions :
+
+1. How does VPC peering work?
+ VPC peering connects two VPCs for communication using private IPs. Traffic stays within AWS without transiting the internet.
+
+2. What are route tables, and why are they important?
+ Route tables define paths for traffic within a VPC and to external destinations (e.g., IGW, NAT).
+
+3. Internet Gateway vs. NAT Gateway: 
+ - IGW: Enables internet access for public subnet instances. 
+ - NAT Gateway: Provides outbound internet access for private subnet instances.
+
+4. Purpose of Security Groups and NACLs: 
+ - Security Groups: Instance-level rules for inbound/outbound traffic. 
+ - NACLs: Subnet-level, stateless rules for traffic filtering.
+
+5. Restricting traffic between subnets: 
+ Use NACLs or security group rules to limit access based on IP ranges or ports.
+
+6. Designing a multi-region VPC architecture: 
+ - Use Transit Gateway or VPC peering for inter-region connectivity. 
+ - Ensure redundancy, low latency, and compliance with regulations.
+
+7. AWS Transit Gateway vs. VPC Peering: 
+ - Transit Gateway: Central hub for connecting multiple VPCs and on-prem networks. 
+ - VPC Peering: One-to-one connection between VPCs.
+
+8. Elastic Load Balancer (ELB) with VPC:
+ Distributes incoming traffic across instances in subnets and enhances scalability and fault tolerance.
+
+9. Ensuring high availability in a VPC design: 
+ - Deploy resources across multiple Availability Zones. 
+ - Use redundant IGWs, NAT Gateways, and load balancers.
+
+10. VPC limits: 
+ Default limits: 5 VPCs per region, 200 subnets per VPC. Limits can be increased via AWS Support.
