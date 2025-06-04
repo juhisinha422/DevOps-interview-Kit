@@ -29,3 +29,36 @@ You can expand dictionary-based loops to include 𝒈𝒓𝒐𝒖𝒑𝒔, 𝑼�
 ✅ Firewall rules
 
 ✅ Anything with repeatable parameters
+
+
+=======================
+
+
+#loop-over-users.yaml 
+#Solution: Use loop with both basic and dictionary-style data
+---
+- name: Scenario #5 - Loop Over Users (Simple and Complex)
+  hosts: all
+  become: yes
+  vars:
+    simple_users:
+      - dev1
+      - dev2
+      - dev3
+
+    complex_users:
+      - { name: "dev1", shell: "/bin/bash" }
+      - { name: "dev2", shell: "/bin/zsh" }
+  tasks:
+
+  - name: Create users from a simple list
+    user:
+      name: "{{ item }}"
+      state: present
+    loop: "{{ simple_users }}"
+  - name: Create users with custom shells from a dictionary
+    user:
+      name: "{{item.name }}" 
+      shell: "{{item.shell }}" 
+      state: present
+    loop: "{{ complex_users }}"
