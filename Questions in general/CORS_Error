@@ -1,0 +1,37 @@
+Ever got a 𝗖𝗢𝗥𝗦 (𝗖𝗿𝗼𝘀𝘀-𝗢𝗿𝗶𝗴𝗶𝗻 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝗦𝗵𝗮𝗿𝗶𝗻𝗴) error while working with APIs?
+
+Let’s break down what 𝗖𝗢𝗥𝗦 is and clarify what a preflight request means.
+
+🔒 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗖𝗢𝗥𝗦?
+
+Think of it as your browser's security guard. Your frontend (e.g: 𝗹𝗼𝗰𝗮𝗹𝗵𝗼𝘀𝘁:𝟯𝟬𝟬𝟬) can't talk to a backend (e.g: 𝘁𝗲𝘀𝘁.𝗮𝗽𝗶.𝗰𝗼𝗺) unless the server explicitly allows it. If there's no permission, you'll get a CORS error.
+
+✅ 𝗪𝗵𝗮𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝘁𝗿𝗶𝗴𝗴𝗲𝗿 𝗮 𝗖𝗢𝗥𝗦 𝗲𝗿𝗿𝗼𝗿?
+
+A simple GET request without custom headers won't trigger a preflight. It will work fine if the server responds with:
+𝘈𝘤𝘤𝘦𝘴𝘴-𝘊𝘰𝘯𝘵𝘳𝘰𝘭-𝘈𝘭𝘭𝘰𝘸-𝘖𝘳𝘪𝘨𝘪𝘯: 𝘩𝘵𝘵𝘱://𝘭𝘰𝘤𝘢𝘭𝘩𝘰𝘴𝘵:3000
+
+But here's the catch, even a basic 𝗚𝗘𝗧 request can fail if the server doesn't set the right headers. CORS errors are always about the server's response, not just your code.
+
+🧪 𝗪𝗵𝗲𝗻 𝗱𝗼𝗲𝘀 𝗮 𝗣𝗿𝗲𝗳𝗹𝗶𝗴𝗵𝘁 𝗵𝗮𝗽𝗽𝗲𝗻?
+
+If your request 𝗶𝘀𝗻'𝘁 𝘀𝗶𝗺𝗽𝗹𝗲, for example:
+
+• It includes an 𝗔𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗮𝘁𝗶𝗼𝗻 𝗵𝗲𝗮𝗱𝗲𝗿
+• It uses methods like 𝗣𝗨𝗧 or 𝗗𝗘𝗟𝗘𝗧𝗘
+• It sets 𝗖𝗼𝗻𝘁𝗲𝗻𝘁-𝗧𝘆𝗽𝗲: 𝗮𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻/𝗷𝘀𝗼𝗻
+
+Then the browser sends an 𝗢𝗣𝗧𝗜𝗢𝗡𝗦 (𝗽𝗿𝗲𝗳𝗹𝗶𝗴𝗵𝘁) request first. Only if the server replies with the correct 𝘈𝘤𝘤𝘦𝘴𝘴-𝘊𝘰𝘯𝘵𝘳𝘰𝘭-𝘈𝘭𝘭𝘰𝘸-* headers will the actual request proceed.
+
+Let's see below example:
+
+𝘧𝘦𝘵𝘤𝘩("𝘩𝘵𝘵𝘱𝘴://𝘵𝘦𝘴𝘵.𝘢𝘱𝘪.𝘤𝘰𝘮/𝘥𝘢𝘵𝘢", {
+ 𝘮𝘦𝘵𝘩𝘰𝘥: "𝘎𝘌𝘛",
+ 𝘩𝘦𝘢𝘥𝘦𝘳𝘴: {
+ "𝘈𝘶𝘵𝘩𝘰𝘳𝘪𝘻𝘢𝘵𝘪𝘰𝘯": "𝘉𝘦𝘢𝘳𝘦𝘳 𝘵𝘰𝘬𝘦𝘯123"
+ }
+});
+
+This Authorization header triggers a preflight. If the server doesn't permit it, the actual GET request won't be sent.
+
+Understanding this saves a lot of debugging time. And hope this clears things up for someone out there!
