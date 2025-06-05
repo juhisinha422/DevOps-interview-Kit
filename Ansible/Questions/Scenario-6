@@ -1,0 +1,63 @@
+✅ 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 #6 – 𝐄𝐧𝐜𝐫𝐲𝐩𝐭 𝐒𝐞𝐧𝐬𝐢𝐭𝐢𝐯𝐞 𝐃𝐚𝐭𝐚 𝐢𝐧 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 (𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐕𝐚𝐮𝐥𝐭)
+
+🧠 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧:
+
+How do you securely store and use sensitive data like passwords, API keys, or private tokens in your Ansible playbooks?
+
+💡 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞:
+
+Hardcoding secrets into your playbooks?
+
+That's a security time bomb 💣.
+
+If your playbook ends up in Git — even in private repos — you're one copy-paste away from 𝒍𝒆𝒂𝒌𝒊𝒏𝒈 𝒄𝒓𝒆𝒅𝒆𝒏𝒕𝒊𝒂𝒍𝒔.
+
+This is why every DevOps engineer should know 𝑨𝒏𝒔𝒊𝒃𝒍𝒆 𝑽𝒂𝒖𝒍𝒕 — a simple, built-in way to encrypt secrets while still making them usable in automation.
+
+🔐 Think of Vault like a locked drawer — only 𝑨𝒏𝒔𝒊𝒃𝒍𝒆 (𝒘𝒊𝒕𝒉 𝒕𝒉𝒆 𝒌𝒆𝒚) 𝒄𝒂𝒏 𝒐𝒑𝒆𝒏 𝒊𝒕 𝒂𝒕 𝒓𝒖𝒏𝒕𝒊𝒎𝒆.
+
+🔧 𝐒𝐨𝐥𝐮𝐭𝐢𝐨𝐧: Use ansible-vault to 𝒆𝒏𝒄𝒓𝒚𝒑𝒕 𝒇𝒊𝒍𝒆𝒔 and include them in your playbooks
+
+💬 𝐄𝐧𝐜𝐫𝐲𝐩𝐭 𝐚 𝐬𝐞𝐜𝐫𝐞𝐭𝐬 𝐟𝐢𝐥𝐞:
+
+➡️➡️ a̳n̳s̳i̳b̳l̳e̳-̳v̳a̳u̳l̳t̳ ̳e̳n̳c̳r̳y̳p̳t̳ ̳s̳e̳c̳r̳e̳t̳s̳.̳y̳m̳l̳ ⬅️⬅️
+
+🔐 𝐃𝐞𝐜𝐫𝐲𝐩𝐭 𝐭𝐞𝐦𝐩𝐨𝐫𝐚𝐫𝐢𝐥𝐲 (𝐭𝐨 𝐞𝐝𝐢𝐭):
+
+➡️➡️ a̳n̳s̳i̳b̳l̳e̳-̳v̳a̳u̳l̳t̳ ̳e̳d̳i̳t̳ ̳s̳e̳c̳r̳e̳t̳s̳.̳y̳m̳l̳ ⬅️⬅️
+
+🔑 𝐑𝐞𝐟𝐞𝐫𝐞𝐧𝐜𝐞 𝐞𝐧𝐜𝐫𝐲𝐩𝐭𝐞𝐝 𝐯𝐚𝐫𝐢𝐚𝐛𝐥𝐞𝐬 𝐢𝐧 𝐚 𝐩𝐥𝐚𝐲𝐛𝐨𝐨𝐤:
+
+⬇️⬇️⬇️
+
+-̳-̳-̳
+̳-̳ ̳n̳a̳m̳e̳:̳ ̳S̳c̳e̳n̳a̳r̳i̳o̳ ̳#̳6̳ ̳–̳ ̳S̳e̳c̳u̳r̳e̳ ̳C̳r̳e̳d̳e̳n̳t̳i̳a̳l̳s̳ ̳w̳i̳t̳h̳ ̳A̳n̳s̳i̳b̳l̳e̳ ̳V̳a̳u̳l̳t̳
+̳ ̳ ̳h̳o̳s̳t̳s̳:̳ ̳a̳l̳l̳
+̳ ̳ ̳b̳e̳c̳o̳m̳e̳:̳ ̳y̳e̳s̳
+̳ ̳ ̳v̳a̳r̳s̳_̳f̳i̳l̳e̳s̳:̳
+̳ ̳ ̳ ̳ ̳-̳ ̳s̳e̳c̳r̳e̳t̳s̳.̳y̳m̳l̳
+̳
+̳ ̳ ̳t̳a̳s̳k̳s̳:̳
+̳ ̳ ̳ ̳ ̳-̳ ̳n̳a̳m̳e̳:̳ ̳P̳r̳i̳n̳t̳ ̳D̳B̳ ̳u̳s̳e̳r̳n̳a̳m̳e̳ ̳(̳f̳o̳r̳ ̳d̳e̳m̳o̳ ̳o̳n̳l̳y̳)̳
+̳ ̳ ̳ ̳ ̳ ̳ ̳d̳e̳b̳u̳g̳:̳
+̳ ̳ ̳ ̳ ̳ ̳ ̳ ̳ ̳m̳s̳g̳:̳ ̳"̳T̳h̳e̳ ̳D̳B̳ ̳u̳s̳e̳r̳ ̳i̳s̳ ̳{̳{̳ ̳d̳b̳_̳u̳s̳e̳r̳ ̳}̳}̳"̳
+
+
+⬆️⬆️⬆️
+
+💡 This code securely loads 𝒆𝒏𝒄𝒓𝒚𝒑𝒕𝒆𝒅 𝒄𝒓𝒆𝒅𝒆𝒏𝒕𝒊𝒂𝒍𝒔 𝒖𝒔𝒊𝒏𝒈 𝒂𝒏𝒔𝒊𝒃𝒍𝒆-𝒗𝒂𝒖𝒍𝒕.
+
+📁 𝐈𝐧𝐬𝐢𝐝𝐞 𝐲𝐨𝐮𝐫 𝐬𝐞𝐜𝐫𝐞𝐭𝐬.𝐲𝐦𝐥 (𝐯𝐚𝐮𝐥𝐭-𝐞𝐧𝐜𝐫𝐲𝐩𝐭𝐞𝐝):
+
+⬇️⬇️⬇️
+
+d̳b̳_̳u̳s̳e̳r̳:̳ ̳a̳d̳m̳i̳n̳
+̳d̳b̳_̳p̳a̳s̳s̳:̳ ̳M̳y̳S̳3̳c̳r̳3̳t̳P̳a̳$̳$̳
+
+⬆️⬆️⬆️
+
+💡 𝐏𝐫𝐨 𝐓𝐢𝐩:
+
+✅ Use 𝒗𝒂𝒖𝒍𝒕 𝑰𝑫𝒔 to 𝒎𝒂𝒏𝒂𝒈𝒆 𝒅𝒊𝒇𝒇𝒆𝒓𝒆𝒏𝒕 𝒆𝒏𝒗𝒊𝒓𝒐𝒏𝒎𝒆𝒏𝒕𝒔 𝒔𝒆𝒄𝒖𝒓𝒆𝒍𝒚 (e.g., --vault-id dev@prompt, prod@prompt).
+
+✅ Also, add 𝒔𝒆𝒄𝒓𝒆𝒕𝒔.𝒚𝒎𝒍 𝒕𝒐 .𝒈𝒊𝒕𝒊𝒈𝒏𝒐𝒓𝒆 if you're not using 𝒆𝒏𝒄𝒓𝒚𝒑𝒕𝒆𝒅 𝒗𝒆𝒓𝒔𝒊𝒐𝒏𝒔 yet.
