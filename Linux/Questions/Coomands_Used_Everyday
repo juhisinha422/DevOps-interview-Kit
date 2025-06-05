@@ -1,0 +1,29 @@
+𝗕𝗮𝘀𝗶𝗰𝘀:
+1. `man` - Skim through manual for better understanding.
+2. `nano` / `vim` - Use nano for basic editing, vim for advanced editing.
+3. `ls -l` - List files with detailed info.
+4. `ssh` - Connect to remote machines securely.
+5. `df` / `du -hs *` - Check disk space usage.
+6. `chown` / `chmod` - Change ownership and permissions of files.
+7. `dig` - DNS lookup to find IPs of hostnames.
+
+𝗘𝘃𝗲𝗿𝘆𝗱𝗮𝘆 𝗨𝘀𝗲:
+1. `history` - View command history.
+2. `cd -` - Switch to the previous directory.
+3. `xargs` - Build and execute commands from input, with parallel execution support.
+4. `pstree -p` - Display the process tree with process IDs.
+5. `pgrep` / `pkill` - Find and signal processes by name.
+
+𝗣𝗿𝗼𝗰𝗲𝘀𝘀𝗶𝗻𝗴 𝗙𝗶𝗹𝗲𝘀 𝗮𝗻𝗱 𝗗𝗮𝘁𝗮:
+1. `find . -iname '*file*'` - Locate files by name.
+2. `grep` / `ack` / `ag` - Search within files, with ag being the fastest.
+3. `awk` / `sed` - Manipulate and format text.
+4. `sort` / `uniq` - Sort and find unique lines.
+5. `cut` / `paste` - Extract or combine columns of text.
+ 
+𝗦𝘆𝘀𝘁𝗲𝗺 𝗗𝗲𝗯𝘂𝗴𝗴𝗶𝗻𝗴:
+1. `top` / `htop` - View system performance and resource usage.
+2. `netstat -lntp` - List all listening ports and associated processes.
+3. `dstat` - Combined system stats view.
+4. `strace` - Trace system calls and signals.
+5. `lsof` - List open files and associated processes.
