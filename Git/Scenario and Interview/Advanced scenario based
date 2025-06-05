@@ -1,0 +1,41 @@
+Scenario-Based Git Interview Questions (Advanced Level)
+
+1. You accidentally committed sensitive credentials to the Git repository. How would you remove them from the entire history?
+
+2. You’re in the middle of a rebase and it fails due to a conflict. How do you resolve it and continue?
+
+3. You force-pushed a broken branch to main. How do you recover the previous working state?
+
+4. You want to apply a fix from one feature branch to another without merging everything. What Git command would you use and why?
+
+5. You merged a feature branch but now realize it had buggy commits. How do you revert this merge without affecting other changes?
+
+6. A developer has accidentally deleted a local branch. Can you recover it? How?
+
+7. You want to track changes in a subdirectory of a monorepo only. How do you extract this subdirectory into its own Git repo?
+
+8. You’re working with a team, and someone else pushed changes that cause merge conflicts. How do you handle and prevent such situations?
+
+9. How would you analyze and clean up a Git repository that has grown to multiple GBs due to large binaries or logs?
+
+10. How do you recover a commit that was accidentally removed using git reset --hard?
+
+11. You’re asked to split one commit into two logical parts. How can you do this?
+
+12. You accidentally made changes on the main branch instead of a feature branch. How would you safely move these changes to a new branch?
+
+13. You want to create a patch from one branch and apply it to another. What commands do you use?
+
+14. After a rebase, you are in a detached HEAD state. How can you safely get back to a normal state with your changes intact?
+
+15. A collaborator pushed changes, but you already started working on the same files. How would you avoid losing your work during pull?
+
+16. How would you compare the changes between two non-consecutive commits in Git history?
+
+17. A new team member cloned a repo but sees only partial history. What could be the cause and how to fix it?
+
+18. How do you set up Git to avoid accidentally pushing to the main or master branch directly?
+
+19. How can you configure Git aliases to improve workflow and productivity? Provide examples.
+
+20. You need to create a branch from a commit that is not the latest on the branch. How would you do it and why might this be necessary?
