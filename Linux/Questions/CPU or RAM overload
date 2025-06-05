@@ -1,0 +1,13 @@
+CPU or RAM Overloaded?
+
+Your server is slow and unresponsive? Time to check which processes are hogging resources.
+
+Try these commands:
+
+`top -o %CPU` — Sorts processes by CPU usage
+
+`top -o %MEM` — Sorts processes by RAM usage
+ 
+`htop` — A colorful, interactive view showing CPU and memory per process
+
+Look for anything unusually high in %CPU or %MEM. These are your suspects!
