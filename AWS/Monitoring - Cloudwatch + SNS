@@ -1,0 +1,67 @@
+Mastering Monitoring with CloudWatch + SNS 📬
+Topic: Smart Monitoring & Alerting with Amazon CloudWatch + SNS
+
+Today’s focus in my AWSChallenge: Learning how to monitor cloud infrastructure and set up real-time alerts using CloudWatch + SNS (Simple Notification Service). These tools form the backbone of any DevOps monitoring and incident response system. 🔧📊
+
+🔍 What is Amazon CloudWatch?
+CloudWatch is AWS’s observability service used for:
+
+Monitoring EC2, Lambda, RDS, ALB, EBS, and more
+
+Setting alarms on metrics like CPU, memory, disk, network
+
+Collecting and visualizing logs and custom metrics
+
+Automating actions (like stopping instances)
+
+📬 What is Amazon SNS?
+SNS is a pub/sub messaging service used to send:
+
+Emails 📧
+
+SMS 📲
+
+HTTP/HTTPS webhook notifications
+
+Lambda triggers
+
+ChatOps integration (Slack, Teams, etc.)
+
+🔁 Real-World Use Case Setup:
+✅ Created CloudWatch Alarm
+
+Triggered when EC2 CPU > 70%
+
+✅ Integrated with SNS
+
+Configured email alert for instant notification
+
+✅ Bonus:
+
+Used CloudWatch Logs to monitor app logs
+
+Set up log-based metrics to trigger alerts on error keywords
+
+⚙️ Architecture Flow:
+1️⃣ AWS Resource (e.g., EC2, Lambda, RDS)
+⬇️
+2️⃣ CloudWatch monitors & creates alarm
+⬇️
+3️⃣ Alarm triggers SNS topic
+⬇️
+4️⃣ SNS sends alert (email, SMS, webhook, Lambda)
+
+💡 DevOps Use Cases:
+Alerting on high CPU, memory, disk
+
+Get notified when an instance is stopped or failed
+
+Alert on app log anomalies (error, exception, timeout)
+
+Chain actions: alert + auto scale or restart instance
+
+Compliance monitoring & audit triggers
+
+🚀 Why It Matters:
+With CloudWatch + SNS, you’re not just monitoring—you’re automating awareness.
+No more manually checking dashboards. Be the first to know when something breaks.
