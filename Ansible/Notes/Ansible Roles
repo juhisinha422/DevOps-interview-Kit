@@ -1,0 +1,27 @@
+ Master Ansible Roles: A Step-by-Step Guide for Beginners🚀
+
+🔍#AnsibleRoles
+
+      👁️ Ansible Roles are a powerful way to organize and streamline automation workflows, and here’s what I’ve covered so far:
+      👁️ Roles let you automatically load related vars, files, tasks, handlers, and other Ansible artifacts based on a known file structure. After you group your content into roles, you can easily reuse them and share them with other users.
+
+🌐 Role Directory Structure
+✅ roles/
+              📍 common/          # this hierarchy represents a "role"
+🛠 tasks/ 
+             📍 main.yml    # <-- tasks file can include smaller files if warranted
+🛠 handlers/ 
+            📍 main.yml    # <-- handlers file
+🛠 templates/       # <-- files for use with the template resource
+            📍 ntp.conf.j2 # <------- templates end in .j2
+🛠 files/  
+            📍 bar.txt  # <-- files for use with the copy resource
+            📍 foo.sh  # <-- script files for use with the script source
+🛠 vars/
+            📍 main.yml  # <-- variables associated with this role
+
+💡        tasks/main.yml - A list of tasks that the role provides to the play for execution.
+💡        handlers/main.yml - handlers that are imported into the parent play for use by the role or other roles and tasks in the play.
+💡        templates/something.j2 - templates to use in the role or child roles.
+💡        files/stuff.txt - one or more files that are available for the role and it’s children.
+💡        vars/main.yml - high precedence variables provided by the role to the play (see Using Variables for more information)
