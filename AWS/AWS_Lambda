@@ -1,0 +1,45 @@
+Mastering AWS Lambda: Go Serverless!
+Topic: Run Code Without Managing Servers with AWS Lambda
+
+As part of my hashtag#AWSChallenge, I explored AWS Lambda, a core serverless compute service that lets you run backend logic or microservices code with zero infrastructure management.
+
+💡 What is AWS Lambda?
+AWS Lambda lets you run code on demand in response to events like:
+
+API Gateway calls
+
+S3 uploads
+
+DynamoDB stream changes
+
+Scheduled (cron) jobs
+
+CloudWatch Alarms, SNS, EventBridge, and more
+
+⚙️ Lambda Basics
+✅ Languages Supported: Python, Node.js, Java, Go, .NET, Ruby
+✅ Triggers: API Gateway, S3, DynamoDB, EventBridge, CloudWatch, SNS
+✅ Execution Time: Max 15 mins
+✅ Memory: 128MB to 10GB
+✅ Free Tier: 1M free requests per month (awesome for startups 🚀)
+
+🧠 Use Case
+🚀 Serverless REST API using Lambda + API Gateway
+📦 Image processing pipeline with S3 + Lambda
+🧾 Automated invoice processing with S3 + Textract + Lambda
+🔄 Real-time data processing with DynamoDB Streams + Lambda
+⏰ Scheduled cleanup tasks using EventBridge cron + Lambda
+
+🛠️ DevOps Friendly
+Create & deploy using AWS Console, CLI, SAM, or Terraform
+
+Monitor logs via CloudWatch
+
+Versioning & Aliases for safe deployment
+
+Easily integrated into CI/CD pipelines
+
+🔐 Bonus: Security Best Practices
+✅ Use least privilege IAM roles
+✅ Store secrets in AWS Secrets Manager or SSM Parameter Store
+✅ Use Environment Variables securely
