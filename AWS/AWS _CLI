@@ -1,0 +1,36 @@
+Command Your Cloud with AWS CLI 💻
+Topic: Mastering AWS CLI for Faster, Scriptable Cloud Operations
+
+AWS Command Line Interface (CLI) – the powerhouse that helps manage AWS services efficiently via terminal. It’s like having the AWS Console at your fingertips 🚀.
+
+🧠 Why AWS CLI?
+✅ Automate repetitive tasks
+✅ Integrate with CI/CD pipelines
+✅ Manage AWS services with scripts
+✅ Perform batch operations across regions/accounts
+✅ Easier for DevOps, SysAdmins & developers alike
+
+🔧 Day 11 Practice Highlights:
+📌 Installed AWS CLI (Windows & Linux support)
+📌 Configured credentials & default region
+📌 Basic CLI commands practiced:
+
+
+Commands Git Link : https://lnkd.in/eC-djYcP
+
+⚡ Pro Tip:
+You can chain AWS CLI commands with jq (JSON parser) for cleaner outputs and automation in shell scripts.
+
+🧠 Real Use Cases:
+Automate backups (S3 → Glacier)
+
+Manage EC2 lifecycle via script
+
+Query resources across accounts
+
+Auto-tagging infrastructure
+
+Trigger Lambda or ECS tasks from CLI
+
+🛡️ Bonus:
+You can integrate IAM Roles and MFA authentication with AWS CLI for secured enterprise-grade access.
