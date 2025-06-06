@@ -1,0 +1,44 @@
+Mastering DNS with AWS Route 53 📍
+Topic: Global Domain Management & Traffic Routing with AWS Route 53
+
+AWS Route 53 – the backbone of AWS’s highly available and scalable Domain Name System (DNS) service!
+
+🔍 What is Route 53?
+AWS Route 53 is a managed DNS service that lets you:
+
+Register domain names 🌍
+
+Route traffic to AWS and non-AWS resources 🚦
+
+Monitor health and failover routing 🔁
+
+Manage private DNS inside VPCs 🔒
+
+📌 Core Features:
+Domain Registration – Buy and manage domains directly via AWS
+
+DNS Routing – Map domain names to AWS EC2, S3, ELB, CloudFront, etc.
+
+Health Checks – Automatically route traffic away from unhealthy endpoints
+
+Traffic Flow – Latency-based, weighted, failover, and geolocation routing
+
+Private Hosted Zones – Manage internal domains inside your VPC securely
+
+🧩 Routing Policies:
+
+Policy Use Case
+Simple Routing Single resource mapping
+Weighted Routing A/B testing or load balancing
+Latency-based Routing Route users to the lowest-latency endpoint
+Failover Routing Backup website for disaster recovery
+Geolocation Routing Region-specific content delivery
+🧠 Bonus Tip:
+Pair Route 53 with CloudFront CDN + S3 static website for blazing-fast, globally available websites! 🌎⚡
+
+🌟 Why Route 53?
+✅ Extremely reliable and globally available
+✅ Natively integrates with AWS services
+✅ Flexible for both small startups and global enterprises
+✅ Built-in DDoS protection with AWS Shield Standard
+
