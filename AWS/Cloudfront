@@ -1,0 +1,35 @@
+Accelerate Your Web Apps with Amazon CloudFront ⚡🚀
+
+Ever wonder how global apps like Netflix or Spotify load instantly, even from different corners of the world?
+That’s the magic of a CDN (Content Delivery Network) – and Amazon CloudFront is AWS’s powerful answer to global content delivery!
+
+🔎 What is CloudFront?
+Amazon CloudFront is a global content delivery network (CDN) service that:
+Caches and serves static & dynamic content from Edge Locations
+Reduces latency by bringing content closer to users
+Increases availability, performance, and security
+
+🧩 Key Features:
+✅ Global Edge Network – 400+ edge locations worldwide
+ ✅ HTTPS & SSL support
+ ✅ Origin Support – Serve from S3, EC2, ALB, or custom origins
+ ✅ Lambda@Edge – Run code at edge locations for customization
+ ✅ DDoS Protection – Built-in with AWS Shield
+
+📦 Typical Use Cases:
+Website & API acceleration 🌐
+Video streaming & media delivery 🎥
+Secure content delivery with signed URLs 🔐
+Reducing load on backend servers
+
+🧠 CloudFront + S3 Website Hosting:
+Host your static website in S3
+Add CloudFront in front as a global CDN
+Set S3 bucket as the origin
+Enable HTTPS using Amazon Certificate Manager (ACM)
+
+📉 Performance Benefit:
+Instead of going all the way to your origin server (e.g., S3 in US-East-1), the content is cached in nearby edge locations — reducing latency by up to 60%!
+
+🌐 Bonus: Signed URLs
+For paid or private content, use signed URLs and signed cookies to protect access.
