@@ -1,0 +1,30 @@
+Automate Infrastructure with AWS CloudFormation (IaC)
+🛠️ What is CloudFormation?
+AWS CloudFormation is a powerful Infrastructure as Code (IaC) service that lets you define and provision AWS resources using declarative templates (in YAML or JSON). It automates the process of creating, updating, and deleting infrastructure in a predictable and repeatable way.
+
+📘 Key Concepts Covered:
+✅ CloudFormation Stack
+✅ Templates (YAML/JSON)
+✅ Resources, Parameters, Outputs, Mappings
+✅ StackSet (multi-account deployment)
+✅ Change Sets (for previewing updates)
+
+💡 Why CloudFormation?
+Repeatable Infrastructure
+
+Source-controlled Infra
+
+Fully integrated with all AWS services
+
+Enables CI/CD for infrastructure
+
+🧪 Hands-on Tasks:
+✅ Create a basic CloudFormation stack to launch an EC2 instance + S3 bucket
+
+✅ Modify the stack and update it with a Change Set
+
+✅ Use aws cloudformation deploy from CLI
+
+✅ Export outputs (like EC2 instance ID or S3 URL)
+
+✅ Clean up using Delete Stack
