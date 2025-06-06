@@ -1,0 +1,16 @@
+🔐 Linux Admin Tip – Safely Edit Critical System Files
+
+Want to edit /etc/passwd, /etc/shadow, /etc/group, or /etc/gshadow the right way?
+
+✅ Use these safe commands to prevent file corruption:
+
+vipw – edit /etc/passwd
+
+vigr – edit /etc/group
+
+vipw -s – edit /etc/shadow
+
+vigr -s – edit /etc/gshadow
+
+
+📌 These commands lock the file while editing to avoid race conditions or corruption.
