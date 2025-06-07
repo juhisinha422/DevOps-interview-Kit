@@ -1,0 +1,22 @@
+What is `tmux` and why should you use it?
+
+`tmux` is a terminal multiplexer — it lets you create multiple terminal sessions inside a single window and keep them running in the background.
+
+  Why use it?
+• Detach and reconnect to sessions anytime  
+• Keep long-running jobs alive even after logout  
+• Split your terminal into multiple panes
+
+  How to install:
+
+• Ubuntu/Debian: `sudo apt install tmux`  
+• CentOS/RHEL: `sudo yum install tmux`  
+
+  Essential commands:
+
+• `tmux new -s mysession` – start a new session  
+• `Ctrl-b d` – detach the session  
+• `tmux list-sessions` – view running sessions  
+• `tmux attach -t mysession` – reconnect
+
+If you're a sysadmin or a dev working over SSH — this tool is 🔥
