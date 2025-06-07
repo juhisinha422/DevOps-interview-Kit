@@ -1,0 +1,47 @@
+✅ 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 #7 – 𝐑𝐮𝐧 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐑𝐨𝐥𝐞𝐬 𝐂𝐨𝐧𝐝𝐢𝐭𝐢𝐨𝐧𝐚𝐥𝐥𝐲
+
+🧠 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧:
+
+How do you include an Ansible role only if a 𝒄𝒐𝒏𝒅𝒊𝒕𝒊𝒐𝒏 𝒐𝒓 𝒇𝒍𝒂𝒈 𝒊𝒔 𝒕𝒓𝒖𝒆?
+
+💡 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞:
+
+Imagine you're managing a multi-tier infrastructure.
+Sometimes, a host should have Nginx, but sometimes it shouldn't — depending on 𝒆𝒏𝒗𝒊𝒓𝒐𝒏𝒎𝒆𝒏𝒕, 𝒉𝒐𝒔𝒕 𝒈𝒓𝒐𝒖𝒑, 𝒐𝒓 𝒂 𝒄𝒖𝒔𝒕𝒐𝒎 𝒇𝒍𝒂𝒈.
+
+Hardcoding it into every playbook? That’s not scalable.
+
+This is where conditional role execution becomes powerful.
+
+🧠 𝐓𝐡𝐢𝐧𝐤 𝐨𝐟 𝐢𝐭 𝐥𝐢𝐤𝐞 𝐭𝐡𝐢𝐬:
+
+You don’t install air conditioning in every room — just where it’s needed. ❄️
+
+🔧 𝐒𝐨𝐥𝐮𝐭𝐢𝐨𝐧: 
+
+Use when with roles in your playbook
+
+You can use a variable like 𝒆𝒏𝒂𝒃𝒍𝒆_𝒏𝒈𝒊𝒏𝒙 to control whether a role gets applied.
+
+💡 𝐏𝐫𝐨 𝐓𝐢𝐩𝐬:
+
+✅ Set default values in 𝒅𝒆𝒇𝒂𝒖𝒍𝒕𝒔/𝒎𝒂𝒊𝒏.𝒚𝒎𝒍 within the role to avoid undefined variable errors.
+✅ You can control roles per host, group, or environment by setting flags in 𝒊𝒏𝒗𝒆𝒏𝒕𝒐𝒓𝒚 𝒇𝒊𝒍𝒆𝒔 𝒐𝒓 𝒈𝒓𝒐𝒖𝒑_𝒗𝒂𝒓𝒔.
+
+📦 Example: Include nginx role only when enabled
+
+🎯 This way, you keep your playbooks 𝒎𝒐𝒅𝒖𝒍𝒂𝒓, 𝒄𝒍𝒆𝒂𝒏, 𝒂𝒏𝒅 𝒆𝒏𝒗𝒊𝒓𝒐𝒏𝒎𝒆𝒏𝒕-𝒂𝒘𝒂𝒓𝒆.
+
+------
+
+! run-role-conditionally.yaml 
+
+name: Scenario #7 - Conditional Role Execution
+hosts: webservers
+become: yes
+vars:
+  enable_nginx: true
+roles:
+  - role: nginx
+when: enable_nginx
+
