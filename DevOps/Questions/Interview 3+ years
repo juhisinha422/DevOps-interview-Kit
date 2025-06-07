@@ -1,0 +1,35 @@
+Interview update - DevOps Engineer role (3+ years)🚀
+
+🌍Recently, I had the opportunity to attend an interview for a "DevOps Engineer position" and it was a great experience!
+I have shared the questions that were asked during my interview. These are from all 2 rounds combined. The process went well through the 2 rounds and I am happy to share that I have been selected!🔥
+
+🧑🏫With over 3+ years of hands-on experience in cloud and DevOps, it was exciting to discuss topics:
+
+1. Tell me about yourself and what are your daily tasks and responsibilities.
+2. What is the use of load balancer?
+3. Can you please tell me the types of load balancers in AWS?
+4. What is the difference between these load balancers?
+5. How you can use the Load Balancer in your project?
+6. How you can say that it is a private subnet?
+7. what are the things you consider to make a private subnet?
+8. You found an unknown source of traffic from a specific range of IPs to your subnet, How you can block that entire range.
+9. What is NAT?
+10. Can you suggest me an architecture for the production environment?
+11. What type of build triggers are there in jenkins?
+12. Can you tell me the structure of your CI/CD pipeline setup.
+13. You have multiple environments, you need to deploy the package first into Dev, later QA and then PROD. It is not deploying to Dev, but deployed to the QA and PROD. How you could troubleshoot it?
+14. Tell me the kubernetes architecture?
+15. How to expose an application in kubernetes?
+16. Types of services in kubernetes?
+17. How a request can go and reach the application running in the k8s cluster.
+18. What are the core docker components and their functionality?
+19. You need to dockerize the node app. Can you write a dockerfile for it?
+20. The server performance is low, what are the necessary steps you take to handle it?
+21. How to list the files based on the size.
+22. How you can check the IP of a server through cmd-line?
+23. what commands you use to know the server CPU and memory?
+24. You don't know the port of the service running in the linux machine, how you can get it?
+25. How can you change the ownership of a file?
+26. How to create a multiple files in a single go?
+27. How to check the disk partitions in linux?
+28. What is the permission required to make a file executable?
