@@ -1,0 +1,83 @@
+Ansible interview questions from #abishekveeramala yt channel
+
+
+1.what is configuration management?
+
+If you want to make configuration changes on any of the ubuntu centos and debian machines which are 100s in number and want to update the packages you can use configuration management tool to run all the updates within no time using ansible and chef and puppet.
+
+2.Do you think Ansible is better than any other config management tool? If yes why?
+
+Definitely every tool has its own benefits.
+
+But coming to plus points of ansible it is push based mechanicm working on agent less model ,it means it doesnt need ansible to be installed on all the attached nodes.
+
+And it is easy to write the playbooks ,because ansible uses yaml indentation to write this scripts.
+Anisble is backed up by red hat and has good community support.
+Linux-ssh
+Windows-winrm
+
+3.can you write ansible playbook to install https service ane get it running!?
+Name: to install httpd service
+Hosts: all
+Become: root
+
+Task
+-name :install httpd service
+  Apt:
+  Name:https
+   State:Present
+
+-name:start https service
+Shell:systemctl start httpd
+
+4.how Ansible helped your organisation?
+During upgradations and os patching or turning off some ports .
+
+These helped  reduce time in making changes .
+
+5.what is Ansible dynamic inventory?
+
+You have 100 new ec2 machines ,and you want to install mysql server on these,and the num of instances keep on increasing,ansible looks into new ec2 from aws and add them to inventory file.
+
+6.what is ansible tower?how do you use it?
+
+Also known as automatic controller.Gui which is helpful to run our playbooks at specified time.
+
+7.how do you manage Rbac on ansible tower?
+
+You want to give access to specific users or groups ,to acess the tower and can manage the playbooks.Integrate with Iam
+
+8.what is Ansible galaxy command?
+
+You want to write a play book, galaxy commad helps to bootstrap your structure with files and folders.
+
+9.can you explain me structure of ansible playbook using roles?
+Templates,metadata,tasks,handlers,we use galaxy command to create this structure. 
+
+10.what are handlers?
+Normal tasks ,but only event driven ,ex you installed nginx and then called the handler to start the nginx
+
+11.i would like to run specific tasks only kn windows vms not on linux vms,is that possible?
+Yes it is.
+Name:run tasks
+Hosts:windows group (inventory)
+Become:yes
+12.Does ansible supports parallel execution?
+
+Yes,task 1 is completeld post that task2 is done on all the ec2 instances .
+
+13.protocol to connect to windows machine
+
+Winrm
+
+14.can you place varibales in order of precedence?
+
+Playbook group_vars ,role vars and extra vars
+
+15.how do you handle secrets in ansible?
+Ansible has inbuild ansible vault to store and encrypt data.
+
+16.can we use ansible for iac?
+yes, but recommended approach is using cloud formation and terraform.
+
+17.can you talk about ansible playbook you wrote?Effectively reducing the time ,i used these playbooks.(installing Kubernetes using kubeadm)
