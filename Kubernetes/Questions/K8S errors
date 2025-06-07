@@ -1,0 +1,63 @@
+common errors of k8s
+
+Q.1 what causes pod crashloop backoff error?
+ Kubectl logs podname
+There might me few  reasons to cause this error ,one such issue is image issues or dockerfile CMD arguments issues or environmental variables issues
+
+Q.2 why pods are in pending state?
+
+Insufficient resources (cpu memory)to pod or namespace
+Unschedulable node: node affinity or taints on node and pods affinity.
+Pod missing any persistent volumes.
+
+Q.3 what does the image pull back error mean?
+
+Images name or version issues 
+Image registery or login issues of docker platforms
+Secrets not having correct credentials 
+
+Q.4  what does errorimagepull refer to?
+Immediate failure of api server to fetch the image from registry (might be issues with image name and registry again)
+
+Q.5 what might cause the pod to remain in terminating state indefinitely,and how do you resolve it?
+
+Grace period:check if pod has a long terminationGracePeriodSeconds set.
+You can force delete the pod with kubectl delete pod podname — grace-period=0 —force
+
+Finalisers:this might be preventing the deletion .Go to kubectl edit pods podname and edit and delete.
+Pod network issues
+
+Q 6:.what are  nodenotready issues?
+
+Check node resources (cpu memory and disk space)
+Kubectl inspect nodename
+
+Q.7
+How to do address pvc not bound error?
+
+It means pvc is not bounded to any of pv.
+Kubectl desrcibe pvc and get pv-check the status
+
+Storageclasses of pvc and pv are matching together.
+Check pv if having sufficient capacity?
+
+Q.8 what does the “error synching pod” message mean and how do you ts it?
+
+Kubelet having Issues in  syching state of pod:
+
+Kubectl logs: Inspect the kubectl logs on the node where pod is scheduled.(journalctl -u kubelet)
+Check node constraints
+Check container runtime are running or not
+
+Q.9 why might be k8 service isnt accessible within cluster?
+
+Check lables and selectors if service is pointing to correct pod.
+Check for network policies on pod
+On the nodes check the iptabels rules 
+Ensure the DNS in the cluster is correctly resolving service names
+
+Q.10 How do you fix the failed to create pod sandox error?
+
+Check the container runtime logs (containerd)
+Node resources 
+CNI plugins are correct.
