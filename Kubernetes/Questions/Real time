@@ -1,0 +1,104 @@
+5 Real-Time Kubernetes Interview Questions & Answers
+
+1️⃣ What is a Kubernetes DaemonSet, and when should you use it?
+
+Answer:
+A DaemonSet ensures that a specific pod runs on all (or some) nodes in a cluster. It is commonly used for node-level monitoring, log collection, or networking services.
+
+✅ Use Cases:
+
+Running Fluentd for centralized logging.
+
+Deploying Node Exporter for Prometheus monitoring.
+
+Running a CNI plugin (e.g., Calico, Cilium) on every node.
+
+
+2️⃣ How does Kubernetes handle node failures?
+
+Answer:
+When a node fails, Kubernetes follows these steps:
+
+1. Kubelet stops sending heartbeats → Marked as NotReady.
+
+2. Pods running on the node enter the "Unknown" state.
+
+3. Controller Manager reschedules affected pods on healthy nodes.
+
+4. If using PodDisruptionBudgets (PDBs), Kubernetes ensures availability before evicting pods.
+
+5. Cluster Autoscaler may replace the failed node if enabled.
+
+
+👉 Best Practice: Use Node Affinity & Taints/Tolerations to control pod scheduling effectively.
+
+
+3️⃣ What are Kubernetes Resource Quotas and Limit Ranges?
+
+Answer:
+Resource Quotas and Limit Ranges help control resource consumption within a namespace.
+
+✅ Resource Quotas: Define overall limits per namespace (e.g., max CPU, memory, number of pods).
+✅ Limit Ranges: Define per-pod or per-container resource limits to prevent overutilization.
+
+Example:
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+ name: dev-quota
+ namespace: dev
+spec:
+ hard:
+ pods: "10"
+ requests.cpu: "4"
+ limits.cpu: "10"
+
+
+4️⃣ How do you perform zero-downtime deployments in Kubernetes?
+
+Answer:
+Use Rolling Updates with proper configuration:
+
+Set maxUnavailable=0 to ensure no downtime.
+
+Use readiness probes to route traffic only to healthy pods.
+
+Implement preStop hooks to gracefully shut down pods before termination.
+
+
+Example Deployment YAML:
+
+strategy:
+ type: RollingUpdate
+ rollingUpdate:
+ maxUnavailable: 0
+ maxSurge: 1
+
+For critical workloads, use Canary Deployments or Blue-Green Deployments via ArgoCD, Flagger, or Istio.
+
+
+5️⃣ What is the difference between Ingress and LoadBalancer services?
+
+Answer:
+✅ LoadBalancer Service → Exposes a service externally with a public IP (Cloud Provider dependent).
+✅ Ingress → Routes HTTP/S traffic to different services based on host/path rules, using an Ingress Controller (e.g., Nginx, Traefik, AWS ALB).
+
+Example: Ingress YAML:
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+ name: my-ingress
+spec:
+ rules:
+ - host: myapp.example.com
+ http:
+ paths:
+ - path: /
+ pathType: Prefix
+ backend:
+ service:
+ name: my-service
+ port:
+ number: 80
