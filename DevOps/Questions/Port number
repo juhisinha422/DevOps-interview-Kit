@@ -1,0 +1,77 @@
+Ports Every DevOps Engineer Should Know 💡
+
+Whether you're setting up a CI/CD pipeline, deploying monitoring tools, or configuring cloud-native apps, knowing the default ports of key services is non-negotiable. Here's a quick reference for some of the most commonly used tools and technologies:
+
+🛠️ DevOps & CI/CD
+
+Jenkins → 8080
+
+SonarQube → 9000
+
+Docker → 2375, 2376
+
+Kubernetes API Server → 6443
+
+Kubelet → 10250
+
+
+📊 Monitoring & Visualization
+
+Prometheus → 9090
+
+Grafana → 3000
+
+Alertmanager → 9093
+
+Node Exporter → 9100
+
+Blackbox Exporter → 9112
+
+
+🌐 Web & App Servers
+
+Tomcat → 8080
+
+Apache / Nginx / HTTP → 80
+
+HTTPS → 443
+
+React.js / Node.js → 3000
+
+Python (dev server) → 8000
+
+
+📡 Networking & Communication
+
+FTP → 21
+
+SSH → 22
+
+SMTP (SSL) → 465
+
+DNS → 53
+
+Ngrok Dashboard → 4040
+
+
+🗃️ Databases
+
+MySQL → 3306
+
+PostgreSQL → 5432
+
+Redis → 6379
+
+
+📦 Logging & Search
+
+Logstash → 5044
+
+Elasticsearch → 9200
+
+Kibana → 5601
+
+
+📡 Streaming & Messaging
+
+Kafka → 9092
