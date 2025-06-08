@@ -1,0 +1,52 @@
+✅ 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 #8 – 𝑹𝒖𝒏 𝑺𝒑𝒆𝒄𝒊𝒇𝒊𝒄 𝑻𝒂𝒔𝒌𝒔 𝒘𝒊𝒕𝒉 𝑻𝒂𝒈𝒔 𝒊𝒏 𝑨𝒏𝒔𝒊𝒃𝒍𝒆
+
+🧠 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧:
+
+How do you run only selected tasks from a large Ansible playbook without executing everything?
+
+💡 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞:
+
+Imagine you have a big playbook that installs the app, sets up the DB, configures Nginx, and applies monitoring.
+
+But today, you just need to 𝒓𝒆𝒔𝒕𝒂𝒓𝒕 𝒕𝒉𝒆 𝒅𝒂𝒕𝒂𝒃𝒂𝒔𝒆, 𝒏𝒐 𝒏𝒆𝒆𝒅 𝒕𝒐 𝒕𝒐𝒖𝒄𝒉 𝒕𝒉𝒆 𝒓𝒆𝒔𝒕.
+
+That’s where tags come in.
+
+🗂️ Think of tags like bookmarks — they help you jump straight to what matters, skipping everything else.
+
+💡 𝐏𝐫𝐨 𝐓𝐢𝐩𝐬:
+
+✅ Add 𝒍𝒐𝒈𝒊𝒄𝒂𝒍 𝒕𝒂𝒈𝒔 to every task (e.g., db, web, monitoring)
+✅ Combine tags with --𝒍𝒊𝒎𝒊𝒕 for even more precise control
+✅ Use --𝒔𝒌𝒊𝒑-𝒕𝒂𝒈𝒔 when you want to run everything except a certain task group
+
+➡️ To run only DB tasks:
+
+▶ 𝐇𝐢𝐠𝐡𝐥𝐢𝐠𝐡𝐭𝐞𝐝 𝐂𝐨𝐦𝐦𝐚𝐧𝐝:
+
+𝒂𝒏𝒔𝒊𝒃𝒍𝒆-𝒑𝒍𝒂𝒚𝒃𝒐𝒐𝒌 𝒔𝒊𝒕𝒆.𝒚𝒎𝒍 --𝒕𝒂𝒈𝒔 "𝒅𝒃"
+
+🔺 Run this to apply only DB-related tasks
+
+
+
+=================
+site.yaml
+---
+- name: Scenario #8 - Use Tags to Run Specific Tasks
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install PostgreSQL
+      apt:
+        name: postgresql
+        state: present
+      tags: db
+
+    - name: Start PostgreSQL service
+      service:
+        name: postgresql
+        state: started
+      tags: db
+
