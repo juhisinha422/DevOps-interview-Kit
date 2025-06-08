@@ -1,0 +1,69 @@
+Playbooks:
+
+Playbooks are YAML files that define the configuration, deployment, and orchestration tasks in Ansible. They consist of one or more "plays," where each play targets a group of hosts and defines tasks to be executed on them.
+
+Inventory:
+
+The inventory is a file that defines the list of hosts (servers) Ansible manages. It can be static (a simple text file) or dynamic (generated through scripts or cloud platforms).
+
+Modules:
+
+Ansible modules are the units of work that Ansible executes on managed hosts. They can perform tasks like installing packages, creating files, or managing services. Examples include apt, yum, copy, file, service, and many others.
+
+Roles:
+
+Roles allow you to organize playbooks into reusable components. A role typically includes variables, tasks, handlers, and templates, and can be used across different projects.
+
+Handlers:
+
+Handlers are tasks that are only executed when notified.
+
+They are often used for actions like restarting services, which only need to be done after a configuration change.
+
+Handlers:
+
+Handlers are tasks that are only executed when notified. They are often used for actions like restarting services, which only need to be done after a configuration change.
+
+Variables:
+
+Variables in Ansible are used to store dynamic values, such as hostnames, IP addresses, or configuration parameters. These can be defined in playbooks, inventory files, or separate variable files.
+
+Templates:
+
+Templates in Ansible use the Jinja2 templating engine to allow dynamic content generation. They are usually used for configuration files, where values can be substituted based on variables.
+
+Ansible Tower (AWX):
+
+Ansible Tower is a web-based Ul and dashboard for managing Ansible. It provides features like role-based access control (RBAC), job scheduling, and visualizations of job statuses.
+
+Ansible is an open-source automation tool for configuration management, deployment, and task automation. Key components include:
+
+Playbooks: YAML files defining automation tasks.
+
+Inventory: List of managed hosts.
+
+Ansible is an open-source automation tool for configuration management, deployment, and task automation. Key components include:
+
+Playbooks: YAML files defining automation tasks.
+
+Inventory: List of managed hosts.
+
+Modules: Units of work executed on hosts (e.g., install packages).
+
+Roles: Reusable playbook components.
+
+Handlers: Tasks triggered after specific conditions (e.g., restart services).
+
+Variables: Store dynamic values for use in playbooks.
+
+Templates: Jinja2-based dynamic content generation.
+
+Ansible Tower: Web UI for managing Ansible.
+
+Ansible Galaxy: Repository for community-contributed roles.
+
+Ad-Hoc Commands: One-time commands run on hosts.
+
+Facts: System properties gathered from hosts automatically.
+
+Collections: Bundles of Ansible content for easier sharing.
