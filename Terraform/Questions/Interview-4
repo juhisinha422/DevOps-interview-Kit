@@ -1,0 +1,31 @@
+Terraform Interview Questions
+
+1. Can you describe what workspaces are in Terraform and how they assist with infrastructure management❓
+
+2. What are the best practices for managing secrets or sensitive information within Terraform configurations❓
+
+3. Could you explain the differences between the count and for_each meta-arguments in Terraform❓
+
+4. How do you manage dependencies between different resources in Terraform configurations❓
+
+5. How does Terraform manage state, and why is state management crucial❓
+
+6. What role do providers play in Terraform, and how do they aid in managing infrastructure❓
+
+7. What techniques can be used to enable parallelism in Terraform operations and enhance performance❓
+
+8. What are remote backends in Terraform, and what are the benefits of using them❓
+
+9. How can Terraform modules be effectively managed in a large-scale infrastructure setup❓
+
+10. What methods are available to prevent concurrent modifications to Terraform state❓
+
+11. Can you explain the differences between the local-exec and remote-exec provisioners in Terraform❓
+
+12. How can Terraform state be securely managed across multiple environments or teams❓
+
+13. What is the difference between the taint and import commands in Terraform❓
+
+14. How do you detect and address drift in Terraform-managed infrastructure❓
+
+15. What are some best practices for organizing Terraform configurations to ensure they are modular and reusable❓
