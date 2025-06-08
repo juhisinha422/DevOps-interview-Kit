@@ -1,0 +1,32 @@
+🔹OSI (Open Systems Interconnection) Model [7 layers] 
+💡 Each layer has a specific function:
+
+1️⃣ Physical Layer – Wires, cables, Wi-Fi signals (hardware transmission)
+2️⃣ Data Link Layer – MAC addresses, Ethernet, switching
+3️⃣ Network Layer – IP addresses, routing (IPv4/IPv6)
+4️⃣ Transport Layer – TCP, UDP (ensuring reliable/unreliable data transfer)
+5️⃣ Session Layer – Manages sessions between applications
+6️⃣ Presentation Layer – Encryption, data formatting (SSL/TLS, ASCII)
+7️⃣ Application Layer – User interfaces & protocols (HTTP, DNS, FTP, SMTP)
+
+🔹 TCP/IP Model (4 Layers)
+A simplified version of the OSI model, which is more practical for real-world networking:
+
+1️⃣ Network Interface – Physical transmission (Ethernet, Wi-Fi)
+2️⃣ Internet Layer – Routing with IP addresses (IPv4, IPv6)
+3️⃣ Transport Layer – Communication reliability (TCP, UDP)
+4️⃣ Application Layer – End-user protocols (HTTP, FTP, SSH, DNS)
+
+💡 Think of it like this:
+🛣 IP Address = Your home address (changes based on location)
+🏷 MAC Address = Your passport (remains constant)
+
+🔹 Important Networking Protocols
+✅ TCP (Transmission Control Protocol) – Reliable, ordered data delivery
+✅ UDP (User Datagram Protocol) – Faster, connectionless, no guarantee of delivery
+✅ HTTP/HTTPS – Web browsing & secure communication
+✅ DNS (Domain Name System) – Resolves domain names to IPs
+✅ SSH (Secure Shell) – Secure remote login
+
+👉 Why does this matter in DevOps?
+📌 DevOps involves CI/CD, cloud computing, automation, and security—all of which rely on strong networking knowledge!
