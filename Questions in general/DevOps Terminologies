@@ -1,0 +1,35 @@
+1️⃣ Containerization Technologies
+hashtag#Docker: Helps in creating, deploying, and managing containers to run applications.
+hashtag#Docker Host: A machine where Docker runs and manages containers.
+hashtag#Podman: A tool similar to Docker but doesn't require a daemon.
+hashtag#Docker_Swarm: A tool for managing clusters of Docker containers.
+hashtag#Containerization: The process of packaging applications and their dependencies into lightweight containers for easier deployment.
+
+2️⃣ CI/CD and Code Quality Tools
+hashtag#Jenkins: Automates tasks like testing and deploying code, making the development process faster.
+hashtag#SonarQube: Checks code quality and helps maintain clean, bug-free code.
+
+3️⃣ Kubernetes, Deployments, and Load Balancing
+hashtag#Pods: The smallest unit in Kubernetes, which holds containers.
+hashtag#Nodes: Machines (virtual or physical) that run the Pods.
+hashtag#LoadBalancing: Distributes traffic evenly across multiple servers for better performance.
+hashtag#K8s Built-In Load Balancer: Automatically balances the load between Pods in Kubernetes.
+hashtag#AWS Load Balancer: Distributes traffic across multiple servers in AWS.
+Round Robin: A method of balancing load by sending traffic in order across servers.
+hashtag#Deployment: How we update and scale applications automatically in Kubernetes.
+
+4️⃣ Cloud-Native Kubernetes Tools
+hashtag#eksctl: Makes it easy to create and manage Kubernetes clusters on AWS.
+hashtag#ECR & EKS: Amazon services for managing containers and Kubernetes clusters.
+hashtag#AKS & GKS: Azure and Google’s managed Kubernetes services.
+hashtag#OpenShift & OpenStack: Open-source platforms for managing cloud applications.
+
+ 5️⃣Multi-Cloud Architecture:
+Learned how using different cloud platforms (like AWS, Azure, and Google Cloud) together can make systems stronger, scalable, and cheaper.
+Understood the challenges and ways to manage work across different cloud providers.
+
+6️⃣ Canary Releases
+hashtag#CanaryReleases: A strategy for gradually releasing new features to small groups of users to minimize risk.
+This training is shaping my skills to take on real-world DevOps challenges and build future-ready systems!
+
+💡 Key Takeaway: DevOps is about building smarter, scalable systems while making the most of different cloud platforms.
