@@ -1,0 +1,31 @@
+🚀 𝐇𝐨𝐰 𝐇𝐨𝐭𝐬𝐭𝐚𝐫 𝐇𝐚𝐧𝐝𝐥𝐞𝐝 25.3 𝐌𝐢𝐥𝐥𝐢𝐨𝐧 𝐂𝐨𝐧𝐜𝐮𝐫𝐫𝐞𝐧𝐭 𝐕𝐢𝐞𝐰𝐞𝐫𝐬 𝐈𝐧 𝐭𝐡𝐞 2019 𝐂𝐫𝐢𝐜𝐤𝐞𝐭 𝐖𝐨𝐫𝐥𝐝 𝐂𝐮𝐩: 𝐀 𝐃𝐞𝐯𝐎𝐩𝐬 & 𝐒𝐜𝐚𝐥𝐚𝐛𝐢𝐥𝐢𝐭𝐲 𝐒𝐮𝐜𝐜𝐞𝐬𝐬 𝐒𝐭𝐨𝐫𝐲! 🚀
+In the 2019 Cricket World Cup, while India experienced a heartbreaking moment on the field, something extraordinary happened in the world of technology! Hotstar set a world record with 25.3 million concurrent viewers streaming the match live. 📺🔥
+But have you ever wondered how Hotstar managed this massive traffic without crashing? Let’s break it down step by step! ⬇️
+
+1️⃣ 𝗧𝗵𝗲 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲: 𝗛𝗮𝗻𝗱𝗹𝗶𝗻𝗴 𝗮 𝗧𝘀𝘂𝗻𝗮𝗺𝗶 𝗼𝗳 𝗩𝗶𝗲𝘄𝗲𝗿𝘀 🌊
+Imagine a single server can handle only 1,000 users at a time. Now, think about millions of people watching a live stream together. Without a proper system in place, the entire platform would crash instantly!
+Hotstar had to handle sudden spikes in traffic, especially during crucial moments in the match, such as MS Dhoni walking in to bat or getting run out – events that caused viewership to explode within seconds.
+This extreme, unpredictable traffic pattern is known as the Tsunami Effect .
+
+2️⃣ 𝗧𝗿𝗮𝗳𝗳𝗶𝗰 𝗣𝗮𝘁𝘁𝗲𝗿𝗻𝘀 & 𝗧𝗵𝗲 𝗧𝘀𝘂𝗻𝗮𝗺𝗶 𝗘𝗳𝗳𝗲𝗰𝘁 📈
+During live sports events, user traffic is highly unpredictable. Some key moments in the match caused traffic to skyrocket: 
+✅ 2 million users joined instantly at the start.
+✅ Dropped by 1 million within a few minutes.
+✅ Jumped from 1M to 10M as the match got intense.
+✅ Peaked at 25.3 million when MS Dhoni came to bat.
+✅ Dropped to near zero within seconds after he got out.
+
+Handling such drastic fluctuations required a well-designed, scalable, and automated infrastructure.
+
+3️⃣ 𝗛𝗼𝘄 𝗛𝗼𝘁𝘀𝘁𝗮𝗿 𝗦𝗰𝗮𝗹𝗲𝗱 𝘁𝗼 𝗛𝗮𝗻𝗱𝗹𝗲 𝟮𝟱.𝟯 𝗠𝗶𝗹𝗹𝗶𝗼𝗻 𝗨𝘀𝗲𝗿𝘀? ⚙️
+To manage this massive surge in traffic, Hotstar used: 
+✅ Dynamic Scaling – When one server reached its limit, another server was automatically launched.
+✅ Traffic Prediction (MLOps) – Machine learning algorithms analyzed past user data to predict traffic spikes.
+✅ Automation & DevOps – Manual intervention was impossible, so automated deployment & load balancing ensured seamless performance. 
+✅ Resilient Infrastructure – If the system failed, millions of users would have been lost, leading to huge business losses.
+
+5️⃣ 𝗥𝗼𝗹𝗲 𝗼𝗳 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻, 𝗗𝗲𝘃𝗢𝗽𝘀 & 𝗠𝗟𝗢𝗽𝘀 🤖
+🔹 DevOps & Site Reliability Engineering (SRE): Ensured real-time monitoring and quick response to traffic surges.
+ 🔹 MLOps & AI: Predicted traffic patterns, allowing resources to be allocated efficiently.
+ 🔹 Automated CI/CD Pipelines: Allowed smooth updates and scaling without disrupting the live stream.
+These practices ensured zero downtime, reduced costs, and a seamless viewing experience.
