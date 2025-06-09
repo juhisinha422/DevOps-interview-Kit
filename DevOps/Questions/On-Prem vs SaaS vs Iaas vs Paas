@@ -1,0 +1,20 @@
+On-Prem vs. SaaS, PaaS, IaaS – Know the Difference 💡
+When it comes to IT infrastructure, understanding where responsibility lies is key
+
+🔒 On-Prem:
+Everything is managed by you: hardware, software, networking, security.
+Full control, but also full responsibility.
+
+🖥️ SaaS (Software as a Service):
+You just use the app. Everything else is managed for you.
+Example: Microsoft 365, Salesforce
+
+🧱 PaaS (Platform as a Service):
+You focus on the app, code, and data.
+Provider manages servers, OS, and runtime.
+Example: Azure App Services
+
+☁️ IaaS (Infrastructure as a Service):
+You manage the OS, apps, and data.
+Cloud provider handles the hardware.
+Example: Azure VMs, AWS EC2
