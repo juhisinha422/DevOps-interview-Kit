@@ -1,0 +1,16 @@
+🚀 Brushing Up on DevOps Essentials – Day by Day!
+
+Today, I revisited some core Linux commands and tools which were mostly useful in day to day basis— going from basics to a few advanced ones — to strengthen my system monitoring and troubleshooting skills over Linux env.
+
+Here's a quick snapshot of what I covered:
+
+🔹 top / htop – Real-time monitoring of CPU, memory, and active processes
+🔹 ps / pgrep / pstree – Viewing running processes and understanding parent-child relationships
+🔹 ifconfig / netstat / ss – Inspecting network connections, open ports, and interface stats
+🔹 tcpdump – Capturing and analyzing network packets for connectivity diagnosis
+🔹 ping / traceroute / mtr – Testing and tracing network routes to remote hosts
+🔹 df / du – Checking disk space usage and identifying large files/directories
+🔹 free / vmstat – Monitoring memory and virtual memory statistics
+🔹 journalctl – Troubleshooting services using systemd logs
+🔹 lsof – Finding open files and their associated processes
+🔹 tail / less / grep – Navigating and filtering log files for specific patterns or errors
