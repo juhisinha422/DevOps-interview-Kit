@@ -21,3 +21,96 @@ I was checking some blog and came to this page which had these 10 questions. Hav
 9. When you execute kubectl exec -it <pod> -- bash, are you logging into the pod?
 
 10. How would you troubleshoot if a container in a Pod repeatedly exits and restarts?
+
+
+------------------------------------------------------------------------------
+
+ANSWERS:
+
+My answers
+1) Scheduler looks for resource availablity and taint, tolerations so It depends on above factors
+
+2) Container will restart
+
+3) Absolutely No, we tried many times with Config map changes, without restart it won't reflect the changes
+
+4) No, Containers are ephemeral in nature
+
+5) ClusterIP: yes it will do Loadbalcing for Tcp traffic
+
+6) In GKE cluster fluentd already installed as daemon set on each node, we can use ELK storing logs
+
+7) Not always
+
+8) KEDA, HPA, VPA
+
+9) not all images we don't have bash like jre light weight image..
+If two containers are there we have to mention < -c container name > So basically going inside container 
+
+10) Last time when I faced this issue with crashloopbackoff I put a sleep inside the dockerfile so before restarting
+We can check the errors 
+
+
+
+================================================
+
+1. Scheduler will try to schedule on second node to distribute the load only if there is no taint and required resources are there otherwise it will be scheduled on first node.
+
+2. Container will be restarted not the pod even if we have multi container pod then affected container only be restarted.
+
+3. Env variable will be updated only after restart but configmap changes can be updated dynamically if it is mounted as volume and it won't refresh automatically if subpath is used in volume mount
+
+4. Not sure 
+
+5. Yes infact cluster does load balancing in a round robin way and it supports TCP.
+
+6. losing logs sometimes impact RCA and customer trust in case of failure and it should be collected by some centralized logging system
+
+7. No, there are many factors which indicates that application is not working properly even though liveness is working 
+
+8. Stateless applications can be scaled out using HPA and stateful applications can be scaled up using VPA
+
+9. No, we login to container (default one in case of multi container) and we can also specify which container to login
+
+10. Pod describe, event logs, or can check centralized logging system for previous container logs if captured
+
+
+
+
+
+
+
+
+--------------------
+1. Ans: Not really it will go to other one. Actully it check less utilised node to schedule the pod in this scenario it will go to the other without pod however, if any affinity, taint, selector is configured then it will go to one with pod. 
+2. Ans: Only container will terminate and kubelet will crate new container.
+
+3. Ans: I don't think it is possible while running the pod.
+
+4. Ans: Absolutely not stable it can be instable due to various reason like Node failure, resource issue
+
+5. Ans: Yes, it is default service type of kubernetes and it creates virtual IP and kube-proxy take care the traffic among all healthy pods
+
+6. Ans: Log can be collected using filebeat, fluentd using any log shipper tool and yes, risk is there of loosing logs if it is not collected properly to central log sytem or not used any persistance volume option
+
+7. Ans: No, it is just checking your application is working or not.
+
+8. Ans: Scalling method like HPA(Horizontal Pod Autoscaller) and VPA(Vertical Pod Autoscaller)
+
+9. Ans: No. it is creating a nteractive session inside container.
+
+10. Ans: You have to check logs, configurations like readiness, liveness, node issue etc
+
+
+--------------
+
+1.If both nodes are healthy and have enough resources, Kubernetes usually picks the one with less load 
+2.Just the container restarts. The pod stays the same unless you’re using something like a Job or special restart policy.
+3.Not for environment variables, you need to restart the pod. But if the ConfigMap is mounted as a file and the app watches it, then yeah, it can pick up changes live.
+4.Nope. Pods are temporary. Node issues, eviction due to resource pressure, or even taints can make them vanish.
+5.Yes, ClusterIP can load balance TCP just fine across the backend pods — it’s the default for internal services.
+6.You should ship logs to something like Loki or Elasticsearch using agents like Fluent Bit. If you don’t, and the pod dies — logs are gone.
+7.Not really. It just means the container is running. Your app could still be broken or not serving real traffic properly.
+8.Use HPA it can increase or decrease pod count automatically based on CPU, memory, or custom metrics.
+9.Yeah, you’re basically dropping into the shell of one of the containers inside that pod. 
+10.Start with kubectl describe to check events, then check logs (especially --previous), look at resource limits, and confirm if anything’s failing during start-up.
