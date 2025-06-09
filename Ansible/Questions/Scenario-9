@@ -1,0 +1,26 @@
+✅ 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 #9 – 𝐇𝐚𝐧𝐝𝐥𝐞 𝐄𝐫𝐫𝐨𝐫𝐬 𝐆𝐫𝐚𝐜𝐞𝐟𝐮𝐥𝐥𝐲 𝐰𝐢𝐭𝐡 𝐛𝐥𝐨𝐜𝐤, 𝐫𝐞𝐬𝐜𝐮𝐞, 𝐚𝐧𝐝 𝐚𝐥𝐰𝐚𝐲𝐬 𝐢𝐧 𝐀𝐧𝐬𝐢𝐛𝐥𝐞
+
+🧠 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧:
+
+📌 What if a task fails in Ansible?
+📌How do you handle it without crashing the entire playbook?
+
+💡 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞:
+
+Let’s say you're restarting a critical service like nginx.
+
+Sometimes it fails due to 𝒑𝒐𝒓𝒕 𝒄𝒐𝒏𝒇𝒍𝒊𝒄𝒕𝒔, 𝒄𝒐𝒏𝒇𝒊𝒈𝒔, 𝒐𝒓 𝒕𝒊𝒎𝒊𝒏𝒈 𝒊𝒔𝒔𝒖𝒆𝒔.
+
+If you don’t handle it, the entire playbook might stop halfway — not good for production.
+
+🧯 This is where 𝑨𝒏𝒔𝒊𝒃𝒍𝒆’𝒔 𝒃𝒍𝒐𝒄𝒌, 𝒓𝒆𝒔𝒄𝒖𝒆, 𝒂𝒏𝒅 𝒂𝒍𝒘𝒂𝒚𝒔 comes in — it's your 𝒕𝒓𝒚/𝒄𝒂𝒕𝒄𝒉/𝒇𝒊𝒏𝒂𝒍𝒍𝒚 of infrastructure.
+
+📦 𝐓𝐡𝐢𝐧𝐤 𝐨𝐟 𝐢𝐭 𝐥𝐢𝐤𝐞 𝐝𝐫𝐢𝐯𝐢𝐧𝐠:
+
+If the main road is 𝒃𝒍𝒐𝒄𝒌𝒆𝒅 (𝐛𝐥𝐨𝐜𝐤), take the 𝒅𝒆𝒕𝒐𝒖𝒓 (𝐫𝐞𝐬𝐜𝐮𝐞), but still 𝒂𝒓𝒓𝒊𝒗𝒆 𝒐𝒏 𝒕𝒊𝒎𝒆 𝒂𝒏𝒅 𝒍𝒐𝒈 𝒕𝒉𝒆 𝒋𝒐𝒖𝒓𝒏𝒆𝒚 (𝒂𝒍𝒘𝒂𝒚𝒔).
+
+💡 𝐏𝐫𝐨 𝐓𝐢𝐩𝐬:
+
+✅ Use block to group tasks you expect might fail
+✅ Use rescue to handle failure or fallback safely
+✅ Use always to run cleanup or logging tasks regardless of success or failure
