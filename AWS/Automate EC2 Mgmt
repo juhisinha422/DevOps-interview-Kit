@@ -1,0 +1,59 @@
+🚀 Automate EC2 Management with Python: Start, Stop, and Terminate Instances Using Boto3 💻
+
+Managing EC2 instances is essential for efficient cloud workflows, and automation with Python can make this process seamless. Here's how you can achieve it step-by-step using Boto3, AWS’s Python SDK:
+
+In my latest guide, I walk through how to:
+1️⃣ Start an EC2 instance programmatically.
+2️⃣ Stop an EC2 instance to save costs while retaining its configuration.
+3️⃣ Terminate an EC2 instance when it's no longer needed.
+
+In Order to Automate Instances with Python we Need to Follow Some Steps as Following:-
+
+Step 1: Import Boto3
+
+Step 2: Initialize EC2 Resource
+
+myec2 = boto3.resource( service_name="ec2", aws_access_key_id="YOUR_ACCESS_KEY_ID", aws_secret_access_key="YOUR_SECRET_ACCESS_KEY", region_name="YOUR_REGION" )
+
+Step 3: Initialize EC2 Client
+
+myec1 = boto3.client(
+ service_name="ec2",
+ aws_access_key_id="YOUR_ACCESS_KEY_ID",
+ aws_secret_access_key="YOUR_SECRET_ACCESS_KEY",
+ region_name="YOUR_REGION")
+
+Step 4: Define a Function to Launch an Instance
+
+def Launch_instance():
+ myid = myec2.create_instances(
+ InstanceType="t3.micro",
+ ImageId="ami-02df5cb5ad97983ba", # Replace with your preferred AMI ID
+ MinCount=1,
+ MaxCount=1 )
+ return myid
+
+Step 5: Initialize an Empty List for Instances
+
+total_instance = []
+
+Step 6: Launch an Instance and Append to the List
+
+Launch = Launch_instance()
+total_instance.append(Launch[0].id)
+print(f"Instance launched: {total_instance}")
+
+Step 7: Stop All Instances
+
+myec1.stop_instances(InstanceIds=total_instance[0:])
+print("Instances stopped.")
+
+Step 8: Terminate All Instances
+
+myec1.terminate_instances(InstanceIds=total_instance[0:])
+print("Instances terminated.")
+
+💡 Key Takeaways:
+# Automating EC2 workflows reduces manual efforts and prevents errors.
+# The combination of boto3.resource and boto3.client offers flexibility in managing AWS services.
+# Always handle sensitive information (e.g., access keys) securely using environment variables or AWS IAM roles.
