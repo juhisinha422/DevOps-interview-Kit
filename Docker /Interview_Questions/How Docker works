@@ -1,0 +1,34 @@
+How Docker Actually Works?
+
+Here’s a simple breakdown we often share with clients.
+A practical, not theoretical and showing exactly what happens when you build, ship, or run a container:
+
+
+Step 1: Docker Client:
+You type commands like `docker build`, `docker push`, `docker pull`, `docker run`.
+
+Step 2: Docker Daemon:
+These commands talk to the Docker Daemon running on your system — it’s the actual engine doing the heavy lifting.
+
+Step 3: `docker build`:
+Takes your code and Dockerfile and turns it into an image, stored locally.
+
+Step 4: `docker push`:
+Sends that image to a Docker Registry, Docker Hub, AWS ECR, or a private one.
+
+Step 5: `docker pull`:
+Anywhere else (staging or prod), your team pulls the exact same image.
+
+Step 6: `docker run`:
+Spins up that image as a container — fast, portable, isolated, and efficient.
+
+
+Lifecycle Recap:
+Code → Image → Registry → Host → Container
+
+
+It’s not magic. It’s just clean, scalable infrastructure.
+- Automate container build and deployment pipelines
+- Secure registries and container traffic
+- Architect Kubernetes-based scalable infrastructure
+- Build DevSecOps into your process from day one
