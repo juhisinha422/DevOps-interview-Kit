@@ -1,0 +1,29 @@
+The 7 Layers of OSI – A Simple Breakdown 
+
+📡 1. Physical Layer
+ Wires, signals, connectors
+ Like the delivery truck — it moves raw bits across cables or air.
+
+🔗 2. Data Link Layer
+ MAC addresses, switches
+ Like the driver ensuring the package reaches the right apartment.
+
+🗺️ 3. Network Layer
+ IP addresses, routers
+ Like the GPS deciding the best route across cities.
+
+📦 4. Transport Layer
+ TCP/UDP, ports
+ Like handling and tracking the package — making sure it arrives safely and in order.
+
+🚪 5. Session Layer
+ Sessions, authentication
+ Like ringing the doorbell and starting the delivery conversation.
+
+🎁 6. Presentation Layer
+ Encryption, encoding, formats
+ Like unwrapping the box and translating the contents into a readable format.
+
+🧑💻 7. Application Layer
+ HTTP, SMTP, DNS
+ Like opening the gift — the actual app
