@@ -1,0 +1,8 @@
+GIT Vs SVN 🟦
+
+Before Git and other modern tools, teams relied on centralised systems like SVN. You needed to stay connected to a central server to save or fetch code — a bit like needing internet to edit a Google Doc.
+Then came Git, a distributed version control system. Instead of always talking to a central server, Git gives every developer their own full copy of the project — like working on a personal notebook that you sync up later.
+
+🗂 SVN  – Think of it as working on a shared file stored in the cloud. You can only make changes when you’re online, and everyone’s connected to the same copy. If the server goes down, no one can commit or update — the whole team is stuck.
+
+💻 Git – It’s like giving each team member a full offline copy of that file. You can edit, save, and experiment on your own, then merge your changes when you’re ready. It’s faster, more flexible, and less risky.
