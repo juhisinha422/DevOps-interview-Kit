@@ -1,0 +1,26 @@
+Linux - Under the Hood 🚗 
+
+Linux is everywhere, but what happens under the hood? 
+
+🗺 Applications: The Front-End You See
+Applications are what you interact with directly. From web browsers to text editors, they’re the tools that help you get things done on Linux.
+Think of applications as the final product that users enjoy, powered by the layers beneath.
+
+🐢 Shell: The Bridge Between You and Linux
+
+The Shell is your command centre. It’s where you type commands to interact with your Linux system. The shell translates what you type into actions, letting you control everything from files to network settings.
+Imagine it like the cockpit of an airplane — you input the commands, and Linux takes care of the rest.
+
+❤️ Kernel: The Heart of the System
+
+The Kernel is the heart of Linux, managing hardware and system resources. It ensures that applications run smoothly and that hardware components (like memory, CPU, and storage) are utilized efficiently.
+It’s like the brain of the system, coordinating the flow of data between the hardware and software.
+
+⚙️ Utilities: The Essential Tools
+
+Utilities are the tools that perform specific tasks, such as managing files, checking disk space, or monitoring processes. They provide the building blocks for everyday operations, from updating software to viewing system performance.
+These utilities make it easier for you to interact with Linux without having to dive deep into code.
+
+💻 Hardware: The Physical Power
+At the foundation of it all is the hardware — the physical components like your CPU, RAM, hard drive, and peripherals. The hardware provides the resources that the kernel manages and makes everything run.
+Without hardware, the system wouldn’t be able to function.
