@@ -1,0 +1,20 @@
+The Linux File System
+
+If you’ve ever popped open a Linux terminal and seen paths like /etc, /var, or /usr, you’ve already started navigating one of Linux’s most powerful features: its file system.
+
+Everything starts from a single root directory: /
+From there, everything else branches out with purpose. 
+
+🔧 /etc – The brain of your system. This is where system-wide config lives. Want to change how your network behaves or tweak a service? It’s all text files here — versionable, scriptable, and transparent.
+
+👤 /home – Every user gets their own space. Clean separation of user data makes backups, permissions, and even multi-user setups painless.
+
+🗂️ /bin, /sbin, /usr/bin – These house essential commands and binaries. When you type ls, grep, or systemctl, they come from here. It’s organized, logical, and built for both humans and machines.
+
+📦 /opt – Got custom apps or third-party software? They live here — separated from core system files for stability and sanity.
+
+📉 /var – Logs, caches, and runtime data. If something’s breaking or behaving oddly, /var/log is your best friend.
+
+⚙️ /proc, /sys, /dev – These virtual directories are where Linux really flexes. They give you live access to hardware, kernel data, and system internals — all through the file system itself. No GUI needed.
+
+🧪 /tmp – A temp playground for files that don’t need to stick around. It wipes on reboot, so use it wisely.
