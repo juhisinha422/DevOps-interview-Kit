@@ -1,0 +1,54 @@
+Exploring different AWS services
+
+AWS EC2 (Elastic Compute Cloud)
+
+Amazon EC2 is a web service that provides resizable compute capacity in the cloud. It allows you to launch virtual servers, called instances, to run your applications just like you would on physical machines  but with the flexibility, scalability, and cost-efficiency of the cloud.
+
+Key Concepts:
+1. Virtual Servers (Instances)
+You can choose the OS, memory, CPU, and storage configuration. EC2 gives you full control over the virtual machine.
+
+2. Instance Types
+Choose based on your use case:
+- General purpose (e.g. t3, t4g)
+- Compute optimized
+- Memory optimized
+- Storage optimized
+- GPU instances for ML/AI
+
+3. AMIs (Amazon Machine Images)
+Preconfigured templates with OS and app configurations for launching EC2 instances.
+
+4.	Key Pairs
+Used for SSH access to Linux instances or decrypting Windows passwords.
+
+5.Security Groups
+Act like virtual firewalls to control inbound and outbound traffic.
+
+How AWS EC2 Works?
+1) Choose an AMI (OS and software).
+2) Select an instance type based on required compute resources.
+3) Configure network, storage, and security settings.
+4) Launch the instance and connect via SSH or RDP.
+5) Scale manually or automatically using Auto Scaling Groups.
+
+Example Use Cases:
+1) Hosting a website or web app
+2) Running backend services or APIs
+3) Hosting game servers
+4) Performing high-performance computing (HPC)
+5) Running custom machine learning workloads.
+
+Benefits:
+1) Full control over compute resources
+2) Highly scalable and flexible
+3) Pay only for what you use (per second billing)
+4) Wide range of OS and instance types
+5) Easily integrates with other AWS services (e.g., S3, RDS, ELB)
+
+Operating System Support:
+- Amazon Linux
+- Ubuntu
+- Windows Server
+- Red Hat, SUSE, Debian
+- You can even import your own OS image
