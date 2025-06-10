@@ -1,0 +1,21 @@
+Tools that we need to start.
+
+1. Chocolatey — Super helpful for installing software easily on Windows. No more manual downloads
+
+2. GitHub — Essential for version control. 
+
+3.  AWS — Set up your cloud infrastructure. (You’ll need a card to register, but AWS Free Tier services are perfect for beginners)
+
+4.  VSCode, Sublime Text, or Notepad++ — Use any IDE/editor you're comfortable with to start writing and managing code.
+
+5. Oracle VM VirtualBox + Vagrant — Best combo to practice Infrastructure as Code (IaC) locally.
+
+6.  Ansible — One of the simplest and most powerful tools for Configuration Management and Automation.
+
+7. Docker and Kubernetes — Learn containerization and orchestration from scratch. 
+
+8. Jenkins — Start building your first CI/CD pipelines. It’s open-source and extremely powerful once you get familiar.
+
+9. Terraform — A widely used IaC tool for real-world infrastructure automation.
+
+These are just the starting points. We use many other tools too, depending on the architecture, team needs, security requirements, monitoring needs, and more.
