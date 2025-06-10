@@ -1,0 +1,54 @@
+AWS services.
+
+AWS Lambda
+
+AWS Lambda is a serverless compute service offered by Amazon Web Services (AWS). It lets you run your code without provisioning or managing servers. You just upload your code, and Lambda takes care of everything else scaling, availability, and fault tolerance.
+
+Key Concepts:
+
+1. Serverless
+You don’t manage infrastructure (no EC2, no containers, no manual scaling).
+Just write your function, and AWS handles where and how it runs.
+
+2. Function-as-a-Service (FaaS)
+Lambda functions are stateless blocks of code triggered by events (like HTTP requests, file uploads, or database changes).
+Think of it as:
+ “Run this piece of code when this event happens.”
+
+3. Event-Driven
+Lambda runs in response to events such as:
+An HTTP request via API Gateway
+A file upload to S3
+A new item in a DynamoDB table
+A scheduled job (like a cron job)
+
+How AWS Lambda Works?
+
+1) You upload your code (as a .zip file or via inline editor).
+2) Define a trigger — like an S3 bucket, API Gateway, or a CloudWatch                 schedule.
+3) Lambda listens for that event.
+4)When the event happens, AWS runs your function.
+
+Example Use Cases:
+1) Run backend logic for an API
+2) Resize images after uploading to S3
+3) Real-time file processing
+4) Scheduled reports or ETL jobs
+5) Chatbot or notification triggers
+
+Language Support:
+
+1) Node.js
+2) Python
+3) Java
+4) Go
+5) Ruby
+6) .NET Core
+7) You can also bring custom runtimes using Docker containers.
+
+Benefits:
+1) No server management
+2) Automatic scaling
+3) Cost-efficient
+5) Highly available
+6) Easily integrates with other AWS services
