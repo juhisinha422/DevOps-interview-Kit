@@ -1,0 +1,44 @@
+My DevOps Journey: Day 4 Networking
+
+1. OSI Model (7 Layers)
+A blueprint of how networking actually works:
+Application (HTTP, FTP, SSH)
+Presentation (SSL/TLS)
+Session (Managing sessions, e.g., API calls)
+Transport (TCP, UDP)
+Network (IP addressing, routing)
+Data Link (Ethernet, switches)
+Physical (Cables, Wi-Fi signals)
+
+2. Common Protocols You Must Know
+ HTTP/HTTPS — Web communication
+ SSH — Secure server login
+ FTP/SFTP — File transfers
+ DNS — Resolving domain names
+ Load Balancing Protocols — Like TCP/UDP layer load balancers
+
+3. Important Ports to Remember
+22 → SSH (Secure Shell)
+80 → HTTP (Web traffic)
+443 → HTTPS (Secure web traffic)
+21 → FTP
+25 / 587 → SMTP (Mail)
+3306 → MySQL Database
+6379 → Redis
+27017 → MongoDB
+
+4. Other Networking Concepts
+ VPC (Virtual Private Cloud) — Isolated networking in cloud providers.
+ NAT (Network Address Translation) — Giving internet access to private servers.
+ Load Balancing — Managing traffic efficiently across servers.
+ Firewall/Security Groups — Defining what is allowed or blocked.
+
+5. Basic Tools Every DevOps Should Know
+ Commands: ping, traceroute, curl, telnet, netstat, tcpdump
+ Tools: Wireshark, Netcat, Nmap
+
+6. Subnetting
+ Understanding how to break networks into smaller parts improves:
+Efficient IP address usage
+Better security (by isolating systems)
+Easier traffic management in large cloud architectures.
