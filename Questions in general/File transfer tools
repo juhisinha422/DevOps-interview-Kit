@@ -1,0 +1,27 @@
+File Transfer Tools – rclone vs scp vs rsync
+
+Today I explored three powerful tools used for transferring and syncing files between servers and cloud storage: rclone, scp, and rsync. Each tool has its own strengths depending on the use case, and understanding when to use which one is crucial for DevOps tasks like backups, migrations, and automation.
+
+What I Learned:
+
+scp – Secure Copy
+🔸Uses SSH to transfer files between local and remote systems.
+🔸Simple and fast for small one-time transfers.
+🔸Does not support resuming or syncing.
+
+rsync – Remote Sync
+🔸Syncs files/directories between machines.
+🔸Efficient: Only transfers differences (delta transfer).
+🔸Supports resuming and permission preservation.
+🔸Ideal for backups or incremental deployments.
+
+rclone – Remote Clone
+🔸Designed for cloud storage providers like Google Drive, S3, OneDrive, etc.
+🔸Syncs files between local storage and remote/cloud.
+🔸Can even copy data directly from one cloud to another without local download.
+🔸Includes encryption, mounting, and automation features.
+
+Use Case Summary:
+🔸 scp – Quick, one-time file copy over SSH
+🔸 rsync – Reliable and bandwidth-efficient syncing over SSH
+🔸 rclone – Advanced tool for cloud storage and cross-provider transfers
