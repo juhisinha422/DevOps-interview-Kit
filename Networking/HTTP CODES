@@ -1,0 +1,50 @@
+HTTP codes and their meaning
+
+✅Here's a list of common HTTP codes and their meanings:
+
+*1xx - Informational*
+
+- 100 Continue: The server has received the request headers and is waiting for the request body.
+- 101 Switching Protocols: The client has asked the server to switch protocols, and the server is acknowledging.
+
+*2xx - Success*
+
+- 200 OK: The request was successful, and the response body contains the requested data.
+- 201 Created: A new resource was created as a result of the request.
+- 202 Accepted: The request was accepted, but the processing has not been completed.
+- 203 Non-Authoritative Information: The server is returning information that was obtained from a cache or another source.
+- 204 No Content: The request was successful, but there is no response body.
+- 205 Reset Content: The request was successful, and the client should reset its view.
+- 206 Partial Content: The server is delivering a portion of the requested resource.
+
+*3xx - Redirection*
+
+- 301 Moved Permanently: The requested resource has been permanently moved to a new location.
+- 302 Found: The requested resource has been temporarily moved to a new location.
+- 303 See Other: The requested resource can be found under a different URI.
+- 304 Not Modified: The requested resource has not changed since the last time it was accessed.
+- 307 Temporary Redirect: The requested resource has been temporarily moved to a new location.
+- 308 Permanent Redirect: The requested resource has been permanently moved to a new location.
+
+*4xx - Client Error*
+
+- 400 Bad Request: The request was invalid or cannot be processed.
+- 401 Unauthorized: The client is not authenticated or does not have permission to access the requested resource.
+- 402 Payment Required: Payment is required to access the requested resource.
+- 403 Forbidden: The client does not have permission to access the requested resource.
+- 404 Not Found: The requested resource could not be found.
+- 405 Method Not Allowed: The requested method is not supported by the server.
+- 406 Not Acceptable: The requested resource is not available in the requested format.
+- 408 Request Timeout: The request took too long to complete.
+- 409 Conflict: The request conflicts with the current state of the resource.
+
+*5xx - Server Error*
+
+- 500 Internal Server Error: An unexpected error occurred on the server.
+- 501 Not Implemented: The server does not support the requested method.
+- 502 Bad Gateway: The server received an invalid response from an upstream server.
+- 503 Service Unavailable: The server is currently unavailable or overloaded.
+- 504 Gateway Timeout: The server did not receive a response from an upstream server in time.
+- 505 HTTP Version Not Supported: The server does not support the requested HTTP version.
+
+These codes help clients and servers communicate the outcome of HTTP requests and can be used for debugging and error handling.
