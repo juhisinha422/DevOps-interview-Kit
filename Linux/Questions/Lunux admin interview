@@ -1,0 +1,116 @@
+Basics interview questions and answers for Linux admin L2
+
+✅ 1. What is the difference between a hard link and a soft link?
+
+Answer:
+	•	Hard Link:
+	•	Points directly to the inode of a file.
+	•	Even if the original file is deleted, the data is accessible via the hard link.
+	•	Cannot span across filesystems.
+	•	Soft Link (Symbolic Link):
+	•	Points to the file name/path.
+	•	If the original file is deleted, the link becomes broken.
+	•	Can span filesystems and directories.
+
+
+✅ 2. How do you check disk usage in Linux?
+
+Answer:
+Use the df and du commands:
+	•	df -h: Shows disk space usage of file systems.
+	•	du -sh /path/to/dir: Shows the size of a specific directory.
+
+
+✅ 3. How do you check and kill a process using the command line?
+
+Answer:
+	•	Find the process:
+	•	ps aux | grep process_name
+	•	top or htop
+	•	Kill the process:
+	•	kill PID — gracefully.
+	•	kill -9 PID — forcefully
+
+✅ 4. How do you check which ports are listening on a Linux server?
+
+Answer:
+	•	netstat -tuln (older systems)
+	•	ss -tuln (newer systems)
+	•	lsof -i (to see which process is using which port)
+
+✅ 5. How do you check CPU and memory usage?
+
+Answer:
+	•	CPU:
+	•	top or htop
+	•	mpstat (from sysstat package)
+	•	Memory:
+	•	free -m
+	•	vmstat
+	•	top
+
+✅ 6. What is a runlevel?
+
+Answer:
+	•	A runlevel defines the state of the machine after boot.
+	•	Common runlevels:
+	•	0: Halt
+	•	1: Single-user mode
+	•	3: Multi-user, no GUI
+	•	5: Multi-user with GUI
+	•	6: Reboot
+	•	On systemd systems, runlevels are replaced by targets (e.g., multi-user.target)
+
+✅ 7. How to schedule a cron job?
+Answer:
+	•	Use crontab -e to edit user’s cron jobs.
+
+•	Example:
+
+      0 2 * * * /path/to/script.sh
+         (Runs daily at 2 AM)
+
+✅ 8. How to check system logs?
+Answer:
+	•	Use journalctl (on systemd systems)
+	•	Or view log files in /var/log/
+	•	messages, syslog, dmesg, secure, auth.log
+
+✅ 9. How to extend a logical volume?
+Answer:
+       • lvextend -L +10G /dev/mapper/vgname-lvname
+resize2fs /dev/mapper/vgname-lvname
+
+Or if using XFS:
+         • xfs_growfs /mount/point
+
+✅ 10. What is the difference between init and systemd?
+
+Answer:
+	•	init: Traditional SysV init system (serial startup).
+	•	systemd: Modern init system (parallel service startup, faster boot, uses journalctl for logs).
+	•	systemctl is used to manage services in systemd.
+
+✅ 11. How do you change the hostname of a Linux system?
+Answer:
+	•	Temporarily: hostname new-name
+	•	Permanently (systemd):
+
+dd if=/dev/zero of=/swapfile bs=1G count=2
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+
+✅ 13. How do you check SELinux status?
+Answer:
+      • sestatus
+
+      •	Enforcing: SELinux is active and enforcing rules.
+	•	Permissive: Logs actions that would be denied.
+	•	Disabled: Not running.
+
+✅14. What is /etc/fstab used for?
+Answer:
+	•	Defines how disk partitions, storage devices, and remote filesystems are mounted at boot.
+	•	Example entry:
+/dev/sda1 / ext4 defaults 0 1
