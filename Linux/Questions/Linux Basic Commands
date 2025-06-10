@@ -1,0 +1,76 @@
+Linux Basics
+
+1. Linux Types
+Debian-based: (Ubuntu, Kali) → Uses .deb packages and the apt package manager.
+RPM-based: (RedHat, CentOS, Fedora) → Uses .rpm packages and yum or dnf for package management.
+
+2. Linux File System Structure
+/ → Root directory (everything starts here)
+/home → User folders
+/etc → Configuration files
+/var → Logs
+/usr → Installed apps and binaries
+/bin, /sbin, /tmp, /opt → System essentials
+
+3. Basic File and Folder Commands
+mkdir foldername → Create a directory
+cp source destination → Copy files/folders
+mv source destination → Move or rename files/folders
+
+4. Vim Editor Basics
+Open a file: vim filename
+Enter edit mode: Press i
+Save and exit: Esc, type :wq, press Enter
+Exit without saving: Esc, type :q!
+
+5. Different Types of Files
+Regular files (text, images)
+Directories (folders)
+Symbolic links (shortcuts)
+Device files (represent hardware)
+Sockets (process communication)
+
+6. Searching Inside Files with grep
+grep "pattern" filename
+
+7. Viewing Files: less, more, head, tail
+less filename → Scroll inside the file
+more filename → View page by page
+head filename → View the first 10 lines
+tail filename → View the last 10 lines
+
+8. Important Configuration Files
+/etc/ssh/sshd_config → SSH settings
+/etc/fstab → Disk mounting
+/etc/hosts → Local DNS settings
+
+9. Useful Commands: sed and awk
+sed → Search and replace text inside files.
+awk → A powerful text-processing tool for pattern scanning and processing.
+
+10. User and Group Management
+Add a user: sudo useradd username
+Delete a user: sudo userdel username
+Create a group: sudo groupadd groupname
+Delete a group: sudo groupdel groupname
+
+11. File Permissions Management
+chmod — Change permission (read, write, execute)
+chown — Change file owner/group
+
+12. Sudo Command and Configuration
+Give users admin privileges by adding them to the sudo group.
+Always edit sudo permissions using sudo visudo safely.
+
+13. Package Management
+Debian-based: apt install packagename
+RPM-based: yum install packagename or dnf install packagename
+
+14. Archiving and Compression
+Create a tar file: tar -cvf archive.tar folder/
+Extract tar file: tar -xvf archive.tar
+Create compressed archive: tar -czvf archive.tar.gz folder/
+
+15. Cronjobs (Task Scheduling)
+Edit scheduled tasks: crontab -e
+Example: 0 2 * * * /home/user/backup.sh → This command will run the backup script every day at 2 AM automatically.
