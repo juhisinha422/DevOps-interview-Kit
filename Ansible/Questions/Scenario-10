@@ -1,0 +1,50 @@
+✅ 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 #10 – 𝐑𝐮𝐧 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐓𝐚𝐬𝐤𝐬 𝐨𝐧 𝐒𝐩𝐞𝐜𝐢𝐟𝐢𝐜 𝐇𝐨𝐬𝐭𝐬 𝐰𝐢𝐭𝐡 --𝐥𝐢𝐦𝐢𝐭
+
+🧠 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧:
+
+How do you target and run a playbook on only one specific host or group without touching the rest?
+
+💡 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞:
+
+Let’s say your playbook is designed for a full production environment, but today, you just want to run it on a 𝒔𝒊𝒏𝒈𝒍𝒆 𝒔𝒆𝒓𝒗𝒆𝒓 — maybe for testing, a patch, or verifying a change.
+
+You don’t want to risk applying it to all nodes. That’s where --𝒍𝒊𝒎𝒊𝒕 comes in.
+
+🎯 Think of it like whispering instructions to just one team member, instead of announcing them to the whole room.
+
+💡 𝐏𝐫𝐨 𝐓𝐢𝐩𝐬:
+
+✅ 𝐔𝐬𝐞 --𝐥𝐢𝐦𝐢𝐭 𝐭𝐨 𝐭𝐚𝐫𝐠𝐞𝐭:
+
+A specific host: webserver1
+
+A group: dbservers
+
+A dynamic tag or pattern: *.example.com
+
+✅ Combine with tags for ultra-granular execution
+
+✅ 𝐓𝐡𝐢𝐬 𝐢𝐬 𝐬𝐮𝐩𝐞𝐫 𝐮𝐬𝐞𝐟𝐮𝐥 𝐟𝐨𝐫:
+
+💡Smoke testing deployments
+
+💡Emergency fixes
+
+💡Debugging specific host failures
+
+💬 𝐘𝐨𝐮𝐫 𝐓𝐮𝐫𝐧:
+
+Have you ever accidentally deployed to all servers when you meant to test on one?
+Or used --limit in CI/CD pipelines?
+
+Drop your story or best practice below 👇
+
+🔧 𝐂𝐨𝐝𝐞 𝐄𝐱𝐚𝐦𝐩𝐥𝐞: Target a Specific Host with --limit
+
+ ⬇️⬇️⬇️
+
+𝒂𝒏𝒔𝒊𝒃𝒍𝒆-𝒑𝒍𝒂𝒚𝒃𝒐𝒐𝒌 𝒔𝒊𝒕𝒆.𝒚𝒎𝒍 --𝒍𝒊𝒎𝒊𝒕 𝒘𝒆𝒃𝒔𝒆𝒓𝒗𝒆𝒓1
+
+ ⬆️⬆️⬆️
+
+📌 Only webserver1 will run the playbook — all other hosts are ignored.
