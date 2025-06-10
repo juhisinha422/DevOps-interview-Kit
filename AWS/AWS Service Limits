@@ -1,0 +1,22 @@
+🚀 𝐀𝐖𝐒 𝐒𝐞𝐫𝐯𝐢𝐜𝐞 𝐋𝐢𝐦𝐢𝐭𝐬 𝐘𝐨𝐮 𝐒𝐡𝐨𝐮𝐥𝐝 𝐊𝐞𝐞𝐩 𝐢𝐧 𝐌𝐢𝐧𝐝 💎
+When designing and scaling your cloud architecture, understanding AWS service limitations is key to avoid surprises and ensure smooth performance. Here are some essential AWS limits every cloud practitioner should 𝐤𝐧𝐨𝐰:
+
+🔹 ECR Image Size: 10 GB
+ 🔹 EBS Volume Size: 64 TB
+ 🔹 RDS Storage Limit: 64 TB
+ 🔹 Kinesis Data Record: 1 MB
+ 🔹 S3 Object Size Limit: 5 TB
+ 🔹 VPC CIDR Blocks: 5 per VPC
+ 🔹 Glue Job Timeout: 48 hours
+ 🔹 SNS Message Size: 256 KB
+ 🔹 VPC Peering Connections: 125 per VPC
+ 🔹 ECS Task Definition Size: 512 KB
+ 🔹 CloudWatch Log Event Size: 256 KB
+ 🔹 Secrets Manager Secret Size: 64 KB
+ 🔹 CloudFront Distributions: 25 per account
+ 🔹 ELB Target Groups: 100 per load balancer
+ 🔹 VPC Route Table Entries: 50 per route table
+ 🔹 Route 53 DNS Records: 10,000 per hosted zone
+ 🔹 EC2 Instances: 20 per region (soft limit)
+ 🔹 Lambda Package Size: 50 MB zipped, 250 MB unzipped
+ 🔹 SQS Message Size: 256 KB (standard), 2 GB (extended)
