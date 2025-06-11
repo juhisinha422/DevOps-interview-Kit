@@ -1,0 +1,38 @@
+AWS DevOps Engineer Interview Experience with HashCash Consultants 🚀
+
+💻 Interview Details:
+	•	Role: AWS DevOps Engineer 🛠️
+	•	Interview Duration: 1.5 Hours ⏱️
+
+✨ Key Questions Asked:
+
+1️⃣ How can you integrate security plugins in Jenkins? 
+2️⃣ What is a host in an EC2 instance? 
+3️⃣ Difference between Security Groups & NACL? 
+4️⃣ What is Ansible Vault? 
+5️⃣ Difference between Ansible Ad-Hoc and Ansible Playbook? 
+6️⃣ What is Docker Compose? 🐳
+7️⃣ Difference between ENTRYPOINT & CMD in Docker? 🔧
+8️⃣ What is a StatefulSet in Kubernetes? 
+9️⃣ Explain the Kubernetes architecture? 
+🔟 What is Code as a Pipeline in Jenkins? 
+
+Some more questions interviewer asked related to differences - 
+
+	•	Reserved vs. On-Demand vs. Spot Instances 
+	•	EBS vs. S3 📂
+	•	Internet Gateway vs. NAT Gateway 🌐
+	•	What is ConfigMap in Kubernetes? 📄
+	•	What are Docker Volumes? 
+	•	Elastic IPs explained 
+	•	Difference between AWS users and roles? 
+
+🚀 Interviewer told me share screen and approach the task he shared me through chat -
+
+	•	Deploy two containerized applications (Java & Node.js) in Kubernetes
+	•	Separate namespaces: java-app & nodejs-app
+	•	Public access via Ingress with custom domains:
+	•	java-app.example.com
+	•	nodejs-app.example.com
+	•	Logging with ELK stack (Elasticsearch, Logstash, Kibana) 🕵️♂️
+	•	Monitoring using Prometheus & Grafana (via Helm charts) 📊
