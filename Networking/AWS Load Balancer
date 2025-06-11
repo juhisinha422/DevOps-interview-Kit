@@ -1,0 +1,35 @@
+💥 What is AWS Load Balancer?
+A Load Balancer is like a traffic controller for your servers. It helps divide incoming traffic across multiple servers so that no single server gets overloaded.
+
+Why Use a Load Balancer🤔 :
+🔹 Distributes incoming traffic across multiple servers
+🔹 Prevents any single server from getting overloaded
+🔹 Keeps applications fast and responsive under heavy load
+🔹 Provides high availability by routing traffic only to healthy servers
+🔹 Automatically detects and avoids failed servers
+
+➤ Types of AWS Load Balancers :
+
+1. Application Load Balancer (ALB) :
+ → Best for web applications and micro-services(works with HTTP/HTTPS)
+ → Routes traffic based on URL, headers, etc.
+
+2. Network Load Balancer (NLB) :
+ → For high-performance, low-latency traffic
+ → Works at the network level (TCP/UDP)
+
+3. Gateway Load Balancer (GLB): 
+ → Sends traffic through third-party tools like firewalls
+ → Good for adding security appliances
+
+💥 Real-time scenario for an E-commerce🛍️ site using AWS Load Balancer:
+
+🛒 An E-commerce website hosted on AWS uses an Application Load Balancer (ALB) to manage high traffic during sales. It distributes user requests across multiple servers, ensuring fast loading and no downtime.
+
+⚙️ How the Load Balancer Works:
+
+ → User sends a request to the Load Balancer 🎯
+ → Load Balancer acts as a traffic controller.
+ → It checks the health of all app servers 🖥️
+ → Routes traffic only to healthy & available servers.
+ → Ignores unhealthy or overloaded servers ❌
