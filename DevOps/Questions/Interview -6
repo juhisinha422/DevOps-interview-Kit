@@ -1,0 +1,23 @@
+Here are some of the key questions:
+
+1. Two employees work in different shifts (10 AM–5 PM and 6 PM–2 AM). How do you provide AWS access based on timing?
+2. What is the default port number for DynamoDB?
+3. What is Ingress in Kubernetes, and how can we access applications deployed on-premises?
+4. What is the port range for NodePort mode?
+5. Do LoadBalancers work in on-premises setups?
+6. What’s the difference between ECS and EKS?
+7. How do you store secrets in Jenkins and use them in pipelines?
+8. Write a shell script to find prime numbers.
+9. Terraform code to launch an EC2 instance.
+10. Are you familiar with custom IAM policies? Can you write one?
+11. What is PV and PVC in Kubernetes? Which one comes first, and why?
+12. Explain RBAC – what is it, its uses, and how is it configured?
+13. How can we expose on-premise applications?
+14. What is the purpose of Jenkins shared libraries? Explain with steps.
+15. What is VPC peering and how does it work?
+16. Can we add storage to an existing EC2 instance and how, steps to add?
+17. What are the core components of Kubernetes, and which are the most important?
+18. Two users access the same application – one has low latency, the other high. How would you troubleshoot?
+19. How do we connect services deployed on the cloud with those on-premises?
+20. How do we know the entire process executed that we have mentioned in Jenkins? What are the possible ways to know this?
+21. How can we configure GitHub in Jenkins using both Freestyle and Pipeline jobs?
