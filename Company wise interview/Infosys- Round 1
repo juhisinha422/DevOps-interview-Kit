@@ -1,0 +1,13 @@
+Infosys -Round 1
+
+1. Jenkins ci/cd explanation 
+2. Shared libraries in Jenkins 
+3. Jenkins upgrade 
+4. How to trigger one pipeline to another 
+5. How to run jobs in parallel.
+6. Terraform migration from console to Terraform 
+7. How to solve images pull errors in k8s
+8. How to upgrade k8s? What are the 3rd party tools used for?
+9. K8s n/w questions 
+10. Linux telnet command 
+11. Bash scripting (scenario based)
