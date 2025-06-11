@@ -1,0 +1,25 @@
+interview experience with one Gurugram based startup - 🚀
+
+Domain - AWS DevOps 📚
+Interview duration- 50 minutes ⏳
+
+1. Please walk me through your profile. 
+2. Difference between pods and server. 
+3. How to give permission to a file.
+4. What is cron jobs. In cron jobs please write in chat that every 30 sec. how you can trigger the pipeline.
+5. Grafana and Prometheus basics. 
+6. If user is facing problem in database, how you can check by writing SQL queries. 
+7. What is loadbalancer?
+8. What is IAM ?
+9. What is DNS, route 53 ? 
+10. Write a shell script in which adding a file in to a particular folder and display that file. 
+11. Ansible basics. 
+12. What is vulnerability. 
+13. What is the use of trivy plugin in Jenkins pipeline?
+14. Write a Linux command to execute the file. 
+15. How to merge features branch and master branch. 
+16. What is ACL ( Access Control List) and DR (Disaster Recovery) ? 
+17. What is availability zones in aws ?
+18. Detail overover of project ? 
+19. How you are checking the logs ? What exactly the issues you are resolving while failing the pipeline?
+20. What is SSL, Please explain the whole proces of certificate renewal. 
