@@ -1,0 +1,28 @@
+➤ What is AWS DevOps?
+AWS DevOps means using Amazon Web Services (AWS) to make software development and IT operations faster, easier, and more automated.
+
+➤ Cloud Service Models (SaaS, PaaS, IaaS):
+1️⃣. SaaS (Software as a Service): You use ready-made software over the internet.
+Example: Gmail, Dropbox, or AWS CodePipeline.
+
+2️⃣.PaaS (Platform as a Service): You get tools to build and run your own apps without managing servers.
+Example: AWS Elastic Beanstalk.
+
+3️⃣.IaaS (Infrastructure as a Service): You rent virtual servers, storage, and networks.
+Example: Amazon EC2 (virtual machines), Amazon S3 (cloud storage).
+
+ ➤ Why Use DevOps on AWS?
+🕒 Speed via automation
+👉 AWS-native tools like CodeBuild, CodeDeploy
+😊 Scalability without downtime
+🔐 Security with built-in AWS IAM, KMS, etc.
+
+
+🎯 The result:
+ You can build, test, deploy, monitor, and scale software faster, cheaper, and smarter all on one platform.
+
+🔁 How DevOps teams use them:
+SaaS → Use ready-made DevOps tools for CI/CD pipelines automation, monitoring and collaboration.
+PaaS → Focus on application code. the platform handles provisioning, scaling, and monitoring.
+IaaS → Full control over compute-Ec2, networking-Vpc, and storage-s3(Custom infrastructure).
+💡 Mix and match based on your pipeline needs, scalability, and security requirements.
