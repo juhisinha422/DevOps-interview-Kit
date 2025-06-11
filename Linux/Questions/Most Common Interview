@@ -1,0 +1,42 @@
+50 Most Common Linux Interview Questions You Must Know!
+
+If you are preparing for Linux or DevOps interviews, you will face many of these questions.
+
+And to be honest — these are not just interview questions, they’re real-world scenarios you deal with in daily Linux work.
+
+Here’s a hand-picked list for you 👇
+
+🔸 What is Linux and how is it different from Windows or Mac?
+🔸 How is the Linux file system structured?
+🔸 What are file permissions and how to change them?
+🔸 What’s the difference between soft link and hard link?
+🔸 How does chmod command work?
+🔸 How to search files in Linux?
+🔸 What is a process? How do you manage processes?
+🔸 How to check CPU and memory usage?
+🔸 What are daemons in Linux?
+🔸 How to kill a running process?
+🔸 What is swap space?
+🔸 How to create users and manage passwords?
+🔸 What is /etc/passwd file used for?
+🔸 Why do we use sudo?
+🔸 How to install or upgrade packages?
+🔸 Difference between apt and yum?
+🔸 How to schedule jobs using cron?
+🔸 What is grep and how to search using it?
+🔸 How to monitor disk space using df, du?
+🔸 How to mount and unmount disks?
+🔸 What is tar command and how to use it for backups?
+🔸 What is the Linux kernel?
+🔸 Difference between process vs thread?
+🔸 What are Linux signals and how to send them?
+🔸 How to configure network and IP addresses?
+🔸 What is iptables and how to secure Linux?
+🔸 What is SSH and how to use it for remote login?
+🔸 How to secure Linux servers?
+🔸 What is SELinux and AppArmor?
+🔸 How to troubleshoot network issues?
+🔸 What is /var/log used for?
+🔸 How to check system logs using dmesg?
+🔸 How to build and install software from source?
+🔸 How to perform system backups in Linux?
