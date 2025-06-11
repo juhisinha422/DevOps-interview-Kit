@@ -1,0 +1,31 @@
+AWS DevOps Engineer Interview Experience with Eminds Technologies 🚀 🌟
+
+💻 Interview Details:
+	•	Role: AWS DevOps Engineer 🛠️
+	•	Duration: 45 minutes ⏱️
+	•	Location: Bangalore 🌇
+
+✨ Key Questions Asked:
+
+🛠️ Jenkins & CI/CD Pipelines:
+1️⃣ How can you set up repositories in Jenkins? 🤔
+2️⃣ How do you integrate artifacts into Jenkins?
+3️⃣ Can you write a declarative pipeline on-screen? 🖥️✍️
+
+⚙️ Kubernetes Deep Dive:
+4️⃣ What is a DaemonSet?
+5️⃣ Can you explain ClusterIP and NodePort?
+6️⃣ What are the types of services in Kubernetes? Please explain in detail.
+7️⃣ What’s a deployment file and pod file in Kubernetes?
+8️⃣ How do you put a Docker image inside Kubernetes? 🐳➡️☸️
+9️⃣ What is an Ingress Controller?
+🔟 What is Horizontal Pod Scaling, and when would you use it?
+
+🔍 SonarQube & Code Quality:
+1️⃣1️⃣ How do you integrate SonarQube with Jenkins?
+1️⃣2️⃣ How do you ensure 70% code coverage using SonarQube?
+
+🚀 Cloud Concepts:
+1️⃣3️⃣ What is ECR and ECS, and how do you pull images to your local server?
+1️⃣4️⃣ How would you deploy a web application from scratch? 🌐
+1️⃣5️⃣ What is a Load Balancer, and why is it important?
