@@ -1,0 +1,24 @@
+𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐎𝐛𝐣𝐞𝐜𝐭𝐬 𝐘𝐨𝐮 𝐌𝐮𝐬𝐭 𝐊𝐧𝐨𝐰 𝐁𝐞𝐟𝐨𝐫𝐞 𝐀𝐧𝐲 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 🎯
+
+Kubernetes isn’t just about pods and clusters. It’s built on objects — each with a job to do.
+
+Here’s what they are, and why they matter:
+
+1. Pod – The smallest unit. It runs your app containers.
+2. Deployment – Keeps your pods running and replaces them if they fail.
+3. ReplicaSet – Makes sure the right number of pods are always running.
+4. StatefulSet – Like deployments, but for apps that need stable storage or identity.
+5. Job – Runs a task once and stops. Great for batch work.
+6. DaemonSet – Runs one pod on every node. Useful for logging or monitoring agents.
+7. Service – Gives your pods a stable way to talk to each other.
+8. Ingress – Controls external access to your services (like a smart gate).
+9. NetworkPolicy – Sets rules for who can talk to whom inside the cluster.
+10. Volume – Temporary storage for pods.
+11. PersistentVolume – Long-term storage that survives pod restarts.
+12. Secret – Stores sensitive info like passwords or tokens.
+13. Namespace – Splits your cluster into isolated environments.
+14. ServiceAccount – Gives pods an identity to access the cluster securely.
+15. Roles – Controls what users or pods can do in the cluster.
+
+Learn these. They’re the building blocks of every Kubernetes setup.
+
