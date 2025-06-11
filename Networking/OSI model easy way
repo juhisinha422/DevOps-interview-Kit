@@ -1,0 +1,26 @@
+Day 2 : Today I learn OSI Model in a easy way? 
+What is OSI Model ? 
+OSI Model is stand for the  for open system interconnection which is tells how data travel in a network ☺
+
+There are 7 layers of networking 
+1) Application layer
+2) presentation layer 
+3) Session layer 
+4) Transport layer
+5) Network Layer
+6) Datalink Layer 
+7) Physical Layer 
+
+how we can learn this 🤣🤣😂😂 7 layers name 🤣😂😂
+please do not throw sause pizza away - physical layer to application 
+In hindi -  andhra pradesh se train new delhi pochi - application to presentation layer 
+but how I learned?? 
+APSTNDP 😂😂
+
+Application layer - is used to  User interface like ( browser or email) 
+presentation layer - Data format and encrypt 
+session - Established the connection   
+transport layer - End to end connection - (TCP/UDP) 
+Network layer - Internet protocol & Routing
+Datalink layer - Switches & Mac address
+physical Address - Transmission media, hardware, cables
