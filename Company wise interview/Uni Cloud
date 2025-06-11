@@ -1,0 +1,33 @@
+Interview Experience with Uni Cloud - Cloud Architect Role 🚀
+
+Just completed an insightful interview with Uni Cloud (Noida) for a Cloud Architect role, and I wanted to share some key highlights! 💻
+
+Company Name - Uni Cloud 
+Domain - Cloud Architect
+Time duration- 40 minutes 
+
+Here are the intriguing questions I tackled:🧑💻
+
+1. How you are setting cloud infrastructure from scratch ? 
+
+2. In-depth knowledge of VPC, subnets, NAT gateway, Internet Gateway, Route table and how it’s work ? 
+
+3. How you are deploying your application on Amazon EKS  (Elastic Kubernetes Service) ? 
+
+4. How you are establishing connection between onpremises services and cloud ? 
+
+5. How you setting DR environment ? 
+
+6. Which monitoring tools you are using in your project ? 
+
+7. Please explain Load balancer and it’s types in detail ? 
+
+8. How you are using auto scaling and load balancer in your project ? 
+
+9. In IAM user how you are giving permission to connect EC2 to ECR ? 
+
+10. What is CDN (Content Delivery Network) and how it’s work ? 
+
+11. What is SSL (Secured Socket Layer) certificate, please explain in detail ? 
+
+12. What is difference between HTTP and HTTPS ?
