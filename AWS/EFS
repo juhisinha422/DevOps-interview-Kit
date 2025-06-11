@@ -1,0 +1,7 @@
+EFS(Elastic file system ) is a file-level storage service that provides a shared elastic file system with virtually Limitless scalability. EFS is a highly available storage system that can be used by multiple servers at the same time. 
+
+Amazon Web Services EFS is fully managed services that provides on demand scalability. 
+
+This means that the users does not have to be concerned about their workload increasing or decreasing 
+
+If the workload suddenly increases, the storage will automatically scale up, and if the workload suddenly increases, the storage will automatically scale up, and if the workload decreases, the storage will automatically scale down
