@@ -1,0 +1,10 @@
+What is AWS CloudWatch?
+It’s like a health monitor for your cloud infrastructure. Whether it's EC2, Lambda, S3, or any AWS service — CloudWatch keeps an eye on it.
+
+📌 Key Things You Can Do with CloudWatch (Even as a Beginner!):
+
+✅ Monitor CPU usage on EC2
+✅ Set up Alarms to alert you when something goes wrong
+✅ View Logs from your applications (real-time!)
+✅ Create Dashboards to visualize metrics
+✅ Use custom metrics for deeper insights
