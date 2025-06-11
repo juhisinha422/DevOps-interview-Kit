@@ -1,0 +1,23 @@
+🌐 How HTTP Client-Server Communication Works.?
+
+💥What is HTTP:
+ → HTTP stands for HyperText Transfer Protocol.
+ → It’s the foundation of communication on the web the protocol used for transferring data between a client (browser) and a server.
+
+✅ Why is HTTP important:
+💬 Enables communication between users and websites
+📄 Transfers web pages, images, videos, and data
+📡 Uses requests and responses to deliver content
+
+🔄 How HTTP Works  :
+→ A client (like your web browser) makes a request for example, when you type www.amazon.com and hit Enter.
+→ The request travels over the internet to reach the web server.
+→ The server receives it, processes the request (maybe fetches data from a database), and sends back an HTTP response.
+→ Your browser receives the response (HTML, CSS, JavaScript) and renders the webpage.
+
+💡 Real-Life Example:
+ Imagine you’re ordering pizza online🍕:
+ → You (the client) place an order via the website.
+ → The restaurant’s backend system (the server) receives and confirms it.
+ → A delivery update (response) is sent back to you🛵
+ → And just like that, HTTP enables this interaction between user and web services!
