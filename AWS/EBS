@@ -1,0 +1,11 @@
+What is EBS?
+ Amazon EBS provides block-level storage volumes for use with EC2 instances. It's like attaching a hard drive to your virtual server – fast, flexible, and reliable.
+🔧 Key Features I Learned:
+ ✅ Persistent storage – your data survives instance stops and terminations.
+ ✅ Snapshots – you can back up volumes to S3 and restore them anytime.
+ ✅ Volume types – from gp3 (General Purpose) to io2 (Provisioned IOPS), there's a match for every workload.
+ ✅ Resizable – scale capacity or change volume type with zero downtime!
+💡 Real-world Uses:
+Hosting a database on EC2? EBS is perfect.
+Need fast and consistent performance? Go for Provisioned IOPS SSDs.
+Automate backups? Snapshots got you covered!
