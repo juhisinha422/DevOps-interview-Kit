@@ -1,0 +1,11 @@
+difference Between IPv4 and IPv6 
+let,s Talk about First IPv4 address 
+                   IPv4  is a 32 bit address 
+                   The 32 bits are divide in the 4 blocks of 8 bits
+                    IPv4 address blocks are separated  by dot.
+                    IPv4  is a numeric address . (0-255)
+now let.s talk about IPv6 address 
+                        IPv6 is a 128 bits
+                        the 128 bits are divided into the 8 block and 16 bits
+                         IPv6 address bloks are separated by the colon
+                         IPv6 address is alpha-numeric address (0-9 & AF)
