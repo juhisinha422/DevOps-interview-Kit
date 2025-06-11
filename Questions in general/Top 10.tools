@@ -1,0 +1,41 @@
+🚀 My Top 10 Tools as an AWS DevOps Engineer (That I am using on Day-to-day basis)
+
+1️⃣ Terraform 🏗️
+I use Terraform to create AWS infrastructure with code.
+ No manual setup — just one command and your cloud is ready!
+
+2️⃣ Git / GitHub 🧠
+This is how I track and manage every change in code.
+ Git helps me go back in time if something breaks. GitHub makes teamwork easy.
+
+3️⃣ Azure DevOps 🛠️
+I use it to run CI/CD pipelines and manage tasks.
+ Even in AWS projects, Azure DevOps helps keep things organized and automated.
+
+4️⃣ AWS Health Dashboard 🚨
+Before AWS has issues, this dashboard tells me!
+ It shows me problems in AWS services early — so I can plan and stay ahead.
+
+5️⃣ CloudWatch 🔍
+This is my go-to tool for logs and alerts.
+ If something crashes or slows down, I check CloudWatch first.
+
+6️⃣ Docker 🐳
+I use Docker to run apps the same way everywhere — laptop or cloud.
+ It helps me avoid the “it works on my machine” problem.
+
+7️⃣ RDS (Relational Database Service) 💾
+RDS runs my SQL databases without me worrying about setup, backups, or scaling.
+ AWS takes care of it — I just focus on performance.
+
+8️⃣ DynamoDB ⚡
+For fast, NoSQL database needs, I use DynamoDB.
+ It handles huge traffic and still stays super fast!
+
+9️⃣ AWS Secrets Manager 🔐
+This tool keeps passwords and secrets safe.
+ No more storing secrets in code — it's secure and smart.
+
+🔟 SQS (Simple Queue Service) 📬
+SQS helps me connect different services using message queues.
+ If one service is slow or down, others still keep working smoothly.
