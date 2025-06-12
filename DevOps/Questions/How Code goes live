@@ -1,0 +1,28 @@
+𝟕 𝐒𝐭𝐞𝐩𝐬 𝐅𝐨𝐫 𝐂𝐈/𝐂𝐃: 𝐇𝐨𝐰 𝐂𝐨𝐝𝐞 𝐆𝐨𝐞𝐬 𝐋𝐢𝐯𝐞
+
+𝐂𝐈/𝐂𝐃 is how your idea becomes a real thing - 𝐋𝐈𝐕𝐄 in production - without breaking stuff.
+
+Here’s how most modern teams move fast without burning the house down:
+
+1️⃣ 𝐏𝐥𝐚𝐧
+Whether it’s Jira or just sticky notes - everyone agrees what’s being built. If you skip this, welcome to chaos.
+
+2️⃣ 𝐂𝐨𝐝𝐞
+Dev time. Usually GitHub, GitLab, or Bitbucket. Feature branches, commits, and lots of caffeine 😅.
+
+3️⃣ 𝐁𝐮𝐢𝐥𝐝
+This is where your code gets compiled, packaged, or containerised. If it doesn’t build, it’s not going anywhere.
+
+4️⃣ 𝐓𝐞𝐬𝐭
+Automated unit, integration, and end-to-end tests. If you’re not testing here, you’re testing in prod (and praying lol).
+
+5️⃣ 𝐑𝐞𝐥𝐞𝐚𝐬𝐞
+CI hands off to CD. This is where tools like ArgoCD, Jenkins or GitHub Actions get your code ready to deploy.
+
+6️⃣ 𝐃𝐞𝐩𝐥𝐨𝐲
+This is where stuff gets real. Your image hits prod. Whether it’s Kubernetes, Lambda, or plain old VMs - you ship it.
+
+7️⃣ 𝐌𝐨𝐧𝐢𝐭𝐨𝐫
+Prometheus, Grafana, Datadog etc keep watch. Alerts get sent. Dashboards tell you what’s up. Your job’s not done till you’re sure it’s actually working.
+
+That’s CI/CD done properly.
