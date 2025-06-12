@@ -1,0 +1,97 @@
+Here Are the Linux Questions They Asked Me – With Answers! 🐧☁️
+
+
+Here are the 🔥 Linux Questions I Was Asked (with quick answers):
+-------------------------------------------------------------------------------
+✅ 1. How to run a program in the background?
+command &
+
+✅ 2. /bin vs /sbin vs /opt vs /root
+
+/bin: User commands
+
+/sbin: Admin commands
+
+/opt: Optional apps
+
+/root: Root user’s home
+
+
+✅ 3. Essential Linux log files?
+/var/log/messages, /var/log/syslog, /var/log/auth.log, /var/log/cloud-init.log
+
+✅ 4. Root directories in Linux?
+/, /etc, /home, /usr, /var, etc.
+
+✅ 5. Create an empty file?
+touch filename
+
+✅ 6. Delete files older than 30 days?
+find /var/log -type f -mtime +30 -delete
+
+✅ 7. Rename a file?
+mv oldname newname
+
+✅ 8. What is a CRON job?
+Scheduled tasks – crontab -e to edit jobs
+
+✅ 9. Copy files between servers?
+scp file user@host:/path
+
+✅ 10. Mount a volume (e.g., EBS)?
+mount /dev/xvdf1 /mnt/data
+
+✅ 11. Fix full disk on EC2?
+Resize EBS + growpart + resize2fs
+
+✅ 12. Linux OS Architecture?
+Kernel + Shell + Utilities + File System
+
+✅ 13. Check Linux version?
+uname -a or cat /etc/os-release
+
+✅ 14. DNS troubleshooting?
+Check /etc/resolv.conf, dig, nslookup
+
+✅ 15. What is iptables?
+Linux firewall – manages traffic rules
+
+✅ 16. Check if a port is open?
+telnet, nc -zv host port
+
+✅ 17. Count words/lines in a file?
+wc -w filename, wc -l filename
+
+✅ 18. Change file format?
+Rename: mv file.txt file.conf
+
+✅ 19. chmod vs chown?
+chmod: Permissions
+chown: Ownership
+
+✅ 20. grep vs egrep?
+egrep = grep -E (extended regex)
+
+✅ 21. top vs htop?
+htop is better visual, interactive
+
+✅ 22. kill vs kill -9?
+kill: graceful
+kill -9: forceful
+
+✅ 23. Zombie vs Orphan process?
+
+Zombie: Done, waiting for parent
+
+Orphan: Parent gone, adopted by init
+
+
+✅ 24. What is PATH variable?
+Tells shell where to look for commands
+
+✅ 25. Get specific log using grep?
+grep "ERROR" /var/log/app.log
+
+✅ 26. Add user in Linux?
+sudo useradd username && passwd username
+
