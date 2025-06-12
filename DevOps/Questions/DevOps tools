@@ -1,0 +1,121 @@
+Here’s a list of essential DevOps tools to learn as a beginner in 2025, grouped by category to help you build a strong foundation:
+
+
+---
+
+1. Version Control
+
+Git – Core version control tool.
+
+GitHub / GitLab / Bitbucket – Platforms for hosting repositories and managing code collaboration.
+
+
+
+---
+
+2. Continuous Integration/Continuous Deployment (CI/CD)
+
+GitHub Actions – Easy for beginners, integrates well with GitHub.
+
+GitLab CI/CD – Great if using GitLab.
+
+Jenkins – Popular and customizable, but has a steeper learning curve.
+
+CircleCI or Travis CI – Good alternatives for learning pipelines.
+
+
+
+---
+
+3. Containerization
+
+Docker – Must-learn for building and running containers.
+
+Podman – An alternative to Docker, often used in enterprise environments.
+
+
+
+---
+
+4. Container Orchestration
+
+Kubernetes – Industry standard for managing containerized applications. Learn basics like Pods, Services, Deployments, and Helm.
+
+
+
+---
+
+5. Infrastructure as Code (IaC)
+
+Terraform – Widely used to manage cloud infrastructure.
+
+Pulumi (optional alternative, uses familiar programming languages).
+
+
+
+---
+
+6. Configuration Management
+
+Ansible – Simple and agentless, great for beginners.
+
+Chef or Puppet (optional, but good to know for legacy systems).
+
+
+
+---
+
+7. Cloud Platforms
+
+AWS – Most commonly used; start with basics: EC2, S3, IAM, VPC.
+
+Azure or Google Cloud Platform (GCP) – Based on your interest or job market.
+
+
+
+---
+
+8. Monitoring & Logging
+
+Prometheus + Grafana – For metrics and dashboards.
+
+ELK Stack (Elasticsearch, Logstash, Kibana) – For logging and analysis.
+
+Loki – A simpler logging solution with Grafana.
+
+
+
+---
+
+9. Scripting & Programming
+
+Bash/Shell scripting – Automate tasks in Unix-based systems.
+
+Python – Widely used in automation and scripting.
+
+---
+
+10. Basic Networking & Linux Skills
+
+Learn:
+
+Linux CLI (Ubuntu or CentOS)
+
+File permissions, processes, networking basics
+
+DNS, HTTP, SSH, ports, firewalls
+
+
+
+
+---
+
+Bonus Tools
+
+VS Code – Preferred editor for DevOps.
+
+Postman – For testing APIs.
+
+Docker Compose – For local multi-container setups.
+
+K9s – Terminal UI for managing Kubernetes clusters.
