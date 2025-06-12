@@ -1,0 +1,13 @@
+TCP/IP protocol .
+in practical Life we used TCP/IP
+
+What is TCP/IP
+Transmission control protocol / Internet protocol. 
+
+Application layer - It uses for the user interface, data format and encryption, and it establish connections. 
+
+Transport layer - End to End users (UDP) 
+
+Internet - IP addressing and routing 
+
+Network Access - Mac address , switches, and hardware , cable, transmission medium
