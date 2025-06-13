@@ -1,0 +1,20 @@
+AWS DevOps Interview Experience at Infosys – Bangalore
+
+🔍 Interview Questions
+
+✅ 1. What are EC2, Lambda, and ECS?
+ → Explained each compute service, their use cases, and when to use which. 💡
+✅ 2. How do you create AWS infrastructure?
+ → Shared how I use Terraform and CloudFormation to build scalable setups. 🏗️
+✅ 3. How do you monitor your application?
+ → Talked about CloudWatch, Prometheus, Grafana, and alerting setups. 📊🔔
+✅ 4. How do you apply changes in AWS Cloud?
+ → Through CI/CD pipelines with tools like GitHub Actions, Jenkins, and Terraform. 🔄
+✅ 5. Team structure, handling critical issues, client interaction?
+ → Described real-life on-call situations, collaboration with 5+ team members, and direct client handling. 🤝🧠
+✅ 6. How do you manage storage?
+ → Explained S3, EBS, EFS and when to use which depending on application needs. 💾
+✅ 7. How do you manage permissions on EC2?
+ → Discussed IAM roles, security groups, and least privilege principles. 🔐
+✅ 8. What is a Target Group in AWS?
+ → Explained how Target Groups work with Load Balancers for traffic routing. 🎯⚙️
