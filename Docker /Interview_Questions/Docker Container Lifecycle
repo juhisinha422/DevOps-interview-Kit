@@ -1,0 +1,7 @@
+🚢 Understanding Docker Container Lifecycle 🐳
+
+🔹 Created – The container is initialized but not yet running. Think of it as ready-to-go.
+ 🔹 Running – The container is live, executing all defined processes.
+ 🔹 Paused – Temporarily halts the container’s activity without stopping it completely.
+ 🔹 Stopped – The container’s execution is halted; it’s no longer active.
+ 🔹 Deleted – The container is removed from the system — it's gone for good.
