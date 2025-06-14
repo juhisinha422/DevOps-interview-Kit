@@ -1,0 +1,9 @@
+Maven Build Workflow: The Maven lifecycle is a structured sequence of build phases that automate the build and deployment process for projects.
+📌 Phases within the Default Lifecycle: 
+✅ Validate: Verifies the project's structure and information.
+✅ Compile: Compiles the project's source code.
+✅ Test: Executes unit tests.
+✅ Package: Packages the compiled code into a distributable format (e.g., JAR, WAR).
+✅ Verify: Checks the package for quality issues.
+✅ Install: Installs the package into the local Maven repository.
+✅ Deploy: Deploys the package to a remote repository. 
