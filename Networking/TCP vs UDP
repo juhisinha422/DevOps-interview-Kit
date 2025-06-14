@@ -1,0 +1,16 @@
+Ever wondered how your video call stays smooth while your file download takes its time?"
+ Let’s talk about TCP vs UDP — two protocols that silently power your internet experience.
+
+🔗 TCP (Transmission Control Protocol):
+
+ ✅ Connection-oriented – sets up a reliable session
+ ✅ Guarantees delivery and correct order of packets
+ ⏳ A bit slower due to extra overhead (like handshakes)
+ 🧠 Used in: HTTP/HTTPS, email, file transfers
+
+⚡ UDP (User Datagram Protocol):
+
+ 🚫 No connection – just sends and forgets
+ ❌ Doesn’t guarantee delivery or order
+ ⚡ Super fast with minimal overhead
+ 🎮 Used in: Video streaming, VoIP, online gaming
