@@ -1,0 +1,13 @@
+100 Continue — The request and is waiting for the rest.
+• 101 Switching Protocols — As requested by the client.
+• 102 Processing — The request and is in the process of carrying it out.
+• 200 OK — All good.
+• 201 Created — Resource successfully created.
+• 204 No Content — Success, nothing to return.
+• 400 Bad Request — Client-side error.
+• 401 Unauthorized — Authentication required.
+• 403 Forbidden — Access denied.
+• 404 Not Found — Resource does not exist.
+• 409 Conflict — Resource conflict or duplicate.
+• 500 Internal Server Error — Server-side issue.
+• 502 / 503 / 504 — Gateway error / service unavailable / timeout.
