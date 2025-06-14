@@ -1,0 +1,22 @@
+What is ansible role?
+
+An Ansible role is a structured way of organizing Ansible playbooks and related files to automate tasks in a reusablenand modular fashion.
+
+Structure of a Role
+
+roles/
+└── webserver/
+  ├── defaults/
+  │ └── main.yml     # Default variables
+  ├── files/
+  │ └── httpd.conf    # Static files to copy
+  ├── handlers/
+  │ └── main.yml     # Handlers for services (e.g., restart Apache)
+  ├── meta/
+  │ └── main.yml     # Role dependencies and metadata
+  ├── tasks/
+  │ └── main.yml     # Main list of tasks to run
+  ├── templates/
+  │ └── index.html.j2  # Jinja2 templates
+  └── vars/
+    └── main.yml     # Variables with higher priority than defaults
