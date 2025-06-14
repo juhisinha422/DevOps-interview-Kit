@@ -1,0 +1,12 @@
+Sync
+1) Normally seen as the “request/response” pattern. Example would be taking a phone call, you need both parties there.
+2) An example of this could be a command, many API calls want something to happen.
+3) Fails fast, simple and low latency
+4) What happens when many requests come in? Need to scale the service, could you use Async pattern instead? Something to consider.
+
+#Async
+1) With EDA a producer can fire an event and forget it and allow downstream consumers to process it (if they want…)
+2) With messages, a message could be added to queue and downstream services control the speed of injestion and process async.
+3) Async provides a loose coupling between services/systems.
+4) Receiver can control the rate of consumption of events/messages
+5) Example of this would be Amazon SQS.
