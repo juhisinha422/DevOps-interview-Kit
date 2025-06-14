@@ -1,0 +1,27 @@
+Top 20 AWS Services Every DevOps Engineer Must Know!
+Cloud mein kaam karte ho? Then these are your essentials.
+From compute to storage, networking to CI/CD — these services build the backbone of real-world cloud infrastructure.
+
+Whether you’re learning AWS or working as a DevOps/Cloud Engineer, these services come up in daily tasks, projects, and interviews.
+
+🧠 Top 20 AWS Services – Brief Use Cases:
+	1.	EC2 – Run virtual machines (Linux/Windows) in the cloud.
+	2.	S3 – Store and retrieve unlimited files, backups, and media.
+	3.	RDS – Launch managed SQL databases (MySQL, PostgreSQL, etc).
+	4.	Lambda – Run code without provisioning servers (event-driven).
+	5.	VPC – Create secure, isolated cloud networks.
+	6.	IAM – Manage access control, users, and roles securely.
+	7.	CloudWatch – Monitor logs, metrics, and set auto-alerts.
+	8.	ECS – Run Docker containers on AWS.
+	9.	EKS – Fully managed Kubernetes clusters.
+	10.	CloudFormation – Deploy complete infrastructure via code.
+	11.	Route 53 – Domain registration and intelligent DNS routing.
+	12.	SQS – Queue service to decouple and scale microservices.
+	13.	SNS – Send notifications (email/SMS/lambda triggers).
+	14.	CloudTrail – Track all API calls for auditing and security.
+	15.	Elastic Load Balancer – Distribute traffic to multiple servers.
+	16.	Auto Scaling – Automatically increase/decrease EC2 instances.
+	17.	DynamoDB – High-performance NoSQL database (serverless).
+	18.	EBS – Persistent block storage attached to EC2.
+	19.	Secrets Manager – Securely store API keys, DB passwords, etc.
+	20.	CodePipeline – Automate CI/CD workflows end-to-end.
