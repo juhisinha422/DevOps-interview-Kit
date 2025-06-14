@@ -1,0 +1,46 @@
+Hard Link vs. 💻Soft Link in Linux: Understanding the Differences! 
+
+In the Linux filesystem, links are a powerful feature that allows multiple file references without duplicating data. But did you know there are two types? Hard Links and Soft Links (Symbolic Links). Let’s break them down! 👇
+
+1️⃣ Hard Link
+A hard link is essentially another name for the same file. It directly points to the same inode (metadata structure) on the disk. If the original file is deleted, the data remains accessible through the hard link.
+
+🔹 Key Features of Hard Links:
+
+✅ Both files share the same inode number (same data on disk)
+✅ Deleting the original file does not affect the hard link
+✅ Cannot create hard links for directories
+✅ Only works within the same filesystem
+
+🛠 How to Create a Hard Link?
+
+ln original_file hard_link
+
+📌 Example:
+
+touch file1
+ln file1 file2
+ls -li
+
+You'll notice that file1 and file2 have the same inode number!
+
+2️⃣ Soft Link (Symbolic Link)
+
+A soft link (or symlink) is like a shortcut—it points to the file’s path rather than the inode. If the original file is deleted, the symlink becomes broken.
+
+🔹 Key Features of Soft Links:
+
+✅ Works across different filesystems
+✅ Can point to directories as well as files
+✅ Deleting the original file makes the symlink invalid (dangling link)
+✅ Has a different inode from the original file
+
+🛠 How to Create a Soft Link?
+
+ln -s original_file soft_link
+
+📌 Example:
+
+ln -s file1 symlink
+ls -li
+Here, symlink will have a different inode and will point to file1.
