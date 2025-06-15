@@ -1,0 +1,141 @@
+🚨 Kubernetes Common Errors & Fixes 🚨
+
+Master these to keep your clusters clean and your apps running! ⚙️🐳
+
+
+---
+
+1️⃣ ImagePullBackOff
+
+🧩 Root Cause:
+
+Image not found in registry ❌
+
+Wrong image tag or name 🏷️
+
+Private registry access failure 🔐
+
+
+🛠️ Fix:
+
+✅ Double-check the registry URL, image name, and tag.
+
+🔑 For private registries, create a Kubernetes secret and link it in the deployment manifest.
+
+
+
+---
+
+2️⃣ CrashLoopBackOff
+
+🧩 Root Cause:
+
+Container process crashes immediately 💥
+
+Resource (CPU/Memory) exhaustion 🧠💻
+
+
+🛠️ Fix:
+
+✅ Ensure proper resources.requests and resources.limits in the YAML.
+
+🔍 Check logs with kubectl logs <pod-name>.
+
+
+
+---
+
+3️⃣ OOMKilled (Out Of Memory)
+
+🧩 Root Cause:
+
+POD exceeds memory limit 📈
+
+Container gets terminated by Kubelet 🧹
+
+
+🛠️ Fix:
+
+✅ Re-adjust memory limits/requests in your YAML file.
+
+🧪 Monitor app memory usage over time.
+
+
+
+---
+
+4️⃣ Pod Status: Pending
+
+🧩 Root Cause:
+
+Nodes are not ready ⚠️
+
+Not enough CPU/Memory in the cluster 🚫
+
+
+🛠️ Fix:
+
+🔄 Scale the cluster or optimize resource requests.
+
+🔍 Check with kubectl describe pod.
+
+
+
+---
+
+5️⃣ Pod Status: Waiting
+
+🧩 Root Cause:
+
+Image issues (again!) 🚫
+
+Auth or pull errors from the registry
+
+
+🛠️ Fix:
+
+🔐 Recheck image credentials and registry secrets.
+
+✅ Correct the image name/tag.
+
+
+
+---
+
+6️⃣ App Not Accessible Despite Pod Running
+
+🧩 Root Cause:
+
+No service created or service misconfigured ❌
+
+App and service in different namespaces 🧭
+
+
+🛠️ Fix:
+
+🔧 Create proper Service (NodePort/ClusterIP/LoadBalancer).
+
+✅ Ensure same namespace for both app and service.
+
+
+
+---
+
+7️⃣ Pod Status: Evicted
+
+🧩 Root Cause:
+
+Node runs out of disk or memory 🧹💾
+
+
+🛠️ Fix:
+
+📏 Set accurate resource requests/limits.
+
+🧱 Add more capacity or redistribute workloads.
+
+
+
+---
+
+💡 Pro Tip: Always use kubectl describe pod <pod-name> and kubectl logs <pod-name> to troubleshoot smarter! 🔍💬
