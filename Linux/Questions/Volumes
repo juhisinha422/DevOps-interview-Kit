@@ -1,0 +1,13 @@
+𝐋𝐢𝐧𝐮𝐱 𝐕𝐨𝐥𝐮𝐦𝐞𝐬, 𝐏𝐡𝐲𝐬𝐢𝐜𝐚𝐥 𝐕𝐨𝐥𝐮𝐦𝐞𝐬, 𝐕𝐨𝐥𝐮𝐦𝐞𝐬 𝐆𝐫𝐨𝐮𝐩𝐬 𝐚𝐧𝐝 𝐋𝐨𝐠𝐢𝐜𝐚𝐥 𝐕𝐨𝐥𝐮𝐦𝐞𝐬 
+
+𝐋𝐢𝐧𝐮𝐱 𝐕𝐨𝐥𝐮𝐦𝐞𝐬 - In Linux system, everything stores in the form of blocks or volumes called as disk. 
+𝐌𝐨𝐮𝐧𝐭 𝐕𝐨𝐥𝐮𝐦𝐞𝐬 - Mount means binds the volume of the system to a particular location.
+
+𝐋𝐢𝐧𝐮𝐱 𝐕𝐢𝐫𝐭𝐮𝐚𝐥 𝐌𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭 - Logical volume management (LVM) is a storage virtualization tool that allows administrators to manage disk space more flexibly. 
+𝐇𝐨𝐰 𝐋𝐕𝐌 𝐰𝐨𝐫𝐤𝐬
+
+𝐏𝐡𝐲𝐬𝐢𝐜𝐚𝐥 𝐯𝐨𝐥𝐮𝐦𝐞𝐬 - A physical volume (PV) is a storage device, like a hard disk drive (HDD) or solid state drive (SSD), that's been initialized for LVM. 
+
+𝐕𝐨𝐥𝐮𝐦𝐞 𝐠𝐫𝐨𝐮𝐩𝐬 - A volume group (VG) is a collection of PVs that creates a pool of disk space. 
+
+𝐋𝐨𝐠𝐢𝐜𝐚𝐥 𝐯𝐨𝐥𝐮𝐦𝐞𝐬 - A logical volume is a usable storage device that's created from a pool of disk space in a volume group.
