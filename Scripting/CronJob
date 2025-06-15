@@ -1,0 +1,40 @@
+Cron Expression Format:
+
+A cron expression follows this structure:
+* * * * * → Minute Hour Day Month DayOfWeek
+	•	Minute (0-59)
+	•	Hour (0-23)
+	•	Day of Month (1-31)
+	•	Month (1-12 or JAN-DEC)
+	•	Day of Week (0-6 or SUN-SAT, where 0 = Sunday)
+
+Note that some platform supports an additional “*” which represents seconds. 
+
+Common Cron Expressions
+	1.	Every minute → * * * * *
+	2.	Every 5 minutes → */5 * * * *
+	3.	Every 10 minutes → */10 * * * *
+	4.	Every 15 minutes → */15 * * * *
+	5.	Every 30 minutes → */30 * * * *
+	6.	Every hour → 0 * * * *
+	7.	Every 2 hours → 0 */2 * * *
+	8.	Every day at midnight → 0 0 * * *
+	9.	Every day at 6 AM → 0 6 * * *
+	10.	Every Monday at 8 AM → 0 8 * * 1
+	11.	Every 1st of the month at 12 AM → 0 0 1 * *
+	12.	Every Sunday at 3 PM → 0 15 * * 0
+	13.	Every weekday at 9 AM → 0 9 * * 1-5
+	14.	Every 1st and 15th of the month at 2 AM → 0 2 1,15 * *
+	15.	Every 1st January at 12 AM → 0 0 1 1 *
+
+Less Common but Useful Expressions
+	16.	Every second (if supported) → * * * * * *
+	17.	Every 10 seconds (if supported) → */10 * * * * *
+	18.	Every 45 minutes past the hour → 45 * * * *
+	19.	Every 5 minutes between 9 AM - 5 PM → */5 9-17 * * *
+	20.	Every 3rd day at 4 AM → 0 4 */3 * *
+	21.	Every 3rd Monday at 7 AM → 0 7 * * 1#3
+	22.	Last day of the month at 11 PM → 0 23 L * *
+	23.	Every 10th day of the month at 1 AM → 0 1 10 * *
+	24.	Every quarter (Jan 1, Apr 1, Jul 1, Oct 1) at 12 AM → 0 0 1 1,4,7,10 *
+	25.	Every leap year on Feb 29 at midnight → 0 0 29 2 *
