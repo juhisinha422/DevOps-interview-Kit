@@ -1,0 +1,27 @@
+Docker Architecture: A Quick Breakdown for Devs & DevOps!
+If you're diving into containers or brushing up on cloud-native fundamentals, understanding Docker's internal architecture is the key.
+
+Here's a simple breakdown of Docker's core components:
+
+🧩 1. Docker Client (CLI)
+• docker command-line interface (e.g., docker run, docker build) sends commands to the Docker daemon via the REST API — typically over a Unix socket.
+
+🧩 2. Docker REST API
+•This is the same API the CLI uses under the hood. 
+•It lets you programmatically control Docker: create containers, manage images, networks, and more.
+
+🧩 3. Docker Daemon (dockerd)
+•The brain of Docker, running in the background and responsible for:
+Managing images, containers, volumes, and networks
+•Communicating with other Docker daemons (e.g., in Swarm mode)
+•Orchestrating everything from build to runtime
+
+🧩 4. containerd
+•A lightweight container runtime that handles:
+•Container lifecycle: create, start, stop, delete Image pull and push
+•Snapshot management. It’s also used by Kubernetes under the hood!
+
+Key Points:
+• The CLI talks to the daemon via REST API.
+• The daemon delegates to lower-level runtimes like containerd and runc.
+• All of this is transparent to the user, who only interacts with the CLI or Docker Desktop GUI.
