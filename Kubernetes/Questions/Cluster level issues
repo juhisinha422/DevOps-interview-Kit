@@ -1,0 +1,17 @@
+Cluster-level issues in Kubernetes affect the entire cluster or significant portions of it, rather than individual pods or services. These issues can range from 𝐧𝐞𝐭𝐰𝐨𝐫𝐤𝐢𝐧𝐠 𝐩𝐫𝐨𝐛𝐥𝐞𝐦𝐬, 𝐜𝐥𝐮𝐬𝐭𝐞𝐫 𝐦𝐢𝐬𝐜𝐨𝐧𝐟𝐢𝐠𝐮𝐫𝐚𝐭𝐢𝐨𝐧𝐬, to problems with the Kubernetes control plane components themselves (e.g., 𝐀𝐏𝐈 𝐬𝐞𝐫𝐯𝐞𝐫, 𝐞𝐭𝐜𝐝, 𝐬𝐜𝐡𝐞𝐝𝐮𝐥𝐞𝐫, 𝐜𝐨𝐧𝐭𝐫𝐨𝐥𝐥𝐞𝐫 𝐦𝐚𝐧𝐚𝐠𝐞𝐫).
+
+𝟭. 𝗡𝗼𝗱𝗲𝘀 𝗡𝗼𝘁 𝗥𝗲𝗮𝗱𝘆
+𝐒𝐲𝐦𝐩𝐭𝐨𝐦: One or more nodes in your cluster are in a NotReady state when you run kubectl get nodes.
+𝐒𝐨𝐥𝐮𝐭𝐢𝐨𝐧: Common reasons for a NotReady state include network connectivity issues, disk pressure, or the kubelet service being down. Resolving the underlying issue, such as freeing up disk space or restarting the kubelet, often brings the node back to a Ready state.
+
+𝟮. 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗜𝘀𝘀𝘂𝗲𝘀
+𝐒𝐲𝐦𝐩𝐭𝐨𝐦: Pods cannot communicate with each other across nodes.
+𝐒𝐨𝐥𝐮𝐭𝐢𝐨𝐧: Networking issues are often due to misconfigurations in the network plugin. Ensure your network plugin (e.g., 𝑪𝒂𝒍𝒊𝒄𝒐, 𝑭𝒍𝒂𝒏𝒏𝒆𝒍, 𝑾𝒆𝒂𝒗𝒆) is correctly installed and configured. Reviewing the network plugin’s logs can also provide insights into the problem.
+
+𝟯. 𝗲𝘁𝗰𝗱 𝗖𝗹𝘂𝘀𝘁𝗲𝗿 𝗶𝘀 𝗨𝗻𝗮𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲
+𝐒𝐲𝐦𝐩𝐭𝐨𝐦: Kubernetes API server is unavailable, and logs indicate issues connecting to etcd.
+𝐒𝐨𝐥𝐮𝐭𝐢𝐨𝐧: If etcd is unhealthy, reasons could include network partitioning among etcd members, disk performance issues, or a corrupted etcd database. Solutions may involve restoring etcd from a backup, adding more resources to etcd nodes, or debugging and resolving network issues.
+
+𝟰. 𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁 𝗩𝗼𝗹𝘂𝗺𝗲 𝗖𝗹𝗮𝗶𝗺𝘀 𝗦𝘁𝘂𝗰𝗸 𝗶𝗻 𝗣𝗲𝗻𝗱𝗶𝗻𝗴 𝗦𝘁𝗮𝘁𝗲
+𝐒𝐲𝐦𝐩𝐭𝐨𝐦: PersistentVolumeClaims (PVCs) remain in a Pending state, unable to bind to a PersistentVolume (PV).
+𝐒𝐨𝐥𝐮𝐭𝐢𝐨𝐧: Common reasons include insufficient storage resources, storage class misconfigurations, or issues with the dynamic provisioning system. Ensure your storage class is correctly configured and that your cluster has enough available PVs to meet the PVC requests.
