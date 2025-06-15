@@ -1,0 +1,29 @@
+👉 1. What is the status of a Pod with initContainers that fail if the main container has a restartPolicy of Never?
+
+👉 2. In a StatefulSet with three replicas, if you remove replica-1, will replica-2 and replica-3 be renamed to keep their sequential order?
+
+👉 3. Can a DaemonSet Pod be placed on a master node that has a NoSchedule taint without adding tolerations?
+
+👉 4. When you update a Deployment's image during an ongoing rolling update, does K8s wait for the current rollout to finish or initiate a new one right away?
+
+👉 5. How long does it take for Pods to be evicted when a node becomes NotReady, and can this eviction time be customized for each Pod?
+
+👉 6. Is it possible for multiple containers within a Pod to share the same port on localhost, and what occurs if they attempt to bind at the same time?
+
+👉 7. If you create a PVC with ReadWriteOnce access mode, can several Pods on the same node access it at the same time?
+
+👉 8. What happens to the Horizontal Pod Autoscaler with custom metrics if the metrics server goes down during peak load?
+
+👉 9. Is it possible to use kubectl port-forward to a Pod in a CrashLoopBackOff state, and will it function?
+
+👉 10. What occurs with the mounted tokens and API access if a ServiceAccount is deleted while its associated Pods are still running?
+
+👉 11. When implementing anti-affinity rules, can a situation arise where no new Pods are able to be scheduled?
+
+👉 12. If you have a Job set to parallelism: 3 and one Pod fails with a restartPolicy of Never, will the Job spawn a replacement Pod?
+
+👉 13. Can you alter a Pod's resource requests after it has been created, and what is the distinction between requests and limits in OOM situations?
+
+👉 14. In network policies, if egress rules aren't specified, are outbound connections automatically denied?
+
+👉 15. If a Persistent Volume becomes corrupted, can multiple PVCs linked to it lead to failures in different namespaces?
