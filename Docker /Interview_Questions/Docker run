@@ -1,0 +1,19 @@
+What really happens when you run docker run?
+
+When you use the Docker CLI to create a container, it’s not just spinning up some magic in the background — it follows a well-orchestrated pipeline of low-level components and system calls.
+
+Here’s the behind-the-scenes breakdown:
+🔹 The Docker CLI translates your command into a RESTful API request.
+🔹 This request is sent to the Docker Daemon (dockerd).
+🔹 The Docker Daemon:
+  •Checks if the image exists locally.
+  •If not, pulls it from the Docker Registry.
+  •Then calls containerd to run the container.
+🔹 containerd:
+•Converts the image into an OCI-compliant bundle (includes rootfs + config).
+•Passes it to containerd-shim, which handles I/O, logging, and lifecycle.
+🔹 The shim invokes runC — the runtime that:
+•Sets up namespaces (for isolation)
+•Applies cgroups (for resource limits)
+🔹 runC uses libcontainer to talk directly to the Linux kernel, which creates the actual isolated container process.
+💡 This deep stack of tools ensures each container behaves like a separate, lightweight virtual system.
