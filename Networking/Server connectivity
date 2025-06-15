@@ -1,0 +1,24 @@
+🟢If ping and telnet commands are disabled how to check server connectivity?
+
+➡️If ping and telnet are disabled on a server, there are still several methods you can use to check server connectivity:
+
+1. *Check DNS Resolution*:
+    - Use the `nslookup` or `dig` command to verify if the server's domain name resolves to the correct IP address.
+
+2. *Use Alternative Network Tools*:
+    - *nc (Netcat)*: You can use `nc` (Netcat) to test connectivity to a specific port. For example, `nc -zv <server-ip> <port>`.
+    - *curl*: If the server hosts a web service, you can use `curl` to test connectivity. For example, `curl http://<server-ip>:<port>`.
+
+3. *Traceroute*:
+    - Use `traceroute` (or `tracert` on Windows) to see the path packets take to reach the server. This can help identify where connectivity issues might be occurring.
+
+4. *Check Application Logs*:
+    - If you have access to application logs or server logs, check for any error messages related to connectivity or access issues.
+
+5. *Use Other Protocols*:
+    - Depending on the services running on the server, you might be able to use other protocols to test connectivity. For example, if the server supports SSH, you can try connecting via SSH.
+
+6. *Contact Network Team*:
+    - If none of the above methods work and you're still experiencing issues, it might be helpful to contact your network team or the server administrator for further assistance.
+
+These methods can help you assess server connectivity even when traditional tools like ping and telnet are not available.
