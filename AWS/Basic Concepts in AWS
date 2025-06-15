@@ -1,0 +1,13 @@
+Today, I learnt about VPC in AWS in a brief way and understood the concept of auto-scaling, laod balancers, Target groups, NACLs, NAT gateway and their uses by doing hands-on practice. 
+
+𝐏𝐫𝐨𝐣𝐞𝐜𝐭- Deployment of the application inside the private subnets on VPC and attached load balancer, NAT gateway through auto scaling and target groups.
+
+This project give an overview how these components works inside the vpc and how we can allow traffic to the application to access. 
+
+1) 𝐕𝐏𝐂 - VPC is a private cloud inside the aws cloud. it is a logical grouping of the public subnets and private subnets in a specified network which helps to secure your application. we can control the servers through IP address and route tables.
+2) 𝐀𝐮𝐭𝐨 𝐒𝐜𝐚𝐥𝐢𝐧𝐠 - Auto scaling is a service which adjust the resources to your application based on demands and the performace of your application also level up. It scales the servers when traffic or CPU load increases. 
+3) 𝐋𝐨𝐚𝐝 𝐁𝐚𝐥𝐚𝐧𝐜𝐞𝐫 - Load balancer is a service which distribute the incoming traffic of the application across the servers such as EC2 instances or availibility zones through the route tables. 
+4) 𝐓𝐚𝐫𝐠𝐞𝐭 𝐠𝐫𝐨𝐮𝐩𝐬 - Target groups is like a backend server or collections of the instances which helps load balancers to distribute the incoming traffic. 
+5) 𝐍𝐀𝐂𝐋𝐬 - NACLs is a layer of security inside the VPC, it is a extra layer of proctection works on subnets and provide the access of the application based on rules defined inside it. 
+6) 𝐑𝐨𝐮𝐭𝐞 𝐓𝐚𝐛𝐥𝐞𝐬 - Route tables is a place where all the IP address are stored and provide the path to load balancers to reach out the application inside the subnets. 
+7) 𝐍𝐀𝐓 - NAT gateway is a wall which allows to provide the access of internet to the private subnets so that user can access the application, but before that the IP address goes for verification and pass the security checks to reach the application. 
