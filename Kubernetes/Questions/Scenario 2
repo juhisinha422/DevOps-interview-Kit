@@ -1,0 +1,32 @@
+Kubernetes Scenario-Based Questions.
+
+1.A node in the cluster is in a "NotReady" state.
+     •How would you debug and recover the node?
+
+2.The Kubernetes control plane becomes unresponsive.
+     •What steps would you take to identify and resolve the issue?
+
+3.You need to deploy a new version of an application without downtime.
+     •What deployment strategy would you choose, and why?
+
+4.An application is under heavy load, and performance is degrading.
+    •How would you configure Horizontal Pod Autoscaler (HPA) to manage scaling?
+
+5.Pods in different namespaces cannot communicate.
+    •How would you debug and resolve this issue?
+
+6.An unauthorized user gains access to your Kubernetes cluster.
+    •What steps would you take to secure the cluster and prevent future breaches?
+
+7.A pod is crashing repeatedly, and logs are not clear.
+    •How would you debug and determine the root cause?
+
+8.You need to monitor cluster resource usage and set up alerts for high CPU usage.
+     •What tools and methods would you use?
+Storage and Persistent Volumes
+
+9.A PersistentVolumeClaim (PVC) is stuck in the "Pending" state.
+    •What could cause this, and how would you resolve it?
+
+10.A StatefulSet application loses data after a pod restart.
+       •How would you ensure data persistence in      such cases?
