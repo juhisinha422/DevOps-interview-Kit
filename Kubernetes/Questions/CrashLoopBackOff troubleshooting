@@ -1,0 +1,48 @@
+Ever seen a Kubernetes pod stuck in CrashLoopBackOff and had no idea what’s going on?
+
+Let me break it down like a fellow engineer — no fluff, just real talk.
+
+What is CrashLoopBackOff, really?
+It means your container starts, crashes, restarts, and repeats the cycle endlessly. Kubernetes is trying to help but eventually says:
+
+“I give up (for now). I’ll try again later.”
+
+This is called exponential backoff — and it’s K8s’ way of saying “something’s wrong inside the container.”
+
+Why does it happen?
+Here are the usual suspects:
+~ App crashes on startup (bug or bad logic)
+~ Missing ENV vars or config
+~ Database/service not ready yet
+~ Wrong command or entrypoint
+~ Memory/CPU limits too low (OOMKilled)
+~ File or permission errors
+
+How to troubleshoot like a pro:
+1. Check status:
+kubectl get pods
+
+2. Describe the pod:
+kubectl describe pod <pod-name>
+
+3. Check the logs:
+kubectl logs <pod-name>
+kubectl logs <pod-name> --previous
+
+4. Fix based on the root cause:
+Missing config? Add it.
+Crashing app? Debug and patch.
+Resource issues? Increase memory/CPU.
+Bad command? Update Dockerfile or YAML.
+
+Bonus Tips:
+---> Use liveness/readiness probes
+---> Add Init containers if your app depends on another service
+---> Use logging/monitoring tools (EFK, Prometheus, etc.)
+---> Graceful shutdowns? Use terminationGracePeriodSeconds
+
+Bottom Line:
+CrashLoopBackOff is not an error — it’s a signal. Kubernetes is doing its job.
+Your job is to understand the signal and fix the root cause.
+
+If you're working with K8s, mastering this one concept can save you HOURS of frustration.
