@@ -1,0 +1,17 @@
+➤ What Are SSH Keys🔐?
+SSH keys are a pair of cryptographic keys used to securely log into remote systems like servers without needing a password.
+→ ssh keys consisting of public and private keys.
+
+1️⃣ Public Key: A cryptographic key that is shared with servers to allow secure communication. It is used to verify the private key.
+2️⃣ Private Key: A secret cryptographic key stored securely on your device. It is used to prove your identity and establish a secure connection.
+
+→ When you try to connect: The server checks if your private key matches the public key. If they match, you're allowed in no password needed.
+
+🎯 Why SSH Keys Are Better Than Passwords:
+→ More Secure Than Passwords (Hackers can guess or steal passwords but SSH keys are very hard to crack.)
+→ Help you connect without typing your password every time.
+→ Used by platforms like GitHub, AWS, GCP, Azure, etc.
+→ Supports secure file transfers via SFTP and SCP
+→ Ideal for scripts, deployments, and CI/CD pipelines enables secure automated logins
+
+➤ Many services (like GitHub and AWS) don’t allow password login for better security they require SSH keys.!
