@@ -1,0 +1,39 @@
+Master Linux for DevOps: Commands You Must Know 🌐
+
+Linux is the backbone of modern DevOps. Here’s a comprehensive cheat sheet for mastering Linux commands:
+
+1️⃣ File and Directory Management
+🔹 ls, cd, pwd – Navigate directories
+🔹 mkdir, rmdir, touch – Create folders/files
+🔹 cp, mv, rm – Copy, move, delete files
+🔹 find, locate – Search files
+
+2️⃣ File Permissions and Ownership
+🔸 chmod – Change permissions
+🔸 chown, chgrp – Change ownership
+🔸 umask – Default permission settings
+
+3️⃣ Process Management
+🔹 ps, top, htop – Monitor processes
+🔹 kill, pkill, killall – Terminate processes
+🔹 bg, fg, jobs – Manage background/.     foreground jobs
+
+4️⃣ Networking
+🔸 ping, curl, wget – Test connectivity, fetch     content
+🔸 netstat, ss – Network stats and connections
+🔸 scp, rsync – Secure file transfer
+
+5️⃣ Disk and System Monitoring
+🔹 df, du – Disk usage
+🔹 free, vmstat – Memory usage
+🔹 uptime, dmesg – System uptime/logs
+
+6️⃣ User and Group Management
+🔸 useradd, usermod, passwd – Add/modify users
+🔸 groups, id – View user groups
+🔸 su, sudo – Switch users/privileges
+
+7️⃣ Automation and Scripting
+🔹 crontab, at – Schedule tasks
+🔹 bash – Run scripts
+🔹 alias – Create custom shortcuts
