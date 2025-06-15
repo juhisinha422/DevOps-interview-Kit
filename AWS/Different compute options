@@ -1,0 +1,17 @@
+how AWS offers different compute options depending on your use case, scalability needs, and operational preferences:
+
+EC2 (IaaS) – Full control over VMs, best suited for those who want deep infrastructure management. Offers high flexibility and customization.
+
+ECS (CaaS) – Container orchestration service that simplifies container deployment using EC2 or Fargate as launch types.
+
+Fargate (PaaS) – Run containers without managing servers. Just define your app and let AWS handle the infrastructure!
+
+Lambda (FaaS) – Serverless execution for short-lived, event-driven functions. Perfect for microservices and automation.
+This layered approach lets you choose what level of abstraction you want:
+
+Infrastructure as a Service (IaaS)
+Containers as a Service (CaaS)
+Platform as a Service (PaaS)
+Function as a Service (FaaS)
+
+Choose the right compute engine based on control, scalability, and cost!
