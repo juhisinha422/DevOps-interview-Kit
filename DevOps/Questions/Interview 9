@@ -1,0 +1,35 @@
+🎯 𝐈𝐟 𝐲𝐨𝐮'𝐫𝐞 𝐩𝐫𝐞𝐩𝐚𝐫𝐢𝐧𝐠 𝐟𝐨𝐫 𝐢𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐬—𝐭𝐡𝐢𝐬 𝐨𝐧𝐞'𝐬 𝐟𝐨𝐫 𝐘𝐎𝐔!
+💼 Recently, I’ve attended several interviews—and here’s a 🔥 handpicked list of REAL DevOps questions recruiters asked me.
+
+✅What is the difference between git revert and git reset & git fetch and git pull? 
+✅What is the difference between git merge and git rebase?
+✅Have you encountered a situation where a process in Linux was automatically killed? 
+✅How do you modify file or directory permissions in Linux? 
+✅Which command is used to delete the content of a file without deleting the file itself in Linux?
+✅You are getting an error while trying to connect via SSH. What steps do you take to troubleshoot?
+✅Write a shell script to monitor disk storage usage. If disk usage exceeds a certain threshold (e.g., 90%), send an alert email to the manager.
+✅Write a shell script to monitor CPU and RAM utilization on a Linux system?
+✅What is the difference between an Application Load Balancer (ALB) and a Network Load Balancer (NLB)?
+✅How can you connect to resources located in a private subnet in AWS? 
+✅What is a Transit Gateway in AWS, and how does it differ from traditional VPC peering?
+✅What is a VPC endpoint, and how does it help in accessing AWS services privately without using an internet gateway or NAT gateway?
+✅How can you allow an EC2 instance to access S3 securely? 
+✅What should you do if Terraform displays a state lock error during execution? 
+✅How can you recreate infrastructure in Terraform without deleting the entire state?
+✅How can you import existing infrastructure  into Terraform state?
+✅What is the difference between count and for_each in Terraform? 
+✅How can you provide sensitive information like passwords in Terraform?
+✅What is the difference between "agent" and "label" in Jenkins?
+✅How can you store and manage secrets securely in a Jenkins pipeline?
+✅What stages are involved in a typical Jenkins pipeline?
+✅How can you push your code to a central Git repository using Jenkins?
+✅What are Jenkins Shared Libraries, and how are they used?
+✅How do you upgrade Jenkins to a newer version?
+✅How can you secure a Docker container in production?
+✅What is a headless service in Kubernetes, and when would you use it?
+✅What are the different deployment strategies available in Kubernetes?
+✅What are StatefulSets and how do they differ from Deployments?
+✅How can you ensure a Pod is scheduled on a specific node in Kubernetes?
+ ✅What are node selectors, affinity/anti-affinity rules, and taints/tolerations?
+✅How do you create and use handlers in Ansible? What is their purpose?
+✅How would you write an Ansible playbook to deploy an HTTPD (Apache) web server on 100 EC2 instances?
