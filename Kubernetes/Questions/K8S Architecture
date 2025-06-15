@@ -1,0 +1,32 @@
+Kubernetes architecture can be simplified into key components:
+
+1. Master Node: The control plane that manages the cluster. It consists of:
+   - API Server: The entry point for commands.
+   - Scheduler: Decides which node will run a pod.
+   - Controller Manager: Maintains the desired state of the cluster.
+   - Etcd: A key-value store for configuration data.
+
+2. Worker Nodes: The machines where applications run. Each has:
+   - Kubelet: An agent that communicates with the master.
+   - Kube Proxy: Manages network routing.
+   - Container Runtime: Software that runs containers (e.g., Docker).
+
+3. Pods: The smallest deployable units, which can contain one or more containers.
+
+4. Services: Abstractions that define how to access pods, providing stable networking.
+
+5. Volumes: Storage that pods can use.
+
+- Master Node:
+  - API Server
+  - Scheduler
+  - Controller Manager
+  - Etcd
+
+- Worker Nodes:
+  - Kubelet
+  - Kube Proxy
+  - Container Runtime
+  - Pods 
+  - Services-(connecting to pods)
+  - Volumes
