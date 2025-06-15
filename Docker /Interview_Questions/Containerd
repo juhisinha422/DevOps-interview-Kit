@@ -1,0 +1,25 @@
+What is containerd?
+
+containerd is a container runtime — meaning it's responsible for managing the entire lifecycle of containers, including:
+✅ Pulling images
+✅ Creating containers
+✅ Running/stopping containers
+✅ Managing storage (snapshots)
+✅ Handling networking
+It was originally part of Docker but has since become a standalone project (now under the Cloud Native Computing Foundation — CNCF). Docker now uses containerd internally as its runtime.
+
+🐳 How Docker Works (Simplified)
+You type a Docker command, like:
+-docker run nginx
+•Docker CLI sends this request to the Docker daemon (dockerd).
+-Docker Daemon:
+•Uses Docker REST API to interpret the request.
+•Delegates the actual container tasks to containerd.
+-containerd:
+•Pulls the image from a registry (if needed).
+•Prepares the filesystem using overlayFS.
+•Asks runc to create and start the container.
+-runc:
+•Uses Linux kernel features (namespaces, cgroups) to run the container process in isolation.
+•The container starts! 🎉
+•It appears as a separate process on the host, but it’s isolated from everything else.
