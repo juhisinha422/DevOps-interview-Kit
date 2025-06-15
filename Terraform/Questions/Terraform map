@@ -1,0 +1,43 @@
+✨ 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗧𝗶𝗽 𝗼𝗳 𝘁𝗵𝗲 𝗗𝗮𝘆! 🚀
+When working with Terraform, a map is a key-value pair data structure that helps manage and organize related values more cleanly.
+
+✅ 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗺𝗮𝗽?
+In Terraform, a map lets you store values that can be looked up using a key. 
+
+𝗙𝗼𝗿 𝗲𝘅𝗮𝗺𝗽𝗹𝗲:
+variable "vm_tags" {
+   type = map(string)
+   default = {
+    environment = "dev"
+    owner    = "shruti"
+   }
+}
+
+✅ 𝗪𝗵𝘆 𝘂𝘀𝗲 𝗮 𝗺𝗮𝗽?
+Maps are extremely useful when you want to manage configurations for multiple similar resources without repeating code. They improve readability, scalability, and flexibility.
+
+🚩 𝗖𝗼𝗺𝗺𝗼𝗻 𝗜𝘀𝘀𝘂𝗲 𝘄𝗶𝘁𝗵 𝗳𝗼𝗿_𝗲𝗮𝗰𝗵 + 𝗹𝗶𝘀𝘁 
+Many beginners hit a snag when creating multiple resources with for_each and a list — 
+for example, creating multiple 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝗚𝗿𝗼𝘂𝗽𝘀 𝗶𝗻 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗹𝗼𝗰𝗮𝘁𝗶𝗼𝗻𝘀.
+
+👉 With a list, you can't directly associate each Resource Group with a different location.
+💥 𝗜𝘀𝘀𝘂𝗲: You can’t specify a different location for each Resource Group.
+
+✅ 𝗦𝗼𝗹𝘂𝘁𝗶𝗼𝗻: 𝗨𝘀𝗲 𝗳𝗼𝗿_𝗲𝗮𝗰𝗵 + 𝗺𝗮𝗽 (Refer the image)
+Use a 𝗺𝗮𝗽 instead of a list — this way, you can associate each Resource Group with a custom location.
+🎉 Now, each Resource Group has its own location — clean and flexible!
+
+✨ 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆:
+Using map with for_each is a powerful pattern in Terraform to manage complex infrastructure configurations efficiently.
+
+📌 𝗔𝗯𝗼𝘂𝘁 𝘁𝗵𝗲 𝗶𝗺𝗮𝗴𝗲
+The image explains this concept visually:
+👉 What is a 𝗟𝗶𝘀𝘁 𝘃𝘀. 𝗮 𝗠𝗮𝗽
+👉 Why Lists fail with for_each
+👉 How to fix it
+👉 Key takeaway to remember: Use 𝗹𝗶𝘀𝘁𝘀 for simple counts, use 𝗺𝗮𝗽𝘀 for for_each loops.
+
+🚀 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆:
+✅ Use 𝗹𝗶𝘀𝘁𝘀 for simple counts (count).
+✅ Use 𝗺𝗮𝗽𝘀 for for_each loops.
+✅ Maps keep your Terraform code organized, dynamic, and error-free.
