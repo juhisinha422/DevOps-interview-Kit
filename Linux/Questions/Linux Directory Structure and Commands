@@ -1,0 +1,72 @@
+𝐋𝐢𝐧𝐮𝐱 𝐢𝐬 𝐭𝐡𝐞 𝐛𝐚𝐜𝐤𝐛𝐨𝐧𝐞 𝐨𝐟 𝐦𝐨𝐝𝐞𝐫𝐧 𝐈𝐓 𝐛𝐞𝐜𝐚𝐮𝐬𝐞 𝐢𝐭'𝐬 𝐟𝐫𝐞𝐞, 𝐨𝐩𝐞𝐧-𝐬𝐨𝐮𝐫𝐜𝐞, 𝐚𝐧𝐝 𝐬𝐞𝐜𝐮𝐫𝐞.🔐
+
+𝐔𝐧𝐝𝐞𝐫𝐬𝐭𝐚𝐧𝐝𝐢𝐧𝐠 𝐭𝐡𝐞 𝐋𝐢𝐧𝐮𝐱 𝐃𝐢𝐫𝐞𝐜𝐭𝐨𝐫𝐲 𝐒𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 📂
+
+Understanding the Linux file system architecture is essential for efficient system management, troubleshooting, and optimizing performance. It helps you understand how data is organized, stored, and accessed. 
+
+Here’s a breakdown of key directories and their roles:
+📌 / → Root directory: The foundation of the Linux system. Everything starts from here.
+📌 /bin → Contains essential executable files for common commands like cat, cp, mv.
+📌 /boot → Boot loader files.
+📌 /dev → Contains device files representing hardware devices.
+📌 /etc → Stores configuration files for the system.
+📌 /home → User-specific files and directories. Each user gets a separate folder (/home/user).
+📌 /root → Root user's home directory.
+📌 /lib → Contains libraries needed by programs to run.
+📌 /opt→ Optional add-on software.
+📌 /tmp → Temporary files that get cleared after reboot.
+📌 /var → Contains variable data like logs and spool directories.
+📌 /media → Removable media devices (USB, CDs).
+
+𝐄𝐬𝐬𝐞𝐧𝐭𝐢𝐚𝐥 𝐋𝐢𝐧𝐮𝐱 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬 𝐄𝐯𝐞𝐫𝐲 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫 & 𝐃𝐞𝐯𝐎𝐩𝐬 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 𝐒𝐡𝐨𝐮𝐥𝐝 𝐊𝐧𝐨𝐰 💻
+
+🔹 Basic Linux Commands:
+✅ mkdir → To create directories (folders)
+✅ ls -la → List files & directories in specific path (even hidden ones)
+✅ cd → Change directory (move between directories)
+✅ pwd → Display current directory
+
+🔹 File Operations:
+✅ touch → To create an empty file
+✅ cp → Copy files & directories
+✅ mv → Move or rename files
+✅ rm → Remove files or directories
+
+🔹 Viewing and Editing Files:
+✅ cat → View file content
+✅ head → Display the beginning of the file
+✅ tail → Display the end of the file
+
+🔹 System Information:
+✅ uname → Display OS info
+✅ top/htop → Monitor live CPU & memory stats
+✅ uptime → Show system uptime
+
+🔹 File Permissions:
+✅ chmod → Change file permissions
+✅ chown → Change owner of a file
+✅ umask → Set default permissions for new files
+
+🔹 Networking Commands:
+✅ ping → Check network connectivity
+✅ netstat → Display network connections
+✅ telnet → Check if ports are open
+
+🔹 Process Management:
+✅ ps → View running processes
+✅ kill → Terminate running processes
+
+🔹 Searching Files:
+✅ grep → Search for patterns in files
+✅ find → Locate files
+✅ awk → Process and manipulate text
+
+🔹 User Management:
+✅ whoami → Show current user
+✅ who → List logged-in users
+✅ adduser → Add a user
+✅ passwd → Change user password
+
+🔹 Disk & Storage Management:
+✅ df -h → Check disk space
+✅ du -sh foldername → Check directory size
