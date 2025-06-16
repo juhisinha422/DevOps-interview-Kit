@@ -1,0 +1,37 @@
+Questions for  25 LPA - #Cloud & #DevOps Engineer Role
+
+
+I recently went through an interview and came across some interesting L1 & L2 level questions related to AWS, Terraform, Kubernetes, Docker, Git, Ansible, Airflow, and more. Sharing them here to help others prepare!
+
+
+L1 Questions:
+
+1, What is the purpose of creating S3 bucket policies?
+2, How do you maintain the lifecycle of an S3 bucket?
+3, In CloudWatch, what is the use of log groups and log trails?
+4, In Terraform, what is the purpose of init, plan, and apply commands?
+5, If the Terraform state file is accidentally deleted, what happens?
+6, In Airflow, if a job fails, how do you debug it?
+7, If you're facing performance issues on a server, how do you troubleshoot them?
+8, In Python, what are lists and tuples?
+9, In Git, explain the push and pull commands.
+10, What is the use of Git tags?
+11, What are the different types of branches in Git?
+12, How do you write an Ansible playbook, and what kind of requirements do you get from clients?
+
+
+L2 Questions:
+
+1, Explain EC2 instances and handling multiple VPCs.
+2, What are Network ACLs and Security Groups, and how do they differ?
+3, In Kubernetes, if a pod is in a pending state, how do you troubleshoot?
+4, If Docker containers are consuming too much disk space, how do you fix it?
+5, In Linux, how do you attach and detach a filesystem?
+6, How do you print the last 15 lines of a file in Linux?
+7, How do you enable passwordless authentication between two servers?
+8, How do you configure AWS RDS, and what factors do you consider (size, requirements, etc.)?
+9, How much data is stored in your RDS MySQL?
+10, How many masters and slaves are in RDS?
+11, How do you configure a Grafana dashboard?
+12, What kind of CI/CD pipelines are you familiar with?
+13, Explain Declarative vs. scripting pipelines.
