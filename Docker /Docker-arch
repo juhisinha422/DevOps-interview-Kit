@@ -1,0 +1,23 @@
+Docker is a powerful tool that allows you to package your application and its dependencies into a standardized unit called a container. 
+
+These containers are lightweight and portable, so they can run virtually anywhere, regardless of the underlying operating system. 
+
+This makes Docker perfect for developers, sysadmins, and anyone who wants to ensure their applications run consistently and reliably.
+
+𝗛𝗲𝗿𝗲'𝘀 𝗮 𝗯𝗿𝗲𝗮𝗸𝗱𝗼𝘄𝗻 𝗼𝗳 𝗵𝗼𝘄 𝗗𝗼𝗰𝗸𝗲𝗿 𝘄𝗼𝗿𝗸𝘀:
+
+𝗗𝗼𝗰𝗸𝗲𝗿 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝘀  are self-contained units that package your application code, runtime, system tools, settings, and libraries.  They're like tiny virtual machines, but they share the underlying operating system kernel with other containers, making them much more lightweight and efficient.
+
+𝗗𝗼𝗰𝗸𝗲𝗿 𝗶𝗺𝗮𝗴𝗲𝘀 are blueprints that contain instructions for creating containers.  They're kind of like recipes that tell Docker how to build a container with all the necessary ingredients.  You can find and share images on public registries like Docker Hub, or create your own custom images.
+
+𝗗𝗼𝗰𝗸𝗲𝗿 𝗱𝗮𝗲𝗺𝗼𝗻 (𝗱𝗼𝗰𝗸𝗲𝗿𝗱) is the engine that builds, runs, and manages Docker containers.  It's the behind-the-scenes workhorse that makes everything tick.
+
+𝗗𝗼𝗰𝗸𝗲𝗿 𝗰𝗹𝗶𝗲𝗻𝘁 (𝗱𝗼𝗰𝗸𝗲𝗿 𝗖𝗟𝗜) is the tool you use to interact with the Docker daemon.  It allows you to build, run, stop, and manage your containers using commands or a graphical user interface (GUI).
+
+𝗗𝗼𝗰𝗸𝗲𝗿 𝗿𝗲𝗴𝗶𝘀𝘁𝗿𝗶𝗲𝘀 are repositories that store and share Docker images.  Think of them as libraries for Docker images.  Docker Hub is the most popular public registry, but there are also private registries that organizations can use to store their own custom images.
+
+𝗗𝗼𝗰𝗸𝗲𝗿 𝘀𝘁𝗼𝗿𝗮𝗴𝗲 𝗱𝗿𝗶𝘃𝗲𝗿𝘀  manage how data is stored and persisted within containers. The default storage driver is overlay2, but there are other options available such as aufs, zfs, and btrfs.
+
+𝗗𝗼𝗰𝗸𝗲𝗿 𝗻𝗲𝘁𝘄𝗼𝗿𝗸 𝗱𝗿𝗶𝘃𝗲𝗿𝘀  provide networking capabilities to containers.  They allow containers to communicate with each other and with the outside world. 
+
+𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗼𝗿𝗰𝗵𝗲𝘀𝘁𝗿𝗮𝘁𝗼𝗿𝘀  like Kubernetes and Swarm are tools that help you manage and scale large deployments of Docker containers. They take care of provisioning, scheduling, and healing your containers, making it easier to run complex applications in production.
