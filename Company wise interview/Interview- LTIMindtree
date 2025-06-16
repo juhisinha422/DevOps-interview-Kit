@@ -1,0 +1,34 @@
+🔹 Technical Interview Experience – DevOps Engineer at LTIMindtree (Round 2)
+--------------------------------------------------------------------
+Round 2 of the DevOps Engineer interview at LTIMindtree.
+This round was scenario-based and tested advanced problem-solving across Azure Cloud, CI/CD pipelines, Kubernetes stability, and infrastructure as code.
+Here’s the new and refined question set from the round:
+
+🚀 Azure & DevOps Strategy
+ ✅ How would you design a zero-downtime deployment architecture in Azure?
+ ✅ Explain the role of Azure Blueprints in enforcing governance.
+ ✅ How do you configure managed identities in Azure for secure pipeline deployments?
+ ✅ What’s your approach to setting up multi-region redundancy for APIs in Azure?
+
+🚀 CI/CD + Azure Pipelines
+ ✅ How do you conditionally run a pipeline stage only when a specific file is modified?
+ ✅ How do you manage environment secrets and variable groups securely in Azure DevOps?
+ ✅ How would you integrate automated quality gates (SonarQube/Checkmarx) into your pipeline?
+ ✅ Explain pipeline caching and how it helps speed up build jobs.
+
+🚀 Kubernetes Deep-Dive (AKS)
+ ✅ How do you debug an AKS pod stuck in Init state with no logs?
+ ✅ What’s the impact of setting incorrect resource limits on AKS node performance?
+ ✅ Explain how you can configure pod affinity/anti-affinity for zone-level availability.
+ ✅ How do you secure internal AKS communication with mTLS or service mesh?
+
+🚀 Infrastructure as Code (Terraform)
+ ✅ How do you use Terraform workspaces to separate environments?
+ ✅ What’s the difference between count and for_each in Terraform — where would you use each?
+ ✅ How would you prevent accidental deletions in Terraform (e.g., production VMs)?
+ ✅ How do you perform a dry run or preview changes before applying them?
+
+🚀 System Monitoring & Incident Handling
+ ✅ You receive alerts of latency in production — how would you isolate if it’s a DNS, app, or infra issue?
+ ✅ What tools do you prefer for proactive monitoring of AKS ingress traffic?
+ ✅ How would you implement alert deduplication and escalation policies?
