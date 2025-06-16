@@ -1,0 +1,13 @@
+Sonarqube Basic Interview questions PART=01
+1.Can you explain what SonarQube is and why it is used in software development?
+2. What are the key types of issues that SonarQube detects during code analysis? Please name and briefly describe them.
+3. What is a "Quality Gate" in SonarQube, and how does it help in maintaining code standards?
+4. Can you explain the difference between "Code Smell" and "Bug" in SonarQube?
+5. What are the main components or parts of the SonarQube architecture? Please name them and briefly describe their role.
+6. What is a SonarQube "rule"? How are rules used in code analysis?
+7. What is a "Quality Profile" in SonarQube, and how is it different from a Quality Gate?
+8. How does SonarQube integrate with CI/CD tools like Jenkins or GitHub Actions? Can you explain the general flow?
+9. What is “Technical Debt” in SonarQube, and how is it measured or represented?
+10. What are Security Hotspots in SonarQube, and how are they different from Vulnerabilities?
+11. What is the purpose of the sonar-project.properties file in SonarQube, and what are some key properties it typically contains?
+12. What are the different types of dashboards or views available in SonarQube, and what kind of information can you typically find in them?
