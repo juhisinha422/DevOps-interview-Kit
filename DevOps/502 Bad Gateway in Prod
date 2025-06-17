@@ -1,0 +1,14 @@
+🚨 502 𝐁𝐚𝐝 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 𝐢𝐧 𝐩𝐫𝐨𝐝𝐮𝐜𝐭𝐢𝐨𝐧 — 𝐇𝐨𝐰 𝐰𝐞 𝐟𝐢𝐱𝐞𝐝 𝐢𝐭 𝐟𝐚𝐬𝐭!
+
+📌We pushed a critical fix.
+📌Jenkins pipeline kicked off.
+📌Deployment failed.
+
+👉 502 Bad Gateway. App down. Users impacted.
+
+𝐇𝐞𝐫𝐞’𝐬 𝐡𝐨𝐰 𝐰𝐞 𝐡𝐚𝐧𝐝𝐥𝐞𝐝 𝐢𝐭:
+
+✅ Checked 𝒍𝒐𝒈𝒔, app failed health checks.
+✅ Found the 𝒓𝒐𝒐𝒕 𝒄𝒂𝒖𝒔𝒆, missing production env variable.
+✅ Stopped further deploys, 𝒓𝒐𝒍𝒍𝒆𝒅 𝒃𝒂𝒄𝒌 with Helm, fixed the config.
+✅ 𝑷𝒂𝒕𝒄𝒉𝒆𝒅 the pipeline to catch this in future.
