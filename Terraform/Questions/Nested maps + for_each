@@ -1,0 +1,32 @@
+𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗧𝗶𝗽: 𝗡𝗲𝘀𝘁𝗲𝗱 𝗠𝗮𝗽𝘀 + 𝗳𝗼𝗿_𝗲𝗮𝗰𝗵 𝗦𝗶𝗺𝗽𝗹𝗶𝗳𝗶𝗲𝗱! 🌟
+
+📌 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗡𝗲𝘀𝘁𝗲𝗱 𝗠𝗮𝗽?
+A 𝗻𝗲𝘀𝘁𝗲𝗱 𝗺𝗮𝗽 in Terraform is simply a map within another map. It’s super handy for managing structured data like multiple environments or grouped resources — all in a clean, organized way.
+
+🧩 𝗕𝗮𝘀𝗶𝗰 𝗦𝘆𝗻𝘁𝗮𝘅:
+variable "example" {
+  type = map(map(string))
+  default = {
+    dev = {
+      app = "app-dev"
+      db  = "db-dev"
+    }
+  prod = {
+     app = "app-prod"
+     db  = "db-prod"
+  }
+ }
+}
+Here, example is a map containing other maps for each environment.
+
+⚙️ 𝗪𝗵𝘆 𝘂𝘀𝗲 𝗡𝗲𝘀𝘁𝗲𝗱 𝗠𝗮𝗽 + 𝗳𝗼𝗿_𝗲𝗮𝗰𝗵?
+One common problem with plain map + for_each is handling 𝗺𝘂𝗹𝘁𝗶𝗽𝗹𝗲 𝗻𝗲𝘀𝘁𝗲𝗱 𝘀𝗲𝘁𝘀 𝗼𝗳 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀. For example, deploying VMs or resource groups across different environments.
+
+✅ 𝗦𝗼𝗹𝘂𝘁𝗶𝗼𝗻: Use a 𝗻𝗲𝘀𝘁𝗲𝗱 𝗺𝗮𝗽 with a 𝗻𝗲𝘀𝘁𝗲𝗱 𝗳𝗼𝗿_𝗲𝗮𝗰𝗵 to iterate through all levels properly:
+This deploys all servers for all environments dynamically — no manual repetition! 🚀
+
+🎓 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗧𝗶𝗽:
+💡 “𝘏𝘰𝘸 𝘸𝘰𝘶𝘭𝘥 𝘺𝘰𝘶 𝘥𝘦𝘱𝘭𝘰𝘺 𝘮𝘶𝘭𝘵𝘪𝘱𝘭𝘦 𝘦𝘯𝘷𝘪𝘳𝘰𝘯𝘮𝘦𝘯𝘵𝘴 𝘸𝘪𝘵𝘩 𝘶𝘯𝘪𝘲𝘶𝘦 𝘤𝘰𝘯𝘧𝘪𝘨𝘶𝘳𝘢𝘵𝘪𝘰𝘯𝘴 𝘶𝘴𝘪𝘯𝘨 𝘛𝘦𝘳𝘳𝘢𝘧𝘰𝘳𝘮? 𝘌𝘹𝘱𝘭𝘢𝘪𝘯 𝘩𝘰𝘸 𝘯𝘦𝘴𝘵𝘦𝘥 𝘮𝘢𝘱𝘴 𝘢𝘯𝘥 𝘯𝘦𝘴𝘵𝘦𝘥 𝘧𝘰𝘳_𝘦𝘢𝘤𝘩 𝘩𝘦𝘭𝘱.”
+
+📚 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆:
+Nested maps + for_each = reusable, DRY, and scalable Terraform code. Perfect for multi-environment infra!
