@@ -1,0 +1,35 @@
+𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 — 𝐏𝐫𝐨𝐭𝐞𝐜𝐭𝐢𝐧𝐠 𝐒𝐭𝐚𝐭𝐞 𝐅𝐢𝐥𝐞𝐬 𝐢𝐧 𝐚 𝐓𝐞𝐚𝐦 𝐒𝐞𝐭𝐮𝐩
+
+𝐈𝐦𝐚𝐠𝐢𝐧𝐞 𝐭𝐡𝐢𝐬:
+
+👉 Your team is managing cloud infrastructure with Terraform.
+👉 Everyone’s working on the same codebase, but the state file becomes a risk.
+👉 What if two people apply changes at the same time? What if the state file gets corrupted?
+
+💡 𝐇𝐞𝐫𝐞’𝐬 𝐚 𝐫𝐞𝐚𝐥 𝐞𝐱𝐚𝐦𝐩𝐥𝐞 𝐈 𝐟𝐚𝐜𝐞𝐝:
+
+In one of my projects, two engineers accidentally ran terraform apply at the same time.
+
+➡ One was adding a new EC2 instance.
+➡ The other was updating a security group.
+Result? 𝑻𝒉𝒆 𝒔𝒕𝒂𝒕𝒆 𝒇𝒊𝒍𝒆 𝒈𝒐𝒕 𝒄𝒐𝒓𝒓𝒖𝒑𝒕𝒆𝒅. The EC2 instance spun up, but the security group update failed halfway.
+➡ We had to manually fix the resources AND restore the state from a backup.
+
+✅ 𝐖𝐡𝐚𝐭 𝐰𝐞 𝐝𝐢𝐝 𝐭𝐨 𝐩𝐫𝐞𝐯𝐞𝐧𝐭 𝐭𝐡𝐢𝐬 𝐢𝐧 𝐭𝐡𝐞 𝐟𝐮𝐭𝐮𝐫𝐞, 𝐬𝐭𝐞𝐩-𝐛𝐲-𝐬𝐭𝐞𝐩:
+
+1️⃣ We moved the 𝒔𝒕𝒂𝒕𝒆 𝒇𝒊𝒍𝒆 from local storage to an 𝑨𝑾𝑺 𝑺3 𝒃𝒂𝒄𝒌𝒆𝒏𝒅.
+2️⃣ We added 𝑫𝒚𝒏𝒂𝒎𝒐𝑫𝑩 𝒔𝒕𝒂𝒕𝒆 𝒍𝒐𝒄𝒌𝒊𝒏𝒈, so only one apply can run at a time.
+3️⃣ We enabled 𝑺3 𝒗𝒆𝒓𝒔𝒊𝒐𝒏𝒊𝒏𝒈, so we could roll back the state if needed.
+4️⃣ We tightened S3 bucket 𝒑𝒆𝒓𝒎𝒊𝒔𝒔𝒊𝒐𝒏𝒔 𝒖𝒔𝒊𝒏𝒈 𝑰𝑨𝑴 to control who can access the state.
+
+✨ 𝐓𝐡𝐞 𝐫𝐞𝐬𝐮𝐥𝐭:
+
+➡ No more 𝒔𝒕𝒂𝒕𝒆 𝒄𝒐𝒏𝒇𝒍𝒊𝒄𝒕𝒔.
+➡ The team works 𝒔𝒂𝒇𝒆𝒍𝒚 on the same Terraform code.
+➡ 𝑸𝒖𝒊𝒄𝒌 𝒓𝒆𝒄𝒐𝒗𝒆𝒓𝒚 if anything ever goes wrong.
+
+👉 𝐓𝐡𝐞 𝐥𝐞𝐬𝐬𝐨𝐧:
+
+In Terraform, managing the state is as important as managing the code.
+
+𝑹𝒆𝒎𝒐𝒕𝒆 𝒔𝒕𝒂𝒕𝒆 + 𝒍𝒐𝒄𝒌𝒊𝒏𝒈 = 𝒔𝒂𝒇𝒆, 𝒄𝒐𝒍𝒍𝒂𝒃𝒐𝒓𝒂𝒕𝒊𝒗𝒆, 𝒓𝒆𝒍𝒊𝒂𝒃𝒍𝒆 𝒊𝒏𝒇𝒓𝒂𝒔𝒕𝒓𝒖𝒄𝒕𝒖𝒓𝒆 𝒂𝒔 𝒄𝒐𝒅𝒆.
