@@ -1,0 +1,34 @@
+Git Merge vs Git Rebase – Explained with a Real-Life Example
+
+Imagine you're working on a feature branch, and your teammate has pushed new updates to the main branch while you were coding.
+
+Now you want to bring those changes into your branch.
+
+You have two choices: Git Merge or Git Rebase.
+
+🔄 Git Merge
+You say: “Let’s bring the main branch changes into my feature branch — and keep track of where they came from.”
+
+✅ Keeps full history
+✅ Creates a new merge commit
+❌ History becomes a bit messy (but safe)
+
+Real-time use case:
+Great when working in teams — everyone’s contributions are preserved visibly.
+
+🔁 Git Rebase
+You say: “Let’s pretend my work started from the latest version of main — clean and direct.”
+
+✅ Creates a clean, linear history
+✅ No extra merge commits
+❌ Rewrites history (be careful if others are using this branch)
+
+Real-time use case:
+Great when cleaning up your local commits before creating a pull request.
+
+🧠 When to Use What?
+
+Use merge when collaborating with others — it’s safe and preserves the full story.
+Use rebase for polishing your commit history before sharing — but avoid it on shared branches.
+
+💡 Pro Tip: Never rebase a public/shared branch. It will confuse your teammates and mess up syncs.
