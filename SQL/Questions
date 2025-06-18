@@ -1,0 +1,108 @@
+1. Find the 2nd Highest Salary
+SELECT MAX(salary) FROM employees
+WHERE salary < (SELECT MAX(salary) FROM employees)
+
+2. Count Of Employees in Each Department
+SELECT department, COUNT(*) AS
+employee_count
+FROM employees
+GROUP BY department
+
+3. Find Duplicate Records
+SELECT column_name, COUNT(*)
+FROM table_name
+GROUP BY column_name
+HAVING COUNT(*)>1
+
+4. How can you delete duplicate records
+WITH CTE AS (
+ SELECT column_name, 
+ ROW_NUMBER() OVER (PARTITION BY column_name ORDER BY 
+column_name) AS row_num
+ FROM table_name
+)
+DELETE FROM CTE WHERE row_num > 1
+
+5. Find Employees Who joined in 2024
+SELECT * FROM employees
+WHERE YEAR(joining date) = 2024
+
+6. Find Customers Without Orders
+SELECT c.customer_id, c.name
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.customer_id IS NULL
+
+7. Get Total Salary by Department
+SELECT department, SUM(salary) AS
+total_salary
+FROM employees
+GROUP BY department
+
+8. Find Nth Highest Salary (Nth = 3)
+SELECT DISTINCT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 2
+
+9. Get Employee Details with Department Names
+SELECT e.name, d.department_name 
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+
+10. Find all employees whose names contain the letters "a" exactly twice
+SELECT * FROM employees
+WHERE LENGTH(name) - 
+LENGTH(REPLACE(LOWER(name),'a','')) = 2
+
+11. Running total of sales by date
+SELECT date, sales,
+SUM(sales) OVER (ORDER BY date) AS RunningTotal
+FROM sales_data
+
+12. Find employees earning more than average salary in their department
+SELECT * FROM employees e
+WHERE salary > (
+ SELECT AVG(salary) 
+ FROM employees
+ WHERE department_id = 
+e.department_id
+)
+
+13. Write a query to count how many employees share the same salary
+SELECT salary, COUNT(*) AS
+employee_count
+FROM employees
+GROUP BY salary 
+HAVING COUNT(*) > 1
+
+14. Write a query to find the most frequently occurring value in a column
+SELECT column_name, COUNT(*) AS freq
+FROM table_name
+GROUP BY column_name
+ORDER BY freq DESC
+LIMIT 1
+
+15. Fetch the records where the date is within the last 7 days from today
+SELECT * 
+FROM table_name
+WHERE date_column >= CURRENT_DATE -
+INTERVAL 7 DAY
+
+16. How to get the common records from two tables?
+SELECT * FROM table1 
+INTERSECT 
+SELECT * FROM table2
+
+17. How to retrieve the last 10 records from a table
+SELECT * 
+FROM employees 
+ORDER BY employee_id DESC 
+LIMIT 10
+
+18. How to find employees whose salary is higher than their manager's 
+salary?
+SELECT e.employee_id, e.name 
+FROM employees e 
+JOIN employees m ON e.manager_id = m.employee_id 
+WHERE e.salary > m.salary
