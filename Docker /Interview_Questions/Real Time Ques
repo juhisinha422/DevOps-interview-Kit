@@ -1,0 +1,94 @@
+🐳 SRE Real-Time Docker Q&A
+🔥 1. A container is crashing repeatedly in production. How do you troubleshoot it?
+A:
+Run: docker ps -a to confirm crash status
+Check logs: docker logs <container_id>
+Check exit code: docker inspect <container_id> | grep ExitCode
+Try interactive shell: docker run -it <image_name> /bin/bash
+Ensure config/env files are correct
+Check for missing dependencies in image
+
+⚙️ 2. How do you handle a situation where disk space is full due to Docker images and containers?
+A:
+List dangling images: docker images -f dangling=true
+Remove unused containers/images:
+Set up a cron job to prune periodically in non-critical environments
+
+🧪 3. How would you debug a containerized application that isn’t accessible on a specific port?
+A:
+Check container’s exposed port:
+Ensure correct port mapping with -p
+Use curl, telnet, or nc inside and outside the container
+Check firewall/iptables on host
+Use docker exec -it <id> netstat -tuln inside the container
+
+📦 4. How do you reduce Docker image size in production builds?
+A:
+Use smaller base images (alpine, distroless)
+Combine commands with && to reduce layers
+Clean cache:
+Use .dockerignore to avoid copying unnecessary files
+
+💥 5. What is the difference between ENTRYPOINT and CMD?
+Feature
+ENTRYPOINT
+CMD
+Purpose
+Defines the main process
+Provides default args
+Overridable
+No (unless --entrypoint)
+Yes
+Best Practice: Use both together:
+
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+
+
+🕵️ 6. How do you monitor Docker containers in production?
+A:
+Use Prometheus + cAdvisor to collect container metrics
+Log collection with Fluentd, Logstash, or Filebeat
+Set up alerting for container restarts, CPU/mem limits
+Health checks using HEALTHCHECK in Dockerfile
+
+🧰 7. A container must access secrets or API keys securely. What do you do?
+A:
+Use environment variables with -e
+Mount secrets as volumes
+For advanced setups:
+HashiCorp Vault integration
+Kubernetes Secrets (if using k8s)
+
+🐙 8. How do you update a running service with zero downtime using Docker?
+A:
+Use a reverse proxy (NGINX, HAProxy) with multiple containers
+Start new container (v2)
+Update proxy config to point to new one
+Stop old container gracefully
+This is essentially blue-green deployment.
+
+🧳 9. How do you move containers between servers?
+A:
+Push image to a registry:
+Pull on target server:
+
+📋 10. What are Docker labels and why use them in SRE?
+A:
+Labels are metadata for containers and images.
+Used for organizing, filtering, monitoring, and automation.
+
+docker run --label env=prod --label app=web myapp
+
+Helpful for tools like Prometheus, Datadog, and CI/CD pipelines.
+
+🧯 11. How would you ensure a container restarts automatically if it crashes?
+A:
+
+docker run --restart=always myapp
+
+Other restart policies:
+no (default)
+on-failure
+always
+unless-stopped
