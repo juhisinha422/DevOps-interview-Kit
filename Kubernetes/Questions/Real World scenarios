@@ -1,0 +1,33 @@
+Real-World Kubernetes Scenarios Every DevOps Engineer Should Know
+
+Bookmark this. These aren’t interview questions. These are 2AM production scenarios.
+
+1. What happens if a pod enters CrashLoopBackOff repeatedly?
+-> The kubelet keeps restarting it. But it won’t recover unless you fix the root cause — commonly bad env configs, failing probes, image errors, or missing mounts.
+
+2. What happens if CoreDNS fails inside the cluster?
+->Services can’t resolve each other by name. Apps break silently. curl fails. Debug with nslookup, kubectl logs -n kube-system, and always monitor DNS latency.
+
+3. What happens if a node runs out of memory?
+-> Kubelet starts evicting pods. Your app gets killed silently. Node marked MemoryPressure=True. Run kubectl describe node and top node to catch early signals.
+
+4. What happens if the service selector doesn’t match any pods?
+-> The service exists, but traffic goes nowhere. You’ll get “connection refused” errors. Always use kubectl get endpoints to confirm backend pod IPs.
+
+5. What happens when an unready pod gets traffic?
+-> If readiness probes are misconfigured or missing, kube-proxy routes traffic to broken pods. Monitor startup delays & readiness gating in your manifests.
+
+6. What happens if etcd fails?
+-> Kubernetes control plane becomes read-only or fails. No new pods can be scheduled. API server fails. This is your cluster’s brain. Backup frequently.
+
+7. What happens if you run a rolling deploy with a bad config?
+->You might take down every pod one by one. Without a maxUnavailable set, the app can go down completely. Set proper deployment strategies + prechecks.
+
+8. What happens when the kubelet loses connectivity to the API server?
+-> The node enters NotReady. No new pods get scheduled; existing pods may keep running, but updates fail. Node might get cordoned or evicted.
+
+9. What happens if HPA scales up too aggressively?
+-> Your app overloads the node or consumes all quota. Can lead to pod evictions, degraded performance, or even node crashes if limits aren’t set.
+
+10. What happens when a container exits with code 0, but the app is broken?
+-> Kubernetes thinks it’s “healthy” unless your probes catch it. Add proper liveness & readiness probes to ensure status reflects reality.
