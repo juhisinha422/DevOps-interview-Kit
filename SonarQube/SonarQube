@@ -1,0 +1,25 @@
+Improving Code Quality with SonarQube 💻
+In any DevOps pipeline, maintaining clean, secure, and maintainable code is just as important as delivering fast. That's where SonarQube plays a crucial role.
+🔍 Why SonarQube?
+ SonarQube is an open-source platform that continuously inspects code for:
+* Code smells
+* Bugs
+* Vulnerabilities
+* Technical debt
+* Code coverage (when integrated with test reports)
+
+✅ Key Benefits I've seen in real projects:
+
+- Early detection of issues before code hits production
+- Seamless integration with Jenkins, GitHub Actions, and other CI/CD tools
+- Supports multiple languages: Java, Python, JavaScript, and more
+- Helps enforce coding standards across the team
+- Improves collaboration between Devs, QA, and DevOps
+
+🔧 My typical setup:
+
+-->Code pushed to GitHub
+-->Jenkins triggers a build
+-->SonarQube scan runs as part of the pipeline
+-->Results are visible in SonarQube dashboard
+-->Build fails if quality gates are not met – helping us catch issues early!
