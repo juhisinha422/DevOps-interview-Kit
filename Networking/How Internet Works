@@ -1,0 +1,44 @@
+How the internet really works behind the scenes?
+
+Here’s a simple breakdown of the 6 core server types that power almost every digital service we use today. 
+💡 Server Types Simplified:
+
+1. 🌐 Origin Server – Serves the original content via edge/CDN.
+
+
+2. 🧭 DNS Server – Translates domain names into IP addresses.
+
+
+3. 📁 File Server – Stores and shares files across networks.
+
+
+4. 📬 Mail Server – Manages sending and receiving of emails.
+
+
+5. 🖥 Web Server – Delivers websites and web applications.
+
+
+6. 🛡 Proxy Server – Protects and optimizes client-server requests.
+
+
+
+💼 Used in Real-World Services:
+
+AWS: EC2, Route 53, S3, SES
+
+Azure: Blob Storage, DNS, Virtual Machines
+
+Google Cloud Platform
+
+Corporate IT Infrastructures
+
+
+🔧 Whether you're an aspiring:
+
+DevOps Engineer
+
+Cloud Architect
+
+Network Admin
+
+System Administrator this is essential learning.
