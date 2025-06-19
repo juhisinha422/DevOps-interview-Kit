@@ -1,0 +1,34 @@
+𝗗𝗼 𝘆𝗼𝘂 𝘁𝗵𝗶𝗻𝗸 𝘆𝗼𝘂𝗿 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗣𝗶𝗽𝗲𝗹𝗶𝗻𝗲 𝗶𝘀 𝗶𝗺𝗺𝘂𝗻𝗲 𝘁𝗼 𝗛𝗮𝗰𝗸𝗲𝗿’𝘀 𝗮𝘁𝘁𝗮𝗰𝗸? 
+
+Here are some of tips to secure your Jenkins Pipeline from Hacker’s attack and enhance security of your workspace 👇🏻
+
+✨ 𝗦𝗲𝗰𝘂𝗿𝗲 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗜𝘁𝘀𝗲𝗹𝗳:
+Access Control - Enable Auth using Jenkins over Database or integrate with OAuth, SSO or LDAP.
+Use RBAC (Role-based Access Control) to restrict access based on roles (admin/devs/testers).
+Use HTTPS over Jenkins to encrypt traffic.
+Install Plugins from trusted source, remove unused plugins.
+
+✨  𝗦𝗲𝗰𝘂𝗿𝗲 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗔𝗴𝗲𝗻𝘁𝘀 (𝗦𝗹𝗮𝘃𝗲𝘀):
+Run them with 𝗹𝗶𝗺𝗶𝘁𝗲𝗱 𝗽𝗿𝗶𝘃𝗶𝗹𝗲𝗴𝗲𝘀
+Use Agent-to-controller communication using SSH with Authentication
+Isolate Build Env using containers (docker-in-docker) or K8s pods.
+
+✨  𝗣𝗿𝗼𝘁𝗲𝗰𝘁 𝘀𝗲𝗰𝗿𝗲𝘁𝘀 𝗮𝗻𝗱 𝗖𝗿𝗲𝗱𝘀
+Use Jenkins Credentials to store: SSH keys, AWS keys, Github token, dockerhub creds, etc.
+Use withCredentials() block in pipeline rather than hardcoding secrets.
+
+✨ 𝗥𝗲𝘀𝘁𝗿𝗶𝗰𝘁 𝗝𝗼𝗯 𝗘𝘅𝗲𝗰𝘂𝘁𝗶𝗼𝗻
+Set 𝗯𝘂𝗶𝗹𝗱 𝗽𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻𝘀 so only authorized users can trigger builds
+Use 𝗮𝗽𝗽𝗿𝗼𝘃𝗮𝗹 𝗴𝗮𝘁𝗲𝘀 for sensitive jobs like production deployments.
+Enable 𝗮𝘂𝗱𝗶𝘁 𝘁𝗿𝗮𝗶𝗹 𝗽𝗹𝘂𝗴𝗶𝗻𝘀 to track who triggered what and when.
+
+✨ 𝗘𝗻𝗮𝗯𝗹𝗲 𝗖𝗼𝗱𝗲 𝗮𝗻𝗱 𝗗𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝗰𝘆 𝗖𝗵𝗲𝗰𝗸
+Integrate tools like SonarQube, Trivy, Owasp Dependency check, Synk to enhance Code quality check and dependency check
+
+✨ 𝗟𝗼𝗴𝗴𝗶𝗻𝗴 𝗮𝗻𝗱 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴
+Enable Audit Trail plugin or Logstash plugin for logging
+Monitor Jenkins Logs for suspicious login attempts, failed build or permissions error.
+
+🌟 𝗕𝗼𝗻𝘂𝘀 𝗧𝗶𝗽:
+Define Pipeline and Infrastructure using Jenkinsfile, Terraform, Helm, etc.
+use Git-Ops tools like ArgoCd to have git as single source of truth.
