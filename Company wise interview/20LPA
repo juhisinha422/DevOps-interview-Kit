@@ -1,0 +1,37 @@
+Questions for 20 LPA - Cloud & DevOps Engineer Role
+
+
+Level 1 -
+
+1, DB static inventory and dynamic inventory.
+2, roles and templates in ansible.
+3, gathering facts.
+4, day to day activities in Linus environment?
+5, patching activity in linux?
+6, check connectivity between 2 servers?
+7, one server is not running, how to debug?
+8, stages in cicd?
+9, where do you store all compilation files on jenkins?
+10, challenges faced in the cicd pipeline?
+11, DDL, DML commands in SQL.
+12, how to find duplicate values in tables?
+13, what are sub queries?
+14, LEFT JOIN, RIGHT JOIN?
+15, deployment strategy?
+16, RAM in your deployment?
+17, chalanges faced in production deployment?
+18, integration of Prometheus with K8s.
+19, parameter metrics in K8s cluster?
+20, how to reduce the docker image size?
+21, how to integrate ansible with jenkins?
+
+Level 2 -
+
+1, decorators in python. Uses?
+2, handle exceptions in python.
+3, tuples in python? Use case
+4, DB list, tuple.
+5, dictionaries, usecase.
+6, DB, char varchar in SQL
+7, DB, unique and primary key
+8, in sonarqube, steps to configure, how do u detect the bugs.
