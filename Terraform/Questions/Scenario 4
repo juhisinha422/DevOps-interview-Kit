@@ -1,0 +1,66 @@
+Here are 15 real-world Terraform scenarios that have taken down pipelines, corrupted infrastructure, and exposed secrets.
+
+Even seasoned DevOps teams get caught off guard.
+
+𝐋𝐞𝐭’𝐬 𝐛𝐫𝐞𝐚𝐤 𝐭𝐡𝐞𝐦 𝐝𝐨𝐰𝐧:
+
+𝟏. 𝐘𝐨𝐮 𝐝𝐞𝐥𝐞𝐭𝐞 𝐭𝐡𝐞 𝐬𝐭𝐚𝐭𝐞 𝐟𝐢𝐥𝐞:
+Terraform forgets everything. Infra still exists. But it's invisible to the tool now.
+Solution? Always use remote backends like S3—with versioning turned on.
+
+𝟐. 𝐓𝐰𝐨 𝐩𝐞𝐨𝐩𝐥𝐞 𝐡𝐢𝐭 𝐚𝐩𝐩𝐥𝐲 𝐚𝐭 𝐨𝐧𝐜𝐞:
+Race condition. Corrupt state. Infrastructure chaos.
+Use DynamoDB for state locking when using S3.
+
+𝟑. 𝐀 𝐟𝐚𝐢𝐥𝐞𝐝 𝐚𝐩𝐩𝐥𝐲:
+Terraform might have half-deployed your infra.
+Validate state before retrying. Tainted resources can break redeploys.
+
+𝟒. 𝐘𝐨𝐮 𝐡𝐢𝐭 𝐜𝐥𝐨𝐮𝐝 𝐬𝐞𝐫𝐯𝐢𝐜𝐞 𝐪𝐮𝐨𝐭𝐚𝐬:
+GCP, AWS—they all have limits.
+Miss one? Your deploy stalls. Always pre-check quotas.
+
+𝟓. 𝐎𝐧𝐞 𝐥𝐢𝐧𝐞 𝐢𝐧 𝐭𝐡𝐞 𝐜𝐨𝐧𝐟𝐢𝐠 𝐝𝐞𝐥𝐞𝐭𝐞𝐬 𝐩𝐫𝐨𝐝:
+Yes, really.
+Use `prevent_destroy` for critical resources and enforce CI/CD policies.
+
+𝟔. 𝐀 𝐭𝐞𝐚𝐦𝐦𝐚𝐭𝐞 𝐞𝐝𝐢𝐭𝐞𝐝 𝐢𝐧𝐟𝐫𝐚 𝐦𝐚𝐧𝐮𝐚𝐥𝐥𝐲:
+Now your Terraform config is out of sync.
+Use `terraform refresh` and bring everything back under control.
+
+𝟕. 𝐘𝐨𝐮 𝐫𝐞𝐦𝐨𝐯𝐞 𝐚 𝐫𝐞𝐬𝐨𝐮𝐫𝐜𝐞 𝐟𝐫𝐨𝐦 𝐜𝐨𝐝𝐞:
+Terraform might delete live infra.
+Want to remove it manually? Use `terraform state rm`.
+
+𝟖. 𝐒𝐞𝐜𝐫𝐞𝐭𝐬 𝐜𝐨𝐦𝐦𝐢𝐭𝐭𝐞𝐝 𝐭𝐨 𝐆𝐢𝐭:
+It's happened before. It’ll happen again.
+Use Vault. Use `.tfvars`. Use `.gitignore`. Every time.
+
+𝟗. 𝐂𝐢𝐫𝐜𝐮𝐥𝐚𝐫 𝐝𝐞𝐩𝐞𝐧𝐝𝐞𝐧𝐜𝐢𝐞𝐬:
+Terraform throws errors and exits.
+Refactor. Use `depends_on` intentionally.
+
+𝟏𝟎. 𝐎𝐧𝐞 𝐬𝐭𝐚𝐭𝐞 𝐟𝐢𝐥𝐞 𝐟𝐨𝐫 𝐝𝐞𝐯 𝐚𝐧𝐝 𝐩𝐫𝐨𝐝:
+Big mistake.
+Use workspaces or isolated backends to avoid environment contamination.
+
+𝟏𝟏. 𝐋𝐨𝐬𝐭 𝐚𝐜𝐜𝐞𝐬𝐬 𝐭𝐨 𝐫𝐞𝐦𝐨𝐭𝐞 𝐛𝐚𝐜𝐤𝐞𝐧𝐝:
+Suddenly, you can’t deploy, destroy, or even view infra.
+Audit access and set up off-site backups.
+
+𝟏𝟐. 𝐘𝐨𝐮 𝐮𝐩𝐝𝐚𝐭𝐞𝐝 𝐭𝐡𝐞 𝐩𝐫𝐨𝐯𝐢𝐝𝐞𝐫:
+The new version breaks half your infra.
+Pin your providers. Test everything in staging.
+
+𝟏𝟑. 𝐇𝐢𝐭 𝐀𝐏𝐈 𝐫𝐚𝐭𝐞 𝐥𝐢𝐦𝐢𝐭𝐬 𝐦𝐢𝐝-𝐝𝐞𝐩𝐥𝐨𝐲:
+Cloud APIs have ceilings.
+Batch your requests. Use retries with backoff.
+
+𝟏𝟒. 𝐑𝐞𝐧𝐚𝐦𝐞𝐝 𝐚 𝐫𝐞𝐬𝐨𝐮𝐫𝐜𝐞? 𝐈𝐭 𝐠𝐨𝐭 𝐝𝐞𝐬𝐭𝐫𝐨𝐲𝐞𝐝:
+Terraform thinks it’s a new resource.
+Use `terraform state mv` instead.
+
+𝟏𝟓. 𝐒𝐞𝐜𝐫𝐞𝐭 𝐯𝐚𝐥𝐮𝐞𝐬 𝐢𝐧 `𝐭𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐨𝐮𝐭𝐩𝐮𝐭`:
+It’ll end up in logs, dashboards, Slack notifications.
+Use `sensitive = true`.
+
