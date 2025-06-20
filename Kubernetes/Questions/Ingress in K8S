@@ -1,0 +1,18 @@
+What is Ingress?
+Ingress is a Kubernetes API object that manages external HTTP and HTTPS access to services within the cluster. Instead of exposing each service separately, Ingress lets you define centralized routing rules.
+
+ • Ingress Resource – Defines routing rules (e.g., host/path-based routing)
+ • Ingress Controller – Watches and applies Ingress rules (e.g., NGINX, Traefik)
+ • Ingress Deployment and Service – Required to deploy and expose the controller
+ • ConfigMap – Used to configure the behavior of the Ingress controller
+ • TLS – Supports SSL termination using certificates
+ • Authentication – Enables securing routes using auth headers or secrets
+
+Hands-On Practice –
+ • Deployed NGINX Ingress Controller
+ • Created sample applications and exposed them using Ingress
+ • Tested routing using path-based access
+ • Understood how Ingress interacts with core networking
+
+Key Takeaway
+Ingress helps simplify and centralize external traffic routing in Kubernetes clusters. It becomes essential when managing multiple services and securing traffic at the edge.
