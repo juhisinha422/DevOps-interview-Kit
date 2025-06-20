@@ -1,0 +1,21 @@
+Switch and Router 
+
+What is switch? 
+............... Switch is a device which is used to connect two Or more network  in a same network. 
+Switch is count as ports 8,16,24,48 in the most of MNC company...... 
+           Company using 24,48 ports of switch
+
+What is router? 
+............ .. Router is a device which is used to connect two or more network in a different network 
+how many types of Router? 
+    . Branch Router 
+    . WAN Aggregation
+    . Virtual router  and many more 
+
+*****Difference between hub, switch, and Router ??? 
+
+Hub is a central device of networking and it is a cheap and broadcast networking device. Hub connects with the multiple computer. but it sends the data in every device and it will be a collision.  Hub is used OSI layer 1 in physical layer. 
+
+Switch : Switch is multicast networking device work unders the data link layer of OSI Layer 2 and stores Mac address and connect bunch of computers in a same network and switch is a intelligent device and packet send on the same network it will be no Collison 
+
+Router :  Router is a networking device works under the network layer of OSI Model layer 3 . and used to connect two or more different network 
