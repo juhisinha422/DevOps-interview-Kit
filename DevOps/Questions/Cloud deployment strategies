@@ -1,0 +1,33 @@
+Cloud Deployment Strategies
+
+When you’re pushing new code to production, how you deploy can be the difference between a smooth release and a 2AM incident.
+
+Here are three common deployment strategies every DevOps/Cloud Engineer should know:
+
+
+🔁 1. Rolling Deployment
+Upgrade in batches.
+Some instances stay on the current version while others get the new one.
+➡️ No downtime
+➡️ Smooth transition
+➡️ Can rollback midway if things go sideways
+
+🎯 2. Canary Deployment
+Like a test flight for your app.
+You send a small percentage of traffic to the new version first.
+✅ Safe testing in production
+✅ Feedback-driven rollout
+✅ Traffic ramps up only if things look good
+
+
+💙💚 3. Blue-Green Deployment
+Run two environments side by side.
+
+Blue = stable, current version
+Green = shiny, new version
+  Once green proves itself, flip the traffic over.
+  ✅ Near-zero downtime
+  ✅ Easy rollback
+  ✅ Requires a bit more infra, but worth it for critical apps
+
+Different teams use different strategies based on their risk tolerance, infra setup, and business impact.
