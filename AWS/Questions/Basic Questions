@@ -1,0 +1,73 @@
+Q1) What is AWS?
+Answer: AWS stands for Amazon Web Services. AWS is a platform that provides on-demand
+resources for hosting web services, storage, networking, databases and other resources over the
+internet with a pay-as-you-go pricing.
+
+Q2) What are the components of AWS?
+Answer: EC2 – Elastic Compute Cloud, S3 – Simple Storage Service, Route53, EBS – Elastic Block
+Store, Cloudwatch, Key-Paris are few of the components of AWS.
+
+Q3) What are key-pairs?
+Answer:Key-pairs are secure login information for your instances/virtual machines. To connect to the
+instances we use key-pairs that contain a public-key and private-key.
+
+Q4) What is S3?
+Answer:S3 stands for Simple Storage Service. It is a storage service that provides an interface that
+you can use to store any amount of data, at any time, from anywhere in the world. With S3 you pay
+only for what you use and the payment model is pay-as-you-go.
+
+Q5) What are the pricing models for EC2instances?
+Answer:The different pricing model for EC2 instances are as below,
+• On-demand
+• Reserved
+• Spot
+• Scheduled
+• Dedicated
+
+Q6) What are the types of volumes for EC2 instances?
+
+Answer:
+• There are two types of volumes,
+• Instance store volumes
+• EBS – Elastic Block Stores
+
+Q7) What are EBS volumes?
+Answer:EBS stands for Elastic Block Stores. They are persistent volumes that you can attach to the
+instances. With EBS volumes, your data will be preserved even when you stop your instances, unlike
+your instance store volumes where the data is deleted when you stop the instances.
+
+Q8) What are the types of volumes in EBS?
+Answer:Following are the types of volumes in EBS,
+• General purpose
+• Provisioned IOPS
+• Magnetic
+• Cold HDD
+• Throughput optimized
+
+Q9) What are the different types of instances?
+Answer: Following are the types of instances,
+• General purpose
+• Computer Optimized
+• Storage Optimized
+• Memory Optimized
+• Accelerated Computing
+
+Q10) What is an auto-scaling and what are the components?
+Answer: Auto scaling allows you to automatically scale-up and scale-down the number of instances
+depending on the CPU utilization or memory utilization. There are 2 components in Auto scaling, they
+are Auto-scaling groups and Launch Configuration.
+
+Q11) What are reserved instances?
+Answer: Reserved instances are the instance that you can reserve a fixed capacity of EC2 instances. In
+reserved instances you will have to get into a contract of 1 year or 3 years.
+
+Q12)What is an AMI?
+Answer: AMI stands for Amazon Machine Image. AMI is a template that contains the software
+configurations, launch permission and a block device mapping that specifies the volume to attach to
+the instance when it is launched.
+
+Q13) What is an EIP?
+
+Answer: EIP stands for Elastic IP address. It is designed for dynamic cloud computing. When you
+want to have a static IP address for your instances when you stop and restart your instances, you will
+be using EIP address.
