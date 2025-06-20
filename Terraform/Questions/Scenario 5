@@ -11,3 +11,34 @@
 ✔️ 𝑳𝒐𝒄𝒌 𝒔𝒕𝒂𝒕𝒆 with DynamoDB
 ✔️ 𝑷𝒂𝒓𝒂𝒎𝒆𝒕𝒆𝒓𝒊𝒛𝒆 𝒓𝒆𝒈𝒊𝒐𝒏 via var.region
 ✔️ 𝑰𝒔𝒐𝒍𝒂𝒕𝒆 𝒅𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕𝒔 safely, no duplication, no disaster!
+
+
+
+multi-region-deployment.tf 
+
+resource "aws_instance" "web"
+terraform {
+required_version = ">= 1.7"
+backend "s3" {
+bucket= "my-terraform-states"
+
+key = "prod/${var. region}/terraform.tfstate" region = var.region
+dynamodb_table = "terraform-locks"
+  }
+}
+
+provider "aws" {
+region = var.region
+}
+variable "region" {
+description = "AWS region to deploy into"
+type = string 
+default = "us-east-1" # change to deploy in another region
+}
+resource "aws_instance" "web" {
+ami= "ami-0c55b159cbfafe1f0" # Amazon Linux 2 (example) 
+instance_type = "t2.micro"
+tags = {
+Name = "Terraform-${var.region}-Instance"
+}
+}
