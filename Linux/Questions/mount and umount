@@ -1,0 +1,12 @@
+How do you mount and unmount file systems in Linux? 
+
+Answer: 
+
+Mounting and unmounting file systems can be done using the following commands: 
+*Mount a file system:
+
+--mount /dev/sdX1 /mnt/mydisk 
+
+*Unmount a file system:
+
+ --umount /mnt/mydisk
