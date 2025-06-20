@@ -1,0 +1,33 @@
+Here’s a breakdown of the Linux File System Hierarchy to clear up the confusion:
+
+╰ / - Root directory (everything starts here)
+╰ /bin - Essential binaries (ls, cp, mv)
+╰ /boot - Boot loader files (kernel, GRUB)
+╰ /dev - Device files (USB, HDD, tty)
+╰ /etc - Configuration files
+╰ /home - User home directories
+╰ /lib - Essential system libraries
+╰ /media - Auto-mounted media (USB, CD)
+╰ /mnt - Temporary mount point
+╰ /opt - Third-party software packages
+╰ /proc - Virtual filesystem for processes
+╰ /root - Root user’s home directory
+╰ /run - Runtime process data
+╰ /sbin - System binaries (fsck, reboot)
+╰ /srv - Server-specific data
+╰ /sys - Kernel system information
+╰ /tmp - Temporary files (cleared on reboot)
+╰ /usr - User applications and tools
+╰ /usr/bin - Non-essential user binaries
+╰ /usr/lib - Libraries for /usr/bin
+╰ /usr/local - Locally installed software
+╰ /usr/share - Shared data (icons, docs)
+╰ /var - Variable data (logs, cache, mail)
+╰ /var/log - System logs
+╰ /var/spool - Queued jobs (print, mail)
+
+Understanding this structure helps you -
+
+ 🔠 Locate files efficiently
+ 🔠 Troubleshoot system issues faster
+ 🔠 Optimize performance & security
