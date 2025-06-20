@@ -1,0 +1,20 @@
+𝗗𝗼𝗰𝗸𝗲𝗿 𝗧𝗲𝘀𝘁 🧪🐳
+
+You learnt about 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝘀 and how to manage them in docker, time to test your knowledge. Below are some questions, try to answer them and evaluate your score 👇🏻
+
+⏩ 𝗗𝘂𝗿𝗶𝗻𝗴 𝗱𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁, 𝗮 𝗗𝗼𝗰𝗸𝗲𝗿 𝗯𝘂𝗶𝗹𝗱 𝗳𝗮𝗶𝗹𝘀 𝗼𝗻 𝘁𝗵𝗲 `𝗻𝗽𝗺 𝗶𝗻𝘀𝘁𝗮𝗹𝗹` 𝘀𝘁𝗲𝗽. 𝗪𝗵𝗮𝘁 𝗰𝗮𝗻 𝗯𝗲 𝘁𝗵𝗲 𝗿𝗲𝗮𝘀𝗼𝗻?
+- Missing or invalid 𝘱𝘢𝘤𝘬𝘢𝘨𝘦.𝘫𝘴𝘰𝘯 or 𝘱𝘢𝘤𝘬𝘢𝘨𝘦-𝘭𝘰𝘤𝘬.𝘫𝘴𝘰𝘯, ensure that copy package.json before running npm install
+- No internet Access, docker might be behind a proxy or firewall blocking internet access, so npm can’t download packages. Set up your Proxy setting using env vars
+- Private packages: Require authentication using .npmrc
+
+⏩ 𝗔𝗻 𝗶𝗺𝗮𝗴𝗲 𝗶𝘀 𝗺𝗶𝘀𝘀𝗶𝗻𝗴 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗹𝗼𝗰𝗮𝗹 𝘀𝘆𝘀𝘁𝗲𝗺. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗰𝗵𝗲𝗰𝗸 𝗶𝗳 𝗶𝘁’𝘀 𝗮𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗿𝗲𝗴𝗶𝘀𝘁𝗿𝘆?
+- Check if the image exist locally using docker images
+- If not on your Local system, check Dockerhub using docker search <image-name>
+- Try to pull the image using 𝘥𝘰𝘤𝘬𝘦𝘳 𝘱𝘶𝘭𝘭 <𝘪𝘮𝘢𝘨𝘦-𝘯𝘢𝘮𝘦>, if successful → image exists otherwise 404 error
+- In case of Private registry login first and then use pull command
+
+⏩ 𝗔 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗶𝘀 𝗿𝘂𝗻𝗻𝗶𝗻𝗴 𝗳𝗶𝗻𝗲 𝗯𝘂𝘁 𝗶𝘀 𝗰𝗼𝗻𝘀𝘂𝗺𝗶𝗻𝗴 𝗺𝗼𝗿𝗲 𝗺𝗲𝗺𝗼𝗿𝘆. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗺𝗼𝗻𝗶𝘁𝗼𝗿 𝗮𝗻𝗱 𝗹𝗶𝗺𝗶𝘁 𝗶𝘁?
+- Use 𝘥𝘰𝘤𝘬𝘦𝘳 𝘴𝘵𝘢𝘵𝘴 <𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘦𝘳-𝘪𝘥> to get real-time memory, CPU usage
+- Use docker inspect <container-Id> to get historical data
+- Set Memory Limits by providing —memory flag while using docker run command
+- Set Resource Limit in Pod Yaml file
