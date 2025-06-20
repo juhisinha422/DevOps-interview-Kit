@@ -1,0 +1,63 @@
+Monitoring & Alerting
+
+What tools have you used to monitor infrastructure & applications?
+
+How do you set up alerts in Prometheus?
+
+What do you check if an alert doesn't trigger?
+
+How do you reduce CPU/storage usage in Prometheus?
+
+
+🐳 Docker
+
+What is Docker (in your own words)?
+
+How do you build an image and run a container?
+
+How do you create a container from an image?
+
+What’s the difference between a Docker container and a Kubernetes pod?
+
+
+☸️ Kubernetes
+
+Can you explain K8s architecture in simple terms?
+
+Have you ever set up a K8s cluster from scratch? How?
+
+What does kubectl apply do?
+
+How do you check pod logs?
+
+How do you launch a pod using a Docker image?
+
+What’s a pod vs a container?
+
+
+⚙️ Jenkins
+
+Can you write a simple Jenkins pipeline and explain it?
+
+How do you define and use variables in a pipeline?
+
+What's the role of Jenkins in your CI/CD workflow?
+
+
+📦 Ansible
+
+Have you written playbooks? For what use cases?
+
+How does Ansible help in DevOps?
+
+
+🐧 Linux & Shell Scripting
+
+What does grep do? Any common use cases?
+
+How do you list files in a directory?
+
+
+🧑💻 Day-to-Day Work
+
+What are your daily activities as a DevOps engineer?
