@@ -1,0 +1,11 @@
+DevOps Engineers are pivotal in automating and streamlining the software development lifecycle. 
+They construct and oversee CI/CD pipelines utilizing tools such as GitHub Actions, Jenkins, Docker, Kubernetes, Terraform, and Ansible. 
+Serving as the link between development and operations teams, their objective is to deliver software efficiently, consistently, and with minimal errors.
+
+Site Reliability Engineers (SRE) blend software engineering with operations, prioritizing reliability and uptime. 
+They monitor performance, establish alerts, and guarantee system availability using tools like Grafana, Datadog, Prometheus, and Splunk. 
+By defining and managing SLOs, SLAs, and SLIs, they strive to maintain seamless system operations with high availability and reliability.
+
+Cloud Engineers focus on crafting, constructing, and upholding cloud infrastructure across platforms like Azure, AWS, and GCP. 
+Their responsibilities encompass managing virtual networks, storage, compute resources, and cloud security. 
+By utilizing tools like Terraform, Ansible, and Kubernetes, they ensure optimal performance, cost efficiency, and adherence to security protocols to develop scalable, secure, and economically viable cloud environments.
