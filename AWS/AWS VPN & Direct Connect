@@ -1,0 +1,15 @@
+𝐀𝐖𝐒 𝐕𝐏𝐍
+=======
+==> It is used to connect the on-premises network to our AWS cloud.
+==> It will go over public network
+==> The connection is automatically encrypted
+A small e-commerce company wants to securely transfer customer order data from their on-prem database to an EC2 instance in AWS.
+They use AWS VPN, which encrypts the data over the public internet. It's easy to set up and cost-effective for their traffic.
+
+𝐀𝐖𝐒 𝐃𝐢𝐫𝐞𝐜𝐭 𝐂𝐨𝐧𝐧𝐞𝐜𝐭
+==============
+==> Establish a physical connection between on-premises and AWS.
+==> The connection is private, secure and fast
+==> Suitable for large data transfers and latency-sensitive applications
+A video production firm needs to transfer terabytes of raw footage daily to AWS for backup and AI processing.
+Using Direct Connect, they get a dedicated, high-bandwidth, low-latency connection, which ensures faster uploads and consistent performance without relying on the public internet.
