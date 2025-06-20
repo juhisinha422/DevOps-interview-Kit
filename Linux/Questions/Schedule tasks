@@ -1,0 +1,12 @@
+How do you schedule tasks in Linux? 
+
+Answer: 
+
+cron: For recurring tasks 
+         cron jobs: crontab -e 
+
+Cron syntax:  * * * * *  /path/to/command 
+
+
+For better understanding of CRON visit
+https://lnkd.in/g4HTQESN
