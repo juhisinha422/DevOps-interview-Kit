@@ -1,0 +1,45 @@
+Just Crushed a Solid AWS DevOps Technical Interview at Bootslab Tech🔧☁️
+1st-round interview at Bootslab Tech (2.6 YOE - AWS DevOps) 
+
+🧱 Docker
+What happens if a Docker container is deleted?
+What are Namespaces in Docker?
+What is Docker build cache?
+How to share Docker images across orgs?
+How to extract .tar for Docker use?
+Command to remove all stopped containers?
+
+🌍 Terraform
+Infra stuck mid-apply—what now?
+How do Terraform locks work?
+How to manage module dependencies?
+What is terraform fmt vs terraform validate?
+Explain null resources & local-exec.
+Secure secrets: alternatives to storing in .tfstate.
+
+☸️ Kubernetes
+Pod stuck in Terminating state—fix?
+ConfigMap not reflecting—what to do?
+How to attach ConfigMap to pod?
+
+🛡️ Istio & ALB
+Attributes of an Istio gateway?
+How to install Istio & create custom gateway?
+How to refer secrets in Istio?
+Annotations linking Istio and AWS ALB?
+
+📉 Infra & Monitoring
+ALB vs NLB: difference?
+Public vs Private subnet?
+Route 53 → Public/Private Hosted Zone?
+Prometheus & Grafana: ports, integration, and no-data troubleshooting?
+Ansible modules: what and why?
+
+🔐 EC2 & Auth
+Permission denied to EC2? Troubleshoot steps?
+EC2: prevent disk deletion on reboot?
+Login via username/password → required config?
+GitHub self-hosted runners → AWS connectivity?
+
+📊 Bonus: They also asked me to design an architecture diagram for:
+“3 Kubernetes-hosted apps behind Istio (internal LB) and AWS ALB (external LB) routing traffic via domain example.com.”
