@@ -1,0 +1,6 @@
+How do you check running processes in Linux?
+
+Answer: 
+--ps: Lists running processes.
+--top: Real-time display of running processes and system resource usage. 
+--htop: An enhanced version of top with a user-friendly interface. 
