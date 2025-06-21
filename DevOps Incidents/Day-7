@@ -1,0 +1,20 @@
+Day 7 : The Disk Space Crisis
+
+Incident:
+A disk space issue in a critical MySQL database server led to database crashes, as logs and temporary files consumed all available disk space, preventing the database from writing new data.
+
+What Happened Next:
+Once disk space was exhausted, the database service stopped writing, resulting in read-only behavior and failures for transaction-heavy applications that depended on real-time data updates.
+
+Root Cause:
+	1.	Log Files Not Rotated: The log rotation for MySQL was not set up properly, leading to excessive disk space consumption by log files.
+	2.	Absence of Disk Space Alerts: There were no disk space alerts configured, and no automated process to warn the team before disk capacity was reached.
+	3.	Temporary Files Not Cleaned Up: Temporary files created during database queries were not being cleaned up regularly, contributing to the disk space issue.
+
+Fix:
+	1.	Enable MySQL Log Rotation: Set up automatic log rotation for MySQL logs, ensuring that older logs are archived or deleted.
+	2.	Implement Disk Space Alerts: Configured CloudWatch and Prometheus to monitor disk space usage and trigger alerts when disk space usage reaches a threshold.
+	3.	Clean Up Temporary Files: Implemented regular cleanup tasks to remove temporary files generated during heavy database operations.
+
+Takeaway:
+Configure proper log rotation, set up disk space alerts, and automate cleanup tasks to prevent disk space crises in production systems.
