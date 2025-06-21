@@ -1,0 +1,22 @@
+#IncidentPostmortem
+
+Day 1: “The Service Dependency Chaos”
+
+Incident:
+An issue with an internal service dependency led to cascading failures across multiple applications. The billing microservice relied on a third-party API for payment processing, but the external service was unexpectedly down for 5 hours.
+
+What Happened Next:
+When the external payment API went down, billing transactions started failing, and users couldn’t make payments. The issue affected the entire e-commerce platform, causing significant revenue loss. The team quickly discovered that the billing service wasn’t designed to handle outages from external services.
+
+Root Cause:
+	1.	Lack of Dependency Resilience: The billing service didn’t have a circuit breaker in place to handle failures from the payment API.
+	2.	No Fallback Mechanism: There was no fallback mechanism for users trying to make payments during the API outage.
+	3.	Unanticipated Service Downtime: The third-party API had no status monitoring or alerting for downtime, causing unanticipated service interruptions.
+
+Fix:
+	1.	Circuit Breaker Implementation: Added a circuit breaker in the billing service to stop calls to the API once it detects failures and prevents further errors.
+	2.	Fallback Strategy: Implemented a local cache for transactions, allowing users to retry payments once the external service is available again.
+	3.	Monitoring for Dependencies: Integrated a third-party API monitoring tool to alert the team of any outages and downtime.
+
+Takeaway:
+Always build resilience in services that rely on third-party APIs. Circuit breakers and fallback mechanisms are crucial for handling dependency failures without affecting users.
