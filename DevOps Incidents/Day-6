@@ -1,0 +1,20 @@
+Day 6 : The Kubernetes Node Eviction
+
+Incident:
+A Kubernetes node in the cluster was evicted due to memory pressure, causing disruption in running applications.
+
+What Happened Next:
+Several critical pods were disrupted when the node was evicted, and since the Horizontal Pod Autoscaler (HPA) was misconfigured, the application couldn’t recover quickly enough, causing degradation.
+
+Root Cause:
+	1.	Insufficient Node Memory Allocation: The node had been allocated insufficient memory to handle the workloads running, leading to memory pressure.
+	2.	Misconfigured HPA: The HPA was not set up to scale efficiently under load, and it didn’t react quickly enough to relieve resource pressure.
+	3.	No Pod Disruption Budgets (PDB): There were no Pod Disruption Budgets (PDBs) defined for critical pods, which meant that the eviction process did not respect the desired number of available replicas.
+
+Fix:
+	1.	Resize Nodes: Increased the memory capacity of the affected Kubernetes node and added additional nodes to the cluster for better resource allocation.
+	2.	Tune HPA Parameters: Recalibrated the HPA settings to respond quicker to increased loads, ensuring pods scale automatically based on demand.
+	3.	Implement PDBs: Defined PDBs for critical services to ensure that evictions don’t disrupt production workloads beyond acceptable limits.
+
+Takeaway:
+Proper resource allocation, fine-tuned HPA settings, and PDBs are necessary to prevent disruption in Kubernetes-based systems under heavy load.
