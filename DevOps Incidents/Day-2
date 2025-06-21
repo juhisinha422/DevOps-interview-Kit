@@ -1,0 +1,20 @@
+Day 2: “The Outdated Cache Disaster”
+
+Incident:
+An issue with outdated cache data caused a feature malfunction in the mobile app, where users could see old pricing information. This resulted in confusion and financial discrepancies for both customers and the company.
+
+What Happened Next:
+Users reported seeing outdated prices when checking out on the mobile app. The app was displaying data from the cache instead of fetching the latest prices from the database, leading to incorrect charges.
+
+Root Cause:
+	1.	Cache Expiry Policy Misconfiguration: The cache expiration time for pricing data was set too long, causing users to receive outdated prices.
+	2.	No Cache Invalidations on Price Update: There was no proper mechanism in place to invalidate the cache after prices were updated in the database.
+	3.	Lack of Cache Monitoring: There were no cache performance monitoring metrics to alert the team about issues with stale data.
+
+Fix:
+	1.	Cache Expiry Adjustments: We reduced the TTL for price data cache and introduced cache invalidation triggers for price updates.
+	2.	Cache Layer Improvements: Implemented redis-based cache with more frequent invalidation when critical data is updated in the database.
+	3.	Monitoring and Alerts: Introduced cache hit/miss ratio monitoring and set up alerts in Prometheus to notify the team when cache-related issues arise.
+
+Takeaway:
+Always monitor and fine-tune your cache expiration policies to ensure that critical data remains fresh. Implement cache invalidation when updating core information.
