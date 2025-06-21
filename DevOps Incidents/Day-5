@@ -1,0 +1,17 @@
+Day 5: “The Overwhelming API Requests”
+
+Incident:
+An uncontrolled traffic spike from a new feature led to the API rate-limiting being exceeded, resulting in 5-minute outages for all user-facing services. The spike happened because the feature triggered an excessive number of requests.
+
+What Happened Next:
+The traffic spike from the feature overload caused our API Gateway to exceed its rate limit and throttle requests. Users were unable to access critical features like logging in or viewing their profiles.
+
+Root Cause:
+	1.	No Throttling in the Feature Design: The new feature didn’t account for rate-limiting or traffic shaping, leading to too many requests being sent in a short period.
+	2.	API Rate-Limiting Insufficient: The rate-limiting rules were set too high, but they couldn’t handle sudden spikes in traffic.
+	3.	Inadequate Load Testing: The feature was not stress-tested under heavy load, leaving the team unprepared for the traffic surge.
+
+Fix:
+	1.	API Traffic Shaping: Implemented rate-limiting and traffic shaping for new features to limit the number of requests sent per user.
+	2.	Load Testing: Conducted stress testing for new features to identify potential performance bottlenecks.
+	3.	Scale API Gateway: Increased the API Gateway’s scaling capacity by adjusting CPU & memory thresholds in Kubernetes HPA and Rate-Limit Headers to inform clients when they’re approaching their request quota.
