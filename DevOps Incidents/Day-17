@@ -1,0 +1,22 @@
+#IncidentPostmortem
+
+Day 17: Kubernetes Pod CrashLoop Mystery
+
+Incident:
+A deployment in Kubernetes kept restarting due to CrashLoopBackOff errors. Users reported downtime for that specific service.
+
+What Happened Next:
+Engineers inspected the pod status and logs, noticing that the application failed on start-up and the pod never became “Ready”.
+
+Root Cause:
+	1.	Misconfigured Readiness Probe: The probe endpoint was unreachable during container boot time.
+	2.	OOMKilled Error: Application exceeded allocated memory limit of the pod and was forcefully terminated by K8s.
+	3.	Hardcoded Secrets: Secrets were incorrectly hardcoded, causing the app to fail when moved to staging/prod with different keys.
+
+Fix:
+	1.	Adjusted Probe Timing: Increased initial delay and timeout for probes in deployment.yaml.
+	2.	Tuned Resource Requests/Limits: Analyzed memory usage and adjusted memory requests and limits.
+	3.	Externalized Secrets: Migrated secrets to Kubernetes Secret store and mounted them as environment variables.
+
+Takeaway:
+Health checks must account for warm-up time, and resource limits must reflect real usage. Always separate configuration from code for scalable and environment-agnostic deployments.
