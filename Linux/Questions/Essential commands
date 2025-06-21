@@ -1,0 +1,52 @@
+Essential Linux Commands for Every DevOps Engineer
+ 
+
+🔹 𝐅𝐢𝐥𝐞 𝐒𝐲𝐬𝐭𝐞𝐦 𝐎𝐩𝐞𝐫𝐚𝐭𝐢𝐨𝐧𝐬
+ls – List directory contents
+cd – Change directory
+mkdir – Create directories
+rm – Remove files or directories
+
+🔹 𝐅𝐢𝐥𝐞 𝐏𝐞𝐫𝐦𝐢𝐬𝐬𝐢𝐨𝐧𝐬
+chmod – Change file permissions
+chown – Change file owner and group
+chgrp – Change group ownership
+
+🔹 𝐏𝐫𝐨𝐜𝐞𝐬𝐬 𝐌𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭
+ps – Show running processes
+kill – Terminate processes
+top – Live process monitoring
+
+🔹 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐢𝐧𝐠
+ifconfig – Network configuration
+ping – Test network connectivity
+netstat – Network statistics & connections
+
+🔹 𝐒𝐲𝐬𝐭𝐞𝐦 𝐈𝐧𝐟𝐨
+uname – Kernel/system information
+hostname – Show/modify hostname
+df – Check disk space
+
+🔹 𝐏𝐚𝐜𝐤𝐚𝐠𝐞 𝐌𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭
+apt – Debian-based package manager
+yum – RHEL/CentOS package manager
+dpkg – Debian package tool
+
+🔹 𝐒𝐡𝐞𝐥𝐥 𝐒𝐜𝐫𝐢𝐩𝐭𝐢𝐧𝐠
+bash – Shell scripting
+echo – Output text
+grep – Search text using patterns
+
+🔹 𝐔𝐬𝐞𝐫 & 𝐆𝐫𝐨𝐮𝐩 𝐌𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭
+useradd, userdel – Create/Delete users
+passwd – Change user password
+
+🔹 𝐅𝐢𝐥𝐞 𝐓𝐫𝐚𝐧𝐬𝐟𝐞𝐫
+scp – Secure copy
+rsync – Remote sync
+wget – Download from web
+
+🔹 𝐒𝐲𝐬𝐭𝐞𝐦 𝐒𝐞𝐫𝐯𝐢𝐜𝐞𝐬
+systemctl – Manage systemd services
+service – Legacy service handler
+chkconfig – Enable/disable services
