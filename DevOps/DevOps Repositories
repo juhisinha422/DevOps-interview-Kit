@@ -1,0 +1,27 @@
+Mastering DevOps Repositories – A Quick Summary Table for Every Engineer! 🔧
+
+In the world of DevOps, managing code, packages, containers, and secrets efficiently is key to delivering reliable software at scale. Here's a summary table that breaks down the essential types of repositories, popular tools, and who typically uses them:
+
+🔹 Source Code Repo – GitHub, GitLab, Bitbucket
+👨💻 Used by: Devs, DevOps
+
+🔹 Artifact Repo – Nexus, Artifactory, PyPI, npm
+⚙️ Used by: Devs, DevOps
+
+🔹 Container Repo – Docker Hub, ECR, GCR
+🐳 Used by: DevOps, SREs
+
+🔹 Config/IaC Repo – Terraform, Ansible, Helm
+🛠️ Used by: DevOps, Cloud Engineers
+
+🔹 OS Package Repo – YUM, APT, Zypper
+🧑💻 Used by: SysAdmins
+
+🔹 Large File Repo – S3, Azure Blob, GCS
+📦 Used by: DevOps, ML Engineers
+
+🔹 Helm Chart Repo – ArtifactHub, Harbor
+☸️ Used by: Kubernetes Engineers
+
+🔹 Secret Management Repo – Vault, Secrets Manager
+🔐 Used by: DevOps, Security
