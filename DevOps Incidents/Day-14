@@ -1,0 +1,20 @@
+Day 14: The Docker Image Bloat 
+
+Incident:
+A Docker image bloat issue caused slow deployments and significant delays during the container startup time, especially when deployed to a cloud environment.
+
+What Happened Next:
+The container image, due to its large size, was slow to pull, and the startup time increased, delaying the service from becoming available for users.
+
+Root Cause:
+	1.	Large Base Image: The Docker image was built on a large base image, which unnecessarily included components that weren’t needed for the application.
+	2.	Unoptimized Layering: The application was built with inefficient layering in the Dockerfile, leading to unnecessary bloat in the final image.
+	3.	No Image Caching Strategy: The team didn’t leverage Docker image caching, which led to full image rebuilds on every deployment, increasing time and bandwidth usage.
+
+Fix:
+	1.	Use a Smaller Base Image: Switched to a minimal base image (e.g., Alpine Linux) to reduce the image size.
+	2.	Optimize Dockerfile Layers: Refactored the Dockerfile to reduce the number of layers and improve caching efficiency by reordering instructions (e.g., putting RUN apt-get update before copying application files).
+	3.	Implement Image Caching: Configured CI/CD pipelines to leverage image caching to avoid rebuilding the entire image from scratch every time.
+
+Takeaway:
+For faster deployments and better performance, always use minimal base images, optimize Dockerfile layering, and make use of image caching strategies.
