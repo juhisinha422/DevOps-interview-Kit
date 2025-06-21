@@ -1,0 +1,20 @@
+Day 16: Intermittent 500 Errors in Production
+
+Incident:
+Users were experiencing intermittent 500 Internal Server Errors while accessing core services on the web app.
+
+What Happened Next:
+The DevOps team received alerts from APM tools indicating elevated error rates. Logs revealed these errors were non-deterministic and occurring under variable load.
+
+Root Cause:
+	1.	Uncaught Exception in API Layer: A missing null check was causing a runtime error in specific user flows.
+	2.	Missing Retry Mechanism: The backend API was making outbound HTTP calls without retries, failing when the downstream service timed out.
+	3.	Lack of Circuit Breaker: The application failed repeatedly on external service calls, cascading failure to users.
+
+Fix:
+	1.	Code Fix: Patched the API logic to handle nulls and edge cases properly.
+	2.	Implement Retry with Backoff: Added exponential backoff logic and retry decorators to critical HTTP calls.
+	3.	Add Circuit Breaker: Used a library (e.g., Resilience4j) to isolate failed dependencies and prevent user-facing errors.
+
+Takeaway:
+Intermittent 500s often point to downstream instability or unhandled edge cases. Proactively adding circuit breakers and retries can protect user experience and isolate faults.
