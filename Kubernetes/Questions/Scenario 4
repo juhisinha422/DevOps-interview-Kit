@@ -1,0 +1,36 @@
+Kubernetes Scenario Based Interview☸️ ☸️ Cluster IP ☸️
+
+🚨🚨 Why Cluster IP Works for Some Pods but Not Others in Amazon EKS? 🚨🚨
+
+💥 I hit this issue recently in Amazon EKS, and it turned into a full-blown investigation.
+
+- Imagine that We deploy a service, expose it as Cluster IP, pods are healthy, DNS resolves…
+✅ Some pods can access it.
+❌ Others just timeout.
+
+💥 At first, it seems totally random —
+some pods work, some don’t.
+
+But in Kubernetes, "random" usually means there's logic you haven’t uncovered yet 😅 .
+
+✅ Lets Debug Main reasons behind it
+
+1️⃣ Network Policies: ( Namespace isolation Security )
+Pods in certain namespaces or with specific labels may be allowed, while others are silently blocked.
+→ Check Network Policy rules — especially if there's a default-deny in place.
+
+2️⃣ VPC CNI or ENI Exhaustion:
+In EKS, pods get IPs via ENIs. If you’ve hit your ENI limit or misconfigured subnet routing, only some pods can reach across subnets.
+
+3️⃣ Security Groups for Pods (SGP):
+Using vpc.amazonaws.com/pod-eni? Make sure SG rules allow egress to Cluster IP targets. One wrong rule can block half your traffic.
+
+4️⃣ kube-proxy Desync or Failure:
+If kube-proxy failed to sync rules on a node, pods on that node won’t know how to reach the Cluster IP.
+
+5️⃣ App-Level Firewalls :
+ Please don't ideally debug the issue May be some times you need your app team friend help to trouble shoot the issue😅. our app might be rejecting traffic based on internal rules or exhausted connection pools. Kubernetes isn’t always the problem. 😅
+
+🎯 Final Conclusion :
+
+Network Debug is a Hectic one If you don't know the basics. We need to troubleshoot networking from Application layer to Data link layer (OSI).If we familiar with network Basics like firewalls , ports, OSI, protocols, DNS, may be we can resolve the issue with just one or two cups of coffee 😂 .
