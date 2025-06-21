@@ -1,0 +1,59 @@
+𝟭. 𝗨𝘀𝗲𝗿 𝗿𝗲𝗽𝗼𝗿𝘁𝘀 𝗵𝗶𝗴𝗵 𝗖𝗣𝗨 𝘂𝘀𝗮𝗴𝗲. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗼?
+𝗦𝘁𝗲𝗽𝘀:
+• Run top or htop to see real-time CPU usage.
+• Use ps aux --sort=-%cpu | head to find the top processes.
+• Investigate the PID using strace -p <pid> or lsof -p <pid>.
+
+Check if it’s a normal load (e.g., backup, cron job) or a runaway process.
+
+𝟮. 𝗗𝗶𝘀𝗸 𝘀𝗽𝗮𝗰𝗲 𝗶𝘀 𝗳𝘂𝗹𝗹. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝘁𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗮𝗻𝗱 𝗳𝗶𝘅 𝗶𝘁?𝗦𝘁𝗲𝗽𝘀:
+• Run df -h to find which partition is full.
+• Use du -sh /* and then du -sh /var/* etc. to drill down.
+• Check /var/log/, /tmp, large files with find / -size +500M.
+
+Clean up logs, old files, or move/archive if needed.
+
+𝟯. 𝗬𝗼𝘂 𝗰𝗮𝗻'𝘁 𝗦𝗦𝗛 𝗶𝗻𝘁𝗼 𝗮 𝘀𝗲𝗿𝘃𝗲𝗿. 𝗪𝗵𝗮𝘁 𝗰𝗼𝘂𝗹𝗱 𝗯𝗲 𝘁𝗵𝗲 𝗶𝘀𝘀𝘂𝗲?𝗖𝗵𝗲𝗰𝗸𝘀:
+• Network: ping server_ip, traceroute.
+• Port: nc -zv server_ip 22 or telnet server_ip 22.
+• Firewall: Check iptables, firewalld, security groups (cloud).
+• Service: Is sshd running? systemctl status sshd
+
+Auth: Are permissions on ~/.ssh/authorized_keys correct?
+
+𝟰. 𝗔 𝘂𝘀𝗲𝗿 𝗰𝗮𝗻’𝘁 𝗿𝘂𝗻 𝘀𝘂𝗱𝗼. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗰𝗵𝗲𝗰𝗸?𝗦𝘁𝗲𝗽𝘀:
+• Check with groups username — is the user in sudo group?
+• Check /etc/sudoers and /etc/sudoers.d/.
+• Use sudo -l -U username to list allowed sudo commands.
+
+Check /etc/passwd and /etc/shadow for account issues.
+
+𝟱. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗴𝗶𝘃𝗲 𝗮 𝘂𝘀𝗲𝗿 𝗽𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝘁𝗼 𝗿𝘂𝗻 𝗼𝗻𝗹𝘆 𝗼𝗻𝗲 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 𝘄𝗶𝘁𝗵 𝘀𝘂𝗱𝗼?
+𝗔𝗻𝘀𝘄𝗲𝗿:
+Edit sudoers with visudo:
+username ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart apache2
+
+This allows only restarting Apache with sudo.
+
+𝟲. 𝗧𝗵𝗲 𝘄𝗲𝗯𝘀𝗶𝘁𝗲 𝗵𝗼𝘀𝘁𝗲𝗱 𝗼𝗻 𝘆𝗼𝘂𝗿 𝗟𝗶𝗻𝘂𝘅 𝘀𝗲𝗿𝘃𝗲𝗿 𝗶𝘀 𝗱𝗼𝘄𝗻. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗰𝗵𝗲𝗰𝗸?𝗖𝗵𝗲𝗰𝗸𝗹𝗶𝘀𝘁:
+• Ping the server.
+• Check systemctl status apache2 or nginx.
+• Confirm the port is open: netstat -tuln | grep 80
+• Check firewall: ufw status, iptables -L.
+
+Check logs: /var/log/nginx/error.log or /var/log/apache2/error.log
+
+𝟳. 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗶𝘀 𝘀𝗹𝗼𝘄. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗶𝗮𝗴𝗻𝗼𝘀𝗲 𝗶𝘁?𝗧𝗼𝗼𝗹𝘀:
+• ping, traceroute, mtr — path and packet loss.
+• iftop, nload — bandwidth usage.
+• ss -tuln — open ports and connections.
+• Look for high RX/TX errors: ifconfig or ip -s link.
+
+• 𝟴. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗳𝗶𝗻𝗱 𝗼𝘂𝘁 𝘄𝗵𝗶𝗰𝗵 𝗽𝗿𝗼𝗰𝗲𝘀𝘀 𝗶𝘀 𝘂𝘀𝗶𝗻𝗴 𝗮 𝘀𝗽𝗲𝗰𝗶𝗳𝗶𝗰 𝗽𝗼𝗿𝘁?
+sudo lsof -i :<port>sudo netstat -tulnp | grep <port>
+
+𝟵. 𝗔 𝘀𝗲𝗿𝘃𝗶𝗰𝗲 𝗳𝗮𝗶𝗹𝘀 𝘁𝗼 𝘀𝘁𝗮𝗿𝘁. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗲𝗯𝘂𝗴 𝗶𝘁?
+• systemctl status servicename
+• journalctl -xe for system logs
+• Check config syntax: nginx -t, named-checkconf, etc.
+Check port conflicts: netstat -tuln
