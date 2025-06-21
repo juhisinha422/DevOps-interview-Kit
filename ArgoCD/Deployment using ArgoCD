@@ -1,0 +1,33 @@
+Hands-On Continuous Deployment Project with ArgoCD 
+
+I recently completed a hands-on project where I installed and configured ArgoCD to deploy applications on a K3s Kubernetes cluster running on an AWS EC2 instance and it was a game-changer to my understanding of continuous deployments.
+
+This project increased my understanding of moving from a GitHub repo to live deployment — using ArgoCD to manage, monitor, and apply changes automatically.
+
+I finally got to see how infrastructure and deployment tools come together in real-world workflows.
+
+Here’s what I worked on:
+- Launched 3 EC2 instances: argocd, dev, and prod to simulate real world setups.
+
+- Installed K3s Kubernetes on all 3, and used the argocd instance as both the ArgoCD server and the deployment cluster
+
+- Installed ArgoCD and exposed it using a NodePort service for browser access
+
+- Accessed the ArgoCD UI using the external IP and port
+
+- Created a private GitHub repository for my Kubernetes deployment file.
+
+- Connected GitHub to ArgoCD and deployed the application to a dedicated namespace in my Kubernetes cluster via the ArgoCD dashboard.
+
+- Tested Continuous deployment by changing the number of replicas in the deployment file and watched as ArgoCD performed the update immediately.
+
+✅ Key Takeaways:
+- Understood how to expose services like ArgoCD via NodePort for public access
+
+- Practiced configuring and using kubeconfig for managing access and interaction with the Kubernetes cluster.
+
+- Connected ArgoCD to a GitHub repo securely using a personal access token
+
+- Learned how to deploy an app to a namespace from ArgoCD using GitHub as the source
+
+I documented the entire project here — from launching EC2 instances to deploying via ArgoCD: https://lnkd.in/gcR7qiNb
