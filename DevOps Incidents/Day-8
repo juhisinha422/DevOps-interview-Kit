@@ -1,0 +1,21 @@
+Day 8 : The Network Latency Spike 
+
+Incident:
+A network latency spike between microservices in the Kubernetes cluster resulted in slow responses and timeouts for several key user-facing services.
+
+What Happened Next:
+Services that relied on inter-container communication experienced degraded performance, causing end-user frustration. Network performance metrics were not monitored closely enough to detect the issue proactively.
+
+Root Cause:
+	1.	Kubernetes Pod Resource Contention: A CPU resource contention among Kubernetes pods caused delays in the communication between services.
+	2.	Cluster Network Misconfiguration: The Calico CNI plugin was misconfigured, causing routing inefficiencies and increasing network latency between pods.
+	3.	Lack of Network Performance Monitoring: There were no service mesh or network observability tools in place to trace network performance or pinpoint the latency bottleneck.
+
+Fix:
+	1.	Optimize Resource Allocation: CPU and memory limits for Kubernetes pods were properly defined, and resource requests were balanced to avoid contention.
+	2.	Reconfigure CNI Plugin: Corrected the Calico plugin configuration to optimize routing and network throughput.
+	3.	Implement Service Mesh with Istio: Deployed Istio as a service mesh to gain deeper visibility into network performance and traffic flow between microservices.
+	4.	Enable Distributed Tracing with Jaeger: Integrated Jaeger for distributed tracing to monitor service-to-service communication in real time.
+
+Takeaway:
+Proper resource allocation and monitoring using service meshes and distributed tracing are essential for diagnosing and mitigating network latency in microservices.
