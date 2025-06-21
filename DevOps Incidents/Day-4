@@ -1,0 +1,20 @@
+Day 4: “The Deadlocked Database”
+
+Incident:
+A deadlock in the MySQL database caused a series of failed transactions and a service outage for 2 hours. The application’s core transaction flow was halted due to multiple database processes waiting for each other to release locks.
+
+What Happened Next:
+The issue resulted in several transactions failing and users being unable to complete purchases. The deadlock was due to two processes waiting on each other to release database locks, causing a complete block in transaction processing.
+
+Root Cause:
+	1.	Incorrect Transaction Ordering: The SQL queries were written in a way that caused different processes to lock the same resources in the opposite order.
+	2.	Lack of Deadlock Detection: The database didn’t have a deadlock detection mechanism configured, making it impossible to automatically recover from deadlocks.
+	3.	Missing Indexes: The queries involved in the deadlock were running on non-indexed columns, leading to table scans and locking.
+
+Fix:
+	1.	Revised Query Logic: Refactored the SQL queries to ensure that transactions lock resources in a consistent order to prevent circular dependencies.
+	2.	Deadlock Detection: Enabled deadlock detection in MySQL and configured automatic retries for deadlocked transactions.
+	3.	Index Optimization: Optimized the SQL queries by adding indexes to the columns involved in the deadlock.
+
+Takeaway:
+To avoid deadlocks, ensure consistent transaction ordering and use indexing for frequently accessed columns. Enable deadlock detection for automatic recovery.
