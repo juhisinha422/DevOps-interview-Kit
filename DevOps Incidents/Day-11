@@ -1,0 +1,20 @@
+Day 11: The Redis Cache Overload 
+
+Incident:
+An overload of requests led to Redis cache failures, causing delays and timeouts for the application, as data retrieval from the cache became slower than fetching it from the database.
+
+What Happened Next:
+The cache could not handle the sudden surge of requests, and because the application was heavily dependent on the cache for performance, latency spiked and user requests were delayed.
+
+Root Cause:
+	1.	Insufficient Redis Memory Allocation: Redis was running with insufficient memory, causing evictions and slower performance.
+	2.	Lack of Cache Expiry Policy: Some cache entries did not have expiration times set, leading to stale data occupying memory and contributing to slowdowns.
+	3.	No Rate Limiting on Cache Requests: The app made requests to Redis without proper rate limiting, resulting in an unmanageable volume of concurrent operations.
+
+Fix:
+	1.	Increase Redis Memory Limits: Increased the memory limits for Redis and ensured that it had enough resources to handle high traffic loads.
+	2.	Implement Cache Expiry Policies: Added TTL for cache entries to ensure that stale data does not occupy memory unnecessarily.
+	3.	Rate Limit Cache Requests: Introduced rate limiting in the application to control the number of cache hits and prevent Redis from becoming overwhelmed.
+
+Takeaway:
+Proper Redis configuration, including memory allocation, TTL policies, and rate limiting, is essential to prevent cache-related performance issues in production.
