@@ -1,0 +1,21 @@
+Day 9: The Misconfigured AWS IAM Role
+
+Incident:
+A misconfigured AWS IAM (Identity and Access Management) role granted unnecessary privileges to the production environment, leading to an unauthorized service being able to modify production databases.
+
+What Happened Next:
+The unauthorized service accessed and updated production database records, causing critical data corruption, which led to significant service downtime.
+
+Root Cause:
+	1.	Over-Permissioned IAM Role: The IAM role associated with the service was granted broader permissions than necessary, violating the principle of least privilege.
+	2.	Lack of IAM Auditing: There was no system in place to audit and monitor IAM role changes or privilege escalations.
+	3.	Misuse of Root Account: The service used the root account to assume roles, bypassing role-based access control (RBAC).
+
+Fix:
+	1.	Enforce Least Privilege for IAM Roles: The IAM roles were reconfigured to ensure that they only had the permissions needed for their specific tasks.
+	2.	Implement IAM Policy Simulator: Integrated AWS IAM Policy Simulator to test and validate role permissions before deployment.
+	3.	Enable IAM Access Analyzer: Enabled IAM Access Analyzer to detect and alert on overly permissive roles or unintentional access patterns.
+	4.	Implement Role Rotation: Set up a periodic role rotation mechanism to limit the lifespan of critical roles and reduce risk.
+
+Takeaway:
+Follow least privilege principles in IAM role design, and use tools like IAM Policy Simulator and IAM Access Analyzer for security validation and auditing.
