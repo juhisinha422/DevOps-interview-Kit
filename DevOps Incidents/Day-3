@@ -1,0 +1,20 @@
+Day 3: “The Stuck Kubernetes Pod”
+
+Incident:
+A Kubernetes pod was stuck in a pending state, causing critical services to become unavailable for over 4 hours during peak traffic. The affected pod was responsible for processing user authentication requests.
+
+What Happened Next:
+After the pod was stuck, users couldn’t log in to the application. The team tried manually restarting the pod but encountered errors in the deployment, delaying recovery.
+
+Root Cause:
+	1.	Insufficient Resource Requests: The pod was starved for resources, particularly CPU and memory, because the Kubernetes scheduler couldn’t find available nodes with sufficient capacity.
+	2.	No Resource Auto-Scaling: The pod wasn’t set up to auto-scale based on the resource demand, leading to it getting stuck in the pending state.
+	3.	Lack of Pod Disruption Budgets (PDB): The cluster had no Pod Disruption Budgets in place to manage graceful pod evictions during scaling operations.
+
+Fix:
+	1.	Resource Requests and Limits: Updated the resource requests and limits for the pod to ensure that it gets enough CPU and memory.
+	2.	Auto-Scaling: Enabled Horizontal Pod Autoscaler (HPA) to allow pods to scale based on the traffic load automatically.
+	3.	Pod Disruption Budgets: Set up Pod Disruption Budgets to ensure that critical pods are not evicted without graceful management.
+
+Takeaway:
+Always ensure adequate resource requests and limits in Kubernetes, along with auto-scaling and Pod Disruption Budgets for resilience in production.
