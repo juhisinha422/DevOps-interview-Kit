@@ -1,0 +1,20 @@
+Day 15: The Jenkins Pipeline Bottleneck 
+
+Incident:
+The CI/CD pipeline in Jenkins was experiencing slow build times, leading to delays in deployment and slower development cycles.
+
+What Happened Next:
+As code changes piled up, the Jenkins queue lengthened, causing build queues to become extremely long and delaying feedback to developers.
+
+Root Cause:
+	1.	Unoptimized Jenkins Pipeline: The pipeline had several stages that were taking too long due to inefficient Docker image building and test execution.
+	2.	Single Executor Bottleneck: Jenkins was using a single executor, causing all jobs to queue up and slow down as the load increased.
+	3.	Lack of Parallelism: The pipeline did not leverage sufficient parallel execution for tasks such as linting, unit tests, and deployment stages, further increasing build times.
+
+Fix:
+	1.	Optimize Build Steps: Optimized Docker image builds by utilizing multi-stage builds and caching dependencies in Jenkinsfile to speed up the process.
+	2.	Add More Executors: Scaled the Jenkins environment by adding additional executors and setting up distributed builds using Jenkins agents.
+	3.	Introduce Parallelism in Pipelines: Modified the Jenkins pipeline to run independent steps, like unit tests and linting, in parallel to reduce overall build time.
+
+Takeaway:
+Optimizing Jenkins pipelines for speed requires leveraging parallelism, distributed builds, and caching to minimize bottlenecks and speed up feedback loops.
