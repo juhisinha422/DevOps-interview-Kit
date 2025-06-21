@@ -1,0 +1,20 @@
+Day 12: The Kubernetes Resource Overprovisioning 
+
+Incident:
+A new Kubernetes deployment consumed excessive resources, triggering node exhaustion and causing pods to be evicted due to insufficient resources.
+
+What Happened Next:
+The application failed to start because Kubernetes couldn’t schedule pods on any available nodes. The node resource utilization reached 100%, leading to eviction of other pods and delays in service availability.
+
+Root Cause:
+	1.	Incorrect Resource Requests and Limits: The deployment configuration did not specify correct resource requests and limits for CPU and memory, leading to resource overprovisioning.
+	2.	No Horizontal Pod Autoscaling (HPA): The cluster was not configured with Horizontal Pod Autoscaling (HPA), preventing the system from scaling dynamically in response to traffic spikes.
+	3.	Underestimated Traffic Load: The initial assumptions about traffic load were incorrect, and the cluster wasn’t sized appropriately to handle the workload.
+
+Fix:
+	1.	Set Resource Requests and Limits: Specified reasonable CPU and memory requests and limits for all containers to avoid resource contention on Kubernetes nodes.
+	2.	Enable Horizontal Pod Autoscaling (HPA): Configured HPA to automatically scale the number of pods based on CPU and memory usage, ensuring better resource utilization.
+	3.	Cluster Sizing: Reviewed traffic patterns and properly sized the Kubernetes cluster with sufficient nodes and resource capacity.
+
+Takeaway:
+Always specify resource requests and limits for containers in Kubernetes, and consider HPA and cluster sizing as part of your capacity planning.
