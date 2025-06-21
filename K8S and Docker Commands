@@ -1,0 +1,57 @@
+The Only Kubernetes & Docker Commands You Need When Everything’s on Fire:
+
+👉 Container Crisis Mode:
+- docker ps -a | grep Exited - Show stopped containers
+- kubectl get pods –field-selector=status.phase=Failed - Show failed pods
+- docker logs -f –tail 100 {container} - Follow container logs
+- kubectl describe pod {name} - Show pod details and events
+- docker system prune -a - Remove unused containers and images
+
+👉 Debug Warriors:
+- kubectl exec -it {pod} – /bin/bash - Access pod shell
+- docker exec -it {container} sh - Access container shell
+- kubectl port-forward {pod} 8080:80 - Forward pod port to local
+- docker inspect {container} | grep -i ip - Get container IP address
+- kubectl logs {pod} -c {container} –previous - Show previous container logs
+
+👉 Resource Rangers:
+- kubectl top nodes - Show node CPU and memory usage
+- kubectl top pods - Show pod resource usage
+- docker stats –no-stream - Show container resource usage
+- kubectl get pods -o wide - Show pods with node and IP info
+- docker images –format “table {{.Repository}}\t{{.Tag}}\t{{.Size}}” - List images with size
+
+👉 Network Ninjas:
+- kubectl get svc - List services
+- docker network ls - List networks
+- kubectl get ingress - List ingress rules
+- docker port {container} - Show port mappings
+- kubectl get endpoints - Show service endpoints
+
+👉 Quick Fixes:
+- kubectl delete pod {name} –force –grace-period=0 - Force delete pod
+- docker restart {container} - Restart container
+- kubectl rollout restart deployment/{name} - Restart deployment
+- docker rm $(docker ps -aq) - Remove all containers
+- kubectl scale deployment {name} –replicas=0 - Scale deployment to zero
+
+👉 YAML Wranglers:
+- kubectl apply -f - | kubectl delete -f - - Apply then delete from stdin
+- kubectl get pod {name} -o yaml > debug.yaml - Export pod config to file
+- docker run –rm -it {image} sh - Run temporary container
+- kubectl create secret generic –dry-run=client -o yaml - Generate secret YAML
+- kubectl explain {resource} - Show resource documentation
+
+👉 Cluster Intelligence:
+- kubectl get all -A - Show all resources in all namespaces
+- kubectl cluster-info - Show cluster info
+- docker version - Show Docker version
+- kubectl config current-context - Show current cluster context
+- kubectl get events –sort-by=’.lastTimestamp’ - Show recent cluster events
+
+👉 Pro Tips:
+- alias k=kubectl - Create kubectl shortcut
+- kubectl config set-context –current –namespace={ns} - Switch namespace
+- docker system df - Show Docker disk usage
+- kubectl api-resources - List all available resources
+- watch kubectl get pods - Monitor pods in real-time
