@@ -1,0 +1,71 @@
+DevOps Made Simple: Step-by-Step Guide
+
+
+1️⃣ Git – Version Control System
+
+What it does: Git helps developers manage and store their code in one place. It also tracks changes made by the team.
+
+When it’s used: The starting point. Developers write, save, and push their code to Git.
+
+
+2️⃣ Jenkins – Continuous Integration/Delivery (CI/CD)
+
+What it does: Jenkins automates building and testing the code to ensure everything works properly.
+
+When it’s used: After code is pushed to Git, Jenkins builds and tests it.
+
+
+3️⃣ Docker – Containerization
+
+What it does: Packages the application and dependencies into a container so it runs anywhere.
+
+When it’s used: After Jenkins confirms the code works, Docker creates the container.
+
+
+4️⃣ Trivy – Security Scanning
+
+What it does: Scans Docker containers for security issues.
+
+When it’s used: After the container is created, Trivy ensures it’s secure.
+
+
+5️⃣ Kubernetes (K8s) – Orchestration
+
+What it does: Manages containers, ensuring scalability and availability.
+
+When it’s used: After security checks, Kubernetes handles deployment.
+
+
+6️⃣ ArgoCD – GitOps Deployment
+
+What it does: Automates deployments by applying Git configurations to Kubernetes.
+
+When it’s used: Keeps Kubernetes deployments updated automatically.
+
+
+7️⃣ Ansible – Configuration Management
+
+What it does: Configures and manages infrastructure like Kubernetes clusters or servers.
+
+When it’s used: After deployment, ensures infrastructure is properly configured.
+
+
+8️⃣ Prometheus & Grafana – Monitoring and Alerts
+
+What they do: Prometheus monitors health metrics, while Grafana visualizes data. Both send alerts for issues.
+
+When they’re used: Continuously monitor performance after deployment.
+
+
+
+💡 The Real Impact
+
+Faster Deployments: Automate builds, tests, and deployments to cut delivery time by up to 50%.
+
+Fewer Bugs: Catch vulnerabilities early with Trivy and CI/CD pipelines.
+
+Scalable Systems: Kubernetes handles traffic scaling automatically.
+
+Improved Security: Trivy and Ansible ensure secure, compliant systems.
+
+Real-Time Monitoring: Prometheus and Grafana offer insights and fast issue resolution.
