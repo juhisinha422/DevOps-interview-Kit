@@ -1,0 +1,20 @@
+Day 10: The Continuous Deployment Pipeline Failure 
+
+Incident:
+A continuous deployment (CD) pipeline failure led to the deployment of an incomplete version of the application, causing inconsistencies across microservices and broken API endpoints.
+
+What Happened Next:
+After deployment, some services started returning 500 errors due to missing dependencies that were not properly propagated during the release process.
+
+Root Cause:
+	1.	Incomplete Build Artifacts: A failure in the Jenkins pipeline resulted in incomplete build artifacts being pushed to the Docker registry.
+	2.	Dependency Versioning Issue: The versioning of microservices in the Docker images was inconsistent, causing mismatches between services that couldn’t communicate properly.
+	3.	Lack of Atomic Deployment Strategy: The deployment wasn’t atomic, meaning different services were upgraded at different times, leading to version incompatibilities.
+
+Fix:
+	1.	Implement GitOps for Consistent Deployments: Adopted GitOps with tools like ArgoCD to make deployment processes declarative, ensuring consistency across environments.
+	2.	Version Locking with Helm: Introduced Helm charts with strict version control for microservices to ensure correct dependency management across deployments.
+	3.	Atomic Rolling Updates: Implemented atomic rolling updates in Kubernetes using Helm and Blue/Green strategies, ensuring all services are deployed simultaneously.
+
+Takeaway:
+Adopt a GitOps strategy with Helm charts for consistent and predictable deployments, and use atomic updates to avoid deployment inconsistency.
