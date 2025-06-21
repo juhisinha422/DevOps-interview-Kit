@@ -1,0 +1,20 @@
+Day 13: The Prometheus Alert Storm 
+
+Incident:
+A misconfigured Prometheus alerting rule led to an alert storm, overwhelming the on-call engineers with hundreds of false alerts.
+
+What Happened Next:
+Engineers were flooded with alert notifications, none of which were critical. This led to alert fatigue, where valid incidents were missed or delayed due to the overwhelming number of irrelevant alerts.
+
+Root Cause:
+	1.	Incorrect Alert Thresholds: The alert thresholds for certain metrics were set too aggressively, causing frequent and unnecessary alerts.
+	2.	Lack of Alert Aggregation: Alerts were not grouped or aggregated into more meaningful summaries, leading to a noisy alerting system.
+	3.	No Alert Severity Levels: There were no severity levels assigned to alerts, so all alerts were treated with the same level of urgency, contributing to alert fatigue.
+
+Fix:
+	1.	Adjust Alert Thresholds: Reconfigured Prometheus alerting rules to set more reasonable thresholds and reduce false positives.
+	2.	Alert Aggregation with Alertmanager: Integrated Alertmanager to group similar alerts together and only send aggregated notifications to the on-call engineers.
+	3.	Alert Severity Tiers: Introduced alert severity levels (e.g., critical, warning, info) to prioritize the most urgent issues and reduce noise.
+
+Takeaway:
+Proper alert threshold tuning, aggregation, and severity levels are essential to maintain an efficient alerting system that prevents alert fatigue.
