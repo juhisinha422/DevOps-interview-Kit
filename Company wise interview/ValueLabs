@@ -1,0 +1,23 @@
+AWS DevOps Interview Experience at ValueLabs – Hyderabad 🏢
+
+🔍 Here’s what was asked during the interview:
+
+1️⃣ You have Docker images for frontend, backend, and database — how would you deploy them using YAML in Kubernetes?
+ ➡️ (Think: Writing separate deployment and service files, setting environment variables, handling persistent volumes)
+
+2️⃣ Why do we use namespaces in Kubernetes?
+ ➡️ (Spoiler: It’s not just for organizing resources — it’s also about multi-team isolation and applying resource quotas effectively)
+
+3️⃣ What’s the difference between an Ingress and a Load Balancer in Kubernetes?
+ ➡️ (A classic — understand L4 vs L7 routing, external access patterns, and use cases)
+
+4️⃣ Which component in Kubernetes is responsible for watching your deployment.yaml and ensuring your Pods run as defined?
+ ➡️ (Think about the declarative magic behind the scenes)
+
+5️⃣ You have files in an S3 bucket, but need to access them from another AWS account. How would you make that work securely?
+ ➡️ (Options: Bucket policies, IAM roles with AssumeRole, pre-signed URLs — all have their place)
+
+6️⃣ Docker – But Deep Dive! 🐳
+How can you reduce Docker image size effectively?
+What’s the real benefit of multi-stage builds?
+If a container keeps crashing, how do you debug it?
