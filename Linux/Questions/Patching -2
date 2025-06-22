@@ -1,0 +1,39 @@
+What is Patching?
+
+
+Patching means applying updates to fix bugs, vulnerabilities, or performance issues in your system or software.
+Ye update operating system, software package, ya security component ka ho sakta hai.
+
+Real-World Example: Patching a Linux VM
+Imagine you have a Linux VM (Ubuntu) running in AWS or Azure.
+This VM is hosting an Apache web server.
+Now, a new security vulnerability is reported in Apache that can allow hackers to exploit your system remotely.
+
+Risk if patch is not applied:
+Hacker can gain unauthorized access
+Data breach or full system compromise ho sakta hai
+Compliance violation bhi ho sakti hai (PCI, ISO etc.)
+
+How to Patch the VM:
+Check for available patches:
+    sudo apt update
+Apply the patches:
+    sudo apt upgrade
+Restart the service (if required):
+    sudo systemctl restart apache2
+Reboot the VM (only if kernel update applied):
+    sudo reboot
+
+
+Why patching matters?
+     Keeps your infrastructure secure
+     Protects against zero-day attacks
+     Maintains system stability
+     Ensures compliance with industry standards
+
+
+
+Patching = Regular update lagana taaki koi bhi security gap na rahe.
+VM ke andar Apache, Nginx, MySQL jaise tools hote hain — inme bug aate hain, patch fix deta hai.
+Tumhara kaam hai timely patch apply karna and ensure karna ki system down na ho.
+
