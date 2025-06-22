@@ -1,0 +1,24 @@
+𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+ • What is Ingress and how is it used?
+ • How would you autoscale pods inside a node without exposing them externally?
+ • How to expose a Node.js app on port 3000 using Minikube (Dockerfile, Deployment, Service, ConfigMap)?
+ • How would you attach a volume mount to collect logs every time the page is reloaded?
+
+🔹 𝗖𝗜/𝗖𝗗
+ • How do you run parallel builds in a CI/CD pipeline without them interfering?
+ • If multiple builds run in a single pipeline, how do you isolate and store their artifacts?
+
+🔹 𝗔𝗪𝗦 & 𝗜𝗻𝗳𝗿𝗮𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲 𝗮𝘀 𝗖𝗼𝗱𝗲
+ • Why are you moving from AWS CloudFormation to Terraform?
+ • How is AWS Lambda integrated with CloudWatch?
+ • What’s the difference between terraform plan and terraform apply?
+
+🔹 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 / 𝗦𝗲𝗰𝗿𝗲𝘁𝘀 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁
+ • How do you handle secrets securely without hardcoding them?
+ • How do you restrict access to Kubernetes resources using RBAC?
+ • How do you prevent environment variables from being exposed in CI/CD logs?
+
+🔹 𝗣𝗿𝗼𝗷𝗲𝗰𝘁 & 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼-𝗕𝗮𝘀𝗲𝗱
+ • How did you reduce downtime in your application?
+ • What’s the most challenging task you’ve completed in your recent project?
+ • What is one disadvantage you see in your current project’s infrastructure?
