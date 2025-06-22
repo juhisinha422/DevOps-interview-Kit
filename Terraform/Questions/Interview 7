@@ -1,0 +1,13 @@
+Terraform Interview Questions 
+
+🚀 Infrastructure as Code – Terraform
+ ✅ How do you manage shared modules across teams in Terraform?
+ ✅ How do you structure Terraform code for multi-environment deployments?
+ ✅ What’s your approach to state file locking and secure backend storage?
+ ✅ Explain how you use variables, locals, and outputs efficiently in large projects.
+
+🚀 Troubleshooting & Debugging Scenarios
+ ✅ A pod in AKS fails to mount a persistent volume. How do you troubleshoot it?
+ ✅ Your CI pipeline starts timing out. What steps will you take to identify the root cause?
+ ✅ What is the impact of DNS resolution failure in Kubernetes and how to fix it?
+ ✅ A Terraform apply fails due to dependency conflicts — how do you resolve it?
