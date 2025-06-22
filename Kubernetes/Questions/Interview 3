@@ -1,0 +1,45 @@
+𝗤: 𝗘𝘅𝗽𝗹𝗮𝗶𝗻 𝘁𝗵𝗲 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 𝗮 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗮𝗻𝗱 𝗮 𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹𝗦𝗲𝘁.
+A: Deployments are suitable for stateless applications, where each instance of the application is identical and can be scaled horizontally.
+StatefulSets, on the other hand, are used for stateful applications that require stable network identities and persistent storage. StatefulSets provide ordering guarantees and allow for scaling vertically.
+
+𝗤: 𝗛𝗼𝘄 𝗱𝗼𝗲𝘀 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗵𝗮𝗻𝗱𝗹𝗲 𝘀𝘁𝗼𝗿𝗮𝗴𝗲 𝗳𝗼𝗿 𝗮𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻𝘀?
+A: Kubernetes provides several storage options, including 𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁
+𝗩𝗼𝗹𝘂𝗺𝗲𝘀 (𝗣𝗩) and 𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁 𝗩𝗼𝗹𝘂𝗺𝗲 𝗖𝗹𝗮𝗶𝗺𝘀 (𝗣𝗩𝗖). PVs are resources
+provisioned in the cluster, while PVCs are requests for storage resources
+by applications. PVCs consume PVs, which can be dynamically
+provisioned by storage classes or statically provisioned by an
+administrator.
+
+𝗤: 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀?
+A: A DaemonSet is a Kubernetes object that ensures that a specific pod
+runs on every node in a cluster. It is useful for running background tasks,
+monitoring agents, or any workload that needs to be deployed to all nodes
+in a cluster.
+
+𝗤: 𝗘𝘅𝗽𝗹𝗮𝗶𝗻 𝘁𝗵𝗲 𝗰𝗼𝗻𝗰𝗲𝗽𝘁 𝗼𝗳 𝗮 𝗿𝗼𝗹𝗹𝗶𝗻𝗴 𝘂𝗽𝗱𝗮𝘁𝗲 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀.
+A: A rolling update is a strategy used by Kubernetes to update a
+Deployment or StatefulSet without causing downtime. It gradually
+replaces existing pods with new ones, ensuring that a specified number of
+pods are available at all times. This strategy allows for seamless updates
+and rollbacks if necessary.
+
+𝗤: 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗹𝗮𝗯𝗲𝗹𝘀 𝗮𝗻𝗱 𝘀𝗲𝗹𝗲𝗰𝘁𝗼𝗿𝘀?
+A: Labels are key-value pairs attached to Kubernetes objects to help
+identify and organize them. Selectors are used to query objects based on
+labels. They allow for grouping and selecting subsets of objects that share
+common labels, enabling more flexible management and control.
+
+𝗤: 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿?
+A: A Kubernetes Operator is an extension to the Kubernetes API that
+introduces custom resources and controllers. It encapsulates domain-
+specific knowledge and automates the management of complex
+applications or services. 
+
+𝗤: 𝗛𝗼𝘄 𝗰𝗮𝗻 𝘆𝗼𝘂 𝗽𝗲𝗿𝗳𝗼𝗿𝗺 𝗿𝗼𝗹𝗹𝗶𝗻𝗴 𝘂𝗽𝗱𝗮𝘁𝗲𝘀 𝘄𝗶𝘁𝗵 𝘇𝗲𝗿𝗼 𝗱𝗼𝘄𝗻𝘁𝗶𝗺𝗲 𝗶𝗻
+𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀?
+A: Rolling updates with zero downtime can be achieved by using
+readiness probes in Kubernetes. Readiness probes allow the Kubernetes
+control plane to verify if a pod is ready to serve traffic before sending
+requests to it. By configuring appropriate readiness probes, you can ensure
+that pods are only added to the load balancer once they are ready to handle
+traffic, avoiding any disruption during updates.
