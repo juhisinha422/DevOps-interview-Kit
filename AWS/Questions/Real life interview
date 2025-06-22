@@ -1,0 +1,61 @@
+Identity & Access Management  
+1. How would you use AWS Control Tower for secure multi-account setup?  
+2. How do you manage permission boundaries in AWS SSO?  
+3. How do you enable MFA in AWS Cognito?  
+4. How do you secure/manage identities in Cognito?  
+5. How do you implement RBAC in AWS?  
+6. How do you enforce MFA for IAM users?  
+7. How do you design IAM policies with least privilege?
+
+➡️
+ Networking & DNS  
+8. How would you configure Route 53 for global HA?  
+9. How do you implement weighted routing across regions?  
+10. What’s the process to map a custom domain to an S3 static site?
+
+➡️
+ Security & WAF  
+11. How do you use AWS WAF to block bot attacks?  
+12. How do you configure AWS Shield for DDoS protection?  
+13. How to create custom WAF rules for specific threats?
+
+➡️
+ Storage & Backup  
+14. How to securely store files in S3?  
+15. How to restrict public access but allow uploads?  
+16. How to enable automatic backup & versioning?
+
+➡️
+ Email with AWS SES  
+17. How to configure SES for transactional emails?  
+18. How to improve deliverability & avoid spam?  
+19. How to set up SPF, DKIM & DMARC?
+
+➡️
+ Compute & Scaling  
+20. How do you configure EC2 Auto Scaling for traffic spikes?  
+21. How to secure EC2 instances from unauthorized access?  
+22. What are EC2 cost optimization techniques?
+
+➡️
+ Database & Migration  
+23. How do you migrate SQL Server with minimal downtime?  
+24. How to implement automated RDS backups?  
+25. How to configure RDS for high availability?
+
+➡️
+ Infrastructure as Code  
+26. How would you structure Terraform for AWS infra?  
+27. What’s your preferred on-prem to AWS migration strategy?
+
+➡️
+ Monitoring & Auditing  
+28. How do you use CloudWatch alarms for CPU usage?  
+29. How to analyze app performance with CloudWatch + X-Ray?  
+30. How to audit API activity with CloudTrail?
+
+➡️
+ Load Balancing  
+31. Which ELB type supports both HTTP & TCP traffic?  
+32. How to set up ALB with Auto Scaling for traffic spikes?  
+33. How to protect ALB from DDoS & authenticate users?
