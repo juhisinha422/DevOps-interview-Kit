@@ -1,0 +1,113 @@
+IT Infra Interview Questions & Answers (2025)
+
+Active Directory
+
+1️⃣ What is Active Directory?
+A: A directory service for centralized domain management.
+
+2️⃣ Difference between Domain & Workgroup?
+A: Domain is centralized; Workgroup is peer-to-peer.
+
+3️⃣ What is Group Policy?
+A: Tool to manage user, computer, and security settings.
+
+4️⃣ What is a Domain Controller?
+A: Server that authenticates users in a domain.
+
+5️⃣ FSMO Roles in AD?
+A: Schema Master, Domain Naming Master, RID, PDC, Infrastructure Master.
+
+⸻
+
+DNS & DHCP
+
+6️⃣ What is DNS?
+A: Resolves domain names to IP addresses.
+
+7️⃣ What is DHCP?
+A: Automatically assigns IP addresses to devices.
+
+8️⃣ Forward vs Reverse Lookup?
+A: Forward: Name to IP. Reverse: IP to Name.
+
+9️⃣ What is a DNS Zone?
+A: Part of DNS namespace containing resource records.
+
+10️⃣ What is DHCP Lease?
+A: Temporary IP assignment duration to a client.
+
+⸻
+
+Windows Server & Infrastructure
+
+11️⃣ What is RAID?
+A: Data storage technique for redundancy & performance.
+
+12️⃣ Common RAID levels?
+A: RAID 0, 1, 5, 10.
+
+13️⃣ What is RDP?
+A: Remote Desktop Protocol for remote server access.
+
+14️⃣ What is Windows Event Viewer?
+A: Tool to view system logs & events.
+
+15️⃣ How to check server IP?
+A: Use ipconfig command.
+
+⸻
+
+VMware & Virtualization
+
+16️⃣ What is a Hypervisor?
+A: Software to run virtual machines.
+
+17️⃣ Type-1 vs Type-2 Hypervisor?
+A: Type-1 on bare metal; Type-2 on host OS.
+
+18️⃣ What is vMotion?
+A: Live VM migration between ESXi hosts.
+
+19️⃣ What is VM Snapshot?
+A: Saved VM state at a specific point.
+
+20️⃣ What is ESXi?
+A: VMware’s Type-1 hypervisor.
+
+⸻
+
+Cloud & Azure Basics
+
+21️⃣ What is Cloud Computing?
+A: On-demand access to IT resources over internet.
+
+22️⃣ IaaS vs PaaS vs SaaS?
+A: Infra, Platform, and Software as a Service.
+
+23️⃣ What is Azure AD?
+A: Microsoft’s cloud-based identity management service.
+
+24️⃣ What is a Resource Group in Azure?
+A: Container for managing Azure resources.
+
+25️⃣ What is VM Scale Set?
+A: Auto-scaling group of VMs.
+
+⸻
+
+Networking Basics
+
+26️⃣ What is a VLAN?
+A: Logical separation of networks within a switch.
+
+27️⃣ What is a Default Gateway?
+A: IP address for traffic to exit the network.
+
+28️⃣ What is a Subnet Mask?
+A: Defines network & host portions of an IP.
+
+29️⃣ What is Ping?
+A: Network tool to test connectivity.
+
+30️⃣ What is Traceroute?
+A: Shows path taken by a packet to destination.
