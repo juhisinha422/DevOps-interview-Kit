@@ -1,0 +1,116 @@
+Core Linux Administration
+
+1. Difference between ext3 and ext4
+ext3: Older, no support for extents, slower fsck.
+ext4: Faster, supports extents, larger file size, journaling improvements.
+
+2. Runlevels in Linux
+Runlevel 3: Multi-user, non-GUI, full networking.
+Runlevel 5: Multi-user with GUI.
+Can check using: runlevel or systemctl get-default (on systemd).
+
+3. What is fstab?
+A file located at /etc/fstab used to define how disk partitions, remote filesystems are mounted at boot.
+
+4. Check disk usage
+df -h        # Disk usage by filesystem
+du -sh /path # Size of a specific directory
+
+5. What is an inode?
+Metadata about a file: owner, permissions, timestamps (but NOT filename).
+Check inode usage: df -i
+
+6. Find large files
+find / -type f -size +500M -exec ls -lh {} \; | sort -k 5 -rh | head
+
+ LVM & File Systems
+
+7. Extend a logical volume
+extend -L +5G /dev/vgname/lvname
+resize2fs /dev/vgname/lvname    # for ext4
+xfs_growfs /mount/point         # for XFS
+
+8. Shrink a logical volume (ext4 only)
+umount /mount/point
+e2fsck -f /dev/vgname/lvname
+resize2fs /dev/vgname/lvname 5G
+lvreduce -L 5G /dev/vgname/lvname
+mount /mount/point
+
+9. xfs_growfs vs resize2fs
+
+xfs_growfs: Used for XFS filesystem (only supports grow).
+
+resize2fs: Used for ext2/3/4 (supports shrink and grow).
+
+
+
+---
+
+🔐 User & Permission Management
+
+10. chmod & chown
+chmod 755 file     # rwxr-xr-x
+chown user:group file
+
+11. Soft link vs Hard link
+Soft link: Pointer to original file path; breaks if source is deleted.
+Hard link: Pointer to the same inode; survives even if original is deleted.
+
+12. Give sudo access
+
+Edit /etc/sudoers using visudo and add:
+username ALL=(ALL) NOPASSWD:ALL
+
+Services & Process Management
+
+13. cron vs at
+cron: Repeats jobs (e.g., daily).
+at: One-time scheduled job.
+
+14. Kill a process
+ps aux | grep processname
+kill -9 PID
+
+15. Service fails to start
+Check status: systemctl status servicename
+Logs: journalctl -xe or check /var/log/messages
+
+Networking & Ports
+
+16. Check open ports
+netstat -tuln       # Deprecated but common
+ss -tuln            # Faster & modern
+lsof -i :80         # To check who is using port 80
+
+17. Check if a port is listening
+ss -ltn | grep 22    # e.g., SSH
+18. Network tools
+ping, traceroute, ifconfig (deprecated), ip a (preferred)
+Logs & Security
+
+19. Where are auth logs stored?
+
+/var/log/secure   # RHEL/CentOS
+/var/log/auth.log # Ubuntu/Debian
+20. What is SELinux?
+
+Security layer for process access control.
+
+Modes:
+
+Enforcing: Blocks unauthorized access.
+
+Permissive: Logs violations but doesn’t block.
+
+Disabled
+
+
+
+21. Secure SSH
+
+Disable root login: PermitRootLogin no
+
+Use key-based auth
+
+Change default port in /etc/ssh/sshd_config
