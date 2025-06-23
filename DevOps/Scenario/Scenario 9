@@ -1,0 +1,22 @@
+𝐃𝐞𝐯𝐎𝐩𝐬 𝐑𝐞𝐚𝐥-𝐓𝐢𝐦𝐞 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨 + 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐈𝐧𝐬𝐢𝐠𝐡𝐭
+
+🔧 "𝐂𝐈/𝐂𝐃 𝐏𝐢𝐩𝐞𝐥𝐢𝐧𝐞 𝐁𝐫𝐞𝐚𝐤𝐬 𝐀𝐟𝐭𝐞𝐫 𝐂𝐨𝐝𝐞 𝐌𝐞𝐫𝐠𝐞!" — 𝐬𝐨𝐮𝐧𝐝𝐬 𝐟𝐚𝐦𝐢𝐥𝐢𝐚𝐫?
+
+Here's how to handle this situation like a real DevOps engineer 💪
+
+🧩 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨:
+
+𝑨𝒇𝒕𝒆𝒓 𝒎𝒆𝒓𝒈𝒊𝒏𝒈 𝒂 𝒇𝒆𝒂𝒕𝒖𝒓𝒆 𝒃𝒓𝒂𝒏𝒄𝒉 𝒊𝒏𝒕𝒐 𝒎𝒂𝒊𝒏, 𝒕𝒉𝒆 𝑪𝑰/𝑪𝑫 𝒑𝒊𝒑𝒆𝒍𝒊𝒏𝒆 𝒇𝒂𝒊𝒍𝒔 𝒊𝒏 𝒕𝒉𝒆 𝒃𝒖𝒊𝒍𝒅/𝒕𝒆𝒔𝒕 𝒔𝒕𝒂𝒈𝒆.
+𝑵𝒐𝒘 𝒘𝒉𝒂𝒕?
+
+🎯 𝐒𝐭𝐞𝐩𝐬 𝐭𝐨 𝐒𝐨𝐥𝐯𝐞 𝐈𝐭:
+
+🧹 Review pipeline logs
+
+🧹 Reproduce the error locally
+
+🧹 Check what was merged
+
+🧹 Patch + Re-trigger the build
+
+🧹 Add guardrails to prevent future issues
