@@ -1,0 +1,6 @@
+What is the difference between a Hard Link and a Soft Link in Linux?
+
+Answer: 
+--Hard Link: A hard link is a mirror copy of the original file. It shares the same inode number as the original file. Deleting the original file doesn’t affect the hard link. 
+
+--Soft Link (Symbolic Link): A soft link is more like a shortcut that points to the original file. It has a different inode number and if the original file is deleted, the soft link becomes broken (dangling link). 
