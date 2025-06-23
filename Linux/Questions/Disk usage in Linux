@@ -1,0 +1,6 @@
+How do you check disk usage in Linux?  
+
+Answer: 
+You can use the following commands:
+ --df -h: Displays disk space usage in a human-readable format. 
+ --du -sh /path/to/directory: Shows disk usage of a specific directory.
