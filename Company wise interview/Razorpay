@@ -1,0 +1,30 @@
+Technical Interview Experience – DevOps Engineer at Razorpay (Round 1)
+------------------------------------
+Here’s the fresh set of questions they were asked:
+🚀 CI/CD, GitHub Actions & Deployment Strategy
+ ✅ How do you structure GitHub Actions workflows to support multi-service deployment with rollback?
+ ✅ Explain how to perform canary deployments using Helm and Argo Rollouts.
+ ✅ How do you securely inject API keys in GitHub Actions without exposing them in logs?
+ ✅ What’s the most efficient way to implement release versioning across microservices?
+
+🚀 Kubernetes & Scalability
+ ✅ How would you handle CPU throttling in a busy AKS/EKS cluster under payment traffic load?
+ ✅ What are readiness gates in Kubernetes and when would you use them?
+ ✅ Explain how you’d debug an issue where the HPA is not scaling pods despite high CPU usage.
+ ✅ How do you ensure blue-green or shadow deployment testing for critical services?
+
+🚀 Cloud Infrastructure & IaC (Terraform)
+ ✅ How do you structure Terraform code for a multi-region, multi-account AWS setup?
+ ✅ What is your approach to tagging and cost governance across cloud infrastructure?
+ ✅ How do you rotate AWS IAM credentials and ensure services update them dynamically?
+ ✅ What’s the benefit of using for_each over count in complex Terraform modules?
+
+🚀 Observability & Debugging
+ ✅ How do you trace a spike in failed transactions to either app logic, infra failure, or a third-party API?
+ ✅ What’s your approach to building actionable alerts and reducing false positives in PagerDuty/Prometheus?
+ ✅ How would you implement distributed tracing in a Kubernetes-based microservices system?
+
+🚀 Security & Compliance (Fintech-Focused)
+ ✅ How do you prevent hardcoded secrets in Terraform and Dockerfiles?
+ ✅ What’s your strategy for enforcing least privilege access in a CI/CD pipeline?
+ ✅ How do you manage vulnerability scanning and patching in high-frequency deployments?
