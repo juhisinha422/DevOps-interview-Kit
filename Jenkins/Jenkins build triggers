@@ -1,0 +1,20 @@
+Jenkins Build Triggers Simplified! 🚀
+Want to automate your builds in Jenkins? Here are 3 powerful ways:
+
+✅ Poll SCM
+ Jenkins checks your Git repo at regular intervals.
+ It builds only if changes are detected.
+ 🕒 Example: H/15 * * * * (every 15 mins)
+
+✅ Build Periodically
+ Trigger builds at scheduled times, regardless of changes.
+ ⏰ Example: @daily or H 0 * * * (every midnight)
+
+✅ Webhook
+ GitHub/GitLab sends a push notification to Jenkins.
+ Real-time build trigger — fastest & most efficient!
+
+🔄 All roads lead to... automated builds!
+Each of these triggers ultimately starts a Jenkins build job with code from your Git repo, followed by testing, packaging, or deployment.
+
+💡 Pro Tip: Use Webhooks for fast builds + Poll SCM as a backup for reliability!
