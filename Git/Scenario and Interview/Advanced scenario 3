@@ -1,0 +1,22 @@
+1. We have 50 commits in Develop branch and out of which only 5 commits needs to be pushed in Release branch {which will eventually deployed in production} ?
+
+Git cherry-picking:
+
+Cherry picking is the act of picking a commit from a branch and applying it to another
+
+git cherry-pick commit-id
+
+2. Developer has developed an application module and while developing ha has made around 100 commits locally, now he needs to push all his changes in remote Develop branch as a single commit {we don't want developers messy history in develop branch}?
+
+Git squash is a technique that helps you to take a series of commits and condense it to a few commits
+
+3. Developer has few uncommit changes in his local branch and now he has to empty his current work directory to accommodate emergency change, How can developer handle such scenario without losing his uncommit changes?
+
+Git Stash command takes your uncommitted changes (both stage and upstaged), saves them away for later use, and then moves them from your working copy
+
+4. Developer (Suresh) has packaged and pushed his project module in Azure Artifacts and now developer (Mahesh) who is working on some other module has a direct dependency on RAM's module. How can Mahesh project consume packages from Azure Artifacts locally to successfully build project?
+
+- Check if developer (Mahesh) has required permission to access the private feed
+- Add Azure Artifacts feed source URL in Visual Studio manage packages for solution
+- Post that install the required feed and check project dependencies
+- Even by running "Install-Package" command in PowerShell console it can be done
