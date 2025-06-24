@@ -1,0 +1,5 @@
+1. What would you do if kubectl freezes?
+2. Can you fix a stuck rollout with kubectl rollout undo?
+3. What if your service works in staging, but not prod?
+4. What’s the fastest way to trace pod-to-pod network latency?
+5. What if a node goes NotReady, but kubelet logs are clean?
