@@ -1,0 +1,131 @@
+Windows Server Level 1 & Level 2 Interview Questions .
+L1 Questions (Basics)
+
+1️⃣What is Active Directory (AD)?
+Directory service for user/resource management.
+
+2️⃣ What is DNS?
+Resolves domain names to IP addresses.
+
+3️⃣ What is DHCP?
+Automatically assigns IP addresses to devices.
+
+4️⃣ What is a Domain Controller (DC)?
+Server that manages Active Directory.
+
+5️⃣ What is Group Policy?
+Controls user/computer settings in AD.
+
+6️⃣ What is NTFS?
+Windows file system with security features.
+
+7️⃣ What is RDP?
+Remote Desktop Protocol for remote access.
+
+8️⃣ How to check system uptime?
+Via systeminfo or Task Manager.
+
+9️⃣ What is Event Viewer?
+Tool to view Windows system logs.
+
+🔟 Difference: Workgroup vs Domain?
+Workgroup: Local management, Domain: Centralized.
+⸻
+L2 Questions (Intermediate)
+
+1️⃣ What is FSMO Roles?
+Special AD roles ensuring smooth operation.
+
+2️⃣ What is Active Directory Replication?
+Keeps DC data consistent across the domain.
+
+3️⃣ What is OU (Organizational Unit)?
+Logical AD container for grouping objects.
+
+4️⃣ How to manage Windows Updates?
+Via WSUS or Group Policy.
+
+5️⃣ What is Windows Failover Clustering?
+Ensures service availability after failures.
+
+6️⃣ What is DNS Forwarding?
+Sends unresolved queries to external DNS.
+
+7️⃣ How to troubleshoot account lockouts?
+Check Event Viewer and audit logs.
+
+8️⃣ What is GPO Inheritance?
+Lower OUs inherit policies from parent OUs.
+
+9️⃣ How to use Task Scheduler?
+Automates tasks at scheduled times.
+
+🔟 What is Shadow Copy?
+Creates point-in-time copies of files.
+
+⸻
+
+VMware vSphere L1 & L2 Interview Questions — Quick Reference
+L1 Questions (Basics)
+
+1️⃣ What is vSphere?
+VMware’s virtualization platform.
+
+2️⃣ What is ESXi?
+Bare-metal hypervisor for running VMs.
+
+3️⃣ What is vCenter?
+Centralized management for ESXi hosts.
+
+4️⃣ What is a VM?
+Virtualized instance of a computer.
+
+5️⃣ What is vMotion?
+Live VM migration between hosts.
+
+6️⃣ What is Snapshot?
+VM’s state capture at a moment.
+
+7️⃣ What is a Datastore?
+Storage location for VM files.
+
+8️⃣ Thick vs Thin Provisioning?
+Thick: Fixed size. Thin: Grows as needed.
+
+9️⃣ What is DRS?
+Distributes VM loads across hosts.
+
+🔟 What is HA?
+Restarts VMs after host failure.
+⸻
+L2 Questions (Intermediate)
+
+1️⃣ What is vSphere HA?
+Detects host/VM failure, restarts VMs.
+
+2️⃣ vMotion vs Storage vMotion?
+vMotion moves compute, Storage vMotion moves storage.
+
+3️⃣ What is Linked Mode?
+Manages multiple vCenters together.
+
+4️⃣ VM Kernel Port?
+Handles management and vMotion traffic.
+
+5️⃣ How to check ESXi logs?
+Via DCUI, SSH, or vSphere Web.
+
+6️⃣ What is a Resource Pool?
+Logical division of compute resources.
+
+7️⃣ VM Affinity/Anti-Affinity?
+Keeps VMs together or apart on hosts.
+
+8️⃣ Clone vs Template?
+Clone: Copy of VM. Template: Gold image.
+
+9️⃣ What is VUM?
+Tool for ESXi patching & upgrades.
+
+🔟 What is VM Tools?
+Enhances VM interaction with host.
