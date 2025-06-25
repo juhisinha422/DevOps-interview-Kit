@@ -1,0 +1,17 @@
+🌐💻 Networking Commands Every Linux User Should Know! 🚀🐧
+
+Here are some 🔥 essential networking commands that’ll make your life 10x easier:
+
+🔍 ip a – Show IP addresses & interfaces
+ 🗺️ ip r – Display the routing table
+ 🔗 ip link – View/manage network interfaces
+ ⚡ ss – Modern replacement for netstat, super fast!
+ 📡 netstat -tuln – See open ports & services
+ 📶 ping – Check connectivity to another host
+ 🛣️ traceroute – Track the path your packets take
+ 🌍 nslookup / dig – Investigate DNS records
+ 🏷️ hostname -I – Show your machine’s IP
+ 📥 curl / wget – Test APIs, download files, and more
+ 🧠 nmcli – TUI for managing networks via NetworkManager
+
+💡 Pro Tip: Use the ip command — it's the newer, better alternative to ifconfig and route.
