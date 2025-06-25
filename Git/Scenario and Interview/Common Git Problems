@@ -1,0 +1,43 @@
+common Git problems in DevOps and simple solutions 
+
+1. Problem: Merge Conflicts
+What happens: When two people change the same part of a file, Git can’t automatically combine the changes.
+ Solution:
+Communicate with your team to avoid working on the same files at the same time.
+Use git pull often to keep your branch updated.
+Resolve conflicts manually by editing the conflicting files, then commit the changes.
+
+2. Problem: Accidentally Committing Sensitive Data
+What happens: You accidentally commit passwords or secret keys in your code.
+ Solution:
+Use .gitignore to prevent sensitive files from being committed.
+If already committed, use tools like git filter-branch or BFG Repo-Cleaner to remove sensitive data from history.
+Rotate/change the leaked secrets immediately.
+
+3. Problem: Large Files Making Repo Slow
+What happens: Big files slow down cloning and pushing.
+ Solution:
+Use Git Large File Storage (Git LFS) to manage large files outside the main repo.
+Avoid committing large binaries if possible.
+
+4. Problem: Forgot to Pull Before Pushing
+What happens: You try to push your changes but get an error because your local branch is behind remote.
+ Solution:
+Always run git pull before git push to sync your local branch with the remote.
+If there are conflicts, resolve them before pushing.
+
+5. Problem: Deleted a Branch by Mistake
+What happens: You accidentally delete a branch that has important work.
+ Solution:
+You can recover deleted branches using git reflog and git checkout <commit-hash> to restore it.
+
+6. Problem: Wrong Commit Message or Commit Made to Wrong Branch
+What happens: You commit with a wrong message or on the wrong branch.
+ Solution:
+Use git commit --amend to fix the last commit message.
+Use git cherry-pick or git rebase to move commits to the correct branch.
+
+7. Problem: Slow Cloning in Big Repos
+What happens: Cloning takes a long time for big repositories.
+ Solution:
+Use shallow clone with git clone --depth=1 to clone only the latest commits.
