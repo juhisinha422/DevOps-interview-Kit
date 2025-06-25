@@ -1,0 +1,32 @@
+echnical Interview Experience – DevOps Engineer at GlobalLogic (Round 1)
+--------------------------------------------------------
+
+🚀 Azure DevOps & CI/CD Workflows
+ ✅ How do you dynamically pass secrets and tokens across pipeline stages securely in Azure DevOps?
+ ✅ What are environment checks and how do they help in managing gated deployments?
+ ✅ How would you handle rollback in a multi-stage YAML pipeline if stage 3 fails but stage 1 & 2 succeeded?
+ ✅ How do you implement reusability across pipelines for 15+ microservices?
+
+🚀 Kubernetes & Container Platform
+ ✅ How do you manage Kubernetes secrets securely without exposing them in Git or CI logs?
+ ✅ A new deployment shows no logs and isn’t reachable — walk me through your end-to-end debug strategy.
+ ✅ What is the difference between Init containers and sidecars — and where have you used both in real projects?
+ ✅ How do you perform rolling updates with zero downtime in AKS?
+
+🚀 Infrastructure as Code (Terraform / Bicep)
+ ✅ How do you structure Terraform for large teams managing different environments (dev/stage/prod)?
+ ✅ What’s the role of lifecycle blocks in Terraform and how do you use them for resource protection?
+ ✅ How would you import existing Azure resources into Terraform without overriding them?
+ ✅ How do you securely manage Terraform backend and remote state?
+
+🚀 GitOps & Deployment Automation
+ ✅ How does ArgoCD detect drift and what are your sync policies for production?
+ ✅ What happens if someone bypasses Git and makes a manual change on the cluster?
+ ✅ How do you separate application-level values from environment-specific ones in GitOps deployments?
+ ✅ Explain the concept of Progressive Delivery and how you’ve implemented it.
+
+🚀 Monitoring & Incident Handling
+ ✅ How would you detect memory leaks in a Node.js container running in production?
+ ✅ What tools would you use for distributed tracing in microservices deployed on AKS?
+ ✅ Describe your alerting strategy to reduce noise while ensuring critical incidents are not missed.
+ ✅ What’s your process for handling a Sev-1 outage caused by a failed DNS resolution in the cluster?
