@@ -1,0 +1,43 @@
+Interview Questions In the Last 10 Months – Cloud/DevOps Roles (Part 1)
+
+Networking Questions:
+
+1. What happens in the background when you type www.google.com?
+2. How does the internet work? (Explain in your perspective)
+3. What is DNS and how does it work?
+4. Explain the OSI model — what does each layer do?
+5. Difference between TCP and UDP
+6. What is the TCP 3-Way Handshake? Explain the process
+7. Questions on IP addressing and CIDR
+
+Linux Questions:
+
+1. Why is Linux preferred over Windows in most organizations?
+2. How would you troubleshoot the network connectivity issue on a Linux server?
+3. What does the top command do? What about disk space management?
+4. Linux file management questions
+5. What is inside /etc, /var directories?
+6. What is SSH? How does it work?
+7. Commands: ping, dig, nslookup – troubleshooting-related
+
+AWS Cloud Questions:
+
+1. What is S3 versioning?
+2. Difference between Internet Gateway and NAT Gateway? Why is NAT used?
+3. Is S3 bucket region-specific or globally accessible?
+4. What is an inline policy in AWS?
+5. Difference between IAM Policies, Groups, and Roles
+6. What is VPC Peering? What can be used if we need to connect to multiple VPCs?
+7. Explain the steps to create a custom VPC manually
+8. How to SSH into a private server from a public subnet without a bastion host?
+9. Is CloudWatch configured by default with AWS services?
+10. Difference between Security Groups and NACL (Which one is stateless?)
+11. What is Lambda concurrency?
+12. Advantages of Serverless architecture
+13. Difference between EBS and EFS — explain with real-world use cases
+
+Git & Version Control:
+
+1. Difference between git rebase and git merge
+2. What does git cherry-pick do?
+3. General Git workflow and commonly used commands.
