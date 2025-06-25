@@ -1,0 +1,70 @@
+Terraform (IAC) Scenario Based Interview 🟪 
+
+🚨🚨 What Happens When Someone Manually Creates Infrastructure in Terraform-Managed AWS Environment?🚨🚨
+
+📌  Let's Imagine
+
+🧰  We have Scrupulously set up your AWS infrastructure using Terraform.
+Everything is codified, version-controlled, and reviewed.
+
+⚠️ ⚠️ Then… someone goes to the AWS Console and manually creates a new resource in that same environment. 🥲 
+
+→ Do you have any idea what happens now ?? Make a guess 😇 
+
+→ Ok! Lets deep dive what will happen in this scenario.
+
+📦 1. Terraform is Blind to Resources It Didn't Create. It don't know about the resources in Cloud account 📦📦
+Terraform manages only what's:
+
+→ It only Knows What is defined an tracked in .tf state file.
+
+→ When someone creates infra manually (say, an EC2 instance), it's not recorded in Terraform state.
+
+✅ Terraform won’t touch it
+❌ Terraform won’t manage it
+🤐 Terraform doesn’t even know it exists.
+
+
+🧪 2. Manual Resources May Cause Conflicts or Drift
+Here’s where it gets risky:
+
+➤ ❌ Conflicts
+If someone manually creates an S3 bucket with the same name as one defined in Terraform, terraform apply will fail with a resource conflict.
+
+➤ ⚠️ Drift
+If someone manually modifies a Terraform-managed resource. Terraform detects it as drift — a mismatch between real infra and .tfstate.
+
+🔍 3. How Terraform Reacts During terraform plan and apply
+
+Scenario	                                                      Terraform Reaction
+➤Manually created new resource	              ->  Ignored (not managed)
+➤Manually modifies existing 
+Terraform-managed resource                	      ->  Detected as drift
+➤Terraform defines a resource
+ that conflicts with manual one                       ->	 apply will fail
+
+🛠️ 4. How to Handle This Situation 
+
+➤ Import the Resource, So that Terraform will know the Created resource details under Terraform Hood.
+
+# Terraform import aws_instance.kishore_instance i-0123456789abcdef0  
+
+The above command will sync the resource into terraform state.
+
+🚨 NOTE : Manually we need to write resource data in our configuration files.
+
+✅ See as a infra team we taking care of so many things, But Sometimes application users they create due to urgency.
+ 
+✅ I have solution for that, If your team follow IAC infra only then restrict the users to create resources through console using IAM POLICIES.
+
+
+🧠 Final Verdict:
+- Manual changes in a Terraform-managed AWS environment aren’t just bad practice but If IAC is managing INFRA there are several risks. ✳️ 
+
+So Manual changes 
+
+👉 They break visibility
+👉 They cause drift
+👉 They increase the chance of production issues
+
+In Infrastructure-as-Code, code is law. Follow the LAW and make Cloud Eco System Better. 
