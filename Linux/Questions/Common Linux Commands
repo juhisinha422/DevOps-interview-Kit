@@ -1,0 +1,97 @@
+Here’s a simple list of common Linux commands used in DevOps with who uses them, what they do, and why:
+
+✅ 1. ls
+	•	Who: Everyone
+	•	What it does: Lists files and folders in a directory
+	•	Why: To check what’s inside a directory
+	•	Example: ls -l (shows details like permissions and size)
+
+✅ 2. cd
+	•	Who: Everyone
+	•	What it does: Changes directory
+	•	Why: To move into a specific folder
+	•	Example: cd /var/log
+
+✅ 3. pwd
+	•	Who: Everyone
+	•	What it does: Shows current directory
+	•	Why: To confirm where you are in the file system
+	•	Example: pwd
+
+✅ 4. cat
+	•	Who: Developers, SREs
+	•	What it does: Displays file content
+	•	Why: To quickly read log or config files
+	•	Example: cat config.yaml
+
+✅ 5. tail
+	•	Who: DevOps, Support
+	•	What it does: Shows the last lines of a file
+	•	Why: To view the latest logs
+	•	Example: tail -f /var/log/syslog
+
+✅ 6. grep
+	•	Who: Everyone
+	•	What it does: Searches text in files
+	•	Why: To find specific info (like errors) in logs
+	•	Example: grep "error" /var/log/syslog
+
+✅ 7. chmod
+	•	Who: DevOps, Admins
+	•	What it does: Changes file permissions
+	•	Why: To allow or deny access to users
+	•	Example: chmod +x script.sh (makes script executable)
+
+✅ 8. chown
+	•	Who: DevOps, Admins
+	•	What it does: Changes file owner
+	•	Why: To give file access to another user
+	•	Example: chown user1 file.txt
+
+✅ 9. ps
+	•	Who: DevOps, Admins
+	•	What it does: Shows running processes
+	•	Why: To check if a service/app is running
+	•	Example: ps aux | grep nginx
+
+✅ 10. kill
+	•	Who: Admins
+	•	What it does: Stops a running process
+	•	Why: To stop a frozen or unneeded process
+	•	Example: kill 1234 (where 1234 is the process ID)
+
+✅ 11. top or htop
+	•	Who: DevOps
+	•	What it does: Shows real-time system usage
+	•	Why: To monitor CPU, memory, and process activity
+	•	Example: top
+
+✅ 12. df -h
+	•	Who: DevOps
+	•	What it does: Shows disk space usage
+	•	Why: To check if disk is full
+	•	Example: df -h
+
+✅ 13. du -sh
+	•	Who: DevOps
+	•	What it does: Shows folder size
+	•	Why: To see how much space a folder is using
+	•	Example: du -sh /var/log
+
+✅ 14. scp
+	•	Who: DevOps, Engineers
+	•	What it does: Securely copies files between servers
+	•	Why: To move configs/scripts
+	•	Example: scp file.txt user@server:/home/user/
+
+✅ 15. ssh
+	•	Who: Everyone
+	•	What it does: Connects to a remote Linux server
+	•	Why: To manage servers remotely
+	•	Example: ssh user@server
+
+✅ 16. crontab -e
+	•	Who: DevOps
+	•	What it does: Edits scheduled jobs (cron jobs)
+	•	Why: To automate tasks
+	•	Example: Run a script every day at 2 AM
