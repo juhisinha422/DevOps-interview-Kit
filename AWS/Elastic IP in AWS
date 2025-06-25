@@ -1,0 +1,43 @@
+What is an Elastic IP? (EIP)
+
+First, think of this:
+Imagine you have a house (your EC2 instance)
+But your home address keeps changing every time you go out and come back.
+To solve this, you go to the government and say:
+“Mujhe ek permanent address do — jo har waqt same rahe!”
+That permanent address = Elastic IP 
+
+So, What is Elastic IP?
+It's a static, public IPv4 address provided by AWS
+You can attach it to your EC2 instance
+Even if the instance stops or restarts — IP doesn't change
+
+
+Why do we need EIP?
+Normally, when you start an EC2:
+It gets a public IP — but it's temporary
+Agar instance stop/start kiya — naya IP milta hai
+
+Bad idea if:
+      You're hosting a web app
+       DNS records are pointed to that IP
+       External tools hit your server via IP
+So, to avoid this — use Elastic IP 
+
+
+Use Case:
+I deployed a web server on EC2, and I want a fixed IP so customers can always access it, even after restarts.
+Elastic IP = solves this problem.
+Aap DNS me bhi set kar sakte ho, aur wo IP kabhi change nahi hogi (until you manually release it).
+
+
+
+Caution:
+AWS gives only 1 free EIP per region
+Agar EIP allocate karke use nahi kar rahe — you will be charged
+So only allocate when needed and always attach it to a running instance
+
+
+
+Interview Tip:
+Elastic IP is a static, public IPv4 address in AWS. It allows consistent access to EC2 even after restart or stop/start events. It's useful when you need a permanent public endpoint for your application.
