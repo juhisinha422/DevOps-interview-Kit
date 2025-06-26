@@ -1,0 +1,14 @@
+𝗘𝗻𝘀𝘂𝗿𝗶𝗻𝗴 𝗛𝗶𝗴𝗵 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 & 𝗙𝗮𝘂𝗹𝘁 𝗧𝗼𝗹𝗲𝗿𝗮𝗻𝗰𝗲 𝗼𝗻 𝗔𝗪𝗦 𝗘𝗖𝟮
+
+When you are deploying an application, downtime is not an option.
+
+Whether you're deploying a web app, API, or critical business service on 𝗔𝗪𝗦 𝗘𝗖𝟮, achieving 𝗵𝗶𝗴𝗵 𝗮𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆 (𝗛𝗔) and 𝗳𝗮𝘂𝗹𝘁 𝘁𝗼𝗹𝗲𝗿𝗮𝗻𝗰𝗲 (𝗙𝗧) is now a necessity for user trust.
+
+Here are key strategies I recommend:
+1️⃣ 𝗔𝘂𝘁𝗼 𝗦𝗰𝗮𝗹𝗶𝗻𝗴 𝗚𝗿𝗼𝘂𝗽𝘀 – Automatically adjust EC2 instances based on traffic or load to maintain performance and availability.
+2️⃣ 𝗘𝗹𝗮𝘀𝘁𝗶𝗰 𝗟𝗼𝗮𝗱 𝗕𝗮𝗹𝗮𝗻𝗰𝗲𝗿𝘀 (𝗘𝗟𝗕) – Distribute traffic across multiple instances to eliminate single points of failure.
+3️⃣ 𝗠𝘂𝗹𝘁𝗶-𝗔𝗭 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁𝘀 – Spread workloads across multiple AWS Availability Zones to withstand data center-level outages.
+4️⃣ 𝗗𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗥𝗲𝗱𝘂𝗻𝗱𝗮𝗻𝗰𝘆 – Implement replication or clustering (e.g., RDS Multi-AZ, Aurora failover) to ensure continuous data access.
+5️⃣ 𝗛𝗲𝗮𝗹𝘁𝗵 𝗖𝗵𝗲𝗰𝗸𝘀 – Detect and remove unhealthy instances from rotation via ELB health probes.
+6️⃣ 𝗗𝗮𝘁𝗮 𝗕𝗮𝗰𝗸𝘂𝗽 & 𝗗𝗶𝘀𝗮𝘀𝘁𝗲𝗿 𝗥𝗲𝗰𝗼𝘃𝗲𝗿𝘆 – Automate backups and define recovery plans to minimize data loss and downtime.
+7️⃣ 𝗘𝗹𝗮𝘀𝘁𝗶𝗰 𝗜𝗣𝘀 – Quickly reassign static IPs to replacement instances in the event of failure.
