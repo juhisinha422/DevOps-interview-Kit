@@ -1,0 +1,26 @@
+ HTTP Status Codes Every DevOps Engineer Must Know! 💻⚙️
+
+
+
+✅ 2xx – Success
+
+🔹 200 OK – Request succeeded. The bread and butter of web responses. 🍞
+🔹 201 Created – Resource successfully created (think: POST /user). 🛠️
+🔹 204 No Content – Success, but no content returned (DELETE ops!). 🧹
+
+
+⚠️ 4xx – Client Errors
+
+❌ 400 Bad Request – Malformed request. Usually a client-side mistake. 🧩
+🚫 401 Unauthorized – Missing or invalid auth credentials. 🔐
+🚷 403 Forbidden – Valid creds, but access is still denied (RBAC, IAM misconfigs). 🧱
+❓ 404 Not Found – Requested resource doesn’t exist. Double-check URLs! 🔍
+📦 429 Too Many Requests – You’re being rate-limited! Slow down! 🐢
+
+
+🔥 5xx – Server Errors
+
+💥 500 Internal Server Error – Catch-all error. Dive into logs ASAP! 🪵
+🚒 502 Bad Gateway – Server got an invalid response from the upstream (LB ↔️ App). 🛤️
+🧯 503 Service Unavailable – Service is overloaded or down for maintenance. ⏳
+🔁 504 Gateway Timeout – Upstream didn’t respond in time. Troubleshoot backend. ⏱️
