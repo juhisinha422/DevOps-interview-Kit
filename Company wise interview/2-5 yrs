@@ -1,0 +1,27 @@
+Most Asked DevOps Interview Questions (2–5 Yrs Experience)
+
+ 📌 Preparing for interviews or just brushing up? Here are some commonly asked DevOps questions based on my experience and peer discussions:
+
+🔧 CI/CD & Jenkins
+What is the difference between Freestyle and Declarative pipelines?
+How do you implement CI/CD using Jenkins and GitLab?
+How do you trigger a pipeline on code commit?
+🐳 Docker
+What is the difference between CMD and ENTRYPOINT?
+How do you create a multistage Docker build?
+Explain Docker networking modes.
+☸️ Kubernetes
+What is the difference between Deployment and StatefulSet?
+How does a Service work internally?
+What are Taints and Tolerations?
+🛠️ Terraform
+What is the purpose of backend in Terraform?
+Difference between terraform apply and terraform plan?
+How do you manage secrets securely?
+☁️ AWS/Azure
+How do you configure auto-scaling in EC2?
+What’s the use of IAM roles vs policies?
+How do you integrate ECR with Jenkins?
+📊 Monitoring
+How do you set up alerts in Grafana/Prometheus?
+Difference between ELK and EFK stacks?
