@@ -1,0 +1,28 @@
+𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐞 𝐀𝐖𝐒 𝐋𝐢𝐤𝐞 𝐚 𝐏𝐫𝐨: 𝐃𝐚𝐢𝐥𝐲 𝐀𝐌𝐈 𝐁𝐚𝐜𝐤𝐮𝐩𝐬 𝐰𝐢𝐭𝐡 𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 + 𝐋𝐚𝐦𝐛𝐝𝐚 — 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐃𝐞𝐯𝐎𝐩𝐬 𝐢𝐧 𝐀𝐜𝐭𝐢𝐨𝐧!" 🚀
+
+📘 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨:
+
+You are asked to automate daily AMI backups of EC2 instances with retention policy (e.g., delete after 3 days) using Terraform. This setup must include:
+
+✔️ A 𝑳𝒂𝒎𝒃𝒅𝒂 function to create AMIs
+
+✔️ A 𝑪𝒍𝒐𝒖𝒅𝑾𝒂𝒕𝒄𝒉 𝑬𝒗𝒆𝒏𝒕 𝑹𝒖𝒍𝒆 to trigger it daily
+
+✔️ An 𝑰𝑨𝑴 𝒓𝒐𝒍𝒆 with required permissions
+
+✔️ Optionally, you could add 𝒄𝒍𝒆𝒂𝒏𝒖𝒑 𝒍𝒐𝒈𝒊𝒄 for old AMIs
+
+🧠 𝐖𝐡𝐲 𝐈𝐭’𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐆𝐨𝐥𝐝:
+
+✅ Shows infrastructure automation
+✅ Demonstrates cross-service orchestration (Lambda, EC2, IAM, CloudWatch)
+✅ Reflects cost-consciousness (deleting old AMIs)
+✅ You go beyond basic provisioning
+
+🧠 𝐁𝐨𝐧𝐮𝐬 𝐈𝐝𝐞𝐚𝐬 𝐭𝐨 𝐓𝐚𝐥𝐤 𝐀𝐛𝐨𝐮𝐭:
+
+✅ Add lifecycle rule in S3 for 𝒄𝒍𝒆𝒂𝒏𝒊𝒏𝒈 𝒖𝒑 𝒛𝒊𝒑𝒑𝒆𝒅 𝒇𝒊𝒍𝒆𝒔
+
+✅ Extend Python to 𝒅𝒆𝒍𝒆𝒕𝒆 𝑨𝑴𝑰𝒔 older than 3 days (if time permits)
+
+✅ Use 𝒕𝒂𝒈𝒔 𝒕𝒐 𝒇𝒊𝒍𝒕𝒆𝒓 only specific EC2s
