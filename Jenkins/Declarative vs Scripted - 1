@@ -1,0 +1,38 @@
+ Mastering Jenkins Pipelines – Declarative vs Scripted 🚀
+
+In Jenkins, Pipelines are the heart of CI/CD automation. But did you know there are two main types?
+
+Let’s break it down 👇
+
+💡 Declarative Pipeline
+✅ More structured & user-friendly
+✅ Ideal for teams & large projects
+✅ Easier syntax, great for beginners
+
+pipeline {
+ agent any
+ stages {
+ stage('Build') {
+ steps {
+ echo 'Building...'
+ }
+ }
+ }
+}
+
+💻 Scripted Pipeline
+✅ More powerful & flexible
+✅ Closer to traditional programming
+✅ Perfect for advanced users
+
+node {
+ stage('Build') {
+ echo 'Building...'
+ }
+}
+
+🎯 When to Use What?
+ • If you’re new to Jenkins or need a clean structure: Declarative
+ • If you need full control or complex logic: Scripted
+
+⚙️ Pro Tip: I often combine both styles strategically in my real-world Jenkins implementations!
