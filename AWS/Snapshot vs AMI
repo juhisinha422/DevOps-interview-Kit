@@ -1,0 +1,41 @@
+AWS Snapshot vs AMI – What's the Difference?
+
+
+Imagine you're using a perfectly configured laptop:
+Right apps, perfect wallpaper, all settings tuned.
+Now you want the exact same setup on another laptop.
+That’s where Snapshot and AMI come in — but they’re not the same.
+
+
+Snapshot – Backup of storage only
+Snapshot is a backup of your EBS volume (storage).
+It only stores data, not OS or configs.
+You can’t launch EC2 directly from a snapshot.
+Think of it like: Maine hard drive ka photo le liya.
+
+
+AMI (Amazon Machine Image) – Full system template
+AMI contains:
+  OS
+  Snapshot (storage)
+  Launch permissions
+  EC2 configuration
+
+You can directly launch EC2 instances from it.
+Use AMI when you want to create multiple identical servers.
+Socho: Poora laptop ka duplicate ban gaya, boot hone ke liye ready — that’s AMI.
+
+
+Does AMI include EBS?
+Yes, AMI includes EBS snapshots.
+When you create an AMI from an EC2 instance, AWS automatically takes snapshots of the EBS volumes attached to that instance — including the root volume (OS disk) and any additional volumes.
+So jab aap AMI se naya EC2 launch karte ho, wo same EBS volumes ke sath launch hota hai — just like the original setup.
+
+
+
+Interview Tip:
+Can I create an AMI from a snapshot?
+Yes, but you’ll need to define configs and attach it properly.
+Visualise. Don’t just memorise.
+ Snapshot is just storage.
+ AMI = OS + Storage + Config — a full system.
