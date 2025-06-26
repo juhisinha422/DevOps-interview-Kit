@@ -1,0 +1,32 @@
+Terraform scenario based interview questions.
+
+1.Explain Core Terraform end-to-end workflow to deploy and delete resources in Azure or AWS cloud?
+
+INIT - Initialize working directory containing Terraform configuration
+ files
+Validate - Validate Terraform configuration files for syntactical and   internal consistent
+Plan - Preview changes before applying
+Apply - Provision reproducible infrastructure
+Destroy - Delete/Destroy Terraform managed infrastructure
+
+
+** "Terraform fmt" command is used to rewrite Terraform configuration to a canonical format
+
+2. Explain or walk-through step by step process to secure .tfstate file and by making it readily available for other developers within the team?
+Terraform Backends:
+ - Backends define where Terraform's state snapshots are stored
+
+3. Explain the various type of META-Arguments in Terraform and their
+ benefits?
+ Meta-Arguments changes the default behaviours of Terraform  Configuration
+ - depends_on
+ - count
+ - for_each
+ - provider
+ - lifecycle
+4. Who creates the "terraform.tfstate.backup" file and under which scenario it is created?
+ - Backup state file is automatically created, when terraform destroy command is executed
+ - The above is done to restore infrastructure to the same state, prior running terraform destroy command
+
+5. How do you manage credentials in terraform?
+We need to be careful while handling credentials. Best practise are setting the environment variables before we plan and apply the infra. Once it is applied we can unset. We can store the credentials in Jenkins Credentials if we are following CICD. In Jenkins, use the "withCredentials" block to inject credentials for the Terraform pipeline.
