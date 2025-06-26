@@ -1,0 +1,75 @@
+“Decoding Jenkins Pipelines – Part 2: Shared Libraries Simplified!”
+
+
+🔧 If you’re managing multiple Jenkins pipelines, chances are you’ve repeated the same logic across projects.
+That’s where Jenkins Shared Libraries come to the rescue!
+
+Let’s explore how to write reusable, maintainable, and scalable code using shared libraries 🔁
+
+Look below to understand 👇
+⸻
+
+🖼️ Title Slide
+
+Jenkins Shared Libraries – Why & How
+Unlock the power of reusability in your Jenkins pipelines!
+📚 Let’s go modular.
+
+⸻
+
+🖼️ The Problem
+
+Copy-pasting pipeline code?
+🚫 Leads to:
+• Code duplication
+• Harder maintenance
+• No central update control
+
+⸻
+
+🖼️ What is a Shared Library?
+
+A shared library is a collection of reusable Jenkins pipeline functions and variables stored in Git.
+✅ Reuse logic
+✅ Centralize updates
+✅ Standardize pipelines
+
+⸻
+
+🖼️ Folder Structure Example
+
+(root)
+└── vars/
+ └── myPipeline.groovy
+└── src/
+ └── org/
+ └── example/
+ └── Utils.groovy
+🔹 vars/ – entry points
+🔹 src/ – support classes
+
+🖼️ Sample Function (Groovy)
+
+// vars/hello.groovy
+def call(String name = 'World') {
+ echo "Hello, ${name}!"
+}
+
+Use in pipeline:
+
+@Library('my-shared-library') _ 
+hello('Neha')
+
+🖼️ Benefits
+
+✔ Reusable across projects
+✔ Clean and modular
+✔ Team collaboration enabled
+✔ Easy to maintain
+
+⸻
+
+🖼️ Real-World Use Case
+
+🎯 Used across 4+ projects with varying pipeline structures
+🎯 Handles all test retries, browser combos, and YAML config
