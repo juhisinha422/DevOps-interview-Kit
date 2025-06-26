@@ -1,0 +1,18 @@
+DevOps Engineers What They Actually Do All Day
+
+The results were... eye-opening:
+
+40% of time: Debugging YAML indentation 
+25% of time: Googling cryptic error messages
+15% of time: Explaining why the deployment failed 
+10% of time: Waiting for builds to finish
+5% of time: Actually building new features 
+5% of time: Pretending Kubernetes makes sense 🤣 
+
+The dirty truth? Most "DevOps" is just "Ops" with extra steps and YAML.
+
+But here's what the top 10% actually spend time on:
+- Automating the boring stuff
+- Building self-service tools for developers
+- Making systems that heal themselves
+- Writing docs that don't suck
