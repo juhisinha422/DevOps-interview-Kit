@@ -1,0 +1,18 @@
+Why I Use Alpine in Docker Images (And You Should Too!)
+
+When it comes to container images, lighter is smarter 💡
+That’s why I often choose alpine as my base image. Here’s why:
+
+✅ Super Lightweight (~5MB only!)
+✅ Faster builds & deployments
+✅ Reduced attack surface = Better security
+✅ Perfect for minimal setups & microservices
+
+Example:
+FROM alpine  
+RUN apk add --no-cache python3 py3-pip
+
+🚫 Stop pulling full Ubuntu images just to say hello.
+🏋️♀️ Start pulling Alpine — light, fast, and clean.
+
+Because in containers, every MB counts! 😎
