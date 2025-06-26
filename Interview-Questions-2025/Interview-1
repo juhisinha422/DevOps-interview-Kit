@@ -1,0 +1,50 @@
+AWS (EC2, S3, Lambda, CloudFront): 
+What is EC2? How does it differ from traditional servers?
+What is an S3 bucket? How is it used in DevOps pipelines?
+Explain IAM roles and how they are used with EC2 and Lambda.
+What is Lambda? How is it different from EC2?
+Explain the lifecycle of an EC2 instance and how to automate it using user data.
+How does versioning work in S3 and why is it important for DevOps?
+What is CloudFront and how does it improve performance in deployment?
+How would you build a serverless web app using Lambda, S3, and CloudFront?
+How do you automate S3 backup and EC2 snapshot policies in a DevOps pipeline?
+Design a CI/CD pipeline to deploy code to Lambda with version control and rollback.
+
+Terraform: 
+Why Terraform is more popular tool in IAC? How is it different from CloudFormation and ARM Templates?
+What are providers and resources in Terraform?
+Explain the purpose of terraform init, plan, apply, and destroy.
+What are Terraform state files? Why should they be stored securely?
+How do you use variables and outputs in a Terraform project?
+Explain the concept of workspaces in Terraform.
+How do you manage multiple environments (dev, staging, prod) in Terraform?
+Write a basic Terraform configuration to deploy an EC2 instance and differnec between tfvars and .tf ?
+How do you implement remote state locking with Terraform?
+Design a Terraform module for creating VPC, subnets, and EC2 instances with reusability.
+
+Azure DevOps:
+What is Azure DevOps and what services does it include?
+Explain the difference between Azure Repos, Pipelines, Artifacts, and Boards.
+What are build and release pipelines?
+How do you create a YAML pipeline in Azure DevOps?
+What is the difference between Classic pipeline and YAML pipeline?
+How do you implement approvals and gates in Azure release pipelines?
+How do you integrate Azure DevOps with GitHub for automated builds?
+What is the role of service connections in Azure DevOps?
+How would you manage secrets in Azure DevOps pipelines?
+Scenario: Design an end-to-end Azure DevOps pipeline for deploying an AKS-hosted application.
+
+CI/CD Concepts:
+What is CI/CD? Why is it important in DevOps?
+What tools are commonly used for CI/CD?
+Explain the stages in a typical CI/CD pipeline.
+What is the difference between continuous integration, delivery, and deployment?
+How do you manage rollbacks in CI/CD pipelines?
+How do you automate tests in a CI pipeline?
+What is blue-green deployment? How is it implemented?
+How do you implement canary deployment in CI/CD?
+What is pipeline as code and why is it beneficial?
+Scenario: Design a CI/CD strategy for a multi-service application deployed in Kubernetes.
+
+K8s Basics :
+Elaborate k8s architecture and its components.
