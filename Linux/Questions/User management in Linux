@@ -1,0 +1,131 @@
+User Management in Linux
+
+🔹1. User Account Basics
+What is a User in Linux?
+	•	A user in Linux is an identity used to access system resources.
+	•	Each user has:
+	•	A UID (User ID)
+	•	A GID (Group ID)
+	•	A home directory
+	•	A shell
+	•	A password (hashed) stored in /etc/shadow
+User Types:
+Type	UID Range	Description
+Root	0	Superuser with full privileges
+System	1–999 (or 1–999 depending on distro)	Used by services (e.g., www-data, sshd)
+Regular	1000+	Human users
+
+🔹2. Important User Files
+
+File	Purpose
+/etc/passwd	User account details (UID, GID, home dir, shell). World-readable.
+
+/etc/shadow	Encrypted passwords + aging info. Only readable by root.
+
+/etc/group	Group information
+
+/etc/gshadow	Secure group passwords (rarely used)
+
+/etc/login.defs	Default user settings (UID range, password aging, etc.)
+
+/etc/skel/	Default contents copied to new user’s home directory
+
+🔹3. User Management Commands
+Add a User:
+useradd -m -s /bin/bash john
+passwd john
+Options:
+	•	-m: Create home directory
+	•	-s: Assign shell
+Modify a User:
+usermod -l newname oldname        # Change username
+usermod -d /new/home -m john      # Change home directory
+usermod -s /bin/zsh john          # Change shell
+usermod -aG sudo john             # Add user to group (with -a for append)
+
+Delete a User:
+userdel -r john   # Deletes user and home directory
+
+🔹4. Group Management
+
+Create/Manage Groups:
+groupadd devs
+groupmod -n newdevs devs
+groupdel devs
+
+Add User to Group:
+usermod -aG devs john
+
+List Group Memberships:
+groups john
+id john
+
+🔹5. Password Policies & Shadow File
+
+Set Password:
+passwd john
+
+Lock/Unlock Account:
+passwd -l john    # Lock account
+passwd -u john    # Unlock account
+
+Force Password Change at Next Login:
+chage -d 0 john
+
+Check and Set Password Aging:
+chage -l john              # View aging
+chage -M 90 -m 7 -W 14 john  # Max 90 days, min 7 days, warn 14 days before expiry
+
+🔹6. Shells and Access Control
+
+Change Default Shell:
+chsh -s /bin/bash john
+
+Restrict Shell Access (e.g., to disable login):
+usermod -s /sbin/nologin john
+
+Limit SSH Access:
+	•	Use /etc/ssh/sshd_config:
+
+AllowUsers john
+DenyUsers hacker
+	•	Restart SSH:
+systemctl restart sshd
+
+🔹7. Viewing and Auditing Users
+
+List All Users:
+cut -d: -f1 /etc/passwd
+
+List All Logged In Users:
+who
+w
+users
+View User Login History:
+last
+lastlog
+
+🔹8. Sudo & Privilege Management
+
+Give User Root Privileges:
+Add user to sudo group:
+usermod -aG sudo john
+Or edit /etc/sudoers via:
+visudo
+Example entry:
+john ALL=(ALL) NOPASSWD: /usr/sbin/service nginx restart
+
+🔹9. Advanced Topics
+
+Create User with Specific UID/GID:
+useradd -u 2025 -g devs -m jane
+Create a User Without Home Directory:
+useradd -M sysbackup
+Expire a User Account:
+chage -E 2025-12-31 john
+Create a User with Expiry & Shell Restriction:
+useradd -e 2025-12-31 -s /sbin/nologin john
+
+🔹10.Best Practices
+	•	Never manually edit /etc/passwd or /etc/shadow unless absolutely necessary.
+	•	Use visudo for sudoers edits to avoid syntax errors.
