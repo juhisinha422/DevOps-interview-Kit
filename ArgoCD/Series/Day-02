@@ -1,0 +1,39 @@
+𝗗𝗮𝘆 𝟮 - 𝗔𝗿𝗴𝗼𝗖𝗗 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲 𝗗𝗲𝗲𝗽 𝗗𝗶𝘃𝗲
+
+How ArgoCD works under the hood (and why it matters)
+
+To really master ArgoCD, you need to understand how it’s built. Today, we’re lifting the hood on its architecture so you know what’s happening during every Git-to-cluster sync.
+
+⚙️ Core Components of ArgoCD
+Application Controller
+Watches Application CRDs in your cluster
+Continuously compares desired state (from Git) vs live state (in cluster)
+Triggers syncs to bring them in alignment
+Repository Server
+Clones and renders manifests from Git repositories
+Supports Helm, Kustomize, Jsonnet, plain YAML
+Keeps the rendering process isolated for security and speed
+API Server (Dex + RBAC)
+Serves the web UI and CLI
+Manages authentication and RBAC policies
+Integrates with SSO (GitHub, LDAP, OIDC, etc.)
+ArgoCD UI / CLI / REST API
+Offers full observability: sync status, health, diff
+Supports manual overrides and rollbacks
+CLI (argocd) is scriptable and team-friendly
+🔁 The Sync Loop
+Here’s what happens in the background:
+
+You define your app manifests in Git
+ArgoCD clones the repo via the Repo Server
+Application Controller compares desired vs live state
+If there’s a drift (or a change in Git), it triggers a sync
+K8s objects are created/updated — no manual kubectl needed
+UI/CLI/API show live sync + health status
+💡 Bonus: Sync policies (manual, auto, hooks) let you customize exactly how this flow behaves.
+
+💭 Why This Matters
+✅ You gain predictable, repeatable deployments
+✅ You get self-healing infra based on Git state
+✅ You can scale confidently across teams and clusters
+✅ You’ll finally be able to treat infra like code — for real
