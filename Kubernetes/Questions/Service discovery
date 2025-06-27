@@ -1,0 +1,22 @@
+Service discovery is failing across namespaces. DNS is green.
+What’s your next step — and how do you confirm the root cause?”
+
+Here’s what they expected from a senior DevOps engineer:
+1. Use kubectl exec to run nslookup with the full FQDN: svc.namespace.svc.cluster.local
+2. Check if the pod’s ServiceAccount has permission to list services in that namespace
+3. Inspect RBAC roles — is there a RoleBinding for discovery?
+4. Review NetworkPolicies – are they blocking intra-namespace traffic?
+5. Examine CoreDNS ConfigMap – look for caching misconfigurations or recursive loops
+6. Use tcpdump inside the pod to confirm UDP port 53 DNS traffic
+7. Confirm EndpointSlices and actual backend pod readiness
+
+💡 The painful lesson?
+
+Everyone knows how DNS is supposed to work.
+But very few know how it breaks in production — silently, without logs, while everything looks healthy.
+
+Here’s what I now simulate in my mock interviews:
+• Namespace-to-namespace failures with layered RBAC blocks
+• Debugging CoreDNS when the plugin chain is misordered
+• Live fire drills: service is healthy, traffic fails, what now?
+• RCA workflows that get you promoted, not panicked
