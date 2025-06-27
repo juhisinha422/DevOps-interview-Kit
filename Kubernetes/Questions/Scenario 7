@@ -1,0 +1,21 @@
+Applied YAML but No Pod in Kubernetes? Let’s Fix It. 
+
+You applied a Kubernetes YAML using kubectl apply -f pod.yaml...
+It says "created" or "configured"... but kubectl get pods shows nothing?
+
+🧠 What’s going on?
+Kubernetes accepted your YAML — but didn’t actually create a Pod.
+
+🔍 How to Troubleshoot:
+
+1️⃣ kubectl get pods — Confirm the pod is actually there
+2️⃣ kubectl get all — Maybe you created a Deployment or Service instead
+3️⃣ Open your YAML — Check kind: (is it really a Pod?)
+4️⃣ Check the spec: block — Is containers: present and correctly indented?
+5️⃣ kubectl apply --dry-run=client -f pod.yaml — Validate structure before applying
+
+🎯 Real-world example:
+A YAML looked like a Pod… but it was actually a Deployment.
+That’s why no pod showed up in kubectl get pods — it was controlled by a ReplicaSet!
+
+📌 Tip: kubectl get all is your friend. It gives you a quick view of everything — Pods, Services, Deployments, and more.
