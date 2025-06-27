@@ -1,0 +1,19 @@
+What is the state in Terraform?
+
+Terraform uses state file to compare the actual infrastructure created and declared infrastructure through .tf files. It generally stores the state into terraform.tfstate file.
+
+Terraform responsibility is to match desired infrastructure with actual infrastructure.
+
+What is the remote state in Terraform?
+
+Saving state locally is not recommended in Terraform. Because in a collaborative environment multiple persons would be working on the same infra so there is a high possibility of duplications and errors if you save the state locally.
+
+Terraform recommends storing the state in a centralized location, accessible by the entire team and it should be locked. so that more people can't do the changes in infrastructure at a time.
+
+Explain variables in Terraform?
+
+Variables are used to parameterize the infrastructure. We can provide dynamic values to the configuration through variables.
+
+What are Outputs in Terraform?
+
+When we create resources in Terraform, it can give us the attributes of the resource it created. These output values are useful while creating other resources.
