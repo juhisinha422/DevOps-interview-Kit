@@ -1,0 +1,38 @@
+𝗗𝗮𝘆 𝟳 – 𝗔𝗿𝗴𝗼𝗖𝗗 & 𝗚𝗶𝘁𝗢𝗽𝘀 𝗦𝗲𝗿𝗶𝗲𝘀
+
+𝗖𝗜/𝗖𝗗 𝘄𝗶𝘁𝗵 𝗔𝗿𝗴𝗼 𝗪𝗼𝗿𝗸𝗳𝗹𝗼𝘄𝘀 + 𝗔𝗿𝗴𝗼𝗖𝗗: 𝗚𝗶𝘁𝗢𝗽𝘀 𝗗𝗼𝗻𝗲 𝗥𝗶𝗴𝗵𝘁
+
+From what I’ve implemented across several high-scale environments, CI/CD becomes far more reliable when you separate it cleanly — Argo Workflows for CI, ArgoCD for CD.
+
+Most teams treat CI/CD like a monolith. But separating CI and CD leads to faster, safer, more auditable pipelines.
+
+Here’s how we pair Argo Workflows (CI) with ArgoCD (CD) to power GitOps in real-world teams 👇
+
+🔧 Separation of Concerns:
+Argo Workflows: Build, test, scan, lint, publish containers
+
+ArgoCD: Deploy apps using Git state
+
+This lets you audit every step — and rollback independently.
+
+⚙️ Typical Flow:
+Dev pushes code → CI (Argo Workflows)
+
+Image built & pushed to registry
+
+Git commit updates manifest/tag
+
+ArgoCD syncs updated manifest to cluster
+
+Simple. Declarative. Observable.
+
+🛠️ Add These for Pro-Level Pipelines:
+✅ GitHub Actions / GitLab → triggers Argo Workflows
+✅ Argo Workflows updates Git repo via PR
+✅ ArgoCD syncs and shows rollout health
+✅ Rollback = revert Git + ArgoCD auto-sync
+
+📌 TL;DR
+CI = build & test.
+CD = sync & deploy.
+Argo Workflows + ArgoCD = full GitOps pipeline.
