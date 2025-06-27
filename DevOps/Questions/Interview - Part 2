@@ -36,3 +36,61 @@ Scenarios:
 8. Write a YAML file for a simple nginx pod.
 9. Write an imperative command to create a deployment with image nginx and replica count of 3.
 10. What does node affinity do? Mention its rules and what it does.
+
+11. Do you know about taints and tolerations? If so, how are they used?
+
+12. What are the use cases of ConfigMaps and Secrets? Can we attach them as volumes?
+
+13. How does RBAC work? How does it connect with the user?
+
+14. How do you give permissions to cluster-scoped resources? Which one is used?
+
+15. What are health probes? Explain what they do exactly.
+
+16. What are Kubernetes volumes and how do they work?
+
+17. What are storage classes in Kubernetes?
+
+18.What is Ingress? Why is it used? Explain its workflow.
+
+19. What do you mean by headless service? 
+
+Scenarios:
+
+1. What happens in the background when you run "kubectl apply -f pod.yaml"?
+
+2. How will you troubleshoot when a pod returns with an OOM (Out Of Memory) error?
+
+3. You’re getting a CrashLoopBackOff error so what steps will you take to troubleshoot it?
+
+4. What does an ImagePullBackOff error mean, and how do you resolve it?
+
+5. What types of Kubernetes upgrade strategies do you know? When should each one be used? Explain with respect to cost optimization and minimizing downtime.
+
+6. How will you troubleshoot when users face latency in the pod?
+
+7. You are the DevOps engineer handling production. The application works fine locally, but users complain of downtime. What steps will you take to troubleshoot this?
+
+8. Let’s say your application is deployed on Kubernetes. What happens in the background when a user clicks the login button? Describe how the request flows through the Kubernetes components.
+
+9. How does Kubernetes determine that a readiness probe is ready to take the traffic?
+
+⚙️ CI/CD 
+
+1. Which CI/CD tools have you worked with in your projects? Which one are you most comfortable and proficient with?
+
+2. What are Jenkins Shared Libraries, and why do we use them in pipelines?
+
+3. Can you walk me through the different stages in your CI/CD pipeline and explain the overall workflow?
+
+4. How did you integrate SonarQube and OWASP ZAP with Jenkins in your pipeline?
+
+5. Since you've used SonarQube, can you explain the kind of reports it generates? What exactly does SonarQube do in terms of code analysis?
+
+6. What security best practices did you follow while building and maintaining your CI/CD pipeline?
+
+7. What kind of issues or failures have you faced in your pipelines, and how did you go about troubleshooting them?
+
+8. What are the advantages and limitations of using Jenkins compared to other CI/CD tools like GitLab CI/CD?
+
+9. When using GitLab CI/CD, which type of runner do you recommend - GitLab-hosted runner or a self-hosted/private runner? Why?
