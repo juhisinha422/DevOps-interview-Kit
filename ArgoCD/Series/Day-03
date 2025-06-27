@@ -1,0 +1,49 @@
+𝗗𝗮𝘆 𝟯 – 𝗔𝗿𝗴𝗼𝗖𝗗 & 𝗚𝗶𝘁𝗢𝗽𝘀 𝗦𝗲𝗿𝗶𝗲𝘀
+
+As GitOps adoption grows, many teams hit a wall:
+🚫 Broken environments
+🚫 Inconsistent deploys
+🚫 Security gaps
+🚫 “Works on my cluster” bugs
+
+Most of the time, the cause isn’t the tool — it’s the way it’s implemented.
+
+After helping teams scale GitOps using ArgoCD in production environments, here are the 10 most critical best practices I recommend to every engineering org:
+
+🔟 GitOps Practices You Should Be Following:
+1. Use the App of Apps Pattern
+Break monoliths into logical apps. Teams get autonomy while keeping global control.
+
+2. Automate with Sync Policies + Hooks
+Enable auto-sync where safe. Use lifecycle hooks (preSync, postSync) for DB migrations, validation, or checks.
+
+3. Define ArgoCD Projects
+Set boundaries for namespaces, clusters, and repos. RBAC isn’t a “nice to have” — it’s a must.
+
+4. Enforce Health Checks
+Write custom health checks for complex workloads (like Helm, StatefulSets). Production-ready = observable & healthy.
+
+5. Don’t Hardcode Secrets
+Use Sealed Secrets, SOPS, or the ArgoCD Vault Plugin. Auditability and encryption are non-negotiable.
+
+6. Use Sync Waves for Order
+Control app rollout order in layered setups. Prevent dependent services from failing mid-deploy.
+
+7. Structure with Base + Overlay (Kustomize)
+Separate base infra logic from env-specific overlays. This reduces duplication and promotes clean repo hygiene.
+
+8. Environment Branching
+Use Git branches or folders for dev, stage, prod. Promote via PRs, not ad-hoc merges.
+
+9. Pre-Sync Validation with Lua/OPA
+Use ArgoCD’s Lua or integrate OPA to reject non-compliant changes before they hit the cluster.
+
+10. Review Every Diff Before Sync
+GitOps isn’t fire-and-forget. Review ArgoCD’s live vs desired diffs. Catch drift before it causes damage.
+
+🎯 TL;DR
+GitOps isn’t just Git + YAML.
+It’s a discipline.
+These practices make the difference between demo-grade and production-grade GitOps.
+
+🧠 Whether you’re an SRE, DevOps engineer, or platform lead — this checklist is for teams who treat delivery as a product.
