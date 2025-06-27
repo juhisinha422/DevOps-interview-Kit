@@ -1,0 +1,24 @@
+𝗖𝗮𝗻 𝘆𝗼𝘂 𝘀𝗵𝗮𝗿𝗲 𝗮𝗻 𝗶𝗻𝘀𝘁𝗮𝗻𝗰𝗲 𝘄𝗵𝗲𝗿𝗲 𝘆𝗼𝘂 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗱 𝗮 𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻 𝗳𝗼𝗿 𝗰𝗼𝘀𝘁 𝗼𝗽𝘁𝗶𝗺𝗶𝘇𝗮𝘁𝗶𝗼𝗻 𝘄𝗵𝗶𝗹𝗲 𝗺𝗮𝗻𝗮𝗴𝗶𝗻𝗴 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝗮𝗹𝗹𝗼𝗰𝗮𝘁𝗶𝗼𝗻?
+Our cloud infrastructure was over-provisioned, leading to unnecessary costs. 
+I implemented auto-scaling based on actual usage metrics and utilized spot instances for non-critical workloads. 
+Additionally, I restructured the storage solution by moving infrequently accessed data to lower-cost storage classes. These changes resulted in a significant reduction in our monthly cloud expenses without compromising performance.
+
+𝗤. 𝗖𝗮𝗻𝗮𝗿𝘆 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁: Gradually rolling out the new version to a small subset of users before a full deployment.
+
+𝗤. 𝗥𝗼𝗹𝗹𝗶𝗻𝗴 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁: Incrementally updating instances or servers with the new version, ensuring at least some instances are always running the old version.
+
+𝗤. 𝗗𝗲𝘀𝗰𝗿𝗶𝗯𝗲 𝗮 𝘀𝗶𝘁𝘂𝗮𝘁𝗶𝗼𝗻 𝘄𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝗲𝗻𝘁𝗶𝗿𝗲 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗶𝗻𝘀𝘁𝗮𝗻𝗰𝗲 𝗰𝗿𝗮𝘀𝗵𝗲𝗱, 𝗮𝗻𝗱 𝘆𝗼𝘂 𝗵𝗮𝗱 𝘁𝗼 𝗳𝗶𝘅 𝗶𝘁 𝗾𝘂𝗶𝗰𝗸𝗹𝘆.
+In one instance, our production server crashed due to a
+memory leak in the application. I quickly identified the issue using monitoring tools like Prometheus and logs from ELK Stack. 
+To resolve it, I restarted the affected services and temporarily scaled up the infrastructure to handle the load. I then worked with the development team to identify and fix the memory leak, ensuring it didn’t happen again.
+
+𝗤.𝗖𝗹𝗼𝘂𝗱 𝗡𝗔𝗧 𝗚𝗮𝘁𝗲𝘄𝗮𝘆:
+Provides outbound internet access for instances in a private network without exposing them to inbound traffic.
+Used for secure, private instances that need internet access without being directly accessible from the internet.
+
+𝗤. 𝗩𝗣𝗖 𝗣𝗲𝗲𝗿𝗶𝗻𝗴: A network connection between two VPCs that allows traffic to be routed between them using private IP addresses. This is useful for connecting resources across different VPCs without going over the public internet.
+
+𝗤. 𝗛𝗮𝗻𝗱𝗹𝗶𝗻𝗴 𝗠𝘂𝗹𝘁𝗶𝗽𝗹𝗲 𝗠𝗶𝗰𝗿𝗼𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀: Use Kubernetes namespaces to isolate microservices, and manage their deployment using Helm charts or a CI/CD tool like Jenkins, ArgoCD, or GitLab CI/CD. Implement service discovery, networking, and security policies to ensure seamless communication between microservices.
+
+𝗤. 𝗛𝗮𝘃𝗲 𝘆𝗼𝘂 𝘄𝗼𝗿𝗸𝗲𝗱 𝘄𝗶𝘁𝗵 𝗔𝘂𝘁𝗼 𝗦𝗰𝗮𝗹𝗶𝗻𝗴 𝗚𝗿𝗼𝘂𝗽𝘀 (𝗔𝗦𝗚)?
+Yes, I have worked with ASGs to automatically scale the number of instances in response to demand. ASGs are configured with policies that adjust the desired capacity based on metrics such as CPU utilization, helping to maintain application performance and optimize costs.
