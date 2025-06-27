@@ -1,0 +1,46 @@
+𝗗𝗮𝘆 𝟰 – 𝗔𝗿𝗴𝗼𝗖𝗗 & 𝗚𝗶𝘁𝗢𝗽𝘀 𝗦𝗲𝗿𝗶𝗲𝘀
+
+🔐 𝗦𝗲𝗰𝗿𝗲𝘁𝘀 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 𝗶𝗻 𝗚𝗶𝘁𝗢𝗽𝘀 — 𝗪𝗵𝗮𝘁 𝗔𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗪𝗼𝗿𝗸𝘀
+
+One of the biggest objections to GitOps is:
+
+“We can’t put secrets in Git.”
+Fair enough.
+But the solution isn’t to abandon GitOps — it’s to do secrets the right way.
+
+Here’s what we use (and recommend to clients) when managing secrets declaratively in production environments 👇
+
+🔑 3 Battle-Tested Strategies for Secrets in GitOps
+1️⃣ Sealed Secrets (Bitnami)
+🔒 Public-key encryption
+✅ Safe to commit to Git
+✅ Works great with ArgoCD sync
+📦 Easy to integrate via CRDs
+
+📌 Pro Tip: Rotate the controller’s private key periodically to reduce long-term risk.
+
+2️⃣ SOPS + KMS (GPG, AWS, GCP, Azure)
+💡 Encrypt individual values or full YAML
+✅ Works with Kustomize
+✅ Git-friendly, fine-grained control
+✅ Keys stored securely in cloud KMS
+
+📌 Pro Tip: Store .sops.yaml in each env folder to define per-environment encryption logic.
+
+3️⃣ ArgoCD Vault Plugin
+🔌 Fetch secrets from Vault, AWS SSM, or others at deploy time
+✅ Secrets stay out of Git
+✅ Dynamic templating support
+✅ No need to commit encrypted files
+
+📌 Pro Tip: Use with helmfile or kustomize workflows for structured secret injection.
+
+💭 What to Avoid
+🚫 Plain Secrets.yaml in Git (even base64)
+🚫 Mixing secrets with app config
+🚫 One-size-fits-all solutions
+🚫 Relying on “manual patching” outside Git
+
+📌 TL;DR
+GitOps and secrets can work together — if you use the right tools and workflows.
+Choose what fits your security model, not just what’s easy.
