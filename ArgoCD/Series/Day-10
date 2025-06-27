@@ -1,0 +1,34 @@
+ 𝗗𝗮𝘆 𝟭𝟬 – 𝗔𝗿𝗴𝗼𝗖𝗗 & 𝗚𝗶𝘁𝗢𝗽𝘀 𝗦𝗲𝗿𝗶𝗲𝘀
+𝗥𝘂𝗻𝗻𝗶𝗻𝗴 𝗔𝗿𝗴𝗼𝗖𝗗 𝗮𝘁 𝗦𝗰𝗮𝗹𝗲 — 𝗪𝗶𝘁𝗵𝗼𝘂𝘁 𝗦𝗹𝗼𝘄𝗶𝗻𝗴 𝗗𝗼𝘄𝗻
+
+After working on multiple GitOps rollouts with 35+ clusters and 100s of apps, I’ve developed some core tuning principles. Sharing them here so your team doesn’t learn the hard way.
+
+You’ve got 100+ apps. 50+ repos. Multiple clusters.
+ArgoCD can handle it — if you configure it for scale.
+
+Here are my top tips for keeping performance high and ops smooth 👇
+
+⚙️ Performance Optimizations:
+1. Use Redis Cache
+Enable Redis to reduce load on ArgoCD API for heavy diff checks and sync status
+
+2. Tune Application Controller Settings
+Increase reconciliation concurrency for large workloads
+
+3. Disable Auto-Sync Diffs When Needed
+Reduces Git polling pressure — schedule syncs intentionally
+
+4. Limit Repo Server Cloning
+Split large repos or use shallow clones
+
+5. Use ApplicationSets Carefully
+Powerful, but generates lots of CRDs — monitor controller performance
+
+🧠 Monitoring Tips:
+✅ Enable Prometheus metrics
+✅ Use Grafana dashboards for sync status, reconciliation durations
+✅ Monitor memory & CPU on Repo Server and App Controller
+
+📌 TL;DR
+GitOps at scale needs more than YAML.
+Tune, monitor, and architect ArgoCD like the production system it is.
