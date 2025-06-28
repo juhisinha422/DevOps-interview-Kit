@@ -1,0 +1,63 @@
+Section 1: Basic Linux Administration
+1. Q: What is Linux?
+A: Linux is an open-source, Unix-like operating system based on the Linux kernel.
+2. Q: What are runlevels in Linux?
+A: Runlevels define the state of a Linux system (e.g., 0 = halt, 1 = single user, 3 = multi-user text mode, 5 = GUI, 6 = reboot).
+3. Q: How to check disk usage?
+A: Use df -h for disk space and du -sh <dir> for directory size.
+4. Q: How to view running processes?
+A: Use ps aux, top, or htop.
+5. Q: How to change file permissions?
+A: Use chmod, e.g., chmod 755 filename.
+6. Q: Difference between hard link and soft link?
+A: Hard link points to the inode; soft link (symlink) points to the filename.
+7. Q: How do you find which process is using a port?
+A: lsof -i :<port> or netstat -tulnp | grep <port>.
+8. Q: How do you schedule tasks in Linux?
+A: Using cron jobs (crontab -e) or at.
+9. Q: What is the difference between su and sudo?
+A: su switches user; sudo executes commands with root privileges.
+10. Q: How do you reboot a Linux system?
+A: reboot, shutdown -r now, or systemctl reboot.
+✅ Section 2: File System and Storage
+11. Q: How to mount a file system?
+A: mount /dev/sdX /mnt/point
+12. Q: How to view mounted file systems?
+A: mount or df -h
+13. Q: What is LVM?
+A: Logical Volume Manager — used to manage disk space dynamically.
+14. Q: How to create an LVM partition?
+A: pvcreate, vgcreate, lvcreate, then format and mount.
+15. Q: What is the purpose of /etc/fstab?
+A: Stores static file system mount information.
+✅ Section 3: Networking
+16. Q: How to assign a static IP in Linux?
+A: Edit /etc/sysconfig/network-scripts/ifcfg-eth0 or use nmcli.
+17. Q: How to restart network services?
+A: systemctl restart network or nmcli connection reload.
+18. Q: How to check IP address?
+A: ip a or ifconfig
+19. Q: What is the use of /etc/hosts?
+A: Maps hostnames to IP addresses locally.
+20. Q: What is the command to check connectivity?
+A: ping <host>, traceroute, telnet, or curl.
+✅ Section 4: User and Permission Management
+21. Q: How to add a user?
+A: useradd username
+22. Q: How to set a password for a user?
+A: passwd username
+23. Q: How to change file ownership?
+A: chown user:group filename
+24. Q: What is /etc/passwd and /etc/shadow?
+A: /etc/passwd stores user info; /etc/shadow stores encrypted passwords.
+25. Q: How to give sudo access to a user?
+A: Add the user to /etc/sudoers or wheel group.
+✅ Section 5: System Performance and Logs
+26. Q: How to check system performance?
+A: Use top, vmstat, iostat, free -m.
+27. Q: How to check memory usage?
+A: free -h, top, or cat /proc/meminfo.
+28. Q: How to monitor logs?
+A: tail -f /var/log/messages, journalctl, or check /var/log/.
+29. Q: How to find large files?
+A: find / -type f -size +100M
