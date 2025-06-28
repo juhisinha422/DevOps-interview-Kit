@@ -1,0 +1,15 @@
+In real time which type of ec2 machines we can use for production
+
+General-Purpose Instances (T, M Series) – Balanced CPU, memory, and network resources for diverse workloads.
+
+
+Compute-Optimized Instances (C Series) – Designed for high-performance computing, AI/ML, and batch processing.
+
+
+Memory-Optimized Instances (R, X, Z Series) – Ideal for in-memory databases, caching, and high-memory applications.
+
+
+Storage-Optimized Instances (I, D, H Series) – Best for high-throughput storage, big data, and real-time analytics.
+
+
+Accelerated Computing Instances (P, G, F Series) – GPU-based instances for AI, machine learning, gaming, and rendering.
