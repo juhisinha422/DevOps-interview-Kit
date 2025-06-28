@@ -1,0 +1,36 @@
+How does DNS work in a pod? What if service name resolution fails?
+ Kubernetes uses CoreDNS (via /etc/resolv.conf) to resolve names like my-svc.my-namespace.svc.cluster.local.
+ 🧠 Troubleshoot with:
+dig / nslookup inside the pod
+Inspect CoreDNS logs + ConfigMap
+Validate CNI, iptables, node DNS access
+
+🔥 2. What’s the lifecycle of a Deployment rollout behind the scenes?
+ From declarative spec → DeploymentController → ReplicaSet → kube-scheduler → kubelet → readiness gates.
+ 📊 Strategy matters: maxUnavailable, maxSurge, rollout pause/resume, and observed generation tracking.
+
+🔥 3. What happens if Cluster Autoscaler tries to evict a pod with local storage?
+ It won’t. Local volumes (emptyDir, hostPath, local PV) block eviction.
+ ⚠️ Mitigate with proper taints, avoid local volumes unless strictly needed.
+
+🔥 4. You deployed an update, and latency spikes for 30% of users. No CrashLoops. Debug?
+ ✅ Metrics: compare histograms
+ ✅ Logs: filter by time window and pod label
+ ✅ Network: check service routing, policies, and sidecars
+ ✅ Use tracing + load testing to isolate faulty pods
+
+🔥 5. How do you enforce runtime security in K8s?
+ 🔐 Seccomp, AppArmor, RBAC, OPA Gatekeeper, and tools like Falco.
+ Block risky syscalls, deny root containers, audit policy violations in CI/CD.
+
+🔥 6. HPA vs VPA vs Karpenter – when to avoid each?
+HPA: ✅ scale pods by metrics | ❌ not for stateful apps
+VPA: ✅ tune limits/requests | ❌ avoid w/ HPA
+Karpenter: ✅ dynamic nodes | ❌ not for fixed infra needs
+ 🎯 Pro tip: Simulate HPA load in staging with kubectl run + stress-ng
+
+🔥 7. Share an outage you helped debug. RCA and fix?
+ Our ingress had 502s but no pod failures.
+ 📌 RCA: Nodes hit disk pressure → kubelet evicted pods → endpoints vanished.
+ ✅ Fix: disk alerts + eviction thresholds + daemon for monitoring ephemeral storage.
+ Postmortem + learnings shared org-wide.
