@@ -1,0 +1,31 @@
+What if kubectl freezes?
+ 🧪 Check API health with curl <api>/healthz
+ 🔐 Validate token/context
+ 🧠 For self-managed: SSH into control plane & check kubelet, etcd, apiserver logs
+ 🛟 On EKS: check VPC, ENI, or IAM token issues
+
+2️⃣ Can you fix a stuck rollout with kubectl rollout undo?
+ ✅ Yes, if the previous revision exists
+ 🧰 Else, check:
+kubectl describe pod for CrashLoop, bad probes, secrets
+Use kubectl patch or set image to roll forward safely
+ 💡 Don't rely only on undo — be ready to hotfix in-place
+
+3️⃣ What if staging works, but prod breaks?
+ ⚠️ Classic case of env drift
+ 🔍 Compare kubectl get all -o yaml in both envs
+ 🛠️ Check IAM, secrets, env vars, DNS, HPA, resource limits
+ 🧪 Use helm diff and GitOps tools to avoid drift
+
+4️⃣ Fastest way to trace pod-to-pod latency?
+ 🚀 Use kubectl debug or ephemeral containers with netshoot
+ 🔎 Run ping, curl -w, traceroute, or mtr
+ 📈 On Istio/Cilium? Use istioctl, cilium monitor, or linkerd top
+
+5️⃣ Node is NotReady but kubelet logs are clean?
+ 📦 Check:
+Disk pressure/OOM via kubectl describe node
+CNI plugin logs (Calico/Cilium)
+Node OS logs: journalctl -u kubelet
+
+ ✅ Drain & recycle if needed, especially in AWS/GKE managed nodes
