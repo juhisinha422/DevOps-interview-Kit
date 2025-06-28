@@ -1,0 +1,64 @@
+𝐖𝐡𝐲 𝐃𝐢𝐝 𝐌𝐲 𝐄𝐊𝐒 𝐂𝐥𝐮𝐬𝐭𝐞𝐫 𝐅𝐚𝐢𝐥 𝐢𝐧 𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦?” – 𝐀 𝐁𝐮𝐠 𝐓𝐡𝐚𝐭 𝐖𝐚𝐬𝐧’𝐭 𝐘𝐨𝐮𝐫𝐬 (𝐔𝐧𝐭𝐢𝐥 𝐯1.8 𝐅𝐢𝐱𝐞𝐝 𝐈𝐭)
+
+𝐈𝐦𝐚𝐠𝐢𝐧𝐞 𝐭𝐡𝐢𝐬:
+
+You deployed your VPCs using 𝒇𝒐𝒓_𝒆𝒂𝒄𝒉, then launched your EKS clusters that should 𝒅𝒆𝒑𝒆𝒏𝒅 𝒐𝒏 those VPCs.
+
+But your cluster failed. Why?
+
+Because until 𝑻𝒆𝒓𝒓𝒂𝒇𝒐𝒓𝒎 𝒗1.8, 𝒅𝒆𝒑𝒆𝒏𝒅𝒔_𝒐𝒏 𝒅𝒊𝒅𝒏’𝒕 𝒂𝒄𝒕𝒖𝒂𝒍𝒍𝒚 𝒘𝒐𝒓𝒌 𝒇𝒐𝒓 𝒎𝒐𝒅𝒖𝒍𝒆𝒔 𝒊𝒏𝒔𝒊𝒅𝒆 𝒇𝒐𝒓_𝒆𝒂𝒄𝒉.
+
+🚨 That’s right. You declared the 𝒅𝒆𝒑𝒆𝒏𝒅𝒆𝒏𝒄𝒚, but Terraform ignored it.
+
+In 𝑻𝒆𝒓𝒓𝒂𝒇𝒐𝒓𝒎 𝒗1.8+, this is finally fixed. You can now reliably use depends_on with individual for_each module instances.
+
+✅ 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨
+
+Let’s say you're building out 𝒎𝒖𝒍𝒕𝒊-𝒆𝒏𝒗 𝒊𝒏𝒇𝒓𝒂𝒔𝒕𝒓𝒖𝒄𝒕𝒖𝒓𝒆:
+
+dev and prod each have a separate VPC.
+
+Each also gets its own EKS cluster, which must wait for the VPC.
+
+Without the new 𝒅𝒆𝒑𝒆𝒏𝒅𝒔_𝒐𝒏 fix, these could race — and fail silently or inconsistently.
+With v1.8+, you now get predictable, per-environment execution.
+
+🧠 𝐑𝐞𝐚𝐥 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 𝐁𝐚𝐬𝐞𝐝 𝐨𝐧 𝐓𝐡𝐢𝐬 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨:
+
+🧪 What changed in Terraform v1.8 regarding for_each and depends_on in modules?
+
+🧪 Why might an EKS cluster deployment fail even if the VPC module runs first?
+
+🧪 How does Terraform evaluate resource dependencies inside loops like for_each?
+
+🧪 Can you explain how depends_on works differently in resources vs. modules?
+
+🧪 How would you structure a multi-environment setup with dependencies between modules?
+
+🧪 What are the risks of assuming implicit dependency resolution in Terraform?
+
+🧪 What’s the alternative if you’re stuck on a Terraform version <1.8?
+
+
+💥 𝐓𝐚𝐤𝐞𝐚𝐰𝐚𝐲:
+
+ If you're managing multiple environments or layered infra, 𝒖𝒑𝒅𝒂𝒕𝒆 𝒕𝒐 𝒗1.8+ 𝒂𝒏𝒅 𝒂𝒗𝒐𝒊𝒅 𝒉𝒊𝒅𝒅𝒆𝒏 𝒓𝒂𝒄𝒆 𝒄𝒐𝒏𝒅𝒊𝒕𝒊𝒐𝒏𝒔.
+💡 If this update helps keep your Terraform infra clean and safe,
+
+=============================
+update-depends-on.tf
+
+module "vpc" {
+    for_each = toset(["dev", "prod"])
+    source = "./module/vpc"
+    env = each.key
+}
+
+module "eks_cluster" {
+    for_each = toset(["dev", "prod"])
+    source = "./modules/eks"
+    env = each.key
+
+    depends_on = [module.vpc[each.key]] # Now respected per instance
+}
+
