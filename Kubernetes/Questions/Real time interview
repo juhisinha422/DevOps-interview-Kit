@@ -1,0 +1,24 @@
+Latest Versions
+Kubernetes: v1.32
+Velero: v1.16.0 (Helm Chart v2.32.4)
+
+1. Q: How do you drain a Kubernetes node without downtime?
+A: We cordon the node, validate PDBs, monitor stateful apps like Kafka, and use tools like Karpenter and the Descheduler to safely rebalance pods.
+2. Q: What causes pod crashes only on new autoscaled nodes?
+A: Mostly EBS volume attach delays. We fixed it using EBS CSI driver, warm-pool nodes, and pre-caching images via ECR.
+3. Q: How do you securely manage secrets across environments?
+A: We use External Secrets Operator with IRSA. Each namespace maps to a dedicated IAM role, secrets are pulled from AWS Secrets Manager or Vault, and audit logging is enabled.
+4. Q: HPA is not scaling under load. Why?
+A: Missing CPU requests, misconfigured Metrics Server, or incorrect Prometheus Adapter setup. We’ve now adopted KEDA for event-driven autoscaling like Kafka consumers.
+5. Q: How do you debug pod-to-pod network flakiness?
+A: We use Cilium for observability, check MTU mismatches, monitor conntrack, and use dig inside pods to debug DNS.
+6. Q: How do you isolate teams in a shared cluster?
+A: Namespaces + RBAC, NetworkPolicies, ResourceQuotas, and OPA Gatekeeper. For noisy workloads, tainted nodes are used.
+7. Q: What’s your strategy for backing up PostgreSQL/Kafka in K8s?
+A: Velero v1.16 for YAMLs + PVCs. pgBackRest for PostgreSQL data with WAL. Kafka is mirrored using MirrorMaker2 across regions.
+8. Q: What broke after a Kubernetes upgrade?
+A: Ingress CRDs and deprecated APIs. We fixed it by updating Helm charts and validating manifests with kubectl explain. Always dry-run on a dev cluster!
+9. Q: How do you prevent noisy neighbors?
+A: Set resource requests/limits, use VPA in recommendation mode, and isolate ML jobs on tainted spot nodes. Alerts via Prometheus help catch early signs.
+10. Q: Can you roll out config changes without restarting pods?
+A: Yes. We use Reloader, apps listen on /reload, and we mount secrets via CSI driver for dynamic updates. Config maps are versioned.
