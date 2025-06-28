@@ -1,0 +1,25 @@
+Kubernetes Troubleshooting #Scenario 2️⃣ 
+
+#CrashLoopBackoff
+
+What is CrashLoopBackOff❓ 
+
+Kubernetes "CrashLoopBackOff" is a state when a container inside a pod fails to start up and keeps crashing repeatedly. It defines that something is wrong with your container or application you are trying to run inside the pod.
+
+If the Kubernetes fails in the first attempt to start up the container, it will keep retrying ♻️ the same step with an increasing 📈 back-off delay. This is what the "BackOff" represents in "CrashLoopBackOff".
+
+Some factors that can get a Pod into a CrashLoopBackOff state: 
+✒️ Misconfiguration i.e. incorrect details or details not provided in configuration files.
+✒️ It may be due to insufficient 🫗 resources i.e. Memory or CPU
+✒️ There may be chances the liveness probes are not configured correctly, like incorrect paths, endpoints, etc.
+✒️ It may be due to an error or bug 🐞 in application code.
+✒️ Wrong Command Line Arguments.
+
+Resolution: 🤔 
+Run the following commands to catch the issue:💡 
+🔸kubectl describe pod <pod_name>
+🔸kubectl logs <pod_name> ▶️ to fetch the logs 
+🔸kubectl logs <pod_name> -c <container_name>▶️ to fetch log at container level
+🔸kubectl get events▶️ to look at events before the pod crashed
+
+Resources: https://lnkd.in/g_NPgDgX
