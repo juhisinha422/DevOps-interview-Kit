@@ -1,0 +1,34 @@
+Commands for Troubleshooting Kubernetes failure 💯 
+
+🛠️ Troubleshooting #Pods Failure🤠 
+
+✒️ Get Pod Details▶️ "kubectl get pods"
+
+Take a look at the columns READY, STATUS and RESTARTS. The number of ready containers should match the number of containers expected to be created by the Pod.
+
+✒️ Describe Resources▶️ "kubectl describe pod trouble-pod"
+It provides detailed information about various Kubernetes resources, such as pods, nodes, and deployments.
+
+✒️ View Cluster Events▶️ "kubectl get events"
+The output of the command lists the events across all Pods for a given namespace.
+
+✒️ Inspect Logs▶️ "kubectl logs trouble-pod"
+The next level of details can be retrieved by inspecting its logs.
+
+✒️ Open an Interactive Shell▶️ "kubectl exec trouble-pod -it -- /bin/sh"
+The exec command opens an interactive shell to further investigate the issue.
+
+🛠️ Troubleshooting #Cluster Failures 🤠 
+
+✒️ Check Node Status▶️ "kubectl get nodes"
+The Output helps to identify the responsibility of each node from the ROLES column, the K8 version used, and current health status.
+
+✒️ Inspect control plane components▶️ "kubectl get pods -n kube-system"
+Any status that does not show "Running" should be inspected
+
+✒️ Rendering Cluster Info.▶️ "kubectl cluster-info"
+
+✒️ Node Metrics▶️ "kubectl top nodes" 
+To check on memory and the number of processes running.
+
+✒️ Pod Metrics▶️ "kubectl top pods"
