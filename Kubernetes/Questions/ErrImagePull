@@ -1,0 +1,26 @@
+Kubernetes Troubleshooting #Scenario 
+
+#ImagePullBackOff or #ErrImagePull
+
+What is ImagePullBackOff❓ 
+
+Kubernetes "ImagePullBackOff" error is a status that occurs when Kubernetes cannot pull a specified container image. It might be possible the container is in waiting state because of "ImagePullBackOff".
+
+The Root Cause for ImagePullBackOff :
+🔸 It may be due to invalid image name or non-existent image or the image tag is wrong.
+🔸 What if you are pulling from a private registry without "imagePullSecret", then this error might occur.
+🔸 Sometimes networking issues prevent Kubernetes from connecting to the container image registry.
+
+What is ErrImagePull❓
+
+"ErrImagePull" is the stage before "ImagePullBackOff". So if there is any issue in the image and Kubernetes can't pull the image from the directory, the container ends up stuck in waiting state and it will first show "ErrImagePull".
+
+If the Kubernetes fails in the first attempt to pull the image, it will keep retrying the image pulls with an increasing back-off delay. This is what the "BackOff" represents in "ImagePullBackOff".
+Kubernetes raises the delay between each attempt until it reaches a compiled-in limit, which is 300 seconds (5 minutes).
+
+Resolution 🔨 :
+🔸 Make sure image details matches the details in container registry.
+🔸 Confirm whether the registry is public or private, and if private make sure the secrets for registry access is properly configured in Kubernetes manifest.
+
+
+Resources: https://lnkd.in/g8TePBm5 
