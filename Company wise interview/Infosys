@@ -1,0 +1,34 @@
+⁉️ Infosys interview questions ⁉️ 
+
+Jenkins CI CD 
+Jenkins CI CD stages 
+How pipeline trigger automatically 
+How the flow of u r CI CD 
+What are the env are there 
+I want to know the entire flow from dev to QA to preprod to prod 
+What are issues u have faced while working on Jenkins
+If Jenkins pipeline fails in build stage how you will trouble shoot?
+Maven repo related scenarios questions?
+
+Docker 
+
+What Dockerfile
+How do you write Dockerfile? 
+What type of apps are there ?
+How do you build an image?
+If I have not mentioned cmd and entry point will it run docker file ?
+
+Kubernetes
+
+What is kubernetes?
+What is deployment?
+What is the difference between service and ingress?
+What is the difference between configmap and secrets?
+How you will expose application on kubernetes?
+What is pod ?
+If we can store two containers in pod then what is use of second container?
+
+Helm 
+
+What is helm?
+If I deployed application using helm version 1 and now I deploying new version that is helm 2 there is an issue with helm version 2 how will you solve this?
