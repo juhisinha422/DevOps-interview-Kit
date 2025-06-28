@@ -1,0 +1,38 @@
+#important_ports_devops
+
+1. 443: HTTPS (used for web-based management)
+2. 902: ESXi host management (used by vCenter Server and other management tools)
+3. 22: SSH (used for remote command-line access)
+4. 80: HTTP (used for web-based management, but not recommended as it's not secure)
+5. 389: LDAP (used for authentication and authorization)
+6. 636: LDAPS (used for secure authentication and authorization)
+7. 5989: CIM/XML (used for hardware monitoring and management)
+8. 5988: CIM/SOAP (used for hardware monitoring and management)
+
+vCenter Server Ports
+
+1. 443: HTTPS (used for web-based management)
+2. 80: HTTP (used for web-based management, but not recommended as it's not secure)
+3. 389: LDAP (used for authentication and authorization)
+4. 636: LDAPS (used for secure authentication and authorization)
+5. 902: vCenter Server management (used by ESXi hosts and other management tools)
+6. 8080: vCenter Server web services (used by other management tools)
+7. 8443: vCenter Server web services (used by other management tools)
+
+VMware vSphere Replication Ports
+
+1. 8043: vSphere Replication management (used by vCenter Server and other management tools)
+2. 44046: vSphere Replication data transfer (used for replicating virtual machines)
+
+VMware NSX Ports
+
+1. 443: HTTPS (used for web-based management)
+2. 80: HTTP (used for web-based management, but not recommended as it's not secure)
+3. 22: SSH (used for remote command-line access)
+4. 1234: NSX manager (used by NSX controllers and other management tools)
+5. 5671: NSX controller (used by NSX managers and other management tools)
+
+Please note that this is not an exhaustive list, and some ports may be specific to certain VMware products or configurations. Additionally, some ports may be configurable, so it's always best to check the VMware documentation for specific port requirements.
+
+
+
