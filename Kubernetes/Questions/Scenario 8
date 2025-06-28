@@ -1,0 +1,18 @@
+Kubernetes Troubleshooting #Scenario 
+
+While running the pod, I encountered an issue where the pod was stuck in a pending 🫠 state.
+
+If a pod is stuck in ☠️ pending it means that it cannot be scheduled onto a node. In Kubernetes, the scheduler is responsible for assigning pods to nodes in the cluster based on various criteria. If a node is not suitable for the pod, it remains unscheduled until a suitable node becomes available.
+
+Common Reasons of pod not schedulable or in pending state:
+
+💣 Node Affinity/Node Selector: A pod can be in pending state if its node selector or node affinity requirements prevent it from finding a suitable node to run on. 
+💣 Taints: If the nodes are tainted and toleration is not added in pod then also pod will not remain unscheduled.
+💣 Insufficient Resources: Due to lack of resources such as CPU, Memory, etc. to meet pod requirements, pod remains in pending state. 
+💣 Persistent Volume Related Scheduling Failures i.e. if a pod is dependent on a PVC and that PVC is not ready or cannot be allocated, the pod will stay in pending state.
+💣 One of the reasons could be that there is some issue with the scheduler.
+
+Resolution: ⚒️ 
+Check for the issue by running "kubectl describe pod <pod_name>". Here you will get the reason why the pod is not schedulable and then you can take further steps to resolve the issue such add toleration to the pod, or adjust the labels of pod, etc.
+
+Resources: https://lnkd.in/g_NPgDgX
