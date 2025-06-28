@@ -1,0 +1,23 @@
+What is the difference between for_each and for in Terraform?
+ 🔹 How do Terraform modules work and why should we use them?
+ 🔹 What is the purpose of the Terraform state file and how is it managed?
+ 🔹 What is DynamoDB and how is it used in Terraform?
+ 🔹 Why do we use a private subnet in a VPC?
+ 🔹 How can you automatically trigger jobs in a CI/CD pipeline?
+ 🔹 Can you describe a recent issue you troubleshooted in Kubernetes?
+ 🔹 Why do we create modules in Terraform and what are their benefits?
+ 🔹 Do you have any experience using functions in Terraform? If yes, explain.
+ 🔹 How many AWS accounts are used in your current project?
+ 🔹 Can you explain the build stages in Jenkins for your project?
+ 🔹 How do you avoid conflicts with the Terraform state file? Where do you store it?
+ 🔹 What is the difference between NACLs (Network ACLs) and Security Groups in AWS?
+ 🔹 How can you download files from an S3 bucket within AWS while keeping public access completely blocked?
+ 🔹 How do you configure AWS security credentials in Jenkins?
+ 🔹 What Kubernetes services are you using in your project and what is their purpose?
+ 🔹 Have you worked with AWS Transit Gateway in your project?
+ 🔹 Where do you store your Docker images? Do you use Docker Hub?
+ 🔹 How do you monitor your applications and EC2 instances using Amazon CloudWatch?
+ 🔹 What are Jenkins shared libraries and how do they work?
+ 🔹 What are the different types of Jenkins jobs?
+ 🔹 Do you work with freestyle projects or scripted pipelines in Jenkins?
+ 🔹 Can multiple pods run under a single deployment in Kubernetes? If yes, how?
