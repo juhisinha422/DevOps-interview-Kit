@@ -1,0 +1,12 @@
+1. Tell me something about yourself , elavorate me your technical expertise 
+2. why should i choose kubernetes as compare to docker swarm 
+3. what do you understand by namespace in kubernetes 
+4. what do you understand by namespaces with respect to kubernetes 
+5. what is istio in kubernetes please explain it 
+6. how do you use ansible to create encrypted file ?
+7. consider a scenario in which you have multiple file with you want to copy all these files to target hosts and this has to happen recursively how would you do it 
+8. how do you changes configuration its already resource using terraform 
+9. what are the measure feature that you found in terraform which you can talk about 
+10. choose between ansible and terraform which you will prefer 
+11. what is diffrent kind of module in terraform 
+12. what is remote backend in terraform 
