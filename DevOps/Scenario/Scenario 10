@@ -1,0 +1,79 @@
+1. 🔁 Can VPC A talk to VPC C if:
+
+VPC A is peered with VPC B,
+
+and VPC B is peered with VPC C?
+
+
+No. AWS VPC peering is non-transitive.
+For A to talk to C, a direct A↔C peering is required, along with route tables and security groups updated on both sides.
+
+📌 Key Takeaway: Don’t assume mesh connectivity in cloud. Understand routing + IAM + security groups as a single unit.
+
+2. ⚙️ What happens when you run kubectl get po?
+
+It may look simple, but under the hood:
+
+kubectl sends an HTTPS request to the API server
+
+API server authenticates, authorizes the user
+
+Queries etcd for current pod state
+
+Formats and returns the result to CLI
+
+
+Bonus: No kubelet involved here — unless you’re requesting logs, exec, or port-forward.
+
+📌 Key Takeaway: Know the Kubernetes control plane — not just for interviews, but for debugging real production issues.
+
+3. 🔐 How do you implement end-to-end security in Kubernetes?
+
+Here’s my breakdown:
+
+Dev Stage: Scan IaC and Dockerfiles (Trivy, Checkov)
+
+Build: Sign images with Cosign
+
+Deploy: Use sealed secrets or External Secrets Operator
+
+Cluster: Apply NetworkPolicies, RBAC, Pod Security Standards
+
+Runtime: Monitor with Falco, audit logs, OPA Gatekeeper
+
+
+📌 Key Takeaway: DevSecOps isn’t a tool — it’s a mindset baked into every phase.
+
+
+4. 🛡️ How to allow an EC2 in Account A to access S3 in Account B?
+
+✅ Steps:
+
+1. In Account B: Create an IAM role with S3 access
+
+
+2. Add a trust policy allowing Account A to assume it
+
+
+3. In Account A EC2: Call sts:AssumeRole to get temp credentials
+
+
+4. Use those to access the S3 bucket
+
+
+
+📌 Key Takeaway: IAM + cross-account trust = one of the most overlooked skill gaps in cloud interviews.
+
+
+5. 📦 Difference between Node Affinity and Taints/Tolerations?
+
+Concept	Purpose	Direction
+
+Node Affinity	Pod chooses node	Pod → Node
+Taints & Tolerations	Node restricts pods	Node → Pod
+
+
+Use Affinity for preference, Taints to enforce constraints — together they help manage cost, compliance, and high availability.
+
+📌 Key Takeaway: Scheduling is a powerful optimization tool when used intentionally.
+
