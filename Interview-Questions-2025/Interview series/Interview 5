@@ -1,0 +1,31 @@
+Why is the pod CrashLooping even though the image is valid?”
+
+🧠 Real scenario:
+The container pulls successfully, but the app crashes due to a missing DB_PASSWORD secret or failing DB connection.
+✅ Fix: Checked kubectl logs, validated env vars from Secrets, and reviewed readiness/liveness probes.
+
+⸻
+
+💥 2. “How would you handle secrets across multi-region clusters?”
+
+🧠 What I proposed:
+Use AWS Secrets Manager + External Secrets Operator.
+Each region (e.g., us-east-1, eu-central-1) has its own IAM-controlled sync to Kubernetes. Secrets are managed centrally, and synced locally per cluster with proper access control.
+
+⸻
+
+💥 3. “What’s the fastest way to rollback an Infra change in Terraform?”
+
+🧠 Real-world approach:
+A faulty security group update broke service access. I quickly reverted the Git commit and redeployed via Terraform.
+Pro tip: Use terraform apply -target=resource.name for isolated rollback when needed.
+
+⸻
+
+💥 4. “How would you design a zero-downtime deployment with blue/green and traffic shifting?”
+
+🧠 Production-grade method:
+	•	Deploy v1 (blue) and v2 (green) in parallel
+	•	Use Kubernetes service selector or Istio VirtualService
+	•	Gradually shift traffic (10% → 50% → 100%)
+	•	Rollback instantly by re-routing traffic if issues arise
