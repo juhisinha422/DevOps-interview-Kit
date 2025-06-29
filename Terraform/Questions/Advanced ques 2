@@ -1,0 +1,62 @@
+Advanced Terraform Interview Questions – For Cloud & DevOps Pros 🌍
+
+Are you preparing for a Terraform-heavy role or refining your infrastructure-as-code game? Here are some expert-level Terraform topics to master:
+
+🔧 State Management:
+1. How does Terraform handle state? Local vs Remote?
+2. What are backends and which support locking?
+3. How to resolve state drift or corruption?
+4. What is terraform state rm and when should you use it?
+5. How to import partially or move resources between workspaces?
+
+📦 Modules & Code Reuse:
+1. Best practices to structure large-scale Terraform projects
+2. Benefits of modules and how to version them
+3. local-exec vs remote-exec in modules
+4. Avoiding module dependency hell
+5. Sharing modules securely across teams
+
+🌐 Workspaces & Environments:
+Workspaces vs separate state files
+Can you use workspaces for prod & staging?
+How to prevent accidental workspace deployments
+Security implications of mono-repos with workspaces
+
+🔐 Security & Secrets Management:
+1. Managing secrets securely (AWS keys, DB passwords)
+2. Risks of storing secrets in state files
+3. Integrating with Vault / AWS Secrets Manager
+4. sensitive = true vs state encryption
+
+💻 Terraform CLI & Commands:
+1. What does terraform taint do and when?
+2. Using -target and -refresh-only flags effectively
+3. What’s terraform graph and how it helps debugging
+4. Usage of validate, fmt, and show
+
+🛠️ Troubleshooting & Debugging:
+1. What to do when Terraform apply is stuck?
+2. Handling resource dependency cycles
+3. Smart use of depends_on
+4. Dealing with manually deleted resources in the cloud
+
+⚙️ Terraform in CI/CD Pipelines:
+1. Integrating with GitHub Actions / GitLab CI / Bitbucket
+2. Importance of terraform plan in PR workflows
+3. Handling approvals and concurrency (locking)
+
+☁️ Cloud-Specific Deep Dives:
+1. IAM policy attachment strategies in AWS
+2. Service account impersonation in GCP
+3. Pitfalls in Azure RGs & role assignments
+
+📐 Advanced Patterns:
+1. Conditional resource creation (e.g. S3 only if X)
+2. Difference between for_each and count
+3. Using dynamic blocks effectively
+4. Lifecycle meta-arguments like create_before_destroy, prevent_destroy
+
+🏢 Enterprise & Collaboration:
+1. Role of Terraform Cloud & Terraform Enterprise
+2. Using Sentinel policies for governance
+3. Managing RBAC & auditability in large teams
