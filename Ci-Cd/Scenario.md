@@ -31,13 +31,17 @@ Enable manual promotion to prevent 𝒂𝒄𝒄𝒊𝒅𝒆𝒏𝒕𝒂𝒍 𝒓
 🛠️ 𝐇𝐨𝐰 𝐘𝐨𝐮 𝐂𝐚𝐧 𝐈𝐦𝐩𝐥𝐞𝐦𝐞𝐧𝐭 𝐓𝐡𝐢𝐬 𝐢𝐧 𝐉𝐞𝐧𝐤𝐢𝐧𝐬 (𝐑𝐞𝐚𝐥 𝐄𝐱𝐚𝐦𝐩𝐥𝐞):
 
 🔹 Use a 𝒑𝒂𝒓𝒂𝒎𝒆𝒕𝒆𝒓𝒊𝒛𝒆𝒅 Jenkins pipeline
+
 🔹 𝑩𝒖𝒊𝒍𝒅 only when deploying to Dev
+
 🔹 Archive the 𝒂𝒓𝒕𝒊𝒇𝒂𝒄𝒕
+
 🔹 𝑹𝒆𝒖𝒔𝒆 the artifact for QA & Prod deployments
 
 📌 𝐇𝐨𝐰 𝐭𝐡𝐞 𝐅𝐥𝐨𝐰 𝐖𝐨𝐫𝐤𝐬:
 
 🔸 Trigger with ENV=dev → Builds & archives artifact → Deploys to Dev
+
 🔸 Trigger again with ENV=qa or prod → Skips build → Reuses artifact → Deploys!
 
 👨🏫 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐓𝐢𝐩:
