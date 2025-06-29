@@ -26,4 +26,3 @@ CircleCI / Travis CI / Azure DevOps / CodePipeline – Many options based on tea
 💡 Pro Tip: Start small. Automate code linting + testing first. Then gradually add staging and production deployment stages as your confidence grows.
 
 
-![Image](https://github.com/user-attachments/assets/ae8bbdd3-856f-49bb-8ef1-a064cdd91b17)
