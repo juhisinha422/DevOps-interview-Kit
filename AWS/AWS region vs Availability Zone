@@ -1,0 +1,23 @@
+AWS Region vs Availability Zone
+
+🔍 What’s the Difference Between AWS Region and Availability Zone (AZ)?
+
+🟦 AWS Region
+A Region is a geographical location that contains at least two or more Availability Zones.
+✅ Example: us-east-1 (N. Virginia), ap-south-1 (Mumbai)
+ ✅ AWS has 30+ Regions across the globe
+ ✅ You choose a Region closest to your users to reduce latency
+
+🟨 Availability Zone (AZ)
+An Availability Zone is a physically isolated data center (or a group of them) within a Region.
+✅ Each Region has 2 or more AZs
+ ✅ AZs are connected with high-speed private links
+ ✅ AZs allow high availability & fault tolerance
+🧠 Simple Analogy:
+🗺️ Think of a Region as a city, and AZs as different buildings in that city.
+
+ If one building (AZ) has a power outage, others are still available — your app stays up!
+🚀 Why It Matters:
+You deploy across AZs for high availability (like with RDS Multi-AZ or Auto Scaling groups)
+AZs help ensure your apps stay online during failures
+Always select the right Region for data residency & compliance
