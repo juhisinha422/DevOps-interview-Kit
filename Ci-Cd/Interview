@@ -1,0 +1,25 @@
+Top Ten CI/CD Interview Questions Every Senior DevOps Engineer Should Master
+
+
+Here are 10 questions that separate experienced engineers from the rest 
+
+	1.	Walk me through your current CI/CD pipeline.
+Tools used, stages, and your role in building it.
+	2.	How do you design secure, scalable pipelines for microservices?
+Think secrets, isolation, reuse.
+	3.	How do you manage secrets in CI/CD?
+Hardcoded creds are a red flag. Look for Vault, SOPS, or KMS use.
+	4.	What’s your zero-downtime deployment strategy?
+Blue/green, canary, feature flags — details matter.
+	5.	How do you roll back safely?
+Versioned releases, GitOps, or Helm? What’s your process?
+	6.	How do you handle multi-environment deployments with promotion?
+Do you treat dev, staging, and prod differently?
+	7.	What CI/CD anti-patterns have you seen?
+This reveals real leadership and experience.
+	8.	How do you enforce quality gates in pipelines?
+Linting, unit tests, SCA, policy as code — what’s built-in?
+	9.	Ever used ephemeral or preview environments?
+Dynamic infra = confident PR reviews.
+	10.	How do you optimise pipeline speed and reliability?
+Caching, parallelism, retries — senior-level detail needed here.
