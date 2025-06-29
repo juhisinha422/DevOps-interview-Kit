@@ -1,0 +1,25 @@
+Automate Log Cleanup with Bash – A Real DevOps Use Case
+
+Today, let’s dive into a real-world automation example: log cleanup using a Bash script. This is a small but powerful task that every DevOps engineer eventually needs.
+
+🧹 Why automate log cleanup?
+Prevent disk space issues
+Keep your server clean and organized
+Avoid log overload in production environments
+Reduce manual maintenance
+
+
+🧾 Here’s a Bash script I use:
+#!/bin/bash
+find /var/log -type f -name "*.log" -mtime +7 -exec rm -f {} \;
+echo "Old logs deleted!"
+✅ This script finds .log files older than 7 days in /var/log and deletes them.
+
+⏰ Want to automate this daily?
+ Use cron to schedule it:
+crontab -e
+Then add:
+0 1 * * * /path/to/script.sh
+🔄 This will run the cleanup every day at 1:00 AM.
+
+💡 Takeaway: DevOps is all about saving time and reducing risk. Even small scripts like this can add huge value!
