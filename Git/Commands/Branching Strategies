@@ -1,0 +1,22 @@
+Branching Strategies for DevOps Teams
+
+branching strategies — a must-have for collaborating on infrastructure code, deployment automation, and CI/CD workflows.
+
+🌿 Why branching strategy matters:
+Keeps main branch stable
+Enables parallel development
+Reduces merge conflicts
+Aligns with CI/CD and GitOps workflows
+Controls release timelines
+🔀 Common DevOps Branching Strategies:
+Feature Branching
+Each new feature lives on a separate branch
+Merged into main after approval & testing
+ ✅ Great for teams with PR/code review workflows
+GitFlow
+Uses branches like main, develop, release, hotfix
+ ✅ Ideal for complex release cycles or regulated environments
+Trunk-Based Development
+Everyone commits to main multiple times per day
+ ✅ Best for high-speed DevOps teams and mature CI/CD
+💡 Tip: Whatever model you choose, combine it with clear naming conventions, pull requests, and automated testing to prevent conflicts and errors.
