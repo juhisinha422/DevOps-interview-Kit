@@ -1,0 +1,23 @@
+Why DevOps Engineers Must Understand Networking
+
+You might not be a network engineer, but if you’re in DevOps, you absolutely need to understand how networks work. Why? Because you're managing traffic, configuring security, deploying services — and when something breaks in production, it's often the network.
+
+🧠 What DevOps Engineers Need to Know About Networking:
+✅ IP Addressing
+ Understand public vs private IPs, CIDR blocks, and subnetting.
+✅ Ports & Protocols
+ Know what runs on ports like 22 (SSH), 80 (HTTP), 443 (HTTPS), 3306 (MySQL), etc.
+✅ DNS
+ What’s really happening when you type a URL? Learn how DNS resolution works.
+✅ Firewalls & Security Groups
+ Control traffic in and out of your services — essential in AWS, Azure, and GCP.
+✅ Load Balancers
+ Distribute traffic and avoid single points of failure.
+✅ VPCs & Subnets
+ Master VPC design and subnet isolation to keep services secure and scalable.
+💡 Real-life example: Your app isn’t reachable from the internet. It might not be the code — it could be:
+A closed port
+A misconfigured security group
+A bad DNS record
+A subnet route issue
+📣 Pro Tip: Use nmap, netstat, and cloud-native tools to troubleshoot traffic and access issues.
