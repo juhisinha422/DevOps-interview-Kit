@@ -24,8 +24,11 @@ Enable manual promotion to prevent 𝒂𝒄𝒄𝒊𝒅𝒆𝒏𝒕𝒂𝒍 𝒓
 💡 𝐖𝐡𝐲 𝐈𝐬 𝐓𝐡𝐢𝐬 𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭?
 
 ✅ It’s a real 𝑪𝑰/𝑪𝑫 best practice
+
 ✅ Avoids "it worked in Dev but not in Prod" problems
+
 ✅ Helps maintain 𝒊𝒎𝒎𝒖𝒕𝒂𝒃𝒍𝒆 delivery pipelines
+
 ✅ A top question in DevOps interviews!
 
 🛠️ 𝐇𝐨𝐰 𝐘𝐨𝐮 𝐂𝐚𝐧 𝐈𝐦𝐩𝐥𝐞𝐦𝐞𝐧𝐭 𝐓𝐡𝐢𝐬 𝐢𝐧 𝐉𝐞𝐧𝐤𝐢𝐧𝐬 (𝐑𝐞𝐚𝐥 𝐄𝐱𝐚𝐦𝐩𝐥𝐞):
