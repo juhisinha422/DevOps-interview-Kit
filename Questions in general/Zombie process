@@ -1,0 +1,48 @@
+Zombie Process – Dead but still haunting your system.
+
+Socho ek aadmi mar gaya... par uska naam abhi bhi office ke attendance me aa raha hai.
+Bas wahi hota hai zombie process me.
+
+What is a Zombie Process?
+In Linux, when a child process finishes execution, it doesn’t vanish instantly.
+It sends an exit status to the parent.
+If the parent doesn’t read this (using wait()), that child turns into a Zombie — a dead process that still lives in the process table.
+
+Body gone, soul stuck. Welcome to the undead army of your OS.
+
+
+How to identify one?
+         ps aux | grep 'Z'
+
+Agar STAT column me Z hai — samajh jao, ek bhoot chhupa hua hai.
+
+These zombies take up space in your process table. Too many? And boom — system crash.
+
+
+Real-World Scenario:
+You deployed a long-running backend service. It forks child processes for data handling.
+You forgot wait() logic.
+After 2 days?
+     App slow ho gaya
+     Node unresponsive
+     Alert: “Too many processes”
+
+You check — 300+ zombie processes.
+They were dead. But still eating your resources.
+
+Fix?
+Add wait() / waitpid() in your parent process
+Or gracefully kill the parent
+Final nuclear option: Reboot (But never directly on prod 😅)
+
+
+For Freshers:
+Zombies are not just interview questions.
+They are real, and they’ll mess your system if ignored.
+Handle them like a boss — because real DevOps isn't about running commands, it's about knowing why you're running them.
+
+
+
+Moral of the story?
+Har process ka antim sanskar zaroori hai.
+Na karo to wo system pe bhoot ban ke chhaya rahega.
