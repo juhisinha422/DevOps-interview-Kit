@@ -1,0 +1,79 @@
+J.P. Morgan Interview Questions – (Tech + HR) Role: DevOps / Cloud
+
+Round 1 – Technical (Hands-On + Conceptual)
+
+Focus: Cloud, DevOps Tools, Troubleshooting, System Design
+
+1. What is the difference between Docker image and container?
+
+2. How does Kubernetes manage scaling and self-healing?
+
+3. Explain CI/CD and its stages in Azure DevOps or Jenkins.
+
+4. What’s the difference between load balancer and reverse proxy?
+
+5. How do you handle secrets in CI/CD pipeline securely?
+
+6. Explain blue-green vs. canary deployment strategies.
+
+7. What are runbooks and how are they used in incident response?
+
+8. How would you debug high CPU usage in a Linux-based VM?
+
+9. What is Infrastructure as Code (IaC)? How is Terraform different from ARM templates?
+
+10. How do you manage log aggregation in microservices architecture?
+
+11. What is a service mesh and when should you use one like Istio or Linkerd?
+
+12. Explain how you would migrate workloads from on-prem to Azure/AWS.
+
+13. What’s the difference between rolling update and recreate strategy in Kubernetes?
+
+14. How do you handle zero-downtime deployments?
+
+15. What are common reasons for HTTP 403 or 500 in cloud environments and how do you troubleshoot them?
+
+16. How do you automate testing in your CI/CD pipeline?
+
+17. Describe how you monitor infrastructure and services.
+
+18. Have you worked with Azure DevOps Boards and Repos? How do you track delivery progress?
+
+19. What is the use of Application Gateway vs. API Gateway?
+
+20. Explain a challenging incident you solved in production.
+
+Round 2 – HR + Managerial (Behavioral & Situation-Based)
+
+Focus: Team fit, culture, conflict resolution, leadership
+
+1. Tell me about yourself and your current project.
+
+2. Why do you want to join J.P. Morgan?
+
+3. Describe a time you disagreed with a teammate—how did you resolve it?
+
+4. Tell me about a time you had to handle an urgent production issue.
+
+5. What motivates you at work?
+
+6. How do you prioritize tasks when multiple issues arise?
+
+7. Share an example of taking ownership beyond your responsibilities.
+
+8. How do you keep yourself updated with technology trends?
+
+9. Tell me about a failure you learned from.
+
+10. Have you ever delivered a project under a strict deadline?
+
+11. How do you handle working with cross-functional or remote teams?
+
+12. What are your long-term goals in tech?
+
+13. How do you handle stress or burnout?
+
+14. Tell me about a time when you improved an existing process.
+
+15. Describe your ideal work environment.
