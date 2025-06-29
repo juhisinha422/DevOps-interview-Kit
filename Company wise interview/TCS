@@ -1,0 +1,79 @@
+TCS Interview Questions – Full Interview Journey (Tech + HR)
+
+Role: DevOps
+
+Round 1 – Technical Interview (Conceptual + Real-time Scenarios)
+Focus: DevOps Tools, Cloud Concepts, System Thinking
+
+1. What are the key components of a CI/CD pipeline?
+
+2. How does Git branching work in your workflow?
+
+3. Explain the purpose of Jenkinsfile.
+
+4. What is Infrastructure as Code (IaC) and how is it useful?
+
+5. How would you troubleshoot a 502 error in a web app hosted on Azure VM?
+
+6. Describe your experience with Kubernetes and Helm.
+
+7. What’s the difference between stateful and stateless applications?
+
+8. How would you handle high memory usage in production?
+
+9. Explain how Docker helps in application deployment.
+
+10. What are some best practices for writing secure pipelines?
+
+11. Difference between ARM templates, Bicep, and Terraform.
+
+12. How do you ensure rollback strategy in case deployment fails?
+
+13. What is the difference between public, private, and hybrid cloud?
+
+14. Explain the use of Azure Monitor and Log Analytics.
+
+15. How do you manage version control in microservices architecture?
+
+16. What is a load balancer, and where have you used it in your infra?
+
+17. Describe one real-world scenario where DevOps added value in delivery.
+
+18. What is the role of an API Gateway in microservices?
+
+19. How do you manage access and permissions in cloud environments?
+
+20. What tools have you used for performance and load testing?
+
+Round 2 – Managerial + HR Interview
+Focus: Adaptability, Conflict Resolution, Ethics.
+
+1. Walk me through your resume.
+
+2. Why do you want to join TCS?
+
+3. Describe a situation where you had to learn something quickly.
+
+4. Tell me about a time you missed a project deadline. What did you do?
+
+5. How do you handle pressure and tight deadlines?
+
+6. Have you ever led a team or project? Describe your leadership style.
+
+7. What would you do if your manager made a wrong technical decision?
+
+8. Describe a conflict with a coworker and how you resolved it.
+
+9. How do you stay updated with industry trends?
+
+10. What are your strengths and areas of improvement?
+
+11. If you’re asked to switch technologies, how would you handle it?
+
+12. Do you prefer working alone or in a team? Why?
+
+13. How do you balance work and personal life?
+
+14. Describe a time when you took initiative.
+
+15. Where do you see yourself in 5 years?
