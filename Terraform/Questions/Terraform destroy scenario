@@ -1,0 +1,28 @@
+𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼: 𝗬𝗼𝘂𝗿 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗗𝗲𝘀𝘁𝗿𝗼𝘆 𝗖𝗼𝗺𝗺𝗮𝗻𝗱 𝗝𝘂𝘀𝘁 𝗧𝗼𝗼𝗸 𝗗𝗼𝘄𝗻 𝗮 𝗖𝗿𝗶𝘁𝗶𝗰𝗮𝗹 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲!
+
+
+ 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼:
+
+ You accidentally ran terraform destroy in the wrong workspace and boom production resources were wiped out!
+
+
+ 𝗪𝗵𝗮𝘁 𝗪𝗲𝗻𝘁 𝗪𝗿𝗼𝗻𝗴?
+
+- No clear separation between environments (dev/stage/prod).
+- No workspace or backend isolation.
+- Lacked proper access controls or approval workflow.
+- Manual command without a CI/CD approval pipeline.
+
+
+ 𝗛𝗼𝘄 𝗬𝗼𝘂 𝗖𝗮𝗻 𝗣𝗿𝗲𝘃𝗲𝗻𝘁 𝗧𝗵𝗶𝘀:
+
+𝟏. 𝐔𝐬𝐞 𝐖𝐨𝐫𝐤𝐬𝐩𝐚𝐜𝐞𝐬 𝐏𝐫𝐨𝐩𝐞𝐫𝐥𝐲: Separate dev, stage, and prod via Terraform workspaces.
+𝟐. 𝐁𝐚𝐜𝐤𝐞𝐧𝐝 𝐈𝐬𝐨𝐥𝐚𝐭𝐢𝐨𝐧: Use different backend state files (S3, Azure blob, etc.) for different environments.
+𝟑. 𝐈𝐦𝐩𝐥𝐞𝐦𝐞𝐧𝐭 𝐆𝐮𝐚𝐫𝐝𝐫𝐚𝐢𝐥𝐬: Use Sentinel or OPA for policy enforcement before execution.
+𝟒. 𝐋𝐨𝐜𝐤 𝐃𝐨𝐰𝐧 𝐀𝐜𝐜𝐞𝐬𝐬: Use IAM permissions and MFA for critical environments.
+𝟓. 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧 𝐎𝐧𝐥𝐲: Never run terraform apply/destroy manually use a CI/CD pipeline with approval stages.
+
+
+ 𝗟𝗲𝘀𝘀𝗼𝗻:
+ Terraform is powerful… but with great power comes great responsibility. Use controls to protect infrastructure like you would protect code.
+
