@@ -1,0 +1,23 @@
+How do you set file permissions using chmod in Linux?  
+
+The chmod command changes file and directory permissions in Linux.
+
+Symbolic Method:
+■ Grant read, write, and execute to the owner: 
+             chmod u+rwx file.txt
+■ Remove write permission from the group:
+             chmod g-w file.txt 
+■ Add execute for others:  
+             chmod o+x script.sh
+
+Numeric Method: 
+
+Permissions use a three-digit octal representation: 
+■ r = 4, w = 2, x = 1 
+■ Example: chmod 755 script.sh sets: 
+■ Owner: read, write, execute (7) 
+■ Group: read, execute (5)
+■ Others: read, execute (5)
+
+Recursive Permission Change: 
+ chmod -R 755 /var/www/html   
