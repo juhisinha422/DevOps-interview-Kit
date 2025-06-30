@@ -1,0 +1,36 @@
+How to Check Folder Size in Linux
+
+Why it matters?
+Imagine your server throws a warning:
+     “Disk 95% full”
+Now what? You need to quickly find which folder is consuming space. Here's how:
+
+Most common command:
+       du -sh /path/to/folder
+This shows total size of that folder in a human-readable format.
+Example:
+      du -sh /var/log
+This will output something like:
+      120M /var/log
+which means /var/log is using 120MB.
+
+
+Want to find all folder sizes in current directory?
+Use:
+       du -sh * | sort -h
+This will show size of each folder/file in the current directory, sorted by size. Great to spot the biggest consumer.
+
+
+Real-World Use Case:
+You're managing a prod server.
+Disk usage spikes. Instead of panicking, run:
+du -sh /* | sort -hr | head -10
+It gives you top 10 heaviest folders under /. Fast. Clean. Critical.
+
+
+Interview Tip:
+If someone asks:
+What’s the difference between du and df?
+Say this:
+du tells you how much space a folder is using
+df tells you the overall disk usage (total, used, available space)
