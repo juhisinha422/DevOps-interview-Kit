@@ -1,0 +1,54 @@
+Level 1 -
+
+1, cicd workflow, what kind of pipeline.
+2, use of webhook
+3, purpose of webhook
+4, stages of pipeline...
+5, shared libraries in jenkins?
+6, how do we define shared libraries?
+7, how are shared libraries written?
+8, how do you define a pipeline and call it?
+9, what kind of app you deploy on the pipeline?
+10, basic structure, folder structure of helm?
+11, what command are you using deployment in helm
+12, in the Jenkins pipeline, the pipeline is running successfully but the build is not happening, what are the issues?
+13, in kubernetes, what are the errors you are getting, why they come and how you resolve?
+14, explain the crash loop back off,
+15, image pull error?
+16, command to go inside a pod?
+17, how can you create the kubernetes class?
+18, what are the steps to create the cluster?
+19, what is the master node and other node?
+20, code to create a cluster using terraform?
+21, stages in docker images?
+22, DB entry point, CMD 
+23, why do we use entrypoint, CMD
+24, DB ec2, eks, ecs
+25, command to connect ecs
+26, which tool are you using for deployment?
+27, which registry for storing the docker images?
+
+Level 2 -
+
+1, Branching strategy?
+2, your release branch will break, then how u will avoid this kind of issues, then how do you merge?
+3, in production having some bugs, how will you resolve?
+4, typical deployment flow?
+5, cicd workflow?
+6, how do we do a full quality check?
+7, jenkins file, different stages...
+8, shared libraries in jenkins file?
+9, typical structure of shared libraries...
+10, are you aware of security scanning tools?
+11, how do you pass the environment variables on docker build command.
+12, what services do you use for storing the images?
+13, DB, how do you establish the connection?
+14, how do you scan the images at the registry level?
+15, any extension you are using for image scanning?
+16, authentication of eks cluster?
+17, storing the secrets?
+18, how to create lambda function, how it's taking the artifacts.
+19, options on lambda to push the artifacts?
+20, what is email signing and helm chart signing?
+21, which tool for signing the helm chart?
+
