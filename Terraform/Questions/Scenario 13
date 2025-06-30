@@ -1,0 +1,29 @@
+𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼: 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗣𝗹𝗮𝗻 𝗪𝗮𝗻𝘁𝘀 𝘁𝗼 𝗗𝗲𝘀𝘁𝗿𝗼𝘆 𝗘𝘃𝗲𝗿𝘆𝘁𝗵𝗶𝗻𝗴 - 𝗪𝗵𝗮𝘁 𝗡𝗼𝘄?
+
+You run 𝒕𝒆𝒓𝒓𝒂𝒇𝒐𝒓𝒎 𝒑𝒍𝒂𝒏, expecting a few minor changes… but instead, it’s about to destroy and recreate your entire infrastructure! 
+
+
+ 𝗪𝗵𝗮𝘁 𝘄𝗼𝘂𝗹𝗱 𝘆𝗼𝘂 𝗱𝗼?
+
+    𝙀𝙭𝙥𝙚𝙘𝙩𝙚𝙙 𝙍𝙚𝙨𝙥𝙤𝙣𝙨𝙚:
+
+ 𝐒𝐭𝐞𝐩 𝟏: 𝐃𝐨𝐧’𝐭 𝐚𝐩𝐩𝐥𝐲 𝐚𝐧𝐲𝐭𝐡𝐢𝐧𝐠 𝐲𝐞𝐭.
+ Stop immediately and investigate. Never run 𝒕𝒆𝒓𝒓𝒂𝒇𝒐𝒓𝒎 𝒂𝒑𝒑𝒍𝒚 without fully understanding the proposed changes.
+
+ 𝐒𝐭𝐞𝐩 𝟐: 𝐂𝐡𝐞𝐜𝐤 𝐭𝐡𝐞 𝐛𝐚𝐜𝐤𝐞𝐧𝐝 𝐬𝐭𝐚𝐭𝐞 𝐟𝐢𝐥𝐞.
+ Compare your current infrastructure with the desired configuration. Was something manually changed outside Terraform?
+
+ 𝐒𝐭𝐞𝐩 𝟑: 𝐔𝐬𝐞 𝒕𝒆𝒓𝒓𝒂𝒇𝒐𝒓𝒎 𝒔𝒕𝒂𝒕𝒆 𝒍𝒊𝒔𝒕 & 𝒕𝒆𝒓𝒓𝒂𝒇𝒐𝒓𝒎 𝒔𝒕𝒂𝒕𝒆 𝒔𝒉𝒐𝒘.
+ Review current resources and their state mappings to check if Terraform lost track of any resources.
+
+ 𝐒𝐭𝐞𝐩 𝟒: 𝐀𝐥𝐢𝐠𝐧 𝐲𝐨𝐮𝐫 𝐜𝐨𝐧𝐟𝐢𝐠𝐮𝐫𝐚𝐭𝐢𝐨𝐧.
+ Update .𝒕𝒇 files or re-import resources if needed using 𝒕𝒆𝒓𝒓𝒂𝒇𝒐𝒓𝒎 𝒊𝒎𝒑𝒐𝒓𝒕.
+
+ 𝐒𝐭𝐞𝐩 𝟓: 𝐏𝐥𝐚𝐧 𝐚𝐠𝐚𝐢𝐧.
+ Only proceed with 𝒂𝒑𝒑𝒍𝒚 once your plan shows the intended changes nothing destructive unless intentional.
+
+
+ 𝗟𝗲𝘀𝘀𝗼𝗻:
+ Blindly applying Terraform plans can cost you production resources.
+
+ 𝘈𝘭𝘸𝘢𝘺𝘴 𝘳𝘦𝘷𝘪𝘦𝘸, 𝘶𝘯𝘥𝘦𝘳𝘴𝘵𝘢𝘯𝘥, 𝘢𝘯𝘥 𝘷𝘦𝘳𝘴𝘪𝘰𝘯 𝘤𝘰𝘯𝘵𝘳𝘰𝘭 𝘺𝘰𝘶𝘳 𝘪𝘯𝘧𝘳𝘢𝘴𝘵𝘳𝘶𝘤𝘵𝘶𝘳𝘦-𝘢𝘴-𝘤𝘰𝘥𝘦.
