@@ -1,0 +1,42 @@
+What is /etc/resolv.conf in Linux?
+
+
+Imagine This:
+You're sitting in a DevOps interview, and the interviewer suddenly asks:
+"Your Linux machine is unable to connect to a domain like google.com. What file would you check first?"
+If you’re prepared — your answer is:
+       /etc/resolv.conf
+
+
+What is /etc/resolv.conf?
+This file tells your Linux system which DNS (Domain Name System) servers to use when converting domain names (like www.google.com) into IP addresses (142.250.195.68).
+
+
+Think of it as your system's "Phonebook lookup settings."
+When your system wants to connect to a website, it first checks this file to know "whom to ask" for the address.
+
+
+Example Content of resolv.conf:
+      nameserver 8.8.8.8
+      nameserver 8.8.4.4
+   
+nameserver: Specifies the DNS server IP to use for domain name resolution.
+
+
+Real-World Scenario (Interviewer may ask):
+"Your app running inside a Linux container can't resolve domain names. What would you check?"
+Check /etc/resolv.conf inside the container or host.
+ If the DNS IP is wrong or unreachable, name resolution fails.
+
+
+Important:
+In cloud environments or containers, this file is often auto-generated.
+Manual changes might get overwritten unless you update the network manager or DHCP settings.
+
+
+
+Summary:
+/etc/resolv.conf controls how Linux does DNS lookups.
+It tells your system where to ask for domain-to-IP translations.
+Crucial for internet access, curl/API calls, software updates, etc.
+One of the first files to check when DNS fails.
