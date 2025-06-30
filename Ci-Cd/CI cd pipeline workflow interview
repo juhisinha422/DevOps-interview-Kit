@@ -1,0 +1,27 @@
+Interviewer: You have 2 minutes. Explain how a typical AWS CI/CD pipeline works.
+
+Ans.
+
+➤ 𝐒𝐨𝐮𝐫𝐜𝐞 𝐒𝐭𝐚𝐠𝐞
+It all starts when developers push code to a repository like GitHub or CodeCommit. This triggers a pipeline via a webhook or CloudWatch event.
+
+➤ 𝐁𝐮𝐢𝐥𝐝 𝐒𝐭𝐚𝐠𝐞
+AWS CodeBuild (or Jenkins on EC2) kicks in. It compiles the code, runs unit tests, lints the project, and creates build artifacts. These artifacts are pushed to S3 or an artifact store like ECR if we’re building Docker images.
+
+➤ 𝐓𝐞𝐬𝐭 𝐒𝐭𝐚𝐠𝐞
+Optional but powerful. You can run integration or security tests here. Think of tools like SonarQube, Trivy, or AWS Inspector. Fail fast, fix early.
+
+➤ 𝐃𝐞𝐩𝐥𝐨𝐲 𝐒𝐭𝐚𝐠𝐞
+Based on the environment (dev, staging, or prod), the pipeline uses AWS CodeDeploy, CloudFormation, or even CDK to deploy infrastructure and application code.
+For container-based apps, ECS or EKS handles deployments. For serverless, it's Lambda and SAM.
+
+➤ 𝐑𝐨𝐥𝐥𝐛𝐚𝐜𝐤 𝐒𝐭𝐫𝐚𝐭𝐞𝐠𝐲
+Things break. Rollbacks are handled via deployment hooks, versioned artifacts, or blue-green/canary strategies in CodeDeploy or ECS.
+
+➤ 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 𝐚𝐧𝐝 𝐀𝐥𝐞𝐫𝐭𝐬
+CloudWatch logs everything. Alarms can notify you via SNS or trigger rollbacks. X-Ray, Prometheus, and Grafana help trace and debug real-time issues.
+
+➤ 𝐒𝐞𝐜𝐫𝐞𝐭𝐬 𝐚𝐧𝐝 𝐂𝐨𝐧𝐟𝐢𝐠
+Secrets Manager or Parameter Store injects sensitive values safely at runtime. IAM roles ensure the least privilege across every stage.
+
+That’s your CI/CD pipeline in AWS—from code to production, automated, observable, and secure.
