@@ -1,0 +1,69 @@
+Dockerfile Commands – Story Style 
+
+
+Imagine you're setting up a mini food truck – lightweight, clean, just what’s needed.
+This is exactly how a Docker container works.
+
+Let’s break down each Dockerfile instruction with this story:
+WORKDIR – Set your place
+Before starting, you decide where you’ll work inside your truck.
+So you say:
+      WORKDIR /app
+Now all your tasks will happen in /app – no more cd commands every time.
+ It’s like saying: “Put all ingredients here, I’ll cook from this shelf.”
+
+
+COPY vs ADD – Bring the stuff in
+You want to bring your ingredients (code/files) into the truck.
+      COPY . /app
+It simply places your local files into the container.
+
+Now let’s say you have a zipped recipe or need to fetch ingredients from a URL?
+Use:
+      ADD recipes.zip /app
+ADD = COPY + more powers (unzip, download from URL).
+But unless you need those powers, always prefer COPY.
+
+
+CMD vs ENTRYPOINT – What to run?
+You’ve set up everything.
+Now, when the truck starts, what should it do?
+     ENTRYPOINT ["python"]
+     CMD ["app.py"]
+Think of it like this:
+ENTRYPOINT is the fixed engine — your container always starts with this.
+CMD is the default gear — it can change if someone wants to override it.
+Together, this runs: python app.py
+If someone overrides CMD, it becomes: python test.py
+ But ENTRYPOINT (python) stays the same.
+Use ENTRYPOINT when you always want a command to run (like a fixed engine).
+Use CMD for flexible arguments.
+
+
+
+Multistage Build – Keep it lean
+Imagine cooking with 10 tools – knives, grinders, etc.
+But when delivering the food, you only pack the dish, not all the tools.
+That’s Multistage Build!
+      # Stage 1: Build
+          FROM node:20 as builder
+          WORKDIR /app
+          COPY . .
+          RUN npm install && npm run build
+
+       # Stage 2: Final container
+           FROM nginx:alpine
+           COPY --from=builder /app/dist /usr/share/nginx/html
+Stage 1 builds your app.
+Stage 2 only copies the final product – clean and optimized.
+
+
+
+In an interview, just say this:
+FROM sets the base image.
+WORKDIR sets the working folder.
+COPY and ADD bring files inside.
+ENTRYPOINT runs a fixed command, CMD gives a default argument.
+And Multistage Builds help us keep the final image small and fast.”
+If this helped you, imagine what CMD, ENTRYPOINT, COPY, ADD, and WORKDIR can do in real-world projects 
+ 
