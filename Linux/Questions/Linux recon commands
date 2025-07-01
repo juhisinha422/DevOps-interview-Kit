@@ -1,0 +1,19 @@
+15 Linux recon commands for total beginners 👇
+
+If you’re serious about security you should have these under your belt, don’t loose ‘em
+
+💥 man uname – opens manual page for uname command
+💥 ps – lists currently running processes to identify shell
+💥 id – shows user identity details
+💥 hostname – prints system hostname
+💥 uname – prints system name info
+💥 ifconfig – displays network interfaces (legacy tool)
+💥 ip – shows network configuration
+💥 netstat – displays network connections
+💥 ss – shows active socket connections
+💥 who – lists logged-in users
+💥 env – displays environment variables
+💥 lsblk – lists block devices
+💥 lsusb – lists USB devices
+💥 lsof – lists open files
+💥 apropos usb – searches commands/docs for keyword 'usb'
