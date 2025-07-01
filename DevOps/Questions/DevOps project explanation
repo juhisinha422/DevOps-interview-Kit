@@ -1,0 +1,32 @@
+Devops project for clearing Devops interviews.
+
+Project Goal:  
+The most challenging Kubernetes project I worked on involved migrating a monolithic legacy application to a microservices architecture running on Kubernetes. The goal was to improve scalability, resilience, and deployment efficiency for a high-traffic e-commerce platform.  
+
+Role and Responsibilities:  
+As the lead DevOps engineer, I was responsible for:  
+- Designing the Kubernetes cluster architecture (using EKS on AWS).  
+- Containerizing the monolithic application into discrete microservices.  
+- Implementing CI/CD pipelines (Jenkins/ArgoCD) for automated deployments.  
+- Configuring observability tools (Prometheus, Grafana, and ELK stack) for monitoring.  
+- Ensuring security best practices (network policies, RBAC, and secret management with Vault).  
+
+Scale of Infrastructure:  
+- The cluster spanned 50+ nodes across multiple AZs.  
+- Handled 100+ pods serving 10K+ RPM (requests per minute) at peak.  
+- Managed stateful services (e.g., databases) using Kubernetes StatefulSets and operators.  
+
+Technical Obstacles:  
+1. Stateful Service Migration:  
+   - Challenges in migrating PostgreSQL databases with minimal downtime. Solved by using logical replication and Velero for backups.  
+2. Network Latency:  
+   - Inter-service communication latency between microservices. Implemented service meshes (Istio) for efficient traffic management and circuit breaking.  
+3. Auto-scaling Issues:  
+   - Horizontal Pod Autoscaler (HPA) reacted slowly to traffic spikes. Tweaked metrics (custom Prometheus alerts) and combined with KEDA for event-driven scaling.  
+
+Outcome:  
+- Achieved 99.95% uptime post-migration.  
+- Deployment frequency increased by 300% (from weekly to multiple daily deployments).  
+- Reduced infrastructure costs by 20% via efficient resource allocation and spot instance usage.  
+
+This experience honed my ability to troubleshoot complex Kubernetes ecosystems while balancing performance, cost, and reliability.  
