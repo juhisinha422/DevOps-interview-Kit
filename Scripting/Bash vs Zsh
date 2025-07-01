@@ -1,0 +1,23 @@
+𝗕𝗮𝘀𝗵 𝘃𝘀 𝗭𝘀𝗵
+
+
+If you're exploring different shells for your terminal, you might be wondering: Bash or Zsh? Here’s a quick comparison:
+
+𝗕𝗮𝘀𝗵 (𝗕𝗼𝘂𝗿𝗻𝗲 𝗔𝗴𝗮𝗶𝗻 𝗦𝗵𝗲𝗹𝗹):
+
+🔸 The default shell on many Linux distributions and macOS (prior to Catalina).
+🔸 Simple and efficient for basic shell operations.
+🔸 Has robust scripting capabilities and excellent compatibility with older scripts.
+🔸 Great for beginners and those who need a solid, stable shell.
+
+𝗭𝘀𝗵 (𝗭 𝗦𝗵𝗲𝗹𝗹):
+
+🔸A more feature-rich alternative to Bash.
+🔸Has advanced features like auto-suggestions, syntax highlighting, and better tab-completion out of the box.
+🔸Highly customizable and extensible with plugins (oh-my-zsh, anyone?).
+🔸Often preferred by developers who want more functionality and a better user experience.
+
+𝗦𝗼, 𝘄𝗵𝗶𝗰𝗵 𝗼𝗻𝗲 𝘀𝗵𝗼𝘂𝗹𝗱 𝘆𝗼𝘂 𝘂𝘀𝗲?
+
+If you’re just looking for a stable, no-nonsense shell, Bash is perfect.
+If you want a more modern, feature-packed terminal experience, Zsh is your go-to!
