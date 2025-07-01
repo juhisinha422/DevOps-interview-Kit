@@ -1,0 +1,29 @@
+Technical Interview Experience – DevOps Engineer at Zensar Technologies (Round 1)
+------------------------------------------------------
+One of my students recently appeared for Round 1 of the DevOps Engineer interview at Zensar Technologies.
+The round focused on real-world implementation knowledge, Azure cloud workflows, CI/CD pipelines, and Kubernetes troubleshooting.
+
+Here’s the latest and fresh set of questions from their experience:
+🚀 Azure DevOps & CI/CD Workflows
+ ✅ How do you manage secrets across multiple Azure DevOps pipelines securely?
+ ✅ What’s the difference between runtime variables and pipeline variables in YAML pipelines?
+ ✅ How do you implement pipeline templates for 10+ services sharing a common structure?
+ ✅ How do you deploy to multiple environments (Dev, QA, Prod) from a single pipeline?
+
+🚀 Kubernetes (AKS) & Containerization
+ ✅ A pod is in CrashLoopBackOff but logs show no error — how do you debug it?
+ ✅ How do you manage different config files (dev/stage/prod) using Helm for AKS deployments?
+ ✅ Explain how HPA and VPA work together and when to use each.
+ ✅ What are readiness and liveness probes and what mistakes can cause them to fail?
+
+🚀 Infrastructure as Code – Terraform & Bicep
+ ✅ What’s the purpose of terraform validate, plan, and taint commands in daily workflow?
+ ✅ How do you handle Terraform resource drift in production environments?
+ ✅ How do you implement condition-based resource provisioning using Terraform?
+ ✅ What's your approach to safely rotating secrets or keys in an IaC workflow?
+
+🚀 Monitoring, Logging & Incident Response
+ ✅ What’s the difference between Azure Monitor and Log Analytics — when to use which?
+ ✅ How would you monitor the health of services running inside AKS?
+ ✅ How do you reduce alert fatigue without missing important events?
+ ✅ Walk through your process to troubleshoot a sudden CPU spike in a containerized app.
