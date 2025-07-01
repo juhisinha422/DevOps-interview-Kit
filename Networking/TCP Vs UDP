@@ -1,0 +1,18 @@
+𝗧𝗖𝗣 𝗗𝗲𝗹𝗶𝘃𝗲𝗿𝘀. 𝗨𝗗𝗣 𝗛𝗼𝗽𝗲𝘀 𝗳𝗼𝗿 𝘁𝗵𝗲 𝗕𝗲𝘀𝘁
+
+
+Ever wondered why some apps just work reliably, while others feel faster but occasionally glitchy? It often comes down to one thing: the protocol behind the scenes.
+
+ 𝗧𝗖𝗣 (𝗧𝗿𝗮𝗻𝘀𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗣𝗿𝗼𝘁𝗼𝗰𝗼𝗹) – 𝘁𝗵𝗲 𝗽𝗲𝗿𝗳𝗲𝗰𝘁𝗶𝗼𝗻𝗶𝘀𝘁
+
+🔶 Ensures all data arrives in the correct order
+🔶 Retransmits lost packets
+🔶 Think: web pages, emails, file transfers
+🔶 Reliable, but a bit slower due to all the hand-holding
+
+𝗨𝗗𝗣 (𝗨𝘀𝗲𝗿 𝗗𝗮𝘁𝗮𝗴𝗿𝗮𝗺 𝗣𝗿𝗼𝘁𝗼𝗰𝗼𝗹) – 𝘁𝗵𝗲 𝗿𝗶𝘀𝗸-𝘁𝗮𝗸𝗲𝗿
+
+🔶 Sends data without checking if it arrives
+🔶 No reordering or retransmission
+🔶 Think: video streaming, online gaming, live voice
+🔶 Fast and lightweight, but can drop data
