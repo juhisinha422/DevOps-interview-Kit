@@ -10,19 +10,27 @@ Once your tests pass, CD takes over. No approvals. No waiting. Just automatic, s
 𝗪𝗵𝘆 𝗖𝗗 𝗺𝗮𝘁𝘁𝗲𝗿𝘀:
 
 🔁 Automates deployments after successful CI
+
 🔁 Cuts down manual errors
+
 🔁 Ships features faster
+
 🔁 Keeps environments consistent
+
 🔁 Reduces delays and context switching
 
 𝗪𝗵𝗮𝘁 𝗖𝗗 𝗰𝗮𝗻 𝗱𝗼:
 
 🔸 Deploy on every commit or merge
+
 🔸 Integrate with infrastructure tools like Terraform
+
 🔸 Ensure zero-downtime rollouts
+
 🔸 Automatically notify teams post-deploy
 
 CI makes sure your code works.
+
 CD makes sure it’s live.
 
 Simple, powerful, and worth the setup
