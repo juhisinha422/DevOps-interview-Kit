@@ -1,0 +1,9 @@
+Have you ever worked with Daemons in Linux?
+
+Yes, you have worked with Daemons when you started learning Linux
+
+Daemon is a background process that runs without direct user interaction. Think of it like a helper doing its job in the background. 
+
+I worked with Daemons while setting up Nginx on a Linux Server. When you start Nginx, it launches as a Daemon. This means it is running in the background and keeps serving web requests even after you log out of the terminal.
+
+It is a key part of how Linux works efficiently.
