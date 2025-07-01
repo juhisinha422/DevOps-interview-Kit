@@ -1,0 +1,36 @@
+1. Your pod keeps getting stuck in CrashLoopBackOff, but logs show no errors. How would you approach debugging and resolution?
+Answer:- Check: kubectl describe pod for livenessProbe, readinessProbe, and OOMKilled.
+Debug: Resource limits too low, misconfigured probes, or failing commands in the entrypoint.
+Fix: Tune probes or increase CPU/memory requests/limits. Check container start command for logic errors.
+
+2. You have a StatefulSet deployed with persistent volumes, and one of the pods is not recreating properly after deletion. What could be the reasons, and how do you fix it without data loss?
+Answer: Cause: PVCs are tied to specific StatefulSet pod names (pod-0, pod-1, etc.).
+Fix: Ensure PVC still exists and matches the pod name. Do not delete PVCs manually. Restart StatefulSet if needed with kubectl rollout restart.
+
+
+3. Your cluster autoscaler is not scaling up even though pods are in Pending state. What would you investigate?
+Answer: Check: kubectl describe pod for unschedulable reason.
+Fix: Ensure:
+Node group has scaling enabled
+Requests are not too large for a node
+No taints preventing scheduling
+Pod has tolerations and nodeSelector/affinity match
+
+
+4. A network policy is blocking traffic between services in different namespaces. How would you design and debug the policy to allow only specific communication paths?
+
+Answer: 
+Debug:
+Use kubectl get networkpolicy and test with netshoot or busybox pods.
+Use labels, not IPs.
+
+
+5. One of your microservices has to connect to an external database via a VPN inside the cluster. How would you architect this in Kubernetes with HA and security in mind?
+Answer:
+Options:
+Use a sidecar VPN container or a VPN DaemonSet
+Route DB traffic via a private network interface (e.g., VPC peering)
+Use NetworkPolicy, TLS, and secrets management for secure access
+HA: Run multiple VPN pods behind a ClusterIP or use a LoadBalancer.
+
+
