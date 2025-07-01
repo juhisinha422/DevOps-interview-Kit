@@ -1,0 +1,65 @@
+DevOps Engineer vs Platform Engineer vs SRE – 
+how their tech stacks & responsibilities differ (and what to expect in interviews)
+
+Here’s a breakdown of the typical stacks and core responsibilities 
+(Entry to Mid-Level Roles)
+
+1. DevOps Engineer
+ • Infrastructure as Code (Terraform, Cloudformation, Pulumi)
+ • CI/CD pipelines (Jenkins, GitLab CI, ArgoCD)
+ • Automation & Scripting (Python, Bash)
+ • Virtualization & Containerization
+ • Cloud-native deployments (AWS/GCP/Azure)
+ • Cross-team collaboration with devs & QA
+
+Shared Responsibilities:
+→ Monitoring (Prometheus, Datadog etc)
+→ Continuous reliability improvements
+→ Deployment automation
+→ Scalable cloud infrastructure
+
+Interview focus:
+→ CI/CD pipeline design
+→ IaC practices and tools
+→ Troubleshooting broken builds
+→ Networking, Security & Cloud Cost Optimization
+-------
+
+2. Site Reliability Engineer (SRE)
+ • Defining & tracking SLOs, SLIs
+ • Ensuring uptime and high availability
+ • Incident response (on-call rotations, root cause analysis)
+ • Observability (Grafana, ELK, etc)
+
+Shared Responsibilities:
+ → Real-time monitoring and alert systems
+ → Process improvement and automation
+ → Capacity planning
+ → Performance optimization
+
+Interview focus:
+→ Reliability design patterns
+→ Incident handling scenarios
+→ Scaling systems under load
+→ Writing postmortems
+
+-------
+
+3. Platform Engineer
+ • Building internal developer platforms
+ • Cloud infrastructure (including Kubernetes)
+ • Container orchestration & scalability
+ • Service mesh (Istio, Linkerd)
+ • Application Lifecycle Management
+
+Shared Responsibilities
+ → Deployment pipelines
+ → Cloud infra management (multi-account, multi-region setups)
+ → System performance tuning
+ → Scaling and provisioning
+
+Interview focus:
+→ Designing internal platforms or PaaS
+→ Advanced Kubernetes architecture
+→ Developer experience tooling
+→ System design with scalability in mind
