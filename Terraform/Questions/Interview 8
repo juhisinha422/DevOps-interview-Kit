@@ -1,0 +1,38 @@
+Top Terraform Interview Q&A – 2025 Cheat Sheet! 📘
+ 
+Want to shine in your next DevOps/Cloud interview? These Terraform questions & answers are a must-know! 💡
+ 
+🧠 8 Terraform Interview Questions & Answers 👇
+ 
+1. What is the difference between terraform plan and terraform apply?
+🔹 terraform plan shows what changes will occur without making them.
+🔹 terraform apply executes the planned changes and updates infrastructure.
+ 
+2. How does Terraform manage infrastructure state?
+🔹 It uses a state file (terraform.tfstate) to track resource mappings and dependencies.
+🔹 This file ensures consistent deployments and enables Terraform to detect drift.
+ 
+3. What are Terraform modules and why use them?
+🔹 Modules are reusable groups of resources.
+🔹 They promote DRY principles, cleaner code, and easier scaling.
+ 
+4. Can you roll back changes in Terraform?
+🔹 Terraform doesn’t support automatic rollback.
+🔹 However, you can manually revert by re-applying a previous configuration or using versioned state.
+ 
+5. How should secrets be managed in Terraform?
+🔹 Avoid hardcoding secrets in code.
+🔹 Use Vault, environment variables, or secret management tools with backends like AWS SSM or Azure Key Vault.
+ 
+6. Difference between Terraform and CloudFormation or Ansible?
+🔹 Terraform is cloud-agnostic and declarative.
+🔹 CloudFormation is AWS-specific.
+🔹 Ansible is procedural and focuses more on configuration management.
+ 
+7. What is a remote backend in Terraform?
+🔹 A remote backend stores the Terraform state in a shared location like S3, Azure Blob, or Terraform Cloud.
+🔹 It enables collaboration, locking, and state consistency across teams.
+ 
+8. How do you manage multiple environments in Terraform?
+🔹 Use workspaces, separate state files, or directory structures for dev, staging, and prod.
+🔹 Combine with CI/CD for automated and isolated deployments.
