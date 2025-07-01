@@ -1,0 +1,13 @@
+Interview Experience at Mercedes-Benz India – AWS DevOps Role 
+
+💬 Here are some of the questions I was asked:
+1️⃣ What is ClusterIP and NodePort in Kubernetes?
+ ➡️ Understand how services expose pods within the cluster (ClusterIP) or outside the cluster (NodePort).
+2️⃣ How do you define and use Artifact ID in Jenkins?
+ ➡️ They wanted to know how I manage build artifacts and uniquely identify them using artifactId in Maven builds.
+3️⃣ How do you configure Maven in Jenkins to build code?
+ ➡️ From setting up Maven in Jenkins global tools to writing pom.xml and pipeline steps — full DevOps automation.
+4️⃣ How do you reduce Docker image size? 🐳
+ ➡️ Multi-stage builds, Alpine base images, .dockerignore — clean and lean image strategy.
+5️⃣ Can you explain Kubernetes Services in detail?
+ ➡️ Types of services (ClusterIP, NodePort, LoadBalancer, Headless), how traffic routing works, and when to use what.
