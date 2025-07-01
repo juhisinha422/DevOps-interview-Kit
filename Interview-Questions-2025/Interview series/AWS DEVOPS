@@ -1,0 +1,39 @@
+AWS (EC2, S3, Lambda, CloudFront)
+	•	What is EC2? How does it differ from traditional servers?
+	•	What is an S3 bucket? How is it used in DevOps pipelines?
+	•	Explain IAM roles and how they are used with EC2 and Lambda.
+	•	What is Lambda? How is it different from EC2?
+	•	Explain the lifecycle of an EC2 instance and how to automate it using user data.
+	•	How does versioning work in S3 and why is it important for DevOps?
+	•	What is CloudFront and how does it improve performance in deployment?
+	•	How would you build a serverless web app using Lambda, S3, and CloudFront?
+	•	How do you automate S3 backup and EC2 snapshot policies in a DevOps pipeline?
+	•	Design a CI/CD pipeline to deploy code to Lambda with version control and rollback.
+
+
+🔸 Terraform
+	•	Why is Terraform the most preferred IaC tool? How is it different from CloudFormation?
+	•	What are providers and resources in Terraform?
+	•	Explain terraform init, plan, apply, and destroy.
+	•	What are Terraform state files? Why should they be stored securely?
+	•	How do you use variables and outputs in a project?
+	•	What are workspaces in Terraform?
+	•	How to manage dev, staging, and prod environments?
+	•	Difference between .tf and .tfvars?
+	•	How to implement remote state locking?
+	•	Create a reusable module for VPC, subnets, and EC2 instances.
+
+🔸 CI/CD Concepts
+	•	What is CI/CD and why is it important in DevOps?
+	•	Common tools used for CI/CD
+	•	Explain different stages of a CI/CD pipeline
+	•	Difference: Continuous Integration vs Delivery vs Deployment
+	•	How do you manage rollbacks in CI/CD pipelines?
+	•	Automating tests in CI pipelines
+	•	What is blue-green deployment? How is it implemented?
+	•	What is canary deployment?
+	•	Pipeline as Code – benefits
+	•	Scenario: CI/CD strategy for a multi-service app on Kubernetes
+
+🔸 Kubernetes Basics
+	•	Explain Kubernetes architecture and its core components.
