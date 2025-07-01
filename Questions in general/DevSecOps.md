@@ -6,14 +6,23 @@ DevSecOps emerged as a natural evolution of DevOps practices with a focus on int
 The diagram below shows the important concepts in DevSecOps.
 
 1 . Automated Security Checks
+
 2 . Continuous Monitoring
+
 3 . CI/CD Automation
+
 4 . Infrastructure as Code (IaC)
+
 5 . Container Security
+
 6 . Secret Management
+
 7 . Threat Modeling
+
 8. Quality Assurance (QA) Integration
+
 9 . Collaboration and Communication
+   
 10 . Vulnerability Management
 
 
