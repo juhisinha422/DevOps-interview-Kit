@@ -1,0 +1,28 @@
+🚨 AWS WAF vs. Shield vs. Firewall Manager — Which One Protects What?
+ 
+All three are key players in AWS security, but they serve different purposes depending on what you're trying to protect and how centralized you want your policies to be.
+
+ Here’s a quick and clear comparison:
+
+🛡️ AWS WAF (Web Application Firewall)
+ ✔️ Filters HTTP/S traffic at Layer 7.
+ ✔️ Lets you block IPs, bots and SQL.
+ ✔️ Customizable rules via rule groups or managed rules
+ 🧠 Use case: Protecting APIs, ALBs and CloudFront from common web exploits.
+
+⚔️ AWS Shield
+ ✔️ Protects against DDoS attacks at Layers 3, 4 and 7.
+ ✔️ Shield Standard is automatic and free.
+ ✔️ Shield Advanced offers cost protection, reports and tuning.
+ 🧠 Use case: Mitigating large-scale DDoS attacks on critical apps.
+
+🏢 AWS Firewall Manager
+ ✔️ Centralizes security policy enforcement across accounts.
+ ✔️ Works with WAF, Shield Advanced and security groups.
+ ✔️ Coordinates rules across Layers 3 to 7.
+ 🧠 Use case: Organizations with multiple accounts needing consistent security policies.
+
+🎯 In short:
+ Want to block malicious HTTP/S traffic? ➡️ Use AWS WAF
+ Need automatic DDoS protection? ➡️ Start with Shield Standard
+ Managing org-wide security policies? ➡️ Go with Firewall Manager
