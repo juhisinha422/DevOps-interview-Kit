@@ -1,0 +1,21 @@
+Learning Ansible – Core Components Simplified
+ #Ansible #RHCE #Linux #Automation #LearningJourney
+As I revise Ansible for my RHCE, I’m breaking down its core components to keep things clear and simple.
+🔹 1. Control Node
+ The main machine where Ansible is installed and commands are run from.
+🔹 2. Managed Nodes
+ The client systems (Linux machines) that Ansible connects to via SSH to execute tasks.
+🔹 3. Inventory
+ A file (like hosts) listing the IPs or hostnames of all managed nodes.
+🔹 4. Modules
+ Pre-built units of work – like yum, service, or copy – used inside playbooks to perform actions.
+🔹 5. Playbook
+ A .yml file where tasks are written in human-readable YAML format. These define what to do on each system.
+🔹 6. Tasks
+ Individual instructions inside a playbook. Example: Install a package, start a service, create a file.
+🔹 7. Roles
+ Structured way to organize playbooks and files for reusability and scalability.
+Understanding these basics makes writing and organizing automation easier!
+
+
+1
