@@ -37,3 +37,6 @@ yaml
 🔍 The execution was successful with no failures — a clean automation run!
 
  ![Image](https://github.com/user-attachments/assets/df7067b2-7255-4c00-878f-ea8525825d65)
+
+
+ ![Image](https://github.com/user-attachments/assets/28822af1-af1c-4a79-a84a-7c6fe61582cf)
