@@ -1,0 +1,28 @@
+𝐍𝐞𝐱𝐮𝐬:
+Acts as a central repository for storing build artifacts such as libraries, dependencies, and Docker images.
+
+Supports proxying remote repositories, which speeds up builds by caching dependencies.
+
+Enables artifact versioning and management, making it easier to track and maintain software components.
+
+Helps in securely distributing artifacts within the development team and across environments.
+
+Plays a vital role in automating builds by integrating with CI/CD tools like Jenkins.
+
+𝐒𝐨𝐧𝐚𝐫𝐐𝐮𝐛𝐞:
+Performs static code analysis to identify bugs, code smells, and potential vulnerabilities.
+
+Supports multiple programming languages including Java, which I am focusing on.
+
+Provides detailed code quality reports with metrics like code coverage, duplications, and complexity.
+
+Helps maintain coding standards by integrating with development workflows.
+
+Alerts developers early in the pipeline to fix issues before deployment, improving software reliability.
+
+𝐖𝐡𝐲 𝐭𝐡𝐢𝐬 𝐦𝐚𝐭𝐭𝐞𝐫𝐬:
+These tools enable automation and quality assurance in DevOps pipelines.
+
+Using Nexus and SonarQube together helps teams deliver reliable software faster.
+
+They encourage collaboration by providing visibility and control over artifacts and code quality.
