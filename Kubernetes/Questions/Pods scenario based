@@ -1,0 +1,41 @@
+Kubernetes Pod Scenario-Based Questions:
+
+1. Your pod is stuck in CrashLoopBackOff — what’s your first step in debugging it?
+
+2. A pod is terminating for more than 5 minutes. What could be the possible reasons?
+
+3. You applied a new ConfigMap, but your pod isn't reflecting the changes. Why?
+
+4. Your pod keeps restarting every few seconds. What are common causes?
+
+5. Your deployment shows 3 pods running, but only 1 is ready. What could be going wrong?
+
+6.  You need to test a new container image in a pod without modifying your deployment. What’s the best approach?
+
+7. A pod is OOMKilled (Out of Memory). What two areas should you immediately inspect?
+
+8. Your pod can’t resolve external DNS names (like google.com). Where do you look?
+
+9. You want to prevent a pod from accessing the internet, but allow internal cluster access. How would you configure this?
+
+10. A pod is not reaching a service running in another namespace. What checks will you doo?
+
+11.  How would you ensure a pod can only be scheduled on nodes with a specific GPU?
+
+12. You deleted a pod manually, but it immediately came back. Why?
+
+13. How would you inject environment variables securely into a pod?
+
+14. You need a pod to start only after another pod becomes ready. How do you handle that?
+
+15. You notice your pod is using an outdated image even after updating the deployment. What’s missing?
+
+16. How do you troubleshoot a pod that mounts a PVC but cannot write to it?
+
+17. You want to troubleshoot a running pod's logs but only for a specific container. How?
+
+18. Your pod takes too long to become Ready. Which liveness/readiness configuration mistakes might cause this?
+
+19. You rolled out a deployment, but the pods are not updating. What could be blocking the rollout?
+
+20. How do you schedule a pod on a specific node without using taints?
