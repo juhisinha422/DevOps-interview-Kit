@@ -1,0 +1,17 @@
+15 practical questions to help you prepare with confidence:
+
+1. What is a CI CD pipeline and how would you design one for a growing team?
+2. How does Infrastructure as Code work and why is it important?
+3. Why are containers often preferred over virtual machines?
+4. What do you do when a deployment fails in production?
+5. Can you explain the difference between DevOps and Site Reliability Engineering?
+6. What is GitOps and how does it improve deployment processes?
+7. How do you make sure your CI CD pipeline is secure?
+8. What are blue green and canary deployments and when would you use each?
+9. How does Kubernetes fit into modern DevOps workflows?
+10. What is the difference between Terraform and Ansible in infrastructure management?
+11. What metrics matter the most in DevOps and why?
+12. How do you handle secrets and sensitive data in pipelines?
+13. What is Shift Left Security and how do you implement it?
+14. What tools have you used for logging, monitoring, and alerting?
+15. What is your approach to rolling back a failed release?
