@@ -9,7 +9,7 @@ Today I ran a simple Ansible playbook to change the hostname of a managed node.
 
  ✔️ Target group: web
 
- ✔️ Task: Set hostname to <name>
+ ✔️ Task: Set hostname to (name)
 
 🔹 Playbook Logic (YAML):
 yaml
