@@ -1,0 +1,72 @@
+Part-1
+
+1.  Your pod keeps getting stuck in CrashLoopBackOff, but logs show no errors. How would you approach debugging and resolution?
+Approach:
+
+- Run kubectl describe pod <pod-name> to check events (e.g., OOMKilled, permission issues)
+- Check if readiness/liveness probes are misconfigured.
+- Inspect init containers or sidecars
+- Check kubectl get events for resource or scheduling failures.
+- Run kubectl exec into a running container (if it stabilizes briefly) or use an ephemeral debug container (kubectl debug).
+
+Resolution:
+
+Adjust probe configurations, increase memory limits, fix environment/config errors, or troubleshoot dependencies like volume mounts or secrets.
+
+2. You have a StatefulSet deployed with persistent volumes, and one of the pods is not recreating properly after deletion. What could be the reasons, and how do you fix it without data loss?
+
+Possible Causes:
+
+- PVC still bound to the old pod (pod-0 PVC won't bind to a new pod)
+- StatefulSet not recreating pod due to volume reclaim policy.
+- Pod stuck in Terminating due to finalizers.
+
+Fix Without Data Loss:
+
+- Ensure PVC exists: kubectl get pvc.
+- Reattach existing PVC or force delete stuck pod.
+- Avoid deleting PVC manually unless backed up.
+- Check volume provisioner logs (e.g., CSI driver).
+
+3. Your cluster autoscaler is not scaling up even though pods are in Pending state. What would you investigate?
+
+Check:
+
+- Pod events:  kubectl describe pod (look for insufficient resources).
+- Are pods unschedulable due to PDBs, affinity, or taints?
+- Cluster autoscaler logs (kubectl logs deployment/cluster-autoscaler).
+- IAM roles and permissions for autoscaler.
+- Are there node pool limits or maxNodesTotal reached?
+
+4. A network policy is blocking traffic between services in different namespaces. How would you design and debug the policy to allow only specific communication paths?
+
+Debug:
+
+- Run: kubectl get networkpolicies -A.
+- Use kubectl exec or netshoot to test connectivity.
+- Confirm the egress and ingress allow namespaceSelector or match labels properly.
+
+Design:
+
+- Explicitly allow traffic using:
+
+```
+namespaceSelector:
+  matchLabels:
+    name: target-namespace
+```
+- Consider default-deny policy, then allow by exception.
+
+5. One of your microservices has to connect to an external database via a VPN inside the cluster. How would you architect this in Kubernetes with HA and security in mind?
+
+Architecture:
+
+- Deploy a VPN client (e.g., strongSwan, WireGuard) as a highly available Deployment or DaemonSet.
+- Use a dedicated subnet/VPC peering to reach the DB.
+- Add NetworkPolicy to restrict access to DB.
+- Run VPN client as sidecar or separate service with failover.
+
+Security:
+
+- Store VPN credentials in Kubernetes Secrets.
+- Limit access with RBAC and PodSecurityPolicies.
