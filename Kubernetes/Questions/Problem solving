@@ -1,0 +1,122 @@
+Kubernetes problem-solving questions ans answers 
+✅ 1. Pods are stuck in CrashLoopBackOff. How do you troubleshoot?
+
+Answer:
+
+Check the logs of the crashing pod:
+
+kubectl describe pod <pod-name>
+
+kubectl logs <pod-name> --previous
+
+kubectl get events -n <name Space> |grep -i <pod Name> (Very Good command)
+
+Note: Please keep this in mind — if a pod is in a NotReady state, always use:
+
+kubectl describe pod <pod-name>
+
+This is because kubectl logs may not return any output when the pod is not ready, especially if:
+
+The container has not started yet.
+
+The pod is still initializing (e.g., stuck in Init containers),
+
+Or the container crashed before any logs were generated.
+
+Common causes:
+
+Misconfigured startup command
+
+Application crash due to missing config or DB
+
+Readiness or liveness probe failures
+
+Fix by updating the deployment or correcting the environment/configMap/secrets.
+
+✅ 2. You get an ImagePullBackOff error. How do you resolve it?
+
+Answer:
+
+kubectl describe pod <pod-name> (to see image-related errors).
+
+Common causes:
+
+Invalid image name or tag
+
+Missing DockerHub credentials for private repos
+
+Network/DNS issues
+
+Fix:
+
+Correct image in the manifest
+
+Add imagePullSecrets if a private repo is used
+
+Check node DNS resolution and internet access
+
+✅ 3. A service is not accessible via ClusterIP. How to debug?
+
+Answer:
+
+Check service and pod IPs:
+
+kubectl get svc, pods -o wide (Use nslookup or dig from within the cluster:)
+
+kubectl run -it --rm test --image=busybox -- /bin/sh
+
+nslookup <service-name>
+
+Use curl or wget to test endpoints
+
+Check network policies (if any) or service selector mismatch.
+
+✅ 4. Node is in NotReady state. What steps would you take?
+
+Answer:
+
+Check node status:
+
+kubectl describe node <node-name> (SSH into the node and check kubelet:)
+
+systemctl status kubelet
+
+Verify disk pressure, memory pressure, or network issues.
+
+Restart kubelet and container runtime:
+
+systemctl restart kubelet docker # or containerd
+
+✅ 5. Deployments are not scaling as expected (e.g., HPA is not triggering). Why?
+
+Answer:
+
+Check if metrics-server is deployed and running:
+
+kubectl get deployment metrics-server -n kube-system
+
+kubectl top pods (to confirm metrics availability.)
+
+Describe the HPA:
+
+kubectl describe hpa <deployment-name>
+
+Fix:
+
+Ensure correct resource requests/limits are set
+
+Ensure HPA target metrics (CPU/memory) are configured properly
+
+Note: Another very useful command for troubleshooting is journalctl, which should be run directly on the Kubernetes node where the pod is scheduled.
+
+You can use the following command to check recent system logs related to a specific pod:
+
+journalctl --since "6 hours ago" --until "now" | grep -i <pod-name> (Depending on the use case, you just change the hour. Like here, I mentioned 6, you just change it to 2 or 3)
+
+This helps identify:
+
+Kubelet-level issues,
+
+Container runtime errors (e.g., Docker, containerd),
+
+Or any low-level system events affecting the pod
