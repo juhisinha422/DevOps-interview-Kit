@@ -1,0 +1,55 @@
+Maven Notes Part-1
+
+Maven
+-------
+Maven is a free and open source software given by Apache Organization
+Maven s/w is developed using Java programming language
+Maven is used to perform Build Automation for java projects
+Maven is called as Java Build Tool
+
+
+What we can do using maven
+--------------------------
+1) We can create initial project folder structure using maven
+2) We can download "project dependencies" using maven
+  (ex : springboot, hibernate, kafka, redis, email, log4j, junit, security...)
+To develop one java project we will use several frameworks like spring, hibernate etc along with Java
+We need to download those frameworks and we should add to our java project
+These frameworks we are using in our project are called as our project dependencies
+Instead of we are downloading dependencies, we can tell to maven s/w to download dependencies
+Note: Required dependencies we will add in "pom.xml" file then maven s/w will download them
+pom stands for project object model
+When we create maven project then pom.xml file will be created automatically
+pom.xml will act as input file for maven software
+3) We can compile project source code using maven
+4) We can package java project as jar or war file using maven
+
+Maven Installation
+-------------------
+1) Download and install Java software
+When we install java we will below 2 things
+		a) JDK (Java Development Kit) 
+		b) JRE (Java Runtime Environment)
+JDK contains set of tools to develop java programs
+JRE contains platform/environment which is used to run java programs
+Link To Download Java : https://lnkd.in/geTzFe8x
+2) Set JAVA_HOME in Environment Variables (System Env Variables)
+			User Environment Variables: Specific to particular account which logged in our PC
+			System Envrionment Variables : For All Accounts
+Note: Environment Variables will be used by operating system
+			JAVA_HOME = C:\Program Files\Java\jdk1.8.0_202
+3) Set Path for JAVA (Go to System Env Variables -> Env Variables -> System Variables -> Select Path and Click on Edit then add JDK path)
+			Path = C:\Program Files\Java\jdk1.8.0_202\bin
+4) Verify Java installation by executing below command in "Command Promot"
+			> java -version
+Note: It should dipslay java version which we have installed
+5) Download Maven software from Apache website
+		Link To download Maven : https://lnkd.in/gXfGtPcN
+		File Name : 	apache-maven-3.8.5-bin.zip (Binary Archive)
+6) Extract Maven Zip file -> Copy extracted maven folder and paste it in "C" drive
+7) Set MAVEN_HOME in System Environment Variables
+		MAVEN_HOME = C:\apache-maven-3.8.5
+8) Set Path for Maven in System Environment Variables
+		Path : C:\apache-maven-3.8.5\bin
+9) Open Command Prompt and verify Maven Installaton using below command
+		> mvn -version
