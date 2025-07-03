@@ -1,0 +1,37 @@
+Mastering Linux Basics: Environment Variables, Aliases & the System Commands 🐧
+
+Whether you're a developer, system admin, or DevOps engineer, understanding Linux fundamentals is key. Here's a quick cheat sheet I’ve put together based on real-world usage. Please check screenshots for better real time examples. 
+
+ 🧠1. Environment Variables: 
+Environment variables in Linux are the unsung heroes that control how your system and applications behave.
+
+ What are they?
+ They're dynamic values used by the shell and programs to determine settings like default paths, user sessions, and locale.
+Environment variables are a powerful tool — and essential if you're diving into DevOps, cloud, or scripting. 
+
+🧩 2. Aliases
+What is an alias?
+An alias in Linux is a shortcut or shorthand for a command or series of commands. It helps simplify repetitive or long command lines.
+
+alias name='your_command_here'
+alias ll='ls -la'      # List files with details
+alias gs='git status'    # Git made easy
+alias cls='clear'      # Clear screen
+alias k='kubectl'      # Save keystrokes in Kubernetes
+
+💻 3. Change Default Shell
+ Switch your shell using: 
+chsh -s /bin/zsh  # Change to Zsh
+echo $SHELL    # Check current shell
+
+🔍 4. udevadm — Monitor hardware events:
+  udevadm monitor  # Real-time hardware device changes
+
+📦 5. dmesg — View kernel ring buffer (boot + hardware messages):
+dmesg | grep -i usb  # View USB device logs
+
+💽 6. lsblk — List block devices:
+lsblk -f   # View filesystems and mount points
+
+🧠 7. lspci — List PCI devices:
+lspci    # Check network card, GPU, etc.
