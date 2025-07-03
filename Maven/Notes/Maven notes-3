@@ -1,0 +1,39 @@
+Maven Notes Part -3
+
+Configuring Remote Repository
+------------------------------
+<repositories>
+    <repository>
+      <id>id</id>
+      <url>jfrong-repo-url/</url>
+    </repository>   
+</repositories>
+
+
+
+Maven Goals
+--------------
+To perform project build activities maven prorvided several goals for us
+
+clean
+compile
+test
+package
+install
+clean goal is used to delete target folder
+compile goal is used to compile project source code. Compiled code will be stored in target folder
+		compile
+	.java ------------> .class
+
+test goal is used to execute unit test code of our application (junit code)
+package goal is used to generate jar or war file for our application based on packaging type available in pom.xml file.
+Note: jar or war file will be created in target folder.
+install goal is used to install our project as a dependency in maven local repository.
+Note: Every maven goal is associated with maven plugin. When we execute maven goal then respective maven plugin will execute to perform the operation.
+
+Syntax : mvn <goal-name>
+Note: We need to execute maven goals from project folder
+
+creating web application using maven
+------------------------------------
+>> mvn archetype:generate -DarchetypeArtifactId=maven-archetype-webapp -DgroupId=in.venkat -DartifactId=01-maven-web-app -DinteractiveMode=false
