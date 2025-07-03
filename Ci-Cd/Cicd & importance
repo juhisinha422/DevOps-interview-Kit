@@ -1,0 +1,10 @@
+What is CI/CD in DevOps, and why is it important?
+✅ Answer:
+ CI/CD stands for Continuous Integration and Continuous Deployment/Delivery.
+CI (Continuous Integration) is the practice where developers frequently integrate code into a shared repository, followed by automated builds and tests.
+CD (Continuous Delivery/Deployment) ensures that code changes are automatically tested and released to production with minimal manual intervention.
+🚀 Why It’s Important:
+CI/CD reduces integration issues, making code deployment faster and safer.
+It allows for early bug detection, enhances code quality, and ensures faster time-to-market.
+In modern DevOps pipelines, CI/CD is the backbone of automation, enabling rapid innovation and robust software delivery.
+🔧 Tools commonly used: Jenkins, GitHub Actions, GitLab CI, CircleCI, AWS CodePipeline
