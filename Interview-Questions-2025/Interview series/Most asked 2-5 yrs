@@ -1,0 +1,59 @@
+Most Asked DevOps Interview Questions (2–5 Years Experience) 💻⚙️
+
+If you're preparing for a DevOps Engineer role, these are the core tools and topics interviewers are focusing on in 2025.
+
+ Here’s a list of frequently asked questions across Jenkins, Docker, Git, GitHub Actions, Terraform, Prometheus, Grafana, AWS, and Kubernetes:
+
+🔹 Jenkins
+
+What’s the difference between Freestyle and Declarative Pipelines?
+How do you implement CI/CD in Jenkins?
+How do you use shared libraries across pipelines?
+How to trigger Jenkins jobs based on Git changes or webhooks?
+
+🔹 Docker
+
+Difference between entrypoint and cmd?
+What is a multi-stage build and why use it?
+How do you manage persistent storage and secrets in Docker?
+How does Docker networking work?
+
+🔹 Git
+
+Explain git stash, git revert, git cherry-pick.
+How do you handle large binary files in Git?
+What’s your Git branching strategy in production pipelines?
+
+🔹 GitHub Actions
+
+What are runners and how do they work?
+How to manage secrets in GitHub Actions securely?
+Explain matrix builds and reusable workflows.
+
+🔹 Terraform
+
+How do you manage remote state securely (e.g. with S3 + DynamoDB)?
+Difference between count, for_each, and modules?
+What is a provider? Can you use multiple providers in one config?
+How to structure a large-scale Terraform project?
+
+🔹 Prometheus & Grafana
+
+How does Prometheus collect and scrape metrics?
+What are exporters (e.g. node_exporter)?
+How to configure alerting rules in Prometheus?
+How do you link Grafana dashboards to Prometheus metrics?
+
+🔹 AWS
+
+Difference between ALB, NLB, and Classic Load Balancer?
+How do you design a secure VPC architecture?
+What’s your approach to managing IAM roles and least privilege?
+How do you monitor AWS resources (CloudWatch vs CloudTrail)?
+
+🔹 Kubernetes
+
+What is the difference between a Deployment, StatefulSet, and DaemonSet?
+How do you manage secrets and configmaps?
+How do liveness and readiness probes work?
+What is the role of Helm in Kubernetes?
