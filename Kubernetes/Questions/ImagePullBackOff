@@ -1,0 +1,17 @@
+ Real-time Kubernetes Issue: ImagePullBackOff — Here's how I tackled it
+While working on a recent deployment task in our Kubernetes cluster, I ran into an ImagePullBackOff error — something many DevOps engineers will come across sooner or later.
+Our deployment pods were stuck in a restart loop, and here's what I found after a bit of digging:
+🔍 Root Causes I Identified:
+1. Invalid Image Name or Tag
+ One of the YAML manifests had a small typo in the Docker image name. Kubernetes couldn’t pull the image, and the pod was continuously retrying.
+ ➡️ Fix: Corrected the image name, re-applied the manifest, and the pod came up clean.
+2. Private Docker Registry Access
+ In another case, the image was hosted in a private Docker Hub repository. Since the cluster wasn’t authenticated to pull from it, the image pull kept failing.
+ ➡️ Fix: Created a Kubernetes secret using kubectl create secret docker-registry ... and added it to the pod’s spec via imagePullSecrets.
+🧠 Quick Troubleshooting Steps:
+Ran kubectl describe pod <pod-name> to inspect the exact error
+Validated image name & tag by manually pulling it using docker pull
+Ensured credentials were passed properly for private registries
+💡 Takeaway:
+These kinds of issues are common in containerized deployments. What matters is how fast and efficiently we can troubleshoot and resolve them. Kubernetes gives you the tools — you just need to know where to look.
+Let’s keep learning and sharing from real-world DevOps work 💪
