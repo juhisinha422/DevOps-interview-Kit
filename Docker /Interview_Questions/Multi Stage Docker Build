@@ -1,0 +1,78 @@
+Multi-stage Docker Build
+
+Scene Start:
+Interviewer ne bola:
+ “Have you worked with multi-stage builds in Docker?”
+Tumhare mann mein pehla sawaal:
+ “Ye multi-stage actual me hota kya hai?”
+
+
+Let’s create a real-world relatable scene:
+Scene: You're cooking Maggi
+Imagine you’re cooking in your kitchen — You boil water, add masala, cook noodles.
+
+Now picture this:
+You invite friends to eat.
+But instead of just serving the Maggi,
+You hand them gas cylinder, stove, kadhai, masale, sab kuch.
+
+They’ll be like:
+“Bhai, mujhe bas Maggi chahiye thi — ye poora kitchen kyu de diya?” 
+
+That’s what happens when you don’t use multi-stage builds in Docker.
+
+
+You give your app plus all the build tools, caches, source code — everything!
+
+
+Docker Build without Multi-stage:
+dockerfile
+ FROM node:18
+ WORKDIR /app
+ COPY . .
+ RUN npm install
+ RUN npm run build
+ CMD ["npm", "start"]
+
+Ye kya karega?
+Sab kuch ek hi image me hai
+Final image 900 MB+
+Production me dev tools bhi ja rahe hain 
+
+
+
+
+Now let’s fix it — Multi-stage style:
+dockerfile
+
+# Stage 1: Build
+ FROM node:18 AS builder
+ WORKDIR /app
+ COPY . .
+ RUN npm install
+ RUN npm run build
+
+# Stage 2: Serve
+ FROM nginx:alpine
+ COPY --from=builder /app/build /usr/share/nginx/html
+
+Ab kya ho raha?
+Stage 1: Tum kitchen me Maggi paka rahe ho
+Stage 2: Sirf plate me Maggi serve ho rahi hai
+Final image size? Just 20-30 MB
+No extra tools. Secure, clean, fast!
+
+
+Why it matters?
+Smaller image = Faster deploy
+No extra baggage = Secure prod
+Better CI/CD = Happy DevOps team 
+
+
+In Interview, say this:
+We use multi-stage builds to keep our production Docker images lightweight. We separate the build and run steps — only shipping what's needed in prod. It improves security and speeds up deployments.
+
+
+
+"Don’t send the whole kitchen. Just serve the dish!"
+ That's multi-stage Docker build.
