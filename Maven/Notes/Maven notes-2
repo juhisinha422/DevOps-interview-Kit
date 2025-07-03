@@ -1,0 +1,66 @@
+Maven Notes Part-2
+
+Maven Terminology
+------------------
+archetype
+groupId
+artifactId
+packaging
+Archteype represents what type of project we want to create
+maven-archetype-quickstart : It represents java standalone application
+maven-archetype-webapp : It represents java web application
+Note: Maven providing 1500+ archetypes
+
+-> groupId represents company name or project name
+-> artifactId represents project name or project module name
+-> packaging represents how we want to package our java application (jar or war)
+
+Creating standalone application using maven
+-------------------------------------------
+1) Create one folder for maven practise 
+2) Open Command prompt from that folder
+3) Execute below command to create maven project
+
+>> mvn archetype:generate -DgroupId=in.venkat -DartifactId=01-Maven-App -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+4) Once project created verify project folder structure
+
+			01-Maven-App
+				- src
+				- main
+				-java
+                - test
+		     	-java
+				- pom.xml
+
+
+src/main/java : Application source code (.java files)
+src/test/java : Application Unit Test code (.java files)
+pom.xml : Project Object Model (Maven configuration file)
+
+5) We can add dependencies in pom.xml file
+6) We can find maven dependencies in www.mvnrepository.com website
+7) Add below dependency in pom.xml file
+
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-core</artifactId>
+  <version>5.2.22.RELEASE</version>
+</dependency>
+
+
+How maven will downoad dependencies
+-------------------------------------
+Maven will download dependencies using repository
+In Maven we have 3 types of repositories
+	1) Central Repository
+	2) Remote Repository
+	3) Local Repository
+central repository is maintaining by apache organization
+every company will maintain their own remote repository
+Local repository will be created in our system (Location : C://users/<uname>/.m2)
+When we add dependency in pom.xml, maven will search for that dependency in local repository. If it is available it will add to project build path.
+If dependency not available in local repository then maven will connect to Central Repository or Remote Repository based on our configuration.
+Note: By default maven will connect with central repository. If we want to use remote reposiotry then we need to configure remote repository details.
+
+Note: Every software company will maintain their own remote repository (Ex: JFrog)
