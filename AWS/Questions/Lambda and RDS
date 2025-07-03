@@ -1,0 +1,11 @@
+💡 “Can Lambda access an RDS database directly?”
+
+My first instinct was to say yes — just add credentials and connect.
+
+But there’s more:
+
+✅ Lambda must be in a VPC with the correct security groups and subnets if the RDS is in a private subnet.
+
+✅ Then it needs IAM permissions, connection pooling (consider RDS Proxy!), and proper secrets management.
+
+🤯 The real answer isn’t “yes or no” — it’s: Yes, but securely and scalably.
