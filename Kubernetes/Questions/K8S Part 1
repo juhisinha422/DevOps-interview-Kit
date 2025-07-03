@@ -1,0 +1,57 @@
+Kubernetes Interview Series Part 1😊 👩💻
+
+1. You deploy a Pod, but it remains in Pending state. What steps do you take to troubleshoot?
+
+2. How would you ensure high availability for your application running in Kubernetes?
+
+3. You need to run a one-time database migration before your app starts. How do you implement that in Kubernetes?
+
+4. Explain how Kubernetes handles service discovery internally. How would you troubleshoot service DNS issues?
+
+5. You want to deploy an app that requires persistent data. How would you provision storage? What options do you have?
+
+6. A service is not accessible from outside the cluster. How would you debug it step-by-step?
+
+7. You want internal microservices to communicate securely over TLS. How would you design this in Kubernetes?
+
+8. How do you restrict a certain pod from accessing the internet, but allow internal cluster traffic?
+
+9. Your app uses a database outside Kubernetes, and the connection randomly fails. How do you isolate the issue?
+
+10. A pod cannot resolve a service name (my-db-service). What networking components would you check?
+
+11. You need to rotate secrets used by multiple pods with zero downtime. What’s your approach?
+
+12. An app fails because it can’t find an environment variable. How do you troubleshoot ConfigMap usage?
+
+13. You have different config values for dev, staging, and prod. How do you manage this with Kubernetes best practices?
+
+14. Your team accidentally committed secrets to Git. How do you handle secrets more securely in Kubernetes?
+
+15. How do you inject configuration dynamically without restarting pods?
+
+16. You want to give read-only access to logs for a team. How do you configure RBAC?
+
+17. A container image has a known CVE vulnerability. How do you enforce using only scanned/trusted images?
+
+18. You need to allow only specific pods to pull images from a private registry. How do you do this securely?
+
+19. A developer created a service account that can delete resources cluster-wide. How do you detect and restrict such actions?
+
+20. You want to audit who accessed which Kubernetes resources. What features do you enable?
+
+21. You deployed a new version of your app and users report 500 errors. What is your rollback strategy?
+
+22. You need zero-downtime deployments with rollback support. Which Kubernetes features help you achieve that?
+
+23. Your app is slow under load. How do you configure autoscaling properly (both HPA and VPA)?
+
+24. What steps would you take to canary deploy a new feature to only 10% of users?
+
+25. You want to control how many pods are unavailable during updates. How do you configure this?
+
+26. A node is in NotReady state. What might be the causes, and how do you fix it?
+
+27. You observe intermittent pod restarts. What logs and events would you look at to debug this?
+
+28. You have a memory leak in your app. How can you use Kubernetes features to mitigate the impact?
