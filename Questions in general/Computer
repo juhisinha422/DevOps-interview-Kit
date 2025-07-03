@@ -1,0 +1,62 @@
+What is an computer?
+--------------------------------------------
+Computer is an electronic device that is used for performing computation operations
+
+There are 3 main parts are there within it
+1. monitor
+2. keyboard/mouse
+3. cpu
+
+1. monitor
+monitor is an visual display using, acts as an output device that is used for rendering or displaying the output of an computation operation.
+    
+2. keyboard/mouse
+these are the input devices through which the end-user is going to pass input data to the computer asking to perform computation operation
+
+3. cpu
+cpu stands for "central processing unit", it is core/key component of the computer. There are 4 main components are there within the cpu of the computer
+    3.1 processor
+    3.2 ram
+    3.3 harddisk
+    3.4 motherboard
+
+3.1 processor
+processor is the brain of the computer. It is the core hardware component of the computer that performs Arthematic, Comparative/Relational operations and Logical operations within the computer system.
+    
+Arthematic operations:
+    1. Addition
+    2. Substraction
+    3. Multiplication
+    4. Division
+    5. Modulus
+    
+Relational operations:
+    1. GreatherThan
+    2. LessThan
+    3. GreaterThanOrEqual
+    4. LessThanOrEqual
+    5. EqualTo
+    6. NotEqual
+    
+Logical Operations:
+    1. And
+    2. Or
+    3. Not
+    
+Arthematic operation: 10 + 20 = ?
+Relational operation: age >= 65 (T/F)
+Logical operations: age >12 and age < 20 = (Teen)
+
+2. ram
+ram stands for random access memory, it acts as an primary memory of the computer. It is an volatile memory and all the data that is stored within the RAM will be erased upon restarting the computer. 
+The processor fetches the data from the RAM to perform operations, and upon completing the operation it deletes/erases the data from the RAM
+
+3. Harddisk
+Harddisk is an permanent storage memory of the computer. The data that is stored within the harddisk of the computer will be permanent and will not be erased even with the restart of the computer.
+    
+It is an mechanical device and uses magnetic disks for storing the data. since it is an mechanical device, reading the data from the harddisk is very slow and will not match with the clock-speed of the processor
+
+so if the processor is fetching the data from harddisk, since it is very slow, the processor becomes very slow in performing the operation, so always the data is transferred from harddisk to the RAM, so the cpu can quickly read the data from RAM to perform operation
+
+4. Motherboard 
+All the hardware units of the computer are inter-connected and communicated with each other through the help of motherboard of the 
