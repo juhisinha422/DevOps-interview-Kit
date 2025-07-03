@@ -1,0 +1,28 @@
+View profile for Devendar Cherala
+🚨 𝐏𝐫𝐨𝐝𝐮𝐜𝐭𝐢𝐨𝐧 𝐨𝐮𝐭𝐚𝐠𝐞 𝐚𝐭 𝟐𝐀𝐌 — 𝐚𝐧𝐝 𝐢𝐭 𝐰𝐚𝐬 𝐨𝐧 𝐦𝐞 𝐭𝐨 𝐟𝐢𝐱 𝐢𝐭.
+
+Here’s exactly what I did (and what I learned):
+
+🧩 Problem: Our app was randomly crashing in Kubernetes pods every 15–20 mins.
+📉 Impact: Customer-facing downtime. Alerts flooded PagerDuty.
+
+✅ My Approach:
+1. Checked logs via `kubectl logs` — spotted OOMKill patterns.
+2. Looked at `kubectl describe pod` — confirmed memory limits too low.
+3. Applied hotfix: increased memory requests/limits, restarted pods.
+4. Long-term fix: implemented horizontal pod autoscaler + added alerting in Prometheus for memory spikes.
+
+
+5.In addition to hpa do set the nodes to scale, it's always better to set the scaling limits so that the app doesn't crash due to low resources.
+
+explanation:-
+
+in addition to setting up HPA, it’s crucial to configure cluster/node auto-scaling with defined min/max limits. Without node scaling, HPA might try to scale pods, but they'll stay pending if the cluster doesn’t have enough resources.
+Setting realistic resource requests/limits, enabling the Cluster Autoscaler, and having good observability (Prometheus/Grafana) helps avoid crashes and ensures smooth scaling under load. A balanced setup between pod and node scaling is key to maintaining stability and performance. 
+
+⏱️ Downtime reduced from 45 minutes to just 7 minutes next time it happened.
+
+🔁 Lessons:
+- Always set realistic resource limits.
+- Observability > Guesswork.
+- Run drills — don’t wait till midnight alerts!
