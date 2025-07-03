@@ -1,0 +1,30 @@
+7 Unique Unix Commands You Probably Haven’t Used But Should!
+
+tldr — Simplified man pages
+ Quickly get concise, practical examples of commands instead of reading verbose man pages.
+ Example: tldr rsync
+
+watch — Run a command repeatedly
+ Great for monitoring output changes without manual rerunning.
+ Example: watch -n 5 'df -h' (Check disk space every 5 seconds)
+
+pv — Pipe viewer with progress bar
+ Useful for seeing progress when copying or transforming large files.
+ Example: pv largefile.iso | dd of=/dev/sdb
+
+ncdu — Disk usage analyzer with a friendly UI
+ More intuitive than du, helps find large directories interactively.
+ Install: sudo apt install ncdu
+ Run: ncdu /var/log
+
+ss — Modern alternative to netstat
+ Display detailed network socket info quickly and with more options.
+ Example: ss -tulw
+
+strace — Trace system calls and signals
+ Debug why a command or program behaves unexpectedly by monitoring its system calls.
+ Example: strace -e open,read,write ls
+
+factor — Prime factorization of integers
+ Handy for scripting or quick math checks in shell.
+ Example: factor 123456
