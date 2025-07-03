@@ -1,0 +1,80 @@
+Kubernetes Interview questions #Kubernetes #K8s
+
+Part-2
+
+6. You're running a multi-tenant platform on a single EKS cluster. How do you isolate workloads and ensure security, quotas, and observability for each tenant?
+
+Isolation Strategy:
+
+- Namespaces: One per tenant.
+- NetworkPolicies: Restrict cross-tenant traffic.
+- ResourceQuotas & LimitRanges: Prevent resource abuse.
+- PodSecurity Admission: Enforce strict security controls.
+- IAM Roles for Service Accounts (IRSA): Per-tenant scoped access.
+- Observability: Use tools like Prometheus, Grafana, and Loki with tenant labels.
+- Audit Logs: Per namespace.
+
+7. You notice the kubelet is constantly restarting on a particular node. What steps would you take to isolate the issue and ensure node stability?
+
+Steps:
+
+- Check system logs: journalctl -u kubelet.
+- Validate disk, memory, CPU on the node.
+- Look for certificate rotation or configuration errors.
+- Check kubelet flags (e.g., max pods, cgroup driver).
+
+Resolution:
+
+- Tune kubelet flags, upgrade the node, or replace faulty hardware.
+
+8. A critical pod in production gets evicted due to node pressure. How would you prevent this from happening again, and how do QoS classes play a role? 
+
+Prevention:
+
+- Monitor node metrics (CPU, memory, disk).
+- Set higher requests for critical pods.
+- Use PriorityClasses to protect key workloads.
+- Avoid writing to node disk (e.g., /tmp) excessively.
+- Consider over-provisioning buffer nodes or scaling.
+
+QoS Classes:
+
+- Guaranteed: Set both requests and limits equal – highest priority.
+- Burstable: Partial setting – moderate priority.
+- BestEffort: No requests or limits – lowest priority.
+
+9. You need to deploy a service that requires TCP and UDP on the same port. How would you configure this in Kubernetes using Services and Ingress?
+
+Solution:
+
+Create two Kubernetes Services:
+
+```
+spec:
+    ports:
+        - name: tcp-port
+         port: 1234
+         protocol: TCP
+       - name: udp-port
+         port: 1234
+         protocol: UDP
+
+```
+
+Ingress only supports TCP/HTTP; for UDP, use LoadBalancer or MetalLB with dual protocol support.
+
+10. An application upgrade caused downtime even though you had rolling updates configured. What advanced strategies would you apply to ensure zero-downtime deployments next time?
+
+Why it happened:
+
+- Readiness probe failures.
+- No maxUnavailable/maxSurge tuning.
+- Database migrations broke compatibility.
+
+Advanced Strategies:
+
+- Canary/Blue-Green deployments: Use Argo Rollouts/Flagger.
+- PreStop hooks: Graceful shutdown.
+- PodDisruptionBudgets.
+- Readiness gates: Wait for external conditions (e.g., DB schema ready).
+- Feature flag toggling to reduce dependency on rollout.
