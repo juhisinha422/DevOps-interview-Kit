@@ -1,0 +1,50 @@
+Kubernetes Interview Questions Series (Part 2) 😊
+
+1. You deployed a StatefulSet for a database cluster, but all pods try to connect to the same storage volume. What’s wrong, and how do you fix it?
+
+2. You need to ensure that a job runs at 2 a.m. every day in Kubernetes. How would you do it?
+
+3. You’re asked to allow a specific team to only create pods in a single namespace but not delete them. How would you design the RBAC?
+
+4. A deployment is supposed to maintain 5 replicas, but only 3 are running. How would you diagnose the issue?
+
+5. You want to ensure that only pods with a certain label can talk to your backend service. How would you implement this?
+
+6. The CPU usage of your app suddenly spikes, and autoscaling isn’t kicking in. Where do you start debugging?
+
+7. You need to ensure that your production workloads don’t run on preemptible or spot nodes. How do you configure this in your cluster?
+
+8. Your developers want to test against production data safely. How do you enable that in a secure, isolated way?
+
+9. You’re seeing a high number of CrashLoopBackOff events. How would you approach debugging them?
+
+10. An application deployment is successful, but readiness probes keep failing. What are your next steps?
+
+11. You want to expose your internal app to the internet using HTTPS with a custom domain. What’s your approach?
+
+12. You’re seeing DNS resolution delay for services inside the cluster. How do you identify the cause?
+
+13. You want to enforce that all containers have resource limits and requests defined. How do you do that?
+
+14. Your cluster is under heavy load. You want to prioritize critical pods over low-priority ones. How do you do this in Kubernetes?
+
+15. You need to drain a node for maintenance but want to ensure zero downtime for the services running. How do you plan this?
+
+16. One of your containers is stuck in Terminating state for a long time. How do you troubleshoot and force stop it?
+
+17. You want to deploy a pod that can access AWS S3 without using hardcoded credentials or secrets. What’s your approach?
+
+18. You see that logs from certain pods are missing in your central logging system. What could be wrong?
+
+19. A team pushed a config that caused downtime across services. How would you implement safeguards to prevent this in the future?
+
+20. A pod needs to mount a file from a Git repo at startup. What are your options?
+
+21. You need to deploy an application across multiple clusters with different configurations. How would you manage that?
+
+22. You’ve enabled Horizontal Pod Autoscaler, but it doesn't scale down even after CPU usage drops. What could be causing it?
+
+23. A pod takes 2 minutes to start due to initialization logic. How can you stop Kubernetes from marking it as unhealthy?
+
+24. A container exits silently without writing anything to logs. How can you gather more info about its lifecycle?
+
