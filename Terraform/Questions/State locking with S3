@@ -1,0 +1,28 @@
+How to Stop Using DynamoDB for Terraform State Locking (in later version of TF. Here’s Why)
+
+You don’t need to anymore.
+With the latest Terraform versions, S3 alone can now lock and unlock state files using object locking and versioning.
+
+Do this in Terragrunt: 
+
+remote_state {
+  backend = "s3"
+  config = {
+    bucket         = "my-tf-state"
+    key            = "${path_relative_to_include()}/terraform.tfstate"
+    region         = "eu-west-2"
+    encrypt        = true
+    bucket         = "my-locked-tf-bucket"
+    object_locking = true
+  }
+}
+
+📌 Steps to make it work:
+	1.	Enable Object Locking when creating the S3 bucket (must be done up front).
+	2.	Turn on versioning.
+	3.	Use latest Terraform + AWS provider versions.
+
+🚫 No more extra infra (bye DynamoDB).
+🔐 Locking is handled directly at the S3 level.
+
+Simple. Secure. Modern.
