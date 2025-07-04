@@ -1,0 +1,42 @@
+Technical Interview Experience – DevOps Engineer at Tech Mahindra (Round 1)
+------------------------------------------
+One of my students recently appeared for Round 1 of the DevOps Engineer interview at Tech Mahindra.
+The round focused heavily on Azure DevOps practices, Kubernetes-based
+deployments, infrastructure as code, and production incident troubleshooting.
+
+Here’s the expanded and freshly curated set of questions from the round:
+🚀 CI/CD & Azure DevOps Pipelines
+✅ How do you implement pipeline validation and prevent accidental deployments to production?
+✅ What’s the difference between runtime expressions and compile-time expressions in YAML pipelines?
+✅ How do you conditionally trigger jobs based on branch name or file path?
+✅ Explain how pipeline artifacts differ from build artifacts.
+
+🚀 Kubernetes (AKS) & Containerization
+✅ How do you handle pod eviction during node maintenance in AKS?
+✅ What are taints and tolerations, and when would you use them?
+✅ How do you configure pod affinity rules to ensure certain workloads run on the same node?
+✅ What’s the impact of setting aggressive liveness probes — how can it lead to cascading failures?
+
+🚀 Azure Cloud & Infrastructure Management
+✅ How do you configure service-to-service authentication in Azure using managed identities?
+✅ Explain the use of Azure Bastion and when it’s preferred over jumpboxes.
+✅ How do you set up auto-scaling rules based on custom metrics in Azure Monitor?
+
+🚀 Terraform & Infrastructure as Code (IaC)
+✅ How do you safely refactor Terraform code in production environments?
+✅ What are data blocks in Terraform and when are they required?
+✅ How would you store and manage Terraform state files in a team environment?
+
+🚀 Monitoring, Logging & Incident Response
+✅ A service goes down and logs are missing — how do you troubleshoot it?
+✅ What is your alert escalation policy design during off-hours?
+✅ How do you visualize metrics and set alerts using Prometheus + Grafana for AKS?
+
+🚀 Git, GitOps & Branching Strategy
+✅ How do you implement GitOps with ArgoCD in a secure enterprise setup?
+✅ How do you manage Git branching strategies across multiple teams working on the same repo?
+
+🚀 Automation & Scripting (Bash / Python)
+✅ Write a Bash script to restart only the failed pods in a specific Kubernetes namespace.
+✅ How would you write a Python script to identify untagged AWS resources using Boto3?
+✅ How do you automate certificate renewal across microservices in AKS?
