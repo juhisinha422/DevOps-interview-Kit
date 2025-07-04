@@ -1,0 +1,31 @@
+5 Quick Wins to Slash Your AWS Bill!!!!!
+
+Want to Cut Your AWS Costs? Here Are 5 Simple (But Powerful) Tips.
+
+Cloud bills can sneak up on you if you're not careful. If you're using AWS, here’s how you can take control of your cloud spend without compromising performance:
+1. Know Your Spend
+The first step to reducing costs is visibility. Just like checking your mobile banking app, use AWS Cost Explorer to get a clear view of where your money is going.
+Filter, group, and analyze daily/monthly trends.
+ For deeper insights, explore the Cost and Usage Reports or Cloud Intelligence Dashboards to pinpoint resource-level usage.
+
+2️. Turn Things Off
+Leaving EC2 or RDS instances running when not in use? That's like leaving your lights on 24/7.
+ Use AWS Instance Scheduler to automatically shut down non-production resources during nights or weekends.
+ Tag resources, set the schedule, and save up to 50% it's that simple.
+
+3️. Choose Graviton by Default
+AWS Graviton processors offer better price-performance for many workloads.
+ If you're using managed services like RDS, EMR, or OpenSearch, switch to Graviton-based instances without rewriting your code.
+ Pro Tip: Make Graviton your default in Infrastructure as Code (IaC) for instant, ongoing savings.
+
+4️.  Don’t Forget the “Little” Services
+Services like CloudWatch, EKS, EBS, Elastic IPs, and Load Balancers often go unnoticed and that’s where surprise charges come from.
+ Use Cost Explorer to monitor them.
+ Use AWS Compute Optimizer to right-size and detach unused resources.
+ For CloudWatch, keep only necessary logs to avoid bloated storage and processing costs.
+
+5️. Set Spend Alerts
+Be proactive.
+Use AWS Budgets to get alerts as you approach your monthly limits.
+Use Anomaly Detection to catch unexpected spikes in services like CloudWatch, even if everything else looks “normal.”
+Pro Tip: All new AWS accounts have anomaly detection turned on by default make sure you’re using it!
