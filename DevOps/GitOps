@@ -1,0 +1,17 @@
+What is GitOps? Let’s break it down in simple terms.
+
+GitOps is a modern way to manage your infrastructure and deployments using Git. Here are the 4 main principles — made easy:
+
+📝 Declarative
+You write down how your system should look (like a blueprint) — and the system makes it happen.
+
+📜 Versioned and Immutable
+Every change is saved in Git. Made a mistake? Just go back to the previous version—like undoing in Google Docs.
+
+🔄 Pulled Automatically
+No more manual updates. A system watches Git and applies changes automatically when it sees a new update.
+
+🔁 Continuously Reconciled
+It keeps checking if the system is doing what’s written in Git. If something’s off—it fixes it!
+
+✨ GitOps makes your deployments faster, safer, and easier to manage.
