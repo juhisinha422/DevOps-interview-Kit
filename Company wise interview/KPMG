@@ -1,0 +1,39 @@
+DevOps Interview Questions in KPMG  - 5+ YOE Edition 
+
+Round 1: Technical Screening (60 mins)
+• What’s the architecture of your current infra and what do you own?
+• Difference between EKS & self-managed K8s
+• CI/CD rollback strategy for monoliths
+• How do you detect and fix OOMKilled issues?
+• NAT Gateway vs VPC Peering
+• Difference between kubectl exec, logs, describe — when to use what?
+• Use case for ConfigMap vs Secret
+• What breaks if readinessProbe is wrong?
+• One-liner to find open ports on a Linux node
+• NetworkPolicy debugging steps
+
+Round 2: Deep Dive (90 mins)
+• Your K8s app crashes during image pull — how to triage?
+• Debugging stuck pods & taints/tolerations
+• Multi-account Terraform setup with backend isolation
+• Cost exploded in staging due to HPA — RCA this
+• Dockerfile: Best practices for Go app builds
+• Blue/Green vs Canary rollout — when to pick what?
+• Cross-region S3 replication infra as code
+• Real war room: Service down, no alerts. Logs are green. What next?
+• Describe Vault + GitHub Actions integration securely
+• Implement pod-to-pod TLS encryption in Kubernetes
+• What’s your incident postmortem format?
+• One terraform command to detect drift
+• Handling terraform state in a remote team
+• How to simulate a DNS failure in CoreDNS?
+
+Round 3: Behavioral (30 mins)
+• Share a time prod broke and how you led the fix
+• How do you learn tools under pressure?
+• A tech decision you regret — and why
+• Convincing leadership to migrate infra
+• Handling on-call burnout
+
+📍TL;DR?
+If you’ve never debugged a CrashLoopBackOff at 2AM, written an RCA at 7AM, and deployed a hotfix at 9AM — the interviews can feel overwhelming.
