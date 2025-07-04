@@ -1,0 +1,23 @@
+Using GitHub Actions? Make your life easier with built-in actions!
+
+When setting up CI/CD in GitHub, you don’t need to start from scratch. GitHub provides ready-to-use actions for common tasks — no extra setup needed.
+
+Here are a few popular ones:
+
+🔹 actions/checkout – Pulls your code into the workflow
+🔹 actions/setup-node – Sets up Node.js so you can run JavaScript tools
+🔹 actions/setup-python – Prepares a Python environment
+🔹 actions/cache – Speeds things up by saving dependencies
+🔹 actions/upload-artifact – Share files across workflow steps
+
+💬 These are simple, reliable, and maintained by GitHub itself.
+
+Here’s an example of using two built-in actions:
+
+steps:
+  - uses: actions/checkout@v4
+  - uses: actions/setup-node@v4
+    with:
+      node-version: '18'
+
+They’re super handy and help you focus on what really matters: building and shipping faster.
