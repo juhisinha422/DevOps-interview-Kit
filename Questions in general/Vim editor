@@ -1,0 +1,26 @@
+What is vi or vim?
+•vi stands for Visual Editor.
+•vim stands for Vi IMproved – it's an extended version of vi with more features.
+
+⚙️ Opening a File in vi :
+vi filename.txt       # If the file doesn’t exist, it will create a new one.
+
+👉 Modes in VI Editor:
+•Normal Mode (default) – Used for navigation and command execution.
+•Insert Mode – Used for text editing (press i to enter, Esc to exit).
+•Command Mode – Used for saving, quitting, and searching (press : in Normal mode).
+
+👉 Switching Between Modes:
+•To enter Insert mode: Press i
+•Return to Normal mode: Press Esc
+•Enter Command mode: Press : from Normal mode
+
+✅ Example Flow
+vi mynotes.txt  # open/create file
+
+•Press i → enter insert mode
+•Type your content
+•Press Esc → return to normal mode
+•Type :w→ to save file
+•Type :wq → to save and exit
+•Type :q!→ to quit without saving
