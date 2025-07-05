@@ -1,0 +1,42 @@
+File Permissions Management in Linux :
+Linux file permissions determine who can read, write, or execute files and directories. Each file and directory has three levels of permission:
+
+•Owner (User): The creator of the file.
+•Group: Users belonging to the assigned group.
+•Others: All other users on the system.
+
+✅  Permissions are represented as:
+•Read (r or 4) – View file contents.
+•Write (w or 2) – Modify file contents.
+•Execute (x or 1) – Run scripts or programs.
+
+👉 To check file permissions, use:
+ls -l filename
+
+👉 Output example:
+-rwxr--r-- 1 user group 1234 Mar 28 10:00 myfile.sh
+
+🔑 Changing Permissions with "chmod"
+
+1.Symbolic Mode:  Modify permissions using symbols:
+Add (+), remove (-), or set (=) permissions.
+Examples: 
+•chmod u+x filename  # Add execute for user
+•chmod g-w filename  # Remove write for group
+•chmod o=r filename  # Set read-only for others
+
+2.Numeric (Octal) Mode: Each permission has a value:
+Read (4), Write (2), Execute (1).
+Eaxmaples:
+•chmod 755 filename  # User (rwx), Group (r-x), Others (r-x) 
+•chmod 644 filename # User (rw-), Group (r--), Others (r--)
+•chmod 700 filename # User (rwx), No access for others
+
+🔑 Changing Ownership with "chown"
+Modify file owner and group:
+•chown newuser filename  # Change owner
+•chown newuser:newgroup filename  # Change owner and group
+•chown :newgroup filename  # Change only group
+
+🔑 Changing Group Ownership with "chgrp"
+•chgrp newgroup filename  # Change group
