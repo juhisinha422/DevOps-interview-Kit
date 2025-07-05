@@ -1,0 +1,36 @@
+From Zero to Hero: Building a CI/CD Pipeline from Scratch (Real-World Edition)
+
+Ever wondered how modern teams deliver features to production with speed and confidence?
+
+It all starts with a solid CI/CD (Continuous Integration/Continuous Deployment) pipeline! Whether you're a beginner or looking to level up your DevOps game, here’s a simple roadmap to building your pipeline: 👇
+
+🔁 Typical CI/CD Workflow
+
+1️⃣ Code Commit
+ → Triggers CI pipeline automatically
+2️⃣ Build Stage
+ → Compile (Java/Node/Go)
+ → Run Unit Tests
+ → Lint, Format, Scan code
+3️⃣ Image Build & Push
+ → Docker/Buildah/Kaniko builds container
+ → Push to Harbor/ECR
+ → Tag with commit hash/version
+4️⃣ Manifest Update
+ → Helm chart or K8s YAML updated with new image tag
+ → Pushed to Git (GitOps trigger)
+5️⃣ Deployment (CD)
+ → ArgoCD auto-syncs repo with Kubernetes
+ → Deploys the new image
+ → Monitors rollout & health checks
+
+🔐 Add-ons for Production:
+✅ Secrets Management → External Secrets + AWS SM
+ ✅ Notifications → Slack/Webhook Alerts
+ ✅ Rollbacks → ArgoCD Rollback or Helm history
+ ✅ Canary / Blue-Green → Progressive delivery with Argo Rollouts or Istio
+ ✅ Infra as Code → Terraform for provisioning EKS
+
+🧠 Pro Tip:
+Start simple, grow modular.
+ Even a basic CI/CD with Git + Actions + K8s + Helm can power large-scale production apps
