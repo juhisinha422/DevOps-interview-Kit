@@ -1,0 +1,33 @@
+ Technical Interview Experience – DevOps Engineer at UST (Round 2)
+----------------------------------------------------------------
+One of my students recently appeared for Round 2 of the DevOps Engineer interview at UST.
+This round tested deep technical skills, platform-level automation, and incident resolution mindset.
+
+Here’s the fresh set of questions from the interview:
+🚀 CI/CD Pipelines & Azure DevOps
+✅ How would you implement conditional tasks in Azure Pipelines based on environment variables?
+✅ How do you securely consume secrets stored in Azure Key Vault within YAML pipelines?
+✅ Explain the difference between checkout: self and checkout: none in Azure DevOps.
+✅ How would you design a matrix build strategy for testing across OS and Node versions?
+
+🚀 Kubernetes (AKS) & Service Mesh
+✅ What’s your approach to debugging DNS resolution failures inside AKS pods?
+✅ How do you secure service-to-service communication in AKS without exposing public endpoints?
+✅ Explain how Istio or Linkerd works in managing traffic within Kubernetes clusters.
+✅ How would you handle certificate rotation for internal TLS in a service mesh setup?
+
+🚀 Azure Infrastructure & Terraform
+✅ How do you ensure zero-downtime deployment while provisioning AKS clusters with Terraform?
+✅ What are some Terraform design best practices for multi-team infrastructure management?
+✅ How do you use terraform import to bring existing Azure resources into Terraform state?
+✅ Explain remote state locking and backend configuration using Azure Storage Account.
+
+🚀 GitOps & Configuration Management
+✅ How do you set up auto-sync and drift detection in ArgoCD for AKS deployments?
+✅ What’s your strategy to securely handle sensitive Helm chart values in a GitOps workflow?
+✅ How would you roll back to a previous Git commit in GitOps during a failed rollout?
+
+🚀 Monitoring, Logging & Troubleshooting
+✅ How do you handle intermittent 502/504 errors in an AKS ingress controller setup?
+✅ How do you configure and visualize AKS metrics in Azure Monitor and Grafana?
+✅ Describe your strategy for root cause analysis when CPU throttling affects application latency
