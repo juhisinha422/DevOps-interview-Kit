@@ -1,0 +1,30 @@
+What is a Process in Linux?
+
+A process in Linux is simply a program in execution. Whenever you run a command, script, or open an application, Linux creates a process to manage that execution. Each process has its own memory, CPU time, and system resources.
+
+Think of it like this:
+The program is a recipe.
+The process is the actual cooking happening in the kitchen.
+Multiple people can cook the same recipe (i.e., run the same program), but each cooking session is separate — just like each process.
+
+Important Points:
+Every process has a unique ID called a PID (Process ID).
+It also has a parent process, which is the one that started it — this parent has its own PID, known as the PPID.
+A foreground process is one you interact with directly in the terminal.
+A background process runs behind the scenes — you don’t see its output unless you check logs or monitor it.
+A process uses system resources: CPU, memory, disk, etc., and ends when its task is complete.
+
+
+
+Common Commands:
+ps shows a list of currently running processes.
+top gives a live, real-time view of CPU and memory usage by processes.
+kill allows you to stop a process by its PID.
+You can run processes in the background using &, and bring them to foreground using fg.
+
+Real-world Scenario:
+Imagine your Jenkins job is stuck. You log in to the Linux server, use ps or top to find the Jenkins process, and use kill <PID> to terminate it safely — that’s you managing processes like a DevOps pro.
+
+
+Final Tip:
+Don’t just memorize commands — understand how Linux handles processes. It’s the foundation for debugging, performance tuning, and automation.
