@@ -1,0 +1,27 @@
+JENKINS || The legacy tool || Automation Server :
+
+✅ Jenkins is an open-source automation server that helps in automating the parts of software development related to building, testing, and deploying. It is primarily used for continuous integration (CI) and continuous delivery (CD), enabling developers to detect and fix bugs early in the development lifecycle, thereby improving software quality and reducing the time to deliver.
+
+✅ Jenkins integrates with version control systems (like Git) and can automatically build and test the code whenever changes are committed. It triggers builds automatically, runs unit tests, static analysis, and deploys the code to the server if everything is successful. Jenkins can be configured to send notifications to the team about the status of the build.
+
+👉 Jenkins Pipeline: A Jenkins pipeline is a suite of plugins that supports implementing and integrating continuous delivery pipelines into Jenkins. It provides a set of tools for defining complex build workflows as code, making it easier to automate the build, test, and deployment processes.
+👉 Types of Jenkins pipelines-
+1. Declarative Pipeline: A newer, simpler syntax, defined within a pipeline block. 
+2. Scripted Pipeline: Offers more flexibility and is written in Groovy-like syntax, but is more complex. 
+
+⏭️ Freestyle project V/S  Pipeline project :
+o Freestyle Project: This is the basic form of a Jenkins project, where you can define simple jobs, such as running a shell script or executing a build step.
+o Pipeline Project: This allows you to define complex job sequences, orchestrating multiple builds, tests, and deployments across different environments.
+🌩️ Different ways to trigger a build in Jenkins:
+1. Manual trigger by clicking "Build Now".
+2. Triggering through source code changes (e.g., Git hooks). 
+3. Using a cron schedule for periodic builds. 
+4. Triggering through webhooks or API calls. 
+5. Triggering builds after other builds are completed. 
+
+👉 Jenkins agents: 
+Jenkins agents (also called nodes or slaves) are machines that are configured to execute tasks/jobs on behalf of the Jenkins master. The master delegates jobs to the agents, which can be on different platforms or environments. Agents help in distributing the load of executing tasks across multiple machines.
+👉 Jenkins Plugins: 
+Jenkins plugins are extensions that add extra functionality to Jenkins, enabling it to integrate with various tools and platforms. They support everything from SCM tools like Git to build tools like Maven and deployment services like Docker or Kubernetes. With over 1,800 plugins available, they make Jenkins highly customizable to fit any CI/CD workflow.
+👉 JenkinsFile:
+A Jenkinsfile is a text file that contains the definition of a Jenkins pipeline. It can be versioned alongside your code and is used to automate the build, test, and deployment processes. There are two types of Jenkinsfiles: declarative and scripted.
