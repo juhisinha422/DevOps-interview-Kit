@@ -1,0 +1,53 @@
+Basic Shell Scripting Interview Questions
+
+What is a shell?
+What is a shell script?
+How do you write and execute a simple shell script?
+What are different types of shells available in Linux?
+How do you make a script executable?
+What is the use of #!/bin/bash at the top of a script?
+What are variables in shell scripting? How do you declare and access them?
+What is the difference between $VAR and ${VAR}?
+How do you read user input in a shell script?
+How do you use conditional statements (if, else, elif) in shell scripting?
+How do you use loops (for, while, until) in shell scripting?
+What are positional parameters ($0, $1, … $n)?
+What is the difference between "$*", "$@", $#, and $??
+How do you comment in a shell script?
+How do you debug a shell script?
+
+🟡 Intermediate Shell Scripting Interview Questions
+
+What are functions in shell scripting? How do you define and call them?
+How do you pass arguments to a function?
+What is the difference between [ and [[ in conditional expressions?
+Explain the use of &&, ||, and ! operators.
+What are arrays in Bash? How do you declare and access them?
+How can you perform arithmetic operations in a shell script?
+How do you redirect output and errors (>, >>, 2>, &>, tee)?
+What is the use of xargs and how is it different from exec?
+How can you schedule scripts using cron?
+What is the difference between source script.sh and ./script.sh?
+How do you check if a file exists and is readable/writable/executable?
+What is the purpose of trap in shell scripting?
+How do you handle signals in a script?
+How do you handle errors in shell scripts?
+What is a subshell and how is it different from sourcing?
+
+🔴 Advanced Shell Scripting Interview Questions
+
+Explain process substitution and command substitution.
+What is the difference between exec, eval, and source?
+How can you use sed and awk within shell scripts?
+Write a script to monitor disk usage and send alerts.
+How do you implement logging in a shell script?
+How do you ensure atomicity in a shell script (e.g., during file writes)?
+Explain how you can use here-documents (<<EOF) in scripts.
+Write a script to parse a large log file and extract specific information.
+How can you implement parallel processing in a shell script?
+What are some security best practices for shell scripting?
+What is set -e, set -x, set -u, and how do they help in scripts?
+How would you write a self-healing script (e.g., restart a service on failure)?
+Explain how file descriptors work and how to use them in scripts.
+How can you handle JSON or XML data in shell scripts?
+What’s the best way to write reusable modular shell scripts?
