@@ -1,0 +1,39 @@
+Importance of Git/GitHub in DevOps-
+•Git is a distributed version control system, and GitHub is a web-based hosting platform for Git repositories.
+•In the DevOps world, Git acts as the core source code management tool, enabling collaboration, version control, CI/CD triggers, rollback, and more.
+
+🔄Where Git Fits in the DevOps Lifecycle ❓ 
+Plan
+↓
+Develop ← Git (Version Control)  
+↓
+Build
+↓
+Test
+↓ 
+Release
+↓  
+Deploy 
+↓ 
+Operate
+↓
+Monitor
+
+Git primarily fits in the "Develop" phase but also supports Build, Test, Release, and even Operate via GitOps and automation pipelines.
+
+⚙️ Real-Time Tasks DevOps Engineers Do with Git:
+•Branching Strategy- Implementing Git workflows like Git Flow, Trunk-Based, or Feature Branch workflows.   
+•Code Integration- Merging code from feature branches to main or develop after code review and approval.   
+•CI/CD Triggers- Configuring pipelines (Jenkins, GitHub Actions, GitLab CI, etc.) to trigger on git push, PR, or tag.   
+•Access Control- Managing repository permissions, enforcing branch protection rules.   
+•Audit & Compliance- Reviewing Git history, commit logs, and who made what changes.   
+•Rollbacks- Using Git commands (revert, reset, checkout) to undo breaking changes.   
+•Infra-as-Code- Versioning Storing Terraform/Ansible/Kubernetes manifests in Git and managing versions.   
+•GitOps- Using Git as a single source of truth to deploy Kubernetes resources via tools like ArgoCD or Flux.  
+
+🧰 Example 1: CI/CD with Jenkins & GitHub
+Dev pushes code → GitHub triggers webhook → Jenkins builds & tests → If success, deploys to dev environment.
+🌐 Example 2: GitOps with ArgoCD
+DevOps updates a Kubernetes YAML file in Git → ArgoCD detects change → Syncs to Kubernetes cluster.
+🔐 Example 3: Access Control & Auditing
+DevOps enforces GitHub branch protection → Only reviewers can approve PRs(Pull Request) → All changes are audited.
