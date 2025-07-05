@@ -1,0 +1,19 @@
+Networking in DevOps – Why It Matters ❓ 
+•To deploy applications across cloud and on-prem environments.
+•To troubleshoot network issues in production.
+•To configure load balancers, DNS, firewalls, and proxies.
+•To ensure secure communication between services (VPCs, VPNs, TLS, etc.).
+•To manage networking in container orchestration tools like Kubernetes.
+
+🚀 Core Networking Concepts:
+•IP Addressing: Assign static/dynamic OR public/private IPs to servers or containers. 
+•Subnets & CIDR: Divide larger networks securely and efficiently into smaller sub-network.
+•Ports: Expose services (e.g., port 80 for HTTP, 443 for HTTPS).
+•DNS: Resolve domain names for microservices.
+•TCP/IP: The foundational communication protocol suite that enables devices to connect and exchange data over the internet
+•HTTP/HTTPS: Protocols used for transferring web content—HTTPS adds encryption for secure communication.
+•SSH: A secure protocol for remotely accessing and managing servers via encrypted terminal sessions.
+•NAT & Gateways: Enable internet access inside private networks.   
+•Firewalls & Security Groups: Control inbound/outbound traffic.   
+•Load Balancers: Distribute traffic among multiple servers.  
+•VPNs & VPCs: Secure communication in private environments. 
