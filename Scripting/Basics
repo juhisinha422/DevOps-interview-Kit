@@ -1,0 +1,68 @@
+Basics of Shell Scripting Concepts:
+1. Hello World example:
+#!/bin/bash
+echo "Hello, Linkedin!"
+👉 "#!/bin/bash" is the shebang line that tells the system which interpreter to use.
+👉 "echo" prints to the terminal.
+
+2.Make Script Executable:
+chmod +x script.sh
+./script.sh
+👉 "chmod"= change mode — used to change file permissions.
+👉 "+x" = adds executable permission.
+👉 script.sh = the file you are modifying.
+👉 By default, a ".sh" file (shell script) is just a text file. This command tells the system: “Hey, this script is safe and should be treated like an executable program.”
+👉 "./ "= tells the shell to look in the current directory.
+🎯 Why use ./?
+Your shell doesn’t usually search the current directory (.) by default for security reasons. So, you explicitly tell it: “Run the script.sh that’s in this folder.”
+When you're not in the current directory, 
+👉 bash /bash_scripts/deploy.sh     # Use bash with Full Path
+👉 /bash_scripts/deploy.sh             # Use the Full (Absolute) Path, Only works if the script is executable (chmod +x is set).
+
+3.Variables and Data Types:
+name="Linkedin"
+echo "Hello $name"
+👉 "name" is the variable name.
+👉 "Linkedin" is the string value assigned to it.
+📌 NOTE: No spaces are allowed around = in Bash.
+👉 "echo'" prints output to the terminal.
+👉 "$name'" accesses the value stored in the name variable.
+👉 The "$name" is replaced with "Linkedin" at runtime.
+
+✅ Final Output:
+Hello Linkedin
+
+4.If-Else:
+#!/bin/bash
+if [ "$1" == "start" ]; then
+  echo "Starting the service..."
+else
+  echo "Unknown command"
+fi
+👉 $1 refers to the first command-line argument passed to the script.
+👉 if [ "$1" == "start" ]; then - This checks if the first argument is equal to the string start.
+👉 == is used for string comparison.
+👉 echo "Starting the service..."  This command will be executed only if $1 is "start".
+👉 else: Executes if the condition in the if is not true.
+👉 echo "Unknown command": This will run if the argument was something other than "start".
+👉 fi:This marks the end of the if block in Bash.
+Example1: ./script.sh start
+✅ Output: Starting the service...
+Example 2: ./script.sh stop
+✅ Output: Unknown command
+
+5.Functions:
+greet() {
+ echo "Hello $1"
+}
+greet "Engineer"
+👉 greet(): This defines a function in Bash called greet. Functions let you group reusable code
+👉 $1 refers to the first argument passed to the function.
+📌 In shell scripting: • $0 is the script name. • $1, $2, etc., are positional parameters—they hold the arguments passed to a script or a function.
+👉 greet "Engineer": You are calling the function greet and passing it the string "Engineer". Inside the function, $1 gets the value "Engineer"
+🧾 What Happens When You Run This:
+•Bash sees the function call: greet "Engineer"
+•It calls the greet function, passing "Engineer" as the first argument.
+•Inside the function, $1 becomes "Engineer"
+•The function runs echo "Hello $1", which becomes: echo "Hello Engineer"
+✅ Output:   Hello Engineer
