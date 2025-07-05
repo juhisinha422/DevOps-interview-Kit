@@ -1,0 +1,32 @@
+Ansible: forks vs serial — What's the Difference?
+While working with Ansible, understanding the difference between forks and serial can help you optimize performance and control rollout strategies. Let's break it down:
+
+🔁 forks – Parallelism Setting (Global)
+Controls how many hosts are processed in parallel by Ansible at once.
+Set in ansible.cfg (forks = 5 by default).
+Affects how many SSH connections Ansible opens at a time.
+
+🔧 Example:
+ If you have 50 hosts and forks=10, Ansible will process 10 hosts in parallel, then the next 10, and so on.
+
+🔢 serial – Rolling Deployment (Per Play)
+Defines how many hosts to process at a time within a playbook.
+Great for rolling updates or zero-downtime deployments.
+Overrides forks at the playbook level.
+
+🔧 Example:
+yaml
+CopyEdit
+- hosts: webservers
+  serial: 2
+Ansible will update 2 servers at a time — wait for them to complete, then move to the next 2.
+
+📊 Key Differences
+ Feature         forks (global)                       serial (per play)
+ Scope           Affects all tasks globally       Affects a specific play
+ Purpose       Controls parallelism              Controls rollout batches
+ Where Set    ansible.cfg or CLI                 Inside playbook (serial)
+ Use Case      Speed/performance            Rolling updates, safe deploys
+
+🧠 Pro Tip:
+Use forks to boost speed, use serial to ensure stability.
