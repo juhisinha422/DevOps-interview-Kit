@@ -1,0 +1,34 @@
+1. What AWS services have you used? 
+2. Tell me a recent activity you have done using or on EC2?
+3. How do you troubleshoot if any application deployed on EC2 facing any type of latency?
+4. Tell about roles and policies? Is it possible to create your own policy? How?
+5. How NACLs work? How Security group works?
+6. You allow HTTP (port 80) inbound in the security group, but your NACL denies all inbound traffic on port 80. Will the request reach the EC2 instance?
+7. Your security group allows all inbound/outbound traffic. But application traffic fails.
+What should you check?
+8. Someone accidentally deleted critical files from a bucket. What features could have prevented this? And how can you recover the files?
+9. Your S3 costs are rising, and you want to optimize without deleting anything. What would you do?
+10. Give examples of each when you will use Lambda over EC2 and EC2 over Lambda? and why?
+11. Cloudwatch v/s CloudTrail.
+12. How the EKS is setup in your organisation? Involved in upgrades? Pre-requisites for the upgrades.
+13. What kind of project deployed in your clusters? Have you written the pipelines from the scratch?
+14. How is the SonarQube report looks like? How is the Quality gate setup? How much?
+15. Code smell v/s code coverage
+16. Shared Libraries in Jenkins.
+17.  Common erros faced during the pipeline. Troubleshooting steps?
+18. Linux commands for how to check disk space? No of lines ? to download anything from the internet. 
+19. Ansible adhoc commands. Static v/s dynamic inventories
+20. Why do we use Terraform for IaC over Ansible as Ansible is also capable of IaC.
+21. Dynamic block, resource v/s modules, data block in Terraform.
+22. What happens when the state file is lost? What if you loose access to remote backend?
+23. terraform validate v/s terraform fmt
+24. deployment v/s stateful set
+25. How does scheduler works?
+26. Folder structure of basic Helm chart. Commands used to deploy with helm.
+27. How do you optimize docker images? Stages of multi-docker build? Entrypoint v/s CMD.
+28. Why don’t we use containers in production? Why K8s?
+29. Steps to resolve CrashLoopBackoff
+29. How do you expose your app to the external world?
+30. Basic structure of Service Mesh (Istio or any other) for microservice application.
+31. Which tools you have the most expertise in?
+32. Rank yourself in the team you’re currently working in.
