@@ -1,0 +1,56 @@
+From streaming your favorite show to accessing cloud servers, your data travels through a web of protocols.
+
+1. NAT (Network Address Translation)
+•Purpose: Allows multiple devices on a local network to share a single public IP address for accessing the internet.
+•Example: Your home router uses NAT to let your phone, laptop, and TV all use the internet via one ISP-assigned IP.
+
+2. DNS (Domain Name System)
+•Purpose: Translates human-readable domain names (like www.google.com) into IP addresses (like 142.250.72.196).
+•Analogy: Like a phone book that matches names to phone numbers.
+
+3. HTTP (Hypertext Transfer Protocol)
+•Purpose: Protocol used for transferring web pages on the internet.
+•Port: Runs over TCP port 80.
+•Limitation: Data is transmitted in plain text, making it insecure.
+
+4. HTTPS (HTTP Secure)
+•Purpose: Secure version of HTTP that uses encryption (TLS/SSL) to protect data.
+•Port: Runs over TCP port 443.
+•Security: Ensures confidentiality and integrity of data exchanged between browser and server.
+
+5. TCP/IP (Transmission Control Protocol / Internet Protocol)
+•Purpose: Fundamental communication protocol suite for the internet.
+•TCP: Ensures reliable, ordered, and error-checked data delivery.
+•IP: Handles addressing and routing of data packets.
+
+6. UDP (User Datagram Protocol)
+•Purpose: Lightweight protocol used for fast, connectionless communication.
+•Difference from TCP: No guarantee of delivery, ordering, or error-checking.
+•Use cases: Streaming, gaming, VoIP — where speed is prioritized over reliability.
+
+7. SSH (Secure Shell)
+•Purpose: Secure remote access to servers and systems.
+•Use case: System admins use SSH to log into Linux servers from anywhere.
+•Port: TCP 22
+•Security: Encrypted, unlike Telnet which sends data in plain text.
+
+8. TLS/SSL (Transport Layer Security / Secure Sockets Layer)
+•Purpose: Encrypts data between clients and servers to prevent eavesdropping or tampering.
+•Use case: Powers HTTPS (secure browsing), secure email, VPNs, etc.
+•TLS vs SSL: TLS is the modern, more secure version; SSL is outdated and insecure.
+
+9. FTP (File Transfer Protocol)
+•Purpose: Transfers files between computers over a network.
+•Use case: Uploading/downloading files to/from a web server.
+•Port: TCP 21
+
+10. SMTP (Simple Mail Transfer Protocol)
+•Purpose: Sends emails from clients to servers or between servers.
+•Use case: Used by your email provider to send your message.
+•Port: TCP 25 (commonly), or 587 (for secure submission)
+•Limitation: Only for sending, not receiving emails.
+
+💭What is a Port ❓ 
+A port is a virtual door on a computer or device that allows communication over the internet or a local network.
+•It’s not a physical thing — it's part of the TCP/IP protocol.
+•Ports help systems know which service or application incoming or outgoing data belongs to
