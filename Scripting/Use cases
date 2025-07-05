@@ -1,0 +1,57 @@
+Real DevOps Shell Scripts Use Cases:
+
+✅ Automate Log Rotation:
+
+#!/bin/bash
+for file in /var/log/*.log; do
+  mv "$file" "$file.$(date +%F)"
+done
+
+🎯 Goal: Renames all .log files in /var/log/ by appending today’s date to their filenames (log rotation by date).
+🔎 Breakdown:
+•#!/bin/bash — Shebang, script uses Bash.
+•for file in /var/log/*.log; do — Loop through every .log file in /var/log.
+•mv "$file" "$file.$(date +%F)" — Rename each file by appending today’s date (YYYY-MM-DD format).
+•Example: syslog.log → syslog.log.2025-05-09
+•done — Ends the for loop.
+
+✅ Monitor Disk Usage and Alert:
+
+#!/bin/bash
+usage=$(df / | grep / | awk '{print $5}' | sed 's/%//')
+if [ $usage -gt 80 ]; then
+ echo "Disk usage is above 80%!" | mail -s "Disk Alert" admin@example.com
+fi
+
+🎯 Goal: Checks root (/) disk usage, and sends an email alert if it's over 80%.
+🔎 Breakdown:
+•usage=$(...) — Captures disk usage percentage (just the number).
+-df / — Shows disk usage for /.
+-grep / — Filters the line for /.
+-awk '{print $5}' — Extracts the 5th column (e.g., 85%).
+-sed 's/%//' — Removes the % sign.
+•if [ $usage -gt 80 ]; then — If usage > 80%, trigger alert.
+•echo "Disk usage..." | mail -s ... — Sends an email with subject "Disk Alert".
+•You need mailutils or similar package installed for mail to work.
+
+💭 What is a Pipe (|) in Shell?
+A pipe is used to connect the output of one command as the input to another.
+🧠 Think of it as: "Take the output from the left side and send it as input to the right side."
+
+✅ Backup Script:
+
+#!/bin/bash
+backup_dir="/backup"
+mkdir -p $backup_dir
+tar -czf $backup_dir/home_$(date +%F).tar.gz /home
+
+🎯 Goal: Creates a compressed backup of the /home directory with today's date in the filename.
+🔎 Breakdown:
+•backup_dir="/backup" — Set the target backup folder path.
+•mkdir -p $backup_dir — Creates the directory if it doesn't exist.
+•tar -czf ... — Compresses the /home folder into a .tar.gz archive:
+-c = create
+-z = compress with gzip
+-f = specify filename
+•Filename: home_YYYY-MM-DD.tar.gz using $(date +%F)
+•Example: home_2025-05-09.tar.gz
