@@ -1,0 +1,29 @@
+How to find your IP address?
+1. Find Public IP (Internet Address)
+• Google "What is my IP?"
+2. Find Private IP (Local Network Address)
+• Windows: ipconfig
+• Linux/Mac: ifconfig or ip a
+
+🧠 How IP address works?
+1. Assigning an IP Address:
+•When your device connects to the internet (via Wi-Fi, mobile data, or Ethernet):
+•It is assigned an IP address by a router or an ISP (Internet Service Provider).
+•This can be dynamic (changes over time) or static (permanently assigned).
+2. Sending Data Using IP:
+When you open a website:
+•Your device sends a request packet to the server.
+🎈 When data travels over the internet, it is divided into smaller units called Packets. These are like little envelopes containing the data and information needed for delivery.
+•The packet includes:
+👉 Your IP address (source)
+👉 The server’s IP address (destination)
+Routers along the way use the destination IP to forward the packet.
+3. Receiving Response:
+•The server sends a response back to your IP address.
+•Your device knows to expect it because the request originated from your IP.
+
+📘 Example:
+•You type www.google.com.
+•DNS translates it to IP 142.250.182.132.
+•Your computer sends a request to that IP.
+•Google’s server sees your IP and sends the page back to you.
