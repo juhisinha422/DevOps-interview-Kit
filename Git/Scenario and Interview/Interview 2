@@ -1,0 +1,65 @@
+What is a Branching Strategy?
+A branching strategy is a defined workflow or set of rules that teams follow to manage branches in a Git repository. It ensures smooth collaboration, structured code development, efficient testing, and safe deployments across multiple developers and environments.
+
+🔀 Why Use a Branching Strategy?
+•Maintain code stability.
+•Enable parallel development.
+•Reduce merge conflicts.
+•Enforce code review and CI/CD gates.
+•Provide rollback options.
+
+🔁 Common Branching Strategies in DevOps
+1. Git Flow (Feature Driven)-Great for large teams and structured release cycles.
+🎗️Branches Used:
+-main
+-develop
+-feature/*
+-release/*
+-hotfix/*
+🔄 Workflow:
+•Dev creates feature/login from develop
+•After completion, merge into develop
+•Create release/v1.0 from develop
+•QA & test → merge into main and tag as release
+•Any emergency fix? Create hotfix/critical-fix from main, then merge into both main and develop
+👍 Pros: Structured, great for teams
+ 👎 Cons: Can be complex for smaller project
+
+2. Trunk-Based Development-Common in CI/CD environments with frequent releases (e.g., startups, fast-paced teams)
+🎗️ Branches Used:
+-main (trunk)
+-short-lived (feature) branches (merged within hours or a day)
+🔄 Workflow:
+•Dev creates feature-xyz, finishes work, and merges to main the same day
+•Automated tests and CI/CD pipelines run on every push to main
+👍 Pros: Fast, modern, CI/CD friendly
+ 👎 Cons: Needs strong testing & automation
+
+3. GitHub Flow-Simpler version of Git Flow, ideal for cloud-native and open-source projects
+🎗️ Branches Used:
+-main
+-feature branches (with pull requests)
+🔄 Workflow:
+•Create a branch (feature/login)
+•Push and create a Pull Request (PR)
+•Review → Merge to main → Trigger deployment
+👍 Pros: Lightweight and PR-driven
+ 👎 Cons: Less structured for releases
+
+✅ What is a Pull Request (PR)?
+A Pull Request (PR) is a request to merge code changes from one branch into another—typically from a feature branch into the main or develop branch—after review and approval. 
+🔍 Why Pull Requests Are Important?
+•Code Review: Allows team members to review and discuss changes before merging.
+•Collaboration: Encourages communication between developers.
+•Quality Check: Helps maintain code quality through testing and approvals.
+•Audit Trail: Keeps a history of changes, comments, and approvals for reference.
+
+📘 In GitHub, GitLab, Bitbucket, etc.
+•Called Pull Request in GitHub & Bitbucket.
+•Called Merge Request (MR) in GitLab.
+
+🛠 Typical Pull Request Workflow:
+ Create a branch → make changes → push code → open a PR → get it reviewed → get it approved → merge into main.
+
+✅ Who Approves a Pull Request?
+A Pull Request (PR) is typically approved by reviewers assigned from your team, based on the project's rules and team structure.
