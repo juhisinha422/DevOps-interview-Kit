@@ -1,0 +1,38 @@
+𝗛𝗼𝘄 𝗮 𝗪𝗲𝗯 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗙𝗶𝗿𝗲𝘄𝗮𝗹𝗹 (𝗪𝗔𝗙) 𝗪𝗼𝗿𝗸𝘀 ?
+
+A Web Application Firewall (WAF) operates at Layer 7 (Application Layer) of the OSI model and is designed to inspect HTTP/HTTPS traffic to protect web apps from known and emerging threats.
+
+🔍 𝗖𝗼𝗿𝗲 𝗠𝗲𝗰𝗵𝗮𝗻𝗶𝘀𝗺:
+
+ A WAF intercepts and analyzes incoming requests before they reach the web server. It applies a set of predefined or dynamic rules to detect and block malicious traffic.
+
+📦 𝗜𝗻𝘀𝗽𝗲𝗰𝘁𝗶𝗼𝗻 𝗧𝗲𝗰𝗵𝗻𝗶𝗾𝘂𝗲𝘀:
+
+ • 𝗦𝗶𝗴𝗻𝗮𝘁𝘂𝗿𝗲-𝗯𝗮𝘀𝗲𝗱 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻: Matches payloads against known attack patterns (e.g., SQLi, XSS)
+ • 𝗔𝗻𝗼𝗺𝗮𝗹𝘆-𝗯𝗮𝘀𝗲𝗱 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻: Flags deviations from normal behavior (e.g., unexpected HTTP methods)
+ • 𝗕𝗲𝗵𝗮𝘃𝗶𝗼𝗿𝗮𝗹 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀: Uses ML/AI to detect zero-days or sophisticated attack chains
+
+🧠 𝗪𝗔𝗙 𝗥𝘂𝗹𝗲 𝗘𝗻𝗴𝗶𝗻𝗲𝘀 𝗖𝗮𝗻 𝗗𝗲𝘁𝗲𝗰𝘁:
+
+ ✔ SQL Injection (e.g., OR 1=1)
+ ✔ Cross-Site Scripting (e.g., <script>)
+ ✔ Command Injection (e.g., ; rm -rf /)
+ ✔ Path Traversal (e.g., ../../../etc/passwd)
+ ✔ HTTP protocol violations and malformed requests
+
+⚙️ 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗠𝗼𝗱𝗲𝗹𝘀:
+
+ • Reverse Proxy (Inline) – WAF sits between the client and server
+ • Transparent Proxy / Layer 2 Bridge
+ • Cloud-based WAF (e.g., AWS WAF, Cloudflare, Azure)
+ • Host-based or Agent-based WAF
+
+🚦𝗠𝗼𝗱𝗲𝘀 𝗼𝗳 𝗢𝗽𝗲𝗿𝗮𝘁𝗶𝗼𝗻:
+
+ • 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻 𝗠𝗼𝗱𝗲: Logs suspicious traffic for tuning
+ • Prevention Mode: Actively blocks threats in real time
+ • 𝗩𝗶𝗿𝘁𝘂𝗮𝗹 𝗣𝗮𝘁𝗰𝗵𝗶𝗻𝗴: Shields vulnerable apps until patching is done
+
+📈 Bonus: Advanced WAFs now integrate with SIEMs, threat intel feeds, and SOAR tools to automate response and correlate events.
+
+WAFs are not a silver bullet, but they’re a critical layer in a defense-in-depth strategy.
