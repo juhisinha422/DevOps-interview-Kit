@@ -1,0 +1,23 @@
+7 Layers of the OSI Model (Top to Bottom)
+
+🔸 1. Physical Layer: Lowest layer in OSI model. Deals with physical connection between devices. Transmits raw binary data (1s and 0s) through cables, radio, etc.
+🧰 Examples: Ethernet cables, fiber optics, switches, hubs.
+
+🔸 2. Data Link Layer: It helps devices on the same network talk to each other. Adds MAC addresses (unique hardware ID) so your data reaches the right nearby device. Also detects and fixes basic errors.
+🧰 Example: Switches, ARP, MAC address.
+
+🔸 3. Network Layer: This layer figures out where your data should go, even across the world. Adds IP addresses to data and helps with routing through different networks.
+🧰 Examples: IP, ICMP, Routers.
+
+🔸 4. Transport Layer: Ensures reliable or fast delivery of data. Breaks data into chunks (segments) and uses TCP (reliable) or UDP (faster) to send them.
+Also tracks port numbers, like doors to different apps.
+🧰 Example: TCP (YouTube loading properly), UDP (live stream), port 80 (web), port 443 (secure web).
+
+🔸 5. Session Layer: Starts, manages, and ends conversations between two devices. Think of it as a meeting room where two apps talk. Keeps track of who’s talking and when.
+🧰Example: Logging in to a website and maintaining your session.
+ 
+🔸 6. Presentation Layer: Converts data into a format that both sender and receiver understand. Deals with encryption, compression, and encoding.
+🧰Example: Encrypting data with SSL/TLS, converting text into JPEG, MP4, or JSON.
+
+🔸 7. Application Layer: Closest layer to the end-user. The layer you interact with directly (websites, apps, emails). Talks to the layers below to send/receive data on your behalf.
+🧰Example: Web browser (HTTP), Email app (SMTP), File transfer (FTP), DNS, SSH.
