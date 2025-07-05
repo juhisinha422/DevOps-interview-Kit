@@ -1,0 +1,17 @@
+Scaling Pods in Kubernetes? HPA and VPA serve different purposes—don’t confuse them!
+
+In the world of Kubernetes, autoscaling isn’t one-size-fits-all. Picking between Horizontal Pod Autoscaler (HPA) and Vertical Pod Autoscaler (VPA) can make or break your system’s performance and cost efficiency.
+
+🔹 HPA (Horizontal Pod Autoscaler)
+Scales the number of pods. Think of it as handling increased traffic by spinning up more instances.
+📊 Metrics: CPU/Memory utilization or custom metrics
+💡 Best for: stateless services, APIs, web apps
+
+🔹 VPA (Vertical Pod Autoscaler)
+Adjusts the CPU and memory allocated to each pod.
+Perfect for workloads that need fine-tuned performance but don’t benefit from just more replicas.
+📊 Metrics: historical usage
+💡 Best for: batch jobs, ML models, cost optimization
+
+🛠️ Tip:
+Avoid using HPA + VPA in Auto mode together—it leads to conflicts. But pairing HPA with VPA in “recommendation” mode can help tune performance intelligently.
