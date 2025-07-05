@@ -1,0 +1,31 @@
+Basics of Git:
+
+✅ What is a Git Repository?
+A Git repository is a storage space where your code, history, branches, tags, and versioned files live.
+•Local Repository – On your machine (via git init or git clone)
+•Remote Repository – On GitHub/GitLab/Bitbucket (e.g., https://lnkd.in/gdVY8H8k)
+
+✅ What is a Git Branch?
+A branch is a pointer to a snapshot of your changes. It lets you work on features, fixes, or experiments without affecting the main codebase.
+•Think of main or master as the default stable branch.
+•Other branches (e.g., feature/login, bugfix/api-crash) are created for isolated work.
+
+✅ Common Branch Types:
+•main or master- Stable production code   
+•develop- Integration of features before going to production   
+•feature/* -New features being developed   
+•bugfix/* -Fixing minor issues before release   
+•hotfix/*-Urgent fixes directly to production   
+•release/*-Pre-release stabilization (QA, tests, documentation)  
+
+✅ Basic Git Commands:
+•git clone – Copies a remote repository to your local machine.
+•git pull – Fetches changes from the remote repo and merges them into your current branch.
+•git push – Uploads your local commits to the remote repository.
+•git status – Shows the state of your working directory and staged files.
+•git add – Stages changes (files) to be included in the next commit.
+•git commit – Saves your staged changes to the local repository with a message.
+•git checkout – Switches between branches or restores files in the working directory.
+•git merge – Combines changes from one branch into another.
+•git log – Displays a history of commits in the repository.
+•git diff – Shows the difference between two commits, branches, or working states..
