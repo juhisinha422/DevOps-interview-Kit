@@ -1,0 +1,22 @@
+Continuous Integration (CI) & Continuous Deployment/Delivery (CD) : The backbone of DevOps practices. If you’ve ever wondered how code goes from a developer’s laptop to a live production server seamlessly, CI/CD is the magic behind it!
+
+Continuous Integration (CI): CI involves integrating code changes into a shared repository several times a day. Each integration is verified through automated tests and builds to ensure that the new changes don’t break the existing system. 
+👉 Goal: Detect errors as early as possible by running tests and builds frequently.
+
+Continuous Deployment (CD): CD extends CI by automatically deploying the integrated and tested code to production. The deployment process is fully automated, ensuring that any change passing the test suite is released to end users. 
+👉 Goal: Deliver updates and features to production quickly and with minimal manual intervention. 
+
+Designing a CI/CD pipeline involves the following steps: 
+
+1.Code Commit: Developers push code to a version control system (like GitHub or GitLab). 
+2.Build: The pipeline starts with building the code using tools like Maven (for Java), npm (for Node.js), or pip (for Python). The build ensures that the code compiles without issues. 
+3.Testing: Automated tests run next, including unit tests, integration tests, and sometimes end-to-end tests. Tools like JUnit (Java), PyTest (Python), and Jest (JavaScript) are often used. 
+4.Static Code Analysis: Tools like SonarQube or ESLint are used to analyze the code for potential issues, security vulnerabilities, or code quality concerns.
+5.Package & Artifact Creation: If the build is successful, the application is packaged into an artifact, such as a JAR/WAR file, Docker image, or a zip package. 
+6.Artifact Storage: Artifacts are stored in repositories like Nexus, Artifactory, or Docker Hub for future deployment. 
+7.Deployment to Staging/Testing Environment: The application is deployed to a staging environment for further testing, including functional, performance, or security tests. 
+8.Approval Gates: Before deploying to production, manual or automated approval gates are often put in place to ensure no faulty code is deployed. 
+9.Deploy to Production: After approval, the pipeline deploys the artifact to the production environment.
+10.Monitoring: Post-deployment monitoring using tools like Grafana and Prometheus ensures that the application is stable. 
+✅ DevOps goes beyond development, covering the entire lifecycle of the application, from development to operations, including deployment and monitoring. 
+✅ Focuses on collaboration between development and operations teams to streamline software delivery and deployment. It's about automating processes and ensuring continuous delivery.
