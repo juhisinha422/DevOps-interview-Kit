@@ -1,0 +1,38 @@
+✅ What is a rebase, and when would you use it instead of merging? 
+Rebase: Rebase moves or "replays" your changes on top of another branch's changes. Instead of merging two branches, rebasing applies commits from one branch onto the tip of another, creating a linear history. 
+👉 When to Use Rebase: When you want a clean, linear history without merge commits. When working on a feature branch, and you want to incorporate the latest changes from the main branch before completing your work. 
+📌 Rebase vs. Merge: 
+Merge combines histories and creates a new commit to merge them. This keeps the branching history intact but may result in a more complex history with multiple merge commits. 
+Rebase rewrites history to appear as if the feature branch was developed directly from the tip of the main branch.
+
+✅ How do you resolve conflicts in Git? 
+Conflicts occur when multiple changes are made to the same part of a file. 
+To resolve: 
+•Identify the Conflict: Git will indicate files with conflicts when you try to merge or rebase. Open the conflicting file to see the conflicting changes. 
+•Edit the File: Git marks the conflicts with <<<<<<<, =======, and >>>>>>> markers. These indicate the conflicting changes. Choose or combine the desired changes. 
+•Mark as Resolved: Once you have resolved the conflict, run git add  to mark the conflict as resolved. 
+•Continue the Operation: Complete the process by running git commit (for merge conflicts) or git rebase --continue (for rebase conflicts). 
+•Push the Changes: Once everything is resolved, push the changes to the repository.
+
+✅ How do you ensure production stability in Git workflows?
+•Only tested and approved release branches are merged into main. 
+•Hotfixes go directly into main and are then merged back into develop to keep all branches updated.
+
+✅ What is a GitHub Webhook?
+A GitHub Webhook is a way for GitHub to send real-time notifications (HTTP POST requests) to an external service when specific events happen in a repository.
+
+✅ How GitHub Webhooks Are Used in CI/CD Tools?
+GitHub webhooks are essential for automating CI/CD workflows. They trigger pipelines in CI/CD tools automatically when something changes in your GitHub repo—like pushing code, creating a pull request, or tagging a release.
+
+🛠️ CI/CD Flow Using Webhooks (Step-by-Step):
+👉 Developer pushes code to GitHub
+•e.g., a commit to the main or develop branch.
+🔔 GitHub webhook triggers an event
+•Sends a JSON payload (HTTP POST) to your CI/CD tool (like Jenkins, GitLab CI, CircleCI, etc.)
+🚀 CI/CD tool receives the webhook
+•The tool reads the payload and starts the defined pipeline/job.
+•Example: Build → Test → Deploy stages run automatically.
+🔄 Pipeline executes defined tasks
+•E.g., build Docker image, run unit tests, deploy to a staging or production environment.
+📬 Status sent back to GitHub
+•Many tools update GitHub with the build status (success, failed, pending), visible in PRs.
