@@ -1,0 +1,58 @@
+What is DevSecOps?
+
+DevSecOps stands for Development, Security, and Operations. It is an approach that integrates security practices into every phase of the DevOps lifecycle — from planning and coding to building, testing, releasing, and monitoring.
+
+> ✅ Goal: Make security a shared responsibility rather than a separate or final step.
+
+
+
+🧠 Why DevSecOps?
+
+In traditional models, security is added at the end, often causing delays.
+
+DevSecOps ensures security is automated, continuous, and part of the CI/CD pipeline.
+
+
+
+🛠️ Examples of DevSecOps in Action
+
+1. Code Scanning at Commit Time
+Tool: SonarQube, Semgrep, GitHub CodeQL
+Example: Automatically scans code for bugs and vulnerabilities when a developer pushes code to GitHub.
+
+
+2. Container Security
+Tool: Trivy, Aqua Security
+Example: Scans Docker images during build to ensure no known vulnerabilities are deployed.
+
+
+3. Secrets Detection
+Tool: GitLeaks, GitHub Advanced Security
+Example: Blocks commits that contain hardcoded AWS keys or passwords.
+
+
+4. Infrastructure as Code (IaC) Checks
+Tool: Checkov, TFSec
+Example: Detects misconfigurations in Terraform files like open security groups or public S3 buckets.
+
+
+5. Automated Penetration Testing
+Tool: OWASP ZAP, Burp Suite (DAST)
+Example: Runs simulated attacks on staging environments to find SQL injection or XSS vulnerabilities.
+
+
+6. Continuous Compliance Monitoring
+Tool: OpenSCAP, Wazuh
+Example: Checks deployed systems against regulatory standards (like HIPAA, GDPR).
+
+
+
+✅ Benefits of DevSecOps
+
+Faster vulnerability detection and response
+
+Reduced security risks and compliance violations
+
+Lower cost of fixing bugs (caught early)
+
+Culture of shared responsibility
