@@ -1,10 +1,13 @@
 Day 6 – Amazon RDS: Simplifying Database Management
+
 🗄 What is Amazon RDS?
+
 Amazon RDS (Relational Database Service) is a fully managed service for setting up, operating, and scaling relational databases in the cloud.
 
 No more worrying about provisioning, patching, backups, or hardware — AWS handles it all!
 
 🔍 Supported Database Engines:
+
 Amazon Aurora (MySQL & PostgreSQL-compatible)
 MySQL
 PostgreSQL
