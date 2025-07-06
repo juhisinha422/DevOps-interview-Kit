@@ -1,0 +1,15 @@
+💼 1. What is your role in your project?
+ 🌐 2. What is VPC Peering and how does it work?
+ 🧾 3. Write Terraform code to create 5 EC2 instances with different names and sizes.
+ 👥 4. How to check the last 5 users who logged into a Linux system?
+ 🐳 5. What is a multi-stage Dockerfile? Can we use the second stage as the first?
+ 🌍 6. How does an application communicate with the outside world?
+ 🔁 7. A pod is in CrashLoopBackOff. How do you troubleshoot it?
+ 🔧 8. What are the types of services in Kubernetes?
+ 🧠 9. What is a headless service in Kubernetes?
+ ⚙️ 10. Write a Dockerfile for a ReactJS application.
+ 📉 11. In a Kubernetes cluster, one ReplicaSet is not working. How do you debug it?
+ 🖥️ 12. How to check CPU usage of a system?
+ ☁️ 13. What AWS services are used in your project?
+ 🚀 14. What are the CI/CD steps while developing?
+ 🔄 15. Write a CI/CD pipeline to build and push a Node.js app image to Docker Hub.
