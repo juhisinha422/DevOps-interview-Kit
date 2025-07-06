@@ -1,0 +1,8 @@
+Interview Questions:
+1️⃣ Explain terraform init, terraform plan, terraform apply, terraform validate, terraform output, terraform refresh, terraform input.
+2️⃣ How many plugins are installing in your project for Jenkins?
+3️⃣ How many components are there in VPC?
+4️⃣ Have you worked on CloudWatch?
+5️⃣ Share your screen and write a Dockerfile and explain how you are building Docker images?
+6️⃣ Can we use Load Balancer for a single instance?
+7️⃣ How are you using pipeline triggering in Jenkins by using corncobs?
