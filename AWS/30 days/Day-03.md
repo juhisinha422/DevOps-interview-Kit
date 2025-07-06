@@ -1,0 +1,64 @@
+Day 3/30 – EC2 vs Lambda: Choosing the Right Compute Power
+
+🚀 Today’s post is about one of the most important decisions in AWS: when to use EC2 and when to use Lambda.
+
+💡 What is EC2 (Elastic Compute Cloud)?
+🖥 A virtual server that you can launch, configure, and manage just like a real machine.
+
+✅ You decide:
+
+The OS (Linux/Windows)
+
+The instance size (t2.micro, t3.large, etc.)
+
+When it starts and stops
+
+✅ Use cases:
+
+Web servers (Apache, Nginx)
+
+Custom software hosting
+
+Long-running or resource-intensive apps
+
+⚡ What is AWS Lambda?
+🌀 A serverless compute service — you write code, and AWS runs it only when needed.
+
+✅ Key Features:
+
+No server management
+
+Pay only per execution time
+
+Ideal for short tasks (≤15 minutes)
+
+Scales automatically
+
+✅ Use cases:
+
+Event-driven tasks (S3 file uploads, API calls)
+
+Scheduled jobs (e.g., daily reports)
+
+Microservices backend
+
+⚔ EC2 vs Lambda – Key Differences
+Feature	EC2	Lambda.
+
+Server Management	You manage	Fully managed by AWS
+
+Pricing	Pay per hour/second	Pay per request & duration
+
+Scalability	Manual or Auto Scaling	Automatic, built-in
+Use Cases	Web apps, servers	APIs, events, short tasks
+
+Uptime	Always-on (if not stopped)
+
+Runs only when triggered
+
+🧠 Quick Rule of Thumb:
+
+🧱 Use EC2 if you need full control over your compute environment.
+⚡ Use Lambda if you want to run code without managing servers.
+
+![Image](https://github.com/user-attachments/assets/1beaa65e-befc-4bd6-9299-7655d3dc237e)
