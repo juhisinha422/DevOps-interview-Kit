@@ -1,0 +1,41 @@
+Day 5 – AWS Elastic Load Balancer (ELB)
+
+Your Gateway to High Availability & Scalability
+
+🔄 What is ELB?
+
+AWS Elastic Load Balancer automatically distributes incoming traffic across multiple targets (EC2, IPs, containers) to ensure high availability, fault tolerance, and scalability.
+
+🧩 Types of ELB:
+
+1)     Application Load Balancer (ALB) – Works at Layer 7 (HTTP/HTTPS). Best for content-based routing in microservices.
+
+2)     Network Load Balancer (NLB) – Works at Layer 4 (TCP/UDP). Handles millions of requests/sec with ultra-low latency.
+
+3)     Classic Load Balancer (CLB) – Legacy option, basic Layer 4/7 support for older apps.
+
+🔐 Key Features:
+
+·        Health Checks for automatic rerouting
+
+·        Cross-Zone Load Balancing
+
+·        SSL Termination with AWS Certificate Manager
+
+·        Sticky Sessions (session persistence)
+
+·        Auto Scaling Support
+
+🌐 Why Use ELB?
+
+📌 Prevents server overload
+
+📌 Ensures app uptime across AZs
+
+📌 Scales seamlessly with traffic spikes
+
+💡 Real-World Example:
+Imagine you're running an e-commerce platform on AWS. During a sale event, there could be a massive spike in traffic. ELB ensures that the traffic is distributed across multiple EC2 instances in different Availability Zones, preventing any single instance from being overwhelmed and keeping the website up and running smoothly.
+
+
+![Image](https://github.com/user-attachments/assets/be80dc8e-37b3-4740-9db1-c5e664f59529)
