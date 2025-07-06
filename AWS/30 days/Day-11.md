@@ -1,0 +1,21 @@
+Day 11 of 30: AWS Storage Wars – S3 vs EBS vs EFS.
+
+Today, I explored the three main storage services in AWS and how each fits different use cases.
+
+Amazon S3 (Simple Storage Service) is an object storage service primarily used for storing backups, static website content, and building data lakes. It provides access over HTTP/HTTPS and is highly scalable, automatically adjusting to the data size without manual intervention. S3 follows a pay-per-GB pricing model, offering options like standard, infrequent access, and archive storage.
+
+In contrast, Amazon EBS (Elastic Block Store) is a block storage solution that acts like a hard drive for your EC2 instances. It's ideal for storing operating systems, databases, and application data. EBS volumes can only be attached to a single EC2 instance at a time and must be provisioned with a fixed size (though they can later be expanded). Pricing is based on the volume size provisioned, regardless of how much is used.
+
+Meanwhile, Amazon EFS (Elastic File System) is a file storage service that supports the NFS protocol. It's best suited for workloads requiring shared access across multiple EC2 instances, such as content management systems or home directories. Like S3, EFS automatically scales with usage and is charged per GB of storage used.
+
+✅ Quick Summary:
+
+Choose S3 for backups, static websites, and storing logs.
+
+Use EBS as a hard drive for EC2 (for OS, DBs, apps).
+
+Use EFS when multiple EC2s need to access the same files.
+
+The right storage = performance + cost optimization 💡
+
+![Image](https://github.com/user-attachments/assets/547175d9-9bf2-4c52-852c-8ab2301ae646)
