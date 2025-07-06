@@ -1,0 +1,33 @@
+Day 10 
+
+🔍 Topic: AWS CloudTrail – Because Every Click Tells a Story!
+
+Ever asked: “Who did what, when, and from where in my AWS account?”
+That’s exactly what AWS CloudTrail answers!
+
+📘 What is CloudTrail?
+
+AWS CloudTrail is a logging and auditing service that records:
+
+API calls across AWS services
+Actions taken via the AWS Console, CLI, SDKs, or tools
+
+User identity, source IP, timestamps, and more
+
+🛡️ Why is it Important?
+
+Security Auditing: Detect suspicious activity like unauthorized access
+
+Compliance: Helps meet requirements like GDPR, HIPAA, and PCI-DSS
+
+Troubleshooting: See who modified what in your infrastructure
+
+Governance: Central log trail for all AWS account activity
+
+📌 Example:
+
+You can set up CloudTrail logs to an S3 bucket, and even analyze those logs with Athena for deeper insights.
+
+💡 Analogy: Think of CloudTrail as the CCTV camera for your AWS account — capturing every move to keep things transparent, secure, and traceable.
+
+![Image](https://github.com/user-attachments/assets/5f147718-cd64-4457-9933-1085ecbe4d6e)
