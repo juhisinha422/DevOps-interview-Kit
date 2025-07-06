@@ -1,0 +1,35 @@
+Ever wondered what a day in the life of a DevOps engineer really looks like? Spoiler: It’s not all cloud and glory.
+
+The life of a DevOps engineer can be summed up in one word — why.
+
+Here’s a glimpse of how most days unfold:
+
+𝐀𝐭 𝟗 𝐀𝐌, I log in to find Jenkins already failing. I haven’t even had my morning chai, but the pipeline gave up before I did.
+
+𝐁𝐲 𝟏𝟎:𝟑𝟎, I’m trying to deploy a microservice. YAML throws an “unexpected indent” error. I throw an unexpected breakdown.
+
+𝐀𝐭 𝐧𝐨𝐨𝐧, it’s time for the daily stand-up.
+Manager: “Is everything on track?”
+Me: “Yes, totally.”
+My terminal: 404 – Hope not found.
+
+𝐋𝐮𝐧𝐜𝐡 𝐚𝐭 𝟏:𝟑𝟎? Not happening.
+Slack says production is down.
+The CPU is at 97 percent, and the team’s morale is nowhere to be seen.
+
+𝐁𝐲 𝟑 𝐏𝐌, I fix one bug only to discover two new ones.
+I call this DevOps multiplication.
+
+𝐀𝐭 𝟔 𝐏𝐌, it's time to deploy.
+I run terraform apply with all the hope I’ve got left.
+It fails. “Resource already exists.” Naturally.
+
+𝐋𝐚𝐭𝐞𝐫 𝐚𝐭 𝐧𝐢𝐠𝐡𝐭, I see a post saying someone became a Cloud Architect at 24.
+I’m still trying to figure out why my Kubernetes pod won’t restart.
+
+Truth is, DevOps is more than a job — it’s a daily survival challenge with Jenkins, YAML, and caffeine as your only tools.
+
+And somehow, despite it all, we keep coming back to it.
+
+If you’re in DevOps, you know the feeling.
+If you’re just entering it — welcome to the ride.
