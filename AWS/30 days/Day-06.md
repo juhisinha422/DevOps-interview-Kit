@@ -9,13 +9,19 @@ No more worrying about provisioning, patching, backups, or hardware — AWS hand
 🔍 Supported Database Engines:
 
 Amazon Aurora (MySQL & PostgreSQL-compatible)
+
 MySQL
+
 PostgreSQL
+
 MariaDB
+
 Oracle
+
 SQL Server
 
 🔧 Key Features of RDS:
+
 ✅ Automated Backups
 
 ✅ Multi-AZ Deployment for High Availability
