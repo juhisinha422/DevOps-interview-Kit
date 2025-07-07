@@ -13,3 +13,7 @@ These two services often confuse beginners because both handle incoming trafficâ
 Use API Gateway for managing APIs with authentication, request/response transformation, and tight integration with serverless apps.
 Use ALB for distributing traffic to web apps, EC2s, or containers with path-based or host-based routing.
 âœ¨ Think of API Gateway as the API manager, and ALB as the traffic director for your application backend.
+
+
+
+![Image](https://github.com/user-attachments/assets/903c43d8-4cd3-4843-b08d-dd4a08ddd610)
