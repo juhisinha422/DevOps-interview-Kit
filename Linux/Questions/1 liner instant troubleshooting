@@ -1,0 +1,10 @@
+One-Liners for Instant Troubleshooting
+
+lsof -i :443     # What’s using this port  
+du -sh * | sort -hr  # Disk usage ranked  
+journalctl -xe    # System logs for error events  
+netstat -tulpn    # All open ports  
+strace -p <pid>    # Trace what a process is doing
+
+Bonus:
+history | grep ssh — Never underestimate audit trails
