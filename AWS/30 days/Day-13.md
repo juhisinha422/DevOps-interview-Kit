@@ -1,4 +1,6 @@
-Day 13:  🔁 API Gateway vs Load Balancer (ALB) – What’s the Difference?
+Day 13:  🔁 API Gateway vs Load Balancer (ALB) –
+
+What’s the Difference?
 
 These two services often confuse beginners because both handle incoming traffic—but they serve very different purposes.
 
@@ -10,7 +12,9 @@ These two services often confuse beginners because both handle incoming traffic�
 ✨ Think of API Gateway as the API manager, and ALB as the traffic router.
 
 ✅ When to Use What?
+
 Use API Gateway for managing APIs with authentication, request/response transformation, and tight integration with serverless apps.
+
 Use ALB for distributing traffic to web apps, EC2s, or containers with path-based or host-based routing.
 ✨ Think of API Gateway as the API manager, and ALB as the traffic director for your application backend.
 
