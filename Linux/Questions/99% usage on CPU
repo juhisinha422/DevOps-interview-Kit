@@ -1,0 +1,24 @@
+ “99% 𝑪𝑷𝑼 𝑼𝒔𝒂𝒈𝒆” 𝒐𝒏 𝑹𝑯𝑬𝑳 – 𝑩𝒖𝒕 𝑰𝒕 𝑾𝒂𝒔𝒏’𝒕 𝑾𝒉𝒂𝒕 𝒀𝒐𝒖 𝑻𝒉𝒊𝒏𝒌
+
+Alert received:
+ 🚨 CPU usage > 99% for 5+ minutes
+ As the on-call SRE for the week, I jumped in, expecting a CPU-heavy workload or a runaway process. But something didn’t feel right.
+👀 A quick look told a different story:
+🔍 top showed:
+High %wa (I/O wait) — not actual CPU crunching.
+Tried iotop and pidstat — not installed (typical on minimal RHEL builds).
+ So I used:
+
+           ps aux --sort=-%cpu | head -10
+
+→ Found a dnf process in D-state (uninterruptible sleep), mid-package operation.
+
+🛠️ Then came the usual RHEL checks:
+
+df -h → disk usage was fine (~31%) ✅
+/var/lib/dnf/ and /var/cache/dnf/ → active lock files, updated metadata 🔒
+tail -f /var/log/dnf.log → showed background activity, but not conclusive.
+
+🧠 What was really going on?
+
+➡️ After more digging, I found signs of a backup agent kicking off snapshot operations — or possibly endpoint security software scanning files aggressively. Both can cause massive I/O pressure without using much CPU.
