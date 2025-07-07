@@ -1,0 +1,33 @@
+Technical Interview Experience – DevOps Engineer at HiLabs (Round 1)
+-------------------------------------------------------------
+One of my students recently appeared for Round 1 of the DevOps Engineer interview at HiLabs.
+The round tested strong hands-on knowledge, focusing on cloud automation, Kubernetes practices, and real-world CI/CD pipelines — just what you'd expect from a data-driven product company.
+
+Here’s a fresh and practical set of questions from the interview:
+🚀 CI/CD Workflows & GitHub Actions / Azure DevOps
+✅ How do you manage pipeline failure handling and notify teams via Slack or Teams?
+✅ What’s the best approach to deploying multiple services using a single pipeline without hardcoding configs?
+✅ How do you handle rollback automatically using GitHub Actions or Azure DevOps?
+✅ What strategies do you use for minimizing pipeline execution time during PR validations?
+
+🚀 Kubernetes (AKS) & Container Management
+✅ A pod crashes randomly under high load — what’s your process to debug and fix it?
+✅ How do you securely inject secrets into containers running in AKS?
+✅ What’s the difference between kubectl rollout restart and kubectl delete pod?
+✅ How would you configure a Kubernetes cluster for zero-downtime deployments?
+
+🚀 Azure Infrastructure & Cloud Automation
+✅ How do you configure VNet integration for Azure App Services?
+✅ Explain how Azure Key Vault integrates with Terraform and Azure DevOps pipelines.
+✅ What’s the difference between managed identity and service principal in Azure — which one do you prefer and why?
+✅ How do you structure Terraform for multi-team, multi-subscription environments?
+
+🚀 Monitoring, Logging & Troubleshooting
+✅ How would you investigate and resolve a memory leak in a containerized API?
+✅ What’s the role of Application Insights vs Azure Monitor — when do you use which?
+✅ How do you set up alerts when a Kubernetes pod restarts more than 3 times within 10 minutes?
+
+🚀 Git & Collaboration
+✅ How do you enforce PR checks and approval policies in a fast-moving DevOps team?
+✅ What’s your branching strategy for multi-environment deployments using GitOps?
+✅ How do you safely do a force push when collaborating in a shared repo?
