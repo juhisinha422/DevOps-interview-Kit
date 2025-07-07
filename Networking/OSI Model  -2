@@ -1,0 +1,34 @@
+𝐌𝐞𝐞𝐭 𝐭𝐡𝐞 𝐎𝐒𝐈 𝐌𝐨𝐝𝐞𝐥
+
+𝘌𝘷𝘦𝘳 𝘸𝘰𝘯𝘥𝘦𝘳𝘦𝘥 𝘩𝘰𝘸 𝘺𝘰𝘶𝘳 𝘮𝘦𝘴𝘴𝘢𝘨𝘦 𝘵𝘳𝘢𝘷𝘦𝘭𝘴 𝘧𝘳𝘰𝘮 𝘺𝘰𝘶𝘳 𝘭𝘢𝘱𝘵𝘰𝘱 𝘵𝘰 𝘢 𝘴𝘦𝘳𝘷𝘦𝘳 𝘩𝘢𝘭𝘧𝘸𝘢𝘺 𝘢𝘤𝘳𝘰𝘴𝘴 𝘵𝘩𝘦 𝘸𝘰𝘳𝘭𝘥 𝘪𝘯 𝘴𝘦𝘤𝘰𝘯𝘥𝘴?
+
+𝘛𝘩𝘢𝘵’𝘴 𝘸𝘩𝘦𝘳𝘦 𝘵𝘩𝘦 𝘖𝘚𝘐 𝘮𝘰𝘥𝘦𝘭 𝘤𝘰𝘮𝘦𝘴 𝘪𝘯, 𝘵𝘩𝘦 7 𝘭𝘢𝘺𝘦𝘳 𝘧𝘳𝘢𝘮𝘦𝘸𝘰𝘳𝘬.
+
+The OSI (𝐎𝐩𝐞𝐧 𝐒𝐲𝐬𝐭𝐞𝐦𝐬 𝐈𝐧𝐭𝐞𝐫𝐜𝐨𝐧𝐧𝐞𝐜𝐭𝐢𝐨𝐧) Model is a 𝐜𝐨𝐧𝐜𝐞𝐩𝐭𝐮𝐚𝐥 𝐟𝐫𝐚𝐦𝐞𝐰𝐨𝐫𝐤 used to understand how different network systems communicate.
+
+1. 𝐏𝐡𝐲𝐬𝐢𝐜𝐚𝐥 𝐋𝐚𝐲𝐞𝐫
+🔹 Deals with the physical connections and hardware that transmit data. This layer handles the signals and cables used to transfer data between devices.
+🔹 Devices: 𝐇𝐮𝐛𝐬, 𝐌𝐨𝐝𝐞𝐦𝐬, 𝐂𝐚𝐛𝐥𝐞𝐬.
+
+2. 𝐃𝐚𝐭𝐚 𝐋𝐢𝐧𝐤 𝐋𝐚𝐲𝐞𝐫
+🔹 Ensures reliable transfer between directly connected nodes and detects errors during transmission.
+🔹 Devices: 𝐍𝐈𝐂𝐬.
+
+3. 𝐍𝐞𝐭𝐰𝐨𝐫𝐤 𝐋𝐚𝐲𝐞𝐫
+🔹 Handles routing of data across networks using IP addresses.
+🔹 Devices: 𝐑𝐨𝐮𝐭𝐞𝐫𝐬, 𝐋𝐚𝐲𝐞𝐫 3 𝐒𝐰𝐢𝐭𝐜𝐡𝐞𝐬.
+
+4. 𝐓𝐫𝐚𝐧𝐬𝐩𝐨𝐫𝐭 𝐋𝐚𝐲𝐞𝐫
+🔹Manages reliable data transfer between devices and ensures these segments arrive in order.
+🔹 Protocols: 𝐓𝐂𝐏, 𝐔𝐃𝐏.
+
+5. 𝐒𝐞𝐬𝐬𝐢𝐨𝐧 𝐋𝐚𝐲𝐞𝐫
+🔹 Manages and controls communication sessions between devices. 
+
+6. 𝐏𝐫𝐞𝐬𝐞𝐧𝐭𝐚𝐭𝐢𝐨𝐧 𝐋𝐚𝐲𝐞𝐫
+🔹Focuses on data format and encryption. 
+🔹Ensures that data sent by one device can be read by another.
+
+7. 𝐀𝐩𝐩𝐥𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐋𝐚𝐲𝐞𝐫
+🔹Interacts directly with end user applications.
+🔹Protocols: 𝐇𝐓𝐓𝐏, 𝐒𝐌𝐓𝐏, 𝐅𝐓𝐏
