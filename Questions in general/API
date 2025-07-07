@@ -1,0 +1,26 @@
+What is an API (Application Programming Interface).......! 🛠️ 
+
+What is an API......?
+An API is a set of rules that allow different software applications to communicate with each other. Think of it like a bridge that connects two systems and lets them share data or services.
+
+To make this clearer, let's use an example:....
+
+Imagine you are at a restaurant. The waiter (API) takes your order (request), brings it to the chef (server), and then brings the food back to you (response).
+Similarly, when you search for a course on a website, you send a request through an API, which then checks the database and sends the result back to you.
+
+How Do APIs Work.......?
+APIs work in a simple step-by-step process:.......
+Request: A client (user) sends a request through the API's URI (Uniform Resource Identifier).
+Processing: The API forwards the request to the server.
+Response: The server processes the request and sends the response back to the API.
+Delivery: The API returns the server's response to the client.
+
+Method of API ....
+
+GET (retrieve a record)
+PUT (update a record)
+POST (create a record)
+DELETE (delete the record)
+
+Conclusion...
+By now, you must have had a clear idea of What is API? it's working, types, testing tools used, etc. After understanding these concepts, you can try working on them by implementing some of the concepts in projects. Not just theoretical knowledge, you must also have a practical idea of it by working on it. Developers must have a deep understanding of APIs in order to implement them.
