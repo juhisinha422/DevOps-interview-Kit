@@ -1,0 +1,35 @@
+Infosys DevOps Interview Experience.
+
+
+The interview felt more like a technical discussion than a Q&A session. The interviewer was very supportive and focused on understanding how well I knew the concepts and real-time use of tools, rather than just the tools themselves.
+
+Here are some of the key questions I faced:
+
+● Tell me about yourself (Self-Intro)
+● What source code management tool are you using?
+● What CI/CD tools do you use?
+● How do you troubleshoot issues in CI/CD pipelines?
+● What kind of pipelines have you worked on?
+● What is a Jenkinsfile?
+● What are your daily DevOps activities?
+● Explain Git merge and branching strategies.
+● Describe a full CI/CD flow in your project.
+● How do you build a Docker image? Explain the steps.
+● How do you check CPU usage of a server?
+● What operating systems have you worked with?
+● What is Ansible? Why did you use it in your project?
+● What is Terraform used for?
+● What's the difference between Ansible and Terraform?
+● Have you worked with Kubernetes? Explain your use case.
+● What AWS services are you familiar with?
+● Have you used monitoring tools? How and why are they used?
+● What do you do if there's a Git issue while merging or pushing?
+● What kind of Jenkins plugins have you used?
+● How do you trigger an Ansible playbook? What’s the command?
+● How to run a specific task in Ansible?
+● How do you manage Jira tickets or handle tasks?
+
+At the end, the interviewer told me:
+
+“Tools may change, but the process remains the same. If you understand the concept well, you can work with any tool.”
+ It was a very positive and motivating conversation.
