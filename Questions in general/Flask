@@ -1,0 +1,38 @@
+What is Flask..? (Simple words).  
+
+1. What is Flask?
+
+Flask is a lightweight web application framework for Python. Known as a "microframework," it offers essential tools to build web applications without the overhead of specific libraries or components. This makes it a perfect fit for developers who prefer flexibility and control over their projects.
+
+2. Advantages of Flask
+
+- Lightweight & Minimal: Flask has minimal dependencies, making it quick to set up and easy to maintain.
+- Easy to Learn: Its simple, intuitive API is ideal for beginners stepping into web development.
+- Highly Flexible: Customize and extend Flask to suit project-specific needs effortlessly.
+- Database Agnostic: Compatible with SQL and NoSQL databases, offering versatility in data handling.
+- Frontend Friendly: Integrates seamlessly with popular frontend technologies like React and Angular.
+- Optimal for Small to Medium Projects: Perfect for projects that don't require the complexity of a larger framework.
+
+3. Getting Started with Flask
+
+To begin with Flask, ensure Python3 is installed. You can install Flask via your terminal using the command `pip install flask`. Here's a quick example to get you started:
+
+""python
+from flask import Flask     
+app = Flask(__name__)   
+
+@app.route('/')       
+def hello(): 
+    return 'HELLO'
+
+if __name__=='__main__': 
+   app.run(debug=True)
+""
+
+Explanation:
+- Flask(__name__)`: Initializes the Flask app.
+- @app.route('/')`: Maps the URL path '/' to the `hello()` function.
+- def hello()`: Returns "HELLO" when the root page is accessed.
+- app.run(debug=True)`: Runs the app in debug mode, automatically reloading on code changes.
+
+Ready to dive into Flask? Start building your web application today and experience the freedom of a microframework that grows with your project. 
