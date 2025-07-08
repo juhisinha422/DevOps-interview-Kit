@@ -1,0 +1,23 @@
+scenario-based questions
+
+🟢 How do you run an Nginx application in Docker?
+
+🟢 Do you have experience working with APIs?
+
+🟢 You have a Node.js application running on port 8081 – can you write a Dockerfile for it?
+
+🟢 Do you have experience with Kubernetes?
+
+🟢 Based on the Dockerfile, can you write a Kubernetes Deployment file for the same Node.js app?
+
+🟢 How would you rate yourself in Linux?
+
+🟢 Can you explain some commonly used Linux commands?
+
+🟢 What are the steps to create a VPC Peering connection in AWS?
+
+🟢 You have an EC2 instance in a private subnet – how will you access it?
+
+🟢 Write a Terraform script to create an EC2 instance and an S3 bucket.
+
+🟢 How can you monitor an EC2 instance application using CloudWatch?
