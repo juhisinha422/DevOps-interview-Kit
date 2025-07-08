@@ -1,0 +1,70 @@
+Part-1
+
+1. Cluster Creation Issues
+
+- Error: Failed to initialize Kubernetes cluster (e.g., kubeadm init fails).
+  Solution: Check network settings and disable swap (swapoff -a).
+
+- Error: Node not joining the cluster.
+  Solution: Verify token validity and connectivity to the control plane.
+
+- Error: Unsupported Kubernetes version.
+  Solution: Upgrade kubectl, kubeadm, and kubelet to compatible versions.
+
+2. Pod Issues
+
+- Error: Pod stuck in Pending state.
+  Solution: Ensure sufficient cluster resources and check kubectl describe pod.
+
+- Error: Pod in CrashLoopBackOff.
+  Solution: Analyze logs with kubectl logs and debug application errors.
+
+- Error: Container not starting.
+  Solution: Verify image name, tag, and pull policy.
+
+- Error: Pod cannot connect to another pod.
+  Solution: Verify network policies and DNS resolution.
+
+3. Service and Networking
+
+- Error: Service not exposing pod.
+  Solution: Check labels in the pod selector match the pod labels.
+
+- Error: External IP not assigned to LoadBalancer service.
+  Solution: Ensure cloud provider integration is configured correctly.
+
+- Error: DNS resolution failure.
+  Solution: Check kube-dns or CoreDNS logs.
+
+- Error: NodePort service inaccessible.
+  Solution: Verify firewall and network configuration.
+
+4. Persistent Volumes and Storage.
+
+- Error: PVC stuck in Pending.
+  Solution: Ensure StorageClass is available and matches PVC requirements.
+
+- Error: PV not bound to PVC.
+  Solution: Verify access modes and storage capacity match.
+
+- Error: Read-only file system error in container.
+  Solution: Check volume mount configurations.
+
+5. Deployment Issues.
+
+- Error: Deployment update fails.
+  Solution: Check for immutable field changes.
+
+- Error: Rolling update stuck.
+  Solution: Inspect pod readiness and health checks.
+
+- Error: Unexpected scaling behavior.
+  Solution: Adjust HPA (Horizontal Pod Autoscaler) settings and CPU/memory limits.
+
+6. RBAC (Role-Based Access Control)
+
+- Error: Forbidden error when accessing resources.
+  Solution: Assign proper roles and bindings to the user/service account.
+
+- Error: ServiceAccount not found.
+  Solution: Ensure the ServiceAccount exists in the correct namespace.
