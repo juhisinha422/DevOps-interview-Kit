@@ -40,4 +40,4 @@ Continuous Deployment (CD):
 
 Cloudairy can help you design, manage, and discuss multi-cloud architectures in a user-friendly and collaborative way. 
 
-![Image](https://github.com/user-attachments/assets/da579c61-2d55-4da1-80c0-fa74033dc70d
+![Image](https://github.com/user-attachments/assets/da579c61-2d55-4da1-80c0-fa74033dc70d)
