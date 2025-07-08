@@ -1,0 +1,51 @@
+Kubernetes Scenario-Based Interview Questions – Part 3
+
+1. You want to give every namespace its own set of resource quotas and default limits. How do you implement and enforce that?
+
+2. An app requires elevated privileges to run Docker-in-Docker. How do you securely deploy it in Kubernetes?
+
+3. After a deployment, latency increased significantly for your APIs. What do you check in Kubernetes to identify bottlenecks?
+
+4. You have a CI/CD pipeline that deploys new pods but occasionally leaves old pods hanging. How do you clean these up automatically?
+
+5. How do you allow a pod to run on a specific node only, using Kubernetes features?
+
+6. Your cluster is nearing full disk on nodes due to image bloat. What are some Kubernetes-native ways to mitigate this?
+
+7. You want to restrict a developer from deploying services of type LoadBalancer. How do you enforce it?
+
+8. A team needs to run privileged pods, but you want to allow only a specific namespace to do so. How?
+
+9. How do you prevent accidental deletion of critical resources (like ingress, configmaps) in production?
+
+10. You need to debug a pod running in production without restarting or stopping it. What tools or methods can you use?
+
+11. Your containerized app writes logs to a file instead of stdout. How do you capture and ship these logs?
+
+12. Your cluster uses multiple Ingress controllers, and traffic is not routing correctly. How do you isolate and debug this?
+
+13. How do you test whether your pod can access a specific internal Kubernetes service or endpoint?
+
+14. You need to support blue-green deployments with quick rollback capability. How do you implement this in Kubernetes?
+
+15. After deleting a namespace, it stays in Terminating state. What can you do to force its deletion?
+
+16. You want to validate every YAML deployed to the cluster for security risks.What are your options?
+
+17. How do you rotate TLS certificates used by Kubernetes services without downtime?
+
+18. You need to backup and restore a Kubernetes cluster's state. What tools or strategies do you recommend?
+
+19. A deployment keeps restarting every few minutes even though the container is healthy. What might be wrong?
+
+20. You want to inject a secret as a mounted file but ensure that no process can read it after the pod starts. Is this possible?
+
+21. You’re seeing a lot of throttling in your app containers. How do you tune CPU limits to reduce this?
+
+22. How do you isolate workloads in a multi-tenant cluster, ensuring both network and resource isolation?
+
+23. A developer wants to deploy apps but should not be able to exec into pods. How do you configure this?
+
+24. You want to track changes made to ConfigMaps and Secrets over time. How do you achieve version control?
+
+25. You are required to implement geo-distributed failover across clusters. What would be your strategy?
