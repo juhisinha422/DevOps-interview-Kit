@@ -1,0 +1,50 @@
+10 Real-World  CICD Scenarios — From the Infra Trenches
+These aren't your “What is CI/CD?” basics.
+
+If you’re building real pipelines, managing GitOps workflows, or preparing for interviews — this one’s for you 👇
+
+1. Your GitLab CI pipeline shows success, but Argo CD fails to sync the deployment.
+ How do you debug GitOps drift between GitLab commits and Argo CD state?
+ What checks would you add to your pipeline to catch pre-sync failures?
+
+
+2. Argo CD sync is continuously retrying due to a hook resource hanging.
+ How do you identify whether it’s a preSync or postSync hook issue?
+ What logging/timeout strategy do you apply?
+
+
+3. You need to deploy different environments (dev/staging/prod) with GitLab + Argo CD.
+ How do you manage values files or overlays?
+ Kustomize or Helm? And how do you prevent cross-env mistakes?
+
+
+4. Your GitLab runners are intermittently failing due to "resource exhaustion."
+ How do you scale self-hosted GitLab runners properly across stages and parallel jobs?
+
+
+5. You want to rollback a failed deployment — but Argo CD still marks it as "Synced."
+ Why does that happen?
+ How would you enforce rollback strategy using Git history and Argo CD versions?
+
+
+6. Your Helm deployment fails in Argo CD, but the same chart works locally.
+ How do you debug Helm rendering inside Argo CD?
+ What hidden values or CRD mismatches should you be aware of?
+
+
+7. GitLab CI triggers a build + push job — but Argo CD syncs before the image is available.
+ How do you manage image tag immutability and sync ordering?
+ Would you use image-updater or a custom controller?
+
+
+8. Secrets are hardcoded in your Git repo — and someone notices during code review.
+ How do you handle secrets securely across GitLab CI pipelines and Argo CD sync?
+ Would you choose Sealed Secrets, SOPS, HashiCorp Vault?
+
+
+9. Your app uses stateful resources (PVCs) — and Argo CD keeps trying to delete/recreate them.
+ How do you manage lifecycle policies in GitOps for non-replaceable components?
+
+
+10. You need to trigger GitLab CI pipeline only when an Argo CD sync fails (reverse flow).
+ How would you monitor Argo CD sync status and feed it back into GitLab CI/CD logic?
