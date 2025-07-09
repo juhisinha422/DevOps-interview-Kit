@@ -1,0 +1,62 @@
+Top 10 Real-Time Kubernetes Troubleshooting Commands
+
+1. 🔍 Check Pod Status
+
+Command: kubectl get pods -n <namespace>
+📌 Use when: You want to see the status of all pods in a namespace.
+✅ Example: kubectl get pods -n dev
+
+2. 📄 Describe a Pod
+
+Command: kubectl describe pod <pod-name> -n <namespace>
+📌 Use when: You want to know detailed info like events, restarts, volumes.
+✅ Example: kubectl describe pod nginx-74f94f8b4c-abc12 -n dev
+
+3. 🐛 View Pod Logs
+
+Command: kubectl logs <pod-name> -n <namespace>
+📌 Use when: You're debugging app logs inside the pod.
+✅ Example: kubectl logs myapp-pod-1234 -n dev
+💡 For multi-container pods: kubectl logs <pod-name> -c <container-name> -n <namespace>
+
+4. 🧪 Check Events in Namespace
+
+Command: kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp
+📌 Use when: You want recent event history (crash loops, OOMs, etc.)
+✅ Example: kubectl get events -n dev --sort-by=.metadata.creationTimestamp
+
+5. 🧰 Exec Into a Pod
+
+Command: kubectl exec -it <pod-name> -n <namespace> -- /bin/bash
+📌 Use when: You want to troubleshoot inside the container (e.g., curl, ping)
+✅ Example: kubectl exec -it myapp-pod -n dev -- /bin/bash
+
+6. 🔄 Restart a Deployment
+
+Command: kubectl rollout restart deployment <deployment-name> -n <namespace>
+📌 Use when: You need to restart a deployment (e.g., config change)
+✅ Example: kubectl rollout restart deployment my-deployment -n dev
+
+7. 🧯 Check CrashLoopBackOff or OOMKill
+
+Command: kubectl describe pod <pod-name> -n <namespace>
+📌 Use when: A pod keeps crashing or restarting — check under "Events"
+✅ Tip: Look for OOMKilled, CrashLoopBackOff, or Back-off restarting failed container.
+
+8. 📡 Check Node Status
+
+Command: kubectl get nodes
+📌 Use when: You suspect a node issue (NotReady, disk pressure, etc.)
+✅ Example: kubectl get nodes
+
+9. 🚦 Check Services and Endpoints
+
+Command: kubectl get svc -n <namespace> && kubectl get endpoints -n <namespace>
+📌 Use when: You're debugging service connectivity or DNS resolution
+✅ Example: kubectl get svc -n dev && kubectl get endpoints -n dev
+
+10. 🌐 Check Ingress and DNS
+
+Command: kubectl get ingress -n <namespace> && kubectl describe ingress <ingress-name>
+📌 Use when: You're troubleshooting web access issues (HTTP 404/502)
+✅ Example: kubectl describe ingress my-ingress -n dev
