@@ -1,0 +1,82 @@
+EPAM DevOps Engineer – First Round Interview Questions (Part 2)
+
+1. How do you design a secure and scalable CI/CD pipeline in Jenkins or Azure DevOps?
+
+2. Explain the difference between build and release pipelines.
+
+3. How do you handle rollback strategies in CI/CD?
+
+4. What are Jenkins Shared Libraries? Why and how do you use them?
+
+5. How would you implement multi-branch pipelines for microservices?
+
+6. How do you handle pipeline-level caching to speed up builds?
+
+7. How do you inject secrets into your pipeline safely?
+
+8. What are manual approval gates, and where do you implement them?
+
+9. Explain pipeline-as-code. How do you implement it in Azure DevOps YAML format?
+
+10. How do you enforce compliance and quality checks in a CI/CD pipeline?
+
+11. What is the Terraform state file? How do you manage it securely in teams?
+
+12. Difference between terraform refresh, plan, and apply.
+
+13. Explain how you modularize Terraform code for reuse.
+
+14. What happens if you manually change infrastructure outside Terraform? How do you detect drift?
+
+15. Have you used Terraform with Azure or AWS? How do you set up backend state in Azure Blob or S3?
+
+16. How do you implement count, for_each, and dynamic blocks in Terraform?
+
+17. What is the lifecycle block in Terraform used for?
+
+18. Write a Dockerfile for a Node.js or Python application.
+
+19. Explain how multi-stage Docker builds help with image optimization.
+
+20. What’s the difference between a Docker volume and bind mount?
+
+21. What’s the role of kubelet, kube-proxy, and kube-apiserver?
+
+22. How do you perform a blue-green deployment in Kubernetes?
+
+23. What is a StatefulSet vs Deployment in K8s?
+
+24. What are readiness and liveness probes and how do they impact scaling?
+
+25. How do you manage secrets in Kubernetes?
+
+26. What is the difference between a private and service endpoint in Azure?
+
+27. How do you manage access between services using IAM roles or
+Managed Identity?
+
+28. What’s the difference between Azure VNet and AWS VPC?
+
+29. How do you implement VNet peering or inter-region connectivity securely?
+
+30. How do you handle high availability and disaster recovery in cloud deployments?
+
+31. What logging and monitoring solutions have you implemented in Azure or AWS?
+
+32. How do you enforce security baselines in your CI/CD pipelines?
+
+33. Have you used tools like Trivy, Aqua, or Snyk for container scanning?
+
+34. How do you integrate Azure Key Vault (or AWS Secrets Manager) in your pipeline securely?
+
+35. How do you rotate secrets without downtime?
+
+36. How do you set up RBAC in Jenkins, Azure DevOps, or Kubernetes?
+
+37. You deployed to production and a service is down. How do you debug and rollback safely!
+
+38. A junior DevOps engineer deleted a critical Terraform state file — how do you recover?
+
+39. A Docker container works locally but fails in Jenkins — how would you troubleshoot it?
+
+40. One pod in Kubernetes is restarting in a CrashLoopBackOff state — how do you fix it?
