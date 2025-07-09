@@ -1,0 +1,41 @@
+5 Deployment Strategies Every DevOps Engineer Should Know
+
+1. Deploy in Place
+Impact if Failed: Downtime
+Deploy Time: 1x
+Zero Downtime: No
+DNS Change Required: No
+Rollback: Re-deploy
+Code Deployed To: Existing instances
+
+2. Rolling Deployment
+Impact if Failed: Single batch impacted
+Deploy Time: 2x
+Zero Downtime: Yes
+DNS Change Required: No
+Rollback: Re-deploy
+Code Deployed To: Existing instances
+
+3. Immutable Deployment
+Impact if Failed: Minimal
+Deploy Time: 4x
+Zero Downtime: Yes
+DNS Change Required: No
+Rollback: Re-deploy
+Code Deployed To: New instances
+
+4. Traffic Splitting
+Impact if Failed: Minimal
+Deploy Time: 4x
+Zero Downtime: Yes
+DNS Change Required: No
+Rollback: Re-route traffic and terminate new instances
+Code Deployed To: New instances
+
+5. Blue/Green Deployment
+Impact if Failed: Minimal
+Deploy Time: 4x
+Zero Downtime: Yes
+DNS Change Required: Yes
+Rollback: Switch back to old environment
+Code Deployed To: New instances
