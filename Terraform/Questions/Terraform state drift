@@ -1,0 +1,24 @@
+𝑶𝒖𝒕𝒂𝒈𝒆 𝒄𝒂𝒖𝒔𝒆𝒅 𝒃𝒚... 𝑻𝒆𝒓𝒓𝒂𝒇𝒐𝒓𝒎 𝒔𝒕𝒂𝒕𝒆 𝒅𝒓𝒊𝒇𝒕.
+
+Here’s what happened — and how we caught it (barely in time):
+
+🧩 Problem: A change to an S3 bucket policy accidentally removed access for a critical Lambda function.
+
+📉 Impact: Background jobs stopped processing. No alerts fired immediately — but a backlog was building fast.
+
+🔍 My debugging process:
+1. Logs showed "Access Denied" errors from the Lambda  
+2. IAM role was fine. So what changed?  
+3. Checked `terraform plan` → it showed **no changes** 😐  
+4. Cross-checked live AWS config → the bucket policy was different from what Terraform thought.
+
+⚠️ Root cause:
+Someone made a manual change in the AWS Console — Terraform state didn’t match reality.
+
+✅ Fix:
+- Refreshed state with `terraform refresh`  
+- Re-applied correct policy via code  
+- Locked down console access and added drift detection alerts
+
+⏱️ Recovery: 20 minutes, before customer impact  
+🧠 Lesson: “Out-of-band changes” are silent killers in Infra-as-Code workflows.
