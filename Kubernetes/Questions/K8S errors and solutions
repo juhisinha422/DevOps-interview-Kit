@@ -68,3 +68,57 @@ Part-1
 
 - Error: ServiceAccount not found.
   Solution: Ensure the ServiceAccount exists in the correct namespace.
+
+
+Part-2
+
+7. Cluster Node Issues.
+
+- Error: Node marked as NotReady.
+  Solution: Check kubelet logs and verify node resources.
+
+- Error: Node eviction due to high memory usage.
+  Solution: Adjust eviction thresholds and monitor resource usage.
+
+- Error: DaemonSet pod not running on a node.
+  Solution: Verify taints and tolerations.
+
+8. Ingress Issues.
+
+- Error: 404 response from Ingress.
+  Solution: Check Ingress rules and ensure the backend service is reachable.
+
+- Error: Ingress TLS configuration not working.
+  Solution: Verify secret for TLS and ensure certificates are valid.
+
+9. Image Pull Issues.
+
+- Error: Image pull back-off.
+  Solution: Verify image repository credentials.
+
+- Error: Invalid image reference.
+  Solution: Ensure the image name and tag are correct.
+
+10. Autoscaling Issues.
+
+- Error: HPA not scaling pods. e.g. HPA status shows "Desired Replicas: 1"  despite high load.
+ Solution: Verify metrics-server is running and reachable. use command "kubectl get deployment metrics-server -n kube-system"
+
+- Error: ClusterAutoscaler not provisioning nodes.
+  Solution: Check resource requests and limits for scalability.
+
+11. Security.
+
+- Error: Pod cannot mount secrets/configmaps.
+  Solution: Ensure RBAC permissions for the pod’s ServiceAccount.
+
+- Error: Unauthorized error accessing API server.
+  Solution: Verify API token and RBAC permissions.
+
+12. Helm
+
+-  Error: Helm release upgrade failed.
+   Solution: Use helm rollback and analyze release history.
+
+- Error: Chart values not applied.
+  Solution: Ensure correct values.yaml format.
