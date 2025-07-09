@@ -1,0 +1,36 @@
+Understanding Terraform State & Remote Backends 
+
+When you terraform apply, Terraform creates a state file (terraform.tfstate) that keeps track of your infrastructure. This state is critical—it's how Terraform knows what exists and what needs to change.
+
+But here’s the challenge 
+  -->What happens when you're working in a team?
+  -->How do you avoid overwriting each other’s changes?
+ --> How do you secure this state file?
+
+That's where Remote Backends come in!
+
+Instead of storing the state locally, you can configure Terraform to use a remote backend like:
+Ø AWS S3 (with DynamoDB for state locking)
+Ø Azure Blob Storage
+Ø  Google Cloud Storage
+Ø  Terraform Cloud
+
+This brings:
+o  Team Collaboration
+o  Security
+o  Locking & Consistency
+
+
+Example:-
+
+ Use this block to configure S3 backend:
+
+terraform {
+ backend "s3" {
+   bucket        = "my-terraform-state"
+   key           = "dev/terraform.tfstate"
+   region        = "us-east-1"
+   dynamodb_table = "terraform-locks"
+   encrypt       = true
+ }
+}
