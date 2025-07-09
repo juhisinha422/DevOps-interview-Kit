@@ -1,0 +1,122 @@
+Most common and impactful AKS issue :
+
+🔍 Issue: Pods Stuck in Pending State
+
+✅ Symptom
+
+When you run kubectl get pods, you see something like:
+
+NAME                       READY   STATUS    RESTARTS   AGE
+my-app-746fbc4476-mc2ph   0/1     Pending   0          3m
+
+
+
+🎯 Root Causes
+
+1. No available nodes with enough resources (CPU/Memory) to schedule the pod.
+2. Node selectors or taints are preventing pods from being scheduled.
+3. Insufficient node pool capacity or misconfigured autoscaler.
+4. Incorrect storage class or PVC pending for volume attachments.
+
+
+
+🧪 Step-by-Step Debugging
+
+1. Check the pod description
+
+kubectl describe pod <pod-name>
+
+👉 Look under the Events: section for clues. You might see something like:
+
+Warning  FailedScheduling  default-scheduler  0/3 nodes are available: 3 Insufficient cpu.
+
+2. Check node availability and resource usage
+
+kubectl get nodes
+kubectl describe node <node-name>
+kubectl top nodes
+
+👉 If nodes are running low on CPU/memory, your pod cannot be scheduled.
+
+3. Check pod resource requests and limits
+
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "1"
+
+👉 If a pod requests more than any node can provide, it stays pending.
+
+4. Check taints and tolerations
+
+kubectl describe node <node-name> | grep Taint
+
+👉 Taints like key=value:NoSchedule block pods unless they tolerate them.
+
+5. Check if PVC is pending
+
+kubectl get pvc
+kubectl describe pvc <pvc-name>
+
+👉 PVCs stuck in Pending mean the volume isn’t being provisioned.
+
+
+
+💡 Solution
+
+Scenario A: Insufficient Resources
+
+Option 1: Manually scale up node pool
+
+az aks nodepool scale \
+  --resource-group <rg> \
+  --cluster-name <cluster> \
+  --name <nodepool-name> \
+  --node-count 5
+
+Option 2: Reduce pod resource requests
+
+resources:
+  requests:
+    cpu: "0.5"
+    memory: "256Mi"
+
+
+Scenario B: Taints / Node Selectors
+
+Add a toleration to your pod spec:
+
+tolerations:
+- key: "example"
+  operator: "Equal"
+  value: "true"
+  effect: "NoSchedule"
+
+Or remove unnecessary taints from node:
+
+kubectl taint nodes <node-name> example=true:NoSchedule-
+
+
+Scenario C: PVC Not Bound
+
+Ensure correct StorageClass is used:
+
+storageClassName: managed-premium
+
+Validate the StorageClass exists:
+
+kubectl get storageclass
+
+Use static provisioning or fix volume access modes if needed.
+
+
+
+✅ Final Validation
+
+Once fixed:
+
+kubectl get pods
+
+You should see:
+
+my-app-746fbc4476-mc2ph   1/1     Running   0          10s
