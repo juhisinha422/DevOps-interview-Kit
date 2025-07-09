@@ -1,0 +1,71 @@
+Every application you build relies on these fundamental pillars....
+
+🔰 Compute
+
+ Servers – Traditional compute machines hosting your app.
+ Containers – Lightweight, portable environments (Docker, K8s).
+ Serverless – Run code without managing servers (AWS Lambda).
+ FaaS – Function as a Service for event-triggered logic.
+ PaaS – Platform to deploy apps without infrastructure headache.
+
+ 🔰 Architecture Patterns
+
+ Monolith – All-in-one codebase, tightly coupled.
+ Microservices – Split app into independent, loosely coupled services.
+ Event-driven – Services communicate via events, not direct calls.
+ Serverless – Entire architecture built on managed services.
+
+ 🔰 Networking
+
+ DNS – Maps domain names to IP addresses.
+ Load Balancers – Distribute traffic across multiple servers.
+ CDNs – Cache and serve content closer to users.
+ VPNs – Secure private access to a network.
+ Firewalls – Filter incoming and outgoing traffic.
+ NAT – Translate private IPs to public and vice versa.
+ Gateways – Entry/exit point to a network.
+ Proxies – Intermediate server for requests.
+ Routers – Direct packets across networks.
+
+🔰 Storage
+
+ Database – Store structured data (SQL/NoSQL).
+ Object Storage – Store unstructured data like images/videos.
+ Block Storage – Raw volume-based storage for VMs.
+ File Systems – Organize and manage files.
+ Caching – Store frequently accessed data in-memory (Redis, Memcached).
+
+🔰  Communication
+
+ APIs – Define how software components interact.
+ Message Queue – Buffer messages between producer and consumer.
+ WebSocket – Real-time full-duplex communication.
+ Pub/Sub – Publishers push messages; subscribers listen.
+ RPC – Remote call to another service as if it's local.
+ Service Mesh – Manage service-to-service communication.
+
+ 🔰 Security
+
+ Authentication – Proving who you are.
+ Authorization – Deciding what you're allowed to do.
+ Encryption – Securing data at rest and in transit.
+ Security Protocols – SSL/TLS, HTTPS, OAuth etc.
+ WAF – Protects apps from common attacks.
+ IDS – Detects unauthorized access or anomalies.
+
+🔰 Observability
+
+ Monitoring – Alerting on infrastructure/app health.
+ Logging – Recording system and application events.
+ Tracing – Following request flow across services.
+ Metrics – Quantitative data like CPU, latency, throughput.
+ APM – Application Performance Monitoring tools for deep insights.
+
+ 🔰 Scalability & Resilience
+
+ Horizontal Scaling – Add more machines.
+ Vertical Scaling – Add more resources to a single machine.
+ Sharding – Split data across multiple databases.
+ Redundancy – Duplicate systems for reliability.
+ Fault Tolerance – System works even if parts fail.
+ Disaster Recovery – Restore service after catastrophic failure.
