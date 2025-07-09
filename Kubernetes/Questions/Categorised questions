@@ -1,0 +1,124 @@
+Below are the categorized list of major interview questions anyone might encounter during an interview on Kubernetes :
+
+
+🔹 1. Kubernetes Core Concepts
+
+What are the main components of the Kubernetes control plane?
+
+Explain the difference between a Pod, ReplicaSet, Deployment, and StatefulSet.
+
+What is the role of etcd in Kubernetes?
+
+How does Kubernetes perform service discovery?
+
+What are namespaces in Kubernetes and how do you use them?
+
+
+
+🔹 2. Networking & Services
+
+What are the different types of Kubernetes services?
+
+How does a ClusterIP service work internally?
+
+What is kube-proxy and how does it manage network traffic?
+
+How does Ingress work in Kubernetes? How do you configure one?
+
+Can you explain the concept of network policies?
+
+
+
+🔹 3. Storage & Volumes
+
+What are Persistent Volumes (PV) and Persistent Volume Claims (PVC)?
+
+How does dynamic provisioning work in Kubernetes?
+
+Difference between emptyDir, hostPath, and configMap volumes?
+
+How do StatefulSets handle storage?
+
+
+
+🔹 4. Security & RBAC
+
+How does Kubernetes handle authentication and authorization?
+
+Explain Role, ClusterRole, RoleBinding, and ClusterRoleBinding.
+
+What are PodSecurityPolicies (PSP) and are they deprecated?
+
+How do you secure sensitive data using Secrets?
+
+What are service accounts and how are they used?
+
+
+
+🔹 5. Scheduling & Resource Management
+
+How does Kubernetes schedule pods onto nodes?
+
+What are taints, tolerations, and node affinity?
+
+How do you limit CPU and memory usage in pods?
+
+Explain QoS classes in Kubernetes.
+
+
+
+🔹 6. Troubleshooting & Observability
+
+A pod is stuck in CrashLoopBackOff. How would you troubleshoot it?
+
+How do you debug networking issues between pods?
+
+What are common reasons for a pod not being scheduled?
+
+What tools do you use for monitoring a Kubernetes cluster (e.g., Prometheus, Grafana)?
+
+How do you view logs and metrics for pods?
+
+
+
+🔹 7. CI/CD & Automation
+
+How do you implement GitOps in a Kubernetes environment?
+
+Describe your experience with Helm charts or Kustomize.
+
+What is your CI/CD pipeline setup for Kubernetes?
+
+How do you do rolling updates and rollbacks?
+
+
+
+🔹 8. Advanced Topics & Architecture
+
+How do you manage multi-tenant Kubernetes clusters?
+
+How do you handle cluster upgrades with minimal downtime?
+
+What’s the difference between Kubernetes on-prem vs. managed services (e.g., EKS, GKE, AKS)?
+
+How do you design a high-availability Kubernetes cluster?
+
+
+
+🔹 9. Real-World Scenarios
+
+Can you describe a challenging Kubernetes incident you handled?
+
+How did you design and deploy a production-grade Kubernetes system?
+
+How do you ensure resilience and fault tolerance in your Kubernetes workloads?
+
+
+
+🔹 10. Tools & Ecosystem
+
+What tools have you used for managing Kubernetes (kubectl, k9s, Lens)?
+
+What is your experience with service meshes (Istio, Linkerd)?
+
+What container runtimes have you used in Kubernetes?
