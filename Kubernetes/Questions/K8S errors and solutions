@@ -122,3 +122,69 @@ Part-2
 
 - Error: Chart values not applied.
   Solution: Ensure correct values.yaml format.
+
+13. Monitoring
+
+- Error: Prometheus not scraping metrics.
+ Solution: Check scrape config and target pod annotations.
+
+- Error: Grafana dashboards missing data.
+ Solution: Verify data source connectivity.
+
+14. Logging.
+
+- Error: Fluentd/Log collector not capturing logs.
+ Solution: Ensure log file paths are correct and accessible.
+
+- Error: Logs missing in EFK stack.
+ Solution: Check Elasticsearch and Fluentd integration.
+
+15. Upgrades
+
+- Error: kubeadm upgrade fails.
+ Solution: Follow the official upgrade path and resolve pre-check issues.
+
+- Error: Downtime during cluster upgrade.
+ Solution: Use surge upgrades or partitioned node upgrades.
+
+16. Performance.
+
+- Error: High API server latency.
+ Solution: Enable caching and optimize API requests.
+
+- Error: Resource starvation on nodes.
+ Solution: Optimize pod resource requests and cluster autoscaling.
+
+17. Advanced Scenarios.
+
+- Error: ClusterIP service unreachable.
+ Solution: Verify iptables or ebpf rules.
+
+- Error: CoreDNS pod crash.
+ Solution: Check CoreDNS configmap for errors.
+
+- Error: Pod security policy blocking deployment.
+ Solution: Update PSP to allow the required permissions.
+
+18. Miscellaneous
+
+ - Error: kube-proxy not working.
+ Solution: Restart kube-proxy daemon and check its logs.
+
+- Error: Metrics-server not running.
+ Solution: Verify APIService and certificate configuration.
+
+- Error: ETCD out of disk space.
+ Solution: Clean up unused data or scale storage capacity.
+
+- Error: Scheduler not placing pods.
+ Solution: Check pod tolerations and node taints.
+
+- Error: Incorrect time sync across nodes.
+ Solution: Ensure ntp or chrony is running.
+
+- Error: kube-apiserver down.
+ Solution: Check control plane node health and logs.
+
+- Error: Network plugin failure.
+ Solution: Restart the plugin and check configurations.
