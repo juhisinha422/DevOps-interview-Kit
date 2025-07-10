@@ -1,0 +1,114 @@
+These questions are mostly around services that we commonly integrate with Java — like Lambda, S3, API Gateway, EC2, DynamoDB, SQS, SNS, and CloudWatch.
+
+➡️ AWS Lambda
+
+1. What is AWS Lambda and how do you use it in Java?
+
+
+2. How do you deploy a Java-based Lambda function?
+
+
+3. What are cold starts in Lambda?
+
+
+4. How do you pass input and return output from Lambda?
+
+
+5. How do you handle exceptions and logging in Lambda?
+
+➡️ Amazon S3
+
+6. How do you upload/download files to S3 using Java SDK?
+
+
+7. What is a presigned URL and how is it generated?
+
+
+8. How do you secure S3 buckets?
+
+
+9. What is the difference between S3 Standard and S3 Glacier?
+
+
+10. How do you trigger a Lambda from an S3 event?
+
+➡️ API Gateway
+
+11. What is API Gateway and how does it work with Lambda?
+
+
+12. How do you secure APIs in API Gateway (e.g., using API keys, authorizers)?
+
+
+13. What is the difference between HTTP API and REST API in API Gateway?
+
+
+14. How do you handle CORS in API Gateway?
+
+
+15. How to test and deploy an API Gateway endpoint?
+
+
+➡️Amazon EC2
+
+16. What is EC2 and how is it used in backend deployments?
+
+
+17. What are security groups in EC2?
+
+
+18. How do you connect to EC2 from your local machine?
+
+
+19. Difference between on-demand, reserved, and spot instances
+
+
+20. How do you host a Spring Boot application on EC2?
+
+➡️Amazon DynamoDB
+
+21. What is DynamoDB and how do you connect to it from a Java application?
+
+
+22. Difference between partition key and sort key
+
+
+23. How do you perform CRUD operations using the AWS Java SDK?
+
+
+24. How does DynamoDB handle scaling?
+
+
+25. What is a Global Secondary Index (GSI)?
+
+➡️Amazon SQS
+
+26. What is Amazon SQS and how is it used in a Java backend system?
+
+
+27. Difference between Standard Queue and FIFO Queue
+
+
+28. How do you send and receive messages using Java SDK?
+
+
+29. What is message visibility timeout?
+
+
+30. How do you handle retries and dead-letter queues?
+
+➡️Amazon SNS
+
+31. What is Amazon SNS and how does it differ from SQS?
+
+
+32. How do you publish a message to a topic using Java?
+
+
+33. Can SNS trigger Lambda or send SMS/Email notifications?
+
+
+34. What are the different protocols supported by SNS?
+
+
+35. How do you subscribe an endpoint to a topic?
