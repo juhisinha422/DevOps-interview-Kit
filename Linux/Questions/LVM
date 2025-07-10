@@ -1,0 +1,45 @@
+What is LVM (Logical Volume Manager) in Linux?
+
+Interviewer:
+      "Have you worked with LVM before? Why do we use it in production systems?"
+
+
+What is LVM?
+LVM stands for Logical Volume Manager — a powerful way to manage disk space flexibly in Linux.
+Instead of fixed partitions, LVM gives you dynamic control:
+          You can increase or reduce storage without deleting data
+          You can combine multiple disks into one logical pool
+          You can even take snapshots (like backups)
+
+
+Real-World Example (DevOps Relevance):
+Imagine your /var directory is filling up with logs in production.
+With normal partitioning, you’d have to:
+      Take downtime
+       Resize partitions manually
+       Possibly lose data 
+
+But with LVM:
+       You simply extend the logical volume
+       No downtime
+       No data loss
+       Super helpful in cloud servers, VMs, containers, or even local Linux machines
+
+
+Why DevOps Should Understand This?
+Because in real environments:
+        Logs grow unexpectedly
+        Applications need more space
+        You can’t afford downtime
+         Knowing LVM means you understand how real servers scale storage, not just how to write scripts.
+
+
+
+
+LVM ek aisa system hai jo aapko yeh samajhne me madad karta hai ki jab real world me cheezein badalti hain — jaise storage bhar jata hai — toh aap bina system down kiye kaise handle karte ho.
+DevOps engineer wahi hota hai jo sirf banaata nahi — sambhaalta bhi hai.
+
+
+
+Wrap-Up Answer for Interview:
+LVM allows us to manage disk storage dynamically. It’s extremely useful in DevOps when we need to resize volumes, manage growing log directories, or avoid system downtime. It reflects how we think about scalability and reliability in real infrastructure.
