@@ -1,0 +1,61 @@
+Scenario-based Linux Q/A
+
+1. You accidentally deleted an important file. How would you recover it in Linux?
+
+If the file was deleted recently and no backup exists, I try using tools like extundelete or testdisk on ext3/ext4 filesystems.
+Recovery is only possible if the disk blocks haven’t been overwritten.
+This is why keeping regular backups is essential for safe recovery.
+
+2. A user reports that they cannot access a file even though they have read permissions. What could be the issue?
+
+We need to check the directory permissions where the file is stored.
+Even with file-level read permission, lack of execute permission on the parent directory can block access.
+We verify with ls -ld <directory> and adjust permissions using chmod.
+
+3. You need to find and delete all log files older than 30 days. How would you do that?
+
+We use the find command:
+find /var/log -name "*.log" -type f -mtime +30 -exec rm -f {} \; 
+This command searches for .log files older than 30 days and removes them safely.
+
+4. A directory has thousands of files, and rm -rf is taking too long to delete them. How can you speed up the deletion process?
+
+Instead of rm -rf, we use find . -delete which is faster for large directories.
+Alternatively, we delete the directory itself using rm -rf <dir> and recreate it with mkdir.
+This method avoids overhead from processing each file individually.
+
+5. How do you find the top 10 largest files on your Linux system?
+
+We use this command to list the top 10 largest files:
+find / -type f -exec du -Sh {} + | sort -rh | head -n 10 
+This helps us identify which files are consuming the most disk space.
+
+6. A script is failing due to a "permission denied" error, even though you are running it as root. What could be the reason?
+
+This could be due to a missing execute (x) permission or incorrect shebang line.
+We also check for SELinux or AppArmor restrictions using getenforce.
+I always run chmod +x script.sh and validate the interpreter path.
+
+7. You need to rename multiple files in a directory that have spaces in their names. How would you do it?
+
+We can use a for loop with proper quoting or use the rename command.
+for f in *\ *; do mv "$f" "${f// /_}"; done 
+This replaces spaces with underscores in all filenames.
+
+8. How do you compare two directories and find the differences in files?
+
+We use the diff or rsync command:
+diff -qr dir1 dir2 
+
+
+9. A user is unable to create files in a directory, but ls -l shows they have write permission. What could be the problem?
+
+The user might not have execute permission on the directory.
+Execute permission (x) is required to access or create files inside a directory.
+We check with ls -ld and correct it using chmod +x <dir>.
+
+10. A symbolic link you created is broken. How do you troubleshoot and fix it?
+
+I check the target path using ls -l and file <symlink>.
+If the target doesn’t exist or was moved, the symlink breaks.
+We recreate it using ln -sf <new_target> <symlink>.
