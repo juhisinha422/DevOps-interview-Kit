@@ -1,0 +1,28 @@
+Cherry pick 
+Command to merge a commit as a branch
+How jenkins connected to git
+Upstream downstream jobs
+If ur pipeline is running for a long time which parameter u will add to stop a long running pipeline
+How will you debug jenkins pipeline failure as the merge is completed successfully but pipeline not started 
+How to reduce docker image size
+Docker volume vs mount path
+Command to create docker volume
+Overlay network 
+How will you establish the connection between two pods which are in two different clusters
+Types of networks in docker
+Node affinity 
+Deployment vs statefulset 
+Statefulset in details how will you useit
+Deployment vs replicaset
+Did all podd having same ip
+Explain process how an ip assigned to pod
+Write a small bash script how to take backup of deployment in namespace 
+How u setup grafna and Prometheus 
+Simple promql query
+How dashboard used
+In Prometheus dont wwe have dashboard 
+Ec2 
+Ebs vs instant volume
+
+
+3 yrs lti mundtrree
