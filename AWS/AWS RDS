@@ -1,0 +1,31 @@
+Some Top Amazon RDS Interview Concepts you should read..
+
+𝟭. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗔𝗺𝗮𝘇𝗼𝗻 𝗥𝗗𝗦?
+Amazon RDS is a managed relational database service that simplifies database setup, operation, and scaling. It supports various database engines like MySQL, PostgreSQL, Oracle, SQL Server, and Amazon Aurora.
+
+𝟮. 𝗛𝗼𝘄 𝗱𝗼𝗲𝘀 𝗔𝗺𝗮𝘇𝗼𝗻 𝗥𝗗𝗦 𝘄𝗼𝗿𝗸?
+Amazon RDS automates common database management tasks such as provisioning, patching, backup, recovery, and scaling. It allows you to focus on your application without managing the underlying infrastructure.
+
+𝟯. 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝘁𝗵𝗲 𝗸𝗲𝘆 𝗳𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝗼𝗳 𝗔𝗺𝗮𝘇𝗼𝗻 𝗥𝗗𝗦?
+Amazon RDS offers automated backups, automated software patching, high availability through Multi-AZ deployments, read replicas for scaling read operations, and the ability to create custom database snapshots.
+
+𝟰. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗠𝘂𝗹𝘁𝗶-𝗔𝗭 𝗱𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗶𝗻 𝗔𝗺𝗮𝘇𝗼𝗻 𝗥𝗗𝗦?
+Multi-AZ deployment is a feature that provides high availability by automatically maintaining a standby replica in a different Availability Zone (AZ). If the primary database fails, the standby replica is promoted.
+
+𝟱. 𝗛𝗼𝘄 𝗰𝗮𝗻 𝘆𝗼𝘂 𝗶𝗺𝗽𝗿𝗼𝘃𝗲 𝗿𝗲𝗮𝗱 𝗽𝗲𝗿𝗳𝗼𝗿𝗺𝗮𝗻𝗰𝗲 𝗶𝗻 𝗔𝗺𝗮𝘇𝗼𝗻 𝗥𝗗𝗦?
+You can improve read performance by creating read replicas. Read replicas replicate data from the primary database and can be used to distribute read traffic.
+
+𝟲. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗔𝗺𝗮𝘇𝗼𝗻 𝗔𝘂𝗿𝗼𝗿𝗮?
+Amazon Aurora is a MySQL and PostgreSQL-compatible relational database engine that provides high performance, availability, and durability. It's designed to be compatible with these engines while offering improved performance and features.
+
+𝟳. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗽𝘂𝗿𝗽𝗼𝘀𝗲 𝗼𝗳 𝘁𝗵𝗲 𝗥𝗗𝗦 𝗼𝗽𝘁𝗶𝗼𝗻 𝗴𝗿𝗼𝘂𝗽?
+An RDS option group is a collection of database engine-specific settings that can be applied to your DB instance. It allows you to configure features and settings that are not enabled by default.
+
+𝟴. 𝗛𝗼𝘄 𝗰𝗮𝗻 𝘆𝗼𝘂 𝗲𝗻𝗰𝗿𝘆𝗽𝘁 𝗱𝗮𝘁𝗮 𝗶𝗻 𝗔𝗺𝗮𝘇𝗼𝗻 𝗥𝗗𝗦?
+You can encrypt data at rest and in transit in Amazon RDS. Data at rest can be encrypted using Amazon RDS encryption or Amazon Aurora encryption, while data in transit can be encrypted using SSL.
+
+𝟵. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗗𝗕 𝗽𝗮𝗿𝗮𝗺𝗲𝘁𝗲𝗿 𝗴𝗿𝗼𝘂𝗽 𝗶𝗻 𝗔𝗺𝗮𝘇𝗼𝗻 𝗥𝗗𝗦?
+A DB parameter group is a collection of database engine configuration values that can be applied to one or more DB instances. It allows you to customize database settings.
+
+𝟭𝟬. 𝗛𝗼𝘄 𝗰𝗮𝗻 𝘆𝗼𝘂 𝗺𝗼𝗻𝗶𝘁𝗼𝗿 𝗔𝗺𝗮𝘇𝗼𝗻 𝗥𝗗𝗦 𝗶𝗻𝘀𝘁𝗮𝗻𝗰𝗲𝘀?
+Amazon RDS provides metrics and logs through Amazon CloudWatch. You can set up alarms based on these metrics to get notified of performance issu
