@@ -1,0 +1,24 @@
+ 𝑶𝒏𝒆 𝒘𝒓𝒐𝒏𝒈 𝒗𝒂𝒓𝒊𝒂𝒃𝒍𝒆 𝒊𝒏 𝑨𝒏𝒔𝒊𝒃𝒍𝒆 — 𝒂𝒏𝒅 𝑰 𝒂𝒍𝒎𝒐𝒔𝒕 𝒃𝒓𝒐𝒖𝒈𝒉𝒕 𝒅𝒐𝒘𝒏 𝒑𝒓𝒐𝒅𝒖𝒄𝒕𝒊𝒐𝒏.
+
+Here’s the story:
+
+🧩 Problem: I ran an Ansible playbook to update Nginx configs across a fleet of servers. 
+📉 Impact: 70% of web servers went down with config errors. 
+Traffic started routing incorrectly. Latency spiked. Customers noticed.
+
+🔍 Debugging steps:
+1. Checked failed nodes — Nginx wouldn't start 
+2. Reviewed the config → found that a template variable wasn’t rendering 
+3. Turns out: a default value was **overridden** by an inventory var, but only for a partial group
+
+✅ Fix:
+- Rolled back using Ansible tags (`--limit web`) to restore old config 
+- Validated the playbook in staging with `--check` and `--diff` 
+- Added pre-run validation to ensure required variables are defined
+
+🧠 Root cause: Misalignment between inventory groups and variable scoping
+
+💡 Lesson:
+- Ansible is powerful — but forgiving it is not. 
+- Validate templates before they touch production. 
+- Test in staging, always.
