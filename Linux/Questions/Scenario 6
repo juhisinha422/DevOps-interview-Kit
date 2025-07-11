@@ -1,0 +1,67 @@
+Scenario-Based Linux Interview Questions
+🔧 1. High CPU Usage
+Q: "A production server is running slow. How would you identify and troubleshoot high CPU usage in Linux?"
+👉 Expected Answer:
+Use top, htop, vmstat, or pidstat
+Identify high-CPU processes (ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu)
+Check cron jobs, application logs
+Kill or restart misbehaving process if needed
+Investigate memory swap usage
+🐘 2. Disk Space Full
+Q: "Your application failed to write logs. You found the disk is full. What steps would you take?"
+👉 Checklist:
+df -h and du -sh /* to locate space usage
+Find large files: find / -type f -size +500M
+Clean /var/log, rotate logs using logrotate
+Clear package cache (yum clean all or apt clean)
+Check hidden deleted open files: lsof | grep deleted
+🔄 3. Service Not Starting
+Q: "You try to start a service with systemctl start nginx, but it fails. How would you debug?"
+👉 Diagnostic Steps:
+systemctl status nginx
+journalctl -xe or journalctl -u nginx
+Check config files: /etc/nginx/nginx.conf
+Verify port conflict with netstat -tulnp or ss -ltnp
+Look for SELinux or permission issues
+🔐 4. SSH Login Failure
+Q: "You can't SSH into a server. What do you check first?"
+👉 Good Answer:
+Network reachability: ping, telnet, nc
+SSH port (default 22): is it open? (ss -tuln)
+Check sshd service: systemctl status sshd
+Review /var/log/auth.log or /var/log/secure
+Permission on .ssh/authorized_keys, ownership
+🧪 5. File Permission Issue
+Q: "A script runs fine manually, but fails in cron. What might be wrong?"
+👉 Key Points:
+Cron runs with limited $PATH, env vars
+Use absolute paths in scripts
+Check user permissions (chmod, chown)
+Redirect output to log for debugging: script.sh >> /tmp/cron.log 2>&1
+📜 6. Crontab Not Working
+Q: "Your scheduled cron job isn’t executing. How do you debug it?"
+👉 Troubleshooting:
+crontab -l, crontab -e
+Check /var/log/cron or /var/log/syslog
+Validate syntax in crontab (crontab.guru)
+Ensure script is executable and has correct shebang
+🌐 7. Port Already in Use
+Q: "You try to run a web server, but it fails to bind to port 80. How would you resolve this?"
+👉 Tools & Actions:
+netstat -tulnp or ss -ltnp to find what's using port 80
+Kill or reconfigure conflicting service
+Use lsof -i :80 to trace PID
+Check if process is running as root (port < 1024 needs root)
+🧩 8. Kernel Panic or Server Crash
+Q: "A Linux server rebooted unexpectedly. How do you investigate the cause?"
+👉 Analysis:
+Check /var/log/messages, /var/crash, journalctl
+Look at dmesg output for kernel logs
+Check memory/disk errors
+Enable kdump for future analysis
+🧠 9. Symbolic vs Hard Links
+Q: "A symbolic link is broken after moving the target file. Why?"
+👉 Explanation:
+Symlinks point to file path, not inode. Moving file breaks path.
+Hard links share inode, so moving doesn’t break them
+Use ln -s (symbolic) vs ln(hard)
