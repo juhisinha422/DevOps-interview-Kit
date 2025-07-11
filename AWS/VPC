@@ -1,0 +1,51 @@
+AWS Virtual Private Cloud (VPC) gives you the power to create isolated network environments in the cloud
+
+1. 𝗩𝗣𝗖 (𝗩𝗶𝗿𝘁𝘂𝗮𝗹 𝗣𝗿𝗶𝘃𝗮𝘁𝗲 𝗖𝗹𝗼𝘂𝗱)
+A virtual network container in AWS where you can define your IP range (CIDR block). Multiple VPCs can exist in your AWS account.
+
+2. 𝗦𝘂𝗯𝗻𝗲𝘁𝘀
+Subnets divide your VPC into smaller sections.
+• 𝗣𝘂𝗯𝗹𝗶𝗰 𝗦𝘂𝗯𝗻𝗲𝘁: Access to the internet via an Internet Gateway.
+• 𝗣𝗿𝗶𝘃𝗮𝘁𝗲 𝗦𝘂𝗯𝗻𝗲𝘁: No direct internet access. Access the internet through a NAT Gateway.
+
+3. 𝗥𝗼𝘂𝘁𝗲 𝗧𝗮𝗯𝗹𝗲𝘀
+Defines how traffic moves between resources. Subnets are associated with route tables to ensure traffic knows where to go (e.g., to the internet or other subnets).
+
+4. 𝗜𝗻𝘁𝗲𝗿𝗻𝗲𝘁 𝗚𝗮𝘁𝗲𝘄𝗮𝘆 (𝗜𝗚𝗪)
+Enables communication between resources in your VPC and the internet. Critical for public subnets.
+
+5. 𝗡𝗔𝗧 𝗚𝗮𝘁𝗲𝘄𝗮𝘆
+Allows instances in private subnets to access the internet (e.g., for software updates) while keeping them secure and not directly exposed.
+
+6. 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗚𝗿𝗼𝘂𝗽𝘀
+Act as virtual firewalls at the EC2 instance level, defining which traffic is allowed in/out. Stateful: If inbound traffic is allowed, outbound is automatically permitted.
+
+7. 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗔𝗖𝗟𝘀 (𝗡𝗔𝗖𝗟𝘀)
+A stateless firewall that operates at the subnet level. You can allow or deny traffic.
+
+8. 𝗩𝗣𝗖 𝗣𝗲𝗲𝗿𝗶𝗻𝗴
+Connects two VPCs, allowing them to communicate privately as if they're on the same network. This is great for multi-account or cross-region scenarios.
+
+9. 𝗥𝗼𝘂𝘁𝗲 𝗧𝗮𝗯𝗹𝗲 𝗔𝘀𝘀𝗼𝗰𝗶𝗮𝘁𝗶𝗼𝗻 (𝗥𝗧 𝗔𝘀𝘀𝗼𝗰𝗶𝗮𝘁𝗶𝗼𝗻): The process of linking a route table to a subnet. This determines how traffic is routed for that subnet.
+• Without it, the subnet uses the default main route table not ideal.
+
+10. 𝗔𝗪𝗦 𝗣𝗿𝗶𝘃𝗮𝘁𝗲𝗟𝗶𝗻𝗸
+allows you to privately access AWS services (like S3, DynamoDB) and other services hosted within VPCs, without using the internet. It uses private IPs, making communication more secure and efficient.
+
+𝗪𝗵𝗮𝘁 𝗬𝗼𝘂 𝗖𝗮𝗻 𝗗𝗼 𝘄𝗶𝘁𝗵 𝗔𝗪𝗦 𝗩𝗣𝗖
+• Launch EC2 instances in custom subnets
+• Control traffic flow using routing, IGWs, and NAT gateways
+• Use Security Groups and NACLs to control access
+• Connect VPCs through VPC Peering
+
+𝗕𝗲𝘀𝘁 𝗣𝗿𝗮𝗰𝘁𝗶𝗰𝗲𝘀
+• Always use a custom VPC for production.
+• Separate public/private resources for security.
+• Use VPC Peering cautiously to avoid network complexity.
+• Leverage Terraform to manage infrastructure as code.
+
+𝗥𝗲𝗺𝗲𝗺𝗯𝗲𝗿 𝗞𝗲𝘆 𝗖𝗼𝗻𝗰𝗲𝗽𝘁𝘀
+• VPC: Your isolated cloud network.
+• Subnet: Smaller network within a VPC.
+• Route Table: Manages traffic flow.
+• Security Groups & NACLs: Firewalls at different levels.
