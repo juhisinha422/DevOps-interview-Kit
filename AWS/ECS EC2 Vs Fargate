@@ -1,0 +1,43 @@
+ECS EC2 vs Fargate -  Legacy, Tech, and when to use what
+
+Amazon ECS offers two powerful launch types: The classic EC2 and serverless Fargate. Both are robust, but they cater to different needs.
+
+🔧 1. EC2 Launch Type - Full Control, Classic but Powerful Approach
+
+Host-level management: You provision and manage EC2 instances, Create ECS Clusters, Services, Task definitions, integrate your services with Load balancer in turn with Auto scaling groups and manage AMIs and security.
+
+Hardware/customization: Supports GPUs, custom OS kernel modules, custom networking, persistence via EBS, and daemon containers.
+
+Resource optimization: Use Spot/Reserved Instances, and tightly bin-pack workloads to reduce costs at scale.
+
+Debugging: ECS Exec allows shell into containers, even on EC2, via SSM.
+
+Use it when:
+✔️ You need absolute infra control
+✔️ Running stable, long-lived, density-optimized workloads
+✔️ Using GPUs or system-level dependencies
+✔️ Cutting costs via Spot/Reserved Instances
+
+☁️ 2. Fargate Launch Type - Serverless Simplicity
+
+True serverless: No EC2 to manage. AWS handles provisioning and scaling. No need of Load balancers/Auto scaling groups. Just define vCPU & memory and required stuff in your Task Definition.
+
+Fast start: Tasks spin up in ~30-60 seconds. SOCI image indexing further speeds things.
+
+Isolation & security: Each task runs in its own ENI with IAM task roles and strong network isolation.
+
+Limits: Max 16 vCPU / 120 GiB RAM, one ENI per task - plan your subnet IPs since each task consumes a Private IP, which can exhaust Subnet IPs.
+
+Use it when:
+ ✔️ You want zero infra ops
+ ✔️ Deploying microservices, batch jobs, event-driven tasks
+ ✔️ Handling bursty or unpredictable workloads
+ ✔️ Seeking fast deployment without managing hosts
+
+Fargate reduces operational workload but it is dangerous when you see
+
+1. Unexpected high costs.
+2. Realize limited customization.
+3. Long running tasks at scale.
+4. Cold start delays
+5. Networking(subnet IPs) costs and limits.
