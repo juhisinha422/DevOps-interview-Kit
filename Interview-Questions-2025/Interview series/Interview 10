@@ -1,0 +1,57 @@
+****Interview Questions******
+
+1. How do you pass parameters between stages in a Jenkins declarative pipeline?
+
+2. What is an agent in Jenkins? How do you configure a pipeline to run on a specific agent?
+
+3. Explain how you use shared libraries in Jenkins.
+
+4. Have you handled parallel execution in a pipeline? How and why?
+
+5. How do you implement approval gates in a Jenkins pipeline (e.g., manual approval before production)?
+
+6. What is the difference between rebase and merge? Which one do you prefer in CI/CD workflows?
+
+7. How do you manage version control for infrastructure (Terraform/Ansible) in Git?
+
+8. How do you trigger a pipeline based on a Git tag push instead of a branch commit?
+
+9. Have you used Git hooks or automation to enforce commit message standards?
+
+10. How do you manage sensitive variables and secrets in Terraform?
+
+11. What happens if someone manually changes infra outside of Terraform? How do you detect and fix it?
+
+12. What is the difference between terraform taint and terraform import?
+
+13. How do you organize Terraform code for a multi-environment setup (dev/stage/prod)?
+
+14. What is the difference between an Azure Resource Group and AWS VPC?
+
+15. How do you automate the provisioning of a virtual machine using Terraform on Azure (or EC2 on AWS)?
+
+16. What is Azure DevOps YAML pipeline? How do you structure it for multi-stage deployment?
+
+17. Explain the role of Azure Service Principal and how it is used in DevOps pipelines.
+
+18. What cloud-native monitoring/logging solutions have you worked with (e.g., Azure Monitor, AWS CloudWatch)?
+
+19. You have a containerized app running fine locally but failing on Jenkins – what steps do you take to debug it?
+
+20. How do you use Kubernetes probes (liveness/readiness)? Why are they important?
+
+21. How do you do Helm-based deployments in Kubernetes?
+
+22. What’s the difference between StatefulSet and Deployment in Kubernetes?
+
+23. How do you store and access persistent data inside a Kubernetes pod?
+
+24. How do you audit and rotate credentials stored in DevOps tools?
+
+25. What is your approach to shift-left testing in a DevOps pipeline?
+
+26. What tools have you used for vulnerability scanning (e.g., Trivy, Aqua, etc.)?
+
+27. How do you enable RBAC in Kubernetes or IAM in Azure/AWS to limit access to resources?
+
+28. What is your method for post-deployment monitoring and alerts in a production environment?
