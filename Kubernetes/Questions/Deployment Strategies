@@ -1,0 +1,40 @@
+Kubernetes Deployment Strategies:
+
+Choosing the right deployment strategy is key to minimizing downtime and risk. Here's a quick guide:
+
+✅ Rolling Update (Default)  
+- Gradually replaces pods one-by-one  
+- Best for: Most production apps  
+- Challenge: Slow rollback if issues surface late  
+
+⚡ Recreate  
+- Kills all old pods before starting new ones  
+- Best for: Non-critical apps, staging  
+- Challenge: Causes downtime -- not ideal for production 
+
+🔵 Blue-Green  
+- Runs old + new versions simultaneously  
+- Switches traffic instantly  
+- Best for: Zero-downtime needs  
+- Challenge: Double resource cost  
+
+🧪 Canary  
+- Releases to a small user subset first  
+- Expands after monitoring  
+- Best for: Safe production testing  
+- Challenge: Needs advanced traffic routing & monitoring 
+
+---
+
+🛠️ Choosing the right strategy depends on:
+
+Your app’s tolerance for downtime
+
+Rollback needs
+
+Infra capacity
+
+Monitoring & observability maturity
+
+
+Plan smart → Test early → Monitor always! 🔍
