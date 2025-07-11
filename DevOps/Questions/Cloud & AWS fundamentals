@@ -1,0 +1,44 @@
+Understanding Cloud & AWS Architecture — Simplified! ☁️🔍
+
+quick guide to Cloud & AWS fundamentals:
+
+
+🔹 1. Cloud Deployment Models
+
+🌐 Public, Private, Hybrid, Multi-Cloud
+→ Choose based on security, scalability, and control.
+
+
+🔹 2. Cloud Service Models
+
+🛠️ IaaS, PaaS, SaaS
+→ From managing VMs (IaaS) to deploying apps without managing infra (PaaS), and consuming ready apps (SaaS) — know when to use what.
+
+
+🔹 3. Workload Mapping
+
+📊 Match the right workload to the right environment
+→ Consider compute, memory, latency, and compliance needs.
+
+
+🔹 4. Anycast vs. GeoDNS
+
+🌍 Speed vs. Strategy
+→ Anycast = nearest route for faster delivery (low latency)
+→ GeoDNS = location-based routing (regional content/compliance)
+
+
+🔹 5. EC2 Sizing
+
+📏 Right-size to optimize cost + performance
+→ Use AWS Compute Optimizer or CloudWatch metrics. Don’t overpay for underused resources!
+
+
+🔹 6. CapEx vs. OpEx
+
+💰 Cloud flips the finance model
+→ Traditional = CapEx (buy servers)
+→ Cloud = OpEx (pay-as-you-go) — agile, scalable, and budget-friendly!
+
+
+🎯 Cloud isn’t just tech — it’s strategy, performance, and smart investment.
