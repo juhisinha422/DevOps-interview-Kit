@@ -1,0 +1,43 @@
+🔥 Top 30 Terraform Interview Questions for DevOps Engineers 👨💻👩💻
+ Preparing for a Terraform interview? These frequently asked questions will help you crack your next technical round confidently! 💥
+
+📌 Terraform Basics
+ ▪️ What is Terraform, and how does it work?
+ ▪️ What is Infrastructure as Code (IaC)? How does Terraform implement it? 
+ ▪️ What is HashiCorp Configuration Language (HCL)? 📝
+ ▪️ What are Providers in Terraform? Can you name some popular ones? 🌍
+ ▪️ What are Resources in Terraform? Can you provide an example? 🛠️
+ ▪️ What are Terraform Modules? Why are they important? 📦
+ ▪️ What is the difference between terraform plan and terraform apply? ⚡
+ ▪️ What does the terraform init command do? 🔄
+ ▪️ What happens when you run terraform destroy? 🧨
+ ▪️ How does the terraform validate command help you? ✔️
+
+🗄️ State Management & Backend
+ ▪️ What is a Terraform state file, and why is it critical? 📂
+ ▪️ What are remote backends in Terraform? Why do we use them? 🌐
+ ▪️ How do you secure the Terraform state file in a shared environment? 🔒
+ ▪️ What is the terraform state command used for? ⚙️
+ ▪️ How do you prevent state corruption and drift in Terraform? 🔄
+
+⚙️ Terraform Advanced Topics
+ ▪️ What are Terraform Workspaces? How are they useful in managing environments? 🌍
+ ▪️ Explain how Data Sources work in Terraform. 🧠
+ ▪️ What are Provisioners, and when should they be used in Terraform? 🏗️
+ ▪️ How do lifecycle rules in Terraform help in managing resource updates? 🔄
+ ▪️ How does Terraform manage dependencies between resources? 🔗
+
+🛡️ Security & Best Practices
+ ▪️ How do you manage sensitive data (like AWS keys) in Terraform? 🔑
+ ▪️ What are the best practices for writing modular Terraform code? 🧰
+ ▪️ How do you handle secrets securely in Terraform? 🔐
+ ▪️ How can you track Terraform versions to ensure consistency in projects? 📅
+ ▪️ What’s the best way to ensure repeatability and consistency with Terraform? 🔄
+
+📊 Cloud Integration
+ ▪️ How do you integrate Terraform with cloud providers like AWS, Azure, or GCP? ☁️
+ ▪️ What is the terraform import command, and when would you use it? 🧳
+ ▪️ How do you create an EC2 instance in AWS using Terraform? 🌩️
+ ▪️ What is Terraform Cloud, and how does it differ from the open-source version? 🌐
+🛠️ CI/CD & Collaboration
+ ▪️ How do you integrate Terraform into CI/CD pipelines for automated infrastructure provisioning? 🚀
