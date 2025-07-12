@@ -1,0 +1,14 @@
+How do you manage users and groups in Linux? 
+
+User Management:
+--* Add a user: useradd username 
+--* Delete a user: userdel username 
+--*Modify a user: usermod 
+--*Set password: passwd username 
+
+Group Management: 
+--* Add a group: groupadd groupname 
+--* Delete a group: groupdel groupname 
+--* Add user to a group: usermod -aG groupname username
+
+User and group information is stored in /etc/passwd, /etc/group, /etc/shadow and /etc/gshadow
