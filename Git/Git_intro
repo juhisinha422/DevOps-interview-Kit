@@ -1,0 +1,25 @@
+As Cloud Engineers, we automate infrastructure, troubleshoot environments, and build CI/CD pipelines—but many of us only scratch the surface of what Git can do.
+
+If your Git usage looks like this:
+✅ git clone
+✅ git add . && git commit -m "stuff"
+✅ git push
+…then you’re missing out on serious time-saving features!
+
+This weekend, I dove into learning some next-level Git commands that every Cloud Engineer should know:
+
+🔁 git rebase – Keeps your commit history clean. Great for prepping PRs and collaborative workflows.
+📦 git stash – Save your uncommitted work without cluttering your branch. Perfect when switching tasks mid-way.
+🔍 git log --oneline --graph – Visualize your commit tree and branch flow like a pro. Super helpful when dealing with complex merges.
+
+🧠 Why bother? Because in a cloud-native world where we’re managing IaC, containers, and automation scripts, a strong Git workflow helps prevent mistakes, supports rollback strategies, and boosts team collaboration.
+
+🎯 Bonus tools and resources to explore next:
+
+- git bisect for fast debugging
+- git worktree for working on multiple branches    
+  without chaos
+
+- Git Branching: https://lnkd.in/eskq3sXQ
+- KodeKloud : https://lnkd.in/eQVPwSFq
+- W3Schools.com: https://lnkd.in/ePW4m_XB
