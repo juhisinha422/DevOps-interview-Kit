@@ -1,0 +1,77 @@
+AWS Interview Questions & Answers:
+
+1. How do you design a fault-tolerant architecture in AWS?
+
+Use multiple Availability Zones (AZs) for redundancy. Combine Auto Scaling Groups, Elastic Load Balancers, and RDS Multi-AZ. Store static assets in S3, use Route 53 for DNS failover, and CloudFront for global delivery.
+
+
+2. Explain the difference between ECS and EKS.
+
+ECS (Elastic Container Service) is AWS’s own container orchestration service.
+
+EKS (Elastic Kubernetes Service) runs Kubernetes clusters on AWS.
+Use EKS when you need Kubernetes compatibility; ECS is simpler for AWS-native apps.
+
+
+3. How does AWS handle data encryption?
+
+AWS provides encryption at rest (via KMS or customer-managed keys) and encryption in transit (via TLS). Services like S3, EBS, and RDS support server-side encryption (SSE) using AES-256 or KMS.
+
+
+
+4. How do you implement CI/CD in AWS?
+
+Use CodeCommit (Git repo), CodeBuild (build), CodeDeploy (deploy), and CodePipeline (orchestration). Alternatively, integrate Jenkins or GitHub Actions with Elastic Beanstalk, Lambda, or ECS.
+
+
+5. What is the difference between public, private, and elastic IPs in AWS?
+
+Public IP: Dynamic, assigned on launch
+
+Elastic IP: Static, reserved for your account
+
+Private IP: Used for internal communication within VPC
+Elastic IPs are useful for stable endpoints like a static DNS record.
+
+
+6. How does AWS Route 53 provide high availability?
+
+Route 53 uses health checks and DNS failover to route traffic away from unhealthy endpoints. Supports latency-based routing, geo-routing, and multi-region DNS setups.
+
+
+7. How does S3 versioning work, and when would you use it?
+
+S3 versioning keeps multiple versions of an object. Enables recovery from accidental deletes/overwrites. Useful in backup, audit, and compliance scenarios.
+
+
+8. How would you secure access to an S3 bucket?
+
+Use bucket policies to define who can access
+
+Enforce MFA Delete
+
+Block public access unless needed
+
+Use KMS encryption
+
+Enable CloudTrail for access logging
+
+
+
+9. How do you ensure database scalability in AWS?
+
+Use RDS Read Replicas for read-heavy workloads
+
+Aurora Auto-Scaling for dynamic capacity
+
+For extreme scale, use DynamoDB with partition keys and auto-scaling throughput
+
+
+10. How do you handle disaster recovery in AWS?
+
+Options include:
+Backup & Restore (S3, Glacier)
+Pilot Light (minimal standby infra)
+Warm Standby (scaled-down replica)
+Multi-site Active-Active (full load-balanced DR)
+Pick based on RTO/RPO requirements
