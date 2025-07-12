@@ -1,0 +1,36 @@
+The most asked question in interviews for Devops/SRE Engineer role:
+
+How to Implement IRSA (IAM Roles for Service Accounts) in Amazon EKS for Fine-Grained IAM Control
+
+When deploying applications in Amazon EKS, securely granting AWS service permissions to pods is a common requirement. IRSA offers a secure and scalable way to assign IAM roles directly to pods, replacing the use of node IAM roles or static credentials.
+
+Here’s a guide to implementing IRSA in your EKS environment:
+
+1. Associate an OIDC Identity Provider with the EKS Cluster:
+ - This step enables Kubernetes service accounts to assume IAM roles via web identity federation.
+
+2. Create an IAM Role with Trust Policy for the OIDC Provider:
+ - The trust policy must allow sts:AssumeRoleWithWebIdentity for the specified service account and namespace.
+
+3. Annotate the Kubernetes Service Account:
+ - Attach the IAM role to the Kubernetes service account by adding the following annotation:
+---
+yaml
+ metadata:
+ annotations:
+ eks.amazonaws.com/role-arn: arn:aws:iam::<account_id>:role/<role_name>
+---
+
+4. Configure the Pod to Use the Annotated Service Account:
+ - Ensure the application pod references the annotated service account to assume the IAM role during runtime.
+
+5. Apply the Principle of Least Privilege:
+ - Grant only the necessary permissions (such as access to S3, Secrets Manager, DynamoDB, etc.) to the IAM role to minimize risk.
+
+Benefits of Using IRSA:
+- Enables least-privilege IAM access at the pod level
+- Avoids sharing node-level IAM permissions across workloads
+- Enhances security posture by removing the need for static credentials
+- Integrates natively with AWS IAM and Kubernetes RBAC
+
+IRSA is the recommended approach for IAM access in EKS, and can be automated using Terraform or Helm for consistency and scalability.
