@@ -1,0 +1,47 @@
+𝟭𝟬 #𝗟𝗶𝗻𝘂𝘅 #𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼 𝗕𝗮𝘀𝗲𝗱 asked frequently in interviews.. must read #Part1
+
+𝟭. 𝗗𝗶𝘀𝗸 𝘀𝗽𝗮𝗰𝗲 𝗶𝘀 𝗳𝘂𝗹𝗹. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗶𝗱𝗲𝗻𝘁𝗶𝗳𝘆 𝘁𝗵𝗲 𝗰𝗮𝘂𝘀𝗲?
+Run:
+✓du -sh /* | sort -h 
+or
+✓ncdu / 
+to interactively find large files/directories. Clean logs, cache, or unused packages.
+
+𝟮. 𝗙𝗶𝗻𝗱 𝗮𝗻𝗱 𝗸𝗶𝗹𝗹 𝘁𝗵𝗲 𝘁𝗼𝗽 𝗺𝗲𝗺𝗼𝗿𝘆-𝗰𝗼𝗻𝘀𝘂𝗺𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀
+✓ps aux --sort=-%mem | head -5 kill -9 <PID> 
+
+𝟯. 𝗔 𝘀𝗰𝗿𝗶𝗽𝘁 𝗿𝘂𝗻𝘀 𝗳𝗶𝗻𝗲 𝗺𝗮𝗻𝘂𝗮𝗹𝗹𝘆 𝗯𝘂𝘁 𝗳𝗮𝗶𝗹𝘀 𝘃𝗶𝗮 𝗰𝗿𝗼𝗻. 𝗪𝗵𝘆?
+Cron runs in a minimal environment. Always define full paths in scripts and set required ENV vars.
+Tip: Add ✓env >> /tmp/env.txt in cron for debugging.
+
+𝟰. 𝗖𝗵𝗲𝗰𝗸 𝘄𝗵𝗮𝘁 𝗽𝗿𝗼𝗰𝗲𝘀𝘀 𝗶𝘀 𝘂𝘀𝗶𝗻𝗴 𝗮 𝘀𝗽𝗲𝗰𝗶𝗳𝗶𝗰 𝗽𝗼𝗿𝘁 (𝗲.𝗴., 𝟴𝟬𝟴𝟬)
+✓sudo lsof -i :8080  sudo netstat -tulnp | grep 8080 
+
+𝟱. 𝗥𝗲𝗰𝗼𝘃𝗲𝗿 𝗮𝗰𝗰𝗶𝗱𝗲𝗻𝘁𝗮𝗹𝗹𝘆 𝗱𝗲𝗹𝗲𝘁𝗲𝗱 𝗳𝗶𝗹𝗲?
+If deleted, recovery is hard unless backup exists or the file was open:
+✓lsof | grep deleted 
+
+Copy data from file descriptor if still open:
+✓cp /proc/<pid>/fd/<fd> /tmp/recovered_file 
+
+𝟲. 𝗖𝗼𝗺𝗽𝗿𝗲𝘀𝘀 𝗮𝗻𝗱 𝗮𝗿𝗰𝗵𝗶𝘃𝗲 𝗹𝗼𝗴𝘀 𝗼𝗹𝗱𝗲𝗿 𝘁𝗵𝗮𝗻 𝟯𝟬 𝗱𝗮𝘆𝘀
+✓find /var/log -type f -mtime +30 -exec gzip {} \; 
+
+𝟳. 𝗟𝗶𝗺𝗶𝘁 𝗦𝗦𝗛 𝘂𝘀𝗲𝗿 𝘁𝗼 𝗮 𝘀𝗽𝗲𝗰𝗶𝗳𝗶𝗰 𝗱𝗶𝗿𝗲𝗰𝘁𝗼𝗿𝘆 (𝗷𝗮𝗶𝗹)
+Use chroot or setup rbash, or configure
+ForceCommand in sshd_config.
+For advanced control: use ✓OpenSSH + ChrootDirectory.
+
+𝟴. “𝗧𝗼𝗼 𝗺𝗮𝗻𝘆 𝗼𝗽𝗲𝗻 𝗳𝗶𝗹𝗲𝘀” 𝗲𝗿𝗿𝗼𝗿 — 𝗵𝗼𝘄 𝘁𝗼 𝗳𝗶𝘅?
+Increase limits:
+✓Edit /etc/security/limits.conf:
+* soft nofile 65535  * hard nofile 65535 
+And modify ulimit or systemd service limits.
+
+𝟵. 𝗠𝗼𝗻𝗶𝘁𝗼𝗿 𝗿𝗲𝗮𝗹-𝘁𝗶𝗺𝗲 𝗖𝗣𝗨 𝘂𝘀𝗮𝗴𝗲 𝗽𝗲𝗿 𝗰𝗼𝗿𝗲
+✓mpstat -P ALL 1 
+(Requires sysstat package)
+
+𝟭𝟬. 𝗖𝗼𝗽𝘆 𝟭𝟬𝟬𝗚𝗕 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 𝘀𝗲𝗿𝘃𝗲𝗿𝘀 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝗿𝗲𝗱𝗼𝗶𝗻𝗴 𝗽𝗮𝗿𝘁𝗶𝗮𝗹 𝗱𝗮𝘁𝗮
+Use rsync with resume and checksum:
+✓rsync -avhP /source user@host:/destination
