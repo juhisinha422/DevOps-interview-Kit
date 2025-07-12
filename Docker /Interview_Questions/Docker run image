@@ -1,0 +1,14 @@
+This is a common interview question: What exactly happens when you run "docker run <image-name>"?
+
+👀 Many times, we just skip the prose of the output of a command and just focus on the relevant result.
+
+✍ However, if you have noticed, when you run "docker run hello-world", the output actually contains what literally happens in the background and the answer to the above question.
+
+"Hello from Docker!
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+  (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+  executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it to your terminal"
