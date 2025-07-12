@@ -1,0 +1,27 @@
+1. **What is Kubernetes, and why is it used?**
+
+**Answer:** Kubernetes is an open-source
+
+container orchestration platform that automates the deployment, scaling, and management of containerized applications. It's used to improve application reliability and scalability while simplifying operations.
+
+2. **Can you explain the concept of Pods in Kubernetes?**
+
+**Answer:** A Pod is the smallest deployable unit in Kubernetes. It can contain one or more containers that share the same network namespace and storage. Pods allow co-located applications to share resources and communicate efficiently.
+
+3. **What are Deployments, and how do they differ from ReplicaSets?**
+
+**Answer:** A Deployment is a higher-level
+
+abstraction that manages the creation and updating of Pods. It ensures that the desired number of Pods is running at all times. ReplicaSets, on the other hand, maintain a stable set of replica Pods, ensuring the specified number of Pods are running but without providing the deployment capabilities.
+
+4. **What is a Service in Kubernetes?**
+
+**Answer:** A Service in Kubernetes is an
+
+abstraction that defines a logical set of Pods and a policy for accessing them. It provides stable network endpoints and load balancing, allowing Pods to communicate with each other regardless of their IP addresses.
+
+5. **How does Kubernetes handle configuration management?**
+
+**Answer:** Kubernetes uses ConfigMaps and Secrets to manage configuration data.
+
+ConfigMaps store non-sensitive data, while Secrets are used to store sensitive information like passwords or API keys, ensuring that these values are secured and accessed securely by Pods.
