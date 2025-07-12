@@ -1,0 +1,48 @@
+Top 15 Advanced DevOps + Kubernetes Questions You Must Know (With Answers) 🔐💥
+👇🏻 These were asked in high-paying DevOps interviews
+⸻
+
+✅ 1. How do you architect a CI/CD platform for scalable microservices across multiple teams?
+→ Use GitOps + ArgoCD, split pipelines per service, self-hosted runners, caching layers, and horizontal scaling of runners.
+
+✅ 2. How to handle multi-region, multi-cloud deployments using Terraform?
+→ Modularize with region-based workspaces, backends, and state isolation. Use provider aliasing for cross-cloud.
+
+✅ 3. GitOps in K8s — what’s the practical approach?
+→ Use ArgoCD/Flux, store manifests in Git, implement sync waves and image update automation.
+
+✅ 4. How would you do a blue-green deployment in Kubernetes?
+→ Use two services (blue & green), switch traffic using Ingress or Service routing, validate before cutover.
+
+✅ 5. DevSecOps for fintech with PCI-DSS?
+→ SAST, DAST, IAST, secret scanning, artifact signing, network policy enforcement, audit logs, and compliance gates.
+
+✅ 6. Best practices for Pipeline-as-Code in large teams?
+→ Use shared libraries/modules, governance policies, central templates, and clear branching strategies.
+
+✅ 7. Ephemeral environments via pipeline?
+→ Dynamically create namespaces with Helm + Terraform, auto-tear down using TTL controllers post-validation.
+
+✅ 8. Monorepo CI/CD — how to build only what changed?
+→ Use path-based filters with Git diff and cache builds. Leverage Bazel or Nx for dependency-aware builds.
+
+✅ 9. Canary deployments with monitoring and rollback?
+→ Progressive delivery using Argo Rollouts or Flagger, metrics-based triggers, and auto rollback on anomalies.
+
+✅ 10. How to manage secrets at scale with GitOps?
+→ Use External Secrets Operator + HashiCorp Vault/KMS, sync to Kubernetes without committing them to Git.
+
+✅ 11. How to secure Kubernetes control plane?
+→ Enable audit logs, RBAC, API rate limits, secure etcd with TLS, disable insecure ports, use admission controllers.
+
+✅ 12. Scaling K8s across regions with zero-downtime?
+→ Use multi-cluster federation, Global Load Balancing (GLB), CI/CD with topology awareness, and PodDisruptionBudgets.
+
+✅ 13. What is PodDisruptionBudget (PDB)?
+→ It ensures a minimum number of pods are always running during voluntary disruptions (e.g., node upgrades).
+
+✅ 14. Implementing strict network policies in K8s?
+→ Use Calico/Cilium for L3/L4 policies, label-based rules, and audit with flow logs.
+
+✅ 15. Refactoring legacy Terraform code for modularity?
+→ Group by domain, abstract providers, use modules and locals, avoid repetition with DRY patterns.
