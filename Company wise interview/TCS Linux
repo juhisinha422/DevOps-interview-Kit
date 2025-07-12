@@ -1,0 +1,28 @@
+Recently attended an interview at TCS for a DevOps Engineer (Linux + Commute) role. Thought of sharing the questions I faced 
+
+🔹 Linux & Cron Jobs
+ • How to check service status?
+ • How to schedule a cron job?
+ • Write a script to schedule a job every minute.
+ • How to check CPU and memory usage?
+ • How do you check load average?
+
+🔹 Terraform vs Ansible
+ • What’s the difference between Terraform and Ansible?
+ • How will you install a package on multiple remote Linux machines?
+ • What is the module name for installing packages in Ansible?
+ • What are handlers in Ansible?
+
+🔹 AWS & EC2 Troubleshooting
+ • If a customer reports they can’t SSH into an EC2 instance, how will you resolve it?
+
+🔹 Ports & Networking
+ • How to check active ports?
+ • How do you check ports running on another machine?
+ • How to check network interface?
+ • What is a subnet?
+ • What is a gateway?
+ • What is DNS?
+ • How do you check the Google IP address?
+ • If nslookup doesn’t work, what would you do?
+ • What is the DNS config file?
