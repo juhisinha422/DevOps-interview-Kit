@@ -1,0 +1,45 @@
+KPMG Interviews Questions: Part 1
+
+1. How would you design and implement a secure and scalable CI/CD pipeline from code commit to production deployment?
+
+2. Describe a time when you resolved a production outage quickly. What was your approach and how did you ensure minimal impact to end users?
+
+3. How would you prevent developers from accidentally creating LoadBalancer services in a production environment?
+
+4. Your Kubernetes HPA (Horizontal Pod Autoscaler) is not scaling down even when CPU usage is low. What could be the root causes?
+
+5. You are required to perform maintenance on a node without causing service disruption. How would you safely drain the node and ensure high availability?
+
+6. How would you implement immutable infrastructure using containers and Infrastructure-as-Code tools like Terraform?
+
+7. How do you manage secrets securely in your CI/CD pipelines? Compare the use of Kubernetes Secrets vs external vault systems like HashiCorp Vault or AWS Secrets Manager.
+
+8. What tools or techniques would you use to integrate security scanning into the CI/CD process without slowing down delivery?
+
+9. Pick any DevOps tool you’ve worked with and explain its most common failure modes in production. How do you mitigate them?
+
+10. Describe a task or workflow you intentionally chose not to automate. Why did you make that decision?
+
+11. How do you ensure fast and safe rollback in your CI/CD deployments when a release causes issues?
+
+12. Explain the differences between canary deployments and blue/green deployments. When would you prefer one over the other?
+
+13. How do you enforce resource quotas, image scanning, and prevent the creation of certain Kubernetes services in production?
+
+14. You need to run Docker-in-Docker (DinD) for a nested CI pipeline. How do you design this securely and reliably?
+
+15. How would you manage application rollouts across multiple Kubernetes clusters in different environments?
+
+16. A recent CI/CD job left orphaned resources in your cluster. What measures can you take to avoid such inconsistencies?
+
+17. How do you ensure that your container images are immutable and traceable across environments?
+
+18. Your monthly cloud bill is higher than expected, and you find unused volumes and load balancers. How do you track, clean, and prevent this?
+
+19. How do you maintain auditability and compliance across your CI/CD pipelines, especially in enterprise or financial environments?
+
+20. A pod in production is being OOMKilled frequently. How do you identify the root cause and prevent future occurrences?
+
+21. Your Kubernetes cluster’s autoscaler is launching too many nodes during peak hours, causing budget concerns. How do you control autoscaling more efficiently?
+
+22. You are designing a multi-region Kubernetes disaster recovery strategy for a regulated enterprise. How do you plan backup, failover, and restoration?
