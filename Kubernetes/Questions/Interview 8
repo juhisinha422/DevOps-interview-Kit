@@ -1,0 +1,15 @@
+explain how external traffic reaches applications inside a Kubernetes cluster using an Ingress Controller especially using AWS components like NLB, Route 53, ASG, and EKS.
+
+High level flow:
+
+Client (Browser/API) --> Route 53 (DNS resolution) --> AWS NLB --> Ingress Controller (e.g., NGINX or AWS ALB Controller) --> Kubernetes Service (ClusterIP / NodePort) --> Backend Pods (Application containers)
+
+How Ingress Works:
+- A user defines an Ingress resource that contains routing rules (host/path-based).
+- The Ingress Controller, deployed inside the cluster, constantly watches for such resources.
+- On detection, it dynamically configures itself (e.g., updates NGINX config or ALB listener rules).
+- NLB, provisioned via a Service of type LoadBalancer, forwards traffic to the Ingress Controller.
+- Based on the ingress rules, requests are routed to the correct Kubernetes Service, which in turn routes to the actual Pods.
+- If TLS is configured, SSL termination happens at the controller level.
+
+This pattern is widely adopted in production-grade environments for its flexibility and control.
