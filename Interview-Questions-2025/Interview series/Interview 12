@@ -1,0 +1,38 @@
+DevOps Interview Questions Asked in a Top MNC 🚀
+
+📌 Real-Time Scenarios | Hands-On Topics | Must-Know for Interviews
+
+🔧 Jenkins CI/CD
+
+🔄 What are the typical CI/CD stages in a Jenkins pipeline?
+⚙️ How is the pipeline triggered automatically?
+🔁 Can you explain the CI/CD flow from Dev → QA → Pre-Prod → Prod?
+🌍 What are the environments used in your pipeline?
+🛠️ What issues have you faced while working with Jenkins?
+❌ If the pipeline fails at the build stage, how do you troubleshoot it?
+📦 Maven repo-related troubleshooting scenarios?
+
+🐳 Docker
+📄 What is a Dockerfile?
+✍️ How do you write a Dockerfile (best practices)?
+📂 What types of applications have you containerized?
+🔨 How do you build a Docker image?
+❓ What happens if you don’t mention CMD and ENTRYPOINT in a Dockerfile?
+
+
+☸️ Kubernetes
+
+❓ What is Kubernetes?
+🚀 What is a Deployment in K8s?
+🔁 Difference between Service vs Ingress?
+🔐 Difference between ConfigMap vs Secrets?
+🌐 How do you expose an application in Kubernetes?
+📦 What is a Pod in K8s?
+🤔 If a Pod can have multiple containers, what is the purpose of the second container?
+
+
+🧭 Helm
+
+🎯 What is Helm and why is it used?
+⚠️ You deployed using Helm v1. Now you are using Helm v2 and it fails.
+     👉 How will you debug and solve     version-related issues?
