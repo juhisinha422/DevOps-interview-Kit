@@ -1,0 +1,39 @@
+Interview Experience at Prodapt solutions as DevOps Engineer role
+
+👉 1st Round: - (F2F - interview 👤-👤) Over 1hr Discussion
+ 1) Tell me about your self
+ 2) Explain your experience in CI/CD tools and how do you used it?
+ 3) Give me some commands in Linux
+ 4) Command to generate SSH Key
+ 5) What if user lost SSH key?
+ 6) Command to show memory usage & CPU processing's?
+ 7) Command to kill any one of process
+ 8) How will you change user access or privileges?
+ 9) What are GitHub actions?
+10) Difference between GitHub actions & Jenkins?
+11) Any Branching strategics you followed in your organization?
+12) How much you are confident in Kubernetes & Docker?
+13) How will you stop POD in K8s?
+14) How will you replicate a POD?
+15) Command to get logs in K8s?
+16) what will you do if POD is not responding?
+17) What will you do if POD is getting more load and we need to stay it healthy before it gets died
+17) what is docker?
+18) How docker is useful & how will you implement in your pipeline?
+19) How will you find out merge conflicts?
+20) what kind of tools will you prefer for SAST & DAST securities?
+21) How will you manage your ServiceNow task assigned to you & what basis will you pick those and solve it?
+
+👉 2nd Round: - (Online Interview 💻)
+
+1) How much experience you have in writing pipeline scripts?
+2) Write a pipeline script of implementing some tools by Groovy language?
+3) Have you created pipeline script end to end what kind of tools you used?
+3) How will you create GitHub actions?
+4) Did you gave any ideas to your team or project in DevOps to improve the deployments? if any what are they?
+5) How much will you rate yourself about Linux & Python languages?
+6) How far you are good in using Ai in DevOps? (GitHub Copilot)
+7) How about Monitoring tools? what you have used in your organization?
+8) How are alerts managed in Prometheus or Grafana?
+
+⭐ What I understood by this interview was DevOps is not only about using tools. It is also about problem solving & situation handling in critical time. 
