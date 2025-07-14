@@ -1,0 +1,35 @@
+Technical Interview Experience – DevOps Engineer at Sigmoid (Round 1)
+-------------------------------
+ Round 1 of the DevOps Engineer interview at Sigmoid — a company known for large-scale data solutions and performance-critical infrastructure.
+
+This round tested hands-on infrastructure knowledge, DevOps observability, cloud-native security, and pipeline optimization.
+Here’s a brand-new set of fresh questions from the interview:
+🚀 CI/CD & Pipeline Optimization
+ ✅ How do you create reusable pipeline templates that support dynamic service onboarding?
+ ✅ What’s your approach to parallelizing 100+ unit/integration tests in a data-heavy build pipeline?
+ ✅ Explain how to securely pass secrets between self-hosted runners and cloud pipelines.
+ ✅ How do you enforce code quality checks (lint, scan, format) without slowing down PR cycles?
+
+🚀 Kubernetes (Advanced Scenarios)
+ ✅ How do you debug intermittent network drops between services inside a Kubernetes cluster?
+ ✅ What is your process to test a new ingress rule before applying it globally in production?
+ ✅ How do you configure Kubernetes audit logs to detect unauthorized API requests?
+ ✅ In what scenarios would you isolate workloads using Kubernetes RuntimeClasses?
+
+🚀 Infrastructure as Code & Policy Enforcement
+ ✅ How do you integrate policy-as-code (OPA/Conftest) with Terraform to enforce security rules?
+ ✅ What’s the difference between Terraform import, taint, and state mv — and when would you use each?
+ ✅ How do you handle state locking conflicts in a remote Terraform team setup?
+ ✅ How would you manage feature-specific infrastructure branches without environment drift?
+
+🚀 Data Platform Reliability & Observability
+ ✅ How do you trace bottlenecks in a distributed ETL job running across containerized services?
+ ✅ What’s your observability stack for detecting anomalies in Spark or Flink-based workloads?
+ ✅ How would you build an SLO-based alerting system for a data pipeline that ingests financial transactions?
+ ✅ How do you differentiate between a transient data lag vs. a systemic pipeline failure?
+
+🚀 Cloud-Native Security (Azure/AWS Focus)
+ ✅ How do you ensure that secrets used by a job running in a container are never logged or persisted?
+ ✅ What’s the difference between Key Vault, Secret Manager, and Parameter Store — and when to choose what?
+ ✅ How do you monitor and respond to privilege escalation attempts within CI/CD agents?
+ ✅ What is your security approach to running third-party GitHub Actions or pipeline extensions?
