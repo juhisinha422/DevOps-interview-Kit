@@ -1,0 +1,43 @@
+DevOps Interview Questions at EY – 5+ YOE Edition
+
+Round 1: Tech Screening (45 mins)
+• Explain your entire CI/CD, where’s the blast radius?
+• Difference between ALB and NLB, when does latency matter more than routing logic?
+• Terraform taint vs terraform state rm, when would you use either?
+• How does CoreDNS handle plugin chain resolution?
+• Choose between EBS, EFS, and FSx for different workloads
+• Bash: Find all .log files over 500MB modified in the last 48h
+• DB migration without downtime? Explain rollback contingency
+• Roll back a failed Helm release. What’s your exact command chain?
+• Secure Vault secrets in GitHub Actions without hardcoding
+• Node is Ready, but kubelet logs are silent. What now?
+
+Round 2: Live Scenarios & RCA (75 mins)
+• Your autoscaler doubled the infrastructure costs. Logs are normal. What do you check?
+• A prod pod restarts 8 times/hour. Logs look fine. What’s your triage plan?
+• Terraform drift detected. Who gets paged, and what’s the fix sequence?
+• Disaster recovery setup, what does it look like? When was it last tested?
+• Simulate a DNS outage with the CoreDNS plugin misorder. how?
+• Dockerfile: Multi-stage image with caching and minimized attack surface
+• Secure gRPC traffic across K8s namespaces
+• S3 bucket deleted by mistake, walk me through infra + IAM prevention
+• Helm worked in staging but broke in prod. Explain the failure class.
+• App returns 200 OK, but functionality is broken. What did you monitor?
+
+Round 3: Behavioral Grit Check (30 mins)
+• How do you onboard juniors without overwhelming them?
+• What’s the worst production day you’ve faced? What broke you?
+• Ever shipped under pressure and regretted it?
+• How do you protect engineering from non-technical deadlines?
+• What does a “no blame” postmortem look like in your team?
+
+💡 TL;DR:
+If you haven’t:
+1. Simulated a DNS cache corruption
+2. Recovered a Terraform state loss
+3. Diagnosed a 200/OK but broken service
+4. Debugged CoreDNS plugin chain at midnight
+
+…then interviews like EY will feel like fire drills.
+
+But what if you trained in fire?
