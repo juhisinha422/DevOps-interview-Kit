@@ -1,0 +1,40 @@
+Interview Questions for 15 LPA - #Cloud & #DevOps Engineer Role
+
+Level 1
+
+1, write the python script for reading the output.
+2, write the python script to output of dockerfile.
+3, bash script - how to change the version of dockerfile.
+4, explain the CI CD workflow?
+5, components used in the pipeline.
+6, what is sonarqube?
+7, python script for triggering the Jenkins pipeline.
+8, how to manage terraform?
+9, version control, how to store the terraform files?
+10, S3 uses?
+11, troubleshoot failed Jenkins pipeline?
+12, handle security in devops?
+13, how do u ensure zero downtime?
+14, load balancer?
+15, troubleshooting steps followed in production failure?
+16, how to configure multiple environments in the Jenkins pipeline?
+17, challenges faced in a recent project?
+18, possibility to build triggered is not triggered?
+
+
+
+Level 2 - Client round.
+
+1, end to end workflow of devops.
+2, branching strategy.
+3, typical branches in dev?
+4, stages in pipeline, type of pipeline.
+5, unit testing, which tool u r using?
+6, docker deployment? Write the dockerfile?
+7, structure of dockerfile?
+8, how to deploy k8s in AWS?
+9, components of K8s?
+10, helm chart?
+11, commands to deploy on k8s, advantage?
+12, challenges faced?
+13, troubleshoot methods?
