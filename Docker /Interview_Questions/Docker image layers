@@ -1,0 +1,66 @@
+Interviewer:
+"Can you explain what Docker image layers are and how they work?"
+
+
+Let’s think of building a Docker image like building a layered cake.
+Each command in your Dockerfile adds a new layer to the image.
+dockerfile
+       FROM ubuntu
+       RUN apt-get update
+       RUN apt-get install -y python3
+       COPY . /app
+       RUN pip install -r requirements.txt
+
+Now let’s break it down
+Every Line = One Layer
+Each of these instructions:
+       FROM
+       RUN
+       COPY
+       ADD
+Creates a separate, cached, read-only layer.
+So:
+      First layer: Ubuntu base
+      Second layer: Updates package list
+      Third layer: Installs Python
+      Fourth layer: Copies code
+      Fifth layer: Installs dependencies
+
+Why Layers Are Brilliant
+1. Caching = Faster Builds
+When you rebuild the image, Docker doesn’t rebuild everything.
+It uses cache for layers that didn’t change.
+Example:
+You changed one line in your app? Only the COPY and everything after that gets rebuilt.
+Other layers stay as they are. Super fast.
+
+
+2. Storage Efficiency
+Same base layer can be shared across images.
+So less disk space is used. This is why even big projects build and deploy faster once the cache is warm.
+
+
+3. Optimization
+When you understand layers:
+You keep frequently-changing code in later layers
+You combine steps smartly
+You keep your image size minimal
+
+
+Practical Tips (for smart fresher):
+        Use .dockerignore so unnecessary files don’t even reach the COPY layer
+        Put COPY . . as late as possible, after all install steps
+        Combine RUN commands using && to reduce number of layers
+        Use base images like python:3.11-slim to reduce size
+
+
+
+Docker image layers ek building jaise hote hain — neeche se upar bante hain.
+Har RUN, COPY, FROM ek nayi floor (layer) banata hai.
+Jab aap nayi floor banate ho toh upar ke floors dobara banana padta hai.
+Isiliye agar neeche ka change nahi hua, toh Docker purani building (cache) use kar leta hai.
+
+
+
+Interview Wrap-Up Answer:
+Docker image layers are the building blocks of a Docker image. Each command in the Dockerfile creates a layer. Docker caches these layers to avoid rebuilding the entire image every time, which speeds up the build process and saves space. Understanding how layers work helps in optimizing Dockerfiles, reducing image size, and improving CI/CD speed.
