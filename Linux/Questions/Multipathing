@@ -1,0 +1,50 @@
+What is Multipathing in Linux? 😊 
+
+Multipathing allows a Linux system to access storage through multiple physical paths (cables, HBAs, switches). If one path fails, another takes over—providing redundancy and load balancing.
+
+✅ Why use Multipathing?
+
+High availability
+
+Performance (load balancing)
+
+Path failover
+
+Logical device management
+
+# How to Configure Multipathing in Linux
+
+# Install packages
+
+
+# RHEL/CentOS
+sudo yum install device-mapper-multipath -y
+
+# Ubuntu/Debian
+sudo apt install multipath-tools -y
+# Enable configuration
+
+sudo mpathconf --enable --with_multipathd y
+#Edit config (optional)
+
+
+sudo vi /etc/multipath.conf
+Example:
+
+
+defaults {
+  user_friendly_names yes
+  find_multipaths yes
+}
+
+# Start service
+
+sudo systemctl start multipathd
+sudo systemctl enable multipathd
+#Check devices
+
+
+sudo multipath -ll
+sudo lsblk
+
+# Tip: Test by unplugging one path—your system should still access the storage.
