@@ -1,0 +1,84 @@
+🔄 1. Log File Rotation Scenario
+
+Scenario:
+ Your application writes to a log file continuously. If the file exceeds 100MB, it should be archived and a new log file should start.
+
+Question:
+ Write a shell script to check if app.log exceeds 100MB. If so, archive it with a timestamp and start a new empty file.
+
+🧹 2. Temp File Cleanup Scenario
+
+Scenario:
+
+ Your /tmp directory keeps filling up. You’ve been asked to clean up files older than 7 days every night.
+
+Question:
+ Write a script to delete files older than 7 days in /tmp, and schedule it using cron.
+
+📈 3. Disk Usage Alert
+
+Scenario:
+ The system should alert the admin when any partition crosses 80% usage.
+
+Question:
+ Write a script that checks disk usage and sends an email if any partition is over 80%.
+
+🔐 4. User Lock Detection
+
+Scenario:
+
+ Some users are getting locked out of the system.
+
+Question:
+ Write a script to find all users who are locked or disabled on a Linux system.
+
+🌐 5. Check Server Reachability
+
+Scenario:
+ You have a list of 100 IPs and need to know which ones are reachable.
+
+Question:
+ Write a shell script to read IPs from a file and ping each one. Output the list of reachable and unreachable hosts.
+
+🕒 6. Process Uptime Scenario
+
+Scenario:
+ You need to ensure a critical service (like nginx) is running and hasn't restarted recently.
+
+Question:
+ Write a script to check if nginx is running, and show its uptime or restart timestamp.
+
+🧪 7. Environment Check Before Deployment
+
+Scenario:
+ Before deploying, you must validate that:
+/var/www has at least 5GB free space
+nginx is active
+Port 443 is open
+
+Question:
+ Write a pre-deployment check script to validate these conditions.
+
+🔍 8. Find Large Files
+
+Scenario:
+ The system is running out of space. You want to find the top 10 largest files under /.
+
+Question:
+ Write a shell script to list the top 10 largest files with full paths.
+
+📋 9. System Inventory Script
+Scenario:
+
+ Your team wants to gather OS version, CPU cores, total RAM, and disk space for each server.
+
+Question:
+ Write a script to output this information and save it to a report file.
+
+🔁 10. Service Auto-Restart
+
+Scenario:
+ If httpd or nginx crashes, it should be automatically restarted, and a log should be maintained.
+
+Question:
+ Write a monitoring script to check every 5 minutes and restart the service if needed, logging the action
