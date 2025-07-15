@@ -1,0 +1,30 @@
+What is a Data Source in Terraform?
+Data sources allow you to fetch data from existing infrastructure managed outside your Terraform code.
+
+   In data.tf
+  data "aws_ami" "ami_id" {
+
+  most_recent = true
+  owners = ["973714476881"]
+
+  filter {
+    name  = "name"
+    values = ["RHEL-9-DevOps-Practice"]
+  }
+}
+
+Now you can use this in other parts of your code:
+
+ami_id = data.aws_ami.ami_id.id
+
+📤 What is an Output in Terraform?
+Outputs let you display values after applying the plan.
+
+output.tf
+
+  output "ami_id" {
+  value = data.aws_ami.ami_id.id
+}
+
+When you run terraform apply, you’ll see:
+vpc_id = vpc-0a12bc34d56ef78gh
