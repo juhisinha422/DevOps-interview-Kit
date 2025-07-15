@@ -1,0 +1,47 @@
+What problem does Kubernetes actually solve?
+
+Interviewer:
+"Why do we even use Kubernetes? What problem is it solving?"
+
+
+Kubernetes solves the chaos that comes with running containerized applications at scale.
+
+Let’s rewind a bit
+Before Kubernetes...
+You built a Docker image. Ran a container. Deployed it on a VM.
+Worked great — for one container
+
+But then what?
+How will you handle 100+ containers across multiple servers?
+What if a container crashes?
+What if traffic increases — how will you auto-scale?
+How will you manage load balancing, networking, updates, and rollbacks?
+It became complex.
+And that’s where Kubernetes stepped in — and automated the chaos.
+
+
+What Problems Does Kubernetes Solve?
+1. Container Orchestration
+    It runs, schedules, restarts, and monitors containers across multiple servers.
+2. Auto-healing
+     If a pod crashes, it automatically spins up a new one.
+3. Scaling
+     It can scale your app up or down based on load (manual or auto).
+4. Load Balancing
+     Distributes traffic across healthy pods behind a service.
+5.  Rolling Updates & Rollbacks
+      Deploy new versions without downtime, and roll back if needed.
+6.  Secrets & Config Management
+     Manages environment variables, secrets, and config cleanly.
+7.   Multi-environment Support
+      Can run across dev, staging, prod — consistently.
+
+
+
+Docker ne container banana easy banaya.
+Kubernetes ne unhe manage karna, scale karna, aur production ready banana easy banaya.
+
+
+
+Interview Wrap-Up Answer:
+Kubernetes solves the problem of managing containers at scale. It automates deployment, scaling, healing, networking, and rolling updates — making it easier to run reliable, production-grade applications in a containerized world.
