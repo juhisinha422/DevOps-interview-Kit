@@ -1,0 +1,37 @@
+ 𝗞𝗲𝘆 𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝗼𝗳 𝗔𝗪𝗦 𝗩𝗣𝗖:
+
+𝟭. 𝗦𝘂𝗯𝗻𝗲𝘁𝘀 (𝗣𝘂𝗯𝗹𝗶𝗰 & 𝗣𝗿𝗶𝘃𝗮𝘁𝗲)
+ Divide your VPC into smaller logical segments for organizing resources based on access needs.
+
+𝟮. 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗚𝗿𝗼𝘂𝗽𝘀 & 𝗡𝗔𝗖𝗟𝘀
+
+ * 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗚𝗿𝗼𝘂𝗽𝘀: Instance-level firewalls
+ * 𝗡𝗔𝗖𝗟𝘀: Subnet-level firewalls
+ Control traffic flow in and out of your resources.
+
+𝟯. 𝗥𝗼𝘂𝘁𝗲 𝗧𝗮𝗯𝗹𝗲𝘀
+ Define 𝗵𝗼𝘄 𝘁𝗿𝗮𝗳𝗳𝗶𝗰 𝗶𝘀 𝗿𝗼𝘂𝘁𝗲𝗱 between subnets, the internet, and other networks.
+
+𝟰. 𝗜𝗻𝘁𝗲𝗿𝗻𝗲𝘁 𝗚𝗮𝘁𝗲𝘄𝗮𝘆 (𝗜𝗚𝗪)
+ Enables 𝗶𝗻𝘁𝗲𝗿𝗻𝗲𝘁 𝗮𝗰𝗰𝗲𝘀𝘀 for instances in public subnets.
+
+𝟱. 𝗡𝗔𝗧 𝗚𝗮𝘁𝗲𝘄𝗮𝘆 / 𝗡𝗔𝗧 𝗜𝗻𝘀𝘁𝗮𝗻𝗰𝗲
+ Allow 𝗽𝗿𝗶𝘃𝗮𝘁𝗲 𝗶𝗻𝘀𝘁𝗮𝗻𝗰𝗲𝘀 to access the internet 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝗯𝗲𝗶𝗻𝗴 𝗲𝘅𝗽𝗼𝘀𝗲𝗱 to incoming traffic.
+
+𝟲. 𝗘𝗹𝗮𝘀𝘁𝗶𝗰 𝗜𝗣 𝗔𝗱𝗱𝗿𝗲𝘀𝘀𝗲𝘀
+ Assign 𝘀𝘁𝗮𝘁𝗶𝗰 𝗽𝘂𝗯𝗹𝗶𝗰 𝗜𝗣𝘀 to instances that require them.
+
+𝟳. 𝗩𝗣𝗖 𝗣𝗲𝗲𝗿𝗶𝗻𝗴
+ Connect VPCs 𝗮𝗰𝗿𝗼𝘀𝘀 𝗿𝗲𝗴𝗶𝗼𝗻𝘀 𝗼𝗿 𝗮𝗰𝗰𝗼𝘂𝗻𝘁𝘀 privately without the need for VPNs or public IPs.
+
+𝟴. 𝗩𝗣𝗖 𝗘𝗻𝗱𝗽𝗼𝗶𝗻𝘁𝘀
+ Privately connect your VPC t𝗼 𝗔𝗪𝗦 𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀 (𝗦𝟯, 𝗗𝘆𝗻𝗮𝗺𝗼𝗗𝗕) without going through the public internet.
+
+𝟵. 𝗙𝗹𝗼𝘄 𝗟𝗼𝗴𝘀
+ Capture and analyze network traffic for 𝘀𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗮𝘂𝗱𝗶𝘁𝗶𝗻𝗴 and troubleshooting.
+
+𝟭𝟬. 𝗜𝗣𝘃𝟲 𝗦𝘂𝗽𝗽𝗼𝗿𝘁
+ Enables dual-stack mode (IPv4 + IPv6) for 𝗺𝗼𝗱𝗲𝗿𝗻 𝗻𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗻𝗲𝗲𝗱𝘀.
+
+➤ 𝗪𝗵𝘆 𝗜𝘁 𝗠𝗮𝘁𝘁𝗲𝗿𝘀:
+VPC’s features provide the foundation for building secure, isolated, and highly available infrastructure in AWS — a must-know for every Cloud and DevOps professional.
