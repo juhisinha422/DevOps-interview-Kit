@@ -1,0 +1,42 @@
+1. Tell me about yourself.
+2. Which OS do you use daily and why?
+3. Interesting features of Linux?
+4. How does Linux maintain security?
+5. Linux file system structure?
+6. Where are system-related files kept?
+7. Where to find binary files?
+8. Can you edit system files without root access?
+9. Why is Linux secure?
+10. Which command used for modification?
+11. Difference between chmod and chown?
+12. What does /etc/passwd do?
+13. How to view running processes?
+14. What is ps aux?
+15. Difference between top and htop?
+16. Last 10 lines of a log file?
+17. What is a symbolic link?
+18. What is a soft link?
+19. Command to create soft link?
+20. Difference between soft link vs hard link?
+21. When did you use them?
+22. What are signals in Linux?
+23. What is a daemon?
+24. Is daemon only used in Docker?
+25. Which daemon do we use for EC2 SSH?
+26. What is symmetric key?
+27. Public/private key: symmetric or asymmetric?
+28. Tool to check file usage?
+29. Does awk need comma-separated data?
+30. Command to check if service is running?
+31. Cron job vs crontab?
+32. How to store script on GitHub with code checks?
+33. Difference between hooks and webhooks?
+34. AI for reviewing PRs?
+35. Remove sensitive line from Git history?
+36. Git reset vs revert?
+37. When did you use reset/revert?
+38. How do conflicts happen & how to solve?
+39. How to get all branches from GitHub?
+40. How to hide token when using git remote -v?
+41. What is an environment variable in Linux?
+42. Was there a time you questioned your path?
