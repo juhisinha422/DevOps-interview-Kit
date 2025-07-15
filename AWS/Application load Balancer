@@ -1,0 +1,5 @@
+application load balancer:
+
+An Application Load Balancer is provided by AWS. AWS distributes incoming application traffic across multiple targets (like EC2 instances) at the application laye. It can route traffic based on content and can be configured to redirect HTTP traffic to HTTPS for secure communication.
+
+HTTP Port number is 80 and HTTPS Port number is 443
