@@ -1,0 +1,70 @@
+If you're deploying an application from scratch — what all do you need?
+
+Interviewer:
+Imagine you have a codebase. From scratch — what all would you set up to take it live in production?
+
+
+
+Sure! Here's a step-by-step breakdown of everything needed — from code to production:
+1. Source Code Management
+Store the code in a Git repository (e.g., GitHub, Azure Repos, GitLab)
+Use proper branching strategy (main, dev, feature/*)
+So that multiple people can collaborate and track changes.
+
+2.Build Process
+Define how the application will be built (Node, Python, Java etc.)
+Install dependencies, run tests, create artifacts
+This ensures the code compiles and works before shipping.
+
+3. Containerization (Optional but recommended)
+Use Docker to package the app with its dependencies
+Write a Dockerfile
+Build and push image to container registry (ACR, DockerHub etc.)
+“Works on my machine” ends here.
+
+4. Infrastructure Setup
+Set up infrastructure to run the app (VMs, AKS, ECS, etc.)
+Use Terraform, ARM, Bicep, CloudFormation (IaC)
+Manual infra setup is risky and inconsistent.
+
+5. Networking & DNS
+Setup Load Balancers, Ingress, DNS records (like app.justvisualise.com)
+So users can access the app from anywhere.
+
+6. Secrets & Config Management
+Environment variables, secrets (DB creds, API keys) via Key Vault, Sealed Secrets, etc.
+Never hardcode secrets in code.
+
+7. CI/CD Pipeline
+Create pipeline to:
+Build app
+Run tests
+Build Docker image
+Push to registry
+Deploy to Dev/UAT/Prod
+Tools: Azure Pipelines, GitHub Actions, Jenkins, GitLab CI etc.
+
+8. Monitoring & Logging
+Set up tools to monitor app & infra (Grafana, Prometheus, Azure Monitor)
+Central logging (ELK, Loki, Azure Log Analytics)
+Helps in debugging and performance tuning.
+
+9. Testing & Staging Environment
+Deploy to Dev & UAT before Prod
+Run automated and manual tests
+Catch issues before real users do.
+
+10. Rollback Plan
+Use Helm or Kubernetes Deployment strategies
+Keep previous builds ready for rollback
+Deployment without rollback = risky launch.
+
+
+
+Ek app ko live karne ka matlab sirf code run karna nahi hai.
+ Aapko infra banana hota hai, pipeline lagani hoti hai, secrets secure karne hote hain, aur monitoring bhi lagani hoti hai.
+Agar aap ye poori chain samajh jaate ho — toh aap DevOps ki asli value samajhne lagte ho.
+
+
+Interview Wrap-Up Answer:
+To deploy an application from scratch, we need source code management, build automation, containerization, infrastructure setup, networking, secrets/config management, CI/CD pipeline, monitoring, and testing stages. All this ensures reliable, repeatable, and secure deployment to production.
