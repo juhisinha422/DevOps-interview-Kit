@@ -1,0 +1,32 @@
+Top Kubernetes Interview Questions (With Answers)
+
+🟢 Q1: How do you debug a CrashLoopBackOff in a pod?
+ 🔹 Check logs: kubectl logs <pod>
+ 🔹 Describe pod: kubectl describe pod <pod>
+ 🔹 Check if the app is failing (bad code, wrong env, missing secret)
+ 🔹 Liveness/readiness probe failures can also trigger restarts
+
+🟢 Q2: How do you do zero-downtime deployments in Kubernetes?
+ 🔹 Use rolling updates (default in Deployments)
+ 🔹 Set maxSurge and maxUnavailable
+ 🔹 Use readiness probes to route traffic only to healthy pods
+ 🔹 For stateful apps: consider blue/green or canary deployments
+
+🟢 Q3: How do you manage secrets securely in production?
+ 🔹 Use Secrets objects (base64 encoded)
+ 🔹 Use external secret managers (like AWS Secrets Manager with CSI Driver)
+ 🔹 Use RBAC to restrict access
+ 🔹 Encrypt secrets at rest using KMS with EKS
+
+🟢 Q4: How do you scale an application automatically?
+ 🔹 Horizontal Pod Autoscaler (HPA) – based on CPU/memory
+ 🔹 Vertical Pod Autoscaler (VPA) – adjusts resource requests
+ 🔹 Cluster Autoscaler – adjusts worker nodes
+ 🔹 Add metrics server:
+Bash
+kubectl top pods
+
+🟢 Q5: How do you monitor and log your cluster?
+ 🔹 Monitoring: Prometheus + Grafana
+ 🔹 Logging: Fluentd/Fluent Bit + Elasticsearch + Kibana (EFK stack)
+ 🔹 Use AWS-native tools like CloudWatch Logs for EKS
