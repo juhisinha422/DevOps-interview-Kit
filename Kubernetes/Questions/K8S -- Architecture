@@ -1,0 +1,69 @@
+Can you explain Kubernetes Architecture?
+
+Interviewer:
+Before we talk about pods and deployments — can you walk me through how Kubernetes is structured internally?
+
+Yes! Kubernetes follows a master-worker (control plane – node) architecture, where each part plays a specific role.
+
+Let’s break it down 
+Kubernetes has two main layers:
+1. Control Plane (The Brain )
+This is the brain of the system — it decides what should happen in your cluster.
+It includes:
+
+API Server:
+The front door of Kubernetes. All kubectl commands go through here.
+
+Scheduler:
+Decides where to run a pod — which node has resources?
+
+Controller Manager:
+Watches and manages the desired state (e.g., if a pod crashes, it creates a new one).
+
+etcd:
+The memory of Kubernetes — stores the cluster state (key-value store).
+
+
+
+2. Worker Nodes (The Hands )
+These are the machines where your actual applications (pods) run.
+Each node runs:
+
+Kubelet:
+Talks to the control plane. Ensures containers are running as expected.
+
+Kube Proxy:
+Manages network rules and traffic routing to pods.
+
+Container Runtime:
+Actually runs your containers (Docker, containerd etc.)
+
+
+Think of it like this:
+Control Plane = Manager (plans, decides, controls)
+Nodes = Workers (execute, run apps)
+Kubelet = Worker’s walkie-talkie (talks to manager)
+etcd = Diary (remembers everything)
+Kube Proxy = Traffic cop (routes data properly)
+
+
+
+Flow of a Deployment:
+       You run kubectl apply -f deployment.yaml
+       API server receives the request
+       Scheduler decides the best node
+       Kubelet on that node runs the container
+       Kube Proxy handles networking
+       Controller Manager keeps checking if desired state is maintained
+
+
+
+Kubernetes ek factory jaisa hai —
+manager (control plane) decide karta hai kya banana hai,
+workers (nodes) us cheez ko actually banate hain (run containers).
+Agar control plane ko samajh gaye, to har issue ka root samajhna easy ho jaata hai.
+
+
+
+Interview Wrap-Up Answer:
+Kubernetes architecture has a control plane (API Server, Scheduler, Controller Manager, etcd) that manages decisions, and worker nodes (Kubelet, Kube Proxy, container runtime) that run applications. Understanding this helps troubleshoot, design, and scale Kubernetes-based systems effectively.
