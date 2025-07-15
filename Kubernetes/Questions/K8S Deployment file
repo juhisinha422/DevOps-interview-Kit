@@ -1,0 +1,81 @@
+Kubernetes Deployment File – Let’s Understand it Line by Line 
+
+Interviewer:
+ Can you explain what happens in a deployment.yaml file?
+
+
+Sure! A deployment.yaml file is a set of instructions to Kubernetes, saying:
+I want to run this app. I need this many pods. Here's the image to use. This is the port it listens on. If anything crashes, restart it automatically.
+
+Let’s break it block-by-block
+
+apiVersion: apps/v1
+This tells Kubernetes:
+        Which version of the Deployment API are we using?
+        (apps/v1 is standard for deployments)
+
+
+kind: Deployment
+This defines the type of Kubernetes object we’re creating.
+Here, it’s a Deployment — which manages and maintains your application.
+
+
+metadata:
+      name: my-app
+Gives the deployment a name — helpful for identifying it during updates, scaling, or deletion.
+
+
+spec:
+The core of your deployment config.
+      replicas: 2
+Run 2 pods of this app — for high availability.
+Even if one crashes, the other keeps running.
+
+
+selector: matchLabels:
+    app: my-app
+This connects the deployment to pods —
+"Manage only the pods that have this label."
+
+template:
+This is the blueprint for pods that this deployment will create.
+labels:
+    app: my-app
+Add this label to each pod so it can be tracked.
+
+
+spec.containers:
+The section that defines the container inside the pod:
+    - name: my-app
+       image: my-app:latest
+       ports:
+             - containerPort: 8000
+
+
+image:
+Tells Kubernetes which Docker image to run.
+
+containerPort:
+Defines the port inside the container where the app listens.
+
+
+Real-World Thinking:
+When you apply this file using:
+          kubectl apply -f deployment.yaml
+
+Kubernetes will:
+Create 2 pods (as per replicas)
+Pull the image
+Start the containers
+Restart them if they crash
+Ensure everything matches the defined desired state
+
+
+
+YAML file Kubernetes ko ek instruction manual deta hai — ki bhai app ko kaise chalana hai, kitni baar chalana hai, aur agar kuch fail ho gaya toh kaise theek karna hai.
+
+
+
+
+Interview Summary Answer:
+A deployment.yaml defines the desired state for an application in Kubernetes — including how many pods to run, what image to use, what labels to apply, and how to connect everything together. Kubernetes takes care of maintaining that state automatically.
