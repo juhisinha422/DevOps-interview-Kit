@@ -1,0 +1,51 @@
+ 1. Build Failure Scenario
+Q: "Your Maven build suddenly fails with a Missing artifact error. How would you troubleshoot?"
+👉 Expected Approach:
+Check pom.xml for correct version and groupId/artifactId
+Ensure the artifact exists in the configured repository (Maven Central/Nexus/Artifactory)
+Clear .m2/repository cache and re-download
+Validate proxy and internet settings
+🏗️ 2. Managing Multi-Module Builds
+Q: "You’re working on a multi-module Maven project, and one module fails during build. What steps would you take?"
+👉 Look For:
+Use mvn clean install -pl <module-name> -am to build only affected module and dependencies
+Check for interdependencies and proper module hierarchy in parent pom.xml
+Validate plugin versions or snapshot dependencies
+📦 3. Dependency Conflict
+Q: "Your Maven project compiles but behaves incorrectly due to different versions of the same dependency being used. How do you resolve it?"
+👉 Response:
+Use mvn dependency:tree to identify version conflicts
+Apply dependency exclusion in pom.xml
+Use dependency management section in parent POM to enforce consistent versions
+🔄 4. Integration with Jenkins
+Q: "Your Jenkins pipeline fails during the Maven test phase. What do you investigate first?"
+👉 Good Answers:
+Validate Maven is correctly installed/configured on the Jenkins node
+Check settings.xml or .m2 repo if dependencies are not being downloaded
+Review logs for test failures, missing env variables, or plugin issues
+🧩 5. Custom Plugin Issue
+Q: "You wrote a Maven plugin or goal, but it's not being executed. How would you debug?"
+👉 Solution Steps:
+Ensure plugin is defined under build > plugins in pom.xml
+Verify correct lifecycle phase is mapped
+Use mvn help:effective-pom to verify plugin visibility
+Check logs with -X for debug-level info
+🗃️ 6. Artifact Not Uploaded to Nexus/Artifactory
+Q: "The Maven deploy phase doesn't push artifacts to Nexus. What could be the issue?"
+👉 Possible Causes:
+Incorrect distributionManagement URL
+Wrong credentials in settings.xml
+Missing maven-deploy-plugin
+Proxy or SSL handshake failure
+⚙️ 7. Need to Speed Up Builds
+Q: "Your Maven build takes too long. What optimizations can you suggest?"
+👉 Suggestions:
+Use parallel builds: mvn -T 1C install
+Use incremental builds
+Cache dependencies with CI tools (e.g., .m2 directory in Jenkins)
+Avoid unnecessary plugins
+👨💻 8. Need to Add a Local JAR
+Q: "Your team wants to use a JAR not available in Maven Central. How do you include it?"
+👉 You can:
+Use mvn install:install-file to add the JAR to the local repository
+Or deploy it to Nexus/Artifactory and reference via pom.xml
