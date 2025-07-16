@@ -1,0 +1,23 @@
+What is a PV?
+
+ PV (Persistent Volume) is described as a pre-provisioned storage resource created in the cluster — for example, using AWS EBS volumes.
+ create EBS volumes manually first (e.g., 2GB, 4GB, etc.).
+Then define PVs in Kubernetes YAML manifests, specifying:
+The volumeID from AWS
+storageClassName (e.g., gp2)
+Size (capacity)
+accessModes (e.g., ReadWriteOnce)
+The PV exists independently of pods — it represents actual storage available to be claimed.
+The document also shows that PVs are useful because even if you delete pods (such as MongoDB deployments), the data on the PV remains, since it lives outside the pod lifecycle.
+
+✅ What is a PVC?
+
+A PVC (Persistent Volume Claim) is a way for users or applications to request storage from the pool of PVs.
+ created PVC YAML files requesting different sizes (2GB, 4GB, etc.).
+The PVC specifies:
+Requested storage size
+accessModes
+storageClassName
+When a PVC is created, Kubernetes looks for a matching PV and binds it.
+Once bound, the PVC can be used in pod definitions to mount storage at specific paths.
+Your document shows using multiple PVCs in a MongoDB deployment and mounting them at different directories (e.g., /data/db, /tmp/db1, etc.).
