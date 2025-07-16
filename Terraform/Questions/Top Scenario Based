@@ -1,0 +1,52 @@
+Top Scenario-Based Terraform Interview Questions
+🛠️ 1. State File Conflict
+Q: "Two team members applied Terraform changes simultaneously, and now the infrastructure is in an inconsistent state. What would you do?"
+Expected Response:
+Discuss state locking (terraform state lock) and how to avoid parallel applies
+Use remote backend (e.g., S3 with DynamoDB locking in AWS)
+Steps to recover: manually review state file, roll back or fix drift with terraform refresh
+🔄 2. Apply Failed Midway
+Q: "You ran terraform apply, but it failed halfway through. How would you handle the partial deployment?"
+Expected Response:
+Run terraform plan to inspect current vs desired state
+Identify what succeeded vs failed
+Fix root cause and rerun apply
+Possibly use -target to isolate problematic resource(s)
+📦 3. Managing Sensitive Variables
+Q: "How would you securely manage secrets (e.g., DB passwords) in Terraform?"
+Good Answers:
+Avoid hardcoding secrets in .tf files
+Use TF_VAR_* environment variables, or external secret stores (like AWS Secrets Manager, Vault)
+Use sensitive = true to mask output
+🧩 4. Module Reusability
+Q: "You have similar infrastructure for dev, staging, and prod. How would you design this using Terraform modules?"
+Answer Approach:
+Create a reusable module for core infra (e.g., VPC, EC2, RDS)
+Use separate .tfvars for each environment
+Use workspaces or separate state files per environment
+🧪 5. Preventing Accidental Deletion
+Q: "Your colleague accidentally deleted a production resource using Terraform. How can you prevent this in the future?"
+Answer Elements:
+Use lifecycle { prevent_destroy = true }
+Implement approval workflow (via CI/CD pipeline or manual review of plan)
+Enforce access control using IAM or RBAC
+Use policy-as-code tools (like Sentinel or OPA)
+🗂️ 6. Large Team Collaboration
+Q: "How do you manage Terraform in a team of multiple developers working on the same infrastructure?"
+Expected Answer:
+Use remote backends with locking (S3 + DynamoDB for AWS)
+Version control with Git
+Define clear folder structure and module boundaries
+Use CI/CD to automate plan and apply
+🔍 7. Debugging Plan Difference
+Q: "You see unexpected changes in terraform plan, even though no code has changed. What could be wrong?"
+Likely Causes:
+Drift in real infrastructure (manually modified)
+External data sources changed
+Dynamic values or computed expressions (e.g., timestamp, random_id)
+📜 8. Version Mismatch
+Q: "One teammate is using Terraform v1.5 and another is on v1.3. This causes errors in shared workflows. What do you do?"
+Response Should Include:
+Enforce version with terraform { required_version = ">=1.4" }
+Standardize via .terraform-version or Docker images
+Use Terraform CLI wrappers (e.g., tfenv) to manage versions
