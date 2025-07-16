@@ -1,0 +1,45 @@
+Epam interview questions : ( first round )
+GCP Devops Engineer -Senior 
+
+1. What are sheiled vms and what are the benifits it provides ?
+
+2. How can we add a firewall rule for a specific vm instance or mig ?
+
+3. What are the steps involved in creating a shared VPC ?
+
+4. Suppose i have created a resource manually and now i want to bring it to managed by terraform . What steps you can follow ?
+
+5. Does terraform plan locks the state file ?
+
+6. Right a condition in terraform resource block so that it will only create resource in dev env and not in svt and prod ?
+
+7. Write a dockerfile for nginx ?
+
+8. What are null resources in terraform and when it is used ?
+
+9. How to download metadata of a GCS cloud bucket ?
+
+10. How can you copy a docker image from one server to another ?
+
+11. What is a init container and a sidecar container ? When to use what ?
+
+12. What are daemonsets in Kunerentes ?
+
+13. How does kube controller know that a pod is down in one of the worker node ?
+
+14. Write a pod defination yaml file ? 
+
+15. What is the diffrence between VPC peering and VPN ? 
+
+16. What is the diffrence between git fetch and git pull ? 
+
+17. What is the diffrence between git reset and git revert ? 
+
+18. How do you resolve the merge conflicts ?
+
+19. What is sed command in linux , write an example for it ? 
+
+20. What are the storage class in GCS and when to use which one ?
+
+21. Hitting the load balancer url after
+ a deployment but i am still getting old version of app . What should be the cause behind this ? 
