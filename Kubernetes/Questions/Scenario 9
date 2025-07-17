@@ -1,0 +1,25 @@
+Scenario based Kubernetes interview questions : 
+
+1. Suppose i want the pod to be scheduled on a specific node only, how can i achieve this ? 
+
+2. How can restrict which pod can access to the other pod in k8s .
+
+3. I am getting 503 error when i am hitting a load balancer url which routes the traffice to the application deployed in k8s cluster ? How will u troubleahoot this ? 
+
+4. I am getting crashloopbackoff error for one of the  pods in a namespace? What should be the reason ?
+
+5. Pod is in pending state afetr the deployment is done ? What can be the reason behind this ?
+
+6. How can you ensure high availability for your application deployed in k8s cluster ? 
+
+7. I want the run one time database migration task before my application start ? How can i achive this in k8s ? 
+
+8. I want to only give read only permissions to check the logs for users ? How can u setup RBAC for this ? 
+
+9. What happens if the k8s master node and worker node firewall gets broken?
+
+10. What are steps to be performed while updating a k8s cluster ?
+
+11. How can u ensure that only pods with a specific label can talk to your backend service. How would you implement this?
+
+12. All pods on the statefulsets are trying to connect to the same storage volume. What’s is wrong, and how do you fix it?
