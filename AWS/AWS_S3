@@ -1,0 +1,33 @@
+AWS Learning — S3, Security, and the Stuff You Shouldn’t Skip at any cost
+
+S3 looks simple on the surface, but it has a lot of built-in features designed for performance, security, and scale.
+To use it effectively, especially in large architectures, it’s important to understand how to store, secure, and manage data properly.
+
+➤ S3 Basics (But Still Important):
+✅ Object-based storage, not block storage
+✅ Unlimited storage, but you pay for what you use
+✅ Can host static websites
+✅ Lifecycle policies help manage costs by transitioning or deleting objects
+✅ Supports server-side encryption for securing data at rest
+✅ Designed for 99.999999999% durability (yeah, that’s 11 nines)
+✅ Strong read-after-write consistency for all objects
+✅ Integrates with other AWS services like Lambda, CloudFront, and Athena
+
+➤ Advanced S3 Concepts That Clicked Today:
+✅ Versioning — Keeps previous versions of your objects. Helpful for recovery, but can increase costs.
+✅ Storage Classes — Pick based on how often you need the data:
+Standard (frequent access)
+Infrequent Access (for archives you still need quickly)
+Glacier/Glacier Deep Archive (for long-term, rarely used data)
+✅ Object Lock — Helps with compliance — blocks object deletion for a defined period
+
+➤ Security in S3 — The Non-Negotiables:
+✅ Buckets are private by default — keep it that way unless public access is absolutely required
+✅ Use Bucket Policies, IAM policies, and ACLs carefully — always follow least privilege
+✅ Enable MFA Delete for an extra layer of protection when deleting objects or versions
+✅ Block public access at the account level — especially when managing multiple buckets
+✅ Enable server-side encryption (SSE-S3, SSE-KMS, or SSE-C) for securing data at rest
+✅ Turn on access logging — track who’s accessing what and when
+✅ Use CloudTrail to monitor S3 API calls and detect suspicious activity
+✅ Set up Amazon Macie to detect sensitive data like PII or secrets stored in S3
+✅ Regularly review permissions — what was safe a month ago might not be today
