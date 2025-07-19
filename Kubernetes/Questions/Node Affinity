@@ -1,0 +1,65 @@
+Node Affinity in Kubernetes*
+
+*Node Affinity?*
+  Node Affinity is a way to control where a pod gets scheduled in a Kubernetes cluster.
+  It works by matching labels assigned to nodes — the pod basically says,
+  “I want to run on nodes that have this tag.”
+
+  Let’s say:
+  A pod is like a student choosing a hostel room
+
+  Some want AC, some want a good view, some want the ground floor.
+  Node Affinity lets pods express those preferences.
+
+*Why Do We Need Node Affinity?*
+
+  * Some pods require special hardware like GPU, SSD, etc.
+  * We may want pods to run in a specific zone for performance or compliance.
+  * To separate heavy workloads from lightweight ones.
+  * Helps the scheduler make smarter decisions, rather than placing pods randomly.
+  * Unlike taints and tolerations, Node Affinity supports complex rules using multiple match expressions.
+
+
+*Types of Node Affinity*
+  There are 2 main types:
+
+   *requiredDuringSchedulingIgnoredDuringExecution*
+
+    * This is strict.
+    * Pod will only be scheduled if a node has the required label.
+    * If no such node is found, the pod stays Pending.
+
+   *preferredDuringSchedulingIgnoredDuringExecution*
+
+    * This is soft or flexible.
+    * Scheduler tries to find a matching node, but if not found,
+      it will still place the pod on any available node.
+    * Think of it as: “I’d like this, but I’ll adjust if I have to.”
+
+
+*What Happens If Labels Change After Pod is Scheduled?*
+
+  * Node Affinity is only evaluated during scheduling.
+  * If the label is removed after the pod is running, it doesn't matter.
+  * The pod continues peacefully running on the same node.
+  * However, future pods that look for that label won’t get scheduled there.
+ * Changing node labels affects future scheduling, not existing pods.*
+
+ *Why Node Affinity When Taints & Tolerations Already Exist?*
+
+  *Taints & Tolerations*= Node decides who is allowed
+  *Node Affinity*= Pod decides where it wants to go
+  *Taints say: "Stay away unless you're allowed."*
+  * Affinity says: "I’d like to run here."*
+  * They work together, not as replacements.
+
+  *Limitation with Taints & Tolerations*:
+    They don’t support multiple match expressions —
+    Node Affinity allows more complex, fine-grained control using multiple label rules.
+
+Analogy:
+
+*Taints/Tolerations: A club with bouncers. Only VIPs (with toleration) can enter.
+  *Node Affinity: A customer choosing a seat by the window in a restaurant.
+  * One is enforced by the place.
+  * The other is a preference from the person.
