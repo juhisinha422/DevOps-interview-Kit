@@ -1,0 +1,14 @@
+🧠 Kubernetes Interview Questions:
+
+PART1:
+
+1.Explain the Kubernetes architecture, including the functionality of each component.
+2.What is the only component in Kubernetes that interacts with both the worker nodes and the control plane?
+3.What are the different types of services available in Kubernetes?
+4.Which service type is assigned by default if the type field is not specified in service.yaml?
+5.What are resource requests and limits? How do they ensure CPU and memory usage is maintained for pods?
+6.What is a LimitRange and how can it be applied?
+7.How can you restrict a pod’s CPU and memory usage to specific limits?
+8.How can you restrict resources in a specific namespace to prevent overutilization of CPU and memory?
+9.What is the difference between taints and tolerations?
+10.How do you ensure a particular pod is scheduled on a specific node, or avoid scheduling on a specific node? What methods can be used?
