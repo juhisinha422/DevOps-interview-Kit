@@ -1,0 +1,111 @@
+Top Networking Questions for Interview 
+
+📌Basic Networking Concepts
+
+What is the OSI Model? Explain each layer.
+
+What is the difference between TCP and UDP?
+
+What is a MAC address?
+
+What is an IP address? Differentiate between IPv4 and IPv6.
+
+What is subnetting and why is it used?
+
+What is the difference between public and private IP addresses?
+
+What is NAT and how does it work?
+
+What is the difference between static and dynamic IP addressing?
+
+What is ARP and how does it function?
+
+What is a default gateway?
+
+📌 Switching & VLANs
+
+What is the difference between a hub, switch, and router?
+
+What is a VLAN?
+
+What is VLAN tagging?
+
+What is trunking in networking?
+
+What is STP (Spanning Tree Protocol)?
+
+What is the difference between access and trunk ports?
+
+What is port security in switches?
+
+What is VTP and how does it work?
+
+What happens when two switches are connected in a loop?
+
+What are broadcast storms?
+
+📌 Routing
+
+What is routing?
+
+What is the difference between static and dynamic routing?
+
+What is the difference between RIP, OSPF, and EIGRP?
+
+What is a routing table?
+
+What is administrative distance?
+
+What is the difference between IGP and EGP?
+
+What is the purpose of a routing protocol?
+
+What is BGP and where is it used?
+
+Explain the route summarization.
+
+What is the difference between inter-VLAN and intra-VLAN routing?
+
+📌 TCP/IP & Troubleshooting
+
+What is the TCP 3-way handshake?
+
+What are common ports and protocols (e.g., HTTP, HTTPS, FTP)?
+
+What is ICMP and what is it used for?
+
+What is the use of ping and traceroute commands?
+
+What is TTL (Time to Live)?
+
+What is MTU and how does it affect packet transmission?
+
+How do you troubleshoot high latency?
+
+What is the difference between packet filtering and stateful inspection?
+
+What is DNS and how does it work?
+
+What is DHCP and its process?
+
+📌 Firewall & Security
+
+What is a firewall and how does it work?
+
+What is the difference between stateful and stateless firewalls?
+
+What is a DMZ?
+
+What is port forwarding?
+
+What is an access control list (ACL)?
+
+What are the differences between standard and extended ACLs?
+
+What is NAT vs PAT?
+
+What is VPN and how does it work?
+
+What are IPSec and its components?
+
+What are the different types of VPNs?
