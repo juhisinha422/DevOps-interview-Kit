@@ -1,0 +1,53 @@
+Kubernetes Readiness vs Liveness Probes
+
+When we deploy an application in Kubernetes, it's not enough that the container is just running.
+We also need to ensure it's healthy and ready to serve traffic.
+That’s where probes come in.
+
+Today, let’s talk about the two most common ones:
+     Readiness Probe
+     Liveness Probe
+  
+
+Readiness Probe – “Mujhe abhi traffic mat do”
+Suppose your app is running but still:
+      Loading internal configs
+      Making DB connections
+      Syncing some background data
+      Tab agar user request aa jaye — error milega.
+
+Readiness probe tells Kubernetes – don't send traffic yet!
+ Once the app is actually ready, then Kubernetes starts routing requests to it. 
+
+
+Liveness Probe – “Main zinda hoon ya nahi?”
+After a few hours, your app crashes internally or gets stuck (e.g., infinite loop, memory leak).
+But from outside, it still "looks running".
+Liveness probe checks if the app is alive.
+ If not, Kubernetes will automatically restart the pod — no manual effort needed.
+
+
+
+
+Pizza API Example (Freshers ka favourite )
+You’ve built a pizza-api backend:
+It takes 30 seconds to start because it fetches menu items from DB.
+ 
+Use Readiness Probe so traffic waits until it's really ready.
+After a few hours, it freezes due to memory issues.
+Use Liveness Probe to auto-restart it.
+Bina in probes ke, user ko ya to error milega ya app stuck rahega bina kisi restart ke.
+Yahi dikkat interview me bhi poochhi jaati hai 😅
+
+
+
+Interview Style Answer:
+Q: What’s the difference between Readiness and Liveness Probe?
+ A:
+ Readiness tells when the app is ready to handle traffic.
+ Liveness tells whether the app is still alive or should be restarted.
+
+
+Pro Tip:
+ Sirf Liveness lagane se kaam nahi chalega.
+ App boot hone me time lagta hai? Use Readiness too 
