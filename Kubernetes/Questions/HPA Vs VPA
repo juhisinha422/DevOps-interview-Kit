@@ -1,0 +1,65 @@
+HPA vs VPA in Kubernetes
+
+Scaling ka matlab sirf zyada pods launch karna nahi hota.
+Kabhi-kabhi ek pod ko aur resources dena padta hai.
+Kubernetes me 2 tarike ke autoscaling options hote hain:
+HPA – Horizontal Pod Autoscaler
+VPA – Vertical Pod Autoscaler
+
+Let’s simplify them 
+1. HPA (Horizontal Pod Autoscaler)
+Use when: "Traffic zyada aa raha hai? Zyada pods chahiye!"
+HPA automatically increases or decreases number of pods based on resource usage.
+
+
+Kaise kaam karta hai?
+Kubernetes watches metrics like CPU and memory.
+Jaise hi CPU usage 70% se upar gaya → HPA ek aur pod launch karega.
+
+minReplicas: 2
+maxReplicas: 10
+targetCPUUtilizationPercentage: 70
+
+
+Example:
+ Pizza app pe lunch time me traffic spike aaya.
+      HPA: “Zyada log aa gaye bhai, aur chef (pods) bulao!”
+
+
+2. VPA (Vertical Pod Autoscaler)
+Use when: "Pod chal toh raha hai, but thoda kamzor hai – resources badhao!"
+VPA increases the resources (CPU/Memory) of a pod instead of increasing pod count.
+
+Kaise kaam karta hai?
+Kubernetes checks how much resource each pod is actually using.
+If a pod is crashing because it needs more memory, VPA adjusts the resource requests and limits.
+
+updateMode: "Auto"
+
+
+Example:
+Pizza app ka ek pod bar-bar crash ho raha hai due to memory limit.
+    VPA: “Is pod ko aur taqat do — memory badhao!”
+    Real-world Scenario: Pizza API
+
+You deployed a pizza-api:
+     During lunch, traffic goes up suddenly.
+     HPA launches more pods to handle the load.
+     One of the pods keeps getting OOMKilled (Out of Memory).
+     VPA increases memory request to avoid future crashes.
+Matlab HPA crowd control karta hai, aur VPA body ko strong banata hai 
+
+
+
+
+Interview Time Answer:
+Q: What's the difference between HPA and VPA in Kubernetes?
+ A:
+ .  HPA adjusts number of pods
+    VPA adjusts resources (CPU/Memory) of a pod
+
+
+Important Note:
+You shouldn’t run HPA and VPA together on the same deployment.
+Why? One is changing pod count, other is changing pod size — conflict ho sakta hai.
+
