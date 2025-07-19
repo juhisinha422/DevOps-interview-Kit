@@ -1,0 +1,33 @@
+After speaking to friends working at Amazon, Google, Flipkart, Paytm, and a few fast-scaling startups — and digging through interview prep forums and my own experiences — I noticed a pattern.
+
+No matter the company or role level, 𝐭𝐡𝐞𝐬𝐞 𝟐𝟎 𝐃𝐞𝐯𝐎𝐩𝐬 𝐢𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 keep coming up again and again.
+
+If you're preparing for roles at the 𝟐+ 𝐨𝐫 𝟓+ 𝐲𝐞𝐚𝐫𝐬 𝐞𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞 𝐥𝐞𝐯𝐞𝐥, this list is your roadmap.
+
+𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 𝐟𝐨𝐫 𝟐+ 𝐘𝐞𝐚𝐫𝐬 𝐄𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞
+1. What is the difference between continuous integration and continuous deployment
+2. How does a typical CI/CD pipeline look and what tools have you used in each stage
+3.  How do you manage secrets and credentials in CI/CD
+4. What is the purpose of Infrastructure as Code and which tools have you worked with
+5. Can you explain how version control branching strategies impact DevOps workflows
+6. What’s your approach to containerising applications using Docker
+7. What are health checks in containers and how do you configure them
+8. How would you troubleshoot a failed deployment in Jenkins
+9. What is the role of monitoring in DevOps and which tools have you used
+10. How do you handle rollback in case a deployment causes issues in production
+
+𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 𝐟𝐨𝐫 𝟓+ 𝐘𝐞𝐚𝐫𝐬 𝐄𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞
+1. How would you design a scalable CI/CD pipeline for a microservices architecture
+2. Explain how you handle blue-green or canary deployments in Kubernetes
+3.  What’s your strategy for implementing infrastructure across multiple environments
+4.  How do you ensure high availability and failover in cloud-native architectures
+5. Describe a time you significantly reduced deployment time or build failures
+6. How do you architect a secure cloud environment for multi-team access
+7. How would you implement observability (not just monitoring) in your systems
+8. What’s your approach to cost optimization in cloud infrastructure
+9. How do you manage large Terraform or Ansible codebases with multiple modules
+10. Explain how you set up proactive alerting and incident response across teams
+
+You don’t need to memorise answers. You need to understand the problems, how tools fit together, and how to think under pressure.
+
+Once you’ve worked through these — with real project scenarios, not just definitions — you're more prepared than most.
