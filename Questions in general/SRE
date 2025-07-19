@@ -1,0 +1,33 @@
+What is SRE?
+
+SRE (Site Reliability Engineering) is a discipline that combines software engineering and IT operations to ensure scalable, reliable, and high-performing systems. It was pioneered by Google to manage large-scale systems efficiently.
+
+📌 SRE Key Responsibilities:
+
+Monitoring & Alerting
+Incident Response & Root Cause Analysis
+System Performance & Reliability
+Automation of Manual Operations
+Capacity Planning & Load Management
+Error Budget Management
+
+🛠️ SRE Common Tools:
+
+Prometheus / Grafana – Monitoring & dashboards
+Alertmanager / PagerDuty / Opsgenie – Alerts & incident response
+Terraform / Ansible / Chef – Infrastructure automation
+Kubernetes / Docker – Container orchestration
+Elasticsearch / Kibana / Splunk – Log analysis
+
+📊 SRE vs DevOps
+
+AspectSREDevOpsOriginGoogleGeneral industry practiceFocusReliability, automation, SLAsCulture, collaboration, CI/CDRoleSoftware + Ops hybridDev + Ops collaborationCore MetricsSLOs, SLIs, Error BudgetsDeployment frequency, lead time
+
+
+📚 SRE Concepts
+
+SLA (Service Level Agreement) – Formal agreement on uptime/availability.
+SLO (Service Level Objective) – Target level of reliability (e.g., 99.9% uptime).
+SLI (Service Level Indicator) – Metrics to track service health (e.g., latency, error rate).
+
+Error Budget – Acceptable threshold of failure before slowing releases.
