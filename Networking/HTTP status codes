@@ -1,0 +1,63 @@
+Which HTTP Status Code Matches Your DevOps Personality?
+
+
+200 OK – The Calm & Reliable One
+You're the "It just works" type.
+ Pipelines green 
+ Monitoring clean 
+ Everything’s on track.
+ No drama, just delivery.
+
+
+301 Moved Permanently – The One Who Shifted to Cloud
+“Let’s migrate this monolith to Kubernetes!”
+ You’re always refactoring, modernizing, containerizing.
+ Old setup? Nope.
+ New infra, who dis?
+
+
+403 Forbidden – The One Fighting IAM Roles
+"Access Denied" is your middle name.
+ You have all the YAML, but none of the permissions 😭
+ Terraform apply? Error.
+ kubectl get pod? Forbidden.
+
+
+404 Not Found – The One on Call at 2 AM
+That one alert no one understands...
+ Logs? Empty.
+ Dashboard? Blank.
+ Infra? There.
+ App? Vanished into the void.
+ You're debugging what doesn't exist 😵💫
+
+
+500 Internal Server Error – The One in CI/CD Chaos
+You just merged to main.
+ Everything broke.
+ Logs are on fire.
+ Manager’s pinged.
+ You say:
+     "It worked on dev "
+
+
+429 Too Many Requests – The Overloaded One
+Monitoring, logging, release, support, documentation –
+ All tasks assigned to YOU.
+ Mentally rate-limited.
+ Still pushing through.
+ Respect. 💯
+
+
+502 Bad Gateway – The Blame Magnet
+It’s always “network issue” until proven otherwise.
+ Gateway timeout = DevOps fault.
+ VPN slow = DevOps fault.
+ Sun not shining? Probably DNS.
+
+
+
+
+Which one are you TODAY?
+Drop your HTTP status + why! Let’s make this fun 
+
