@@ -1,0 +1,76 @@
+Helm Charts in Kubernetes – Simple, Real & Relatable
+
+Problem: Why Helm?
+Jab Kubernetes pe app deploy karte ho, toh kitni YAMLs likhni padti hain?
+     Deployment
+     Service
+     ConfigMap
+     Secret
+     Ingress
+     PVC...
+
+It becomes messy, hard to manage, and difficult to share.
+
+Solution: Helm – The Kubernetes Package Manager
+Helm helps you:
+    Package your K8s app
+    Templatize YAMLs
+    Reuse configs for multiple environments
+    Install, Upgrade, Rollback apps easily
+    Helm = apt / yum / npm for Kubernetes
+ 
+Aap bas helm install likho — pura app deploy ho jaata hai!
+
+
+What is a Helm Chart?
+A Helm Chart is a collection of YAML templates that define:
+       Deployment
+       Services
+       Configs
+       Values (inputs for dynamic config)
+
+Think of it like:
+  pizza-api-chart/
+ ├── templates/ → All YAML files
+ ├── values.yaml → Inputs (DB URL, replica count, etc.)
+ ├── Chart.yaml → Metadata (name, version, etc.)
+
+
+
+
+Real-World Example:
+Aap ek pizza API banate ho jisme DB config, replica, image tag sab alag alag env ke liye chahiye.
+Without Helm:
+      Har bar YAML manually change karo
+
+With Helm:
+     Bas values-dev.yaml, values-prod.yaml banao
+     Use helm install -f values-dev.yaml pizza-api
+     Easy versioning, rollback, and automation
+     Sample Helm Workflow:
+
+helm create pizza-api → Creates a sample chart
+Modify values.yaml (e.g. image name, replicaCount)
+
+Deploy with:
+       helm install pizza-api ./pizza-api
+
+Upgrade later with:
+       helm upgrade pizza-api ./pizza-api --set image.tag=v2
+
+
+
+
+Interview-Ready Answer:
+Q: What is Helm and why do we use it?
+ A:
+Helm is a package manager for Kubernetes. It allows us to package K8s manifests as charts, templatize configurations, and deploy/manage apps efficiently.
+It simplifies complex deployments and helps manage multiple environments with ease.
+
+
+
+
+Helm supports versioning
+You can rollback to previous deployment
+Helm charts can be stored in Helm Repositories
+Big apps like Prometheus, Grafana, MySQL are often deployed via official Helm charts
