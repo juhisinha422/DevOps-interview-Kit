@@ -1,0 +1,58 @@
+ENTRYPOINT vs CMD in Docker – Explained Simply
+
+In every Dockerfile, we define what the container should do when it starts. For that, we use either CMD or ENTRYPOINT.
+Both look similar… but behave very differently.
+
+CMD – Default command, jo replace ho sakta hai
+Socho CMD ek default instruction hai. If user runs the container without passing any command, CMD will execute.
+
+But the moment user passes a command while running the container — Docker ignores CMD.
+        CMD ["python3", "app.py"]
+If you run:
+       docker run myimage
+It runs: python3 app.py
+
+But if you run:
+        docker run myimage ls -l`
+Then it overrides CMD and runs: ls -l
+Matlab CMD ka kaam hai "default dena", par user bolega to uska sunega.
+
+
+ENTRYPOINT – Fixed command, jo hamesha chalega
+ENTRYPOINT ek fixed rule jaisa hai — no matter what you pass while running the container, ENTRYPOINT always executes.
+         ENTRYPOINT ["python3", "app.py"]
+Now:
+          docker run myimage
+         → runs: python3 app.py
+
+           docker run myimage test_arg
+          → runs: python3 app.py test_arg
+Yahan pe user ka argument append hota hai, but main command ENTRYPOINT hi rehta hai.
+Combine ENTRYPOINT and CMD
+
+Best practice hai: Dono ka use karo together.
+            ENTRYPOINT ["python3"]
+            CMD ["app.py"]
+Then:
+            docker run myimage
+            → python3 app.py
+ 
+             docker run myimage script.py
+             → python3 script.py
+
+ENTRYPOINT fix karta hai kya chalana hai, CMD batata hai default argument kya hona chahiye.
+
+
+
+
+CMD is like: “Agar kuch nahi bola to yeh karlo.”
+ENTRYPOINT is like: “Chahe kuch bhi bolo, yahi karna hai.”
+CMD flexible hai. ENTRYPOINT strict hai.
+
+Final Words
+Docker CMD bolta hai: “Main default hoon.”
+ENTRYPOINT bolta hai: “Main rule hoon.”
+
+
+Interview me sirf syntax mat bolo — example do, real-world use batao.
+Yahi difference sabse zyada confusion create karta hai — aur clarity yahi confidence laata hai.
