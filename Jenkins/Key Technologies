@@ -1,0 +1,15 @@
+📚 𝗠𝗮𝘀𝘁𝗲𝗿𝗶𝗻𝗴 𝗝𝗲𝗻𝗸𝗶𝗻𝘀: 𝗞𝗲𝘆 𝗧𝗲𝗿𝗺𝗶𝗻𝗼𝗹𝗼𝗴𝗶𝗲𝘀 𝘄𝗶𝘁𝗵 𝗗𝗲𝘁𝗮𝗶𝗹𝗲𝗱
+𝗗𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻. 📚
+🚀 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 is a open-source automation server that plays a crucial role in DevOps pipelines by facilitating Continuous Integration (CI) and Continuous Delivery/Deployment (CD). It streamlines the software development lifecycle, allowing teams to build, test, and deploy code faster and more efficiently.
+
+🔧 𝗞𝗲𝘆 𝗧𝗲𝗿𝗺𝗶𝗻𝗼𝗹𝗼𝗴𝗶𝗲𝘀 𝗶𝗻 𝗝𝗲𝗻𝗸𝗶𝗻𝘀:
+1. 𝘾𝙤𝙣𝙩𝙞𝙣𝙪𝙤𝙪𝙨 𝙄𝙣𝙩𝙚𝙜𝙧𝙖𝙩𝙞𝙤𝙣 (𝘾𝙄): Jenkins automates the integration of code changes from multiple developers into a shared repository. This practice ensures that errors are detected early, and teams can collaborate more efficiently.
+2. 𝘾𝙤𝙣𝙩𝙞𝙣𝙪𝙤𝙪𝙨 𝘿𝙚𝙡𝙞𝙫𝙚𝙧𝙮/𝘿𝙚𝙥𝙡𝙤𝙮𝙢𝙚𝙣𝙩 (𝘾𝘿): Jenkins automates the process of pushing code to production in a reliable, repeatable, and consistent manner, ensuring faster and safer deployment of new features and updates.
+3. 𝙋𝙞𝙥𝙚𝙡𝙞𝙣𝙚: A series of automated steps defined in Jenkins that represent the stages of your project’s lifecycle, such as building, testing, and deploying code. Jenkins pipelines help streamline workflows, reduce manual errors, and improve collaboration.
+4. 𝙅𝙚𝙣𝙠𝙞𝙣𝙨 𝙛𝙞𝙡𝙚: A text file that contains the definition of a Jenkins pipeline. This file is written in Groovy or Declarative syntax and specifies the sequence of actions (like build, test, deploy) Jenkins should perform on your code.
+5. 𝘽𝙪𝙞𝙡𝙙: The process of compiling source code into an executable application or software package. Jenkins automates this process to ensure that code is built consistently across different environments.
+6. 𝙉𝙤𝙙𝙚: A machine where Jenkins runs jobs. Jenkins uses the concept of "master" (the main server) and "agent" (remote nodes) to distribute the workload and enabling parallel job execution & scalability.
+7. 𝙅𝙤𝙗: A single task or operation that Jenkins performs, such as building an application, running tests, or deploying code. Jobs can be triggered manually or automatically(using Webhooks, Build Periodically, Poll SCM, Upstream & Downstream jobs) based on specific events like code commits.
+8. 𝙋𝙡𝙪𝙜𝙞𝙣: Jenkins supports a wide range of plugins that extend its functionality. These plugins help integrate Jenkins with different tools for version control, testing, deployment, and more.
+9. 𝙒𝙤𝙧𝙠𝙨𝙥𝙖𝙘𝙚: It contains all the files, configurations, and build artifacts that are generated during the job run. Each Jenkins job gets its own isolated workspace, ensuring that files from different jobs don’t conflict with each other.
+10. 𝙁𝙧𝙚𝙚𝙨𝙩𝙮𝙡𝙚 𝙋𝙧𝙤𝙟𝙚𝙘𝙩: A type of Jenkins job that is easy to configure through the graphical user interface. It allows developers to define simple build and test processes.
