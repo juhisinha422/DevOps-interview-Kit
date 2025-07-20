@@ -1,0 +1,31 @@
+𝗧𝗼𝗽 𝗟𝗶𝗻𝘂𝘅 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 𝗘𝘃𝗲𝗿𝘆 𝗗𝗲𝘃𝗢𝗽𝘀 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿 𝗦𝗵𝗼𝘂𝗹𝗱 𝗞𝗻𝗼𝘄 🚀
+
+Mastering Linux is a must-have skill for any DevOps pro. Here’s a quick cheat sheet of essential commands to boost your productivity:
+
+𝗦𝘆𝘀𝘁𝗲𝗺 𝗜𝗻𝗳𝗼:
+`uname -a` | `hostname` | `uptime` | `date`
+
+𝗙𝗶𝗹𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁:
+`ls -la` | `cd` | `mkdir` | `rm -r` | `cp` | `mv` | `find`
+
+𝗨𝘀𝗲𝗿 & 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻𝘀:
+`whoami` | `sudo` | `useradd` | `passwd` | `chown` | `chmod`
+
+𝗣𝗿𝗼𝗰𝗲𝘀𝘀𝗲𝘀:
+`ps aux` | `top` | `kill <PID>` | `systemctl status <service>`
+
+𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴:
+`ip addr` | `ping` | `netstat -tulnp` | `ssh user@host`
+
+𝗧𝗲𝘅𝘁 𝗣𝗿𝗼𝗰𝗲𝘀𝘀𝗶𝗻𝗴:
+`cat` | `grep` | `sed` | `awk` | `tail -f`
+
+𝗣𝗮𝗰𝗸𝗮𝗴𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁:
+`apt update/upgrade` (Debian) | `yum install/remove` (RedHat)
+
+𝗕𝗮𝘀𝗵 𝗦𝗰𝗿𝗶𝗽𝘁𝗶𝗻𝗴 𝗕𝗮𝘀𝗶𝗰𝘀:
+Variables, loops, conditionals & functions will automate your daily tasks.
+
+---
+
+💡 Pro Tip: Master these commands to troubleshoot faster, automate better, and work smarter in any Linux-based environment.
