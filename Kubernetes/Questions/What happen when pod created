@@ -1,0 +1,43 @@
+𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗙𝗮𝘃𝗼𝗿𝗶𝘁𝗲: What happens when you create a Pod? 
+
+
+🟢 So, 𝘄𝗵𝗮𝘁 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗵𝗮𝗽𝗽𝗲𝗻𝘀 𝘄𝗵𝗲𝗻 𝘆𝗼𝘂 𝗰𝗿𝗲𝗮𝘁𝗲 𝗮 𝗣𝗼𝗱?
+
+1️⃣ . You run:
+
+bash
+
+Copy
+
+Edit
+
+kubectl apply -f pod.yaml
+
+2️⃣ API Server receives the request and validates the YAML.
+
+3️⃣ The request is stored in etcd (the Kubernetes database).
+
+4️⃣ The Scheduler checks available nodes and selects one based on:
+
+Resource requests
+
+Taints & tolerations
+
+Node affinity
+
+etc.
+
+5️⃣ Once a node is selected, the Kubelet on that node:
+
+Talks to Container Runtime (like containerd/Docker)
+
+Pulls the image
+
+Creates the container
+
+6️⃣ Readiness & liveness probes start checking health
+
+7️⃣ If all is well, the Pod is marked Ready and traffic begins routing to it! ✅
+
+
+![Image](https://github.com/user-attachments/assets/fa3babee-ff26-43a0-9efd-74336cc5db2f)
