@@ -1,0 +1,17 @@
+IAM stands for 𝗜𝗱𝗲𝗻𝘁𝗶𝘁𝘆 𝗮𝗻𝗱 𝗔𝗰𝗰𝗲𝘀𝘀 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁. It is the backbone of secure cloud access in AWS. 
+
+Knowing who can access what is very critical in the cloud environment. 
+IAM enforces the principle of protecting sensitive data and to keep everything in control; this ranges from users, to policies, to roles. 
+
+Here are some of the key terms that I have found being used in IAM:
+
+• 𝗨𝘀𝗲𝗿: Someone who has their own identity with long term credentials (login access).
+
+• 𝗚𝗿𝗼𝘂𝗽: A collection of users that have shared permissions.
+
+• 𝗥𝗼𝗹𝗲: A temporary identity with specific permissions, used by services or users. 
+
+• 𝗣𝗼𝗹𝗶𝗰𝘆: A JSON document that defines what actions are allowed/denied on resources.
+
+IAM is crucial in AWS as it helps manage who can access what, when and how. It is a fundamental part of cloud security. 
+A huge Shout-out to @CoderCo for helping me to become familiar with the key terms and how IAM is used.
