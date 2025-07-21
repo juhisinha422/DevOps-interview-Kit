@@ -1,0 +1,26 @@
+𝗪𝗵𝗮𝘁 𝗛𝗮𝗽𝗽𝗲𝗻𝘀 𝗪𝗵𝗲𝗻 𝗧𝘄𝗼 𝗧𝗲𝗮𝗺 𝗠𝗲𝗺𝗯𝗲𝗿𝘀 𝗥𝘂𝗻 𝘁𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗮𝗽𝗽𝗹𝘆 𝗮𝘁 𝘁𝗵𝗲 𝗦𝗮𝗺𝗲 𝗧𝗶𝗺𝗲? 🤯
+
+In a team environment using Terraform, managing the .tfstate file is crucial to avoid conflicts and chaos.
+
+👥 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼:
+
+Team Member 𝗔 runs terraform 𝗮𝗽𝗽𝗹𝘆
+
+Just seconds later, Team Member 𝗕 runs terraform 𝗮𝗽𝗽𝗹𝘆 𝘁𝗼𝗼
+
+Both are working on the same configuration using a shared backend
+
+🔐 If state locking is enabled (for example, using Azure Blob + Cosmos DB):
+
+Terraform 𝗹𝗼𝗰𝗸𝘀 𝘁𝗵𝗲 𝘀𝘁𝗮𝘁e file during the 𝗮𝗽𝗽𝗹𝘆
+
+The second team member will see an 𝗲𝗿𝗿𝗼𝗿 like this:
+
+𝗘𝗿𝗿𝗼𝗿 𝗮𝗰𝗾𝘂𝗶𝗿𝗶𝗻𝗴 𝘁𝗵𝗲 𝘀𝘁𝗮𝘁𝗲 𝗹𝗼𝗰𝗸
+𝗟𝗼𝗰𝗸 𝗜𝗻𝗳𝗼:
+𝗜𝗗: unique-lock-id
+𝗢𝗽𝗲𝗿𝗮𝘁𝗶𝗼𝗻: terraform apply
+𝗪𝗵𝗼: dev-a@example.com
+𝗜𝗻𝗳𝗼: Locked by another Terraform process
+
+✅ This protects the infrastructure by ensuring only one apply can happen at a time.
