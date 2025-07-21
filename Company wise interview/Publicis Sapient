@@ -1,0 +1,52 @@
+Interview Experience | Publicis Sapient
+📌 Role: Senior Associate Infrastructure L1 - AWS
+I recently appeared for the Publicis Sapient interview process, which consisted of:
+- 2 Technical Rounds
+- 1 Managerial Round
+- Followed by HR discussion, salary negotiation, and offer release
+
+👉 Today, I’m sharing the questions from the 1st Technical Round, which focused on conceptual clarity, architecture understanding, and use-case-driven discussions.
+
+💡 Technical Round 1 – Questions Asked:
+1. Give me your Introduction
+2. What is VPC? What are its components?
+3. How do you enable communication between VPC components and an S3 bucket without exposing to the internet?
+4. What are storage classes in S3? Explain types with use-cases
+5. What is CDN? How to set up CloudFront end-to-end?
+6. App is hosted in EC2 and accessible via Public IP & CDN DNS. How to restrict Public IP access and allow only CDN DNS?
+7. Route53 vs CloudFront — what’s the difference?
+8. How to set up Route53 from scratch?
+9. What are different storage and database services in AWS?
+10. How do you configure RDS?
+11. How did you maintain state in the applications you worked on?
+12. What are the different types of metrics, and how do you fetch them?
+13. How to create a Grafana dashboard integrated with Prometheus?
+14. Why Fluentbit over Logstash?
+15. What is Jaeger used for?
+16. Benefits of Service Mesh (e.g., Istio)?
+17. Explain Kubernetes architecture
+18. What are the different Kubernetes services?
+19. How to securely expose an application to the internet using AWS + Kubernetes?
+20. How to autoscale pods based on traffic?
+21. Write a manifest file for NGINX deployment
+22. Write manifests for HPA, VPA, StatefulSet
+23. What is RBAC? Explain with example
+24. ConfigMap vs Secrets — What’s the difference?
+25. What is Persistent Volume? Types of storage classes?
+26. What are PVCs and their Access Modes?
+27. Security services in AWS?
+28. What did you implement for security in your projects?
+29. Docker vs Kubernetes
+30. Write a multistage Dockerfile
+31. Docker networking types
+32. What are Terraform modules?
+33. Write a Terraform file to create EC2 + ALB
+34. How do you manage state files in Terraform?
+35. What is state locking? How to manage it?
+36. How to configure multiple AWS providers in one Terraform infra?
+37. How to manage variables in Terraform?
+38. Linux command to check CPU & memory usage
+39. How to find IP of current system & domain (via commands)?
+40. Types of Load Balancers based on OSI model
+
+📌 Note: The 2nd Technical Round was purely practical and implementation-based 
