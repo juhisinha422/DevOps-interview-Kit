@@ -1,0 +1,31 @@
+What is a Terraform Lease, and How Do You Break It? 🤔
+
+While working with Terraform and remote backends (like AWS S3 or Azure Blob Storage), you may run into this error:
+
+“Error acquiring the state lock…”
+
+This happens due to a Terraform lease — also known as a state lock — which is an essential mechanism that prevents simultaneous changes to your infrastructure. It ensures that only one process at a time can modify the state file.
+
+🧠 What is a Terraform Lease?
+A Terraform lease is a lock on the state file, automatically acquired during operations like apply, plan, or destroy.
+It prevents race conditions and corruption in the infrastructure state.
+
+⏱️ When Should You Break a Terraform Lease?
+You should only break a lease when:
+
+A Terraform command crashes or is interrupted
+
+A previous lock is not released properly
+
+You're 100% sure no other Terraform process is running
+
+🛠️ How Many Ways Can You Break a Terraform Lease?
+
+1️⃣ Force Unlock (Terraform CLI)
+
+𝘁𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗳𝗼𝗿𝗰𝗲-𝘂𝗻𝗹𝗼𝗰𝗸 <𝗟𝗢𝗖𝗞_𝗜𝗗>
+
+2️⃣ Manual Deletion (From Backend)
+If you're using a remote backend (e.g., Azure, AWS), you can manually delete the lock from:
+
+Azure Blob Storage 
