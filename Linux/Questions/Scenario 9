@@ -1,0 +1,72 @@
+Scenario-Based Linux Interview Questions (Real-World Troubleshooting) Part I :-
+1. Login Troubleshooting:
+ A user reports they are unable to log in via SSH, even though credentials are correct. What multi-level checks will you perform (e.g., auth logs, shell validity, PAM configs)?
+2. Permission Anomaly:
+ A shared script runs for one user but fails with "Permission Denied" for others. How would you audit SELinux/AppArmor and ACLs beyond chmod?
+3. CPU Spike:
+ A service is consuming 100% CPU. How do you differentiate between a misbehaving process and a system-level issue like I/O wait or kernel thread lock?
+4. SSH Debugging Deep Dive:
+ You cannot SSH into a server. How do you debug layered issues like IP filtering, missing host keys, or SSHD misconfiguration—remotely?
+5. Disk Full (/) Partition:
+ Your root partition is 100% full. How do you analyze hidden file handles, journal bloat, and non-obvious consumers?
+6. Log File Corruption:
+ A production log file has strange/junk characters. How do you identify encoding issues, logrotate misconfigurations, or disk corruption?
+7. Silent Crontab:
+ A cronjob appears in crontab -l but hasn't executed. What’s your full checklist, including environment differences and mail outputs?
+8. Package Installation Fails (yum/apt):
+ Your package manager fails due to broken metadata or key verification. How do you reset repositories or fix dpkg locks?
+9. Sudo Misbehavior:
+ A newly added sudo user still gets permission denied. How do you validate group propagation, PAM modules, or conflicting sudoers entries?
+10. Kernel Panic Recovery:
+ How do you recover a production server from a kernel panic with minimal downtime? Walk through crash logs, rescue mode, and GRUB options.
+11. Zombie Process Detection:
+ How do you spot and investigate a surge in zombie processes? Can you write a one-liner to identify their PPID and root cause?
+12. “Too Many Open Files” Errors:
+ How do you trace and resolve file descriptor exhaustion from process level (lsof, ulimit) to system-wide limits (sysctl)?
+13. Memory Leak Tracking:
+ A process is steadily consuming memory. How do you use smem, pmap, and /proc for in-depth analysis?
+14. Home Directory Missing:
+ After reboot, a user’s home directory is missing but UID exists. How do you recover or mount it dynamically?
+15. Time Drift:
+ Your server is out of sync despite NTP being enabled. How do you validate chronyd, clock skew with hardware, and offset logs?
+
+16. Real-Time File Modification Detection:
+ How do you monitor files changed in the last 10 minutes using inotify, auditd, or custom find/stat logic?
+17. Deleted Files Holding Space:
+ You deleted large log files but disk space wasn’t freed. Why does it happen, and how do you resolve it without reboot?
+18. High Load, Low CPU Usage:
+ top shows high load average but low CPU usage. How do you investigate blocked I/O, NFS stalls, or runaway context switches?
+19. NFS Mount Failure:
+ Your NFS share won’t mount. How do you debug from mount client (firewall, showmount, rpcinfo) to server-side /etc/exports?
+20. DNS Resolution Works, SSH Fails:
+ You can ping a host by name, but ssh fails. What advanced name resolution checks (e.g., /etc/hosts, nsswitch.conf, DNS cache) would you perform?
+21. Online Partition Extension:
+ How can you grow an ext4/XFS partition on a live system using LVM or cloud disk expansion without unmounting?
+22. Adding New Disk to Live System:
+ You added a new EBS disk or raw volume. What are the steps to format, label, mount, and persist it in /etc/fstab?
+23. Who’s Writing to This File?
+ A log file is rapidly growing. How do you identify which process is writing to it in real time?
+24. Recover Deleted File (ext4):
+ A critical file was accidentally deleted. What tools or techniques (debugfs, lsof, extundelete) can help?
+25. Disk I/O Bottleneck:
+ System is slow. How do you use iostat, iotop, blktrace, and sar to diagnose disk performance issues?
+26. Huge Directory Size:
+ A directory is growing out of control. How do you analyze growth trends using du, ncdu, and periodic snapshots?
+27. Read-Only Filesystem Recovery:
+ A filesystem is mounted as read-only due to corruption. How do you remount it without reboot and safely run fsck?
+28. Deleted File Still in Use:
+ You deleted a large file but it’s still held by a process. How do you identify it and force memory release?
+29. Create & Mount Swap File:
+ What’s the correct procedure to add a 4GB swap file, enable it, and make it persistent across reboots?
+30. Search Unused Large Files Across Mounts:
+ How do you find unused or stale large files across /home, /opt, /var without scanning the whole disk?
+31. fsck Recovery Steps:
+ How do you run fsck safely on a production system, especially for root or /boot partitions?
+32. Inode Exhaustion:
+ df -i shows inode exhaustion, not space. How do you locate small-file spam and fix without reformatting?
+33. Fastest Large File Transfer:
+ You need to move a 100GB file securely across DCs. Which is faster: rsync, scp, bbcp, or netcat with compression?
+34. df vs du Mismatch:
+ df -h says disk full but du -sh doesn’t. What causes the mismatch? How do you reconcile it?
+35. Find Largest Folders in /var:
+ How do you find top consumers in /var using du, find, or ncdu, and make cleanup decisions safely?
