@@ -1,0 +1,60 @@
+-> Linux Basics (Beginner Level)
+
+What is Linux and how is it different from Unix?
+What is the difference between Linux and Windows?
+What is the Linux file system hierarchy?
+What is a shell? What are some common types of shells?
+What are runlevels in Linux?
+How do you check the current working directory?
+What does chmod 755 mean?
+How do you view hidden files?
+What is the difference between > and >>?
+How do you search for a string in a file?
+How do you check memory usage?
+What command shows disk usage per directory?
+How do you find a file by name?
+What is cron and how do you schedule a job?
+What is the use of top, ps, and kill commands?
+
+-> Intermediate Linux Interview Questions
+
+How do you check which process is using the most CPU/memory?
+What’s the difference between nice and renice?
+What’s the difference between kill, pkill, and killall?
+How do you analyze and troubleshoot a system that is running slowly?
+How do you check logs for a failed service?
+What is the use of netstat, ss, and lsof?
+How do you check if a port is open and listening?
+Difference between scp and rsync?
+How do you configure a static IP address?
+How do you flush DNS cache?
+How do hard links differ from soft links?
+How do you mount and unmount file systems?
+How do you view disk partitions and usage?
+How do file permissions work in Linux?
+What is sticky bit, setuid, and setgid?
+
+
+-> Advanced Linux Interview Questions
+
+What happens during the Linux boot process (BIOS → GRUB → init → systemd)?
+What is initrd or initramfs?
+What are cgroups and namespaces? How do they work?
+How does Linux handle process scheduling?
+Explain the role of systemd and how you manage services with it.
+🛡 Security & Access
+What is SELinux/AppArmor? How do you troubleshoot permission issues related to them?
+How do you securely copy files between Linux systems?
+How do you set up SSH key-based authentication?
+How do you audit system activity or monitor unauthorized access?
+What is sudo and how is it different from su?
+🧠 Performance & Tuning
+How do you identify and resolve a memory leak?
+What tools would you use for profiling a system under heavy load?
+How do you analyze I/O wait using tools like iostat, vmstat, or iotop?
+What are kernel modules? How do you manage them?
+How do you tune kernel parameters with sysctl?
+📂 Bonus: Real-World Scenario-Based Questions
+A process is stuck in uninterruptible sleep (D state). How do you investigate it?
+A cron job isn’t running. What steps would you take to debug it?
+A service fails to start after a reboot. How do you trace the problem?
