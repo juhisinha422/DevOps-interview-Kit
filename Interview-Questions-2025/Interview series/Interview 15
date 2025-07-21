@@ -1,0 +1,29 @@
+How can we see environment variables from a stopped Docker container?
+🔹 What’s the difference between DevOps & SRE?
+🔹 If we run the top command, what parameters can we observe?
+🔹 What are the default file and directory permissions in Linux?
+🔹 Difference between hard link and soft link?
+🔹 How do you integrate Prometheus and Grafana from an instance?
+🔹 How do you configure alerting in Icinga?
+🔹 How do you connect Ansible master to a client? What is the process?
+🔹 Difference between cron and anacron?
+🔹 What do you do if there’s a Git issue while merging or pushing?
+🔹 When does the "Insufficient capacity" error occur while starting an AWS server?
+🔹 How do you reduce the size of a Docker image?
+🔹 Difference between CMD and ENTRYPOINT in Docker?
+🔹 What are the types of health probes in Kubernetes? How does K8s determine if a pod is ready?
+🔹 Difference between stateful and stateless applications?
+🔹 What is drift detection in Terraform and how is it handled?
+🔹 What are taint and untaint in Terraform?
+🔹 Difference between scripted and declarative Jenkins pipelines?
+🔹 How does Git squash work and when would you use it?
+🔹 What happens if your Terraform state file is accidentally deleted?
+🔹 Difference between ConfigMap and Secret in Kubernetes?
+🔹 What is Git reflog?
+🔹 How do you troubleshoot network connectivity issues on a Linux server?
+🔹 What is Ansible Vault?
+🔹 Difference between NACL and Security Group in AWS?
+🔹 What are the "2/2 checks passed" during EC2 instance launch?
+🔹 What is Git stash and when do you use it?
+🔹 Difference between Containerization and Virtualization?
+🔹 Difference between docker kill and docker rm?
