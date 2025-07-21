@@ -1,0 +1,16 @@
+𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝘀𝘁𝗮𝘁𝗲 𝘀𝗵𝗼𝘄 𝗮𝗻𝗱 𝗪𝗵𝘆 𝗗𝗼 𝗪𝗲 𝗨𝘀𝗲 𝗜𝘁?
+
+In Terraform, state show is used to view the full details of a resource stored in the state file, including values that might not be visible in your code, like IDs, endpoints, and computed properties.
+
+✅ Why is it useful?
+
+ • 𝗧𝗼 𝗱𝗲𝗯𝘂𝗴 𝗼𝗿 𝘃𝗲𝗿𝗶𝗳𝘆 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝘃𝗮𝗹𝘂𝗲𝘀
+
+ • 𝗧𝗼 𝘀𝗲𝗲 𝘄𝗵𝗮𝘁'𝘀 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗱𝗲𝗽𝗹𝗼𝘆𝗲𝗱
+
+ • 𝗧𝗼 𝘂𝗻𝗱𝗲𝗿𝘀𝘁𝗮𝗻𝗱 𝘁𝗵𝗲 𝗰𝘂𝗿𝗿𝗲𝗻𝘁 𝘀𝘁𝗮𝘁𝗲 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝗰𝗵𝗲𝗰𝗸𝗶𝗻𝗴 𝘁𝗵𝗲 𝗰𝗹𝗼𝘂𝗱 
+   𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿 𝗺𝗮𝗻𝘂𝗮𝗹𝗹𝘆
+
+This is especially helpful when you're troubleshooting, comparing live state vs. configuration, or working in complex environments.
+
+💡 Pro tip: Combine it with the state list to explore all managed resources.
