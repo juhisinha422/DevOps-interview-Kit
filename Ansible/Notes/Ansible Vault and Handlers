@@ -1,0 +1,45 @@
+Ansible features: Ansible Vault and Handlers.
+
+🔐 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐕𝐚𝐮𝐥𝐭
+Ansible Vault is used to secure sensitive data like passwords, API keys, and private credentials by encrypting files or variables.
+
+Why use Vault?
+To keep secrets safe even when code is stored in version control systems like Git.
+
+𝐊𝐞𝐲 𝐕𝐚𝐮𝐥𝐭 𝐜𝐨𝐦𝐦𝐚𝐧𝐝𝐬:
+
+ansible-vault create <file> — Create an encrypted file.
+
+ansible-vault view <file> — Read the encrypted file without decrypting it manually. You get a read-only decrypted view after entering the vault password.
+
+ansible-vault edit <file> — Open the encrypted file in an editor, modify it, and save. The file is decrypted temporarily and re-encrypted on save automatically.
+
+ansible-vault encrypt <file> — Encrypt an existing plain file.
+
+ansible-vault decrypt <file> — Decrypt an encrypted file.
+
+How view and edit work:
+view allows you to peek inside encrypted files safely without changing anything or exposing secrets permanently.
+
+edit lets you safely modify secrets while ensuring the file remains encrypted at rest.
+
+🛎️ 𝐇𝐚𝐧𝐝𝐥𝐞𝐫𝐬
+Handlers are special tasks that only run when notified by other tasks. They’re commonly used for:
+
+Restarting or reloading services after configuration changes.
+
+Running cleanup or other conditional operations.
+
+Benefits:
+
+Prevent unnecessary service restarts, improving efficiency.
+
+Make playbooks idempotent and cleaner.
+
+Example use case:
+You update a configuration file with Ansible. If the file changed, notify a handler to restart the service; if nothing changed, skip the restart.
+
+𝐒𝐮𝐦𝐦𝐚𝐫𝐲:
+Vault protects sensitive data throughout automation.
+
+Handlers make automation smarter and efficient by running tasks only when needed.
