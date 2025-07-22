@@ -1,0 +1,46 @@
+*****𝗜𝗺𝗽𝗼𝗿𝘁𝗮𝗻𝘁 𝗔𝗪𝗦 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀******
+
+𝗤. When auto-scaling instances, how do you manage the backend RDS database?
+𝗔. To manage the backend RDS database during auto-scaling:
+○ Enable Multi-AZ for high availability and automatic failover.
+○ Use RDS Read Replicas to handle read-heavy traffic, reducing the load on the primary database.
+○ Scale RDS vertically (instance size) or horizontally (read replicas) based on the database workload.
+○ Monitor performance using Amazon CloudWatch and adjust as necessary.
+
+𝗤. Have you ever set up cross-account access for S3? For example, if the QA team needs access
+to the production database.
+-> Yes, I've set up cross-account access by:
+○ Creating an IAM role in the production account with the necessary S3 permissions.
+○ Establishing a trust relationship to allow the QA account to assume that role.
+○ Using S3 bucket policies to grant access from the QA account.
+○ QA team members can then assume the role using AWS STS (Security Token Service) to access the production S3 bucket.
+
+𝗤. How can an S3 account in Account A access an S3 account in Account B?
+𝗔. Account A can access Account B’s S3 bucket by:
+○ Setting up a bucket policy in Account B that grants Account A the necessary permissions.
+○ Creating an IAM role in Account B with permissions for S3 and allowing Account A to assume that role via a trust policy.
+○ Using AWS STS to assume the role from Account A and access the S3 bucket in Account B.
+
+𝗤. Are you familiar with lifecycle management in S3 buckets? How do you set up lifecycle policies?
+𝗔. Yes, lifecycle management in S3 allows you to define rules to transition objects between different storage classes or delete them after a certain period. Lifecycle policies can be set up using the S3 Management Console, AWS CLI, or Terraform by specifying the transitions and expiration actions in a JSON configuration file.
+
+𝗤. Can you explain the STS assume role policy?
+𝗔. The STS (Security Token Service) AssumeRole policy allows a user or service to assume a
+role in a different account or within the same account. This provides temporary security credentials with the permissions associated with the assumed role, enabling cross-account access or delegation of permissions.
+
+𝗤. What are the types of storage accounts in AWS S3?
+𝗔. In AWS S3, the different storage classes include:
+○ S3 Standard
+○ S3 Intelligent-Tiering
+○ S3 Standard-IA (Infrequent Access)
+○ S3 One Zone-IA
+○ S3 Glacier
+○ S3 Glacier Deep Archive
+
+𝗤. What is the maximum number of S3 buckets you can
+create?
+Ans. 100
+
+𝗤. How many total VPCs per account/region and subnets per
+VPC can you have?
+Ans. 5, 200
