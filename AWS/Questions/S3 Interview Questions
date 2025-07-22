@@ -1,0 +1,26 @@
+Top 20 Amazon S3 Interview Questions – No-Fluff List
+Preparing for an AWS/Cloud/DevOps interview? Here’s a clean and focused list of the most commonly asked S3 questions — straight to the point 👇
+
+
+---
+
+🔹 1. What is Amazon S3?
+🔹 2. How does S3 achieve high durability?
+🔹 3. What are the different storage classes in S3?
+🔹 4. What is an S3 bucket?
+🔹 5. What is the maximum object size you can upload to S3?
+🔹 6. How can you make an S3 object publicly accessible?
+🔹 7. You uploaded a file to S3 but can’t access it via browser. What could be the reasons?
+🔹 8. What is versioning in S3 and why is it used?
+🔹 9. What is a pre-signed URL in S3?
+🔹 10. How do you restrict access to a specific IAM user for an S3 bucket?
+🔹 11. How can you recover accidentally deleted files from S3?
+🔹 12. How do you upload a large file (5GB+) to S3 efficiently?
+🔹 13. How can you reduce S3 storage costs for infrequently accessed data?
+🔹 14. What is a lifecycle policy in S3?
+🔹 15. What is S3 Intelligent-Tiering?
+🔹 16. What is the difference between a bucket policy and an IAM policy?
+🔹 17. How do you enable encryption for data at rest in S3?
+🔹 18. How can you prevent public access to sensitive S3 buckets?
+🔹 19. How can you automate uploads to S3 in a CI/CD pipeline?
+🔹 20. How do you trigger a Lambda function when a new object is uploaded to S3?
