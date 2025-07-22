@@ -1,0 +1,97 @@
+Some of the Interview based Question asked in DevOps Interview.
+
+1.Your application needs different configurations for dev, staging, and prod. How will you handle this using Helm?
+
+To handle different configurations for dev, staging, and prod environments using Helm, you should use Helm value files to separate environment-specific settings.
+
+1. Create separate values files for each environment:
+
+
+helm-chart/
+├── Chart.yaml
+├── templates/
+│   └── ...
+├── values.yaml              # default
+├── values-dev.yaml          # dev-specific config
+├── values-staging.yaml      # staging-specific config
+└── values-prod.yaml         # prod-specific config
+
+Example: values-dev.yaml
+
+replicaCount: 1
+image:
+  tag: "dev-latest"
+resources:
+  limits:
+    cpu: "200m"
+    memory: "256Mi"
+Example: values-prod.yaml
+
+replicaCount: 3
+image:
+  tag: "prod-latest"
+resources:
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+
+🚀 Deploying with Helm:
+
+# Dev environment
+helm install myapp-dev ./helm-chart -f values-dev.yaml
+
+# Staging environment
+helm install myapp-staging ./helm-chart -f values-staging.yaml
+
+# Production environment
+helm install myapp-prod ./helm-chart -f values-prod.yaml
+
+2.You want to roll back a failed deployment caused by a Helm upgrade. How would you do it, and what happens under the hood?
+
+1. Check release history:
+
+helm history <release-name>
+Example:
+
+helm history myapp
+You'll see a list of revisions like:
+ REVISION UPDATED STATUS CHART APP VERSION   
+  1 2023-07-19 12:00:00 deployed myapp-0.1.0 v1.0 
+  2 2023-07-19 12:15:00 failed myapp-0.2.0 v1.1  
+
+2. Rollback to a previous working revision:
+
+helm rollback <release-name> <revision>
+Example:
+
+helm rollback myapp 1
+🔍 What happens under the hood?
+Helm uses Kubernetes Secrets (or ConfigMaps in older versions) stored in the namespace to track release history.
+
+Each release and revision is saved, including:
+values.yaml
+rendered templates
+chart version
+
+When you run helm rollback, Helm:
+Retrieves the specified previous release revision
+Re-applies the manifests from that version
+Triggers a Kubernetes deployment update using the older configuration
+Creates a new revision for the rollback operation
+
+3.A CI/CD pipeline should validate Helm charts before pushing to Git. What Helm features/commands do you use?
+
+To validate Helm charts in a CI/CD pipeline before pushing to Git (or before deploying), you should use a combination of Helm commands and linters to catch issues early.
+
+1. ✅ helm lint
+Purpose: Lints the chart for structure and syntax errors.
+Command:
+
+helm lint ./charts/mychart
+CI/CD usage: Add this step early to fail fast on bad templates.
+
+2. 🔍 helm template (Dry run rendering)
+Purpose: Renders the chart locally to validate templates.
+Command:
+
+helm template myrelease ./charts/mychart -f values.yaml
