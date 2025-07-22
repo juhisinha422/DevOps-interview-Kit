@@ -32,4 +32,308 @@ Here are 17 Kubernetes questions I was asked that dive into architecture, troubl
 
 16. You're managing multi-region deployments using a single Kubernetes control plane. What architectural considerations must you address to avoid cross-region latency and single points of failure?
 
-17. During peak traffic, your ingress controller fails to route requests efficiently. How would you diagnose and scale ingress resources effectively under heavy load?
+17. During peak traffic, your ingress controller fails to route requests efficiently. How would you diagnose and scale ingress resources effectively under heavy load
+
+
+
+
+================
+
+Answers
+
+
+1. Your pod keeps getting stuck in CrashLoopBackOff, but logs show no errors. How would you approach debugging and resolution?
+Approach:
+
+- Run kubectl describe pod <pod-name> to check events (e.g., OOMKilled, permission issues)
+- Check if readiness/liveness probes are misconfigured.
+- Inspect init containers or sidecars
+- Check kubectl get events for resource or scheduling failures.
+- Run kubectl exec into a running container (if it stabilizes briefly) or use an ephemeral debug container (kubectl debug).
+
+Resolution:
+
+Adjust probe configurations, increase memory limits, fix environment/config errors, or troubleshoot dependencies like volume mounts or secrets.
+
+2. You have a StatefulSet deployed with persistent volumes, and one of the pods is not recreating properly after deletion. What could be the reasons, and how do you fix it without data loss?
+
+Possible Causes:
+
+- PVC still bound to the old pod (pod-0 PVC won't bind to a new pod)
+- StatefulSet not recreating pod due to volume reclaim policy.
+- Pod stuck in Terminating due to finalizers.
+
+Fix Without Data Loss:
+
+- Ensure PVC exists: kubectl get pvc.
+- Reattach existing PVC or force delete stuck pod.
+- Avoid deleting PVC manually unless backed up.
+- Check volume provisioner logs (e.g., CSI driver).
+
+3. Your cluster autoscaler is not scaling up even though pods are in Pending state. What would you investigate?
+
+Check:
+
+- Pod events: kubectl describe pod (look for insufficient resources).
+- Are pods unschedulable due to PDBs, affinity, or taints?
+- Cluster autoscaler logs (kubectl logs deployment/cluster-autoscaler).
+- IAM roles and permissions for autoscaler.
+- Are there node pool limits or maxNodesTotal reached?
+
+4. A network policy is blocking traffic between services in different namespaces. How would you design and debug the policy to allow only specific communication paths?
+
+Debug:
+
+- Run: kubectl get networkpolicies -A.
+- Use kubectl exec or netshoot to test connectivity.
+- Confirm the egress and ingress allow namespaceSelector or match labels properly.
+
+Design:
+
+- Explicitly allow traffic using:
+
+```
+namespaceSelector:
+ matchLabels:
+ name: target-namespace
+```
+- Consider default-deny policy, then allow by exception.
+
+5. One of your microservices has to connect to an external database via a VPN inside the cluster. How would you architect this in Kubernetes with HA and security in mind?
+
+Architecture:
+
+- Deploy a VPN client (e.g., strongSwan, WireGuard) as a highly available Deployment or DaemonSet.
+- Use a dedicated subnet/VPC peering to reach the DB.
+- Add NetworkPolicy to restrict access to DB.
+- Run VPN client as sidecar or separate service with failover.
+
+Security:
+
+- Store VPN credentials in Kubernetes Secrets.
+- Limit access with RBAC and PodSecurityPolicies.
+
+6. You're running a multi-tenant platform on a single EKS cluster. How do you isolate workloads and ensure security, quotas, and observability for each tenant?
+
+Isolation Strategy:
+
+- Namespaces: One per tenant.
+- NetworkPolicies: Restrict cross-tenant traffic.
+- ResourceQuotas & LimitRanges: Prevent resource abuse.
+- PodSecurity Admission: Enforce strict security controls.
+- IAM Roles for Service Accounts (IRSA): Per-tenant scoped access.
+- Observability: Use tools like Prometheus, Grafana, and Loki with tenant labels.
+- Audit Logs: Per namespace.
+
+7. You notice the kubelet is constantly restarting on a particular node. What steps would you take to isolate the issue and ensure node stability?
+
+Steps:
+
+- Check system logs: journalctl -u kubelet.
+- Validate disk, memory, CPU on the node.
+- Look for certificate rotation or configuration errors.
+- Check kubelet flags (e.g., max pods, cgroup driver).
+
+Resolution:
+
+- Tune kubelet flags, upgrade the node, or replace faulty hardware.
+
+8. A critical pod in production gets evicted due to node pressure. How would you prevent this from happening again, and how do QoS classes play a role? 
+
+Prevention:
+
+- Monitor node metrics (CPU, memory, disk).
+- Set higher requests for critical pods.
+- Use PriorityClasses to protect key workloads.
+- Avoid writing to node disk (e.g., /tmp) excessively.
+- Consider over-provisioning buffer nodes or scaling.
+
+QoS Classes:
+
+- Guaranteed: Set both requests and limits equal – highest priority.
+- Burstable: Partial setting – moderate priority.
+- BestEffort: No requests or limits – lowest priority.
+
+9. You need to deploy a service that requires TCP and UDP on the same port. How would you configure this in Kubernetes using Services and Ingress?
+
+Solution:
+
+Create two Kubernetes Services:
+
+```
+spec:
+ ports:
+ - name: tcp-port
+ port: 1234
+ protocol: TCP
+ - name: udp-port
+ port: 1234
+ protocol: UDP
+
+```
+
+Ingress only supports TCP/HTTP; for UDP, use LoadBalancer or MetalLB with dual protocol support.
+
+10. An application upgrade caused downtime even though you had rolling upda1. Your pod keeps getting stuck in CrashLoopBackOff, but logs show no errors. How would you approach debugging and resolution?
+Approach:
+
+- Run kubectl describe pod <pod-name> to check events (e.g., OOMKilled, permission issues)
+- Check if readiness/liveness probes are misconfigured.
+- Inspect init containers or sidecars
+- Check kubectl get events for resource or scheduling failures.
+- Run kubectl exec into a running container (if it stabilizes briefly) or use an ephemeral debug container (kubectl debug).
+
+Resolution:
+
+Adjust probe configurations, increase memory limits, fix environment/config errors, or troubleshoot dependencies like volume mounts or secrets.
+
+2. You have a StatefulSet deployed with persistent volumes, and one of the pods is not recreating properly after deletion. What could be the reasons, and how do you fix it without data loss?
+
+Possible Causes:
+
+- PVC still bound to the old pod (pod-0 PVC won't bind to a new pod)
+- StatefulSet not recreating pod due to volume reclaim policy.
+- Pod stuck in Terminating due to finalizers.
+
+Fix Without Data Loss:
+
+- Ensure PVC exists: kubectl get pvc.
+- Reattach existing PVC or force delete stuck pod.
+- Avoid deleting PVC manually unless backed up.
+- Check volume provisioner logs (e.g., CSI driver).
+
+3. Your cluster autoscaler is not scaling up even though pods are in Pending state. What would you investigate?
+
+Check:
+
+- Pod events: kubectl describe pod (look for insufficient resources).
+- Are pods unschedulable due to PDBs, affinity, or taints?
+- Cluster autoscaler logs (kubectl logs deployment/cluster-autoscaler).
+- IAM roles and permissions for autoscaler.
+- Are there node pool limits or maxNodesTotal reached?
+
+4. A network policy is blocking traffic between services in different namespaces. How would you design and debug the policy to allow only specific communication paths?
+
+Debug:
+
+- Run: kubectl get networkpolicies -A.
+- Use kubectl exec or netshoot to test connectivity.
+- Confirm the egress and ingress allow namespaceSelector or match labels properly.
+
+Design:
+
+- Explicitly allow traffic using:
+
+```
+namespaceSelector:
+ matchLabels:
+ name: target-namespace
+```
+- Consider default-deny policy, then allow by exception.
+
+5. One of your microservices has to connect to an external database via a VPN inside the cluster. How would you architect this in Kubernetes with HA and security in mind?
+
+Architecture:
+
+- Deploy a VPN client (e.g., strongSwan, WireGuard) as a highly available Deployment or DaemonSet.
+- Use a dedicated subnet/VPC peering to reach the DB.
+- Add NetworkPolicy to restrict access to DB.
+- Run VPN client as sidecar or separate service with failover.
+
+Security:
+
+- Store VPN credentials in Kubernetes Secrets.
+- Limit access with RBAC and PodSecurityPolicies.
+
+6. You're running a multi-tenant platform on a single EKS cluster. How do you isolate workloads and ensure security, quotas, and observability for each tenant?
+
+Isolation Strategy:
+
+- Namespaces: One per tenant.
+- NetworkPolicies: Restrict cross-tenant traffic.
+- ResourceQuotas & LimitRanges: Prevent resource abuse.
+- PodSecurity Admission: Enforce strict security controls.
+- IAM Roles for Service Accounts (IRSA): Per-tenant scoped access.
+- Observability: Use tools like Prometheus, Grafana, and Loki with tenant labels.
+- Audit Logs: Per namespace.
+
+7. You notice the kubelet is constantly restarting on a particular node. What steps would you take to isolate the issue and ensure node stability?
+
+Steps:
+
+- Check system logs: journalctl -u kubelet.
+- Validate disk, memory, CPU on the node.
+- Look for certificate rotation or configuration errors.
+- Check kubelet flags (e.g., max pods, cgroup driver).
+
+Resolution:
+
+- Tune kubelet flags, upgrade the node, or replace faulty hardware.
+
+8. A critical pod in production gets evicted due to node pressure. How would you prevent this from happening again, and how do QoS classes play a role? 
+
+Prevention:
+
+- Monitor node metrics (CPU, memory, disk).
+- Set higher requests for critical pods.
+- Use PriorityClasses to protect key workloads.
+- Avoid writing to node disk (e.g., /tmp) excessively.
+- Consider over-provisioning buffer nodes or scaling.
+
+QoS Classes:
+
+- Guaranteed: Set both requests and limits equal – highest priority.
+- Burstable: Partial setting – moderate priority.
+- BestEffort: No requests or limits – lowest priority.
+
+9. You need to deploy a service that requires TCP and UDP on the same port. How would you configure this in Kubernetes using Services and Ingress?
+
+Solution:
+
+Create two Kubernetes Services:
+
+```
+spec:
+ ports:
+ - name: tcp-port
+ port: 1234
+ protocol: TCP
+ - name: udp-port
+ port: 1234
+ protocol: UDP
+
+```
+
+Ingress only supports TCP/HTTP; for UDP, use LoadBalancer or MetalLB with dual protocol support.
+
+10. An application upgrade caused downtime even though you had rolling updates configured. What advanced strategies would you apply to ensure zero-downtime deployments next time?
+
+Why it happened:
+
+- Readiness probe failures.
+- No maxUnavailable/maxSurge tuning.
+- Database migrations broke compatibility.
+
+Advanced Strategies:
+
+- Canary/Blue-Green deployments: Use Argo Rollouts/Flagger.
+- PreStop hooks: Graceful shutdown.
+- PodDisruptionBudgets.
+- Readiness gates: Wait for external conditions (e.g., DB schema ready).
+- Feature flag toggling to reduce dependency on rollout.
+tes configured. What advanced strategies would you apply to ensure zero-downtime deployments next time?
+
+Why it happened:
+
+- Readiness probe failures.
+- No maxUnavailable/maxSurge tuning.
+- Database migrations broke compatibility.
+
+Advanced Strategies:
+
+- Canary/Blue-Green deployments: Use Argo Rollouts/Flagger.
+- PreStop hooks: Graceful shutdown.
+- PodDisruptionBudgets.
+- Readiness gates: Wait for external conditions (e.g., DB schema ready).
+- Feature flag toggling to reduce dependency on rollout.
+
