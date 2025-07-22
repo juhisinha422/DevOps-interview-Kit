@@ -1,0 +1,25 @@
+Senior DevOps Engineer Development side at (Accenture).
+
+Today, I had an interesting experience during a telephonic screening round for a DevOps/Senior DevOps Engineer position (Development) at Accenture.
+
+Before even scheduling the formal interview, Now the hiring panel was testing the employee capability before scheduling the interview. They are asking many questions on call only. Today I got this situation from Accenture. He asked me questions below:
+
+● What is the difference between Webhook and Poll SCM?
+● Jenkins pipeline flow from the project
+● shared libraries in Jenkins?
+● How to build in pipeline? What tool used?
+● Where to store the WAR file? How to add it in the pipeline?
+● How many branches are you using from your project? And how to create a branch and where to create a branch? Explain to me how you used branching strategies.
+● If you forgot the password, how to log in to Jenkins dashboard?
+● How to secure files and where to store them?
+● How to monitor the pipeline and how to troubleshoot?
+● What automation tools used from your project and why?
+● Docker create and docker -it command — tell me about it, why it is used?
+Docker build steps
+● How to create a Docker image and why?
+● Docker image template in detail — explanation he asked: RUN, COPY, CMD, EXPOSE, ENTRYPOINT, FROM
+● Docker container was failed — how to troubleshoot?
+● If the CPU was high utilization, how to monitor and what to do?
+● Ansible playbooks and modules — difference and explanation?
+● Ansible handlers
+● Helm package used — and why used? And why ArgoCD and why used? And what are the differences between both?
