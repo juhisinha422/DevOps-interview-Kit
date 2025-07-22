@@ -1,0 +1,51 @@
+Top 10 Terraform Interview Questions 
+(Senior/Lead DevOps)
+
+	1.	How do you manage state in Terraform across multiple teams and environments?
+▸ Follow-up: How do you prevent state file corruption or race conditions in CI/CD pipelines?
+
+	2.	Can you explain how Terraform modules work and how you structure reusable infrastructure?
+▸ Bonus: How do you handle module versioning and backwards compatibility?
+
+	3.	What are some Terraform anti-patterns you’ve seen and how would you avoid them?
+▸ e.g. using count vs for_each, hardcoding resource names, not using remote state, etc.
+
+	4.	How would you implement a secure Terraform workflow using remote state, Vault, and CI/CD?
+▸ Expectations: S3 + DynamoDB for state locking, encryption, secure secret injection.
+
+Ans: DynamoDB is optional as S3 now includes native state file locking in AWS. Azure uses blob leases for state file locking.
+
+	5.	How do you handle drift detection and reconciliation in production environments?
+▸ Do you prefer terraform plan + GitOps model or automated reconciliation?
+
+	6.	Describe the lifecycle of a Terraform deployment in your CI pipeline. What steps are involved?
+▸ Validate, plan, approval (optional), apply. Include security scanning (e.g., tfsec, checkov).
+
+	7.	How would you design and organize a large-scale multi-account Terraform project?
+▸ Bonus: Use of terragrunt, folder structure, environment promotion, backend config injection.
+
+	8.	How do you safely introduce changes to critical Terraform-managed infrastructure (e.g., RDS, VPC)?
+▸ Strategies: create_before_destroy, lifecycle blocks, manual review, staggered rollouts.
+
+	9.	Explain the difference between depends_on, implicit dependencies, and how Terraform builds its DAG.
+▸ Why understanding this matters for troubleshooting complex plans.
+
+	10.	How would you handle secret management in Terraform without exposing them in state files or logs?
+▸ Inline secrets vs external secret providers (Vault, SSM Parameter Store, etc.)
+
+
+
+
+-------
+
+State Backend Security & Scalability:Beyond just “how do you manage state?”, I’d ask how you design the backend for high availability and scale e.g., distributed backends with locking (S3 + DynamoDB), versioning for rollback, and audit trails. How do you handle disaster recovery scenarios if a state file is corrupted or lost?
+
+Plan Validation & Policy as Code:Introduce questions around policy enforcement (e.g., Sentinel for Terraform Cloud, OPA) to ensure misconfigurations are caught before deploys. How would you embed policy checks in your CI pipelines?
+
+Automated Cost Estimation & Drift Impacts:
+Before apply, how do you handle cost estimation (e.g., infracost) and align it with budgets? what processes do you have to evaluate drift not just as a security risk, but as a cost or compliance risk?
+
+Granular RBAC and Least Privilege:How do you manage access controls at the Terraform level (workspace separation, IAM policies) to ensure least privilege?
+
+Module Registry & Inner Source Governance:
+How do you maintain shared modules at scale across teams (internal module registries, version pinning, approval workflows)? This touches on security, reliability, and developer experience.
