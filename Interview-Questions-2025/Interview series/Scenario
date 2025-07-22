@@ -1,0 +1,32 @@
+Scenario-Based DevOps Interview Questions (From My Experience)
+Hey LinkedIn fam 👋,
+While preparing for upcoming DevOps interviews, I realized that scenario-based questions are becoming the new norm—especially for mid-level roles (5+ years of experience).
+I’m sharing a collection of real-world questions I’ve faced (or seen commonly asked) to help fellow DevOps professionals gear up. Hope this helps someone out there! 🚀
+🧩 Jenkins / CI-CD Scenarios
+🔹 Jenkins pipeline works in staging but fails in production — how do you debug?
+ 🔹 Job stuck at “Waiting for executor” — what do you check?
+ 🔹 How to roll back a failed deployment?
+ 🔹 How to prevent accidental prod deployments from feature branches?
+
+🐳 Docker Scenarios
+🔹 A container keeps restarting — how do you troubleshoot?
+ 🔹 Image size is too large — how do you optimize it?
+ 🔹 Best practices for handling secrets in Docker?
+🔹 Difference between entrypoint and cmd
+
+☸️ Kubernetes Scenarios
+🔹 Pod stuck in CrashLoopBackOff — where do you begin?
+ 🔹 Rolling back a failed production deployment?
+ 🔹 Making a service cluster-internal only — how?
+ 🔹 Secret rotation without downtime — how would you approach it?
+
+☁️ AWS / Cloud Infra
+🔹 EC2 instance is unresponsive — first things to check?
+ 🔹 Performing zero-downtime deployments in AWS?
+ 🔹 Autoscaling setup based on CPU usage — how?
+
+🐧 Linux Scenarios
+🔹 Disk space is full on a production server — what do you do?
+ 🔹 A process is consuming high CPU — how do you troubleshoot it?
+ 🔹 A server is not reachable via SSH — how would you diagnose it?
+ 🔹 How do you schedule regular backups using cron?
