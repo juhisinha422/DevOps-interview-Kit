@@ -1,0 +1,22 @@
+"Imagine you deployed an application in Kubernetes, and users suddenly start getting 500 errors. How would you troubleshoot?"
+Now, I could have just listed Kubernetes commands—but instead, I treated it like a real incident.
+
+𝐇𝐞𝐫𝐞’𝐬 𝐡𝐨𝐰 𝐈 𝐚𝐧𝐬𝐰𝐞𝐫𝐞𝐝:
+
+𝟏: 𝐑𝐞𝐩𝐫𝐨𝐝𝐮𝐜𝐞 𝐭𝐡𝐞 𝐈𝐬𝐬𝐮𝐞
+"First, I’d try to access the app myself. Is it happening for all users or just some? Are all services affected or just one?"
+
+𝟐: 𝐂𝐡𝐞𝐜𝐤 𝐭𝐡𝐞 𝐏𝐨𝐝𝐬
+"Next, I’d run kubectl get pods to see if the pods are healthy. Maybe they’re stuck in CrashLoopBackOff or restarting repeatedly."
+
+𝟑: 𝐋𝐨𝐨𝐤 𝐚𝐭 𝐋𝐨𝐠𝐬
+"Then, I’d check kubectl logs for the failing pod. Is it a code error? A database connection issue? Maybe a misconfigured environment variable?"
+
+𝟒: 𝐂𝐡𝐞𝐜𝐤 𝐄𝐯𝐞𝐧𝐭𝐬 𝐚𝐧𝐝 𝐃𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭𝐬
+"I’d run kubectl describe pod to see if there’s an OOM (Out of Memory) error, liveness probe failure, or resource limit problem."
+
+𝟓: 𝐂𝐨𝐥𝐥𝐚𝐛𝐨𝐫𝐚𝐭𝐞
+"If I’m stuck, I’d pull in the right team members—because DevOps isn’t about solving everything alone."
+
+𝐓𝐡𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐞𝐫 𝐒𝐚𝐢𝐝:
+"That’s exactly what we look for. Not just tools—but your approach to handling pressure, prioritizing, and collaborating."
