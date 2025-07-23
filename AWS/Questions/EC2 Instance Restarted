@@ -1,0 +1,28 @@
+𝐌𝐲 𝐄𝐂𝟐 𝐈𝐧𝐬𝐭𝐚𝐧𝐜𝐞 𝐑𝐞𝐬𝐭𝐚𝐫𝐭𝐞𝐝, 𝐚𝐧𝐝 𝐌𝐲 𝐖𝐞𝐛𝐬𝐢𝐭𝐞 𝐖𝐞𝐧𝐭 𝐃𝐨𝐰𝐧!
+
+If your EC2 instance restarts (either manually or unexpectedly), here's what you need to know:
+
+𝗧𝗵𝗲 𝗣𝗿𝗼𝗯𝗹𝗲𝗺
+- When an EC2 instance is restarted or stopped and started again, the public IP changes (unless it's an Elastic IP).
+- If your DNS is mapped to the old public IP, users will no longer be able to access your application.
+- This leads to downtime even though your application is still running.
+
+𝗧𝗵𝗲 𝗥𝗼𝗼𝘁 𝗖𝗮𝘂𝘀𝗲
+
+Your DNS is pointing to a dynamic public IP. After a restart, that IP is no longer valid. The new IP needs to be updated in your DNS for the traffic to reach your application again.
+
+𝗧𝗵𝗲 𝗦𝗼𝗹𝘂𝘁𝗶𝗼𝗻
+Use an Elastic IP a static IP provided by AWS that stays the same even after restarts.
+Steps to fix it:
+- Go to the EC2 Dashboard -> Elastic IPs
+- Allocate a new Elastic IP
+- Associate it with your instance
+- Update your DNS to this new static IP
+Now, even if your EC2 restarts, your app remains reachable.
+
+𝗞𝗲𝘆 𝗜𝗻𝘀𝗶𝗴𝗵𝘁
+If you're running production workloads or auto-scaling environments, consider:
+- Using a 𝗟𝗼𝗮𝗱 𝗕𝗮𝗹𝗮𝗻𝗰𝗲𝗿 instead of exposing EC2 directly
+- Managing DNS with 𝗥𝗼𝘂𝘁𝗲 𝟱𝟯 + 𝗛𝗲𝗮𝗹𝘁𝗵 𝗖𝗵𝗲𝗰𝗸𝘀 for high availability
+
+Avoiding downtime is all about planning. Something as simple as IP management can save hours of debugging later.
