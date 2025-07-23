@@ -1,0 +1,9 @@
+Jenkinsfile - Automating Your Builds as Code
+
+Jenkinsfile is a simple text file (named `Jenkinsfile`) that you place right in your project's source code repository. This file contains the complete definition of your Jenkins pipeline – all the stages, steps, and actions needed to build, test, and deploy your software. 
+
+What makes it special? 
+- Version Control: Your pipeline is now tracked just like your application code. 
+- Consistency: Every build uses the exact same defined process. 
+- Collaboration: Teams can easily review, share, and improve the pipeline definition. 
+- Reproducibility: Setting up new Jenkins jobs or even a new Jenkins server becomes incredibly simple.
