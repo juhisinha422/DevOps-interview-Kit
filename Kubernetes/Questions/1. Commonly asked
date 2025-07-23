@@ -1,0 +1,39 @@
+𝗧𝗵𝗲𝘀𝗲 𝗮𝗿𝗲 𝘁𝗵𝗲 𝗺𝗼𝘀𝘁 𝗰𝗼𝗺𝗺𝗼𝗻𝗹𝘆 𝗮𝘀𝗸𝗲𝗱 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗶𝗻 𝗗𝗲𝘃𝗢𝗽𝘀 𝗶𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝘀.
+Q: How can we restrict which pod can access the other pod in Kubernetes?
+✅ Implement Network Policies with podSelector to control ingress/egress traffic between specific pods using labels.
+
+Q: Suppose I want the pod to be scheduled on a specific node only. How can I achieve this?
+✅ Use nodeSelector with node labels, Node Affinity for complex rules, or nodeName to directly specify the target node.
+
+Q: I am getting a 503 error when I hit a load balancer URL, which routes the traffic to the application deployed in a Kubernetes cluster. How will u troubleshoot this?
+✅ Check service endpoints, verify pod readiness, test internal connectivity, examine health probe configurations, and service selectors.
+
+Q: I am getting a crashloopbackoff error for one of the pods in a namespace. What should be the reason?
+✅ Common causes include application startup failures, missing environment variables, resource constraints, or failed liveness probes.
+
+Q: Pod in a pending state after the deployment is done? What can be the reason behind this?
+✅ Check for insufficient cluster resources, unmatched node selectors, unavailable PVCs, image pull issues, or scheduler problems.
+
+Q: How can you ensure high availability for your application deployed in k8s cluster?
+✅ Deploy multiple replicas with anti-affinity rules, configure Pod Disruption Budgets, implement proper health checks, and HPA.
+
+Q: I want the run one one-time database migration task before my application starts?
+✅ Use Init Containers that run and complete before the main application container starts running.
+
+Q: I want to only give read-only permissions to check the logs for users? How can u set up RBAC for this?
+✅ Create a ClusterRole with get and list permissions for pods and pods/log resources, then bind to users with a ClusterRoleBinding.
+
+Q: What happens if the k8s master node and worker node firewall gets broken?
+✅ Complete cluster communication failure - API server becomes inaccessible and kubelet cannot communicate with master.
+
+Q: What are the steps to be performed while updating a Kubernetes cluster?
+✅ Backup etcd, update control plane first, then drain and update worker nodes one by one while verifying health.
+
+Q: How can u ensure that only pods with a specific label can talk to your backend service?
+✅ Create a Network Policy with podSelector targeting backend pods and specify allowed source pods using label selectors.
+
+Q: All pods on the statefulsets are trying to connect to the same storage volume. What's wrong, and how do you fix it?
+✅ Configure volumeClaimTemplates properly in the StatefulSet spec so each pod gets its own unique PVC automatically.
+
+👉 𝗬𝗼𝘂 𝗰𝗮𝗻 𝗳𝗶𝗻𝗱 𝗱𝗲𝘁𝗮𝗶𝗹𝗲𝗱 𝗮𝗻𝘀𝘄𝗲𝗿𝘀 𝗵𝗲𝗿𝗲:
+https://lnkd.in/gajUwkAM
