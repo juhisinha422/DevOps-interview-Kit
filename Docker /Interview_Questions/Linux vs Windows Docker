@@ -1,0 +1,10 @@
+Can you run a Windows container on Docker installed on Linux?
+ The short answer: No. And here's why👇
+Containers share the host OS kernel, which means:
+🐧 Linux Docker = only runs Linux containers
+🪟 Windows Docker = only runs Windows containers
+Since Windows containers require the Windows kernel, they simply won’t run on a Linux-based Docker engine.
+🛠️ Workarounds?
+Spin up a Windows VM and run Docker there.
+Use cloud providers like Azure or AWS that offer Windows container support.
+💡 Lesson: When working with containers, understanding the host kernel and compatibility is key. Docker isn’t magic—it’s smart OS-level virtualization.
