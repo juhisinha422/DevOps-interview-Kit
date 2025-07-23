@@ -1,0 +1,22 @@
+AWS DevOps role, L1 interview questions 18-Jul-25 company: Persistent
+
+Recently faced an interview questions for DevOps role,  Sharing here to help others prepare.
+
+1. can we start with your introduction?   
+2. Have you heard of Flux or Argo CD?   
+3. on a scale of 5, how would you rate yourself on Linux?   
+4. Can you briefly explain how does the Linux boot processing happen?    
+5. So for services to load, there is one specific service in Linux. So can you name that service?
+5. Let's say I want the Nginx to be up as soon as I boot the system. Like system comes up, it should by default start Nginx service, which I have installed. So how do I configure that to system simply?   
+6. so what all tools, linux command do you use in your day-to-day activities?    7. So when you do df, I want to see the disk with the disk format, like the format in which the disk was formatted with. So it could be ext4, it could be xfs, anything. So what all things will I pass? What arguments will I pass? 
+8. Troubleshooted Linux networking?   
+9. have you added any remote repository to your get client on the command line?   
+10. in git let's say instead of writing get remote add origin. if i give my name in place of origin will it work?   
+11. how do you create a branch?   
+12. have you ever worked with ansible?   
+13. how will u check the status of a service (e.g., nginx) running on 10 VMs using Ansible, and find out which hosts do NOT have it running.
+14. how will you write the playbook in inanceable to check that status.  
+15. You said , u worked java app deployment using maven build tool so tell me what does maven clean package command does   
+16. what mvn clear test command does   
+17. can you explain the architecture of K8S?   
+18. what kube proxy does?  
