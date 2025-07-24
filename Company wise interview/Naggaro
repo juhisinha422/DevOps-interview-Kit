@@ -1,0 +1,25 @@
+Nagarro team for a #DevOps role  – here’s a quick recap of the questions asked!
+ It was a solid mix of Kubernetes, CI/CD, AWS, and real-world troubleshooting.
+Interview Questions I Faced:
+🔹 Tell me about yourself
+ 🔹 What is your role in your company?
+ 🔹 What is Ingress? Why do we use it?
+ 🔹 Difference between ConfigMap and Secret
+ 🔹 How will you deploy an application using Argo CD?
+ 🔹 What is a Rolling Update in Kubernetes?
+ 🔹 How to check logs of a Pod or application?
+ 🔹 How do you troubleshoot CrashLoopBackOff or other deployment errors?
+ 🔹 Explain DaemonSet, StatefulSet, Deployment
+ 🔹 What is a PDB (PodDisruptionBudget) in Kubernetes?
+ 🔹 NAT Gateway vs Internet Gateway
+ 🔹 What are different Kubernetes deployment strategies?
+ 🔹 Describe the VPC structure in your project
+ 🔹 Explain Kubernetes cluster architecture
+ 🔹 How do you integrate Argo CD with Jenkins?
+ 🔹 Use cases of CodeBuild, CodePipeline, and CodeDeploy
+ 🔹 How to autoscale in EC2?
+ 🔹 What is HPA, and what does a configmap contain?
+ 🔹 Errors faced while deploying in AWS using CodeDeploy?
+
+💡 Tip for candidates:
+ They focus on real-time troubleshooting, AWS services, Kubernetes deployments, and how you solve problems hands-on.
