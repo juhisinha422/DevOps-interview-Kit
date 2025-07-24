@@ -1,0 +1,56 @@
+What is Ingress in Kubernetes?
+
+What is Ingress?
+In Kubernetes, Ingress is an API object that manages external access to services within a cluster — typically HTTP/HTTPS traffic.
+
+It acts like a smart router that directs traffic to the correct services based on rules like URL paths or hostnames.
+
+
+Simple Analogy:
+Imagine your Kubernetes cluster is a gated society.
+Ingress is like the security gate that:
+           Understands where each visitor (request) wants to go
+           Looks at the address on the envelope (URL/path/host)
+           And routes them to the correct house (service)
+
+
+Why is Ingress important?
+     Avoids exposing multiple LoadBalancers or NodePorts
+     Centralizes routing rules
+     Enables TLS/SSL termination
+     Supports path-based & host-based routing
+     Key Ingress Components:
+     Ingress Resource – Defines the rules
+     Ingress Controller – Implements those rules (e.g., NGINX, Traefik)
+
+
+
+Sample Ingress YAML:
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  rules:
+  - host: myapp.com
+    http:
+      paths:
+      - path: /frontend
+        pathType: Prefix
+        backend:
+          service:
+            name: ui-frontend
+            port:
+              number: 80
+
+
+
+Interview Qs You Might Face:
+      What is Ingress? How is it different from LoadBalancer?
+      Can you explain host-based and path-based routing?
+      What is an Ingress Controller? Which one have you used?
+
+
+Visual:
+You can use a diagram like:
+Client --> Ingress --> Service A / Service B
