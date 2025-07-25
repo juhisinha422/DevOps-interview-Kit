@@ -1,0 +1,43 @@
+🔧 AWS Common Errors & How to Troubleshoot 🔧
+
+Here are some of the most frequent errors you might encounter in AWS and tips on how to resolve them:
+
+⚡ EC2 Instance State: Pending
+ Your EC2 instance is stuck in the "Pending" state and doesn’t start.
+ 🔍 Fix: Check the EC2 console for any issues during launch, such as AMI or resource availability problems. Review instance logs and system status.
+
+📦 EBS Volume Not Attaching
+ Unable to attach your Elastic Block Store (EBS) volume to an EC2 instance.
+ ✅ Fix: Ensure the volume is in the same availability zone as the EC2 instance. Check IAM roles and permissions for correct access.
+
+⏳ Elastic Load Balancer 504 Gateway Timeout
+ Your load balancer returns a 504 error, indicating an issue with backend instances.
+ 🔍 Fix: Ensure backend instances are healthy and properly configured. Check security groups and network ACLs to verify access.
+
+⚠️ S3 Bucket Access Denied
+ You’re getting an "Access Denied" error when trying to access an S3 bucket.
+ ✅ Fix: Review the S3 bucket policy and IAM permissions to ensure the correct access rights are assigned to the user or role.
+
+🚫 CloudFormation Stack Failed
+ Your CloudFormation stack creation fails or gets stuck in "ROLLBACK" state.
+ 🔍 Fix: Check the CloudFormation events for specific errors. Ensure resources are properly defined, and dependencies like IAM roles or VPC settings are correct.
+
+🔐 IAM Role Not Assuming
+ Your IAM role is not assuming the necessary permissions to access resources.
+ ✅ Fix: Ensure the correct trust relationship policy is configured. Also, check the permissions attached to the IAM role for the required actions.
+
+🧠 EC2 Instance Memory/CPU Overload
+ Your EC2 instance is running out of memory or CPU resources, affecting performance.
+ 🔍 Fix: Adjust instance type or enable auto-scaling to ensure proper resource allocation. Monitor usage with CloudWatch metrics.
+
+🌐 Route 53 DNS Resolution Failure
+ Your domain or subdomain isn’t resolving properly in Route 53.
+ ✅ Fix: Check DNS records in Route 53 and verify the TTL settings. Ensure the domain registrar is correctly configured.
+
+📉 RDS Connection Timeout
+ Your application cannot connect to the RDS instance.
+ 🔍 Fix: Ensure security groups and VPC/subnet routing allow proper connections. Check that the database is in an available state and not under maintenance.
+
+🔄 Auto Scaling Group Not Scaling
+ Your Auto Scaling group doesn’t scale up or down as expected.
+ ✅ Fix: Check the auto-scaling policies for proper configuration. Ensure the CloudWatch alarms are set up correctly and that there are available instances in your availability zone.
