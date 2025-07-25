@@ -1,0 +1,39 @@
+DevOps Interview Questions at PwC 
+
+Round 1 – Core Tech & Infra Awareness (45 mins)
+• Walk me through your CI/CD pipeline — what fails first under load?
+• How do you design VPCs for multi-region high availability?
+• StatefulSet vs Deployment — which one and why for Kafka?
+• How does kube-proxy handle traffic if IPVS rules vanish?
+• How do you secure GitHub Actions workflows for internal apps?
+• How does the Vault agent auto-auth with Kubernetes and renew tokens?
+• Migrate MySQL to Aurora with zero downtime — what’s your approach?
+• Terraform: How do you isolate and roll back a broken module?
+• Explain Karpenter vs Cluster Autoscaler — when and why?
+• Find all zombie processes consuming >1GB RAM — bash one-liner?
+
+Round 2 – Chaos Simulation & RCA (75 mins)
+• Latency doubled after Istio rollout — metrics look clean. What now?
+• You lost access to terraform.tfstate — how do you recover infra and trust?
+• Kubernetes pod is in CrashLoopBackOff with intermittent success — RCA?
+• S3 upload latency spikes every 5 minutes — walk me through the triage.
+• Redis maxclients hit unexpectedly — what preventive design would you improve?
+• Service mesh rollout caused TLS handshake failures in prod — root cause?
+• How would you simulate a node-level DNS resolution failure for testing?
+• Jenkins workers go stale randomly — where do you start debugging?
+• How would you build a golden image for internal Docker base layers?
+• App shows 200 OK, but billing is broken — where’s your observability?
+
+Round 3 – Mindset, Pressure & Process (30 mins)
+• Ever had to say “No” to leadership for the sake of reliability?
+• What’s your RCA template — and how often is it used?
+• What does production readiness mean to you?
+• Have you ever pushed infra changes without approval? What happened?
+• How do you balance velocity with architectural safety?
+
+💡 TL;DR:
+If you haven’t:
+Recovered a Terraform state loss under pressure
+Triaged a 200 OK bug that was bleeding revenue
+Simulated a kube-dns failure during rollout
+Debugged Istio + TLS in a broken mesh at midnight
