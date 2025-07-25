@@ -1,0 +1,18 @@
+Freestyle Jobs vs Pipeline Jobs – What’s the Difference?
+
+In Jenkins, both Freestyle Jobs and Pipeline Jobs automate tasks, but they serve different needs.
+
+Freestyle Jobs:
+- Simple, GUI-based jobs.
+- Best for basic builds and tasks.
+- Limited flexibility and scalability.
+
+Pipeline Jobs:
+- Scripted as code using Jenkinsfile.
+- Support complex workflows (build, test, deploy).
+- Version-controlled and highly customizable.
+
+When to Choose Which?
+Choose Freestyle: If you have a one-off, extremely simple task that requires no version control, or if you are just starting with Jenkins and want to see immediate results without learning any scripting.
+
+Choose Pipeline: For almost all serious CI/CD needs. If you need version control for your build process, complex workflows, parallelism, reusability, or robust error handling, Pipeline is the clear winner and the recommended best practice.
