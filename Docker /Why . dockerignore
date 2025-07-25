@@ -1,0 +1,43 @@
+Topic : Why .dockerignore ?
+
+>Without .dockerignore:
+All files in your directory, even large or irrelevant ones, get sent to the Docker daemon, slowing down builds.
+
+>With .dockerignore:
+Only the necessary files are copied, making the image smaller, faster to build, and more secure.
+
+Sample File :-
+
+# Ignore Git and node modules
+.git
+node_modules
+
+# Logs
+*.log
+
+# Environment files
+.env
+*.env
+
+# OS or IDE files
+.DS_Store
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+
+Importance of .dockerignore :-
+
+1.Reduces Image Size
+	•	By ignoring unnecessary files (e.g., .git, node_modules, logs)
+
+2.	Improves Build Performance
+	•	Docker doesn’t waste time copying or processing files that aren’t needed.
+
+3.	Protects Sensitive Information
+	•	Prevents secrets like .env, private keys,credentials from being included.
+
+4.	Avoids Cache Busting
+	•	Unchanging but frequently updated files (like logs or temp files) can invalidate build cache if not ignored.
