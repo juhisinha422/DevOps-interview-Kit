@@ -1,0 +1,121 @@
+Quick Review Most Asked AWS S3 Interview Questions
+
+
+🔹1. What is Amazon S3?
+
+Answer:
+Amazon S3 (Simple Storage Service) is a scalable object storage service used to store any amount of data (like files, images, logs) from anywhere.
+
+Cross Question:
+
+ Is S3 block storage or object storage?
+➤ Object storage
+
+
+🔹 2. What is the max file size you can upload to S3?
+
+Answer:
+Using a single PUT – max 5 GB.
+With Multipart Upload – up to 5 TB .
+
+Cross Questions:
+
+ Why use Multipart Upload?
+➤ Faster, parallel uploads, better for large files.
+
+
+🔹 3. What are different S3 Storage Classes?
+
+Answer:
+
+* Standard – frequent access
+* IA (Infrequent Access) – less frequent access
+* One Zone-IA – single AZ
+* Glacier / Glacier Deep Archive  – archival
+* Intelligent-Tiering – auto-tiering based on usage
+* S3 Express One Zone – ultra-low latency (new)
+
+Cross Question:
+
+* Which is cheapest for backups?
+➤ Glacier Deep Archive
+
+
+🔹 4. What is Versioning in S3?
+
+Answer:
+It keeps multiple versions of an object to recover from accidental deletes or overwrites.
+
+Cross Question:
+
+What happens if versioning is disabled and you delete an object?
+➤ It’s permanently deleted.
+
+
+🔹 5. What is Server-Side Encryption in S3?
+
+Answer:
+It encrypts data at rest:
+
+* SSE-S3 (S3 managed keys)
+* SSE-KMS (KMS managed keys with audit/logging)
+* SSE-C (Customer provided keys)
+
+Cross Question:
+
+Which allows key rotation & audit logging?
+➤ SSE-KMS
+
+
+🔹 6. What is Lifecycle Policy in S3?
+
+Answer:
+Used to automate object transitions between storage classes or delete them after a set period.
+
+Cross Question:
+
+* Can lifecycle rules move data to Glacier?
+➤ Yes
+
+
+🔹 7. What is Pre-signed URL in S3?
+
+Answer:
+A URL that grants temporary access to private S3 objects without needing user credentials.
+
+Cross Question:
+
+* Where is it useful?
+➤ File sharing, secure uploads/downloads
+
+
+🔹 8. What is S3 Select?
+
+Answer:
+Used to retrieve a subset of data (like selected columns) using SQL, reducing the amount of data transferred.
+
+Cross Question:
+
+Which formats does it support?
+➤ CSV, JSON, Parquet
+
+
+🔹 9. What is S3 Event Notification?
+
+Answer:
+Triggers services like Lambda, SQS, SNS when actions like PUT/DELETE happen in a bucket.
+
+Cross Question:
+
+Can you send an email when a file is uploaded?
+➤ Yes, via SNS + Email subscription.
+
+
+10. Difference between S3 and EBS/EFS?
+
+| Feature | S3 (Object) | EBS (Block) | EFS (File) |
+| -------- | ------------- | ----------- | ---------------- |
+| Type | Object | Block | File system |
+| Access | Over HTTP | EC2 only | Shared with EC2 |
+| Use Case | Backups, logs | DB storage | Shared workloads |
+
