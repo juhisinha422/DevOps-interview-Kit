@@ -1,0 +1,15 @@
+"Suppose you’ve deployed a new version of your application on AWS ECS (Elastic Container Service), and suddenly, half of your services are crashing. How would you handle this?"
+
+For a moment, I paused.
+Not because I didn’t know the answer—
+But because I remembered a real incident that happened to me during a late-night deployment.
+
+𝐇𝐨𝐰 𝐈 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐝:
+
+• "First, I’d check the ECS Service Events. Did the new containers fail to start? Maybe a misconfigured task definition caused it—like wrong environment variables, incorrect image tag, or resource limits."
+
+• "Then, I’d inspect CloudWatch logs for the container. Maybe it’s a code issue or the application can’t connect to a database because the secret is missing."
+
+• "Next, I’d look at the health checks. If ECS is failing health checks, it automatically stops the task. Maybe the new version changed an endpoint path or added authentication that the old health check wasn’t expecting."
+
+• "Finally, if needed, I’d rollback by updating the service with the last known stable task definition revision. ECS keeps track of versions, so rollback is just a few clicks—or a single CLI command."
