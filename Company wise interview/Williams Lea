@@ -1,0 +1,30 @@
+DevOps Interview Experience – Williams Lea (DevOps Engineer)
+
+
+Sharing some of the questions discussed during the interview 
+
+1. How does API Gateway work with AWS Lambda
+2. How to protect API endpoints
+3.What are tokens in API security
+4.What is JWT (JSON Web Token) and where is it used
+5. How to deploy a React app using DevOps practices
+6. How to host applications in AWS S3
+7.What is the alternative to AWS CloudFront
+8.What are Bitbucket runners and how do they work
+9. How to securely store secrets in Bitbucket Pipelines
+10.What are pre-commit hooks in DevOps
+11. How to troubleshoot EC2 provisioning issues in a CI/CD pipeline
+12. How to check IAM permission issues during deployment
+
+14.What is a Terraform state file
+15.What is a Terraform provider
+16.How to handle multiple environments in Terraform
+17.How to manage dependent resources in Terraform
+18.What is the difference between locals and variables in Terraform
+19.What is a Terraform dependency graph
+20.How to protect RDS from being exposed to the public internet
+21.What are common DevOps deployment strategies
+22.How to establish trusted communication between CI/CD and target resources without secret keys
+23.Why use Docker-based containers in EC2
+24.How to stop hypervisor-level attacks on applications
+25.What are cross-account roles in AWS and how to configure them
