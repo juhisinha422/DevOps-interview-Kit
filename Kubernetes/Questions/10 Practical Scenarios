@@ -1,0 +1,41 @@
+Here are 10 practical Kubernetes situations I’ve either faced myself or seen asked in interviews.
+
+𝟏. 𝐀𝐏𝐈 𝐒𝐞𝐫𝐯𝐞𝐫 𝐒𝐥𝐨𝐰𝐧𝐞𝐬𝐬
+The control plane feels sluggish. Ever wondered why the entire cluster starts misbehaving when the API server slows down?
+Think resource starvation, high request rates, or even a misbehaving admission webhook.
+
+𝟐. 𝐏𝐕𝐂 𝐓𝐡𝐚𝐭 𝐖𝐨𝐧’𝐭 𝐁𝐢𝐧𝐝
+A Pod is pending forever, waiting on storage. You check the PVC, but it’s just not attaching.
+It’s usually a mismatch between StorageClass, access modes, or missing dynamic provisioning settings.
+
+𝟑. 𝐇𝐏𝐀 𝐈𝐬𝐧’𝐭 𝐒𝐜𝐚𝐥𝐢𝐧𝐠
+You set up autoscaling, but nothing happens under load.
+Turns out, metrics-server isn’t working, or maybe the target CPU percentage isn’t appropriate.
+
+𝟒. 𝐂𝐥𝐮𝐬𝐭𝐞𝐫 𝐌𝐮𝐥𝐭𝐢-𝐓𝐞𝐧𝐚𝐧𝐜𝐲
+You’re sharing a cluster across teams and need boundaries.
+Namespaces, RBAC, NetworkPolicies, and ResourceQuotas are your best friends.
+
+𝟓. 𝐍𝐚𝐦𝐞𝐬𝐩𝐚𝐜𝐞 𝐑𝐞𝐬𝐨𝐮𝐫𝐜𝐞 𝐐𝐮𝐨𝐭𝐚 𝐄𝐱𝐡𝐚𝐮𝐬𝐭𝐞𝐝
+New Pods are not getting scheduled, and the reason is a silent quota breach.
+kubectl describe ns helps. Prevent it by monitoring resource usage regularly.
+
+𝟔. 𝐏𝐨𝐝𝐬 𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠 𝐒𝐥𝐨𝐰𝐥𝐲
+They stay in the "ContainerCreating" phase for ages.
+Common causes? Huge images, slow init containers, or probe timeouts.
+
+𝟕. 𝐃𝐍𝐒 𝐑𝐞𝐬𝐨𝐥𝐮𝐭𝐢𝐨𝐧 𝐅𝐚𝐢𝐥𝐢𝐧𝐠 𝐈𝐧𝐬𝐢𝐝𝐞 𝐏𝐨𝐝𝐬
+Pods can’t ping external domains.
+Is CoreDNS working? Is the network policy blocking access? This one is tricky until you see it once.
+
+𝟖. 𝐑𝐨𝐥𝐥𝐢𝐧𝐠 𝐎𝐮𝐭 𝐚 𝐒𝐞𝐫𝐯𝐢𝐜𝐞 𝐌𝐞𝐬𝐡
+You introduce Istio or Linkerd, and suddenly things break.
+Gradual rollout, sidecar injection testing, and observability setup help prevent surprises.
+
+𝟗. 𝐑𝐮𝐧𝐧𝐢𝐧𝐠 𝐒𝐭𝐚𝐭𝐞𝐟𝐮𝐥 𝐖𝐨𝐫𝐤𝐥𝐨𝐚𝐝𝐬
+Databases don’t like being treated like stateless apps.
+StatefulSets, headless services, and proper volume claims matter here.
+
+𝟏𝟎. 𝐄𝐧𝐟𝐨𝐫𝐜𝐢𝐧𝐠 𝐒𝐞𝐜𝐮𝐫𝐞 𝐈𝐦𝐚𝐠𝐞 𝐒𝐨𝐮𝐫𝐜𝐞𝐬
+Your security team wants to block random Docker Hub pulls.
+Admission controllers, OPA Gatekeeper, and trusted registries become essential.
