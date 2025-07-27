@@ -1,0 +1,51 @@
+Shell Scripting – Real-Time Scenarios 
+🅆🄷🅈 🅂🄷🄴🄻🄻 🅂🄲🅁🄸🄿🅃🄸🄽🄶 🄸🅂 🄸🄼🄿🄾🅁🅃🄰🄽🅃 🄸🄽 🅁🄴🄰🄻 🅃🄸🄼🄴 ?
+ Shell script automates repeated Linux tasks like backups, monitoring logs, and alerts. Saves manual time and reduces human error.
+
+𝗪𝗿𝗶𝘁𝗲 𝗮 𝘀𝗰𝗿𝗶𝗽𝘁 𝘁𝗼 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗲 𝗱𝗮𝗶𝗹𝘆 𝗯𝗮𝗰𝗸𝘂𝗽 𝗼𝗳 𝗮 𝗹𝗼𝗴 𝗳𝗶𝗹𝗲.
+#!/bin/bash
+cp /var/log/syslog /backup/syslog_$(date +"%Y%m%d").log
+Explanation:
+Takes today's system log file and copies to backup with current date.
+
+𝗖𝗿𝗲𝗮𝘁𝗲 𝗮 𝘀𝗰𝗿𝗶𝗽𝘁 𝘁𝗼 𝘀𝗲𝗻𝗱 𝗮𝗹𝗲𝗿𝘁 𝗶𝗳 𝗱𝗶𝘀𝗸 𝘂𝘀𝗮𝗴𝗲 𝗶𝘀 >80%.
+#!/bin/bash
+df -H | awk 'NR>1 { if ($5+0 > 80) print $0 }'
+Explanation:
+Checks disk usage; sends output if any partition exceeds 80%.
+
+𝗪𝗿𝗶𝘁𝗲 𝗮 𝘀𝗰𝗿𝗶𝗽𝘁 𝘁𝗼 𝗿𝗲𝗮𝗱 𝘂𝘀𝗲𝗿 𝗶𝗻𝗽𝘂𝘁 𝗮𝗻𝗱 𝗽𝗿𝗶𝗻𝘁 𝗶𝗳 𝗶𝘁 𝗶𝘀 𝗲𝘃𝗲𝗻 𝗼𝗿 𝗼𝗱𝗱.
+#!/bin/bash
+read -p "Enter number: " num
+if (( $num % 2 == 0 ))
+then echo "Even"
+else echo "Odd"
+fi
+Explanation:
+Reads input and checks modulus with 2 to find even/odd.
+
+𝗛𝗼𝘄 𝘁𝗼 𝗰𝗼𝗺𝗽𝗿𝗲𝘀𝘀 𝗮 𝗳𝗶𝗹𝗲 𝗮𝗻𝗱 𝗮𝗱𝗱 𝗰𝘂𝗿𝗿𝗲𝗻𝘁 𝘁𝗶𝗺𝗲 𝗶𝗻 𝗳𝗶𝗹𝗲𝗻𝗮𝗺𝗲?
+#!/bin/bash
+tar -czvf logs_$(date +"%Y%m%d%H%M").tar.gz /var/log/syslog
+Explanation:
+Creates a compressed .tar.gz file with current timestamp.
+
+𝗦𝗰𝗿𝗶𝗽𝘁 𝘁𝗼 𝗰𝗵𝗲𝗰𝗸 𝗶𝗳 𝗮 𝗽𝗿𝗼𝗰𝗲𝘀𝘀 (𝗲.𝗴. 𝗮𝗽𝗮𝗰𝗵𝗲) 𝗶𝘀 𝗿𝘂𝗻𝗻𝗶𝗻𝗴.
+#!/bin/bash
+if pgrep apache2 > /dev/null
+then echo "Apache is running"
+else echo "Apache is not running"
+fi
+Explanation:
+pgrep checks if apache2 process is active.
+
+𝗛𝗼𝘄 𝘁𝗼 𝘀𝗲𝗲 𝘀𝗶𝘇𝗲 𝗼𝗳 𝗮 𝗱𝗶𝗿𝗲𝗰𝘁𝗼𝗿𝘆 𝗶𝗻 𝗵𝘂𝗺𝗮𝗻 𝗿𝗲𝗮𝗱𝗮𝗯𝗹𝗲 𝗳𝗼𝗿𝗺𝗮𝘁?
+du -ah /var/log | sort -rh | head -5
+Explanation:
+ Lists top 5 largest files/folders in /var/log with human-readable format.
+
+𝗦𝗰𝗿𝗶𝗽𝘁 𝘁𝗼 𝗿𝗲𝗺𝗼𝘃𝗲 𝗳𝗶𝗹𝗲𝘀 𝗼𝗹𝗱𝗲𝗿 𝘁𝗵𝗮𝗻 𝟳 𝗱𝗮𝘆𝘀.
+#!/bin/bash
+find /backup -type f -mtime +7 -exec rm {} \;
+Explanation:
+ Deletes files in /backup directory older than 7 days.
