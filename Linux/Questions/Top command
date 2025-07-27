@@ -1,0 +1,20 @@
+What does the top command show?
+
+It’s like Task Manager in Windows — but in the Linux terminal.
+
+You can see:
+	•	Which apps are running in the background
+	•	Who is using too much power (CPU/RAM)
+	•	And if you want, you can stop a problem app from there
+
+“top is like checking who in your house is doing the most nakhre and wasting all the resources! 
+
+You run top and Linux says:
+👉 ‘This guy is eating all the CPU,
+👉 that one is sleeping,
+👉 and this one is doing drama with memory!’
+
+So basically, it shows you:
+Who’s working, who’s chilling, and who’s killing your server!
+
+Basically, it’s the Bigg Boss of Linux — showing you who’s performing, who’s lazy, and who needs to be kicked out
