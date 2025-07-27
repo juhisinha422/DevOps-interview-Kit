@@ -1,0 +1,61 @@
+System Logs Troubleshooting Scenarios
+===========================
+1. Your server is rebooting randomly. How do you investigate the cause?
+
+We check logs using journalctl -xe and dmesg for kernel or hardware issues.
+We also inspect /var/log/messages or /var/log/syslog for any panic or crash messages.
+Hardware failures, cron reboots, or misconfigured watchdogs may be responsible.
+
+2. A user reports that they are getting a "Permission Denied" error when accessing a log file. What could be the issue?
+
+We check the file's permissions and ownership using ls -l.
+If the user lacks read access or the directory has restricted access (dr-x or ---), it causes issues.
+We adjust permissions using chmod or grant access via group membership.
+
+3. An application is crashing frequently. How do you collect logs and debug it?
+
+We inspect the application's logs, often located in /var/log/ or under the app’s folder.
+Using journalctl -u <service> helps if it’s a systemd service.
+We can also run the application manually with debugging flags or use strace.
+
+4. How do you configure logging to rotate logs automatically?
+
+We configure /etc/logrotate.conf or use custom files in /etc/logrotate.d/.
+Logrotate manages file rotation, compression, and deletion based on size or time.
+We test settings using logrotate -d and apply them with logrotate -f.
+
+5. Your system logs are filling up disk space. How do you manage them?
+
+We check log sizes using du -sh /var/log/* and clean up old logs.
+We can compress them manually or rely on logrotate to auto-manage them.
+Clearing journal logs using journalctl --vacuum-size=100M also helps.
+
+6. How do you check which user deleted a specific file?
+
+By default, Linux doesn’t track deletions, so we need auditd for this.
+We configure audit rules like auditctl -w /path/to/file -p wa to monitor deletions.
+Then check the logs using ausearch -f <filename> or aureport.
+
+7. How do you troubleshoot a slow boot process in Linux?
+
+We run systemd-analyze and systemd-analyze blame to see startup time breakdowns.
+It helps identify services that delay the boot.
+We can disable or mask unnecessary services using systemctl.
+
+8. How do you check if a service crashed and restarted automatically?
+
+We use journalctl -u <service> or systemctl status <service> to check logs and restart count.
+Repeated crashes may show messages like "Main PID exited" or "core dumped".
+For persistent logs, ensure journald is properly configured.
+
+9. How do you enable persistent logging on a Linux system?
+
+By default, journald logs may be stored in memory.
+We make logging persistent by creating /var/log/journal and restarting systemd-journald.
+This keeps logs even after a reboot.
+
+10. A cron job is not running as expected. How do you debug it?
+
+We check the cron logs using grep CRON /var/log/syslog or journalctl -u cron.
+Permissions, wrong paths, or missing environment variables often cause failures.
+Redirecting output and errors to a log file in the cron entry also helps.
