@@ -1,0 +1,67 @@
+quick Bash scripts that were super helpful during log monitoring and debugging 
+These lightweight scripts are handy when:
+✅ You want to find the most repeated lines in logs (like frequent errors or alerts)
+✅ You’re checking word frequency — spotting repeated terms like error, timeout, failed
+✅ You need a fast way to analyze logs using only shell commands (no extra tools needed!)
+Below are two simple scripts I wrote — easy to tweak, easy to plug into your daily workflow. 
+
+💡 Script 1: Count Word Frequency in a Log File
+This script helps extract and count how often each word appears — useful for identifying common error terms, repeated messages, or even keyword trends in logs.
+
+✅ wordcount.sh
+
+#!/bin/bash
+
+# Check if a filename is passed
+if [ $# -lt 1 ]; then
+  echo "Usage: sh wordcount.sh <filename>"
+  exit 1
+fi
+
+FILE="$1"
+
+# Check if file exists
+if [ ! -f "$FILE" ]; then
+  echo "Error: File '$FILE' not found."
+  exit 1
+fi
+
+# Count and display word frequencies
+tr -s '[:space:]' '\n' < "$FILE" |   # Replace whitespace with newlines (1 word per line)
+tr -d '[:punct:]' |                        # Remove punctuation
+tr '[:upper:]' '[:lower:]' |             # Convert to lowercase
+grep -v '^$' |                            # Remove empty lines
+sort | uniq -c | sort -nr              # Count and sort by frequency
+
+
+Example:
+sh wordcount.sh /var/log/app.log
+
+
+💡 Script 2: Show Top 5 Most Frequent Log Lines
+Perfect when you want to identify repeated log lines — like recurring health checks, warnings, or the same error popping up again and again.
+
+✅ top5.sh
+
+#!/bin/bash
+
+# Check if a file is provided
+if [ $# -lt 1 ]; then
+  echo "Usage: sh top5.sh <filename>"
+  exit 1
+fi
+
+FILE="$1"
+
+# Check if file exists and is readable
+if [ ! -f "$FILE" ]; then
+  echo "Error: File '$FILE' not found."
+  exit 1
+fi
+
+# Display the top 5 most frequent lines
+echo "Top 5 most frequent lines in $FILE:"
+sort "$FILE" | uniq -c | sort -nr | head -n 5
+
+ Example:
+sh top5.sh /var/log/nginx/access.log
