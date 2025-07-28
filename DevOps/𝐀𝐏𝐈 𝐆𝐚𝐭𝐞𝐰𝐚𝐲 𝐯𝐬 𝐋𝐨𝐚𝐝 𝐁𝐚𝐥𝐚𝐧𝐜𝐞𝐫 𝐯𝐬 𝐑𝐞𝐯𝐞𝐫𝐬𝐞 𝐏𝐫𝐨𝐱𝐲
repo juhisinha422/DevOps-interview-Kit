@@ -1,0 +1,21 @@
+𝐀𝐏𝐈 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 𝐯𝐬 𝐋𝐨𝐚𝐝 𝐁𝐚𝐥𝐚𝐧𝐜𝐞𝐫 𝐯𝐬 𝐑𝐞𝐯𝐞𝐫𝐬𝐞 𝐏𝐫𝐨𝐱𝐲 — 𝐖𝐡𝐚𝐭’𝐬 𝐭𝐡𝐞 𝐃𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐜𝐞?
+
+In system design and distributed architectures, these three components are critical, but they serve distinct roles. Let’s clarify their purposes with examples:
+
+𝐀𝐏𝐈 𝐆𝐚𝐭𝐞𝐰𝐚𝐲
+- Acts as a single-entry point for APIs; crucial for microservices architecture.
+- Handles authentication, authorization, and rate limiting to secure and monitor API traffic.
+- Implements request routing to the right microservice, often combining multiple responses into one.
+- Examples: AWS API Gateway, Kong, Apigee
+
+𝐋𝐨𝐚𝐝 𝐁𝐚𝐥𝐚𝐧𝐜𝐞𝐫
+- Distributes incoming network traffic evenly across multiple backend servers for high availability and scalability.
+- Prevents server overload and ensures fault tolerance by redirecting traffic from failed servers.
+- Operates at either network (Layer 4: TCP/UDP) or application (Layer 7: HTTP/HTTPS) level.
+- Examples: AWS ELB, NGINX Load Balancer
+
+𝐑𝐞𝐯𝐞𝐫𝐬𝐞 𝐏𝐫𝐨𝐱𝐲
+- Forwards client requests to one or more backend servers—clients never interact directly with these servers.
+- Adds security by hiding backend server details and IP addresses, offering filtering and traffic distribution.
+- Performs SSL/TLS termination and caching to improve performance and manage encryption.
+- Examples: Nginx, Apache HTTP Server
