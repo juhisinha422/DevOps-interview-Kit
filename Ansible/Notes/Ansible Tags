@@ -1,0 +1,12 @@
+Ansible Tags: Run Only What You Need
+
+In Ansible, tags help you control which parts of a playbook to execute, saving time and resources during deployments.
+
+Imagine you have a large playbook that does many things – installs software, configures services, etc. Sometimes, you only want to run a specific part of it, perhaps just the configuration tasks or only the package installations.
+
+That's where tags come in! 
+
+You can label individual tasks (or even entire plays) in your Ansible playbook with descriptive tags.
+This allows for much more targeted automation, saving time and resources when you don't need to run the entire playbook. It's like having fine-grained control over your automation!
+
+Tip: Use meaningful tag names and avoid over-tagging.
