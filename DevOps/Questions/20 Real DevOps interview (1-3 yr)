@@ -1,0 +1,26 @@
+🚀 20 Real DevOps Interview Questions (1–3 YOE)
+
+ If you're preparing for DevOps interviews, here’s a set of random technical questions often asked in real interviews. No topics. No hints. Just what you need to test yourself. 👇
+
+1. How do you roll back a failed deployment in Jenkins?
+2. What's the difference between a Docker image and a container?
+3. How would you troubleshoot a pod stuck in CrashLoopBackOff state?
+4. What is the purpose of .gitignore?
+5. How do you manage secrets in Kubernetes?
+6. What is an IAM role, and when would you use it?
+7. Explain what happens when you run terraform apply.
+8. How would you configure a custom domain for a Kubernetes ingress?
+9. What is a load balancer, and how does it work in cloud environments?
+10. How do you find which process is using a specific port on Linux?
+11. What’s the difference between a pipeline stage and a pipeline step in CI/CD?
+12. How do you monitor logs from multiple containers running on different nodes?
+13. What’s the difference between horizontal and vertical pod autoscaling?
+14. How do you update environment variables in a running container?
+15. What happens if you don’t specify resource limits in a Kubernetes deployment?
+16. How do you ensure idempotency in Terraform scripts?
+17. What is a dangling Docker image?
+18. How can you prevent accidental deletions in a production environment?
+19. What’s the use of readiness vs liveness probes in K8s?
+20. What’s your approach to debugging a failed CI build?
+
+💡 Interview Tip: Don’t just memorize answers. Practice explaining concepts clearly and confidently. Use examples from real projects when possible.
