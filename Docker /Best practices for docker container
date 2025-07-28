@@ -1,0 +1,28 @@
+𝟳 𝗕𝗲𝘀𝘁 𝗣𝗿𝗮𝗰𝘁𝗶𝗰𝗲𝘀 𝗳𝗼𝗿 𝗮 𝗦𝗲𝗰𝘂𝗿𝗲 𝗗𝗼𝗰𝗸𝗲𝗿 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿
+
+𝗗𝗼𝗰𝗸𝗲𝗿 doesn't enforce security by default. Without proper configuration, container images can introduce critical risks into your environments.
+
+𝗛𝗲𝗿𝗲 𝗮𝗿𝗲 𝟳 𝗯𝗲𝘀𝘁 𝗽𝗿𝗮𝗰𝘁𝗶𝗰𝗲𝘀 𝗜 𝗳𝗼𝗹𝗹𝗼𝘄 𝘄𝗵𝗲𝗻 𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝘄𝗶𝘁𝗵 𝗗𝗼𝗰𝗸𝗲𝗿:
+
+🔶 𝗔𝘃𝗼𝗶𝗱 𝗹𝗮𝘁𝗲𝘀𝘁 𝘁𝗮𝗴𝘀
+They’re unpredictable and can introduce breaking changes or vulnerabilities.
+
+🔶 𝗨𝘀𝗲 𝗺𝗶𝗻𝗶𝗺𝗮𝗹 𝗯𝗮𝘀𝗲 𝗶𝗺𝗮𝗴𝗲𝘀
+Start with Alpine or Distroless to reduce attack surface.
+
+🔶 𝗨𝘀𝗲 .𝗱𝗼𝗰𝗸𝗲𝗿𝗶𝗴𝗻𝗼𝗿𝗲
+Exclude secrets, logs, and unnecessary files from your builds.
+
+🔶 𝗨𝘀𝗲 𝗺𝘂𝗹𝘁𝗶-𝘀𝘁𝗮𝗴𝗲 𝗯𝘂𝗶𝗹𝗱𝘀
+Keep your final image lean by removing build-time dependencies.
+
+🔶 𝗗𝗼𝗻’𝘁 𝗿𝘂𝗻 𝗮𝘀 𝗿𝗼𝗼𝘁
+Always run containers with the least privilege necessary.
+
+🔶 𝗦𝗰𝗮𝗻 𝗶𝗺𝗮𝗴𝗲𝘀 𝗲𝗮𝗿𝗹𝘆
+Use tools like Trivy to catch known CVEs before pushing to production.
+
+🔶 𝗦𝗶𝗴𝗻 𝘆𝗼𝘂𝗿 𝗶𝗺𝗮𝗴𝗲𝘀
+Use Cosign to ensure image authenticity and integrity.
+
+Container security is a core part of DevOps. These practices help reduce risk early in the pipeline.
