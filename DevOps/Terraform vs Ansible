@@ -1,0 +1,39 @@
+Why Terraform? Why Not Just Ansible? 
+ 
+When I first started learning Infra as Code, I wondered:
+        “Why do people prefer Terraform for provisioning cloud resources? Can’t Ansible do the same?”
+
+After working on real projects, here's what I learned — and what every DevOps fresher should know
+
+Terraform = Infrastructure Provisioning
+Need to create VMs, Networks, Storage, Databases, Load Balancers?
+Terraform is your best friend.
+
+It's declarative: You tell Terraform what you want (not how to do it).
+It's idempotent: Run it 10 times, same result unless something changed.
+Maintains state: Knows what’s already there and what’s not.
+
+
+Ansible = Configuration Management
+Need to install packages, update files, restart services, or patch servers?
+Ansible is perfect.
+It’s procedural: You write step-by-step instructions.
+It doesn’t track cloud resource state like Terraform does.
+Good for setting up apps, not for creating cloud infra at scale.
+
+
+Best Practice?
+      Use Terraform to create the infrastructure.
+      Use Ansible to configure what’s inside.
+
+
+Example:
+Want to host an app?
+      Terraform: Create VM, VNet, and storage
+      Ansible: Install Nginx, deploy app, start service
+
+
+As a DevOps engineer, understanding when to use what is more important than just learning tools.
+So if you’re confused between Terraform and Ansible — just remember:
+ Terraform = Build Infra
+ Ansible = Configure Infra
