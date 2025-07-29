@@ -1,0 +1,22 @@
+What is null_resource in Terraform?
+
+Sometimes in Terraform, we need to run a custom script or a command — like installing a package or copying a file — but there’s no direct Terraform block for that.
+That’s where null_resource comes in.
+ It lets you run manual commands using local-exec (runs locally) or remote-exec (runs on a server via SSH).
+
+
+Real Example:
+You created a VM with Terraform and now want to:
+Copy a .env file to it
+Install some software
+Restart the app
+Terraform can’t do this directly. So we use null_resource with remote-exec to run these commands after the VM is created.
+
+This is very useful when:
+     You want to automate post-deployment tasks
+     There's no direct Terraform support
+     You want quick scripts to run inside your IaC flow
+
+
+Important:
+ Don’t overuse null_resource. Use it only when you really need custom logic.
