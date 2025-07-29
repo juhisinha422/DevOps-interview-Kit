@@ -1,0 +1,23 @@
+𝗶𝗻𝘀𝗶𝗴𝗵𝘁𝗳𝘂𝗹 𝘁𝗲𝗰𝗵𝗻𝗶𝗰𝗮𝗹 𝗶𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗳𝗼𝗿 𝗮 𝗗𝗲𝘃𝗢𝗽𝘀/𝗖𝗹𝗼𝘂𝗱 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻 𝗿𝗼𝗹𝗲. 𝗧𝗵𝗲 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝘄𝗲𝗿𝗲 𝗽𝗿𝗮𝗰𝘁𝗶𝗰𝗮𝗹 𝗮𝗻𝗱 𝘀𝗽𝗮𝗻𝗻𝗲𝗱 𝗮𝗰𝗿𝗼𝘀𝘀 𝗔𝗪𝗦, 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺, 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝗶𝘇𝗮𝘁𝗶𝗼𝗻, 𝗮𝗻𝗱 𝗺𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴. 
+
+🏗️ 𝗔𝗪𝗦 𝗖𝗹𝗼𝘂𝗱𝗙𝗼𝗿𝗺𝗮𝘁𝗶𝗼𝗻
+ • How do you create a CloudFormation template from scratch without any existing resources?
+ • Who will create the CloudFormation template file in your typical workflow?
+ • Once you have template, parameters, and values files, how do you apply the CloudFormation stack?
+ • How do you normally deploy the CloudFormation stack?
+ • How do you determine if CloudFormation stacks already exist, and how do you convert CloudFormation to Terraform?
+
+🌱 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 – 𝗜𝗻𝗳𝗿𝗮𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲 𝗮𝘀 𝗖𝗼𝗱𝗲
+ • What are the best practices for learning and transitioning to Terraform from other IaC tools?
+ • Do you convert everything from CloudFormation to Terraform, or just new resources?
+ • What is your role in converting existing resources to Terraform?
+ • What’s your approach for managing modularity and variables in Terraform modules?
+
+🐳 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝗶𝘇𝗮𝘁𝗶𝗼𝗻 & 𝗗𝗲𝘃𝗢𝗽𝘀 𝗥𝗼𝗹𝗲𝘀
+ • What about containerization—what is your exact role in containerizing applications?
+ • If you are not directly responsible for creating containerization configs, what roles/tasks do you typically handle in containerized environments?
+
+📈 𝗔𝗪𝗦 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 & 𝗠𝘂𝗹𝘁𝗶-𝗔𝗰𝗰𝗼𝘂𝗻𝘁 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁
+ • How do you create CloudWatch metrics based on requirements (like CPU utilization)?
+ • Who receives notifications when a CloudWatch alarm is triggered?
+ • How many AWS accounts are you managing, and can you switch between multiple accounts?
