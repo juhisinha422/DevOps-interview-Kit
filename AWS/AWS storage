@@ -1,0 +1,23 @@
+🌩️ AWS Storage: EBS vs EFS vs S3 – Simplified for Azure Pros! 🌩️
+As started my cloud journey with Azure, I got familiar with two main types of storage for VMs:
+1️⃣ Azure Managed Disks (SSD/HDD – block storage for VMs)
+2️⃣ Azure Files (file share, part of Azure’s storage account)
+So when I started diving into AWS, I used to map my Azure knowledge to AWS services.
+
+🔹 EBS (Elastic Block Store)
+- Azure equivalent: Managed Disks 
+- A virtual hard drive(SSD/HDD or Premium drives) which can mounted on a single EC2 instance. 
+- It can be used to install OS, Database, Applications & their dependencies.
+
+🔹 EFS (Elastic File System)
+Azure equivalent: Azure Files(Part of Azure’s storage account)
+- A NFS(Network File System) share which can be shared across multiple ec2 instances using NFS or SMB protocol.   
+- Ideal for Content management systems, data analytics or applications requiring shared file access.
+
+🔹 S3 (Simple Storage Service)
+Azure equivalent: Blob Storage (Part of Azure’s storage account)
+- Object storage designed for storing and retrieving large amounts of unstructured data from anywhere on the web (like Image, video, or audio files for websites and apps). 
+- Usually used for Backups, static website hosting, data archiving, and content distribution. 
+
+
+Relating cloud concepts across platforms makes learning new tools so much easier! If you’re transitioning from Azure to AWS—or vice versa— I hope this helps clarify where to store what.
