@@ -1,0 +1,28 @@
+Quick DevOps Tip: NGINX – Reload vs Restart 🔄
+
+Ever wondered what the actual difference is between:
+
+sudo service nginx reload vs sudo service nginx restart
+
+They may look similar, but the impact they have on your web server is very different 👇
+
+🔁 reload = Graceful reload
+
+Applies changes to your NGINX config (nginx.conf)
+Keeps current connections alive
+Spins up new workers with the updated config
+Old workers finish their tasks before exiting
+
+🛑 restart = Full stop & start
+
+Shuts down all processes immediately
+Drops all ongoing connections
+Starts the service from scratch
+
+🔧 Best practice:
+
+Use reload when you tweak configs and want zero downtime
+Use restart when things go wrong or you make deeper changes
+
+✅ Always test your NGINX config before a reload/restart:
+sudo nginx -t
