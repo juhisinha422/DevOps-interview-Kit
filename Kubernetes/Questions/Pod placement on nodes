@@ -1,0 +1,13 @@
+Behind the Scene: How Pods Get Placed on Nodes
+
+Ever wondered how your pods end up on specific nodes? That’s the job of the Kubernetes Scheduler.
+
+What It Does?
+- Watches for unscheduled pods
+- Evaluates available nodes
+- Matches pods to the best-fitting node based on:
+  + Resource requests (CPU, memory)
+  + Taints & tolerations
+  + Node selectors / affinity rules
+
+Understanding the Kubernetes Scheduler provides insight into how your applications are deployed and managed, allowing you to optimize your Pod specifications for better performance, resilience, and resource usage.
