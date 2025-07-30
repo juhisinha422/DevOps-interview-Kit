@@ -1,0 +1,29 @@
+𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝗩𝗣𝗖 𝗙𝗹𝗼𝘄 𝗟𝗼𝗴𝘀 𝗶𝗻 𝗔𝗪𝗦?
+
+VPC Flow Logs capture information about the IP traffic going to and from network interfaces in your Virtual Private Cloud (VPC). They are incredibly useful for troubleshooting, monitoring, and securing your AWS environment.
+
+𝗥𝗲𝗮𝗹 𝗪𝗼𝗿𝗹𝗱 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼𝘀 𝗨𝘀𝗶𝗻𝗴 𝗩𝗣𝗖 𝗙𝗹𝗼𝘄 𝗟𝗼𝗴𝘀
+
+𝟏. 𝑬𝑪𝟐 𝑰𝒏𝒔𝒕𝒂𝒏𝒄𝒆 𝑵𝒐𝒕 𝑹𝒆𝒂𝒄𝒉𝒂𝒃𝒍𝒆 𝒗𝒊𝒂 𝑺𝑺𝑯:
+
+You launch a new EC2 instance but cannot SSH into it. Flow logs show no entries from your IP, which means traffic is not reaching the instance, likely due to a missing inbound rule or incorrect routing.
+
+𝑨𝒄𝒕𝒊𝒐𝒏:
+
+Check the security group for port 22 access, verify route table and NACLs, and confirm public IP assignment.
+
+𝟐. 𝑼𝒏𝒆𝒙𝒑𝒆𝒄𝒕𝒆𝒅 𝑫𝒂𝒕𝒂 𝑻𝒓𝒂𝒏𝒔𝒇𝒆𝒓:
+
+You notice a spike in AWS data transfer costs. Flow logs show a specific EC2 instance sending large volumes of outbound traffic to an unknown IP. Possible data exfiltration or misconfigured process.
+
+𝑨𝒄𝒕𝒊𝒐𝒏:
+
+Quarantine the instance, investigate the process, and block the external IP at the network layer.
+
+𝟐. 𝑼𝒏𝒆𝒙𝒑𝒆𝒄𝒕𝒆𝒅 𝑫𝒂𝒕𝒂 𝑻𝒓𝒂𝒏𝒔𝒇𝒆𝒓:
+
+Internal users report intermittent timeouts when accessing an internal API. Flow logs show ACCEPT entries but with unusually low packet counts. Connections are accepted but not completing, possibly due to app timeouts or dropped responses.
+
+𝑨𝒄𝒕𝒊𝒐𝒏:
+
+Check application logs, inspect client behavior, and correlate with flow log timestamps.
