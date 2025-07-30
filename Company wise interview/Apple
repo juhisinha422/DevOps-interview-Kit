@@ -1,0 +1,35 @@
+Apple might ask, based on your skills (AWS, Kubernetes, Prometheus, etc.):
+
+CI/CD: How would you optimize a slow Jenkins pipeline for a large-scale iOS app build?
+
+Design an AWS architecture for a globally distributed, highly available service. What services would you use?
+
+Kubernetes: A pod keeps crashing due to resource limits. How do you troubleshoot and fix it?
+
+Monitoring: Set up Prometheus to monitor a Kubernetes cluster. What metrics would you prioritize for an Apple service?
+
+Scripting: Write a Bash script to automate log rotation for an EC2 instance.
+
+System Design: How would you ensure consistent CI/CD pipelines for macOS and iOS apps?
+
+Troubleshooting: A Grafana dashboard shows spikes in API latency. Walk through your debugging process. 
+
+besides specific questions they might ask you about your projects that you put in your resume. 
+
+Programming: -
+
+Bash: Script to parse logs and alert on high error rates.
+
+Python: Function to autoscale AWS ECS based on CPU.
+
+Groovy: Optimize Jenkins pipeline for parallel iOS builds.
+
+Scripting: Clean up old Docker images in registry.
+
+Debug: Fix Python script failing S3 IAM connection.
+
+Automation: Script to rotate Kubernetes secrets.
+
+Cross-Platform: Sync build artifacts for macOS/Linux
+
+be prepared to explain ur code as u go. probably you'll do it on coderpad
