@@ -1,0 +1,42 @@
+What is CI/CD?
+CI/CD = Continuous Integration & Continuous Deployment/Delivery
+ It’s not a tool. It’s a practice.
+When developers write code,
+CI makes sure it gets tested & merged quickly.
+CD ensures it gets deployed automatically without manual steps.
+Goal: Ship features faster, safer, and more frequently.
+
+
+
+What was it like before CI/CD?
+Thoda socho...
+ Developers worked on code for weeks or months
+ Then came "merge day" – all code dumped together
+ Nothing worked, bugs everywhere
+ Manual testing
+ Manual deployment
+ Late night war rooms
+ Blame game: “Dev ka problem hai.” → “No, Ops ka issue hai.”
+ Tab release ek stressful event hota tha. Confidence zero.
+
+
+
+What changed after CI/CD?
+Everything.
+CI caught bugs early.
+CD automated deployment.
+Teams started releasing daily, even hourly.
+Less human error, more stability.
+Devs & Ops started working together.
+Industry got speed + safety — a powerful combo.
+
+
+
+What is CI and what is CD?
+CI (Continuous Integration)
+Code changes from all developers are automatically tested & merged frequently.
+CI ka kaam hai: “Code tootna nahi chahiye.”
+
+CD (Continuous Deployment/Delivery)
+Once code is tested, it's automatically deployed to staging or production.
+CD ka kaam hai: “Code chale bina rukawat ke.”
