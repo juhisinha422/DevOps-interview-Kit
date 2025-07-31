@@ -1,0 +1,19 @@
+Types of Endpoints in AWS & Their Real-World Use Cases
+
+Understanding AWS endpoint types is essential when designing secure and scalable architectures — especially in hybrid, private, and public network models. Here's a quick guide I’ve put together:
+
+Endpoint Type	Description	Common Use Case
+
+🌐 Internet Endpoint	Public IP/DNS reachable over Internet	Public websites, APIs
+🔐 Private Endpoint	Private access to AWS services over VPC	Access S3/DynamoDB securely
+🧩 Interface Endpoint (PrivateLink)	ENI in VPC for private AWS service access	Secure VPC-to-AWS communication
+🚪 Gateway Endpoint	Gateway from VPC to S3/DynamoDB	No NAT needed for S3/DynamoDB
+📦 VPC Endpoint	Umbrella term (Interface + Gateway)	Secure, private AWS service access
+🚀 API Gateway Endpoint	HTTPS endpoint for APIs	Serverless applications
+⚖️ Load Balancer Endpoint (ALB/NLB)	DNS of a Load Balancer	Distribute traffic to EC2/containers
+🌍 Global Accelerator Endpoint	Fronts global traffic to AWS resources	Low-latency access across regions
+🔄 VPC Peering / Transit Gateway	Connects multiple VPCs	Private cross-VPC communication
+🏢 On-Premise Endpoint (Hybrid)	Connects on-prem to AWS via Direct Connect/VPN	Hybrid cloud workloads
+
+
+🔧 Whether you're working on microservices, hybrid architectures, or secure VPCs, selecting the right endpoint type is key.
