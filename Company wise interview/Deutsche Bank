@@ -1,0 +1,27 @@
+Interview Experience – Deutsche Bank | DevOps Engineer | Round 1
+-------------------------------------------------------
+
+🔍 Round Focus:
+This round emphasized secure DevOps pipelines, automation at scale, cloud-native infrastructure, and platform reliability — critical for the banking & financial services domain.
+
+📌 In-Depth Questions Asked:
+🔐 How do you design a DevSecOps pipeline for regulated industries like banking or insurance?
+📂 What’s your approach to auditing IAM policies and access controls across AWS or Azure in an enterprise setup?
+⚙️ Explain how you’d manage infrastructure provisioning across multiple environments using Terraform.
+🚀 How do you ensure rollback safety and transaction integrity in multi-step deployments?
+🔍 How do you approach drift detection and reconciliation in GitOps workflows?
+🛡️ What steps do you take to implement network policies and pod security in Kubernetes clusters?
+📈 How would you monitor and alert for critical services in a payment gateway system using Prometheus/Grafana or Splunk?
+🧩 Have you worked on integrating CI/CD with security scanning tools like Snyk, Aqua, or Trivy? Explain the integration flow.
+🔄 How do you automate patching and OS hardening in cloud-based systems at scale?
+🌐 What’s your experience with designing HA (high availability) and DR (disaster recovery) architecture for enterprise apps?
+🧠 How would you implement secrets rotation for database credentials across Kubernetes and CI/CD pipelines?
+📦 Explain the difference between Helm and Kustomize. When would you use one over the other?
+🔄 Can you walk us through how you set up Blue-Green or Canary deployments in Azure DevOps or ArgoCD?
+⚖️ How do you handle cost optimization in cloud-native infrastructure, especially in a FinTech context?
+🧩 What are the compliance checks you automate before production deployments (e.g., CIS benchmarks, encryption validation)?
+📋 Describe how you would manage and track configuration drifts in a large multi-account AWS environment.
+🛠️ How do you automate SSL/TLS certificate renewal in Kubernetes ingress controllers?
+🔐 How do you implement Zero Trust principles in internal tooling and CI/CD systems?
+📊 Have you implemented centralized logging and monitoring for audit trails and anomaly detection? Which stack did you use?
+🧪 How would you use tools like LitmusChaos or Gremlin for testing system resilience in production-like environments?
