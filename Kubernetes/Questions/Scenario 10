@@ -57,3 +57,38 @@ spec:
     - podSelector:
         matchLabels:
           app: specific-pod
+
+
+Scenario 4:* You have a Service with multiple endpoints, and you want to distribute traffic across them using a specific algorithm. How would you configure the Service to achieve this?
+
+Scenario 4:*
+- Use a Service's `externalTrafficPolicy` field to control how traffic is distributed across endpoints.
+- Use a Service's `sessionAffinity` field to control session affinity.
+
+*Example YAML:*
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-with-traffic-policy
+spec:
+  selector:
+    app: service
+  externalTrafficPolicy: Local
+  sessionAffinity: ClientIP
+
+✅*Scenario 5:
+¢Scenario 5:* You have a Service that is exposed externally, and you want to encrypt the traffic using TLS. How would you configure the Service to achieve this?
+
+- Use a Service's `tls` field to configure TLS encryption.
+- Create a Secret with the TLS certificate and key.
+
+*Example YAML:*
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-with-tls
+spec:
+  selector:
+    app: service
+  tls:
+  - secretName: tls-secrets
