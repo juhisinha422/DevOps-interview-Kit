@@ -1,0 +1,15 @@
+mid-level DevOps position at a startup 
+
+1. What is Terraform state drift? How can you detect and solve it?
+2. How do you bring an existing resource into your Terraform state ?
+3. How would you isolate a network within an AWS VPC?
+4. How would you connect two VPCs in AWS? 
+5. Architectural differences between GCP VPC and AWS VPC?
+6. What practices would you propose to reduce compute costs across the org?
+7. What would you do if you accidentally pushed creds into a remote repo?
+8. How do you handle rollbacks in k8s?
+9. Kubernetes operators
+10. What are admission controllers?
+11. What are network policies?
+12. How would you upgrade a cluster?
+13. How would you back up a cluster? What tools would you use?
