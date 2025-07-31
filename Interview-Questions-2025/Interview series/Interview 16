@@ -1,0 +1,16 @@
+1️⃣ 🧪 CI/CD Pipelines:
+How do you run builds in multiple operating systems in a pipeline?
+2️⃣ 🌍 Secret Management:
+How did you access HashiCorp Vault or any secret manager located in another AWS region?
+3️⃣ ⚙️ Kubernetes Basics:
+What are ConfigMaps and Secrets in Kubernetes?
+4️⃣ 🚨 502 Production Issue:
+The pod is running, but logs show a 502 error — how would you debug it?
+5️⃣ ♻️ CrashLoopBackOff Troubleshooting:
+How do you fix a CrashLoopBackOff issue in a pod?
+6️⃣ 📡 Missing Services:
+If a service doesn’t appear in kubectl get services, what could be the problem?
+7️⃣ 📊 Cluster Monitoring:
+How do you check node-level resource consumption in Kubernetes?
+8️⃣ 🐳 Container Crashes:
+What steps would you take if a container crashes immediately after starting?
