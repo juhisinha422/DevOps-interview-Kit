@@ -1,0 +1,59 @@
+Linux Interview Questions (DevOps – AWS)
+
+1. 🔗 Soft Link vs Hard Link Confusion
+Question:- You created a soft link (symbolic link) to /etc/app/config.yaml. After deployment, the link is broken, but the original file is still there. Why did it break? If it were a hard link, would it break?
+Simple Explanation:-
+▪  A soft link is like a shortcut — if the original file moves or is deleted, the link breaks.
+▪  A hard link is like a clone — it still works because it points to the same data on disk (same inode).
+▪  Use hard links when you want the file to work even if renamed or moved within the same partition.
+
+2. 🚫 Script Permission Denied
+Question:- You copied a script and tried running it with ./deploy.sh, but it says “Permission denied.” Even after chmod 777, it still doesn’t work. Why?
+Simple Explanation:-
+▪  It's not always about permissions.
+▪  Wrong line endings (from Windows): use dos2unix deploy.sh.
+Bad shebang (#!/bin/bash missing).
+
+3. 📦 Disk is Full, but Files Look Small
+Question:- Your EC2 instance is showing the disk is full, but du doesn’t show any large files. What's wrong?
+Simple Explanation:-
+▪   A deleted file still uses space if it's open by a process.
+▪   Restart the app or kill the process to release space.
+
+4. ⏰ Cron Job Not Running
+Question:- A script runs fine manually but fails when scheduled in cron. It doesn't even write logs.
+Simple Explanation:-
+▪   Cron runs in a minimal environment — no $PATH, no bashrc.
+▪   Fix: Use full paths in your script and redirect output to a log file.
+
+6. 🔐 SSH Permission Denied
+Question:- You can't SSH into your EC2 even though the key is correct and port 22 is open.
+Simple Explanation:-
+▪   File permissions: .ssh folder should be 700, authorized_keys 600.
+▪   Correct username: ec2-user, ubuntu, or admin?
+▪   Ensure the public key was added to the right user’s authorized_keys.
+
+7. 🌍 Can't Access Internet from EC2
+Question:- You can SSH into an instance, but the instance itself can’t connect to the internet.
+Simple Explanation:-
+▪   No default route: ip route should show a default gateway.
+▪   Wrong DNS: check /etc/resolv.conf.
+
+8. 📂 Copied File Corrupted After Reboot
+Question:-  You copied a big file in the background using &, then rebooted. After reboot, the file is incomplete.
+Simple Explanation:
+▪   Always wait for it to complete (wait or don't reboot too early).
+▪   You can also run with rsync or cp && sync to ensure it's written.
+
+9. 🧑💻 Script Doesn’t Run on Reboot
+Question: A script saved in /home/dev/scripts/start.sh is supposed to run on reboot but doesn’t. What’s missing?
+Simple Explanation:
+▪   Add it to crontab with @reboot.
+▪   Ensure it’s executable and doesn’t depend on GUI/session.
+
+10. 🔒 Files Always World-Writable
+Question: A user creates files and every file has rw-rw-rw- permissions . How do you fix it?
+Simple Explanation:
+▪   Their umask might be set to 0000.
+▪   Check it with umask.
+▪   Fix it in /etc/profile, .bashrc, or user’s shell config.
