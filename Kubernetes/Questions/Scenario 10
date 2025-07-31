@@ -1,0 +1,59 @@
+Scenario 1:*
+*Scenario 1:* You have a Deployment with multiple replicas of a web server, and you want to expose it to external traffic. What type of Service would you create, and how would you configure it?
+
+- Create a Service of type `LoadBalancer` or `NodePort` to expose the Deployment to external traffic.
+- Configure the Service to target the Deployment's pods using a selector.
+
+*Example YAML:*
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-server-service
+spec:
+  selector:
+    app: web-server
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+
+✅Scenario 2:*
+*Scenario 2:* You have a microservices-based application with multiple Services, each communicating with each other. How would you configure the Services to enable communication between them?
+
+- Create Services for each microservice, and use the Service's DNS name to enable communication between them.
+- Use a Service's `ClusterIP` to enable communication within the cluster.
+
+*Example YAML:*
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-a
+spec:
+  selector:
+    app: service-a
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+
+✅Scenario 3:*
+*Scenario 3:* You have a Service that exposes a database, and you want to restrict access to it so that only specific pods can access it. How would you configure the Service to achieve this?
+
+- Use a Network Policy to restrict access to the Service.
+- Create a Service with a specific selector that only matches the pods that need to access it.
+
+*Example YAML:*
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: database-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: database
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: specific-pod
