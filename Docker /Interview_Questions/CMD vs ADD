@@ -1,0 +1,17 @@
+CMD vs ADD — What’s the Difference in Docker? 
+
+>CMD:-
+	•Sets the default command to run when the container starts.
+	•Commonly used to run applications or scripts.
+	• Doesn’t create an extra layer in the Docker image.
+Syntax: CMD ["python", "app.py"]
+
+>ADD:-
+	•Copies files or directories from the host into the Docker image.
+	•Bonus: Can automatically extract compressed archives like .tar.gz.
+	•Creates an extra layer in the image → can increase final image size.
+Syntax: ADD app.tar.gz /app/
+
+>Important Points :-
+	•	Prefer using COPY instead of ADD unless you need advanced features.
+	•	Use ADD only when you need archive extraction or want to fetch files from remote
