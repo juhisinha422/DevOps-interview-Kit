@@ -1,0 +1,19 @@
+Tell me about Kubernetes networking…”
+
+It sounds simple  until you're in the interview seat, whiteboard markers in hand, and they say:
+
+ “Your pod can't reach an external service. Walk me through your debugging process  step by step.”
+
+Most engineers study ClusterIP, NodePort, and move on.
+ But real interviews go deeper.
+
+Today I’m sharing a cheat sheet of real interview questions 
+
+1. "What happens when a pod on Node A talks to a pod on Node B?"
+2. "How does kube-proxy route LoadBalancer traffic internally?"
+3. "Why would a NetworkPolicy allow traffic  but it still fails?"
+4. "What breaks if CoreDNS dies?"
+5. "Explain how Cilium differs from Flannel  and when you’d use each."
+6."Can a pod connect to itself via Service IP? Why or why not?"
+7. "How do you simulate a broken path between two pods?"
+8. "What does hostNetwork: true really do  and why’s it risky?"
