@@ -1,0 +1,40 @@
+Topic :Difference Between Useradd and adduser in linux
+
+1.useradd prerna
+
+Creates the user but does not ask for password, full name, etc. You must manually set password using passwd prerna.
+
+2.adduser prerna
+
+Starts an interactive setup: asks for password, full name, room number, etc.
+
+3.Example:
+
+>Useradd (Manual)
+
+# Create a user with home directory
+
+sudo useradd -m prerna
+
+# Set password for the user
+
+sudo passwd prerna
+
+# Add to a group
+
+sudo useradd -m -G devops prerna
+
+>Adduser(Interactive)
+
+# Create a user with prompts
+
+sudo adduser prerna
+
+You’ll be prompted for:
+
+ • Password,Fullname etc
+
+>Memory Tip:-adduser adds nicely, useradd needs manual flags.
+
+
+<img width="800" height="618" alt="Image" src="https://github.com/user-attachments/assets/f84fff90-7079-4c5a-b640-ef756db962d1" />
