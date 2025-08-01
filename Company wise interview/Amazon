@@ -1,0 +1,39 @@
+DevOps Interview Questions at Amazon 
+
+Round 1 – Cloud Architecture & Infra Reasoning (45 mins)
+• What’s the impact of misconfigured security groups during a blue/green deployment on ECS?
+• Walk us through a secure, multi-AZ ALB setup for a latency-sensitive app.
+• Explain what happens internally in a terraform apply across 2 modules with interdependencies.
+• The CI pipeline is failing only on Mondays. How do you triage something this bizarre?
+• SSM Session Manager stopped working across staging. How would you debug and secure it again?
+• What happens in a cross-region S3 replication with a delete marker race condition?
+• Lambda hitting cold starts. show 3 ways to fix across runtime, infra, and design.
+• Your team switched from ECS to EKS.  how would you explain that to a non-tech stakeholder?
+• Walk through how CloudWatch metric math can mislead incident responders if not configured right.
+• One-liner: How to list all EC2s not using the latest AMI in all regions?
+
+Round 2 – Fire Drills & RCA Thinking (75 mins)
+• Your NAT Gateway bill just spiked 10x. Where do you look first, and how do you fix it permanently?
+• You enabled VPC Flow Logs for debugging. Now they’re gone. What misconfiguration caused this?
+• SQS FIFO queue is throttling under load. what’s wrong with your producer setup?
+• Jenkins deploy pipeline gets stuck at 70% randomly. what’s your observability path?
+• ALB health checks pass. But customers get 502 intermittently. What next?
+• App rollout to Lambda went fine. But CloudFront shows stale pages. RCA?
+• EKS nodes are healthy, and pods are Pending. Simulate a controlled drill for this.
+• Route53 failover didn’t trigger during AZ outage. Why?
+• RDS failover happened, but the app didn’t recover for 4 minutes. Who do you blame and why?
+• AWS Config flagged a critical drift in S3 bucket ACLs. What’s your prevention mechanism?
+
+Round 3 – Engineering Judgment & Ownership (30 mins)
+• How do you push back when PMs prioritize velocity over resiliency?
+• Your teammate pushed infra to prod on a Friday evening. What now?
+• Describe a time you debugged a system where metrics lied.
+• How do you onboard a new DevOps hire without overwhelming them with tribal knowledge?
+• What’s your chaos checklist before launching a customer-facing product?
+
+💡 TL;DR:
+If you haven’t:
+1. Debugged NAT bill spikes from rogue VPCs
+2. Simulated Route53 + ALB combo failure
+3. Recovered Terraform modules post-deletion
+4. Survived Friday deploys without a rollback plan
