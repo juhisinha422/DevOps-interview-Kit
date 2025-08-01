@@ -1,0 +1,9 @@
+Difference between Security Groups and NACL
+Security Groups
+-Instance level
+-Stateful
+-Only allow rules
+NACL(Network Access Control list)
+-Subnet level
+-Stateless
+-Support allow and deny rules
