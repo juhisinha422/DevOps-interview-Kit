@@ -1,0 +1,8 @@
+starting a 30-day DevSecOps series to share what I’ve learned:
+
+Each day, I’ll post about a tool or concept like Docker, Kubernetes, Jenkins, AWS, and more — explained in a simple way with real-world examples.
+
+Let’s begin with 3 key terms:
+ 🔹 DevSecOps – Adding security to every stage of development
+ 🔹 CI/CD – Automating code build, test, and deployment
+ 🔹 SDLC – Steps to plan, build, and maintain software
