@@ -1,0 +1,48 @@
+Kubernetes Quick Diffs – Learn Fast, Deploy Smart 
+
+Here’s a compact guide to some of the most common Kubernetes concepts — simplified:
+
+📦 PV vs PVC
+ PV (PersistentVolume): A piece of storage in the cluster.
+ PVC (PersistentVolumeClaim): A request for storage by a user.
+
+⚖️ Taint vs Annotation
+ Taint: Applied to nodes to repel pods unless tolerated.
+ Annotation: Metadata added to objects; not used for selection.
+
+🎯 Label vs Annotation
+ Label: Used for selection/filtering (e.g., by Deployments, Services).
+ Annotation: Stores non-identifying info.
+
+🧱 Deployment vs StatefulSet
+ Deployment: For stateless apps (e.g., web servers).
+ StatefulSet: For stateful apps (e.g., databases), preserves identity & order.
+
+🧭 Service vs Ingress
+ Service: Exposes a set of pods inside/outside the cluster.
+ Ingress: Manages external HTTP(S) traffic with routing rules.
+
+⚙️ ConfigMap vs Secret
+ ConfigMap: Stores non-sensitive config as plain text.
+ Secret: Stores sensitive data (e.g., passwords), base64-encoded.
+
+🔁 Rolling Update vs Recreate
+ Rolling Update: Gradual updates with zero downtime.
+ Recreate: Deletes old pods before creating new ones.
+
+🕵️ ReplicaSet vs ReplicationController
+ ReplicaSet: Modern way to manage pod replicas.
+ ReplicationController: Legacy controller, mostly deprecated.
+
+🌐 ClusterIP vs NodePort vs LoadBalancer
+ ClusterIP: Internal service access only.
+ NodePort: Exposes service on a fixed port on each node.
+ LoadBalancer: Provides external access via a cloud provider’s load balancer.
+
+🔄 Stateless vs Stateful
+ Stateless: No data stored between requests, easy to scale (e.g., frontend).
+ Stateful: Remembers data, needs stable storage & identity (e.g., DBs).
+
+Node Affinity vs Taint
+Node Affinity: Attracts pods to specific nodes using labels.
+Taint: Repels pods from nodes unless they tolerate the taint.
