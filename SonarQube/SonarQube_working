@@ -1,0 +1,34 @@
+In DevOps, we often ask:
+“𝐈𝐬 𝐭𝐡𝐞 𝐛𝐮𝐢𝐥𝐝 𝐩𝐚𝐬𝐬𝐢𝐧𝐠?”
+But we rarely ask:
+“𝐈𝐬 𝐭𝐡𝐞 𝐜𝐨𝐝𝐞 𝐠𝐨𝐨𝐝 𝐞𝐧𝐨𝐮𝐠𝐡 𝐭𝐨 𝐦𝐚𝐢𝐧𝐭𝐚𝐢𝐧 𝐚 𝐲𝐞𝐚𝐫 𝐟𝐫𝐨𝐦 𝐧𝐨𝐰?”
+That’s where 𝐒𝐨𝐧𝐚𝐫𝐐𝐮𝐛𝐞 comes in.
+
+I used to feel confident when my app didn’t crash and all tests passed.
+But once I integrated SonarQube into my CI/CD pipeline, I realized how many issues were silently living in my code — duplicated logic, unused variables, bad complexity, and even potential bugs.
+
+𝐖𝐡𝐚𝐭 𝐢𝐬 𝐒𝐨𝐧𝐚𝐫𝐐𝐮𝐛𝐞?
+SonarQube is a powerful static code analysis tool that reviews your code for:
+• Bugs
+• Code smells
+• Security vulnerabilities
+• Duplications
+• Test coverage
+
+𝐖𝐡𝐲 𝐝𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫𝐬 𝐥𝐨𝐯𝐞 𝐢𝐭 (𝐨𝐧𝐜𝐞 𝐭𝐡𝐞𝐲 𝐠𝐞𝐭 𝐩𝐚𝐬𝐭 𝐭𝐡𝐞 𝐫𝐞𝐩𝐨𝐫𝐭𝐬):
+• Encourages clean, maintainable code
+• Catches issues early before they hit production
+• Gives visibility across teams for better collaboration
+• Supports quality gates to stop bad code from being merged
+
+𝐇𝐨𝐰 𝐈 𝐮𝐬𝐞 𝐢𝐭 𝐢𝐧 𝐦𝐲 𝐩𝐢𝐩𝐞𝐥𝐢𝐧𝐞:
+Every time code is pushed → Jenkins triggers build → SonarQube runs analysis → If quality gate fails → The PR is blocked
+Simple. Efficient. Safe.
+
+𝐀 𝐟𝐞𝐰 𝐥𝐞𝐬𝐬𝐨𝐧𝐬 𝐈’𝐯𝐞 𝐥𝐞𝐚𝐫𝐧𝐞𝐝:
+• Passing tests ≠ high-quality code
+• Fixing issues after release costs 10x more
+• Code quality is a team habit, not just a developer task
+
+SonarQube doesn’t just scan your code — it teaches you to think cleaner, write better, and build smarter.
+If you're already using CI/CD, SonarQube is the next step to becoming a true DevOps engineer.
