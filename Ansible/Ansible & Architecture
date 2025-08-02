@@ -1,0 +1,32 @@
+Ansible 
+-------
+Ansible is an software configuration management automation tool that works based on push-based architecture using which we can run code modules on the infrastructure for installing/configuring the software packages on the Fleet servers within the organization. 
+
+Ansible architecture
+--------------------
+There are 5 core components are there in Ansible
+1. Ansible modules
+2. Ansible Control Node Server [Master]
+3. Ansible Managed Nodes
+4. Ansible Playbooks
+5. Inventory File
+
+1. Ansible modules
+Ansible modules are reusable code-blocks/functions that are written in python programming language by the Ansible developers and distributed them aspart of the ansible installation. These ansible modules are pre-coded to perform a task or operation and are written to enforce the principle idempotancy
+
+These modules takes data as input, performs the operation and returns the output of executing the task on the machine. For eg.. an apt module takes software package name as input, installs and return the output indicating the status of the execution like
+    1. installed ok (changed)
+    2. no change
+    3. failed
+
+2. Ansible Control Node Server
+The Ansible control node server is the engine of the Ansible architecture, any machine that is installed with Ansible software can be called as Ansible control node server. The Ansible control node server takes playbook/module and inventoryFile as an input, then pushes/copies these modules onto the Managed Node of the Fleet and executes each module locally on the Fleet node. Captures the output of execution back interms of JSON format and displays the outcome to the Ansible user
+    1. The ControlNode server is stateless, because of this we can use any machine which is installed with Ansible software as an Control node Server
+    2. The Control Node Server communicates with the Fleet or Managed nodes over the network through SSH protocol, so each node must and should be configured with SSH access
+    3. Ansible has provided CLI tool through which devops engineer can communicate with Ansible control node server asking to execute the playbooks or code modules
+    
+3. Ansible Managed nodes
+Ansible Managed node is a server or a computer within the organization on whom we wanted to install/configure the software packages/libraries inorder to host/deploy the software application.
+    1. on each ansible managed node we need to install openssh server and should configure key-based authentication for SSH into the machine.
+    2. Install python on each managed node (most of the Linux distributions comes with Python by default)
+    3. The Linux user across all the managed nodes should be configured with passwordless sudoers access
