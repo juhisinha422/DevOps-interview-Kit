@@ -1,0 +1,19 @@
+how to do ssh to instance from terraform, what resource you use?
+what are meta arguments in terraform? tell me usecases
+what are modules, what is your modular structure in your project?
+what are outputs? how to export output from one env to other?
+what is count and for_each? usecases
+i have two instances in two diffrent aws regions how you provision it in main.tf
+write module for instance_type resources?
+what are data source i terraform? how will you provision
+what are terraform functions? give me usecase
+
+common questions?
+terraform tent
+terraform drift
+terraform logs
+terraform steps
+statefile lost
+statefile store
+statefile versioning in s3
+terraform import
