@@ -1,0 +1,86 @@
+𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐢𝐧𝐠 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬 + 𝐏𝐨𝐫𝐭𝐬 + 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬
+
+𝟏. 𝐖𝐡𝐲 𝐬𝐡𝐨𝐮𝐥𝐝 𝐚𝐧 𝐀𝐩𝐩𝐥𝐢𝐜𝐚𝐭𝐢𝐨𝐧/𝐓𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 𝐤𝐧𝐨𝐰 𝐧𝐞𝐭𝐰𝐨𝐫𝐤𝐢𝐧𝐠?
+𝐀𝐧𝐬𝐰𝐞𝐫: Most application issues involve network ports, connectivity, DNS, firewall, or latency.
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧: Without basic networking, you cannot troubleshoot server-to-server or database connections.
+
+𝟐. 𝐇𝐨𝐰 𝐭𝐨 𝐜𝐡𝐞𝐜𝐤 𝐢𝐟 𝐚 𝐩𝐨𝐫𝐭 𝐢𝐬 𝐨𝐩𝐞𝐧 𝐨𝐫 𝐛𝐥𝐨𝐜𝐤𝐞𝐝?
+𝐀𝐧𝐬𝐰𝐞𝐫:
+
+telnet <IP> <Port>  
+# or  
+nc -zv <IP> <Port>
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧: Checks if port is open from client to server. If blocked, contact network/firewall team.
+
+𝟑. 𝐇𝐨𝐰 𝐭𝐨 𝐟𝐢𝐧𝐝 𝐢𝐩 𝐚𝐝𝐝𝐫𝐞𝐬𝐬 𝐨𝐟 𝐲𝐨𝐮𝐫 𝐬𝐞𝐫𝐯𝐞𝐫?
+𝐀𝐧𝐬𝐰𝐞𝐫:
+
+ifconfig   # Linux  
+ip addr    # Linux (newer)  
+ipconfig   # Windows
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧: Displays your server's IP, subnet, and interface info.
+
+𝟒. 𝐇𝐨𝐰 𝐭𝐨 𝐜𝐡𝐞𝐜𝐤 𝐧𝐞𝐭𝐰𝐨𝐫𝐤 𝐥𝐚𝐭𝐞𝐧𝐜𝐲?
+𝐀𝐧𝐬𝐰𝐞𝐫:
+
+ping <IP>  
+ping <domain>
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧: Measures round-trip time between your server and target.
+
+𝟓. 𝐇𝐨𝐰 𝐭𝐨 𝐜𝐡𝐞𝐜𝐤 𝐫𝐨𝐮𝐭𝐞 𝐨𝐟 𝐭𝐡𝐞 𝐩𝐚𝐜𝐤𝐞𝐭?
+𝐀𝐧𝐬𝐰𝐞𝐫:
+
+traceroute <IP>   # Linux  
+tracert <IP>      # Windows
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧: Shows each network hop from your machine to destination.
+
+𝟔. 𝐇𝐨𝐰 𝐭𝐨 𝐬𝐞𝐞 𝐨𝐩𝐞𝐧 𝐩𝐨𝐫𝐭𝐬 𝐨𝐧 𝐲𝐨𝐮𝐫 𝐬𝐞𝐫𝐯𝐞𝐫?
+𝐀𝐧𝐬𝐰𝐞𝐫:
+
+netstat -tuln  
+ss -tuln    # Newer Linux versions
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧: Lists TCP/UDP open ports and listening services.
+
+𝟕. 𝐖𝐡𝐚𝐭 𝐚𝐫𝐞 𝐜𝐨𝐦𝐦𝐨𝐧 𝐩𝐨𝐫𝐭𝐬 𝐲𝐨𝐮 𝐬𝐡𝐨𝐮𝐥𝐝 𝐤𝐧𝐨𝐰?
+𝐀𝐧𝐬𝐰𝐞𝐫:
+
+22 – SSH
+
+80 – HTTP
+
+443 – HTTPS
+
+3306 – MySQL
+
+1433 – SQL Server
+
+1521 – Oracle DB
+
+25 – SMTP (mail)
+
+53 – DNS
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧: Knowing ports helps troubleshoot DB, API, and app connections.
+
+𝟖. 𝐇𝐨𝐰 𝐭𝐨 𝐜𝐡𝐞𝐜𝐤 𝐝𝐧𝐬 𝐫𝐞𝐬𝐨𝐥𝐯𝐞 𝐢𝐬𝐬𝐮𝐞𝐬?
+𝐀𝐧𝐬𝐰𝐞𝐫:
+
+nslookup <domain>  
+dig <domain>   # Linux advanced
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧: Checks if domain names are resolving to correct IP addresses.
+
+𝟗. 𝐇𝐨𝐰 𝐭𝐨 𝐬𝐞𝐞 𝐲𝐨𝐮𝐫 𝐝𝐧𝐬 𝐜𝐨𝐧𝐟𝐢𝐠𝐮𝐫𝐚𝐭𝐢𝐨𝐧?
+𝐀𝐧𝐬𝐰𝐞𝐫:
+
+cat /etc/resolv.conf   # Linux  
+ipconfig /all          # Windows
+
+𝐄𝐱𝐩𝐥𝐚𝐧𝐚𝐭𝐢𝐨𝐧: Shows DNS servers used for hostname resolution.
+
+𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧 𝐟𝐨𝐫 𝐘𝐨𝐮: What’s the difference between SSH and Telnet? 
