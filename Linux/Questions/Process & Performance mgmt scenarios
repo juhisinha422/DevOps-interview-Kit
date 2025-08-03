@@ -1,0 +1,61 @@
+Process & Performance Management Scenarios******
+
+1. Your application is running slowly. How do you diagnose and fix the issue?
+
+We start by using top, htop, or vmstat to identify high CPU, memory, or I/O usage.
+Then we check application logs and system metrics like disk space and swap usage.
+Tools like strace or perf help trace performance bottlenecks in the code.
+
+2. A process is consuming 100% CPU. How do you identify and fix it?
+
+We use top or ps -eo pid,ppid,cmd,%cpu --sort=-%cpu to find the PID.
+Once identified, we inspect the process using strace or debug logs.
+We may renice it or restart the service depending on the root cause.
+
+3. How do you identify which process is using the most memory?
+
+We run top or ps aux --sort=-%mem | head to list processes by memory usage.
+This helps locate memory-hungry applications.
+Then we can investigate with tools like smem or pmap.
+
+4. A critical process keeps getting killed due to an "Out of Memory" error. How do you debug and prevent this?
+
+We check /var/log/messages or dmesg | grep -i oom for OOM killer logs.
+Then we increase swap space or optimize memory usage.
+Setting oom_score_adj or using cgroups can help protect critical processes.
+
+5. You need to keep a process running in the background even after logging out. How would you do that?
+
+We use nohup, disown, or run it in a terminal multiplexer like screen or tmux.
+Example: nohup ./script.sh & lets it run after logout.
+This ensures session independence for long-running tasks.
+
+6. A process is stuck and not responding to kill -9. What else can you try?
+
+If kill -9 doesn’t work, the process might be in uninterruptible I/O state (D).
+We can investigate the cause with lsof or dmesg.
+A system reboot is usually required in such cases.
+
+7. How do you set a process to run with low priority automatically?
+
+We start it using nice like nice -n 19 command.
+For running processes, we adjust with renice.
+In scripts or services, we add nice in the command line or service definition.
+
+8. You need to monitor system resource usage over time. Which tools would you use?
+
+We use tools like sar, atop, vmstat, or collectl for historical resource data.
+For more detailed graphs and dashboards, we integrate Prometheus or Nagios.
+These tools help visualize trends and spot spikes.
+
+9. Your server is running out of swap memory frequently. What steps would you take to fix this?
+
+First, we check swap usage with free -m or swapon -s.
+We can add more swap using a swap file or optimize memory usage in apps.
+Tuning vm.swappiness in /etc/sysctl.conf also helps reduce swap pressure.
+
+10. How do you identify and stop zombie processes?
+
+Zombie processes appear in ps aux with a Z state and usually can't be killed directly.
+We find their parent process and restart or kill it to remove the zombie.
+Using pstree -p or ps -ef helps trace the hierarchy.
