@@ -30,3 +30,58 @@ Ansible Managed node is a server or a computer within the organization on whom w
     1. on each ansible managed node we need to install openssh server and should configure key-based authentication for SSH into the machine.
     2. Install python on each managed node (most of the Linux distributions comes with Python by default)
     3. The Linux user across all the managed nodes should be configured with passwordless sudoers access
+
+
+What are data representation standards, why do we need them?
+YAML
+YAML stands for Yet (Ain't) another markup language which means not an mark-up language. It is another text-based data representation standard used for storing and representing the data similar to XML or Json formats.
+           
+YAML stores or represents the data in structured format attached with semantics to the data. YAML greatly relies on intendation to represent the data.
+           
+DataTypes in YAML:
+YAML supports built-in primitive datatypes as below
+1. string
+any sequence of set of characters is consider as String. To represent a string we dont need to enclose them in double-quotes
+
+2. number
+any digits are consider as numbers
+
+3. Boolean
+true, false, TRUE, FALSE, yes, no
+
+YAML supports 2 types of data structures
+1. Mappings (Dictionaries) = is an object type data structure that holds or represents key/value pair data
+2. List (Sequences)    = holding collection of values
+
+Let us explore representing the data in YAML format
+1. XML
+<ticket>
+ <pnrno>pa939</pnrno>
+ <source>Hyderabad</source>
+ <destination>Banglore</destination>
+ <journey-dt>2025-05-30</journey-dt>
+ <reservation-class>sleeper</reservation-class>
+ <price>550</price>
+</ticket>
+
+2. Json
+{
+ "pnrno": "pa939",
+ "source": "hyderabad",
+ "destination": "banglore",
+ "journey-dt": "2025-05-30",
+ "reservation-class" : "sleeper",
+ "price": 550
+}
+           
+3. YAML
+---
+pnrno: pa939
+source: hyderabad
+destination: banglore
+journey-dt: 2025-05-30
+reservation-class: sleeper
+price: 550
+...           
+
+
