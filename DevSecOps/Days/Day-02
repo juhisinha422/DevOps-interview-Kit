@@ -1,0 +1,27 @@
+SaaS vs PaaS vs IaaS
+
+Let’s simplify the three core cloud computing models—SaaS, PaaS, and IaaS—with a real-life analogy: owning a car.
+
+
+🔹 IaaS (Infrastructure as a Service)
+You buy a car.
+You’re responsible for everything: fuel, maintenance, insurance, and driving.
+You're in full control, but you also handle all the complexity.
+💡 Example in Cloud: Renting servers, networking, and storage (e.g., AWS EC2).
+
+
+🔹 PaaS (Platform as a Service)
+You lease a car.
+The provider takes care of maintenance and servicing. You just focus on driving.
+Less responsibility, more focus on your core task.
+💡 Example in Cloud: Using platforms to build/deploy apps (e.g., Google App Engine).
+
+
+🔹 SaaS (Software as a Service)
+You take a taxi.
+You don’t worry about the car, fuel, or route. Just hop in and enjoy the ride.
+Completely managed and effortless.
+💡 Example in Cloud: Accessing software like Gmail or Zoom.
+
+
+🧠 Cloud services simplify IT needs by shifting responsibilities to the provider, letting you choose how much control you want to retain.
