@@ -1,0 +1,60 @@
+Kubernetes vs AWS Load Balancer – Who’s the Real Traffic Handler?
+
+"Type: LoadBalancer" likhne se kya Kubernetes khud load balancing karta hai?
+Ya AWS ka ELB actual traffic manage karta hai?
+
+Bhai, ye doubt har DevOps fresher ke dimaag me hota hi hai — aur honestly, ye sirf surface se samajh aata hai, depth me jao toh picture clear hoti hai.
+
+Chal aaj ek baar me samjhte hain — easy language me, real clarity ke saath  
+
+What really happens when you create a LoadBalancer service in Kubernetes?
+Imagine you write this:
+type: LoadBalancer
+
+Looks fancy, right?
+Lekin asli game uske baad shuru hoti hai 
+
+Kubernetes khud se koi load balancer create nahi karta.
+Kubernetes bolta hai cloud provider ko (AWS/GCP/Azure):
+      “Bhai, ek external Load Balancer de do jo mera traffic handle kare.”
+AWS ke paas Cloud Controller Manager ka request jaata hai
+AWS ELB (Elastic Load Balancer) bana deta hai —
+aur uske peeche worker nodes ke IPs register kar deta hai.
+
+
+Par AWS ko kaise pata chalta ki kaunse node IPs register karne hai?
+Ye bhi Kubernetes hi batata hai bhai!
+Cloud Controller Manager:
+       kubectl get nodes se sab nodes ki internal ya external IPs read karta hai
+Phir AWS ko bolta hai:
+       “Yeh mere active worker nodes hain — inko ELB ke backend me daal de”
+Bas.
+ 
+Ab AWS ELB ready hai traffic leke NodePort pe forward karne ke liye.
+
+
+Traffic ka actual flow kaise hota hai?
+User hits the ELB DNS (like https://lnkd.in/dwa4PEkz)
+
+ELB forwards the request to any one of the Node IPs + NodePort
+
+Wahan pe kube-proxy hota hai, jo traffic ko aage actual pod tak le jaata hai
+Yeh routing Kubernetes handle karta hai — but first gate pe standing guard = AWS Load Balancer.
+
+
+So, who’s the real traffic boss?
+Not Kubernetes.
+ It just acts as a middleman.
+The actual traffic entry, balancing, health checks — sab kuch cloud load balancer handle karta hai.
+
+
+
+Summary in simple words:
+Kubernetes: “Mujhe ek Load Balancer chahiye”
+Cloud Provider: “Lo bhai, ELB le lo”
+Kubernetes: “In nodes ko backend me daal de”
+AWS: “Done. Ab traffic mera kaam”
+
+So next time jab koi puche — "K8s me LoadBalancer ka actual role kya hai?"
+ Tere paas answer ready hai — confidently boliyo:
+      “Kubernetes doesn’t do external load balancing. It requests and registers cloud load balancers — actual traffic handling is done by AWS ELB.”
