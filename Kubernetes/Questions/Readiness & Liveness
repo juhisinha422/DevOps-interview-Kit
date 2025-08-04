@@ -1,0 +1,38 @@
+Still Confused Between Readiness & Liveness? This Story Will Fix It Forever!
+
+Imagine a restaurant kitchen.
+The restaurant = your pod,
+The chef = your app container,
+And the manager = Kubernetes
+
+Now the manager asks two simple questions:
+1. Are you even alive?
+   This is the Liveness probe.
+   Manager knocks on the kitchen door:
+              "Chef, are you okay? Can you respond?"
+If there's no reply — maybe the chef fainted or got stuck — The manager brings in a new chef.
+In Kubernetes: If the container doesn’t respond, K8s restarts it.
+Not the pod. Not the full app. Just that one container.
+That’s liveness — “Zinda ho ya nahi?”
+
+
+
+2. Are you ready to take orders?
+    This is the Readiness probe.
+     Chef replies: "Yes, I'm alive... but I’m still chopping vegetables."
+     The manager waits before sending customer orders.
+Once the chef says “Ready!”, the orders start.
+In Kubernetes: Until the app says “I’m ready,” no traffic is sent to it.
+That’s readiness — “Kaam shuru karne layak ho ya wait karna padega?”
+
+
+So remember:
+     Liveness = Alive or stuck? Restart if needed.
+     Readiness = Ready to work or still warming up? Don’t send traffic yet.
+
+
+
+Bohot log confuse hote hain kyunki wo samajhte hain ye pod level pe hota hai.
+But in reality, these probes check individual containers.
+Zinda rehna alag baat hai, ready rehna alag.
+Chef kitchen me ho sakta hai, but agar ready nahi hai — toh order mat bhejna.
