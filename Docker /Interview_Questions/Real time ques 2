@@ -1,0 +1,83 @@
+Real-time Docker and Kubernetes 10 questions and answers.
+
+1. How do you reduce Docker image size?
+
+Use lightweight base images (alpine, distroless)
+
+Combine RUN commands using && to reduce layers
+
+Clean cache: apt-get clean, rm -rf /var/lib/apt/lists/*
+
+Use .dockerignore to exclude unnecessary files
+
+2. How do you manage secrets in Docker containers?
+
+Avoid passing secrets via ENV in Dockerfile
+
+Use Docker secrets with Docker Swarm or inject via Kubernetes secrets
+
+Alternatively, mount secrets from secure volumes (e.g., AWS Secrets Manager, HashiCorp Vault)
+
+3. What happens if the ENTRYPOINT and CMD conflict in a Dockerfile?
+
+CMD provides default arguments to ENTRYPOINT.
+
+If both are present, ENTRYPOINT overrides CMD’s execution, but CMD values are passed as arguments to ENTRYPOINT.
+
+4. How do you debug a container that’s crashing immediately?
+
+docker logs <container_id>  
+docker inspect <container_id>  
+docker run -it --entrypoint /bin/sh image_name  
+
+5. How do you share data between containers?
+
+Use Docker volumes or bind mounts
+
+Containers in the same pod or network can share volumes
+
+
+6. What is the difference between a Deployment and StatefulSet?
+
+Deployment: For stateless apps (NGINX, frontend).
+
+StatefulSet: For apps needing stable identity, persistent storage, like databases.
+
+7. A pod is in CrashLoopBackOff. How do you troubleshoot it?
+
+kubectl describe pod <pod> – check Events
+
+kubectl logs <pod> --previous – check logs before crash
+
+Verify:
+
+Image and command correctness
+
+Resource limits (OOMKilled?)
+
+Liveness/Readiness probes
+
+8. How do you perform a rolling update in Kubernetes?
+
+With Deployments:
+
+kubectl set image deployment/my-app my-app=my-image:v2  
+Kubernetes automatically performs a rolling update unless strategy: Recreate is defined
+
+9. How do you expose a service outside the cluster?
+
+Use Service Type: LoadBalancer, NodePort, or Ingress
+
+For cloud environments:
+
+type: LoadBalancer
+  
+10. What is a readiness probe vs. liveness probe?
+
+Readiness Probe: App is ready to serve traffic
+
+Liveness Probe: App is healthy and running
+
+Failing readiness = traffic stops
+
+Failing liveness = pod restarts
