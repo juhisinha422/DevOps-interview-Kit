@@ -1,0 +1,12 @@
+What Happens When Two People Run terraform apply?
+
+Terraform isn’t built for simultaneous applies. If two users run terraform apply at the same time:
+
+What Can Go Wrong?
+- State file conflicts
+- Overwritten resources
+- Broken infrastructure
+
+Best Practice: Use a remote backend like S3 + DynamoDB for state locking, ensuring only one apply happens at a time.
+
+Tip: Treat terraform apply like a production deploy—coordinate and lock!
