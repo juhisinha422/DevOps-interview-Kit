@@ -1,0 +1,44 @@
+Where does git fetch actually store the data?
+
+
+When you run:
+         git fetch origin
+Git does three key things behind the scenes:
+1. Downloads commits, branches, and tags from the remote
+     * Git connects to the remote (e.g., GitHub)
+     * It fetches the latest objects (commits, trees, blobs)
+     * But it does NOT touch your local branches
+
+2. Stores them as remote-tracking branches
+Fetched data is stored in:
+             .git/refs/remotes/origin/<branch-name>
+For example:
+origin/main
+origin/dev
+origin/feature/login
+
+These are not real branches you can directly work on — they're pointers to the latest state of the remote branches.
+They help you compare your local branches with the remote.
+
+
+3. Commits are saved in Git’s object database
+Git stores the actual commit data inside:
+    .git/objects/
+This is where all fetched commits (and associated data) live — compressed and hashed.
+Git just adds them to your local database, without merging anything.
+
+
+Example:
+You run:
+        git fetch origin
+Then check:
+        git log main..origin/main
+This shows commits that were fetched into origin/main —
+ but are not yet merged into your local main.
+
+
+
+
+
+git fetch is like downloading a new episode — but not playing it until you decide (via merge, rebase, etc.)
+You get full visibility, but zero disruption to your code.
