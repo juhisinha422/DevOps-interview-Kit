@@ -1,0 +1,27 @@
+𝐄𝐯𝐞𝐫 𝐮𝐬𝐞𝐝 "𝙖𝙬𝙨 𝙡𝙖𝙢𝙗𝙙𝙖 𝙜𝙚𝙩-𝙛𝙪𝙣𝙘𝙩𝙞𝙤𝙣-𝙘𝙤𝙣𝙛𝙞𝙜𝙪𝙧𝙖𝙩𝙞𝙤𝙣" 𝐚𝐧𝐝 𝐰𝐨𝐧𝐝𝐞𝐫𝐞𝐝 𝐰𝐡𝐚𝐭 𝐢𝐭 𝐫𝐞𝐚𝐥𝐥𝐲 𝐝𝐨𝐞𝐬?
+
+When you run:
+𝙖𝙬𝙨 𝙡𝙖𝙢𝙗𝙙𝙖 𝙜𝙚𝙩-𝙛𝙪𝙣𝙘𝙩𝙞𝙤𝙣-𝙘𝙤𝙣𝙛𝙞𝙜𝙪𝙧𝙖𝙩𝙞𝙤𝙣 --𝙛𝙪𝙣𝙘𝙩𝙞𝙤𝙣-𝙣𝙖𝙢𝙚 𝙢𝙮-𝙛𝙪𝙣𝙘𝙩𝙞𝙤𝙣
+
+You're basically saying:
+  "Hey Lambda, tell me everything about your current setup environment   variables, timeout, memory, runtime... I just want to look, not touch."
+
+It doesn’t fetch your code, it just gives you the configuration snapshot. Think of it like checking a car’s dashboard before a long drive. You want to know what's set before making any changes.
+
+𝗛𝗼𝘄 𝗱𝗼𝗲𝘀 𝘁𝗵𝗶𝘀 𝗵𝗲𝗹𝗽 𝗶𝗻 𝗖𝗼𝗱𝗲𝗕𝘂𝗶𝗹𝗱 𝗼𝗿 𝗖𝗜/𝗖𝗗?
+
+In many of my projects, the pipeline needs to update some env variables (like GIT_HASH or DEPLOYED_BY) during deployment. But here's the catch:
+
+If you blindly overwrite env vars, you might wipe out other important ones that were already there.
+
+So what do I do?
+
+1. I first fetch the current config using get-function-configuration.
+2. Then I merge my new vars into the existing ones (keeping the old ones safe).
+3. Finally, I update the function safely without messing up anything.
+
+It’s a small step, but it prevents a ton of silent breakage.
+
+I learned this the hard way when a critical env var got wiped during a deploy because we didn’t fetch the existing ones first. Since then, get-function-configuration has been a must have in our scripts.
+
+If you're doing CI/CD with Lambda, keep this in your toolkit.
