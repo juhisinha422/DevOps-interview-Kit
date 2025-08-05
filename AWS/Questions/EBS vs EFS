@@ -1,0 +1,44 @@
+EBS vs EFS — Not all AWS storage is the same.
+
+Imagine this
+You're working on two different AWS projects:
+
+Project 1: A backend app with MySQL
+You launch an EC2 instance.
+You install MySQL.
+You want fast, local, disk-level storage that sticks even if the instance restarts.
+You use EBS — Elastic Block Store.
+
+Why?
+It’s like plugging a hard disk directly into your laptop.
+Fast. Private. And only your laptop (EC2) can use it at that time.
+Perfect for:
+       Databases
+       Boot volumes
+       Logs
+      Any single-instance storage
+
+
+Project 2: A web app running on 5 EC2s
+All EC2s need to access the same files — maybe logs, images, configs.
+You can’t keep syncing them manually.
+You use EFS — Elastic File System.
+
+Why?
+It’s like a shared Google Drive — all machines can open, read, and write together.
+Fully managed, auto-scaling, no headache.
+Perfect for:
+     Shared file access
+     Content management systems
+     Scalable web apps
+     Multi-AZ workloads
+
+
+The Core Difference?
+EBS is like a personal pen drive — fast, but for one device.
+EFS is like a shared folder on the cloud — slower, but everyone can use it.
+
+
+You don’t pick what's “cool” —
+You pick what fits your architecture.
+Because in cloud, smart choices save time, money, and headaches.
