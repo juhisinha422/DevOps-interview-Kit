@@ -1,0 +1,64 @@
+Networking s Security Scenarios 
+======================
+1. A website running on your Linux server is inaccessible, but the server is up. How do you troubleshoot?
+
+We first check if the web server (Apache/Nginx) is running using systemctl status.
+Then we verify the firewall rules and use netstat -tuln or ss -tuln to confirm the port is open.
+Finally, we check the server logs (/var/log/) and try curl localhost for local accessibility.
+
+2. You need to allow only a specific IP to access a server over SSH. How would you configure it?
+
+We edit the SSH configuration file /etc/ssh/sshd_config and use AllowUsers or Match blocks.
+Alternatively, we use firewall rules: iptables -A INPUT -p tcp -s <IP> --dport 22 -j ACCEPT.
+Don’t forget to restart sshd after changes.
+
+3. Your server is under a DDoS attack. How do you mitigate it using Linux commands?
+
+We can use netstat or ss to identify unusual connections.
+Then, we use iptables or firewalld to block IPs or rate-limit traffic.
+Installing tools like fail2ban or ufw can help with automated blocking.
+
+4. You need to check which ports are open and which services are listening. How do you do that?
+
+We use ss -tuln or netstat -tuln to view listening ports.
+To map services with PIDs, we use ss -tulnp or lsof -i.
+This helps identify unauthorized or unexpected services.
+
+5. A user is unable to reach an external website from a Linux server. How do you troubleshoot network connectivity?
+
+We first check basic connectivity with ping or curl.
+Then we verify DNS resolution using dig or nslookup.
+If needed, we check routes with ip route and firewall settings with iptables or ufw.
+
+6. You need to set up a firewall to allow only HTTP, HTTPS, and SSH traffic. How do you do it?
+
+Using ufw, we run:
+ufw allow 22 
+ufw allow 80 
+ufw allow 443 
+ufw enable 
+For iptables, we allow specific ports and drop the rest.
+
+7. How do you check which process is using a specific port?
+
+We use lsof -i :<port> or ss -tulnp | grep <port> to find the PID and program.
+It tells us which service is bound to the port.
+This is useful for troubleshooting conflicts or security risks.
+
+8. A connection to a database is failing from your Linux server. How do you troubleshoot it?
+
+We first check connectivity with telnet <host> <port> or nc.
+Then we confirm the database service is up and accepting connections.
+Firewall, SELinux, or bind-address misconfigurations can also block access.
+
+9. You need to change the default SSH port for security reasons. How do you do it?
+
+We edit /etc/ssh/sshd_config and change the Port directive to a new number.
+Then, we allow the new port in the firewall and restart the SSH service.
+It’s good practice to inform users and test before closing the old port.
+
+10. How do you enable IP forwarding on a Linux system?
+
+We temporarily enable it with:
+echo 1 > /proc/sys/net/ipv4/ip_forward 
+For a permanent setup, we edit /etc/sysctl.conf and set net.ipv4.ip_forward = 1, then run sysctl -p.
