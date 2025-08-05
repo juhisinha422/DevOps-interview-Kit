@@ -1,0 +1,21 @@
+Bootlabstech Organization for cloud Engineer role || 01 Aug 2025 Virtual
+
+
+1. Can you introduce yourself and roles and responsibilities   
+2. So mostly you have worked on AWS right?   
+3. So what are the load balancing methodologies available in Route 53?   
+4. What is the difference between Transit Gateway and VPC peering?   
+5. Do you know about lamba?   
+6. How will you trigger a lambda?   
+7. Is it possible to build a Lambda function at a particular time?   
+8. Okay, you have worked on Terraform as well, right?  
+9. Can you explain the difference between for_each and count in Terraform, and when you would use one over the other?   
+10. How will you handle secrets in Terraform?   
+11. Have you worked on Docker?   
+12. Docker container restarting continuously every few seconds maybe, so how will you investigate that one?   
+13. How can you prevent a container from running as a root user?   
+14. Can you brief about PODs in K8s  
+15. If an application needs to retrieve a secret from AWS Secrets Manager, how would you establish that connection?   
+16. Can you explain the difference between StatefulSets and ReplicaSets in Kubernetes   
+17. What is the use of multi-stage Dockerfiles?   
+18. Can you write down Multistage Dockerfile 
