@@ -1,0 +1,38 @@
+Docker Question: COPY vs RUN curl — Which One's Faster? 🐳
+
+I was creating a Docker Image of a GitHub Runner for my lab today, I was constantly fixing the errors I wondered:
+Should I COPY the actions-runner-linux.tar.gz into the image, or use RUN curl to download it?
+
+💡 Here’s what I learned — and why it matters more than we think.
+
+🆚 COPY vs RUN curl
+
+✅ COPY
+
+- Transfers files from your local machine to the image
+
+- Super fast ⏩ and cache-friendly
+
+- Doesn’t require internet
+
+- Great for reproducible builds
+
+
+❌ RUN curl/wget
+
+- Downloads files during build time
+
+- Slower — depends on network and server response
+
+- Can break caching (if the file changes or server is slow) # For me it did break the caching 🥲 build was taking to much time.
+
+- Adds a network dependency into your build process
+
+
+⚡ Result: COPY is faster and more reliable in most cases.
+
+But here’s the catch…
+
+If your file is versioned externally or changes frequently (like downloading the latest release of a tool), RUN curl still has its place.
+
+🔍 Lesson: Use COPY for speed and stability. Use curl only when dynamic download is unavoidable
