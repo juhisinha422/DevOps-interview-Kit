@@ -1,0 +1,10 @@
+CRDs in Kubernetes: Extend the API Your Way
+
+Custom Resource Definitions (CRDs) let you create your own Kubernetes resource types—just like Pods or Services.
+
+What They Do:
+- Extend the Kubernetes API
+- Let you define custom objects (e.g., MyApp, Database)
+- Allow controllers/operators to manage them like native resources
+
+When built-in resources aren’t enough, CRDs help you model and manage custom infrastructure needs.
