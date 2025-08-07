@@ -1,0 +1,21 @@
+Topic : Difference between Kill ,kill -9 ,Kill -3 
+
+1.kill 1234    # Graceful shutdown (SIGTERM)
+2.kill -3 1234   # Request thread dump (for JVM)
+3.kill -9 1234   # Force kill (no questions asked)
+
+>kill or kill -15 (SIGTERM)
+Default signal when you run kill.
+Gives the process a chance to clean up.
+Best for graceful shutdowns.
+
+ >kill -3 (SIGQUIT)
+Used to generate thread dumps in Java apps.
+JVM writes thread info to stdout/stderr or log files.
+Doesn’t kill the process (unless specifically programmed to do so).
+
+>kill -9 (SIGKILL)
+Immediately terminates the process.
+No cleanup, no saving state — just dies.
+Useful when a process is unresponsive.
+Should be used as a last resort.
