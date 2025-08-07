@@ -1,0 +1,19 @@
+Deloitte Interview experience for DevOps Engineer roleTechnical Round -
+
+1. You have an application in Account A that needs to access an S3 bucket in Account B. How would you configure this?
+2. Write a Dockerfile for a Node.js application with multi-stage builds.
+3. How do you handle Terraform state file corruption?
+ 4. Your EC2 instance in a private subnet needs to download packages without NAT Gateway. What alternatives exist? 
+5. How do you debug a container that has exited? 
+6. You need to import an existing AWS VPC into Terraform. What are the steps?
+7. How would you implement blue-green eployment in Kubernetes?
+8. How do you manage secrets in Terraform without hardcoding them?
+9.What's the difference between COPY and ADD commands in Dockerfile?
+10 How would you implement cross-account resource provisioning using Terraform?
+11. How would you handle secrets in a Docker container for a PHP application connecting to MySQL?
+12. An S3 bucket was created via Terraform, but someone manually added a policy. How do you handle this drift? 
+14. How do you implement network policies to restrict pod-to-pod communication in Kubernetes?
+15.Write a Python script to backup all files older than 30 days from a directory.
+16. Your company's cloud costs are increasing rapidly. How would you approach cost optimization without impacting performance?
+17 How  would you set up geolocation-based routing using AWS services?
+18. A critical production Kubernetes cluster is experiencing multiple issues. Pods are stuck in ImagePullBackOff, some pods are being evicted, and users are reporting 503 errors from the application. What troubleshooting process will you follow, and how can to avoid this in the future?
