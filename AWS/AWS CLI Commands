@@ -1,0 +1,117 @@
+Most of the interviewers asked us to provide  AWS CLI commands.
+
+1. Configure CLI
+
+aws configure
+Set AWS access key, secret, region, and output format (json, text, table).
+
+2. Get Caller Identity
+
+aws sts get-caller-identity
+Verify which IAM role or user is being used for the session.
+
+3. List IAM Users
+
+aws iam list-users
+
+View all users in the AWS account.
+
+ 4. Upload File to S3
+
+aws s3 cp file.txt s3://my-bucket/
+
+Upload a file to S3. Add --recursive to upload a folder.
+
+5. List S3 Bucket Contents
+
+baws s3 ls s3://my-bucket/
+
+6. Create EC2 Key Pair
+
+aws ec2 create-key-pair --key-name MyKey --query 'KeyMaterial' --output text > MyKey.pem
+
+Generates SSH key for EC2 login.
+
+7. Launch EC2 Instance
+
+
+aws ec2 run-instances \
+--image-id ami-xxxxxxxx \
+--instance-type t2.micro \
+--key-name MyKey \
+--security-groups my-sg \
+--count 1
+
+8. Describe EC2 Instances
+
+baws ec2 describe-instances
+
+9. Stop EC2 Instance
+
+aws ec2 stop-instances --instance-ids i-0123456789abcdef0
+
+10. Start EC2 Instance
+
+aws ec2 start-instances --instance-ids i-0123456789abcdef0
+
+11. Terminate EC2 Instance
+
+aws ec2 terminate-instances --instance-ids i-0123456789abcdef0
+
+12. List All EBS Volumes
+
+aws ec2 describe-volumes
+
+13. Attach IAM Role to EC2
+
+aws ec2 associate-iam-instance-profile \
+--instance-id i-0123456789abcdef0 \
+--iam-instance-profile Name="MyEC2Role"
+
+14. Monitor CloudWatch Logs
+
+baws logs describe-log-groups
+
+aws logs get-log-events --log-group-name /my/app --log-stream-name my-stream
+
+15. Create IAM Role
+
+aws iam create-role \
+--role-name MyRole \
+--assume-role-policy-document file://trust-policy.json
+
+16. Create and Attach Policy
+
+aws iam put-role-policy \
+--role-name MyRole \
+--policy-name MyPolicy \
+--policy-document file://policy.json
+
+17. Deploy with CloudFormation
+
+aws cloudformation deploy \
+--template-file template.yaml \
+--stack-name mystack \
+--capabilities CAPABILITY_IAM
+
+18. Create Lambda Function
+
+aws lambda create-function \
+--function-name MyLambda \
+--runtime python3.9 \
+--handler lambda_function.lambda_handler \
+--role arn:aws:iam::123456789012:role/MyRole \
+--zip-file fileb://function.zip
+
+19. Publish SNS Message
+
+aws sns publish \
+--topic-arn arn:aws:sns:region:account-id:topic-name \
+--message "Server down alert"
+
+20. Send Email with SES
+
+baws ses send-email \
+--from sender@example.com \
+--destination ToAddresses=recipient@example.com \
+--message file://message.json
