@@ -1,0 +1,27 @@
+These are real-world questions asked recently in interviews for mid-level to senior DevOps roles.
+
+1. What’s the difference between git fetch, git pull, and git merge?
+2. How do you resolve merge conflicts in Git and what’s your workflow for handling them?
+3. How do you secure secrets and tokens in GitHub workflows or repositories?
+4. What is the difference between Jenkins freestyle and pipeline jobs?
+5. How do you trigger Jenkins builds automatically using GitHub webhooks?
+6. How do you handle secrets and credentials securely in Jenkins pipelines?
+7. How do you automate infrastructure creation in AWS (e.g., with Terraform or CloudFormation)?
+8. What are EC2, ECS, and Lambda? When would you use each?
+9. How do you configure Auto Scaling in AWS?
+10. How do you use S3 for storing build artifacts or deployment assets?
+11. What is the role of inventory files in Ansible? How do you manage environments like dev/prod?
+12. What are Ansible roles and how do they improve playbook organization?
+13. How do you manage sensitive variables in Ansible?
+14. What is the difference between Docker image and Docker container?
+15. How do you use Docker Compose in a local development setup?
+16. How do you manage networking between multiple Docker containers?
+17. What tools have you used for monitoring infrastructure and services (e.g., Prometheus, Grafana, CloudWatch)?
+18. How do you configure alerts for critical metrics in Prometheus or CloudWatch?
+19. What’s an exporter in Prometheus? Have you used any custom exporters?
+20. How do you troubleshoot high CPU or memory usage on a Linux server?
+21. How do you upgrade a Linux system from an old version to a new version? 
+22. How do you check which security or system patches are installed on a Linux machine? 
+23. How do you schedule tasks using cron and check their logs?
+24. How do you use Python scripts to automate DevOps tasks like file manipulation or log parsing?
+25. How do you extract an IP address from a given text using Python?
