@@ -1,0 +1,18 @@
+Topic: Difference between Process and Service in linux 
+
+1.A process is any running program.
+2.A service is a special kind of process:
+Long-running
+Background
+Usually started automatically
+Managed by the OS (via systemd, init.d, etc.)
+
+Eample 
+# Viewing a process
+ps aux | grep python
+
+# Managing a service
+systemctl status nginx
+systemctl restart sshd
+
+A service is a managed background process that can auto-start and restart, while a regular process needs to be manually managed.
