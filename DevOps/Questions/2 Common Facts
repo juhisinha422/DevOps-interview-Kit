@@ -1,0 +1,39 @@
+1. To delete duplicate entries in MySQL, you can use the following SQL query:
+```sql
+DELETE t1 FROM table_name t1
+INNER JOIN table_name t2 
+WHERE t1.id < t2.id 
+AND t1.email = t2.email;
+```
+
+2. The main components of Amazon EKS (Elastic Kubernetes Service) include:
+- Amazon EKS Control Plane
+- Worker Nodes
+- Amazon EKS Node Group
+
+3. The difference between Loki and Prometheus is that:
+- Prometheus is a time-series database and monitoring system.
+- Loki is a log aggregation system inspired by Prometheus.
+
+4. The function of the Kubelet in Kubernetes is to:
+- Ensure that containers are running in a Pod.
+
+5. To check memory and CPU usage in Linux, you can use commands like `top`, `htop`, or `free`.
+
+6. The uses of the `awk` and `sed` commands in Linux are:
+- `awk`: Used for pattern scanning and processing.
+- `sed`: Used for text manipulation.
+
+7. The process to deploy a pod on Amazon EKS involves creating a Kubernetes manifest file and applying it using `kubectl apply`.
+
+8. To check the logs of a service in Amazon EKS, you can use the `kubectl logs` command.
+
+9. To check logs using the pod name in EKS, you can use the `kubectl logs <pod_name>` command.
+
+10. To view logs from the last 10 minutes in EKS, you can use the `kubectl logs --since=10m <pod_name>` command.
+
+11. To prevent communication between Pod A and Pod B in Kubernetes, you can use Network Policies.
+
+12. To manage Horizontal Pod Autoscaling (HPA) in Kubernetes, you can create an HPA resource and set the desired metrics for autoscaling.
+
+13. To recover an application when a pod crashes repeatedly, you can troubleshoot the issue by checking logs, resource limits, and restarting 
