@@ -1,0 +1,49 @@
+NTT DATA – DevOps Interview Questions Round 1
+
+1. In an NTT Data-managed enterprise, how would you migrate legacy monolithic applications to Kubernetes while ensuring business continuity?
+
+2. NTT Data often works with hybrid cloud environments. How do you manage infra automation across both on-prem and Azure?
+
+3. Explain how you would implement role-based access control (RBAC) in Kubernetes clusters managed across multiple teams.
+
+4. How do you securely inject credentials and API keys into Jenkins pipelines, especially in client-regulated environments?
+
+5. NTT Data often works with regulated industries. How do you enforce security and audit compliance in your CI/CD pipelines?
+
+6. When multiple teams work on the same Terraform codebase, how would you manage module reuse, state locking, and collaboration?
+
+7. Explain a real-world scenario where you used service mesh (Istio or Linkerd) in a microservices architecture. What challenges did you solve?
+
+8. How do you handle multi-region disaster recovery for applications hosted in Azure using Infrastructure as Code?
+
+9. How would you architect and implement centralized logging across hundreds of Kubernetes pods using Fluentd and ELK or Azure Monitor?-
+
+10. Have you worked with Helm charts for templating? Explain how you manage values across environments (dev, test, prod) without duplicating configs.
+
+11. Describe how you have handled a critical production outage in a client project. What was your incident response workflow?
+
+12. What kind of health checks would you implement for an API deployed in a production Kubernetes cluster?
+
+13. How do you secure Docker images in a CI/CD pipeline, and which tools do you use for vulnerability scanning?
+
+14. How would you design an end-to-end CI/CD solution in Azure DevOps for a large Java-based application with microservices?
+
+15. How do you handle rolling updates in Kubernetes with zero downtime? What readiness and liveness probes do you configure?
+
+16. What’s your approach to managing secrets in Terraform without exposing them in version control?
+
+17. When managing hundreds of Jenkins jobs, how do you optimize for reusability, maintainability, and speed?
+
+18. How would you monitor application performance and latency in a multi-cloud setup used by NTT Data's global clients?
+
+19. Describe how you’ve used GitOps (ArgoCD/Flux) for deploying and managing applications in Kubernetes.
+
+20. NTT Data works with large enterprise applications. How would you design a scalable and secure artifact repository system?
+
+21. Have you implemented Infrastructure Drift detection? How and why is it important in large-scale client environments?
+
+22. Explain a situation where your CI/CD deployment failed post-merge. How did you debug without impacting production?
+
+23. How do you manage blue/green or canary deployments in Azure DevOps pipelines?
+
+24. What’s your approach for setting up backup and restore strategies for mission-critical containerized apps?
