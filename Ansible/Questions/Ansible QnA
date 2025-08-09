@@ -1,0 +1,51 @@
+ANSIBLE Q/A
+-------------------------------------------------
+1. What is Ansible?
+We use Ansible as an open-source automation tool for configuration management, application deployment, and orchestration.
+It’s agentless and works over SSH, making it simple and lightweight.
+We define the desired state of systems using YAML files called playbooks.
+
+2. What language does Ansible use for playbooks?
+We write Ansible playbooks in YAML, which is easy to read and understand.
+YAML uses indentation and key-value structure, making it human-friendly.
+This allows us to define tasks and configurations clearly.
+
+3. How does Ansible connect to remote machines?
+We use SSH (Secure Shell) by default to connect from the control node to managed nodes.
+No agent is needed on remote machines.
+We simply ensure that SSH access is set up properly.
+
+4. What is an Ansible inventory?
+We use the inventory to list target hosts or groups for automation.
+The default file is usually /etc/ansible/hosts, but we can define our own.
+We can use static or dynamic inventories based on our needs.
+
+5. What is a module in Ansible?
+Ansible modules are units of work that perform tasks like installing packages or managing files.
+We call them inside tasks in playbooks or ad-hoc commands.
+Modules return JSON output to describe the task's result.
+
+6. What is a playbook in Ansible?
+We write playbooks to define a sequence of tasks for automation.
+They are written in YAML and can include variables, handlers, loops, and more.
+Each play targets a group of hosts and performs specified actions.
+
+7. What is the default location of the Ansible hosts file?
+By default, we store the static inventory file at /etc/ansible/hosts.
+This file defines which machines Ansible will manage.
+We can also specify custom inventory files using the -i option.
+
+8. What is an Ansible ad-hoc command?
+We use ad-hoc commands for quick, one-time tasks without creating a playbook.
+They are ideal for checking connectivity or restarting a service.
+For example: ansible all -m ping.
+
+9. What is ansible.cfg?
+It’s the main configuration file for Ansible, used to override default behavior.
+We define things like inventory location, default module path, and privilege escalation here.
+It can exist globally, per user, or per project.
+
+10. How do we check the version of Ansible installed?
+We run the command ansible --version to verify the installed version.
+This also shows us paths for configuration and installed modules.
+It helps in troubleshooting or validating environment consistency.
