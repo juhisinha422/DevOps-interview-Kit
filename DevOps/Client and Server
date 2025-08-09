@@ -1,0 +1,26 @@
+Client & Server
+
+Socho tum ek workshop me ho.
+Tumhe kaam karna hai, par tumhare paas tool (axe) nahi hai.
+
+Client:
+Tum — jo kaam start karne ke liye axe mang rahe ho.
+(In tech: Application, browser, or system sending a request)
+
+Server:
+Tool store — jaha axe padhi hai.
+Tumhara request aaya → axe tumhe di gayi → tum kaam shuru kar dete ho.
+(In tech: Machine or service that processes the request and returns the response)
+
+
+DevOps Perspective:
+
+Client: Developer ne Jenkins pipeline run ki → request gaya build ke liye.
+
+Server: Jenkins master/agent ne build execute kiya, result pack karke return kiya.
+
+
+Lesson:
+Axe ka sharp, available, aur ready hona utna hi important hai jitna server ka fast aur reliable hona.
+
+Client request fast ho sakti hai, par agar server delay kare to delivery slow ho jayegi.
