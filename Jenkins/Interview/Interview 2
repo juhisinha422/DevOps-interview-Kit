@@ -1,0 +1,93 @@
+Jenkins – CI/CD Interview Answers of earlier part.
+
+1. Which tool do you use for CI/CD?
+ - Jenkins
+ - Azure Pipelines
+
+2. Pipeline Script for CI/CD
+Example Jenkins Declarative Pipeline:
+ @Library(['demo-1', 'demo-2']) _
+ import org.package.example.Utils
+ 
+ pipeline {
+    agent { label 'node' }
+    stages {
+        stage('Checkout') {
+            steps { checkout scm }
+        }
+        stage('Build & Test') {
+            parallel {
+                stage('Build') {
+                    steps { sh 'mvn clean package -DskipTests=false' }
+                }
+                stage('Static Code Analysis') {
+                    steps { sh 'mvn sonar:sonar' }
+                }
+            }
+        }
+        stage('Publish Artifact') {
+            steps { sh 'mvn deploy' }
+        }
+        stage('Deploy') {
+            steps { sh './deploy.sh' }
+        }
+    }
+ }
+
+
+3. Shared Libraries
+promoting code reusability and modularity in CI/CD pipelines. It allows you to define common, reusable Groovy scripts, functions, and resources in a version-controlled repository (typically Git) and then reference them from multiple Jenkins pipelines.
+ 
+ Structure: vars/, src/.
+ 
+ 
+4. Configure Nexus with Jenkins
+ 1. Install Nexus Artifact Uploader plugin or configure Maven settings.
+ 2. Add Nexus credentials in Manage Jenkins → Credentials.
+ 3. Update settings.xml with Nexus credentials.
+ 4. Use mvn deploy with Nexus URL.
+
+5. Nexus works locally but not in CI/VM
+causes:
+ - Firewall/security group blocking port.
+ - Missing credentials on CI agent.
+ - SSL issues. Or misconfiguration
+
+6. How do you configure a Jenkins agent/slave (local/remote, single/multiple)?
+
+Basic requirement is slave or agent should be installed with Java JDK/JRE
+- Local: Run java -jar agent.jar from Jenkins master.
+ - Remote: Configure SSH or JNLP.
+ - Multiple: Use labels.
+ for remote:
+  install plugins first
+ - Cloud: Kubernetes, AWS EC2, Azure VM agents.
+
+7. SonarQube Integration
+ 1. Install SonarQube Scanner plugin.
+ 2. Add SonarQube server in Jenkins.
+ 3. Add scanner tool.
+ 4. Use withSonarQubeEnv in pipeline.
+
+8. SonarQube Outputs/Validations
+ - Code coverage %, bugs, vulnerabilities.
+ - Code smells, duplication %.
+ - Quality gate pass/fail.
+
+9. Quality Gate Percentage
+Default often 80% coverage. Change in SonarQube UI → Quality Gates → Edit thresholds.
+
+10. Dynamic Agents
+- Azure: Azure VM Agents plugin.
+ - AWS: EC2 plugin.
+ - Kubernetes: Kubernetes plugin with pod templates.
+
+11. Secrets Management
+Use Jenkins Credentials Plugin:
+ withCredentials([string(credentialsId: 'my-secret', variable: 'TOKEN')]) { sh 'echo $TOKEN' }
+ Avoid hardcoding secrets.
+
+12. Jenkins Backup
+Backup $JENKINS_HOME.
+ 1. Use ThinBackup plugin.
+ 2. Store backups in cloud storage.
