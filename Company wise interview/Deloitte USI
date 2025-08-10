@@ -1,0 +1,22 @@
+Deloitte USI interview experience For devops engineer role technical round question asked by interviewer….
+
+
+1. What types of pipelines do you work with Jenkins?
+2. To automate the process of triggering a pipeline, how do you trigger Jenkins automatically after a Git commit?
+3. What type of credentials do you use in your pipeline, and how will you configure GitLab?
+4. I want you to write a Jenkins Groovy script.
+5. YAML file – Write a GitLab YAML code.
+6. What is a Lambda?
+7. Lambda is getting failed within 1–2 seconds – what could be the reason?
+8. How will Lambda A trigger Lambda B after finishing its task?
+9. You created an EC2 instance and lost the PEM key – what will you do?
+10. Explain Kubernetes architecture.
+11. What does a Pod consist of?
+12. What is the Kubernetes API Server?
+13. If the API Server is down, what happens to the cluster?
+14. What is a Dockerfile?
+15. Write a Dockerfile.
+16. What is only: main in GitLab YAML?
+17. What is a Pod?
+18. Write a Kubernetes YAML code.
+19. Write a GitLab CI YAML code.
