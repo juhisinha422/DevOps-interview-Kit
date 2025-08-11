@@ -1,0 +1,80 @@
+Mastering Amazon CloudWatch for Real-Time Monitoring & Alerts
+
+Amazon CloudWatch — the backbone of real-time resource monitoring on AWS.
+
+From EC2 performance insights to auto-triggered alarms and custom dashboards, I walked through a practical, production-ready monitoring setup.
+
+
+What is CloudWatch?
+
+Amazon CloudWatch is a monitoring and observability service for AWS cloud resources and applications. It lets you:
+
+🔹 Collect and track metrics
+🔹 Set alarms based on thresholds
+🔹 Visualize performance on dashboards
+🔹 Take automatic actions (like stop, scale, notify)
+
+> In production, CloudWatch is crucial for uptime, autoscaling, and debugging.
+
+
+Hands-On Setup I Performed:
+
+🔹 Step 1: EC2 Server + App Deployment
+
+- Deployed an Amazon Clone Web App using NGINX.
+
+
+🔹 Step 2: Create CloudWatch Dashboard
+
+1. Go to CloudWatch > Dashboards
+
+2. Name: Dashboard1
+
+3. Add Line Graph Widget
+
+4. Select: EC2 → Per-instance metrics
+
+5. Choose: CPUUtilization
+
+6. Instance ID: Select your EC2
+
+
+
+- This helped me monitor live CPU usage of the app server.
+
+🔹 Step 3: Simulate Server Load
+
+apt install stress -y
+stress --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 100s
+
+- Saw the spike instantly on the dashboard. Real-time visibility achieved.
+
+🔹 Step 4: Create a CloudWatch Alarm (Auto Actions)
+
+1. Go to Alarms > Create Alarm
+
+2. Choose Metric: EC2 → CPUUtilization
+
+3. Threshold: Above 60%
+
+4. Create SNS topic for notifications via Email
+
+5. EC2 Action: Stop instance (optional for demo)
+
+
+
+- This is real-world, If server is under stress, CloudWatch alerts & reacts automatically.
+
+
+Bonus Tips:
+
+1.CloudWatch helps enable auto-healing when paired with ASG
+
+2.Combine with CloudTrail to audit who triggered what
+
+3.Dashboards are shareable, great for teams & visibility
+
+
+What I Took Away:
+
+This session helped me realize the power of visibility before scalability. If you can’t monitor, you can’t improve — and CloudWatch is the eyes of AWS.
