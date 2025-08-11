@@ -1,0 +1,66 @@
+Simple & Real-World Amazon RDS with Read Replicas
+
+one of the most used AWS services in production — Amazon RDS 
+Not only I launched a database, but I also configured Multi-AZ for high availability and a Read Replica for performance scaling 
+
+
+🔍 What is Amazon RDS?
+
+Amazon RDS is a managed database service where AWS takes care of:
+🔹 Setup
+🔹 Backups
+🔹 Updates
+🔹 Replication
+🔹 Monitoring
+
+It supports: MySQL, PostgreSQL, Oracle, SQL Server, MariaDB, and Aurora.
+
+My Hands-On Steps
+
+🔹 Step 1: Selected MySQL 8.0 as the database engine
+
+Great for open-source apps and easy to connect from EC2.
+
+🔹 Step 2: Created Primary RDS Instance
+
+– Instance type: db.t3.medium
+– Storage: 20 GB gp2
+– Multi-AZ: Enabled 
+– Encryption: Enabled with KMS
+– Public access: Disabled
+– Security Group: Allowed port 3306 only for EC2 app servers
+
+🔹 Step 3: Monitoring Setup
+
+– Enabled enhanced monitoring (1-min interval)
+– Enabled slow query & general logs
+– Integrated with CloudWatch Logs
+
+🔹 Step 4: Created Read Replica
+
+– Source: Primary RDS
+– Name: replica-db-readonly
+– Same region
+– Enabled auto-backups
+– IAM Authentication: On
+– Used for reporting/dashboard queries
+
+Why Use Read Replica?
+To reduce load on the main DB and handle read-heavy traffic like analytics or reports.
+
+
+Final Checks & Tests I Did
+
+🔹 Connected app to main RDS
+🔹 Ran SELECT queries from Read Replica
+🔹 Rebooted RDS to test failover
+🔹 Checked replication delay
+🔹 Promoted Read Replica to standalone DB (Disaster Recovery test)
+
+What I Learned Today:
+
+🔹 Use Multi-AZ for high availability
+🔹 Use Read Replicas to scale reads without affecting production
+🔹 Always use private subnets for database
+🔹 Monitor replication lag
+🔹 Practice backup, restore & replica promotion regularly
