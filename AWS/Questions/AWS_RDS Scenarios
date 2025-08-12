@@ -1,0 +1,31 @@
+...these scenarios will test your problem-solving skills and help you master AWS RDS in real-world conditions.
+
+1️⃣ 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Your RDS instance CPU utilization is consistently above 90%.
+ What steps will you take to identify the root cause and reduce usage?
+
+2️⃣ 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Users are reporting slow application responses. CloudWatch metrics show high read latency.
+How do you troubleshoot query slowness in RDS?
+
+3️⃣ 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Your RDS instance suddenly switched to the standby instance.
+ How do you find out why failover occurred and prevent unexpected downtime?
+
+4️⃣ 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Your RDS storage bill has spiked due to backups.
+ What steps can you take to optimize snapshot storage?
+
+5️⃣ 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Your application receives “too many connections” errors.
+ How will you debug and fix this issue in RDS?
+
+6️⃣ 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: The RDS instance restarted without manual intervention.
+ How do you check logs and determine the reason?
+
+7️⃣ 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Read replica is lagging by several seconds or minutes.
+How do you identify and fix replication delays?
+
+8️⃣ 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Application cannot connect to RDS after a recent VPC change.
+ How do you troubleshoot and restore connectivity securely?
+
+9️⃣ 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: You increased instance size, but performance didn’t improve.
+ How do you diagnose bottlenecks beyond compute capacity?
+
+🔟 𝐒𝐜𝐞𝐧𝐚𝐫𝐢𝐨: Simulate losing your primary RDS region.
+ How will you restore the database in a different region with minimal downtime?
