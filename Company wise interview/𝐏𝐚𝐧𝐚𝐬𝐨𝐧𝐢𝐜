@@ -1,0 +1,52 @@
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 - 𝐒𝐫. 𝐃𝐞𝐯𝐨𝐩𝐬 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 , 𝐏𝐚𝐧𝐚𝐬𝐨𝐧𝐢𝐜 
+
+𝐈𝐧𝐭𝐫𝐨 & 𝐆𝐞𝐧𝐞𝐫𝐚𝐥
+1. Tell me something about yourself and the tools and technologies you use  as a DevOps engineer.
+2. How are you helping your colleagues in your day-to-day work in your current organization?
+
+𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬
+ 4. What is a CrashLoopBackOff error in k8's, and how do you resolve it?
+ 5. How do you validate whether a deployment manifest file in k8's has errors?
+ 6. How do you schedule a k8's deployment to run on a specific node?
+ 7. What are taints, tolerations, and node affinity in Kubernetes?
+ 8. What are PV and PVC  in k8's?
+ 9. How do you monitor PVC storage usage, and what actions do you take if it’s full?
+ 10. What checks would you perform if pod has an ImagePullBackOff error?
+
+𝐀𝐏𝐈 & 𝐏𝐞𝐫𝐟𝐨𝐫𝐦𝐚𝐧𝐜𝐞 
+11. If an API’s response time is very high, how would you debug it?
+ 12. How do you identify long-running queries or deadlocks in a database?
+ 13. What steps do you take when there is a spike in web response time?
+ 14. How does APM (Application Performance Monitoring) help in troubleshooting application performance issues?
+
+𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 & 𝐈𝐧𝐜𝐢𝐝𝐞𝐧𝐭 𝐌𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭
+15. What monitoring tools have you used, and how do they help in identifying issues?
+ 16. How do you monitor application health using New Relic or CloudWatch?
+ 17. How do you monitor HTTP status codes (e.g., 503, 504) for your applications?
+ 18. How have you configured health checks for APIs in your environment?
+ 19. What is your process for acknowledging and responding to alerts?
+ 20. How do you categorize incidents into P0, P1, P2, etc.?
+ 21. What are SLO (Service Level Objective) and SLA (Service Level Agreement)?
+
+𝐂𝐈/𝐂𝐃
+22. Which CI/CD tools are you currently using?
+ 23. What are the typical stages in your CI pipeline?
+ 24. What code quality checks do you run in CI?
+ 25. How do you integrate SonarQube with GitHub Actions?
+ 26. What is your CD process with Argo CD and k8's?
+
+𝐀𝐖𝐒
+ 28. What is AWS GuardDuty and how does it help in security?
+ 29. What is AWS Shield, and what problem does it solve?
+ 30. What is AWS Security Hub, and how is it different from GuardDuty?
+ 31. What are some cost optimization strategies you have used in AWS?
+ 32. How can lifecycle rules in S3 help in cost optimization?
+ 33. What is the difference between spot instances and reserved instances?
+ 34. How would you use Lambda for cost optimization?
+
+𝐒𝐑𝐄 & 𝐈𝐧𝐜𝐢𝐝𝐞𝐧𝐭 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞
+35. What are your roles and responsibilities as an SRE?
+ 36. How do you perform Root Cause Analysis (RCA) after an incident?
+ 37. What is a post-mortem report, and when do you create it?
+ 38. What tools do you use for incident documentation?
+ 39. How do you monitor database metrics as part of SRE work?
