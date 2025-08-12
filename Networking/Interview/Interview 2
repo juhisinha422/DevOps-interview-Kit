@@ -1,0 +1,47 @@
+***Network Engineer Technical questions******
+
+1. **What is an IP address?**
+ - An IP address is a unique numerical label assigned to each device in a network to identify and locate it.
+
+2. **Explain the difference between IPv4 and IPv6.**
+ - IPv4 uses a 32-bit address format, while IPv6 uses a 128-bit address format. IPv6 was introduced to overcome the shortage of available IPv4 addresses.
+
+3. **What is a subnet mask?**
+ - A subnet mask is used to divide an IP network into subnetworks by specifying which portion of the address is the network and which is the host.
+
+4. **Define MAC address.**
+ - A MAC address (Media Access Control address) is a hardware address that uniquely identifies a device on a local network.
+
+5. **What is a router?**
+ - A router is a networking device that forwards data packets between different computer networks.
+
+6. **Explain the OSI model and its layers.**
+ - The OSI model is a conceptual framework that standardizes the functions of a telecommunications or networking system. It has seven layers, from Physical to Application.
+
+Here's a breakdown of the seven layers:
+
+A. Physical Layer: Deals with the physical connection and transmission of raw data bits over a medium (e.g., cables, wireless signals). 
+
+B. Data Link Layer: Handles error-free transfer of data frames between two directly connected nodes. 
+
+C. Network Layer: Responsible for routing data packets across networks using IP addresses. 
+
+D. Transport Layer: Provides reliable or unreliable delivery of data segments between applications on different hosts. 
+
+E. Session Layer: Manages connections between applications, including establishing, maintaining, and terminating sessions. 
+
+F. Presentation Layer: Deals with data formatting, encryption, and compression to ensure data is in a usable format for the application layer. 
+
+G. Application Layer: Provides network services to applications, such as email, file transfer, and web browsing
+
+7. **What is a firewall?**
+ - A firewall is a network security device that filters incoming and outgoingu network traffic based on an organization's previously established security policies.
+
+8. **What is DNS, and how does it work?**
+ - DNS (Domain Name System) translates human-friendly domain names into IP addresses, allowing users to access websites by name.
+
+9. **What is a DHCP server?**
+ - DHCP (Dynamic Host Configuration Protocol) is a network protocol used to automatically assign IP addresses and configuration information to devices on a network.
+
+10. **Explain NAT (Network Address Translation).**
+ - NAT is a method used to modify network address information in packet headers while in transit, typically used to allow multiple devices to share a single public IP address.
