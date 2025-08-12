@@ -1,0 +1,29 @@
+⚖️ 𝗧𝗮𝗶𝗻𝘁𝘀 & 𝗧𝗼𝗹𝗲𝗿𝗮𝘁𝗶𝗼𝗻𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 – 𝗦𝗺𝗮𝗿𝘁 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗶𝗻𝗴, 𝗦𝗺𝗮𝗿𝘁𝗲𝗿 𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝘀
+
+Want to control which pods run on which nodes in Kubernetes? Say hello to Taints and Tolerations — the key to node-level scheduling control.
+
+🔹 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝗧𝗮𝗶𝗻𝘁𝘀 𝗮𝗻𝗱 𝗧𝗼𝗹𝗲𝗿𝗮𝘁𝗶𝗼𝗻𝘀?
+Taints are applied to nodes to repel certain pods
+Tolerations are applied to pods to allow them on tainted nodes
+
+💡 Think of it as:
+“This node won’t accept any pod unless the pod tolerates the taint.”
+
+🔧 𝗨𝘀𝗲 𝗖𝗮𝘀𝗲𝘀:
+✅ Reserve nodes for high-priority workloads
+✅ Separate GPU workloads from general-purpose ones
+✅ Isolate noisy or experimental apps
+✅ Protect critical infrastructure pods (e.g., monitoring, logging)
+
+⚙️ 𝗛𝗼𝘄 𝗜𝘁 𝗪𝗼𝗿𝗸𝘀:
+ • 𝘬𝘶𝘣𝘦𝘤𝘵𝘭 𝘵𝘢𝘪𝘯𝘵 𝘯𝘰𝘥𝘦𝘴 <𝘯𝘰𝘥𝘦-𝘯𝘢𝘮𝘦> 𝘬𝘦𝘺=𝘷𝘢𝘭𝘶𝘦:𝘕𝘰𝘚𝘤𝘩𝘦𝘥𝘶𝘭𝘦
+ • 𝘈𝘥𝘥 𝘵𝘰𝘭𝘦𝘳𝘢𝘵𝘪𝘰𝘯𝘴: in your pod/deployment spec
+ • Combine with 𝗻𝗼𝗱𝗲𝗦𝗲𝗹𝗲𝗰𝘁𝗼𝗿 or 𝗮𝗳𝗳𝗶𝗻𝗶𝘁𝘆 for full control
+
+🧠 𝗕𝗲𝘀𝘁 𝗣𝗿𝗮𝗰𝘁𝗶𝗰𝗲𝘀:
+✔ Use NoSchedule for hard separation, PreferNoSchedule for soft isolation
+✔ Document your taints clearly — avoid “mystery nodes”
+✔ Monitor taint effects to ensure pods aren’t unintentionally unschedulable
+✔ Use with node affinity for smart, balanced placement
+
+🎯 Taints and Tolerations give you fine-grained control over pod placement—essential for high-performance, multi-tenant, or regulated clusters.
