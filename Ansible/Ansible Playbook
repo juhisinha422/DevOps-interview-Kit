@@ -1,0 +1,22 @@
+Ansible Basics for Beginners 🐧
+
+Today I played with two simple Ansible Playbooks – perfect for anyone starting in DevOps:
+
+✅ Apache HTTPD Install Playbook – Automates the installation & service start of Apache HTTP server in seconds.
+ ✅ Create User Playbook – Easily creates and manages users across multiple servers.
+
+🔹 What is a Playbook?
+ A playbook is like a blueprint for automation. It’s written in YAML and contains a list of tasks that Ansible will execute step-by-step on your servers.
+
+🔹 Why Playbooks?
+ ✅ Automate repetitive tasks
+ ✅ Maintain consistency across multiple servers
+ ✅ Human-readable format
+ ✅ Reusable and version-controlled
+
+💡 Shortcut Tip:
+  In Playbooks :
+🔹name → Description of task
+🔹hosts → Target group name from inventory
+🔹become: yes → Root permissions
+🔹Modules like yum, service, user → Action type
