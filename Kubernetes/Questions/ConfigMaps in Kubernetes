@@ -1,0 +1,24 @@
+ConfigMaps in Kubernetes are used to store non-confidential configuration data in key-value pairs, allowing you to decouple configuration from pod specifications and make your applications more portable. They can be consumed by pods as environment variables and updated without rebuilding your application container.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-config
+data:
+  player_initial_lives: "3"
+  ui_properties_file_name: "user-interface.properties"
+
+
+Secrets in Kubernetes are similar to ConfigMaps but are specifically designed for sensitive information like passwords, OAuth tokens, and SSH keys. They can be consumed by pods similarly to ConfigMaps. Secrets use the data field, which expects base64 encoded values. This encoding is particularly useful for handling special characters often found in sensitive data:
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecret
+type: Opaque
+data:
+  username: YWRtaW4=  # base64 encoded 'admin'
+  password: dDBwLVMzY3IzdA==  # base64 encoded 't0p-S3cr3t'
+
+
+Important Note: while Secrets are base64 encoded, they are not encrypted. Additional security measures are typically implemented to protect sensitive data in clusters. These can include external secret management systems, or implementing Kubernetes Encryption Providers. However, specific approaches are beyond the scope of this overview as they vary based on organizational needs and security policies.
