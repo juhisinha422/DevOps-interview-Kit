@@ -1,0 +1,21 @@
+"Imagine you’re responsible for a critical S3 bucket that stores customer documents.
+One of your teammates accidentally runs a script that deletes a folder. What would you do?"
+
+This wasn’t about Lambda, Kubernetes, or CI/CD pipelines.
+It was about protecting data—and honestly, it’s one of the most important DevOps responsibilities.
+
+𝐇𝐨𝐰 𝐈 𝐀𝐧𝐬𝐰𝐞𝐫𝐞𝐝:
+
+• "First, I’d check if S3 versioning was enabled. If yes, recovery is simple—I’d restore the previous versions of the deleted objects."
+
+• "If versioning wasn’t enabled, that’s where things get tricky. I’d check for backups—maybe AWS Backup, cross-region replication, or third-party snapshots."
+
+• "For the long term, I’d make sure S3 bucket policies are configured properly. Use Object Lock (WORM) for critical data if needed, and restrict delete permissions using IAM policies."
+
+• "Also, I’d enable event notifications for delete operations so we’re instantly alerted next time something like this happens."
+
+𝐭𝐡𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐞𝐫 𝐒𝐚𝐢𝐝:
+"I like that you’re thinking beyond the immediate fix. Prevention is just as important as recovery."
+
+In DevOps, it’s not just about uptime.
+It’s about ensuring your systems—and your data—are resilient, recoverable, and secure.
