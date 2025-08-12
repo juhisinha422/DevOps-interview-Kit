@@ -1,0 +1,28 @@
+Amazon Linux 2023 Ansible Setup — Step-by-Step Guide 🚀
+I recently completed Ansible setup on Amazon Linux 2023 with 1 Master and 4 Slave servers. Here’s how you can do it:
+
+ 1️⃣ Launch 1 Master & 4 Slave instances
+ 2️⃣ On Master: Install Python3, pip3, and Ansible using dnf
+ 3️⃣ Set root user password and enable SSH password authentication
+ 4️⃣ Repeat password setup and SSH configuration on Slave servers
+ 5️⃣ Generate SSH key on Master and copy the public key to Slaves for pass wordless login
+ 6️⃣ Create Ansible configuration file /etc/ansible/ansible.cfg and hosts inventory /etc/ansible/hosts
+ 7️⃣ Test connectivity with ansible all -m ping
+
+🚀 What is Ansible? 🚀
+Ansible is an open-source automation tool that helps you automate IT tasks without manual intervention. Using simple YAML scripts called playbooks, you can automate:
+Server configuration
+Software installation
+Application deployment
+Continuous delivery pipelines
+Complex orchestration workflows
+In simple terms, Ansible helps you manage and automate your infrastructure quickly, reliably, and at scale.
+
+🔧 Why this setup is useful:
+✅ Centralized management: Manage multiple servers from a single control node
+✅ Automation: Automate repetitive tasks like updates, installs, and configurations
+✅ Scalability: Easily add or remove servers from your infrastructure
+✅ Consistency: Ensure uniform configuration across all servers
+✅ Speed: Deploy changes faster and reduce human error
+
+💡 Bonus tip: Use the dnf package manager for installing Ansible and Python pip on Amazon Linux 2023!
