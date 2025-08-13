@@ -1,0 +1,72 @@
+Hexaware devops interview questions -Round -1
+
+
+Kubernetes
+
+Explain Kubernetes architecture.
+
+What is a Pod?
+
+Difference between Deployment, ReplicaSet, and StatefulSet.
+
+How to scale an application in Kubernetes.
+
+What are ConfigMaps and Secrets?
+
+How does a Service in Kubernetes work?
+
+How to troubleshoot a failing pod?
+
+Terraform
+
+What are Terraform modules?
+
+What is Terraform drift and how do you handle it?
+
+Difference between terraform plan and terraform apply.
+
+How do you manage state files?
+
+What are locals and variables?
+
+AWS
+
+What is a VPC and why do we use it?
+
+Difference between public and private subnet.
+
+How to block an IP range in AWS.
+
+How to create VPC peering.
+
+How to enable/disable S3 versioning.
+
+What is a resource-based IAM policy?
+
+How to attach IAM role to an EC2 instance in AWS Console.
+
+Git
+
+Difference between git log and git reflog.
+
+What is a branching strategy (Git Flow)?
+
+How do you revert a commit?
+
+How to squash commits?
+
+Docker
+
+What does -it do in docker run?
+
+Difference between docker run, docker exec, and docker start.
+
+How to persist data in Docker.
+
+CI/CD & Testing
+
+How do you add unit tests to a pipeline?
+
+Difference between Continuous Integration and Continuous Deployment.
+
+How to handle secrets in pipelines.
