@@ -1,0 +1,45 @@
+How to Handle Terraform Drift :- 🚨 
+
+Terraform drift happens when your actual cloud infrastructure no longer matches what’s defined in your Terraform code.
+
+This usually occurs when someone makes manual changes in the console or via CLI, bypassing Terraform.
+
+Basic Example scenario:
+ You created an S3 bucket using Terraform.
+ Later, someone manually added a bucket policy directly in AWS.
+ Now, Terraform’s state and the actual AWS configuration are out of sync.
+
+This creates a gap between your code and your actual environment — leading to security risks, operational issues, and unpredictable deployments.
+
+Steps to Handle Terraform Drift:- 
+
+1️⃣ Detect the drift
+ 
+terraform plan
+
+This will show differences between your Terraform state and real infrastructure.
+
+2️⃣ Decide what to do
+
+If the change is valid and needed → Add it to your Terraform code so it’s tracked going forward.
+
+If the change is not required → Remove it by running:
+
+terraform apply
+
+3️⃣ Prevent drift from happening
+
+Restrict manual changes with IAM policies.
+
+Enable drift detection using AWS Config rules or other monitoring tools.
+Enforce Infrastructure as Code — treat Terraform as the only source of truth for provisioning and configuration.
+
+Why this matters:
+Terraform drift, if left unchecked, can lead to:
+
+Unpredictable environments
+Security misconfigurations
+Deployment failures
+Compliance issues
+
+By detecting, deciding, and preventing drift, you ensure your infrastructure remains consistent, secure, and predictable.
