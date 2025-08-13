@@ -1,0 +1,52 @@
+Important Interview Questions Related to EC2 instances.
+
+👉What is Amazon EC2 and why is it used?
+• Amazon EC2 (Elastic Compute Cloud) provides scalable virtual servers in the AWS cloud. 
+• Use it  to host application servers, monitoring agents, CI/CD runners, and even temporary test environments. 
+• It’s cost-effective because we can scale instances up or down
+
+👉What are the different EC2 instance types you have used?
+• t3/t4g → General purpose for app servers, low-cost dev/test
+• m5/m6i → Balanced compute & memory for production services
+• c5/c6g → Compute-optimized for heavy backend processing
+• r5/r6i → Memory-optimized for caching & in-memory DBs
+• p3/p4 → GPU workloads (ML training)
+
+👉How do you connect to an EC2 instance?
+• Linux EC2 → SSH using .pem key or Session Manager (IAM-based)
+• Windows EC2 → RDP after decrypting password with .pem key
+• In production, I prefer Session Manager to avoid opening SSH/RDP ports for security.
+
+👉How do you make an EC2 instance highly available?
+• Deploy EC2s in multiple AZs behind an ELB/ALB/NLB.
+• Use Auto Scaling Groups (ASG) to automatically replace failed instances.
+• Store application data in S3, RDS, or EFS instead of instance local disk.
+• Use health checks on the load balancer.
+
+👉How do you secure EC2 instances?
+• Restrict inbound access with Security Groups & NACLs.
+• Use IAM roles instead of hardcoding credentials.
+• Enable AWS Systems Manager Session Manager for shell access instead of SSH in public internet.
+• Patch regularly using SSM Patch Manager.
+
+👉How do you troubleshoot EC2 instance issues?
+• Instance not reachable → Check SG rules, NACLs, route tables, and public/private subnet settings.
+• CPU/Memory high → Use CloudWatch metrics, top/htop, ps.
+• Disk full → df -h, log rotation, increase EBS volume size.
+• Instance stopped/terminated unexpectedly → Check AWS Personal Health Dashboard and CloudTrail events.
+
+👉What’s the difference between Security Groups and NACLs?
+• Security Groups → Instance-level, stateful, allow rules only.
+• NACLs → Subnet-level, stateless, allow & deny rules.
+Start with SGs for application-level security and use NACLs for an extra network layer.
+
+👉What happens when you stop and start an EC2 instance?
+• Stop → Instance is shut down, EBS volumes preserved, public IP changes (unless using Elastic IP).
+• Start → Instance resumes from scratch but retains the same EBS volume data.
+• Ephemeral storage data is lost.
+
+👉An EC2 in production is at 100% CPU and the app is slow. How to fix it?
+• Identify process → top / htop / ps -aux --sort=-%cpu
+• Application scaling → If it’s legitimate load, add more EC2s in an Auto Scaling Group.
+• Rightsizing → Move to compute-optimized (c5/c6g) if CPU-intensive.
+• Long-term → Set CloudWatch alarms to alert before hitting 90% CPU.
