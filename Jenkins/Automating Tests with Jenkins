@@ -1,0 +1,15 @@
+Automating Tests with Jenkins Pipelines!!!!!!
+
+With Jenkins Pipelines, you can run automated tests as part of your CI/CD workflow—ensuring code quality before deployment.
+
+How It Works:
+- Define test stages in your Jenkinsfile
+- Run unit, integration, or end-to-end tests automatically after builds
+- Fail the pipeline if tests don’t pass, preventing bad code from shipping
+
+Benefits:
+- Early bug detection
+- Consistent testing environment
+- Faster feedback to developers
+
+Tip: Integrate testing early to catch bugs before they reach production.
