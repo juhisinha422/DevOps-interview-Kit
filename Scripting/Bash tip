@@ -1,0 +1,31 @@
+𝗕𝗮𝘀𝗵 𝗧𝗶𝗽: $* 𝘃𝘀 $@ 💻🐚
+
+Both handle script arguments, but they behave differently:
+
+$* – 𝗔𝗹𝗹 𝗮𝗿𝗴𝘂𝗺𝗲𝗻𝘁𝘀 𝗮𝘀 𝗼𝗻𝗲 𝘀𝘁𝗿𝗶𝗻𝗴.
+𝘧𝘰𝘳 𝘢𝘳𝘨 𝘪𝘯 "$*"
+𝘥𝘰 
+ 𝘦𝘤𝘩𝘰 "$𝘢𝘳𝘨" 
+𝘥𝘰𝘯𝘦
+
+Run:
+ ./𝘴𝘤𝘳𝘪𝘱𝘵.𝘴𝘩 𝘢 𝘣 𝘤 
+
+Output:
+ 𝘢 𝘣 𝘤
+
+$@ – 𝗘𝗮𝗰𝗵 𝗮𝗿𝗴𝘂𝗺𝗲𝗻𝘁 𝘀𝗲𝗽𝗮𝗿𝗮𝘁𝗲𝗹𝘆.
+𝘧𝘰𝘳 𝘢𝘳𝘨 𝘪𝘯 "$@"
+𝘥𝘰 
+ 𝘦𝘤𝘩𝘰 "$𝘢𝘳𝘨"
+𝘥𝘰𝘯𝘦
+
+Run:
+# ./𝘴𝘤𝘳𝘪𝘱𝘵.𝘴𝘩 𝘢 𝘣 𝘤 
+
+Output: 
+𝘢
+𝘣
+𝘤
+
+✅ Tip: Use "$@" to loop safely over arguments, especially if they contain spaces.
