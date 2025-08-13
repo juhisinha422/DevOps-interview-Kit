@@ -1,0 +1,67 @@
+Kubernetes[EKS] Pod Error List🟪
+
+ 📌Have you ever faced errors in Kubernetes? 
+
+
+🎯 Image & Pull Errors
+➡️ ImagePullBackOff → Kubernetes tried pulling the image but failed repeatedly.
+
+➡️ ErrImagePull → Image pull failed (authentication error, image not found, registry unavailable).
+
+➡️ InvalidImageName → The container image name or tag is invalid.
+
+➡️ RegistryUnavailable → Image registry is temporarily down or unreachable.
+
+➡️ ErrImageNeverPull → Pull policy set to Never but the image is not present on the node.
+
+🎯 Container Crash & Restart Errors
+➡️ CrashLoopBackOff → Container starts, crashes, and keeps restarting.
+
+➡️ RunContainerError → Failed to run the container after creation.
+
+➡️ ErrContainerStart → General container start failure.
+
+➡️ ContainerCannotRun → Command or entrypoint in the container is invalid.
+
+➡️ OOMKilled → Container killed due to exceeding memory limit.
+
+Error → Container process exited with a non-zero exit code.
+
+Completed → Container finished execution successfully (common in Jobs).
+
+🎯 Scheduling & Placement Errors
+➡️ Pending → Pod scheduled but not running due to resource constraints.
+
+➡️ Unschedulable → No suitable node found (resource requests too high, taints not tolerated).
+
+Evicted → Pod removed from node due to resource pressure (disk, memory, node drain).
+
+🎯 Readiness & Liveness Probe Failures
+➡️Unhealthy → Failing readiness or liveness probes.
+
+➡️Readiness probe failed → Pod marked as not ready.
+
+➡️ Liveness probe failed → Container restarted due to failing health check.
+
+🎯 Volume & Mount Errors
+➡️ CreateContainerConfigError → Issue creating container config (often volume-related).
+
+➡️ MountVolume.SetUp failed → Failed to attach/mount a volume.
+
+➡️ VolumeMountConflict → Multiple containers mounting the same volume path incorrectly.
+
+PVC not found → Pod references a PersistentVolumeClaim that doesn’t exist.
+
+FailedAttachVolume / FailedMount → EBS/EFS volume could not be attached/mounted.
+
+🎯 Init Container Failures
+➡️Init:CrashLoopBackOff → Init container repeatedly crashes.
+
+➡️ Init:Error → Init container exits with error.
+
+➡️ Init:ImagePullBackOff → Init container image cannot be pulled.
+
+🎯 Security & Policy Errors
+➡️ CreateContainerError → Pod sandbox creation failed (often security policy related).
+
+Forbidden → Pod creation blocked by RBAC, PodSecurityPolicy, or OPA/Gatekeeper.
