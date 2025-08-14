@@ -1,0 +1,14 @@
+What command would you use to find files larger than 100MB in Linux?
+
+find /path/to/search -type f -size +100M
+
+How it works:
+	•	-type f → Only regular files
+	•	-size +100M → Files bigger than 100 MB
+	•	+ means “greater than”
+
+To display file sizes in human-readable format:
+
+find . -type f -size +100M -exec ls -lh {} \;
+
+Perfect for cleaning up disk space or troubleshooting storage issues.
