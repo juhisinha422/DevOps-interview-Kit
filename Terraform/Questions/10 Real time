@@ -1,0 +1,56 @@
+Terraform – 10 Real-Time Questions & Answers
+
+1. What is Terraform, and how is it different from other IaC tools like Ansible or CloudFormation?
+
+Terraform is an open-source Infrastructure as Code (IaC) tool that provisions and manages infrastructure using declarative configuration. Unlike Ansible (procedural) or CloudFormation (AWS-specific), Terraform is cloud-agnostic and focuses on resource provisioning with immutable infrastructure principles.
+
+2. What is the difference between terraform apply and terraform plan?
+
+terraform plan: Shows the execution plan (what will be created, updated, or destroyed) without making changes.
+
+terraform apply: Executes the plan and applies changes to the infrastructure.
+
+3. What is a Terraform state file, and why is it important?
+
+The state file (terraform.tfstate) stores the current state of your infrastructure. Terraform uses it to map real-world resources to configuration files and to determine changes. Losing it can cause Terraform to recreate resources unnecessarily.
+
+4. How do you manage Terraform state in a team environment?
+
+Use remote state backends (e.g., AWS S3 with DynamoDB locking, Terraform Cloud) to allow shared access and prevent conflicts.
+
+5. What is the difference between count and for_each?
+
+count: Used for creating multiple instances of a resource based on an integer.
+
+for_each: Iterates over maps or sets for more controlled, named resource creation.
+
+6. How do you handle sensitive variables in Terraform?
+
+Use sensitive = true in variable definitions.
+
+Store secrets in Vault, AWS SSM, or environment variables.
+
+Avoid committing .tfstate with sensitive data to version control.
+
+7. What happens if the Terraform state file gets corrupted?
+
+You can try terraform state pull to inspect it, manually fix JSON issues, or use backup state files (terraform.tfstate.backup). In worst cases, use terraform import to rebuild the state.
+
+8. How do you import existing infrastructure into Terraform?
+
+terraform import <resource_type>.<name> <resource_id>
+Then manually update .tf files to match the imported resource.
+
+9. How do you prevent Terraform from destroying certain resources?
+
+Use the lifecycle block with:
+
+lifecycle {
+ prevent_destroy = true
+}
+
+10. How do you handle different environments (dev, test, prod) in Terraform?
+
+Use workspaces (terraform workspace new dev) or
+
+Use separate directories/modules with environment-specific variables.
