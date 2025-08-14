@@ -1,0 +1,65 @@
+Ansible Playbook Interview Q&A
+1. What is an Ansible Playbook?
+
+A playbook in Ansible is a YAML file where we define automation tasks in a structured way. It contains plays, which map hosts to tasks. We use playbooks to configure systems, deploy applications, and perform orchestration in a repeatable manner.
+
+2. How do we run an Ansible Playbook?
+
+We run a playbook using the ansible-playbook command followed by the YAML file name. For example:
+ansible-playbook site.yml
+We can also specify inventory and limit execution to specific hosts.
+
+3. What is the difference between an Ansible ad-hoc command and a Playbook?
+
+Ad-hoc commands are for quick, one-time tasks (like checking uptime), while playbooks are for structured, reusable automation. We use playbooks when we need a set of tasks with conditions, handlers, variables, and roles.
+
+4. How do we define variables in a Playbook?
+
+We can define variables in multiple ways — inside the playbook under vars, in a vars_files, in inventory files, or from external sources. Example:
+
+vars:
+ package_name: httpd
+
+
+Variables make our playbooks dynamic and reusable.
+
+5. What are handlers in Ansible Playbooks?
+
+Handlers are special tasks that run only when notified by another task. We use them for actions like restarting services after configuration changes. They run at the end of a play unless forced with meta: flush_handlers.
+
+6. How do we use loops in Playbooks?
+
+We use loop to run the same task multiple times with different items. Example:
+
+loop:
+ - httpd
+ - mariadb-server
+
+
+Loops help avoid writing repetitive tasks.
+
+7. How do we use conditionals in Playbooks?
+
+We use when statements to run tasks only if certain conditions are met. Example:
+
+when: ansible_os_family == "RedHat"
+
+
+This helps us write OS-specific or environment-specific tasks.
+
+8. How do we include another Playbook inside a Playbook?
+
+We use the import_playbook or include directives. import_playbook is static (loaded at parse time), while include is dynamic (loaded at runtime). This helps modularize automation.
+
+9. How do we encrypt sensitive data in Playbooks?
+
+We use Ansible Vault to encrypt passwords, keys, or other secrets. Example:
+
+ansible-vault encrypt secrets.yml
+
+
+Then we use vars_files to load the encrypted file during playbook execution.
+
+10. How do we test a Playbook without making changes?
+
+We use the --check flag with ansible-playbook. This runs in dry-run mode to show what changes would happen without actually applying them.
