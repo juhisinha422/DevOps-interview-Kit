@@ -1,0 +1,20 @@
+Comparison of Terraform vs AWS CloudFormation.
+
+Terraform if:
+
+You work in a multi-cloud or hybrid environment.
+
+You want a single tool for AWS, Azure, GCP, and other services.
+
+You need strong version control over state and plans.
+
+
+CloudFormation if:
+
+Your infrastructure is 100% AWS.
+
+You want deep AWS integration and no external dependencies.
+
+You prefer YAML/JSON and don’t want to manage state files.
+
+In my opinion, working with terraform give more flexible and blueprint before applying or creating configuration.
