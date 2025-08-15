@@ -1,0 +1,9 @@
+DevOps – Jenkins
+
+Jenkins Webhooks — a powerful way to trigger builds automatically whenever code is pushed to a repository like GitHub or GitLab.
+
+🔹 Instead of manually starting builds, webhooks make Jenkins event-driven.
+🔹 This reduces delays and ensures code changes are tested instantly.
+🔹 Common use: GitHub → Jenkins Pipeline → Automated Build & Test → Deployment.
+
+Key takeaway: Webhooks turn Jenkins into a real-time CI/CD automation engine.
