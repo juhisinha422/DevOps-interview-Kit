@@ -68,3 +68,16 @@ Usually a 10–15 minute conversation, focusing on:
 6. Do you have experience working with client-facing roles or global teams?
 
 7. Where do you see yourself in the next 2–3 years?
+
+
+HCL Round 2 Interview Questions
+
+1. What branching strategy do you follow, and how do you handle merges to avoid breaking the release branch? If a bug appears in production, what’s your approach to resolving it?
+2. Describe your typical deployment flow and CI/CD workflow. What stages do you define in your Jenkins pipeline, and how do you ensure full quality checks during deployment?
+3. How do you use Jenkins shared libraries? Explain their typical structure and how they are integrated into your Jenkinsfiles.
+4. Are you aware of security scanning tools? How do you scan Docker images—both during build and at the registry level? Are you using any extensions or tools for image scanning?
+5. How do you pass environment variables during Docker build commands? What services do you use for storing Docker images?
+6. How do you establish a connection with databases in your deployments or infrastructure setup?
+7. How do you handle authentication for EKS clusters and store secrets securely in your environment?
+8. How do you create AWS Lambda functions and manage the artifacts for deployment? What options do you use to push artifacts to Lambda?
+9. What is email signing and Helm chart signing? Which tools do you use to sign Helm charts?
