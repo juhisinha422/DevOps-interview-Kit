@@ -1,0 +1,22 @@
+Top 10 Lambda Function #AWS questions you should know...
+𝟭. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮?
+AWS Lambda is a serverless compute service that lets you run code without provisioning or managing servers. It automatically scales and manages the infrastructure required to run your code in response to events.
+
+𝟮. 𝗛𝗼𝘄 𝗱𝗼𝗲𝘀 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮 𝘄𝗼𝗿𝗸?
+You can upload your code to Lambda and define event sources that trigger the execution of your code. Lambda automatically manages the execution environment, scales it as needed, and provides monitoring and logging.
+
+𝟯. 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝘁𝗵𝗲 𝗸𝗲𝘆 𝗯𝗲𝗻𝗲𝗳𝗶𝘁𝘀 𝗼𝗳 𝘂𝘀𝗶𝗻𝗴 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮?The benefits of AWS Lambda include automatic scaling, reduced operational overhead, cost efficiency (as you pay only for the compute time used), and the ability to build event-driven architectures.
+
+𝟰. 𝗪𝗵𝗮𝘁 𝘁𝘆𝗽𝗲𝘀 𝗼𝗳 𝗲𝘃𝗲𝗻𝘁𝘀 𝗰𝗮𝗻 𝘁𝗿𝗶𝗴𝗴𝗲𝗿 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝘀?AWS Lambda functions can be triggered by various event sources, such as changes in Amazon S3 objects, updates to Amazon DynamoDB tables, HTTP requests through Amazon API Gateway, and more.
+
+𝟱. 𝗛𝗼𝘄 𝗶𝘀 𝗰𝗼𝗻𝗰𝘂𝗿𝗿𝗲𝗻𝗰𝘆 𝗺𝗮𝗻𝗮𝗴𝗲𝗱 𝗶𝗻 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮?Lambda automatically handles concurrency by scaling out instances of your function in response to incoming requests. You can set a concurrency limit to control how many concurrent executions are allowed.
+
+𝟲. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗺𝗮𝘅𝗶𝗺𝘂𝗺 𝗲𝘅𝗲𝗰𝘂𝘁𝗶𝗼𝗻 𝗱𝘂𝗿𝗮𝘁𝗶𝗼𝗻 𝗳𝗼𝗿 𝗮 𝘀𝗶𝗻𝗴𝗹𝗲 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮 𝗶𝗻𝘃𝗼𝗰𝗮𝘁𝗶𝗼𝗻?The maximum execution duration for a single Lambda invocation is 15 minutes.
+
+𝟳. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗽𝗮𝘀𝘀 𝗱𝗮𝘁𝗮 𝘁𝗼 𝗮𝗻𝗱 𝗳𝗿𝗼𝗺 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝘀?You can pass data to Lambda functions through event objects, which contain information about the triggering event. You can also return data by using the return statement or creating a response object.
+
+𝟴. 𝗖𝗮𝗻 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝘀 𝗰𝗼𝗺𝗺𝘂𝗻𝗶𝗰𝗮𝘁𝗲 𝘄𝗶𝘁𝗵 𝗲𝘅𝘁𝗲𝗿𝗻𝗮𝗹 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀?Yes, Lambda functions can communicate with external resources such as databases, APIs, and other AWS services by using appropriate SDKs and APIs provided by AWS.
+
+𝟵. 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮 𝗹𝗮𝘆𝗲𝗿𝘀?AWS Lambda layers are a way to manage and share code that is common across multiple functions. Layers can include libraries, custom runtimes, and other function dependencies.
+
+𝟭𝟬. 𝗛𝗼𝘄 𝗰𝗮𝗻 𝘆𝗼𝘂 𝗵𝗮𝗻𝗱𝗹𝗲 𝗲𝗿𝗿𝗼𝗿𝘀 𝗶𝗻 𝗔𝗪𝗦 𝗟𝗮𝗺𝗯𝗱𝗮 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝘀?You can handle errors by using try-catch blocks in your code. Lambda also provides CloudWatch Logs for monitoring, and you can set up error handling and retries for asynchronous invocations.
