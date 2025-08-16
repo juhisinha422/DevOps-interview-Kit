@@ -1,0 +1,11 @@
+DevOps Interview – Challenge Yourself with This!
+1. Build, Write a AWS VPC creation using Terraform ?
+2. S3 bucket policy ?
+3. How do you handle secrets or sensitive information in jenkins ?
+4. what is services in Kubernetes?
+5. what is Namespace ?
+6. Deployment strategies rolling update & when should we use ?
+7. learn kubernetes pods/node related issues & monitoring
+8. disk space & permission errors related issues ?
+9. Jenkins shared library ?
+10. SSL Renew certificate related topics & issues (if expired) ?
