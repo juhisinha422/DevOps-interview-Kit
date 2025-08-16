@@ -1,0 +1,29 @@
+Kubernetes for DevOps Engineers: Below are the Question which you can get in interview.
+
+Q: How do you expose a Kubernetes application to the outside world?
+
+A: Use a Service of type LoadBalancer or configure an Ingress. LoadBalancers provide a direct public IP, while Ingress supports advanced routing, TLS termination, and centralized traffic management.
+
+Q: What causes pods to go into a CrashLoopBackOff state?
+A: Common reasons include incorrect image versions, missing environment variables, failing readiness/liveness probes, or insufficient resource limits. Checking logs with kubectl logs and describing the pod helps pinpoint the issue.
+
+Q: How do you scale an application in Kubernetes?
+A: Use kubectl scale to manually adjust replicas or define an HorizontalPodAutoscaler (HPA) for CPU/memory-based auto-scaling. This ensures apps can handle traffic spikes without downtime.
+
+Q: What’s the difference between a Deployment and a StatefulSet?
+A: Deployments are ideal for stateless workloads where replicas are identical. StatefulSets are used for stateful apps (like databases) requiring stable network IDs, persistent storage, and ordered scaling.
+
+Q: How do you secure sensitive data in Kubernetes?
+A: Store credentials, API keys, and certificates in Secrets rather than ConfigMaps. Mount them as environment variables or volumes, and use encryption at rest with RBAC for strict access control.
+
+Q: What’s the best way to monitor Kubernetes workloads?
+A: Integrate Prometheus for metrics collection, Grafana for visualization, and Alertmanager for proactive notifications. This trio gives end-to-end visibility into cluster health and app performance.
+
+Q: How do you perform a rolling update in Kubernetes?
+A: A Deployment supports rolling updates by gradually replacing old pods with new ones, ensuring zero downtime. You can control the pace using maxUnavailable and maxSurge parameters.
+
+Q: What’s the purpose of a DaemonSet?
+A: A DaemonSet ensures a copy of a pod runs on all (or selected) nodes in the cluster. It’s commonly used for logging agents, monitoring tools, and security daemons.
+
+Q: How do you handle persistent storage in Kubernetes?
+A: Use PersistentVolumes (PV) and PersistentVolumeClaims (PVC) to abstract storage from pods. This allows apps to survive restarts and rescheduling without losing data.
