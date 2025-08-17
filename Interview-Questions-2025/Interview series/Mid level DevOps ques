@@ -1,0 +1,17 @@
+DevOps Interview Questions?
+
+I recently interviewed for a Mid-Level DevOps position
+
+1. How would you isolate a network within an AWS VPC?
+2. How do you handle rollbacks in k8s?
+3. Architectural differences between GCP VPC and AWS VPC?
+4. What are network policies?
+5. What would you do if you accidentally pushed creds into a remote repo?
+6. How do you bring an existing resource into your Terraform state ?
+7. How would you upgrade a cluster?
+8. What practices would you propose to reduce compute costs across the org?
+9. How would you connect two VPCs in AWS?
+10. What is Terraform state drift? How can you detect and solve it?
+11. How would you back up a cluster? What tools would you use?
+12. Kubernetes operators
+13. What are admission controllers?
