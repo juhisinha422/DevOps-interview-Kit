@@ -1,0 +1,7 @@
+Jenkins Shared Libraries — a way to reuse pipeline code across multiple projects.
+
+🔹 Instead of writing repetitive steps in every Jenkinsfile, you can store common logic in a shared library.
+🔹 This makes pipelines more scalable, maintainable, and standardized across teams.
+🔹 Example: one shared function for code checkout, testing, or notifications can be used by all projects.
+
+Key takeaway: Shared Libraries = Clean, DRY (Don’t Repeat Yourself), and professional pipelines.
