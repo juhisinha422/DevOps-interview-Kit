@@ -1,0 +1,30 @@
+What is inotifywait and why is it useful?
+
+Concept
+When working with files, sometimes we want to know the moment something changes — like when a new file is created, a log is updated, or a file is deleted.
+Instead of checking again and again, Linux provides a smarter way → inotify.
+
+And the tool to use it?  inotifywait
+
+What it does
+Watches files/directories in real time
+Waits for specific events (create, delete, modify, move, close_write, etc.)
+Notifies instantly when an event happens
+
+
+Example Interview Scenario
+"Suppose you have a folder where new log files are generated continuously. You need to move them to another folder immediately. How will you do it?"
+Answer: Use inotifywait with rsync
+          while inotifywait -e close_write,create,delete,move /data/incoming; do
+         rsync -a --delete /data/incoming/ /data/archive/
+         done
+
+
+Explanation:
+Watches /data/incoming
+On file creation, modification, deletion, or move → immediately syncs with /data/archive
+
+
+Why DevOps Freshers should know this?
+Because log monitoring, file syncing, and automation are everyday tasks in DevOps.
+Instead of writing heavy scripts, inotifywait gives an instant and efficient solution.
