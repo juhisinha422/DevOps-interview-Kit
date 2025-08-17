@@ -1,0 +1,41 @@
+Git Scenario-Based Questions:-
+
+1. Branching & Merging:-
+
+1.You are working on `feature-A` branch, but a critical bug is reported in production. How will you handle this situation in Git?
+2.You have two branches: `develop` and `feature/login`. You want to merge changes from `develop` into `feature/login` but avoid merge conflicts later. What steps would you take?
+3.You merged a branch but realized you merged the wrong one. How will you undo this merge safely?
+
+---
+
+2. Conflict Resolution:-
+
+1.While merging, you encounter a huge number of merge conflicts in multiple files. How would you approach resolving them efficiently?
+2.You pull changes from the remote and find conflicts in your local branch. How do you decide whether to use `git merge` or `git rebase` in this case?
+3.You rebased your branch and pushed changes, but your teammate says the commit history is messed up. How do you fix it?
+
+3. Commit Management:-
+
+1.You committed a password/API key by mistake. How do you remove it from history while keeping the rest of the commits intact?
+2.You committed changes in the wrong branch. How do you move that commit to the correct branch?
+3.You have 10 commits in your feature branch. The reviewer asked to squash them into a single commit before merging. How will you do it?
+
+4. Collaboration:-
+
+1.You and your teammate are working on the same branch. After pulling, you see changes that overwrite your work. How will you recover your lost work?
+2.Your teammate force-pushed to a branch and your local branch is now behind. How will you sync it without losing your local commits?
+3.You are working in a team where multiple people are merging PRs to the main branch. How do you make sure your branch is always up-to-date before merging?
+
+
+5. Git Commands Under Pressure:-
+
+1.You accidentally ran `git reset --hard HEAD~1` and lost your latest commit. Can you recover it?
+2.You need to see the difference between your branch and `main` before merging. What commands will you use?
+3.You need to check which commit introduced a bug. How will you find it quickly?
+
+
+6. Advanced / Real-World Situations:-
+
+1.Your Git repository size increased drastically. How will you find and remove large files from history?
+2.The build server is failing because the .gitignore file is not working as expected. How do you debug and fix it?
+3.You cloned a repo and found it has hundreds of stale branches. How will you find and delete all branches merged into main?
