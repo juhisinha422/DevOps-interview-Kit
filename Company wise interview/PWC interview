@@ -1,0 +1,55 @@
+Below are the Question which was asked in PWC. i have listed them with answer.
+
+Q1. How do you implement network policies to restrict pod-to-pod communication in Kubernetes?
+Answer:
+Kubernetes NetworkPolicies control traffic between pods and/or external endpoints.
+To restrict pod-to-pod communication:
+Ensure your CNI plugin supports NetworkPolicies (e.g., Calico, Cilium, Weave).
+Define a policy YAML that denies all ingress by default.
+Then selectively allow required traffic.
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+ name: deny-all
+ namespace: my-namespace
+spec:
+ podSelector: {}
+ policyTypes:
+ - Ingress
+This denies all traffic, and you can create additional policies to allow only required communication.
+
+Q2. Write a Python script to backup all files older than 30 days from a directory.
+
+import os
+import shutil
+import time
+
+source_dir = "/path/to/source"
+backup_dir = "/path/to/backup"
+days = 30
+cutoff = time.time() - (days * 86400)
+
+for file in os.listdir(source_dir):
+  filepath = os.path.join(source_dir, file)
+  if os.path.isfile(filepath):
+    if os.path.getmtime(filepath) < cutoff:
+      shutil.copy2(filepath, backup_dir)
+      print(f"Backed up: {file}")
+
+Q3. Your company's cloud costs are increasing rapidly. How would you approach cost optimization without impacting performance?
+Answer:
+Right-size resources – identify over-provisioned instances (CPU/RAM).
+Use autoscaling – scale up/down based on demand.
+Reserved & Spot Instances – commit to predictable workloads, use spot/preemptible for non-critical.
+Storage optimization – delete unused volumes/snapshots, use lifecycle policies for S3/GCS.
+Monitor and tag resources – cost allocation tags, anomaly detection.
+Use managed services instead of self-hosting when cheaper.
+
+Q4. How would you set up geolocation-based routing using AWS services?
+Answer:
+Use Amazon Route 53 with Geolocation Routing Policy:
+Create multiple records for the same domain.
+Specify regions (e.g., North America → US servers, Europe → EU servers).
+Route 53 directs users to the nearest endpoint.
+Combine with AWS Global Accelerator or CloudFront for improved latency and availability.
