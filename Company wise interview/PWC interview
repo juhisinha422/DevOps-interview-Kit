@@ -53,3 +53,57 @@ Create multiple records for the same domain.
 Specify regions (e.g., North America → US servers, Europe → EU servers).
 Route 53 directs users to the nearest endpoint.
 Combine with AWS Global Accelerator or CloudFront for improved latency and availability.
+
+
+
+Q1. You have an application in Account A that needs to access an S3 bucket in Account B. How would you configure this?
+Answer:
+Use cross-account IAM role or bucket policy.
+Steps:
+In Account B (bucket owner), create a bucket policy allowing Account A’s IAM role/user to access it.
+In Account A, create an IAM role with permissions to assume the role in Account B.
+Attach the role to your application’s EC2/EKS service.
+Application assumes the cross-account role and accesses the bucket.
+
+Q2. Write a Dockerfile for a Node.js application with multi-stage builds.
+Answer:
+
+# Stage 1: Build
+FROM node:18 AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Stage 2: Production
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY package*.json ./
+RUN npm install --only=production
+CMD ["node", "dist/index.js"]
+
+Q3. How do you handle Terraform state file corruption?
+Answer:
+Use a remote backend (S3 + DynamoDB, GCS, Azure Storage) to avoid local corruption.
+If corrupted:
+Run terraform state list to check validity.
+Recover from backup (terraform state pull).
+Manually edit/fix using terraform state rm and terraform import.
+Always enable state locking & versioning.
+Q4. Your EC2 instance in a private subnet needs to download packages without NAT Gateway. What alternatives exist?
+Answer:
+VPC Endpoints (AWS PrivateLink) → connect to S3 or ECR without NAT.
+Use proxy servers/bastion host.
+Mirror packages in S3 and use VPC Endpoint.
+AWS Systems Manager Session Manager for controlled package downloads.
+Q5. How do you debug a container that has exited?
+Answer:
+Use docker ps -a → find container ID.
+View logs → docker logs <container_id>.
+Inspect → docker inspect <container_id>.
+Debug interactively:
+
+docker run -it <image> /bin/sh
+In Kubernetes: kubectl logs <pod>, kubectl describe pod.
