@@ -1,0 +1,31 @@
+Common Kubernetes Backoff Errors (and How to Fix Them Fast)
+
+If you’ve spent any time with Kubernetes, you’ve probably met these infamous errors:
+
+CrashLoopBackOff
+
+ImagePullBackOff
+
+ErrImagePull
+
+CreateContainerConfigError
+
+OOMKilled
+
+
+At first, they look scary… but most have simple fixes:
+
+🔹 CrashLoopBackOff → Pod keeps restarting. Check kubectl logs → usually missing env vars, wrong command, or probe failures.
+
+🔹 ImagePullBackOff / ErrImagePull → Image can’t be pulled. Fix typos, tags, or add imagePullSecrets for private registries.
+
+🔹 CreateContainerConfigError → Misconfig before start. Missing ConfigMap/Secret or bad volume. kubectl describe pod will tell you.
+
+🔹 OOMKilled → Memory limits exceeded. Increase limits or fix memory leaks.
+
+👉 My quick debug flow:
+1️⃣ kubectl describe pod – events never lie.
+2️⃣ kubectl logs --previous – see last crash.
+3️⃣ kubectl top pod – check resources.
+
+Most of the time, Kubernetes is already telling you what’s wrong — we just need to slow down and read carefully.
