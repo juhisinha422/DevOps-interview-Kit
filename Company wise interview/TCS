@@ -77,3 +77,15 @@ Focus: Adaptability, Conflict Resolution, Ethics.
 14. Describe a time when you took initiative.
 
 15. Where do you see yourself in 5 years?
+
+
+Why VPC peering won’t solve every cross-region connectivity issue.
+When EKS Fargate is better than EC2 worker nodes.
+Why GitOps pull models bring more stability in production.
+How to decide between spot vs on-demand instances based on SLA and cost.
+Why DaemonSets are good for agents but not for scaling app workers.
+These aren’t just “trivia questions” — they’re real-world decisions that impact scalability, reliability, and cost optimization.
+My key takeaway from the interview:
+ ✅ Learn the commands.
+ ✅ Practice the tools.
+ ✅ But most importantly — understand the context
