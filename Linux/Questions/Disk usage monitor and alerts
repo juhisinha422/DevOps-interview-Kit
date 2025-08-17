@@ -1,0 +1,34 @@
+How do you monitor disk usage and send an alert if it crosses a threshold?
+
+
+#!/bin/bash
+#
+# Script: disk_alert.sh
+# Purpose: Monitor disk usage and send alert if threshold is crossed
+#
+
+# Threshold (in %)
+THRESHOLD=80
+
+# Email for alert (change it to your email)
+EMAIL=“prerna@example.com"
+
+# Get disk usage for root filesystem
+USAGE=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
+
+# Check if usage is greater than threshold
+if [ "$USAGE" -ge "$THRESHOLD" ]; then
+    MESSAGE="Warning: Disk usage on $(hostname) has reached ${USAGE}% (Threshold: ${THRESHOLD}%)"
+    echo "$MESSAGE" | mail -s "Disk Alert on $(hostname)" "$EMAIL"
+else
+    echo "Disk usage is normal: ${USAGE}%"
+fi
+
+Explanation of script:-
+
+1.	df -h / → Gets disk usage of / partition.
+2.	awk 'NR==2 {print $5}' → Extracts usage percentage.
+3.	sed 's/%//' → Removes % sign.
+4.	Compares usage with threshold (80% by default).
+5.	If usage ≥ threshold → sends an email alert.
+6.	Otherwise → prints normal usage
