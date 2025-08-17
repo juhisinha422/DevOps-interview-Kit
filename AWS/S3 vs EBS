@@ -1,0 +1,39 @@
+AWS Storage Face-off: S3 vs EBS
+
+When working on the cloud, one of the most common questions is – Where should I store my data?
+On AWS, two popular choices come up: Amazon S3 and Amazon EBS.
+
+🔹 Amazon S3 (Simple Storage Service)
+
+Object storage (best for files, backups, images, media)
+
+Virtually unlimited storage capacity
+
+11 9’s durability (99.999999999%)
+
+Data accessible from anywhere via HTTP/HTTPS
+
+Use cases → Backups, Big Data, Static Websites, Media Hosting
+
+
+🔹 Amazon EBS (Elastic Block Store)
+
+Block storage (acts like a hard disk for EC2 instances)
+
+Low-latency, consistent performance
+
+Fixed size allocation (e.g., 100GB, 500GB)
+
+Tied to a specific AZ/Region with EC2
+
+Use cases → Databases, Operating Systems, Application storage
+
+
+⚡ Simple Rule of Thumb:
+
+Need scalable, cost-effective, globally accessible storage → Go with S3 ✅
+
+Need fast, disk-like storage for EC2 → Go with EBS ✅
+
+
+💡 Pro Tip: Use them together → Run your app on EC2 + EBS while storing backups/logs on S3.
