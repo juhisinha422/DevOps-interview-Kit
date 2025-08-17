@@ -1,0 +1,44 @@
+1.A critical production Kubernetes cluster is experiencing multiple issues (ImagePullBackOff, evictions, 503 errors). What troubleshooting process will you follow, and how to avoid in future? 
+
+Troubleshoot: 
+- ImagePullBackOff: check registry,credentials. 
+- Evictions: check node resources/disk. 
+- 503 errors: inspect logs, readiness probes.
+
+ Prevention: 
+- Use resource requests/limits. 
+- Enable autoscaling.
+- Use image pull secrets. 
+- Monitoring (Prometheus, Grafana).
+- Cache images on nodes.
+
+2. How do you manage secrets in Terraform without hardcoding them?
+
+Options: 
+- Terraform variables with env values. 
+- AWS Secrets Manager / Azure Key Vault / Vault. 
+- Use `sensitive = true`. 
+- Example: `data "aws_secretsmanager_secret_version" "db_password" { secret_id = "mydbpassword" }` 
+
+3. What’s the difference between COPY and ADD in Dockerfile?
+
+- COPY: simple copy from host to container. 
+- ADD: does COPY + remote URLs + auto-extraction of tar archives. 
+- Best practice: use COPY unless ADD is required
+
+4. How would you implement cross-account resource provisioning using Terraform?
+
+Use AWS provider with assume_role: 
+provider "aws" { region = "us-east-1" assume_role { role_arn = "arn:aws:iam::ACCOUNT_ID:role/CrossAccountRole" } }
+
+5.  How would you handle secrets in a Docker container for a PHP application connecting to MySQL?
+ - Use environment variables (`docker run -e DB_PASS=...`).
+ - Docker secrets (`/run/secrets/...`).
+ - Kubernetes Secrets. - External services (AWS Secrets Manager, Vault).
+
+6. An S3 bucket was created via Terraform, but someone manually added a policy. How do you handle this drift? 
+
+1. Run `terraform plan` to detect drift. 
+2. If valid: import/update config. 
+3. If not: run `terraform apply` to overwrite.
+ 4. Best practice: enforce automation via CI/CD
