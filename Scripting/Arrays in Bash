@@ -1,0 +1,27 @@
+𝗔𝗿𝗿𝗮𝘆𝘀 𝗶𝗻 𝗕𝗮𝘀𝗵 – 𝗧𝗵𝗲 𝗣𝗼𝘄𝗲𝗿 𝗼𝗳 𝗦𝗽𝗮𝗰𝗲-𝗦𝗲𝗽𝗮𝗿𝗮𝘁𝗲𝗱 𝗩𝗮𝗹𝘂𝗲𝘀! 🐧
+
+I’ve been learning Bash scripting for the past few days, and it’s been an exciting ride! 🚀
+As part of my journey, I’m sharing what I learn — today’s topic: Arrays in Bash.
+
+Arrays let you store multiple values in a single variable, which makes scripts more dynamic and manageable. Here's a quick overview:
+
+🔸 𝗗𝗲𝗳𝗶𝗻𝗲 𝗮𝗻 𝗔𝗿𝗿𝗮𝘆
+𝘢𝘳𝘳𝘢𝘺_𝘯𝘢𝘮𝘦=(1 2 5.5 𝘏𝘦𝘭𝘭𝘰 "𝘏𝘦𝘺")
+
+🔸 𝗔𝗰𝗰𝗲𝘀𝘀 𝗜𝗻𝗱𝗶𝘃𝗶𝗱𝘂𝗮𝗹 𝗘𝗹𝗲𝗺𝗲𝗻𝘁𝘀
+𝘦𝘤𝘩𝘰 "${𝘢𝘳𝘳𝘢𝘺_𝘯𝘢𝘮𝘦[0]}"  # 𝘖𝘶𝘵𝘱𝘶𝘵: 1
+𝘦𝘤𝘩𝘰 "${𝘢𝘳𝘳𝘢𝘺_𝘯𝘢𝘮𝘦[3]}"  # 𝘖𝘶𝘵𝘱𝘶𝘵: Hello
+
+🔸 𝗣𝗿𝗶𝗻𝘁 𝗔𝗹𝗹 𝗘𝗹𝗲𝗺𝗲𝗻𝘁𝘀
+𝘦𝘤𝘩𝘰 "${𝘢𝘳𝘳𝘢𝘺_𝘯𝘢𝘮𝘦[*]}"  # 𝘈𝘭𝘭 𝘪𝘯 𝘰𝘯𝘦 𝘭𝘪𝘯𝘦  
+𝘦𝘤𝘩𝘰 "${𝘢𝘳𝘳𝘢𝘺_𝘯𝘢𝘮𝘦[@]}"  # 𝘖𝘯𝘦 𝘣𝘺 𝘰𝘯𝘦 (𝘶𝘴𝘦𝘥 𝘪𝘯 𝘭𝘰𝘰𝘱𝘴)
+
+🔸 𝗟𝗲𝗻𝗴𝘁𝗵 𝗼𝗳 𝘁𝗵𝗲 𝗔𝗿𝗿𝗮𝘆
+𝘦𝘤𝘩𝘰 "${#𝘢𝘳𝘳𝘢𝘺_𝘯𝘢𝘮𝘦[@]}" # 𝘰𝘳
+𝘦𝘤𝘩𝘰 "${#𝘢𝘳𝘳𝘢𝘺_𝘯𝘢𝘮𝘦[*]}"
+
+🔸 𝗦𝗹𝗶𝗰𝗲 𝗔𝗿𝗿𝗮𝘆 (𝗦𝘁𝗮𝗿𝘁 + 𝗖𝗼𝘂𝗻𝘁)
+𝘦𝘤𝘩𝘰 "${𝘢𝘳𝘳𝘢𝘺_𝘯𝘢𝘮𝘦[*]:2:3}"  # 𝘖𝘶𝘵𝘱𝘶𝘵𝘴 3 𝘪𝘵𝘦𝘮𝘴 𝘴𝘵𝘢𝘳𝘵𝘪𝘯𝘨 𝘧𝘳𝘰𝘮 𝘪𝘯𝘥𝘦𝘹 2
+
+🔸 𝗔𝗽𝗽𝗲𝗻𝗱 𝗡𝗲𝘄 𝗜𝘁𝗲𝗺𝘀
+𝘢𝘳𝘳𝘢𝘺_𝘯𝘢𝘮𝘦+=(𝘯𝘦𝘸_𝘪𝘵𝘦𝘮𝘴)
