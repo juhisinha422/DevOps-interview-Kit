@@ -1,0 +1,13 @@
+DevOps / Site Reliability Engineer (SRE)
+
+Top 10 Interview Questions
+ 1. Explain Infrastructure as Code (IaC).
+ 2. Difference between Docker and Kubernetes.
+ 3. How does CI/CD work?
+ 4. Explain service-level agreements (SLA), SLOs, and SLIs.
+ 5. How do you monitor system health?
+ 6. Difference between horizontal and vertical scaling.
+ 7. How do you set up high availability (HA)?
+ 8. Explain rolling deployments vs blue-green deployments.
+ 9. How do you troubleshoot production outages?
+ 10. Explain disaster recovery strategies
