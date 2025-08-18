@@ -1,0 +1,85 @@
+Real-time DevOps questions and answers.
+
+1. How do you handle a failed deployment in production?
+
+First, trigger a rollback using versioned deployments or Helm.
+
+Investigate logs: kubectl logs, pipeline output.
+
+Use monitoring tools (Datadog, Prometheus) to check the impact.
+
+Run postmortem and update runbooks.
+
+2. What is a blue-green deployment, and why is it used?
+
+It creates two identical environments: Blue (live) and Green (new).
+
+After deploying to Green, traffic is switched.
+
+It reduces downtime and allows instant rollback by switching back to Blue.
+
+3. How do you automate infrastructure provisioning?
+
+Use IaC tools like Terraform, CloudFormation, or ARM.
+
+Store infrastructure code in Git.
+
+Trigger deployments via CI/CD pipeline tools like GitHub Actions or Jenkins.
+
+4. How do you manage secrets securely in DevOps?
+
+Use tools like HashiCorp Vault, AWS Secrets Manager, or Kubernetes Secrets.
+
+Avoid hardcoding secrets in code or pipelines.
+
+Enable audit logs and version control for secrets.
+
+5. Describe your CI/CD pipeline.
+
+Build: Compile and lint code.
+
+Test: Unit, integration, and security checks.
+
+Deploy: Push to dev → QA → prod.
+
+Tools: Jenkins, GitHub Actions, GitLab CI, ArgoCD for GitOps.
+
+6. What’s the difference between Docker and Kubernetes?
+
+Docker: Container runtime for building and running containers.
+
+Kubernetes: An Orchestrator that manages containerised workloads (scheduling, scaling, rolling updates).
+
+7. How do you monitor application health?
+
+Use Prometheus + Grafana, Datadog, or New Relic.
+
+Configure liveness/readiness probes in Kubernetes.
+
+Set up alerts for CPU, memory, error rate, and response time.
+
+8. How do you handle zero-downtime deployments?
+
+Use rolling updates, canary deployments, or blue-green strategies.
+
+Configure readiness probes to avoid routing traffic to unhealthy pods.
+
+Ensure database changes are backwards-compatible.
+
+9. What is Infrastructure Drift, and how do you detect it?
+
+Drift = actual infra differs from IaC config.
+
+Detect with terraform plan or drift detection tools like Terraform Cloud, Atlantis.
+
+Fix by reapplying the code or correcting the config.
+
+10. How do you secure a CI/CD pipeline?
+
+Restrict access with RBAC.
+
+Use signed commits and validated runners.
+
+Mask secrets and use environment-specific variables.
+
+Enforce approval steps before production deployment.
