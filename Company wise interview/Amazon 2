@@ -1,0 +1,68 @@
+Amazon's DevOps Phone Interview questions:
+
+1. Behavioral Questions (Amazon Leadership Principles Focus)
+
+✓ a. "Tell me about a time when you had to solve a challenging problem under a tight deadline."
+
+✓ b."Describe a situation where you had to work with a difficult colleague. How did you handle it?"
+
+✓ c. ""Give an example of when you improved a process. What was the impact?"
+
+✓ d. "Tell me about a time you took ownership of a project. How did you ensure its success?"
+
+
+
+2. Technical Knowledge and Tools
+
+✓ a."What is CI/CD? Can you walk me through the process of setting up a simple CI/CD pipeline?"
+
+✓ b. "What tools have you used for continuous integration and continuous delivery?"
+
+✓ c."Explain the role of Docker in DevOps. How would you deploy an application in Docker?"
+
+✓ d."What is Kubernetes, and how does it help in container orchestration?"
+
+✓ e. "What is the difference between a monolithic and microservices-based architecture?"
+
+✓ f. "How do you handle version control? What Git workflows have you used?"
+
+
+ 3. Cloud Infrastructure Questions (AWS Focus)
+
+✓ a."What AWS services have you worked with? Which ones do you consider most important for a DevOps engineer?"
+
+✓ b. "Can you explain how you would set up a VPC (Virtual Private Cloud) in AWS?"
+
+✓ c. "What is EC2, and how would you use it to deploy a simple web application?"
+
+✓ d. "What is IAM in AWS, and how do you manage access control?"
+
+✓ e. "Explain the difference between AWS EC2 and Lambda."
+
+
+
+ 4. Scripting & Automation Questions
+
+✓ **a.**  "What scripting languages do you use? Can you give an example of a script you wrote to automate a task?"
+
+✓ **b.**  "Write a simple script that checks if a given file exists and outputs an appropriate message."
+
+✓ **c.**  "How would you automate the deployment of an application using Jenkins?"
+
+
+
+5. Problem-Solving and Troubleshooting
+
+✓ a. "Imagine your team is deploying an application, but something breaks during the process. How would you troubleshoot it?"
+
+✓ b. "If a production environment is underperforming, how would you go about diagnosing the issue?"
+
+✓ c. "You’re getting a sudden spike in traffic. How do you ensure your system scales efficiently?"
+
+
+
+6. System Design Basics
+
+✓ a. "How would you design a CI/CD pipeline for a microservices-based application?"
+
+✓ b."What are the key factors to consider when designing a scalable, fault-tolerant cloud infrastructure?"
