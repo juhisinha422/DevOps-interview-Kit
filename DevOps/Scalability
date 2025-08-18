@@ -1,0 +1,22 @@
+𝑾𝒉𝒂𝒕 𝒊𝒔 𝑺𝒄𝒂𝒍𝒂𝒃𝒊𝒍𝒊𝒕𝒚? (𝑳𝒆𝒕𝒔 𝑳𝒆𝒂𝒓𝒏 1 𝒄𝒐𝒏𝒄𝒆𝒑𝒕 𝒅𝒂𝒊𝒍𝒚 🤩)
+
+Scalability means the ability of a system to handle increased load (more users, more data, more traffic) by upgrading resources without breaking or slowing down.
+
+Two types of scaling:
+
+1. 🏋️ 𝑽𝒆𝒓𝒕𝒊𝒄𝒂𝒍 𝑺𝒄𝒂𝒍𝒊𝒏𝒈 (𝑺𝒄𝒂𝒍𝒆 𝑼𝑷)
+
+You upgrade the same machine.
+More RAM, faster CPU, bigger server.
+Like giving your existing laptop a Red Bull and adding more RAM so it works faster.
+
+2. 🧑🤝🧑 𝑯𝒐𝒓𝒊𝒛𝒐𝒏𝒕𝒂𝒍 𝑺𝒄𝒂𝒍𝒊𝒏𝒈 (𝑺𝒄𝒂𝒍𝒆 𝑶𝑼𝑻)
+
+You add more machines or servers.
+Instead of 1 big server, use 5 normal servers.
+Divide the work between them using a load balancer.
+
+
+Scalability is needed so that a system can handle growth in users, data, or workload without breaking.
+If traffic or demand increases, a scalable system can add more resources (servers, CPUs, memory) to maintain performance.
+If demand decreases, it can scale down to save cost.
