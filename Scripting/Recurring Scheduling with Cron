@@ -1,0 +1,33 @@
+𝗥𝗲𝗰𝘂𝗿𝗿𝗶𝗻𝗴 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗶𝗻𝗴 𝘄𝗶𝘁𝗵 𝗖𝗿𝗼𝗻
+
+If you’ve ever wanted your scripts or tasks to run automatically at fixed times (every minute, daily at midnight, every Monday, etc.), use cron.
+
+Here’s a quick guide:
+
+*   *   *   *   *  command_to_run
+-   -   -   -   -
+|   |   |   |   +----- Day of week (0–6) (Sun=0)
+|   |   |   +----------- Month (1–12)
+|   |   +----------------- Day of month (1–31)
+|   +----------------------- Hour (0–23)
++----------------------------- Minute (0–59)
+
+
+✨ 𝗖𝗼𝗺𝗺𝗼𝗻 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀
+
+𝘤𝘳𝘰𝘯𝘵𝘢𝘣 -𝘭 → list all scheduled jobs
+
+𝘤𝘳𝘰𝘯𝘵𝘢𝘣 -𝘦 → edit cron jobs
+
+🔧 Example:
+Run a script every minute and log the output:
+
+* * * * * /𝘱𝘢𝘵𝘩/𝘵𝘰/𝘴𝘤𝘳𝘪𝘱𝘵.𝘴𝘩 >> /𝘵𝘮𝘱/𝘭𝘰𝘨.𝘵𝘹𝘵 2>&1
+
+
+💡 𝗪𝗵𝘆 𝗰𝗿𝗼𝗻?
+ • Automates repetitive tasks
+ • Saves time & reduces manual errors
+ • Keeps systems/services running smoothly
+
+If you’re working with servers, DevOps pipelines, or just want to automate your own workflows — learning cron is a game-changer.
