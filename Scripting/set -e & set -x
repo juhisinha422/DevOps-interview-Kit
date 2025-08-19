@@ -1,0 +1,30 @@
+🔧 𝗕𝗮𝘀𝗵 𝗧𝗶𝗽 𝗳𝗼𝗿 𝗗𝗲𝘃𝘀 & 𝗦𝗥𝗘𝘀: 𝘀𝗲𝘁 -𝗲 𝗮𝗻𝗱 𝘀𝗲𝘁 -𝘅 💻
+
+If you write shell scripts — even occasionally — these two little flags can save you hours of debugging and unexpected behavior. Let's talk about:
+
+▶️ 𝘀𝗲𝘁 -𝗲 — "𝙀𝙭𝙞𝙩 𝙤𝙣 𝙚𝙧𝙧𝙤𝙧"
+
+This tells Bash to immediately stop the script if any command exits with a non-zero status.
+
+✅ Useful for:
+ • Catching failures early
+ • Preventing silent errors
+ • Enforcing fail-fast behavior in deployment and CI scripts
+
+🧠 Without it, your script may continue running even after something breaks!
+
+▶️ 𝘀𝗲𝘁 -𝘅 — "𝙎𝙝𝙤𝙬 𝙘𝙤𝙢𝙢𝙖𝙣𝙙𝙨 𝙖𝙨 𝙩𝙝𝙚𝙮 𝙧𝙪𝙣"
+
+This makes Bash print each command (with arguments) before it runs — kind of like a real-time trace log.
+
+✅ Useful for:
+ • Debugging scripts
+ • Seeing variable expansions
+ • Understanding flow in long scripts
+
+🛠 𝗣𝗿𝗼 𝗧𝗶𝗽: 𝗖𝗼𝗺𝗯𝗶𝗻𝗲 𝗯𝗼𝘁𝗵 𝗳𝗼𝗿 𝗱𝗲𝗯𝘂𝗴𝗴𝗶𝗻𝗴!
+#!/𝘣𝘪𝘯/𝘣𝘢𝘴𝘩
+𝘴𝘦𝘵 -𝘦 # 𝘧𝘢𝘪𝘭 𝘧𝘢𝘴𝘵
+𝘴𝘦𝘵 -𝘹 # 𝘥𝘦𝘣𝘶𝘨 𝘰𝘶𝘵𝘱𝘶𝘵
+
+# 𝘺𝘰𝘶𝘳 𝘴𝘤𝘳𝘪𝘱𝘵 𝘩𝘦𝘳𝘦
