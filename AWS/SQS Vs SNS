@@ -1,0 +1,26 @@
+SQS vs SNS vs Amazon MQ – When to Use What?
+
+AWS offers multiple messaging services, and it’s common to get confused about when to use which. Here’s a simple breakdown:
+
+Amazon SQS (Simple Queue Service) :-
+Best for: Decoupling microservices, building serverless/event-driven apps.
+How it works: Messages are placed in a queue and consumed by workers in order.
+Use case examples: Order processing systems, background jobs, async workflows.
+Why choose it: Fully managed, scales automatically, guarantees message delivery.
+
+Amazon SNS (Simple Notification Service):-
+Best for: Broadcasting or fan-out messaging.
+How it works: Publishes messages to multiple subscribers (e.g., Lambda, SQS, HTTP endpoints, email, SMS).
+Use case examples: Alerts/notifications, fan-out updates to multiple systems, pub/sub patterns.
+Why choose it: Low-latency push notifications, great for real-time alerts and integrations.
+
+ Amazon MQ:-
+Best for: Migrating from traditional message brokers (ActiveMQ, RabbitMQ).
+How it works: Managed message broker that supports industry-standard APIs and protocols (JMS, AMQP, STOMP, MQTT, OpenWire).
+Use case examples: Enterprise apps that rely on messaging middleware or need minimal code changes to migrate.
+Why choose it: Smooth migration path, no need to rewrite applications, supports hybrid cloud setups.
+
+When to use What:
+Use SQS when you need reliable, scalable queues for decoupling.
+Use SNS when you need to broadcast messages or trigger multiple subscribers.
+Use Amazon MQ when migrating legacy systems or when your apps depend on standard messaging protocols.
