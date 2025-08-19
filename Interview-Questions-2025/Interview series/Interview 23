@@ -1,0 +1,13 @@
+interview for “DevOps - Build and Release Engineer” that tested both  architectural thinking and hands-on expertise across AWS, GCP, Kubernetes, and observability tools. 
+Here are some of the thought-provoking questions I encountered:
+
+🔹 How would you draw a high-level diagram of a three-tier architecture?
+🔹 What’s your approach to synchronizing components when deploying an application image on GKE/EKS?
+🔹 How do you plan networking when deploying applications on GCP/AWS?
+🔹 What components are created when you create a VPC?
+🔹 For databases, would you use a public or private subnet—and why?
+🔹 How would you set up networking between a VM instance and a pod running in EKS/GKE?
+🔹 How do you configure Prometheus on EC2/GCE instances?
+🔹 What are the commands for building and running Docker images?
+🔹 Which language is used in Kubernetes component creation—and why is it important?
+🔹What is difference between -f and without -f while running “kubectl logs pod-name” command?
