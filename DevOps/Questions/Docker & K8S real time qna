@@ -1,0 +1,101 @@
+Docker and Kubernetes: Real-time Questions and Answers.
+
+1. How do you reduce the size of a Docker image?
+
+Use a smaller base image (Alpine instead of Ubuntu), remove unnecessary packages, and use multi-stage builds.
+
+FROM golang:1.20-alpine AS builder
+WORKDIR /app
+COPY . .
+RUN go build -o main.
+
+FROM alpine:3.18
+WORKDIR /app
+COPY --from=builder /app/main .
+CMD ["./main"]
+
+
+This keeps production images lean.
+
+2. What is the difference between a Docker container and VM?
+
+VM → runs OS on hypervisor, heavy.
+
+Container → lightweight, shares host kernel, starts in seconds.
+
+Real-time use: Containers are better for microservices & CI/CD.
+
+3. How do you persist data in Docker?
+
+Use volumes:
+
+docker run -d -v mydata:/var/lib/mysql mysql:8
+
+
+Ensures data survives container restarts.
+
+4. How do you debug a running Docker container?
+
+Use docker exec or docker logs:
+
+docker exec -it <container_id> /bin/sh
+docker logs -f <container_id>
+
+5. How do you secure a Docker image?
+
+Use trusted base images.
+
+Run as non-root user (USER appuser).
+
+Scan images with Trivy or Anchore.
+
+Sign images with Docker Content Trust.
+
+6. How do you scale applications in Kubernetes?
+
+Use kubectl scale or HPA (Horizontal Pod Autoscaler).
+
+kubectl scale deployment myapp --replicas=5
+
+kubectl autoscale deployment myapp --cpu-percent=70 --min=2 --max=10
+
+7. What is the difference between a Deployment and StatefulSet?
+
+Deployment → stateless apps, interchangeable pods.
+
+StatefulSet → stateful apps (DBs, Kafka, etc.), stable pod identity & storage.
+
+8. How do you troubleshoot a pod stuck in CrashLoopBackOff?
+
+Check logs: kubectl logs <pod> -c <container>
+
+Describe pod: kubectl describe pod <pod>
+
+Check events & probes.
+Common causes: bad configs, missing secrets, readiness probe failures.
+
+9. How do you do zero-downtime deployments in Kubernetes?
+
+Use RollingUpdate strategy in Deployment (default).
+
+Configure readinessProbes so traffic only goes to healthy pods.
+
+Example:
+
+strategy:
+ type: RollingUpdate
+ rollingUpdate:
+  maxUnavailable: 0
+  maxSurge: 1
+
+10. How do you secure Kubernetes clusters?
+
+Enable RBAC (Role-Based Access Control).
+
+Use network policies to restrict pod-to-pod traffic.
+
+Regularly scan images before deployment.
+
+Store secrets in Kubernetes Secrets + KMS (e.g., AWS KMS, HashiCorp Vault).
+
+Restrict kubectl exec for non-admins.
