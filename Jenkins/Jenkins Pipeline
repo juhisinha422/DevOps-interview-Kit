@@ -1,0 +1,18 @@
+most powerful feature – Pipelines (Jenkinsfile).
+
+🔹 A Pipeline is the automated flow of steps from code → build → test → deploy.
+🔹 It is written in a file called Jenkinsfile, stored in the project repo.
+🔹 Two ways to write pipelines:
+
+Declarative Pipeline → simple & structured (best for most use cases).
+
+Scripted Pipeline → flexible, uses Groovy for complex cases.
+
+
+👉 Why is it important?
+
+Pipelines = CI/CD as Code.
+
+Version-controlled → easy to track changes.
+
+Reusable & portable → same pipeline works across environments.
