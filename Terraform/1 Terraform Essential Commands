@@ -1,0 +1,60 @@
+Terraform Commands Every Cloud & DevOps Admin Should Know 
+If you're managing infrastructure as code, Terraform is likely a core part of your toolkit. 
+
+Here are the essential Terraform commands every Cloud & DevOps admin must know. 
+ 
+Note: These are not the only commands there are still a lot of commands, however these commands are used very frequently in terraform operations. 
+ 
+ 
+1.    terraform –help= Displays help information and lists available commands and options for Terraform.
+2.    terraform fmt=Prepare Terraform configuration files using a standard format or make the alignment of codes proper.
+3.    terraform fmt –diff= Format Terraform configuration files and displays the updated version of the file without actually making the changes.
+ 
+4.    terraform fmt –check= Verifies whether Terraform configuration files follow formatting guidelines without modifying them.
+ 
+5.    terraform init= To initialize the terraform directory
+ 
+6.    terraform init -lock=false = Initiates a new Terraform configuration or launches an existing one without gaining a lock on state files.
+ 
+7.    terraform get -update= Updates modules to their latest versions, ensuring the configuration uses the most recent module releases.
+ 
+8.    terraform validate= Checks the syntax and structure of Terraform configuration files and the code also.
+ 
+9.    terraform plan= Generates an execution plan, detailing the actions Terraform will take to achieve the desired infrastructure state.
+ 
+10. Terraform apply= to execute the plan state into execution/ deployment.
+ 
+11. terraform apply --auto-approve= Automatically applies the execution plan without requiring manual confirmation.
+ 
+12. terraform plan -destroy= Generates an execution plan specifically for destroying existing infrastructure resources defined in the Terraform configuration.
+ 
+13. Terraform destroy= to destroy/ delete the resources declared in terraform configuration file. 
+ 
+14. terraform destroy --auto-approve= Automatically destroys all Terraform-managed infrastructure without requiring manual confirmation
+ 
+15. terraform refresh= to updates the Terraform state file.
+
+
+16. Terraform init - - upgrade= to upgrade the terraform providers or after manual version change of provider.
+ 
+17. terraform show= Displays the current state of Terraform-managed infrastructure.
+ 
+18. terraform state=Manages the state of Terraform-managed infrastructure.
+ 
+19. terraform state show <resource name/ block name>= Shows the full details of a specific resource in the state.
+ 
+20. terraform state list= Displays all resources managed by Terraform within the current state file.
+ 
+21. terraform providers= Displays a list of all available providers along with their versions
+ 
+22. terraform workspace list= Displays a list of available workspaces
+ 
+23. terraform workspace show= Displays the current workspace name being used in Terraform.
+ 
+24. terraform force-unlock <lock_id>= Forcefully release a Terraform state lock.
+25. terraform graph=Generates a visual representation of the dependency graph for Terraform resources
+ 
+26. terraform console= Opens an interactive shell for evaluating expressions and test.
+ 
+27. terraform -install-autocomplete= Enables shell autocompletion for Terraform commands
+ 
