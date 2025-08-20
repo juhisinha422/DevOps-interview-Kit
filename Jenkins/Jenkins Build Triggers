@@ -1,0 +1,11 @@
+Jenkins Build Triggers: Beyond Webhooks
+
+Webhooks are a common way to trigger Jenkins jobs, but they’re not the only option. Jenkins supports multiple trigger types to automate builds.
+
+Other Triggers Include:
+- SCM Polling – Jenkins checks your repo at intervals (e.g., every 5 minutes).
+- Scheduled Builds – Use cron syntax for nightly or weekly jobs.
+- Remote Triggers – Trigger jobs via an external system using a tokenized URL.
+- Upstream/Downstream Jobs – Automatically trigger jobs when another completes.
+
+These options give you flexibility—ideal when webhooks aren’t available or when you need time-based or chained executions.
