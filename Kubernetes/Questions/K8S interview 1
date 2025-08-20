@@ -1,0 +1,38 @@
+𝗤. 𝗗𝗲𝗳𝗶𝗻𝗲 𝘁𝗵𝗲 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗖𝗡𝗜 (𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗜𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲).
+Answer: The Kubernetes CNI is a specification that defines a standardized interface for integrating with container networking plugins, enabling different networking solutions to work with Kubernetes clusters.
+
+𝗤. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗽𝘂𝗿𝗽𝗼𝘀𝗲 𝗼𝗳 𝘁𝗵𝗲 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗔𝗣𝗜 𝘀𝗲𝗿𝘃𝗲𝗿?
+Answer: The API server is the front-end interface for the Kubernetes control plane that exposes the Kubernetes API.
+
+𝗤. 𝗘𝘅𝗽𝗹𝗮𝗶𝗻 𝘁𝗵𝗲 𝗿𝗼𝗹𝗲 𝗼𝗳 𝗲𝘁𝗰𝗱 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀.
+Answer: etcd is a distributed, reliable, and highly available key-value store used to store the configuration data for the Kubernetes cluster.
+
+𝗤. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗿𝗼𝗹𝗲 𝗼𝗳 𝘁𝗵𝗲 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝘀𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿?
+Answer: The Kubernetes scheduler is responsible for scheduling pods to run on available nodes in the cluster based on available resources and other scheduling requirements.
+
+𝗤. 𝗗𝗲𝘀𝗰𝗿𝗶𝗯𝗲 𝘁𝗵𝗲 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻 𝗼𝗳 𝘁𝗵𝗲 𝗸𝘂𝗯𝗲-𝗰𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿-𝗺𝗮𝗻𝗮𝗴𝗲𝗿.
+Answer: The kube-controller-manager is responsible for running various controller processes that monitor the state of the cluster and make changes as necessary.
+
+𝗤. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗽𝘂𝗿𝗽𝗼𝘀𝗲 𝗼𝗳 𝘁𝗵𝗲 𝗰𝗹𝗼𝘂𝗱-𝗰𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿-𝗺𝗮𝗻𝗮𝗴𝗲𝗿?
+Answer: The cloud-controller-manager is responsible for managing integration with cloud providers, such as AWS, GCP, or Azure.
+
+𝗤. 𝗘𝘅𝗽𝗹𝗮𝗶𝗻 𝘁𝗵𝗲 𝗿𝗼𝗹𝗲 𝗼𝗳 𝘁𝗵𝗲 𝗸𝘂𝗯𝗲𝗹𝗲𝘁 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀.
+Answer: The kubelet is an agent that runs on each node and communicates with the Kubernetes API server to manage the container lifecycle.
+
+𝗤. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗳𝘂𝗻𝗰𝘁𝗶𝗼𝗻 𝗼𝗳 𝘁𝗵𝗲 𝗸𝘂𝗯𝗲-𝗽𝗿𝗼𝘅𝘆 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀?
+Answer: The kube-proxy is responsible for managing network routing between pods and services in the Kubernetes cluster.
+
+𝗤. 𝗗𝗲𝗳𝗶𝗻𝗲 𝗮 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗿𝘂𝗻𝘁𝗶𝗺𝗲 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀.
+Answer: A container runtime is responsible for starting and stopping containers on a node. Examples include Docker, containerd, and CRI-O.
+
+𝗤. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝘀𝗲𝗿𝘃𝗶𝗰𝗲?
+Answer: A Kubernetes service is an abstraction layer that exposes a set of pods as a network service, allowing them to communicate with each other and with other services outside the cluster.
+
+𝗤. 𝗘𝘅𝗽𝗹𝗮𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗗𝗡𝗦.
+Answer: Kubernetes DNS is a service that provides DNS resolution for services and pods in a Kubernetes cluster, enabling them to discover and communicate with each other using DNS names.
+
+𝗤. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗽𝗼𝗱 𝗻𝗲𝘁𝘄𝗼𝗿𝗸 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀?
+Answer: A pod network is a network overlay that connects pods in a Kubernetes cluster, enabling them to communicate with each other across different nodes.
+
+
+2
