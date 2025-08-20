@@ -1,0 +1,60 @@
+10 Basic BGP Questions Asked in Networking Interviews. 
+
+
+1. What is BGP and why is it used?
+Answer:
+BGP (Border Gateway Protocol) is a path vector protocol used to exchange routing information between different autonomous systems on the Internet. It is the protocol that makes the Internet work by enabling data routing between ISPs, data centers, and large organizations.
+
+2. What is the difference between iBGP and eBGP?
+Answer:
+
+iBGP (Internal BGP): Between routers in the same AS.
+
+eBGP (External BGP): Between routers in different AS
+Key differences include administrative distance, next-hop behavior, and default TTL settings.
+
+3. What are the BGP path selection attributes?
+Answer:
+BGP uses several attributes to select the best path:
+
+Weight (Cisco-specific)
+Local Preference
+AS Path Length
+Origin Type
+MED (Multi-Exit Discriminator)
+eBGP over iBGP
+Shortest IGP path to BGP next-hop
+Router ID
+
+4. What is an AS Path in BGP?
+Answer:
+The AS Path is a list of AS that a route has traversed. It helps prevent routing loops and is used for path selection shorter paths preferred. 
+
+5. What is the role of the Next-Hop attribute in BGP?
+Answer:
+The Next-Hop attribute specifies the IP address of the next router to reach a destination. In iBGP, the next-hop is not changed by default, so IGP must be able to reach it. In ebgp, the next-hop is changed to ip address of ebgp neighbor that advertised the route. 
+
+6. How does BGP prevent routing loops?
+Answer:
+BGP uses the AS Path attribute. If a router sees its own AS number in the path of a BGP update, it rejects the route to avoid loops.
+
+7. What is route reflector in BGP?
+Answer:
+A Route Reflector (RR) is used in iBGP to overcome the full-mesh requirement. RRs reflect routes between iBGP peers (clients), reducing the number of BGP sessions needed.
+
+8. What is BGP split horizon(official word is ibgp loop prevention mechanism) rule?
+Answer:
+The split horizon rule in iBGP says: Routes learned from an iBGP peer are not advertised to another iBGP peer. Route reflectors or confederations are used to solve this limitation.
+
+9. What is BGP Local Preference?
+Answer:
+Local Preference is a BGP attribute used within an AS to choose the preferred outbound path. Higher local preference is preferred.
+
+10. What is the difference between BGP and OSPF/EIGRP?
+Answer:
+
+Scope: BGP is used between ASes (inter-domain), while OSPF/EIGRP are used within an AS (intra-domain).
+
+Type: BGP is a path-vector protocol; OSPF is link-state; EIGRP is advanced distance-vector.
+
+Convergence: BGP converges slower than OSPF/EIGRP.
