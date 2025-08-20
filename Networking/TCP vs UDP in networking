@@ -1,0 +1,17 @@
+Networking topic :- Difference between TCP and UPD. Give example where each is used.
+
+TCP (Transmission Control Protocol)
+	1. Connection-oriented (handshake before communication).
+	2. Reliable – ensures all packets are delivered, ordered, and retransmitted if lost.
+	3. Slower than UDP due to error checking and reliability.
+	4. Use cases: SSH, HTTP/HTTPS, FTP, Email (SMTP/IMAP/POP3).
+
+UDP (User Datagram Protocol)
+	1. Connectionless (no handshake, just sends packets).
+	2. Unreliable – packets may be lost or arrive out of order, but faster due to no overhead.
+	3. Lightweight and low latency.
+	4. Use cases: DNS queries, video/audio streaming, VoIP, gaming, monitoring tools (SNMP).
+
+In short , TCP is connection-oriented and reliable but slower — used for things like SSH, web browsing, and email.
+
+Whereas UDP is connectionless and faster but less reliable — used for DNS, streaming, gaming, and VoIP.
