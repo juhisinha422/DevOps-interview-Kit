@@ -1,0 +1,42 @@
+𝗕𝗮𝘀𝗵 𝗧𝗶𝗽: 𝗦𝘁𝗿𝗶𝗻𝗴 𝗠𝗮𝗻𝗶𝗽𝘂𝗹𝗮𝘁𝗶𝗼𝗻 𝘄𝗶𝘁𝗵 #, ##, %, 𝗮𝗻𝗱 %%
+
+When working with filenames or paths in shell scripts, you don’t always need sed, awk, or cut. Bash has built-in string operations that make it easier:
+
+🔹 𝗥𝗲𝗺𝗼𝘃𝗲 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝘀𝘁𝗮𝗿𝘁 (#, ##)
+
+${𝘷𝘢𝘳#𝘱𝘢𝘵𝘵𝘦𝘳𝘯} 
+Remove the shortest match of pattern from the beginning.
+
+${𝘷𝘢𝘳##𝘱𝘢𝘵𝘵𝘦𝘳𝘯}
+Remove the longest match of pattern from the beginning.
+
+Example:
+𝘱𝘢𝘵𝘩="/𝘩𝘰𝘮𝘦/𝘶𝘴𝘦𝘳/𝘥𝘰𝘤𝘴/𝘧𝘪𝘭𝘦.𝘵𝘹𝘵"
+
+𝘦𝘤𝘩𝘰 ${𝘱𝘢𝘵𝘩#*/}   
+#Output-> home/user/docs/file.txt  (remove up to first /)
+
+𝘦𝘤𝘩𝘰 ${𝘱𝘢𝘵𝘩##*/}  
+#Output-> file.txt  (remove up to last /)
+
+🔹 𝗥𝗲𝗺𝗼𝘃𝗲 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗲𝗻𝗱 (%, %%)
+
+${𝘷𝘢𝘳%𝘱𝘢𝘵𝘵𝘦𝘳𝘯} 
+Remove the shortest match of pattern from the end.
+
+${𝘷𝘢𝘳%%𝘱𝘢𝘵𝘵𝘦𝘳𝘯}
+Remove the longest match of pattern from the end.
+
+Example:
+𝘱𝘢𝘵𝘩="/𝘩𝘰𝘮𝘦/𝘶𝘴𝘦𝘳/𝘥𝘰𝘤𝘴/𝘧𝘪𝘭𝘦.𝘵𝘹𝘵"
+
+𝘦𝘤𝘩𝘰 ${𝘱𝘢𝘵𝘩%/*}
+#Output-> /home/user/docs  (remove last /file.txt)
+
+𝘦𝘤𝘩𝘰 ${𝘱𝘢𝘵𝘩%%/*}  
+#Output-> /home  (remove everything after first /)
+
+
+✅ These little tricks can save you lines of code and make scripts cleaner.
+
+💡 Next time you need to rename files, extract filenames, or trim paths — try #, ##, %, and %%.
