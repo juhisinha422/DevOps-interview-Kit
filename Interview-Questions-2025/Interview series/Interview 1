@@ -53,3 +53,27 @@ L1 & L2 level questions related to AWS, Terraform, Kubernetes, Docker, Git.
 19. options on lambda to push the artifacts?
 20. what is email signing and helm chart signing?
 21. which tool for signing the helm chart?
+
+
+
+Top 10 Most Asked CI/CD Pipeline Interview Questions – Part 3 (Advanced Level)
+
+1.✅ How do you implement blue-green or canary deployments in CI/CD?
+
+2.✅ How do you handle secrets management in pipelines?
+
+3.✅ What’s the difference between continuous delivery and continuous deployment?
+
+4.✅ How do you manage rollback strategies in CI/CD?
+
+5.✅ How can you secure a CI/CD pipeline against malicious code or supply chain attacks?
+
+6.✅ How do you design multi-environment pipelines (Dev → QA → Staging → Prod)?
+
+7.✅ How do you optimize pipeline execution time for large monorepos?
+
+8.✅ How do you implement parallel jobs in a CI/CD pipeline?
+
+9.✅ How do you integrate performance/load testing into CI/CD?
+
+10.✅ How do you implement approval gates in a release pipeline?
