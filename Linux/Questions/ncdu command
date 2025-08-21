@@ -1,0 +1,13 @@
+Linux Advanced Tip – ncdu Command 
+
+ncdu is an interactive disk usage analyzer.
+
+👉 Example:
+
+ncdu /
+
+
+✔ Displays which directories are using the most space
+✔ Much easier than du -sh
+
+💡 Pro Tip: Great for cleaning up old files on servers quickly.
