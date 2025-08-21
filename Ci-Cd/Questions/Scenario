@@ -1,0 +1,7 @@
+CI/CD Scenario Based Interview Question .
+A Jenkins pipeline that builds Docker images has suddenly started failing after you upgraded Jenkins to a new version. What steps would you take to debug and fix this? 
+
+Check Jenkins logs (/var/log/jenkins/jenkins.log) for plugn errors.i
+Verify if Docker plugin / credentials binding plugins are compatible with the new Jenkins version.
+Re-run the build manually with --verbose to see exact step failure.
+If Docker-in-Docker is used, ensure Docker socket is mounted correctly.
