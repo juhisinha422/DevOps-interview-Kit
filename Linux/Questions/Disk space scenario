@@ -1,0 +1,11 @@
+Disk Space is Full on a Linux Server – How Would You Diagnose It?
+
+1. Check disk usage – Run df -h to identify which filesystem/partition is full.
+2. Locate large files – Use du -sh /* or du -sh /var/* | sort -h to find directories consuming space.
+3. Find recent growth – Use find / -type f -size +500M -exec ls -lh {} \; to list large files.
+4. Log files – Check /var/log/ for oversized logs (e.g., messages, secure, audit.log).
+5. Temp files – Inspect /tmp and /var/tmp for unnecessary or stale files.
+6. Stale processes – Use lsof | grep deleted to check for processes holding deleted files. Restart them if needed.
+7. Cleanup safely – Compress, archive, or move old logs/files. Avoid deleting system-critical files.
+ 
+Takeaway: Don’t just delete files blindly. Always identify the root cause (logs, applications, or misconfigurations) before cleanup to prevent service disruptions.
