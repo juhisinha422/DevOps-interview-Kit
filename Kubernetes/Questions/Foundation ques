@@ -1,0 +1,53 @@
+Kubernetes #interview Questions:
+
+Phase 1: Foundations (Day 1–5)
+
+Day 1 – Introduction to Kubernetes
+
+1. What is Kubernetes, and why do we use it?
+2. Difference between Kubernetes and Docker Swarm?
+3. Explain the architecture of Kubernetes (Master vs Worker nodes).
+4. What is a Pod in Kubernetes?
+5. What is the role of kube-apiserver, kube-scheduler, and etcd?
+6. How does Kubernetes provide high availability?
+7. What problem does Kubernetes solve compared to running apps directly on VMs?
+
+Day 2 – Pods
+
+1. What is a Pod in Kubernetes?
+2. Can a Pod run multiple containers? If yes, why would you need that?
+3. What’s the difference between a Pod and a container?
+4. How do you check the logs of a Pod?
+5. What happens if a Pod dies?
+6. Difference between kubectl apply and kubectl create when creating Pods?
+7. What is the difference between a static Pod and a normal Pod?
+
+Day 3 – ReplicaSets
+
+1. What is a ReplicaSet in Kubernetes?
+2. How is a ReplicaSet different from a ReplicationController?
+3. If a Pod managed by a ReplicaSet is deleted, what happens?
+4. Can we scale a ReplicaSet manually? If yes, how?
+5. How does a ReplicaSet ensure high availability?
+6. Explain the relationship between ReplicaSet and Deployment.
+7. Which object controls Pods directly: Deployment or ReplicaSet?
+
+Day 4 – Services
+
+1. What is a Service in Kubernetes?
+2. Explain the different types of Services (ClusterIP, NodePort, LoadBalancer, ExternalName).
+3. Which is the default Service type in Kubernetes?
+4. How does a Service communicate with Pods?
+5. What is kube-proxy, and what is its role in Services?
+6. Difference between ClusterIP and NodePort?
+7. How do Services help achieve loose coupling between microservices?
+
+Day 5 – Deployments
+
+1. What is a Deployment in Kubernetes?
+2. Difference between Deployment and ReplicaSet?
+3. How do Deployments achieve zero-downtime updates?
+4. What is a rolling update strategy in Deployments?
+5. How do you rollback a Deployment?
+6. What are readiness and liveness probes, and why are they important?
+7. How does Deployment ensure fault tolerance?
