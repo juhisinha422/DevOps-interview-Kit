@@ -1,0 +1,29 @@
+How does the Kubelet know when to start a Pod?
+Kubernetes is often seen as complex, but the flow is actually very elegant. Let’s break it down 👇
+
+1️⃣ You create a Pod
+kubectl apply -f pod.yaml → The API Server stores the Pod spec in etcd.
+
+2️⃣ Scheduler assigns a Node
+At first, the Pod has no nodeName.
+The scheduler updates the Pod object with nodeName=node-1.
+
+3️⃣ Kubelet watches the API Server
+Each kubelet constantly watches for Pods assigned to its node.
+When kubelet on node-1 sees a Pod with nodeName=node-1 → it claims responsibility.
+
+4️⃣ Kubelet pulls the Pod spec
+It retrieves details: container images, volumes, configs, etc.
+
+5️⃣ Kubelet talks to the container runtime (CRI)
+Using containerd/Docker, kubelet:
+🪀  pulls images
+🪀 creates containers
+🪀  sets up networking & storage
+
+6️⃣ Pod starts running!
+Kubelet then reports status (Running, Failed, etc.) back to the API Server.
+
+🔑 In short:
+Scheduler decides where (sets nodeName)
+Kubelet decides how (runs containers on its node)
