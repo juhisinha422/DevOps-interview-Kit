@@ -1,0 +1,57 @@
+1. GROUP BY
+
+GROUP BY is used to group rows based on one or more columns.
+
+Example: If you want to know the total sales per customer, you can use GROUP BY customer.
+
+
+
+
+2. HAVING
+
+HAVING is used to filter groups after aggregation (with SUM, COUNT, AVG, etc.).
+
+Example: If you want only those customers whose total sales are greater than 10,000, you can use HAVING SUM(amount) > 10000.
+
+
+
+
+3. ORDER BY
+
+ORDER BY is used to sort the results in ascending (ASC) or descending (DESC) order.
+
+Example: If you want to see sales from highest to lowest, you use ORDER BY total_sales DESC.
+
+
+
+
+Example SQL Query
+
+Let’s assume we have a table:
+orders(order_id, customer, region, amount)
+
+We want to:
+
+Find each customer’s total sales
+
+Show only those with sales greater than 10,000
+
+Sort results from highest to lowest sales
+
+
+SELECT 
+    customer,
+    region,
+    SUM(amount) AS total_sales
+FROM orders
+GROUP BY customer, region
+HAVING SUM(amount) > 10000
+ORDER BY total_sales DESC;
+
+Output Example:
+
+customer	region	total_sales
+
+Anita	East	18500
+Ravi	West	15000
+Meera	North	12000
