@@ -1,0 +1,23 @@
+ 𝗕𝗮𝘀𝗵 𝗧𝗶𝗽: 𝘀𝗵𝗼𝗽𝘁 -𝘀 𝗻𝘂𝗹𝗹𝗴𝗹𝗼𝗯
+
+Ever written a Bash loop expecting it to iterate over files, but instead it treated your pattern as a literal string?
+
+Example:
+
+𝘧𝘪𝘭𝘦𝘴=(/𝘱𝘢𝘵𝘩/𝘵𝘰/𝘥𝘪𝘳/*.𝘵𝘹𝘵)
+𝘦𝘤𝘩𝘰 "𝘍𝘰𝘶𝘯𝘥 ${hashtag#𝘧𝘪𝘭𝘦𝘴[@]} 𝘧𝘪𝘭𝘦𝘴"
+
+👉 If there are .txt files, great — they’re added to the files array.
+
+👉 But if there are no .txt files, Bash doesn’t return an empty array.
+Instead, it literally stores the string *.txt as one item in the array.
+So files has a length of 1, even though no files exist.
+
+This can lead to false counts, wrong loops, and bugs.
+
+✅ The fix: enable nullglob
+
+𝘴𝘩𝘰𝘱𝘵 -𝘴 𝘯𝘶𝘭𝘭𝘨𝘭𝘰𝘣
+
+With this option set, Bash will expand to nothing if there are no matches.
+Now your array is truly empty when there are no .txt files, and your script behaves as expected.
