@@ -1,0 +1,46 @@
+Jenkins Shared Library:
+When working with Jenkins pipelines across multiple projects, you often repeat the same steps build, test, deploy, notifications, etc. Instead of duplicating that code in every Jenkinsfile, Jenkins Shared Libraries allow you to centralize reusable pipeline logic in one place and use it everywhere.
+
+✅ Benefits:
+
+Reusability – Write once, use in many pipelines.
+
+Maintainability – Update logic in one place, all projects benefit.
+
+Consistency – Standardize CI/CD practices across teams.
+
+Scalability – Perfect for enterprise setups with multiple teams.
+
+vars/deployApp.groovy:
+
+def call(String environment) {
+ stage("Deploy to ${environment}") {
+ if (environment == "dev") {
+ sh "echo Deploying to Dev Server..."
+ } else if (environment == "prod") {
+ sh "echo Deploying to Production..."
+ } else {
+ error "Unknown environment: ${environment}"
+ }
+ }
+}
+
+Jenkinsfile using Shared Library:
+
+@Library('my-shared-library') _  // Load shared library
+
+pipeline {
+ agent any
+ stages {
+ stage('Build') {
+ steps {
+ sh 'echo Building the app...'
+ }
+ }
+ stage('Deploy') {
+ steps {
+ deployApp('dev') // Call function from shared library
+ }
+ }
+ }
+}
