@@ -1,0 +1,45 @@
+✅ Understanding Amazon EC2 Types, Series & Purchase Options
+
+Amazon EC2 (Elastic Compute Cloud) offers virtual servers in the cloud with different instance families and pricing options to suit every workload.
+
+🔹 EC2 Instance Families
+
+1️⃣ General Purpose – Balanced compute, memory, storage (e.g., t4g, m6i)
+2️⃣ Compute Optimized – High-performance CPUs for compute-heavy tasks (e.g., c7g)
+3️⃣ Memory Optimized – Large memory for databases & in-memory caching (e.g., r6g)
+4️⃣ Storage Optimized – High IOPS and storage throughput (e.g., i4i, d3)
+5️⃣ Accelerated Computing – GPUs/FPGA for ML, AI, graphics (e.g., p4d, g5)
+
+
+---
+
+🔹 Popular EC2 Series
+
+T Series → Burstable performance (low-cost, scalable)
+
+M Series → General-purpose (balanced resources)
+
+C Series → Compute-intensive workloads
+
+R/X Series → Memory-intensive workloads
+
+P/G Series → GPU & ML workloads
+
+I/D Series → Storage optimized
+
+
+
+---
+
+🔹 Purchasing Options
+
+✅ On-Demand → Pay-as-you-go, no commitment
+✅ Reserved Instances → Up to 72% cheaper, 1 or 3-year term
+✅ Savings Plans → Flexible alternative to RIs, cost savings
+✅ Spot Instances → Up to 90% cheaper for fault-tolerant apps
+✅ Dedicated Hosts/Instances → For compliance & licensing needs
+
+
+---
+
+💡 Tip: Always choose instance type based on workload + consider cost optimization with Savings Plans or Spot where possible.
