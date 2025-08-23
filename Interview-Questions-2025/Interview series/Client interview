@@ -1,0 +1,27 @@
+Final Round – Client Interview Experience (DevOps Engineer) 🚀
+
+In my final client round, the panel included 2 AWS Cloud Architects and 1 Project Manager. The Project Manager began by explaining the project, which is a large-scale migration project to AWS. After that, the Cloud Architects asked me technical questions to assess my skills and real-world problem-solving ability.
+
+Questions I was asked in this round:
+
+1️⃣ How have you used Terraform to structure and modularize infrastructure for different environments?
+
+2️⃣ How do you typically manage Terraform state files, and why use remote storage with S3 and DynamoDB?
+
+3️⃣ What has been your experience in building CI/CD pipelines to make deployments smoother and more reliable?
+
+4️⃣ Can you explain your exposure to EKS and how you manage application traffic inside the cluster?
+
+5️⃣ How would you troubleshoot a case where an EC2 instance has an IAM role for S3 access but still gets “Permission Denied”?
+
+6️⃣ What is AWS API Gateway, and what is it mainly used for?
+
+7️⃣ How do you handle application rollbacks in Kubernetes with Argo CD?
+
+8️⃣ What approach would you take for blue-green deployments as compared to rolling updates?
+
+9️⃣ During Kubernetes upgrades with limited nodes, how do you minimize downtime and ensure stability?
+
+🔟 In a migration project, what steps would you take to ensure security, cost optimization, and smooth transition to AWS?
+
+This final round was a mix of project-level discussion and deep technical questions around Terraform, EKS, CI/CD, and AWS services. It gave me a great opportunity to showcase both my technical expertise and my ability to work on a critical migration project.
