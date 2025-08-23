@@ -75,4 +75,98 @@ Archetypes are project templates in Maven. They help create a new project struct
 SNAPSHOT: Development version, still under changes.
 RELEASE: Stable and final version of the artifact.
 
+16. What is the purpose of the settings.xml file in Maven?
+
+It configures Maven execution, including repository URLs, proxies, credentials, and profiles. It is located in $MAVEN_HOME/conf or ~/.m2/.
+
+17. How do you force Maven to update dependencies?
+
+mvn clean install -U
+
+The -U option forces Maven to update snapshots and releases.
+
+18. What is dependency management in Maven?
+
+It helps define version and scope of dependencies in the parent POM, so child modules inherit consistent versions.
+
+19. What is transitive dependency in Maven?
+
+If Project A depends on B, and B depends on C, then A also depends on C indirectly. Maven automatically resolves these.
+
+20. How do you exclude a transitive dependency?
+
+<dependency>
+  <groupId>org.example</groupId>
+  <artifactId>example-lib</artifactId>
+  <exclusions>
+   <exclusion>
+     <groupId>commons-logging</groupId>
+     <artifactId>commons-logging</artifactId>
+   </exclusion>
+  </exclusions>
+</dependency>
+
+21. What is the role of the maven-compiler-plugin?
+
+It compiles Java source code and allows configuring Java versions using source and target properties.
+
+22. How do you check the effective POM in Maven?
+
+mvn help:effective-pom
+
+Shows the merged POM including inherited configurations.
+
+23. How do you run a Maven goal directly?
+
+mvn <plugin>:<goal>
+Example: mvn compiler:compile.
+
+24. What is a multi-module project in Maven?
+
+A project with multiple submodules, managed by a parent POM. This ensures dependency and build consistency across modules.
+
+25. How does Maven handle version conflicts?
+
+Maven uses the nearest definition rule: the dependency closest in the hierarchy is used.
+
+26. How do you create a custom Maven profile?
+
+Profiles in pom.xml allow customizing builds for different environments.
+
+<profiles>
+ <profile>
+  <id>dev</id>
+  <properties>
+   <env>development</env>
+  </properties>
+ </profile>
+</profiles>
+
+Run with: mvn install -Pdev.
+
+27. How do you package a Maven project?
+
+mvn package
+
+It creates the JAR/WAR file in the target/ directory.
+
+28. How do you deploy a Maven project to a repository?
+mvn deploy
+
+Uploads artifacts to a remote repository (like Nexus, Artifactory).
+
+29. What is the difference between mvn package and mvn install?
+
+package: Creates JAR/WAR in target/.
+install: Packages and also installs it into the local repository.
+
+30. What are common Maven phases?
+
+validate: Validates project structure.
+compile: Compiles source code.
+test: Runs tests.
+package: Builds JAR/WAR.
+install: Copies to local repo.
+deploy: Pushes to remote repo.
+
 
