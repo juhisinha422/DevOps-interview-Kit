@@ -1,0 +1,19 @@
+💡 𝗕𝗮𝘀𝗵 𝗧𝗶𝗽: 𝗘𝗮𝘀𝘆 𝗗𝗲𝗳𝗮𝘂𝗹𝘁𝘀 𝘄𝗶𝘁𝗵 ${𝗩𝗔𝗥:-𝗱𝗲𝗳𝗮𝘂𝗹𝘁}
+
+Sometimes when you write a script, the user may forget to give an argument.
+Instead of breaking, you can tell Bash: “use this instead.”
+
+That’s what ${VAR:-default} does.
+
+👉 Example:
+
+𝘋𝘌𝘚𝘛_𝘋𝘐𝘙="${2:-$𝘏𝘖𝘔𝘌/𝘣𝘢𝘤𝘬𝘶𝘱𝘴}"
+
+If the user gives a 2nd argument → use it.
+
+If not → save the backup in ~/backups.
+
+Run this:
+
+./𝘣𝘢𝘤𝘬𝘶𝘱.𝘴𝘩 /𝘦𝘵𝘤 /𝘮𝘯𝘵/𝘴𝘵𝘰𝘳𝘢𝘨𝘦  # Saves to /mnt/storage
+./𝘣𝘢𝘤𝘬𝘶𝘱.𝘴𝘩 /𝘦𝘵𝘤        # Saves to ~/backups
