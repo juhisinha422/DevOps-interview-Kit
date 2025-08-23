@@ -1,0 +1,78 @@
+Maven Interview Questions and Answers 
+1. What is Maven?
+
+Maven is a build automation and project management tool for Java. It uses a Project Object Model (POM) to manage builds, dependencies, documentation, and reporting.
+
+2. What are the advantages of using Maven?
+
+Simplifies project builds with a standard lifecycle.
+Handles dependency management automatically.
+Provides a central repository for libraries.
+Supports multi-module projects and portability.
+
+3. What is pom.xml in Maven?
+
+pom.xml is the core configuration file in Maven. It defines project details, dependencies, plugins, build configuration, and repositories.
+
+4. What is a Maven dependency?
+
+A dependency is an external library that a project needs. Maven downloads these automatically from repositories and manages version conflicts.
+
+5. What are Maven repositories?
+
+Local Repository: Stored on your machine (~/.m2/repository).
+Central Repository: Maven’s default global repo.
+Remote Repository: Custom or third-party repos.
+
+6. What is the Maven build lifecycle?
+
+Maven defines three standard lifecycles:
+clean: Cleans build artifacts.
+default: Builds and packages the application.
+site: Generates documentation.
+
+7. What is the difference between compile, provided, and runtime scope in Maven?
+
+compile: Available at compile and runtime (default).
+provided: Needed at compile, but provided by runtime (e.g., servlet-api).
+runtime: Only required at runtime, not compile time.
+
+8. What is the difference between install and deploy in Maven?
+
+install: Installs artifacts into local repository.
+deploy: Uploads artifacts to a remote repository for sharing.
+
+9. What is a Maven plugin?
+
+A plugin is a collection of goals used to perform tasks (compile, test, package, deploy). Example: maven-compiler-plugin.
+
+10. What is the default build directory in Maven?
+
+By default, Maven stores compiled files and outputs in the target/ directory.
+
+11. How do you skip tests in Maven?
+
+mvn install -DskipTests
+This compiles test classes but skips execution.
+
+12. How do you run only tests in Maven?
+
+mvn test
+Runs only the test phase of the build lifecycle.
+
+
+13. What is the difference between mvn clean install and mvn install?
+
+mvn clean install: Deletes previous build files (target/) before installing.
+mvn install: Installs without cleaning old artifacts.
+
+14. What are Maven archetypes?
+
+Archetypes are project templates in Maven. They help create a new project structure quickly (e.g., webapp, simple Java app).
+
+15. What is the difference between SNAPSHOT and RELEASE versions?
+
+SNAPSHOT: Development version, still under changes.
+RELEASE: Stable and final version of the artifact.
+
+
