@@ -1,0 +1,25 @@
+What is remote state in Terraform, and why do teams use it instead of keeping the state file locally?
+Can you also give a real-world example of using remote state in a project?
+
+Ans: Remote State in Terraform:
+By default, Terraform stores the state file (terraform.tfstate) on your local machine.
+Remote state means storing that file in a shared location (like a GCP Storage Bucket, AWS S3, or Terraform Cloud) so the whole team can access the latest state.
+Why Teams Use Remote State:
+1. Collaboration → Multiple team members can work on the same infrastructure without overwriting each other’s changes.
+2. Backup → If your laptop is lost, the state is still safe.
+3. Locking → Prevents two people from running terraform apply at the same time (avoids conflicts).
+
+Real-World Example:
+Your DevOps team manages GCP infrastructure.
+1. You store the state file in a Google Cloud Storage bucket.
+2. When any team member runs terraform apply, Terraform fetches the latest state from the bucket, updates it, and saves it back.
+3. This way, everyone works from the same map of resources.
+
+Example config for GCP remote state:
+
+terraform {
+  backend "gcs" {
+    bucket = "my-terraform-state"
+    prefix = "prod"
+  }
+}
