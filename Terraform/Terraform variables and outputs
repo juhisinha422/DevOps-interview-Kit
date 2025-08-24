@@ -1,0 +1,39 @@
+What are Terraform variables and outputs, and why are they used?
+Can you also give a real-world example of how both would be used in the same project?
+
+Ans: Terraform Variables
+What they are:
+--> Variables are like placeholders in Terraform code that store values you can reuse.
+Why use them:
+--> Avoid hardcoding values (e.g., machine type, region).
+--> Make your code reusable for different environments (dev, test, prod).
+Example:
+variable "region" {
+  default = "us-central1"
+}
+
+resource "google_compute_instance" "vm" {
+  name         = "my-vm"
+  machine_type = "e2-medium"
+  zone         = "${var.region}-a"
+}
+Here, if you change the region variable, Terraform will create resources in the new region without changing every line of code.
+
+Terraform Outputs
+What they are:
+--> Outputs are used to display important information after Terraform creates infrastructure.
+
+Why use them:
+--> Share details with your team or other Terraform configurations.
+--> Show key values like IP addresses, database connection strings.
+Example:
+
+output "vm_ip" {
+  value = google_compute_instance.vm.network_interface[0].access_config[0].nat_ip
+}
+After terraform apply, Terraform will print the VM’s IP address.
+
+Real-World Example Using Both Together
+Let’s say you’re creating a GCP VM for a web server:
+1. You define a variable for the VM’s machine type, so it’s easy to change in the future.
+2. You define an output for the VM’s public IP, so your team can access the website without logging into the GCP console.
