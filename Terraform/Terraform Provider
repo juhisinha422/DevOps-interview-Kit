@@ -1,0 +1,19 @@
+What is a Terraform Provider and why is it important?
+Can you also give a real-world example of using a provider in a cloud project?
+
+
+A Terraform Provider is a plugin that lets Terraform talk to a specific cloud or service (like AWS, GCP, Azure, Kubernetes, GitHub, etc.).
+ It knows how to create, read, update, and delete the resources for that service.
+When you run terraform init, Terraform downloads the required provider plugin from the Terraform Registry.
+
+Real-World Example:
+ If you want to create a VM in Google Cloud, you use the Google Provider:
+
+provider "google" {
+ project = "my-project-id"
+ region = "us-central1"
+}
+
+
+This provider knows how to create Compute Engine VMs, Cloud Storage Buckets, SQL Databases, etc., in GCP.
+Without the provider, Terraform wouldn’t know how to talk to GCP
