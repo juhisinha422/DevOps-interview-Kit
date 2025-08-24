@@ -1,0 +1,31 @@
+Git / DevOps Q&A
+1. Which branching strategy did you use? Name at least two alternative strategies.
+
+ I primarily used GitFlow, which separates work into main, develop, and feature branches, making release and hotfix management easy. Two alternatives are GitHub Flow, which is simpler and good for CI/CD pipelines, and Trunk-Based Development, where small commits go directly to the main branch with feature flags for incomplete features.
+
+2. Which deployment strategy did you use, and how was it implemented?
+
+ I mostly used the Blue-Green Deployment strategy, where two identical environments (blue and green) are maintained. Traffic is switched to the green environment after successful deployment, minimizing downtime. Alternatively, Rolling Deployments and Canary Deployments can also be used to gradually update services.
+
+3. How do you recover a deleted branch?
+ If the branch was pushed to remote, it can be recovered using git checkout -b branch-name origin/branch-name. If deleted locally, we can use git reflog to find the last commit hash and restore it with git checkout -b branch-name <commit-hash>.
+
+4. If a file is deleted from a storage account, how do you retrieve it?
+
+ In Azure, we can restore deleted files if soft delete or blob versioning is enabled on the storage account. These features allow recovery of accidentally deleted data. If not enabled, the only option is to restore from backup.
+
+5. How do you grant secure access to a storage account?
+
+ We grant access using Shared Access Signatures (SAS) or Azure RBAC with Managed Identities. This ensures temporary, least-privilege-based access without exposing account keys. Using Azure AD authentication is the recommended best practice for secure access.
+
+6. When you create a storage account with Terraform, how do you reference a Key Vault key?
+
+ We first store the secret in Azure Key Vault and then use Terraform’s azurerm_key_vault_secret data source to fetch it. This secret can be passed to the storage account resource, ensuring sensitive values are never hardcoded in Terraform code.
+
+7. What is a state file, where is it stored, and how do you unlock it?
+
+ A Terraform state file keeps track of infrastructure resources. By default, it is stored locally, but in production, we use remote backends like Azure Storage, S3, or Terraform Cloud. To unlock a state file, we manually remove locks (e.g., in S3 with DynamoDB lock table or in Azure Storage with state lock blob).
+
+8. How do you reference multiple VMs as backend targets for an Application Gateway in Terraform?
+
+ We use a backend address pool in Terraform and dynamically assign multiple VM private IPs or NICs. This is usually achieved with loops (for_each or count) to reference multiple VM instances and add them to the gateway backend pool.
