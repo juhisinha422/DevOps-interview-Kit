@@ -1,0 +1,16 @@
+Topic: - Difference between stateful and stateless protocol in TCP/IP
+
+Stateful Protocol:-
+1. Keeps track of the state of the communication session between client and server.
+2.Server remembers previous requests from the client.
+3.More resource-heavy but reliable.
+4.Example in TCP/IP: TCP (because it establishes a connection, tracks sequence numbers, retransmits lost packets).
+5. Real-world example: SSH, HTTP with sessions, FTP.
+
+Stateless Protocol: -
+
+1.Each request is independent — no memory of previous communication.
+2.Server does not retain session information.
+3.Lightweight and faster, but less reliable.
+4.Example in TCP/IP: UDP (no connection, no tracking of state).
+5.Real-world example: DNS queries, video streaming, VoIP.
