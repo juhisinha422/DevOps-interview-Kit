@@ -1,0 +1,27 @@
+What is a Terraform Module, and why would you use one?
+Can you also give a real-world example of a module in a project?
+
+Ans: Terraform Module (Easy Explanation)
+--> A module in Terraform is like a reusable folder of Terraform code.
+--> Instead of writing the same code again and again, you put it in a module and reuse it in multiple places.
+--> A module can be local (in your project) or remote (downloaded from 
+Terraform Registry or GitHub).
+
+Why use a Module?
+1. Reusability – Write once, use many times.
+2. Organization – Keep your code clean and structured.
+3. Team Collaboration – Different teams can share the same module.
+Real-World Example:
+--> Suppose you often create a Google Cloud VM with the same settings:
+1. Machine type: e2-medium
+2. OS: Ubuntu
+3. Startup script installed
+Instead of copy-pasting the code every time, you put it in a module called gcp_vm.
+
+
+module "app_server" {
+  source       = "./modules/gcp_vm"
+  vm_name      = "app-server"
+  machine_type = "e2-medium"
+}
+Now, whenever you need another VM, just call the module again with different variables — no rewriting needed.
