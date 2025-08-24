@@ -1,5 +1,37 @@
 scenario-based DevOps interview questions & answers
 
+1. What will you do if a Jenkins pipeline fails?
+Answer: Check Jenkins logs → Identify stage of failure → Fix configuration/code issue → Re-run the pipeline. If infra-related, verify Terraform or Kubernetes changes before redeploying.
+2. How do you handle a failed deployment in Kubernetes?
+Answer: Use kubectl describe pod and kubectl logs to check errors → If critical, rollback with kubectl rollout undo deployment <name> → Fix and redeploy.
+3. How do you manage Terraform state in a team?
+Answer: Store state in remote backend (Azure Blob, GCS bucket, Terraform Cloud) → Enable state locking to prevent conflicts → Use versioning for recovery.
+4. You changed a Terraform variable and want to see the impact before applying. What do you do?
+Answer: Run terraform plan to preview changes before applying.
+5. How do you ensure zero downtime deployment in Kubernetes?
+Answer: Use RollingUpdate strategy in deployments, configure readiness probes, and keep replicas running until new pods are healthy.
+6. How do you roll back in Jenkins if a deployment causes issues?
+Answer: Keep artifact versioning → Redeploy the last stable build from Jenkins → Or trigger rollback pipeline.
+7. What if Terraform state file gets corrupted or deleted?
+Answer: Restore from remote backend version history (e.g., GCS versioning, Azure Blob snapshots) → If not available, use terraform import to rebuild state.
+8. How do you secure secrets in pipelines?
+Answer: Use Jenkins credentials manager, Vault, or cloud secret managers (GCP Secret Manager, Azure Key Vault) instead of storing secrets in code.
+9. How do you monitor Kubernetes clusters?
+Answer: Use Prometheus + Grafana for metrics, ELK/EFK stack for logs, and Kubernetes liveness/readiness probes for pod health.
+10. What will you do if a pod is stuck in CrashLoopBackOff?
+Answer: Run kubectl describe pod and kubectl logs → Check startup script, image, or config issue → Fix error → Redeploy.
+11. How do you manage infrastructure across multiple environments (Dev/QA/Prod) using Terraform?
+Answer: Use workspaces or separate state files with environment-specific variables.
+12. How do you optimize CI/CD pipelines in Jenkins?
+Answer: Use parallel stages, caching (e.g., Docker layers, Maven cache), and parameterized builds to save time.
+13. How do you perform blue-green deployment in Kubernetes?
+Answer: Run two environments (Blue = current, Green = new) → Route traffic to Green only after successful validation → Rollback to Blue if issues occur.
+14. How do you troubleshoot high CPU usage on a Linux server?
+Answer: Use top, htop, vmstat, and iostat → Identify process → Kill/fix process → Scale infra if required.
+15. How do you automate infrastructure scaling in cloud?
+Answer: Configure Auto Scaling Groups in GCP (Instance Groups) or Azure (VM Scale Sets) → Integrate with Terraform for automation.
+
+
 What if a Terraform apply fails halfway?
 Answer: Terraform creates a partial state → Fix the error → Run terraform plan again → Apply → Or use terraform refresh to sync state.
 
