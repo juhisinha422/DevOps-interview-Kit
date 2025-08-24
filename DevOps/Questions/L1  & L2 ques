@@ -1,0 +1,34 @@
+DevOps L1 & L2 Interview Questions
+
+🔹 L1 (Basics – Technical)
+1️⃣ Git Merge vs Rebase?
+➤ Merge: new commit, history preserved. Rebase: rewrite commits, cleaner history.
+
+2️⃣ Docker vs VM?
+➤ Docker shares host kernel (lightweight). VM has its own OS (heavy).
+
+3️⃣ Deployment vs StatefulSet vs DaemonSet?
+➤ Deployment: stateless apps. StatefulSet: stable IDs/storage. DaemonSet: 1 pod per node.
+
+4️⃣ LoadBalancer vs Ingress?
+➤ LB = direct external access. Ingress = HTTP/TLS routing rules.
+
+5️⃣ Terraform State?
+➤ Maintains infra mapping in terraform.tfstate.
+
+
+🔹 L2 (Intermediate – Hands-on)
+1️⃣ What happens on kubectl apply?
+➤ API Server → etcd → Scheduler → Kubelet → Container runtime pulls image → Pod runs.
+
+2️⃣ HPA vs Cluster Autoscaler?
+➤ HPA = scale pods. Cluster Autoscaler = scale nodes.
+
+3️⃣ Debugging a Pod?
+➤ kubectl describe pod, kubectl logs, check probes/events.
+
+4️⃣ Ansible vs Terraform?
+➤ Ansible: config mgmt (imperative). Terraform: infra provisioning (declarative).
+
+5️⃣ CI/CD Flow with Jenkins + Docker + K8s?
+➤ Push code → Jenkins builds image → Push to registry → Deploy via kubectl/Helm → Pods run app.
