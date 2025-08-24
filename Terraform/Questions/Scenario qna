@@ -1,0 +1,10 @@
+Scenario-based Interview Q&A
+Q1. What happens if two engineers run terraform apply at the same time?
+Answer: Without state locking, race conditions occur → infra may break. That’s why we use remote state + locking (e.g., DynamoDB lock in AWS, GCS bucket lock in GCP).
+
+Q2. Can you edit state file manually?
+Answer: Yes, but not recommended. Only in emergency situations (like orphaned resources). Safer option → use terraform state commands.
+
+Q3. How to recover from a deleted state file?
+Answer: Re-run terraform import to re-map real resources into a new state file.
+Use backups (if remote state backend is enabled).
