@@ -1,0 +1,69 @@
+scenario-based DevOps interview questions & answers
+
+What if a Terraform apply fails halfway?
+Answer: Terraform creates a partial state → Fix the error → Run terraform plan again → Apply → Or use terraform refresh to sync state.
+
+
+How do you manage multi-cloud deployments (GCP + Azure)?
+Answer: Use Terraform with multiple providers → Create modules for each cloud → Keep separate state files for GCP and Azure.
+
+
+How do you handle a disk full issue in Linux?
+Answer: Run df -h to check usage → Clear logs from /var/log → Remove unused Docker images/containers → Expand disk if required.
+
+
+How do you implement rollback in Terraform?
+Answer: Use version control to revert .tf files → Run terraform apply again → Restore previous infra state from remote backend version.
+
+
+How do you ensure security in DevOps pipelines?
+Answer:
+Scan code with SonarQube
+Scan images with Trivy/Anchore
+Use IAM least privilege in GCP/Azure
+Store secrets in Secret Manager/Key Vault
+Enable audit logging
+How do you manage Terraform modules for reusability?
+Answer: Create modules for common components (VPC, VM, AKS/GKE, IAM) → Store them in Git → Call modules in different projects with version control.
+
+
+What if two team members run Terraform apply at the same time?
+Answer: Use remote backend with state locking (like Azure Blob with locking or GCS with locking) → This prevents conflicts.
+
+
+How do you perform Canary Deployment in Kubernetes?
+Answer: Deploy a new version to a small % of users → Use Istio/NGINX Ingress for traffic routing → Gradually increase traffic → Rollback if errors.
+
+
+How do you troubleshoot “ImagePullBackOff” in Kubernetes?
+Answer:
+Check if image exists in registry.
+Validate credentials/secret for private registry.
+Verify image tag.
+Fix and redeploy.
+
+
+How do you integrate Jenkins with GitHub?
+Answer: Configure GitHub webhook → Connect Jenkins job to repo → Trigger builds automatically on code push/PR.
+
+
+How do you perform zero-downtime DB migration in CI/CD?
+Answer: Use Liquibase/Flyway migration scripts → Apply backward-compatible schema changes → Deploy app → Apply destructive changes only later.
+
+
+What if a Jenkins agent node goes offline?
+Answer: Check agent logs → Restart service → Verify connectivity with master → Add auto-scaling slaves (Kubernetes or cloud VMs).
+
+
+How do you set resource limits in Kubernetes?
+Answer: Define requests & limits in pod spec → Ensures fair resource allocation and prevents pod from consuming all CPU/memory.
+
+
+How do you implement CI/CD for Terraform?
+Answer:
+Use Jenkins/GitHub Actions → terraform fmt, terraform validate, terraform plan, approval stage, then terraform apply.
+Store state in backend.
+
+
+How do you monitor logs in Kubernetes?
+Answer: Use kubectl logs for quick debugging → For centralized logging, use EFK (Elasticsearch + Fluentd + Kibana) or Loki + Grafana.
