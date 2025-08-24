@@ -1,0 +1,18 @@
+What is the difference between terraform state and terraform plan?
+Can you also give a real-world example of when you would use each one?
+
+terraform plan:
+Purpose: Shows what Terraform will create, change, or destroy before applying changes.
+Example: You want to add 2 new VMs in GCP. Before actually creating them, you run terraform plan to see exactly what Terraform will do — like checking the “before & after” picture of your infrastructure.
+
+terraform state:
+Purpose: Manages and views Terraform’s state file, which keeps track of the real-world resources Terraform has created.
+Example: If you forget the name of a VM Terraform created, you can run:
+
+terraform state list
+
+to see all managed resources.
+You can also use commands like terraform state show to view details of a specific resource.
+💡 Key Difference:
+plan = Preview future changes (doesn’t touch the infrastructure).
+state = Look at the current reality Terraform knows about.
