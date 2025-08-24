@@ -99,3 +99,46 @@ Store state in backend.
 
 How do you monitor logs in Kubernetes?
 Answer: Use kubectl logs for quick debugging → For centralized logging, use EFK (Elasticsearch + Fluentd + Kibana) or Loki + Grafana.
+
+
+31. How do you secure Kubernetes cluster? 
+Answer: 
+• Use RBAC for access control. 
+• Enable Network Policies. 
+• Regularly patch cluster. 
+• Restrict container privileges (no root user). 
+• Use Secrets API for sensitive data. 
+32. What if Terraform shows “drift” in infrastructure? 
+Answer: Run terraform plan to identify drift → Apply changes to sync with config → Or update .tf files to reflect actual infra. 
+33. How do you handle high latency issues in GCP/Azure services? 
+Answer: • Check network logs. 
+• Use Cloud Monitoring (Stackdriver/Azure Monitor). 
+• Scale infra (VMs, AKS nodes). 
+• Optimize load balancer & caching. 
+34. How do you perform blue-green deployment using Jenkins + Kubernetes? 
+Answer: Jenkins pipeline deploys Green → Run tests → Switch traffic to Green (via service or ingress) → Keep Blue as rollback option. 
+35. What if Jenkins master crashes? 
+Answer: • Use backup plugin to restore jobs. 
+• Store Jenkins home in persistent storage. 
+• Run Jenkins in HA mode with Kubernetes. 
+36. How do you integrate monitoring into DevOps pipelines? 
+Answer: Add monitoring setup steps in pipeline (Prometheus config, log forwarding, alerts) → Validate health after each deployment. 
+37. How do you optimize Terraform execution time? 
+Answer: • Use smaller state files (split projects). 
+• Run in parallel with -parallelism. 
+• Use modules to reduce duplication. 
+38. How do you troubleshoot high pod restart counts in Kubernetes?
+Answer: • Check pod logs for crash reason. 
+• Validate resource limits. 
+• Verify liveness/readiness probes. 
+• Fix config/secret errors. 
+39. How do you ensure auditability in DevOps? 
+Answer: • Store IaC in Git for versioning. 
+• Enable Cloud Audit Logs (GCP/Azure). 
+• Use Jenkins pipeline logs. 
+• Implement approval stages for production. 
+40. What if your GCP/Azure costs suddenly spike? 
+Answer: • Check billing reports. 
+• Identify unused resources (VMs, disks, load balancers). 
+• Set budgets & alerts. 
+• Use autoscaling + reserved instances.
