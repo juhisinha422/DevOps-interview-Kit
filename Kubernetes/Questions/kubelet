@@ -1,0 +1,4 @@
+Kubernetes Fundamental Interview Question
+What is the impact of upgrading the kubelet if we leave the pods on the worker node will it break running pods? Why?
+ 
+Upgrading kubelet without draining the node will cause all pods on the node to stop and restart, potentially leading to temporary unavailability. This is because the kubelet stops querying the API during the upgrade, affecting container operations. It's recommended to drain the node before upgrading kubelet to gracefully migrate pods and avoid disruption.
