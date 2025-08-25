@@ -33,3 +33,35 @@ Here’s a brand-new set of fresh questions from the interview:
  ✅ What’s the difference between Key Vault, Secret Manager, and Parameter Store — and when to choose what?
  ✅ How do you monitor and respond to privilege escalation attempts within CI/CD agents?
  ✅ What is your security approach to running third-party GitHub Actions or pipeline extensions?
+
+
+
+Technical Interview Experience – DevOps Engineer at Sigmoid (Round 2)
+--------------------------------------------------------
+
+Here’s a advanced questions from Round 2:
+🚀 System Architecture & High Availability
+ ✅ How would you design a CI/CD system that supports multi-tenant data pipelines across 100+ clients without cross-environment interference?
+ ✅ What’s your approach to blue-green deployment for Spark/Flink jobs without losing in-flight data?
+ ✅ How do you ensure fault isolation when one microservice in a data pipeline fails under heavy load?
+ ✅ What strategies do you use for stateful service upgrades in Kubernetes?
+
+🚀 Failure Simulation & Chaos Engineering
+ ✅ How do you simulate a node failure in Kubernetes to validate auto-healing?
+ ✅ What’s your process to recover from a Corrupted Terraform State File during a production deployment?
+ ✅ How do you run chaos tests on Kafka (broker failure, partition leader unavailability) without impacting production SLAs?
+ ✅ How would you validate DR plans for a pipeline that processes streaming financial transactions?
+
+🚀 Scalability & Performance Tuning
+ ✅ How do you design auto-scaling policies for Spark clusters in AWS EMR or Kubernetes-based operators?
+ ✅ How do you benchmark pipeline performance when dealing with 10TB+ data daily?
+ ✅ Explain how you’d tune Kubernetes HPA/VPA for spiky ETL workloads.
+ ✅ How do you handle connection pool exhaustion in high-concurrency APIs serving analytics queries?
+
+🚀 Cloud-Native Security & Compliance
+ ✅ What’s your approach to implementing network segmentation (service mesh / CNI policies) for sensitive ETL jobs?
+ ✅ How would you ensure PII masking and encryption in CI/CD environments for data pipelines?
+ ✅ How do you detect and prevent data exfiltration attempts in Kubernetes clusters?
+ ✅ What security controls would you apply when using open-source connectors in production ETL flows?
+
+🎯 Round 2 Status: Performance-driven & scenario-based, testing resilience, scale, and compliance.
