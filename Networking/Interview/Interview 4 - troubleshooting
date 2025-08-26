@@ -1,0 +1,14 @@
+Troubleshooting network issues isn’t guesswork — it’s about knowing which tool to use at each layer.
+
+Question: How do you use commands like ping, traceroute, telnet, nc (netcat), or curl to debug network issues?
+
+Here’s my layered approach 👇
+
+🔹 ping – Check basic connectivity (is the host reachable?).
+🔹 traceroute – Find the path packets take & where they drop.
+🔹 telnet – Test if a specific TCP port (22, 80, etc.) is open.
+🔹 nc (netcat) – More flexible: test TCP/UDP ports, banner grabbing, even file transfer.
+🔹 curl – Verify the application layer (HTTP/HTTPS, APIs, etc.)
+
+Example:
+When SSH wasn’t working on a server, I started with ping (server reachable ✅), then traceroute (path fine ✅). Using nc -zv server 22, I found port 22 was blocked — a firewall rule issue. Fixing that solved it instantly.
