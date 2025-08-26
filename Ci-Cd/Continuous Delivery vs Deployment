@@ -1,0 +1,11 @@
+Continuous Delivery vs Continuous Deployment – Made Simple!
+
+Think of it like online shopping 🛒:
+
+Continuous Delivery → Your package is ready at the warehouse ✅, but it won’t ship until you click confirm.
+
+Continuous Deployment → The moment the package is ready 📦🚚 … it ships to your doorstep automatically.
+
+That’s the difference:
+👉 Delivery = manual approval before going live.
+👉 Deployment = fully automated, no waiting.
