@@ -1,0 +1,10 @@
+Kubernetes DaemonSets: Running Pods on Every Node
+
+A DaemonSet ensures that a copy of a pod runs on all (or selected) nodes in your cluster. When you add a new node, the DaemonSet automatically schedules a pod there too.
+
+Why Use DaemonSets?
+- Deploying monitoring agents (e.g., Prometheus Node Exporter)
+- Running logging agents (e.g., Fluentd, Filebeat)
+- Networking components (e.g., CNI plugins)
+
+Key Benefit: Simplifies cluster-wide workloads that must exist everywhere.
