@@ -1,0 +1,15 @@
+Troubleshooting Tip: Ping vs Telnet
+
+When debugging connectivity issues, two simple commands often save the day:
+
+🔹 Ping → Uses ICMP to check if the server is reachable and measure latency.
+🔹 Telnet → Uses TCP to test if a specific port/service (like SSH on 22 or SQL on 1433) is open and listening.
+
+>Think of it this way:
+	•	Ping = Is the server alive?
+	•	Telnet = Is the service alive on that server?
+
+>Example:
+If ping to a database server works but telnet <IP> 1433 fails → the server is up, but the DB port might be blocked by a firewall or the service isn’t running.
+
+>These small checks can quickly narrow down whether it’s a network issue or an application/service issue.
