@@ -1,0 +1,3 @@
+Create an object and send it via email using Lambda, CloudWatch, and SNS? 
+
+To send an object via email using AWS, you first create an SNS topic in the AWS Console, then subscribe your email address to it and confirm the subscription from your inbox. Next, create a Lambda function with an IAM role that has permission to publish to that SNS topic. Inside the Lambda function code, generate the object you want and then publish the object or an S3 link to the SNS topic. Finally, set up a cloudwatch rule to trigger the Lambda function. When the rule triggers, Lambda will run, create the object, publish it to SNS, and SNS will immediately deliver it to your email.
