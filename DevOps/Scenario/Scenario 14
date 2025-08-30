@@ -1,0 +1,24 @@
+DevOps Scenario-Based Interview Questions & Answers
+
+Preparing for a DevOps interview? 
+
+Here are some real-world, scenario-based Q&A that can help you stand out. These go beyond theory and focus on troubleshooting, automation, and best practices.
+
+Sample Questions Covered-
+
+1-What will you do if a Jenkins pipeline fails? 
+2 How do you handle a failed deployment in Kubernetes? 
+3 How do you manage Terraform state in a team? 
+4 How do you preview Terraform changes before applying?
+5 How do you ensure zero-downtime deployment in Kubernetes?
+6 How do you roll back in Jenkins if deployment causes issues?
+7 What if Terraform state file gets corrupted or deleted? 
+8 How do you secure secrets in pipelines?
+
+Key Takeaways:
+
+-Always use logs (kubectl logs, Jenkins logs) to debug efficiently.
+-Remote state management + versioning is critical in Terraform.
+ -Use RollingUpdate strategies & readiness probes for Kubernetes zero-downtime.
+-Artifact versioning ensures safe rollbacks in CI/CD pipelines.
+-Secure secrets using Vault, AWS/GCP Secret Manager, or Kubernetes Secrets.
