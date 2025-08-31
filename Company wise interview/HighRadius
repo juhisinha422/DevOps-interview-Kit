@@ -1,0 +1,11 @@
+interviewed at HighRadius, and here are some of the technical questions I was asked. Sharing them here to help others preparing for DevOps or Cloud Engineering roles:
+1. How do you check CPU status, and what is the expected output when you run that command?
+2. How do you check the status of a previously running process in your VM?
+3. What is the use of Docker Swarm?
+4. How do you log in to an EKS cluster?
+5. How do you configure monitoring for your cluster?
+6. How do you patch your host without causing downtime?
+7. How do you change the instance type of your EKS cluster?
+8. Which protocol does Ansible work on?
+9. What is an Ansible playbook?
+10. What are your roles and responsibilities as a DevOps engineer?
