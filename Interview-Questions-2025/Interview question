@@ -1,0 +1,17 @@
+Interview Experience - ( Middleware L2 - L3 )
+
+One of the interesting question : 
+ 👉 “If a client asks you which middleware tool they should go with — WebSphere, JBoss, or Tomcat — how would you answer?”
+Here’s how I responded 👇
+
+💬 My Answer:
+ 
+🏦 IBM WebSphere (WAS): Best for mission-critical apps (banking/insurance) where reliability, clustering, and enterprise integration are non-negotiable. Comes with licensing cost 💰 but delivers unmatched stability.
+
+⚖️ JBoss EAP: Strong balance of enterprise features + open-source flexibility. Great for organisations modernising with HA/Clustering, but not ready for IBM-level costs.
+
+⚡ Apache Tomcat: Lightweight and resource-friendly. Ideal for microservices, smaller workloads, or development and testing environments. 🚀
+
+✅  concluded: “There is no single ‘best’ tool. The choice depends on the client’s budget, scalability needs, and ecosystem.”
+
+This question tested not just technical knowledge, but the ability to think like a consultant and align technology with business goals.
