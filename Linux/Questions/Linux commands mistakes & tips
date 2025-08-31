@@ -1,0 +1,74 @@
+8 Linux Command Mistakes I See Developers Make All the Time.
+
+Give it a read 👇
+
+[1.] 𝐒𝐩𝐚𝐜𝐞𝐬 𝐌𝐚𝐭𝐭𝐞𝐫
+Unlike some operating systems, spaces in filenames and paths must be properly escaped or quoted in Linux.
+
+Forgetting this leads to "file not found" errors and confusion.
+
+Example:
+cd My Documents ❌
+
+It needs to be -
+cd 'My Documents' ✅
+or
+cd My\ Documents ✅
+
+------------
+
+[2.] 𝐂𝐚𝐬𝐞 𝐒𝐞𝐧𝐬𝐢𝐭𝐢𝐯𝐢𝐭𝐲
+Linux is case-sensitive.
+
+'myfile.txt' is different from 'MyFile.txt'.
+
+Tab completion can help avoid mistakes, but awareness is key.
+
+------------
+
+[3.] 𝐇𝐢𝐝𝐝𝐞𝐧 𝐅𝐢𝐥𝐞𝐬
+Files and directories starting with a '.' are hidden by default.
+
+Use 'ls -a' to reveal them and be cautious when working with them – they might contain important configurations.
+
+------------
+
+[4.] 𝐫𝐦 -𝐫𝐟
+Recursive forced deletion.
+
+While essential for cleanup, a typo using this in the wrong directory can be disastrous.
+
+Always double-check your targets before executing.
+
+------------
+
+[5.] 𝐎𝐮𝐭𝐩𝐮𝐭 𝐑𝐞𝐝𝐢𝐫𝐞𝐜𝐭𝐢𝐨𝐧
+'>' overwrites an existing file.
+'>>' appends.
+
+Using '>' when you mean '>>' can wipe out data.
+
+Consider using 'noclobber' mode (using 'set -o noclobber') to help prevent accidental overwrites.
+
+------------
+
+[6.] '𝐜𝐩' 𝐚𝐧𝐝 '𝐦𝐯' 𝐖𝐢𝐭𝐡𝐨𝐮𝐭 '-𝐢'
+These commands silently overwrite existing files.
+
+Use the '-i' flag for an interactive prompt or '-n' to never overwrite.
+
+------------
+
+[7.] '𝐜𝐡𝐦𝐨𝐝' 𝐚𝐧𝐝 𝐎𝐜𝐭𝐚𝐥 𝐏𝐞𝐫𝐦𝐢𝐬𝐬𝐢𝐨𝐧𝐬
+Understand that 'chmod 755' is not the same as 'chmod +755'.
+
+The first sets absolute permissions, the latter modifies them.
+
+Know your octal permission values!
+
+------------
+
+[8.] 𝐁𝐚𝐜𝐤𝐠𝐫𝐨𝐮𝐧𝐝 𝐉𝐨𝐛𝐬 𝐚𝐧𝐝 '𝐧𝐨𝐡𝐮𝐩'
+Background jobs (using '&') get terminated when the shell session ends.
+
+Use 'nohup' or job control tools like 'screen' or 'tmux' for long-running processes you wish to persist.
