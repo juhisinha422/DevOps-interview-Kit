@@ -1,0 +1,16 @@
+𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗘𝘀𝘀𝗲𝗻𝘁𝗶𝗮𝗹 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀
+A quick list of Ansible commands DevOps/Cloud Engineer keep handy:
+ 
+• ansible --version     → Check Ansible version  
+ • ansible all -m ping    → Test connectivity to hosts  
+ • ansible-inventory --list → Show inventory details  
+ • ansible all -a "uptime"  → Run ad-hoc command on hosts  
+ • ansible-playbook site.yml → Run a playbook  
+ • ansible-playbook --check site.yml → Dry run (no changes)  
+ • ansible-playbook --syntax-check site.yml → Validate playbook syntax  
+ • ansible-galaxy install <role> → Install a role from Ansible Galaxy  
+ • ansible-vault create file.yml  → Create encrypted file  
+ • ansible-vault edit file.yml   → Edit encrypted file  
+ • ansible-vault view file.yml   → View encrypted file  
+ • ansible-vault encrypt file.yml → Encrypt a file  
+ • ansible-vault decrypt file.yml → Decrypt a file  
