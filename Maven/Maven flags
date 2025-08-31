@@ -1,0 +1,29 @@
+Maven Power Moves: Build & Debug Like a Pro
+
+We’ve all been there—running mvn clean install and staring at a wall of logs, trying to figure out what went wrong. 🤯
+
+Here are a few game-changing Maven flags that save time (and sanity):
+
+⚡ Faster Builds
+
+mvn -T 4 clean install → run with multiple threads
+
+mvn -DskipTests → skip tests when you just need the build
+
+🔍 Debugging Made Simple
+
+mvn -X → full debug logs (what’s Maven really doing?)
+
+mvn -e → show stack traces for failures
+
+mvn -q → quiet mode (focus only on errors)
+
+mvn -Ddebug → run with debug enabled for specific plugins
+
+🎯 Pro Tips
+
+Use Maven profiles (-P profileName) to isolate environments
+
+Combine flags smartly, e.g. mvn clean install -X -Pdev
+
+Mastering these little switches means you spend less time digging in logs and more time shipping code. 🚢
