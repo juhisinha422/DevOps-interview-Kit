@@ -1,0 +1,49 @@
+Maven – one of the most widely used build & project management tools in the DevOps world.
+It plays a crucial role in transforming raw source code into a deployable artifact (.jar / .war / .ear).
+
+💡 Key Takeaways:
+
+Artifact → The final product of the code (e.g., .jar, .war, .ear).
+
+Maven → A free, open-source, platform-independent build & project management tool written in Java.
+
+POM.xml → The heart of Maven projects, containing all project details (dependencies, plugins, versioning, etc.).
+
+Maven Lifecycle & Goals:
+
+mvn compile → Compile code
+
+mvn test → Run tests
+
+mvn package → Create artifact
+
+mvn install → Copy artifact to .m2 repo
+
+mvn clean → Remove old builds
+
+
+
+🔹 Why Maven?
+Without Maven:
+❌ No proper project structure
+❌ No artifact creation
+❌ Manual dependency management
+
+With Maven:
+✅ Automated builds & testing
+✅ Easy dependency handling
+✅ Lifecycle-driven process
+
+⚡ Alternatives: Ant, Gradle, NPM
+
+📌 Maven vs Ant:
+
+Maven → Build + Project Management (Declarative, Lifecycle-based, POM.xml)
+
+Ant → Only Build Tool (Procedural, Build.xml, No Lifecycle)
+
+
+📝 In simple terms:
+👉 Developers provide raw code + pom.xml.
+👉 Maven builds, tests, and packages it into an artifact.
+👉 That artifact is what we finally deploy 🚀
