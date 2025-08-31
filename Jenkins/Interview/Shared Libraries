@@ -1,0 +1,19 @@
+How do we define shared libraries?
+ 
+Shared libraries are useful in sharing code which is common across many applications.
+ 
+There are two types of libraries
+Static Libraries (aka archive)
+Shared Libraries
+
+ 
+*static libraries are incorporated in the code and make the executable bulky.
+ 
+load time is pretty fast, but if there is any bug reported in the library code, it is difficult to distribute the patch as the developer have to rebuild the entire application(s) using that library and distribute the new version of all the application. The extension of static libraries is .a
+ 
+*Shared libraries are independently installed on the system or provided by the developers in separate files but are not embedded in the executable.
+ 
+The load time would be fairly slower than a static library
+ 
+The extension of shared libraries is .so
+
