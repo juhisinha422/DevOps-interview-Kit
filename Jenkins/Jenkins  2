@@ -1,0 +1,35 @@
+What is Jenkins?
+Jenkins, one of the most widely used Continuous Integration and Continuous Delivery (CI/CD) automation tools.
+
+What is Jenkins?
+Jenkins is an open-source automation server written in Java.
+It helps developers build, test, and deploy code automatically, reducing manual work.
+It integrates with tools like Git, Maven, Docker, Kubernetes, Ansible, AWS, and many more.
+
+Why Jenkins?
+Supports automation of repetitive tasks in software development.
+Ensures faster delivery of applications through continuous integration.
+Provides hundreds of plugins for integration with popular tools.
+Enables teams to detect issues early by running automated tests.
+
+Key Features
+Pipeline as Code → Define CI/CD pipelines in a Jenkinsfile.
+Plugin Ecosystem → Extend functionality with 1800+ plugins.
+Cross-platform → Works on Linux, Windows, macOS.
+Distributed Builds → Run builds on multiple machines for scalability.
+Web-based Dashboard → Easy monitoring of jobs & pipelines.
+
+Basic Workflow
+Developer pushes code to GitHub/GitLab.
+Jenkins automatically triggers a build (via webhook).
+Code is compiled, tested, packaged, and deployed.
+Notifications are sent to the team (Slack/Email).
+
+Real-World Use
+Automating software builds.
+Running unit and integration tests.
+Deploying applications to servers or Kubernetes clusters.
+Monitoring pipelines and ensuring delivery speed.
+
+Summary:
+Jenkins is the backbone of modern DevOps workflows, enabling teams to automate CI/CD pipelines and deliver software faster, more reliably, and with less manual intervention.
