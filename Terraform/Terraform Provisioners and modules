@@ -1,0 +1,33 @@
+Terraform Provisioners & Modules
+
+Today I explored two powerful features of Terraform: Provisioners and Modules.
+
+🔹 Provisioners
+
+Used when we need to run scripts or commands inside a resource after it is created.
+
+Example: installing software on a new VM.
+
+Types:
+
+remote-exec → runs commands on the target machine.
+
+local-exec → runs commands on your local machine.
+
+
+💡 Best practice: use provisioners only when necessary; configuration tools (like Ansible) are usually better.
+
+
+🔹 Modules
+
+A module is just a collection of Terraform files reused across projects.
+
+Think of them as functions in programming – you write once, use many times.
+
+Benefits:
+
+Reusability
+
+Clean and organized code
+
+Easier collaboration in teams
