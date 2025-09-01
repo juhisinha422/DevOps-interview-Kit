@@ -1,0 +1,61 @@
+Basic Networking Commands in CMD (Command Prompt):
+
+1. ipconfig
+Shows your current IP address, subnet mask, and default gateway.
+
+2. ipconfig /all
+Displays detailed network configuration, including MAC address and DNS servers.
+
+3. ipconfig /release
+Releases the current IP address (if using DHCP).
+
+4. ipconfig /renew
+Requests a new IP address from the DHCP server.
+
+5. ping [IP or domain]
+Tests the connectivity to a remote host (e.g., ping google.com).
+
+6. tracert [domain]
+Traces the path that a packet takes to reach a destination.
+
+7. nslookup [domain]
+Retrieves the IP address associated with a domain name using DNS.
+
+8. netstat
+Shows active network connections and open ports.
+
+9. netstat -an
+Displays connections and listening ports with IP addresses and port numbers.
+
+10. arp -a
+Displays the ARP table (maps IP addresses to MAC addresses).
+
+11. getmac
+Shows the MAC address of your network adapter.
+
+12. hostname
+Displays the name of your computer on the network.
+
+13. route print
+Shows the routing table of your device.
+
+14. netsh
+A powerful tool to configure network settings via the command line.
+
+15. netsh wlan show profiles
+Lists all saved Wi-Fi profiles on your computer.
+
+16. netsh wlan show profile name="NetworkName" key=clear
+Reveals the saved password for a specific Wi-Fi profile.
+
+17. telnet [IP] [port]
+Tests connection to a specific port (Telnet client must be enabled).
+
+18. pathping [domain or IP]
+Combines ping and tracert for a detailed network path analysis.
+
+19. tasklist
+Displays a list of all running processes.
+
+20. taskkill /pid [PID] /f
+Forcefully terminates a process by its Process ID.
