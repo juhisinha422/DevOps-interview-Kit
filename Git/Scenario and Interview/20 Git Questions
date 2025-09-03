@@ -1,0 +1,22 @@
+𝗧𝗼𝗽 𝟮𝟬 𝗚𝗶𝘁 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀
+
+1. What is Git and how does it differ from other version control systems?
+2. Explain the difference between git pull and git fetch.
+3. What is the difference between git merge and git rebase?
+4. Explain the Git workflow and the three main states of files.
+5. What is a Git branch and why are branches important?
+6. How do you undo the last commit in Git?
+7. What is the difference between git reset, git revert, and git checkout?
+8. Explain Git stash and when you would use it.
+9. What is a merge conflict and how do you resolve it?
+10. What is the difference between HEAD, working tree, and index?
+11. How do you create and switch to a new branch?
+12. What is a remote repository and how do you add one?
+13. Explain the difference between git clone and git fork.
+14. What is .gitignore and how does it work?
+15. How do you view commit history in Git?
+16. What is cherry-picking in Git?
+17. How do you rename a branch in Git?
+18. What is the difference between git add . and git add -A?
+19. How do you configure Git with your user information?
+20. Explain Git hooks and provide an example use case.
