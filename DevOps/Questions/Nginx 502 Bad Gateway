@@ -1,0 +1,38 @@
+DevOps Issue: NGINX 502 Bad Gateway
+
+“When NGINX throws a 502, it’s not the gateway’s fault — it’s what’s behind it.”
+
+Today I troubleshooted a common production headache: 502 Bad Gateway in NGINX reverse proxy.
+
+❌ Symptoms:
+
+Frontend loads with 502 error
+
+Backend app containers running but not reachable
+
+Logs show connect() failed (111: Connection refused)
+
+
+🔍 Root Causes Checked:
+
+🔹 Backend app crashed or not listening on expected port
+
+🔹 Mismatch between proxy_pass config and backend service port
+
+🔹 Firewall/security group blocking internal traffic
+
+🔹 Timeout too low for heavy requests
+
+
+🛠️ Troubleshooting Steps:
+
+1️⃣ Check NGINX error logs: /var/log/nginx/error.log  
+2️⃣ Verify app port: netstat -tulnp | grep <port>  
+3️⃣ Curl backend directly from NGINX host/container  
+4️⃣ Adjust config: proxy_connect_timeout, proxy_read_timeout  
+5️⃣ Reload NGINX after config fix: nginx -s reload
+
+✅ Fix: Backend service was listening on 8080, while NGINX proxy_pass pointed to 80. Corrected config → service restored instantly.
+
+💡 Lesson:
+502 doesn’t always mean NGINX is broken. It means NGINX can’t reach your app. Logs + configs = lifesaver.
