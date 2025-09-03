@@ -1,0 +1,36 @@
+Preparing for a DevOps, SRE, or Cloud Engineer interview?
+
+Based on my experience on both sides of the interview table,I've compiled a list of insightful technical questions that I hope helps you succeed in your interview
+Here’s a mix of essential Linux, AWS, and Kubernetes topics you must master:
+
+🐧 Linux & System Administration:
+•Beyond RHEL:
+Which Linux flavors and specific versions have you worked with in production? 
+•How do you recursively search for a filename containing a specific string from the root or a sub-directory?
+•What’s the modern way to find a specific string within files across an entire directory tree? 
+•Explain the paradigm shift from System V init to systemd. 
+•How do you verify all required services started correctly after a system reboot? How do you troubleshoot one that didn’t?
+
+☁️ AWS & Cloud Infrastructure: 
+•How do you monitor application health on an EC2 instance? Where do you check logs? 
+•Compare and contrast Security Groups and NACLs. When would you use one over the other? 
+•What are the primary ways to deploy a database on AWS? (Think beyond EC2!) 
+•Explain the different AWS Load Balancers (ALB, NLB). Give a practical use case for each.
+•What is the purpose of "sticky sessions" in load balancing?
+
+⚙️ Kubernetes & Container Orchestration: 
+•Where and how do you configure the minimum and maximum number of pods for a deployment?
+•How do you check the current number of running pods and their status? 
+•Walk through the lifecycle of a Pod. 
+•Your pods are failing to start. What's your step-by-step troubleshooting process? 
+•How does Kubernetes know when to scale up a new pod? (Hint: HPA configuration)
+•Explain the difference between Secrets and ConfigMaps. How would you use a ConfigMap inside a application pod? 
+•How do you securely manage database credentials in EKS/K8s? 
+•Explain the concept of an Ingress controller. How would you configure routing for an application to accept external traffic?
+
+🧠 Architecture & Design:
+•How does cross-zone load balancing work, and how do you configure it?
+•What critical factors do you consider when designing the infrastructure for an enterprise-grade application? 
+•How do you secure traffic using Transport Layer Security (TLS) in a containerized environment?
+
+This list is great for both self-assessment and leading team discussions to level up your squad's knowledge. 💬
