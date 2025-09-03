@@ -1,0 +1,14 @@
+One cluster = One big pool of resources? Wrong.
+
+Most people treat a Kubernetes cluster as one giant space.
+- All workloads mixed together.
+- All teams sharing the same environment.
+
+That leads to conflicts and chaos.
+Namespaces let you organize your cluster into isolated sections.
+
+With Namespaces:
+- Avoid naming collisions
+- Apply RBAC for team-level access
+- Enforce quotas and limits
+- Keep things clean and organized
