@@ -1,0 +1,44 @@
+Kubernetes objects…
+
+Kubernetes is built on objects, Mastering them makes the difference between “just running containers” and running production-ready apps.
+
+Here are 20 important Kubernetes Objects/Components that you should definitely know:
+
+🔹 Core Building Blocks
+
+Namespace – Provides logical isolation and organization within a cluster.
+Pod – The smallest unit in Kubernetes, usually running one container (or tightly coupled ones).
+Service – Exposes Pods with a stable IP/DNS name and can load balance traffic.
+ConfigMap – Stores non-sensitive configuration data in key-value pairs.
+Secret – Stores sensitive data like passwords, tokens, and certificates in encoded form.
+
+🔹 Workload Management
+
+ReplicaSet – Ensures a specified number of Pod replicas are always running.
+Deployment – Declaratively manages ReplicaSets for rolling updates and scaling.
+StatefulSet – For applications that need stable network identity and persistent storage (e.g., databases).
+DaemonSet – Ensures a Pod runs on every (or selected) node, often for logging/monitoring.
+Job – Runs Pods until a task finishes successfully (batch workloads).
+CronJob – Schedules Jobs at fixed intervals, like backups or reporting tasks.
+
+🔹 Networking & Access
+
+Ingress – Manages external access to Services (HTTP/HTTPS) with routing rules & TLS.
+NetworkPolicy – Defines how Pods communicate with each other and external services, improving security.
+
+🔹 Security & Governance
+
+Role & RoleBinding / ClusterRole & ClusterRoleBinding – Provide fine-grained access control with RBAC.
+ResourceQuota – Sets overall resource limits (CPU, memory, storage) per Namespace.
+LimitRange – Enforces minimum & maximum resource requests/limits for Pods or Containers.
+
+🔹 Storage
+
+PersistentVolume (PV) – Cluster-level storage resource provisioned manually or dynamically.
+PersistentVolumeClaim (PVC) – A Pod’s request for storage that binds to a PV.
+StorageClass – Defines storage types & enables dynamic provisioning of volumes.
+🔹 Autoscaling
+
+HorizontalPodAutoscaler (HPA) – Automatically scales Pods based on CPU, memory, or custom metrics.
+
+✅ This order reflects how most people learn & use Kubernetes — starting from Namespaces & Pods, moving through Deployments/StatefulSets, then Networking & Security, and finally Storage & Autoscaling.
