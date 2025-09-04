@@ -1,0 +1,59 @@
+sopnasteria interview ques
+
+Idle Timeout in an AWS Application Load Balancer (ALB)?
+Here is the Quick Answer to it 
+
+🎯 ALB has a setting called Idle Timeout.
+🎯 It defines how long ALB keeps a TCP/HTTP connection open when there is no activity (no data being sent/received).
+🎯 After this time passes, ALB closes the connection.
+===============================================
+
+🔹 Example
+Suppose Idle Timeout = 60 seconds (default).
+A client (browser or app) connects to your service through ALB.
+If no request/response happens for 60 seconds, the ALB closes the connection.
+Next request → client must re-establish a new connection.
+===========================================
+🔹 Why It Matters
+Too low timeout (e.g., 10s):
+ Long requests (like file uploads, API calls, DB queries) may fail because ALB closes the connection too soon.
+Too high timeout (e.g., 600s):
+ Connections remain open even if idle → waste resources.
+===============================================
+🔹 Common Settings
+Default: 60 seconds.
+You can increase up to 4000 secon🔹 Real-World Example
+Web app with short requests (REST APIs): 60s is fine.
+Long-running uploads/downloads: Set higher (e.g., 300s or 600s).
+Streaming apps: Use higher timeouts or WebSockets.
+ds (a little over 1 hour).
+
+==========================================
+
+🔹 Real-World Example
+Web app with short requests (REST APIs): 60s is fine.
+Long-running uploads/downloads: Set higher (e.g., 300s or 600s).
+Streaming apps: Use higher timeouts or WebSockets.
+
+============================================
+AWS ALB Interview Q&A
+1. What is an Application Load Balancer (ALB)?
+ALB is a Layer 7 load balancer that distributes incoming HTTP/HTTPS traffic across multiple targets (EC2, containers, Lambda). It supports path-based and host-based routing.
+
+What is path based and Host based Routing ?
+🔹 Path-based routing (URL path)
+ Think of it like a mall:
+If you go to /foodcourt, the security guard sends you to the food area.
+If you go to /cinema, you get sent to the movie hall.
+Similarly, ALB looks at the path in the URL and sends the request to the right service.
+Example:
+example.com/api/* → API servers
+example.com/app/* → Frontend servers
+🔹 Host-based routing (domain name)
+ Now imagine the same mall has multiple entrances with names:
+food.example.com goes directly to the food court.
+shop.example.com goes to the shopping area.
+ALB checks the host/domain name in the request and routes it to the correct backend.
+👉 So in short:
+Path-based = depends on what comes after the slash (/) in the URL.
+Host-based = depends on the domain/subdomain name.
