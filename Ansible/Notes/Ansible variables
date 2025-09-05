@@ -1,0 +1,44 @@
+Making Ansible Playbooks Flexible with Variables ✨
+
+🟢 What are Variables in Ansible?
+- In Ansible, variables are placeholders you use to store values (like usernames, passwords, paths, or configuration settings).
+- Instead of hardcoding values in every playbook, you define them once as a variable and reuse them everywhere.
+
+🟢 Example: Without Variables
+- name: Install Nginx
+  hosts: web
+  tasks:
+    - name: Install package
+      apt:
+        name: nginx
+        state: present
+Here, "nginx" is hardcoded.
+
+🟢 Example: With Variables
+- name: Install Web Server
+  hosts: web
+  vars:
+    web_package: nginx
+  tasks:
+    - name: Install package
+      apt:
+        name: "{{ web_package }}"
+        state: present
+👉 If tomorrow you want to use httpd instead of nginx, just change the variable web_package.
+
+🟢 Where can you define variables?
+- Inside a playbook (vars:)
+- Inside inventory files (host_vars / group_vars)
+- From command line (-e option)
+- From external files (vars_files)
+- From facts gathered about the system
+
+🟢 Real-life Use Cases
+🔹 Multi-environment setup:
+db_host: dev-db.example.com for dev
+db_host: prod-db.example.com for prod
+ 👉 Same playbook, different values.
+
+✨ In short:
+ - Variables make Ansible playbooks flexible, reusable, and environment-   friendly.
+ Without them, you’d end up copying the same playbook with only small differences.
