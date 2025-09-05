@@ -1,0 +1,24 @@
+API in DevOps – Most Asked Interview QnA
+
+In DevOps, APIs are the backbone of automation, integration, and infrastructure management. Many interviewers focus on API concepts because they enable CI/CD, cloud provisioning, and monitoring.
+Here are some commonly asked API QnA in DevOps interviews:
+
+❓ Q1: What is an API in a DevOps environment?
+✅ An API (Application Programming Interface) allows different tools, platforms, and services to communicate programmatically. In DevOps, APIs are used for automation, CI/CD triggers, cloud resource provisioning, and monitoring.
+
+❓ Q2: How are APIs used in CI/CD pipelines?
+✅ APIs are used to trigger builds, deployments, and testing.
+ Example: GitHub webhook → calls Jenkins API → triggers pipeline job automatically.
+
+❓ Q3: What is the Kubernetes API used for?
+✅ The Kubernetes API is the control plane interface that lets you manage resources like Pods, Deployments, and Services. All kubectl commands interact with the K8s API server internally.
+
+❓ Q4: How does AWS provide API support for automation?
+✅ AWS exposes SDKs and CLI which internally use APIs to manage services like EC2, S3, and Lambda.
+ Example: Creating an S3 bucket with aws s3api create-bucket.
+
+❓ Q5: Why are APIs important in monitoring?
+✅ Monitoring tools (Prometheus, Grafana, ELK) use APIs to fetch logs, metrics, and events from servers, containers, and applications to visualize and alert.
+
+🔑 Takeaway:
+👉 APIs in DevOps = Automation + Integration + Control
