@@ -1,0 +1,57 @@
+Here’s the list of questions from the final round:
+
+1. How can we monitor logs in a VPC?
+
+
+2. What is the difference between ALB, NLB, and GLB?
+
+
+3. How can we implement SSL certificates with an ALB?
+
+
+4. How can we restrict a Malaysian IP address?
+
+
+5. Suppose we have amazon . com /home /meeting /payment/message , and when we click on meeting it should route to microservices hosted on ECS or EKS. How can we achieve this?
+
+
+6. If I lost the private key (.pem) for an EC2 instance, I won’t be able to SSH directly. What are the possible ways to access the instance?
+
+
+7. What are the different storage types in S3?
+
+
+8. What is a lifecycle rule in S3?
+
+
+9. What is the retrieval time for Glacier Deep Archive?
+
+
+10. What is user data in EC2?
+
+
+11. What are the best practices we can follow in IAM?
+
+
+12. What is the difference between authorization and authentication?
+
+
+13. What is the difference between an access key, IAM role assumption, and an STS token?
+
+
+14. What is the difference between a service account and a backend in Kubernetes?
+
+
+15. If we have HTTPS enabled in Kubernetes, how do we handle SSL certificates?
+
+
+16. What is the difference between a Terraform data block and an input variable?
+
+
+17. Suppose you have four resources in Terraform, how will you delete any specific resource?
+
+
+18. If we run terraform apply again after deletion, it will recreate the resource. How can we prevent Terraform from re-creating it?
+
+
+19. What is the difference between count and for_each in Terraform?
