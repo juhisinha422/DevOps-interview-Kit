@@ -1,0 +1,34 @@
+Understanding the Jenkinsfile
+
+Pipeline-as-Code by diving into Jenkinsfiles — the backbone of Jenkins pipelines.
+
+What is a Jenkinsfile?
+A text file (usually stored at the root of your project)
+Contains the entire pipeline definition: build, test, deploy steps
+Written in Groovy-based Declarative or Scripted syntax
+Keeps CI/CD logic version-controlled right alongside your source code
+
+Why It Matters
+Pipeline-as-Code: your CI/CD is no longer hidden in Jenkins UI
+Traceability & Review: code changes → pull requests → clear history
+Repeatability: consistent builds across teams & environments
+Portability: clone repo + Jenkinsfile = instantly reproducible pipeline
+pipeline {
+ agent any
+ stages {
+  stage('Checkout') { steps { git 'https://lnkd.in/gai2mR4r' } }
+  stage('Install') { steps { sh 'npm install' } }
+  stage('Test')   { steps { sh 'npm test' } }
+  stage('Deploy')  { steps { sh 'pm2 restart app' } }
+ }
+ post {
+  success { echo '✅ Build Succeeded!' }
+  failure { echo '❌ Build Failed!' }
+ }
+}
+
+Key Learnings
+Declarative pipelines are clean & readable
+Every change in CI/CD goes through Git commits
+Easier rollback & audit trails
+Freestyle jobs are fine for quick demos, but Jenkinsfiles scale with projects
