@@ -1,0 +1,36 @@
+Declarative vs Scripted Pipelines in Jenkins
+
+the two syntaxes Jenkins supports: Declarative and Scripted. Both achieve the same goal (defining pipelines), but they differ in structure, readability, and flexibility.
+
+1. Declarative Pipeline
+Modern, opinionated syntax introduced to simplify Pipeline-as-Code
+Starts with a top-level pipeline {} block
+Stages and steps are predefined & structured
+Validation built into Jenkins → easier for beginners
+Ideal for most CI/CD use cases
+
+pipeline {
+ agent any
+ stages {
+  stage('Build') { steps { sh 'npm install' } }
+  stage('Test') { steps { sh 'npm test' } }
+  stage('Deploy'){ steps { sh 'pm2 restart app' } }
+ }
+}
+
+2. Scripted Pipeline
+Original, fully Groovy-based syntax
+Offers maximum flexibility & programmatic control
+No strict structure → you write pipeline logic as Groovy scripts
+Requires deeper Groovy knowledge → better for complex conditions or loops
+
+node {
+ stage('Build') { sh 'npm install' }
+ stage('Test') { sh 'npm test' }
+ stage('Deploy'){ sh 'pm2 restart app' }
+}
+
+Takeaways
+Declarative → clean, safe, and beginner-friendly (recommended for most teams)
+Scripted → power & flexibility (use when complex logic is unavoidable)
+Teams often start Declarative, then mix in Scripted steps when needed.
