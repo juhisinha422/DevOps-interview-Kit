@@ -1,0 +1,55 @@
+Common Troubleshooting Scenarios for DevOps Engineers
+
+👉 Did you know that most DevOps interviews don’t just test your knowledge of tools (AWS, Jenkins, Docker, Kubernetes)…
+They test how you troubleshoot real-world issues under pressure.
+
+Here are some of the most common troubleshooting scenarios I’ve seen (and been asked in interviews):
+1️⃣ CI/CD Pipeline Failures
+ 📌 Scenario: Jenkins/GitHub Actions pipeline fails after code push.
+ ⚡ Causes → Incorrect build config, missing env variables, permission errors
+ 🛠 Fix → Check build logs, validate secrets, re-run with debug enabled
+
+2️⃣ Application Not Accessible After Deployment (502 Bad Gateway)
+ 📌 Scenario: App deployed on EC2/K8s pod, but URL fails.
+ ⚡ Causes → Nginx/Apache misconfig, wrong port binding, container crash
+ 🛠 Fix → Check logs (docker logs / kubectl logs), verify port mapping, restart service
+
+3️⃣ High Latency / Slow Response
+ 📌 Scenario: App is up, but users report slowness.
+ ⚡ Causes → Auto-scaling misconfigured, DB bottleneck, high CPU usage
+ 🛠 Fix → Check CloudWatch/Prometheus, optimize queries, enable caching
+
+4️⃣ “ImagePullBackOff” in Kubernetes
+ 📌 Scenario: Pod stuck in ImagePullBackOff.
+ ⚡ Causes → Wrong image tag, missing registry credentials, DNS issues
+ 🛠 Fix → kubectl describe pod, validate image, add registry secret if needed
+
+5️⃣ Disk Space Issues on Linux Servers
+ 📌 Scenario: Server stops responding, deployments fail.
+ ⚡ Causes → Log files, temp files, large Docker images
+ 🛠 Fix → df -h, clear /var/log/, docker system prune
+
+6️⃣ AWS IAM Permission Denied
+ 📌 Scenario: Deployment fails with AccessDenied.
+ ⚡ Causes → Wrong IAM policy/role, missing trust relationship
+ 🛠 Fix → Review IAM JSON, attach correct role, apply least privilege
+
+7️⃣ SSL/TLS Certificate Expired
+ 📌 Scenario: HTTPS suddenly breaks.
+ ⚡ Causes → Missed certificate rotation
+ 🛠 Fix → Automate renewal with Let’s Encrypt/ACM, set expiry alerts
+
+8️⃣ Terraform State Lock Issues
+ 📌 Scenario: terraform apply blocked by lock.
+ ⚡ Causes → Previous run not released
+ 🛠 Fix → terraform force-unlock <ID>, use remote state (S3 + DynamoDB)
+
+9️⃣ Docker Container Crashes Immediately
+ 📌 Scenario: Container exits with code 1.
+ ⚡ Causes → Wrong entrypoint, missing dependency, invalid config
+ 🛠 Fix → Run interactively, check logs, fix Dockerfile
+
+🔟 Load Balancer Health Check Failures
+ 📌 Scenario: ALB/ELB shows instances as unhealthy.
+ ⚡ Causes → Wrong health check path, SG blocking traffic
+ 🛠 Fix → Verify endpoint, fix SG/NACL, confirm correct port
