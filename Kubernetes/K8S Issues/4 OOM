@@ -1,0 +1,6 @@
+OOMKilled (Out of Memory) But why ??
+
+Problem: Container killed because it used too much memory.
+Impact: Application crashes unexpectedly.
+Root Cause: Improper resource limits, memory leaks in app.
+Solution: Set memory requests/limits properly, fix app memory leak.
