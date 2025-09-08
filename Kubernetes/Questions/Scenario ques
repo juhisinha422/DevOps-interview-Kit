@@ -1,0 +1,35 @@
+DevOps Scenario Series
+
+Scenario (K8s):
+A fresher joined a team. He deployed a pod, but after restart the pod got a new name and new IP. He got confused:
+    “Why pod name/IP changes after restart? How do I give my app a fixed access point?”
+
+
+Solution:
+Pods are ephemeral (short-lived). Restart = new pod = new IP.
+For a stable endpoint, we use a Service.
+
+Example Service:
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-svc
+spec:
+  selector:
+    app: myapp
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIP
+
+Now no matter how many times pods restart, app is always reachable at myapp-svc.
+
+
+Interview Quickies
+       Q - Why pod IP is not reliable?
+       A - Because pods are temporary, they get new IPs when recreated.
+       Q - How do you give a fixed identity to pods?
+       A - By attaching a Service, which gives a stable DNS name & virtual IP.     
+       Q - Types of Service?
+       A - ClusterIP, NodePort, LoadBalancer.
