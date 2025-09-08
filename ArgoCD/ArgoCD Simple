@@ -1,0 +1,12 @@
+ArgoCD Made Simple
+
+In the DevOps world, automation is key.
+ArgoCD is a GitOps tool for Kubernetes that makes deployments easier, safer, and more reliable.
+
+🔑 With ArgoCD you get:
+✔ Declarative & version-controlled deployments (Git as source of truth)
+✔ Continuous syncing between Git and your cluster
+✔ Safe rollbacks when things go wrong
+✔ Full visibility with UI & CLI
+
+👉 In short: ArgoCD = Git + Automated Kubernetes Deployments
