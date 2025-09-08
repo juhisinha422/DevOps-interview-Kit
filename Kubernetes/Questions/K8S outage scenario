@@ -1,0 +1,15 @@
+Kubernetes Outage Scenario: What Would You Do?
+
+Last week, I was testing a cluster where all apps suddenly went down. Pods were in CrashLoopBackOff.
+Turns out, the ConfigMap had a misconfigured environment variable — and since all pods depended on it, the failure spread cluster-wide.
+
+This taught me a key lesson:
+🔑 ConfigMaps and Secrets are single points of failure if not versioned or validated properly.
+
+✅ Best Practices I picked up:
+Keep versioned ConfigMaps/Secrets so you can roll back fast.
+Use tools like Kustomize or Helm to manage changes.
+Validate configs with CI before applying them.
+Consider feature flags to reduce risk of cluster-wide impact.
+
+💡 Takeaway: In Kubernetes, sometimes it’s not the code that breaks production — it’s the config.
