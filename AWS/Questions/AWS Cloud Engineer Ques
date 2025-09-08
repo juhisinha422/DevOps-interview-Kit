@@ -1,0 +1,18 @@
+AWS Cloud Engineer interview questions 
+
+🔹 EKS pods can’t scale due to IP shortage
+This usually happens when the VPC subnet CIDR is too small. The fix? Either add a secondary CIDR block or use the VPC CNI’s custom networking to expand the IP pool.
+🔹 EC2 stuck in “pending” state
+Often tied to the AMI or instance type. The AMI might not exist anymore or the chosen AZ doesn’t support that instance type. Always verify before launch.
+🔹 ALB not balancing traffic evenly
+If targets are healthy but distribution is uneven, check if sticky sessions are enabled or if cross-zone load balancing is turned off. Both can cause imbalance.
+🔹 App can’t fetch secrets from Secrets Manager
+Most likely an IAM permission issue (secretsmanager:GetSecretValue) or the wrong secret ARN in the code.
+🔹 SQS queue messages piling up, Lambda not consuming
+Check whether the event source mapping is configured between the Lambda and SQS, and confirm the Lambda’s IAM role has permission to read from the queue.
+🔹 DynamoDB “ThrottlingException” during peak traffic
+Enable auto-scaling for RCU/WCU or move to on-demand capacity. This way DynamoDB handles burst traffic gracefully.
+🔹 EKS pods crashing with OOM (out-of-memory) errors
+Look at the pod spec – resource requests/limits might be too low. Adjust them to align with the workload’s actual needs.
+🔹 IAM user bypassing MFA
+Enabling MFA alone isn’t enough. You need to enforce it via IAM policies that deny login if MFA isn’t present.
