@@ -1,0 +1,10 @@
+3 Ways to Create a NodeGroup in EKS:
+
+1️⃣ AWS Console
+ Perfect for beginners who enjoy spending hours navigating endless options, missing key settings, and getting frustrated when things don’t scale automatically. But hey, at least everything’s done manually, right? 🙄
+
+2️⃣ Terraform
+ Why settle for a few lines of code when you can write 150? Ideal for those who thrive on managing state files, dependencies, and working through Terraform’s quirks. A “simple” nodegroup takes just a few more lines. 💻✨
+
+3️⃣ eksctl
+ One command, and it’s done. Fast, simple, and efficient. But don’t worry—real pros will still make it unnecessarily complicated with the other two options. 🥇
