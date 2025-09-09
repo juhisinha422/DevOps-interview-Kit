@@ -1,0 +1,26 @@
+Symbolic Link (Symlink)
+ = A shortcut.
+ It points to the original file. If the original is deleted, the symlink breaks.
+
+🧬 Hard Link
+ = A clone.
+ It’s another name for the same content. Even if the original is deleted, the hard link still works!
+
+I used ln -s for symlinks and ln for hard links to test it out myself.
+
+
+Key Differences Between Hard and Symbolic Links
+🪢 Hard Link
+*Points directly to the inode (the file’s data on disk).
+*Both the original and the hard link share the same inode number.
+*If the original file is deleted, the hard link still works — because the data still exists.
+*Cannot link directories.
+*Cannot link files across different filesystems or partitions.
+
+🔗 Symbolic Link (Soft Link)
+*A separate file that points to the original file by name/path.
+*If the original is deleted, the symlink becomes broken (dangling).
+*Can link directories.
+*Can link across filesystems.
+
+It was fun breaking things (on purpose!) and seeing what survives 😄
