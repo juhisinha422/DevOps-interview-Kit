@@ -1,0 +1,41 @@
+🚀 Getting Started with Shell Scripting in Linux
+
+💡 What is Shell Scripting?
+ Shell scripting is simply writing Linux commands in a file to automate repetitive tasks. Instead of typing commands one by one, you run them all at once.
+
+Think of it as moving from manual mode → autopilot mode 🛫.
+
+🔹 Shell Script Basics
+1️⃣ Shebang (interpreter line):
+      #!/bin/bash
+
+2️⃣ Variables:
+      name="Example"
+      echo "Hello, $name"
+
+3️⃣ Taking Input:
+       read user
+       echo "Welcome, $user!"
+
+4️⃣ Conditions (if/else):
+      if [ $1 -gt 10 ]; then
+      echo "Number is greater than 10"
+      else
+      echo "Number is 10 or less"
+      fi
+
+5️⃣ Loops:
+      for i in 1 2 3
+      do
+       echo "Looping... number $i"
+      done
+
+6️⃣ Functions:
+      greet () {
+      echo "Hello from a function!"
+      }
+      greet
+
+7️⃣ Make script executable & run:
+      chmod +x script.sh
+      ./script.sh
