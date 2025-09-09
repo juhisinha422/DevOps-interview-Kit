@@ -1,0 +1,28 @@
+Forward Proxy vs Reverse Proxy – Explained with a Restaurant Example
+Proxies are everywhere in tech, but the concept is easier to grasp if we map it to daily life.
+
+🔹 Forward Proxy (for the Client) 
+ Imagine you want food from a hotel 🍕, but you don’t want the hotel to know it’s you ordering.
+So, you ask your friend to place the order for you.
+The hotel sees the friend (forward proxy), not you.
+Your friend collects the food and gives it back to you.
+
+✅ Real-life usage:
+Bypassing restrictions (friend can go where you can’t).
+Anonymity (hotel never knows it was you).
+Caching (friend remembers the order and brings it faster next time).
+
+🔹 Reverse Proxy (for the Server)
+ Now flip the scenario: you go to a big hotel 🍽️ with multiple chefs in the kitchen.
+Instead of talking to each chef, you always talk to the waiter.
+The waiter (reverse proxy) decides which chef will cook your order.
+You only deal with the waiter, never directly with the chefs.
+
+✅ Real-life usage:
+Load balancing (waiter divides orders among chefs).
+Security (you don’t know who the chefs are, they’re hidden).
+SSL termination (waiter handles communication, chefs just cook).
+
+📌 Key Difference 
+Forward Proxy → Works on behalf of the client. It sends client requests to the internet and returns the response back.
+Reverse Proxy → Works on behalf of the server. It accepts client requests, forwards them to the right server, and sends back the response.
