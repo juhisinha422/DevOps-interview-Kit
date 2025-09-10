@@ -1,0 +1,10 @@
+𝗪𝗵𝗮𝘁 𝗸𝗲𝗲𝗽𝘀 𝘆𝗼𝘂𝗿 𝐓𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗰𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻𝘀 𝗺𝗼𝗿𝗲 𝗳𝗹𝗲𝘅𝗶𝗯𝗹𝗲 𝗮𝗻𝗱 𝗿𝗲𝘂𝘀𝗮𝗯𝗹𝗲??
+
+
+The answer is Variables.
+
+Variables prevents values being hardcoded in your configurations.
+
+Simply define them once, reuse everywhere and modify values without having to touch the main code - how cool is that??
+
+Variables make infrastructure cleaner, consistent and easy to manage across different environments.
