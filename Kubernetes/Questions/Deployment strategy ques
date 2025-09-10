@@ -4,3 +4,9 @@ you can tell short impression  impress with interviewer.....
 
 
 A) be mainly use rolling updates for zero down time deployments and in critical cases adopt blue-green or Canary strategies for safer controlled releases..
+
+
+
+
+
+A) I use rolling updates for most cases blue green for zero down time and easy fallback, and Canary deployment to test new versions, with a small user base before full roll out
