@@ -1,0 +1,6 @@
+Q) explain the deployment strategy that you follow in your organisation?
+
+you can tell short impression  impress with interviewer.....
+
+
+A) be mainly use rolling updates for zero down time deployments and in critical cases adopt blue-green or Canary strategies for safer controlled releases..
