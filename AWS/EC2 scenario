@@ -1,0 +1,26 @@
+EC2 Scenario-Based Interview Questions 🚀
+
+Amazon EC2 is one of the most used AWS services — but real-world scenarios matter more than just definitions.
+
+Here are 20 high-level EC2 scenario-based questions to challenge your AWS & DevOps skills 👇
+
+1. Your EC2 instance is running but you can’t connect via SSH. What troubleshooting steps will you take?
+2.	You terminated an EC2 instance by mistake. How can you prevent this in the future?
+3.	Your EC2 instance needs to access an S3 bucket securely. What’s the best way to configure this?
+4.	An application hosted on EC2 needs to be highly available across AZs. How will you achieve it?
+5.	You need to run scheduled scripts on EC2 daily. What approaches are available?
+6.	How will you enable auto-scaling for EC2 based on CPU utilization?
+7.	You’re seeing high latency between EC2 and RDS in the same region. What might be wrong?
+8.	You need to move an EC2 instance to another region. What are your options?
+9.	Your EC2 disk space keeps filling up. How do you investigate and fix this?
+10.	You have to reduce EC2 costs without affecting performance. Which AWS features can you use?
+11.	An application requires high IOPS. Which EC2 storage type should you choose?
+12.	You updated your security group, but traffic is still blocked. What else can you check?
+13.	You need to allow only office IPs to SSH into EC2. How would you configure this?
+14.	Your EC2 instance should recover automatically if the host hardware fails. What’s the best solution?
+15.	How do you configure load balancing across multiple EC2 instances?
+16.	How will you monitor EC2 performance metrics and set alerts?
+17.	You need to share an AMI with another AWS account. How do you do it?
+18.	A web app hosted on EC2 should handle traffic spikes. How do you design it?
+19.	Your instance gets terminated when Spot capacity isn’t available. How can you handle this better?
+20.	You need to run batch jobs once per week without leaving EC2 running all the time. What’s the best approach?
