@@ -1,0 +1,15 @@
+Here is the Kubernetes Interview Questions, you may expect in the interviews.
+
+🔹How does an application communicate with the outside world?
+🔹A pod is in CrashLoopBackOff, How do you troubleshoot?
+🔹What are the types of services in Kubernetes?
+🔹What is a headless service in Kubernetes?
+🔹In a Kubernetes cluster, one ReplicaSet is not working. How do you debug it?
+🔹You notice intermittent 502 errors during canary deployment. How will you identify the root cause?
+🔹Your production AKS cluster is failing health checks randomly — how do you debug?
+🔹Explain a rollback plan for a Kubernetes deployment using Terraform?
+🔹How do you handle zero-downtime schema migrations for a stateful database?
+🔹One pod shows high CPU usage without logs—what's your next step?
+🔹How do you roll back a failed deployment in Kubernetes?
+
+
