@@ -1,0 +1,776 @@
+DevOps Interview Preparation – My Takeaways
+
+I have recently taken the first technical round of an interview in HCL, and I observed something important:
+
+👉 Even candidates with 3+ years of experience often miss the fundamentals concepts of DevOps tools like Linux, AWS services, Terraform, Docker, Kubernetes, Prometheus and grafana.
+
+Here are some sample questions that often come up in DevOps interviews:
+
+🔹 AWS Cloud Questios: 
+
+What is the difference between an EC2, Lambda, and ECS? When should you use each?
+
+What is the difference between EC2, Lambda, ECS, and EKS?
+
+How does an S3 bucket differ from EBS and EFS?
+
+What are the different types of load balancers in AWS?
+
+How does Auto Scaling work in EC2? Can you give a real-world use case?
+
+Explain IAM roles vs IAM policies vs IAM users.
+
+How would you design a highly available architecture in AWS for a web application?
+
+What are VPC, Subnets, Security Groups, and NACLs and how do they work together?
+
+
+🔹 Terraform: 
+
+How does state file work? What happens if two people apply changes at the same time?
+
+What is a Terraform state file and why is it important?
+
+What happens if two engineers run terraform apply at the same time?
+
+Difference between terraform import and terraform taint?
+
+How do you use Terraform modules?
+
+How do you manage sensitive data in Terraform?
+
+Explain the difference between count and for_each.
+
+How do you handle multi-environment deployments with Terraform?
+
+
+🔹 Docker: 
+
+What is the difference between images, containers, and volumes?
+
+What are Docker volumes and why are they used?
+
+Explain the difference between Dockerfile, Docker Compose, and Docker Swarm.
+
+How does Docker handle networking (bridge, host, overlay)?
+
+What is the difference between COPY and ADD in a Dockerfile?
+
+How do you reduce the size of a Docker image?
+
+How do you debug a failing container?
+
+
+🔹 Kubernetes: 
+
+How does a Deployment differ from a StatefulSet?
+
+What is the difference between a Deployment, DaemonSet, and StatefulSet?
+
+How does a Service in Kubernetes work (ClusterIP, NodePort, LoadBalancer)?
+
+What are ConfigMaps vs Secrets?
+
+Explain etcd and why it is important in Kubernetes.
+
+What is the difference between ReplicaSet and ReplicationController?
+
+How do you perform a rolling update vs a blue-green deployment in Kubernetes?
+
+How do you debug a Pod stuck in CrashLoopBackOff?
+
+
+✅ If you’re preparing for DevOps interviews:
+
+Focus on core concepts + hands-on practice
+
+Understand why a tool is used, not just how
+
+Practice with real-world scenarios (scaling, failures, cost optimization, automation)
+
++++++++++++
+
+
+1️⃣ Linux
+
+What is the difference between a hard link and a soft link in Linux?
+
+Explain the difference between absolute path and relative path.
+
+What is the difference between su and sudo?
+
+What is the difference between /etc/passwd and /etc/shadow files?
+
+What are load averages in Linux? How do you interpret them from the uptime command?
+
+How do you check the current running processes and their resource usage?
+
+How do you find which process is using a particular port?
+
+What does the top command show? How is it different from htop?
+
+How do you check disk usage of a directory?
+
+How do you find the 10 largest files in /var directory?
+
+How do you check system logs in Linux? Where are they stored by default?
+
+How do you continuously monitor the last 100 lines of an application log file?
+
+How do you check open network connections in Linux?
+
+A server is running slow — which commands would you use to diagnose the issue?
+
+A process is consuming high CPU. How will you identify and stop it safely?
+
+A disk is full on a Linux server, but you cannot find large files. What steps will you take?
+
+Your application cannot bind to port 8080 because it’s already in use. How do you resolve this?
+
+You scheduled a cron job but it’s not running. How do you debug it?
+
+A user complains they cannot SSH into the server, but the server is running. What would you check first?
+
+You accidentally deleted a critical log file that an application is writing to. What will happen and how can you recover or mitigate it?
+
+You need to monitor real-time network traffic on a Linux server. Which tools/commands will you use?
+
+After deploying a new cron job, the output is not being logged. How do you check why?
+
+A process is stuck in uninterruptible sleep state (D state). What does that mean, and how do you handle it?
+
+The system load average is high, but CPU usage looks normal. What could be the reasons?
+
+You notice that log files under /var/log are consuming too much space. How would you rotate and manage them?
+
++++++++
+
+2️⃣ AWS
+
+What is the difference between an EC2 Security Group and a Network ACL?
+
+Explain the difference between IAM Role, IAM Policy, and IAM User.
+
+What is the difference between EC2, ECS, and Lambda?
+
+What is the difference between a Public Subnet and a Private Subnet?
+
+What are the differences between Auto Scaling Group (ASG) and Elastic Load Balancer?
+
+What is the difference between S3 Bucket Policy and IAM Policy?
+
+How do you enable high availability for a database in AWS?
+
+What is the difference between RDS Multi-AZ and RDS Read Replica?
+
+How do you secure sensitive credentials in AWS.
+
+Your EC2 instance is not accessible via SSH even though it is running. What steps would you take to troubleshoot?
+
+Your application hosted on EC2 + ALB is slow for users. How would you identify the bottleneck?
+
+You are running an app in a single Availability Zone. Your manager asks to make it highly available. What changes will you make?
+
+You receive a request to reduce the cost of S3 storage. What strategies will you apply?
+
+A developer accidentally deleted a production EC2 instance. How would you design your AWS infrastructure to avoid such incidents in the future?
+
+Your EC2 instance is in a running state but not reachable via SSH. What step-by-step checks would you perform?
+
+You deployed an application on EC2 but it crashes after restart. How do you troubleshoot?
+
+Your company complains about high AWS bills. How do you investigate and optimize cost?
+
+You have an application running on EC2 in a single AZ. Management asks you to make it fault-tolerant. What’s your approach?
+
+You created an S3 bucket but users in another AWS account cannot access it. How do you fix permissions?
+
+Your Auto Scaling Group is launching instances but they fail health checks. How do you troubleshoot?
+
+Your website behind an ALB is showing intermittent 504 Gateway Timeout errors. What would you check?
+
+A developer accidentally terminated a production EC2 instance. How do you design the infrastructure to avoid this in future?
+
+Your application uses RDS and the team is complaining of slow queries. How do you diagnose and improve performance?
+
+You deployed a Lambda function but it times out while connecting to an RDS database. What could be the reasons and how would you fix it?
+
+
+++++++
+
+most commonly asked + scenario-based Terraform questions for candidates with 2–4 years of experience.
+
+Differences between Terraform and configuration management tools like Ansible, Chef, or Puppet.
+
+Describe the main components of a Terraform configuration.
+
+What is a Terraform state file? Why is it crucial, and what are the risks of managing it locally in a team environment?
+
+Explain the purpose of each terraform commands: init, ftm, validate, plan, apply, and destroy. 
+
+How do implicit and explicit dependencies work in Terraform? 
+
+What are Terraform modules, and what are the benefits of using them? When should you create a module?
+
+Explain the purpose of a Terraform remote backend. Why is it a best practice for collaborative projects?
+
+How do you handle sensitive data (like passwords or API keys) in a Terraform configuration? What are some secure methods?
+
+What is "drift" in the context of Terraform? How do you detect and rectify it?
+
+Explain the difference between count and for_each meta-arguments. When would you choose one over the other?
+
+What are Terraform provisioners? Describe a use case for local-exec and remote-exec, and explain their limitations.
+
+How would you structure a large-scale Terraform project to manage multiple environments (e.g., dev, stage, prod) and multiple regions? Discuss the pros and cons of using workspaces versus a directory-based approach.
+
+Describe the concept of "state locking" in Terraform. Why is it necessary, and what happens if it fails?
+
+What is the terraform import command, and when would you use it? What are the key challenges and best practices for importing existing infrastructure?
+
+How can you leverage locals in Terraform? Provide an example of how they improve code readability or reduce repetition.
+
+Explain the lifecycle meta-argument. Provide specific use cases for prevent_destroy, ignore_changes, and create_before_destroy.
+
+How would you implement a CI/CD pipeline for a Terraform project? Describe the stages and the commands you would use at each step.
+
+What is a "null resource," and when is it a useful pattern in a Terraform configuration?
+
+Describe how you would debug and troubleshoot a complex Terraform configuration that is failing to apply. What tools or commands would you use?
+
+++++++
+
+Docker 
+
+
+What is the difference between an image and a container?
+
+What is a Dockerfile, and what are some common instructions (FROM, RUN, COPY, ADD, CMD, ENTRYPOINT, EXPOSE, WORKDIR, ENV)?
+
+What’s the difference between CMD and ENTRYPOINT? When would you use each?
+
+Explain the Docker image layer model. How do layers impact build caching and image size?
+
+How do you map ports from a container to the host? What does -p 8080:80 mean?
+
+What are volumes vs. bind mounts? When would you use each, and how do they affect data persistence and portability?
+
+Explain Docker networking modes (bridge, host, none, overlay). When would you use each?
+
+What is docker-compose, and how does it help in multi-container applications? What are key sections in a compose file?
+
+How do multi-stage builds work, and why are they useful?
+
+What are best practices for writing secure and efficient Dockerfiles (base images, least privilege, minimizing layers, .dockerignore, caching)?
+
+How do you pass secrets and configuration to containers (env vars, files, Docker secrets, compose, runtime flags)?
+
+How do you limit container resources (CPU, memory, pids) and why is it important?
+
+How do you inspect and troubleshoot containers (logs, exec, inspect, top, stats, events)? Provide example commands.
+
+Describe Docker BuildKit. What advantages does it provide (parallelism, cache mounts, secrets, SSH forwarding)?
+
+How do you reduce image sizes and attack surface (distroless, Alpine vs. glibc issues, pruning, squashing, multi-stage)?
+
+What are Docker content trust and image signing (Notary), and how do they fit into supply chain security?
+
+How do you scan images for vulnerabilities and integrate scanning into CI/CD?
+
+Compare Docker Swarm and Kubernetes for orchestration. When might you choose one over the other?
+
+Explain rootless Docker, user namespaces, and running processes as non-root. What are the trade-offs and security implications?
+
+You deployed a container, but it exits immediately after starting. How would you troubleshoot it?
+
++++++
+
+
+Terraform Advanced Interview Questions ⚡
+
+Terraform is one of the most powerful Infrastructure as Code (IaC) tools. Once you’re comfortable with the basics, these advanced concepts and scenarios will help you stand out in interviews and real-world DevOps projects.
+
+✨ Here are some of the most commonly asked advanced Terraform interview questions for candidates with 3–6 years of experience.
+
+How does Terraform handle dependency resolution internally? Explain the difference between graph-based execution and linear execution.
+
+Can you explain the difference between depends_on and implicit dependencies? When would you explicitly use depends_on?
+
+How does Terraform manage resources when multiple providers are used in the same configuration?
+
+Explain the difference between terraform.workspace and a directory-based environment structure. Which one would you prefer for multi-env setups and why?
+
+What is the difference between for_each and count?
+
+How does Terraform handle immutable and mutable infrastructure?
+
+What are the limitations of Terraform state files in large projects? How do you mitigate state bloat and performance issues?
+
+Explain how state locking works with backends like S3 + DynamoDB. What happens if a lock is not released?
+
+When would you use terraform taint and terraform untaint? Provide real-world use cases.
+
+How do you handle breaking changes in Terraform provider upgrades across multiple environments?
+
+What are dynamic blocks in Terraform? Provide an example of when they are useful.
+
+Explain the difference between locals, variables, and outputs. When should you use each?
+
+What is a resource targeting in Terraform apply? Why is it considered risky?
+
+How do you test Terraform code in CI/CD? Mention tools like Terratest, Checkov, or InSpec.
+
+How do you implement policy-as-code with Terraform? Explain Sentinel or Open Policy Agent (OPA) integration.
+
+What is drift detection in Terraform Cloud/Enterprise? How is it different from running terraform plan locally?
+
+Explain the purpose of the lifecycle meta-arguments (create_before_destroy, prevent_destroy, ignore_changes).
+
+How do you design reusable Terraform modules for multi-cloud infrastructure?
+
+How does Terraform handle rollbacks if an apply partially fails? What strategies can you use to ensure safe deployments?
+
+What are some best practices for structuring Terraform code in a monorepo and multi-repo setup?
+
+++++
+
+Kubernetes 
+
+
+What is Kubernetes, and how does it differ from Docker Swarm?
+Explain the architecture of Kubernetes.
+
+What are Pods in Kubernetes? How are they different from containers?
+
+What is a ReplicaSet vs Deployment? When would you use each?
+
+Explain StatefulSets and their use cases.
+
+What are DaemonSets? Provide an example scenario where you would use one.
+
+What are ConfigMaps and Secrets? How do you mount them inside Pods?
+
+What are Services in Kubernetes? Explain ClusterIP, NodePort, and LoadBalancer.
+
+What is an Ingress resource, and how is it different from a LoadBalancer service?
+
+How does Kubernetes handle service discovery and DNS?
+
+Explain readinessProbe vs livenessProbe vs startupProbe with examples.
+
+What is etcd, and why is it critical in Kubernetes?
+
+How do you perform a rolling update and rollback in Kubernetes?
+
+What are Resource Requests and Limits in Kubernetes, and why are they important?
+
+Explain Horizontal Pod Autoscaler (HPA) vs Vertical Pod Autoscaler (VPA).
+
+What are Network Policies in Kubernetes, and how do we improve security?
+
+How do you debug a failing Pod (CrashLoopBackOff, ImagePullBackOff, Pending)?
+
+What is the difference between Jobs and CronJobs in Kubernetes?
+
+How do you secure Kubernetes clusters (RBAC, Pod Security Standards, Network Policies)?
+
+You deployed an application, but traffic is not reaching it. What steps would you take to troubleshoot?
+
+After a node failure, some Pods are not rescheduled. What are possible reasons?
+
+Your StatefulSet is not maintaining the correct order of Pod startup. How do you fix this?
+
+You need to perform zero downtime deployment for a production app. How would you achieve this in Kubernetes?
+
+Your Kubernetes cluster’s etcd is running out of space. How do you resolve this issue?
+
+You enabled a NetworkPolicy but now some services can’t talk to each other. How would you troubleshoot?
+
+You need to schedule a Pod only on specific nodes with GPUs. How would you configure this?
+
+A developer reports that environment variables are not being injected into their Pod. How do you investigate?
+
+
+++++
+Jenkins
+
+Your Jenkins job takes 2 hours to build. How would you optimize it?
+
+How do you achieve high availability for Jenkins?
+
+How do you implement distributed builds in Jenkins?
+
+How do you scale Jenkins in Kubernetes?
+
+What strategies would you use to secure Jenkins in an enterprise setup?
+
+How do you handle secrets management in Jenkins pipelines?
+
+How do you manage large numbers of jobs efficiently?
+
+Can you explain how to use Jenkins with Terraform or Ansible in CI/CD?
+
+How would you migrate Jenkins jobs from one server to another?
+
+How would you design a multi-branch pipeline for a microservices architecture with dozens of services?
+
+Your Jenkins pipelines need to run in multiple environments (Dev, QA, Prod). How would you design the pipeline to promote artifacts across environments securely?
+
+How do you implement pipeline parallelization in Jenkins to speed up builds?
+
+Explain how to set up ephemeral Jenkins agents using Kubernetes.
+
+How do you enforce quality gates with tools like SonarQube inside Jenkins pipelines?
+
+What strategies do you use to handle long-running pipelines and ensure reliability?
+
+How do you achieve pipeline as code reusability across multiple teams?
+
+Describe how you would configure zero-downtime upgrades for Jenkins in production.
+
+How do you monitor Jenkins performance and troubleshoot bottlenecks?
+
+In case of Jenkins master failure, how do you restore Jenkins from backup?
+
+How do you integrate secret management solutions like HashiCorp Vault or AWS Secrets Manager with Jenkins pipelines?
+
+How would you handle a situation where Jenkins plugins create version conflicts?
+
+How do you secure Jenkins pipelines against malicious code execution?
+
+How do you implement role-based access control for Jenkins in an enterprise environment?
+
+What is the difference between pipeline stages, steps, and agents?
+
+How would you integrate Jenkins with AWS CodeDeploy, for Terraform, for full automation?
+
+How do you achieve blue/green or canary deployments with Jenkins pipelines?
+
+
+
++++++
+
+GitHub Actions
+
+Explain the difference between workflow, job, and step in GitHub Actions.
+
+What are runners in GitHub Actions? Difference between GitHub-hosted and self-hosted runners.
+
+How do you trigger a workflow using events in Github Action?
+
+What is the difference between env variables and secrets in a workflow?
+
+Explain the concept of matrix builds in GitHub Actions.
+
+How do you cache dependencies in GitHub Actions to optimize build time?
+
+Your GitHub Actions workflow is taking too long to run. How would you optimize it?
+
+How do you design a workflow to deploy the same artifact to Dev → QA → Prod securely?
+
+You need to implement blue/green deployments with GitHub Actions?
+
+How would you integrate SonarQube or CodeQL for static code analysis inside workflows?
+
+How do you implement ephemeral environments using GitHub Actions with Kubernetes?
+
+How would you build a workflow to automatically version artifacts based on semantic versioning (major/minor/patch)?
+
+Your workflow must run only when specific files change — how do you implement this?
+
+How do you enforce quality gates (tests, linting, security scans) before merging into main?
+
+How do you design a multi-cloud deployment pipeline using GitHub Actions?
+
+How would you migrate existing Jenkins pipelines to GitHub Actions?
+
+How would you implement reusable workflows across multiple repositories?
+
+Explain the difference between composite actions and Docker-based custom actions.
+
+How do you secure GitHub Actions workflows from malicious pull requests?
+
+How do you implement manual approvals in a GitHub Actions workflow?
+
+What are the best practices for managing secrets at scale in GitHub Actions?
+
+How do you handle role-based access control in GitHub Actions?
+
+What strategies do you use for monorepo CI/CD in GitHub Actions?
+
+How do you implement branch protection rules with GitHub Actions CI?
+
+How do you debug failing GitHub Actions workflows effectively?
+
+What is the difference between actions/checkout and actions/upload-artifact?
+
+++++
+Ansible
+What is Ansible and how is it different from other configuration management tools like Puppet or Chef?
+
+Explain the architecture of Ansible. What are the main components?
+
+What is an Ansible Inventory? Difference between static and dynamic inventory.
+
+What are Ansible modules? Can you give examples of commonly used modules?
+
+What is an Ansible Playbook? How is it structured?
+
+Difference between a task, role, and handler in Ansible.
+
+How do you use variables in Ansible Playbooks?
+
+What are Ansible facts and how are they gathered?
+
+How do you handle sensitive data in Ansible?
+
+Explain the difference between when, tags, and register in Playbooks.
+
+How do you run a specific task or tag in Ansible?
+
+How do you test and debug an Ansible Playbook?
+
+How do you ensure idempotency in Ansible Playbooks?
+
+Explain the concept of Ansible Roles. Why do we use them?
+
+How do you implement error handling and retries in Ansible tasks?
+
+How can you optimize Ansible Playbook execution time?
+
+Difference between include and import in Ansible.
+
+How do you integrate Ansible with CI/CD pipelines.
+
+How do you manage large inventories across multiple environments (Dev/QA/Prod)?
+
+You need to deploy an application across 100+ servers. How would you design the Ansible Playbook?
+
+You have secrets like database passwords. How would you manage them securely in Ansible?
+
+How would you implement Blue-Green or Canary deployments using Ansible?
+
+Your Playbook is failing at a certain task, but you want the rest of the tasks to continue running. How would you handle this?
+
+How do you set up role-based access control (RBAC) with Ansible Tower/AWX?
+
+How would you automate Kubernetes cluster provisioning using Ansible?
+
+How do you use Ansible for patch management on hundreds of servers?
+
+You want to run different configurations based on environment (Dev, QA, Prod). How would you structure the Playbooks?
+
+How would you troubleshoot a failed Ansible Playbook run?
+
+You need to ensure zero-downtime deployments with Ansible. How would you achieve this?
+
+
+
+++++
+Prometheus Interview Questions
+ 
+What is Prometheus and what makes it different from other monitoring tools?
+
+Explain the pull-based data collection model in Prometheus.
+
+What are exporters in Prometheus? Give some examples.
+
+What is PromQL and why is it important?
+
+Explain the architecture of Prometheus.
+
+What is the role of Alertmanager in Prometheus?
+
+How do you monitor Kubernetes clusters using Prometheus?
+
+What are recording rules in Prometheus?
+
+How do you handle high cardinality metrics in Prometheus?
+
+How do you scale Prometheus for large environments?
+
+Prometheus server is running out of disk space so how would you optimize storage?
+ 
+Alerts are not being sent from Alertmanager then how would you debug the issue?
+
+How do you achieve high availability (HA) in Prometheus? 
+
+What is Thanos and how does it extend Prometheus capabilities?
+
+Difference between federation and remote_write/remote_read in Prometheus?
+
+How would you design Prometheus to monitor multi-cluster Kubernetes environments?
+
+How do you reduce storage usage in Prometheus without losing critical metrics?
+
+🔹 Grafana Interview Questions
+
+What is Grafana and how does it integrate with Prometheus?
+
+What are panels and dashboards in Grafana?
+
+Apart from Prometheus, what other data sources can Grafana connect to?
+
+How do you create dynamic and reusable dashboards using variables in Grafana?
+
+How can you set up alerts in Grafana?
+
+What are some ways to share or export dashboards?
+
+How do you implement RBAC (Role-Based Access Control) in Grafana?
+
+You are asked to create a dashboard for monitoring a Kubernetes cluster. Which key metrics and panels would you include?
+
+How do you optimize Grafana performance in large-scale deployments?
+
+Your Grafana dashboard is loading slowly so how would you troubleshoot?
+
+How do you manage Grafana at enterprise scale (multiple teams, hundreds of dashboards)?
+
+Difference between Grafana OSS, Grafana Enterprise, and Grafana Cloud?
+How do you automate Grafana dashboard provisioning?
+
+How do you version-control Grafana dashboards and manage them as code?
+
+Your Grafana alerts are delayed or not firing. How would you debug?
+
+What is the difference between Grafana alerting and Prometheus Alertmanager? 
+
+++++
+
+Here are some of the most commonly asked Azure Interview Questions from basic to advanced level 👇
+
+ What is the difference between Azure Managed Identity and Service Principal?
+ 
+ Explain Azure RBAC vs Azure AD Roles.
+ 
+How do you use Azure Monitor and Log Analytics together?
+ 
+What are Azure Blueprints and how are they different from Policies?
+
+Explain Azure App Service scaling options (manual, autoscale, scale-to-zero).
+
+What’s the difference between Azure Functions Consumption Plan vs Premium Plan?
+ 
+How does Azure Storage redundancy (LRS, GRS, RA-GRS, ZRS) work?
+ 
+Explain Azure Bicep vs ARM Templates.
+
+What is Azure Arc and when would you use it?
+
+Difference between Azure CLI and Azure PowerShell — when to use which?
+
+What are Azure Resource Locks and when would you use them?
+
+How does Azure Policy help enforce compliance? Can you give an example scenario?
+
+Explain the difference between Azure Availability Set and Availability Zone.
+
+What is the purpose of Azure Key Vault? How do you integrate it with Azure DevOps pipelines?
+
+How does Azure Application Gateway with WAF help in securing applications?
+
+Compare Azure Service Bus vs Azure Event Hub vs Azure Event Grid — when would you use each?
+
+How do you design multi-region disaster recovery (DR) in Azure?
+
+What is Azure Private Link and how does it differ from Service Endpoints?
+
+What is the difference between Azure Front Door and Azure Traffic Manager?
+
+You need to secure an Azure web app from DDoS attacks — which Azure services would you use and why?
+
+Your organization wants to enforce tagging standards across all resources. How would you implement this?
+
+How would you connect an on-premises datacenter with Azure securely?
+
+You have sensitive customer data stored in Azure SQL Database — how do you ensure data encryption at rest and in transit?
+
+Your AKS cluster is running workloads, and some pods are failing due to insufficient resources. How would you troubleshoot and fix it?
+
+Your app must meet GDPR compliance in Azure, how would you design it?
+
+ How would you migrate an on-premises SQL Server database to Azure with minimal downtime?
+
+ How do you secure secrets in an Azure DevOps pipeline?
+
+ How would you monitor and alert on AKS pod restarts and node failures?
+
+ A customer needs to ensure low-latency access to their app worldwide which Azure service do you suggest?
+
+ What’s your approach to implement cost governance across subscriptions  in a large enterprise?
+
+You are tasked with designing a hybrid cloud with Azure and on-prem what services will you use?
+
+++++
+Here are some of the most commonly asked Git & GitHub Interview Questions from basic to advanced level 👇
+
+ 🔹 What is the difference between Git and GitHub?
+
+ 🔹 What is the difference between git fetch and git pull?
+
+ 🔹 How does branching work in Git?
+
+ 🔹 What are Git tags and how are they used in CI/CD pipelines?
+ 
+🔹 Explain how merge conflicts happen and how to resolve them.
+
+ 🔹 What is a Pull Request (PR) in GitHub and how does code review work?
+
+ 🔹 How do you use Git stash and when would you use it?
+
+ 🔹 What is the difference between Git rebase and Git merge?
+
+ 🔹 How do you squash commits in Git?
+
+ 🔹 What is GitHub Actions and how is it different from Jenkins?
+
+ 🔹 Explain GitHub Fork vs Clone.
+
+ 🔹 How do you handle large files in GitHub?
+
+ 🔹 What are Git submodules and when would you use them?
+
+ 🔹 How do you secure secrets in GitHub Actions?
+
+ 🔹 What is the difference between GitHub Enterprise and GitHub Cloud?
+
+ 🔹 How do you enforce branch protection rules in GitHub?
+
+ 🔹 How would you rollback a bad deployment caused by a faulty commit?
+
+ 🔹 Explain Git cherry-pick with a real use case.
+
+ 🔹 How can you integrate GitHub with CI/CD tools like Jenkins, 
+       Azure  DevOps, or GitLab?
+
+ 🔹 What are the best practices for writing good Git commit messages?
+
+
+++++
+
+GCP FAQ for DevOps Engineer Interviews
+
+What are GCP regions and zones, and why do they matter in deployments?
+How do projects, folders, and organizations help in resource management?
+What is the role of IAM roles, policies, and service accounts in GCP?
+How does GCP billing work and what tools are available for cost optimization?
+What are the different storage options in GCP and their use cases?
+What is Compute Engine and how do you configure autoscaling?
+How does Google Kubernetes Engine (GKE) simplify container orchestration?
+What is the difference between Cloud Functions and Cloud Run?
+What is BigQuery and when should you use it?
+How does Pub/Sub support event-driven architectures?
+What is a VPC in GCP and how does it work?
+How do firewall rules, routes, and peering work in GCP networking?
+What is Cloud Interconnect and when is it useful?
+What monitoring, logging, and tracing tools are available in GCP?
+What is Cloud Spanner and when should it be chosen over Cloud SQL or Bigtable?
+What are preemptible VMs and when do you use them?
+How does GCP handle secrets and sensitive data?
+What is Anthos and how is it used in hybrid/multi-cloud environments?
+How does GCP ensure high availability and disaster recovery?
+What is Cloud Deployment Manager and how is it used for Infrastructure as Code?
+
+
+
