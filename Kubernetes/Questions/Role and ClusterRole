@@ -1,0 +1,32 @@
+𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐑𝐁𝐀𝐂: 𝐑𝐨𝐥𝐞 𝐯𝐬 𝐂𝐥𝐮𝐬𝐭𝐞𝐫𝐑𝐨𝐥𝐞
+
+One of the most common questions in Kubernetes security is:
+ 👉 What’s the difference between a Role and a ClusterRole?
+
+ Quick Comparison:
+ 🔹 Role → Single namespace → bound with RoleBinding
+ 🔹 ClusterRole → Cluster-wide → bound with ClusterRoleBinding (or    RoleBinding if namespace-scoped)
+
+Use Role for: Namespace-specific tasks (e.g., reading Pods in default)
+Use ClusterRole for: Cluster-level resources (e.g., Nodes, Persistent Volumes)
+
+⚙️ How permissions are defined:
+ Rules include:
+verbs → get, list, create, delete
+resources → pods, deployments, services
+apiGroups → "" (core APIs), "apps", etc.
+
+📌 Example Rule:
+rules:
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["create", "delete", "update"]
+
+Tip: Use Role whenever possible (namespace-scoped), and only use ClusterRole when access needs to span multiple namespaces or cluster-wide resources.
+
+🛡️ Security Best Practices:
+Principle of Least Privilege → Grant only required permissions
+Audit regularly → Monitor access and detect misconfigurations
+Namespace isolation → Prefer Roles over ClusterRoles
+ServiceAccounts first → Use them over users for automation
+Review & rotate → Periodically audit bindings
