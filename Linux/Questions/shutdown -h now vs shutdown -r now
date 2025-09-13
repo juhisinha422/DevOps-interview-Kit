@@ -1,0 +1,13 @@
+shutdown -h now vs shutdown -r now
+1️⃣ shutdown -h now
+The -h flag stands for halt.
+Immediately powers off the system.
+Think: h → halt.
+
+2️⃣ shutdown -r now
+The -r flag stands for reboot.
+Restarts the system right away.
+Think: r → restart.
+
+⚡ Pro Tip: Always make sure you’ve saved your work and notified users before running these—especially on shared servers.
+Small differences, big impact. One halts, the other reboots.
