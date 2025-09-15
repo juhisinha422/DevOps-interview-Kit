@@ -1,0 +1,34 @@
+0–2 years of experience in DevOps.
+
+ 1. Tell me about yourself.
+ 2. Can you Explain Lambda ?
+ 3. What is Auto scaling groups ?
+ 4. What are the different storage classes in S3?
+ 5. How does S3 ensure data durability?
+ 6. Difference between IAM role and user.
+ 7. What is VPC and what are the components of VPC
+ 8. Difference between Public and Private Subnet.
+ 9. How would you design a highly available web-app in AWS ?
+10. You need to migrate a large On premises database to AWS. What should you do ?
+11. EC2 instances cannot connect to the internet. What could be the reason?
+12. Explain Horizontal and Vertical Scaling.
+13. How do you secure data at-rest and in-transit in AWS?
+14. Can you Explain about Cloud Formation?
+15. Can you Explain Secret manager in AWS?
+16. How can you implement MFA in AWS?
+17. How does S3 Encryption work?
+18. Explain VPC - Peering.
+19. Can you explain the Logic Volume Manager(LVM) in Linux?
+20. Explain Grep command in Linux?
+21. Explain Network Commands in Linux?
+22. How do you manage System Services in Linux ?
+23. Explain Disk usage in Linux?
+24. In AWS, if the storage is full, How will you extend the storage?
+25. In the AWS EC2 instance, i need to increase the size 8GB to 16 GB. How would you do that ?
+26. Explain Replica set in Kubernetes?
+27. Explain Etcd in Kubernetes?
+28. How does Kubernetes handle networking?
+29. How do you monitor Kubernetes Cluster ?
+30. What is Daemon set in Kubernetes?
+31. Difference between Daemon set and statefulset?
+32. How do  you troubleshoot pod in Kubernetes?
