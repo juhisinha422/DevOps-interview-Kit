@@ -1,0 +1,33 @@
+Q1). What are the advantages and disadvantages of multi-stage builds in Docker? 
+
+Advantages: 
+● Smaller Image Size: By separating the build environment from the runtime environment, only the necessary components are included in the final image, leading to smaller image sizes. 
+● Improved Security: Reduces the attack surface by excluding build tools and other unnecessary components from the final image. 
+● Better Caching: Allows for more efficient use of Docker’s caching mechanism, potentially speeding up the build process. 
+● Separation of Concerns: Different stages can focus on specific tasks, making the Dockerfile more organized and easier to maintain. 
+
+Disadvantages: 
+● Complexity: Multi-stage Dockerfiles can be more complex and harder to understand, especially for those new to Docker.
+● Longer Build Times: In some cases, the use of multiple stages may lead to longer build times due to additional steps and transitions between stages. 
+● Troubleshooting: Debugging and troubleshooting can be more challenging because intermediate stages are not preserved by defaullt. 
+
+Q2).How do you resolve merge conflicts? 
+
+To resolve merge conflicts, follow these steps: 
+1. Identify the Conflict: Git will mark the conflicting areas in the files with conflict markers (<<<<<<<, =======, and >>>>>>>).
+
+ 2. Manually Resolve: Open the conflicting file and decide how to combine the changes. Remove the conflict markers and modify the content to resolve the conflict. 
+3. Stage the Resolved Files: Once resolved, stage the files using git add. 
+4. Commit the Changes: Commit the resolved conflicts with git commit. If you were in the middle of a merge, this will complete the merge process. 
+5. Test: Run tests to ensure that the merge didn’t introduce any issues.
+
+Q3). What is session affinity? 
+
+Session affinity, also known as sticky sessions, is a concept in load balancing where requests from a particular user are consistently directed to the same server (or pod) in a multi-server environment. This ensures that the user's session data, which might be stored locally on the server, remains accessible throughout the session. 
+
+Q4). What is pod affinity and its use case? 
+
+Pod affinity is a feature in Kubernetes that allows you to specify rules for scheduling pods to run on nodes that have other specified pods running on them. This can be useful when you want certain pods to be located together due to factors like data locality, network latency, or shared resources. Use Case: 
+
+Q5). What are readiness and liveness probes? ● Readiness Probe: Used to determine when a pod is ready to start accepting traffic. If the readiness probe fails, the pod will be removed from the service endpoints, ensuring it does not receive traffic until it's ready.
+ ● Liveness Probe: Used to determine if a pod is still running. If the liveness probe fails, Kubernetes will restart the pod, assuming it's in a failed state
