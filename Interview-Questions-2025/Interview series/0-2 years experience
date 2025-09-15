@@ -1,0 +1,71 @@
+This interview question is for 0-2  year of experience.
+
+ 1.  Explain your Day to Day activities 
+ 2. Do you have hands-on in Linux? If yes, Which Platform?
+ 3. What is the latest version of Ubuntu?
+ 4. I have index.html on GitHub, I need to push it into aws. The requirement is one load balancer is required and we provide index.html  in GitHub repo and we provide username and token. How to achieve this?
+ 5. what is dependinces resources for the IP?
+ 6.  What is the command to connect EC2 instance?
+ 7. How to implement Internet gateway?
+ 8. How to configure internet gateway to route table?
+ 9. What is the exact command to log in the instance and what kind of authentication will you use ? Do you need password to provide or something else ?
+10. In which path will you create index.html in Server ?
+11. Explain Most common linux Commands 
+12. How to check one running process?
+13. How to list running process?
+14. You need to find one particular process id and how to kill that? Is it possible in single command?
+15. How to check disk usage?
+16. How to find free memory?
+17. How do you archive and compress directory in Linux?
+18. Chmod 755 means?
+19. If I provide chmod 755 means, what exactly will happen?
+20. what is chown ?
+21. How to list all ssh users in Linux?
+22. If one apache server is running, I need to check logs? where do I check? In which directory?
+23. what kind of logs can see in /var/log ?
+24. Purpose of Grep command?
+25. I need to grep keyword:linux. Expect the keyword linux, I need to list out all the lines from the linux.txt file. which flag will you used with grep?
+26. Difference between "cron" and "at" ?
+27. How to schedule activity in Linux and you need to run a script every 5 minutes?
+28. Explain Git pull and Git Fetch 
+29. How do you resolve merge conflict?
+30. How to create custom image in Docker ?
+31. Elaborate Docker file.
+32. What is the prerequisites of "docker build" command?
+33. How do copy file from the container to host ?
+34. what if we put "COPY ." ? what will happen in background?  what is the source and destination here ?
+35. what is Route 53?
+36. Is it possible to purchase a domain in route 53 ?
+37. What is the configuration file of Prometheus?
+38. Where can I setup the alerting? In Prometheus or Grafana?
+39. I want to configure one alerting disk Usage of one of the server reaches 80%, it should alert sms? where can I do these configuration? 
+40. How to generate token in GitHub? Explain the steps.
+
+
+1. Tell me about Yourself 
+ 2. Write any pipeline script on Jenkinsm
+ 3. Explain about end to end pipeline script.
+ 4. Does Jenkins do Both CI and CD ?
+ 5. DO you know BOTO3
+ 6. What is the first step to start or create or execute the CD pipeline in Jenkins 
+ 7. Write end to end gitHubactions.yaml pipeline script 
+ 8. What is helm ?
+ 9. What is the first command to create Helm?
+10. You have integrated both Docker and Kubernetes. The docker image or container somewhere else in the system. How you configure the container to Kubernetes? How Kubernetes identify the docker container and what are the first step and rest of the things to do ?
+11. Have you worked on EKS Cluster?
+12. How to create EKS Cluster? Elaborate the steps.
+13. What is master node and slave node in Kubernetes?
+14. From your understanding, What is NGINX?
+15. Have you used ingress controller?
+16. How to use any load balancer in Ingress controller? How to configure? what are the steps ?
+17. Are you aware of Port numbers?
+18. What is the Port Number for SSH, HTTPS, HTTP, APACHE, NGINX, PROMETHEUS, GRAFANA, JENKINS ?
+19. How will you configure Terraform with any cloud platform? 
+20. You have two yaml files. One has Ingress controller and another one has No Ingress controller. What is the difference here? What did you Understand?
+21. What is CI and CD?
+22. Before CD, What CI will do ?
+23. How to generate Token in GitHub? ( most asked interview questions)
+24. What is the Format of Cloud Formation?
+25. What is Cluster IP?
+26. What is Node port ?
+27. After Creating Helm, what inside in the helm ? 
