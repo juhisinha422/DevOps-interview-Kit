@@ -1,0 +1,19 @@
+🔥 6 Most-Asked Linux Questions in DevOps Interviews
+
+👨💼 Interviewer: How do you check which process is using a port?
+👉 lsof -i :8080
+
+👨💼 Interviewer: How do you find top CPU/memory consuming processes?
+👉 top or ps aux --sort=-%cpu | head -n 5
+
+👨💼 Interviewer: How do you search for a string inside files?
+👉 grep -r "ERROR" /var/log/
+
+👨💼 Interviewer: How do you create a parent directory with subfolders and a file in one line?
+👉 mkdir -p project/{src,tests} && touch project/src/main.py
+
+👨💼 Interviewer: How do you check system resource usage?
+👉 free -h, df -h, uptime
+
+👨💼 Interviewer: How do you kill a process running on a port?
+👉 kill -9 $(lsof -t -i:8080)
