@@ -1,0 +1,12 @@
+VPC (Virtual Private Cloud) scenario-based questions🚀
+
+1.	You have a private subnet with no internet access, but your instances need to download updates. How do you enable this securely?
+2.	Your application in one VPC needs to communicate with a database in another VPC (same region). How would you set this up?
+3.	You’ve created a new EC2 instance in a public subnet but it cannot access the internet. What might be misconfigured?
+4.	You need to connect your on-premises data center to AWS securely. Which VPC feature would you use?
+5.	How do you restrict access to an EC2 instance so that only a specific IP range can connect?
+6.	Your team wants to host multiple environments (dev, test, prod) in a single AWS account. How would you design the VPCs?
+7.	How would you allow private subnets to access the internet without exposing them directly?
+8.	Your application requires low latency and high throughput between two VPCs across different AWS accounts. What’s the best solution?
+9.	You deployed a NAT Gateway but still can’t reach the internet from private subnets. What could be wrong?
+10.	Your compliance requirement says that all traffic must pass through a firewall appliance before reaching the internet. How would you architect this in VPC?
