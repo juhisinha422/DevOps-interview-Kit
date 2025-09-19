@@ -1,0 +1,10 @@
+Command-Line Tools: grep vs awk 🔧
+
+
+grep is primarily used for searching through text. If you need to quickly search for a pattern in files or outputs, grep is your go-to tool. It’s fast and efficient for filtering and matching regular expressions.
+
+
+awk, on the other hand, is a pattern scanning and processing language. It goes beyond just searching — it’s meant for processing and manipulating data, especially in columns and rows (like tabular data). It’s like grep with superpowers! You can use it for complex text processing, field extraction, and even performing calculations.
+
+So, when would you use one over the other?
+If you're just matching simple text patterns, use grep. But, if you want to extract or process specific columns or fields, or even perform operations on the matched data, awk would be a better choice.
