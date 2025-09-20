@@ -1,0 +1,53 @@
+DevOps Engineer position at *HCL technologies*. The panel asked a mix of fundamental, scenario-based, and tricky questions.
+
+
+---
+
+🔹 General & Project
+
+* What tools are you using in your current project?
+* Could you explain your project architecture and workflows?
+
+🔹 Git & Version Control
+
+* Difference between `git fetch` and `git pull`
+* What is `git rebase`?
+* Branching strategy you follow in your team
+* How does `git cherry-pick` work?
+* If two developers push code to the same branch simultaneously, how do you resolve conflicts?
+
+🔹 CI/CD & Secrets Management
+
+* How do you set up ArgoCD for multiple environments?
+* If there is an secret stored how ArgoCD makes sure that particular secret will not exposed on ArgoCD UI?
+* In Jenkins CI/CD, if a secret stored in Secret Manager gets exposed in output, how would you fix it? What are the drawbacks?
+* If a Jenkins pipeline fails after deployment, how do you roll back automatically?
+
+🔹 Terraform (IaC)
+
+* Difference between `local-exec` and `remote-exec` provisioners
+* What is the file provisioner in Terraform?
+* Common Terraform commands you use daily
+* How can you run specific commands during EC2 creation (with or without Terraform)?
+* If the Terraform state file is deleted (not stored in remote backend, no backups), how can you recover it?
+* How do you manage multiple environments in Terraform without duplicating code?
+
+🔹 Kubernetes / EKS
+
+* What is a PodDisruptionBudget?
+* If there are 2 pods in different namespaces (ns1 & ns2), how can they communicate? How would you test it?
+* Which EKS version are you using?
+* Difference between ReplicaSet and ReplicationController
+* How do you debug a pod stuck in `CrashLoopBackOff`?
+
+🔹 AWS & Cloud
+
+* What does S3 cores mean?
+* When you create a Load Balancer, what other components are required?
+* Types of DNS policies
+* How to transfer an EBS volume from one availability zone to another
+* What is a Gateway Load Balancer?
+* Your application is facing high latency behind an ALB—how would you troubleshoot?
+* If there are 8-10 subnets how do you know that out of 10 these 5 are private subnets and these 5 are public subnets ?
+
+---
