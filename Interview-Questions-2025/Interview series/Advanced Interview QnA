@@ -1,0 +1,30 @@
+DevOps Interview Q&A Series — Advanced Edition 🌟
+
+Here’s a handpicked list of Kubernetes, Docker, CI/CD, and Terraform questions that you should definitely prepare 👇
+
+🔹 Kubernetes
+  How do Kubernetes components interact when you run kubectl apply?
+  Explain Kubernetes architecture.
+  How do you securely manage secrets in AKS using Azure Key Vault and CSI drivers?
+ You’re hitting a Load Balancer URL and getting 503 errors, but Pods are running fine internally — how do you troubleshoot?
+ StatefulSet vs Deployment — when do you use each?
+ How can you restrict communication between 2 Pods in the same namespace?
+
+🔹 Docker & Pipelines
+ CMD vs ENTRYPOINT vs RUN in Docker.
+ Difference between Docker Volumes and Bind Mounts (and which one works in K8s).
+ Techniques to cache Docker layers or NPM/NuGet packages in pipelines.
+ Rollback strategies you’ve implemented in production.
+ Compliance as Code — how do you enforce policies, scanning, and security checks in CI/CD?
+
+🔹 Terraform
+ Purpose and real-world use cases of lifecycle blocks (prevent_destroy, create_before_destroy).
+What happens internally when you run terraform init, plan, and apply?
+How do you set up a remote backend in Azure (Blob storage) with state locking?
+How do you manage Terraform state in a team environment?
+How do you structure Terraform for multiple environments (Dev, QA, Prod)?
+How do you modularize Terraform, and what pitfalls have you seen?
+Scenario: Terraform state file is corrupted — how do you recover?
+How do you test Terraform code before applying to production?
+
+✨ These are not just theory-based — they’re real-world scenarios you will face as a DevOps Engineer.
