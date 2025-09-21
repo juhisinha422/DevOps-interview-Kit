@@ -1,0 +1,49 @@
+DevOps Roadmap (Weekly Breakdown)
+
+1. Week 1-2: Linux Fundamentals  
+   ├── Basics of Linux  
+   │   ├── File system and directory structure  
+   │   ├── File and directory permissions  
+   │   ├── Basic commands (ls, cd, mv, cp, rm, etc.)  
+   │   ├── Users, groups, and permissions (chmod, chown)  
+   │   ├── Environment variables and shell scripting  
+   ├── Package Management  
+   │   ├── APT (Debian-based)  
+   │   ├── YUM/DNF (RHEL-based)  
+   ├── Process Management  
+   │   ├── ps, top, htop, kill, jobs, bg, fg  
+   ├── Networking Basics  
+   │   ├── IP, TCP/UDP, DNS, HTTP/S  
+   │   ├── Ping, netstat, telnet, traceroute  
+
+2. Week 3-4: Version Control (Git & GitHub)  
+   ├── Git Basics  
+   │   ├── Installation & setup  
+   │   ├── Git workflow (clone, add, commit, push, pull, merge)  
+   │   ├── Branching & merging strategies  
+   │   ├── Resolving merge conflicts  
+   │   ├── Git tags and releases  
+   ├── GitHub  
+   │   ├── Pull requests and code reviews  
+   │   ├── GitHub Actions (Intro to CI/CD)  
+   │   ├── Managing repositories  
+
+3. Week 5-6: Scripting & Automation  
+   ├── Shell Scripting  
+   │   ├── Variables, loops, conditionals  
+   │   ├── Functions and error handling  
+   │   ├── Cron jobs and scheduling tasks  
+   ├── Python for Automation  
+   │   ├── Working with files and directories  
+   │   ├── APIs and web scraping  
+   │   ├── Process automation  
+
+4. Week 7-8: Containers & Docker  
+   ├── Docker Fundamentals  
+   │   ├── Installation & setup  
+   │   ├── Docker CLI commands  
+   │   ├── Writing Dockerfiles  
+   │   ├── Docker Compose  
+   ├── Container Orchestration  
+   │   ├── Kubernetes Basics  
+   │   ├── Deployments, Pods, Services
