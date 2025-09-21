@@ -1,0 +1,22 @@
+𝗟𝗶𝗻𝘂𝘅 𝗧𝗶𝗽 #𝟮 — 𝗥𝗲𝗮𝗹-𝘁𝗶𝗺𝗲 𝗽𝗿𝗼𝗯𝗹𝗲𝗺 𝘀𝗼𝗹𝘃𝗲𝗿
+
+𝘁𝗮𝗶𝗹 -𝗳 /𝘃𝗮𝗿/𝗹𝗼𝗴/𝘀𝘆𝘀𝗹𝗼𝗴
+
+
+💡 𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀:
+
+𝘁𝗮𝗶𝗹 → 𝘀𝗵𝗼𝘄𝘀 𝘁𝗵𝗲 𝗲𝗻𝗱 𝗼𝗳 𝗮 𝗳𝗶𝗹𝗲
+
+-𝗳 → 𝗳𝗼𝗹𝗹𝗼𝘄𝘀 𝘁𝗵𝗲 𝗳𝗶𝗹𝗲 𝗶𝗻 𝗿𝗲𝗮𝗹-𝘁𝗶𝗺𝗲
+
+⚡ Use case: Perfect for monitoring logs live while debugging deployments, services, or system issues.
+
+✅ 𝗥𝗲𝗮𝗹-𝗹𝗶𝗳𝗲 𝗶𝗺𝗽𝗮𝗰𝘁:
+𝗢𝗻𝗰𝗲, 𝗱𝘂𝗿𝗶𝗻𝗴 𝗮 𝗱𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁, 𝘁𝗵𝗶𝘀 𝗵𝗲𝗹𝗽𝗲𝗱 𝗺𝗲 𝗶𝗻𝘀𝘁𝗮𝗻𝘁𝗹𝘆 𝘀𝗽𝗼𝘁 𝗮 𝗳𝗮𝗶𝗹𝗶𝗻𝗴 𝘀𝗲𝗿𝘃𝗶𝗰𝗲 𝗱𝘂𝗲 𝘁𝗼 𝗮 𝗺𝗶𝘀𝗰𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗲𝗱 𝗲𝗻𝘃𝗶𝗿𝗼𝗻𝗺𝗲𝗻𝘁 𝘃𝗮𝗿𝗶𝗮𝗯𝗹𝗲 — 𝘀𝗮𝘃𝗶𝗻𝗴 𝗵𝗼𝘂𝗿𝘀 𝗼𝗳 𝗯𝗮𝗰𝗸-𝗮𝗻𝗱-𝗳𝗼𝗿𝘁𝗵 𝗱𝗲𝗯𝘂𝗴𝗴𝗶𝗻𝗴.
+
+👉 Pro tip: Combine it with grep for targeted log watching:
+
+𝘁𝗮𝗶𝗹 -𝗳 /𝘃𝗮𝗿/𝗹𝗼𝗴/𝘀𝘆𝘀𝗹𝗼𝗴 | 𝗴𝗿𝗲𝗽 𝗲𝗿𝗿𝗼𝗿
+
+
+Logs tell stories — and tail -f lets you read them as they happen. 📖⚡
