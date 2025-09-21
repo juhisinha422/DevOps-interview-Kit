@@ -1,0 +1,23 @@
+Here are some interview questions that can help you in your interview preparation:
+
+1. Could you explain how you would handle a situation where a deployment fails in the middle of the process?
+ 
+2. How do you ensure the security of your CI/CD pipeline, and what best practices do you follow?
+ 
+3. Imagine you have a microservices architecture running on Kubernetes. How would you monitor the health and performance of these services, and what tools would you use?
+ 
+4. Can you share an example of a challenging problem you faced in a project and how you went about solving it?
+ 
+5. In a scenario where you have to scale an application automatically based on load, how would you achieve this in Kubernetes, and what components would you use?
+ 
+6. What steps would you take to implement for terraform modules?
+
+7. How do you handle missing dependencies?
+ 
+8. Can you walk me through your experience with setting up and maintaining CI/CD pipelines? Which tools and technologies have you used?
+ 
+9. Can you explain how you handle monitoring and alerting in your DevOps workflow?
+ 
+10. Can you explain the differences between continuous integration, continuous delivery, and continuous deployment?
+ 
+11. Imagine you have a Kubernetes cluster running multiple microservices, and one of the pods is experiencing intermittent crashes. How would you go about diagnosing and resolving the issue? (Scenario-based)
