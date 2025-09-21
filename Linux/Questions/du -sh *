@@ -1,0 +1,24 @@
+𝗟𝗶𝗻𝘂𝘅 𝗶𝘀𝗻’𝘁 𝗷𝘂𝘀𝘁 𝗮𝗻 𝗢𝗦, 𝗶𝘁’𝘀 𝗮 𝘀𝘂𝗽𝗲𝗿𝗽𝗼𝘄𝗲𝗿 𝗳𝗼𝗿 𝗗𝗲𝘃𝗢𝗽𝘀.
+
+𝗱𝘂 -𝘀𝗵 *
+
+
+💡 𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀:
+
+𝗱𝘂 = 𝗱𝗶𝘀𝗸 𝘂𝘀𝗮𝗴𝗲
+
+-𝘀 = 𝘀𝘂𝗺𝗺𝗮𝗿𝗶𝘇𝗲 𝗲𝗮𝗰𝗵 𝗳𝗼𝗹𝗱𝗲𝗿
+
+-𝗵 = 𝗵𝘂𝗺𝗮𝗻-𝗿𝗲𝗮𝗱𝗮𝗯𝗹𝗲 (𝗚𝗕, 𝗠𝗕, 𝗞𝗕)
+
+⚡ Use case: Quickly check which directories are eating up space on your server.
+
+✅ 𝗥𝗲𝗮𝗹-𝗹𝗶𝗳𝗲 𝗶𝗺𝗽𝗮𝗰𝘁:
+This command once helped me identify log files consuming 15GB in /var/log — preventing a production outage.
+
+👉 Tip: Pair it with sort -h for an instant “top offenders” list:
+
+𝗱𝘂 -𝘀𝗵 * | 𝘀𝗼𝗿𝘁 -𝗵
+
+
+Small commands. Big impact. That’s the magic of Linux. 🐧
