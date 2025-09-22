@@ -1,0 +1,24 @@
+AWS Concepts Simplified: Load Balancer vs Target Group vs Auto Scaling Group
+
+When working with AWS, these three terms often come up together—but each plays a unique role. Here’s a quick breakdown:
+
+🔹 Load Balancer (LB)
+ Distributes incoming traffic across multiple resources to ensure high availability and fault tolerance. Think of it as: “Who should handle this request?”
+
+🔹 Target Group (TG)
+ A collection of resources (EC2, IPs, containers, or Lambda) where the Load Balancer sends requests. Includes health checks to ensure only healthy targets receive traffic. Think of it as: “Where should the LB send the traffic?”
+
+🔹 Auto Scaling Group (ASG)
+ Manages a fleet of EC2 instances—scales up during high demand and scales down when demand drops, ensuring performance + cost optimization. Think of it as: “How many servers should be running?”
+
+🔗 How they work together
+ 1️⃣ User request → Load Balancer
+ 2️⃣ Routed to → Target Group
+ 3️⃣ Instances inside TG managed by → Auto Scaling Group
+
+✅ Example:
+ALB receives traffic
+Routes /api/* → Target Group A (backed by an ASG)
+Routes /images/* → Target Group B (backed by another ASG)
+
+These three services, when combined, enable elastic, scalable, and reliable architectures on AWS.
