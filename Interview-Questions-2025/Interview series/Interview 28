@@ -1,0 +1,17 @@
+𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐄𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞
+
+1. Explain the EKS architecture.
+2. How would you establish cross-account communication between S3 buckets?
+3. What is the difference between NACL and Security Groups?
+4. What are the different scaling policies that can be implemented with an Auto Scaling Group?
+5. What is the difference between a DaemonSet and other Kubernetes controllers (e.g., Deployment, StatefulSet)?
+6. Multiple environments are running on EKS. How would you ensure that staging pods shut down on Saturday and allow developers to manually restart them?
+7. List the commands to scale pods in Kubernetes.
+8. What is a CrashLoopBackOff error in Kubernetes?
+9. You created pods, but kubectl get pods doesn’t show them. What could be the issue?
+10. How do you connect two servers using Ansible?
+11. Write a Terraform script to provision an EC2 instance, an S3 bucket with DynamoDB state locking, and a Security Group allowing ports 80 and 443.
+12. How do you secure RDS in AWS?
+13. What steps do you take to secure a CI/CD pipeline?
+14. How do you monitor logs in an EKS cluster?
+15. What are some ways to secure Kubernetes secrets?
