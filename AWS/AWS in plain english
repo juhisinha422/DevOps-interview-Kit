@@ -1,0 +1,13 @@
+AWS in plain English:
+
+• VPC → networking
+• ALB → traffic distribution
+• Route53 → domain mapping
+• EC2 → compute
+• S3 → storage
+• ECS → container orchestration
+• EKS → managed Kubernetes
+• CloudWatch → monitoring and alerts
+• RDS → database
+• IAM → access control
+• Lambda → automation
