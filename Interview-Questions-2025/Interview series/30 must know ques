@@ -1,0 +1,48 @@
+30 Must-Know DevOps Questions That Can Land You an 18 LPA Package.
+
+If you’re preparing for mid-to-senior DevOps roles, these are the type of questions interviewers ask.
+
+Here’s a solid list of 30 DevOps questions to sharpen your prep:
+
+🔹 CI/CD & Automation
+1) How do you design a CI/CD pipeline for microservices running in Kubernetes?
+2) How do you implement zero-downtime deployments in Jenkins or GitHub Actions?
+3) How do you secure pipelines against supply chain attacks?
+4) How do you manage parallel builds and artifacts in Jenkins/GitLab?
+5) Explain blue/green vs. canary deployments—when would you choose one over the other?
+
+🔹 Docker & Containers
+6) How do you optimize a Dockerfile for performance and security?
+7) How do you handle secrets inside containers?
+8) Explain image layering in Docker—how can it cause cache busting?
+9) What strategies do you use for debugging container networking issues?10) How do you run multi-container apps in production without Compose?
+
+🔹 Kubernetes (K8s)
+11) How does Kubernetes handle self-healing at pod and node level?
+12) Difference between ReplicaSet, Deployment, StatefulSet, and DaemonSet?
+13) How do you troubleshoot CrashLoopBackOff or ImagePullBackOff errors?
+14) How do you implement PodDisruptionBudgets and why are they critical?
+15) What’s the role of etcd in Kubernetes, and how do you back it up?
+16) How do you secure a Kubernetes cluster (RBAC, PSP, NetworkPolicy)?
+
+🔹 Terraform & IaC
+17) How do you handle drift detection in Terraform?
+18) What’s the impact of terraform refresh vs. terraform plan?
+19) How do you structure large Terraform projects using workspaces and modules?
+20) How do you manage state locking and avoid conflicts in remote backends?
+21) How do you test Terraform code before deploying to production?
+
+🔹 Cloud & Monitoring
+22) How do you design an auto-scaling strategy in AWS for high-traffic apps?
+23) How do you secure an S3 bucket used for static website hosting?
+24) How do you monitor Kubernetes clusters with Prometheus and Grafana?
+25) How do you implement centralized logging across distributed microservices?
+26) Explain chaos engineering—how would you use it in production?
+
+🔹 Linux & Troubleshooting
+27) How do you troubleshoot a memory leak in a production Linux server?
+28) How do you handle zombie and orphan processes?
+29) How do you debug high I/O latency in Linux systems?
+30) How do you investigate intermittent packet loss between containers or nodes?
+
+These aren’t beginner “what is Docker?” questions—these are real-world, scenario-driven challenges you’ll face in 18 LPA+ DevOps interviews.
