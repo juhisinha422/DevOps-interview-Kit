@@ -1,0 +1,30 @@
+DevOps Q&A Series – Linux Edition 🐧
+
+👉 This post is specially for 3–4 years of experience engineers who are     
+       preparing for DevOps interviews.
+
+Here are some commonly asked Linux Interview Questions:
+
+ 🔹 Q1. As a DevOps Engineer, why is Linux important?
+ 🔹 Q2. How do you check CPU & memory usage in Linux?
+ 🔹 Q3. What’s the difference between a process and a thread?
+ 🔹 Q4. How do you find which process is using a specific port?
+ 🔹 Q5. How do you check disk usage and identify large files?
+ 🔹 Q6. How do you schedule jobs in Linux?
+ 🔹 Q7. What is the difference between a hard link and a soft link?
+ 🔹 Q8. How do you monitor logs in real-time in Linux?
+ 🔹 Q9. What are some ways to secure a Linux server?
+ 🔹 Q10. How do you manage services in Linux (start/stop/status)?
+ 🔹 Q11. What’s the difference between /etc/passwd and /etc/shadow?
+ 🔹 Q12. How do you check which users are currently logged in?
+ 🔹 Q13. How do you find the top 10 memory-consuming processes?
+ 🔹 Q14. What is the difference between chmod, chown, and chgrp?
+ 🔹 Q15. How do you troubleshoot high load on a Linux server?
+ 🔹 Q16. How do you add a new user and set password policies in Linux?
+ 🔹 Q17. What’s the difference between SELinux and AppArmor?
+ 🔹 Q18. How do you check network connectivity and open ports in Linux?
+ 🔹 Q19. How do you create and extract .tar.gz files?
+ 🔹 Q20. What’s the difference between kill, pkill, and killall commands?
+
+Linux is the backbone of DevOps. If you have 3–4 years of 
+experience, focus on system performance, troubleshooting, permissions, networking, and automation to crack interviews.
