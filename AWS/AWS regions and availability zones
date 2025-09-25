@@ -1,0 +1,51 @@
+AWS Regions, Availability Zones, and Edge Locations Explained
+
+When working with AWS, one of the most fundamental concepts you must understand is how AWS organizes its infrastructure globally.
+This knowledge is critical for:
+✅ Designing scalable and fault-tolerant applications
+✅ Optimizing latency and performance
+✅ Preparing for AWS-related interviews
+
+🔹 AWS Region
+
+A physical location in the world (like us-east-1, ap-south-1)
+
+Each Region contains multiple isolated Availability Zones
+
+Regions help address compliance, data sovereignty, and proximity
+
+
+🔹 Availability Zone (AZ)
+
+A physically separate data center (sometimes multiple data centers) within a Region
+
+Each AZ has independent power, cooling, and networking
+
+Using multiple AZs increases availability and fault tolerance
+
+
+🔹 Edge Location
+
+Smaller data centers in various cities around the world
+
+Used by Amazon CloudFront (CDN) and other services for caching content closer to users
+
+Improves performance by reducing latency
+
+
+👉 Common Interview Question:
+“What’s the difference between a Region, an Availability Zone, and an Edge Location?”
+✔️ Tip: Be clear that Regions are geographical areas, AZs are isolated data centers within a Region, and Edge Locations are global caching endpoints.
+
+📘 Helpful AWS Documentation (for deeper insights):
+
+https://lnkd.in/ghjFk3Fp
+
+https://lnkd.in/gsmYYDtm
+
+https://lnkd.in/gnr9azDx
+
+https://lnkd.in/gc7cnWZ2
+
+
+💡 Pro Tip: Always design for multi-AZ deployments to ensure high availability, and use Edge Locations for delivering low-latency content globally.
