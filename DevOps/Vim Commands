@@ -1,0 +1,54 @@
+Mastering Vim: Essential Commands for Linux Users
+
+Vim is a powerful, widely used text editor in Linux, vital for developers and system administrators. Knowing Vim commands can drastically improve your efficiency when editing files in the terminal.
+
+ Getting Started
+vim filename.txt → Open a file
+:q → Quit (if no changes)
+:q! → Quit without saving
+:wq → Save & quit
+:w → Save without quitting
+
+*************** Vim Modes ***********
+1.Command Mode: Default mode for navigation & commands
+2.Insert Mode: Press i to insert text
+3.Visual Mode: Press v to select text
+
+************ Navigation ***************
+h/j/k/l → Move left/down/up/right
+gg → Go to start of file
+G → Go to end of file
+:set number → Show line numbers
+
+********** Editing Text*************
+i → Insert before cursor
+a → Insert after cursor
+o → New line below
+O → New line above
+Esc → Back to command mode
+
+********** Deleting Text*********
+x → Delete character
+dd → Delete line
+dw → Delete to end of word
+d$ → Delete to end of line
+
+*********Copy & Paste*********
+yy → Copy line
+yw → Copy word
+y$ → Copy to end of line
+p → Paste after cursor
+P → Paste before cursor
+
+***************Undo & Redo********
+u → Undo
+Ctrl + r → Redo
+
+********** Searching & Replacing **********
+/search_term → Search
+n → Next match
+N → Previous match
+:%s/old/new/g → Replace all
+:%s/old/new/gc → Replace with confirmation
+
+Vim might seem intimidating at first, but mastering these commands will make you a terminal productivity pro! 💪
