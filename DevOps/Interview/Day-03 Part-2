@@ -1,0 +1,63 @@
+Day 3 takeaway (Part 2/2)- 
+Git Advanced Questions & Answers
+
+7. How do you resolve a conflict where the same line is changed in both branches?
+Answer:
+Git marks conflict with:
+
+ <<<<<<< HEAD
+	code from current branch
+	=======
+	code from merging branch
+	>>>>>>> feature
+
+Options:
+
+Keep only one version.
+Combine changes manually.
+Use merge tools:
+
+ git mergetool
+
+8. What is the difference between git rebase --continue, --skip, and --abort?
+Answer:
+--continue: After fixing conflicts, continue the rebase.
+
+--skip: Skip the problematic commit and continue rebasing the rest.
+
+--abort: Cancel the rebase and return branch to original state.
+
+9. Can you rebase a branch that has already been pushed to remote?
+Answer:
+Not recommended if others are using the branch → it will rewrite commit history and cause issues.
+If you must, use force push after rebase:
+
+ git push --force
+Safe if branch is personal (not shared).
+
+10. How do you squash multiple commits into one using rebase?
+Answer:
+Run interactive rebase:
+
+ git rebase -i HEAD~3
+In editor, change pick to squash (s) for commits you want to merge.
+Save and edit commit message.
+Final result → single commit instead of multiple.
+
+11. What is the difference between git pull --rebase and git pull?
+Answer:
+git pull: Fetches remote branch and merges → creates merge commit.
+
+git pull --rebase: Fetches remote branch and rebases your local commits on top → linear history, no merge commit.
+
+12. If you are in the middle of a merge/rebase and want to start fresh, what do you do?
+Answer:
+For merge:
+
+ git merge --abort
+For rebase:
+
+ git rebase --abort
+This restores branch to pre-merge/rebase state.
+
+FULL DOCUMENT ATTACHED TO THIS POST.
