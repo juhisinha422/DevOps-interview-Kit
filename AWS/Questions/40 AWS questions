@@ -1,0 +1,54 @@
+40 AWS Interview Questions for Freshers 🚀
+
+here are 40 must-practice AWS questions that are commonly asked:
+
+🔹 AWS Basics
+What is AWS and its core services?
+What is the difference between IaaS, PaaS, and SaaS?
+What are Regions and Availability Zones?
+Explain the AWS Shared Responsibility Model.
+What is Elastic Load Balancing (ELB)?
+🔹 Compute (EC2, AMI, EBS, Auto Scaling)
+ 6. What is EC2 and its use cases?
+ 7. Different types of EC2 instances.
+ 8. What is an AMI (Amazon Machine Image)?
+ 9. Difference between EBS volume and Instance Store.
+ 10. What are EBS Snapshots?
+ 11. How does Auto Scaling work in AWS?
+ 12. What are EC2 Placement Groups?
+ 13. How do you connect to an EC2 instance?
+ 14. How do you make an application highly available using EC2?
+🔹 Storage (S3, EFS, Glacier, Lifecycle)
+ 15. What is S3 and its storage classes?
+ 16. Difference between S3 Standard and S3 Glacier.
+ 17. How do you secure an S3 bucket?
+ 18. What is Versioning in S3?
+ 19. What is an S3 Lifecycle Policy?
+ 20. Difference between S3, EBS, and EFS.
+🔹 Networking (VPC, Subnets, Security)
+ 21. What is a VPC (Virtual Private Cloud)?
+ 22. Difference between Public Subnet and Private Subnet.
+ 23. What is an Internet Gateway?
+ 24. What is a NAT Gateway and why do we use it?
+ 25. What are Route Tables in VPC?
+ 26. Difference between Security Groups and NACLs.
+ 27. Are Security Groups stateful or stateless?
+ 28. Which ports are used for HTTP, HTTPS, SSH, RDP?
+🔹 Databases (RDS, DynamoDB, Aurora)
+ 29. What is RDS and its supported engines?
+ 30. What is Multi-AZ Deployment in RDS?
+ 31. Difference between RDS and DynamoDB.
+ 32. What are Read Replicas in RDS?
+🔹 IAM & Security
+ 33. What is IAM (Identity and Access Management)?
+ 34. Difference between IAM User, Group, and Role.
+ 35. What are IAM Policies?
+ 36. What is MFA (Multi-Factor Authentication) in AWS?
+🔹 Monitoring & Management
+ 37. What is CloudWatch and what does it monitor?
+ 38. What is CloudTrail and why is it important?
+ 39. Difference between CloudWatch Logs vs CloudTrail Logs.
+ 40. How would you troubleshoot an EC2 instance that becomes unreachable?
+
+✨ Takeaway:
+ These 40 AWS interview questions cover the most important areas: Basics, Compute, Storage, Networking, Databases, IAM, and Monitoring. Most interviews focus on practical, scenario-based problem-solving rather than just definitions — so practicing hands-on in the AWS console is key.
