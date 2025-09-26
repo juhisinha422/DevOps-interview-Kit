@@ -1,0 +1,48 @@
+Day 6 takeaway:
+
+Deployment Strategies Q&A
+1. What is Blue-Green Deployment?
+Answer:
+ Blue-Green deployment is a strategy where two identical environments (Blue and Green) run simultaneously. One serves production traffic (active), and the other is idle (staging). When a new version is ready, traffic is switched from the active environment to the idle one with minimal downtime.
+Pros: Zero downtime, quick rollback.
+Cons: Requires double infrastructure.
+2. What is Canary Deployment?
+Answer:
+ Canary deployment releases the new version to a small subset of users/pods first, while the rest continue using the old version. If no issues are found, the new version is gradually rolled out to more users until 100% adoption.
+Pros: Safer than rolling, allows testing with real users.
+Cons: Complex traffic management, monitoring required.
+3. What is Rolling Deployment?
+Answer:
+ Rolling deployment replaces the old version with the new one incrementally across pods or servers, without requiring double infrastructure. Some instances run the new version while others run the old until the rollout completes.
+Pros: No extra infra, controlled rollout.
+Cons: Harder rollback (requires redeploying the old version), possible temporary inconsistency.
+4. What are the main differences between Blue-Green, Canary, and Rolling?
+Answer:
+Blue-Green: Two environments, traffic switch is instant, rollback is easy.
+Canary: Gradual rollout to small users, good for testing in production.
+Rolling: Incremental replacement of instances, efficient but rollback is slower.
+5. Which deployment strategy ensures the fastest rollback?
+Answer:
+ Blue-Green — since you can instantly switch traffic back to the old environment.
+6. Which deployment strategy is most cost-efficient?
+Answer:
+ Rolling — it doesn’t require double infrastructure like Blue-Green.
+7. Which deployment strategy is most suitable for high-risk changes?
+Answer:
+ Canary — because it exposes changes to only a small percentage of users first, reducing the blast radius.
+8. What are common monitoring requirements for Canary and Rolling deployments?
+Answer:
+Metrics: Latency, error rates, CPU/memory usage.
+Logs: Application and service logs.
+Health checks: Automated probes to detect failures.
+9. When should you use Blue-Green deployment?
+Answer:
+ When:
+You need zero downtime.
+Rollback must be instant.
+You can afford double infrastructure.
+10. How does Kubernetes support these strategies?
+Answer:
+Blue-Green: Use two separate deployments/services and switch traffic via Service/Ingress.
+Canary: Use service mesh (e.g., Istio/Linkerd) or Ingress controllers to route traffic percentages.
+Rolling: Kubernetes Deployment object natively supports rolling updates.
