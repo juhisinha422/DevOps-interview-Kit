@@ -1,0 +1,75 @@
+Day 4 takeaway (Part 1/2)- 
+
+🔹 Scenario-Based Git Rebase & Merge Challenges
+❓ Scenario 1: Keeping a Clean History Before Merge
+👉 You worked on a feature branch with 10 commits, but many are just “fix typo” or “WIP”. Your team lead wants only 2 meaningful commits before merging into main.
+Solution (Squash with Interactive Rebase):
+git checkout feature
+git rebase -i HEAD~10
+
+In editor → keep pick for the first commit of each logical change, mark the rest as squash (s).
+
+Update commit message.
+
+Final history → 2 clean commits ready for merge.
+
+❓Scenario 2: You Need to Rebase a Long-Lived Branch
+👉 You’re on a feature branch that was created 3 weeks ago. main has moved forward with 50 new commits. You need to update your branch before merging.
+Solution:
+git checkout feature
+git fetch origin
+git rebase origin/main
+
+If conflicts → resolve manually → git add <file> → git rebase --continue.
+Finally push (force since history changed):
+
+ git push --force-with-lease
+
+❓Scenario 3: Handling Merge Conflict with the Same File
+👉 Both main and feature modified the same line in app.py.
+Your version: print("Hello World")
+
+Other branch version: print("Hello Universe")
+
+Conflict shown by Git:
+<<<<<<< HEAD
+print("Hello World")
+=======
+print("Hello Universe")
+>>>>>>> feature
+
+Solution Options:
+Keep your version → delete Universe line.
+
+Keep theirs → delete World line.
+Merge both →
+
+ print("Hello World")
+ print("Hello Universe")
+
+	Then:
+	git add app.py
+    git merge --continue   # if in merge
+    git rebase --continue  # if in rebase
+
+❓Scenario 4: You Accidentally Committed to main Instead of feature
+👉 You wrote a commit directly on main, but it belongs to a feature.
+Solution (Move the commit to the correct branch):
+# From main
+git checkout -b temp
+git checkout feature
+git cherry-pick <commit-hash>   # move commit here
+git checkout main
+git reset --hard HEAD~1         # remove commit from main
+
+❓Scenario 5: Conflict During git pull
+👉 You run:
+git pull origin main
+
+But it results in merge conflicts. Your team prefers a linear history.
+Solution (Use Rebase Instead of Merge):
+git pull --rebase origin main
+
+This replays your local commits on top of the updated main.
+
+If conflicts appear → fix → git rebase --continue.
