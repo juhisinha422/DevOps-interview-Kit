@@ -1,0 +1,65 @@
+Day 5 takeaway (Part 1/2) -
+
+Simple CI/CD Pipeline (GitHub Actions)
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]   # Run pipeline when code is pushed to main branch
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout source code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js (example project)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test   # Run only if build-and-test passes
+    if: github.ref == 'refs/heads/main'   # Only deploy from main branch
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Example deploy (here we just simulate deployment)
+      - name: Deploy to server
+        run: echo "🚀 Deploying application..."
+
+🔎 What this pipeline does:
+Trigger: Runs when you push to main or create a PR.
+
+Build & Test Job:
+
+Checks out the code.
+
+Installs dependencies.
+
+Runs automated tests.
+
+Deploy Job:
+
+Runs only if tests pass.
+
+(Here it just prints “Deploying…” but in real life you’d deploy to AWS, GCP, Azure, or a server).
+
+It is a very basic pipeline. Please let me know how it can be better.
