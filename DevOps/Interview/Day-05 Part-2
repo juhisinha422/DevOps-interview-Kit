@@ -1,0 +1,54 @@
+Day 5 takeaway (Part 2/2) -
+
+Simple Jenkinsfile (Declarative Pipeline)
+
+pipeline {
+    agent any   // Run on any available Jenkins agent
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Get source code from Git
+                git branch: 'main', url: 'https://lnkd.in/db7UYsyx'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo '📦 Building the project...'
+                sh 'npm install'   // Example for Node.js project
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo '🧪 Running tests...'
+                sh 'npm test'
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                branch 'main'   // Only deploy from main branch
+            }
+            steps {
+                echo '🚀 Deploying application...'
+                // Example: sh './deploy.sh'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo '✅ Pipeline finished.'
+        }
+    }
+}
+
+
+🔎 What this Jenkins pipeline does:
+Checkout: Pulls code from GitHub (main branch).
+Build: Installs dependencies.
+Test: Runs automated tests.
+Deploy: Only runs on the main branch (like GitHub Actions).
+Post: Always runs after pipeline (success or failure).
