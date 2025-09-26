@@ -1,0 +1,31 @@
+𝗧𝗼𝗽 𝗗𝗲𝘃𝗢𝗽𝘀 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗬𝗼𝘂 𝗠𝘂𝘀𝘁 𝗞𝗻𝗼𝘄!
+
+Kubernetes has become the backbone of modern cloud-native infrastructure. Whether you’re preparing for interviews or sharpening your skills, these are some of the most commonly asked Kubernetes questions in interviews:
+
+🔹Core Concepts
+1. What is Kubernetes and why do we use it?
+2. Explain the difference between Pods, Deployments, and ReplicaSets.
+3. How does a Kubernetes Service work?
+
+
+🔹 Networking & Storage
+4. What are the different types of Services in Kubernetes?
+5. How does Ingress work in Kubernetes?
+6. What are Persistent Volumes (PV) and Persistent Volume Claims (PVC)?
+
+🔹 Scaling & Scheduling
+7. How does Horizontal Pod Autoscaler (HPA) work?
+8. What is the role of the Kubernetes Scheduler?
+
+🔹 Security & Configurations
+9. What are ConfigMaps and Secrets?
+10. How do you secure a Kubernetes cluster?
+
+🔹 Advanced Topics
+11. Explain the difference between StatefulSets and Deployments.
+12. How do you perform a rolling update vs a blue-green deployment in Kubernetes?
+13. How do you debug a pod stuck in CrashLoopBackOff?
+14. What’s the role of etcd in Kubernetes?
+15. How does RBAC (Role-Based Access Control) work in Kubernetes?
+
+💡 Pro tip: Don’t just memorize answers. Interviewers love real-world examples so talk about how you used Kubernetes in projects (deployments, scaling, monitoring, etc.).
