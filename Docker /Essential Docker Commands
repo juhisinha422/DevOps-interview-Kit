@@ -1,0 +1,48 @@
+“Essential Docker Commands Every DevOps Engineer Should Know”
+
+🔹 Basic Docker Commands
+
+docker --version → Check Docker version
+docker info → Show system-wide Docker info
+docker help → List all commands
+
+🔹 Container Commands
+
+docker ps → List running containers
+docker ps -a → List all containers (including stopped)
+docker run -it ubuntu /bin/bash → Run container interactively
+docker start <container_id> → Start a stopped container
+docker stop <container_id> → Stop a running container
+docker restart <container_id> → Restart container
+docker rm <container_id> → Remove container
+
+🔹 Image Commands
+
+docker images → List images
+docker pull nginx → Download an image
+docker build -t myapp:1.0 . → Build image from Dockerfile
+docker rmi <image_id> → Remove image
+
+🔹 Logs, Exec & Inspect
+
+docker logs <container_id> → View container logs
+docker exec -it <container_id> bash → Access running container shell
+docker inspect <container_id> → Detailed container info
+
+🔹 Docker Volumes & Networks
+
+docker volume ls → List volumes
+docker network ls → List networks
+docker network inspect bridge → Inspect network
+
+🔹 System Cleanup
+
+docker system prune → Remove unused containers, networks, images
+docker image prune → Remove dangling images
+docker container prune → Remove stopped containers
+
+⚡ Pro Tip:
+ Use docker-compose for multi-container apps:
+
+docker-compose up -d   # Start services  
+docker-compose down    # Stop & remove services  
