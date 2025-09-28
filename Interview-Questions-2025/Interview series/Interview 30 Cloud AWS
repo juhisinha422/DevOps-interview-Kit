@@ -1,0 +1,75 @@
+Interview Questions 
+
+Cloud / AWS
+
+1. Can you name some of the AWS services you have worked with?
+
+2. What is AWS WAF and where have you used it?
+
+3. You mentioned ECS — what kind of workloads have you deployed on ECS?
+
+4. What resources have you provisioned with Terraform inside an EKS cluster?
+
+5. If you have a CIDR range 1.2.3.4/32, can you use it for a VPC? Why or why not?
+
+CI/CD & Jenkins
+
+6. What kind of work have you done with Jenkins?
+
+7. Can you write a Jenkins pipeline with three stages — pull code from GitHub/GitLab, build the code into a tar package, and deploy the artifact on an agent labeled test?
+
+8. In that Jenkins pipeline, what is the role of SSH?
+
+9. What does the tar -czf command do in your pipeline?
+
+10. When copying the app.tar.gz file, where are you copying it to? Source vs. Target?
+
+11. Copying the file alone isn’t deployment. How would you actually deploy the app.tar.gz package?
+
+Kubernetes / Containers
+
+12. What applications have you deployed using Kubernetes?
+
+Terraform
+
+13. Have you deployed infrastructure using Terraform in your current project?
+
+14. Can you write a sample Terraform code to provision an EKS cluster?
+
+15. In Terraform, what does the source parameter in a module refer to?
+
+16. What are azs in Terraform?
+
+17. Why do we specify an instance type when creating an EKS cluster?
+
+18. Which Terraform versions have you worked with?
+
+19. What is a provider in Terraform?
+
+Python / AWS Lambda
+
+20. Can you write a Python script for AWS Lambda that creates an EC2 instance and stops it after one hour?
+
+21. What kind of use cases have you implemented using Lambda?
+
+22. How do you deploy a Lambda function in AWS?
+
+23. How can you schedule a Lambda to run every day at 8 p.m. using a cron expression?
+
+24. What cron expression would you use to trigger Lambda at 8 a.m. daily?
+
+25. What elements make up a cron expression?
+
+26. How many different ways can you trigger a Lambda function using EventBridge?
+
+Linux / Nginx / Scheduling
+
+27. What commands do you use in Linux to start and stop the NGINX service?
+
+28. Suppose you need to stop and start NGINX every Wednesday at 7 a.m. How would you implement this?
+
+29. If you don’t know the EC2 instance ID and don’t want to hardcode a cron inside the instance, how would you design a dynamic solution to restart NGINX based on the instance name?
+
+Chaos Engineering
+
+30. What is Chaos Monkey, and how have you used it in your projects?
