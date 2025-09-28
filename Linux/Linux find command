@@ -1,0 +1,27 @@
+Linux find Command 
+
+When servers get messy, the find command saves hours of manual searching.
+
+🔍 File Search Examples
+
+find . -name "*.log" → find all log files in the current directory
+
+find /var/log -name "*.log" -type f → search log files under /var/log
+
+find /home -user john -type f → list files owned by a specific user
+
+find . -size +100M → locate large files (>100 MB)
+
+find /tmp -mtime -1 → catch files modified in the last 24 hours
+
+find . -name "config*" -exec ls -l {} \; → list details of config files
+
+find /opt/myapp -name "*.conf" -o -name "*.yaml" → search config & YAML files
+
+find /var -type f -size +100M -exec ls -lh {} \; → show large files with details
+
+find /etc -name "*nginx*" 2>/dev/null → search nginx-related configs (ignore errors)
+
+find /etc -name "*.conf" -mtime -1 → find recently modified config files
+
+⚡ Whether it’s debugging logs, finding disk hogs, or auditing configs – find is a must-know tool for DevOps & Linux admins.
