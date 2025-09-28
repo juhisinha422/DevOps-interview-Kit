@@ -1,0 +1,40 @@
+ DevOps Engineer Interview experience at Brillio (2nd round)🚀
+
+After Round 1 (40 mins), I had Round 2 (approx 1 hour) which was more scenario-based and focused on AWS, Kubernetes, and Databases. Here are the questions asked:
+
+🔹 AWS Certificate Manager (ACM)
+Your website hosted on ALB is showing SSL certificate expired even though issued via ACM. How do you troubleshoot & fix?
+You want to use a certificate in EC2 with Nginx/Apache, but ACM does not allow export. How will you handle this?
+You have multiple domains & subdomains. How would you manage ACM certificates efficiently?
+A certificate in ACM is stuck in Pending validation. What steps would you take?
+How to rotate SSL certificates in production with zero downtime?
+
+🔹 AWS S3
+Your application writes logs to S3 but some objects are missing. How do you debug?
+Migrate 50 TB data from one S3 bucket (Account A) to another (Account B) with zero downtime – approaches?
+Website hosted on S3 + CloudFront is showing Access Denied. How do you troubleshoot policies/roles?
+A critical dataset in S3 was accidentally deleted. How do you ensure recovery?
+Implement lifecycle policies: logs archived to Glacier, deleted after 1 year – how?
+
+🔹 Kubernetes / EKS
+Pods stuck in CrashLoopBackOff – how to debug & fix?
+During peak traffic, latency issues occur even though CPU/Memory look fine. Troubleshooting steps?
+A service via Ingress is giving 502 Bad Gateway. Debugging approach?
+After a new deployment, users face downtime. How to ensure zero-downtime deployments in K8s?
+Secrets management in K8s – would you choose K8s Secrets, AWS Secrets Manager, or SSM Parameter Store & why?
+
+🔹 AWS RDS
+RDS MySQL facing high CPU during peak hours – how do you analyze & optimize?
+RDS storage reached 100% full, queries failing. Immediate steps?
+During deployment, RDS connections dropped briefly. How to configure HA/failover?
+How to upgrade RDS instance type with minimum downtime?
+Heavy read workload – how do you enable read scalability in RDS?
+
+🔹 AWS DynamoDB
+DynamoDB table facing ThrottlingExceptions in peak traffic – resolution?
+Application showing eventual consistency issues – how to change read strategy?
+Migrate 1 TB data from RDS to DynamoDB with minimal downtime – approach?
+Restore a DynamoDB backup into another AWS account – how?
+Design a multi-tenant DynamoDB table with scalability – how to define partition/sort key?
+
+✨ This round focused heavily on real-world troubleshooting, high availability, scalability, and best practices.
