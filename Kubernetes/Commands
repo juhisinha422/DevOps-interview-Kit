@@ -1,0 +1,58 @@
+Kubernetes command to practice during an interview
+
+1. kubectl create: This command is used to create Kubernetes resources from files or stdin. 
+For example: kubectl create -f pod.yaml 
+This command creates a pod using the configuration specified in the pod.yaml file.
+
+ 2. kubectl get: It is used to retrieve Kubernetes resources.
+
+ For instance: kubectl get pods 
+ 
+This command retrieves all pods in the current namespace. 
+
+3. kubectl describe: This command provides detailed information about a Kubernetes resource. 
+
+For example: kubectl describe pod my-pod 
+
+This command describes the pod named my-pod, displaying detailed information including its status, containers, and events. 
+
+4. kubectl apply: It applies changes to Kubernetes resources defined in YAML or JSON files. 
+
+For example: kubectl apply -f deployment.yaml
+
+This command applies the changes specified in the deployment.yaml file to the cluster. 
+
+5. kubectl delete: It is used to delete Kubernetes resources. 
+
+For instance: kubectl delete pod my-pod 
+
+This command deletes the pod named my-pod. 
+
+6. kubectl exec: This command executes commands inside a running container in a pod. 
+
+For example: kubectl exec -it my-pod -- /bin/bash This command starts an interactive shell (/bin/bash) inside the pod named my-pod.
+
+kubectl logs: It retrieves the logs of a pod. 
+
+For instance: kubectl logs my-pod
+
+This command displays the logs of the pod named my-pod. 
+
+8. kubectl port-forward: This command forwards one or more local ports to a pod. 
+
+
+For example: kubectl port-forward my-pod 8080:80 
+
+This command forwards local port 8080 to port 80 on the pod named my-pod. 
+
+9. kubectl scale: It scales the number of replicas of a resource. 
+
+For instance: kubectl scale --replicas=3 deployment/my-deployment 
+
+This command scales the number of replicas of the deployment named mydeployment to 3. 
+
+10. kubectl edit: This command edits the resource definition in a text editor. 
+
+For example: kubectl edit pod my-pod 
+
+This command opens the resource definition of the pod named my-pod in a text editor, allowing you to make changes.
