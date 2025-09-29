@@ -1,0 +1,63 @@
+TOP DEVSECOPS Interview Questions 
+
+1) Difference between terraform import and terraform taint
+terraform import: Brings existing infrastructure (e.g., an already created AWS EC2) into Terraform state so Terraform can manage it.
+terraform taint: Marks a resource for destruction and recreation during the next apply.
+👉 Example:
+Import: terraform import aws_instance.myec2
+Taint: terraform taint aws_instance.myec2
+
+2) Managing Secrets in Terraform (without hardcoding)
+Use Terraform variables with sensitive = true.
+Store secrets in AWS Secrets Manager, SSM Parameter Store.
+Access them via data sources or the external-secrets provider.
+Never commit secrets in .tf files or state—use remote backends with encryption.
+
+3) Difference between count and for_each
+count: Creates multiple resources using index numbers (count.index). Best when you want identical resources.
+for_each: Creates resources mapped to keys in a map/set. Best when each resource is unique.
+👉 Real-world:
+count: Create 3 EC2 instances with same config.
+for_each: Create EC2 instances with different tags or sizes.
+
+4) Drift Detection in Terraform
+Run terraform plan regularly. It shows if real infra has drifted from state.
+Use CI/CD pipelines to run plans automatically.
+Some backends (Terraform Cloud, Atlantis) also provide drift detection alerts.
+
+5) Terraform Remote Backend
+A remote backend stores state file in a central, shared location (e.g., S3 + DynamoDB, Terraform Cloud, Azure Storage).
+Why important?
+Enables collaboration.
+Avoids local state conflicts.
+Provides locking (prevents two users from applying at same time).
+
+6) Managing Multiple Environments
+Use workspaces (terraform workspace new dev).
+Or separate state files and directories (dev/, staging/, prod/).
+Or use Terragrunt for managing environments with DRY (don’t repeat yourself).
+
+7) Difference between local-exec and remote-exec provisioners
+local-exec: Runs a command on the machine where Terraform is executed.
+remote-exec: Runs a command on the created resource (via SSH/WinRM).
+👉 Example:
+local-exec: echo "Instance created" > log.txt
+remote-exec: sudo apt update on the new EC2.
+
+8) Safe Rollback After Failed Deployment
+Use Terraform state to revert changes.
+If deployment fails:
+Run terraform apply again (idempotent).
+Use version-controlled modules (roll back Git version).
+Restore from remote state backup if state is corrupted.
+
+9) terraform refresh vs terraform plan
+refresh: Updates Terraform state with real-world infra, but doesn’t show changes to be applied.
+plan: Shows the difference between current state vs desired configuration.
+👉 In latest versions (>= 0.15), terraform refresh is deprecated and integrated with plan and apply.
+
+10) Writing Reusable Terraform Modules
+Create a module directory with main.tf, variables.tf, outputs.tf.
+Use input variables for flexibility and outputs for sharing info.
+Example: A VPC module reused across dev, staging, prod.
+Keep modules in a separate repo or Terraform Registry for sharing.
