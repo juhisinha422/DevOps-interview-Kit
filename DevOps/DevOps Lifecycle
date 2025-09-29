@@ -1,0 +1,13 @@
+𝗧𝗵𝗲 𝗗𝗲𝘃𝗢𝗽𝘀 𝗟𝗶𝗳𝗲𝗰𝘆𝗰𝗹𝗲 — 𝗣𝗿𝗲𝗰𝗶𝘀𝗶𝗼𝗻 𝗠𝗲𝗲𝘁𝘀 𝗥𝗲𝗹𝗶𝗮𝗯𝗶𝗹𝗶𝘁𝘆
+In modern engineering, speed means nothing without stability. Here's how I approach DevOps at scale — from planning epics to monitoring production — using battle-tested tools across each phase:
+🔸 𝗣𝗟𝗔𝗡 → Define SLAs, user stories, and architecture with tools like Jira.
+ 🔸 𝗗𝗘𝗩𝗘𝗟𝗢𝗣 → Version control and collaboration via GitHub.
+ 🔸 𝗕𝗨𝗜𝗟𝗗 → CI pipelines powered by Jenkins for automated packaging.
+ 🔸 𝗧𝗘𝗦𝗧 → Functional and security validation using Selenium and SonarQube.
+ 🔸 𝗥𝗘𝗟𝗘𝗔𝗦𝗘 → Helm charts and Git tagging for version readiness.
+ 🔸 𝗗𝗘𝗣𝗟𝗢𝗬 → ArgoCD and Terraform for GitOps-driven environment sync.
+ 🔸 𝗢𝗣𝗘𝗥𝗔𝗧𝗘 → Kubernetes and cloud platforms ensure uptime and scalability.
+ 🔸 𝗠𝗢𝗡𝗜𝗧𝗢𝗥 → Prometheus and Grafana for full-stack observability.
+This isn’t just a workflow — it’s a mindset. Every stage is engineered for reliability, velocity, and visibility.
+ Whether you're scaling multi-cloud infrastructure or optimizing delivery pipelines, this lifecycle is the backbone of resilient systems.
+🧠 Built for SREs. Designed for impact
