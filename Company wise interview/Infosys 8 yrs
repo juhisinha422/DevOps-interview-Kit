@@ -1,0 +1,51 @@
+#Infosys offer 55% hike received 🙂
+
+📍Round 1 : 
+1) Introduce yourself 
+2) Write a program to print duplicates from given array of Integer. And print the count also
+3) write a program to reverse a string 
+4) Write a program to launch flipkart application, click on login, login with invalid credentials , error message display..print the error message 
+5) Framework you worked on. Elaborate the project farwmework structure 
+6) How you will run Multiple testcases in one go
+7) How to handle Mouse and keyboard actions 
+8) How to navigates through all windows or tabs
+9) How to get all the links present on current webpage 
+10) How you handled production defects
+11) What all exceptions you have encountered while working with selenium 
+12) Oops concepts and it's implementation in your project 
+13) Collection concepts and it's implementation in your test scripts 
+14) Difference between list and set
+15) Hasmap and Hashtable
+16) Have you handled team and what size your team
+17) Git commads
+18) Commit and push difference 
+19) Jenkins how to run your automated test suits.. basically integration 
+20) Explicit wait syntax 
+
+📍Second round: Techno Managerial 
+
+1) Introduce yourself 
+2) What approach u will follow when you have to automate only one page with multiple users 
+3) If u said Data driven from Excel, then any other easy approach you can say?
+4) What common framework your are using in your project 
+5) write a program to take screenshot 
+6) Write a program to do right click on web elements 
+7) Write a program to print all broken links present on webpage 
+8) String a = "abc";
+String b = new String ("abc");
+Difference between a==b. 
+And. a.equals(b) which one will be true and which one is false
+9) What is the maximum limit of thread count
+10) How to perform parallel run testing 
+11) Write a program for below input
+Input "aceg"
+Output "bdfh"
+
+📍HR Round:
+1) Tell me about yourself which is not mentioned in the resume
+2) What makes you switch job from TCS to Infosys
+3) Why didn't u go for development why you choosen testing.
+4) We have 3 days wfo and 2 days WFH r u comfortable with this hybrid way if working
+5) Then Salary negotiation and breakage detailed she explained 
+
+Candidate exp is 8 years for this role.
