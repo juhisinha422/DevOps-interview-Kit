@@ -1,0 +1,32 @@
+What kind of Grafana dashboards are typically used in a DevOps environment?
+	•	How do you configure Grafana dashboards?
+	•	What is Node Exporter?
+	•	How do you trigger email alerts from Grafana?
+	•	What kind of alert conditions do you usually configure?
+
+	•	What’s your Ansible experience in real projects?
+	•	How do you manage sensitive data like passwords in Ansible?
+	•	How do you securely run playbooks that use secrets?
+
+	•	What is PM2 and how do you use it in Node.js deployments?
+	•	How do you kill a process using PM2?
+	•	How do you check running nodes?
+	•	How do you kill a process in Linux?
+	•	How to get the process ID (PID)?
+	•	How to check system performance in Linux?
+	•	What does chmod 555 mean?
+	•	How do you give full permissions to a file or folder?
+	•	Difference between a soft link and a hard link?
+
+	•	How do you open the firewall in Linux?
+	•	How to check which ports are running or open?
+	•	What does netstat -ntlp do and how to use it?
+
+	•	What is a cron job?
+	•	How do you clear cache in Linux?
+
+	•	How did you deploy SSL in your project?
+	•	How do you resolve a merge conflict in Git?
+	•	How to switch to a new branch?
+
+	•	Finally, they asked about which AWS services/tools I’ve used and how I applied them in my project.
