@@ -1,0 +1,11 @@
+Linux scenario based interview questions.🫨
+
+1️⃣. A developer complains they cannot write logs to /var/log/myapp/. What do you do ❓
+
+2️⃣. Developers report SSH login takes 20–30 seconds. How do you troubleshoot ❓
+
+3️⃣. Your application stopped working with “No space left on device”. How do you resolve it ❓
+
+4️⃣. A scheduled cron job didn’t run. How do you debug❓
+
+5️⃣. You deleted a big log file, but df -h still shows full. Why❓
