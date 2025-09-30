@@ -1,0 +1,27 @@
+What is DAST in DevSecOps ⁉️ 
+
+✅ DAST stands for Dynamic Application Security Testing. The simplest way to understand it is that it's an automated "live attack simulation" on a running application.
+
+Here is a simpler breakdown:
+1️⃣  The Core Idea: Testing from the Outside 🕵️
+DAST (Dynamic Testing) Tests the app while it's running.Tests the app while it's sitting still (the source code).
+
+DAST tools don't look at your source code (the blueprint of the application).
+Instead, they act like a hacker or a normal user, sending various requests and malicious inputs (like trying to inject code into a search box) to the running application.
+It focuses on finding vulnerabilities that are only visible when the application is actively running and responding to external requests.
+
+2️⃣  The Simple Analogy 🏡
+Imagine your application is a brand-new house.
+Static Testing (SAST) is like looking at the blueprints and checking for flaws in the wiring diagrams or structural plans.
+Dynamic Testing (DAST) is like hiring a professional security consultant to walk around the finished, locked house and try to:
+Open doors and windows (even if they look secure).
+See if they can climb through a ventilation shaft.
+Test the alarm system by setting it off.
+DAST tests what is exposed and how the system behaves under stress.
+
+3️⃣  What DAST is Good At 🎯
+Because DAST tests the live application through its external interfaces (like a web browser or API endpoints), it is excellent at finding:
+Configuration errors in the live environment.
+Injection Flaws (like SQL Injection or Cross-Site Scripting).
+Authentication and Authorization issues (e.g., can a low-level user access an admin page).
+Vulnerabilities that arise from the interaction of different components at runtime.
