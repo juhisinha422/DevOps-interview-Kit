@@ -1,0 +1,28 @@
+Common Ansible Errors & Fixes – A DevOps Engineer’s Guide
+
+Working with Ansible is powerful, but let’s be honest – we’ve all hit those frustrating errors. 😅
+ Here are some of the most common ones I’ve faced (and how to fix them):
+
+🔹 1. Host unreachable
+ 👉 Usually caused by wrong IP/hostname or SSH not working.
+ ✅ Fix: Check your inventory file, ensure the host is reachable, and SSH keys are set up correctly.
+
+🔹 2. Permission denied
+ 👉 Happens when Ansible doesn’t have the right privileges to run tasks.
+ ✅ Fix: Use become: yes in your Playbook or run with --ask-become-pass.
+
+🔹 3. Module not found
+ 👉 Error: "The module X was not found in configured module paths."
+ ✅ Fix: Ensure the correct module name is used and Ansible version supports it.
+
+🔹 4. YAML syntax errors
+ 👉 A missing colon or wrong indentation can break your Playbook.
+ ✅ Fix: Always validate YAML using ansible-playbook --syntax-check.
+
+🔹 5. Variable undefined
+ 👉 Error: "Variable 'X' is undefined."
+ ✅ Fix: Double-check variable spelling, scope, and defaults in your Playbooks/Roles.
+
+💡 Pro tip: Run with -vvv for verbose logs – it makes debugging much easier.
+
+At the end of the day, debugging Ansible is all about patience + systematic checks. Once you know where to look, fixes become second nature. 🚀
