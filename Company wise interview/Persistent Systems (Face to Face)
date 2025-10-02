@@ -1,0 +1,59 @@
+ Interview Experience – Persistent Systems (Face to Face) 🚀
+
+face-to-face interview with Persistent Systems, which consisted of two rounds:
+
+🔹 Round 1 – Online Test (25 minutes, 20 questions)
+
+ The test was hands-on troubleshooting + multiple-choice questions, covering:
+
+AWS & DevOps (4 questions) – scenario-based MCQs
+Jenkins (4 questions) – identify errors in pipeline code snippets
+Docker (4 questions) – debug Dockerfile & analyze logs to find root causes
+Kubernetes (4 questions) – check manifests/screenshots and identify errors
+Terraform (4 questions) – troubleshoot IaC code with scenario-based problems
+
+This round was not just about theoretical knowledge but more about practical debugging skills.
+
+🔹 Round 2 – Technical Interview (1 hr 20 mins)
+ This was an in-depth discussion across multiple DevOps tools & practices. Some of the key scenario-based questions were:
+
+AWS
+Troubleshooting EC2 Auto Scaling latency issues
+Designing multi-region DR with RTO < 15 mins & RPO < 5 mins
+Fixing session management issues behind ALB during traffic spikes
+Securing S3 logs with encryption & monitoring
+VPC connectivity troubleshooting (private subnets & internet access)
+
+Jenkins
+Optimizing pipelines with parallel & distributed builds
+Securing pipelines using AWS Secrets Manager / Vault
+Designing resilient Jenkins master-agent architecture
+Implementing zero-downtime deployments (Blue/Green, Canary)
+
+Docker
+Debugging OOMKilled / memory leaks
+Fixing networking errors in production
+Optimizing Dockerfile for faster, smaller builds
+Managing base images securely across environments
+
+Kubernetes (K8s + Helm)
+Troubleshooting CrashLoopBackOff pods
+Designing zero-downtime rollouts (Blue/Green, ArgoCD with Helm)
+NetworkPolicy debugging for cross-namespace communication
+Handling failed Helm upgrades & rollbacks
+Setting up HPA/VPA for OOMKilled & CPU throttling
+
+Prometheus & Grafana
+Tuning alert rules & scraping frequency
+Designing HA Prometheus + Grafana setup
+Collecting custom business metrics for observability
+Optimizing query performance & storage during peak load
+
+Dynatrace
+Using PurePath & Service Flow for root-cause tracing
+Reconciling CloudWatch vs Dynatrace metrics
+Designing multi-cloud unified observability dashboards
+
+💡 Key Takeaway:
+ This interview experience was a true test of hands-on troubleshooting, observability, and designing resilient architectures across the DevOps ecosystem. 
+
