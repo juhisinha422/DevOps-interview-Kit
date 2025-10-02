@@ -1,0 +1,45 @@
+Here are the 10 key roles shaping today’s IT world:
+
+ 🔹 DevOps
+ 🔹 DevSecOps
+ 🔹 Cloud Engineer
+ 🔹 Platform Engineer
+ 🔹 SRE (Site Reliability Engineer)
+ 🔹 Kubernetes Admins & Developers
+ 🔹 Open Source Contributors
+ 🔹 Cloud Computing Specialists
+ 🔹 Solution Architect
+ 🔹 Cloud Security
+
+So here’s a simple breakdown ⬇️
+
+1️⃣ DevOps – A culture + set of practices that bring Dev & Ops together. Focuses on CI/CD pipelines, infrastructure automation, monitoring, and faster software delivery.
+
+ → Career move: Cloud Engineer, SRE, or DevSecOps.
+
+2️⃣ DevSecOps – Extends DevOps by integrating security checks (code scanning, vulnerability testing, compliance) into every stage of the pipeline.
+ → Career move: Cloud Security Engineer, Security Architect.
+
+3️⃣ Cloud Engineer – Builds and manages infrastructure in AWS, Azure, or GCP. Works with networking, compute, storage, and cloud-native services.
+ → Career move: Solution Architect, Platform Engineer, SRE.
+
+4️⃣ Platform Engineer – Designs and maintains internal self-service platforms that allow developers to deploy quickly and securely. Acts like a "toolsmith" for developers.
+ → Career move: SRE, Solution Architect.
+
+5️⃣ SRE (Site Reliability Engineer) – A hybrid role between dev and ops that ensures reliability, scalability, and performance. Heavy focus on monitoring, automation, and incident response.
+ → Career move: Principal SRE, Platform Engineer, Cloud Architect.
+
+6️⃣ Kubernetes Admins & Developers – Admins manage clusters, networking, scaling, and security; Developers focus on building containerized apps and deploying them into clusters.
+ → Career move: Cloud Engineer, Platform Engineer, SRE.
+
+7️⃣ Open Source – Community-driven software anyone can use or contribute to (Linux, Kubernetes, Terraform, Ansible). Contributing builds credibility, networking, and expertise.
+ → Career move: Boosts career across all roles.
+
+8️⃣ Cloud Computing – Using remote servers over the internet for computing, storage, networking, and AI services. Foundation of modern IT and digital transformation.
+ → Career move: Entry point into Cloud Engineer, DevOps, or Solution Architect.
+
+9️⃣ Solution Architect – Designs end-to-end cloud and application solutions. Balances business needs with the right tech stack for scalability, cost, and security.
+ → Career move: Enterprise Architect, Principal Architect.
+
+🔟 Cloud Security – Protects cloud workloads using IAM, encryption, policies, compliance frameworks, and threat detection. A crucial role as cloud adoption grows.
+ → Career move: Security Architect, CISO track.
