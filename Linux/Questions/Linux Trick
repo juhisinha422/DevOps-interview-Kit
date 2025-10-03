@@ -1,0 +1,8 @@
+Quick Linux Trick:
+Server load so high you can’t even SSH in?
+
+👉 Use this command;
+
+ssh -o ConnectTimeout=1 -o ConnectionAttempts=1 user@host "nice -n -20 bash"
+
+It gets you a high-priority shell when nothing else works.
