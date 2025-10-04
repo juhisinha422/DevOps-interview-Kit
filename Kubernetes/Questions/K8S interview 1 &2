@@ -1,0 +1,174 @@
+Kubernetes Interview series- part 1
+
+
+# 🎯 Kubernetes Scheduler – 10 Quiz Questions & Answers
+---
+### 1️⃣ Where does the Kubernetes Scheduler fit into the Kubernetes architecture?
+
+Answer:
+The Scheduler is part of the control plane components (along with API Server, Controller Manager, etc.). It runs on the master/control-plane node, not on worker nodes.
+
+---
+### 2️⃣ What is the main function of the Kubernetes Scheduler?
+
+Answer:
+Its primary job is to assign Pods to Nodes. It looks at unscheduled Pods (with no node assigned) and decides which node is the best fit, based on resource availability, policies, and constraints.
+
+---
+### 3️⃣ How does the Scheduler know which Pods need scheduling?
+
+Answer:
+The Scheduler watches the API Server for Pods that don’t have a `nodeName` assigned. These are “pending” Pods, waiting for placement.
+
+---
+### 4️⃣ What happens after the Scheduler selects a node for a Pod?
+
+Answer:
+The Scheduler updates the Pod’s spec with the chosen `nodeName` via the API Server. Then, the kubelet on that node takes over to actually pull the image, run the container, and manage it.
+
+---
+### 5️⃣ What are the two main steps the Scheduler uses to pick a node?
+
+Answer:
+
+1. Filtering (Predicates): Eliminate nodes that don’t meet Pod requirements (e.g., insufficient CPU/memory, taints, affinity rules).
+2. Scoring (Priorities): Rank the remaining nodes and choose the best one based on scoring functions.
+
+---
+### 6️⃣ Does the Scheduler directly run Pods on nodes?
+
+Answer:
+❌ No. The Scheduler only decides which node should run the Pod. The actual Pod creation and container runtime work is handled by the **kubelet** on the worker node.
+
+---
+### 7️⃣ What are some sub-components or plugins inside the Scheduler?
+
+Answer:
+
+Scheduling Queue: Stores pending Pods waiting to be scheduled.
+Filter Plugins: Apply rules like resource requests, affinity, and taints.
+Score Plugins: Rank nodes based on scoring criteria.
+Bind Plugin: Final step that binds a Pod to the selected node.
+
+---
+### 8️⃣ How does the Scheduler interact with other control plane components?
+
+Answer:
+
+Talks to the API Server (to get unscheduled Pods and to bind them).
+Works alongside the Controller Manager, which creates Pods as part of higher-level controllers (like ReplicaSet). Communicates indirectly with etcd, since all updates go through the API Server.
+
+---
+
+### 9️⃣ Can a cluster have more than one Scheduler?
+
+Answer:
+✅ Yes. You can run multiple Schedulers (including custom ones). Pods can specify which scheduler to use with the `spec.schedulerName` field. If none is specified, the default Kubernetes Scheduler is used.
+
+---
+
+### 🔟 What would happen if the Scheduler goes down?
+
+Answer:
+
+* Already running Pods are not affected (they stay on their nodes).
+* New Pods created by controllers will remain in Pending state because there is no Scheduler to assign them to nodes.
+
+Kubernetes Interview series- part 2#
+
+# 🎯 Kubernetes API Server – 10 Quiz Questions & Answers
+
+---
+### 1️⃣ Where does the API Server fit into the Kubernetes architecture?
+
+Answer:
+The API Server is a core control plane component. It runs on the control-plane (master) nodes and acts as the front door to the cluster.
+
+---
+
+### 2️⃣ What is the main function of the API Server?
+
+Answer:
+It exposes the Kubernetes API and acts as the single entry point for all cluster operations. All kubectl commands, internal control plane components, and external tools talk to the API Server.
+
+---
+### 3️⃣ Who communicates with the API Server?
+
+Answer:
+
+Users / kubectl
+Controllers (e.g., ReplicaSet, Deployment Controller)
+Scheduler
+Kubelet (worker nodes)
+etcd (for storage)
+  In short: everything and everyone interacts with the API Server.
+
+---
+### 4️⃣ Where does the API Server store the cluster state?
+
+Answer:
+The API Server stores all cluster state data in etcd. It acts as a gateway, validating and writing cluster objects into etcd.
+
+---
+### 5️⃣ Does the API Server run on worker nodes?
+
+Answer:
+❌ No. It only runs on control-plane nodes. Worker nodes (via kubelet) just communicate with it but don’t run it.
+
+---
+
+### 6️⃣ What are some core functions of the API Server?
+
+Answer:
+
+Authentication & Authorization of requests
+Admission control (via admission controllers & webhooks)
+Validation of resource definitions (YAML/JSON)
+Persistence of state in etcd
+Serving cluster data through RESTful API
+
+---
+
+### 7️⃣ How does the API Server interact with etcd?
+
+Answer:
+It acts as the only client that talks to etcd. No other component interacts with etcd directly. API Server handles ead/write of all cluster state into etcd.
+
+---
+### 8️⃣ What happens if the API Server is down?
+
+Answer:
+
+* Cluster state becomes frozen (no new Pods, no config changes).
+* Existing Pods already running on nodes will keep running because kubelet manages them locally.
+* But cluster operations (create/update/delete) won’t work.
+
+---
+
+### 9️⃣ Is the API Server stateless or stateful?
+
+Answer:
+The API Server itself is stateless (no local data). Its state is always stored in etcd. That’s why you can run multiple replicas of the API Server behind a load balancer for HA.
+
+---
+
+### 🔟 What are some sub-components/features inside the API Server?
+
+Answer:
+
+* Request handling pipeline (authn → authz → admission)
+* Aggregated API laye (to extend Kubernetes API with CRDs and extensions)
+* API groups & versions (`apps/v1`, `batch/v1`, `custom.group/v1`)
+* **OpenAPI spec** (for tools to auto-discover available resources)
+
+---
+
+# 🧠 Key Takeaways for Learners
+
+* API Server = cluster gateway + brain’s front door.
+* Located in the control plane.
+* Talks to everything (users, kubelet, controllers, scheduler).
+* Stores all state via etcd.
+* Stateless, can scale horizontally.
+* Critical for security (authn, authz, admission control).
+
