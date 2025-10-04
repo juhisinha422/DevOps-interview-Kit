@@ -1,0 +1,42 @@
+DevOps Engineer Interview Question and Answers 
+
+
+Q1. Suppose you have two AWS accounts and need to transfer S3 data from one account to another with zero downtime. Explain all possible approaches.
+
+A. Use S3 Cross-Account Replication, AWS DataSync, or S3 bucket policies with aws s3 sync/cp for live sync.
+
+Q2. Best practices for Disaster Recovery (DR) in AWS & explain the architecture where you implemented DR in your project.
+
+A. Multi-region Active/Passive, Route53 failover, RDS cross-region replication, automated backups, and IaC for quick recovery.
+
+Q3. List all the AWS services you have used and where you have applied them in your project.
+
+A. EC2 for compute, EKS for containers, RDS for DB, S3 for storage, Secrets Manager for credentials, CloudWatch for monitoring, Route53 for DNS, Lambda for automation.
+
+Q4. Write a Terraform code to create an RDS database and store credentials in AWS Secrets Manager.
+
+A. Use aws_db_instance to create DB + aws_secretsmanager_secret and aws_secretsmanager_secret_version to store credentials.
+
+Q5. Write a CI/CD pipeline in Jenkins/GitHub Actions that you are currently using in your project.
+
+A. Stages: Checkout → Build → Unit Test → Security Scan → Deploy to Dev → Manual Approval → Deploy to Prod using IaC.
+
+Q6. How do you manage secrets in Jenkins and GitHub Actions, and how are they accessed in pipelines?
+
+A. Store in Jenkins Credentials Store or GitHub Secrets; inject at runtime as environment variables or files.
+
+Q7. Write a multi-stage Dockerfile, explain each line, and commands used to build & run it.
+
+A.Stage 1 builds code with tools, Stage 2 copies artifacts to minimal runtime image. docker build -t app . and docker run app.
+
+Q8. Write a Kubernetes manifest to create 10 Pods with a LoadBalancer service. Explain each line.
+
+A.Deployment with replicas: 10 and a Service of type: LoadBalancer to expose externally.
+
+Q9. How do you integrate Prometheus & Grafana for application monitoring? Explain in detail also walk me through Grafana dashboard
+
+A.Prometheus scrapes metrics from apps, Grafana connects as data source, build dashboards with panels, alerts for anomalies.
+
+Q10. If you have 200 Pods, 100 running successfully but the other 100 fail with insufficient IP addresses, how would you troubleshoot and resolve it?
+
+A. Check VPC/subnet CIDR blocks, increase IP ranges or add new subnets, or use custom CNI to expand pod IP pool.
