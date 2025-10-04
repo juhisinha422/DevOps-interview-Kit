@@ -1,0 +1,57 @@
+Infra Level Common Terraform Errors 
+      for DevOps interview preparation 🚀 
+
+If you’ve ever created infrastructure using Terraform, you know how one small misconfiguration can bring everything to a halt.
+
+Here are some common Terraform errors that almost every DevOps engineer runs into 👇
+
+1. Provider Installation/Version Error → Missing or incompatible provider
+    plugin version.
+2. Backend Configuration Error → Misconfigured S3/GCS backend or missing
+    access permissions.
+3. State Lock Error → Terraform state locked due to an interrupted or 
+    parallel operation.
+4. Resource Already Exists → Resource manually created outside Terraform 
+    or duplicate definition.
+5. Variable Definition Error → Missing required variables or wrong data 
+    types in terraform.tfvars.
+6. Dependency Cycle Error → Circular references between dependent 
+     resources.
+7. IAM Permission Denied → Insufficient permissions for resource creation 
+    or modification.
+8. Plan Refresh Failure → Inability to read or refresh remote state or data 
+    sources.
+9. Module Source Error → Missing or incorrect module path or version.
+10. Destroy Failure → Dependent resources not deleted or modified outside
+      Terraform.
+11. Version Constraint Error → Conflicting provider or Terraform version 
+       constraints.
+12. Timeout Error → API response delay or throttling from the cloud 
+       provider.
+13. Output Reference Error → Invalid or undefined output variable 
+       referenced in another module.
+14.  Insufficient Quota Error → Hitting resource limits
+15.  Invalid Resource Configuration → Unsupported arguments or missing 
+        required fields.
+16.  Remote State Access Error → Network or authentication issues 
+        accessing remote state.
+17.  Duplicate Resource Definition → Multiple resources declared with the 
+        same name.
+18.  Data Source Read Error → Terraform unable to fetch data from cloud 
+        resources.
+19.  Unsupported Argument Error → Using parameters not supported by a 
+        specific provider version.
+20.  Terraform Crash / Panic Error → Unexpected internal failure due to 
+        corrupted state or large module structures.
+21.  Invalid Function Call Error → Using wrong or unsupported interpolation
+        functions in expressions.
+22.  Resource Targeting Error → Incorrect use of -target flag leading to 
+        partial or inconsistent deployments.
+23. Missing Provider Credentials → Environment variables or credentials file 
+       not configured properly.
+24. Drift Detection Failure → Terraform state doesn’t match the actual 
+       cloud resources.
+25. Invalid Key/Value in Map or List → Misformatted variables in maps, lists, 
+      or objects.
+26. Local Exec/Remote Exec Failure → Provisioner scripts failing due to 
+      command or permission issues.
