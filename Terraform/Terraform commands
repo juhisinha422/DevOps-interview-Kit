@@ -1,0 +1,62 @@
+Top Terraform Commands Every DevOps Engineer Must Know🚀
+
+If you’re preparing for DevOps interviews or working on real-world infrastructure automation, mastering Terraform CLI commands is a must-have skill.
+
+Here’s a complete list of the most-used Terraform commands. 👇
+
+🔹 Basic Setup & Initialization
+terraform -version → Check Terraform version
+terraform init → Initialize working directory with required plugins & providers
+terraform validate → Validate syntax & configuration files
+terraform fmt → Format Terraform code in standard style
+terraform providers → Show all providers used in the configuration
+
+🔹 Plan, Apply & Destroy
+terraform plan → Show what changes will be made before applying
+terraform apply → Apply infrastructure changes
+terraform destroy → Delete all resources created by Terraform
+terraform apply -auto-approve → Skip approval step
+terraform plan -out=tfplan → Save plan output to a file
+
+🔹 Workspace & Environment Management
+terraform workspace list → List all workspaces
+terraform workspace new dev → Create a new workspace
+terraform workspace select dev → Switch to specific workspace
+terraform workspace delete dev → Delete workspace
+
+🔹 State File Management (Critical for DevOps)
+terraform show → Show current state or plan
+terraform state list → List all resources tracked in state
+terraform state show <resource> → Show details of a specific resource
+terraform state rm <resource> → Remove resource from state
+terraform refresh → Update state file with real resource data
+terraform taint <resource> → Mark a resource for recreation
+terraform untaint <resource> → Undo taint
+
+🔹 Variable & Output Management
+terraform output → Show output variables
+terraform output -json → Show outputs in JSON format
+terraform apply -var="instance_type=t2.micro" → Pass variable from CLI
+terraform plan -var-file="dev.tfvars" → Use variable file
+
+🔹 Backend & Remote State (Used in DevOps Pipelines)
+terraform init -backend-config="backend.hcl" → Initialize backend configuration
+terraform state pull → Download remote state
+terraform state push → Upload local state to remote
+
+🔹 Module Management
+terraform get → Download modules
+terraform init -upgrade → Upgrade modules & providers
+terraform graph → Visualize dependency graph
+
+🔹 Cleanup & Troubleshooting
+terraform fmt -recursive → Format all .tf files recursively
+terraform validate → Detect configuration issues early
+terraform apply -refresh-only → Refresh state without changing infra
+terraform force-unlock <LOCK_ID> → Unlock a stuck state file
+
+🔹Useful in CI/CD Pipelines
+terraform plan -input=false -out=tfplan → Non-interactive plan for pipelines
+terraform apply -input=false tfplan → Apply pre-generated plan
+terraform fmt -check → Check formatting in GitHub Actions
+terraform validate → Validate configs automatically in CI
