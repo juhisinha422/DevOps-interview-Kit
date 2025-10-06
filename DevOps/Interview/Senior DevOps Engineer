@@ -1,0 +1,30 @@
+Senior DevOps Engineer Interview Experience
+
+
+🔹 Your Jenkins pipeline is taking too much time — how would you optimize it?
+🔹 How would you upgrade a PostgreSQL database running inside a Docker container?
+🔹 In Kubernetes, what is CrashLoopBackOff? How would you troubleshoot it?
+🔹 What is the difference between user space and kernel space?
+🔹 What is configuration drift?
+🔹 How do you handle migrations or upgrades from older to newer versions (including databases)?
+🔹 In your pipeline, how would you maintain security?
+🔹 What governance policies do you use in pipelines?
+🔹 How do you manage secrets?
+🔹 Have you used pipeline templates in your projects?
+🔹 In Linux, if you have a text file and want to remove all lines containing a particular keyword, what command would you use?
+🔹 My application is running and consuming a lot of space. How would you reallocate resources to free up space for this app?
+🔹 What is Terraform drift?
+🔹 In a Dockerfile, explain CMD and ENTRYPOINT.
+🔹 What is Ansible Galaxy?
+
+✨ These questions show how important it is to be strong in:
+
+CI/CD optimization and pipeline governance
+
+Kubernetes troubleshooting
+
+Linux and OS fundamentals
+
+Database upgrades and migrations
+
+Security, policies, and secret management 
