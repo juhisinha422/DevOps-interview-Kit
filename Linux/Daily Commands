@@ -1,0 +1,38 @@
+Daily Lifesavers: 
+
+• ps aux | grep - Find that process 
+• lsof -i :port - Who's on my port? 
+• df -h - Disk space check 
+• kubectl get pods | grep error - K8s quickfix
+
+Logs Hunting: 
+
+• tail -f /var/log/* - Real-time watching 
+• journalctl -fu - SystemD logs 
+• grep -r "error" - Find all errors 
+• less +F - Better than tail
+
+Container Magic: 
+
+• docker ps --format - Clean output 
+• docker stats - Resource check 
+• docker exec -it - Jump inside
+
+Performance: 
+
+• htop - Visual system monitor 
+• iostat -xz 1 - Disk I/O stats 
+• free -h - Memory usage
+
+Network Debugging: 
+
+• curl -v - HTTP details 
+• ss -tunlp - Socket stats 
+• dig +short - Quick DNS
+
+ Productivity Hacks: 
+• sudo !! - Repeat with sudo 
+• ctrl+r - Search history 
+• alias - Custom shortcuts
+
+The difference between good and great engineers? Knowing which command to use when things break at 3 AM.
