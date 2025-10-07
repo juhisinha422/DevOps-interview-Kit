@@ -1,0 +1,39 @@
+Mastering Git & GitHub Commands for DevOps Interviews! 🚀
+
+Whether you’re a beginner or an experienced DevOps Engineer, Git and GitHub form the backbone of version control and collaboration.
+
+ In interviews, many practical and scenario-based Git questions are asked understanding the why and how behind each command makes all the difference.
+
+Here are some of the most commonly used Git & GitHub commands every DevOps Engineer should know 👇
+
+🔹 Repository Setup & Initialization
+git init → Initialize a new Git repository
+git clone <repo-url> → Clone an existing repository
+git remote add origin <url> → Link local repo to remote GitHub repo
+
+🔹 Staging & Committing Changes
+git status → Check status of files
+git add . → Stage all changes
+git commit -m "message" → Commit changes with a message
+
+🔹 Branching & Merging
+git branch → List branches
+git checkout -b <branch> → Create and switch to a new branch
+git merge <branch> → Merge a branch into the current one
+
+🔹 Working with Remote Repos
+git push origin <branch> → Push changes to remote
+git pull origin <branch> → Fetch + merge changes from remote
+git fetch → Download latest commits without merging
+
+🔹 Undo & Clean Up
+git reset --hard HEAD~1 → Undo last commit
+git revert <commit-id> → Create a new commit that undoes changes
+git stash / git stash pop → Temporarily save and restore work
+
+🔹 Advanced & Useful Options
+git log --oneline --graph → Visualize commit history
+git diff → Compare file differences
+git tag v1.0 → Tag a release version
+
+💡 Pro Tip: Always follow Git best practices → use clear commit messages, maintain branch naming conventions, and regularly rebase to keep a clean history.
