@@ -1,0 +1,60 @@
+10 Tricky Pod Interview Questions & Answers
+
+1️⃣ Why not just run all microservices in one Pod?
+
+Answer:
+Because Pods share the same lifecycle. If one container crashes, all containers restart together. You lose independent scaling - can't scale services separately. Pods are for tightly coupled containers only, not unrelated services.
+
+2️⃣ Who assigns the IP address to a Pod?
+
+Answer:
+The CNI (Container Network Interface) plugin assigns Pod IPs, not the Scheduler or Kubelet. The Kubelet calls CNI after scheduling, and CNI configures networking and assigns the IP from the pod CIDR range.
+
+ 3️⃣ What's the difference between a Pod restart and Pod recreation?
+
+Answer:
+Restart: Container crashes, Kubelet restarts it inside same Pod (same IP, same volumes, restart count increases).
+
+Recreation: Pod deleted, controller creates new Pod(new name, new IP, new identity, restart count resets to 0).
+
+4️⃣ Why can't containers in the same Pod use the same port?
+
+Answer:
+Because they share the same network namespace and same IP address. Two containers binding to port 80 would conflict - port collision error. They must use different ports (e.g., 80 and 8080).
+
+5️⃣ What happens if you delete a Pod created by a Deployment?
+
+Answer:
+The Pod is deleted immediately, but the ReplicaSet Controller detects the missing Pod and creates a replacement automatically within seconds. The new Pod gets a new name and new IP.
+
+6️⃣ Why can containers in the same Pod communicate via localhost?
+
+Answer:
+Because they share the same network namespace. They have the same IP address and same loopback interface. Container A on port 8080 is reachable from Container B at `localhost:8080` - no need for Pod IP.
+
+7️⃣ Who actually runs the containers inside a Pod?
+
+Answer:
+The Container Runtime (containerd, CRI-O) runs containers, not the Kubelet. The Kubelet calls Container Runtime via CRI (Container Runtime Interface) to start/stop containers. Kubelet is the manager, not the executor.
+
+8️⃣ What's wrong with this command? `kubectl restart pod nginx-pod`
+
+Answer:
+This command doesn't exist! You cannot "restart" a Pod directly. You can only:
+- Delete and recreate it manually
+- Rollout restart a Deployment: `kubectl rollout restart deployment nginx`
+
+9️⃣ When does a Pod show "Running" but it's not actually ready?
+
+Answer:
+When containers are running but readiness probes are failing. Pod status shows "Running" but READY column shows "0/1". The Pod won't receive traffic from Services until readiness probe passes.
+
+```bash
+kubectl get pods
+# NAME      READY   STATUS    RESTARTS
+# my-pod    0/1     Running   0        ← Running but NOT Ready!
+```
+🔟 Why does Pod IP change after recreation?
+
+Answer:
+Because when a Pod is recreated, it's a completely new Pod with new identity. CNI assigns a new IP from the available pool. Old IP is released. This is why you use Services - they provide stable DNS/IP endpoints that don't change.
