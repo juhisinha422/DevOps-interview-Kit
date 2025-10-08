@@ -1,0 +1,23 @@
+AWS IAM🫆
+Most important questions for 0-4+years..
+
+	1.	What is AWS IAM?
+	2.	What are IAM users, groups, and roles?
+	3.	What is the difference between IAM roles and IAM users?
+	4.	What is the IAM root user, and why should you avoid using it?
+	5.	What are IAM policies?
+	6.	What’s the difference between AWS managed, customer managed, and inline policies?
+	7.	What is the difference between identity-based and resource-based policies?
+	8.	What are IAM permission boundaries?
+	9.	What are IAM Access Keys, and when should they be used?
+	10.	How does IAM integrate with Multi-Factor Authentication (MFA)?
+	11.	What are IAM roles with service principals?
+	12.	How do temporary security credentials work in IAM?
+	13.	What is the maximum number of IAM users per AWS account?
+	14.	What is IAM policy evaluation logic (explicit deny, allow, etc.)?
+	15.	What’s the difference between identity federation and cross-account roles?
+	16.	How do IAM roles work with AWS services like EC2 and Lambda?
+	17.	What are IAM password policies, and why are they important?
+	18.	What is the IAM Access Analyzer?
+	19.	How can you monitor IAM activities in AWS?
+	20.	What are some best practices for securing IAM in AWS?
