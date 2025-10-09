@@ -1,0 +1,96 @@
+# 🚀 MLOPS Interview Series – Part 1
+
+💡 Kickstarting your MLOps interview prep with 10 essential questions.
+
+### 1️⃣ What is MLOps, and how is it different from DevOps?
+
+Answer:
+MLOps applies DevOps principles (automation, CI/CD, monitoring) to the machine learning lifecycle, which involves data, models, and experiments — not just code.
+It ensures reliable deployment, versioning, and monitoring of ML models in production.
+
+### 2️⃣ What are the main stages of an MLOps pipeline?
+
+Answer:
+
+1. Data collection & validation
+2. Model training & experimentation
+3. Model evaluation & versioning
+4. Model deployment (batch/real-time)
+5. Monitoring, drift detection & retraining
+
+### 3️⃣ What tools are commonly used in MLOps pipelines?
+
+Answer:
+
+Experiment tracking: MLflow, Weights & Biases
+Orchestration: Airflow, Kubeflow, Vertex AI Pipelines
+CI/CD: Jenkins, GitHub Actions, ArgoCD
+Model serving: Seldon, BentoML, AWS SageMaker
+Monitoring: Prometheus, EvidentlyAI, SageMaker Model Monitor, Azure Drift Monitor, Vertex AI Model Monitoring
+
+### 4️⃣ What is model drift, and how is it handled in cloud MLOps?
+
+Answer:
+Model drift occurs when input data or relationships change, degrading model accuracy.
+Cloud-specific drift tools:
+
+🟡 AWS: SageMaker Model Monitor
+ 🔵 Azure:Azure ML Data Drift Monitor
+🔴 GCP: Vertex AI Model Monitoring
+
+These detect drift and trigger automated retraining pipelines.
+
+---
+
+### 5️⃣ What is the purpose of a model registry?
+
+Answer:
+A model registry (like MLflow or SageMaker Model Registry) tracks model versions, metadata, and deployment stages (staging → production), ensuring traceability and rollback capability.
+
+### 6️⃣ What are the deployment patterns in MLOps?
+
+Answer:
+
+Batch inference: Periodic predictions
+Online inference: Real-time APIs
+Shadow mode: Compare new model silently
+Canary rollout: Gradual traffic shift
+
+---
+
+### 7️⃣ How do you version datasets and models for reproducibility?
+
+Answer:
+
+Data:DVC, LakeFS, Delta Lake
+Models:MLflow, SageMaker Registry
+ Ensures experiments and results are eproducible anytime.
+
+
+### 8️⃣ What metrics should be monitored for ML models in production?
+
+Answer:
+
+Model quality: Accuracy, precision, recall
+Data quality: Missing values, schema drift
+Performance: Latency, resource usage
+Drift detection: via SageMaker, Vertex AI, or EvidentlyAI
+
+
+### 9️⃣ How does CI/CD apply to MLOps?
+
+Answer:
+
+CI: Automates code and data validation, linting, and tests.
+CD: Automates model deployment to staging or production after validation.
+ Cloud-native CI/CD integrates with SageMaker Pipelines, Azure ML Pipelines, or Vertex AI Workbench
+
+### 🔟 What are the main challenges in implementing MLOps?
+
+Answer:
+
+Managing data & model drift
+Handling large datasets
+ Ensuring reproducibility
+Automating retraining safely
+Enforcing security & governance
