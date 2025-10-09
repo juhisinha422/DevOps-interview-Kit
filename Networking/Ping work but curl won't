@@ -1,0 +1,17 @@
+Why ping works but curl doesn’t — same server, same VPC.
+
+Have you ever been in a situation where:
+
+ping server-A
+works fine, but
+
+curl http://server-A:8080
+just hangs forever? 😅
+
+This is one of those classic “networking in DevOps” moments that separates “it’s reachable” from “it’s serving.”
+
+ Here’s what’s happening:
+Ping works at ICMP (Layer 3) — it just checks reachability.
+Curl works at TCP (Layer 4) — it depends on open ports, security groups, and app availability.
+
+So yes, your network is fine… but your service isn’t.
