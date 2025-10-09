@@ -1,0 +1,42 @@
+AWS DevOps Interview Preparation Series — Day 1 🚀
+
+Topic: Amazon EC2 (Elastic Compute Cloud)
+
+As part of my AWS DevOps Interview Preparation Series, today we’ll cover one of the most critical AWS services — Amazon EC2.
+Whether you’re preparing for a DevOps or SRE interview, these 30 real-world EC2 questions will help you test and strengthen your fundamentals. 👇
+
+🔹 EC2 — Top 30 Interview Questions for DevOps Engineers
+
+What is Amazon EC2 and why is it used in DevOps environments?
+What are the different EC2 instance types and their ideal use cases?
+Explain On-Demand, Reserved, and Spot Instances.
+How does EC2 Auto Scaling help maintain availability and cost efficiency?
+What are EC2 Security Groups and how are they different from Network ACLs?
+What’s the difference between EBS and Instance Store volumes?
+How do you take a snapshot of an EBS volume and create an AMI?
+What is an AMI and how do you share it across regions or accounts?
+What are EC2 placement groups and what types are available?
+What is the lifecycle of an EC2 instance?
+What happens when you stop vs terminate an EC2 instance?
+How do you connect to an EC2 instance securely using SSH?
+What is the use of EC2 user data and metadata?
+How do you attach and detach EBS volumes to running instances?
+What is an Elastic IP address and when should you use it?
+What are key pairs in EC2 and how are they managed?
+How can you monitor EC2 performance metrics using CloudWatch?
+What are the benefits of using EC2 launch templates over launch configurations?
+How do you automate EC2 provisioning with Terraform or CloudFormation?
+How do you troubleshoot EC2 instances that are unreachable via SSH?
+What is the difference between public and private EC2 instances in a VPC?
+How do you resize (scale up or down) an EC2 instance?
+How do you configure load balancing for EC2 instances?
+What is hibernation in EC2 and when should you use it?
+How do you ensure high availability for EC2-hosted applications?
+What are EC2 instance retirement notices and how do you handle them?
+How can you optimize EC2 cost in production environments?
+How does AWS Systems Manager help in managing EC2 instances?
+What’s the difference between EC2 Spot Fleet and EC2 Auto Scaling Group?
+How can you ensure data persistence and backup for EC2 instances?
+
+💡 Pro Tip:
+ Mastering EC2 is key for any DevOps Engineer. Focus on automation (Terraform, Ansible), scaling, monitoring, and cost optimization — these are frequently discussed in real interviews.
