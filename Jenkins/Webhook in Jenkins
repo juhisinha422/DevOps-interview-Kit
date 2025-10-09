@@ -1,0 +1,17 @@
+webhook in Jenkins 
+
+The main purpose of the webhook will be that it will trigger Jenkins job whenever the developer changes code and Jenkins will identify the changes and it is going to trigger  job
+
+* Terraform i explained the main purpose of terraform is to create infrastructure by using code 
+
+HCL language we can use to create.tf file
+
+* Created an EC2 machine by using terraform before that created the pem key by using ssh-keygen command 
+
+* first we can use terraform init to initialise terraform plugins
+
+* we can use a terraform plan to see which infrastructure we can get before applying 
+
+* we can use terraform apply by that we can get our EC2 machine and we can check from the console it was created or not
+
+* we can create a s3 bucket by using terraform and we can upload files into s3 bucket by using terraform
