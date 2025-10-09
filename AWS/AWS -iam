@@ -1,0 +1,58 @@
+AWS IAM (Identity & Access Management) is one of the most essential and frequently asked concepts in interviews, and it’s foundational for secure AWS usage.
+
+
+
+AWS Identity & Access Management (IAM) Basics
+
+When it comes to security in AWS, everything starts with IAM (Identity and Access Management).
+It controls who can access what in your AWS environment — making it one of the most crucial topics for both interviews and real-world usage.
+
+
+
+🔹 What is IAM?
+
+IAM enables you to securely manage access to AWS services and resources.
+You can create users, groups, and roles — and assign them permissions through policies.
+
+
+
+🔹 Core IAM Components:
+
+🧑💻 Users – Individual identities for people or apps needing AWS access.
+👥 Groups – Collections of users sharing the same permissions.
+🎭 Roles – Temporary credentials assigned to entities like EC2, Lambda, or other AWS services.
+📜 Policies – JSON documents that define permissions (“Allow” or “Deny”).
+
+
+
+🔹 Best Practices:
+
+✅ Follow the Principle of Least Privilege – Give only the permissions required.
+✅ Use IAM Roles instead of embedding access keys.
+✅ Enable MFA (Multi-Factor Authentication) for root and IAM users.
+✅ Regularly rotate Access Keys and audit permissions.
+
+
+💬 Common Interview Questions:
+
+What’s the difference between IAM User, Group, and Role?
+
+What is the Principle of Least Privilege?
+
+How do you secure the root account?
+
+📘 Helpful AWS Documentation:
+
+https://lnkd.in/gUzZDN4P
+
+https://lnkd.in/gjZ3xBTT
+
+https://lnkd.in/gNH-RFGa
+
+https://lnkd.in/g4m3BC9x
+
+https://lnkd.in/g_G_-YPn
+
+
+💡 Pro Tip:
+Start using IAM Roles for EC2, Lambda, and EKS workloads instead of storing credentials — it’s one of the best ways to improve your cloud security posture.
