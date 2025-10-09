@@ -1,0 +1,19 @@
+AWS IAM Core Concepts You NEED to Know
+
+Understanding AWS Identity and Access Management (IAM) is essential for securing your AWS environment. Here are the core concepts every AWS learner should know 👇
+
+1️⃣ USERS 👤 — Individual identities with unique credentials. One person = one user. Simple and secure.
+
+2️⃣ GROUPS 👥 — Manage permissions for multiple users at once by organizing them into groups. One policy, many users.
+
+3️⃣ ROLES 🎭 — Temporary identities that let users or services access AWS resources without permanent credentials. Great for EC2, Lambda, or cross-account access.
+
+4️⃣ POLICIES  — JSON documents that define WHO can do WHAT on WHICH resources. The language of permissions in AWS.
+
+5️⃣ TEMPORARY CREDENTIALS (Security Token Service )  — AWS STS enables temporary and secure access to AWS resources by issuing limited-duration credentials. 
+
+6️⃣ PRINCIPALS  — The “who” behind every AWS request: users, roles, services, or federated identities from your corporate directory.
+
+7️⃣ LEAST PRIVILEGE  — Always start with zero permissions and grant only what’s needed. Nothing extra. This isn’t optional — it’s essential for security.
+
+8️⃣ MFA + ACCESS KEYS 🔐 — Multi-factor authentication for humans. Access keys for programmatic access. Never mix them up, never share them.
