@@ -1,0 +1,32 @@
+GitHub Actions vs Jenkins — When to Use What?
+
+As DevOps engineers, we often face the classic question: “Should I use GitHub Actions or Jenkins for CI/CD?”
+
+ Here’s a simple comparison to clear the confusion:
+
+🔹 GitHub Actions
+✅ Perfect when your code is already in GitHub
+ ✅ Simple setup – workflows as YAML in your repo
+ ✅ Great for small to medium teams who don’t want to manage servers
+ ✅ Scales automatically with GitHub-hosted runners
+ ✅ Built-in marketplace with prebuilt actions (e.g., Docker build, AWS deploy)
+
+📌 Best Use Case:
+Quick automation for GitHub-hosted projects
+Startups, small teams, or projects that need easy CI/CD without managing infrastructure
+
+🔹 Jenkins
+✅ Open-source & flexible – can integrate with almost anything
+ ✅ Runs on-premises or cloud – you control everything
+ ✅ Mature ecosystem with thousands of plugins
+ ✅ Great for complex, enterprise-grade pipelines
+ ✅ Can support multi-repo, multi-cloud, hybrid infra
+
+📌 Best Use Case:
+Large organizations needing custom workflows
+Teams that want full control over CI/CD infrastructure
+Projects beyond GitHub (Bitbucket, GitLab, SVN, etc.)
+
+⚖️ Rule of Thumb:
+Start with GitHub Actions if you’re small, quick-moving, and live in GitHub.
+Choose Jenkins if you need flexibility, scale, and enterprise-level integrations.
