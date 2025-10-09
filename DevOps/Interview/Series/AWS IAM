@@ -1,0 +1,43 @@
+AWS DevOps Interview Series (IAM)🚀
+
+🔐 Topic: AWS IAM (Identity & Access Management) – Most Asked Interview FAQs
+
+Identity and Access Management (IAM) is the foundation of AWS security. Every DevOps Engineer must understand IAM roles, policies, and best practices to control who can access what in AWS.
+
+ Let’s go through the most frequently asked IAM interview questions 👇
+
+💡 AWS IAM Interview FAQs
+
+What is IAM in AWS and why is it important?
+ Explain the difference between IAM Users, Groups, Roles, and Policies.
+ How do IAM policies work, and what are their main components?
+ What is the difference between an inline policy and a managed policy?
+ Can an IAM user assume a role? If yes, how?
+ What’s the purpose of IAM roles in EC2 instances?
+ How do you restrict access to a specific S3 bucket using IAM?
+ What are IAM policy evaluation logic and its priority order?
+ Explain the concept of “Least Privilege” in IAM.
+ What’s the difference between identity-based and resource-based policies?
+ How can you enforce MFA (Multi-Factor Authentication) for IAM users?
+ What are IAM Access Analyzer and its use cases?
+ What is AWS Organizations and how does it integrate with IAM?
+ How do you audit IAM permissions and identify unused access keys?
+ What is the difference between AWS STS and IAM roles?
+ Explain the concept of temporary security credentials.
+ What’s the use of IAM Conditions in policy statements?
+ How do you handle cross-account access in IAM?
+ What are best practices for securing IAM credentials?
+ How do you troubleshoot IAM “Access Denied” issues?
+How do you delegate access to resources without sharing long-term credentials?
+ What is the difference between IAM permissions boundaries and SCPs (Service Control Policies)?
+ How do you manage IAM roles for Lambda functions securely?
+ What’s the purpose of IAM Policy Simulator and how is it used in troubleshooting?
+ How can you integrate IAM with external identity providers (like Okta or Azure AD)?
+ What is AWS Cognito and how does it differ from IAM?
+ How do you rotate and manage IAM access keys automatically?
+ What is the difference between AWS SSO (IAM Identity Center) and IAM Users?
+ How do you secure API access for applications using IAM roles and policies?
+ What are common IAM misconfigurations that can lead to security breaches?
+
+💼 Pro Tip for DevOps Engineers
+“Always apply the principle of least privilege, enable MFA for all users, and automate IAM audits using AWS Config & IAM Access Analyzer.”
