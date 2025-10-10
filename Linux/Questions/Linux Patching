@@ -1,0 +1,28 @@
+Linux Patching Made Simple!
+Keeping your Linux system secure & stable isn’t optional — it’s a must! 🔒✨
+ Here’s your quick guide 👇
+🔹 1. What is Linux patching?
+ Updating your system with bug fixes, security upgrades, and performance improvements.
+
+🔹 2. Why is it important?
+ ✅ Fix vulnerabilities
+ ✅ Improve stability
+ ✅ Stay compliant
+
+🔹 3. How do you patch Linux?
+ 👉 RHEL: yum update -y
+ 👉 Debian: apt update && apt upgrade -y
+
+🔹 4. Security patch vs Kernel patch
+ 🛡️ Security patch → Fixes vulnerabilities
+ ⚡ Kernel patch → Boosts performance & adds new features
+
+🔹 5. Rollback if things break?
+ No stress 😎
+ 👉 yum history undo <id>
+ 👉 dpkg --remove <pkg> & reinstall older version
+
+🔹 6. Live Patching = No Reboot 🎉
+ Use tools like kpatch, ksplice, or Canonical Livepatch to update kernels without downtime.
+
+💡 Pro tip: Consistent patching = less stress, more uptime 🚀
