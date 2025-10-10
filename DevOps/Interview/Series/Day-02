@@ -1,0 +1,45 @@
+AWS DevOps Interview Preparation Series Day 2🚀
+
+Topic: Amazon S3 (Simple Storage Service)
+
+As part of my AWS DevOps Interview Preparation Series, today we’ll dive into one of the most essential AWS services — Amazon S3.
+
+ Whether you’re preparing for a DevOps or SRE interview, understanding S3 concepts like storage classes, versioning, and lifecycle policies is a must.
+
+ Here are real-world S3 interview questions to help you strengthen your cloud fundamentals. 👇
+
+🔹 S3 — Top Interview Questions for DevOps Engineers
+
+What is Amazon S3 and how does it differ from traditional file storage?
+ How does S3 store data and what are its main components?
+ What are the different S3 storage classes available and their use cases?
+ What is S3 Versioning and why is it important?
+ What is an S3 Bucket and how do you create one securely?
+ Explain the concept of S3 Object Keys and Metadata.
+ What is the maximum object size that can be uploaded to S3?
+ What is the difference between S3 Standard and S3 Intelligent-Tiering?
+ What are S3 Lifecycle Policies and how do they reduce cost?
+ What is S3 Cross-Region Replication (CRR) and how does it work?
+ How do you host a static website on Amazon S3?
+ What is the purpose of S3 Object Lock?
+ What is the difference between SSE-S3, SSE-KMS, and SSE-C encryption?
+ How do you secure an S3 bucket from public access?
+ What are S3 Access Points and when should you use them?
+ What is the difference between S3 Bucket Policy and IAM Policy?
+ What is S3 Transfer Acceleration and when is it beneficial?
+ How can you monitor S3 usage and performance?
+ How do you integrate S3 with CloudFront for content delivery?
+ What are pre-signed URLs and how are they used in DevOps pipelines?
+ How do you use S3 in CI/CD workflows for artifact storage?
+ How can Terraform or CloudFormation manage S3 resources?
+ What is S3 Event Notification and what AWS services can it trigger?
+ How do you handle data backup and recovery in S3?
+ What is S3 Glacier and how does it help in cost optimization?
+ How do you move objects between storage classes automatically?
+ What is the consistency model of S3?
+ How does S3 integrate with AWS Lambda?
+ What are common best practices for securing and managing S3 buckets?
+ How do you estimate and optimize S3 costs for large-scale projects?
+
+💡 Pro Tip:
+ Combine Versioning, Lifecycle Policies, and S3 Intelligent-Tiering to build a cost-efficient and highly durable storage solution — this combo is often discussed in real DevOps interviews.
