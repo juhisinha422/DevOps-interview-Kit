@@ -1,0 +1,17 @@
+Kubernetes Namespaces – Logical Separation of Resources
+
+- In Kubernetes, namespaces are used for logical separation of resources.
+- You can run your Pods, Services, and other resources inside a namespace.
+- Resources in one namespace are isolated, so other namespaces cannot access them directly.
+- This makes it easier to organize, manage, and secure your cluster, especially when multiple teams or environments share it.
+
+apiVersion: v1
+kind: Namespace
+metadata:
+ name: dev
+
+* How to Apply:
+kubectl apply -f namespace.yaml
+
+* Check the namespace:
+kubectl get namespaces
