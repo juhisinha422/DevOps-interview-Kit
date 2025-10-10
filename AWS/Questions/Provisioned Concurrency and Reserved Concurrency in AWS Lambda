@@ -1,0 +1,16 @@
+“Do you know the difference between Provisioned Concurrency and Reserved Concurrency in AWS Lambda?”
+
+I replied:
+ “Yes—Provisioned Concurrency keeps functions warm to reduce cold starts, while Reserved Concurrency limits the maximum number of concurrent executions to control costs and protect downstream resources.”
+
+We moved on quickly, but later I decided to dig deeper. Here’s what I learned:
+
+AWS Lambda is amazing because it scales automatically. But without proper planning, cold starts can slow down your functions, and unlimited concurrency can overwhelm your systems.
+
+Provisioned Concurrency keeps a pre-initialized pool of Lambda instances ready to handle requests—ideal for latency-sensitive workloads.
+
+ Example: During a Black Friday sale, an e-commerce site anticipates a huge spike in checkout requests. With Provisioned Concurrency, the checkout Lambda is ready instantly—no delays for customers.
+
+Reserved Concurrency puts a ceiling on how many instances of a function can run simultaneously, preventing any single function from monopolizing resources.
+
+ Example: An image-processing Lambda is capped at 50 concurrent executions to ensure it doesn’t overwhelm the database or S3 storage during peak traffic.
