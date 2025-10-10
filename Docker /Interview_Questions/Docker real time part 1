@@ -1,0 +1,110 @@
+Docker real-time questions and answers part -1
+
+1. What is Docker, and how is it different from a virtual machine?
+
+Docker is a containerization platform that allows you to package applications with their dependencies into lightweight, portable containers.
+Unlike virtual machines, containers share the host OS kernel and are more lightweight and faster to start.
+
+Feature	Docker Container	Virtual Machine
+OS Kernel	Shared with host	Separate for each VM
+Startup Time	Seconds	Minutes
+Resource Usage	Low	High
+Portability	High	Moderate
+
+2. How do you check all running containers and their statuses?
+
+docker ps
+
+For all containers (including stopped):
+
+docker ps -a
+
+3. How can you troubleshoot a container that keeps exiting?
+
+Check logs:
+
+docker logs <container_id>
+
+Check exit code:
+
+docker inspect <container_id> --format='{{.State.ExitCode}}'
+
+Start container interactively for debugging:
+
+docker run -it <image> /bin/bash
+
+Common causes: Missing entrypoint, bad CMD, permission errors, or dependency failure.
+
+4. How to access a running container’s shell?
+
+docker exec -it <container_id> /bin/bash
+
+If /bin/bash isn’t available:
+
+docker exec -it <container_id> sh
+
+5. What’s the difference between CMD and ENTRYPOINT in Dockerfile?
+
+Directive	Purpose	Example
+CMD	Default command (can be overridden)	CMD ["python", "app.py"]
+ENTRYPOINT	Defines main command (hard to override)	ENTRYPOINT ["python", "app.py"]
+
+Tip: Combine both for flexibility:
+
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+
+6. How can you persist data in Docker?
+
+Use volumes or bind mounts.
+
+Example:
+
+docker run -v /data:/var/lib/mysql mysql
+
+/data → Host directory
+
+/var/lib/mysql → Container directory
+
+Check existing volumes:
+
+docker volume ls
+
+7. How do you clean up unused containers, images, and volumes?
+
+docker system prune -a
+
+Removes all stopped containers, unused networks, and dangling images.
+
+Or, clean individually:
+
+docker rm $(docker ps -aq)
+docker rmi $(docker images -q)
+
+8. How do you inspect resource usage (CPU, Memory, I/O) of containers?
+
+docker stats
+
+Shows live container metrics like CPU%, memory usage, and network I/O.
+
+9. How do you connect multiple containers together?
+
+Create a user-defined network:
+
+docker network create mynetwork
+
+
+Run containers on the same network:
+
+docker run -d --name db --network mynetwork mysql
+docker run -d --name app --network mynetwork myapp
+
+
+Now app can reach db using hostname db.
+
+10. What’s the difference between docker run, docker start, and docker exec?
+
+Command	Function
+docker run	Creates and starts a new container
+docker start	Starts an existing stopped container
+docker exec	Runs a command inside a running container
