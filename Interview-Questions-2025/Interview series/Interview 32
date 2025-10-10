@@ -1,0 +1,11 @@
+ recent interview!  
+Here are some of the technical questions
+
+What is the architecture of Kubernetes? Draw it and explain.
+What happens internally when you run `kubectl apply -f deployment.yaml`?
+Who handles pods and containers networking?
+In which machine do we run GitLab CI?
+Suppose you lose a Terraform state file, what will happen?
+Do you know concepts of lock file?
+Suppose that you don’t have backup in any form of state file and lost all resources details. How to resolve this issue?
+How to unlock state lock file issue?
