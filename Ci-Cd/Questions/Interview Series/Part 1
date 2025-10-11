@@ -1,0 +1,99 @@
+CI/CD Interview Series (Part 1): GitHub Actions — 10 Must-Know Questions for Every DevOps Engineer!
+
+💡 Preparing for DevOps or Cloud interviews?
+Here’s a crisp, practical Q&A guide to master GitHub Actions — straight to the point, no fluff!
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### 🧠 1️⃣ What’s CI/CD in GitHub Actions?
+
+CI → Builds & tests your code automatically when you push changes.
+CD → Deploys that tested code to your servers or cloud.
+All this magic happens through YAML workflow files that run on GitHub’s runners.
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### 📁 2️⃣ Where do workflow files live?
+
+Inside your repo → `.github/workflows/`
+File type → `.yml` or `.yaml`
+(👉 GitHub ignores them if they’re elsewhere!)
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### ⚙️ 3️⃣ What triggers a workflow?
+
+* `push` → When you push new commits
+* `pull_request` → When someone opens a PR
+* `schedule` → Run at specific times (like cron)
+* `workflow_dispatch` → Manual trigger button
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### 🧩 4️⃣ Workflow vs Job vs Step — What’s the difference?
+
+* Workflow = Entire automation (1 YAML file)
+* Job = Main task (can run in parallel)
+* Step = Individual commands inside a job
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### ⚡ 5️⃣ What are Actions?
+
+Reusable code blocks that save you scripting time!
+✅ `actions/checkout` → Pulls your repo
+✅ `actions/cache` → Speeds up builds
+✅ Community actions → Deploy to AWS, Azure, Docker Hub & more
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### 🖥️ 6️⃣ What are Runners?
+
+The machines executing your workflows.
+
+* GitHub-hosted: Free, clean, auto-updated
+* Self-hosted: Your own server = more control + no timeouts
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### 🔒 7️⃣ How to manage secrets safely?
+
+❌ Never hard-code passwords!
+✅ Use GitHub Secrets: `${{ secrets.API_KEY }}`
+✅ Use `${{ secrets.GITHUB_TOKEN }}` for GitHub auth
+✅ Add manual approvals for production deploys
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### ⚡ 8️⃣ What does `actions/cache` do?
+
+It stores downloaded packages so builds run faster.
+Example: npm/pip modules → cached once, reused later.
+⏱ Build time drops from 10 min to 2 min!
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### 🧱 9️⃣ How to protect the main branch?
+
+✅ Make CI checks mandatory
+✅ Require tests & build to pass before merge
+✅ Add review rules for production repos
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### 🚀 🔟 How to organize your pipeline?
+
+Simple & structured: Test → Build → Deploy
+1️⃣ Run unit tests & lint checks
+2️⃣ If pass ✅ → Build the app
+3️⃣ Then deploy to server or cloud
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+### 💡 Pro Tips
+
+✅ Use caching to save time & cost
+✅ Split workflows by purpose (test, deploy)
+✅ Use matrix testing for multiple versions
+✅ Add manual approvals for prod deploys
+✅ Keep YAMLs clean & readable
