@@ -1,0 +1,18 @@
+the difference between count and for_each in terraform practically 
+
+* Count it will create multiple instances if you give count = n here n is number 1 2 3 etc
+
+* for_each also will do the same as a count but it will accept a map or a set of string 
+
+* If you want to create a t2.micro instance for app and t2.medium for web we can use
+
+Example :
+
+type        = map(string)
+  default = {
+    web  = "t2.micro"
+    app  = "t2.medium"
+    db   = "t2.large"
+  }
+
+* If you want to create one instance for Jenkins one for docker and one more ansible for that also you can use for_each
