@@ -1,0 +1,101 @@
+Designing a Scalable E-commerce Platform on AWS EKS
+
+A client brief: "Build a MERN stack e-commerce platform that handles Black Friday traffic without breaking the bank."
+
+Here's the architecture discussion:
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+CLIENT: "Why EKS? EC2 Auto Scaling seems simpler."
+
+ARCHITECT: "EKS gives you faster scaling and multi-region consistency.
+
+EC2 Auto Scaling: 5-10 min (boot + startup)
+EKS: 30 seconds (lightweight containers)
+
+Plus, you're expanding to EU and Asia. With EKS, same deployment configs everywhere. With EC2, that's 3x manual work."
+
+CLIENT: "Got it. What about security?"
+
+ARCHITECT: "EKS cluster MUST be private:
+
+❌ Public = Attack surface exposed
+✅ Private = API server only in VPC, PCI-DSS compliant
+
+Setup: Internet → ALB → Private EKS Pods"
+
+CLIENT: "We have 2 domains - frontend and backend. Structure?"
+
+ARCHITECT: "Perfect two-domain strategy:
+
+🌐 shop.example.com (PUBLIC) - React, CloudFront CDN
+🔒 api.internal.example.com (PRIVATE) - Backend, Admin, Mail
+
+Why? Backend never exposed + Frontend cached globally + Independent scaling"
+
+CLIENT: "Why CloudFront?"
+
+ARCHITECT: "Performance and cost savings:
+
+Without: Tokyo user → Oregon = 250ms latency
+With: Tokyo user → Tokyo edge = 15ms
+
+85% traffic cached, page load 4.5s → 1.2s, +23% conversion rate"
+
+CLIENT: "What about S3 for images?"
+
+ARCHITECT: "Use S3 Gateway Endpoint - FREE data transfer:
+
+Without: EKS → NAT Gateway → S3 = $0.045/GB
+With: EKS → S3 Gateway → S3 = $0/GB
+
+Traffic stays in AWS network, faster and secure."
+
+CLIENT: "Users getting logged out when pods restart. Why?"
+
+ARCHITECT: "Need Redis for session management:
+
+Without Redis:
+- Session in pod memory → Pod restarts → Logout
+
+With Redis:
+- Session persists outside pods
+- Cart survives restarts
+- 80% faster product pages (caching)
+- Rate limiting & flash sales
+
+Cost: $50/month vs $5,000 in lost sales"
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+ARCHITECTURE:
+```
+Internet → CloudFront CDN
+         ↓
+    Public ALB + WAF
+         ↓
+    Private EKS Cluster
+    ├─ Frontend (React)
+    ├─ Backend (Node.js)
+    ├─ Redis (Cache)
+    └─ S3 Gateway (Storage)
+```
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+RESULTS:
+⚡ 30-sec scaling vs 5-10 min
+💰 Optimized resource usage
+🔒 Enterprise security
+🌍 Multi-region ready
+📈 0→10K users seamlessly
+
+KEY LESSONS:
+1. EKS shines for multi-region deployments
+2. Private clusters = non-negotiable security
+3. CDN boosts performance + saves costs
+4. S3 Gateway Endpoint = free optimization
+5. Redis essential for stateless architecture
+6. Separate domains for security isolation
+
+Building production systems is about choosing the RIGHT services for REAL problems, not using everything available.
