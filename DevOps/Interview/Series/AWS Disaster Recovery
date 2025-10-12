@@ -1,0 +1,44 @@
+AWS DevOps Interview Preparation Series  AWS Disaster Recovery (DR)🚀
+
+Topic: AWS Disaster Recovery (DR) Strategies
+
+As part of my AWS DevOps Interview Preparation Series, today we’ll dive into one of the most crucial areas for business continuity and resilience — Disaster Recovery (DR) on AWS.
+
+Every DevOps or Cloud Engineer should understand how to design and implement effective DR strategies that minimize downtime and data loss.
+ Here are 30 real-world AWS Disaster Recovery interview questions to help you prepare for production-ready discussions. 👇
+
+🔹 AWS Disaster Recovery (DR) — Top Interview Questions for DevOps Engineers
+
+What is Disaster Recovery (DR) in AWS and why is it important?
+ What are the main goals of a DR plan?
+ What are RTO (Recovery Time Objective) and RPO (Recovery Point Objective)?
+ What are the four main AWS Disaster Recovery strategies?
+ Explain the difference between Backup & Restore, Pilot Light, Warm Standby, and Multi-Site Active/Active.
+ Which DR strategy is most cost-effective and why?
+ What AWS services are commonly used for DR implementation?
+ How does S3 play a role in backup and disaster recovery?
+ What is Cross-Region Replication (CRR) and why is it important for DR?
+ How can you use Route 53 for disaster recovery failover?
+ How can CloudFormation or Terraform help automate DR setup?
+ How do you replicate databases for DR using RDS or Aurora?
+ What is AWS Elastic Disaster Recovery (DRS)?
+ How does AWS Backup simplify disaster recovery management?
+ How can you achieve DR for EC2 instances?
+ What role does AWS CloudEndure play in disaster recovery?
+ How do you ensure DR readiness in Kubernetes workloads running on AWS?
+ What is the difference between active-active and active-passive DR architectures?
+ How can you test your DR plan in AWS?
+ What is the importance of IAM and Security in DR scenarios?
+ How can you achieve DR for applications hosted on Lambda (serverless)?
+ How do you automate DR failover and failback in AWS?
+ What are key monitoring tools for DR health and alerting?
+ How do you perform DR for EBS volumes?
+ What is the difference between snapshot-based backup and replication-based recovery?
+ How can you optimize costs while implementing DR on AWS?
+ What are AWS Outposts and how can they fit into DR architecture?
+ How does AWS CloudWatch help in DR scenarios?
+ What is the importance of region and availability zone selection in DR design?
+ What are best practices for documenting and maintaining a DR plan?
+
+💡 Pro Tip:
+ A strong DR strategy balances cost, recovery time, and data durability. Always align your DR approach with business SLAs — this is a frequent topic in real DevOps interviews.
