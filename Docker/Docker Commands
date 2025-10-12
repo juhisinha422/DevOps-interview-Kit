@@ -1,0 +1,45 @@
+Essential Docker Commands for DevOps Engineers 🐳
+
+
+📌 Docker Basics:
+- docker --version: Check Docker version.
+- docker info: Get system-wide information.
+- docker help: Get help with Docker commands.
+
+📌 Container Lifecycle:
+- docker run [OPTIONS] IMAGE [COMMAND] [ARG...]: Run a container.
+- docker ps: List running containers.
+- docker ps -a: List all containers.
+- docker stop CONTAINER: Stop a running container.
+- docker start CONTAINER: Start a stopped container.
+- docker restart CONTAINER: Restart a container.
+- docker rm CONTAINER: Remove a container.
+- docker kill CONTAINER: Kill a running container.
+
+📌 Images:
+- docker images: List images.
+- docker pull IMAGE: Pull an image from a registry.
+- docker build -t TAG .: Build an image from a Dockerfile.
+- docker rmi IMAGE: Remove an image.
+
+📌 Networking:
+- docker network ls: List networks.
+- docker network create NETWORK: Create a network.
+- docker network connect NETWORK CONTAINER: Connect a container to a network.
+- docker network disconnect NETWORK CONTAINER: Disconnect a container from a network.
+
+📌 Volumes:
+- docker volume ls: List volumes.
+- docker volume create VOLUME: Create a volume.
+- docker volume rm VOLUME: Remove a volume.
+
+📌 Docker Compose:
+- docker-compose up: Start services defined in a Compose file.
+- docker-compose down: Stop services defined in a Compose file.
+- docker-compose build: Build or rebuild services.
+- docker-compose logs: View output from services.
+
+📌 Inspect & Logs:
+- docker inspect CONTAINER/IMAGE: Display detailed information.
+- docker logs CONTAINER: Fetch the logs of a container.
+- docker exec -it CONTAINER bash: Access a running container.
