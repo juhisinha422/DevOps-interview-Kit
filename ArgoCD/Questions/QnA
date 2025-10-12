@@ -1,0 +1,46 @@
+DevOps Q&A Series – ArgoCD (FAQs Edition)
+
+Today we deep dive into ArgoCD, the GitOps-based continuous delivery tool for Kubernetes.
+
+ Here are the Top Frequently Asked Questions (FAQs) you must prepare for DevOps/SRE interviews 👇
+
+🔹 Q1. What is ArgoCD and why is it used in Kubernetes environments?
+ 🔹 Q2. How does ArgoCD implement GitOps principles?
+ 🔹 Q3. What are the core components of ArgoCD architecture?
+ 🔹 Q4. Explain the difference between desired state vs live state in 
+         ArgoCD.
+ 🔹 Q5. What is an ArgoCD Application?
+ 🔹 Q6. What are ArgoCD Projects and their use cases?
+ 🔹 Q7. How do you configure sync policies (Manual vs Automated) in 
+        ArgoCD?
+ 🔹 Q8. What is the Application Controller responsible for?
+ 🔹 Q9. What role does the Repo Server play in ArgoCD?
+ 🔹 Q10. How does ArgoCD detect and handle configuration drift?
+ 🔹 Q11. What are the different health statuses in ArgoCD?
+ 🔹 Q12. How does ArgoCD handle rollback during failures?
+ 🔹 Q13. How does ArgoCD support multi-cluster deployments?
+ 🔹 Q14. How can you integrate ArgoCD with Helm charts?
+ 🔹 Q15. How does ArgoCD work with Kustomize?
+ 🔹 Q16. How do you manage secrets securely in ArgoCD?
+ 🔹 Q17. What is the difference between ArgoCD CLI, Web UI, and API?
+ 🔹 Q18. How do you implement RBAC in ArgoCD?
+ 🔹 Q19. How can you integrate ArgoCD with SSO providers?
+ 🔹 Q20. How does ArgoCD handle progressive delivery (blue-green / 
+        canary)?
+ 🔹 Q21. What are ArgoCD Notifications and how are they configured?
+ 🔹 Q22. How can you integrate ArgoCD with Slack, Teams, or Email alerts?
+ 🔹 Q23. How does ArgoCD compare with FluxCD?
+ 🔹 Q24. What scaling strategies can you use for ArgoCD in enterprise 
+        setups?
+ 🔹 Q25. How do you monitor and observe ArgoCD using Prometheus & 
+        Grafana?
+ 🔹 Q26. What are ArgoCD App-of-Apps patterns and when to use them?
+ 🔹 Q27. What are the common challenges faced with ArgoCD in 
+        production?
+ 🔹 Q28. How can ArgoCD be integrated with CI pipelines (e.g., Jenkins, 
+        GitHub Actions)?
+ 🔹 Q29. What are some ArgoCD best practices for large-scale 
+       deployments?
+ 🔹 Q30. What’s the difference between ArgoCD and Argo Workflows?
+
+💡 If you’re preparing for DevOps / SRE / Platform Engineer roles, mastering these FAQs + hands-on labs with Kubernetes & GitOps will give you a big edge.
