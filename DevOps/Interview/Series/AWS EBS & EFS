@@ -1,0 +1,45 @@
+AWS DevOps Interview Preparation Series — EBS & EFS 🚀
+
+Topic: Amazon EBS (Elastic Block Store) & Amazon EFS (Elastic File System)
+
+As part of my AWS DevOps Interview Preparation Series, today we’ll explore two essential storage services — EBS and EFS.
+
+ Understanding their differences, use cases, and performance characteristics is vital for designing scalable, reliable, and cost-efficient AWS architectures.
+
+Here are top real-world interview questions on EBS and EFS to help you strengthen your DevOps fundamentals. 👇
+
+🔹 EBS & EFS — Top 30 Interview Questions for DevOps Engineers
+
+What is Amazon EBS and how does it differ from Amazon EFS?
+ What are the main use cases for EBS and EFS?
+ What is the relationship between EBS and EC2 instances?
+ What are the different types of EBS volumes?
+ What is the difference between gp2 and gp3 volume types?
+ How do you create and attach an EBS volume to an EC2 instance?
+ What happens to an EBS volume when an EC2 instance is terminated?
+ How do you take a snapshot of an EBS volume?
+ What is the purpose of EBS snapshots in disaster recovery?
+ How do you share EBS snapshots across regions or AWS accounts?
+ What is an EBS-optimized instance and why is it important?
+ How can you increase the size or performance of an EBS volume?
+ What is the maximum size of an EBS volume?
+ How do you encrypt an EBS volume and its snapshots?
+ How do you back up and restore data from EBS?
+ What is the performance difference between EBS and Instance Store?
+ What is Amazon EFS and how does it work?
+ What are the use cases where EFS is preferred over EBS?
+ What are the different performance modes available in EFS?
+ How does EFS achieve scalability and shared access?
+ What are EFS access points and how are they used?
+ How do you mount EFS on multiple EC2 instances?
+ What is the difference between EFS Standard and EFS Infrequent Access (IA)?
+ How do you control access to EFS using IAM and Security Groups?
+ How do you enable encryption for EFS at rest and in transit?
+ How can you monitor and optimize EFS performance?
+ How do you automate EBS and EFS provisioning with Terraform or CloudFormation?
+ What is the cost difference between EBS and EFS?
+ Can you use EBS and EFS together in a single architecture?
+ What are the best practices for managing and securing EBS and EFS in production?
+
+💡 Pro Tip:
+ Use EBS for high-performance, single-instance workloads like databases, and EFS for scalable, shared file systems across multiple instances. Combine both strategically for optimal performance and cost efficiency.
