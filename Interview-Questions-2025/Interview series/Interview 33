@@ -1,0 +1,76 @@
+Part 1: Linux System Administrator Interview Q&A
+*A. Fundamental Questions*
+
+**1. What is the difference between `soft link` and `hard link`?**
+ * **Hard Link:** A direct pointer to the file's `inode`. If the original file is deleted, the hard link still works. It cannot link to directories or files on a different filesystem/partition. `ln <source> <link_name>`
+ * **Soft Link (Symbolic Link):** A shortcut that points to the path of the original file. If the original file is deleted, the soft link becomes a "dangling link" and is useless. It can link to directories and across filesystems. `ln -s <source> <link_name>`
+2. How to see the last 10 lines of a file? How to see the continuously updating log file?
+ * `tail -n 10 /path/to/file`
+ * `tail -f /var/log/syslog` (The `-f` flag means "follow")
+3. What is the difference between `kill` and `kill -9`?
+ * `kill <PID>` sends the `SIGTERM` (signal 15) signal. It's a polite request to a process to terminate, allowing it to clean up resources.
+ * `kill -9 <PID>` sends the `SIGKILL` (signal 9) signal. It forces the process to terminate immediately, without any cleanup. Use this as a last resort.
+4. How to find all files containing a specific string (e.g., "ERROR") in a directory?
+ * `grep -r "ERROR" /path/to/directory/` (The `-r` flag is for recursive search)
+5. Explain the three standard file descriptors in Linux.
+ * **0 - stdin (Standard Input):** Where a program reads its input.
+ * **1 - stdout (Standard Output):** Where a program writes its output.
+ * **2 - stderr (Standard Error):** Where a program writes its error messages.
+
+
+linux system administrator interview questions and answers
+
+B. Intermediate Questions**
+6. How to check the listening ports and the associated processes?
+ * `ss -tuln` or `netstat -tuln` (shows listening ports)
+ * To see the process: `ss -tulnp` or `netstat -tulnp` (requires sudo)
+7. What is the purpose of `sudo`? How is it configured?
+* `sudo` allows a permitted user to execute a command as the superuser or another user. It is configured via the `/etc/sudoers` file, which should always be edited using the `visudo` command to prevent syntax errors.
+8. A server is running out of disk space. What steps would you take to investigate?
+ 1. **Check overall usage:** `df -h`
+ 2. **Find large directories:** `du -sh /var/* | sort -rh` (start from the root or a large mount point)
+ 3. **Check for deleted files still held by processes:** `lsof +L1` or check the output of `lsof | grep deleted`. Restarting the holding process would free this space.
+ 4. **Check log files:** Often `/var/log` can fill up quickly.
+9. Explain the Linux boot process from pressing the power button.
+ 1. **BIOS/UEFI:** Initializes hardware and performs a Power-On Self-Test (POST).
+ 2. **Bootloader (GRUB):** Loads the kernel and initial RAM disk (initramfs) into memory. For systems using `systemd`, the first process started is `systemd` (PID 1).
+ 3. **Kernel:** Initializes hardware and mounts the root filesystem.
+ 4. **Init/Systemd:** Starts all the system services and daemons based on the default target (e.g., `multi-user.target` or `graphical.target`).
+ 5. **Login Prompt:** The `getty` process provides a login prompt.
+10. What is the difference between `umask 022` and `umask 077`?
+* The `umask` (user file creation mask) subtracts permissions from the default.
+ * Default file permissions are `666` (rw-rw-rw-).
+ * Default directory permissions are `777` (rwxrwxrwx).
+ * `umask 022` results in files as `644` (rw-r--r--) and directories as `755` (rwxr-xr-x).
+ * `umask 077` results in files as `600` (rw-------) and directories as `700` (rwx------).
+
+#Part 2: DevOps Engineer Interview Q&A
+hashtag#A. Source Code Management (Git)
+11. How do you revert a commit that has already been pushed and made public?
+ There are two main ways:
+ *`git revert`:* Creates a *new* commit that undoes the changes of a previous commit. This is safe for public repositories because it doesn't rewrite history. `git revert <commit-hash>`
+ *`git reset`:* Moves the branch pointer back to a previous commit, effectively erasing history. *This is dangerous for public commits*as it forces a `git push --force-with-lease` and can disrupt other collaborators.
+
+**12. Explain the difference between `git merge` and `git rebase`.**
+*Merge:* Creates a new "merge commit" that ties together the histories of two branches. History is preserved exactly as it happened.
+ * **Rebase:** Moves the entire feature branch to begin on the tip of the main branch, effectively rewriting history by creating new commits for each original commit. It results in a cleaner, linear history. **Golden Rule:** Don't rebase public branches.
+
+hashtag#B. Continuous Integration / Continuous Deployment (CI/CD)
+
+**13. What is the difference between CI and CD?**
+*Continuous Integration (CI):* The practice of frequently merging all developers' working copies to a shared mainline (e.g., several times a day). This is verified by an automated build and test process. *Goal: Find bugs early.*
+ * **Continuous Delivery:** An extension of CI where the codebase is always in a deployable state and can be released to production automatically at any time.
+ * **Continuous Deployment:** A step further than Continuous Delivery, where every change that passes all stages of the production pipeline is automatically released to customers.
+
+**14. What are "Pipeline-as-Code" and the benefits?**
+ It's the practice of defining your CI/CD pipeline configuration (jobs, stages, steps) in a code file (e.g., `Jenkinsfile`, `.gitlab-ci.yml`). Benefits include:
+ * **Version Control:** The pipeline is versioned alongside the application code.
+ * **Code Review:** The pipeline can be reviewed and collaborated on.
+ * **Single Source of Truth:** Everyone can see how the application is built, tested, and deployed.
+ * **Reusability:** Pipeline snippets can be shared across projects.
+
+hashtag#C. Configuration Management & IaC
+15. What is Infrastructure as Code (IaC)? Name the tools.
+IaC is managing and provisioning computing infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.
+ * **Tools:** Terraform, AWS CloudFormation, Ansible, Pulumi.
+ * **Benefits:** Consistency, speed, repeatability, versioning, and documentation.
