@@ -1,0 +1,44 @@
+AWS DevOps Interview Preparation Series — Day 8 🚀
+
+Topic: AWS Serverless Services — Lambda | API Gateway | Fargate
+As part of my AWS DevOps Interview Preparation Series, today we’ll explore the most in-demand and modern cloud architecture trend — Serverless Computing.
+
+ AWS provides powerful serverless services like Lambda, API Gateway, and Fargate, enabling teams to build scalable, cost-efficient, and event-driven systems without managing servers.
+
+Here are top real-world interview questions to help you master AWS Serverless fundamentals for your next DevOps or SRE interview. 👇
+
+🔹 Serverless Services — Top Interview Questions for DevOps Engineers
+
+What is Serverless Computing in AWS?
+ What are the key benefits of using Serverless architecture?
+ What is AWS Lambda and how does it work?
+ What are the supported runtimes in AWS Lambda?
+ How do you deploy and manage Lambda functions?
+ What are Lambda Layers and how are they used?
+ What are the limitations of AWS Lambda (timeout, memory, etc.)?
+ How do you monitor Lambda functions using CloudWatch?
+ How can you secure Lambda functions using IAM roles and policies?
+ What is the cold start problem in Lambda and how can it be reduced?
+ How does Lambda integrate with other AWS services (like S3, DynamoDB, or SNS)?
+ How do you implement CI/CD for AWS Lambda using GitHub Actions or CodePipeline?
+ What is AWS API Gateway and what problem does it solve?
+ What are the different types of API Gateways available (REST, HTTP, WebSocket)?
+ How do you integrate API Gateway with Lambda?
+ How do you handle authentication and authorization in API Gateway?
+ What is the difference between a public API and a private API in API Gateway?
+ How do you secure API Gateway using IAM, Cognito, or Lambda Authorizers?
+ How can you monitor API Gateway metrics and logs?
+ How do you enable caching in API Gateway for better performance?
+ What is AWS Fargate and how does it differ from ECS and EKS?
+ How does AWS Fargate simplify container management?
+ How do you define compute and memory resources in Fargate tasks?
+ How can you scale containerized workloads automatically in Fargate?
+ What are the security best practices for Fargate workloads?
+ How do you use Fargate with CI/CD pipelines?
+ How do you monitor Fargate tasks using CloudWatch and CloudTrail?
+ How can you integrate Fargate with Application Load Balancer (ALB)?
+ What are the main differences between Lambda and Fargate for serverless workloads?
+ What are best practices for designing serverless applications in AWS?
+
+💡 Pro Tip:
+ Use Lambda for event-driven automation, API Gateway for managing and securing APIs, and Fargate for running containers without managing servers together, they form a powerful, fully-managed serverless ecosystem.
