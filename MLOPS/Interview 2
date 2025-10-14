@@ -1,0 +1,88 @@
+MLOPS Interview Series – Part 2
+
+1️⃣ What are the stages of the ML lifecycle?
+Answer: Data Collection → Data Preparation → Model Training → Model Evaluation → Model Deployment → Monitoring & Maintenance
+
+2️⃣ What is the difference between model training and model deployment?
+Answer:
+Training: Building the model using historical data. Focus is on accuracy. 
+Deployment: Making the model available for predictions in production. Focus is on speed and reliability. 
+
+3️⃣ How do you track experiments in MLOps?
+Answer:
+Track every training run by logging:
+Hyperparameters (learning rate, batch size)
+Metrics (accuracy, loss)
+Model files
+Dataset used
+Code version
+Tools: MLflow, Weights & Biases, Neptune.ai
+
+4️⃣ What is a model registry?
+Answer:
+A central place to store and manage all trained models.
+Features:
+Track model versions (v1.0, v1.1, v2.0)
+Store metadata (accuracy, training date)
+Mark stages (Development, Staging, Production)
+Enable easy rollback
+
+Example: MLflow Model Registry, SageMaker Model Registry
+
+5️⃣ How do you detect data drift?
+Answer:
+Data drift = when production data looks different from training data.
+Detection methods:
+Compare feature statistics (mean, min, max)
+Statistical tests (KS test, PSI)
+Monitor distributions over time
+
+Tools: EvidentlyAI, SageMaker Model Monitor, Azure Drift Monitor
+
+6️⃣ How do you monitor models in production?
+Answer:
+Monitor four things:
+Model metrics: Accuracy, predictions quality
+Data quality: Missing values, outliers, drift
+System metrics: API latency, error rates, CPU/memory
+Business metrics: User engagement, revenue impact
+Tools: Prometheus, Grafana, CloudWatch, Azure Monitor
+
+7️⃣ What is model explainability?
+Answer:
+Understanding WHY a model made a specific prediction.
+Techniques:
+SHAP: Shows which features contributed most
+LIME: Explains individual predictions
+Feature importance: Ranks features by impact
+
+8️⃣ How does automated model retraining work?
+Answer:
+Automated retraining updates models without manual work.
+Triggers:
+Scheduled (weekly/monthly)
+Performance drop (accuracy below threshold)
+Data drift detected
+New data available
+Process: Detect trigger → Fetch new data → Train model → Evaluate → Deploy if better
+Benefit: Keeps models accurate without manual intervention.
+
+9️⃣ How does MLOps support reproducibility?
+Answer:
+Reproducibility = getting same results when rerunning experiments.
+How to achieve:
+Version code (Git)
+Version data (DVC, LakeFS)
+Version models (Model registry)
+Use Docker for consistent environments
+Set random seeds
+Log everything in experiment tracking
+
+🔟 What are popular MLOps tools?
+Answer:
+Experiment tracking: MLflow, Weights & Biases
+Orchestration: Airflow, Kubeflow 
+Data versioning: DVC, LakeFS 
+Model serving: TensorFlow Serving, BentoML 
+Cloud platforms: AWS SageMaker, Azure ML, GCP Vertex AI
+Monitoring: Prometheus, Grafana, EvidentlyAI
