@@ -74,3 +74,18 @@ hashtag#C. Configuration Management & IaC
 IaC is managing and provisioning computing infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.
  * **Tools:** Terraform, AWS CloudFormation, Ansible, Pulumi.
  * **Benefits:** Consistency, speed, repeatability, versioning, and documentation.
+
+
+16. Explain the difference between Ansible and Terraform.
+    *   **Ansible:** Primarily a **configuration management tool** (e.g., installing packages, updating config files). It is **agentless** and uses SSH. It is **procedural** - it defines the steps to achieve a state.
+    *   **Terraform:** Primarily an **infrastructure provisioning tool** (e.g., creating VMs, networks, storage buckets). It is **declarative** - you define the desired end state, and Terraform figures out how to achieve it. It uses provider APIs.
+
+#D. Containerization & Orchestration
+
+**17. What is the difference between a Docker `image` and a `container`?**
+*   **Answer:**
+    *   An **Image** is a read-only template with instructions for creating a Docker container. It is a snapshot of a filesystem and application.
+    *   A **Container** is a runnable *instance* of an image. You can create, start, stop, move, or delete a container using the Docker API or CLI.
+
+**18. How does Kubernetes handle pod-to-pod communication within the same cluster?**
+*   **Answer:** Kubernetes creates a **flat, software-defined network** where every pod gets its own IP address. A Pod on any node can communicate with a Pod on any other node without using NAT. This is typically achieved by a **Container Network Interface (CNI)** plugin like Flannel, Calico, or Weave Net.
