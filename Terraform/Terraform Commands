@@ -1,0 +1,41 @@
+Terraform Commands for day to day workflow
+
+ 1. terraform --version – Check Terraform version 
+ 2. terraform init – Initialize Terraform working directory 
+ 3. terraform plan – Show execution plan 
+ 4. terraform apply -auto-approve – Apply configuration 
+ 5. terraform destroy -auto-approve – Destroy infrastructure 
+ 6. terraform show – Show Terraform state 
+ 7. terraform validate – Validate Terraform configuration
+ 8. terraform fmt – Format Terraform code 
+ 9. terraform providers – List providers used 
+10. terraform state list – Show managed resources 
+11. terraform state show resource_name – Show specific resource details 
+12. terraform state rm resource_name – Remove resource from state 
+13. terraform taint resource_name – Mark resource for recreation 
+14. terraform untaint resource_name – Remove taint from resource 
+15. terraform import resource_type.name id – Import existing infrastructure 16. terraform refresh – Refresh state file 
+17. terraform graph – Generate dependency graph 
+18. terraform workspace list – List available workspaces 
+19. terraform workspace select workspace_name – Switch workspace 
+20. terraform workspace new workspace_name – Create new workspace 
+21. terraform state mv old_resource new_resource – Rename resource 
+22. terraform output – Show Terraform outputs 
+23. terraform output output_name – Get specific output value 
+24. terraform apply -target=resource_name – Apply specific resource 
+25. terraform console – Open interactive Terraform shell 
+26. terraform debug – Enable debugging logs 
+27. terraform version – Show installed Terraform version 
+28. terraform plan -var="instance_type=t2.micro" – Pass variable via CLI 
+29. terraform apply -var-file="vars.tfvars" – Apply using variable file 
+30. terraform apply -auto-approve – Skip manual approval 
+31. terraform workspace delete workspace_name – Delete workspace 
+32. terraform plan -detailed-exitcode – Get exit codes for changes 
+33. terraform force-unlock LOCK_ID – Unlock Terraform state 
+34. terraform state push – Manually push state file 
+35. terraform state pull – Download current state file 
+36. terraform output -json – Get output in JSON format 
+37. terraform fmt -recursive – Format Terraform in subdirectories 
+38. terraform destroy -target=resource_name – Destroy specific resource 
+39. terraform show -json – Show JSON output 
+40. terraform validate -no-color – Validate without
