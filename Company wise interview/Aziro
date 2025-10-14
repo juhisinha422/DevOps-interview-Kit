@@ -1,0 +1,69 @@
+🚀 DevOps Interview Experience at Aziro 🚀
+
+Aziro for a DevOps role.
+The panel asked a wide range of practical and scenario-based questions covering Linux, AWS, Terraform, Docker, Kubernetes, CI/CD, and general DevOps practices.
+
+🔹 General
+Introduce yourself & explain your project
+What are your day-to-day responsibilities?
+
+🔹 Linux
+How do you check running processes in Linux? 
+How to schedule a cron job every 15 mins?
+Difference between Hard vs Soft links/find vs locate.
+How to find processes using the most CPU & memory?
+What is log rotation, inode, runlevels?
+What does chmod 755 mean?
+How to set default file & directory permissions?
+How to check if a port is open/listening?
+How to Configuring a static IP address
+How to do Mounting & unmounting in linux.
+How to check disk partitions & usage
+what is Sticky bit, setuid, setgid
+
+🔹 CI/CD
+How do you migrate pipelines from one CI/CD tool to another?
+How do you store secrets in CI/CD securely?
+Why is GitHub Actions gaining popularity?
+Can Docker containers be used as CI/CD agents?
+How do you enforce pipeline security from Git → deployment?
+
+🔹 Terraform
+How do you securely store the state file?
+How do you avoid storing secrets in Terraform/Terragrunt?
+How to restrict resource deletion but allow init/plan/apply? 
+Difference between count and for_each
+Lifecycle blocks – real-world use cases
+What happens during terraform init, plan, apply?
+
+🔹 AWS
+Public vs Private subnets
+What is CloudFront, Elastic IP?
+VPC Peering vs Direct Connect?
+Explain Route53 routing policies
+How to monitor CPU, memory of 50+ EC2 instances with CloudWatch?
+Workaround if private key is lost and SSM is disabled
+
+🔹 Docker
+Difference between CMD, ENTRYPOINT, and RUN
+Volumes vs Bind Mounts – when to use each?
+What are Cgroups and dangling objects?
+Techniques to cache Docker layers in pipelines
+How to delete all Docker resources in one command?
+Difference between ADD and COPY
+
+🔹 Kubernetes
+Explain K8s architecture
+Role of Kubelet, Kube-apiserver, Kube-proxy in EKS
+StatefulSet vs Deployment – when to use each?
+Troubleshooting 503 errors from LoadBalancer
+Case 1: Pod not accessible internally
+Case 2: Pod internally accessible but LB fails
+How do you securely manage secrets & certificates in EKS.
+How do you restrict communication between two Pods in the same namespace?
+StatefulSet Pods connecting to same volume – what’s wrong?
+How to fix OOMKilled Pods?
+Liveness, Readiness, Startup probes
+How do you safely update cluster version?
+What if master node & worker node firewall breaks?
+Centralized logging & monitoring for audit trails (which stack did you use?)
