@@ -1,0 +1,33 @@
+AWS vs Azure - Common services comparison:
+
+Compute:
+- EC2 → Azure VMs (virtual servers)
+- Lambda → Azure Functions (serverless)
+- EKS → AKS (Kubernetes)
+
+Storage:
+- S3 → Blob Storage (object storage)
+- EBS → Managed Disks (block storage)
+- EFS → Azure Files (file storage)
+
+Database:
+- RDS → Azure Database (managed SQL)
+- DynamoDB → Cosmos DB (NoSQL)
+- Aurora → Azure SQL (high performance)
+
+Networking:
+- VPC → Virtual Network (private network)
+- Route 53 → Azure DNS (domain management)
+- CloudFront → Azure CDN (content delivery)
+
+Identity:
+IAM → Azure RBAC (resource access control)
+IAM Identity Center → Entra ID (formerly Azure AD) (SSO, user management)
+
+Monitoring:
+- CloudWatch → Azure Monitor (logs and metrics)
+
+DevOps:
+- CodePipeline → Azure DevOps (CI/CD)
+
+Same concepts, different names. Learn one, easier to learn the other.
