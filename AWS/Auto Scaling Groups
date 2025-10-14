@@ -20,3 +20,17 @@ With ASG:
  🌍 High availability across multiple AZs
 
 🧠 Think of it as a smart thermostat for your app’s infrastructure — scaling up or down based on demand!
+
+
+----
+
+What is Auto Scaling Group (ASG)
+✅ Auto Scaling Group automatically adds or removes instances based on demand, ensuring your application is always available.
+✅ It helps scale up when more capacity is needed and scale down during low usage to optimize costs, keeping the right number of servers running at all times.
+Functions of ASG:
+ 🔹 Automatic scaling based on demand
+ 🔹 Maintaining instance health
+ 🔹 Implementing scaling policies
+ 🔹 Ensuring high availability
+ 🔹 Scheduled scaling
+ 🔹 Cost optimization
