@@ -1,0 +1,56 @@
+AWS DevOps Interview Experience — Neurealm (Senior DevOps Engineer Role) 🚀
+
+Today, I had an amazing and truly real-world, scenario-based interview with Neurealm for the position of Senior DevOps Engineer.
+ Unlike typical theory-heavy rounds, this interview focused purely on practical knowledge, problem-solving, and real DevOps challenges 💪
+
+Let me share the detailed breakdown of the questions — this will definitely help anyone preparing for mid-to-senior-level DevOps interviews. 👇
+
+General / Experience-Based
+Explain your daily roles and responsibilities in your current team and in your past projects — in detail.
+How do you contribute to automation, CI/CD, monitoring, and reliability in your projects?
+
+Bash Scripting
+Write a bash script to check the health of Kubernetes Pods and Nodes.
+What commands are used to check if a pod is consuming too much memory?
+ (Hint: kubectl top pods -A | sort -k4 -nr | head -10)
+Explain how you’d automate this health check using a cron job or Jenkins.
+
+Jenkins — CI/CD & DevSecOps
+Write a complete Jenkins declarative pipeline implementing DevSecOps stages —  Dev → Test → QA → Prod.
+ Include:
+Code build (Java-based app) using Maven or Gradle
+Code testing
+Code quality & vulnerability scanning using SonarQube (with 80% quality gate)
+Dockerize the app
+Push the image to Amazon ECR
+Deploy to Kubernetes using best security practices
+
+Why do you prefer Declarative Pipeline over Scripted Pipeline in Jenkins?
+
+Docker
+Write a multi-stage Dockerfile and explain each line.
+What’s the difference between RUN, CMD, and ENTRYPOINT?
+How do you optimize your Docker image for production?
+
+Kubernetes
+Suppose your pod keeps failing repeatedly — how will you troubleshoot it?
+If your worker node goes into NotReady state, what steps will you take?
+How can you write a Bash script to perform health checks on Pods and Nodes?
+Describe a real production issue you troubleshooted recently and how you resolved it.
+Which Kubernetes commands help identify memory-intensive pods or crash loops?
+
+Terraform
+Suppose your team member accidentally deleted the state file — how can you recover it and prevent such incidents in the future?
+Write Terraform code to create 10 EC2 instances, each with a unique IP address.
+Write Terraform code to create 50 EC2 instances, each with different instance types.
+
+💡 Key Takeaways
+This interview was an excellent reminder that —
+“Real DevOps engineering isn’t about memorizing commands, it’s about solving problems through automation, reliability, and scalability.”
+
+If you’re preparing for similar SRE or DevOps interviews, focus deeply on:
+Writing automation scripts (Bash/Python)
+Building real-world CI/CD pipelines
+Troubleshooting in Kubernetes
+Managing Terraform state safely
+Implementing security at every stage of DevOps
