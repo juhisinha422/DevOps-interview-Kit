@@ -1,0 +1,45 @@
+AWS DevOps Interview Preparation Series 🚀
+Topic: AWS Monitoring & Logging — CloudWatch & CloudTrail
+
+As part of my AWS DevOps Interview Preparation Series, today we’ll explore two critical AWS services for observability and governance — Amazon CloudWatch and AWS CloudTrail.
+
+Here are real-world interview questions to help you master AWS monitoring and logging concepts for your upcoming DevOps or SRE interviews. 👇
+
+🔹Top Interview Questions for DevOps Engineers
+
+ What are the main components of CloudWatch?
+ What is the difference between CloudWatch Metrics, Logs, and Events?
+ How do you create a custom CloudWatch metric?
+ What is a CloudWatch Dashboard and how is it useful?
+ How do you set up CloudWatch Alarms for EC2 instances?
+ What is the difference between CloudWatch Logs and CloudTrail Logs?
+ How do you monitor application logs using CloudWatch Agent?
+ How can CloudWatch integrate with Auto Scaling and Lambda?
+ What are CloudWatch Log Groups and Log Streams?
+ How do you analyze CloudWatch Logs using Log Insights?
+ How do you ship logs from on-premises servers to CloudWatch?
+ What are some cost optimization tips for CloudWatch Logs?
+ How do you troubleshoot EC2 or ECS issues using CloudWatch metrics?
+ How does CloudWatch integrate with SNS for alert notifications?
+ What is AWS CloudTrail and what is its purpose?
+ What kind of activities does CloudTrail record?
+ How do you enable CloudTrail across multiple regions?
+ What is the difference between a Management Event and a Data Event in CloudTrail?
+ How can you store and secure CloudTrail logs?
+ How do you analyze CloudTrail logs for security investigations?
+ What is the retention period for CloudTrail logs?
+ How can you integrate CloudTrail with Amazon Athena for querying?
+ How do CloudWatch and CloudTrail complement each other?
+ How can you use CloudTrail to track API calls and changes made by IAM users?
+ What is the importance of CloudTrail Insights?
+ How do you integrate CloudTrail with SIEM or third-party monitoring tools?
+ How do you automate alerts based on CloudTrail events?
+ What are common best practices for CloudWatch and CloudTrail configuration?
+ How do you ensure compliance and auditing readiness using CloudTrail logs?
+How do you monitor AWS Lambda function performance using CloudWatch metrics?
+What are embedded metrics formats (EMF) in CloudWatch and when should you use them?
+How can you centralize CloudWatch logs from multiple AWS accounts into one account?
+How do you visualize CloudWatch data in Grafana?
+What are Contributor Insights in CloudWatch, and how can they help identify performance bottlenecks?
+How can you use CloudWatch Metric Filters to generate custom metrics from log data?
+What’s the difference between CloudTrail event history and CloudTrail trails?
