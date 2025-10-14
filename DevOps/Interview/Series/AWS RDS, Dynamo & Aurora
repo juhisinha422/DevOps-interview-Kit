@@ -1,0 +1,48 @@
+AWS DevOps Interview Preparation Series RDS, Dynamo db & Aurora 🚀
+
+Topic: Amazon RDS, DynamoDB & Aurora — AWS Database Services Every DevOps Engineer Should Master!
+
+As part of my ongoing AWS DevOps Interview Preparation Series, today’s focus is on Database Services — particularly RDS, DynamoDB, and Aurora, which are crucial for managing reliable, scalable, and automated data layers in modern cloud architectures.
+
+Whether you’re preparing for a DevOps or SRE interview, these questions will help you master the real-world database scenarios you’ll face in production. 👇
+
+🔹 RDS, DynamoDB, and Aurora — Top Interview Questions for DevOps Engineers
+
+Amazon RDS (Relational Database Service)
+What is Amazon RDS and what problem does it solve?
+How does RDS automate database management tasks?
+What database engines are supported by RDS?
+How does RDS handle automatic backups and snapshots?
+What is Multi-AZ deployment in RDS and how does it improve availability?
+What are RDS Read Replicas and when should you use them?
+How do you enable encryption for an RDS instance?
+How can you monitor RDS performance and metrics?
+How do you resize or scale RDS instances dynamically?
+What’s the difference between automated backups and manual snapshots?
+Amazon DynamoDB (NoSQL Database)
+What is DynamoDB and when should you prefer it over RDS?
+Explain the difference between partition key and sort key.
+What are DynamoDB Streams and their use cases?
+How does DynamoDB handle scaling automatically?
+What’s the difference between provisioned and on-demand capacity modes?
+How can you back up and restore DynamoDB tables?
+How do you use DynamoDB with Lambda in a serverless architecture?
+What is DAX (DynamoDB Accelerator) and when do you use it?
+How can you secure DynamoDB access using IAM roles?
+How do you monitor DynamoDB throttling and performance issues?
+Amazon Aurora (High-Performance Relational DB)
+What is Amazon Aurora and how is it different from RDS MySQL/PostgreSQL?
+How does Aurora achieve high availability and fault tolerance?
+What are Aurora Read Replicas and Global Databases?
+How does Aurora handle automatic failover?
+How do you perform backups and snapshots in Aurora?
+How can you integrate Aurora with Lambda for event-driven automation?
+How does Aurora Serverless v2 differ from Aurora provisioned mode?
+How do you optimize Aurora performance and cost?
+How do you connect Aurora to a private VPC securely?
+What are the best practices for Aurora monitoring and alerting?
+
+Focus on:
+RDS Multi-AZ & Read Replicas for reliability
+DynamoDB Auto Scaling & Streams for serverless event-driven systems
+Aurora’s high-performance replication for global applications
