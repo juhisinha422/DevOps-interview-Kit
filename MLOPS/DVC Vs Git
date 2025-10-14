@@ -1,0 +1,51 @@
+DVC vs Git — Make ML Reproducible Without Bloated Repos
+
+Most teams still commit data to Git, then wonder why repos get heavy, slow, and hard to reproduce.
+ The fix isn’t to replace Git—but to pair Git with DVC. 👇
+
+
+Git → versions code/text.
+DVC → versions data & models using tiny pointers in Git; the real files live in remote storage (S3/GCS/Azure/SSH/local). 
+This keeps repos light and restores exact datasets on demand. 
+
+🧪 Why DVC (not just Git/LFS)?
+
+Git struggles with large/binary files; Git LFS helps store blobs but doesn’t give you pipelines, data lineage, or change-based re-runs. 
+DVC adds those on top of your Git workflow. 
+
+🧰 Core Ideas 
+
+Q: What does DVC store in Git?
+ A: Small metadata: .dvc, dvc.yaml, dvc.lock. Data lives in a remote. 
+Q: How do pipelines work?
+ A: Define stages (ingest → prep → train → eval) in dvc.yaml. DVC only re-runs stages that changed (dvc repro) and locks exact versions in dvc.lock. 
+Q: What’s the day-2 benefit?
+ A: Reproducibility: teammates git clone → dvc pull to fetch the exact data/model versions tied to a commit; then dvc repro to rebuild.
+
+🔗 Tiny Mental Model
+
+git clone → dvc pull → dvc repro
+You review code + pointers in PRs, while heavy data stays in cheap/scalable object storage.
+
+🚀 5-Command Starter
+
+dvc init
+dvc add data/raw.csv
+git add data/raw.csv.dvc data/.gitignore .dvc .dvcignore && git commit -m "Track dataset with DVC"
+dvc remote add -d s3 s3://my-bucket/dvc && dvc push
+git push
+(Use GCS/Azure/SSH/local if you prefer.) 
+
+🆚 Quick Compare (one-liners)
+Git: Code history, diffs, PRs.
+Git LFS: Stores large blobs, no pipelines/lineage.
+DVC: Data/models + pipelines & reproducibility, pointers in Git, files in remote. 
+
+⚠️ Pitfalls (and fixes)
+Committing raw data to Git → dvc add it.
+No remote set → dvc remote add -d … then dvc push.
+Data changed, hash not updated → run dvc add again.
+Pushed code but not data → push both (git push + dvc push). 
+
+One-liner:
+ Git versions code. DVC versions data/models (and pipelines) outside Git.
