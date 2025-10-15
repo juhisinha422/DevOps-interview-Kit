@@ -1,0 +1,43 @@
+AWS DevOps Interview Preparation Series — EKS🚀
+Topic: Amazon EKS (Elastic Kubernetes Service) — Managed Kubernetes Made Simple! 
+Today, we’re covering Amazon EKS, one of the most in-demand topics for DevOps, SRE, and Cloud Engineer interviews. If you’ve ever deployed microservices or automated infrastructure on AWS — EKS is a must-know!
+
+🔹 Amazon EKS — Top Interview Questions for DevOps Engineers
+
+What is Amazon EKS, and how is it different from self-managed Kubernetes?
+What are the main components of an EKS cluster?
+How does EKS manage the control plane and worker nodes?
+What is the difference between EKS managed node groups and self-managed node groups?
+How does EKS integrate with IAM for authentication and authorization?
+How do you create an EKS cluster using the AWS Management Console, CLI, or eksctl?
+What is kubectl, and how do you configure it to connect to an EKS cluster?
+How do you deploy an application to EKS using a Deployment manifest file?
+What is a Pod, and how does it differ from a Node in EKS?
+How do you expose an application in EKS using a Service or Ingress?
+How do you enable Cluster Autoscaler in EKS?
+How does EKS integrate with AWS Auto Scaling Groups?
+How do you monitor EKS cluster performance using CloudWatch and Prometheus?
+How do you perform rolling updates or rollbacks in EKS?
+How do you manage Secrets and ConfigMaps securely in EKS?
+How can you enforce Pod Security Policies or use OPA/Gatekeeper in EKS?
+How do you secure communication between Pods in different namespaces?
+How do you manage RBAC in EKS?
+How do you implement network policies in EKS?
+How do you integrate EKS with AWS WAF or security tools?
+How can you automate application deployment to EKS using Jenkins or GitHub Actions?
+How do you manage Helm charts in EKS for repeatable deployments?
+How do you configure EKS with an external DNS or ALB Ingress Controller?
+How do you troubleshoot a CrashLoopBackOff or ImagePullBackOff Pod in EKS?
+What’s the difference between EKS Fargate and EKS EC2 nodes?
+How can you optimize cost for your EKS cluster?
+How do you upgrade an EKS cluster to a new Kubernetes version?
+How do you store logs from EKS Pods centrally in CloudWatch?
+How do you integrate EKS with AWS Load Balancer Controller?
+How do you deploy microservices across multiple namespaces or clusters?
+
+Pro Tips for DevOps Engineers
+Use IAM roles for service accounts to give fine-grained permissions to Pods.
+Use EKS Managed Node Groups for simplified scaling and patching.
+Enable cluster autoscaler and horizontal pod autoscaler (HPA) for elasticity.
+Integrate Prometheus + Grafana for real-time metrics visualization.
+Always encrypt secrets with KMS and use private subnets for worker nodes.
