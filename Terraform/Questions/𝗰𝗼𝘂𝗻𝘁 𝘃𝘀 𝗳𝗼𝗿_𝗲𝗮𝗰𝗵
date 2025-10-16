@@ -1,0 +1,15 @@
+𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗧𝗶𝗽: 𝗰𝗼𝘂𝗻𝘁 𝘃𝘀 𝗳𝗼𝗿_𝗲𝗮𝗰𝗵 — 𝗪𝗵𝗲𝗻 𝘁𝗼 𝗨𝘀𝗲 𝗪𝗵𝗮𝘁?
+
+A few weeks ago, I broke my 𝘁𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗽𝗹𝗮𝗻 by changing the order of a list 😅
+
+That’s when I learned the real difference between count and for_each.
+
+🧱 𝗰𝗼𝘂𝗻𝘁 is great when you just need 𝘕 𝘳𝘦𝘴𝘰𝘶𝘳𝘤𝘦𝘴 — like 3 subnets or 2 VMs.
+But it’s 𝗶𝗻𝗱𝗲𝘅-𝗯𝗮𝘀𝗲𝗱, so if you reorder or remove an item, Terraform thinks it’s a different resource and tries to 𝘥𝘦𝘴𝘵𝘳𝘰𝘺/𝘳𝘦𝘤𝘳𝘦𝘢𝘵𝘦 it.
+
+💡 𝗳𝗼𝗿_𝗲𝗮𝗰𝗵, on the other hand, uses 𝘬𝘦𝘺𝘴 (𝘭𝘪𝘬𝘦 𝘢 𝘮𝘢𝘱).
+That means your resources are stable, even if you reorder or update values.
+
+Since then, I default to 𝗳𝗼𝗿_𝗲𝗮𝗰𝗵 for anything that needs names or stability.
+
+Terraform isn’t just about infrastructure — it’s about writing predictable, maintainable code.
