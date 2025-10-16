@@ -1,5 +1,5 @@
 Mphasis for *Infrastructure Support Jr Engineer (AKS/EKS)* role?
-3.3 yrs
+3.3 yrs.. 1st round 
 
 They asked common questions
 1. Tell me about CI/CD.
@@ -9,3 +9,8 @@ They asked common questions
 5. What is K8s and explain the architecture.
 6. What is K8s services.
 7. Diff pod/replicaset/deployment.
+
+
+2nd round 
+1. Explain etcd in details.
+2. Architectural difference between VPC & Vnet.
