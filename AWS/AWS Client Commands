@@ -1,0 +1,20 @@
+AWS CLI Commands from an interview prospective
+
+ 1. aws configure – Configure AWS CLI credentials 
+ 2. aws s3 ls – List S3 buckets 
+ 3. aws s3 cp file.txt s3://mybucket/ – Copy file to S3 
+ 4. aws s3 sync . s3://mybucket/ – Sync local files to S3 
+ 5. aws s3 rm s3://mybucket/file.txt – Delete file from S3 
+ 6. aws ec2 describe-instances – List EC2 instances 
+ 7. aws ec2 start-instances --instance-ids i-1234567890 – Start EC2 instance       8. aws ec2 stop-instances --instance-ids i-1234567890 – Stop EC2 instance 
+ 9. aws ec2 terminate-instances --instance-ids i-1234567890 – Terminate EC2 instance
+10. aws ec2 create-key-pair --key-name MyKeyPair – Create a new key pair 11. aws ec2 describe-volumes – List EBS volumes
+12. aws ec2 create-volume --size 10 --region us-east-1 – Create an EBS volume
+13. aws ec2 attach-volume --volume-id vol-12345 --instance-id i-12345 --device /dev/sdf – Attach volume 
+14. aws ec2 describe-security-groups – List security groups 
+15. aws lambda list-functions – List Lambda functions 
+16. aws lambda invoke --function-name my_lambda output.json – Invoke a Lambda function 
+17. aws eks update-kubeconfig --name cluster_name – Configure kubectl for EKS 
+18. aws rds describe-db-instances – List RDS instances 
+19. aws rds stop-db-instance --db-instance-identifier mydb – Stop RDS instance 
+20. aws rds start-db-instance --db-instance-identifier mydb – Start RDS 
