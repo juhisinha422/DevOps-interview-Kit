@@ -1,0 +1,39 @@
+AWS DevOps Interview Preparation Series 🚀
+#AWS #DevOps #Route53
+
+Topic: 🌐 Amazon Route 53 — The DNS Powerhouse of AWS ⚙️
+
+Today’s focus is on Amazon Route 53, a highly available, scalable Domain Name System (DNS) web service that connects user requests to applications running on AWS or other infrastructures — with low latency and smart routing.
+
+Top Amazon Route 53 Interview Questions for DevOps Engineers
+
+What is Amazon Route 53, and why is it called “53”?
+What are the key features and use cases of Route 53?
+Explain the difference between Public and Private Hosted Zones.
+What are the different record types supported by Route 53 (A, AAAA, CNAME, Alias, TXT, etc.)?
+What is an Alias Record and how is it different from a CNAME Record?
+What are Routing Policies in Route 53?
+Explain all types of Routing Policies in Route 53.
+What is a Health Check in Route 53 and how does it work?
+How does Failover Routing help ensure high availability?
+What is Weighted Routing, and when should you use it?
+ How does Latency-Based Routing improve performance?
+ What is the difference between Geolocation and Geoproximity Routing?
+ How can Route 53 be used for Disaster Recovery (DR) architecture?
+ How does Route 53 integrate with AWS Load Balancers (ELB/ALB/NLB)?
+ Can Route 53 route traffic to resources outside AWS?
+ How can you use Route 53 to point a domain name to an S3 static website?
+ How do you connect CloudFront with Route 53 for a global application?
+ How does Route 53 handle DNS caching and TTL (Time to Live)?
+ What is DNS propagation, and how long does it typically take?
+ How do you automate Route 53 DNS management with Terraform?
+ How can Route 53 be integrated into a CI/CD pipeline for automatic DNS updates?
+ What’s the difference between Route 53 Health Check and CloudWatch Alarms?
+ How can you secure your Route 53 setup from DNS hijacking or spoofing?
+ How can you migrate your domain DNS from another registrar to Route 53?
+ What is the maximum number of records you can create per hosted zone?
+ How do you configure split-view DNS using Private Hosted Zones?
+ What’s the best practice for managing multi-environment DNS (Dev, QA,  Prod)?
+ How do you troubleshoot DNS resolution issues in Route 53?
+ How can you perform blue-green deployments using Route 53 weighted routing?
+ What are some real-world scenarios where Route 53 helped improve reliability and performance?
