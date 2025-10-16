@@ -1,0 +1,41 @@
+AWS DevOps Interview Preparation Series 🚀 
+#AWS #DevOps #ElasticBeanstalk
+
+Topic: AWS Elastic Beanstalk — Simplify Application Deployment
+
+Today’s focus is on AWS Elastic Beanstalk, a fully managed Platform-as-a-Service (PaaS) that lets you deploy, manage, and scale applications automatically without manually handling servers, load balancers, or scaling groups.
+
+Whether you’re deploying Java, Node.js, Python, or Docker-based apps, Beanstalk streamlines the process from code to production.
+
+Top AWS Elastic Beanstalk Interview Questions for DevOps Engineers.
+
+What is AWS Elastic Beanstalk, and how does it simplify deployment?
+ How does Beanstalk differ from EC2, ECS, and Lambda?
+ What types of applications can you deploy using Beanstalk?
+ Explain Environment Tiers — Web Server and Worker.
+ What are Application Versions, and how do you manage them?
+ How can you customize Beanstalk environments using .ebextensions?
+ What are Configuration Files, and how are they used for automation?
+ How does Beanstalk integrate with Auto Scaling and Load Balancers?
+ What is Managed Platform Update, and when should you enable it?
+ How does Elastic Beanstalk monitor health and performance?
+ How can you integrate CI/CD tools like Jenkins or GitHub Actions with Beanstalk?
+ How can you perform Blue-Green Deployments using Beanstalk?
+ What are Platform Hooks, and how are they used?
+ How can you roll back to a previous application version?
+ How do you secure an Elastic Beanstalk environment?
+ How can you use custom Docker containers with Beanstalk?
+ What’s the role of .elasticbeanstalk/config.yml?
+ How do you handle environment variables and secrets in Beanstalk?
+ How can you troubleshoot failed deployments?
+ How does Beanstalk integrate with CloudWatch for monitoring?
+ Can Beanstalk be automated using Terraform or CloudFormation?
+ How does it integrate with RDS or external databases?
+ What are the best practices for scaling and cost optimization in Beanstalk?
+ How can you perform zero-downtime deployments?
+ What is the difference between Beanstalk and ECS/Fargate for application hosting?
+ How can you connect Beanstalk with Route 53 for DNS management?
+ What are the different deployment policies available in Beanstalk?
+ How does Beanstalk manage application logs and instances?
+ What’s the pricing model for Elastic Beanstalk?
+ Share a real-world scenario where Beanstalk simplified your deployment workflow.
