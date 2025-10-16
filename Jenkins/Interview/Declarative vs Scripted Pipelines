@@ -1,0 +1,19 @@
+Both pipelines automate builds—but they are structured differently
+
+In Jenkins, you can define pipelines in two styles: Declarative and Scripted.
+They achieve the same goal, but differ in structure, flexibility, and readability.
+
+Declarative Pipelines:
+- Simpler and more structured
+- Use pipeline { } syntax
+- Best for most CI/CD use cases
+- Easier to read, maintain, and enforce best practices
+
+Scripted Pipelines:
+- More flexible and powerful
+- Use Groovy scripting
+- Ideal for complex, conditional, or dynamic logic
+- Require deeper Jenkins/Groovy knowledge
+
+Declarative = cleaner, team-friendly syntax.
+Scripted = advanced control and customization.
