@@ -1,0 +1,44 @@
+🚀 AWS DevOps Interview Series 🚀
+#AWS #APIGateway #Serverless
+
+🔹 Topic: Amazon API Gateway — Build, Secure & Scale Your APIs Effortlessly
+In modern cloud-native and serverless architectures, Amazon API Gateway plays a vital role in connecting front-end applications with back-end microservices or Lambda functions.
+ It enables developers to create, publish, secure, and monitor APIs at any scale with minimal operational overhead.
+
+Scales automatically to handle millions of API requests Pay only for the API calls you receive.
+
+Top Amazon API Gateway Interview Questions for DevOps & SRE Engineers
+
+What is Amazon API Gateway, and how does it fit into a serverless architecture?
+What are the different types of APIs supported by API Gateway?
+How does API Gateway integrate with AWS Lambda?
+What is the difference between REST API and HTTP API in API Gateway?
+How can you secure an API using AWS IAM roles or Cognito user pools?
+What is the purpose of usage plans and API keys in API Gateway?
+How do you configure throttling and request limits for APIs?
+How can you monitor API calls and performance using CloudWatch metrics?
+What are Stages and Deployments in API Gateway?
+How do you use Custom Domain Names with API Gateway?
+What is API caching, and how can it improve performance?
+How can you integrate API Gateway with VPC or private services?
+What are Lambda Authorizers and how do they work?
+How do you handle cross-origin requests (CORS) in API Gateway?
+What’s the difference between a proxy integration and a non-proxy integration?
+How do you manage different environments (Dev, QA, Prod) in API Gateway?
+How can you automate API Gateway deployments using Terraform or CloudFormation?
+How do you set up custom error responses in API Gateway?
+What’s the pricing model of API Gateway?
+Real-world scenario: Explain how you implemented API Gateway in a CI/CD pipeline.
+How can you implement rate limiting and quotas for API consumers in API Gateway?
+What’s the difference between Lambda authorizers and Cognito authorizers?
+How do you handle binary data (like images or files) through API Gateway?
+How can you use Stage Variables to manage multiple environments (Dev, QA, Prod)?
+How do you enable request/response transformation using mapping templates?
+What’s the process to migrate from REST API to HTTP API in API Gateway?
+How can you integrate API Gateway with CloudFront for better global performance?
+How do you handle large payloads or timeouts in API Gateway?
+What are some best practices for securing APIs exposed via API Gateway?
+How can you use AWS WAF (Web Application Firewall) with API Gateway to protect against DDoS and SQL injection attacks?
+
+💬 Pro Tip:
+Combine API Gateway + Lambda + CloudWatch for a fully managed, scalable, and secure serverless API architecture — perfect for microservices and automation. ⚡
