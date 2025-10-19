@@ -1,0 +1,39 @@
+🚀 AWS DevOps Interview Series 🚀
+#AWS #EventBridge #Serverless
+
+🔹 Topic: Amazon EventBridge — Powering Event-Driven Automation in AWS
+In modern cloud-native architectures, event-driven automation is key for scalability and decoupling services.
+ That’s exactly where Amazon EventBridge (formerly CloudWatch Events) shines — helping DevOps and SREs build real-time, event-based workflows across AWS and SaaS applications.
+
+Top Amazon EventBridge Interview Questions for DevOps & SRE Engineers
+
+What is Amazon EventBridge, and how is it different from CloudWatch Events?
+How does EventBridge fit into an event-driven architecture?
+What are event buses in EventBridge?
+What are rules in EventBridge, and how do they work?
+What are event sources and event targets?
+How can you integrate EventBridge with AWS Lambda?
+How does EventBridge differ from SNS or SQS?
+What are custom event buses, and when do you use them?
+What is the difference between default, partner, and custom event buses?
+How can you trigger workflows using EventBridge and Step Functions?
+How do you create an event pattern in EventBridge?
+What’s the role of schemas in EventBridge?
+How can EventBridge connect with SaaS platforms (e.g., Zendesk, Auth0, Shopify)?
+How do you use EventBridge for cross-account event routing?
+What’s the limit on the number of rules per event bus?
+How can you replay past events in EventBridge?
+What are Dead Letter Queues (DLQ) in EventBridge, and why are they important?
+How can you ensure delivery reliability and avoid event loss?
+What’s the difference between synchronous and asynchronous event handling?
+How can you secure EventBridge events using IAM permissions?
+How can you use EventBridge with ECS or EKS for automation?
+How can EventBridge trigger actions on EC2 instance state changes?
+How do you monitor EventBridge performance and metrics?
+What is event filtering, and how does it improve efficiency?
+How do you automate EventBridge rule creation using Terraform or CloudFormation?
+What are input transformers, and how do they modify event data before sending it to targets?
+How do you handle large event payloads?
+What are best practices for managing multiple event buses in large organizations?
+How does EventBridge integrate with AWS Organizations for multi-account event management?
+Real-world scenario: Explain how you’ve used EventBridge to automate a CI/CD or alerting workflow.
