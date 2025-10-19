@@ -1,0 +1,13 @@
+𝐃𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐜𝐞 𝐛𝐞𝐭𝐰𝐞𝐞𝐧 𝐤𝐢𝐥𝐥, 𝐩𝐤𝐢𝐥𝐥, 𝐤𝐢𝐥𝐥𝐚𝐥𝐥 𝐜𝐨𝐦𝐦𝐚𝐧𝐝 ?
+
+There are multiple ways to terminate a process. In previous blog we saw the usage of kill command. But in this blog we will understand the use of other ways to terminate a process which is killall and pkill command.
+
+How they are different from each other ?
+1. kill -> 
+Its precise, works with the PID. So, no confusion even if 2+ process have same name. Since the PID's are always unique for each process.
+
+2. killall ->
+Its simple, just kills the process via. name. So, no confusion or human error of remembering PID.
+
+3. pkill ->
+It helps when we need to kill multiple process having same suffix. Also we can use regex to terminate multiple process in one go.
