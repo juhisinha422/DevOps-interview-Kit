@@ -1,0 +1,15 @@
+Most Asked AWS VPC Interview Questions (2025 Edition) 
+
+If you’re preparing for a DevOps, Cloud, or AWS Solutions Architect interview, mastering VPC concepts is a must.
+Here’s a quick list of real interview questions — from basics to scenarios — that you should know 👇
+
+🔹 What is AWS PrivateLink, and how is it different from VPC Peering?
+🔹 What are VPC Endpoints, and what types are available?
+🔹 How can you connect your on-premise network to an AWS VPC?
+🔹 What is AWS Transit Gateway, and why would you use it?
+🔹 What are the CIDR block limitations in VPCs and subnets?
+🔹 How does DNS resolution work inside a VPC?
+🔹 How can you restrict access to a specific service like S3 inside a VPC?
+🔹 What are the differences between Interface and Gateway Endpoints?
+🔹 You have two VPCs with overlapping CIDRs — how will you connect them?
+🔹 How do you make a multi-AZ, highly available VPC design?
