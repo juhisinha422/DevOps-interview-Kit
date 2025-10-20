@@ -1,0 +1,33 @@
+AWS Monitoring, Logging & Observability Real-World Scenarios Interview questions.
+#AWS #DevOps #SRE #CloudWatch
+
+ These scenario-based questions test how well you understand CloudWatch, CloudTrail, X-Ray, and GuardDuty — the pillars of AWS visibility. 👇
+
+Your EC2 instance becomes unresponsive — how do you use CloudWatch metrics and alarms to detect and act on it?
+How do you monitor disk usage and CPU utilization of EC2 instances across multiple regions automatically?
+You need to trigger an alert when an application logs “ERROR” — how do you implement this in CloudWatch?
+Your Lambda function fails intermittently — how do you debug it using CloudWatch Logs and X-Ray?
+You want to track every API call made to your AWS account — which service provides that visibility?
+How can you monitor the memory usage of a container running in ECS?
+How do you set up a CloudWatch alarm to trigger an automated scaling event?
+You suspect that someone deleted an S3 bucket — how do you find who did it?
+How can you centralize logs from multiple AWS accounts into a single account for analysis?
+Your CloudWatch costs are increasing rapidly — what could be the reasons and how to optimize it?
+You want to visualize metrics in a dashboard and share them across teams — how do you do this in CloudWatch?
+Your app latency has increased — how do you use AWS X-Ray to pinpoint the performance bottleneck?
+How do you monitor API Gateway request counts and error rates in CloudWatch?
+You want to detect unusual IAM activities — which AWS service would you use and how?
+How can you automate remediation when a CloudWatch alarm is triggered?
+Your company wants to enforce that all AWS resources are tagged correctly — which service would help validate this?
+You notice multiple failed console login attempts — how can you alert the security team in real-time?
+How do you audit configuration drift across your AWS resources?
+How do you analyze CloudTrail logs to detect unauthorized access or privilege escalation?
+You need to monitor and alert on RDS CPU, storage, and connection spikes — how would you configure this?
+You want to track API activity across all accounts in an AWS Organization — how do you achieve this efficiently?
+How can you forward CloudWatch logs to an external SIEM (like Splunk or ELK)?
+How would you design a centralized logging architecture for a multi-account AWS setup?
+How do you integrate CloudWatch alarms with Slack or Microsoft Teams for instant alerts?
+You need to detect malware or suspicious behavior on EC2 instances — which AWS service helps?
+How do you monitor EKS pod-level metrics and set alerts for OOMKilled pods?
+You need to visualize trends across logs for anomaly detection — which AWS service can you use?
+You want to ensure logs are immutable and cannot be deleted — how do you achieve this securely?
