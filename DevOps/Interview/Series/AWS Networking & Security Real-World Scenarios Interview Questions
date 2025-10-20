@@ -1,0 +1,33 @@
+AWS Networking & Security Real-World Scenarios Interview Questions 🔐
+#AWS #Security #VPC #IAM 
+ 
+Let’s deep dive into how AWS handles security, identity, and networking — where one wrong config can expose your entire infra!
+
+ These are real-world SRE & DevOps-level questions that test your design thinking, troubleshooting mindset 👇
+
+Your EC2 instance can’t access the internet, but the route tables and IGW look fine — what could be wrong?
+Your private subnet instances need to download updates from the internet — how would you enable it securely?
+You deployed an application in multiple VPCs — how can you enable communication between them efficiently?
+Your on-premise data center needs to connect securely to AWS — what are your connectivity options?
+How do you protect your web application from SQL injection or DDoS attacks?
+You found that some IAM users have overly permissive policies — how do you detect and remediate this?
+Your Lambda function fails due to “AccessDenied” error — how do you troubleshoot IAM permissions for it?
+How would you rotate IAM access keys automatically across all AWS accounts?
+You need to allow access to an S3 bucket only from your company’s VPC — how do you configure that?
+Your team wants to centralize security logs from all AWS accounts — which services and architecture would you use?
+Your VPC CIDR is exhausted — how do you expand your IP range without downtime?
+How can you securely expose an internal API to a third-party vendor?
+You want to inspect and filter traffic at Layer 7 — which AWS service would you use and why?
+How do you design a multi-region, low-latency network architecture using Route 53 and CloudFront?
+Your application on EC2 can’t connect to an RDS database — what are the possible root causes?
+How do you implement least-privilege access across a large AWS environment with hundreds of developers?
+What’s the difference between Security Groups and NACLs, and when would you use each?
+You need to enforce encryption in-transit and at-rest across all services ,how would you implement this in AWS?
+How can you detect if an IAM role was assumed by an unauthorized user?
+Your S3 bucket suddenly becomes public , how do you detect and prevent such misconfigurations in the future?
+You need to implement central IAM governance for multiple AWS accounts , which AWS service can help?
+How do you audit all configuration changes made in your AWS account automatically?
+Your CloudFront distribution serves sensitive content , how do you secure it from unauthorized access?
+How can you automate patching and compliance reporting for EC2 instances at scale?
+You want to enable single sign-on (SSO) for AWS Management Console ,what’s the setup process?
+Your team stores API keys in plain text within Lambda environment variables, how can you secure them better?
