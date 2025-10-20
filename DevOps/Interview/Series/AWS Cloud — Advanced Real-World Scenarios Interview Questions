@@ -1,0 +1,31 @@
+AWS Cloud — Advanced Real-World Scenarios Interview Questions
+#AWS #DevOps #SRE 
+
+Let’s take your AWS thinking to the next level!
+ These questions reflect real-world reliability, automation, and scalability challenges faced by SREs and DevOps Engineers.
+
+ Think about how you would solve them — not just which service to use. 💭👇
+
+Your application running on EKS frequently restarts due to “OOMKilled” errors — how would you identify and resolve the issue?
+Your production ALB starts returning intermittent 504 errors — what steps would you take to troubleshoot?
+After deploying a new version via CodeDeploy, users report downtime — how can you achieve zero-downtime deployment next time?
+One region has gone down — how do you design your system for high availability and disaster recovery across regions?
+You suspect your S3 bucket has been accessed by an unauthorized user — how will you identify and secure it?
+Your organization’s Lambda functions start exceeding concurrency limits — how will you mitigate this?
+The EC2 instances behind your ASG are scaling up but the application remains slow — what could be the issue?
+Your RDS database shows high read latency — how will you optimize it using AWS features?
+CloudWatch shows CPU utilization at 100%, but the app’s performance is normal — what could explain this?
+A CloudFormation stack deployment fails — how do you debug and safely roll back changes?
+Your VPC network is experiencing high latency — how will you diagnose the bottleneck?
+Your ECS tasks are failing during image pull — what could be the possible causes and fixes?
+You need to automatically patch EC2 instances every weekend — how would you automate this process?
+The DynamoDB table costs have increased drastically — how do you analyze and optimize the costs?
+You want to enforce encryption on all S3 buckets across accounts — how can you achieve it at scale?
+Developers need temporary AWS credentials for testing — how will you provide them securely?
+You have multiple accounts and want to centralize logging — which AWS services and architecture will you use?
+An API Gateway endpoint shows high latency — how do you troubleshoot performance from end to end?
+Your CI/CD pipeline in CodePipeline fails during the “Build” phase — how do you investigate and fix it?
+A CloudFront distribution isn’t updating content even after deployment — what could be wrong and how to fix it?
+
+💡 Pro Tip:
+ In real-world AWS environments, diagnostic thinking and root-cause analysis are just as important as knowing the right services.
