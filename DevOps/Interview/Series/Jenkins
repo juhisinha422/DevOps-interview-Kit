@@ -1,0 +1,38 @@
+DevOps Interview Preparation Series — Jenkins Interview Questions ⚙️
+#DevOps #CICD #Jenkins
+
+If you’re preparing for a DevOps or SRE interview, you can’t skip Jenkins, the most widely used CI/CD tool in the world 🌍.
+Interviewers love scenario-based questions that test your automation mindset, pipeline design, and integration skills.
+
+Here are top real-world Jenkins interview questions every DevOps Engineer must know 👇
+
+What is Jenkins and how does it fit into a CI/CD pipeline?
+Explain the difference between Declarative and Scripted pipelines.
+Why did you choose a Declarative pipeline over a Scripted one in your last project?
+How do you integrate Jenkins with GitHub or Bitbucket for automated builds?
+How do you trigger a Jenkins job automatically when a code change is pushed?
+Explain how Jenkins integrates with SonarQube for code quality checks.
+How can you secure Jenkins with Role-Based Access Control (RBAC)?
+What’s the difference between Jenkins freestyle and pipeline jobs?
+How do you implement DevSecOps stages (Dev → Test → QA → Prod) in Jenkins?
+How do you use Docker in Jenkins to build and deploy containerized apps?
+Explain Jenkinsfile — what is it, and why is it used?
+How do you store and manage credentials securely in Jenkins?
+How can you parallelize stages in a Jenkins pipeline to speed up builds?
+How do you configure Jenkins to use agents (slaves) for distributed builds?
+What are Jenkins shared libraries and how do you use them?
+How can you roll back a failed deployment automatically in Jenkins?
+What’s the difference between “post” and “when” conditions in a Jenkins pipeline?
+How can you integrate Jenkins with Kubernetes for dynamic build agents?
+Explain how Jenkins integrates with AWS services (ECR, ECS, Lambda).
+How do you implement Blue-Green or Canary deployment strategies in Jenkins?
+How can you trigger Jenkins pipelines via API calls or webhooks?
+How do you handle environment-specific configurations in Jenkins?
+What are some common Jenkins plugins you’ve used and why?
+How do you monitor Jenkins job failures and alert your team?
+How do you archive build artifacts and store them in Artifactory or S3?
+How do you handle credentials and secrets when deploying to Kubernetes from Jenkins?
+What’s the purpose of the Jenkinsfile’s agent section and how do you define it?
+How can you integrate Jenkins with Terraform for Infrastructure as Code (IaC)?
+What are the best practices for Jenkins pipeline security and maintenance?
+How do you optimize Jenkins performance in large-scale environments?
