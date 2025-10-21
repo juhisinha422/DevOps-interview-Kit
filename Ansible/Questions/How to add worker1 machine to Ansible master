@@ -1,0 +1,28 @@
+how to add worker1 machine to the ansible master 
+
+* we need to install ansible on the master EC2 machine 
+
+* we need to change the hostname of the EC2 machine as a master and we need to see the master name in place of private ip 
+address 
+
+*No need to install ansible on worker1 machine 
+
+* Need to change private ip of worker1 machine in to worker1
+
+* we need to do password less authentication between master and worker1 machine
+
+* After that no need to touch the worker1 machine and we are not going to run any command from worker1
+
+* we need to update hostfile of master machine we need to be update private ip of both master and worker1 
+
+* we need to give root permission for /etc/ansible 
+
+* we need to do a ping test to check connectivity of both master and worker1 
+
+* we need to create a working directory on master 
+
+* we need to create an inventory file by updating both master and worker1 details 
+
+* we need to create initial.yml  for sudoers to update password no password all and for public key inside authorised keys
+
+finally we can test this setup by executing different ansible playbooks with different modules 
