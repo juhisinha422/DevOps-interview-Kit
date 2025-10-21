@@ -1,0 +1,20 @@
+Kubernetes RBAC 
+
+🔸RBAC = Role-Based Access Control.
+Sounds complex, but it’s just about who can do what in your Kubernetes cluster.
+
+You have two teams:
+  
+• Developers → Should only deploy apps and check logs.
+• Operations team → Should manage the cluster, nodes, and networking.
+
+If you give everyone cluster-admin, one wrong kubectl delete could wipe out the entire cluster 😅.
+
+Instead, you use RBAC:
+  • Create a Role for developers → Allow only create, get, list, delete on Pods & Deployments.
+  • Create a ClusterRole for ops → Full access to cluster resources.
+  • Bind these roles with RoleBinding and ClusterRoleBinding.
+
+👉 Result: Developers can deploy apps safely. Ops can manage infra securely. Nobody steps on each other’s toes.
+
+RBAC focuses on authorization (who can do what), while admission controllers focus on validation and mutation (what is allowed to enter the cluster)
