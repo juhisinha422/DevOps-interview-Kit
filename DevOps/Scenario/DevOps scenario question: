@@ -1,0 +1,14 @@
+DevOps scenario question: Your application is slow but CPU and memory look normal. How do you diagnose?
+
+Show your systematic approach:
+
+1. Check application logs for errors or timeouts
+2. Review database query performance - slow queries often culprit
+3. Network latency between services - use ping, traceroute
+4. Disk I/O bottlenecks - iostat, iotop commands
+5. Thread pool exhaustion or connection pool limits
+6. External API dependencies timing out
+7. Check for memory leaks over time
+8. Review recent deployments or config changes
+
+They want to see you think through problems methodically, not guess randomly.
