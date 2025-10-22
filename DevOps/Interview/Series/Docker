@@ -1,0 +1,43 @@
+DevOps Interview Preparation Series — Docker Scenarios 🚀
+#DevOps #Docker #Containerization
+
+If you’re preparing for a DevOps, Cloud, or SRE interview, mastering Docker is a must.
+
+Containerization is the backbone of modern CI/CD and microservices — and interviewers love to test your real-world understanding beyond basic commands.
+
+Here are top scenario-based Docker interview questions to strengthen your concepts.
+
+What is Docker, and how does it differ from a traditional virtual machine?
+Explain the architecture of Docker (Client, Daemon, Registry, Objects).
+What is a Dockerfile and why is it used?
+What’s the difference between CMD, ENTRYPOINT, and RUN in Dockerfile?
+How do you build and tag a Docker image?
+What is the purpose of .dockerignore file?
+Explain Docker image layers and how caching works.
+What’s the difference between docker run, docker exec, and docker start?
+How do you inspect logs and resource usage of a container?
+How do you persist data in Docker using volumes and bind mounts?
+What are multi-stage Docker builds and why are they used?
+How do you reduce the size of a Docker image?
+Explain the concept of Docker networking — bridge, host, none, and overlay.
+How can containers in different Docker networks communicate securely?
+How do you create a custom Docker network and connect containers to it?
+What is Docker Compose, and how does it simplify multi-container applications?
+How do you scale containers using Docker Compose?
+How do you handle environment variables securely in Docker?
+How do you push and pull images from Docker Hub or AWS ECR?
+What’s the difference between Docker image and Docker container?
+How do you scan Docker images for vulnerabilities?
+What’s the difference between COPY and ADD commands in Dockerfile?
+How do you debug a failing container in production?
+What is the use of HEALTHCHECK instruction in Dockerfile?
+How do you manage secrets inside Docker containers?
+What’s the difference between Docker Swarm and Kubernetes?
+How do you integrate Docker into a Jenkins CI/CD pipeline?
+How do you clean up unused images, containers, and networks to save space?
+What are the best practices for writing a production-ready Dockerfile?
+How can you ensure security and compliance in containerized environments?
+
+Pro Tip:
+ Docker is not just about running containers — it’s about building lightweight, reproducible, and secure environments.
+Master multi-stage builds, image optimization, and orchestration (Kubernetes) to truly stand out in DevOps interviews.
