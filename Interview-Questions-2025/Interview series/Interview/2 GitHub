@@ -1,0 +1,19 @@
+DevOps Q&A Series: Topic 2 — GitHub ✨  
+
+Continuing this festive learning series, here’s the next post from my DevOps Q&A collection 🚀
+
+Today’s focus: GitHub — the heart of collaborative development and automation!  
+From version control to CI/CD pipelines, GitHub powers modern DevOps workflows with seamless integration and automation ⚙️
+
+1️⃣ What is the difference between Git and GitHub, and how do they complement each other?  
+2️⃣ What are the key steps involved in creating and managing branches in GitHub?  
+3️⃣ How does a Pull Request (PR) workflow streamline code collaboration?  
+4️⃣ Explain the difference between merging and rebasing in Git. When should each be used?  
+5️⃣ What is the role of GitHub Actions in automating CI/CD pipelines?  
+6️⃣ How can you use GitHub Secrets to safeguard credentials in workflows?  
+7️⃣ What are forks and clones, and when should developers choose one over the other?  
+8️⃣ How can you enforce branch protection rules to maintain code quality?  
+9️⃣ What is GitHub Packages, and how does it support artifact management in DevOps?  
+10️⃣ How can you integrate GitHub with third-party DevOps tools like Jenkins or Terraform?  
+11️⃣ What are self-hosted runners in GitHub Actions, and when are they beneficial?  
+12️⃣ How can you debug failed GitHub Actions workflows effectively?
