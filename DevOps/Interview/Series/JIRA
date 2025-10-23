@@ -1,0 +1,42 @@
+AWS DevOps Interview Preparation Series 🚀
+Topic: #Jira | #Confluence | #Scrum | #Kanban
+
+In any DevOps or SRE role, collaboration, transparency, and agility are just as important as automation.
+ Tools like Jira and Confluence, and methodologies like Scrum and Kanban, are essential for effective project delivery, sprint planning, and cross-team communication.
+
+Here are some real-world and interview-level questions you must know 👇
+
+What is Jira, and how is it used in Agile DevOps environments?
+ How do you create and manage user stories, epics, and tasks in Jira?
+ What is a sprint in Jira, and how do you plan and track it?
+ How do you integrate Jira with Jenkins, GitHub, or other CI/CD tools?
+ Explain how Jira workflows work — what are transitions, statuses, and resolutions?
+ How do you use Jira for incident tracking and change management?
+ What’s the difference between Jira Software, Jira Service Management, and Jira Core?
+ What are custom fields, and how do you create or manage them in Jira?
+ How do you create dashboards and reports in Jira for sprint metrics?
+ What are common Jira automation rules used in DevOps pipelines?
+ What is Confluence, and how is it different from Jira?
+ How do DevOps teams use Confluence for documentation?
+ How do you link Confluence pages with Jira issues or projects?
+ What are the best practices for maintaining documentation in Confluence?
+ How can you use Confluence templates for runbooks or architecture diagrams?
+ What is Scrum, and how does it align with DevOps principles?
+ Explain the Scrum ceremonies — sprint planning, daily standup, review, and retrospective.
+ What are the roles in a Scrum team — Product Owner, Scrum Master, Development Team?
+ What metrics do you track in Scrum — velocity, burndown, and sprint goals?
+ What challenges do teams face when combining DevOps and Scrum methodologies?
+ What is Kanban, and how does it differ from Scrum?
+ How do you visualize work using a Kanban board?
+ What are WIP (Work In Progress) limits, and why are they important?
+ How do you transition from Scrum to Kanban or hybrid models?
+ How do Kanban and Scrum complement CI/CD practices?
+ What are swimlanes and columns in a Kanban board?
+ How can you use Jira to manage both Scrum and Kanban projects?
+ How do you ensure visibility of ongoing deployments and automation tasks in Jira?
+ How do you measure productivity or flow efficiency in Kanban?
+ How do you use Confluence to document post-incident reviews or RCA reports?
+
+Pro Tip:
+Mastering Jira + Confluence + Agile (Scrum/Kanban) helps you stand out as a DevOps Engineer who not only automates pipelines but also drives collaboration and process efficiency.
+ Remember — tools deliver results, but teamwork delivers value.
