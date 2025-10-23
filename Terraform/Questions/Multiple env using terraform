@@ -1,0 +1,26 @@
+How to create multiple envronments using terraform
+=======================================
+
+When working with Infrastructure as Code (IaC), one of the key challenges is managing multiple environments — like dev, staging, and prod — efficiently and safely.
+
+Here are 3 common approaches to do this using Terraform.
+1.Using .tfvars Files
+Create separate variable files like dev.tfvars, staging.tfvars, and prod.tfvars.
+Run Terraform with:
+terraform apply -var-file="dev.tfvars"
+Simple and easy for small-scale setups
+Can get messy when scaling to many environments
+
+2.Using Workspaces
+Terraform Workspaces allow you to manage multiple states from the same configuration.
+Commands:
+terraform workspace new dev
+terraform workspace select prod
+Centralized codebase
+
+Limited flexibility for very different configurations
+
+3.Using Separate Repos + Modules
+Keep a core module repo for reusable infra code
+Create separate environment repos (dev-infra, prod-infra) that call those modules
+Best for large teams & production-grade systems
