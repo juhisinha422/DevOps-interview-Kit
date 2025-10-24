@@ -381,7 +381,7 @@ Merge made by recursive.
 
 The one exception to the rule here is that, **when a release branch currently exists, the hotfix changes need to be merged into that release branch, instead of `develop`**. Back-merging the bugfix into the release branch will eventually result in the bugfix being merged into `develop` too, when the release branch is finished. (If work in `develop` immediately requires this bugfix and cannot wait for the release branch to be finished, you may safely merge the bugfix into `develop` now already as well.)
 
-![GITBranchingFlow.gif](attachment:40b3624e-e85a-495c-98d9-74d1f0a63d9a:GITBranchingFlow.gif)
+<img width="581" height="560" alt="Image" src="https://github.com/user-attachments/assets/88dc6629-bf42-400a-aa20-87e25e12374d" />
 
 # **Git Merging**
 
