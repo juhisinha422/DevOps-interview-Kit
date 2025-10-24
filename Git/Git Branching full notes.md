@@ -280,7 +280,7 @@ Branch naming convention:
 
 `hotfix-*`      
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/cb5588d2-c1ee-49eb-9a25-3e2fa2d9a77f/4ad5f8af-29c5-4c02-9bde-4226361fe7d5.png)
+<img width="537" height="699" alt="Image" src="https://github.com/user-attachments/assets/ec7ff639-0b54-4f3e-ab8e-ce3952209141" />
 
 []()
 
