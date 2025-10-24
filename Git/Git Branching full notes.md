@@ -176,9 +176,9 @@ anything except `master`, `develop`, `release-*`, or `hotfix-*`
 
 </aside>
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/dd8055dc-0b8d-47dd-953a-cd591c363cd7/image.png)
+<img width="534" height="804" alt="Image" src="https://github.com/user-attachments/assets/15866c36-5a95-4a4b-9e2b-0cbe3ef1ce1a" />
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/a0f053b5-d466-46de-a57d-d08d2cd21e86/image.png)
+<img width="256" height="687" alt="Image" src="https://github.com/user-attachments/assets/f9aa528d-4439-4c3c-b215-1af3833adf83" />
 
 Feature branches (or sometimes called topic branches) are used to develop new features for the upcoming or a distant future release. When starting development of a feature, the target release in which this feature will be incorporated may well be unknown at that point. The essence of a feature branch is that it exists as long as the feature is in development, but will eventually be merged back into `develop` (to definitely add the new feature to the upcoming release) or discarded (in case of a disappointing experiment).
 
