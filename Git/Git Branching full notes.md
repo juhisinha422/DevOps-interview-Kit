@@ -467,9 +467,9 @@ The base branch has had changes made since the new branch was made: 3,4,5.
 
 1. **Default Merge commit/Three-Way Merge/—no—ff**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/b0b0d886-ba26-42c3-94ff-73bed60b25c7/image.png)
+<img width="771" height="701" alt="Image" src="https://github.com/user-attachments/assets/e7f787ea-8aee-49e7-bb79-d536f50ae2be" />
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/4194ef3a-5c9f-4f26-9db7-87554d64ee9c/image.png)
+<img width="408" height="282" alt="Image" src="https://github.com/user-attachments/assets/1a168083-f0b0-4209-9303-4cd24f6c916b" />
 
 A standard merge will take each commit in the branch being merged (Source branch) and add them to the history of the base branch(Target) .
 
