@@ -19,3 +19,27 @@ Answer:
 5. How do you manage infrastructure as code for GKE clusters?
 Answer:
  I use Terraform with modules for reusable components. I version control all configs, use remote state backends, and enforce changes via code reviews. For GCP resources, I integrate Config Connector to manage them declaratively within Kubernetes. I also use pre-commit hooks and CI checks for validation.
+
+5. How do you manage infrastructure as code for GKE clusters?
+Answer:
+ I use Terraform with modules for reusable components. I version control all configs, use remote state backends, and enforce changes via code reviews. For GCP resources, I integrate Config Connector to manage them declaratively within Kubernetes. I also use pre-commit hooks and CI checks for validation.
+
+6. How do you troubleshoot container runtime issues in GKE?
+Answer:
+ I inspect logs using kubectl logs, check node status with kubectl describe node, and use crictl for containerd-level debugging. I also review event logs, container metrics, and use Cloud Logging for deeper insights. If needed, I SSH into nodes (Standard mode) and inspect /var/log and runtime configurations.
+
+7. What strategies do you use for cost optimization in GKE?
+Answer:
+ I use autoscaling, spot/preemptible nodes, and resource requests/limits to avoid overprovisioning. I monitor usage with Cloud Monitoring, analyze billing reports, and apply committed use discounts. I also consolidate workloads and use Autopilot for predictable pricing when appropriate.
+
+8. How do you secure workloads in GKE?
+Answer:
+ I use Workload Identity for secure GCP access, RBAC for access control, and Network Policies to restrict traffic. I enable Binary Authorization, scan images, and use Secrets encryption with KMS. I also enforce least privilege IAM roles and monitor with Cloud Audit Logs.
+
+9. How do you handle microservices communication and observability in GKE?
+Answer:
+ I use Istio or Anthos Service Mesh for secure service-to-service communication, traffic management, and telemetry. For observability, I integrate Cloud Monitoring, Cloud Logging, and Cloud Trace. I also use Prometheus + Grafana for custom metrics and OpenTelemetry for distributed tracing.
+
+10. How do you migrate legacy workloads to GKE?
+Answer:
+ I assess workloads for containerization readiness, refactor monoliths into microservices if needed, and containerize using Docker. I use Cloud Build for image creation, Terraform for infra provisioning, and CI/CD pipelines for deployment. For stateful apps, I migrate databases using Cloud SQL, Dataflow, or custom scripts, ensuring minimal downtime.
