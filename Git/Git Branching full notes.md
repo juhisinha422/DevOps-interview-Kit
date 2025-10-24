@@ -565,7 +565,7 @@ Squash takes all the commits in the branch (A,B,C) and melds them into 1 commit.
 
 ## **Rebase and Merge**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/6a220ef4-5137-4ad8-bbb5-76291fe5569d/image.png)
+<img width="541" height="621" alt="Image" src="https://github.com/user-attachments/assets/9b030624-c61b-4b76-9426-cf0db8951d92" />
 
 A rebase and merge will take where the branch was created and move that point to the last commit into the base branch, then reapply the commits on top of those changes.
 
@@ -703,9 +703,10 @@ To summarize, `*git merge*` is a Git command that is used to integrate changes f
 
 ## **What is Git Rebase?**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/ea788323-5bd4-4016-80c2-0bf657cc30f7/image.png)
+<img width="1907" height="438" alt="Image" src="https://github.com/user-attachments/assets/4618140a-9f33-421d-b3ee-3566256d6b36" />
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/ca22201a-9086-4d1e-b2d9-a2d711d7db9a/image.png)
+<img width="1995" height="478" alt="Image" src="https://github.com/user-attachments/assets/72840c7e-5fb4-4368-8582-dc552a40f5d4" />
+
 
 In Git, `*git rebase*` is a powerful command that allows you to change the base of your current branch. Essentially, it rewrites the commit history of your branch by moving it to a new starting point, usually another branch.
 
