@@ -1,0 +1,41 @@
+🚀 AWS DevOps Interview Preparation Series 🚀
+hashtag#Terraform hashtag#DevOps hashtag#InfrastructureAsCode
+
+Topic: Advanced Terraform — Infrastructure as Code at Scale 🌍
+
+In advanced DevOps and SRE interviews, Terraform questions are always scenario-based and focus on state management, modules, workspaces, and collaboration.
+
+Here are top Advanced Terraform Interview Questions every DevOps Engineer should master 👇
+
+What are Terraform Workspaces and how do they help manage multiple environments?
+ How do you manage Terraform state files securely in a team?
+ Explain the purpose of terraform.tfstate and terraform.tfstate.backup.
+ How do you enable version control for Terraform state files?
+ What are Remote Backends in Terraform? How do you configure them (S3 + DynamoDB)?
+ What happens when two people run terraform apply at the same time?
+ How do you lock state files to prevent concurrent changes?
+ What is the difference between local-exec and remote-exec provisioners?
+ How do you structure Terraform code for multi-region or multi-account deployments?
+ What is the use of Terraform Modules? How do you create reusable ones?
+ What are public and private modules, and how can you publish them to Terraform Registry?
+ How do you handle secrets and sensitive variables in Terraform?
+ What is the difference between terraform import and terraform taint?
+ How do you import an existing AWS resource into Terraform?
+ What’s the best practice to manage Terraform variable files (.tfvars) across environments?
+ What’s the difference between depends_on and implicit dependencies in Terraform?
+ How do you handle drift detection and reconciliation in Terraform?
+ How do you roll back infrastructure if a Terraform apply fails mid-way?
+ What is terraform plan -out and how is it useful in CI/CD pipelines?
+ How do you integrate Terraform with Jenkins or GitHub Actions for automated provisioning?
+ What is the difference between Terraform and CloudFormation?
+ What is the Terraform Registry and how do you leverage community modules?
+ What are Terraform data sources and how do they differ from resources?
+ How do you manage conditional creation of resources in Terraform (count, for_each)?
+ What is the use of locals and outputs in Terraform?
+ How do you ensure idempotency and reusability in Terraform code?
+ How do you manage Terraform across multiple teams and projects (using Terragrunt or Cloud Foundations)?
+ How do you perform infrastructure validation and security checks (using tfsec, checkov)?
+ What is drift management and how can you automate it?
+ Explain a real-world production scenario where you resolved a Terraform state or drift issue.
+
+Mastering these ensures you can confidently handle enterprise-scale infrastructure automation.
