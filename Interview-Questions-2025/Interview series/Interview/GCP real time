@@ -1,0 +1,21 @@
+Lets focus on some GCP real-time interview q/a based on my experiences....
+
+1. How do you optimize Docker images for production use?
+Answer:
+ I use multi-stage builds to separate build-time dependencies from runtime, reducing image size. I also minimize layers by combining commands, use .dockerignore to exclude unnecessary files, and prefer slim base images like alpine. For security, I scan images using tools like Trivy and manage them via private registries with access control.
+
+2. What are the key differences between GKE Autopilot and Standard mode? When would you choose one over the other?
+Answer:
+ Autopilot abstracts node management and is ideal for teams wanting reduced operational overhead. Standard mode offers full control over nodes, useful for custom workloads, node-level tuning, or special hardware. I choose Autopilot for quick deployments and Standard for complex, performance-sensitive applications.
+
+3. How do you design a highly available GKE cluster across regions?
+Answer:
+ I use regional clusters with multi-zone node pools, configure PodDisruptionBudgets, and deploy replica workloads across zones. For multi-region HA, I use global load balancers, Cloud DNS, and CI/CD pipelines that deploy to multiple clusters. I also ensure stateful workloads use regional persistent disks or Cloud SQL with failover.
+
+4. How do you implement secure CI/CD pipelines for GKE?
+Answer:
+ I use Cloud Build with IAM roles, Binary Authorization, and artifact signing. Pipelines include linting, unit tests, image scanning, and deployment gates. For deployment, I use Argo CD or GitLab CI with canary or blue/green strategies. Secrets are managed via Secret Manager or Kubernetes Secrets with KMS encryption.
+
+5. How do you manage infrastructure as code for GKE clusters?
+Answer:
+ I use Terraform with modules for reusable components. I version control all configs, use remote state backends, and enforce changes via code reviews. For GCP resources, I integrate Config Connector to manage them declaratively within Kubernetes. I also use pre-commit hooks and CI checks for validation.
