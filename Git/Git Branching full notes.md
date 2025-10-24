@@ -534,9 +534,9 @@ This is as if you made the commits directly on the base branch. The idea is beca
 
 ## 3.**Squash & Merge:**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/0ea3fff1-f18a-4b43-ae93-a1aa29183bb2/image.png)
+<img width="408" height="263" alt="Image" src="https://github.com/user-attachments/assets/27bf3b9b-fd92-49f0-92b4-e4091de58e77" />
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/0034a78b-b428-4f5c-b084-85b1d8778194/image.png)
+<img width="771" height="461" alt="Image" src="https://github.com/user-attachments/assets/5c547656-226f-480d-9a90-1a72cb7a6c23" />
 
 Squash takes all the commits in the branch (A,B,C) and melds them into 1 commit. That commit is then added to the history, but none of the commits that made up the branch are preserved
 
