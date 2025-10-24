@@ -156,6 +156,8 @@ We consider `origin/master` to be the main branch where the source code of `H
 
 We consider `origin/develop` to be the main branch where the source/Development code of `HEAD` always reflects a state with the latest delivered development changes for the next release. Some would call this the “**integration branch"**. The develop branch is created at the start of a project and is maintained throughout the development process, and contains pre-production code with newly developed features that are in the process of being tested. Newly created features should be based off the develop branch, and then merged back in when ready for testing. When the source code in the `develop` branch reaches a stable point and is ready to be released, all of the changes should be merged back into `master` somehow and then tagged with a release number.
 
+<img width="534" height="804" alt="Image" src="https://github.com/user-attachments/assets/15866c36-5a95-4a4b-9e2b-0cbe3ef1ce1a" />
+
 ## **Supporting branches :**
 
 ### **Feature Branch** :
@@ -175,8 +177,6 @@ Branch naming convention:
 anything except `master`, `develop`, `release-*`, or `hotfix-*`
 
 </aside>
-
-<img width="534" height="804" alt="Image" src="https://github.com/user-attachments/assets/15866c36-5a95-4a4b-9e2b-0cbe3ef1ce1a" />
 
 <img width="256" height="687" alt="Image" src="https://github.com/user-attachments/assets/f9aa528d-4439-4c3c-b215-1af3833adf83" />
 
