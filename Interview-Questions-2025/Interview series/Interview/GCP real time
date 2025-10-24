@@ -43,3 +43,31 @@ Answer:
 10. How do you migrate legacy workloads to GKE?
 Answer:
  I assess workloads for containerization readiness, refactor monoliths into microservices if needed, and containerize using Docker. I use Cloud Build for image creation, Terraform for infra provisioning, and CI/CD pipelines for deployment. For stateful apps, I migrate databases using Cloud SQL, Dataflow, or custom scripts, ensuring minimal downtime.
+
+11. How do you implement canary deployments in GKE using Cloud Build and Argo CD?
+Answer:
+ I configure Cloud Build to push new container images to Artifact Registry, then update a GitOps repo watched by Argo CD. In Kubernetes, I use progressive rollout strategies via Argo Rollouts or native Deployment strategies with maxSurge and maxUnavailable. Canary steps are defined using analysis templates (e.g., Prometheus metrics or webhooks) to validate before full rollout.
+
+12. What is Workload Identity in GKE and how does it improve security?
+Answer:
+Workload Identity allows Kubernetes service accounts to impersonate GCP IAM service accounts securely, eliminating the need to manage long-lived service account keys. It improves security by:
+Enabling fine-grained IAM permissions.
+Avoiding hardcoded credentials in containers.
+Supporting auditing and revocation via IAM policies.
+
+13. How do you manage secrets in GKE securely?
+Answer:
+ I use Secret Manager for storing sensitive data and access it via Workload Identity. For Kubernetes-native secrets, I enable encryption at rest with CMEK and restrict access using RBAC and Network Policies. I also integrate HashiCorp Vault in some cases for dynamic secrets and rotation.
+
+14. How do you monitor and troubleshoot performance issues in GKE?
+Answer:
+ I use Cloud Monitoring for metrics (CPU, memory, latency), Cloud Logging for logs, and Cloud Trace for distributed tracing. I set up dashboards and alerts for key SLOs. For troubleshooting:
+Use kubectl top, describe, and logs.
+Check HPA/VPA metrics.
+Analyze pod evictions, OOM kills, and network latency.
+Use Prometheus + Grafana for custom metrics.
+
+15. How do you handle stateful workloads in GKE?
+Answer:
+I use StatefulSets with PersistentVolumeClaims backed by GCE Persistent Disks or Filestore. For HA, I use regional disks and ensure anti-affinity rules to spread pods. I also configure PodDisruptionBudgets and graceful termination to avoid data corruption. For databases, I often use Cloud SQL or operator-based deployments like MySQL Operator.
+
