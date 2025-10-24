@@ -506,7 +506,9 @@ If we change our example so **no new commits** were made to the base branch si
 
 This is as if you made the commits directly on the base branch. The idea is because no changes were made to the base branch there’s no need to capture a branch had occurred.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/82a1f54b-c321-49bf-89ca-dd58685f1ffe/image.png)
+<img width="524" height="441" alt="Image" src="https://github.com/user-attachments/assets/e156c00b-3584-4933-9a81-9c60135d9de3" />
+
+<img width="524" height="441" alt="Image" src="https://github.com/user-attachments/assets/eda32ecd-b08c-4e9a-ab3a-be75e068cd96" />
 
 - Occurs when the branch being merged has no additional commits since the source branch was created.
 - Git simply moves the pointer of the target branch to the head of the source branch.
