@@ -1,5 +1,7 @@
 # **GIT Branching and Merging**
 
+https://www.notion.so/GIT-Branching-and-Merging-282c67bf816780ec9b36fe2936a125ed
+
 Branching strategy determines how team approaches code branching. A **branching strategy** defines how a team creates, uses, merges, and deletes branches in Git during software development.
 
 🤝 **Why It Matters**:
