@@ -737,7 +737,7 @@ git rebase --continue
 
 <img width="2013" height="1053" alt="Image" src="https://github.com/user-attachments/assets/aaa94bcd-73e7-4e60-be37-3b6904e9b69a" />
 
-<img width="2013" height="1053" alt="Image" src="https://github.com/user-attachments/assets/4a31b425-9b35-41c1-a888-5a91afdec6bb" />
+<img width="1999" height="1127" alt="Image" src="https://github.com/user-attachments/assets/fabfb6ce-a9a9-46f8-9d45-9dd645c7f7c5" />
 
 ### **The Golden Rule of Rebasing**
 
