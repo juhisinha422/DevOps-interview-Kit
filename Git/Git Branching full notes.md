@@ -107,7 +107,7 @@ This enables **Continuous Integration** and **fast feedback loops**.
 | Merge Risk | High (delayed merges) | Low (frequent merges) |
 | Tools | Jira, GitFlow | GitHub Flow, GitLab Flow, CI/CD |
 
-![image.png](attachment:4719b2be-438a-4ad0-9df7-91bf6adade6d:image.png)
+<img width="545" height="429" alt="Image" src="https://github.com/user-attachments/assets/5782f2ce-52bd-4573-8355-a7f5bebc432a" />
 
 ## **Trunk-Based Development**
 
@@ -146,7 +146,7 @@ Git flow is a popular Git branching strategy aimed at simplifying release manage
 - **Release**
 - **Hotfix**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/fcdf6014-12a4-4fed-a486-19809f963ae1/image.png)
+<img width="786" height="1042" alt="Image" src="https://github.com/user-attachments/assets/b7a3abd4-956f-457a-b5ed-144a876f6f2c" />
 
 ### **Master branch :**
 
