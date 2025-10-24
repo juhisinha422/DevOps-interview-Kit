@@ -508,7 +508,6 @@ This is as if you made the commits directly on the base branch. The idea is beca
 
 <img width="524" height="441" alt="Image" src="https://github.com/user-attachments/assets/e156c00b-3584-4933-9a81-9c60135d9de3" />
 
-<img width="524" height="441" alt="Image" src="https://github.com/user-attachments/assets/eda32ecd-b08c-4e9a-ab3a-be75e068cd96" />
 
 - Occurs when the branch being merged has no additional commits since the source branch was created.
 - Git simply moves the pointer of the target branch to the head of the source branch.
