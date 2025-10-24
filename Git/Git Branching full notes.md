@@ -735,9 +735,9 @@ git rebase --continue
 
 - ***Finish the Rebase***: When the rebase is complete, you’ll have a linear history with your branch’s changes neatly applied on top of the target branch.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/aedc8471-97d2-48c3-be85-7c391e7bf486/image.png)
+<img width="2013" height="1053" alt="Image" src="https://github.com/user-attachments/assets/aaa94bcd-73e7-4e60-be37-3b6904e9b69a" />
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/0979e1a8-b57b-4408-a0c4-0938618ac4ad/0121d0c0-9e66-4214-8c3e-9e2dd2bf41ff/image.png)
+<img width="2013" height="1053" alt="Image" src="https://github.com/user-attachments/assets/4a31b425-9b35-41c1-a888-5a91afdec6bb" />
 
 ### **The Golden Rule of Rebasing**
 
