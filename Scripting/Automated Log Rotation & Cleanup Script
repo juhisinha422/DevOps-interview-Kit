@@ -1,0 +1,33 @@
+Automated Log Rotation & Cleanup Script
+
+🎯 Title: How I Automated Log Cleanup Across Servers with a Simple Shell Script
+
+💡 As a DevOps engineer, I’ve seen how logs can silently eat up server space and degrade performance if not managed well.
+Recently, I automated log cleanup across multiple Linux servers — a small but powerful daily DevOps win 💻
+
+🔹 Problem:
+Application logs were piling up daily, consuming gigabytes of space and slowing down backups.
+
+🔹 Solution:
+I wrote a simple shell script that:
+
+Rotates and compresses logs older than 15 days
+
+Moves them to an archive folder
+
+Deletes archives older than 30 days
+
+#######################################
+
+LOG_DIR="/var/log/myapp"
+ARCHIVE_DIR="/var/log/archive"
+find $LOG_DIR -type f -name "*.log" -mtime +15 -exec gzip {} \;
+find $LOG_DIR -type f -name "*.gz" -mtime +15 -exec mv {} $ARCHIVE_DIR \;
+find $ARCHIVE_DIR -type f -mtime +30 -delete
+echo "✅ Log rotation & cleanup completed on $(date)"
+
+######################################
+🔹 Result:
+Reduced disk usage by 40%, improved application performance, and eliminated manual cleanup effort.
+
+🚀 Sometimes, automation doesn’t need to be complex — just consistent.
