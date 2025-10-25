@@ -1,0 +1,18 @@
+DevOps Q&A Series: Topic 3 — GitLab ✨
+
+Continuing this festive DevOps learning journey, here’s the next post from the Q&A collection 🚀
+
+Today’s focus: GitLab — the one-stop DevOps platform for everything from source code management to CI/CD automation 🛠️
+
+1️⃣ What is GitLab, and how does it differ from GitHub in terms of DevOps capabilities?  
+2️⃣ How does GitLab CI/CD streamline the software delivery process?  
+3️⃣ What is the role of `.gitlab-ci.yml`, and how is it structured?  
+4️⃣ Explain GitLab Runners and the difference between shared and specific runners.  
+5️⃣ How can you configure stages, jobs, and pipelines in GitLab CI/CD?  
+6️⃣ What are GitLab Environments, and how are they used for deployments?  
+7️⃣ How can GitLab Variables be used to store and manage credentials securely?  
+8️⃣ What is the purpose of GitLab Artifacts, and how do they help in CI/CD pipelines?  
+9️⃣ How can you implement parallel jobs or matrix pipelines in GitLab for faster builds?  
+10️⃣ What integrations exist between GitLab and tools like Kubernetes, Terraform, or Prometheus?  
+11️⃣ How does GitLab’s Auto DevOps feature simplify pipeline setup and deployment?  
+12️⃣ What are some best practices for debugging failed GitLab CI/CD pipelines?
