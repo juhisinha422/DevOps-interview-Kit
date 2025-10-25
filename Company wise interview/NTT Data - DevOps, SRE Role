@@ -1,0 +1,20 @@
+Interview Experience | DevOps / SRE Role - NTT DATA✅
+
+• Introduction 
+• Explain the CI/CD workflow, including different stages and processes.
+• What are your roles and responsibilities in the CI/CD lifecycle, and how do you prove your impact as a DevOps/SRE engineer?
+• How did you migrate from Jenkins to GitHub Actions?
+• What deployment strategies do you follow (Rolling, Blue-Green, Canary, etc.)? Explain
+• Which monitoring tools have you used (Grafana, Prometheus), and how do you connect and configure them?
+• If a deployment takes 30 minutes, how do you reduce deployment time through optimization?
+• What types of alerts do you get as a DevOps engineer, and how do you troubleshoot them effectively?
+• What is the difference between COPY and ADD in a Dockerfile?
+• If a pod keeps restarting repeatedly, how do you debug and fix the issue?
+• After deployment, one microservice is not working — explain your troubleshooting steps.
+• What is a taint in Terraform?
+• Explain the Kubernetes architecture and its core components.
+• Scenario: If the etcd file is deleted, will the pods continue running?
+• Scenario: If the API server file is deleted, will pods keep running, and can new pods be created?
+• How does Ansible help in configuration management?
+
+Always explain how you approached real issues, not just what tools you used.
