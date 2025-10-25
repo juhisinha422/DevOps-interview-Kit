@@ -1,0 +1,35 @@
+DevOps Interview Preparation Series — Advanced Azure Edition 🚀
+#Azure #MicrosoftAzure #AzureDevOps
+
+Topic: Mastering Microsoft Azure for DevOps & Cloud Engineers 🌍
+
+Azure isn’t just another cloud — it’s a complete ecosystem that powers enterprise-grade applications, hybrid workloads, and CI/CD pipelines.
+ In production environments, Azure professionals face challenges around scalability, networking, identity, cost management, and automation.
+
+Here are some Advanced Azure Interview Questions focused on real-world production scenarios 👇
+
+What are Azure Resource Groups and why are they important in organizing cloud resources?
+ How do you manage infrastructure-as-code in Azure using ARM Templates or Terraform?
+ What are Azure Management Groups and how do they help in multi-subscription management?
+ How do you enforce policies and governance across multiple subscriptions using Azure Policy?
+ Explain the difference between Azure AD and Azure AD DS.
+ How do you implement RBAC (Role-Based Access Control) effectively in large environments?
+ How do you secure credentials and secrets in Azure? (Key Vault best practices)
+ What are Availability Sets and Availability Zones? When to use each?
+ What’s the difference between Azure Load Balancer, Application Gateway, and Traffic Manager?
+ How do you implement Blue-Green or Canary deployment strategies in Azure DevOps?
+ How do you use Azure Monitor, Log Analytics, and Application Insights together?
+ How do you diagnose and fix performance issues in Azure VMs?
+ How do you connect on-prem infrastructure with Azure Cloud? (VPN Gateway / ExpressRoute)
+ What is Azure Front Door and how does it differ from Azure Application Gateway?
+ How do you optimize Azure costs in production environments?
+ How do you design a multi-region disaster recovery setup in Azure?
+ What are the differences between Azure Functions, Logic Apps, and Azure Automation?
+ How do you configure CI/CD pipelines in Azure DevOps for microservices architecture?
+ How do you handle secret rotation in Azure Key Vault via automation?
+ What is Managed Identity and why is it preferred over Service Principals?
+ How do you integrate Azure AD authentication with third-party SaaS or APIs?
+ How do you implement auto-scaling for an Azure Kubernetes Service (AKS) cluster?
+ How do you monitor and secure containers running in AKS?
+ What’s the best way to implement Infrastructure Drift Detection in Azure?
+ Real-world scenario: your Terraform state got corrupted in Azure backend storage — how would you recover it?
