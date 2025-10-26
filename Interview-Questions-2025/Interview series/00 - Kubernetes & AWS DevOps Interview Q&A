@@ -1,0 +1,98 @@
+Kubernetes & AWS DevOps Interview Q&A
+
+An interview for a 3-year experienced DevOps role. Below are common questions and concise answers on Kubernetes (including EKS) and related AWS topics.
+
+Kubernetes & EKS Concepts
+
+1. What is EKS and How Does it Work?
+Amazon EKS (Elastic Kubernetes Service) is a fully managed Kubernetes service by AWS  . It eliminates the complexity of managing the Kubernetes control plane: AWS runs the API server, etcd datastore, scheduler, and controllers for you  . You only manage the worker nodes (either EC2 instances or Fargate pods). EKS integrates deeply with AWS (IAM, VPC, CloudWatch, etc.)  , making it easier to run production-grade Kubernetes at scale with built-in security and observability.
+
+2. What are Deployments and ReplicaSets?
+• ReplicaSet: A controller that ensures a specified number of Pod replicas are running at any given time  . If a Pod crashes or is deleted, the ReplicaSet automatically creates a replacement to maintain the desired count  .
+
+• Deployment: A higher-level resource that manages ReplicaSets and provides declarative updates (like rolling updates and rollbacks)  . Deployments simplify application upgrades by orchestrating ReplicaSet changes without downtime    . The default update strategy is a RollingUpdate, which incrementally replaces old pods with new ones while keeping the application available.
+
+3. What is the Role of the Scheduler in Kubernetes?
+The Kubernetes scheduler watches for Pods that have no assigned node and assigns them to appropriate nodes. It considers scheduling constraints such as CPU/memory requests, node selectors/affinity rules, and taints/tolerations. The scheduler works in two phases: filtering out nodes that cannot satisfy the Pod’s requirements, then scoring the remaining nodes to pick the best fit  . This process ensures Pods are placed for optimal resource utilization and availability.
+
+4. What is Kube-Proxy?
+Kube-Proxy is a network component that runs on every Kubernetes node. It monitors Service and Endpoint objects and translates them into low-level network rules on the node  . Essentially, kube-proxy maintains a mapping (using Linux iptables/IPVS or similar) from each Service to the IPs of its healthy Pods  . When a request is sent to a Service’s cluster IP, kube-proxy applies these rules to forward traffic to one of the service’s Pods, providing in-cluster load balancing and service discovery.
+
+5. What is the Default Deployment Strategy in Kubernetes?
+The default strategy is RollingUpdate, which ensures zero-downtime updates. With RollingUpdate, Kubernetes gradually replaces old pods with new ones: it creates new pods (at a rate you can control) and then removes old pods once the new ones are healthy  . This maintains application availability throughout the update. If anything goes wrong, Kubernetes can roll back to the previous replica set.
+
+6. What Happens if a Pod Fails – How Does Kubernetes Respond?
+Kubernetes controllers (like ReplicaSets or Deployments) continuously ensure the declared number of replicas. If a pod crashes or is deleted, the ReplicaSet sees the deficit and instantly launches a new Pod to replace it  . The kubelet itself will also restart failing containers, using an exponential backoff to avoid thrashing  . Importantly, a Pod is treated as immutable: Kubernetes does not “move” a Pod to another node, it instead creates an entirely new Pod (with a new UID) to replace a failed one.
+
+7. How Does Kubernetes Handle Secrets?
+• Secrets are stored as Kubernetes objects containing sensitive data (e.g. passwords, tokens). Pods can consume a Secret either by mounting it as a file (volume) or exposing it as environment variables  .
+• By default, Secret data is only base64-encoded and stored in etcd, so encrypting secrets at rest is strongly recommended  . Also enforce least-privilege RBAC so only authorized subjects can get or list secrets  . Rotate secrets and audit access regularly. Many teams also integrate external secret managers (e.g. AWS Secrets Manager or Vault) for advanced rotation and auditing.
+• Never hardcode secrets in code or config. Use Kubernetes’ secrets and RBAC to inject credentials securely into pods.
+
+8. How Would You Give an S3-Accessing Pod Secure Access?
+In EKS you can use IAM Roles for Service Accounts (IRSA). The steps are: (1) create an IAM policy and role with S3 access permissions, (2) associate the IAM role with a Kubernetes service account (using the cluster’s OIDC provider), and (3) run the Pod with that service account. This way the Pod automatically obtains the IAM role’s credentials via the service account token  . The pod gets only the S3 permissions it needs, with no long-lived AWS keys or secrets in the container. This is the recommended secure pattern for granting AWS permissions to pods.
+
+9. How Does Scaling Work in Kubernetes?
+• Horizontal Pod Autoscaler (HPA): A built-in controller that automatically adjusts the number of Pod replicas in a Deployment, ReplicaSet, or StatefulSet based on observed metrics (CPU, memory, or custom metrics). You set a target (e.g. 50% CPU); the HPA checks the metrics and scales the replicas up or down to meet that target.
+• Vertical scaling: Kubernetes also supports the Vertical Pod Autoscaler (VPA, a separate add-on) which can adjust resource requests/limits of Pods.
+• Cluster Autoscaling: For node autoscaling, you use Cluster Autoscaler (or AWS’s Karpenter) which adds or removes EC2 instances based on pending Pods. The cluster autoscaler watches for unschedulable Pods and will provision new nodes to fit those Pods, then consolidate nodes when they are underutilized  .
+Using HPA and cluster autoscaling together lets your application pods scale out on demand and your cluster provision just enough nodes to accommodate them.
+
+10. How Does Kubernetes Pull Images for New Applications?
+When a new Pod is started, the kubelet on that node tells the container runtime (Docker, containerd, etc.) to fetch the specified image. If the image isn’t already present locally, the runtime pulls it from the registry (Docker Hub, ECR, etc.). The imagePullPolicy controls this behavior    : e.g. IfNotPresent pulls only if the image isn’t cached, Always pulls every time (useful for :latest tags), and Never never pulls (only uses a local image). By default, if you use latest as the tag, Kubernetes sets imagePullPolicy: Always.
+
+11. How Does Kubernetes Pull Docker Images?
+Kubernetes itself doesn’t directly pull images; it delegates to the node’s container runtime (such as Docker, containerd, or CRI-O). The kubelet instructs the runtime based on imagePullPolicy and any imagePullSecrets for private registries. In short, the runtime handles the actual download of Docker images when the node starts containers.
+
+12. How Do You List All Deployments with Specific Labels/Selectors?
+Use kubectl get with -l (or --selector), for example: kubectl get deployments -l application=test
+
+To match multiple labels, separate with commas: kubectl get deployments -l application=test,env=prod
+This filters the Deployment resources by the given label selectors.
+
+13. How Would You See Logs Inside a Pod?
+Use the kubectl logs command. Examples:
+• Get logs from a pod: kubectl logs <pod-name>.
+• If the pod has multiple containers: kubectl logs <pod-name> -c <container-name>.
+• Stream logs (follow): kubectl logs -f <pod-name>.
+You can also get previous (terminated) pod logs with -p. These commands fetch the container’s stdout/stderr logs directly from the node.
+
+14. How Would You Determine Which Cluster You’re Connected To?
+Use the kubeconfig context commands:
+• kubectl config current-context shows the current context name .
+• kubectl config get-contexts lists all available contexts.
+• kubectl config view --minify shows details (cluster, user, namespace) of the current context.
+These let you verify which cluster, user, and namespace your kubectl is targeting
+
+15. If Pods Are Running but the Application Isn’t Working, How Would You Troubleshoot?
+Common steps include:
+• Check Pod status and events with kubectl describe pod <pod-name>. This shows container states, recent events, restart counts, and failure reasons .
+• Examine logs: use kubectl logs on the affected pod or container.
+• Verify Services and Endpoints: ensure Services are pointing to the right pod ports (kubectl get svc,endpoints). Check that the app listens on the expected port and interface.
+• Test connectivity: kubectl exec -it <pod> -- curl or ping another pod or service to see if networking works.
+• Review readiness/liveness probes and resource limits (they can cause restarts if misconfigured).
+• Check kubectl get events cluster-wide for scheduling errors or other alerts.
+Each of these steps helps isolate why the workload isn’t responding despite Pods running.
+
+16. How Would You Confirm That a Request is Reaching a Pod?
+You can verify by checking inside the Pod. For example, kubectl exec into the container and use tools like tcpdump or netstat to watch for incoming traffic. Alternatively, add a simple logging statement or reverse-proxy in your application to log incoming requests. You can also directly kubectl exec and use curl/wget to invoke the Pod’s IP or Service IP from within the cluster and observe the pod’s response or logs. Ensuring the Service endpoints are correct is also key.
+
+17. Difference Between Classic Load Balancer and Application Load Balancer on AWS?
+Classic Load Balancer (CLB): The older ELB version operates at the network/transport layer (Layer 4). It routes connections based solely on IP protocol data (TCP/UDP) and port  . CLB supports simple TCP or SSL load balancing and can only direct all traffic to one set of back-end instances; it has limited features (no host-based or path-based routing, no native WebSocket/HTTP/2 support). It’s typically used only for very basic or legacy use cases.
+Application Load Balancer (ALB): A newer ELB type that operates at the application layer (Layer 7). ALB can inspect the content of HTTP requests and route traffic based on Host headers, URL paths, HTTP headers/verbs, or query strings    . A single ALB can route to multiple target groups (different backend service pools) depending on these rules  . ALB supports modern protocols like WebSockets and HTTP/2, advanced health checks, and fine-grained metrics. In short, CLB is simple and layer-4 only  , while ALB is layer-7 with content-based routing and richer features .
+
+18. Auto Scaling: What Are the Configuration Options and Parameters?
+Key Auto Scaling Group (ASG) settings include:
+• Min/Max/Desired Capacity: The lower/upper bounds and initial target number of instances  . The ASG will never scale below the min or above the max.
+• Scaling Policies: Rules (often tied to CloudWatch alarms) that trigger scaling. For example, a CPU-based target tracking policy or step scaling policy increases/decreases capacity based on metrics. You can configure simple, step, or target-tracking policies.
+• Cooldown/Grace Periods: Time intervals that the ASG waits after a scaling activity before evaluating the next one. Cooldown prevents rapid flapping: after scaling out, the group pauses so new instances can start up before further scaling  . You can set a default cooldown (typically 300s) or override per-policy.
+• Health Checks: ASGs periodically check instance health (EC2 or ELB health checks). Unhealthy instances are terminated and replaced automatically to maintain desired capacity .
+• Termination Policies/Protection: You can enable instance protection to prevent critical instances from being terminated during scale-in. Termination policies decide which instances to remove first (oldest, newest, etc.).
+• Instance Configuration: You define the instance type(s), AMI, network/subnet placement (via launch template or configuration). You can use mixed instance policies, launch templates, and instance weighting. All these define the compute resources of the ASG.
+ 
+
+ 19. What is User Data in EC2?
+User Data is a script or set of commands that you provide when launching an EC2 instance, which the instance runs on its first boot. It is commonly used for bootstrapping: installing packages, configuring software, or joining clusters automatically. For example, a user data script might install Docker and pull a container image on startup. AWS treats user data as opaque (it must be base64-encoded) and runs it only on initial launch by default  . This lets you automate instance initialization without manual SSH or configuration management.
+
+ 20. How Do You Upload/Download to an S3 Bucket Privately from EC2?
+The recommended way is to use an S3 VPC Gateway Endpoint. A Gateway Endpoint allows EC2 instances in your VPC to communicate with S3 without any internet gateway, NAT, or public IP – the traffic stays within AWS’s private network  . To set it up, you create an S3 Gateway Endpoint in your VPC and add it to the route table of the relevant subnet. Then your EC2s can use the regular AWS CLI (e.g. aws s3 cp) to access S3, but all traffic goes over the VPC endpoint. For extra security, you can add a bucket policy that only allows access via that VPC Endpoint. With this configuration, EC2-to-S3 traffic is private, cost-effective (no NAT traffic), and does not traverse the public internet .
