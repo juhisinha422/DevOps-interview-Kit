@@ -1,0 +1,19 @@
+One of the most asked Kubernetes questions is CrashLoopBackOff
+
+Here's how you should answer it
+
+CrashLoopBackOff happens when your container repeatedly exits after starting many times. 
+
+It may happen because of a config issue, a wrong template, a poor container, or incorrect secrets or variables
+
+How to troubleshoot it?
+→ Check the logs of the pod
+→ Describe the pod to know what is happening
+→ Recheck env variables and secrets
+→ Configuration setup
+→ Liveness and Readiness Probles
+→ Dependency on other Pods
+
+You can use this to find the root cause one by one and fix the issue.
+
+It helped me fix this issue multiple times. It will work for you as well.
