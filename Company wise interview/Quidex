@@ -1,0 +1,26 @@
+Interview Experience – Quidex | Role: DevOps Engineer
+
+•     Introduction 
+•	What are your day-to-day activities as a DevOps Engineer?
+•	How do you ensure stability and efficiency across your CI/CD and cloud environments?
+•	How do you troubleshoot a CrashLoopBackOff? What causes it?
+•	If a pod is down, how do you troubleshoot it?
+•	Why are StatefulSets useful, and how do they differ from Deployments?
+•	If a pod loses connectivity, how do you find and fix the issue?
+•	How do you secure an AKS/Kubernetes cluster that’s publicly accessible?
+•	Difference between Hard link and Soft link.
+•	A user can’t access a file — how do you grant permissions?
+•	A process is using high CPU/memory — how do you monitor and manage it?
+•	A user can’t SSH into a server — how do you troubleshoot the issue?
+•	What is a VNet and NSG in Azure?
+•	What is Azure AD (Microsoft Entra ID) and why is it used?
+•	How do you reduce or manage cloud costs effectively?
+•	What is the Terraform lifecycle, and how do you handle state management?
+•	Explain your CI/CD pipeline flow and how you manage deployments.
+•	What do you do during Continuous Delivery (CD)?
+•	How do you manage your pipeline configurations and rollback strategies?
+•	Difference between git fetch and git pull.
+•	How do you handle merge conflicts in Git?
+•	Difference between Persistent Volume (PV) and Persistent Volume Claim (PVC).
+•	How do you manage Kubernetes YAML manifests across environments?
+•	Where and how do you store cluster information securely?
