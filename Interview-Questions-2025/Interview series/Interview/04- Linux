@@ -1,0 +1,15 @@
+DevOps Q&A Series: Topic 4 — Linux 
+
+✨Continuing this festive journey, here are Linux interview questions focused on troubleshooting and scripting, tailored for real-world DevOps scenarios 🔥
+1️⃣ A service fails to start on your Linux server. How do you debug and resolve it?
+2️⃣ A user reports slow login times on a Linux box. What steps would you take to identify and fix the problem?
+3️⃣ Disk usage suddenly hits 100%. How do you troubleshoot and reclaim space?
+4️⃣ The system isn’t booting properly—what are your diagnostic steps?
+5️⃣ A process is causing high CPU usage. How do you locate it and resolve performance issues?
+6️⃣ How would you recover accidentally deleted files from a Linux server?
+7️⃣ You need zero-downtime deployment for a web app on Linux. Explain your approach.
+8️⃣ “Too many open files” error: What’s the root cause, and how do you fix it?
+9️⃣ How can you find all files modified in the last 10 minutes using Linux commands?
+🔟 Scripts or automation: Write a shell script to ping a list of IP addresses and log unreachable hosts.
+1️⃣1️⃣ Network share (NFS) is not mounting. How do you diagnose and resolve it?
+1️⃣2️⃣ You’re asked to monitor live system resource usage and alert on spikes. What tools and scripts would you use?
