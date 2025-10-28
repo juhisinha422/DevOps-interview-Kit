@@ -1,0 +1,51 @@
+💥 Real Kubernetes Scenarios💥
+
+Kubernetes is not just about kubectl apply, it is about digging into problems when things go sideways. These are real incidents you will run into, and the quick checks I run first.
+
+⚙️ 1️⃣ CrashLoopBackOff
+ Your pod keeps restarting and never stays up.
+ → Check logs: kubectl logs <pod>
+ → Describe the pod: kubectl describe pod <pod>
+ → Look for failed init containers or configuration errors
+
+🕵️‍♀️ 2️⃣ Deployment Rollout Stuck
+ Your new version never completes rollout.
+ → Check rollout status: kubectl rollout status deployment/<app>
+ → Verify readiness probes and resource limits
+ → Look for pending pods because of node capacity
+
+🌐 3️⃣ Service Not Reachable
+ The app is running, but cannot be accessed.
+ → Confirm service type: ClusterIP, NodePort, or LoadBalancer
+ → Test connectivity with curl or kubectl port-forward
+ → Check DNS resolution from inside pods
+
+🧱 4️⃣ ConfigMap or Secret Not Updated
+ You changed a ConfigMap, but pods still use old values.
+ → Remember, many config changes need a pod restart
+ → Restart with: kubectl rollout restart deployment/<app>
+ → Automate reloads using checksum annotations
+
+🔥 5️⃣ High CPU or Memory Usage
+ Pods are getting evicted or throttled.
+ → Inspect metrics: kubectl top pods and kubectl top nodes
+ → Tune requests and limits for containers
+ → Look for memory leaks or inefficient workloads
+
+🧩 6️⃣ Pending Pods
+ Pods are stuck in Pending and never scheduled.
+ → Check node capacity and resource requests
+ → Review taints, tolerations, and node selectors
+ → Verify storage class and PVC bindings if the pod needs volumes
+
+🧭 7️⃣ Readiness and Liveness Probe Failures
+ The app is running but not receiving traffic.
+ → Recheck probe endpoints and timeout thresholds
+ → Misconfigured probes can cause false restarts or block traffic
+
+🧰 8️⃣ Node Unavailable
+ Some pods are not scheduling on a node.
+ → Run kubectl get nodes and look for NotReady status
+ → Inspect kubelet logs on the node and check for resource pressure
+
+Kubernetes skill is not about memorizing commands; it is about figuring out why something broke and how to make it resilient again. 
