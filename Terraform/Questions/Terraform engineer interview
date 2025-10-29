@@ -1,0 +1,39 @@
+𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄. 💡
+
+𝗤: You changed a variable value, but terraform plan shows no changes. Why?
+𝗔: The variable might not be referenced in any resource or the change is only affecting local values or outputs. Terraform won’t plan updates unless a resource depends on that variable.
+
+𝗤: After applying, Terraform still wants to make the same change again. What’s happening?
+𝗔: This often happens due to drift — the real infrastructure differs from the state file, or due to non-deterministic attributes like timestamps, random IDs, or provider bugs.
+
+
+𝗤: You deleted a resource manually from the cloud console, but Terraform shows it as still present. Why?
+𝗔: The Terraform state file wasn’t updated. Terraform tracks infrastructure via its state, not real-time discovery. Running terraform refresh or a new plan will reconcile it.
+
+
+𝗤: Your team’s Terraform apply overwrote someone else’s changes. What’s the cause?
+𝗔: Likely state file locking wasn’t enabled. Without remote state locking (e.g., using S3 + DynamoDB), simultaneous applies can overwrite each other.
+
+
+𝗤: You see the error “Provider configuration not present.” What does it mean?
+𝗔: The resource block refers to a provider that’s either not initialized or not declared in the current module. You may need to run terraform init or configure the provider properly.
+
+
+𝗤: Terraform says a resource needs to be recreated instead of updated. Why?
+𝗔: Some resource attributes are force new — meaning they can’t be modified in place. Terraform destroys and recreates the resource to apply those changes.
+
+
+𝗤: How do you handle sensitive variables like passwords or keys in Terraform?
+𝗔: Use sensitive = true for variables, and store values in external secret managers (Vault, AWS Secrets Manager, etc.) instead of plain .tfvars files. Never commit secrets to Git.
+
+
+𝗤: You’re using Terraform Cloud/Enterprise, but state file is not updating. Why?
+𝗔: The run might not have completed successfully or the workspace backend wasn’t configured properly. Only successful applies update remote state in Terraform Cloud.
+
+
+𝗤: What’s the difference between terraform import and terraform refresh?
+𝗔: import adds existing resources into Terraform state; refresh updates the state to match real infrastructure.
+
+
+𝗤: How do you ensure different environments (dev, qa, prod) use the same Terraform code safely?
+𝗔: Use workspaces, variable files, or modular architecture. Each environment has its own state and variables to prevent cross-environment issues.
