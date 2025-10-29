@@ -1,0 +1,32 @@
+Pod Debugging: 
+
+• kubectl get pods -A | grep -v Running - Find troubled pods 
+• kubectl describe pod - Full pod story 
+• kubectl logs -f --tail=100 - Live log streaming 
+• kubectl logs --previous - Check crashed container logs
+
+Quick Troubleshooting: 
+
+• kubectl get events --sort-by='.lastTimestamp' - Recent cluster events 
+• kubectl top pods - Resource usage at a glance 
+• kubectl get pods -o wide - Show node placement 
+• kubectl exec -it pod -- /bin/sh - Jump inside container
+
+Resource Management: 
+
+• kubectl get all -n namespace - Everything in one view 
+• kubectl delete pod --grace-period=0 --force - Force kill stuck pods 
+• kubectl scale deployment --replicas=3 - Quick scaling 
+• kubectl rollout restart deployment - Restart without downtime
+
+Context Switching:
+
+ • kubectl config get-contexts - List all clusters 
+ • kubectl config use-context - Switch clusters 
+• kubens - Change namespace (requires kubens tool)
+
+Pro Tips: 
+
+• alias k=kubectl - Save keystrokes 
+• kubectl api-resources - See all resource types 
+• kubectl explain pod.spec - Built-in documentation
