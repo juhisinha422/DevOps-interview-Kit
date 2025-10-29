@@ -1,0 +1,49 @@
+DevSecOps Interview Questions You Should Be Ready For 🔐
+ Whether you're preparing for a role or evaluating your current practices, these questions dive deep into the real-world challenges of secure cloud-native delivery.
+
+💡 DevSecOps & Security Integration
+How do you implement shift-left security in a CI/CD pipeline?
+How do you integrate tools like Snyk or Aqua Security into build workflows?
+How do you manage secrets securely across environments (Vault, AWS Secrets Manager)?
+What’s your approach for generating and validating SBOMs?
+What are key cultural aspects of DevSecOps?
+How do SAST, DAST, and IAST differ?
+How are you implementing SCA in your environment?
+What do you understand by RASP?
+What’s the difference between white-box, black-box, and grey-box testing?
+
+☁️ Cloud Infrastructure & IaC
+How do you design multi-cloud architecture using Terraform or Pulumi?
+What are the key differences in managing infra across AWS, Azure, and GCP?
+How have you used IaC to enforce compliance/security policies?
+How do you handle DR and high availability in cloud-native setups?
+
+🚀 CI/CD & Automation
+Describe your experience with GitHub Actions, Jenkins, or ArgoCD.
+How do you ensure security and compliance in automated deployments?
+What challenges have you faced with GitOps workflows?
+How do you integrate DAST/SAST tools into CI/CD?
+
+🐳 Containers & Kubernetes
+How do you manage Helm charts and Operators in production?
+What’s your experience with service meshes like Istio or Linkerd?
+How do you secure Kubernetes clusters across cloud providers?
+How do you troubleshoot performance issues in Kubernetes?
+
+📊 Monitoring & Observability
+How do you design observability stacks using Prometheus, Grafana, OpenTelemetry?
+What’s your approach to root cause analysis?
+How do you ensure visibility across microservices?
+Share a time when monitoring helped prevent a major outage.
+
+🧠 Programming & Scripting
+Which scripting language do you prefer for automation and why?
+Share a script/tool you built to improve DevSecOps workflows.
+How do you handle error logging in automation scripts?
+What’s your approach to writing secure code in Python/Go/Java?
+
+🧩 Architecture & Design Thinking
+How do you balance scalability, security, and cost-efficiency?
+Describe a system you designed with cross-functional collaboration.
+How do you evaluate and select tools for DevSecOps initiatives?
+What’s your approach to continuous improvement in platform engineering?
