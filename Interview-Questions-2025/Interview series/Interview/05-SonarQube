@@ -1,0 +1,16 @@
+DevOps Q&A Series: Topic 5 — SonarQube
+
+✨Continuing the festive knowledge-sharing journey, here are SonarQube interview questions focused on troubleshooting, automation, and real-world DevOps use cases 🔥
+
+1️⃣ What are the most common reasons a SonarQube scan fails during CI/CD pipelines, and how do you debug it?  
+2️⃣ How would you automate SonarQube scans in Jenkins, GitLab CI, or GitHub Actions for multiple projects?  
+3️⃣ The SonarQube server suddenly becomes unresponsive. What steps would you take to identify the root cause?  
+4️⃣ How do you integrate SonarQube with a private Git repository that requires token-based authentication?  
+5️⃣ A project is not showing updated metrics after analysis—what could be the possible causes?  
+6️⃣ Explain the difference between code coverage and code quality gates in SonarQube.  
+7️⃣ How do you customize quality gates and code coverage thresholds per project in an organization?  
+8️⃣ You need to scan multiple microservices with different tech stacks. How do you configure that efficiently?  
+9️⃣ What’s the best way to handle large report uploads and avoid timeouts or memory errors during analysis?  
+🔟 How can you store and analyze historical code quality trends using SonarQube data?  
+1️⃣1️⃣ A SonarQube analysis shows “Failed to connect to the database.” What are possible resolutions?  
+1️⃣2️⃣ You’re asked to create a script or automation to trigger SonarQube analysis from the command line. How would you approach it?
