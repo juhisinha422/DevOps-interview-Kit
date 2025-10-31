@@ -1,0 +1,48 @@
+8 specific questions of Accenture AWS/Cloud-Engineer interviews — along with sample answer outlines you can expand for your 3-year experience level.
+
+1. How would you help a client who’s interested in migrating their on-premises system to AWS?
+Answer outline:
+Assess on-prem architecture: servers, storage, network, dependencies
+Choose target AWS services (e.g., EC2/RDS, S3, VPC)
+Plan migration phases: discovery, pilot, cut-over
+Consider networking (VPN/Direct Connect), security (IAM, encryption), cost optimisation
+Use tools like AWS Migration Hub, DMS, SNOWball
+Post-migration: validate, monitor, decommission on-prem
+2. What AWS services have you used and can you give scenario-based examples?
+Answer outline:
+Pick 2-3 services relevant to your experience (e.g., EC2, S3, VPC, IAM, EKS)
+For each: describe use-case, your involvement, what you achieved
+Example: “I used S3 for storing logs, set lifecycle rules to move to Glacier reducing cost by X%”
+3. Explain the difference between a Security Group and a Network ACL in AWS.
+Answer outline:
+Security Group: instance level, stateful (return traffic allowed automatically)
+Network ACL (NACL): subnet level, stateless (you must allow both inbound & outbound)
+Typical use: SG for instance access rules; NACL for subnet broad control, extra layer
+4. What is the lifecycle of an EBS volume when attached to an EC2 instance? What happens if you terminate the instance?
+Answer outline:
+Create volume → attach to instance → use it
+Default: if delete_on_termination = true, volume is deleted when instance terminated
+If false, the volume remains, you can attach to new instance
+Snapshot/backup options, change volume types/IOPS post-creation
+5. How do you design a highly available and scalable architecture for a web application on AWS?
+Answer outline:
+Use multi-AZ or multi-region deployment
+Use public subnets for load balancer, private subnets for app/data
+Auto Scaling Groups for EC2 or use managed service (ECS/EKS/Lambda)
+Amazon RDS with Multi-AZ/failover, or DynamoDB for serverless
+Use S3 + CloudFront for static assets, Route53 for global DNS
+Monitoring (CloudWatch), logging, backups, disaster recovery plan
+6. How do you handle cost optimisation of AWS resources in a project?
+Answer outline:
+Rightsize instances, use Reserved/Spot instances
+Implement Auto Scaling to scale down in low traffic
+Use S3 lifecycle rules, transition to cheaper tiers
+Turn off non-production resources when idle (Dev/Test)
+Use AWS Cost Explorer, Budgets, alerts
+Use serverless services where applicable
+7. Describe how you secure an S3 bucket while allowing a specific application access.
+Answer outline:
+Block public access, enable encryption (SSE-S3 or SSE-KMS)
+Use bucket policies or IAM roles with least privilege
+If application runs in EC2/EKS: assign instance role with permissions rather than access keys
+Enable access logs, versioning, MFA delete if needed
