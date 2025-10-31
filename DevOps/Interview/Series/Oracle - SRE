@@ -1,0 +1,44 @@
+Oracle SRE Interview Experience – A Complete Journey 🚀
+
+I recently completed all 5 rounds of interviews for the Site Reliability Engineer (SRE) role at Oracle, and it was one of the most enriching and technically deep interview experiences I’ve ever had.
+
+Here’s a quick overview of how the entire process went 👇
+
+Round 1 – Screening / Coding Round (1 hour)
+The first round was conducted on HackerRank and included 3 coding questions:
+1. Bash scripting problem
+2. Jenkins pipeline task
+3. Kubernetes Liveness & Readiness Probe implementation
+It was a great mix of scripting, CI/CD, and Kubernetes fundamentals.
+
+Round 2 – Technical Round (1 hr 20 mins)
+This was an in-depth DevOps + SRE technical discussion.
+They asked me to write a Python script on HackerRank, followed by questions on:  My project architecture
+Core DevOps tools — Docker, Kubernetes, Terraform
+SRE principles — with real-world scenario-based questions
+This round tested both my technical knowledge and real-world problem-solving approach.
+
+Round 3 – System Design + Technical Deep Dive (1 hour)
+This was purely system design-focused, covering:
+AWS architecture
+Jenkins pipelines and optimization
+Terraform modules and best practices
+Kubernetes and Docker internals
+SRE-based troubleshooting scenarios
+It was a true deep-dive into scalability, reliability, and automation.
+
+Round 4 – Managerial + Cultural Fit (1 hr 10 mins)
+This round evaluated my team fit, culture alignment, and leadership mindset.
+They also asked scenario-based technical questions where I had to use my hands-on experience to answer practical challenges — not just theory.
+
+Round 5 – Hiring Manager Round (~1 hour)
+The final round was a detailed discussion about:
+My past projects and architecture
+Tech stack expertise (SRE + DevOps)
+Real-world experience in incident management, automation, and reliability improvements
+Combination of technical + behavioral questions
+This round was all about connecting my real-world impact to Oracle’s expectations.
+
+Overall Experience
+The entire process was smooth, transparent, and extremely well-structured.
+Every interviewer was deeply technical yet approachable, and the discussions were focused on practical knowledge, not just theory.
