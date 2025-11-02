@@ -1,0 +1,64 @@
+#Terraform Commands Every DevOps & SRE Engineer Should Know ⚙️
+
+Terraform helps you automate cloud infrastructure — and mastering these commands is key to managing your infra like a pro 👇
+
+Setup & Initialization
+terraform init
+Initializes Terraform, downloads required providers & sets up backend.
+
+terraform fmt
+Formats your code into standard style.
+
+terraform validate
+Checks configuration for syntax or logical errors.
+Planning & Execution
+
+terraform plan
+Previews the changes before applying — safe check.
+
+terraform apply
+Applies the plan and creates/updates resources.
+
+terraform destroy
+Deletes all managed resources — use carefully!
+
+State Management
+terraform show
+Displays current infrastructure from state file.
+
+terraform state list
+Lists all resources tracked by Terraform.
+
+terraform state show <resource_name>
+Shows detailed info of a specific resource.
+
+Refresh & Output
+terraform refresh
+Syncs state with real-world infrastructure.
+
+terraform output
+Displays output variables from your config.
+ 
+Workspaces
+terraform workspace new dev
+terraform workspace select prod
+Manage multiple environments (dev, stage, prod).
+
+Resource Handling
+terraform import <type.name> <id>
+Imports existing cloud resources into Terraform.
+
+terraform taint <resource_name>
+Forces recreation of a specific resource.
+
+terraform untaint <resource_name>
+Cancels the taint and keeps the existing resource.
+
+Modules & Providers
+terraform get
+Downloads or updates modules used in your config.
+
+terraform providers
+Lists all providers required by your configuration.
+
+Use terraform plan -out=tfplan and then terraform apply tfplan for safe, repeatable deployments in CI/CD pipelines.
