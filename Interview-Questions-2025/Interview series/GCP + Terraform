@@ -1,0 +1,20 @@
+GCP + Terraform Interview Prep Questions asked in a recent interview
+
+Sharing a curated list of technical questions I’ve been exploring recently while preparing for cloud and DevOps interviews. Hope it helps others in their journey too!
+
+What are the GCP services you have worked with frequently?
+What have you used for authentication — Service Accounts or Workload Identity Federation?
+How can you authenticate Workload Identity with Terraform?
+What will happen if a .json key file is compromised in Service Accounts?
+What are the differences between Ansible and Terraform? Can we do the same thing with Ansible instead of Terraform?
+What are the data types in Terraform?
+Why should we use a state file in Terraform?
+Can we create Terraform configuration files without a state file?
+What is the working of terraform.lock.hcl?
+What are the IAM role types in GCP?
+Can we do the same work with local_exec that Ansible does?
+How can we validate what patterns are being given as input in Terraform?
+Can we use lists with for_each in Terraform?
+How can we prevent destroying the 15 resources that were created manually?
+Suppose you want to create 10 instances via Terraform and configure one using local_exec. Will it impact other resources' provisioning?
+How do you define a .tfvars file in Terraform?
