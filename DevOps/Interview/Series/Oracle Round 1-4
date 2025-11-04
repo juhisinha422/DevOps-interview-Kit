@@ -1,0 +1,98 @@
+Oracle Interview Questions — Round 1 & 2 🚀
+#OracleInterview
+
+After sharing my Oracle interview journey earlier, I received a lot of messages asking for the actual technical questions that were asked so here are all the questions from Round 1 & Round 2 👇
+
+Round 1 – Screening / Coding Round (on HackerRank)
+
+Q1 – Bash Script
+Suppose you have a folder where multiple files are stored.
+Write a bash script to check each file and show the highest file size with file name.
+Q2 – Jenkins CI/CD Pipeline
+Write a Jenkins CI/CD pipeline that you are using in your current project
+from code checkout, build, test, deploy, and at last, show the success or failure of the pipeline, and perform cleanup.
+Q3 – Kubernetes Manifest
+Write a Kubernetes manifest file that uses both Liveness and Readiness probes for health checks.
+
+Round 2 – Technical + Coding + DevOps/SRE Discussion (1 hour 20 mins)
+Python
+Suppose in a class, many students are appearing for an exam with 5 subjects.  Write a Python script to find the highest marks in each subject along with the student’s name.
+
+Jenkins
+How can you run your Jenkins pipeline jobs in parallel?
+Jenkins pipelines need to trigger across multi-cloud environments, how would you design this?
+How would you implement compliance checks in Jenkins pipelines?
+How do you handle cross-region or multi-datacenter deployments using Jenkins?
+
+Kubernetes
+How do you ensure deployments roll back automatically if new pods fail?
+You need to replicate Kubernetes secrets across multiple clusters, how do you manage this securely?
+What’s the difference between ImagePullBackOff and CrashLoopBackOff errors? How do you troubleshoot them?
+In a large cluster with hundreds of microservices, how do you ensure observability and control for service-to-service communication?
+
+Docker
+Write a Docker Compose file and explain it line by line.
+How would you securely expose a containerized API over HTTPS?
+How would you ensure all Docker images are scanned for vulnerabilities before deployment?
+How do you handle data migration when upgrading containerized databases?
+
+Terraform
+How do you secure Terraform state that contains sensitive data?
+You need to migrate 100+ existing resources into Terraform, how do you plan this?
+How do you design multi-cloud DR using Terraform?
+Your Terraform apply is slow due to thousands of resources, how do you optimize it?
+Your Terraform apply succeeded, but some resources aren’t behaving as expected, how do you debug this?
+
+SRE Concepts
+What do you understand by SRE and explain SLOs, SLIs, and SLAs and also explain error budget.
+How do you perform a postmortem after resolving an incident?
+How do you handle a P1 incident? Explain your end-to-end steps.
+
+
+Oracle Interview Experience (3rd & 4th Rounds) — System Design, Managerial & Behavioral 
+
+After completing the first two rounds (Coding + Technical Deep Dive), the next stages focused on System Design, SRE mindset, and Managerial capabilities — these were truly challenging and insightful!
+
+3rd Round — System Design (1 hour)
+This round focused deeply on scalability, reliability, fault tolerance, and architecture design using AWS, Kubernetes, Terraform, and CI/CD best practices.
+
+Key Topics & Questions Asked:
+
+Design a highly available and fault-tolerant web application architecture using AWS.
+Explain how load balancing, auto scaling, and multi-AZ setup ensure reliability.
+How would you design a zero-downtime deployment strategy (Rolling vs Blue/Green vs Canary)?
+How do you manage stateful services in Kubernetes?
+Design an observability stack (Prometheus + Grafana + Alertmanager).
+How do you perform capacity planning for a growing system?
+How to handle database failover and replication in AWS RDS?
+Design a CI/CD pipeline integrating Terraform, Jenkins, Docker, and K8s.
+How do you ensure cost optimization in a large distributed system?
+Explain how you would ensure disaster recovery (RTO/RPO) for critical systems.
+How do you handle cross-region deployments in Jenkins or Harness?
+Design a secure CI/CD pipeline with pre-deployment approvals and rollback mechanisms.
+How do you handle config drift between environments (dev, stage, prod)?
+
+They mainly checked the thought process, trade-offs, and real-world SRE experience.
+
+4th Round — Managerial + Behavioral (1:10 hours)
+
+This round was focused on team culture, leadership attitude, ownership, and problem-solving mindset.
+
+Tell me about a production incident (P1) you handled — what steps did you take?
+How do you prioritize issues when multiple systems are impacted?
+Describe a time you disagreed with a manager or senior — how did you handle it?
+How do you ensure collaboration between Dev and Ops teams?
+What’s your approach to automation — what kind of manual tasks have you automated recently?
+How do you handle stress or pressure during outages?
+How do you perform and document Root Cause Analysis (RCA)?
+How do you ensure reliability, observability, and performance in production?
+What kind of work culture helps you perform at your best?
+Why Oracle?
+Tell me about a failed deployment — how did you troubleshoot and prevent it from happening again?
+How do you manage time and prioritize tasks under pressure?
+How do you ensure your team follows DevOps best practices consistently?
+What motivates you most about SRE work — reliability, automation, or problem-solving?
+
+Overall Takeaway
+Each round was a new learning experience — it pushed me to think like an SRE who not only builds but also owns and optimizes systems.
+
