@@ -1,0 +1,12 @@
+🔍 Interview Insights: 8byte Technologies
+
+
+Here are a few questions that stood out:
+💡 How do you manage secrets securely in a CI/CD pipeline?
+🛠️ What’s your approach to provisioning infrastructure using Terraform for multi-tier applications?
+🧩 How do Go routines help in optimizing backend services?
+🔄 What’s the difference between GitLab CI/CD and GitHub Actions in terms of flexibility and control?
+🧵 How do you handle concurrency in Kubernetes pods?
+🔐 How would you implement IAM roles for least privilege access in a multi-account AWS setup?
+📦 What’s your strategy for container image versioning and rollback?
+📊 How do you monitor and trace performance issues in a distributed microservices architecture?
