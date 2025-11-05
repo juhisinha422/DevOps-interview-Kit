@@ -96,3 +96,36 @@ What motivates you most about SRE work — reliability, automation, or problem-s
 Overall Takeaway
 Each round was a new learning experience — it pushed me to think like an SRE who not only builds but also owns and optimizes systems.
 
+
+
+Final Round Interview at  Oracle – Hiring Manager Round 🚀
+
+The Hiring Manager round was a deep dive discussion that focused not only on my technical expertise but also on my approach to ownership, communication, leadership, and handling critical production challenges.
+
+Here are some of the questions that were asked in this round 👇
+
+Can you walk me through your most recent project architecture — what was your exact contribution and impact?
+How do you prioritize incidents or production issues when multiple systems are affected?
+Tell me about a major P1 incident you handled — what caused it, how you resolved it, and what preventive actions you implemented later?
+How do you ensure zero-downtime deployment for critical production services?
+How do you collaborate with Development, QA, and SRE/Operations teams during release cycles?
+What’s your approach to improving overall system reliability and reducing MTTR?
+How do you ensure security, compliance, and governance in your CI/CD pipelines (Jenkins or Harness)?
+Can you explain how you designed a fault-tolerant and highly available infrastructure in AWS or multi-cloud environments?
+Describe a situation where you had to make a tough technical decision under pressure — how did you balance trade-offs?
+Tell me about a time your automation or deployment failed — how did you handle the rollback and what did you learn?
+How do you measure service performance and reliability — what SLIs, SLOs, and SLAs do you track?
+What’s your incident response strategy — from alert to RCA (Root Cause Analysis)?
+How do you ensure observability and proactive issue detection across microservices?
+What automation have you recently implemented that significantly improved productivity or reliability?
+How do you handle disagreements or conflicts within your team or with other stakeholders?
+What’s your approach to mentoring or guiding junior engineers in the team?
+How do you balance innovation, reliability, and security while managing critical systems?
+Why do you want to join Oracle, and how do you see yourself contributing in the next few years?
+
+This round was a perfect blend of technical depth and behavioral insight — more like a discussion to understand not just what I do, but how I think, decide, and lead during challenges.
+
+I’m truly thankful to the Oracle interview panel and HR team for such a smooth and insightful interview journey across all rounds.
+
+Key Takeaway:
+Technical excellence gets you through the door, but your mindset, clarity, and collaboration keep you in the room. 💪
