@@ -1,0 +1,16 @@
+DevOps Q&A Series: Topic 8 — JFrog Artifactory
+
+🚀 Elevating our knowledge-sharing journey, this edition focuses on JFrog Artifactory, a cornerstone for binary management, CI/CD efficiency, and artifact traceability in modern DevOps workflows 🔥
+
+1️⃣ What is JFrog Artifactory, and how does it differ from other artifact repositories like Nexus or AWS CodeArtifact?  
+2️⃣ How do you integrate JFrog Artifactory with CI/CD tools such as Jenkins, GitLab CI, or GitHub Actions?  
+3️⃣ Explain the difference between local, remote, and virtual repositories in Artifactory. When should each be used?  
+4️⃣ How does Artifactory handle dependency management for multiple build tools like Maven, Gradle, or npm?  
+5️⃣ What role does JFrog CLI play in improving automation and build efficiency?  
+6️⃣ How can you secure artifacts in Artifactory using permissions, access tokens, and repository policies?  
+7️⃣ Describe how JFrog Xray enhances vulnerability scanning and compliance. How does it integrate with Artifactory?  
+8️⃣ How do you configure Artifactory for high availability and disaster recovery in production environments?  
+9️⃣ What is the recommended approach to manage artifact retention and cleanup to optimize storage usage?  
+🔟 How do you version, promote, and trace artifacts across environments (dev → test → prod) in Artifactory pipelines?  
+1️⃣1️⃣ How does JFrog Distribution differ from Artifactory, and when would you use both together?  
+1️⃣2️⃣ What are best practices for configuring repositories for cloud-native build pipelines using Terraform or Kubernetes?
