@@ -1,0 +1,37 @@
+Advanced AWS FAQs 
+
+AWS IAM (Identity and Access Management)
+What is the difference between IAM permission boundaries and Service Control Policies (SCPs)?
+How do you prevent privilege escalation in IAM roles and users?
+What are the key differences between inline policies and managed policies?
+How can you securely delegate admin-like permissions using IAM roles?
+What is IAM role chaining, and what are its risks?
+How do you use IAM conditions to enforce MFA for specific API actions?
+How do you handle access control in a multi-account AWS environment?
+What’s the difference between resource-based and identity-based policies?
+How can you restrict an IAM user to access only specific S3 buckets and EC2 instances?
+How do you monitor and audit IAM activity using AWS services?
+
+AWS S3 (Simple Storage Service)
+What’s the difference between S3 versioning and object locking?
+How do you prevent accidental or malicious deletion of S3 data?
+How can you optimize S3 performance for millions of small files?
+What are S3 Access Points, and when should you use them instead of bucket policies?
+How does cross-region replication (CRR) work in S3, and what are its limitations?
+How can you enforce encryption for all objects uploaded to a bucket?
+How do you analyze and optimize S3 storage costs in production?
+What are S3 event notifications, and how can they integrate with Lambda or EventBridge?
+How can you make an S3 bucket secure and still accessible to the public via CloudFront?
+What are the differences between S3 Standard, Intelligent-Tiering, and Glacier Deep Archive?
+
+AWS EC2 (Elastic Compute Cloud)
+What are EC2 instance metadata and IMDSv2, and why is it important?
+How do you troubleshoot EC2 instances that fail to start or keep rebooting?
+What’s the difference between EC2 Reserved, Spot, and On-Demand instances?
+How do you manage high availability and scaling using Auto Scaling Groups?
+How do you recover a lost private key (.pem) for an EC2 instance?
+How do you attach and detach EBS volumes safely in production?
+What are the key metrics to monitor EC2 instance performance?
+How do you create custom AMIs for specific application needs?
+What’s the role of placement groups in optimizing EC2 performance?
+How do you secure SSH access to EC2 instances in a multi-account setup?
