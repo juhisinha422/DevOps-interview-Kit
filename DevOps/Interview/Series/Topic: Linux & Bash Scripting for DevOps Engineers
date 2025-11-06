@@ -1,0 +1,32 @@
+ DevOps Interview Preparation Series — hashtag#Linux hashtag#BashScripting 🚀
+Topic: Linux & Bash Scripting for DevOps Engineers
+
+If you’re preparing for DevOps or SRE interviews, mastering Linux and Bash scripting is non-negotiable.
+Most production issues, automation tasks, and CI/CD optimizations start here. 
+Here are some of the most asked real-world Bash & Linux interview questions to help you prepare 👇
+
+Top Bash & Linux Scenario-Based Questions
+How do you monitor disk usage and send an alert if it exceeds 80%?
+Write a Bash script to check the health of a Kubernetes Pod and Node.
+What does $?, $#, $@, and $0 mean in a shell script?
+How can you extract failed login attempts from /var/log/auth.log using awk or grep?
+How do you automatically kill a process consuming high CPU or memory?
+How can you take user input dynamically inside a shell script?
+What is the difference between > and >> in file redirection?
+How can you schedule a Bash script using cron to run every 5 minutes?
+What are sed and awk, and how do they differ in text processing?
+How do you find and delete files older than 10 days in a specific directory?
+How can you check which process is using the most memory in real time?
+Write a script to check if a service is running — if not, restart it.
+How do you parse JSON or CSV data in Bash?
+What’s the difference between source script.sh and ./script.sh?
+How do you debug a shell script line by line?
+How can you send system health reports (CPU, RAM, Disk) via email automatically?
+What are traps in Bash? Give an example where you’ve used trap for cleanup.
+How do you manage variables across multiple shell scripts?
+How can you check if a command executed successfully in a script?
+How do you automate log rotation and cleanup using Bash?
+
+Pro Tip:
+ In real DevOps interviews — Bash scripting isn’t just about syntax.
+ Focus on automation, monitoring, and troubleshooting scripts that interact with tools like Docker, K8s, and Jenkins.
