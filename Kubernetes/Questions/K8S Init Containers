@@ -1,0 +1,51 @@
+Kubernetes Init Containers:
+
+## 1. Init Container Purpose
+Q: What's the primary difference between init containers and regular containers?
+
+A: Init containers run sequentially before app containers and must complete successfully. Perfect for setup tasks like dependency checks.
+
+## 2. Sequential Execution
+Q: If a pod has 3 init containers, how do they execute?
+
+A: Sequentially in manifest order. Init-2 won't start until init-1 completes successfully.
+
+## 3. Image Strategy
+Q: Should init containers use the same image as the main app?
+
+A: Not necessarily. Use lightweight images (busybox, alpine) for simple tasks. Use app image only if you need app-specific tools.
+
+## 4. Resource Limits
+Q: How do init container resources affect pod scheduling?
+
+A: Kubernetes uses the highest init container value OR sum of app containers, whichever is greater.
+
+## 5. Init Container vs Job
+Q: When to use init container vs Job for setup tasks?
+
+A: Init containers: per-pod setup (dependency checks). Jobs: one-time cluster-wide operations (migrations) that shouldn't repeat per replica.
+
+## 6. Debugging Failed Init
+Q: Pod stuck in Init:0/2 state. How to troubleshoot?
+
+A: `kubectl describe pod <name>` for events, then `kubectl logs <pod> -c <init-container>` for logs.
+
+## 7. Init Container Restart Policy
+Q: Can you specify a different restartPolicy for init containers?
+
+A: No. Init containers inherit the pod's restartPolicy. If they fail, the entire pod restarts based on pod-level policy.
+
+## 8. Shared Volumes
+Q: How do init containers share data with app containers?
+
+A: Via emptyDir or other volume mounts. Init containers can pre-populate files that app containers read on startup.
+
+## 9. Network Access
+Q: Do init containers have network access?
+
+A: Yes, they use the pod's network namespace. Ideal for downloading configs, waiting for services, or registering with APIs.
+
+## 10. Init Container Completion Time
+Q: How does a long-running init container affect rolling updates?
+
+A: It blocks pod readiness, slowing rollouts. Keep init containers fast (<30s). For slow dependencies, use readiness probes instead.
