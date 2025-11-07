@@ -1,0 +1,52 @@
+GCP DevOps Interviews – Real Questions from My 'EPAM' Interview ☁️🔧
+
+Hey #DevOps and #CloudCommunity!
+ I recently had a 1.5-hour technical interview with EPAM Systems for a GCP DevOps Support Engineer role, and I wanted to share some of the real-world questions I was asked. Hope this helps others preparing for similar roles! 💡
+
+🔹 GCP Networking & Migration
+How would you migrate a running on-prem multi-tier app to GCP (networking + storage approach)?
+What’s the difference between Layer 4 and Layer 7 Load Balancers?
+Can TCP Proxy or Regional Load Balancers be made global?
+What are public vs private subnets in GCP?
+How can a private subnet VM access the internet?
+
+🔹 IAM & Security
+What is IAP (Identity-Aware Proxy)?
+What is Workload Identity Federation?
+How would you give temporary access (5–10 mins) to a GCS object?
+What’s your IAM approach for read/write access to GCS buckets?
+
+🔹 GKE & Kubernetes
+How do you upgrade an Autopilot GKE cluster?
+What are health check probes in Kubernetes?
+A pod is crashing frequently—how would you troubleshoot?
+How do you achieve auto-scaling in GCP?
+
+🔹 Terraform & Infra as Code
+What are count and for_each in Terraform?
+What are provisioners in Terraform?
+How do you copy a file from local to Terraform-managed infra?
+How do you detect drift in Terraform?
+How do you remove a specific resource from Terraform infra?
+How do you implement dependencies in Terraform?
+Can you delete a Terraform state file stored in GCS?
+
+🔹 CI/CD & Observability
+What are the stages in your CI/CD pipeline?
+How do you set up centralized observability in GCP?
+Do you need to install anything for Cloud Monitoring dashboards?
+Have you configured Prometheus and Grafana from scratch?
+
+🔹 Linux & Scripting
+What’s the difference between du and df?
+How do you show the last 10 lines of a file?
+How do you replace a word that appears 20 times in a file?
+Given a Linux script, can you explain it and make a deployment.yaml production-ready?
+
+🔹 Cost Optimization & Access Control
+How can you reduce the cost of a running instance?
+How do you change instance type from e2 to n2 in a Managed Instance Group?
+How do you apply the same firewall rule (e.g., port 22 & 80) to 10 instances?
+What’s the use of tags in GCP?
+How would you connect two GCP projects across different organizations?
+ 
