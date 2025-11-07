@@ -1,0 +1,16 @@
+Commonly asked questions on Terraform in an Interview:
+
+🔒 2️⃣ What Happens If You Lose the State File?
+ Terraform forgets what’s deployed — it might try to recreate everything! 😱
+✅ Best Practice: Always use remote backends and enable versioning to recover easily.
+⚙️ 3️⃣ What is Terraform Drift?
+ Drift occurs when the actual infrastructure differs from what’s defined in your Terraform code.
+🧠 Example: Someone changes an EC2 instance directly in the AWS Console.
+ 💬 Command to detect: terraform plan
+🔁 4️⃣ How Do You Fix Drift?
+ You can either:
+🧩 Update your Terraform configuration to match actual changes, or
+⚡ Run terraform apply to restore the desired state.
+🌍 5️⃣ How to Handle Multiple Environments (Dev, Stage, Prod)?
+ Use Workspaces or separate state files/backends for each environment.
+ This keeps your infrastructure isolated, safe, and easy to manage.
