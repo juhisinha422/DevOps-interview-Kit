@@ -1,0 +1,40 @@
+What are probes?
+ In simple terms, probes are mechanisms used to monitor applications and take corrective actions when needed.
+
+ 𝐇𝐞𝐚𝐥𝐭𝐡 𝐏𝐫𝐨𝐛𝐞𝐬 𝐢𝐧 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬
+ Kubernetes uses health probes to continuously monitor applications and ensure they are highly available and self-healing. If something goes wrong, probes help Kubernetes decide the right recovery action automatically.
+
+⚡ Types of Health Probes:
+
+𝐑𝐞𝐚𝐝𝐢𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞 → Ensures the application is ready to serve traffic.
+
+readinessProbe:
+ httpGet:
+  path: /ready
+  port: 8080
+ initialDelaySeconds: 5
+ periodSeconds: 3
+
+𝐋𝐢𝐯𝐞𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞 → Restarts the application if it becomes unhealthy.
+
+livenessProbe:
+ httpGet:
+  path: /healthz
+  port: 8080
+ initialDelaySeconds: 10
+ periodSeconds: 5
+
+𝐒𝐭𝐚𝐫𝐭𝐮𝐩 𝐏𝐫𝐨𝐛𝐞 → Useful for applications that take longer to start, especially legacy ones.
+
+startupProbe:
+ httpGet:
+  path: /startup
+  port: 8080
+ failureThreshold: 30
+ periodSeconds: 10
+
+
+👉 Health Check Methods:
+HTTP, TCP, Command execution
+
+With these probes in place, Kubernetes ensures your workloads stay reliable, resilient, and production-ready. 
