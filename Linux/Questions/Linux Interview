@@ -1,0 +1,41 @@
+Linux Interview preparation.  
+
+1. Linux Boot Process (Step-by-Step):
+a. BIOS/UEFI initializes hardware and loads the bootloader.
+b. Bootloader (GRUB) loads the kernel into memory.
+c. Kernel initializes hardware drivers and mounts the root filesystem.
+d. init/systemd process starts and manages system services.
+e. Runlevel/systemd target is reached and system becomes usable.
+2. Troubleshooting a Slow Server:
+a. Check CPU usage (top, htop).
+b. Check memory usage (free -h, vmstat).
+c. Check I/O wait (iostat, sar).
+d. Check disk usage (df -h, du).
+e. Check network usage (iftop, ss, netstat).
+3. Check High CPU/Memory Process:
+- top, htop, ps aux --sort=-%cpu, ps aux --sort=-%mem
+4. Troubleshoot High I/O Wait:
+- iostat -x, pidstat -d, lsof, iotop, check slow disks, heavy read/write processes.
+5. Load Average vs CPU Utilization:
+- Load Average: Number of processes waiting or running.
+- CPU Utilization: Percentage of CPU used.
+6. Check Open Ports / Listening Process:
+- ss -tulpn, netstat -tulpn, lsof -i :
+7. Analyze Logs for System Crash / Kernel Panic:
+- /var/log/messages, /var/log/kern.log, journalctl -xe, crash dumps (/var/crash)
+8. Run Levels / systemd Targets:
+- multi-user.target, graphical.target, rescue.target
+9. Manage Services (systemd):
+- systemctl start/stop/status/enable/disable/mask
+10. Check Disk Usage & Inodes:
+- df -h, du -sh *, df -i
+11. Causes of Boot Failure:
+- GRUB issues, corrupted filesystem, kernel panic, missing disk UUID
+12. Extend LVM Without Downtime:
+- pvcreate, vgextend, lvextend, resize2fs/xfs_growfs
+13. Schedule Cron Job & Verify:
+- crontab -e, check /var/log/cron or journalctl -u crond
+14. Check Deleted File Process:
+- lsof | grep deleted
+15. Check Swap Usage:
+- free -h, swapon -s, vmstat, top
