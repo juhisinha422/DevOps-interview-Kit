@@ -1,0 +1,121 @@
+Linux problem-solving real-time questions and answers for L2 admin. Part-1
+
+1. All users, including root, are unable to log in. What could be the issue?
+Answer:
+
+Incorrect permissions on /etc/passwd, /etc/shadow, or PAM configuration files
+
+Corrupted or missing system files
+
+Authentication server (e.g., LDAP) is down or misconfigured
+
+Network issues preventing remote login
+
+Disk full or /tmp inaccessible, affecting login processes Fix: Boot into single-user mode, check file permissions, restore from backup, or reconfigure authentication.
+
+2. A user reports that their cron jobs are not running. How do you troubleshoot?
+Answer:
+
+Check if crond service is running: systemctl status crond
+
+Verify cron syntax: crontab -l
+
+Ensure the user is not listed in /etc/cron.deny
+
+Check logs: /var/log/cron or journalctl -u crond
+
+Confirm executable permissions and correct paths in the script
+
+3. A server is running out of disk space. What steps do you take?
+Answer:
+
+Use df -h to identify full partitions
+
+Use du -sh /* or ncdu to find large directories
+
+Check /var/log for oversized logs
+
+Clean up old backups, temp files, or unused packages
+
+Consider adding disk space or moving data to another volume
+
+4. A service fails to start after reboot. What’s your approach?
+Answer:
+
+Check service status: systemctl status <service>
+
+Review logs: journalctl -xe or service-specific logs
+
+Validate configuration files for syntax errors
+
+Confirm dependencies are installed and enabled
+
+Use strace or lsof for deeper diagnostics
+
+5. Network is unreachable from a Linux server. How do you debug?
+Answer:
+
+Check interface status: ip a or nmcli
+
+Verify routing table: ip route
+
+Test DNS: dig, nslookup, or ping
+
+Inspect firewall rules: iptables -L or firewalld
+
+Use tcpdump or netstat to trace traffic
+
+6. A user can't SSH into a server. What do you check first?
+Answer:
+
+Verify SSH service: systemctl status sshd
+
+Check firewall rules: iptables -L or firewalld
+
+Confirm port 22 is open: netstat -tuln | grep :22
+
+Inspect /etc/ssh/sshd_config for misconfigurations
+
+Review logs: /var/log/auth.log or journalctl -u sshd
+
+7. Disk usage is 100%, but du shows low usage. What's wrong?
+Answer:
+
+Deleted files still held by running processes
+
+Use lsof | grep deleted to find them
+
+Restart the process or service to release space
+
+8. A cron job isn’t executing. How do you troubleshoot?
+Answer:
+
+Check crontab -l for correct syntax
+
+Ensure crond is running: systemctl status crond
+
+Validate script permissions and paths
+
+Review /var/log/cron or journalctl -u crond
+
+9. High CPU usage reported. What’s your approach?
+Answer:
+
+Use top, htop, or pidstat to identify processes
+
+Check for runaway scripts or loops
+
+Use strace or perf for deeper analysis
+
+Consider tuning or killing the offending process
+
+10. A service fails to start after reboot. What do you do?
+Answer:
+
+Check systemctl status <service>
+
+Review logs: journalctl -xe
+
+Validate config files for syntax errors
+
+Confirm dependencies are active
