@@ -1,0 +1,51 @@
+What to do?
+How to do?
+Where to prepare?
+
+Puzzled?
+????
+
+Let’s suppose you have an interview of DevOps having leisure time of only 2 to 4 hours and #recruiter called on the same day asking availability ….
+
+My approach is;
+&Start checking our resume and their JD
+&Research the company as much as possible 
+&Focus only on the specific topics 
+
+For example;
+A GCP Devops interview having after 2 hours….
+
+Technical Questions and Answers
+1. Terraform in GCP project?  
+I used Terraform to provision a multi-environment GCP infrastructure including VPC, GKE clusters, and Cloud SQL. Challenges included managing state remotely with GCS backend and handling resource dependencies. I modularized the code for reusability and used workspaces for environment isolation.
+
+2. Design CI/CD with Cloud Build?  
+I create Cloud Build pipelines with triggers on code commit. Steps include building Docker images, running tests, pushing images to Artifact Registry, and deploying to GKE or Cloud Run. Integration with secret manager ensures credentials security.
+
+3. Monitoring and troubleshooting GKE pods?  
+I use Stackdriver Monitoring and Prometheus for metrics, and Stackdriver Logging for logs. For failing pods, I check pod events, container logs, health checks, resource limits, and network policies. I also verify deployment configs.
+
+4. Rolling updates and zero downtime?  
+I use Kubernetes Deployment strategies with rolling updates configured for maxUnavailable=0 and maxSurge=1. Readiness probes ensure traffic shifts only to healthy pods preventing downtime.
+
+5. IaC for multi-tier architecture?  
+I define tiers as separate modules in Terraform (network, app, db). Pros: repeatability, version control, automated testing. Cons: initial learning curve, managing drift.
+
+6. Service accounts and secrets?  
+I assign least privilege service accounts to each GCP resource. Secrets are stored and accessed securely via Secret Manager or HashiCorp Vault integrated into pipelines.
+
+Managerial Questions and Answers
+1. Challenging project delivery?  
+I managed a cloud migration project with tight deadlines and scope changes. Clear communication, prioritization, and daily stand-ups helped address blockers early and deliver on time.
+
+2. Task prioritization with stakeholders?  
+I balance urgent issues with planned work, engaging stakeholders regularly and using tools like Jira to maintain transparency and realign priorities dynamically.
+
+3. Resolving team conflicts?  
+I encourage open dialogue, identify root causes, mediate disagreements focusing on shared goals and ensure respectful collaboration.
+
+4. Measuring DevOps success?  
+Key metrics include deployment frequency, change failure rate, mean time to recovery (MTTR), and customer satisfaction for continuous improvement.
+
+5. Cross-functional collaboration?  
+I promote integrated standups, shared tools, and joint retrospectives to align dev, QA, and ops teams around common objectives. 
