@@ -119,3 +119,61 @@ Review logs: journalctl -xe
 Validate config files for syntax errors
 
 Confirm dependencies are active
+
+
+Linux problem-solving real-time questions and answers for L2 admin. Part-2
+
+11. Network is unreachable. How do you debug?
+Answer:
+
+Check interface: ip a
+
+Verify routes: ip route
+
+Test DNS: dig, nslookup
+
+Inspect firewall: iptables, firewalld
+
+Use tcpdump for packet tracing
+
+12. Filesystem is read-only. What’s the fix?
+Answer:
+
+Check dmesg for disk errors
+
+Remount: mount -o remount,rw /
+
+Run fsck in rescue mode if needed
+
+13. User can't write to a directory. What do you check?
+Answer:
+
+Permissions: ls -ld <dir>
+
+Ownership: chown user:user <dir>
+
+ACLs: getfacl <dir>
+
+SELinux/AppArmor restrictions
+
+14. System is slow. What’s your diagnostic path?
+Answer:
+
+Check CPU, memory, and I/O: top, vmstat, iostat
+
+Look for zombie or stuck processes
+
+Review disk usage and swap
+
+Check logs for errors or warnings
+
+15. A package won’t install. What do you do?
+Answer:
+
+Check repo availability: yum repolist or apt update
+
+Clear cache: yum clean all or apt clean
+
+Resolve dependencies: yum deplist or apt-cache depends
+
+Use verbose install: yum install -v or apt -o Debug::pkgProblemResolver=yes install
