@@ -1,0 +1,18 @@
+Deep Dive into Topiccs🧨🚀
+
+• In your CI/CD pipeline, where do you prefer to run unit tests — in the build stage or pre-deploy stage, and why?
+• What’s one trick that made your Jenkins pipelines faster and more stable?
+• When do you actually use a multi-stage Docker build instead of a single Dockerfile?
+• How do you handle secrets securely inside containers without exposing them in plain text?
+• What’s your go-to step when you see a pod stuck in CrashLoopBackOff?
+• When do you choose a StatefulSet over a Deployment in Kubernetes?
+• If your deployment stage fails but all previous stages succeed — how do you debug it efficiently?
+• What’s the biggest mistake issue faced while handling Terraform state files?
+• How do you deal with Terraform drift between the infrastructure and the state file?
+• Have you automated Terraform execution inside your CI/CD pipelines — if yes, how?
+• What’s your approach for cleaning up unused Docker images and volumes in production servers?
+• How do you ensure zero-downtime deployments in Kubernetes?w
+• How do you alert your team when a deployment fails mid-way?
+• What’s your first step to secure a Kubernetes cluster?
+• How do you manage secrets across environments — Vault, SSM, or something else?
+• How do you verify whether a Kubernetes service is correctly exposed through Ingress or LoadBalancer?
