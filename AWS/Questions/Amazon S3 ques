@@ -1,0 +1,7 @@
+ Q: 𝘞𝘩𝘪𝘤𝘩 𝘈𝘞𝘚 𝘴𝘦𝘳𝘷𝘪𝘤𝘦 𝘪𝘴 𝘱𝘳𝘪𝘮𝘢𝘳𝘪𝘭𝘺 𝘶𝘴𝘦𝘥 𝘵𝘰 𝘴𝘵𝘰𝘳𝘦 𝘢𝘯𝘥 𝘳𝘦𝘵𝘳𝘪𝘦𝘷𝘦 𝘢𝘯𝘺 𝘢𝘮𝘰𝘶𝘯𝘵 𝘰𝘧 𝘥𝘢𝘵𝘢 𝘧𝘳𝘰𝘮 𝘢𝘯𝘺𝘸𝘩𝘦𝘳𝘦 𝘰𝘯 𝘵𝘩𝘦 𝘸𝘦𝘣?
+
+✅ 𝐀𝐧𝐬𝐰𝐞𝐫 (𝐒𝐭𝐞𝐩-𝐛𝐲-𝐬𝐭𝐞𝐩):
+ 👉 Amazon S3 (Simple Storage Service)
+🔹 S3 is an object storage service designed for scalability, durability, and availability.
+ 🔹 Commonly used for backups, static website hosting, and data lakes.
+ 🔹 You can access your data anytime via the console, CLI, or API.
