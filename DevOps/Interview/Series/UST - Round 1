@@ -1,0 +1,64 @@
+1st Round Interview at UST! 🚀
+
+AWS
+Jenkins
+Docker
+Kubernetes (K8s)
+Terraform
+
+Sharing some of the key questions I was asked — hope it helps others preparing for DevOps roles:
+
+🔹 AWS Questions
+How will you auto-scale an application when traffic spikes?
+
+Difference between ALB, NLB & CLB — where to use which?
+
+How will you secure an S3 bucket for both public and private access?
+
+Your EC2 becomes unreachable — how will you troubleshoot?
+
+How do you implement Blue-Green deployment using AWS services?
+
+🔹 Jenkins Questions
+How to design a multi-environment CI/CD pipeline?
+
+Scripted vs Declarative pipeline — when do you choose which?
+
+How do you secure Jenkins credentials and users?
+
+How do you trigger Jenkins automatically using Git webhooks?
+
+How do you clean workspace & handle pipeline failures?
+
+🔹 Docker Questions
+Explain Docker multi-stage builds with an example.
+
+How do you troubleshoot high CPU usage in a container?
+
+Best practices for production-ready Dockerfiles?
+
+How to handle environment variables securely?
+
+What happens internally when you run docker run?
+
+🔹 Kubernetes Questions
+Pod in CrashLoopBackOff — how do you debug?
+
+Deployment vs StatefulSet vs DaemonSet — real use cases?
+
+How do you expose a service externally?
+
+How do ConfigMaps and Secrets work?
+
+RollingUpdate vs Recreate strategy — when to use which?
+
+🔹 Terraform Questions
+How do you manage Terraform state in teams?
+
+What happens internally during terraform apply?
+
+Explain Terraform modules with a scenario.
+
+How to prevent accidental deletion of resources?
+
+How do you fix drift when changes are done manually on AWS?
