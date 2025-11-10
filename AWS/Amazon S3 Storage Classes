@@ -1,0 +1,25 @@
+Amazon S3 provides six primary storage classes tailored for various use cases and cost structures:
+
+1. **S3 Standard – Frequent Access** 
+ Ideal for data accessed regularly, offering high durability (11 9’s) and availability (99.99%). 
+ Example use cases include websites, mobile apps, and backups.
+
+2. **S3 Intelligent-Tiering** 
+ This class automatically transitions data between frequent and infrequent access tiers based on usage patterns, with no retrieval fees. 
+ It is best suited for unpredictable access patterns.
+
+3. **S3 Standard-IA (Infrequent Access)** 
+ Designed for data accessed less frequently but requiring quick retrieval. It offers cheaper storage with applicable retrieval costs. 
+ Common examples include disaster recovery and backups.
+
+4. **S3 One Zone-IA** 
+ Similar to Standard-IA but stored in a single Availability Zone (AZ), this option is lower in cost but offers less resilience. 
+ It is suitable for secondary copies or data that can be recreated.
+
+5. **S3 Glacier Instant Retrieval** 
+ This class is for archiving data that requires millisecond access, providing a lower cost compared to Standard-IA. 
+ Examples include compliance records and medical images.
+
+6. **S3 Glacier Deep Archive** 
+ The lowest-cost storage option, with retrieval times in hours. 
+ It is typically used for long-term backups and compliance archives lasting 7 to 10 years.
