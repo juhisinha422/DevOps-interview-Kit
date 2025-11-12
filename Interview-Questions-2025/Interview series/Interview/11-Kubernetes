@@ -1,0 +1,24 @@
+DevOps Q&A Series: Topic 11 — Kubernetes (K8s)
+
+🚀 Powering the cloud-native revolution, this edition focuses on Kubernetes, the prime operator for containers orchestration — enabling scalability, self-healing, and automation across microservices deployments ☸️
+
+1️⃣ What is Kubernetes, and how does it differ from Docker Swarm or OpenShift?
+2️⃣ Explain the key components of the Kubernetes architecture — API Server, etcd, Scheduler, Controller Manager, and Kubelet.
+3️⃣ What is a Pod in Kubernetes, and why is it considered the smallest deployable unit?
+4️⃣ What are Deployments, ReplicaSets, and DaemonSets? When would you use each?
+5️⃣ How do Services in Kubernetes (ClusterIP, NodePort, LoadBalancer) expose applications internally and externally?
+6️⃣ What is a Namespace, and how does it help with resource isolation and multi-tenancy?
+7️⃣ Explain the difference between ConfigMaps and Secrets. How are they used for configuration management?
+8️⃣ How does Kubernetes handle storage through Persistent Volumes (PV) and Persistent Volume Claims (PVC)?
+9️⃣ What is the purpose of Ingress in Kubernetes, and how does it differ from a LoadBalancer service?
+🔟 How does Kubernetes manage scaling — both manual and auto-scaling (HPA, VPA, Cluster Autoscaler)?
+1️⃣1️⃣ What are Labels, Selectors, and Annotations? How are they used for organizing and targeting Kubernetes resources?
+1️⃣2️⃣ How does the Kubernetes Scheduler decide where to place Pods?
+1️⃣3️⃣ What is a StatefulSet, and when would you use it over a Deployment?
+1️⃣4️⃣ How does Kubernetes ensure high availability and self-healing?
+1️⃣5️⃣ What are taints, tolerations, and node affinity? How do they control Pod placement?
+1️⃣6️⃣ How can you perform rolling updates and rollbacks for Deployments in Kubernetes?
+1️⃣7️⃣ How do you secure Kubernetes clusters — covering RBAC, Network Policies, and Secrets management?
+1️⃣8️⃣ What are Helm charts, and how do they simplify Kubernetes application deployment and versioning?
+1️⃣9️⃣ How do you monitor and troubleshoot Kubernetes clusters using tools like kubectl, logs, and describe commands?
+2️⃣0️⃣ What are some best practices for designing production-ready Kubernetes clusters in terms of networking, security, and scaling?
