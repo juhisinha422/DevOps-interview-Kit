@@ -1,0 +1,19 @@
+Here are Few 𝐚𝐝𝐯𝐚𝐧𝐜𝐞𝐝, 𝐫𝐞𝐚𝐥-𝐰𝐨𝐫𝐥𝐝 𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 you must be ready for
+
+How do you design blue-green or canary infrastructure rollouts using Terraform and pipelines?
+
+How do you perform infra changes without downtime—especially for autoscaling or load balancers?
+
+How do you manage secret rotation and injection using Vault or AWS Secrets Manager?
+
+How do you integrate Terraform into CI/CD pipelines for environment promotions (dev → prod)?
+
+How do you enforce compliance and governance using Sentinel or OPA with Terraform Cloud?
+
+How do you test Terraform code for logic, drift, and policy compliance?
+
+How do you migrate from Terraform OSS to Terraform Cloud with minimal disruption?
+
+How do you ensure idempotency and prevent unwanted re-creations during apply?
+
+How do you secure and lock the state file when multiple users collaborate via S3 + DynamoDB?
