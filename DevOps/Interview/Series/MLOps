@@ -1,0 +1,36 @@
+MLOps Interview Preparation Series 🚀
+
+Topic: Top Real-World MLOps basic Interview Questions for DevOps & SRE Engineers
+
+As the tech landscape shifts toward AI-driven automation, MLOps has become one of the most in-demand skillsets in cloud and DevOps roles.
+ If you’re preparing for an interview or transitioning from DevOps/SRE into MLOps, these scenario-based questions will help you sharpen your fundamentals 👇
+
+Top MLOps Interview Questions
+What is MLOps?
+How is MLOps different from DevOps?
+Why do we need MLOps?
+What are the main stages in an MLOps pipeline?
+What tools are commonly used in MLOps?
+What is model training in MLOps?
+What is model deployment?
+What is the difference between training and inference?
+What is data drift?
+What is model drift?
+How do you monitor a machine learning model in production?
+What is version control in MLOps?
+Why is data versioning important?
+What is CI/CD in MLOps?
+What are some CI/CD tools used in MLOps?
+What is the role of Docker in MLOps?
+What is the role of Kubernetes in MLOps?
+What is MLflow and what is it used for?
+What is a feature store?
+What are the benefits of automating ML workflows?
+How do you retrain a model when new data is available?
+What are some challenges faced in MLOps?
+What are the benefits of MLOps for data scientists and engineers?
+What is model registry in MLOps?
+What are the key metrics to monitor ML models in production?
+
+Pro Tip:
+If you already know DevOps — learning MLOps becomes easier. Start with understanding model lifecycle, data pipelines, and monitoring tools like MLflow, Kubeflow, Airflow, and SageMaker.
