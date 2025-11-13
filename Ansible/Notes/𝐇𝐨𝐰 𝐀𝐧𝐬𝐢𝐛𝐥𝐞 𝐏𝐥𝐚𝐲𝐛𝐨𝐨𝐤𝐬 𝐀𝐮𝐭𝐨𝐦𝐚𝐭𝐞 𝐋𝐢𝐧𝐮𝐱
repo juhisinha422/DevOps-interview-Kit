@@ -1,0 +1,22 @@
+𝐇𝐨𝐰 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐏𝐥𝐚𝐲𝐛𝐨𝐨𝐤𝐬 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐞 𝐋𝐢𝐧𝐮𝐱
+
+𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐏𝐥𝐚𝐲𝐛𝐨𝐨𝐤𝐬 are at the heart of automation in Linux.
+They use simple YAML syntax to define tasks, roles, and configurations.
+
+Example:
+
+- name: Install and start Apache
+ hosts: webservers
+ become: yes
+ tasks:
+ - name: Install Apache
+ apt: name=apache2 state=present
+ - name: Start Apache
+ service: name=apache2 state=started
+
+
+✅ No manual steps
+✅ Repeatable, consistent configurations
+✅ Scalable across multiple servers
+
+Playbooks turn complex admin tasks into one-click automation.
