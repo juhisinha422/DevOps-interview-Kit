@@ -1,0 +1,13 @@
+DevOps technical interview
+
+🔹 What is the difference between Bash and Sh, and when should each be used?
+
+ 🔹 What is the difference between an Application Load Balancer (ALB) and a Network Load Balancer (NLB)? When would you use each?
+
+ 🔹 What is the difference between Horizontal Pod Autoscaler (HPA) and Vertical Pod Autoscaler (VPA) in Kubernetes?
+
+ 🔹 Can you describe a real-time issue you have faced in a project and how you resolved it?
+
+ 🔹 Your Jenkins pipeline takes 45 minutes to complete — how would you reduce the execution time?
+
+ 🔹 How do you store secrets in a CI/CD pipeline?
