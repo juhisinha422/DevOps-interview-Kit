@@ -1,0 +1,24 @@
+1. What is Git?
+Ans : Git is a distributed version control system that helps developers track changes in source code and collaborate efficiently.
+
+2. What is a Version Control System?
+Ans - A version control system (VCS) manages changes to files over time, allowing multiple developers to work together and maintain history.
+
+3. How do you initialize a Git repository?
+Ans - git init
+
+4. What is a commit in Git?
+Ans - A commit is a snapshot of changes in the repository. It records the state of files at a specific point in time.
+Command:
+git commit -m "Commit message"
+
+5. How do you create a new branch in Git?
+Ans - git branch <branch-name>
+
+6. How do you switch between branches in Git?
+Ans - git checkout <branch-name>
+
+7. What is the difference between git pull and git fetch?
+Ans:
+1)git fetch downloads changes from the remote repository without merging them into your local branch.
+2)git pull downloads changes and merges them into your current branch.
