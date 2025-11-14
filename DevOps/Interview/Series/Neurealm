@@ -1,0 +1,52 @@
+Final Round Interview Completed at Neurealm (Senior DevOps Engineer) 🚀
+Today I appeared for the final technical round at Neurealm, and it was a complete deep dive into real-world DevOps scenarios.
+
+The panel focused heavily on Kubernetes, Helm, Jenkins, AWS, Terraform, Prometheus & Grafana — all scenario-based and practical.
+Sharing the questions here so others preparing for similar roles can benefit 👇
+
+Kubernetes — Scenario-Based Questions
+Your Pod is restarting frequently. How do you identify the root cause?
+A Deployment is stuck in "progressing" state — how do you troubleshoot?
+How do you debug a CrashLoopBackOff issue?
+How do you check which Pods are consuming high memory or CPU?
+Node is in NotReady state — steps to investigate?
+Your application is not accessible through service — what will you check?
+How do you handle failed daemonset pods?
+Persistent Volume not attaching — what’s your troubleshooting approach?
+How do you perform rolling updates and rollbacks safely?
+How do you perform health checks for Pods and Nodes in live environments?
+
+Helm — Practical Questions
+What are values.yaml and how do you override them?
+How do you manage multiple environment deployments using Helm?
+How do you debug a failed Helm release?
+What is the difference between Helm Chart, Release, and Repository?
+
+Jenkins — CI/CD Questions
+Why choose Declarative Pipeline over Scripted Pipeline?
+How do you integrate SonarQube into a Jenkins pipeline?
+How do you build → containerize → push → deploy using Jenkins?
+
+AWS — Scenario Questions
+Your EC2 instance is unreachable — how do you diagnose?
+How do you implement Auto Scaling with proper health checks?
+Difference between ALB and NLB and when to use which?
+S3 cross-region replication setup steps?
+How to troubleshoot high latency in API Gateway?
+How do you reduce RDS cost without downtime?
+What happens if Terraform state is deleted in S3?
+How do you secure your VPC workloads at scale?
+
+Terraform — Infra as Code Questions
+How do you recover from a deleted Terraform state file?
+How do you create 50 EC2 instances with different configurations (dynamic blocks)?
+Share your screen and write a terraform code to create a VPC with all there components and create a RDS database into VPC.
+
+Prometheus & Grafana — Monitoring Questions
+How do you set up custom metrics for Kubernetes pods?
+How do you troubleshoot missing data points in Grafana dashboards?
+How do you create alerts for high CPU or memory usage?
+
+Reflection:
+ This interview round was entirely hands-on, scenario-focused, and tested how well you handle production-grade issues, automation thinking, and troubleshooting skills.
+If you're preparing for DevOps/SRE roles — start practicing real scenarios, not definitions.
