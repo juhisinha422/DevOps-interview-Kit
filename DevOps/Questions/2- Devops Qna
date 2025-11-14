@@ -1,0 +1,39 @@
+🔐🚀 DevOps Interview Q&A 
+
+How do you manage secrets in Terraform?
+Use Vault/SSM/Secrets Manager. Keep secrets out of .tf files. Use sensitive variables, remote backend with encryption, and load secrets dynamically using data sources.
+
+What is the difference between Application Load Balancer and Network Load Balancer?
+ALB works at Layer 7, supports HTTP routing, host/path rules, WAF, and authentication.
+NLB works at Layer 4, provides ultra-low latency, handles TCP/UDP traffic, and supports static IPs.
+
+How do you manage secrets in CI/CD pipeline?
+Store them in CI secret stores or Vault. Access them at runtime using environment variables or secret injection. Avoid storing secrets in code or configs.
+
+Same deployment steps for different applications — how do you manage?
+Use reusable pipeline templates or shared libraries. Pass app-specific parameters (image name, repo, manifests) so the same pipeline structure works for all apps.
+
+How Terraform can retrieve secrets from Vault?
+Use the Vault provider, authenticate using AppRole/IAM/Kubernetes, and pull secrets using Vault KV data sources. Inject them into Terraform variables securely.
+
+How a pod can access AWS resources if needed to run?
+Use IRSA. Create IAM role + OIDC provider and annotate the service account. The pod receives temporary AWS credentials automatically.
+
+CI/CD flow in deployment of application — steps involved?
+Developer push → CI builds code → run tests → build & scan image → push to registry → CD updates manifests/Helm → deploy to cluster → run smoke tests → notify.
+
+Can't we have a single pipeline to deploy apps in different environments?
+Yes. Use multi-stage pipelines with environment variables and approval gates. Same pipeline, different configs for Dev/QA/Prod.
+
+If you build the image in one step, how does the Kubernetes manifest use same image dynamically?
+CI updates the manifest/Helm values with the new tag, or GitOps tools (like ArgoCD) automatically detect and deploy the new image.
+
+How do you protect Terraform state file?
+Use remote backends like S3/GCS/Terraform Cloud with encryption enabled, restricted IAM access, bucket versioning, and audit logging.
+
+How do you enable lock Terraform state file?
+Use state locking: in AWS use DynamoDB with the S3 backend; Terraform Cloud provides built-in locking to prevent concurrent applies.
+
+What will happen if multiple people applying same terraform resources?
+Without locking: race conditions, state corruption, unexpected overwrites.
+With locking: Terraform blocks the second user until the lock is releases
