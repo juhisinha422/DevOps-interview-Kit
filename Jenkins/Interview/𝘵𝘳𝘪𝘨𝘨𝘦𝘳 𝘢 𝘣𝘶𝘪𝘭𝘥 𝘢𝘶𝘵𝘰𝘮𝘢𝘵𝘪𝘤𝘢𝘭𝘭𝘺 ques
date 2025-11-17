@@ -1,0 +1,7 @@
+𝘐𝘯 𝘑𝘦𝘯𝘬𝘪𝘯𝘴, 𝘺𝘰𝘶 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘵𝘳𝘪𝘨𝘨𝘦𝘳 𝘢 𝘣𝘶𝘪𝘭𝘥 𝘢𝘶𝘵𝘰𝘮𝘢𝘵𝘪𝘤𝘢𝘭𝘭𝘺 𝘸𝘩𝘦𝘯𝘦𝘷𝘦𝘳 𝘤𝘰𝘥𝘦 𝘪𝘴 𝘱𝘶𝘴𝘩𝘦𝘥 𝘵𝘰 𝘎𝘪𝘵𝘏𝘶𝘣. 𝘏𝘰𝘸 𝘤𝘢𝘯 𝘺𝘰𝘶 𝘢𝘤𝘩𝘪𝘦𝘷𝘦 𝘵𝘩𝘪𝘴?
+
+Solution: 
+👉 Use a GitHub Webhook
+🔹 Configure a webhook in your GitHub repository to notify Jenkins of new commits.
+ 🔹 In Jenkins, enable “Build when a change is pushed to GitHub” in the job configuration.
+ 🔹 Jenkins will automatically start the build each time code is pushed — enabling true continuous integration.
