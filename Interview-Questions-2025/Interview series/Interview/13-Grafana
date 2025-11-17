@@ -1,0 +1,43 @@
+✨ DevOps Q&A Series: Topic 13 — Grafana 🎨📊
+
+🚀 Grafana is the visualization powerhouse of modern observability, enabling teams to build rich dashboards, correlate metrics/logs/traces, integrate multiple data sources, and drive real-time insight across complex cloud-native systems.
+
+1️⃣ What is Grafana, and how does it differ from other visualization tools like Kibana or Datadog Dashboards?
+
+2️⃣ Explain the Grafana architecture — UI layer, backend server, data source plugins, alerting engine.
+
+3️⃣ What are Grafana data sources? Name commonly used ones like Prometheus, Loki, ElasticSearch, MySQL, CloudWatch.
+
+4️⃣ How does Grafana connect to Prometheus? What endpoint or URL is required for data source configuration?
+
+5️⃣ What is a Grafana dashboard? Explain panels, rows, variables, and data transformations.
+
+6️⃣ Explain Grafana panels — Graph, Gauge, Stat, Table, Heatmap, and Bar Gauge. When do you use each?
+
+7️⃣ What are Grafana Variables? How do templating and dynamic dashboard filters work?
+
+8️⃣ How does Grafana Alerting work? Explain alert rules, contact points, notification policies, and grouping.
+
+9️⃣ What is a Grafana organization and how do users, roles, and permissions work in multi-team setups?
+
+🔟 What are Grafana plugins? Explain data source plugins, panel plugins, and how you install them.
+
+1️⃣1️⃣ How does Grafana support logs and traces? Explain integration with Loki and Tempo.
+
+1️⃣2️⃣ What are data transformations in Grafana, and why are they important for combining or filtering series?
+
+1️⃣3️⃣ What is the difference between Grafana OSS, Grafana Enterprise, and Grafana Cloud?
+
+1️⃣4️⃣ How do you integrate Grafana with Kubernetes? Explain Helm chart, dashboards-as-code, and ConfigMaps for storing dashboards.
+
+1️⃣5️⃣ What are dashboard provisioning and configuration-as-code in Grafana? How do you automate dashboard deployment?
+
+1️⃣6️⃣ How does Grafana handle authentication? Explain OAuth, LDAP/AD, SSO, and built-in user management.
+
+1️⃣7️⃣ How do you build highly optimized dashboards? Discuss caching, PromQL optimization, and reducing panel load.
+
+1️⃣8️⃣ How do you export and import dashboards? What is JSON model of a Grafana dashboard?
+
+1️⃣9️⃣ How do you troubleshoot Grafana issues — no data, slow dashboards, permissions errors, data source failures?
+
+2️⃣0️⃣ What are best practices for Grafana in production — folders, versioning dashboards, RBAC, alert routing, and backup strategy?
