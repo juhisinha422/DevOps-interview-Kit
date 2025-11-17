@@ -1,0 +1,37 @@
+Kernel Equity Interview experience— Cloud & DevOps Round ✨
+
+
+☁️ GCP
+1️⃣ What are the services you used in GCP?
+2️⃣ What are different types of load balancers?
+3️⃣ What is global and regional LB?
+4️⃣ What is process of creating both load balancers?
+5️⃣ You need to enable port 80, 443, and socket layer — which LB will you use?
+6️⃣ Why should we use Global LB?
+7️⃣ What is the process of creating GKE cluster?
+8️⃣ Share your challenges/scenarios in GCP.
+9️⃣ How will you solve cost incur issues in GCP?
+
+☁️ AWS
+🔟 What all services have you used in AWS?
+11️⃣ What are different load balancers in AWS?
+12️⃣ What is process of creating load balancers in AWS?
+13️⃣ How will you deploy Docker images on serverless stacks?
+14️⃣ What is your process for creating a backup architecture in both clouds?
+15️⃣ What are considerations for using Site-to-Site VPN and Direct Connect?
+16️⃣ What is your approach for creating private-subnet-only resources?
+17️⃣ What are VPC components in both clouds?
+18️⃣ How will you create snapshot in Cloud SQL in GCP?
+19️⃣ What are backup methods in GCP?
+20️⃣ Give a scenario of using Site-to-Site VPN and Cloud Interconnect in GCP.
+21️⃣ How will you securely provide resources access to GCP in a private server?
+
+☸️ Kubernetes
+22️⃣ What is K8s Services: LB, ClusterIP, and NodePort?
+23️⃣ What are network services for pod communication?
+24️⃣ What are Liveness and Readiness probes?
+25️⃣ What are Taints and Tolerations?
+26️⃣ What is Ingress Controller?
+27️⃣ What load balancers have you used to deploy apps?
+28️⃣ Did you work on GitHub Actions?
+29️⃣ What are security approaches for your K8s-based app?
