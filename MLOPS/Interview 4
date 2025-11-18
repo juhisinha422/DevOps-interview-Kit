@@ -1,0 +1,66 @@
+MLOps Interview Series -4 🚀
+
+Interviewer: "Walk me through an end-to-end ML pipeline."
+You: "8 stages: Data Collection → Preprocessing → Feature Engineering → Training → Evaluation → Versioning → Deployment → Monitoring."
+
+Interviewer: "What tools?"
+You: "S3 for data, Pandas for preprocessing, TensorFlow/PyTorch for training, MLflow for versioning, Docker+K8s for deployment, Prometheus for monitoring."
+
+Interviewer: "TensorFlow Serving vs TorchServe?"
+You: "TensorFlow Serving for TF models, TorchServe for PyTorch models. Choose based on training framework."
+
+Interviewer: "Performance differences?"
+You: "TF Serving is more mature and faster. TorchServe is newer but more flexible."
+
+Interviewer: "Blue-green vs canary deployment?"
+You:
+Blue-green: Two environments, instant switch, easy rollback
+Canary: Gradual rollout (5%→100%), safer for high-risk changes
+
+Interviewer: "Which is safer?"
+You: "Canary - catches issues early with minimal user impact."
+
+Interviewer: "ML CI/CD vs traditional?"
+You: "ML adds: data validation, model training, model evaluation, and drift monitoring."
+
+Interviewer: "Why data validation?"
+You: "Bad data = bad model. Check quality and schema before training."
+
+Interviewer: "How often retrain?"
+You: "Weekly, monthly, or trigger-based on performance drop."
+
+Interviewer: "Model performance dropped. How does versioning help?"
+You: "Check which model version and data version were used, compare with previous working version."
+
+Interviewer: "Tools?"
+You: "DVC for data, MLflow for models."
+
+Interviewer: "Example?"
+You: "Model v2 has 75% accuracy on data v1.5. Model v1 had 90% on data v1.4. Found data quality issue in v1.5."
+
+Interviewer: "What three metrics do you monitor?"
+You:
+Model performance (accuracy, F1)
+Data quality (missing values, distribution)
+System health (latency, error rate)
+
+Interviewer: "Accuracy dropped from 90% to 75% over 3 months. Why?"
+You: "Most likely data drift - input distribution changed from training data."
+
+Interviewer: "How to fix?"
+You: "Retrain with recent data, set up automatic retraining schedule and continuous drift monitoring."
+
+Interviewer: "How to detect?"
+You: "Compare current vs training data distribution. Use tools like Evidently AI."
+
+Interviewer: "Model doesn't fit on one GPU. What do you do?"
+You: "Use distributed training - split across multiple GPUs."
+
+Interviewer: "How?"
+You: "Data Parallelism (split data) or Model Parallelism (split model). Use PyTorch DDP, TensorFlow MirroredStrategy, or DeepSpeed."
+
+Interviewer: "Challenges?"
+You: "GPU memory limits, communication overhead, fault tolerance."
+
+Interviewer: "Solutions?"
+You: "Mixed precision (FP16), gradient checkpointing, checkpoint every 1000 steps for recovery."
