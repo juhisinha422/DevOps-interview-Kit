@@ -1,0 +1,12 @@
+Inbound Traffic vs Outbound Traffic in AWS
+🔹Inbound Traffic
+ ☑️  Traffic that enters your AWS resources (EC2, Load Balancer, etc.)
+ ☑️  Example: A user accessing your website hosted on EC2.
+🔹Outbound Traffic
+ ☑️ Traffic that leaves your AWS resources.
+ ☑️ Example: Updating OS packages.
+Inbound vs Outbound traffic helps you:
+☑️ Configure security groups correctly
+☑️ Manage VPC networking effectively
+☑️ Control AWS data transfer costs
+☑️ Improve application security
