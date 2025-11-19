@@ -1,0 +1,43 @@
+ DevOps Q&A Series: Topic 14 — Splunk 🔍📊
+
+🚀 Splunk is one of the most powerful machine-data analytics platforms, enabling log ingestion, search, dashboards, alerting, security analytics, and observability across enterprise-scale systems.
+
+1️⃣ What is Splunk, and how does it differ from traditional log management tools like ELK Stack?
+
+2️⃣ Explain the components of Splunk — Forwarder, Indexer, and Search Head. What role does each play?
+
+3️⃣ What is a Splunk Forwarder? Differentiate between Universal Forwarder (UF) and Heavy Forwarder (HF).
+
+4️⃣ Explain how Splunk indexes data. What are buckets, index-time parsing, and search-time parsing?
+
+5️⃣ What is SPL (Search Processing Language)? Provide examples for filtering, aggregation, regex, joins, and time-series analysis.
+
+6️⃣ Explain the flow of data in Splunk — input → parsing → indexing → searching.
+
+7️⃣ What are Splunk sourcetypes? Why are sourcetypes important for field extraction and search accuracy?
+
+8️⃣ Explain Splunk inputs. What kinds of data sources can Splunk ingest — files, syslogs, API, metrics, streams?
+
+9️⃣ What is props.conf and transforms.conf? When do you use them for field extraction or data manipulation?
+
+🔟 Explain Splunk dashboards — panels, visualizations, tokens, drilldowns, and dynamic forms.
+
+1️⃣1️⃣ What are Splunk Alerts? Explain triggering conditions, throttling, suppression, and alert actions.
+
+1️⃣2️⃣ Explain Splunk Enterprise vs. Splunk Cloud. What are the major differences in architecture and management?
+
+1️⃣3️⃣ How do you scale Splunk in large environments? Discuss indexer clustering, search head clustering, and data replication.
+
+1️⃣4️⃣ What are lookups in Splunk? Explain CSV lookups, KV store lookups, and external lookups.
+
+1️⃣5️⃣ Explain data models in Splunk and how they power Pivot and accelerated searches.
+
+1️⃣6️⃣ What are Splunk apps and add-ons? Provide examples like Splunk for AWS, Splunk for Kubernetes, Security Essentials, etc.
+
+1️⃣7️⃣ How do you monitor Kubernetes logs with Splunk? Explain using Fluentd, Splunk Connect for Kubernetes, and HEC endpoints.
+
+1️⃣8️⃣ What is the HTTP Event Collector (HEC)? When would you use it over forwarders?
+
+1️⃣9️⃣ How do you troubleshoot Splunk issues — missing logs, indexing delays, high CPU on indexer, search slowness?
+
+2️⃣0️⃣ What are Splunk best practices — index design, retention policies, search optimization, RBAC, and monitoring console usage?
