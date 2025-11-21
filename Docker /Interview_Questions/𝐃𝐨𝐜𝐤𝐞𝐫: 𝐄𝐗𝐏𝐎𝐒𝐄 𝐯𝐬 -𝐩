@@ -1,0 +1,29 @@
+ 𝐃𝐨𝐜𝐤𝐞𝐫: 𝐄𝐗𝐏𝐎𝐒𝐄 𝐯𝐬 -𝐩 
+
+1️⃣ What 𝐄𝐗𝐏𝐎𝐒𝐄 Actually Does
+
+- Documentation only — tells Docker: “my app listens on this port inside the container.”
+- Doesn’t open the port on your host.
+
+Useful for:
+docker run -P → maps exposed ports to random host ports
+Docker Compose port hints
+Same network: containers can talk directly (no -p needed)
+
+
+2️⃣ What -𝐩 Does
+
+This is the real port mapping.
+
+docker run -p 8080:8080 myapp
+
+Host 8080 → container 8080
+ Now you can access: http://localhost:8080
+
+Remap ports:
+docker run -p 3000:8080 myapp
+Visit: http://localhost:3000
+
+👇
+EXPOSE → documentation
+-p → publish port to host
