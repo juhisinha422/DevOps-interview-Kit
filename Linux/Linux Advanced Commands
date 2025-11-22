@@ -1,0 +1,41 @@
+******Linux Advanced Commands******
+
+1. Find the 5 Largest Files in a Directory
+Question: How do you find the 5 largest files in a directory (e.g., /var/log)? Answer: Use the find command with du, sort the results by size, and display the top 5.
+Command: find /var/log -type f -exec du -h {} + | sort -rh | head -n 5
+
+2. Check Which Process Uses the Most Memory or CPU
+Question: How do you check which process is using the most memory or CPU? Answer: Sort processes by memory usage in descending order.
+Command: ps aux --sort=-%mem | head
+
+3. Monitor Live Logs of a Running Application
+Question: How do you monitor live logs of a running application? Answer: Use tail to follow log updates in real time.
+Command: tail -f /var/log/syslog
+
+4. Check Open Ports and Associated Processes
+Question: How do you check which ports are open and which process is using them? Answer: Use netstat with appropriate flags for TCP/UDP and process info.
+Command: sudo netstat -tulnp
+
+5. Find Files Modified in the Last 24 Hours
+Question: How do you find all files modified in the last 24 hours? Answer: Use find with the -mtime flag.
+Command: find /home -type f -mtime -1
+
+6. Check Disk Usage of Directories Under /var
+Question: How do you check disk usage of all directories under /var? Answer: Use du with --max-depth=1 to summarize usage.
+Command: du -h --max-depth=1 /var
+
+7. Extract Specific Columns from a File
+Question: How do you extract specific columns from a file (e.g., access.log)? Answer: Use awk to print selected fields.
+Command: awk '{print $1, $9}' access.log
+
+ 8. Replace a Word in a File Without Opening It
+Question: How do you replace a word in a file without opening it? Answer: Use sed for in-place substitution.
+Command: sed -i 's/oldword/newword/g' file.txt
+
+9. Count Occurrences of the Word “error” in a Log File
+Question: How do you find the number of times the word “error” appears in a log file? Answer: Use grep with wc -l to count matches.
+Command: grep -o "error" /var/log/syslog | wc -l
+
+10. Check Running or Failed Services
+Question: How do you check which services are running or failed on a system? Answer: Use systemctl to list active services.
+Command: systemctl list-units --type=service --state=running
