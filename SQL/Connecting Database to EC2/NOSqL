@@ -1,0 +1,9 @@
+NOSQL -> Not Only SQL
+
+AWS DynamoDB
+Create table 
+Table name : learners
+Partition key:
+learners_id 
+String
+create table
