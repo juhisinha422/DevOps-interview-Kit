@@ -7,3 +7,27 @@ Partition key:
 learners_id 
 String
 create table
+
+
+===============
+
+AWS Lambda -> create function
+Name: insert-into-dynamo
+python
+
+create
+
+=============
+create event : 
+event name : insert-event
+EVENT JSON
+
+{
+  "message":"Hello Dosto"
+}
+
+
+Save
+
+Test -> insert event
+output will be displayed
