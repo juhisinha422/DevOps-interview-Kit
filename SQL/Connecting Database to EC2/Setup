@@ -1,0 +1,52 @@
+1. create Database and EC2 instance in AWS
+2. Connect EC2 to Mobaxterm
+3. Update the server and install mysql-client
+sudo apt-get update -y
+sudo apt-get install mysql-client
+
+
+4. Check if any database is running in local
+mysql - u root -p
+(Default username and password: root)
+
+5. Connect RDS to EC2
+mysql -u admin -h database-2.cduswyuyk9eh.ap-south-1.rds.amazonaws.com -P 3306 -p
+above details can be found in RDS -> Database -> connectivity -> Endpoints
+(give password created in RDS database)
+
+
+6. If not connecting, then go to database -> connectivity -> set up EC2 connection (ec2-to-rds-demo server) -> Setup
+7. then reboot server
+sudo reboot
+
+
+----------
+2nd Method to connect rds to ec2
+-> Go to IAM -> create roles -> AWS service -> EC2 -> Next -> AmazonRDSFullAccess, CloudWatchEventsFullAccess -> Next -> Name: ec2-to-access-rds -> create role
+
+Now go to EC2 -> select (ec2-to-rds-demo) -> Actions -> Security -> Modify IAM Role -> attach (rds role) -> Save
+
+Now try connecting database
+
+mysql -u admin -h database-2.cduswyuyk9eh.ap-south-1.rds.amazonaws.com -P 3306 -p
+
+
+-> It will connect
+
+-----------------------------
+
+show databases;
+create database aws;
+show databases;
+
+use aws
+CREATE TABLE learners (learner_id INT, learner_name VARCHAR(50));
+select * from learners;
+insert into learners (learner_id, learner_name) values(1,"Juhi");
+
+select * from learners;
+
+delete from learners where learner_id=1;
+select * from learners;
+
+
