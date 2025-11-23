@@ -1,0 +1,45 @@
+𝑨𝒏𝒔𝒊𝒃𝒍𝒆 𝑺𝒄𝒆𝒏𝒂𝒓𝒊𝒐-𝑩𝒂𝒔𝒆𝒅 𝑸𝒖𝒆𝒔𝒕𝒊𝒐𝒏𝒔⁉️
+
+Are you preparing for an Ansible interview? Here are 𝟑𝟎 𝙨𝙘𝙚𝙣𝙖𝙧𝙞𝙤-𝙗𝙖𝙨𝙚𝙙 𝙦𝙪𝙚𝙨𝙩𝙞𝙤𝙣𝙨 to help you prepare:
+
+1. Write a playbook to install Nginx.
+2. What is an Ansible role? Write a role to install and start Nginx.
+3. What are the prerequisites to use Ansible? (Python)
+4. What language is Ansible written in? (Python)
+5. Is Ansible idempotent?
+6. What are the types of modules in Ansible? (Core & extra)
+7. How can you install Nginx on a group of servers but skip installation on a specific server?
+8. How do you perform a dry run for your Ansible playbook?
+9. How do you handle sensitive information such as API keys or passwords in Ansible?
+10. How can you rollback changes if one of your tasks fails during playbook execution?
+11. How can you continue playbook tasks if some of the tasks fail?
+12. How can you run a playbook for different machines with different users and different ports?
+13. How can you create an empty file using an Ansible playbook?
+14. What are the advantages of Ansible over Chef?
+15. What is Ansible cowsay?
+16. What is an Ansible ad-hoc command?
+17. What is an Ansible loop?
+18. What is dynamic inventory? Name one practical use case for it. (Auto-scaling environment)
+19. Can you create infrastructure using Ansible?
+20. What is a callback plugin in Ansible?
+21. What is Ansible Tower? How do you implement RBAC in Ansible Tower?
+22. Describe how Ansible helps your organization.
+23. How would you handle a situation where an Ansible playbook fails due to a network issue?
+24. Can you write an Ansible playbook to deploy a Docker container?
+25. How would you use Ansible to automate the deployment of a cloud infrastructure?
+26. Can you explain how Ansible uses SSH to connect to remote servers?
+27. How can you use Ansible to manage user accounts and permissions on a Linux server?
+28. Can you write an Ansible playbook to configure a load balancer using HAProxy?
+29. How would you use Ansible to automate the backup and restore of a MySQL database?
+30. Can you explain how Ansible uses Jinja2 templating to generate configuration files?
+
+📍𝗔𝗱𝗱𝗶𝘁𝗶𝗼𝗻𝗮𝗹 𝘀𝗰𝗲𝗻𝗮𝗿𝗶𝗼-𝗯𝗮𝘀𝗲𝗱 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀:
+
+- How would you handle a situation where an Ansible playbook fails due to a network issue?
+- Can you write an Ansible playbook to deploy a Docker container?
+- How would you use Ansible to automate the deployment of a cloud infrastructure?
+- Can you explain how Ansible uses SSH to connect to remote servers?
+- How would you handle a situation where an Ansible playbook fails due to a missing dependency?
+- Can you write an Ansible playbook to deploy a Java application to a Tomcat server?
+- How would you use Ansible to automate the deployment of a Kubernetes cluster?
+- Can you explain how Ansible uses Ansible Galaxy to manage roles and dependencies?
