@@ -1,0 +1,23 @@
+Kubernetes Cost Optimization: The Silent Skill Every Engineer Needs
+Most teams focus on deployments, scaling, and automation…
+
+But very few focus on cost efficiency — until the cloud bill explodes. 
+Here are 4 high-impact Kubernetes cost optimizations you can implement today:
+
+🔹 Right-Size Your Pods
+ Stop using “CPU: 1 / Memory: 2Gi” everywhere.
+ Use metrics → adjust requests/limits → save $$$.
+
+🔹 Use Pod Autoscaling Smartly
+ HPA + VPA + Cluster Autoscaler = dynamic savings.
+ Scale what you need, when you need it.
+
+🔹 Clean Up Unused Resources
+ Old PVCs, orphaned load balancers, unused snapshots = silent money drain.
+
+🔹 Node Optimization
+ Use Spot nodes, ARM nodes, and autoscaling nodegroups for heavy workloads.
+
+Cloud cost ≠ just finance.
+ It’s a DevOps responsibility.
+ Small tweaks today = massive savings tomorrow. 💡
