@@ -1,0 +1,45 @@
+AWS EC2 – The Foundation of Your Cloud Journey (Basic Q&A)🚀
+
+If you're starting your AWS learning path, EC2 (Elastic Compute Cloud) is where everything begins.
+
+Here are essential EC2 basic interview questions with crisp answers — perfect for beginners and job seekers.
+
+EC2 Basic Questions & Answers
+
+Q: What is EC2?
+ A: EC2 is a virtual server in AWS used to run applications in a scalable and secure environment.
+Q: What is an AMI?
+ A: AMI (Amazon Machine Image) is a template that contains the OS + configuration + software used to launch EC2 instances.
+Q: What is an Instance Type?
+ A: It defines CPU, memory, storage, and network capacity (e.g., t2.micro, m5.large).
+Q: What is a Security Group?
+ A: A virtual firewall that controls inbound and outbound traffic for your instance.
+Q: What is the difference between Stop and Terminate?
+ A: Stop shuts down the instance but retains the EBS volume. Terminate deletes the instance and attached EBS (unless disabled).
+Q: What is Elastic IP?
+ A: A static public IP that remains the same even if the instance stops or restarts.
+Q: What are EC2 Purchasing Options?
+ A: On-Demand, Reserved Instances, Spot Instances, Dedicated Hosts, Dedicated Instances.
+Q: What is Key Pair in EC2?
+ A: Used for secure SSH/RDP login. AWS keeps the public key; you hold the private key.
+Q: What is User Data?
+ A: Script that runs only on first boot, often used for installing software automatically.
+Q: What is an EBS Volume?
+ A: Block storage attached to EC2 (persistent storage). Behaves like a hard disk.
+Q: What is the difference between EBS and Instance Store?
+ A: EBS is persistent; Instance Store is temporary and data is lost on stop/terminate.
+Q: Can we attach one EBS volume to multiple EC2 instances?
+ A: No (except EBS Multi-Attach for specific io1/io2 volumes and limited use cases).
+Q: What is Auto Scaling?
+ A: Automatically adds/removes EC2 instances based on demand.
+Q: What is a Load Balancer?
+ A: Distributes incoming traffic across multiple EC2 instances.
+Q: How do you connect to a Linux EC2?
+ A: Using SSH and the private key:
+ ssh -i key.pem ec2-user@public-ip
+Why EC2 is Important?
+It’s the base layer of AWS compute
+Almost every AWS service integrates with EC2
+Most interviews start with EC2 questions
+
+Understanding EC2 helps in DevOps, SRE & Cloud Engineering roles
