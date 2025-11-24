@@ -1,0 +1,40 @@
+Most Frequently Asked Linux Interview Commands (Grep Focus)
+
+Hi everyone! 👋
+I'm back with one of the most common Linux interview topics — grep.
+If you're preparing for DevOps, Linux admin, or support engineer roles, these commands are must-know ✅
+
+Here are the top 9 real-world grep use cases you’ll be asked in interviews 👇
+
+✅ 1️⃣ Find a specific word in a file
+grep "error" app.log
+
+✅ 2️⃣ Case-insensitive search
+grep -i "success" app.log
+
+
+✔ Matches SUCCESS, Success, success, etc.
+
+✅ 3️⃣ Search recursively in all files and subdirectories
+grep -R "timeout" /etc/
+
+✅ 4️⃣ Display line numbers for matched results
+grep -n "connection" server.log
+
+✅ 5️⃣ Count how many times a word appears
+grep -c "error" app.log
+
+✅ 6️⃣ Show lines that do not contain the word
+grep -v "info" app.log
+
+✅ 7️⃣ Match the whole word only
+grep -w "start" script.sh
+
+
+✔ Avoids matching restart or starting
+
+✅ 8️⃣ Search for multiple patterns
+grep -E "error|success|timeout" app.log
+
+✅ 9️⃣ Find a running process using grep
+ps aux | grep nginx
