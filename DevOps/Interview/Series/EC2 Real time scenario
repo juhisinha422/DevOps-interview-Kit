@@ -1,0 +1,28 @@
+EC2 – Real-Time Scenario Based Interview Questions (Advanced) 🚀
+
+🔹 Real Production Scenarios — EC2
+Your EC2 instance becomes unreachable via SSH during peak traffic. How do you troubleshoot without restarting it?
+An application on EC2 is running slow, but CPU and memory look normal. What do you check next?
+You deployed an update on EC2 and the health checks behind ALB started failing. How do you debug it?
+Your EC2 instance is stuck in a boot loop with a kernel panic error. How do you recover it?
+A microservice hosted on EC2 is dropping 20% of connections randomly. How do you identify the root cause?
+Your t3.micro instance is suddenly very slow even though CPU % is low. What is happening and how to fix it?
+After deploying a new AMI, all instances fail the user-data script. How do you troubleshoot the user-data execution?
+Your EC2 root EBS volume is 100% full and the instance is not responding. What steps will you take?
+Your production EC2 instance is accidentally terminated. How do you recover as much data as possible?
+You need to migrate EC2-based workloads to another region with zero downtime. How do you plan the migration?
+A security audit reports exposure via IMDSv1. What changes do you perform immediately?
+Your EC2 instance is under DDoS attack. What steps do you take from AWS side and OS side?
+Two EC2 instances in the same subnet cannot communicate. What are possible causes?
+EC2 instances behind an ALB take too long to deregister during deployments. How do you optimize?
+Your instance is failing to attach an EBS volume after restart. What can cause this and how do you fix it?
+You increase EC2 instance size but application still performs poorly. What else can be the reason?
+You need to rotate application secrets stored on EC2. What is the best automated approach?
+A single EC2 instance receives unpredictable traffic spikes. How do you redesign it for stability?
+EC2 patching is taking too long on a fleet of 200 servers. How do you automate OS patching?
+Your instance cannot reach the internet even though it's in a public subnet. What are all possible misconfigurations?
+A new EC2 instance takes too long to bootstrap. How do you optimize AMI and user-data processing?
+EC2 Nginx server shows “upstream timeout” errors randomly. What AWS-level issues may cause it?
+An instance’s network throughput is capped but CPU is low. Why and how do you fix it?
+A production team is facing high EBS IO latency on EC2. How do you diagnose and solve it?
+You need to enable detailed auditing of who accessed which EC2 instance. What’s the best way?
