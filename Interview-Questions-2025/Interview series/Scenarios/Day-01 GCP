@@ -1,0 +1,26 @@
+Day 1 — GCP Compute Engine (GCE): 
+Scenario-Based DevOps Interview Questions
+
+1️⃣ What is the difference between a zonal, regional, and global resource in GCP? Where does Compute Engine fit?
+
+2️⃣ Your Compute Engine VM is experiencing high CPU usage. How would you troubleshoot and scale it without downtime?
+
+3️⃣ Explain the difference between “Preemptible VMs” and “Standard VMs”. When would you use preemptible instances in DevOps pipelines?
+
+4️⃣ You need to migrate 10 on-prem VMs to GCE. Which GCP service or approach would you use and why?
+
+5️⃣ How do you restrict SSH access to Compute Engine VMs using IAM roles instead of static keys?
+
+6️⃣ What is a startup script in GCE? Give an example of a DevOps use case where it saves deployment time.
+
+7️⃣ A VM accidentally got deleted. How can you recover it or avoid such incidents in production?
+
+8️⃣ Your application requires multiple disks with high IOPS. Which GCE disk types would you choose and why?
+
+9️⃣ How do Instance Templates and Managed Instance Groups (MIGs) work together for autoscaling?
+
+🔟 You want to expose a VM to the internet only through HTTPS. What steps in GCE & VPC firewall rules are required?
+
+1️⃣1️⃣ How do Shielded VMs enhance security, and when should a DevOps team consider using them?
+
+1️⃣2️⃣ Your team wants to automate VM creation every night for batch jobs. Which GCP tools can help you automate provisioning?
