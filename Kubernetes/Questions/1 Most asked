@@ -1,0 +1,45 @@
+Most Asked Kubernetes Interview Questions (Based on Recent Experience)
+
+ 
+🔹 1. How do you handle OOM (Out-Of-Memory) issues or image handling issues in Kubernetes?
+Interviewers expect you to talk about memory limits/requests, resource tuning, monitoring using metrics-server/Prometheus, and debugging failed containers.
+
+🔹 2. If Docker images are deleted from the registry but pods are already running from those images — what happens to the cluster?
+(They expect an understanding of how nodes cache images and what happens during redeploy or rescheduling.)
+
+🔹 3. What are headless services? What are the use cases?
+This checks your understanding of service discovery, stateful workloads, and DNS-based pod access.
+
+🔹 4. In your project:
+How many microservices do you have?
+How many nodes are used?
+How do pods communicate with each other?
+ This evaluates real-time system architecture and cluster design.
+
+🔹 5. Write a deployment file that includes:
+A deployment
+A service
+A pod using a Persistent Volume + Persistent Volume Claim
+ A hands-on YAML challenge to evaluate your practical Kubernetes skills.
+💼 Manager-Level Kubernetes Questions I Encountered
+These were asked to evaluate decision-making, architectural thinking, and cost optimization:
+
+🔸 6. How do you design a Kubernetes cluster for high availability and resilience?
+(Expectations: multi-master setup, autoscaling, node pools, regional failover.)
+
+🔸 7. How do you plan capacity and optimize cloud costs in a Kubernetes environment?
+Topics: right-sizing nodes, spot instances, VPA/HPA usage, cluster autoscaler, monitoring waste.
+
+🔸 8. How do you ensure security and compliance at scale in Kubernetes?
+Interviewers look for: RBAC, network policies, secrets management, pod security standards, image scanning, zero-trust networking.
+
+💡 These questions helped me understand which areas to strengthen — especially resource management, HA design, security, and storage.
+If you’re preparing for Kubernetes or DevOps interviews, make sure you are confident in:
+ ✔️ Pod lifecycle & troubleshooting
+ ✔️ Networking & Services
+ ✔️ Headless services & StatefulSets
+ ✔️ Persistent storage
+ ✔️ Cluster architecture & HA
+ ✔️ Security & RBAC
+ ✔️ Resource planning & cost optimization
+ ✔️ Real-time project explanation
