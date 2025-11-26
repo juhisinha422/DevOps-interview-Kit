@@ -1,0 +1,35 @@
+Day 3 — GCP Networking + VPC + Load Balancing
+
+Scenario-Based DevOps Interview Questions
+
+1️⃣ You need multi-region application deployment with low latency. How would you design the VPC and network flow?
+
+2️⃣ A VM in a private subnet cannot access the internet to install packages. What configuration changes will you make?
+
+3️⃣ Your VPC is flat and resources can talk freely with each other. How will you enforce network segmentation & isolation?
+
+4️⃣ You have 50+ VPCs across different GCP projects. How will you enable secure and scalable connectivity between them?
+
+5️⃣ For hybrid connectivity between on-prem and GCP, when will you choose Cloud VPN vs Cloud Interconnect?
+
+6️⃣ You want to expose only one internal service to a partner network without allowing VPC access. How will you achieve this?
+
+7️⃣ You need to restrict access to a service based on specific geographic regions. How can this be implemented?
+
+8️⃣ A service behind an internal load balancer must be accessible globally. How will you redesign the architecture?
+
+9️⃣ What is the difference between HTTP(S) Load Balancer and TCP/UDP Load Balancer? When do you use which?
+
+🔟 Your application requires SSL termination + URL-based routing + autoscaling backend support. Which load balancer fits best?
+
+1️⃣1️⃣ Load Balancer health checks are failing. What would you check while troubleshooting?
+
+1️⃣2️⃣ An internal corporate app must be accessed securely by employees working remotely. How will you design this?
+
+1️⃣3️⃣ Cloud Armor is blocking legitimate traffic. What corrective actions can you take without turning off security?
+
+1️⃣4️⃣ When should a Network Endpoint Group (NEG) be preferred over a Managed Instance Group (MIG)?
+
+1️⃣5️⃣ You need secure microservice-to-microservice connectivity across projects with central management. How will you design this?
+
+⸻
