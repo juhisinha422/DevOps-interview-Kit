@@ -1,0 +1,55 @@
+The interview process was very detailed and focused on practical, real-time DevOps experience.
+They mainly asked questions around:
+
+🔹 AWS
+🔹 GCP
+🔹 GitLab CI/CD
+🔹 Docker
+🔹 Kubernetes
+🔹 Terraform
+
+Here are some of the important questions he was asked 👇
+
+AWS Questions
+What is the difference between Security Groups and NACLs?
+ How does Auto Scaling work and how do you troubleshoot scaling issues?
+Explain how ALB and NLB work internally.
+ What is VPC Peering? Can we do transitive peering?
+ How do you secure sensitive data in S3?
+
+ GCP Questions
+ What are VPC networks and how are they different from AWS VPC?
+Explain GKE components.
+How does Cloud Build work in GCP?
+ What are preemptible VMs and when do we use them?
+How do IAM roles differ in GCP compared to AWS?
+
+ GitLab CI/CD Questions
+ Explain the GitLab CI pipeline stages.
+ What is the purpose of .gitlab-ci.yml?
+ How do you implement environment-specific deployment in GitLab?
+ How do GitLab runners work?
+ Difference between shared runners and group runners.
+
+ Docker Questions
+ What happens internally when you run docker run?
+ Explain Docker layered architecture.
+ How do you troubleshoot container memory leaks?
+ Difference between Dockerfile COPY vs ADD.
+ How to reduce Docker image size using multistage builds?
+
+ Kubernetes Questions
+ Explain the difference between Deployment, DaemonSet and StatefulSet.
+ What happens when you run kubectl apply?
+ How does the Kubernetes scheduler work?
+ Explain liveness and readiness probes.
+How do you debug CrashLoopBackOff issues?
+
+ Terraform Questions
+ What is the difference between terraform plan and terraform apply?
+ How does the Terraform state file work internally?
+ What are Terraform workspaces and when do you use them?
+ How do you handle sensitive variables in Terraform?
+ What is the difference between locals, variables, and outputs?
+
+ The interview was highly scenario-based, focusing on problem-solving and real-time troubleshooting.
