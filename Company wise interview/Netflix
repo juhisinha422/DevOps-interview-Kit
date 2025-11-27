@@ -1,0 +1,19 @@
+DevOps role interviews and came across these interesting questions at 'Netflix':
+
+🔍 Round 1 – Technical Deep Dive
+  ✅ How would you design CI/CD for 1000+ parallel deployments safely?
+  ✅ A pod is running but refuses TCP connections – how do you debug?
+  ✅ How do you handle GPU scheduling in EKS (or GKE)?
+  ✅ How do you implement secure multi-tenant namespaces in Kubernetes?
+  ✅ What are the scale limits of kube-proxy iptables, and how do you fix them?
+
+🛠️ Round 2 – RCA, Outage Drills & Streaming Chaos
+  🌍 How do you troubleshoot latency spikes in South America?
+  🔗 How do you detect and resolve half-open TCP connections from a service mesh?
+  💰 How do you investigate a NAT Gateway cost spike?
+
+🎯 Round 3 – Leadership, Culture & Chaos Influence
+  🔥 How would you run a chaos drill during a launch rehearsal?
+  ⚖️ How do you balance cost efficiency vs. high availability pre-warming?
+  📋 What’s your pre-flight checklist for Netflix-scale infrastructure?
+  👀 Why is observability debt equal to tech debt, and how do you address it?
