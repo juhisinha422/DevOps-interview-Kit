@@ -1,0 +1,70 @@
+AWS & Cloud Concepts
+
+Difference between RDS and DynamoDB.
+When do we choose MySQL (SQL) vs NoSQL databases?
+
+How to migrate an on-prem application to AWS?
+Which AWS services help and what is the approach?
+
+What are EC2 2/2 status checks and why do they show as 2/2 after launching?
+
+What are stdin and stdout in Bash scripting and why do we use them?
+
+Explain Target Groups in AWS and when to use them.
+
+What are Listeners and how are they configured?
+
+Explain Route 53.
+ How to configure Route 53 for two AZs / two websites and enable communication?
+
+What are Resolvers in AWS and how are they useful?
+
+Difference between Public vs Private Subnets.
+
+What is a VPN and why do we use it?
+
+
+
+ Terraform
+
+What does terraform validate do?
+Can it be run before or after terraform plan?
+
+When do you use terraform fmt?
+
+Why do we store the Terraform state file in a remote backend?
+
+Can we edit the state file in S3?
+What happens if it's modified during apply/execution?
+
+
+
+Kubernetes / EKS
+
+What is a Deployment in Kubernetes and how do you configure it?
+
+What are the types of Services in Kubernetes and how do they work?
+
+How do you set up an EKS cluster?
+What prerequisites and components are required?
+
+What is the role of the kubelet?
+
+Write a simple Pod YAML to run an Nginx container.
+
+Explain a typical Helm chart folder structure.
+
+How to use Helm for multiple environments and manage deployments?
+
+How to list Helm releases?
+
+
+
+Monitoring / ELK
+
+What is the role of Logstash in the ELK stack?
+
+How do you monitor an EKS Cluster using ELK?
+ What parameters/metrics should be tracked?
+
+Have you performed any customizations in Kibana dashboards?
