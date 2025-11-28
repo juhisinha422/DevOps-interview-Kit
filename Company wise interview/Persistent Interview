@@ -1,0 +1,24 @@
+interview at PERSISTENT and was asked the following questions:
+1️⃣ Explain Terraform Commands
+What is the purpose of terraform init, terraform plan, terraform apply, terraform validate, terraform output, and terraform refresh?
+How does Terraform handle input variables?
+2️⃣ Plugins Installed in GitLab Terraform Projects
+Which plugins and integrations are commonly used in a GitLab + Terraform setup?
+How do you manage Terraform state in GitLab?
+3️⃣ Components in a VPC (AWS Example)
+What are the key components of a VPC?
+How do subnets, route tables, and gateways interact?
+4️⃣ Have You Worked on CloudWatch?
+What are the main use cases of CloudWatch?
+How do you set up custom metrics and alarms?
+5️⃣ Dockerfile and Image Building
+How do you write a basic Dockerfile for a Python application?
+What commands are used to build and run a Docker image?
+6️⃣ Can We Use Load Balancer for a Single Instance?
+Is it possible to use a Load Balancer for a single instance?
+What are the benefits of doing so?
+7️⃣ Jenkins Pipeline Triggering with Cron (or GitLab Equivalent)
+How do you schedule a Jenkins pipeline using cron syntax?
+How do you schedule pipelines in GitLab CI/CD?
+
+✅ These questions cover Terraform, GitLab CI/CD, AWS VPC, CloudWatch, Docker, Load Balancing, and Jenkins/GitLab scheduling—all crucial for DevOps roles.
