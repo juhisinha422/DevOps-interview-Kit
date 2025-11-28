@@ -1,0 +1,35 @@
+Day 5 — GCP Storage + Databases + Data Security
+
+Scenario-Based DevOps Interview Questions
+
+1️⃣ Your application requires object storage for large media files with lifecycle-based cost optimization. How will you design the storage using GCS classes + lifecycle policies?
+
+2️⃣ Production DB in Cloud SQL needs read scalability for heavy analytics queries. How will you architect HA + read replicas + failover strategy?
+
+3️⃣ A financial dataset stored in Cloud Storage must never leave GCP boundary and only be accessible from specific VPC. How will you implement this securely?
+
+4️⃣ Your Cloud SQL instance is hitting connection limits due to high traffic. How will you troubleshoot and scale connection management?
+
+5️⃣ You need to store 30 TB logs for retention of 365 days at minimum cost, but require instant access for last 15 days. How will you implement this using bucket tiering + lifecycle rules?
+
+6️⃣ You need to migrate an on-prem MySQL DB to GCP with near-zero downtime. Which GCP service(s) will you choose and how will you plan the cutover?
+
+7️⃣ Developers should access BigQuery datasets for analysis, but must not export data externally. How will you design IAM + VPC-SC + monitoring to enforce this?
+
+8️⃣ One bucket holds production data and another holds internal analytics. You must avoid data mix-up and cross-access. How will you isolate both securely?
+
+9️⃣ Application needs <10ms latency and global read/write capability. Which database will you choose: Firestore, Cloud Spanner, Cloud SQL, or Bigtable — and why?
+
+🔟 A workload must write millions of time-series records per second. Which GCP database is ideal? Justify architecture decisions.
+
+1️⃣1️⃣ Cloud Storage performance is slow during bulk uploads. What tuning options and architectural changes will you explore?
+
+1️⃣2️⃣ You want to enforce encryption with CMEK for a Cloud Storage bucket and restrict deletion of objects. What steps will you configure?
+
+1️⃣3️⃣ A Cloud SQL instance is frequently hitting high CPU + storage IOPS. What metrics, configurations, and scaling patterns will you review first?
+
+1️⃣4️⃣ Your global app needs multi-region strongly consistent DB with schema-based relational queries. Which solution fits best, and how will you deploy it?
+
+1️⃣5️⃣ A VM-based app must access secrets without storing them in files or environment variables. How will you use Secret Manager securely with IAM and short-lived tokens?
+
+⸻
