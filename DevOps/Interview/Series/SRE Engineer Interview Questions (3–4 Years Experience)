@@ -1,0 +1,46 @@
+SRE Engineer Interview Questions (3–4 Years Experience)🚀 
+
+If you're preparing for an SRE (Site Reliability Engineer) role, these are some of the most common and practical questions asked in real interviews.
+They cover SLIs, SLOs, monitoring, automation, incident management, scaling, and reliability practices.
+
+🔹 Core SRE & Reliability Concepts
+• What is SRE and how is it different from DevOps?
+• What are SLIs, SLOs, and Error Budgets?
+• How do you calculate service availability (e.g., 99.9 vs 99.99)?
+• What is toil? Share examples and how you reduced it.
+• What are MTTR, MTBF, and MTTA?
+
+🔹 Incident & Problem Management
+• Explain your incident management lifecycle.
+• How do you run post-incident reviews or blameless retros?
+• What alerting and on-call tools have you used?
+• How do you prioritize incidents during major outages?
+• What’s your strategy to reduce alert fatigue?
+
+🔹 Observability & Monitoring
+• What is the difference between monitoring and observability?
+• What golden signals do you always track?
+• How do you design dashboards for critical services?
+• What is distributed tracing and where have you used it?
+• Describe a situation where logs helped you solve a major issue.
+
+🔹 Cloud, Infrastructure & Scaling
+• How do you design a highly available system?
+• How does auto-scaling work in cloud environments?
+• Explain the difference between L4 and L7 load balancing.
+• Share your experience running Kubernetes in production.
+• What steps ensure zero-downtime deployments?
+
+🔹 Automation & CI/CD
+• How do you automate recurring operational tasks?
+• What is your experience with Terraform or IaC tools?
+• How do you implement blue-green or canary deployments?
+• What is chaos engineering and why is it useful?
+• Share a scenario where automation improved reliability.
+
+🔹 Security & Performance
+• How do you handle secrets securely?
+• What is latency and how do you reduce it?
+• How do you identify performance bottlenecks?
+• What is rate limiting and where is it used?
+• What’s your experience with CDN, caching, or edge optimization?
