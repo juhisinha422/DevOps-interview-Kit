@@ -1,0 +1,42 @@
+Kubernetes Architecture: 
+
+Kubernetes is a container orchestration platform that automates the deployment, scaling, and management of containerized applications across clusters of machines.
+
+1. What is Kubernetes Architecture?
+Kubernetes follows a master-worker architecture with a control plane managing worker nodes that run application containers.
+
+2. What are the main components of the Control Plane?
+The Control Plane includes API Server, etcd, Controller Manager, and Scheduler that manage cluster state and operations.
+
+3. What is the role of the API Server?
+The API Server acts as the central communication hub, processing REST requests and serving as the gateway for all cluster operations.
+
+4. What is etcd in Kubernetes?
+etcd is a distributed key-value store that maintains cluster configuration data, state information, and metadata persistently.
+
+5. How does the Scheduler work?
+The Scheduler assigns pods to appropriate worker nodes based on resource requirements, constraints, and availability.
+
+6. What are Worker Nodes?
+Worker Nodes are machines that run application workloads, containing kubelet, kube-proxy, and container runtime components.
+
+7. What is kubelet's function?
+kubelet is the node agent that communicates with the API Server, manages pod lifecycle, and ensures containers run as specified.
+
+8. What does kube-proxy handle?
+kube-proxy manages network routing and load balancing for services, enabling communication between pods and external traffic.
+
+9. What are Pods in Kubernetes?
+Pods are the smallest deployable units containing one or more containers that share storage, network, and lifecycle specifications.
+
+10. How do Services work in Kubernetes?
+Services provide stable network endpoints for pods, enabling load balancing and service discovery across the cluster.
+
+Key Architecture Benefits:
+✅ Scalability - Horizontal scaling of applications and infrastructure
+✅ Load Distribution - Efficient workload placement across nodes
+✅ High Availability - Control plane components ensure cluster resilience
+✅ Self-Healing - Automatic restart and replacement of failed components
+✅ Service Discovery - Built-in networking and communication management
+
+Kubernetes architecture provides a robust foundation for container orchestration, making it essential for modern cloud-native applications and DevOps practices.
