@@ -1,0 +1,53 @@
+Company Name: Wipro
+🎯 Level / Round: L1
+🧪 Topic: DevOps | AWS | Kubernetes | Jenkins | Jira
+🧾 Real-Time Interview Questions Asked Today
+
+---
+
+✅ 1️⃣ AWS & Cloud
+
+1. What AWS services are used in your project?
+2. What is EC2 and what types are used in real-time?
+3. Difference between EC2 instance and EBS volume.
+4. How does Auto Scaling work in AWS and what are the types?
+5. What is AWS VPC and how does it work?
+6. What are IAM roles and policies? How do you assign policies to IAM users?
+7. Explain S3 storage classes and lifecycle policies.
+8. How does AWS Lambda work and what are common use cases?
+9. Difference between SQS vs SNS.
+10. What AWS monitoring tools are commonly used?
+
+---
+
+✅ 2️⃣ Jenkins (CI/CD)
+
+11. What are the types of Jenkins jobs?
+12. How do you run a Jenkins pipeline in multiple stages?
+13. How do you execute all pipeline stages in parallel?
+14. Jenkins parallel execution — issues, pros, and cons.
+15. What are common workspace issues in Jenkins?
+16. How is Jenkins workspace used daily in DevOps?
+
+---
+
+✅ 3️⃣ Kubernetes (K8s)
+
+17. How do you troubleshoot and solve Kubernetes problems?
+18. What are the main use cases of Kubernetes?
+19. Command to create and configure a Kubernetes cluster.
+20. How do you identify the correct resource command in kubectl?
+21. kubectl commands to list environments/namespaces.
+22. Commands to create, update, and delete K8s resources.
+23. kubectl debugging & logging commands (real-time).
+24. Command to edit Kubernetes resources.
+25. kubectl config commands (context handling).
+26. kubectl cp command — how to copy files from/to pods.
+---
+
+✅ 4️⃣ Jira / DevOps Practical
+
+27. What are Jira tickets?
+How do you assign them and how are they used in DevOps projects?
+
+No alternative text description for this image
