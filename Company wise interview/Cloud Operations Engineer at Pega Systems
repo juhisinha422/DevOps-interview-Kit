@@ -1,0 +1,64 @@
+Cloud Operations Engineer at Pega Systems
+
+Cloud Operations Engineer (1–3) role for the Pega Operations Center team in Bangalore.
+
+The process included HR screening → Technical round → Technical + Managerial panel round.
+
+.
+🧩 Round 1 - Technical (~1 hr)
+
+Covered Linux → AWS → K8s, starting with basics and moving into intermediate topics.
+
+Since I was fresh from my CKA prep, K8s topics went very well; AWS storage topics were slightly weaker.
+
+The interviewer was supportive throughout and even guided me through a few answers, making a positive interview experience.
+
+Some of the questions I recall:
+
+1. Linux
+- Tail last few lines of a file
+- Disable password auth in SSH
+- Troubleshoot SSH auth via Session Manager
+- Fix EC2 access after bad SSH config
+- Symlink vs Hardlink
+
+2. AWS
+- S3 getObject permission denied - troubleshoot?
+- EC2 instance not showing in console
+- Attach & mount new EBS volume without downtime
+- What CloudFormation is used for
+- Terraform - launch an EC2 inside an existing VPC? Explained the steps
+
+3. Kubernetes
+- Internal architecture of K8s
+- Explain CoreDNS & service discovery
+- Role of ETCD
+- HPA
+- Pod stuck in Pending - troubleshooting steps
+- Service types & Ingress in K8s
+- Deployment vs StatefulSet vs DaemonSet
+- Deployment strategies for zero downtime
+- ServiceAccounts
+- Troubleshooting intermittently crashing pod
+
+It went smoothly and got positive feedback at the end and was moved to the next round.
+
+🧩 Round 2 - Technical + Managerial (<1 hr)
+
+Started with a technical discussion about my self-hosted K8s project - questions like - why self-hosted over managed cluster, about networking and how the app is exposed, etc.
+
+Also covered some scenario question around CoreDNS setup in my cluster (cannot recall the exact question), which led to some more basic DNS questions (record types & DNS resolution)
+
+Finished the tech discussion with some K8s questions, most of them were repeated from the first round, so this part went smoothly.
+
+Followed by the managerial discussion - covering my experience, career gap (no issues there 🤷‍♂️), academics, etc.
+
+The only concern was my ongoing online MCA program. They wanted clarity on how I would balance the weekend MCA classes with a rotational on-call schedule including weekends. While the program is flexible, I couldn’t articulate a concrete plan in that moment (I fumbled 😅).
+
+Got positive feedback, yet a few days later, I received the rejection email (no reason, but I assume it was the MCA).
+
+I tried to reach out to the manager to better explain, but that didn't work 😅
+
+💡Takeaway: Overall, the interview experience was good. However, final decisions often come down to factors like cultural fit, role constraints, and commitment expectations etc.
+
+👉 And always be prepared with answers to backup your situation, being transparent in interviews does not mean being unprepared.
