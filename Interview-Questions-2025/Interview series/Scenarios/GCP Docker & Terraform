@@ -1,0 +1,18 @@
+Interview Questions — GCP | Docker | Terraform @ ( “GCP Platform Engineer: ‘VOIS’”)
+
+I hope, the below questions will surely help you in your next interviews….
+
+🔹 What is MIG in Google Cloud?
+🔹 What is the difference between CMD & ENTRYPOINT in Docker?
+🔹 What is the difference between ADD & COPY in Docker?
+🔹 What are Golden Images?
+🔹 Where can you store Golden Images in GCP?
+🔹 You granted required permissions to GSuite users on 2 VM instances — one works but the other shows “user has no permissions”. How will you troubleshoot?
+🔹 How can you authenticate GCE to GCS in GCP?
+🔹 If one of the GCS buckets is deleted manually but Terraform plan shows only VM creation — what will happen when we run terraform apply?
+🔹 Write a single Terraform main.tf to create VM instances in 3 different regions with 3 different IPs.
+🔹 Which will you use here — for_each or count?
+🔹 What is the output of:
+ENTRYPOINT [“echo”, “cuz”] + CMD [“echo abc”] ?
+🔹 What will you use in GCP to achieve load balancing + auto scaling for applications?
+🔹 How do you configure a policy to ensure a user always connects back to the same instance/IP they were previously routed to?
