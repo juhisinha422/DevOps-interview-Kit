@@ -1,0 +1,90 @@
+𝑵𝒆𝒕𝒘𝒐𝒓𝒌𝒊𝒏𝒈 𝑩𝒂𝒔𝒊𝒄𝒔 𝑬𝒗𝒆𝒓𝒚 𝑫𝒆𝒗𝑶𝒑𝒔 𝑬𝒏𝒈𝒊𝒏𝒆𝒆𝒓 𝒎𝒖𝒔𝒕 𝒌𝒏𝒐𝒘 - Part 1
+
+1. 𝐏𝐮𝐛𝐥𝐢𝐜 𝐈𝐏 𝐕𝐒 𝐏𝐫𝐢𝐯𝐚𝐭𝐞 𝐈𝐏 (Cloud uses both)
+  Public IP   -> Internet facing
+  Private IP  -> Only inside your network
+
+2. 𝐒𝐮𝐛𝐧𝐞𝐭 𝐚𝐧𝐝 𝐰𝐡𝐲 𝐢𝐭 𝐦𝐚𝐭𝐭𝐞𝐫𝐬?
+  Same subnet    = talk directly
+  Different subnet  = need routing
+   Wrong subnet   = errors
+
+3. 𝐃𝐞𝐟𝐚𝐮𝐥𝐭 𝐆𝐚𝐭𝐞𝐰𝐚𝐲
+  Your network's exit door
+  without gateway -> traffic wont leave your subnet
+
+4. 𝐃𝐍𝐒 (𝐃𝐨𝐦𝐚𝐢𝐧 𝐍𝐚𝐦𝐞 𝐒𝐲𝐬𝐭𝐞𝐦)
+  DNS = Phonebook of the Internet
+  Converts names to IPs, No DNS = Nothing loads
+
+5. 𝐍𝐀𝐓 (𝐍𝐞𝐭𝐰𝐨𝐫𝐤 𝐀𝐝𝐝𝐫𝐞𝐬𝐬 𝐓𝐫𝐚𝐧𝐬𝐥𝐚𝐭𝐢𝐨𝐧)
+  a technique that allows multiple devices on a private network to share a single public IP address for internet access.
+              𝐍𝐀𝐓 = 𝐌𝐢𝐝𝐝𝐥𝐞𝐦𝐚𝐧 
+    Private IPs go online using a public IP.
+
+6. 𝐏𝐎𝐑𝐓 = 𝐒𝐞𝐫𝐯𝐢𝐜𝐞 𝐝𝐨𝐨𝐫 𝐧𝐮𝐦𝐛𝐞𝐫
+
+      22    - SSH
+      80   - HTTP 
+     443   - HTTPS
+     3306  - MySQL
+     6379  - Redis
+
+
+Part 2
+
+1. 𝐂𝐈𝐃𝐑 𝐍𝐨𝐭𝐚𝐭𝐢𝐨𝐧 (𝐂𝐥𝐚𝐬𝐬𝐥𝐞𝐬𝐬 𝐈𝐧𝐭𝐞𝐫-𝐃𝐨𝐦𝐚𝐢𝐧 𝐑𝐨𝐮𝐭𝐢𝐧𝐠)
+   
+   Used everywhere in AWS VPC creation
+
+        /24 -> 256 IPs
+        /20 -> 4096 IPs
+       /16  -> 65,536 IPs
+
+Quick Formula:
+
+Number of IPs = 2^(32 − CIDR)
+
+
+
+2. 𝐑𝐨𝐮𝐭𝐢𝐧𝐠 𝐓𝐚𝐛𝐥𝐞𝐬 (𝐝𝐞𝐜𝐢𝐝𝐞𝐬 𝐰𝐡𝐞𝐫𝐞 𝐩𝐚𝐜𝐤𝐞𝐭𝐬 𝐠𝐨) 
+
+  RT = Traffic Map
+  Contains rules like : Destination, Target (IGW/NAT/Local), Priority
+  
+  IGW = internet access for public instances.
+  NAT = internet access for private instances.
+
+  Incorrect route = service unavailable.
+
+3. 𝐒𝐞𝐜𝐮𝐫𝐢𝐭𝐲 𝐆𝐫𝐨𝐮𝐩𝐬 = 𝐅𝐢𝐫𝐞𝐰𝐚𝐥𝐥 𝐟𝐨𝐫 𝐢𝐧𝐬𝐭𝐚𝐧𝐜𝐞𝐬
+
+   Allows traffic you permit 
+   works on instance level
+   Stateful (response auto-allowed)  
+                        #“Stateful” =means remembers connection
+
+Wrong SG rule = App wont open.
+
+4. 𝐍𝐀𝐂𝐋𝐬 = 𝐍𝐞𝐭𝐰𝐨𝐫𝐤 𝐀𝐜𝐜𝐞𝐬𝐬 𝐂𝐨𝐧𝐭𝐫𝐨𝐥 𝐋𝐢𝐬𝐭𝐬
+
+  Subnet-level firewall
+
+Controls inbound/outbound for subnets in a VPC.
+Stateless (need allow both sides)
+
+Evaluated before Security Group.
+
+5. 𝐏𝐫𝐢𝐯𝐚𝐭𝐞 𝐕𝐬 𝐏𝐮𝐛𝐥𝐢𝐜 𝐒𝐮𝐛𝐧𝐞𝐭
+
+Public Subnet : Connected to internet Gateway( Direct internet access)
+Private Subnet : Uses NAT Gateway ( No direct external access)
+
+6. 𝐋𝐨𝐚𝐝 𝐁𝐚𝐥𝐚𝐧𝐜𝐞𝐫
+
+  Distributes traffic across servers.
+    Types in AWS : 
+      ALB (HTTP/HTTPS)  -> Best for Websites, APIs
+      NLB (TCP/UDP)    -> High-speed network traffic
+
+Fixes high load & improves reliability.
