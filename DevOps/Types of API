@@ -1,0 +1,75 @@
+𝐓𝐘𝐏𝐄𝐒 𝐎𝐅 𝐀𝐏𝐈 (𝐈𝐍 𝐒𝐈𝐌𝐏𝐋𝐄 𝐓𝐄𝐑𝐌𝐒)
+ 
+1. 𝐑𝐄𝐒𝐓 𝐀𝐏𝐈 
+
+ • Stands for Representational State Transfer
+ • Most common, uses 𝐇𝐓𝐓𝐏 𝐦𝐞𝐭𝐡𝐨𝐝𝐬 like GET, POST, PUT, DELETE.
+ • Simple, scalable, and widely used for web and mobile    applications.
+ • Example: Fetching user data from a website.
+
+𝑎𝑝𝑝.𝑔𝑒𝑡('/𝑢𝑠𝑒𝑟/:𝑖𝑑', (𝑟𝑒𝑞, 𝑟𝑒𝑠) => {
+ 𝑟𝑒𝑠.𝑗𝑠𝑜𝑛({
+  𝑖𝑑: 𝑟𝑒𝑞.𝑝𝑎𝑟𝑎𝑚𝑠.𝑖𝑑,
+  𝑛𝑎𝑚𝑒: "𝐷𝑎𝑠𝑎𝑟𝑖"
+    });
+});
+
+ 2. 𝐒𝐎𝐀𝐏 𝐀𝐏𝐈
+
+ • Stands for Simple Object Access Protocol
+ • Uses 𝐗𝐌𝐋-𝐛𝐚𝐬𝐞𝐝 messaging for communication.
+ • More secure and reliable, used in banking and enterprise applications.
+ • Example: Secure transactions between banking servers. 
+
+<𝑠𝑜𝑎𝑝𝑒𝑛𝑣:𝐸𝑛𝑣𝑒𝑙𝑜𝑝𝑒 𝑥𝑚𝑙𝑛𝑠:𝑠𝑜𝑎𝑝𝑒𝑛𝑣="ℎ𝑡𝑡𝑝://𝑠𝑐ℎ𝑒𝑚𝑎𝑠.𝑥𝑚𝑙𝑠𝑜𝑎𝑝.𝑜𝑟𝑔/𝑠𝑜𝑎𝑝/𝑒𝑛𝑣𝑒𝑙𝑜𝑝𝑒/">
+      <𝑠𝑜𝑎𝑝𝑒𝑛𝑣:𝐻𝑒𝑎𝑑𝑒𝑟/>
+        <𝑠𝑜𝑎𝑝𝑒𝑛𝑣:𝐵𝑜𝑑𝑦>
+           <𝐺𝑒𝑡𝑈𝑠𝑒𝑟𝐼𝑛𝑓𝑜>
+              <𝑈𝑠𝑒𝑟𝐼𝑑>123</𝑈𝑠𝑒𝑟𝐼𝑑>
+          </𝐺𝑒𝑡𝑈𝑠𝑒𝑟𝐼𝑛𝑓𝑜>
+       </𝑠𝑜𝑎𝑝𝑒𝑛𝑣:𝐵𝑜𝑑𝑦>
+ </𝑠𝑜𝑎𝑝𝑒𝑛𝑣:𝐸𝑛𝑣𝑒𝑙𝑜𝑝𝑒
+
+ 3. 𝐆𝐫𝐚𝐩𝐡𝐐𝐋 𝐀𝐏𝐈
+
+ • Allows clients to request specific data, 𝐚𝐯𝐨𝐢𝐝𝐢𝐧𝐠 𝐨𝐯𝐞𝐫-𝐟𝐞𝐭𝐜𝐡𝐢𝐧𝐠.
+ • More efficient for modern applications like social media platforms.
+ • Example: Fetching a user's name and profile picture without extra data.
+ 
+                        query {
+                            𝑢𝑠𝑒𝑟 (𝑖𝑑: "123") {
+                               𝑛𝑎𝑚𝑒
+                               𝑒𝑚𝑎𝑖𝑙
+                             }
+                          }
+
+4) 𝐖𝐞𝐛𝐒𝐨𝐜𝐤𝐞𝐭 𝐀𝐏𝐈
+
+ • Enables real-time, 𝐭𝐰𝐨-𝐰𝐚𝐲 𝐜𝐨𝐦𝐦𝐮𝐧𝐢𝐜𝐚𝐭𝐢𝐨𝐧 between client and server.
+ • Used in chat apps, gaming, and live stock updates.
+ • Example: Receiving instant messages in a chat app.
+
+𝑐𝑜𝑛𝑠𝑡 𝑠𝑜𝑐𝑘𝑒𝑡 = 𝑛𝑒𝑤 𝑊𝑒𝑏𝑆𝑜𝑐𝑘𝑒𝑡(𝑤𝑠://𝑒𝑥𝑎𝑚𝑝𝑙𝑒.𝑐𝑜𝑚/𝑠𝑜𝑐𝑘);
+
+𝑠𝑜𝑐𝑘𝑒𝑡. 𝑜𝑛𝑚𝑒𝑠𝑠𝑎𝑔𝑒 = (𝑒𝑣𝑒𝑛𝑡) => {
+       𝑐𝑜𝑛𝑠𝑜𝑙𝑒.𝑙𝑜𝑔("𝑀𝑒𝑠𝑠𝑎𝑔𝑒 𝑓𝑟𝑜𝑚 𝑠𝑒𝑟𝑣𝑒𝑟:", 𝑒𝑣𝑒𝑛𝑡.𝑑𝑎𝑡𝑎) ;
+};
+
+5) 𝐠𝐑𝐏𝐂 𝐀𝐏𝐈
+
+ • Stands for Google Remote Procedure Call
+ • Uses Protocol Buffers (not JSON/XML) for faster communication.
+ • Ideal for microservices, streaming, and large-scale systems.
+ • Example: High-speed communication between backend services.
+ 
+ 𝑠𝑒𝑟𝑣𝑖𝑐𝑒 𝑈𝑠𝑒𝑟𝑆𝑒𝑟𝑣𝑖𝑐𝑒 { 
+     𝑟𝑝𝑐 𝐺𝑒𝑡𝑈𝑠𝑒𝑟 (𝑈𝑠𝑒𝑟𝑅𝑒𝑞𝑢𝑒𝑠𝑡) 𝑟𝑒𝑡𝑢𝑟𝑛𝑠 (𝑈𝑠𝑒𝑟𝑅𝑒𝑠𝑝𝑜𝑛𝑠𝑒);
+} 
+
+𝑚𝑒𝑠𝑠𝑎𝑔𝑒 𝑈𝑠𝑒𝑟𝑅𝑒𝑞𝑢𝑒𝑠𝑡 { 
+      𝑠𝑡𝑟𝑖𝑛𝑔 𝑖𝑑 = 1; 
+}
+𝑚𝑒𝑠𝑠𝑎𝑔𝑒 𝑈𝑠𝑒𝑟𝑅𝑒𝑠𝑝𝑜𝑛𝑠𝑒 { 
+      𝑠𝑡𝑟𝑖𝑛𝑔 𝑛𝑎𝑚𝑒 = 1;
+      𝑠𝑡𝑟𝑖𝑛𝑔 𝑒𝑚𝑎𝑖𝑙 = 2;
+}
