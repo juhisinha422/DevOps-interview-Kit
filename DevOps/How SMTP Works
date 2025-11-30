@@ -1,0 +1,17 @@
+𝗛𝗼𝘄 𝗦𝗠𝗧𝗣 𝗪𝗼𝗿𝗸𝘀: 𝗧𝗵𝗲 𝗝𝗼𝘂𝗿𝗻𝗲𝘆 𝗼𝗳 𝗬𝗼𝘂𝗿 𝗘𝗺𝗮𝗶𝗹 ✉️💻
+
+Understanding how email travels from your inbox to someone else’s is crucial for both users and IT professionals. Here's a simplified breakdown of the SMTP process:
+
+User Sends an Email: The user composes an email using an email client (e.g., Gmail or Outlook).
+
+Mail Client Connects to SMTP Server: The email client connects to the SMTP server (e.g., smtp.gmail.com) to send the email.
+
+SMTP Server Processes the Email: The server checks if the recipient is within the same domain. If not, it contacts the recipient’s DNS server to find the Mail Exchange (MX) record.
+
+Email is Relayed Between SMTP Servers: The email is forwarded to the appropriate SMTP server until it reaches the recipient’s mail server.
+
+Email Stored in Recipient’s Mail Server: The recipient's mail server stores the email via IMAP or POP3.
+
+Recipient Retrieves Email: The recipient opens their mail client and retrieves the email.
+
+Understanding the SMTP process helps improve email security and troubleshoot email delivery issues.
