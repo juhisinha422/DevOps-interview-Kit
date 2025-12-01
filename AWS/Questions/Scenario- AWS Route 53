@@ -1,0 +1,21 @@
+ 20 Scenario-Based Questions on AWS Route 53
+	1.	Your main application server goes down. How would you configure Route 53 to automatically redirect traffic to a backup server?
+	2.	You want users from India and the US to be routed to different servers. How would you achieve this?
+	3.	Your website must always route users to the server with the lowest latency. Which configuration will you use?
+	4.	You need to distribute traffic between two servers in a 70:30 ratio. How do you configure this?
+	5.	Your company runs an application inside a VPC and only internal users should access it. How will Route 53 help?
+	6.	You want to migrate traffic slowly from an old server to a new one. How can Route 53 help in this process?
+	7.	Your domain should redirect users to CloudFront for faster content delivery. How do you configure DNS records?
+	8.	Users complain that sometimes your site works and sometimes it doesn’t. How would you use Route 53 health checks to troubleshoot this?
+	9.	You want traffic to be routed based on user location (continent or country). How is this implemented?
+	10.	You need to ensure high availability for a global application deployed in multiple AWS regions. How do you design this with Route 53?
+	11.	Your website should automatically failover if the primary EC2 instance becomes unhealthy. How do you configure this?
+	12.	You want to route mobile users to one endpoint and desktop users to another. How can this be achieved?
+	13.	Your application is experiencing uneven traffic load. How do you balance it using Route 53?
+	14.	You need to create a disaster recovery DNS strategy. What routing policies will you use?
+	15.	Your domain should resolve to an Application Load Balancer. How do you configure the DNS record?
+	16.	You want to test a new version of your application on a small group of users. How do you do this using Route 53?
+	17.	Your DNS changes need to be propagated quickly. How can you reduce DNS caching delays?
+	18.	You need to monitor endpoint availability continuously. How does Route 53 support this?
+	19.	You want internal VPC services to resolve domain names without exposing them to the internet. How do you configure this?
+	20.	Your multi-region architecture must ensure zero downtime even during regional failures. How do you implement DNS-based failover?
