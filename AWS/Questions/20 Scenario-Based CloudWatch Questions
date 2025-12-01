@@ -1,0 +1,30 @@
+🔥Frequently asked 20 Scenario-Based CloudWatch Questions
+ 1. Your EC2 CPU usage suddenly spikes to 95%. How would you detect and alert on this using CloudWatch?
+ 2. How do you monitor memory utilization, since it’s not a default metric in CloudWatch?
+ 3. You want to receive an email when disk space falls below 10%. How do you configure this?
+ 4. Your application is slow during peak hours. How will you use CloudWatch to identify the bottleneck?
+ 5. How do you create a custom CloudWatch metric for application-level monitoring?
+ 6. You need real-time alerts when an RDS connection limit is exceeded. How will you configure it?
+ 7. How do you monitor Lambda function execution failures and retries?
+ 8. You want to trigger Auto Scaling when CPU usage crosses 70%. How do you do this using CloudWatch?
+ 9. Logs from multiple EC2 instances need to be centralized and searchable. How will you achieve this?
+ 10. How do you troubleshoot if CloudWatch alarms are not triggering as expected?
+ 11. You want to track API latency for your application. How do you monitor this in CloudWatch?
+ 12. How do you create a dashboard to visualize EC2, RDS, and Lambda metrics together?
+ 13. You need to archive logs after 30 days. How do you configure log retention in CloudWatch?
+ 14. How do you capture and monitor failed login attempts on an EC2 instance?
+ 15. You want to monitor network traffic spikes that could indicate a DDoS attack. How would you set this up?
+ 16. How do you use CloudWatch Logs Insights to analyze large volumes of logs?
+ 17. You need to trigger a Lambda function when a specific log pattern appears. How do you configure it?
+ 18. Your CloudWatch costs are increasing. How do you optimize and reduce them?
+ 19. How do you monitor containerized workloads running on ECS or EKS using CloudWatch?
+ 20. You want to detect unusual behavior automatically. How would you use CloudWatch anomaly detection?
+
+⸻
+
+💡 These questions test understanding of:
+ • Monitoring & observability
+ • Alerts & automation
+ • Performance troubleshooting
+ • Cost optimization
+ • Log management😄
