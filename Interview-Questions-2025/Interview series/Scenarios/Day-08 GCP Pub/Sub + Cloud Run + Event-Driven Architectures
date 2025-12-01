@@ -1,0 +1,33 @@
+Day 8 — GCP Pub/Sub + Cloud Run + Event-Driven Architectures
+
+Scenario-Based DevOps Interview Questions
+
+1️⃣ You need asynchronous communication between microservices with retry & dead-letter handling. How will you architect this using Pub/Sub?
+
+2️⃣ A service experiences sudden traffic spikes and must scale to zero when idle. Which service will you use and how will you configure it?
+
+3️⃣ Messages are being published faster than subscribers can process them. What optimizations will you apply (pull, push, batching, concurrency)?
+
+4️⃣ You need event-driven automation each time a file lands in Cloud Storage. How will you design this end-to-end?
+
+5️⃣ A real-time order processing system must not lose messages, even if consumer goes down. How will you design ack deadlines, retries and DLQs?
+
+6️⃣ Cloud Run container cold starts are causing latency. What tuning strategies will you implement to reduce startup delays?
+
+7️⃣ Your Pub/Sub consumer runs business logic + DB write operations. How will you ensure idempotency to avoid duplicate inserts?
+
+8️⃣ A Cloud Run service must connect securely to VMs in a private VPC. How will you configure egress + VPC connectors + private routing?
+
+9️⃣ You need multi-tenant message separation inside Pub/Sub. Will you isolate using topics, subscriptions, attributes, or separate projects? Explain.
+
+🔟 Pub/Sub latency is high for large message loads. What performance tuning and architecture reviews would you do?
+
+1️⃣1️⃣ You must build an ETL pipeline triggered by Pub/Sub and store results in BigQuery. How will you design batching + cost optimization?
+
+1️⃣2️⃣ Sensitive events should not leave GCP network boundary. How will you combine Pub/Sub + VPC-SC + IAM?
+
+1️⃣3️⃣ You need to schedule periodic workloads without running servers. Which GCP services fit best and how will you integrate them?
+
+1️⃣4️⃣ A Cloud Run deployment broke production. How will you roll back quickly, enable traffic splitting and add safe release patterns?
+
+1️⃣5️⃣ You must stream data from Pub/Sub to BigQuery with real-time transformations. When will you choose Dataflow over Cloud Functions?
