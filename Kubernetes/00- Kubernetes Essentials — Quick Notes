@@ -1,0 +1,140 @@
+================================ 
+Kubernetes Essentials — Quick Notes
+================================ 
+
+When working with Kubernetes, understanding the core building blocks makes everything easier.
+
+1. Namespace
+Used to logically isolate and organize resources within a cluster.
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: project_name
+   labels:
+      environment: dev
+      project: project_name
+
+
+2. Pod
+Smallest deployable unit in Kubernetes.
+
+Key components inside a pod:
+• env : Environment variables are key–value pairs passed into the container.
+env:
+ - name: APP_ENV
+  value: "dev"
+
+
+• labels : Labels are tags that you attach to pods.
+labels:
+ app: mysql
+environment: dev
+ tier: db
+
+• annotations: Annotations are notes or metadata about your pod.
+
+annotations:
+ description: "This pod runs the cart service"
+
+
+• configMap: ConfigMap stores non-sensitive configuration.
+Example:
+ConfigiMap Block:
+name: app-config
+data:
+  APP_COLOR: "blue"
+
+Pod Block:
+envFrom:
+  - configMapRef:
+      name: app-config
+
+
+• secret: Secret stores sensitive data (passwords)
+Example:
+stringData:
+  DB_PASSWORD: "*********"
+Pod consumes it like:
+
+env:
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: db-secret
+        key: DB_PASSWORD
+
+• resources: Defines CPU and memory requested & limited for your pod.
+resources:
+ requests:
+  cpu: "100m" # m = millicores (1/1000 of a CPU core) i.e 0.1core
+  memory: "128Mi" # (128 × 1,048,576 = 134,217,728 bytes)
+ limits:
+  cpu: "500m"
+  memory: "512Mi"
+
+
+3. Services:
+
+• ClusterIP → Exposes the pod within the cluster. Enables pod-to-pod communication and internal load balancing using DNS.
+apiVersion: v1
+kind: Service
+metadata:
+name : user
+namespace: project_name
+spec:
+selector:
+project: project_name
+component: user
+tier: backend
+ports:
+- protocol: TCP
+port: 8080 # servcie port
+targetPort: 8080 # container
+
+
+• NodePort / LoadBalancer → Exposes the application to the outside world.
+apiVersion: v1
+kind: Service
+metadata:
+   name: frontend
+   namespace: project_name
+spec:
+  type: LoadBalancer
+  selector:
+    project: project_name
+    component: frontend
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80  # servcie port
+      targetPort: 80 # container  
+
+
+➡️ Pods use labels as selectors for services.
+
+4. ReplicaSet
+Ensures the desired number of pod replicas are always running.
+spec:
+    replicas: 1 # if give 2 here , 2 pods will be created for frontend micro service(container). 
+    selector:
+       matchLabels:
+        project: project_name
+        component: frontend
+        tier: frontend
+
+5. Deployment
+Handles application deployment using images and performs rolling updates by default.
+Ex:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: frontend
+spec:
+ replicas: 2
+ selector:
+  matchLabels: { app: frontend }
+ template:
+  metadata: { labels: { app: frontend } }
+  spec:
+   containers: 
+📌 Flow: Pod < ReplicaSet < Deployment
