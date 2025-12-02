@@ -1,0 +1,119 @@
+🔥How I Built a #CI/CD Pipeline From Scratch (Real DevOps Work)
+
+⚙️How I Built an End-to-End CI/CD Pipeline Using Jenkins + GitHub Webhook (Explained Simply)
+
+Last month, I had to create a complete CI/CD pipeline from scratch for a Java-based web application.
+
+“As soon as developers push code → pipeline should automatically build, test, scan and deploy.”
+
+Here’s exactly how I built it 👇
+
+
+1. Configured GitHub Webhook
+
+The first step was to make Jenkins reactive.
+
+ Created a webhook in GitHub
+ Connected it with Jenkins endpoint
+ Set trigger: “push event”
+ Allowed Jenkins to receive JSON payloads
+
+Now → whenever dev pushes code → Jenkins gets an instant notification.
+
+---
+
+2. Jenkins Pipeline Setup
+
+I wrote a declarative `Jenkinsfile` with these stages:
+
+Stage 1: Checkout
+
+Pull the latest code:
+
+```
+git checkout tool: 'git', branch: 'main'
+```
+
+Stage 2: Build
+
+Using Maven:
+
+```
+mvn clean install
+```
+
+Stage 3: Unit Tests
+
+Automatically runs JUnit tests.
+
+Stage 4: SonarQube Scan
+
+For code quality:
+
+* bugs
+* vulnerabilities
+* code smell
+* technical debt
+
+Stage 5: Artifact Upload
+
+Pushed the build artifact to:
+
+* Nexus or
+* S3 bucket (based on requirement)
+
+🚀 3 Deployment Across Environments
+
+The biggest challenge was to create three different environments:
+
+Dev → QA → Prod
+
+✔ Dev:
+Automatic deployment after pipeline success
+(using Ansible or simple shell script)
+
+✔ QA:
+Manual approval
+(“Promote to QA” button in Jenkins)
+
+✔Prod:
+Three checks before deployment:
+
+* manual approval
+* code scan success
+* test coverage threshold
+
+This prevented accidental production deploys.
+
+---
+
+4. Notifications Integrated
+
+I added:
+
+✔ Slack notification
+✔ Email alerts
+✔ Build status summary
+
+The team gets notified instantly:
+
+* success
+* failure
+* deployment status
+
+
+ 🎉 Final Result
+
+* Deployment time reduced from 40 min → 10 min
+* Zero manual builds
+* Code quality improved with automated Sonar checks
+* Faster feedback to developers
+* Complete visibility of each stage
+
+
+Key Lesson
+
+A good CI/CD pipeline isn’t just automation —
+It’s a communication system between developers, QA, and DevOps.
+
+Build once → Test everywhere → Deploy safely.
