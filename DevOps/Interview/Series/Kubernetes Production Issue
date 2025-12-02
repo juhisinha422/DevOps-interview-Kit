@@ -1,0 +1,85 @@
+Kubernetes Production Issue
+
+Kubernetes Pod Was Restarting Again & Again (CrashLoopBackOff) — Here’s Exactly How I Fixed It.
+
+One of our microservices kept going into CrashLoopBackOff, and the dev team couldn’t figure out why.
+
+Kubernetes was restarting the pod every few seconds.
+
+Here’s the root cause and how I solved it 👇
+
+The Issue
+
+Developers reported:
+
+* Pod constantly restarting
+* App not available behind service
+* Liveness probe failing
+* Logs showing “Application not ready”
+
+kubectl get pods` showed:
+CrashLoopBackOff`
+Restart count increasing
+Pod failing after 3–5 seconds
+
+
+Root Cause
+
+After checking logs:
+
+1. App needed **12–15 seconds** to start
+2. But **liveness probe** was configured to check the app every **5 seconds**
+3. Kubernetes thought the app was unhealthy
+4. So it kept killing the pod before it actually started
+
+🔹 K8s didn’t wait for the app to become healthy.
+🔹 Misconfigured liveness probe → forced restarts.
+
+
+How I Fixed It
+
+I updated the probes:
+
+Fixed Liveness Probe
+
+yaml
+initialDelaySeconds: 20
+periodSeconds: 10
+timeoutSeconds: 5
+failureThreshold: 3
+
+
+Updated Readiness Probe
+
+yaml
+initialDelaySeconds: 15
+
+Added resource limits
+
+To ensure app gets proper CPU on startup.
+
+Restarted deployment
+
+```
+kubectl rollout restart deployment <name>
+```
+
+🚀Final Result
+
+* No more CrashLoopBackOff
+* App stable within 30 seconds
+* Health checks passed correctly
+* Traffic flowing smoothly through service
+
+
+💡Key Learning
+
+Most Kubernetes issues are NOT cluster issues.
+
+They are:
+ Wrong health checks
+ Wrong resource limits
+ Wrong container start timings
+ Wrong configuration
+
+Fix configs → Fix cluster.
