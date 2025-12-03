@@ -1,0 +1,50 @@
+“HR rounds are just formality.”
+Really? 
+
+I’ve started treating them as my performance review with the future.
+Recently, while preparing for Cloud Ops (GCP, Kubernetes, Terraform) roles, I stopped going into HR discussions “to answer questions” and started going in to tell a story.
+
+Here’s the flow I now use—and it’s changing the game for me:
+🔥 1. 30-Second Trailer – Who I Am
+Instead of “I have X years of experience…”, I open with:
+“I help teams ship reliable cloud workloads on GCP using Kubernetes, Terraform and automation, and I love turning firefighting into predictable pipelines.”
+One sentence. Clear value. Tech + impact.
+
+⚙️ 2. Career in 3 Scenes (Not 3 Pages)
+For each company, I only share:
+The problem space (“critical production systems”, “rotational L2/L3 support”, “cloud migrations”)
+One headline achievement with a number:
+“Reduced deployment time from 45 mins to 8 mins”
+“Cut incidents by 30% by fixing K8s readiness/liveness + alerts”
+“Automated infra provisioning with Terraform for X envs”
+No laundry list of tasks—just big moves.
+
+🚀 3. Achievement Stories in DevOps Language (STAR++)
+I still use STAR, but tuned to Cloud/DevOps:
+S – Prod issue / scaling / cost / reliability challenge
+T – What I owned (on-call, migration, CI/CD, K8s, Terraform, GCP)
+A – Concrete actions (commands, tools, design choices)
+R – Measurable result + what we learned
+Example:
+“We had frequent pod crashes in GKE. I added proper liveness/readiness probes, configured HPA, and tuned resource requests/limits. Result: 0 crashloops during the next traffic spike and 20% better CPU utilization.”
+HR doesn’t need YAML—but they love clear before/after impact.
+
+🤝 4. Culture: How I Show Up in a Team
+I highlight things that matter in Cloud Ops:
+I document runbooks so the next on-call isn’t blind.
+I mentor juniors on Git, CI/CD, K8s basics.
+I don’t hide incidents—I do RCA, automate the fix, and share.
+This shifts the perception from “individual contributor” to “force multiplier.”
+
+🎯 5. Future Plot: Why THIS Role
+I connect their JD to my arc:
+“Your stack (GCP + GKE + Terraform) is exactly where I’ve been investing my nights and weekends. I want to go deeper into platform reliability and eventually move toward a Cloud/DevOps Architect path.”
+Now HR can see where to place me long term.
+
+💰 6. CTC Talk Without Awkwardness
+I keep it simple and grown-up:
+Clear breakdown of fixed/variable/bonuses
+Justified range based on: market + niche skills + proven impact
+Openness to find a win–win, without underselling
+
+💡 If you’re preparing for Cloud / DevOps interviews, don’t treat HR round as a speed bump. Treat it as the demo day of your career story—tech, numbers, mindset, all in one.
