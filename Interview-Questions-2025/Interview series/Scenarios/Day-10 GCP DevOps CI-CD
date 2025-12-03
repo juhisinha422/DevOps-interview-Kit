@@ -1,0 +1,35 @@
+Day 10 — GCP DevOps CI/CD (Cloud Build + Artifact Registry + GitOps)
+
+Scenario-Based DevOps Interview Questions
+
+1️⃣ Your team wants a fully automated CI/CD pipeline for containerized apps. How will you design it using Cloud Build + Artifact Registry + GKE/Cloud Run?
+
+2️⃣ Builds are taking too long due to repetitive tasks (dependency download, image build). What Cloud Build optimizations will you implement?
+
+3️⃣ You need to enforce security scans (SAST, container vulnerability scanning) before deployment. How will you integrate this in Cloud Build?
+
+4️⃣ A pipeline must deploy to dev → stage → prod with approval gates. How will you design this flow in Cloud Build + Cloud Deploy?
+
+5️⃣ You need GitOps-style delivery for GKE clusters. Which tools will you use (Config Sync, Anthos Config Management, ArgoCD) and why?
+
+6️⃣ A Cloud Build service account is over-permissioned. How will you apply least privilege for building, pushing images, and deploying?
+
+7️⃣ You must build multi-architecture container images (AMD64 + ARM). How will you modify the pipeline?
+
+8️⃣ A deployment to GKE failed with a permissions error and kubeconfig mismatch. How will you debug and fix Cloud Build → GKE authentication?
+
+9️⃣ You want to implement policy-as-code (security checks, naming conventions, labels) before deployment. Which tools and services will you choose?
+
+🔟 Artifacts in Artifact Registry are growing uncontrollably. How will you manage cleanup, retention policies, and repository design?
+
+1️⃣1️⃣ You must integrate Terraform into Cloud Build for infra deployment. How will you manage state files, secrets, and environment segregation?
+
+1️⃣2️⃣ A Cloud Run service must be deployed automatically on every commit but with traffic-splitting rollout. How will you implement this?
+
+1️⃣3️⃣ Deployment to prod should only be allowed during specific maintenance windows. How will you enforce time-based policy in CI/CD?
+
+1️⃣4️⃣ You need detailed logs, metrics, and traceability for every pipeline step. What Cloud Build & Cloud Logging features will you enable?
+
+1️⃣5️⃣ You must create a DR-ready CI/CD pipeline where artifacts, configs, and environments exist in multiple regions. How will you design failover for CI/CD?
+
+⸻
