@@ -1,0 +1,61 @@
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝗲𝗿:
+How will you upgrade an EKS cluster?
+Have you done any upgrades before?
+𝗖𝗮𝗻𝗱𝗶𝗱𝗮𝘁𝗲:
+Yes, I’ve worked on EKS cluster upgrades.
+Upgrading an EKS cluster is not just clicking upgrade version, it’s a structured process with several prerequisites. I always follow a proper checklist before starting.
+𝙄𝙣𝙩𝙚𝙧𝙫𝙞𝙚𝙬𝙚𝙧:
+Ok, then what are the prerequisites?
+𝘾𝙖𝙣𝙙𝙞𝙙𝙖𝙩𝙚:
+Before upgrading, I make sure of these key checks:
+1. 𝘾𝙤𝙧𝙙𝙤𝙣 𝙣𝙤𝙙𝙚𝙨 – To prevent new pods from scheduling on nodes that will be upgraded.
+2. 𝙍𝙚𝙖𝙙 𝙩𝙝𝙚 𝙧𝙚𝙡𝙚𝙖𝙨𝙚 𝙣𝙤𝙩𝙚𝙨 – Understand what changed between versions (ex: v1.30 → v1.31).
+3. 𝙃𝙖𝙫𝙚 𝙖 𝙧𝙤𝙡𝙡𝙗𝙖𝙘𝙠 𝙨𝙩𝙧𝙖𝙩𝙚𝙜𝙮 – Since Kubernetes does NOT support downgrades, I ensure backups and lower environments are tested.
+4. 𝙑𝙖𝙡𝙞𝙙𝙖𝙩𝙚 𝙞𝙣 𝘿𝙚𝙫/𝙌𝘼 𝙛𝙞𝙧𝙨𝙩 – Never touch production directly.
+5. 𝘾𝙝𝙚𝙘𝙠 𝙫𝙚𝙧𝙨𝙞𝙤𝙣 𝙘𝙤𝙢𝙥𝙖𝙩𝙞𝙗𝙞𝙡𝙞𝙩𝙮 – Control plane, nodes, kubelet, and add-ons must align.
+6. Ensure Cluster Autoscaler is compatible with the target version.
+7. 𝙑𝙚𝙧𝙞𝙛𝙮 𝘼𝙙𝙙-𝙤𝙣 𝙘𝙤𝙢𝙥𝙖𝙩𝙞𝙗𝙞𝙡𝙞𝙩𝙮 – VPC CNI, CoreDNS, kube-proxy, and all custom add-ons.
+8. 𝘾𝙝𝙚𝙘𝙠 𝙠𝙪𝙗𝙚𝙡𝙚𝙩 𝙫𝙚𝙧𝙨𝙞𝙤𝙣𝙨 – Nodes cannot be ahead of the control plane.
+
+𝙄𝙣𝙩𝙚𝙧𝙫𝙞𝙚𝙬𝙚𝙧:
+Good. After the prerequisites, how do you actually perform the upgrade?
+𝘾𝙖𝙣𝙙𝙞𝙙𝙖𝙩𝙚:
+Sure, it’s a 3-step formula:
+1. 𝙐𝙥𝙜𝙧𝙖𝙙𝙚 𝘾𝙤𝙣𝙩𝙧𝙤𝙡 𝙋𝙡𝙖𝙣𝙚
+AWS handles it. I trigger it using eksctl or console.
+2. 𝙐𝙥𝙜𝙧𝙖𝙙𝙚 𝙉𝙤𝙙𝙚 𝙂𝙧𝙤𝙪𝙥𝙨
+Managed nodes → in-place upgrade.
+Self-managed → create new group → cordon & drain → migrate pods.
+3. 𝙐𝙥𝙜𝙧𝙖𝙙𝙚 𝘼𝙡𝙡 𝘼𝙙𝙙-𝙤𝙣𝙨
+Because networking & DNS must match the new version.
+--> VPC CNI
+--> CoreDNS
+--> Kube-proxy
+--> ALB controller
+--> Observability/logging tools
+
+ 𝙄𝙣𝙩𝙚𝙧𝙫𝙞𝙚𝙬𝙚𝙧:
+Why can't we downgrade the cluster if something goes wrong?
+𝘾𝙖𝙣𝙙𝙞𝙙𝙖𝙩𝙚:
+Because Kubernetes doesn’t support downgrading.
+Upgrades remove old API versions, change etcd schema, and modify controller behavior.
+𝗔 𝗱𝗼𝘄𝗻𝗴𝗿𝗮𝗱𝗲 𝘄𝗼𝘂𝗹𝗱 𝗯𝗿𝗲𝗮𝗸:
+--> API servers
+--> CRDs
+--> DNS
+--> Networking
+--> Controllers
+So the only safe rollback is:
+Create a new cluster on the old version → migrate workloads.
+
+𝙄𝙣𝙩𝙚𝙧𝙫𝙞𝙚𝙬𝙚𝙧:
+ Anything else you check post-upgrade?
+𝘾𝙖𝙣𝙙𝙞𝙙𝙖𝙩𝙚:
+Yes, I perform:
+--> Pod health & readiness checks
+--> Autoscaling tests
+--> Logs & metrics validation
+--> Ingress & load balancing checks
+--> Version verification for all add-ons
+
+EKS upgrades are ecosystem upgrades, not just Kubernetes version upgrades. Control plane, nodes, networking, DNS, and all add-ons must be upgraded together for the cluster to stay healthy and stable.
