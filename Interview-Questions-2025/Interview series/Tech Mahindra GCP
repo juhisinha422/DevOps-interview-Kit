@@ -1,0 +1,20 @@
+Tech Mahindra” Interview Experience — GCP Cloud Ops Stack 🌩️
+
+It was a great learning experience exploring the GCP Cloud Operations Stack in my recent interview with Tech Mahindra. The discussion covered both technical depth and situational awareness. Here’s a snapshot of the key areas touched during the conversation:
+
+🔹 Core Questions:
+•	What is your primary cloud?
+•	Did you work in Terraform?
+•	Can you write a Terraform program to create a user group and add yourself as an owner?
+•	What are locals in Terraform? (With an example of using locals to create a compute instance)
+•	How do you deploy applications on GCP?
+•	Where do you deploy your apps in GCP?
+•	What’s your primary automation scripting language?
+•	Write a Linux shell script to clear logs older than 7 days.
+
+🔹 Scenario / Behavioural Topics:
+•	Describe your most challenging recent task.
+•	Can you work in any shift for the Bengaluru location?
+•	How much experience do you have in Cloud Ops?
+•	Will you be able to start work after Knowledge Transfers (KTs)?
+•	Would you be comfortable in an ODC setup where personal devices aren’t allowed?
