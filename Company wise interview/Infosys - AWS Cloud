@@ -1,0 +1,34 @@
+AWS Interview Questions for 'Infosys'
+If you’re preparing for an Infosys interview focused on AWS Cloud, here are some essential questions to sharpen your skills:
+
+1️⃣ What are EC2, Lambda, and EKS?
+2️⃣ How do you create AWS infrastructure?
+3️⃣ How do you monitor your application on AWS?
+4️⃣ How do you apply changes via AWS CI/CD?
+5️⃣ Explain team structure, handling critical issues, and client interaction in an AWS context.
+6️⃣ How do you manage storage on AWS (S3, EBS, EFS)?
+7️⃣ How do you manage permissions on EC2?
+8️⃣ What is a Target Group / Backend in AWS Load Balancing?
+
+1st Scenario:
+Your application is running on EC2 instances behind an Application Load Balancer (ALB). Suddenly, users report intermittent 502 errors.
+Question:
+How would you troubleshoot and resolve this issue?
+(Hint: Health checks, target group status, security groups, application logs, scaling policies.)
+
+2nd Scenario:
+You need to deploy a microservices-based application on AWS using Kubernetes. The client wants high availability, auto-scaling, and secure IAM roles for pods.
+Question:
+Which AWS services and configurations would you use to meet these requirements?
+(Hint: EKS, IAM Roles for Service Accounts, Cluster Autoscaler, ALB Ingress Controller.)
+
+3rd Scenario:
+Your team is migrating on-premise storage to AWS. The requirement is:
+Store large files with versioning and lifecycle policies
+Share POSIX-compliant file system across multiple EC2 instances
+Question:
+Which AWS storage services would you choose and why?
+(Hint: S3 for object storage, EFS for shared file system, EBS for block storage.)
+
+💡 Pro Tip: Practice scenario-based answers and mention tools like Terraform, CloudFormation, CloudWatch, CodePipeline, and IAM for bonus points.
+
