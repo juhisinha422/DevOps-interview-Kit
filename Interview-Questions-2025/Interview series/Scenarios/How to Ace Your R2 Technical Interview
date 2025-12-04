@@ -1,0 +1,32 @@
+How to Ace Your R2 Technical Interview for Cloud, DevOps, SRE, Platform & AI/ML Ops Roles?
+
+
+Round 2 interviews aren’t just about theory—they test your ability to think, design, and troubleshoot like a pro. Here’s a roadmap to make yourself competent and confident for these roles:
+✅ 1. Decode the Role
+Each role has unique priorities:
+Cloud Engineer: Multi-region architecture, IAM, cost optimization.
+DevOps: CI/CD pipelines, IaC, Kubernetes.
+SRE: Reliability metrics, incident response, automation.
+Platform: Developer experience, service mesh, scalability.
+AI/ML Ops: Model deployment, data pipelines, MLflow/Kubeflow.
+💡 Tip: Create a Role-Skill Matrix to focus your learning.
+
+✅ 2. Build Hands-On Projects
+Deploy a 3-tier app on Kubernetes using Terraform + Helm.
+Add observability dashboards with Prometheus & Grafana.
+For AI/ML Ops: Deploy a ML model on GKE with CI/CD pipeline.
+🔥 Pro Tip: Share screenshots or short videos of your projects on LinkedIn—it shows real skills!
+
+✅ 3. Practice Scenario-Based Q&A
+Interviewers love real-world problem-solving:
+“How would you design a multi-region failover architecture?”
+“Your CI/CD pipeline fails during artifact upload—how do you debug?”
+“Latency spikes in production—what’s your approach?”
+Use STAR (Situation, Task, Action, Result) for structured answers.
+
+✅ 4. Reliability & Performance
+Understand SLI/SLO/SLA, cost optimization, and incident drills.
+💡 Insight: Share your learnings as bite-sized posts—great for engagement!
+
+✅ 5. Mock Interviews & Feedback
+Platforms like Pramp or Interviewing.io help you refine clarity and confidence.
