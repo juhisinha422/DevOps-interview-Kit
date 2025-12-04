@@ -1,0 +1,55 @@
+Why Pods and Nodes Are Ephemeral in K8's 
+         — and Why That’s a Feature, Not a Bug
+================================ 
+
+If you're coming from traditional infrastructure, one of the most surprising ideas in Kubernetes is this:
+
+➡️ Pods are ephemeral.
+➡️ Nodes are also ephemeral.
+
+Yet… these two “temporary” things run our production microservices 24/7.
+So what’s going on?
+Let’s break it down 🔽 
+
+1. Pods Are Ephemeral
+   A Pod can disappear anytime due to:
+     - node failure
+     - crashes
+     - OOM kills
+     - deployments/rollouts
+     - autoscaling
+
+But your service doesn’t go down because the Pod isn’t the real “unit of durability.”
+
+The Deployment / ReplicaSet / StatefulSet is.
+It recreates Pods instantly.
+Pod = worker
+Deployment = HR team that replaces workers automatically
+
+2. Nodes Are Ephemeral Too
+    This surprises many people.In cloud-native environments, nodes (VMs) can   vanish because of:
+     - autoscaling
+     - spot instance interruptions
+     - upgrades
+     - hardware failures
+     - rebalancing by the cloud provider
+
+Kubernetes expects this. Nothing about a node is “permanent”—its identity, storage, and presence can all be replaced.
+
+Node = a disposable machine
+Cluster = the supervisor that adds/removes machines as needed
+
+3. The Real Magic of Kubernetes
+Kubernetes is built on one mindset:
+➡️  Everything running workloads must be replaceable.
+Only your desired state is permanent.
+Controllers guarantee it.
+Schedulers enforce it.
+Autoscalers optimize it.
+Services and PVCs shield your workloads from it.
+This design gives us:
+✔️ self-healing
+✔️ elastic scaling
+✔️ automated recovery
+✔️ fault tolerance
+✔️ zero-downtime rollouts
