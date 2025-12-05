@@ -1,0 +1,93 @@
+ Face-to-Face Interview Experience – DevOps / Cloud Role (Product Based Company)
+
+First round of face-to-face technical interview for a DevOps/ SRE role at a fast-growing product company.
+
+It was a deep, fundamentals-driven discussion, focusing more on architecture clarity than tool usage.
+Here are the areas and topics that were discussed — sharing purely for learning & preparation.
+
+ Introduction
+ Tell me about yourself
+
+AWS Networking & VPC
+
+Public EC2 vs Private EC2
+
+What is a NAT Gateway? Where does it reside?
+
+NAT Gateway vs Bastion Host
+
+How routing works for NAT Gateway
+
+What is an Internet Gateway
+
+Accessing S3 from private subnet without internet
+
+Types of Load Balancers
+
+What is a VPC
+
+Connecting multiple VPCs
+
+Alternatives to VPC Peering
+
+What is CIDR and how to calculate IPs
+
+Reserved IPs by AWS & blocked IP ranges
+
+🔹 Networking Fundamentals
+TCP vs UDP
+
+HTTP vs HTTPS
+
+What does ‘S’ stand for
+
+What is TLS/SSL
+
+Who issues certificates
+
+TLS/SSL Handshake (high-level)
+
+🔹 Docker & Containers
+Explain Docker Architecture
+
+Containers vs Virtual Machines
+
+How containers use OS resources
+
+Resource allocation in containers
+
+Explain Dockerfile
+
+🔹 Kubernetes
+What are Services in Kubernetes
+
+Types of Services
+
+What is Ingress & Ingress Controller
+
+How to set it up
+
+Traffic flow: Domain → Ingress → Service → Pod
+
+Load Balancer Service vs Ingress
+
+🔹 Monitoring & Observability
+What tools have you used?
+
+What is Grafana & how to configure
+
+What is Prometheus
+
+Components of Prometheus
+
+How did you configure Prometheus
+
+ Key Takeaway
+This interview was extremely practical & architecture-focused, testing:
+✔ Fundamentals
+✔ Real-world clarity
+✔ Problem-solving ability
+
+Rather than just tool knowledge.
+
+It was a great learning experience and a solid benchmark of modern DevOps expectations in product-based companies.
