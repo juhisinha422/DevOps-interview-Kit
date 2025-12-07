@@ -1,0 +1,17 @@
+VPC vs Subnet in AWS: Finally Make It Simple! ✅
+
+If you’ve ever been confused about VPCs and subnets, here’s the simplest way to get it.
+
+👉 VPC (Virtual Private Cloud):
+ Your own private network inside AWS where you launch resources like EC2, RDS, and more. You control IP ranges, routing, and access. Think of it as your isolated corner of the AWS cloud.
+
+👉 Subnets:
+ Smaller segments within a VPC, controlling network traffic flow.
+ 1️⃣ Public Subnet: Connected to the internet via an Internet Gateway, perfect for web servers or load balancers.
+ 2️⃣ Private Subnet: No direct internet access, ideal for databases or internal apps.
+💡 Secure each layer: Use Security Groups and NACLs to define who can talk to what.
+
+💢 Quick analogy:
+ VPC = Toy box
+ Subnets = Toys inside the box
+Now you know how AWS keeps your cloud neat, organized, and secure! 🚀
