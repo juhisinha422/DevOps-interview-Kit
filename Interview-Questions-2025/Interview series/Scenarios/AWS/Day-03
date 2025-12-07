@@ -1,0 +1,33 @@
+Day 3 — AWS VPC + Networking + Security
+
+STAR approach Interview Questions
+
+1️⃣ You need to design a secure multi-tier VPC (web/app/db). How will you architect networking, routing, and security?
+
+2️⃣ An EC2 instance in a private subnet cannot access the internet. What steps will you take to fix this?
+
+3️⃣ Your VPC is flat and all resources can communicate freely. How will you enforce segmentation and least-privilege networking?
+
+4️⃣ You have 50+ VPCs across multiple environments. How will you set up scalable and secure inter-VPC connectivity?
+
+5️⃣ For hybrid connectivity, when will you choose Site-to-Site VPN vs Direct Connect?
+
+6️⃣ A partner needs access to one internal service without accessing your VPC. How will you design this?
+
+7️⃣ Your application must restrict traffic based on geographic regions. Which AWS services will you use?
+
+8️⃣ An internal service behind a private load balancer must be accessible globally. How will you redesign the architecture?
+
+9️⃣ When will you choose an ALB vs NLB vs Gateway Load Balancer in production scenarios?
+
+🔟 Your application requires SSL termination + routing rules + autoscaling support. Which load balancer fits best?
+
+1️⃣1️⃣ Load balancer health checks are failing unexpectedly. How will you troubleshoot?
+
+1️⃣2️⃣ Employees must access internal apps securely from remote locations. How will you design this?
+
+1️⃣3️⃣ AWS WAF is blocking legitimate traffic. What corrective actions will you take?
+
+1️⃣4️⃣ Your NAT Gateway costs are rising. How can VPC Endpoints reduce cost and improve security?
+
+1️⃣5️⃣ You need secure microservice-to-microservice communication across VPCs. What architecture will you choose?
