@@ -1,0 +1,46 @@
+Cracking DevOps Interviews (1–2 Years Experience)
+
+In the last few months, I have helped multiple engineers prepare for DevOps interviews.
+
+One common feedback I hear is:
+👉 “Interview questions are easy. But they are practical.”
+
+So if you have 1 to 2 years experience, these are the topics you must be strong in.
+
+I’ve collected the most asked questions from real interviews 👇
+
+🔹 Explain your CI/CD pipeline architecture
+🔹 What triggers your pipeline?
+🔹 How do you handle build failures?
+🔹 Difference between CI and CD?
+🔹 What type of artifacts are generated in your pipeline?
+🔹 How do you store credentials securely in Jenkins?
+🔹 Explain Webhooks
+🔹 What is Jenkins agent?
+🔹 What is multibranch pipeline?
+🔹 What is Blue-Green deployment?
+🔹 What is Canary deployment?
+🔹 What monitoring tools you used?
+🔹 Explain observability?
+🔹 What is Log aggregation?
+🔹 What is difference between Logs, Metrics and Traces?
+🔹 What is Docker image and Docker container.
+🔹 How do you create Dockerfile?
+🔹 How do you troubleshoot container issues?
+🔹 What is Kubernetes Deployment and ReplicaSet?
+🔹 How do you expose services in Kubernetes?
+🔹 Difference between LoadBalancer, NodePort and ClusterIP
+🔹 What is ConfigMap and Secret?
+🔹 What is rolling update strategy?
+🔹 Explain Horizontal Pod Autoscaling
+🔹 What is AWS VPC and Subnet?
+🔹 What is Security Group vs NACL?
+🔹 What is IAM role?
+🔹 Explain S3 lifecycle policy
+🔹 What is Terraform state file?
+🔹 What is drift in Terraform?
+🔹 What is Ansible Playbook?
+🔹 Difference between push and pull configuration?
+🔹 How do you debug production issue?
+🔹 Tell me about a recent outage you handled
+🔹 What did you learn from it?
