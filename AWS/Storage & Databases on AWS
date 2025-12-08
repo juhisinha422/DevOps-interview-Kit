@@ -1,0 +1,127 @@
+Storage & Databases on AWS: Everything You Must Know (High-Level Overview)
+
+AWS provides a rich ecosystem of storage and database services — each designed for specific performance, durability, and scalability needs.
+
+Understanding which service to choose and when is one of the most important cloud architecture skills and a high-frequency interview topic.
+
+Here’s a crisp, practical breakdown
+
+
+
+ 1️⃣ Storage Services on AWS
+
+📦 Amazon S3 (Object Storage)
+
+Store any amount of data
+
+Durable (11 9’s), scalable, low cost
+
+Supports versioning, lifecycle rules, storage classes
+📍 Use Case: Backups, logs, static websites, data lakes, media storage
+
+
+
+💾 Amazon EBS (Block Storage)
+
+Block-level volumes for EC2
+
+High performance, low latency
+📍 Use Case: Databases, boot volumes, transactional apps
+
+
+
+📁 Amazon EFS (File Storage)
+
+NFS-based shared file system
+
+Auto-scaling across multiple AZs
+📍 Use Case: Shared apps, CMS systems, microservices
+
+
+
+🧊 Amazon Glacier (Archive Storage)
+
+Extremely low-cost archival
+
+Retrieval from minutes → hours
+📍 Use Case: Long-term backups, compliance archives
+
+
+
+2️⃣ Database Services on AWS
+
+🗄️ Amazon RDS (Relational Database Service)
+
+Fully managed MySQL, PostgreSQL, Oracle, SQL Server, MariaDB
+
+Multi-AZ, automated backups, read replicas
+📍 Use Case: Traditional relational workloads
+
+
+
+Amazon Aurora
+
+Cloud-native RDS engine (MySQL & PostgreSQL compatible)
+
+5× faster than MySQL, 3× faster than PostgreSQL
+📍 Use Case: High-performance enterprise apps
+
+
+
+⚡ Amazon DynamoDB (NoSQL)
+
+Serverless, highly scalable key-value/document store
+
+Single-digit millisecond latency
+📍 Use Case: Gaming, IoT, high-scale apps, e-commerce carts
+
+
+
+📊 Amazon Redshift (Data Warehouse)
+
+Petabyte-scale analytics
+📍 Use Case: BI/Analytics, big data workloads
+
+
+
+🧠 Amazon Neptune (Graph Database)
+
+📍 Use Case: Social graphs, fraud detection, recommendation engines
+
+
+
+🧩 Amazon ElastiCache (Redis/Memcached)
+
+📍 Use Case: Caching, session management, real-time apps
+
+
+
+💬 Common Interview Questions:
+
+Difference between S3, EBS, and EFS?
+
+When to choose RDS vs Aurora vs DynamoDB?
+
+How does S3 achieve 11 nines of durability?
+
+What is DynamoDB partition key & sort key?
+
+What is Multi-AZ in RDS?
+
+
+
+📘 Helpful AWS Documentation:
+
+https://lnkd.in/gGgaS8H4
+
+https://lnkd.in/gbVXpJ2A
+
+https://lnkd.in/giSePsgt
+
+https://lnkd.in/gNwH9pW2
+
+https://lnkd.in/gff8fuyT
+
+https://lnkd.in/gaHkSF7Q
+
+https://lnkd.in/gXEVRWcX
