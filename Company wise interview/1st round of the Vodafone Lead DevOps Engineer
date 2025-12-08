@@ -1,0 +1,46 @@
+1st round of the Vodafone Lead DevOps Engineer interview Experience.
+
+The round was filled with real-world, advanced scenario-based questions.
+The interview covered deep technical discussions on:
+🔹 AWS
+ 🔹 GCP 
+ 🔹 Kubernetes 
+ 🔹 Terraform
+ 🔹 Docker 
+
+This shows that when you prepare with the right mindset, focus on hands-on skills, and practice scenario-based questions, cracking big interviews becomes a lot easier.
+
+🔸 AWS – Advanced Scenarios
+Your application latency suddenly increased in Production. How do you troubleshoot across ALB → EC2 → RDS → VPC flow?
+You need zero-downtime deployment for an API running on EC2. Which strategy would you choose — Blue/Green or Rolling — and why?
+How do you secure cross-account access for CI/CD pipelines using IAM roles?
+Your Lambda function is hitting cold starts during spikes. How do you fix it?
+How do you design a highly available VPC across 3 AZs with private subnets, NAT gateways, and on-prem connectivity?
+
+🔸 GCP – Real-World Problems
+Your GKE workloads need to securely connect to BigQuery & Cloud SQL. How would you design IAM + VPC + service accounts?
+When would you choose Cloud Run vs GKE vs Compute Engine?
+How do you implement multi-region failover in GCP?
+How would you reduce cost for workloads running 24/7 on GKE?
+How do you design a CI/CD pipeline using Cloud Build + Artifact Registry + GKE?
+
+🔸 Kubernetes – Production Scenarios
+Pods are restarting frequently with OOMKilled. How do you troubleshoot and fix this?
+How do you restrict one namespace from accessing another namespace’s services?
+Explain how traffic flows when you run kubectl apply -f deployment.yaml from client → API server → etcd → scheduler → kubelet.
+How do you perform a safe rollback when the new deployment is causing errors?
+How do you debug a CrashLoopBackOff pod in Prod?
+
+🔸 Terraform – Infrastructure Scenarios
+How do you manage Terraform state for multiple teams and multiple environments (Dev/QA/Prod)?
+You changed a resource that Terraform wants to recreate (destroy + create). How do you prevent downtime?
+How do you design a Terraform module for reusable VPC creation?
+State file got corrupted or locked — what is your approach?
+How would you implement CI/CD for Terraform using Jenkins or GitHub Actions?
+
+🔸 Docker – Advanced Concepts
+How do you reduce Docker image size for a Java/Python/Node app using multi-stage builds?
+How do you debug a container that keeps failing inside Kubernetes?
+How do you manage credentials/secrets inside containers securely?
+What is the difference between ENTRYPOINT vs CMD in real deployment use cases?
+Your container works locally but fails in Kubernetes — what is your debugging approach?
