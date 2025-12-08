@@ -1,0 +1,49 @@
+Real DevOps Interview Questions in a Top MNC
+
+Here are the exact scenarios I was asked 👇
+
+1️⃣ Pipeline Trigger Conflict
+
+CI was triggering on every commit instead of only when .NET project files changed.
+➡️ How will you debug and fix selective triggers in YAML?
+
+2️⃣ Multi-Stage Pipeline Failing Only in Production
+
+Build → QA → UAT → Prod works everywhere except Prod (random timeout errors).
+➡️ How will you check if it’s an agent issue, environment config, or misconfigured task?
+
+3️⃣ Parallel Deployments Causing Locks
+
+Two teams deploying to the same App Service caused deployment collisions.
+➡️ How will you design locking, approvals, or exclusive jobs?
+
+4️⃣ Release Pipeline Dropping Artifacts
+
+Artifacts disappeared after retention cleanup, breaking releases.
+➡️ How will you ensure artifact availability?
+
+5️⃣ Infrastructure Drift (Azure Bicep / Terraform / CloudFormation)
+
+Manual changes created resource drift.
+➡️ How will you detect and enforce desired state?
+
+6️⃣ Blue-Green Deployment Failure
+
+Green slot worked, but swap failed due to warm-up issues.
+➡️ What checks, health probes, and validations will you configure?
+
+7️⃣ AKS/EKS Deployment Failing on Only One Node
+
+Pods failed on 1 node with ImagePullBackOff.
+➡️ How will you identify if it’s node-specific, registry-related, or pipeline-related?
+
+8️⃣ Zero-Downtime Deployment for Functions/Lambda
+
+Zip deploy caused downtime.
+➡️ Will you choose slots, run-from-package, container deployment, Lambda versions/aliases… and why?
+
+9️⃣ PAT Token Misuse
+
+A developer accidentally committed a PAT token.
+➡️ What immediate actions will you take?
+➡️ How will you redesign authentication securely?
