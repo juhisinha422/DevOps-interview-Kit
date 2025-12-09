@@ -1,0 +1,43 @@
+𝙃𝙚𝙧𝙚 𝙖𝙧𝙚 10 𝙧𝙚𝙖𝙡-𝙬𝙤𝙧𝙡𝙙 𝙆𝙪𝙗𝙚𝙧𝙣𝙚𝙩𝙚𝙨 𝙨𝙘𝙚𝙣𝙖𝙧𝙞𝙤𝙨 𝙮𝙤𝙪 𝙢𝙞𝙜𝙝𝙩 𝙛𝙖𝙘𝙚 — 𝙖𝙣𝙙 𝙨𝙤𝙡𝙫𝙞𝙣𝙜 𝙩𝙝𝙚𝙢 𝙗𝙪𝙞𝙡𝙙𝙨 𝙩𝙝𝙚 𝙢𝙪𝙨𝙘𝙡𝙚 𝙩𝙝𝙖𝙩 𝙗𝙤𝙤𝙠𝙨 𝙖𝙡𝙤𝙣𝙚 𝙘𝙖𝙣’𝙩.
+
+📌 Save this — or better, share it with someone who’s into Kubernetes like you are.
+
+ 1. Your cluster’s API server is responding slowly, impacting other components.
+ How would you diagnose and resolve API server performance bottlenecks?
+ What are the common causes of high API server latency?
+
+2. A pod is stuck waiting for its Persistent Volume Claim (PVC) to be bound.
+ How do you debug and resolve PVC binding issues?
+ What are the key considerations when provisioning storage dynamically in Kubernetes?
+
+3. Your application is set up with a Horizontal Pod Autoscaler (HPA), but scaling is not happening even under high load.
+ How would you troubleshoot why the HPA is not scaling the pods?
+ What are the prerequisites for HPA to function properly?
+
+4. You need to configure a Kubernetes cluster for multi-tenancy to isolate workloads from different teams.
+ How would you implement multi-tenancy in Kubernetes?
+ What tools or features would you use to enforce resource isolation and security?
+
+5. A namespace in your cluster has reached its resource quota, and new pods can’t be scheduled.
+ How would you diagnose and resolve the issue?
+ What strategies can you implement to avoid such resource exhaustion in the future?
+
+6. Your application pods are taking too long to start.
+ What could be causing the slow startup, and how would you debug the issue?
+ How do liveness and readiness probes impact pod startup?
+
+7. Pods in your cluster are unable to resolve external domain names.
+ How would you debug and resolve DNS resolution failures in Kubernetes?
+ What are the key components involved in DNS resolution in a Kubernetes cluster?
+
+8. Your team decides to implement a service mesh for better observability, security, and traffic control between microservices.
+ How would you introduce a service mesh like Istio or Linkerd into your Kubernetes environment?
+ What challenges would you expect during implementation, and how would you address them?
+
+9. You are deploying a stateful application, such as a database, on Kubernetes.
+ What are the key differences between StatefulSets and Deployments, and why would you choose one over the other?
+ How do you handle scaling and backups for stateful workloads?
+
+10. Your security team mandates that only images from a trusted private registry can be used in your Kubernetes cluster.
+ How would you enforce this policy in your cluster?
+ What Kubernetes features or tools can be used to achieve this?
