@@ -1,0 +1,33 @@
+Terraform Tip of the Day: Why You Should Always Use Remote State
+
+If you're still storing your Terraform state locally…you're one accidental rm -rf away from losing track of your entire infrastructure.
+And trust me you don’t want to learn this lesson the hard way.
+
+Here’s why remote state is now a must-have, not an option 
+
+✅ 1. Collaboration Becomes Easy
+Multiple engineers can apply changes without state conflicts.
+ No more:
+“State is locked, who’s running terraform apply?”
+
+✅ 2. Automatic State Locking
+Remote backends (S3 + DynamoDB, GCS, Azure Blob, Terraform Cloud) prevent two people from updating the state at the same time.
+This stops:
+Corruption
+Overwrites
+Race conditions
+
+✅ 3. Versioning Saves You From Disaster
+Pushed a wrong change?
+Remote backends with versioning let you roll back your state instantly.
+Better than trying to recover a deleted local file.
+
+✅ 4. Security You Can Trust
+Encrypted at rest.
+Encrypted in transit.
+And not sitting on someone’s laptop.
+Your infrastructure deserves better.
+
+💡 Pro Tip
+For AWS:
+Use S3 (state) + DynamoDB (locking) → It’s the industry standard combo.
