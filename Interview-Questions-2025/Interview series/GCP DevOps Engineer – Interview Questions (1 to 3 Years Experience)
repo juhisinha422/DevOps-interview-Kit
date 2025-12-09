@@ -1,0 +1,99 @@
+GCP DevOps Engineer – Interview Questions (1 to 3 Years Experience)
+
+If you're preparing for a role in Google Cloud Platform + DevOps, these are the most asked questions that will boost your confidence 👇
+
+ Top GCP DevOps Questions:
+
+ What is the difference between GCE (Compute Engine) and GKE (Kubernetes Engine)?
+
+ Explain how CI/CD is implemented in GCP. Which tools do you use?
+
+ What is Cloud Build? How does it differ from Jenkins?
+
+ What are GCP Service Accounts? How do you manage permissions?
+
+ How do you store artifacts in GCP? (Container Registry / Artifact Registry)
+
+ What is IAM in GCP? What are roles, policies, and bindings?
+
+ How do you monitor applications in GCP? Which tools do you use? (Stackdriver / Cloud Monitoring)
+
+ Explain VPC, Subnet, and Firewall rules in GCP.
+
+What is Cloud Run? When will you use it over GKE?
+
+How do you manage secrets in GCP? (Secret Manager)
+
+ What is Pub/Sub? Use case in real projects?
+
+ What is GCS (Google Cloud Storage)? Types of storage classes?
+
+ Difference between Cloud SQL, BigQuery, and Firestore?
+
+How do you implement Autoscaling in GCP?
+
+ What is Infrastructure as Code in GCP? Which tool do you use? (Terraform)
+
+ Explain load balancing in GCP. Types of load balancers?
+
+ How do you troubleshoot latency issues in GCP?
+
+Difference between Compute Engine and Kubernetes Engine?
+
+What is Cloud Build?
+
+How do you create CI/CD in GCP?
+
+What is Artifact Registry?
+
+What are Service Accounts?
+
+How do you manage IAM roles?
+
+Explain VPC and Subnets.
+
+What is Cloud Run?
+
+Difference between Cloud Run and GKE.
+
+What is Pub/Sub?
+
+Use cases of Pub/Sub.
+
+What is Cloud Storage?
+
+Types of storage classes in GCS.
+
+What is Cloud SQL?
+
+Difference between Cloud SQL and BigQuery.
+
+What is Firewall rule in GCP?
+
+What is Autoscaling?
+
+How do you implement Autoscaling in GKE?
+
+What is Horizontal Pod Autoscaler?
+
+What is Node Pool?
+
+Explain Deployment vs StatefulSet.
+
+What is Ingress controller?
+
+How does GCP Load Balancing work?
+
+What is Cloud Monitoring?
+
+What is Cloud Logging?
+
+How do you push images to Artifact Registry?
+
+What are build triggers in Cloud Build?
+
+Explain Cloud Deploy.
+
+What is Secret Manager?
+
+Difference between Cloud Functions and Cloud Run
