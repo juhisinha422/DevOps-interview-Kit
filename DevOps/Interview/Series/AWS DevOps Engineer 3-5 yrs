@@ -1,0 +1,48 @@
+AWS DevOps Engineer | 3–5 Years Experience — Advanced & Scenario Questions
+
+Interviews at this level are all about ownership, automation, scalability, and real production issues.
+If you are preparing — practice explaining HOW you solved things in real life 
+
+🧩 Advanced & Scenario Questions
+
+🔹 How do you design a highly available architecture across Multi-AZ & Multi-Region?
+🔹 Explain a real scenario where Auto Scaling didn’t scale properly. What was the root cause?
+🔹 How do you secure cross-account access using IAM roles?
+🔹 You have 100+ microservices on ECS/EKS — how do you manage deployments and rollbacks?
+🔹 A pipeline deployment failed in production — how would you troubleshoot step-by-step?
+🔹 Explain your CI/CD pipeline architecture with CodePipeline/Jenkins & approvals.
+🔹 How do you ensure zero-downtime deployment? Share a real example.
+🔹 What metrics do you monitor for EC2, ECS, and RDS using CloudWatch?
+🔹 How do you implement centralized logging for microservices?
+🔹 Describe an incident where an EC2 instance crashed — what did you do?
+🔹 How do you handle secret rotation using Secrets Manager or Parameter Store?
+🔹 A service is slow — how do you debug performance issues in AWS?
+🔹 How do you optimize AWS cost for EC2, NAT, and S3?
+🔹 What is your strategy for Disaster Recovery and Backup?
+🔹 How do you manage Infrastructure as Code using Terraform or CloudFormation?
+🔹 How do you handle DB failover in RDS Multi-AZ?
+🔹 Explain Blue-Green vs Canary deployment with examples.
+🔹 How do you implement API Gateway with Lambda for microservices?
+🔹 What are best practices for VPC design at enterprise scale?
+🔹 Share a real outage incident — what did you learn?
+🔹 How do you design a fault-tolerant system when one AZ is down?
+🔹 What strategies do you use for database migration with zero downtime?
+🔹 How do you handle rate limiting and throttling in API Gateway?
+🔹 Explain how you would troubleshoot high latency in an ALB.
+🔹 What is your approach for centralized secrets for 100+ microservices?
+🔹 How do you automate ECS/EKS node scaling?
+🔹 You are seeing pod eviction in EKS — how will you fix it?
+🔹 How do you design an observability stack using CloudWatch, Prometheus, and Grafana?
+🔹 How do you monitor distributed tracing in microservices?
+🔹 What strategy do you use to rotate access keys automatically?
+🔹 How do you handle sudden traffic spike from 10K to 200K users?
+🔹 A deployment causes CPU to spike — how will you roll back and debug?
+🔹 Explain how to secure S3 buckets in a multi-account setup.
+🔹 What steps will you take if your ECS service is stuck in PROVISIONING?
+🔹 How do you handle blue/green deployment for EKS?
+
+ At this stage, interviewers expect:
+ Architecture knowledge
+ Root cause analysis
+ Production experience
+ Ownership mindset
