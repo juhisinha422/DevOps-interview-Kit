@@ -1,0 +1,88 @@
+1. What is DNS?
+DNS (Domain Name System) is like the phonebook of the internet.
+ We remember names (google.com, amazon.in) easily, but computers understand only IP addresses (like 142.250.183.110).
+ DNS converts website names → IP addresses, so we can open websites without memorizing numbers.
+
+2. How Does DNS Work? (Simple Explanation)
+Whenever we type a website name in the browser:
+1️⃣ Browser sends a request to DNS
+2️⃣ DNS searches its database
+3️⃣ DNS finds the IP address of the website
+4️⃣ Browser connects to the server using that IP
+5️⃣ Website opens on our screen
+
+3. Real-Time Example
+Imagine you want to call a friend named Rahul.
+You don’t remember his number, so you check your phone contacts.
+ You click "Rahul" → Mobile automatically dials his phone number.
+Similarly:
+You type www.youtube.com
+DNS finds its IP address
+Browser opens YouTube ✔
+So DNS = the contact list of the internet.
+
+4. What Are DNS Records?
+DNS has different types of records stored inside it.
+ Each record has a special job:
+
+🔹 1. A Record (Address Record)
+Maps a domain name → IPv4 address
+Example: google.com → 142.250.183.110
+Real Time Example:
+ Typing facebook.com in browser → A record tells the browser the IP address of Facebook’s web server so the site opns.
+
+🔹 2. AAAA Record (IPv6 Record)
+Maps a domain name → IPv6 address
+Same as A record but supports IPv6
+Real Time Example:
+
+🔹 3. CNAME Record (Canonical Name)
+Used to create an alias for another domain name.
+Always points to another domain, not an IP.
+Example:
+www.myshop.com → shop.mybusiness.com
+Real Time Example:
+ If a company rebrands the website, they can point the old domain to the new one using CNAME without breaking links.
+
+🔹 4. MX Record (Mail Exchange)
+Routes emails for the domain
+Points to mail servers, not an IP
+Example:
+gmail.com mail server: https://lnkd.in/ekCywWXS
+Real Time Example:
+ When you send an email to xyz@company.com, MX records help deliver the email to the correct mail server.
+
+🔹 5. NS Record (Name Server Record)
+Indicates which DNS server is authoritative for a domain
+Without NS records, domain won’t work.
+Real Time Example:
+example.com → ns1.godaddy.com, ns2.godaddy.com
+These name servers store the DNS records of the domain.
+
+🔹 6. TXT Record (Text Record)
+Stores text information for verification and security
+Mostly used for:
+ ✔ SPF (email spam protection)
+ ✔ DKIM (email signature & security)
+ ✔ Domain verification for Google, AWS, Microsoft, etc.
+
+🔹 7. SOA Record (Start of Authority)
+First record in every DNS zone
+Contains critical details:
+Primary DNS server
+Admin email
+Serial number (version)
+Refresh / Retry / Expire timing (for replication)
+
+🔹 8. SRV Record (Service Record)
+Defines the location of services
+Specifies:
+Service name
+Protocol
+Priority
+Port
+Target server
+
+🔹 9. PTR Record (Pointer Record / Reverse DNS)
+Converts IP address → domain name
+Opposite of A record.
