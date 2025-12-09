@@ -1,0 +1,97 @@
+DevOps Engineer Interview Questions (1–3 Years Experience)
+
+Getting ready for a DevOps interview?
+Here is a powerful list of real-time questions that are commonly asked in 2025 interviews 👇
+
+---
+What is CI/CD and why do we use it?
+ Explain blue-green and canary deployment.
+How do you schedule a cron job?
+
+What is /etc/fstab used for?
+
+How do you check which process is listening on a specific port?
+
+What is the difference between top and htop?
+
+How do you find a file in Linux with name and extension?
+
+What is exit code in shell script?
+
+What happens if script returns non-zero exit code?
+
+What is Git stash?
+
+What is fast-forward merge?
+
+What is a tag in Git and when do you use it?
+
+How do you clean unused images and containers?
+
+What is Docker registry?
+
+Difference between ENTRYPOINT and CMD?
+What is artifact storage?
+
+What is build pipeline vs release pipeline?
+
+How do you rollback a failed deployment?
+
+How do you implement security in CI/CD?
+
+How do you run parallel stages in pipeline?
+
+What are shared libraries in Jenkins?
+What is Docker volume?
+
+How do you reduce image size?
+
+Your pods are restarting frequently — what is your approach?
+
+Build is taking long — how do you optimize?
+
+Application is not writing logs — how do you debug?
+
+After new deployment traffic dropped — what will you check?
+
+How do you troubleshoot DNS issues in Kubernetes?
+
+How do you handle secret rotation?
+
+You see memory leak — what next?
+
+What is docker swarm?
+
+How to undo a commit?
+
+What is Git cherry-pick?
+
+What are Git hooks?
+ What is Infrastructure as Code?
+How do you check disk usage, CPU usage and open ports?
+What is load average?
+Soft link vs Hard link?
+Git fetch vs Git pull?
+How to resolve merge conflicts?
+What is Git rebase?
+image vs Container?
+ What is Dockerfile & Multistage build?
+How do you view container logs?
+What is Pod, Deployment, ReplicaSet?
+ClusterIP vs NodePort vs LoadBalancer?
+Liveness & Readiness probe?
+What is a pipeline?
+Scripted vs Declarative pipeline?
+How do you trigger pipeline automatically?
+EC2 vs Lambda?
+What is Auto Scaling & Load Balancer?
+ What is VPC & S3 lifecycle policy?
+What is Terraform state file?
+ terraform plan vs apply?
+What are modules?
+What metrics do you monitor in production?
+What is centralized logging?
+ Prometheus vs Grafana?
+Pod in CrashLoopBackOff – what will you check?
+Deployment successful but app not reachable – why?
+High CPU – what is your approach?
