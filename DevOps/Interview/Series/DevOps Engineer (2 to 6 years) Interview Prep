@@ -1,0 +1,85 @@
+DevOps Engineer (2 to 6 years) Interview Prep – Must Know Questions!
+
+
+If you’re preparing for your next role or planning to switch, these are the real-world questions companies are asking today. Focus more on hands-on, troubleshooting, and scenarios.
+👇
+
+🔹 Questions
+
+ How do you design a zero-downtime deployment strategy in Kubernetes?
+
+ Explain blue-green vs canary deployment — when would you choose each?
+
+ What was your biggest production incident and how did you fix it?
+
+ How do you optimize Docker image size in real applications?
+
+ What metrics do you monitor in CI/CD pipelines to measure success?
+
+ How do you manage secrets across multiple environments securely?
+
+ What happens in Kubernetes when a pod crashes? Explain step-by-step.
+
+How do you automate infrastructure rollback in case of failure?
+
+ How do you handle Terraform state file conflicts in a team?
+
+ Explain how you enabled auto-scaling for an application. What were the challenges?
+
+ How do you secure your Jenkins pipeline? Name real practices.
+
+ What strategy do you use to reduce cost on AWS?
+
+ How do you handle long-running jobs in Kubernetes?
+
+ How do you debug a failed deployment on production?
+
+ What is the difference between ClusterIP, NodePort, LoadBalancer? Real use cases?
+
+ Explain how service discovery works in microservices.
+
+ How do you detect and stop a memory leak in a container?
+
+ What’s your approach to disaster recovery planning?
+
+ How do you handle environment drift in IaC?
+
+ How do you integrate security checks inside CI/CD?
+
+How do you implement multi-region deployment in AWS for high availability?
+
+Explain IAM roles vs policies and how you manage access for automation.
+
+Describe how you monitor container performance and detect issues.
+
+What is your approach to managing Terraform modules for multiple teams?
+
+How do you troubleshoot a pod stuck in ImagePullBackOff?
+
+Explain how you use Helm in real projects and how you manage chart versions.
+
+How do you handle CI/CD for microservices with different release cycles?
+
+What checks do you include before merging code into production?
+
+Explain how you set up centralized logging for distributed systems.
+
+How do you secure Kubernetes cluster communication between components?
+
+What is the difference between replica set and deployment? Real scenarios.
+
+How do you debug slow API response in production?
+
+Explain how sidecar containers are used and what problems they solve.
+
+How do you manage environment variables in Kubernetes securely?
+
+What challenges have you faced while scaling Jenkins?
+
+Explain how you use AWS CloudWatch for proactive alerting.
+
+How do you reduce Docker image layer count during build?
+
+What is your strategy for patch management of servers and containers?
+
+Explain how you perform blue-green deployment using Load Balancer.
