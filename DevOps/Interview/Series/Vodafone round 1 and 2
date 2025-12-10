@@ -1,0 +1,132 @@
+1st round of the Vodafone Lead DevOps Engineer interview Experience.
+
+The round was filled with real-world, advanced scenario-based questions.
+The interview covered deep technical discussions on:
+🔹 AWS
+ 🔹 GCP 
+ 🔹 Kubernetes 
+ 🔹 Terraform
+ 🔹 Docker 
+
+This shows that when you prepare with the right mindset, focus on hands-on skills, and practice scenario-based questions, cracking big interviews becomes a lot easier.
+
+🔸 AWS – Advanced Scenarios
+Your application latency suddenly increased in Production. How do you troubleshoot across ALB → EC2 → RDS → VPC flow?
+You need zero-downtime deployment for an API running on EC2. Which strategy would you choose — Blue/Green or Rolling — and why?
+How do you secure cross-account access for CI/CD pipelines using IAM roles?
+Your Lambda function is hitting cold starts during spikes. How do you fix it?
+How do you design a highly available VPC across 3 AZs with private subnets, NAT gateways, and on-prem connectivity?
+
+🔸 GCP – Real-World Problems
+Your GKE workloads need to securely connect to BigQuery & Cloud SQL. How would you design IAM + VPC + service accounts?
+When would you choose Cloud Run vs GKE vs Compute Engine?
+How do you implement multi-region failover in GCP?
+How would you reduce cost for workloads running 24/7 on GKE?
+How do you design a CI/CD pipeline using Cloud Build + Artifact Registry + GKE?
+
+🔸 Kubernetes – Production Scenarios
+Pods are restarting frequently with OOMKilled. How do you troubleshoot and fix this?
+How do you restrict one namespace from accessing another namespace’s services?
+Explain how traffic flows when you run kubectl apply -f deployment.yaml from client → API server → etcd → scheduler → kubelet.
+How do you perform a safe rollback when the new deployment is causing errors?
+How do you debug a CrashLoopBackOff pod in Prod?
+
+🔸 Terraform – Infrastructure Scenarios
+How do you manage Terraform state for multiple teams and multiple environments (Dev/QA/Prod)?
+You changed a resource that Terraform wants to recreate (destroy + create). How do you prevent downtime?
+How do you design a Terraform module for reusable VPC creation?
+State file got corrupted or locked — what is your approach?
+How would you implement CI/CD for Terraform using Jenkins or GitHub Actions?
+
+🔸 Docker – Advanced Concepts
+How do you reduce Docker image size for a Java/Python/Node app using multi-stage builds?
+How do you debug a container that keeps failing inside Kubernetes?
+How do you manage credentials/secrets inside containers securely?
+What is the difference between ENTRYPOINT vs CMD in real deployment use cases?
+Your container works locally but fails in Kubernetes — what is your debugging approach?
+
+
+Cleared 2nd Round Vodafone Interview Experience Questions– In-Depth DevOps
+
+One of my friend attended the 2nd round interview with Vodafone for a DevOps role.
+This round was completely technical & hands-on focused.
+They went deep into production scenarios, troubleshooting, architecture & best practices.
+
+
+
+👉 If you are preparing for similar interviews, think beyond basic definitions.
+They want to understand HOW YOU THINK when something breaks in production.
+
+ Interview Questions They Asked
+
+Explain how you would troubleshoot CrashLoopBackOff in production.
+
+How do you enable zero downtime deployments in Kubernetes?
+
+Your pods are continuously restarting. What are all the areas you will check?
+
+Deployment succeeded but pod is not receiving traffic — where will you check?
+
+Difference between DaemonSet, StatefulSet, Deployment with real examples.
+
+What will happen if readinessProbe fails?
+
+How do you implement Pod to Pod communication securely?
+
+Explain how service discovery works inside Kubernetes.
+
+Difference between ClusterIP vs Headless Service.
+
+How do you handle high memory usage in a container?
+
+Difference between Deployment vs StatefulSet with real use cases.
+
+What is Horizontal Pod Autoscaler? How do you control scaling behavior?
+
+Explain Kubernetes networking – ClusterIP, NodePort, LoadBalancer.
+
+How do you manage secrets securely? Why not commit them in git?
+
+What’s the difference between livenessProbe vs readinessProbe?
+
+What is Helm chart structure? Explain folders.
+
+How do you override values.yaml for multiple environments?
+
+Explain Helm upgrade rollback.
+
+How do you manage Helm releases in production?
+
+Give an example where you used Helm + Kubernetes together.
+
+How do you design Terraform modules?
+
+Explain remote backend & state locking.
+
+What is terraform refresh, plan, apply, destroy?
+
+How do you manage multiple environments in Terraform?
+
+How do you handle resource drift?
+
+Issue: Someone manually deleted infra from cloud → how will Terraform behave?
+
+Explain a real scenario where you designed scalable infra.
+
+How do you do cost optimisation in cloud?
+
+Difference between ALB vs NLB (AWS).
+
+What is GKE Autoscaling?
+
+Why do we need VPC Peering or Private endpoint?
+
+Your pods are running but application is slow – how will you troubleshoot?
+
+Deployment is taking too long. Where will you check?
+
+Traffic increased suddenly – how do you scale quickly?
+
+If database connection limit exceeded, what actions will you take?
+
+How do you design blue-green or canary deployment?
