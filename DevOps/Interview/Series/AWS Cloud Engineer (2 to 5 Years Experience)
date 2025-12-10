@@ -1,0 +1,75 @@
+ AWS Cloud Engineer (2 to 5 Years Experience) – Interview Preparation
+
+In 2025, companies are hiring strong AWS Cloud Engineers who can:
+
+ Design scalable architecture
+ Optimize cost & performance
+ Automate deployments
+ Ensure security & monitoring
+
+If you’re preparing for interviews, practice these real-world questions 👇👇
+
+ Interview Questions
+ How do you design a highly available application architecture using AWS?
+
+ Explain the difference between NLB, ALB, and CLB. When will you use each?
+
+ What is the purpose of VPC Peering vs Transit Gateway?
+
+ How do you secure S3 buckets? Mention best practices.
+
+ Explain how Auto Scaling works. What policies have you used?
+
+ Difference between EC2 On-Demand, Reserved, and Spot Instances?
+
+ How do you create a multi-AZ setup for RDS?
+
+ What is the difference between AWS Systems Manager Parameter Store vs Secrets Manager?
+
+ Explain the flow of request from Internet → VPC → Private Subnet.
+
+ What is IAM role vs IAM policy vs IAM user?
+
+ What is the use of Lifecycle Policies in S3?
+
+ How do you troubleshoot performance issues in EC2?
+
+ Explain Blue/Green Deployment on AWS.
+
+ What is CloudFormation and how have you used it?
+
+ Steps to implement Disaster Recovery (DR) strategy in AWS.
+
+ Difference between Stateful and Stateless Architecture.
+
+ What are Security Groups vs NACLs? When do you use each?
+
+ What is the role of CloudWatch, CloudTrail, GuardDuty?
+
+ Explain PrivateLink, Endpoint, NAT Gateway.
+
+ How do you optimize AWS cost for large workloads?
+
+ Your application is facing latency issues across regions. How will you design a solution using Global Accelerator or Route53?
+
+ You need to migrate a large monolithic application to microservices on AWS. What architecture and services will you use?
+
+ Your S3 storage bill increased suddenly. How will you investigate and reduce cost?
+
+ A customer wants zero downtime deployment. Explain how you will design using CodeDeploy, ECS, Blue/Green.
+
+ You receive an alert: CPU of EC2 is 90%+ for 10 minutes. What steps will you take to identify and fix the issue?
+
+ Design a multi-region failover strategy for a business-critical application.
+
+ How will you secure a publicly accessible API using WAF, API Gateway, Cognito, and Shield?
+
+ Your RDS instance is hitting connection limits. How will you scale and optimize?
+
+ Your application needs to process 1 million messages/hour. How will you design using SQS/SNS/Kinesis?
+
+ Project requires infrastructure as code. Which tool will you choose: CloudFormation or Terraform and why?
+
+ You need to rotate secrets automatically. How will you implement using Secrets Manager?
+
+ Your EC2 instances are under DDoS attack. How will you mitigate?
