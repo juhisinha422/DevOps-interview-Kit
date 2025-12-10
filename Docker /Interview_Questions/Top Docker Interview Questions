@@ -1,0 +1,35 @@
+🚀 Top Docker Interview Questions (Super Simple Answers)
+🔹 1. What is a Container?
+ A lightweight package that includes code + dependencies so apps run the same everywhere.
+🔹 2. How do you create a Docker image?
+ Write a Docker file → run: docker build -t my -image .
+🔹 3. What is Docker Swarm?
+ A tool to manage and run containers across multiple machines.
+🔹 4. What is Docker Prune?
+ Cleans unused containers, images, networks.
+ docker system prune
+🔹 5. What is Docker Commit?
+ Creates a new image from a running container’s current state.
+🔹 6. What is Docker Compose?
+ Runs multi-container apps using a docker-compose.yml file.
+🔹 7. What is EXPOSE in Docker file?
+ Shows which port a container will listen on.
+🔹 8. How to list Docker networks?
+ docker network ls
+🔹 9. COPY vs ADD
+ COPY: Copies files.
+ ADD: COPY + URL support + auto extract tar.
+🔹 10. ENTRYPOINT vs CMD
+ ENTRYPOINT: Main command.
+ CMD: Default arguments.
+🔹 11. What is a Dockerfile?
+ A file with instructions to build an image.
+🔹 12. Init vs Runtime Container (K8s)
+ Init: Runs first for setup.
+ Runtime: Runs the actual app.
+🔹 13. How to count images?
+ docker images -q | wc -l
+🔹 14. How to login into a running container?
+ docker exec -it <container_id> /bin/bash
+🔹 15. How to check number of images?
+ docker images
