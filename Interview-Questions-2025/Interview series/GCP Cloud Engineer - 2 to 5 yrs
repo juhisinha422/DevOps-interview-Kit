@@ -1,0 +1,90 @@
+ GCP Cloud Engineer | 2 to 5 Years Experience | Interview Questions
+
+If you are preparing for GCP Cloud Engineer roles, start practising real interview questions.
+
+Here are some 🔥 questions asked in recent interviews 👇
+
+Questions:
+
+🔹 Explain VPC in GCP and its main components.
+
+🔹 What is the difference between VPC Peering and Shared VPC?
+
+🔹 How do you secure workloads running in GKE?
+
+🔹 What is Cloud Run vs Cloud Functions? When do you use which?
+
+🔹 How do you optimize GCP billing and cost? Share your approach.
+
+🔹 Explain the process to deploy an application on GKE.
+
+🔹 What is IAM in GCP? How does Role Binding work?
+
+🔹 How do you implement CI/CD using Cloud Build?
+
+🔹 What is Cloud Storage lifecycle management?
+
+🔹 How do you troubleshoot high latency issues in GCP?
+
+🔹 What is difference between Standard, Nearline, Coldline, Archive storage?
+
+🔹 How do you handle secrets in GCP?
+
+🔹 Explain a real production issue you solved using Stackdriver logging.
+
+🔹 What is Cloud Interconnect? When do you use it?
+
+🔹 How to set up autoscaling for GKE or Compute Engine?
+
+🔹 Explain Pub/Sub architecture and use cases.
+
+🔹 What is the difference between Stateful and Stateless workloads in GCP?
+
+🔹 How do you perform blue-green deployment in GCP?
+
+🔹 What is Cloud Armor and how does it protect workloads?
+
+🔹 How do you monitor resources using Cloud Monitoring and Alerts?
+🔹 How do you design a multi-region highly available architecture in GCP?
+
+🔹 What is the difference between Cloud SQL, BigQuery, Firestore and Spanner?
+
+🔹 How do you configure VPC firewall rules? What are ingress and egress rules?
+
+🔹 Explain how service accounts work in GCP.
+
+🔹 What is Workload Identity Federation?
+
+🔹 How do you migrate on-prem workloads to GCP?
+
+🔹 Explain the difference between Cloud Build triggers and GitHub Actions.
+
+🔹 How do you configure private GKE cluster?
+
+🔹 What are node pools in GKE? Why are they useful?
+
+🔹 How do you enable observability for GKE?
+
+🔹 Explain Cloud Router and how it works with VPN.
+
+🔹 What is the difference between Cloud NAT and Public IP?
+
+🔹 How do you set up centralized logging in GCP?
+
+🔹 What is Anthos and where is it used?
+
+🔹 How do you manage Terraform state in GCP?
+
+🔹 Explain the concept of labels and tags in GCP.
+
+🔹 What is a Preemptible VM and when do you use it?
+
+🔹 How do you enforce policies using Organization Policy Service?
+
+🔹 Explain the difference between static routes and dynamic routes.
+
+🔹 How do you troubleshoot pod-to-pod networking issues in GKE?
+
+🔹 What is Binary Authorization in GCP?
+
+🔹 How do you secure Cloud Storage buckets?
