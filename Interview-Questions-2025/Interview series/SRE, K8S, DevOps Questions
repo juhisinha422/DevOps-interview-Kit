@@ -1,0 +1,31 @@
+SRE / Kubernetes / DevOps Interview Questions (Only Questions)
+1. How do you troubleshoot a production incident in Kubernetes?
+2. What log collection architecture are you using in your cluster?
+3. How do you handle high resource utilization on nodes or containers?
+4. How do you configure autoscaling (HPA, VPA, Cluster Autoscaler, Karpenter)?
+5. What preventive measures do you take to avoid node capacity exhaustion?
+6. What observability stack have you implemented in your current project?
+7. How do you onboard a new application into your observability platform?
+8. What Datadog pods get created when you deploy the Datadog agent?
+9. How do you configure logs, metrics, and traces for a new service?
+10. Have you implemented service mesh ingress? Explain how.
+11. What tools do you use for log management and why?
+12. How do you tune Fluent Bit / Datadog Agent for performance issues?
+13. What is Kubernetes resource requests and limits, and how do you set them?
+14. Describe a real production outage you handled and how you fixed it.
+15. How do you prevent OOMKilled and CPU throttling issues?
+16. How do you configure node affinity, taints, and tolerations?
+17. What is your approach for multi-AZ node group architecture?
+18. How do you manage Kubernetes cluster upgrades?
+19. What is the difference between Ingress and Gateway API?
+20. How do you configure SLOs/SLIs and error budget policies?
+21. How do you detect and resolve Terraform drift?
+22. What steps do you take to secure a Kubernetes cluster?
+23. What is your CI/CD workflow for Kubernetes deployments?
+24. How do you implement canary or blue-green deployments?
+25. How do you handle image-pull issues in Kubernetes?
+26. What are the most important dashboards for SRE monitoring?
+27. How do you configure PodDisruptionBudgets (PDBs)?
+28. How do you design a scalable cluster logging system?
+29. What node-level issues have you seen, and how did you fix them?
+30. How do you troubleshoot network issues (DNS, CNI, Ingress)?
