@@ -1,0 +1,73 @@
+DevOps Engineer (3–7 Years Experience) Interview Questions 
+
+Real Interview Questions
+
+If you’re preparing for mid–senior DevOps roles, the interviews go deep into design, scalability, automation & troubleshooting.
+Here are some real questions asked in recent interviews 👇
+
+ How do you design a CI/CD pipeline for microservices deployed on Kubernetes?
+What strategy do you use for zero-downtime deployment?
+Explain Blue-Green vs Canary deployment. When will you choose each?
+How do you implement rollback in Jenkins or GitHub Actions?
+ Explain how you scale applications in Kubernetes automatically.
+What is the difference between Horizontal Pod Autoscaler & Cluster Autoscaler?
+Describe how you would handle sudden traffic spikes in production.
+What is the best way to reduce AWS cloud cost without impacting performance?
+ EC2 vs Fargate vs Lambda – when to use what?
+How do you secure access to S3, EC2, RDS and Secrets in AWS?
+ How do you design highly available architecture in AWS?
+ What metrics do you monitor in production for a Kubernetes cluster?
+ How do you troubleshoot high pod restarts in Kubernetes?
+Share a real production issue you solved and what was your root cause.
+ How do you handle deployment failures?
+ Why DevOps is not just tools but culture?
+How do you design a CI/CD pipeline for a microservices architecture?
+
+What’s the difference between Blue-Green and Canary deployment strategies?
+
+How do you implement rollback in Jenkins or GitHub Actions?
+
+Explain zero-downtime deployment and how to achieve it.
+
+What are common challenges in Kubernetes deployments and how do you handle them?
+
+How do you scale applications in Kubernetes automatically?
+
+What is the difference between HPA and Cluster Autoscaler?
+
+Describe a scenario where you managed sudden traffic spikes in production.
+How do you reduce cloud cost in AWS without impacting availability?
+
+EC2 vs Fargate vs Lambda – when to use which?
+
+How do you secure sensitive credentials (secrets) in AWS?
+
+How do you design highly available architecture on AWS?
+
+What tools do you use for monitoring and alerting?
+
+What metrics do you monitor in production for Kubernetes clusters?
+
+How do you troubleshoot high pod restarts in Kubernetes?
+
+How do you handle deployment failures in production?
+Explain Infrastructure as Code. Which tools have you used?
+
+What are common performance bottlenecks in CI/CD pipelines?
+
+How do you optimize build and deployment time?
+
+Describe a real production issue you solved and root cause analysis.
+
+How do you ensure security in CI/CD pipelines?
+
+What is GitOps and how have you implemented it?
+
+How do you manage multi-environment deployments?
+
+What logging stack do you use for production?
+How do you handle secret rotation?
+
+Explain the difference between StatefulSets and Deployments in Kubernetes.
+
+How do you manage node failures in Kubernetes?
