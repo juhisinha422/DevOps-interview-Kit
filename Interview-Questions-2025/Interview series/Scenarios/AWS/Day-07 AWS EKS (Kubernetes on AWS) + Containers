@@ -1,0 +1,33 @@
+Day 7 — AWS EKS (Kubernetes on AWS) + Containers
+
+STAR-based DevOps Interview Questions
+
+1️⃣ Your team wants to migrate microservices to containers on AWS. How will you decide when to use EKS over ECS or Lambda?
+
+2️⃣ EKS worker nodes are running out of capacity and pods remain in Pending state. What will you check first?
+
+3️⃣ You need zero-downtime rolling updates for production workloads. How will you design the deployment strategy?
+
+4️⃣ A service in EKS needs access to DynamoDB and S3 without storing long-lived credentials. How will you configure IAM Roles for Service Accounts (IRSA)?
+
+5️⃣ Pods from different teams must be isolated completely. How will you implement namespace-level RBAC, Network Policies, and security boundaries?
+
+6️⃣ Your application requires autoscaling based on CPU, memory, and custom metrics. How will you use HPA, VPA, and Cluster Autoscaler together?
+
+7️⃣ A workload needs GPU support. How will you configure EKS, node groups, AMIs, and drivers?
+
+8️⃣ EKS control plane charges are high for non-production clusters. How will you optimize cost without reducing stability?
+
+9️⃣ Logging from all microservices is scattered. How will you centralize logs using CloudWatch, OpenSearch, or FluentBit?
+
+🔟 Your app needs an external endpoint with SSL offloading and path-based routing. How will you design this using ALB Ingress Controller?
+
+1️⃣1️⃣ A pod restarted repeatedly with CrashLoopBackOff. What debugging steps will you follow?
+
+1️⃣2️⃣ You need end-to-end service mesh capabilities like mTLS and traffic splitting. How will you integrate AWS App Mesh or Istio?
+
+1️⃣3️⃣ EKS nodes fail health checks due to CNI/IP exhaustion. How will you troubleshoot and fix Pod IP allocation issues?
+
+1️⃣4️⃣ You must run scheduled jobs and cron workflows on EKS. Which Kubernetes components or AWS integrations will you use?
+
+1️⃣5️⃣ A production incident occurred due to misconfigured manifests. How will you implement GitOps for safe, audited deployments?
