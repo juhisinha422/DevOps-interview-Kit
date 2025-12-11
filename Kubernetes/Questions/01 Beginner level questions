@@ -1,0 +1,8 @@
+1. Why does a Pod go into CrashLoopBackOff even when the application code is correct?
+2. A Pod is stuck in Pending state — what’s the FIRST thing you check?
+3. What exactly causes ImagePullBackOff, and why does it work sometimes and fail later?
+4. Why does a Pod get killed even when CPU usage looks normal?
+5. What happens if you remove liveness probe from production Pods?
+6. Why do Kubernetes deployments sometimes succeed but traffic still fails?
+7. What’s the difference between restarting a Pod vs restarting a container?
+8. Why does Kubernetes evict Pods even when nodes have free memory?
