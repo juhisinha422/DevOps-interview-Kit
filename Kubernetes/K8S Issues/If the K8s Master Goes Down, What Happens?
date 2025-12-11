@@ -1,0 +1,32 @@
+Tricky Kubernetes Interview Question: If the K8s Master Goes Down, What Happens? 🎯
+Question:
+If the Kubernetes master node (control plane) goes down, will applications running inside the cluster also go down? Can you still manage the cluster?
+--------------------------------------------------
+Short Answer:
+No — your running applications will NOT go down.
+Yes — you lose the ability to manage the cluster.
+--------------------------------------------------
+🔍 Why?
+When the control plane is down:
+- Running Pods keep running ➝ because kubelet + container runtime on worker nodes continue to operate.
+- Services and networking continue to work ➝ already programmed rules stay active.
+- You CANNOT perform cluster operations such as:
+ Deploy new apps
+ Scale up/down
+ Reschedule pods
+ Roll out updates
+ Auto-heal failed pods
+- Controllers stop working ➝ no reconciliation happens.
+- Scheduler is down ➝ pending pods won’t be scheduled.
+--------------------------------------------------
+
+📌 Important Note:
+If the etcd database is down or corrupted, the entire control plane cannot recover — making it a critical failure scenario.
+--------------------------------------------------
+
+🛠️ Real-world impact
+Your application stays alive, but your cluster becomes frozen.
+If a node fails during this time → pods cannot be recreated on new nodes.
+
+💡 Takeaway for Interviews
+Applications stay running because worker nodes operate independently, but the cluster becomes unmanageable until the control plane is restored.
