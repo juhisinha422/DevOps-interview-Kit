@@ -1,0 +1,66 @@
+DevOps Engineers (1–3 Years of Experience) interview Questions.
+
+If you’re preparing for interviews or looking to strengthen your fundamentals, start focusing on real-time scenarios, CI/CD workflows, cloud basics, and production-ready troubleshooting.
+Here are some solid DevOps interview questions that companies love asking 👇
+
+Questions:
+
+How does your CI/CD pipeline look end-to-end?
+
+What steps do you follow when a production deployment fails?
+
+How do you secure secrets in your pipeline?
+
+Explain the difference between blue-green and rolling deployments.
+
+How do you monitor logs and metrics in production?
+
+What challenges have you faced while using Jenkins/GitHub Actions?
+
+How do you handle versioning of infrastructure using Terraform?
+
+What happens inside Kubernetes when you apply a Deployment?
+
+How do you optimize Docker images in real projects?
+
+Explain how you handle high traffic or scaling issues.
+
+How do you reduce Docker image size in real projects?
+
+Explain what happens when you push code to GitHub Actions workflow.
+
+How do you handle secret rotation in your CI CD pipeline?
+
+What is the difference between StatefulSet and Deployment in Kubernetes?
+
+How do you troubleshoot a pod stuck in ContainerCreating state?
+
+Explain how you design a simple CI CD pipeline for a microservice.
+
+How do you set resource requests and limits in Kubernetes and why?
+
+What is the difference between ClusterIP, NodePort, and LoadBalancer service?
+
+How do you handle zero downtime deployment in Kubernetes?
+
+Explain how Terraform manages state and what issues you have faced with it.
+
+How do you rollback a failed deployment in Kubernetes?
+
+Explain how you monitor CPU and memory usage of pods.
+
+How do you automate server provisioning using Terraform?
+
+Explain the difference between Git rebase and Git merge.
+
+How do you debug a failing Jenkins pipeline stage?
+
+Explain the concept of environment variables in containers.
+
+How do you implement canary deployment in a project?
+
+What is the difference between horizontal pod autoscaling and vertical autoscaling?
+
+How do you configure health checks in Kubernetes?
+
+Explain the CI CD flow for a Node.js or Java application you worked on.
