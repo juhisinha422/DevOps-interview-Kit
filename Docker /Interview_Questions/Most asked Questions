@@ -1,0 +1,81 @@
+Most Asked Docker Interview Questions — And What They Really Test
+
+Docker interviews aren’t about whether you remember a command like docker ps.
+They test whether you understand container behaviour, image efficiency, and real-world deployment issues.
+
+Here are the questions that show up again and again — and what the interviewer is actually evaluating:
+
+
+🔹 1. What is the difference between an Image and a Container?
+
+What they’re checking: Whether you understand immutability and runtime instantiation — not just definitions.
+
+
+🔹 2. How does Docker ensure isolation?
+
+Expected depth: Namespaces, cgroups, UnionFS.
+If you only say “it isolates processes,” that’s a red flag.
+
+
+🔹 3. What is a Dockerfile? Explain important instructions.
+
+They want you to explain why order matters (layer caching) — not just list commands.
+
+
+🔹 4. How do you reduce Docker image size?
+
+Strong candidates talk about:
+✔ Using smaller base images
+✔ Multi-stage builds
+✔ Cleaning intermediate artifacts
+✔ Avoiding COPY of unnecessary files
+
+
+🔹 5. What is the difference between CMD and ENTRYPOINT?
+
+This one filters out people who just memorised tutorials.
+Explain: override behaviour, default arguments, use cases.
+
+
+🔹 6. How does Docker networking work?
+
+Bridge vs Host vs Overlay.
+If you can explain packet flow, you stand out.
+
+
+🔹 7. How do you persist data in Docker?
+
+Volumes vs Bind Mounts — and why bind mounts can be dangerous in production.
+
+
+🔹 8. What happens under the hood when you run docker run?
+
+Great answer includes:
+
+Image pull
+
+Container creation
+
+Filesystem layering
+
+Network allocation
+
+Process start
+
+
+🔹 9. How do you monitor containers in production?
+
+Mention tools (Prometheus, cAdvisor, sysdig) + metrics (CPU throttling, memory limits, restarts).
+
+
+🔹 10. What is Docker Compose and when should you avoid it?
+
+Senior engineers mention:
+
+Dev-environment orchestration
+
+Why Compose is not a replacement for Kubernetes in production
+
+
+💡 Bottom line:
+If you want to clear Docker interviews, stop memorizing commands and start understanding how containers behave internally.
