@@ -1,0 +1,19 @@
+Important things to know in K8s :
+
+We know pods, deployment, replicaset, daemonset etc., and these objects are very much crucial to run the applications. Besides these there are few concepts which serves the same importance and to run applications in the production grade we need to use them in realtime. 
+
+1. PV and PVC :
+
+Lets say we are running wordpress app, wordpress needs mysql db to store the data of the blogs, to make sure data is persistent enough we need to mount a volume to mysql pod, so even if pod goes down and comes up the data is safe. We need to create a volume first and to attach it to the pod we need to make a claim. 
+
+2. Taints and Tolerations :
+
+Lets say we dont need to run payment pods in couple of nodes, because i have a node which has good bigger capacity and it suits large resource requests and limits, so i need this pod not to be scheduled in small capacity nodes. We can taint these nodes, if and only if its tolerated in yaml manifest then the pod will scheduled on that node. Master node is always tainted so except master node components other pods will not scheduled in the master node. 
+
+3. Network Policies :
+
+Network policies can be same as AWS security groups, we can tell only the pods in payment namespace can connect to my pods. We can restrict based on IP range, tags, namespaces etc., We can allow or block based on IP, labels, namespace. So a better isolation can be acheived. 
+
+4. Resource Requests and Limits :
+
+If we dont set limits, a single pod can take all the CPU and RAM. This can crash other pods on the same node. Requests and limits protect the cluster and keep apps stable. This is very important in production.
