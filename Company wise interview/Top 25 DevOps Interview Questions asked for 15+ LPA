@@ -1,0 +1,41 @@
+Top 25 DevOps Interview Questions asked for 15+ LPA (Product-Based Companies)
+Every DevOps Engineer MUST Target in 2026
+
+𝐂𝐈/𝐂𝐃 & 𝐑𝐞𝐥𝐞𝐚𝐬𝐞 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫𝐢𝐧𝐠
+1. Explain your CI/CD pipeline architecture end-to-end. How do you ensure zero-downtime deployments?
+2. How do you design multi-branch workflows for microservices in CI/CD?
+3. Blue-Green vs Rolling vs Canary - when to choose what and why?
+4. How do you secure CI/CD pipelines from credential leaks & supply-chain attacks?
+5. How do you troubleshoot and reduce flaky pipeline failures?
+
+𝐆𝐢𝐭, 𝐁𝐫𝐚𝐧𝐜𝐡𝐢𝐧𝐠 & 𝐕𝐞𝐫𝐬𝐢𝐨𝐧 𝐂𝐨𝐧𝐭𝐫𝐨𝐥
+6. Explain GitFlow vs Trunk-Based Development. Which one do product companies prefer & why?
+7. How do you debug production issues using Git bisect?
+8. How do you enforce code quality checks and approvals before merge?
+
+𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦 / 𝐈𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞-𝐚𝐬-𝐂𝐨𝐝𝐞
+9. How do you structure Terraform for multi-environment deployments (dev/stage/prod)?
+10. What happens internally during terraform plan & apply?
+11. How do you resolve state locking issues or partial apply failures?
+12. How do you detect and fix drift in Terraform-managed infrastructure?
+13. How do you design reusable Terraform modules for microservices?
+
+𝐃𝐨𝐜𝐤𝐞𝐫 & 𝐂𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫𝐬
+14. How do you reduce Docker image size and improve build time?
+15. What are multi-stage builds and when do you use them?
+16. How do you troubleshoot container crashes (OOM, CPU spike, segfault)?
+
+𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 - 𝐓𝐡𝐞 𝐌𝐨𝐬𝐭 𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭 𝐒𝐞𝐜𝐭𝐢𝐨𝐧
+17. Explain your production-grade Kubernetes architecture.
+18. How do you troubleshoot CrashLoopBackOff and ImagePullBackOff?
+19. What happens when readiness/liveness probes fail?
+20. How do you implement autoscaling (HPA/VPA/Cluster Autoscaler)?
+21. How do you manage secrets securely in Kubernetes (Vault / Sealed Secrets)?
+
+𝐀𝐖𝐒 𝐂𝐥𝐨𝐮𝐝, 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐢𝐧𝐠 & 𝐑𝐞𝐥𝐢𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+22. Explain your VPC design across AZs and NAT/IGW routing.
+23. How do you troubleshoot sudden spikes in 5xx errors in production?
+24. How do you implement centralized logging using CloudWatch / ELK / OpenSearch?
+
+𝐎𝐛𝐬𝐞𝐫𝐯𝐚𝐛𝐢𝐥𝐢𝐭𝐲 & 𝐒𝐑𝐄
+25. How do you define SLIs/SLOs and prevent production incidents?
