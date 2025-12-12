@@ -1,0 +1,95 @@
+To all Freshers & 0–2 Years of Experience Professionals! 🌟
+
+
+If you're preparing for interviews, here are some real and commonly-asked questions you must practice 
+
+What is CI/CD and why is it important?
+
+What is the difference between Git fetch and Git pull?
+
+How does Docker work internally?
+
+What are Pods in Kubernetes?
+
+What is Infrastructure as Code (IaC)?
+
+
+How do you check running processes in Linux?
+
+What is the difference between a soft link and a hard link?
+
+How do you schedule a cron job?
+
+Explain how Load Balancer works.
+
+What is an Auto Scaling Group?
+
+Difference between S3 Standard and S3 IA?
+
+Your application is running slow — what things will you check first?
+
+Deployment failed — how do you troubleshoot?
+
+Pod is running but service not reachable — what will you check?
+
+What is the difference between Git merge and Git rebase?
+
+Explain what a Dockerfile is and how it works.
+
+How does Docker isolate applications?
+
+What is a Kubernetes Deployment?
+
+Explain the role of a Service in Kubernetes.
+
+What is the difference between NodePort and ClusterIP?
+
+How do you create a branch in Git?
+
+What is a pull request and why do we use it?
+
+Explain the difference between CI and CD.
+
+What is a pipeline in CI/CD?
+
+What is SSH and why do we use it?
+
+Explain the difference between public and private keys.
+
+What is a virtual machine vs a container?
+
+What is cloud computing in simple terms?
+
+What is an EC2 instance?
+
+What is IAM and why is it used?
+
+What is VPC in cloud?
+
+What is an S3 bucket?
+
+How do you monitor logs of an application?
+
+Explain what Prometheus and Grafana are.
+
+What is a YAML file and where is it used?
+
+Explain environment variables in deployment.
+
+What is a build artifact?
+
+How do you roll back a deployment?
+
+What is a Helm chart?
+
+Explain blue-green deployment in simple words.
+
+What is a reverse proxy?
+
+What is a Load Balancer and why is it needed?
+
+How do you test an API using curl?
+
+What is a container registry?
+
+Difference between IaaS, PaaS, and SaaS?
