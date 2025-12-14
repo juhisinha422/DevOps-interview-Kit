@@ -1,0 +1,38 @@
+Interview Experience at JP Morgan Chase & Co. – AWS DevOps Role!! 🚀💼
+
+Round: 1
+📝 Here are some of the interview questions I faced:
+1. What are the compute services that are using in AWS.
+2. How we can able to access s3 bucket from EC2 instance.
+3. What are roles in IAM.
+4. What happened at AWS global outage.
+5. Is it good method to deploy our services in 2 different regions.
+6. What is the demerits to deploy our services in 2 different regions.
+7. What are the monitoring tools that you are using in your project.
+8. How many database have you used in AWS?
+9. How you can provisioned infra from scratch.
+10. If we have s3 bucket that are present in Account A, how we can able to access it from Account B EC2 instance.
+
+Round: 2
+📝 Here are some of the interview questions I faced:
+ 
+1. How you can scale the server in AWS Cloud.
+2. What is AWS global outage ?
+3. Design an infra. So that if global outage will come in future then we can switch to different region.
+4. Have you worked on ECS, explain it.
+5. What is private subnet.
+6. In which subnet your server is placed.
+7. How you expose your private server to app.
+8. Why you are using Network Load balancer in your project.
+9. How you can enable autoscaling group so that load is distributed in your project.
+ 
+Round: 3
+ 
+1. In ECS if task is running in the container is facing timeout issue then how I can resolve it.
+2. In cloudtrail if someone did changes in the service then how we can verify that who did the changes. 
+3. If we upload an file in s3 bucket then lambda function is triggered then suppose after upload file it is not triggered today than what is the reason for that.
+4. If EC2 is facing load in the future then how we configure today so that app. will not face any issue in the future.
+5. In EC2 how we can deploy 6 microservices with the help of one ALB.
+6. How we can expose our app. that is present in private subnet.
+7. If we have java version 21 that we deployed in server then what configure we have to do in the server so that it will not face any issue in the deployment. 
+8. If someone did changes in the role then how we can modify it.
