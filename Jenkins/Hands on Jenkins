@@ -1,0 +1,35 @@
+Hands-On Jenkins Declarative Pipeline Assignments for DevOps Learners
+
+If you’re learning Jenkins CI/CD and want to move beyond theory, here are real-world Jenkins Declarative Pipeline assignments for practice:
+
+🧩 Assignment 1 – Pipeline Basics
+ ✔ Create a declarative pipeline
+ ✔ Print system info (hostname, OS, user)
+ ✔ Understand stages & steps
+
+🧩 Assignment 2 – Git + Build
+ ✔ Checkout code from GitHub
+ ✔ Run build command (npm / maven)
+ ✔ Use post { success / failure }
+
+🧩 Assignment 3 – Docker Build & Environment Variables
+ ✔ Build Docker image from Dockerfile
+ ✔ Use image name via variables
+
+🧩 Assignment 4 – Secure Credentials 🔐
+ ✔ Push Docker image to Docker Hub
+ ✔ Use Jenkins Credentials Store
+ ✔ No plain-text secrets
+
+🧩 Assignment 5 – Deployment
+ ✔ Stop & remove old container
+ ✔ Deploy new container using Docker
+
+🧩 Assignment 6 – Conditional Deployment
+ ✔ Deploy only when branch = main
+
+🧩 Assignment 7 – Full CI/CD Pipeline
+ ✔ Git → Test → Build → Push → Deploy
+ ✔ Add post actions
+
+🎯 Goal: Write the Jenkinsfile for each assignment and test it in a real Jenkins environment (Docker / EC2).
