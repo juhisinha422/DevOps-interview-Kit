@@ -1,0 +1,100 @@
+Kubeflow vs MLflow — 10 Key Questions Explained Simply
+
+1️⃣ What problem does MLflow solve vs Kubeflow?
+
+MLflow solves the problem of experiment tracking and model management
+Kubeflow solves the problem of running end-to-end ML pipelines at scale
+👉 MLflow helps you track models
+👉 Kubeflow helps you run ML workflows
+
+2️⃣ Can MLflow replace Kubeflow?
+
+No.
+MLflow does not orchestrate pipelines
+Kubeflow does not focus on experiment tracking by default
+They are often used together, not as replacements.
+
+3️⃣ What is the core responsibility of MLflow?
+
+MLflow focuses on:
+Logging parameters and metrics
+Tracking experiments
+Managing model versions
+Registering models for deployment
+Think of MLflow as the system of record for models.
+
+4️⃣ What is the core responsibility of Kubeflow?
+
+Kubeflow focuses on:
+Running ML pipelines on Kubernetes
+Containerized steps (data → train → evaluate)
+Scalability and reproducibility
+Infrastructure-level ML workflows
+Think of Kubeflow as the execution engine for ML pipelines.
+
+5️⃣ Which one requires Kubernetes?
+
+Kubeflow → Yes (Kubernetes-native)
+MLflow → No (can run locally, VM, or cloud)
+👉 If you don’t use Kubernetes, MLflow is much easier to start with.
+
+6️⃣ Which tool is easier to start with?
+
+MLflow is easier:
+Minimal setup
+Works locally
+Quick value for tracking experiments
+Kubeflow has a steeper learning curve:
+Kubernetes knowledge required
+More setup and infrastructure
+
+7️⃣ How do they handle ML pipelines?
+
+MLflow → Does not manage pipelines
+Kubeflow → Pipelines are first-class citizens
+Kubeflow pipelines:
+Are container-based
+Are versioned
+Can be reused and scaled
+
+8️⃣ Where does model versioning happen?
+
+MLflow has a built-in Model Registry
+Kubeflow relies on external registries (MLflow, S3, etc.)
+👉 MLflow is usually the source of truth for models.
+
+9️⃣ When would you use both together?
+
+A common pattern:
+Kubeflow runs the pipeline (training, evaluation)
+MLflow logs metrics and registers the model
+This gives:
+✔ Scalable pipelines
+✔ Clear experiment tracking
+✔ Controlled model promotion
+
+🔟 How do you decide which one to use?
+Simple rule:
+Need to track experiments & models → MLflow
+Need to run scalable ML pipelines on Kubernetes → Kubeflow
+Need both → Use Kubeflow + MLflow together
+
+🎯 Key Takeaway
+
+MLflow ≠ Kubeflow
+They solve different layers of the ML lifecycle
+MLflow focuses on models
+Kubeflow focuses on pipelines and execution
+🧠 How to Think About Them (Mental Model)
+MLflow answers:
+ 👉 “What happened during training?”
+ 👉 “Which model should we deploy?”
+Kubeflow answers:
+ 👉 “How do we run ML pipelines reliably at scale?”
+ 👉 “How do we productionize ML on Kubernetes?”
+They work at different layers of the ML lifecycle.
+
+Understanding this separation makes ML systems simpler, scalable, and easier to manage.
+
+No alternative text description for this image
+No alternative text description for this image
