@@ -1,0 +1,35 @@
+3 topic wise questions....
+      1 EC2 System Health (CPU, Memory, Disk)
+1. How do you check CPU/memory usage on EC2? 
+2. How do you find which process is consuming most CPU? 
+3. How do you check available disk space and inode usage? 
+4. How do you monitor EBS volume performance from EC2? 
+5. How do you detect a memory leak in an EC2 instance?
+6. How do you identify a process causing high load average? 
+7. How do you find uptime of an EC2 instance? 
+8. How do you check which user started a process? 
+9. How do you check if swap memory is enabled and used? 
+10. How do you find top 10 memory-consuming processes? 
+
+     2 Network & Port Troubleshooting
+1. How do you troubleshoot a web app running on port 8080? 
+2. How do you find which process is listening on a specific port? 
+3. How do you verify EC2 connectivity to another instance or service? 
+4. How do you test if EC2 can reach an external API or S3 endpoint? 
+5. How do you fix 'connection refused' errors? 
+6. How do you find public/private IP of EC2 instance? 
+7. How do you verify if DNS resolution works inside EC2? 
+8. How do you check inbound and outbound network connections? 
+9. How do you capture live network packets for debugging? 
+10. How do you verify a security group or NACL issue from EC2 side?
+       3 Log Analysis & Failed Services 
+1. How do you find log files of failed services? 
+2. How do you analyze EC2 boot logs for startup issues? 
+3. How do you check application logs for crash info? 
+4. How do you continuously monitor a log file for errors? 
+5. How do you search for specific error keywords in all log files? 
+6. How do you check system logs for kernel or hardware errors? 
+7. How do you troubleshoot failed 'systemctl start' command? 
+8. How do you check which process failed recently? 
+9. How do you track service restart history? 
+10. How do you debug permission errors found in logs?
