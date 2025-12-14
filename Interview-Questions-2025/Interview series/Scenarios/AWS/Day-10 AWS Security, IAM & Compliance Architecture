@@ -1,0 +1,35 @@
+Day 10 — AWS Security, IAM & Compliance Architecture
+
+STAR-based DevOps Interview Questions
+
+1️⃣ Your organization has multiple AWS accounts and teams. How will you design IAM for least privilege and scalability?
+
+2️⃣ A leaked IAM access key was found in a public repository. What immediate and long-term actions will you take?
+
+3️⃣ Developers need temporary access to AWS resources without long-lived credentials. How will you design this securely?
+
+4️⃣ You want to restrict AWS usage to specific regions only. How will you enforce this at scale?
+
+5️⃣ An application running on EC2 needs access to S3 and DynamoDB securely. How will you configure IAM roles?
+
+6️⃣ You must ensure all data at rest is encrypted using customer-managed keys. How will you enforce this?
+
+7️⃣ A security audit requires visibility into all IAM changes. How will you enable tracking and alerts?
+
+8️⃣ You want to protect applications from common web attacks like SQL injection and XSS. Which AWS services will you use?
+
+9️⃣ An internal API should be accessible only from private networks. How will you design network-level security?
+
+🔟 You need automatic detection of compromised instances or suspicious activity. How will you design this?
+
+1️⃣1️⃣ Cross-account access is required between prod and shared services accounts. How will you configure trust securely?
+
+1️⃣2️⃣ You want to prevent accidental deletion of critical resources. How will you implement guardrails?
+
+1️⃣3️⃣ Secrets are currently stored in plain text environment variables. How will you redesign secrets management?
+
+1️⃣4️⃣ Compliance requires periodic key rotation and access reviews. How will you automate this?
+
+1️⃣5️⃣ A zero-trust security model is mandated. How will you apply this across IAM, network, and services?
+
+⸻
