@@ -1,0 +1,75 @@
+Difference between ENTRYPOINT and CMD
+
+Most people think they understand ENTRYPOINT and CMD.
+They don’t. They memorize definitions and still mess up Dockerfiles.
+
+Let’s fix that.
+
+CMD
+
+CMD defines default arguments for a container.
+
+👉 It’s easy to override at runtime.
+
+Example:
+
+CMD ["echo", "Hello"]
+
+Run:
+
+docker run my-image echo Hi
+
+Result?
+Docker replaces CMD. Your default is gone.
+
+Use CMD when:
+
+You want a suggested default
+
+You expect users to override behavior
+
+The container is flexible by design
+
+
+
+✅ENTRYPOINT
+
+ENTRYPOINT defines the actual executable.
+
+👉 It’s not meant to be replaced, only extended.
+
+Example:
+
+ENTRYPOINT ["echo"]
+
+Run:
+
+docker run my-image Hello
+
+Result?
+Docker appends arguments. echo Hello
+
+Use ENTRYPOINT when:
+
+The container has a single, fixed purpose
+
+You want to enforce behavior
+
+You’re building CLI-style containers
+
+
+✅ The Power Combo (What Pros Use)
+
+ENTRYPOINT ["python", "app.py"]
+CMD ["--help"]
+
+ENTRYPOINT → what always runs
+
+CMD → default arguments (override-friendly)
+
+
+This is not optional knowledge.
+If you’re writing Dockerfiles without understanding this difference, you’re guessing — not engineering.
+
+Docker rewards precision.
+Stop memorizing. Start understanding.
