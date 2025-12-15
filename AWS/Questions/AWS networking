@@ -1,0 +1,42 @@
+basic Cloud Networking Interview Questions…
+
+What is a VPC?
+What is a Subnet?
+What is an Internet Gateway?
+What is a NAT Gateway?
+What are Route Tables?
+What is a Security Group?
+What is a Network ACL (NACL)?
+What is an Elastic IP?
+What is a VPC Peering Connection?
+What is a Load Balancer in AWS?
+What is Route 53?
+What is AWS Direct Connect?
+What is a Transit Gateway?
+How do you secure network traffic in the cloud?
+What are VPC Flow Logs?
+What is a PrivateLink or VPC Endpoint?
+What is CIDR in VPC?
+What is the difference between Public and Private Subnets?
+What is a Bastion Host?
+How do you connect on-premises to AWS Cloud?
+What is Elastic Load Balancing (ELB)?
+What are the different types of load balancers in AWS?
+What is an Availability Zone and how does it affect networking?
+What is DNS failover in Route 53?
+What is an Elastic Network Interface (ENI)?
+What is IP addressing in cloud networking?
+What is peering vs transit gateway?
+What is the difference between NACL and Security Groups?
+What is the role of a default VPC?
+What is a VPC endpoint and its types?
+What is AWS Global Accelerator?
+What is the use of CloudFront in networking?
+What are ingress and egress traffic?
+What is the difference between IGW and NAT Gateway?
+What are best practices for securing a VPC?
+What is hybrid connectivity in cloud?
+How does VPN connection work in AWS?
+What is AWS PrivateLink?
+How do you troubleshoot VPC connectivity issues?
+What is the difference between private IP, public IP, and elastic IP?
