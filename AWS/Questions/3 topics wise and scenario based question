@@ -33,3 +33,41 @@
 8. How do you check which process failed recently? 
 9. How do you track service restart history? 
 10. How do you debug permission errors found in logs?
+
+3 Topics Scenario based-Questions...
+        ## Permission & File Access Issues## 
+1. How do you fix 'Permission Denied' errors on EC2? 
+2. How do you verify file ownership and permissions? 
+3. How do you change directory ownership for Jenkins deployments? 
+4. How do you identify files recently modified by root user? 
+5. How do you restore permission of system files accidentally changed? 
+6. How do you check sudo privileges of a user? 
+7. How do you give only read-only access to a file? 
+8. How do you check which user modified a file last? 
+9. How do you allow non-root user to run Docker commands? 
+10. How do you prevent unauthorized permission changes?  
+
+              ## Deployment & Application Debugging## 
+1. How do you verify if Nginx or Apache is running after deployment? 
+2. How do you restart a failed service automatically? 
+3. How do you debug 'address already in use' errors? 
+4. How do you verify deployed app files on EC2? 
+5. How do you clear old build artifacts before deployment? 
+6. How do you validate environment variables for app startup? 
+7. How do you roll back a failed deployment? 
+8. How do you test app startup script manually? 
+9. How do you check if EC2 has correct IAM role access? 
+10. How do you confirm health of EC2 target behind ALB?
+          ## Storage, EBS & Backup## 
+1. How do you check EBS volume attachment and size? 
+2. How do you identify which mount point is using which EBS? 
+3. How do you increase EC2 disk size safely? 
+4. How do you create a snapshot of EBS volume? 
+5. How do you mount an unmounted EBS volume? 
+6. How do you troubleshoot 'read-only file system' errors? 
+7. How do you check free space inside a specific folder? 
+8. How do you archive old log files automatically? 
+9. How do you sync data between two EC2 instances? 
+10. How do you back up EC2 files to S3 bucket?
+
+
