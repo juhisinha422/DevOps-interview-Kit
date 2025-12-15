@@ -1,0 +1,31 @@
+𝑾𝒉𝒚 𝒅𝒐 𝑩𝒊𝒈 𝑪𝒐𝒎𝒑𝒂𝒏𝒊𝒆𝒔 𝑷𝒖𝒕 𝒂𝒏 𝑨𝑷𝑰 𝑮𝒂𝒕𝒆𝒘𝒂𝒚 𝒊𝒏𝒇𝒓𝒐𝒏𝒕 𝒐𝒇 𝑴𝒊𝒄𝒓𝒐𝒔𝒆𝒓𝒗𝒊𝒄𝒆𝒔?
+
+API Gateway keeps microservices clean, fast and secure.
+
+1. 𝐎𝐧𝐞 𝐄𝐧𝐭𝐫𝐲 𝐏𝐨𝐢𝐧𝐭 ( 𝐍𝐨 𝐂𝐡𝐚𝐨𝐬)
+ ▪️ Clients hit one URL instead of 20 Microservices. 
+Example : Entering a mall through one main gate instead of 20 side doors.
+
+2. 𝐒𝐦𝐚𝐫𝐭 𝐑𝐨𝐮𝐭𝐢𝐧𝐠 & 𝐋𝐨𝐚𝐝 𝐁𝐚𝐥𝐚𝐧𝐜𝐢𝐧𝐠
+ ▪️ Gateway sends each request to the right service/server.
+Example: Like a Receptionist sending you to billing, support or sales.
+
+3. 𝐂𝐞𝐧𝐭𝐫𝐚𝐥 𝐀𝐮𝐭𝐡𝐞𝐧𝐭𝐢𝐜𝐚𝐭𝐢𝐨𝐧
+ ▪️ Login check happens once at the gateway.
+Example: Like showing your ID card at the building entrance, not every room
+
+4. 𝐑𝐚𝐭𝐞 𝐋𝐢𝐦𝐢𝐭𝐢𝐧𝐠 (𝐏𝐫𝐨𝐭𝐞𝐜𝐭 𝐁𝐚𝐜𝐤𝐞𝐧𝐝)
+ ▪️ Stops spam/abuse before it reaches services.
+Example: Like Security Controlling crowd so rooms don't get overcrowded.
+
+5. 𝐂𝐚𝐜𝐡𝐢𝐧𝐠 𝐚𝐭 𝐭𝐡𝐞 𝐆𝐚𝐭𝐞𝐰𝐚𝐲
+ ▪️ Cached responses reduce load on backend services.
+Example: Like keeping frequently asked answers ready at the reception desk
+
+6. 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐓𝐫𝐚𝐧𝐬𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧
+ ▪️ Converts incoming requests into formats services understand.
+Example: Like a receptionist translating your query into right department language.
+
+7. 𝐋𝐨𝐠𝐠𝐢𝐧𝐠 & 𝐌𝐨𝐧𝐢𝐭𝐨𝐢𝐧𝐠
+▪️ One place to track all failures, slow APIs and traffic spikes.
+Example: Like CCTV at the main gate capturing everyone entering.
