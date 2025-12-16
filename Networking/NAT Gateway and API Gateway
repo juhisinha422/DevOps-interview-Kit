@@ -1,0 +1,11 @@
+NAT Gateway and API Gateway
+
+**NAT Gateway**
+-- Key Functionality: It translates private IP addresses to a public IP address when traffic goes out to the internet, and translates the response traffic back to the private IP.
+-- Use Case: A common scenario is when you have application servers or databases running in private subnets that need to download security patches or interact with external services (like third-party APIs) but should not be publicly accessible.
+-- Security: It provides an additional layer of security by ensuring that inbound connections from the internet cannot reach your private instances.
+
+**API Gateway**
+Key Functionality: It handles many concerns of an API, such as authentication and authorization, traffic management, monitoring, and request/response transformations.
+Use Case: You use API Gateway when you want to expose your backend services, such as AWS Lambda functions, as secure, scalable, and well-defined REST or WebSocket APIs for consumption by clients.
+Security: It enforces security policies and can protect your APIs from unauthorized access and distributed denial-of-service attacks.
