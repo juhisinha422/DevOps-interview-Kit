@@ -1,0 +1,25 @@
+AtoS company Devops engineer interview questions 
+
+1. Explain Build and Release
+2. Difference between Continuous Delivery and Continuous Deployment
+3. Types of pipelines
+4. Difference between Declarative and Scripted (Classic) pipeline
+5. Explain the Jenkins pipeline step by step
+6. Difference between Git checkout and Git clone
+7. Difference between Git pull and Git fetch
+8. What is Git stash
+9. What is Git cherry-pick
+10. Explain branching strategy
+11. What is a merge conflict
+12. How do you resolve a merge conflict
+13. How many types of variables are there in Jenkins pipeline
+14. How many types of parameters are there in Jenkins
+15. What are predefined / built-in variables in Jenkins pipeline
+16. What is Maven
+17. Difference between mvn install and mvn deploy
+18. What is distribution management in Maven
+19. What is transitive dependency
+20. A service is failing — how do you find logs in k8s
+21. How do you check if a port is in use
+22. Port number is 8080 — how do you search it
+23. What does netstat -tulnp | grep <port> mean
