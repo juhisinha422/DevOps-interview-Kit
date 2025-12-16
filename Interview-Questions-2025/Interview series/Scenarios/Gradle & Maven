@@ -1,0 +1,10 @@
+DevOps Interview Q&A Series — Rapid-Fire Edition
+Practical • Tool-focused • Interview-ready
+
+🔹 Gradle & Maven
+
+1️⃣ What are the key architectural differences between Maven and Gradle?
+2️⃣ How do dependency conflicts occur and how do you resolve them?
+3️⃣ What is the role of pom.xml vs build.gradle in CI pipelines?
+4️⃣ How do you optimize build time in large Java projects?
+5️⃣ How do you integrate Maven/Gradle with CI tools and artifact repositories?
