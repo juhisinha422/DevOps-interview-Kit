@@ -1,0 +1,33 @@
+Day 3 — Azure Networking (VNet, NSG, Load Balancer, Application Gateway)
+
+STAR-based DevOps Interview Questions
+
+1️⃣ You need to design a secure multi-tier application in Azure. How will you structure VNets, subnets, and routing?
+
+2️⃣ A VM in a private subnet cannot access the internet for updates. How will you troubleshoot and fix this in Azure?
+
+3️⃣ Your application must be accessible globally with low latency. Which Azure load balancing services will you choose and why?
+
+4️⃣ You want to restrict traffic between subnets except on specific ports. How will you design this using NSGs?
+
+5️⃣ A public-facing web app is under attack. How will you protect it using Azure networking and security services?
+
+6️⃣ You need private connectivity between on-premises and Azure with predictable latency. How will you design the hybrid network?
+
+7️⃣ An internal service must be accessible across multiple VNets and subscriptions. How will you enable secure connectivity?
+
+8️⃣ You want to expose a private application to selected external partners only. How will you design this architecture?
+
+9️⃣ Traffic must be routed based on URL paths and headers. Which Azure service will you use and how will you configure it?
+
+🔟 You need session persistence for a stateful application. How will you configure load balancer settings in Azure?
+
+1️⃣1️⃣ Network traffic costs are unexpectedly high between Azure resources. What will you analyze and optimize?
+
+1️⃣2️⃣ You need to inspect and control outbound traffic from workloads. Which Azure networking components will you use?
+
+1️⃣3️⃣ A VM loses connectivity after an NSG change. How will you systematically troubleshoot the issue?
+
+1️⃣4️⃣ You need DNS-based traffic routing for multi-region failover. How will you design this using Azure services?
+
+1️⃣5️⃣ Your security team wants full visibility into network traffic and flows. How will you enable monitoring and logging?
