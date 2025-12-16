@@ -1,0 +1,60 @@
+PwC 1st technical interview round 
+
+The interview focused heavily on hands-on DevOps fundamentals and scripting knowledge, along with real-world tool-based questions.
+
+Sharing some of the key questions discussed — this might help others preparing for PwC or similar DevOps roles 👇
+
+🔹 Bash Scripting
+Write a bash script to find the top 5 largest files in a directory and display their size.
+
+🔹 Python Scripting
+Write a Python script to read a log file and count how many times the word “ERROR” appears.
+
+🔹 AWS
+Explain the difference between EC2, ECS, and EKS. When would you use each?
+Difference between Security Groups and NACLs.
+How does IAM role differ from IAM user?
+What happens if an EC2 instance is stopped vs terminated?
+Difference between ALB, NLB, and CLB.
+How does Auto Scaling work with ALB?
+What is VPC peering and its limitations?
+Difference between S3 and EBS.
+
+🔹 Git
+What is the difference between git merge and git rebase?
+How do you resolve merge conflicts?
+
+🔹 GitHub Actions
+How does a GitHub Actions workflow get triggered?
+Explain the structure of a GitHub Actions YAML file.
+
+🔹 GitLab CI/CD
+Difference between GitHub Actions and GitLab CI/CD?
+What are stages and jobs in GitLab pipelines?
+Explain the structure of a .gitlab-ci.yml file.
+What are stages, jobs, and pipelines in GitLab?
+Difference between artifacts and cache in GitLab.
+How do GitLab runners work?
+What is a protected branch and protected variable?
+How do you trigger pipelines manually in GitLab?
+
+🔹 Docker
+Difference between Docker image and container.
+What is a multi-stage Docker build and why is it used?
+
+🔹 Kubernetes
+Difference between Deployment, StatefulSet, and DaemonSet.
+How does Kubernetes perform rolling updates?
+How does Kubernetes handle pod restarts and failures?
+What happens when a node goes into NotReady state?
+Difference between ClusterIP, NodePort, and LoadBalancer services.
+How do liveness and readiness probes work?
+What is the purpose of ConfigMaps and Secrets?
+How does Horizontal Pod Autoscaler work internally?
+Difference between Ingress and Service.
+What is the use of namespaces in Kubernetes?
+How do you troubleshoot a pod stuck in CrashLoopBackOff?
+
+🔹 Terraform
+What is the Terraform state file?
+Difference between terraform plan and terraform apply.
