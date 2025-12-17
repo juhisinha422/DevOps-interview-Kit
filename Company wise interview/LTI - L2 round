@@ -1,0 +1,42 @@
+L2 at LTI @5years experience 
+Share your opinion on this interview 
+
+1.What type of application stack did you create CI/CD pipelines for?
+2.What technologies were used in your application stack?
+3.Have you created reusable CI/CD templates?
+4.How do you design reusable templates for multiple Node.js and React applications?
+5.How do application repositories consume reusable templates from a common repo?
+6.How is a YAML-based CI/CD pipeline structured?
+7.What are stages, jobs, steps, and tasks?
+8.How do you create an end-to-end CI/CD pipeline for React and Node.js?
+9.Did you integrate unit tests in your CI pipeline?
+10.What unit testing framework did you use for Node.js?
+11.Is Jest a unit test framework or something else?
+12.What type of agent did you use to run Jest tests?
+13.When would you choose Microsoft-hosted agent vs self-hosted agent?
+14.Do Microsoft-hosted agents have Jest preinstalled?
+15.Have you used Azure Artifacts feeds?
+16.For what purpose did you use artifact feeds?
+17.How do you publish unit test results in Azure DevOps?
+18.How do you manage different DB connection strings for Dev, Test, and Prod?
+19.How do you automate multi-environment deployments in Azure DevOps?
+20.How is a Dockerfile structured?
+21.What are the key attributes in a Dockerfile?
+22.What ENTRYPOINT do you use for Node.js?
+23.What ENTRYPOINT do you use for React?
+24.What is Docker build context?
+25.How does Azure DevOps push Docker images to container registry?
+26.How does Service Connection authenticate in Azure DevOps?
+27.Write a Kubernetes Deployment YAML.
+28.How does Kubernetes scheduler decide where to place pods?
+29.How do you deploy pods to a specific node?
+30.What is nodeSelector?
+31.What is nodeAffinity?
+32.What are taints and tolerations?
+33.Have you used Helm?For what purpose did you use Helm? Explain Helm usage in your project.
+34.Difference between helm install and helm upgrade.
+35.Give an example of helm install and helm upgrade.
+36.If you want to scale replicas, which Helm command will you use?
+37.What are implicit and explicit dependencies in Terraform? Give an example.
+38.How do you ensure DB is created before web app in Terraform?
+39.If a resource is created manually in portal, how will you manage it using Terraform?
