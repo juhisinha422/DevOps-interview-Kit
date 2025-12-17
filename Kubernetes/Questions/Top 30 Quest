@@ -1,0 +1,36 @@
+ top 30 real-world, scenario-based Kubernetes interview questions..dis 30 Questions divided into 5 sections... 
+ 1 Application & Pod Lifecycle (1–8)
+1. Your application pod keeps restarting. How do you troubleshoot it step by step?
+2. A pod is in `CrashLoopBackOff`. What are the common causes and fixes?
+3. How do you debug a pod that works in dev but fails in production?
+4. Your container starts slowly and gets killed. How do you handle startup issues?
+5. How do readiness and liveness probes help during deployments?
+6. When would you use an init container in real projects?
+7. One container in a multi-container pod fails. What happens and how do you debug?
+8. How do you handle application configuration changes without restarting pods?
+ 2 Deployments, Rollouts & Zero Downtime (9–15)
+9. How do you ensure zero-downtime deployments in Kubernetes?
+10. A new deployment caused production issues. How do you rollback safely?
+11. Difference between rolling update and recreate strategy—when do you use each?
+12. How do you control how many pods go down during deployment?
+13. How do you deploy database-related changes along with application updates?
+14. How do you use canary deployments in Kubernetes?
+15. What happens if a deployment gets stuck midway?
+ 3 Services, Networking & Ingress (16–21)
+16. Pods are running but the application is not accessible. How do you troubleshoot?
+17. Difference between ClusterIP, NodePort, and Load Balancer with real use cases?
+18. How does Kubernetes service discovery work internally?
+19. How do you expose multiple services using a single load balancer?
+20. What happens if an ingress controller pod goes down?
+21. How do you handle TLS/SSL certificates in Kubernetes?
+ 4 ConfigMaps, Secrets & Security (22–25)
+22. How do you manage secrets securely in Kubernetes?
+23. What happens if a secret or ConfigMap is updated—do pods get updated automatically?
+24. How do you restrict pod-to-pod communication?
+25. How do RBAC roles differ for developers vs DevOps engineers?
+ 5 Scaling, Performance & Reliability (26–30)
+26. How does HPA work and what metrics have you used in real projects?
+27. Pods are not scaling even though traffic increased. How do you debug?
+28. How do you handle node failures in production?
+29. How do you control resource usage to avoid noisy neighbor problems?
+30. How do you monitor Kubernetes cluster and application health?
