@@ -1,0 +1,33 @@
+🚀 Day 4 — Azure Kubernetes Service (AKS) + Containers + Scaling
+
+1️⃣ Your application is containerized and needs managed Kubernetes with minimal operational overhead. Why would you choose AKS over self-managed Kubernetes on VMs?
+
+2️⃣ Pods in AKS are frequently restarting with CrashLoopBackOff. How will you troubleshoot this issue step by step?
+
+3️⃣ You need zero-downtime deployment for a production microservice running on AKS. Which deployment strategies will you use and why?
+
+4️⃣ AKS cluster costs are increasing due to over-provisioned nodes. How will you optimize using cluster autoscaler and pod resource requests/limits?
+
+5️⃣ A workload requires GPU support for ML inference. How will you configure node pools in AKS to support this?
+
+6️⃣ You need to isolate workloads of different teams within the same AKS cluster. How will you design namespaces, RBAC, and resource quotas?
+
+7️⃣ Secrets are currently stored as plain Kubernetes secrets. How will you secure them using Azure Key Vault with AKS?
+
+8️⃣ A pod is stuck in Pending state. What possible causes will you check related to nodes, networking, storage, and quotas?
+
+9️⃣ You want to expose services internally and externally. How will you decide between ClusterIP, NodePort, LoadBalancer, and Ingress in AKS?
+
+🔟 AKS workloads must access Azure services (Blob Storage, Key Vault) securely without secrets. How will you implement Managed Identity?
+
+1️⃣1️⃣ Your AKS cluster needs centralized logging and monitoring. Which Azure services will you integrate and how?
+
+1️⃣2️⃣ Node OS updates caused application downtime. How will you plan AKS upgrades safely?
+
+1️⃣3️⃣ You need to run batch and cron workloads on AKS. How will you design Jobs and CronJobs effectively?
+
+1️⃣4️⃣ Traffic must be routed based on URL paths and hostnames. Which Ingress controller will you use and how will you configure it?
+
+1️⃣5️⃣ You must design multi-region AKS deployment for high availability and disaster recovery. How will you architect this end-to-end?
+
+⸻
