@@ -58,3 +58,79 @@ How do you troubleshoot a pod stuck in CrashLoopBackOff?
 🔹 Terraform
 What is the Terraform state file?
 Difference between terraform plan and terraform apply.
+
+
+
+---------------
+
+2nd Round PwC – Face-to-Face Interview | Q&A 🔥
+
+Some of the key questions discussed in the 2nd round (Face-to-Face) interview at PwC:
+
+Bash Scripting (1 Question)
+Write a bash script to check disk usage and alert if usage exceeds 80%.
+
+Python Scripting (1 Question)
+Write a Python script to read a log file and count the number of ERROR entries.
+
+Kubernetes (Major Focus)
+Explain Kubernetes architecture
+
+Difference between Pod, Deployment, and StatefulSet
+
+What happens when a Pod crashes?
+
+Pod is running but Service is not accessible — what will you check?
+
+Difference between ClusterIP, NodePort, and LoadBalancer
+
+What are ConfigMaps and Secrets?
+
+How does rolling update and rollback work?
+
+How do you scale applications in Kubernetes?
+
+Docker
+Difference between Docker image and container
+
+What is a multi-stage Docker build?
+
+How do you reduce Docker image size?
+
+Dockerfile vs Docker Compose
+
+What are Docker volumes and why are they used?
+
+Terraform
+What is Infrastructure as Code?
+
+Difference between terraform init, plan, and apply
+
+What is Terraform state file?
+
+How do you manage multiple environments in Terraform?
+
+How do you handle state file locking?
+
+AWS
+Explain VPC and its components
+
+Security Group vs NACL
+
+How does Auto Scaling work?
+
+What is IAM role and why is it used?
+
+How do you secure secrets in AWS?
+
+S3 versioning and lifecycle policy
+
+Jenkins / CI-CD
+Explain Jenkins architecture
+
+What is a Jenkins pipeline?
+Declarative vs Scripted pipeline and write a complete pipeline code.
+
+How do you implement CI/CD for a containerized application?
+
+How do you secure Jenkins credentials?
