@@ -1,0 +1,27 @@
+ DevOps Interview Q&A Series — Rapid-Fire Edition
+📌 Practical • Tool-focused • Interview-ready
+
+⸻
+
+🔹 Armada
+
+1️⃣ What problem does Armada solve that native Kubernetes scheduling cannot handle efficiently?
+
+2️⃣ How does Armada differ from the default Kubernetes scheduler in large-scale environments?
+
+3️⃣ What are Armada queues, and how do they help manage multi-tenant workloads?
+
+4️⃣ How does priority and fairness work in Armada scheduling?
+
+5️⃣ When would you choose Armada over native Kubernetes Jobs or CronJobs?
+
+6️⃣ How does Armada improve cluster resource utilization across multiple teams?
+
+7️⃣ How does Armada handle preemption and backfilling of workloads?
+
+8️⃣ What types of workloads are best suited for Armada (batch, ML, data processing)?
+
+9️⃣ How does Armada integrate with existing Kubernetes clusters?
+
+🔟 What are the key challenges while operating Armada in production?
+
