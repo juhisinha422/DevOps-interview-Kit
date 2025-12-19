@@ -1,0 +1,68 @@
+How to Upgrade a Kubernetes (K8s) Cluster 🚀
+
+Upgrading a Kubernetes cluster may sound scary, but it’s actually step-by-step and safe if done correctly. Here’s a simple explanation + LinkedIn-ready post 👇
+
+🧠 What does “K8s Upgrade” mean?
+It means updating:
+
+Kubernetes control plane (API Server, Scheduler, Controller)
+
+Kubernetes worker nodes
+to a newer supported version without breaking running applications.
+
+Easy Steps to Upgrade a Kubernetes Cluster
+Step 1: Check Current Version
+kubectl version
+Know where you are before moving forward.
+
+Step 2: Read Release Notes
+Check what’s deprecated or removed
+
+Never skip minor versions (e.g., 1.27 → 1.28 → 1.29)
+
+Step 3: Take Backup (Very Important)
+Backup etcd (cluster data)
+
+Backup manifests & configs
+ This is your safety net.
+
+Step 4: Upgrade Control Plane First
+Upgrade API Server, Controller, Scheduler
+
+Cluster keeps running during this step
+ Applications are still accessible
+
+Step 5: Upgrade Worker Nodes (One by One)
+Drain node (move pods safely)
+
+kubectl drain <node-name> --ignore-daemonsets
+Upgrade node Kubernetes version
+
+Uncordon node
+
+kubectl uncordon <node-name>
+ Repeat for each node (zero downtime if done properly)
+
+Step 6: Verify Cluster Health
+kubectl get nodes
+kubectl get pods -A
+Make sure everything is Running.
+
+Step 7: Monitor Applications
+Check logs, metrics, alerts
+
+Confirm no performance issues
+
+ Managed K8s (EKS / AKS / GKE) – Even Easier
+Control plane upgrade is 1 click / 1 command
+
+Nodes can be upgraded via node groups
+
+Cloud provider handles complexity
+
+💡 Golden Rule:
+✔ Control Plane first
+✔ Worker Nodes later
+✔ One node at a time = zero downtime
+
+☁️ On EKS / AKS / GKE, upgrades are even simpler with managed workflows.
