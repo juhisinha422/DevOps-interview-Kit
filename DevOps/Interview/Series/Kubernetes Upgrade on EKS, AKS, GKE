@@ -1,0 +1,63 @@
+Kubernetes Upgrade on EKS / AKS / GKE (Super Easy Guide) 🚀
+
+Upgrading Kubernetes on managed services is much easier because cloud providers handle most of the complexity.
+
+☁️ EKS (AWS Elastic Kubernetes Service)
+
+🔹 Upgrade Control Plane
+
+aws eks update-cluster-version \
+--name <cluster-name> \
+--kubernetes-version <new-version>
+
+🔹 Upgrade Worker Nodes
+
+Create a new node group with the new version
+
+Or upgrade managed node groups
+
+Old nodes are drained automatically
+
+ Minimal effort, zero downtime if configured properly.
+
+
+☁️ AKS (Azure Kubernetes Service)
+
+🔹 Check available versions
+
+az aks get-upgrades --name <cluster-name> --resource-group <rg>
+
+
+🔹 Upgrade cluster
+
+az aks upgrade \
+--name <cluster-name> \
+--resource-group <rg> \
+--kubernetes-version <new-version>
+🔹 Node pools are upgraded one by one
+
+ Azure handles pod draining automatically.
+
+
+☁️ GKE (Google Kubernetes Engine)
+🔹 Upgrade Control Plane
+
+bash
+Copy code
+gcloud container clusters upgrade <cluster-name> \
+--master --cluster-version <new-version>
+🔹 Upgrade Node Pools
+
+gcloud container node-pools upgrade <node-pool-name> \
+--cluster <cluster-name>
+
+ Very smooth upgrades with strong automation.
+
+💡 Best Practices for Managed K8s
+
+ Upgrade control plane first
+ Upgrade node pools gradually
+ Enable auto-upgrade in non-prod
+ Monitor pods & workloads
+
+Managed Kubernetes makes upgrades safe, fast, and production-ready.
