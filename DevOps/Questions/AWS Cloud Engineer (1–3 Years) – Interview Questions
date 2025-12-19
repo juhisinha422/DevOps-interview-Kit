@@ -1,0 +1,41 @@
+🚀 hashtag#AWS Cloud Engineer (1–3 Years) – Interview Questions ☁️
+
+What is the difference between Security Groups and NACLs?
+
+Explain EC2 lifecycle states.
+
+What happens when an EC2 instance is stopped vs terminated?
+
+How does Auto Scaling work in AWS?
+
+What are S3 storage classes and when would you use each?
+
+Difference between S3 and EBS?
+
+What is a VPC and its main components?
+
+Explain Public vs Private Subnets.
+
+What is the purpose of NAT Gateway?
+
+Difference between Application Load Balancer and Network Load Balancer?
+
+What is IAM Role and why is it preferred over IAM User?
+
+What is CloudWatch and what can we monitor using it?
+
+What is CloudTrail?
+
+Difference between RDS and DynamoDB?
+
+How do you secure data at rest and in transit in AWS?
+
+What is Multi-AZ deployment?
+
+What is Elastic IP?
+
+How do you troubleshoot an EC2 instance that is not reachable?
+
+What is AWS CLI and where have you used it?
+
+Explain basic cost optimization techniques in AWS.
