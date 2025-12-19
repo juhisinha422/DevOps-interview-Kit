@@ -1,0 +1,81 @@
+Kubernetes Cluster Upgrade Using kubeadm (Step-by-Step | Easy Explanation) 🚀
+
+Upgrading a Kubernetes cluster doesn’t have to be scary.
+If your cluster is created using kubeadm, follow this safe and production-friendly approach 👇
+
+🔹 Why Upgrade Kubernetes?
+
+ Security patches
+ Performance improvements
+ New features
+Stay within supported versions
+
+kubeadm Upgrade Flow (Simple & Practical)
+
+1. Check Current Version
+kubectl version
+kubectl get nodes
+
+2. Take Backup (Very Important!)
+
+Backup etcd
+
+Backup /etc/kubernetes/
+
+This is your rollback plan.
+
+3. Upgrade Control Plane (Master Node First)
+
+🔸 Upgrade kubeadm
+
+apt update
+apt install -y kubeadm=<new-version>
+
+
+🔸 Check upgrade plan
+
+kubeadm upgrade plan
+
+
+🔸 Apply upgrade
+
+kubeadm upgrade apply v<new-version>
+
+Upgrade kubelet & kubectl
+
+apt install -y kubelet=<new-version> kubectl=<new-version>
+systemctl restart kubelet
+
+
+ Control Plane upgraded without downtime.
+
+4. Upgrade Worker Nodes (One by One)
+
+🔸 Drain node safely
+
+kubectl drain <node-name> --ignore-daemonsets
+
+
+🔸 Upgrade kubeadm & kubelet
+🔸 Restart kubelet
+🔸 Bring node back
+
+kubectl uncordon <node-name>
+ Repeat for each worker node.
+
+ Verify Cluster Health
+bash
+Copy code
+kubectl get nodes
+kubectl get pods -A
+
+All nodes should be Ready and pods Running 
+
+ Golden Rules
+
+ Control Plane first
+ Workers later
+ One minor version at a time
+ One node at a time = Zero downtime
+
+🔥 If you’re learning Kubernetes / DevOps / SRE, mastering cluster upgrades is a must-have production skill.
