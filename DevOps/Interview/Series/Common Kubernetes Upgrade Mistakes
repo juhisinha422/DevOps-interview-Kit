@@ -1,0 +1,55 @@
+Common Kubernetes Upgrade Mistakes (Avoid These!) 🚨
+
+Many cluster failures happen not because of upgrade, but because of these mistakes 👇
+
+1. Skipping Minor Versions
+
+Example: 1.26 → 1.29 
+
+Always upgrade one minor version at a time 
+
+ 2. No Backup Before Upgrade
+
+No etcd backup = high risk
+
+Always take backup before touching production
+
+ 3. Upgrading Worker Nodes First
+
+Control Plane must always be upgraded first
+
+Workers depend on Control Plane APIs
+
+ 4. Not Draining Nodes
+
+Pods may crash or face downtime
+
+Always drain nodes safely
+
+ 5. Ignoring Deprecated APIs
+
+Old APIs may stop working
+
+Check kubectl api-resources & release notes
+
+6. No Monitoring After Upgrade
+
+Issues may appear after some time
+
+Always check logs, metrics & alerts
+
+ 7. Direct Production Upgrade
+
+Never upgrade prod without testing
+
+Always test in dev/stage first
+
+ Golden Upgrade Checklist
+
+ Backup done
+ Release notes checked
+ Control plane upgraded
+ Nodes upgraded one by one
+ Monitoring enabled
+
+A safe Kubernetes upgrade is all about planning, patience, and practice.
