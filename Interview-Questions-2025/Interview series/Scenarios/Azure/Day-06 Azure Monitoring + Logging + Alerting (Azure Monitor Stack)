@@ -1,0 +1,33 @@
+Day 6 — Azure Monitoring + Logging + Alerting (Azure Monitor Stack)
+
+STAR-based DevOps Interview Questions
+
+1️⃣ Your production application shows random latency spikes. How will you design monitoring using Azure Monitor metrics, logs, and alerts?
+
+2️⃣ Logs are scattered across Azure VMs, AKS, and App Services. How will you centralize and correlate them effectively?
+
+3️⃣ You need alerts only when an error condition persists for 10 minutes, not for transient spikes. How will you configure alert rules?
+
+4️⃣ A security incident occurred and you must identify who deleted a resource and from where. Which Azure logs will you check?
+
+5️⃣ Application Insights is generating too much telemetry and cost is rising. How will you optimize data collection without losing visibility?
+
+6️⃣ You want end-to-end transaction tracing across microservices running on AKS and App Services. How will you design this?
+
+7️⃣ Alerts are firing too frequently, causing alert fatigue for on-call engineers. How will you reduce noise while keeping reliability high?
+
+8️⃣ Different teams need access to logs of only their own applications. How will you design RBAC and log access control?
+
+9️⃣ You must create a single dashboard showing CPU, memory, latency, error rate, and request count for leadership review. How will you build it?
+
+🔟 You need proactive detection of anomalies in performance metrics. Which Azure monitoring features will you enable?
+
+1️⃣1️⃣ Logs must be retained for 1 year for compliance, but only 30 days for operational use. How will you design retention policies?
+
+1️⃣2️⃣ An AKS cluster is experiencing pod restarts, but no alerts are triggered. How will you detect and alert on this scenario?
+
+1️⃣3️⃣ You want to export logs to an external SIEM or storage account. How will you configure diagnostic settings?
+
+1️⃣4️⃣ A cloud-native app must emit structured logs with correlation IDs. How will you implement this using Azure services?
+
+1️⃣5️⃣ You need synthetic monitoring to check availability of internal and external endpoints. How will you configure this in Azure?
