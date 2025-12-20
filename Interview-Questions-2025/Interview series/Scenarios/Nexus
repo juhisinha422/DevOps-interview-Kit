@@ -1,0 +1,26 @@
+DevOps Interview Q&A Series — Rapid-Fire Edition
+📌 Practical • Tool-focused • Interview-ready
+
+⸻
+
+🔹 Nexus
+
+1️⃣ What role does Nexus Repository Manager play in a DevOps CI/CD pipeline?
+
+2️⃣ What is the difference between hosted, proxy, and group repositories in Nexus?
+
+3️⃣ How does Nexus help in managing dependencies for Maven and Gradle projects?
+
+4️⃣ How do you integrate Nexus with CI tools like Jenkins or GitHub Actions?
+
+5️⃣ How does Nexus support Docker image repositories and container workflows?
+
+6️⃣ How do you implement access control and security in Nexus?
+
+7️⃣ What strategies do you use for artifact versioning and retention?
+
+8️⃣ How do you clean up unused or snapshot artifacts automatically?
+
+9️⃣ How does Nexus improve build reliability and performance in enterprises?
+
+🔟 How do you design a scalable Nexus repository strategy for multiple teams?
