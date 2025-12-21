@@ -1,0 +1,43 @@
+DevOps Interview Command Series — Networking (Day 2) 🌐
+
+Networking is non-negotiable in DevOps.
+Whether it’s Kubernetes services, load balancers, cloud VPCs, firewalls, or debugging outages — strong networking skills decide production stability.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Networking commands you must know:
+
+“ip a
+ip r
+ip link
+ifconfig
+route -n
+
+ss -tulnp
+netstat -tulnp
+lsof -i :PORT
+
+ping host
+traceroute host
+mtr host
+
+curl URL
+curl -I URL
+wget URL
+
+nslookup domain
+dig domain
+host domain
+
+tcpdump -i eth0
+tcpdump -nn port 80
+
+nmcli dev status
+ethtool eth0”
+
+🎯 Interview Focus
+• Debug connectivity issues
+• Identify which service is listening on which port
+• Troubleshoot DNS resolution
+• Analyze packet-level traffic
+• Validate network routes & gateways
+
+
