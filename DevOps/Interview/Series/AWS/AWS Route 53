@@ -1,0 +1,61 @@
+#AWS Interview Questions – hashtag#Route53
+
+What is Amazon Route 53?
+
+What type of service is Route 53?
+
+What is DNS?
+
+What is a hosted zone?
+
+Public vs private hosted zone?
+
+What is a DNS record?
+
+Common Route 53 record types?
+
+What is A record?
+
+What is CNAME record?
+
+Alias vs CNAME?
+
+What is TTL?
+
+What is routing policy?
+
+Simple routing policy?
+
+Weighted routing policy?
+
+Latency-based routing?
+
+Failover routing policy?
+
+Geolocation routing policy?
+
+Multivalue answer routing?
+
+What is health check?
+
+How does Route 53 failover work?
+
+Can Route 53 route traffic outside AWS?
+
+Route 53 vs ELB?
+
+What is DNS propagation?
+
+How do you secure DNS?
+
+What is domain registration?
+
+What is DNSSEC?
+
+Route 53 pricing model?
+
+Common Route 53 issues?
+
+Route 53 limits?
+
+Real-world Route 53 use case?
