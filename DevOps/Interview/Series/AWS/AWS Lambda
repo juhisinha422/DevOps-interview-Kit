@@ -1,0 +1,61 @@
+#AWS Interview Questions – AWS hashtag#Lambda 
+
+What is AWS Lambda?
+
+What is serverless computing?
+
+Supported runtimes in Lambda?
+
+What is Lambda execution role?
+
+What is Lambda handler?
+
+What is an event source?
+
+Difference between synchronous and asynchronous invocation?
+
+What is Lambda timeout?
+
+What is memory allocation in Lambda?
+
+How does memory affect performance?
+
+What is cold start?
+
+How to reduce Lambda cold start?
+
+What is concurrency in Lambda?
+
+What is reserved concurrency?
+
+What is provisioned concurrency?
+
+What is Lambda layer?
+
+Max execution time for Lambda?
+
+Can Lambda access VPC resources?
+
+What happens when Lambda is in a VPC?
+
+How do you secure Lambda?
+
+What is Lambda versioning?
+
+What is Lambda alias?
+
+How does Lambda scale?
+
+What is DLQ in Lambda?
+
+How do you monitor Lambda?
+
+What is Lambda pricing based on?
+
+Lambda vs EC2?
+
+Lambda vs ECS?
+
+Lambda vs Fargate?
+
+Real-world Lambda use case?
