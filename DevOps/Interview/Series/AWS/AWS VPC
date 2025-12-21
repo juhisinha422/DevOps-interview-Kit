@@ -1,0 +1,62 @@
+#AWS Interview Questions – hashtag#VPC
+
+What is a VPC?
+
+What is CIDR block?
+
+Default VPC vs custom VPC?
+
+What is a subnet?
+
+Difference between public and private subnet?
+
+What is an Internet Gateway?
+
+What is NAT Gateway?
+
+NAT Gateway vs NAT Instance?
+
+What is Route Table?
+
+What is NACL?
+
+Security Group vs NACL?
+
+What is VPC peering?
+
+Limitations of VPC peering?
+
+What is Transit Gateway?
+
+What is VPC endpoint?
+
+Gateway endpoint vs Interface endpoint?
+
+What is VPC Flow Log?
+
+What is Elastic Network Interface (ENI)?
+
+What is Bastion Host?
+
+How do you connect on-prem to AWS?
+
+What is Site-to-Site VPN?
+
+What is Direct Connect?
+
+Difference between VPN and Direct Connect?
+
+What is private DNS?
+
+What is DHCP options set?
+
+Can VPC span multiple regions?
+
+What is IPv6 in VPC?
+
+How do you secure VPC?
+
+How do you troubleshoot VPC issues?
+
+Real-time VPC use case?
+
