@@ -1,0 +1,62 @@
+#AWS Interview Questions – hashtag#RDS
+
+What is Amazon RDS?
+
+Supported RDS engines?
+
+Difference between RDS and EC2 database?
+
+What is Multi-AZ in RDS?
+
+How does Multi-AZ work?
+
+What is Read Replica?
+
+Multi-AZ vs Read Replica?
+
+What is automated backup?
+
+Backup retention period?
+
+What is RDS snapshot?
+
+Difference between snapshot and backup?
+
+Can you restore RDS to a point in time?
+
+What is RDS storage type?
+
+What is parameter group?
+
+What is option group?
+
+How do you secure RDS?
+
+What is encryption at rest in RDS?
+
+What is encryption in transit?
+
+What is RDS monitoring?
+
+What is enhanced monitoring?
+
+What is Performance Insights?
+
+What is RDS failover?
+
+Can RDS scale vertically?
+
+Can RDS scale horizontally?
+
+What is maintenance window?
+
+What is RDS reboot?
+
+How do you control RDS access?
+
+What is RDS subnet group?
+
+Can RDS be in private subnet?
+
+When should you use RDS?
+
