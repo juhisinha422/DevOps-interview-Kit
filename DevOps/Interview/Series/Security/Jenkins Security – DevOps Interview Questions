@@ -1,0 +1,66 @@
+Jenkins Security – DevOps Interview Questions
+
+CI/CD pipelines are top attack targets 🚨
+
+📌 Questions:
+
+What are common Jenkins security risks?
+
+Why should Jenkins not run as root?
+
+How do you secure Jenkins credentials?
+
+What is Jenkins Credentials Store?
+
+How do you avoid secrets in Jenkinsfiles?
+
+How do you secure Jenkins plugins?
+
+Why should plugins be updated regularly?
+
+What is RBAC in Jenkins?
+
+How do you restrict job access?
+
+What is folder-level security?
+
+How do you secure Jenkins agents?
+
+Difference between static and dynamicagents security?
+
+How do you secure Jenkins web UI?
+
+Why is CSRF protection important?
+
+What is script approval risk?
+
+How do you secure pipeline logs?
+
+How do you integrate secret managers with Jenkins?
+
+How do you scan code in CI pipeline?
+
+What is SAST in Jenkins?
+
+What is DAST in CI/CD?
+
+How do you prevent credential leakage?
+
+How do you secure Jenkins backups?
+
+How do you audit Jenkins activity?
+
+What is Jenkins master hardening?
+
+How do you secure webhook triggers?
+
+How do you isolate Jenkins jobs?
+
+How do you secure shared libraries?
+
+What is pipeline sandbox?
+
+How do you monitor Jenkins security events?
+
+Common Jenkins security mistakes?
+
