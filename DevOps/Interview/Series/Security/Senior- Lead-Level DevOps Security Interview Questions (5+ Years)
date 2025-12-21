@@ -1,0 +1,65 @@
+ Senior / Lead-Level DevOps Security Interview Questions (5+ Years)
+
+At senior level, security = architecture + risk ownership 🔥
+
+📌 Questions:
+
+How do you design a secure DevOps architecture?
+
+How do you enforce security across multiple teams?
+
+How do you implement organization-wide DevSecOps?
+
+How do you handle secrets at scale?
+
+How do you design secure multi-account cloud setups?
+
+How do you prevent privilege escalation?
+
+How do you manage IAM governance?
+
+How do you secure Kubernetes clusters at scale?
+
+How do you handle zero-day vulnerabilities?
+
+How do you integrate security tools into CI/CD?
+
+How do you reduce attack surface in cloud?
+
+How do you design network segmentation?
+
+How do you secure production access?
+
+How do you implement audit and compliance controls?
+
+How do you meet SOC2 / ISO / HIPAA requirements?
+
+How do you handle security incident response?
+
+How do you perform threat modeling?
+
+How do you monitor insider threats?
+
+How do you secure Terraform pipelines?
+
+How do you manage secrets rotation automatically?
+
+How do you enforce policy-as-code?
+
+How do you prevent data leaks?
+
+How do you manage security debt?
+
+How do you review security risks in design phase?
+
+How do you secure SaaS integrations?
+
+How do you handle compliance audits?
+
+How do you measure security KPIs?
+
+How do you handle cross-cloud security?
+
+How do you train teams on security?
+
+What’s the biggest DevOps security failure you’ve seen?
