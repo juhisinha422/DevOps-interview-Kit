@@ -1,0 +1,65 @@
+Kubernetes Security – DevOps Interview Questions
+
+Kubernetes is powerful—but secure only if configured correctly 🔥
+
+📌 Questions:
+
+What are common Kubernetes security issues?
+
+What is Kubernetes RBAC?
+
+Difference between Role and ClusterRole?
+
+What is ServiceAccount security?
+
+How do you secure kubeconfig file?
+
+What are Kubernetes Network Policies?
+
+Why should etcd be encrypted?
+
+How do you secure Kubernetes secrets?
+
+Difference between Secret and ConfigMap?
+
+What is Pod Security Admission?
+
+Why should pods not run as root?
+
+What is container runtime security in K8s?
+
+How do you restrict API server access?
+
+What is namespace isolation?
+
+How do you secure ingress traffic?
+
+What is TLS in Kubernetes?
+
+How do you secure node access?
+
+What is audit logging in Kubernetes?
+
+How do you scan Kubernetes manifests?
+
+What is policy-as-code in Kubernetes?
+
+What is OPA / Kyverno?
+
+How do you handle secrets rotation?
+
+How do you prevent privilege escalation?
+
+What is admission controller?
+
+How do you monitor cluster security?
+
+What is supply chain security in K8s?
+
+How do you secure Helm charts?
+
+How do you secure multi-tenant clusters?
+
+What are CIS benchmarks?
+
+Common Kubernetes security mistakes?
