@@ -1,0 +1,61 @@
+#AWS Interview Questions hashtag#ECS / hashtag#EKS
+
+What is Amazon ECS?
+
+What is Amazon EKS?
+
+ECS vs EKS?
+
+What is a container?
+
+What is a task definition in ECS?
+
+What is a service in ECS?
+
+What is ECS cluster?
+
+ECS launch types?
+
+What is AWS Fargate?
+
+Fargate vs EC2 launch type?
+
+What is Kubernetes?
+
+What is a pod in Kubernetes?
+
+What is a node in EKS?
+
+What is a deployment in Kubernetes?
+
+What is service in Kubernetes?
+
+What is ingress?
+
+How does EKS authentication work?
+
+What is kubeconfig?
+
+What is Helm?
+
+What is HPA?
+
+How does auto scaling work in ECS?
+
+How does auto scaling work in EKS?
+
+How do you secure containers?
+
+What is IAM role for service account?
+
+What is ECR?
+
+How do you monitor ECS/EKS?
+
+ECS vs Docker Swarm?
+
+EKS vs self-managed Kubernetes?
+
+Common ECS/EKS issues?
+
+Real-time container use case?
