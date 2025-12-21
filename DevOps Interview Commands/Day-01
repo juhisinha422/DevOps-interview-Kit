@@ -1,0 +1,47 @@
+ DevOps Interview Command Series — Linux (Day 1) 🐧
+
+Linux is the foundation of DevOps.
+From CI/CD runners to containers, Kubernetes nodes, and cloud VMs — everything runs on Linux.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Linux commands you must know:
+
+“ls -lAh | cd /path | pwd
+cp -r src dst | mv old new | rm -rf file
+chmod 755 file | chmod u+x script.sh | chown user:group file
+
+ps -ef | grep process
+top / htop
+free -m | df -h | du -sh *
+uptime
+
+ip a
+ss -tulnp
+ping host
+curl URL
+
+cat file | less file
+head -n 10 file
+tail -f app.log
+grep -i error app.log
+awk '{print $1}'
+sed 's/old/new/g'
+
+systemctl status service
+systemctl restart service
+systemctl enable service
+journalctl -u service
+
+tar -cvf file.tar dir/
+tar -xvf file.tar
+gzip file
+
+export VAR=value
+env
+history
+alias ll='ls -l'”
+
+🎯 Interview Focus
+• Debug CPU & memory issues
+• Identify processes using ports
+• Analyze production logs
+• Fix service & permission failures
