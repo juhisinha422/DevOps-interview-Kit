@@ -1,0 +1,22 @@
+Post 4: AWS Cloud Interview  
+Advanced Level (4–6 Years)
+
+Now we’re talking real DevOps engineering! 🧠  
+At 4–6 years of experience, interviewers expect you to demonstrate **architectural depth**, **cross‑account management**, and **security‑driven automation**.  
+These questions go beyond knowing *what* AWS services do — they test *how* you use them to design resilient, production‑grade systems.  
+
+💡 Common AWS Interview Questions for 4–6 Years Experience:
+1️⃣ How would you design a multi‑account AWS setup for an enterprise environment?  
+2️⃣ Explain the difference between Transit Gateway and VPC Peering. When would you choose each?  
+3️⃣ How do you ensure high availability across multiple AWS regions?  
+4️⃣ What’s your approach to securing workloads using AWS KMS and IAM policies?  
+5️⃣ How can you automate patch management across EC2 instances?  
+6️⃣ Describe how you would implement centralized logging and alerting for all AWS accounts.  
+7️⃣ How do you design disaster recovery using services like S3 Cross‑Region Replication and Route 53 failover?  
+8️⃣ How do you integrate on‑premises data centers with AWS (Hybrid Cloud setup)?  
+9️⃣ What steps would you take to minimize downtime during rolling deployments on ECS or EKS?  
+🔟 How would you monitor cost, usage, and performance metrics across a large AWS environment?  
+
+🎯 Pro Tip:  
+At this stage, your value lies in **decision‑making and foresight**. Interviewers look for engineers who can balance security, performance, and cost while leading design discussions.  
+Use examples from past projects that show *ownership and scalability thinking*.  
