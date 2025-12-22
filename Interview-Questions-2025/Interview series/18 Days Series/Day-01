@@ -1,0 +1,22 @@
+ Post 1: AWS Cloud Interview 
+Fresher Level (0–1 Year)
+
+Breaking into DevOps? 🚀 
+Let’s start with foundational AWS Cloud questions that interviewers often ask freshers stepping into their first role. These questions test your basics, practical understanding, and curiosity more than hands-on experience.
+
+💡 Common AWS Interview Questions for Freshers:
+1️⃣ What is Cloud Computing, and how is AWS different from other cloud providers? 
+2️⃣ Explain the difference between EC2, S3, and RDS. 
+3️⃣ What are different types of EC2 instance types, and how do you choose one? 
+4️⃣ How is IAM used in AWS? 
+5️⃣ What is the difference between an IAM user, group, and role? 
+6️⃣ Name storage classes provided by S3 and their use cases. 
+7️⃣ What is the purpose of VPC, and what are its key components? 
+8️⃣ Explain the difference between Public and Private Subnets. 
+9️⃣ What is AWS CLI, and why is it useful? 
+🔟 How do you monitor resources in AWS? (Hint: Think CloudWatch!)
+
+🎯 Pro Tip: 
+As a fresher, focus on clarity of concepts — an interviewer can sense your genuine understanding even if you’ve never deployed a production workload. Hands-on labs using AWS Free Tier go a long way.
+
+
