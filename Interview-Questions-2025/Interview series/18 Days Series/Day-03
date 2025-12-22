@@ -1,0 +1,24 @@
+Post 3: AWS Cloud Interview 
+Experienced Level (3–5 Years)
+
+Ready to level up? 💪 
+At this stage, interviewers expect you to think like a **problem-solver**, not just a service user. 
+Your focus should be on automation, CI/CD, cost optimization, and secure infrastructure design. 
+
+These questions help showcase your ability to design, deploy, and manage production-grade systems on AWS 🚀 
+
+💡 Common AWS Interview Questions for 3–5 Years Experience:
+1️⃣ How do you design a scalable and fault-tolerant architecture in AWS? 
+2️⃣ Explain the difference between ECS, EKS, and Lambda — when would you choose each? 
+3️⃣ How do you implement CI/CD pipelines using tools like CodePipeline or Jenkins on AWS? 
+4️⃣ What are some strategies for cost optimization in AWS environments? 
+5️⃣ How do you handle secret management securely across your DevOps workflow? 
+6️⃣ What’s the role of S3 lifecycle policies and versioning in data management? 
+7️⃣ Explain how you would set up centralized logging and monitoring across multiple accounts. 
+8️⃣ How can you use Route 53 for high availability and failover architecture? 
+9️⃣ How do you secure an S3 bucket that needs to be publicly accessible for static websites? 
+🔟 Describe your approach to troubleshooting deployment failures in an AWS-based CI/CD pipeline. 
+
+🎯 Pro Tip: 
+At 3–5 years, interviewers love hearing how you’ve **solved real challenges** — downtime reduction, automation, scaling, or cost efficiency. 
+Frame your answers around outcomes: *“I implemented X, which reduced Y by Z%.”* 
