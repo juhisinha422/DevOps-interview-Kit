@@ -1,0 +1,43 @@
+How I Troubleshoot Kubernetes Issues (Step-by-Step Approach)
+
+After facing multiple real-time Kubernetes issues, I learned that a structured troubleshooting approach saves hours of time.
+
+Here’s how I debug Kubernetes issues in real environments:
+
+ Step 1: Check Pod Status
+kubectl get pods
+Identifies issues like CrashLoopBackOff, Pending, ImagePullBackOff
+
+ Step 2: Describe the Pod
+kubectl describe pod <pod-name>
+Events section often reveals the actual root cause
+Useful for scheduling, image, and resource issues
+
+
+ Step 3: Check Application Logs
+kubectl logs <pod-name>
+Confirms whether the issue is application-level or platform-level
+For multi-container pods:
+kubectl logs <pod> -c <container>
+
+
+ Step 4: Validate Configurations
+Environment variables
+ConfigMaps & Secrets
+Ports & probes (liveness/readiness)
+
+
+ Step 5: Verify Services & Networking
+kubectl get svc
+kubectl describe svc <service-name>
+Ensures labels, selectors, and ports match correctly
+
+
+Step 6: Check Node & Resource Status
+kubectl get nodes
+kubectl describe node <node>
+Helps identify CPU/memory pressure and taints
+
+
+
+Most Kubernetes issues can be solved by reading events and logs carefully before changing anything.
