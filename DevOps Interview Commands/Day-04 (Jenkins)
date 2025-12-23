@@ -1,0 +1,37 @@
+ DevOps Interview Command Series — Jenkins (Day 4) ⚙️
+
+Jenkins is one of the most widely used CI/CD automation tools in DevOps.
+From building code to testing, packaging, and deploying — Jenkins pipelines drive automation.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Jenkins commands & essentials you must know:
+
+java -jar jenkins.war
+
+systemctl start jenkins
+systemctl status jenkins
+systemctl restart jenkins
+
+jenkins --version
+
+cat /var/lib/jenkins/config.xml
+ls /var/lib/jenkins/jobs/
+ls /var/lib/jenkins/workspace/
+
+tail -f /var/log/jenkins/jenkins.log
+
+curl http://localhost:8080
+curl -u user:token http://jenkins_url/api/json
+
+jenkins-cli.jar help
+jenkins-cli.jar list-jobs
+jenkins-cli.jar build job-name
+jenkins-cli.jar get-job job-name
+jenkins-cli.jar reload-configuration
+
+
+🎯 Interview Focus
+• Debug failed Jenkins builds
+• Understand Jenkins home, jobs & workspace
+• Automate jobs using CLI & API
+• Secure Jenkins using tokens & RBAC
+• Manage Jenkins as a Linux service
