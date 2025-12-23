@@ -1,0 +1,56 @@
+Some important Interview Questions (beginner level) on shell scripting.
+
+ Disk usage is high on a server. How do you find large files?
+du -ah / | sort -rh | head -10
+ Used to identify space-consuming files in production servers.
+
+How do you find and delete files older than 30 days?
+find /var/log -type f -mtime +30 -delete
+ Commonly used for log cleanup automation.
+
+ A service is down. How will you check and restart it using a script?
+systemctl status nginx
+systemctl restart nginx
+Used in monitoring and self-healing scripts.
+
+ How do you check if a process is running?
+ps -ef | grep nginx
+or
+pgrep nginx
+
+ How do you monitor CPU and memory usage?
+top
+free -m
+Often automated and combined with alerting scripts.
+
+You need to take a backup of a directory daily. How?
+tar -czvf backup.tar.gz /app/data
+ Scheduled using cron jobs.
+
+How do you schedule a script to run every day at midnight?
+0 0 * * * /path/script.sh
+ Very common cron interview question.
+
+ A script should stop execution if any command fails. How?
+set -e
+ Helps avoid partial failures in automation.
+
+ How do you pass arguments to a shell script?
+./script.sh dev frontend
+Inside script:
+echo $1
+echo $2
+
+ How do you check return status of a command?
+echo $?
+ Used to validate success or failure in scripts.
+
+ How do you check open ports on a server?
+netstat -tulnp
+or
+ss -tulnp
+
+ How do you automate log rotation?
+ Using:
+logrotate
+Shell scripts + cron
