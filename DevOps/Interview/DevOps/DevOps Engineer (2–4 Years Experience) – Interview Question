@@ -1,0 +1,41 @@
+DevOps Engineer (2–4 Years Experience) – Interview Questions 🚀
+
+If you’re a mid-level DevOps Engineer preparing for interviews or aiming to strengthen your fundamentals, these questions will help you assess where you stand 👇
+
+
+1. What problems does DevOps solve in real-world projects?
+
+2. How do you design a CI/CD pipeline from scratch?
+
+3. How do you handle rollbacks in production?
+
+4. What metrics do you track to measure DevOps success?
+
+5. How do you troubleshoot high CPU or memory usage on a Linux server?
+6. Difference between cron jobs and systemd timers?
+7. How do you manage environment variables securely?
+8. Git rebase vs merge – when do you use each?
+9. How do you manage multiple environments in CI/CD?
+10. How do you secure secrets in Jenkins or GitHub Actions?
+11. What is a multi-stage Docker build and why is it used?
+12. How do you reduce Docker image size?
+13. Difference between CMD and ENTRYPOINT?
+14. How does Kubernetes handle self-healing?
+15. Difference between Deployment, StatefulSet, and DaemonSet?
+16. How do you expose an application in Kubernetes?
+17. What is HPA and how does it work?
+18. How do you design a highly available architecture?
+19. Difference between Auto Scaling and Load Balancing?
+20. How do you manage IAM roles and permissions?
+21. Terraform state file – why is it important?
+22. How do you manage multiple Terraform environments?
+23. How do you handle drift in infrastructure?
+24. What is the difference between monitoring and observability?
+25. How do you monitor Kubernetes workloads?
+26. How do you secure a CI/CD pipeline?
+27. What are common DevOps security mistakes?
+28. How would you debug a failed production deployment?
+29. How do you handle zero-downtime deployments?
+30. How do you collaborate with developers and QA teams?
+
+💡 Perfect for 2–4 years experienced DevOps Engineers targeting their next role.
