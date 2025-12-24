@@ -1,0 +1,57 @@
+Azure DevOps Engineer (3–5 Years Experience) – Interview Questions 🚀
+
+For mid to senior-level Azure DevOps Engineers, these questions focus on real-world scenarios, architecture, security, and scalability 👇
+
+🔹 Azure DevOps & CI/CD
+
+How do Azure Pipelines work internally?
+
+YAML vs Classic pipelines – when do you prefer each?
+
+How do you design multi-stage pipelines in Azure DevOps?
+
+How do you manage approvals and gates in release pipelines?
+
+🔹 Source Control & Artifacts
+5. Azure Repos vs GitHub – key differences?
+6. How do you manage branching strategies in Azure Repos?
+7. How do you version and store build artifacts?
+
+🔹 Azure Infrastructure
+8. How do you design highly available applications in Azure?
+9. Difference between Availability Sets and Availability Zones?
+10. When do you use Azure Load Balancer vs Application Gateway?
+
+🔹 Infrastructure as Code
+11. ARM templates vs Bicep vs Terraform – what do you prefer and why?
+12. How do you manage multiple environments using Terraform in Azure?
+13. How do you handle Terraform remote state in Azure?
+
+🔹 Containers & Kubernetes (AKS)
+14. How does AKS handle scaling and self-healing?
+15. How do you deploy applications to AKS using Azure DevOps?
+16. How do you manage secrets in AKS?
+17. Difference between ConfigMaps and Secrets?
+
+🔹 Monitoring & Logging
+18. How do Azure Monitor and Log Analytics work together?
+19. How do you monitor AKS workloads?
+20. How do you set up alerts for production issues?
+
+🔹 Security & Governance
+21. How do you secure Azure DevOps pipelines?
+22. What is Azure Key Vault and how is it integrated with pipelines?
+23. How do you implement RBAC in Azure?
+24. How do you manage policies using Azure Policy?
+
+🔹 Networking
+25. Difference between VNet Peering and VPN Gateway?
+26. How do you design secure networking for Azure workloads?
+
+🔹 Real-World Scenarios
+27. How do you handle zero-downtime deployments in Azure?
+28. How do you troubleshoot failed Azure pipelines?
+29. How do you manage cost optimization in Azure?
+30. How do you migrate CI/CD pipelines from Jenkins to Azure DevOps?
+
+💡 Ideal for 3–5 years experienced Azure DevOps Engineers preparing for interviews or promotions.
