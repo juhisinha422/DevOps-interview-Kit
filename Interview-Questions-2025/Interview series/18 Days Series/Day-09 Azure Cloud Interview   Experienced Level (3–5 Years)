@@ -1,0 +1,23 @@
+Post 9: Azure Cloud Interview  
+Experienced Level (3–5 Years)
+
+You’re past the fundamentals — now it’s about **designing, automating, and optimizing**! 🔧  
+At 3–5 years of experience, Azure DevOps engineers are expected to think beyond “how services work” toward “how they fit together efficiently.”  
+
+Let’s dive into the kind of questions that test both your architectural awareness and hands‑on skill 👇  
+
+💡 Common Azure Interview Questions for 3–5 Years Experience:
+1️⃣ How do you design a secure and scalable Azure Virtual Network (VNet) architecture?  
+2️⃣ What’s your approach to implementing CI/CD pipelines in **Azure DevOps** for infrastructure and applications?  
+3️⃣ Explain how you’d containerize applications using **Azure Kubernetes Service (AKS)**.  
+4️⃣ How do you integrate Key Vault, Azure AD, and App Services for secure access management?  
+5️⃣ Describe the difference between Azure Monitor, Log Analytics, and Application Insights.  
+6️⃣ How do you manage multi‑environment deployments (Dev, QA, Prod) in Azure pipelines?  
+7️⃣ What’s your strategy for managing infrastructure as code using ARM Templates or Terraform?  
+8️⃣ How do you handle rolling or blue‑green deployments in AKS or App Service?  
+9️⃣ What’s Azure Policy, and how do you use it for compliance and governance?  
+🔟 How do you troubleshoot slow performance in an Azure‑based distributed system?  
+
+🎯 Pro Tip:  
+At this level, your advantage lies in **implementation stories** — talk through how you designed automation, reduced deployment times, or improved performance.  
+Interviewers value clarity of thought and decision‑making as much as technical depth. 
