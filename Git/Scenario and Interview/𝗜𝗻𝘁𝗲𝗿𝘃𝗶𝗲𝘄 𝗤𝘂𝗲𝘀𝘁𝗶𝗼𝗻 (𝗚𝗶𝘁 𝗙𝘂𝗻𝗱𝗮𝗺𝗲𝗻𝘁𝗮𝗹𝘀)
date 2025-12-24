@@ -1,0 +1,18 @@
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻 (𝗚𝗶𝘁 𝗙𝘂𝗻𝗱𝗮𝗺𝗲𝗻𝘁𝗮𝗹𝘀) 💻🔧
+
+𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗺𝗮𝗶𝗻 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 𝗮 𝗰𝗲𝗻𝘁𝗿𝗮𝗹𝗶𝘇𝗲𝗱 𝗮𝗻𝗱 𝗮 𝗱𝗶𝘀𝘁𝗿𝗶𝗯𝘂𝘁𝗲𝗱 𝘃𝗲𝗿𝘀𝗶𝗼𝗻 𝗰𝗼𝗻𝘁𝗿𝗼𝗹 𝘀𝘆𝘀𝘁𝗲𝗺, 𝗮𝗻𝗱 𝘄𝗵𝘆 𝗶𝘀 𝗱𝗶𝘀𝘁𝗿𝗶𝗯𝘂𝘁𝗲𝗱 𝗽𝗿𝗲𝗳𝗲𝗿𝗿𝗲𝗱? 🤔
+At first glance, this sounds like a simple Git question. But the way you answer it often reveals how well you understand version control, collaboration, and DevOps workflows 🚀
+When teams rely on a centralized version control system, all code lives on a single server 🗄️
+ Developers must stay connected to that server to commit changes.
+⚠️ If the server goes down, development and collaboration come to a halt.
+Now contrast that with a distributed version control system 🔄
+In systems like Git, every developer has a complete copy of the repository, including its entire history 📂
+ This means:
+ ✅ Work can continue offline
+ ⚡ Operations are faster because they’re local
+ 🛡️ No single point of failure
+This design is exactly why Git fits naturally into DevOps practices CI/CD pipelines, infrastructure as code, automation, and distributed teams all benefit from this model 🌍⚙️
+
+𝗔𝗻𝘀𝘄𝗲𝗿:
+ A centralized system stores the repository on one server, while a distributed system like Git gives every developer a full local copy. Distributed systems are preferred because they are more reliable, support offline work, and scale better for modern DevOps workflows 📈
+💡 Sometimes, one interview question is enough to uncover how deeply someone understands the tools they use every day.
