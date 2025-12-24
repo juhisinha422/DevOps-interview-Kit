@@ -1,0 +1,33 @@
+🚀 hashtag#AWS hashtag#DevOpsEngineer | 1–3 Years Experience – Interview Questions
+
+1. What is the difference between EC2, ECS, and EKS? When would you choose each?
+2. How does IAM Role differ from an IAM User?
+3. Explain the CI/CD pipeline you have worked on in AWS.
+4. What is the purpose of Auto Scaling Groups?
+5. How do ALB and NLB differ?
+6. What happens when an EC2 instance fails in an Auto Scaling Group?
+7. How do you securely store secrets and passwords in AWS?
+8. What is Infrastructure as Code (IaC) and why is it important?
+9. Difference between Terraform state file and backend?
+10. How do you manage multiple environments (dev, stage, prod)?
+
+11. What is Docker, and why is it used in DevOps?
+12. Difference between Docker image and container?
+13. How does Kubernetes help in application deployment?
+14. What is a pod in Kubernetes?
+15. Difference between ConfigMap and Secret?
+16. What is CloudWatch, and which metrics have you used?
+17. How do you troubleshoot a failed deployment?
+18. What is Blue-Green Deployment?
+19. How do you implement rollback in a CI/CD pipeline?
+20. What is the role of Jenkins/GitHub Actions in DevOps?
+21. What is S3 versioning, and why is it useful?
+22. Difference between Stateful and Stateless applications?
+23. How do you control cost optimization in AWS?
+24. What is VPC, and why is it required?
+25. Difference between Security Group and NACL?
+26. How do you enable high availability in AWS?
+27. What is Disaster Recovery, and which strategy have you used?
+28. How do you monitor application logs in AWS?
+29. What is least privilege access?
+30. How do you keep your DevOps skills updated?
