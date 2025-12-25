@@ -1,0 +1,31 @@
+AWS Interview Preparation – 1 to 2 Years
+
+If you’re preparing for an AWS role, make sure your core services & basics are crystal clear.
+
+Here are must-prepare AWS interview questions 👇
+
+• What is AWS and why is it used?
+• What is EC2 and its use cases?
+• Difference between EC2 and Lambda?
+• What is an AMI?
+• What is Auto Scaling and why do we use it?
+• What is Elastic Load Balancer?
+• Difference between ALB and NLB?
+• What is IAM and why is it important?
+Difference between IAM User and IAM Role?
+• What is S3 and common use cases?
+• Difference between public and private S3 buckets?
+• What is VPC?
+• Difference between public and private subnet?
+• What is a Security Group?
+• Difference between Security Group and NACL?
+• What is Route 53?
+• What is CloudWatch?
+• Difference between CloudWatch Logs and Metrics?
+• What is an AMI?
+• What is RDS?
+• Difference between RDS and DynamoDB?
+• What is EBS?
+Difference between EBS and Instance Store?
+• What is AWS Free Tier?
+• What AWS services have you used in your project?
