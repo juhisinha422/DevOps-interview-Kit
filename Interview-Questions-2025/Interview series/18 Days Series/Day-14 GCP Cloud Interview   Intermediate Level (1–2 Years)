@@ -1,0 +1,23 @@
+Post 14: GCP Cloud Interview  
+Intermediate Level (1–2 Years)
+
+You've got the GCP basics down — now it's time to show **practical automation skills**! ⚙️  
+At 1–2 years experience, GCP interviewers expect you to leverage Google's **automation-first mindset** — Cloud Build, Deployment Manager, and seamless container workflows.  
+
+Let's test your hands-on GCP knowledge 👇  
+
+💡 Common GCP Interview Questions for 1–2 Years Experience:
+1️⃣ How do you set up CI/CD pipelines using **Cloud Build** for containerized apps?  
+2️⃣ What's the difference between **Deployment Manager** and **Terraform** in GCP?  
+3️⃣ How do you configure **Cloud Run** for serverless container deployments?  
+4️⃣ Explain how to create a secure VPC with firewall rules and Shared VPCs.  
+5️⃣ How do you manage secrets in GCP using **Secret Manager**?  
+6️⃣ What's your approach to autoscaling **GKE clusters** for production workloads?  
+7️⃣ How do you integrate **Cloud Monitoring** and **Cloud Logging** for alerting?  
+8️⃣ Explain **preemptible VMs** vs **Spot VMs** — when to use each for cost savings?  
+9️⃣ How do you troubleshoot a failing **Cloud Build** pipeline?  
+🔟 What's the role of **Artifact Registry** in managing container images?  
+
+🎯 Pro Tip:  
+GCP shines in **automation simplicity** — master Cloud Build YAMLs and GKE node pools.  
+Interviewers love hearing *"I automated X using Cloud Build, reducing deployment time from 30min to 3min."*  
