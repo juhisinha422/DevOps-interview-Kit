@@ -1,0 +1,29 @@
+ Interview Prep: Common Commands Every DevOps Engineer Must Know
+
+In most DevOps / Cloud interviews, you’re not rejected for tools —
+you’re rejected because you can’t explain basic commands clearly.
+
+Here are command categories interviewers expect you to know 👇
+
+🔹 Linux (Daily Production Use)
+ls, cd, df -h, du -sh, top, ps, kill, chmod, chown
+
+🔹 Log Analysis & Debugging
+tail -f, grep, awk, sed, less, journalctl
+
+🔹 Networking & Connectivity
+curl, ping, traceroute, netstat, ss, nslookup
+
+🔹 Git (CI/CD Friendly)
+git clone, git pull, git fetch, git rebase, git reset, git cherry-pick
+
+🔹 Docker (Containers)
+docker ps, docker logs, docker exec, docker build, docker inspect
+
+🔹 Kubernetes (If You Claim K8s Experience)
+kubectl get, kubectl describe, kubectl logs, kubectl exec, kubectl apply
+
+💡 In interviews, they don’t ask commands.
+They ask when, why, and what happens if it fails.
+
+If you can explain real scenarios around these commands, you’re interview-ready.
