@@ -1,0 +1,26 @@
+What is terraform drift & how will you manage drift.
+What is graviton and zaabix
+Explain the project where you used microservices and how to manage it
+Major questions regarding terraform.
+How you are managing different environments in your company.
+State file questions 
+Loops and count difference 
+Modules questions 
+How you are storing the secrets in terraform.
+What are the various Challenge faced using terraform
+
+The interviewer was concerned about the error related to CI CD
+Deployment, which logs to refer
+
+How the secrets are managed in CICD
+How to troubleshoot if the pipeline execution is taking time
+
+
+
+In Jenkins there is an option in managed Jenkins where you find the option to store secrets with different types for example key value, GitHub, aws and so on
+Also in your job you invoke the name to get the secrets
+
+
+
+
+
