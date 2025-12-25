@@ -1,5 +1,9 @@
 What is terraform drift & how will you manage drift.
+Terraform drift is the gap between the desired state captured in your Terraform code and the real infrastructure that exists when you interrogate your cloud infrastructure.
+
 What is graviton and zaabix
+Zabbix is a monitoring tool
+
 Explain the project where you used microservices and how to manage it
 Major questions regarding terraform.
 How you are managing different environments in your company.
@@ -19,6 +23,13 @@ How to troubleshoot if the pipeline execution is taking time
 
 In Jenkins there is an option in managed Jenkins where you find the option to store secrets with different types for example key value, GitHub, aws and so on
 Also in your job you invoke the name to get the secrets
+
+
+In AWS, auto-scaling groups automatically add or remove EC2 instances based on demand, which can change the actual number of instances compared to what's in your Terraform state.
+
+Similarly, RDS instances may receive automatic maintenance updates during scheduled maintenance windows, potentially altering database engine versions or parameter group settings.
+
+EC2 instances configured for auto recovery might be silently replaced, generating new instance IDs that Terraform did not expect. Other resources behave similarly across cloud providers, changing gradually as managed services evolve or heal themselves.
 
 
 
