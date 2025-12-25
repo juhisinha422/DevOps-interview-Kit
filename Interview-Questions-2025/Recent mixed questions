@@ -17,6 +17,8 @@ The interviewer was concerned about the error related to CI CD
 Deployment, which logs to refer
 
 How the secrets are managed in CICD
+Aws secret manager/ hashi corp
+
 How to troubleshoot if the pipeline execution is taking time
 
 
