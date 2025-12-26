@@ -1,0 +1,30 @@
+PRODUCTION INCIDENT – REAL WORLD DEVOPS 🚨
+
+❓ Why was production slow even when everything looked healthy?
+ ❓ Why were users complaining but dashboards were green?
+ ❓ Why didn’t alerts trigger on time?
+
+🔍 What actually went wrong in production:
+
+ 👉 Readiness probe was passing ✅
+ 👉 App was alive but thread pool was exhausted 🧵
+ 👉 Requests were queued, not failed ⏳
+ 👉 No alert for queue length ⚠️
+
+💥 Impact:
+
+ 😤 Slow API responses
+ 📉 Drop in user experience
+ 🔥 Team panic during peak hours
+
+🛠️ Solution implemented:
+
+ ✅ Added thread-pool metrics 📊
+ ✅ Alert on request queue length 🚨
+ ✅ Updated readiness probe logic 🔁
+ ✅ Load test before every release 🧪
+
+📌 Production lesson:
+ If you only monitor crashes 💀, you will miss slow failures 🐢.
+
+This is the side of DevOps you learn only in production 🔥.
