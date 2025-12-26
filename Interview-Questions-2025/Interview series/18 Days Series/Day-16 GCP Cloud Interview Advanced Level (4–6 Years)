@@ -1,0 +1,23 @@
+Post 16: GCP Cloud Interview 
+Advanced Level (4–6 Years)
+
+You’ve built production systems — now demonstrate **enterprise-scale architecture** on GCP! 🧠 
+At 4–6 years experience, interviewers test your ability to design secure, resilient, multi-project GCP environments that support business growth. 
+
+Ready for the advanced challenges? 👇 
+
+💡 Common GCP Interview Questions for 4–6 Years Experience:
+1️⃣ How would you design a multi-region, active-active architecture using **Global Load Balancer** and **Cloud DNS**? 
+2️⃣ Explain **Shared VPC** vs **VPC Peering** — when to use each in enterprise setups? 
+3️⃣ How do you implement centralized IAM governance across multiple folders and projects? 
+4️⃣ What’s your strategy for securing GKE workloads using **Workload Identity**, **Network Policies**, and **Istio**? 
+5️⃣ How do you automate compliance using **Organization Policies** and **Cloud Asset Inventory**? 
+6️⃣ Describe your approach to hybrid connectivity using **Cloud Interconnect** or **Cloud VPN**. 
+7️⃣ How would you design disaster recovery for stateful workloads across GCP regions? 
+8️⃣ What’s your monitoring strategy using **Cloud Operations Suite** for SLO tracking? 
+9️⃣ How do you manage GitOps workflows with **Config Connector** or **Anthos**? 
+🔟 Explain cost governance using **Cloud Billing Budgets**, **Cost Allocation Tags**, and **Committed Use Discounts**. 
+
+🎯 Pro Tip: 
+At this level, showcase **design trade-offs** — security vs. velocity, cost vs. performance, simplicity vs. flexibility. 
+Interviewers value engineers who can articulate *why* they chose specific GCP patterns for business outcomes. 
