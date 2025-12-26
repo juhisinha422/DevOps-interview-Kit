@@ -1,0 +1,16 @@
+What is Docker and why every DevOps/SRE should understand its internals?
+Docker is more than just docker run.
+
+ Understanding its core components helps you debug faster, design better pipelines, and build truly portable systems.
+
+🔹 Docker Client – Where commands start (build, run, stop)
+
+ 🔹 Docker Daemon – The engine that builds, runs, and manages containers
+
+ 🔹 Dockerfile – The recipe that defines how your image is built
+
+ 🔹 Docker Hub – Registry to store and share container images
+
+👉 Knowing how these pieces work together matters far more than memorizing commands.
+
+If you’re working with containers daily, this is a must-know foundation.
