@@ -1,0 +1,15 @@
+some CI/CD Questions....
+ 1 What are Jenkins Shared Libraries & how do they work? 
+ 2 Talk about 5 build targets that you use on a day-to-day basis.? 
+ 3 Which artifact repository do you use for builds? 
+ 4 How do you configure Artifactory for your application in Maven? 
+ 5 Build passes locally but fails in CI, how will you troubleshoot? 
+ 6 CI pipeline succeeds but app is broken in production, what action will you take? 
+7 Pipeline slows down over time, how will you fix it?  
+8 A developer pushes a feature branch but the pipeline doesn’t trigger.?
+9 Your build fails because it can’t download a dependency from artifact repo.
+10 Python build fails on CI but works locally. What could be the issue?          11  Explain Python application build process in detail.? 
+12 Using Static Code Analysis, what kind of problems can you identify?  
+13 Static Code Analysis slows down CI pipeline. How will you fix it? 
+14 App in 'Out of Sync' state in Argo CD but no Git changes.? 
+15  When a build fails in Jenkins, how will you send an email?
