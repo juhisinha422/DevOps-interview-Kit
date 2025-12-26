@@ -1,0 +1,36 @@
+SonarQube vs Trivy – Not rivals, but teammates in DevSecOps
+
+In DevOps, security and quality can’t be an afterthought anymore.
+Two tools I often see (and use) are SonarQube and Trivy — and they solve very different problems.
+
+🧹 SonarQube – Code Quality & Security
+🔍 Scans source code
+Finds bugs, code smells, vulnerabilities
+Enfores Quality Gates
+Stops bad code before merge/deploy
+Best placed early in CI
+👉 “Is my code clean, secure, and maintainable?”
+
+🛡️ Trivy – Image & Infrastructure Security
+🔍 Scans container images, IaC & dependencies
+Detects CVEs in OS packages & libraries
+Scans Docker images, Kubernetes, Terraform
+Lightweight and fast
+Best placed before deploy to prod
+👉 “Is my runtime environment safe?”
+
+⚖️ Quick comparison
+SonarQube → Code-level quality & security
+Trivy → Runtime, image & supply-chain security
+
+🚀 Real DevSecOps approach
+The strongest pipelines don’t choose one — they use both:
+Code → SonarQube → Build → Trivy → Deploy
+
+✔ Clean code
+✔ Secure images
+✔ Safer production
+
+💡 My takeaway:
+SonarQube protects how you write code.
+Trivy protects what you run in production.
