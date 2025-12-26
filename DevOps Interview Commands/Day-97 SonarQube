@@ -1,0 +1,39 @@
+DevOps Interview Command Series — SonarQube (Day 7) 🔍
+
+SonarQube is a code quality & security gatekeeper in modern CI/CD pipelines.
+It helps teams catch bugs, vulnerabilities, and code smells before production.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the SonarQube commands & essentials you must know:
+
+sonar-scanner -v
+
+sonar-scanner \
+-Dsonar.projectKey=my-project \
+-Dsonar.sources=. \
+-Dsonar.host.url=http://sonarqube_url \
+-Dsonar.login=SONAR_TOKEN
+
+mvn sonar:sonar
+
+gradle sonarqube
+
+curl -u token: http://sonarqube_url/api/projects/search
+curl -u token: http://sonarqube_url/api/issues/search
+curl -u token: http://sonarqube_url/api/qualitygates/project_status?projectKey=my-project
+
+systemctl start sonarqube
+systemctl status sonarqube
+systemctl restart sonarqube
+
+tail -f logs/sonar.log
+tail -f logs/web.log
+tail -f logs/ce.log
+
+
+🎯 Interview Focus
+• What are Bugs, Vulnerabilities & Code Smells?
+• How Quality Gates work and why they matter
+• Integrating SonarQube with Jenkins/GitLab
+• Blocking deployments on quality gate failure
+• Handling false positives & rule tuning
+• Securing pipelines with SAST
