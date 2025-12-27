@@ -1,0 +1,34 @@
+DevOps Interview Command Series — Nexus Repository (Day 8) 📦
+
+Nexus is the artifact backbone of CI/CD pipelines.
+From storing build outputs to promoting versions across environments, Nexus ensures controlled and secure artifact management.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Nexus commands & operations you must know:
+
+systemctl start nexus
+systemctl status nexus
+systemctl restart nexus
+
+tail -f /opt/sonatype/nexus/log/nexus.log
+
+curl -u user:password http://nexus_url/service/rest/v1/repositories
+curl -u user:password http://nexus_url/service/rest/v1/assets
+
+mvn deploy
+mvn deploy -DskipTests
+
+npm publish --registry=http://nexus_url/repository/npm-hosted/
+npm install pkg --registry=http://nexus_url/repository/npm-group/
+
+docker login nexus_url
+docker tag image:tag nexus_url/repo/image:tag
+docker push nexus_url/repo/image:tag
+
+curl -u user:password -X DELETE http://nexus_url/service/rest/v1/components/ID
+
+🎯 Interview Focus
+• Hosted vs Proxy vs Group repositories
+• Artifact promotion & versioning strategy
+• Securing repositories with roles & permissions
+• Cleaning unused artifacts (cleanup policies)
+• Integrating Nexus with CI/CD pipelines
