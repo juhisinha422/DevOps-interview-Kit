@@ -42,3 +42,9 @@ Was this broken from the last deploy? Rollbacks are free if you’re paying atte
 
 This 9-step flow has saved me days of debugging.
 Because debugging isn’t just about logs. It’s about visibility, sequence, and asking smarter questions.
+
+
+
+kubectl patch deployment <deployment-name> -p '{"spec":{"template":{"spec":{"containers":[{"name":"app","image":"myapp:v2"}]}}}}'
+
+Shows you know how to safely hot-fix a deployment without editing YAML.
