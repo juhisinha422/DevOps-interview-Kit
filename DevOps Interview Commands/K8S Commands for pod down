@@ -1,0 +1,44 @@
+don’t need to “check the dashboard” when a pod breaks. Because I’ve burned this 9-point debugging checklist into my brain.
+
+After 12+ years in DevOps and fixing 200+ real-world Kubernetes incidents, I stopped looking for magic tools and built a mental model.
+
+So now, anytime a pod misbehaves, I walk through this fast.
+
+1) 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗴𝗲𝘁 𝗽𝗼𝗱𝘀 -𝗼 𝘄𝗶𝗱𝗲
+
+Which node is it on? What’s its status? Look for patterns across nodes, zones, or taints.
+
+2) 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗱𝗲𝘀𝗰𝗿𝗶𝗯𝗲 𝗽𝗼𝗱 <𝗻𝗮𝗺𝗲>
+
+Read the event timeline. Crashes, mount issues, probe failures they all show up here before logs.
+
+3) 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗹𝗼𝗴𝘀 -𝗽 <𝗻𝗮𝗺𝗲>
+
+Grab logs from the previous container. Most people miss this and stare at an empty terminal.
+
+4) 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗴𝗲𝘁 𝗲𝘃𝗲𝗻𝘁𝘀 --𝘀𝗼𝗿𝘁-𝗯𝘆=.𝗺𝗲𝘁𝗮𝗱𝗮𝘁𝗮.𝗰𝗿𝗲𝗮𝘁𝗶𝗼𝗻𝗧𝗶𝗺𝗲𝘀𝘁𝗮𝗺𝗽
+
+What was the first domino to fall? Node pressure? PVC delay? CNI freakout? This command never lies.
+
+5) 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗴𝗲𝘁 𝗲𝗻𝗱𝗽𝗼𝗶𝗻𝘁𝘀 <𝘀𝘃𝗰>
+
+Is the service even routing to this pod? I've debugged "app not responding" cases where the pod was fine, it just wasn't reachable.
+
+6) 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝘁𝗼𝗽 𝗽𝗼𝗱
+
+CPU/memory pressure? One look here can expose silent OOMKills or runaway loops.
+
+7) 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗲𝘅𝗲𝗰 -𝗶𝘁 <𝗽𝗼𝗱> -- 𝘀𝗵
+
+Go inside. Check logs, DNS, envs, mounts. 99% of the time, I find something unexpected here.
+
+8) 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗴𝗲𝘁 𝗱𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 <𝗻𝗮𝗺𝗲> -𝗼 𝘆𝗮𝗺𝗹
+
+Am I running what I think I’m running? Check image tags, env vars, limits. Never assume.
+
+9) 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗿𝗼𝗹𝗹𝗼𝘂𝘁 𝗵𝗶𝘀𝘁𝗼𝗿𝘆 𝗱𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 <𝗻𝗮𝗺𝗲>
+
+Was this broken from the last deploy? Rollbacks are free if you’re paying attention.
+
+This 9-step flow has saved me days of debugging.
+Because debugging isn’t just about logs. It’s about visibility, sequence, and asking smarter questions.
