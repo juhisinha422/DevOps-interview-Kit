@@ -1,0 +1,48 @@
+DevOps Interview Preparation – Tool 11
+
+Docker (Basics + Advanced) | 0–2 Years Experience
+
+Containers are the foundation of modern DevOps and Kubernetes.
+Interviewers expect you to understand how Docker works internally, not just commands.
+
+ Focus: Docker Interview Questions (Basics + Advanced)
+
+• What is Docker and why is it used?
+• Difference between virtualization and containerization
+• Docker architecture (client, daemon, registry)
+• What is a Docker image?
+• What is a Docker container?
+• Image vs container
+• What is Dockerfile?
+• Common Dockerfile instructions (FROM, RUN, COPY, CMD, ENTRYPOINT)
+• Difference between CMD and ENTRYPOINT
+• What is a Docker registry?
+• Docker Hub vs private registry
+• What is a Docker volume?
+• Difference between volume and bind mount
+• Docker networking basics
+• Bridge vs host network
+• What is Docker Compose?
+• When do you use Docker Compose?
+
+🔹 Advanced Docker Concepts
+
+• What is a multi-stage Docker build?
+• Why are multi-stage builds important?
+• How do you reduce Docker image size?
+• What are Docker layers and caching?
+• What is .dockerignore?
+• How do you scan Docker images for vulnerabilities?
+• How do you pass secrets to Docker containers?
+• Difference between ARG and ENV
+• How do you troubleshoot a failing container?
+• How do you monitor containers?
+• Docker logging drivers
+• How do you handle container restart policies?
+• Common Docker mistakes beginners make
+• Real-world Docker use case in DevOps pipeline
+
+ Interview Tip:
+If you can explain:
+👉 “Dockerfile → Image → Container → Registry → Deploy”
+you already sound like a job-ready DevOps engineer, even with 0–2 years of experience.
