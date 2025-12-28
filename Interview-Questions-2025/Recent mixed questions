@@ -34,6 +34,42 @@ Similarly, RDS instances may receive automatic maintenance updates during schedu
 EC2 instances configured for auto recovery might be silently replaced, generating new instance IDs that Terraform did not expect. Other resources behave similarly across cloud providers, changing gradually as managed services evolve or heal themselves.
 
 
+Answers of git and GitHub: 
+
+1️⃣ git reset --soft HEAD~1 does what?
+✅ Answer: Keeps changes staged, removes last commit
+💡 Reason: Soft reset moves HEAD only, index stays intact
+2️⃣ Key difference between git merge and git rebase?
+✅ Answer: Rebase rewrites commit history
+💡 Reason: Rebase replays commits with new SHAs
+3️⃣ Safest way to undo a pushed commit on shared branch?
+✅ Answer: git revert
+💡 Reason: Creates a new commit without changing history
+4️⃣ What does git fetch do?
+✅ Answer: Downloads changes without merging
+💡 Reason: Updates remote refs only
+5️⃣ Why is rebasing a shared branch risky?
+✅ Answer: Commit SHAs change
+💡 Reason: History rewrite breaks other developers’ work
+6️⃣ Delete remote branch, local still exists — what happens?
+✅ Answer: Local branch becomes orphaned
+💡 Reason: Local refs are independent of remote
+7️⃣ What does git cherry-pick do?
+✅ Answer: Copies specific commits to current branch
+💡 Reason: Applies commit changes, not entire branch
+8️⃣ What is inside .git directory?
+✅ Answer: Complete Git database
+💡 Reason: Stores objects, refs, HEAD, config
+9️⃣ Two users push to same branch at same time — result?
+✅ Answer: One push is rejected
+💡 Reason: Remote branch moved ahead
+🔟 What is Detached HEAD?
+✅ Answer: HEAD points directly to a commit
+💡 Reason: Not attached to any branch reference
+
+
+
+
 
 
 
