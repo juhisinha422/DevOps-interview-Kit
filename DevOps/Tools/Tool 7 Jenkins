@@ -1,0 +1,41 @@
+DevOps Interview Preparation – Tool 7
+
+Jenkins (Basics + Advanced) | 0–2 Years Experience
+
+Jenkins is still one of the most widely used CI/CD tools in the industry.
+Interviewers don’t expect you to know everything — but they do expect you to understand how Jenkins works in real projects.
+
+📌 Focus: Jenkins Interview Questions (Mixed – Basics + Advanced)
+
+• What is Jenkins and why is it used in DevOps?
+• Difference between CI and CD in Jenkins context
+• What is a Jenkins job?
+• Difference between Freestyle and Pipeline jobs
+• What is Jenkins Pipeline?
+• Difference between Declarative and Scripted Pipeline
+• What is a Jenkinsfile and where is it stored?
+• Explain stages, steps, and agents
+• What is a Jenkins agent/node?
+• Master vs agent architecture
+• How do you distribute builds across agents?
+• What are Jenkins plugins?
+• Most commonly used Jenkins plugins
+• How do you manage credentials in Jenkins?
+• What is Jenkins credential store?
+• How do you secure Jenkins?
+• How do you integrate Jenkins with GitHub/GitLab?
+• How do you trigger Jenkins jobs automatically?
+• Webhook vs polling
+• What are build parameters?
+• What are environment variables in Jenkins?
+• How do you handle secrets in Jenkins pipeline?
+• What is artifact in Jenkins?
+• How do you store and share artifacts?
+• How do you rollback a failed deployment using Jenkins?
+• Common Jenkins issues faced by beginners
+• Real-world Jenkins pipeline flow you used or studied
+
+💡 Interview Tip:
+If you can confidently explain:
+ “Code commit → Jenkins build → Test →Artifact → Deploy”
+you already sound like a production-ready DevOps engineer, even with 0–2 years of experience.
