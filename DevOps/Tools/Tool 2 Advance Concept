@@ -1,0 +1,37 @@
+DevOps Interview Preparation – Tool 2 Advance Concept.
+
+Bash Scripting – Real-World Use Cases (0–2 Years Experience)
+
+Knowing syntax is good.
+But real DevOps engineers are hired for automation.
+
+Interviewers often ask:
+👉 “What scripts have you written in real life?”
+
+📌 Tool 2 Advance Concept Focus: Practical Bash Scripting Interview Questions
+
+• How do you write a script to check disk usage and send alerts?
+• Script to find files older than X days and delete them
+• How do you automate log cleanup in Linux?
+• Script to monitor CPU and memory usage
+• How do you schedule scripts using cron?
+• Difference between cron and systemd timers
+• How do you write a backup script in bash?
+• Script to take application backups with timestamp
+• How do you handle errors in bash scripts?
+• What is trap in bash?
+• How do you debug a bash script?
+• Difference between set -e, set -u, and set -o pipefail
+• How do you pass arguments to a script?
+• How do you log script output to a file?
+• How do you write a menu-driven bash script?
+• How do you check if a service is running using bash?
+• Script to restart a service if it is down
+• How do you run a script at system startup?
+• How do you secure sensitive data in scripts?
+• Real production issue solved using bash scripting
+
+ Interview Tip:
+Even a simple statement like:
+ “I automated log cleanup and disk monitoring using bash + cron”
+can make your profile stand out immediately.
