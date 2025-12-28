@@ -1,0 +1,25 @@
+Post 1: DevOps Engineer Interview  
+Fresher Level (0–1 Year)
+
+Starting a new series: **“DevOps Roles Unlocked”** 🔓  
+We’ll explore every major engineering role — from DevOps and SRE to Platform, DevSecOps & MLOps — across experience levels.  
+Let’s begin with the foundation — **DevOps for Freshers**! 💻  
+
+As a fresher, DevOps interviews focus on your curiosity and understanding of core concepts — not years of experience.  
+
+Here are 10 real questions to get you started 👇 
+💡 Common DevOps Interview Questions for Freshers:
+1️⃣ What does **DevOps** mean to you, and why is it important in modern software delivery?  
+2️⃣ Explain the difference between **Continuous Integration** and **Continuous Deployment**.  
+3️⃣ What are some popular **CI/CD tools**, and why are they used?  
+4️⃣ How do **Git** and **GitHub/GitLab** fit into a DevOps workflow?  
+5️⃣ What are **Docker containers**, and how do they differ from virtual machines?  
+6️⃣ What’s the purpose of **Infrastructure as Code (IaC)**?  
+7️⃣ What are monitoring tools like **Prometheus** and **Grafana** used for?  
+8️⃣ Explain the role of a **Reverse Proxy** or **Load Balancer** in deployments.  
+9️⃣ How do you ensure security when deploying code to production?  
+🔟 What is the difference between a **staging** and a **production** environment?  
+
+🎯 Pro Tip:  
+As a fresher, focus on **practical exposure** — create a small project that uses Git, Docker, and CI/CD on any cloud platform.  
+Even a mini pipeline shows your enthusiasm for automation and hands-on learning. 🚀  
