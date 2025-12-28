@@ -1,0 +1,40 @@
+DevOps Interview Preparation – Tool 3
+
+Git (Basics + Advanced) | 0–2 Years Experience
+
+In DevOps, Git is not optional.
+Every CI/CD pipeline, Infrastructure as Code, and cloud automation starts with Git.
+
+Interviewers don’t check only commands — they check how you think about version control.
+
+Focus: Git Interview Questions (Mixed – Basics + Advanced)
+
+• What is Git and why is it important in DevOps?
+• Difference between Git and GitHub
+• What is a repository?
+• Difference between local, remote, and central repo
+• What is git init and git clone?
+• Explain git status, git add, and git commit
+• What is .gitignore and why is it used?
+• What is branching in Git?
+• Difference between main and feature branch
+• How do you create and delete branches?
+• What is a merge? Types of merge
+• What is a merge conflict and how do you resolve it?
+• Difference between git merge and git rebase
+• What is git stash? When do you use it?
+• What is git cherry-pick?
+• Difference between git fetch and git pull
+• What is a detached HEAD state?
+• What is git reset vs git revert?
+• How do you undo a wrong commit?
+• What is tagging in Git?
+• Explain Git workflow used in your project
+• How do you manage Git in a team environment?
+• Common Git mistakes beginners make
+• Real-world Git issue you faced and how you fixed it
+
+💡 Interview Tip:
+If you can clearly explain:
+ branching strategy + conflict resolution + rollback
+you already look production-ready, even as a fresher.
