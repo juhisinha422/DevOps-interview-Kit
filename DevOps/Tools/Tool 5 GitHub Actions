@@ -1,0 +1,35 @@
+DevOps Interview Preparation – Tool 5
+
+GitHub Actions – CI/CD Basics (0–2 Years Experience)
+
+In modern DevOps, CI/CD starts directly from GitHub.
+For freshers, GitHub Actions is one of the easiest and most powerful CI/CD tools to learn and explain in interviews.
+
+📌 Tool 5 Focus: GitHub Actions Interview Questions
+
+• What is CI/CD and why is it important?
+• What is GitHub Actions?
+• How is GitHub Actions different from Jenkins?
+• What is a workflow in GitHub Actions?
+• Where do you define a workflow file?
+• What is YAML and why is it used?
+• Explain workflow, job, step, and runner
+• What are GitHub-hosted runners?
+• Difference between GitHub-hosted and self-hosted runners
+• What are events in GitHub Actions?
+• Explain push, pull_request, and workflow_dispatch
+• What is an action from GitHub Marketplace?
+• How do you reuse actions?
+• What are GitHub secrets?
+• How do you store credentials securely in GitHub Actions?
+• Difference between environment variables and secrets
+• How do you create a simple CI pipeline?
+• How do you fail a pipeline intentionally?
+• What happens if one job fails?
+• Common mistakes beginners make in GitHub Actions
+• Real-world use case of GitHub Actions in DevOps
+
+💡 Interview Tip:
+If you can clearly explain:
+ “Code push → GitHub Actions CI → Build → Test → Deploy”
+you already sound like a production-ready DevOps engineer, even with 0–2 years of experience.
