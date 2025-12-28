@@ -1,0 +1,51 @@
+DevOps Interview Preparation – Tool 10
+
+GCP Cloud (Basics + Advanced) | 0–2 Years Experience
+
+GCP is widely used for cloud-native, Kubernetes, and data-driven platforms.
+Interviewers check whether you understand core GCP services + how GCP is used in DevOps pipelines.
+
+Focus: GCP Interview Questions (Basics + Advanced)
+
+• What is Google Cloud Platform (GCP)?
+• GCP global infrastructure (Regions, Zones)
+• What is a GCP project? Why is it important?
+• What is Compute Engine?
+• Difference between Compute Engine and AWS EC2
+• What are machine types in GCP?
+• What is an image and snapshot in GCP?
+• What is Google Cloud Storage (GCS)?
+• GCS storage classes
+• What is Identity and Access Management (IAM) in GCP?
+• Role types in GCP (Primitive, Predefined, Custom)
+• What is a service account?
+• Difference between user account and service account
+• What is VPC in GCP?
+• Difference between default and custom VPC
+• What is a subnet in GCP?
+• Firewall rules in GCP
+• What is Cloud Load Balancing?
+🔹 Advanced GCP Concepts (Beginner-Friendly)
+
+• What is Google Kubernetes Engine (GKE)?
+• Difference between GKE and self-managed Kubernetes
+• What is Cloud Run?
+• Cloud Run vs GKE
+• What is Cloud Functions?
+• When do you use Cloud Functions?
+• What is Cloud Build?
+• Cloud Build vs Jenkins
+• What is Artifact Registry?
+• Container Registry vs Artifact Registry
+• What is Stackdriver (Cloud Operations)?
+• Logging vs Monitoring in GCP
+• What is Cloud Pub/Sub (basic idea)?
+• What is Terraform role in GCP?
+• How do you secure workloads in GCP?
+• Common GCP mistakes freshers make
+• Real-world GCP DevOps use case
+
+Interview Tip:
+If you can explain:
+👉 “Code → Build → Container → GKE → Monitor on GCP”
+you already sound like a cloud-native DevOps engineer, even with 0–2 years of experience.
