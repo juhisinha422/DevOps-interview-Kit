@@ -1,0 +1,46 @@
+DevOps Interview Preparation – Tool 8
+
+AWS Fundamentals + AWS DevOps Services (0–2 Years Experience)
+
+AWS is the most demanded cloud platform for DevOps roles.
+Interviewers want to know whether you understand both core services and DevOps workflows on AWS.
+
+ Focus: AWS Interview Questions (Mixed – Basics + DevOps)
+
+• What is cloud computing?
+• Why is AWS widely used?
+• Explain AWS global infrastructure (Region, AZ, Edge location)
+• What is EC2? Common EC2 instance types
+• What is an AMI?
+• What is a key pair and security group?
+• Difference between security group and NACL
+• What is S3 and why is it used?
+• S3 storage classes
+• What is versioning in S3?
+• What is IAM?
+• Difference between IAM user, group, and role
+• What is an IAM policy?
+• What is VPC?
+• Difference between public and private subnet
+• What is an Internet Gateway?
+• What is a route table?
+• What is AWS CLI?
+• How do you configure AWS CLI?
+• What is CloudWatch?
+• Metrics vs logs vs alarms
+• What is CloudTrail?
+• ALB vs NLB
+• What is Auto Scaling Group?
+• What is AWS CodePipeline?
+• Difference between CodeBuild and CodeDeploy
+• What is blue-green deployment?
+• Rolling vs blue-green deployment
+• How do you monitor an application in AWS?
+• Common AWS mistakes freshers make
+• Real-world AWS DevOps use case
+
+💡 Interview Tip:
+If you can confidently explain:
+👉 “Code → CI → Build → Deploy → Monitor on AWS”
+you already sound like a real DevOps
+engineer, even with 0–2 years of experience
