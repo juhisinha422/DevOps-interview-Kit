@@ -1,0 +1,39 @@
+DevOps Interview Preparation – Tool 4 
+
+GitHub & GitHub Workflow (0–2 Years Experience)
+
+GitHub is more than just code hosting.
+For DevOps engineers, it’s the starting point of CI/CD, automation, and collaboration.
+
+Interviewers expect you to understand how teams actually use GitHub.
+
+📌 Focus: GitHub Interview Questions
+
+• What is GitHub and how is it different from Git?
+• What is a repository in GitHub?
+• Difference between public and private repositories
+• What is a fork? When do you use it?
+• What is a Pull Request (PR)?
+• PR vs Merge — what’s the difference?
+• What are code reviews and why are they important?
+• What is a GitHub issue?
+• How do issues help in DevOps projects?
+• What are GitHub labels and milestones?
+• Explain GitHub workflow in a team environment
+• What is a protected branch? Why is it used?
+• What are GitHub webhooks?
+• How does GitHub integrate with CI/CD tools?
+• What are GitHub secrets and where are they used?
+• Difference between GitHub Actions and Jenkins
+• How do you secure credentials in GitHub?
+• How do you manage multiple environments using GitHub?
+• What is CODEOWNERS file?
+• How do you revert a merged PR?
+• Common GitHub mistakes beginners make
+• Real-world GitHub workflow you followed in a project
+
+💡 Interview Tip:
+If you explain a simple flow like:
+
+ “Developer → PR → Review → CI → Merge → Deploy”
+you already sound like a working DevOps engineer.
