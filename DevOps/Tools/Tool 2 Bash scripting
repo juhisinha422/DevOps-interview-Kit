@@ -1,0 +1,35 @@
+DevOps Interview Preparation – Tool 2
+
+Bash Scripting Basics (0–2 Years Experience)
+
+If you want to grow in DevOps, manual work is your enemy.
+Bash scripting helps you automate tasks, reduce errors, and save time — and interviewers love this skill.
+
+📌 Tools 2 Focus: Bash Scripting – Interview Questions
+
+• What is Bash scripting and why is it used in DevOps?
+• Difference between shell and bash
+• What is a shebang (#!/bin/bash)?
+• How do you create and run a shell script?
+• What are variables in bash?
+• Difference between local and environment variables
+• How do you take user input in a script?
+• What are positional parameters ($1, $2, $@, $#)?
+• Difference between $@ and $*
+• What is exit status in bash?
+• What does $? represent?
+• Conditional statements (if, elif, else)
+• Loop types in bash (for, while)
+• Difference between while and until loop
+• How do you write comments in bash?
+• How do you make a script executable?
+• What is set -x and set -e?
+• How do you redirect output (>, >>, 2>)
+• What is piping (|) and why is it important?
+• Simple real-world example of a bash script
+
+💡 Interview Tip:
+If you explain a script like:
+
+👉 “I wrote a bash script to clean logs, monitor disk usage, or automate backups”
+—you instantly look like a practical DevOps engineer, not a fresher.
