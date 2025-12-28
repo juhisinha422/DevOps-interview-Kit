@@ -1,0 +1,38 @@
+DevOps Interview Preparation – Tool 6
+
+GitLab & GitLab CI/CD Basics (0–2 Years Experience)
+
+GitLab is more than a code repository.
+It’s a complete DevOps platform used by many organizations for source control, CI/CD, and automation.
+
+Interviewers often expect freshers to understand how GitLab pipelines actually work.
+
+📌 Tool 6 Focus: GitLab & CI/CD Interview Questions
+
+• What is GitLab and how is it different from GitHub?
+• What is GitLab CI/CD?
+• What is a pipeline in GitLab?
+• Where do you define GitLab CI configuration?
+• What is .gitlab-ci.yml?
+• Explain stages, jobs, and pipelines
+• What is a GitLab runner?
+• Difference between shared runner and specific runner
+• What is an executor in GitLab runner?
+• What are artifacts in GitLab CI?
+• Difference between artifacts and cache
+• What are variables in GitLab CI?
+• How do you store secrets securely in GitLab?
+• What are environments in GitLab CI/CD?
+• What is a manual job?
+• What are approvals in GitLab pipelines?
+• How do you trigger pipelines automatically?
+• How do you run pipelines for merge
+requests?
+• How do you deploy to different environments using GitLab?
+• Common GitLab CI mistakes beginners make
+• Real-world GitLab CI/CD use case
+
+💡 Interview Tip:
+If you explain a simple flow like:
+ Commit → Pipeline → Build → Test → Deploy
+interviewers know you understand CI/CD practically, not just theoretically.
