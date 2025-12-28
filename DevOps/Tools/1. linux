@@ -1,0 +1,32 @@
+🚀 DevOps Interview Preparation – Tool 1
+
+Linux Fundamentals (0–2 Years Experience)
+
+If you want to become a DevOps Engineer, Linux is non-negotiable.
+Almost everything in DevOps — servers, containers, Kubernetes nodes, CI/CD agents — runs on Linux.
+
+📌 Devops Tool 1 Focus: Core Linux Interview Questions
+
+• What is Linux and why is it widely used in DevOps?
+• Difference between Linux and Unix
+• What is a shell? Difference between bash and sh
+• Explain Linux directory structure (/etc, /var, /opt, /usr)
+• What is root user? How is it different from normal user?
+• File permissions (r, w, x) and chmod explained
+• Difference between chmod 755 and chmod 777
+• What is umask?
+• Hard link vs soft link
+• How do you check running processes?
+• Difference between ps, top, and htop
+• How do you kill a process in Linux?
+• What is a daemon process?
+• How do you check disk usage and memory uses 
+• Difference between df and du
+• What is a package manager? (yum, apt)
+• How do you find a file in Linux?
+• What is grep and why is it important?
+• What is SSH and how does it work?
+• How do you check Linux logs?
+
+💡 Interview Tip:
+Most beginners fail DevOps interviews not because of cloud or tools — but because of weak Linux fundamentals.
