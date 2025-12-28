@@ -1,0 +1,23 @@
+Post 4: Platform Engineer Interview  
+Fresher Level (0–1 Year)
+
+Behind every high-performing engineering team, there’s a **solid platform** powering deployments, scaling, and reliability. ⚙️  
+Platform Engineers build the internal tooling, infrastructure, and golden paths that developers love to use.  
+
+If you’re starting your journey in Platform Engineering, these questions will help shape your foundations 👇  
+
+💡 Common Platform Engineer Interview Questions for Freshers:
+1️⃣ What is a **Platform Engineer**, and how is this role different from a traditional DevOps Engineer?  
+2️⃣ What do people mean by a **“Developer Platform”** or **“Internal Developer Platform (IDP)”**?  
+3️⃣ How do CI/CD pipelines support platform teams and product teams differently?  
+4️⃣ What are some common components of a modern platform stack (e.g., Git, CI/CD, Kubernetes, logging, monitoring)?  
+5️⃣ Why is **self-service** important for developers using a platform?  
+6️⃣ How would you explain **Infrastructure as Code (IaC)** and why it matters for platform reliability?  
+7️⃣ What is a **service catalog** and how can it help teams ship faster?  
+8️⃣ How do you see containers and Kubernetes fitting into a platform engineer’s responsibilities?  
+9️⃣ Why is standardization (templates, blueprints, golden images) valuable for a platform?  
+🔟 How would you measure whether a platform is actually helping developers (hint: productivity, deployment frequency, fewer manual steps)?  
+
+🎯 Pro Tip:  
+As a fresher, start by building a **small internal platform for yourself** — for example, a repo template + CI pipeline + simple Kubernetes or Docker deployment.  
+Being able to show “I built a mini platform to make my own work easier” is a powerful story in interviews. 🚀  
