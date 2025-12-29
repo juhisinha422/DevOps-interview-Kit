@@ -1,0 +1,23 @@
+Post 9: SRE Interview  
+Senior Level (5–8 Years)
+
+SRE at scale — where reliability engineering meets **leadership and system design**! 🏗️  
+At 5–8 years, you're not just responding to incidents — you're architecting resilience, mentoring teams, and defining organizational reliability standards.  
+
+Test your senior SRE expertise 👇  
+
+💡 Common SRE Interview Questions for 5–8 Years Experience:
+1️⃣ How do you design **production readiness reviews** and gate new services?  
+2️⃣ Explain your **SRE engagement model** (dedicated teams vs. shared responsibility).  
+3️⃣ What's your approach to **capacity planning** for unpredictable workloads?  
+4️⃣ How do you implement **chaos engineering** safely in production environments?  
+5️⃣ Describe your **on-call rotation** design and fatigue mitigation strategies.  
+6️⃣ How do you establish **cross-team SLO agreements** and error budgets?  
+7️⃣ What's your strategy for **distributed tracing** across microservices?  
+8️⃣ How do you handle **multi-region failover** and global traffic management?  
+9️⃣ Explain ** toil reduction** frameworks and automation ROI measurement.  
+🔟 How do you build **SRE culture** across engineering organizations?  
+
+🎯 Pro Tip:  
+Senior SREs lead through **systems and culture** — share stories of how you reduced MTTR by 70%, standardized runbooks, or transformed reactive teams into proactive ones.  
+Reliability is a team sport, not a solo hero journey. 🎯  
