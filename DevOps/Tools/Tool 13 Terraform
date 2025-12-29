@@ -1,0 +1,47 @@
+DevOps Interview Preparation – Tool 13
+
+Terraform (Basics + Advanced) | 0–2 Years Experience
+
+Infrastructure as Code (IaC) is a must-have skill for modern DevOps engineers.
+Terraform helps you provision, version, and manage infrastructure safely and repeatedly.
+
+ Focus: Terraform Interview Questions (Basics + Advanced)
+
+• What is Infrastructure as Code (IaC)?
+• What is Terraform and why is it used?
+• Terraform vs CloudFormation vs ARM (high-level)
+• What is a provider in Terraform?
+• What is a resource?
+• What is a data source?
+• Terraform workflow (init, plan, apply, destroy)
+• What is Terraform state?
+• Why is state important?
+• Local state vs remote state
+• What is state locking?
+• What is backend in Terraform?
+• What is a variable in Terraform?
+• Difference between var, tfvars, and environment variables
+• What is output in Terraform?
+• What is dependency in Terraform?
+• Implicit vs explicit dependency
+
+🔹 Advanced Terraform Concepts (Beginner-Friendly)
+• What are Terraform modules?
+• Why are modules used?
+• How do you create reusable modules?
+• What are workspaces?
+• When do you use Terraform workspaces?
+• What is terraform import?
+• What is terraform taint?
+• What is terraform refresh?
+• How do you manage secrets in Terraform?
+• How do you secure Terraform state?
+• How do you handle multi-environment setup (dev, qa, prod)?
+• Terraform best practices
+• Common Terraform mistakes beginners make
+• Real-world Terraform DevOps use case
+
+💡 Interview Tip: If you can explain:
+
+👉 “Terraform code → Plan → Review → Apply → Infrastructure”
+you already sound like a production-ready DevOps engineer, even with 0–2 years of experience.
