@@ -1,0 +1,72 @@
+DevOps Interview Preparation – Tool 16
+
+Python for DevOps (Basics + Advanced Use Cases) | 0–2 Years Experience
+
+Python is one of the most important programming languages for DevOps.
+Interviewers don’t expect DSA or heavy coding — they want to know how you automate, integrate, and solve problems using Python.
+
+Focus: Python for DevOps Interview Questions (Basics + Advanced)
+
+🔹 Python Basics (DevOps-Oriented)
+
+• Why is Python popular in DevOps?
+• Difference between Python and shell scripting
+• Python 2 vs Python 3
+• How do you run a Python script?
+• What are variables and data types in Python?
+• Lists vs tuples
+• Dictionary vs list
+• What are functions in Python?
+• What are modules and packages?
+• What is pip?
+• What is a virtual environment?
+• How do you read and write files in Python?
+• What is exception handling?
+• What is logging in Python?
+• Print vs logging — which one should be used in production?
+
+🔹 Advanced Python for DevOps (Beginner-Friendly)
+• What is automation in DevOps using Python?
+• How do you execute Linux commands using Python?
+• os vs subprocess module
+• How do you parse JSON and YAML files?
+• How do you work with APIs in Python?
+• REST API basics
+• How do you interact with cloud services using Python?
+• What is Boto3? (AWS SDK for Python)
+• How do you automate AWS tasks using Python?
+• How do you handle secrets in Python scripts?
+• How do you schedule Python scripts?
+• Python with cron jobs
+• How do you containerize a Python application?
+• Python script in CI/CD pipeline
+• How do you write reusable Python scripts?
+• How do you debug Python scripts?
+• Common Python mistakes beginners make
+
+🔹 Real-World Python Use Cases in DevOps
+
+• Automating EC2 start/stop
+• Log parsing & cleanup
+• Health check scripts
+• Monitoring disk & CPU usage
+• CI/CD automation scripts
+• Kubernetes automation using Python
+• Cloud cost optimization scripts
+• Alerting & notification scripts
+
+Interview Tip:
+If you can confidently say:
+👉 “I used Python to automate cloud tasks and integrate CI/CD pipelines”
+you already sound like a job-ready DevOps engineer, even with 0–2 years of experience.
+
+ Interview Prep & DevOps Career Transition Support
+I am providing interview preparation training for:
+
+Freshers & early professionals (0–2 yrs)
+Python & DevOps interview preparation
+Professionals who want to transition into a DevOps Engineer role from Support, QA, SysAdmin, NOC, Networking, or Development
+DM me personally if:
+• You want hands-on Python for DevOps training
+• You need interview-focused preparation
+• You want a clear DevOps career transition roadmap
