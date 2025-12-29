@@ -1,0 +1,65 @@
+DevOps Interview Preparation – Tool 15
+
+Prometheus & Grafana (Basics + Advanced) | 0–2 Years Experience
+
+Monitoring and observability are critical in production environments.
+Interviewers want to see whether you understand how systems are monitored, alerted, and visualized.
+
+ Focus: Prometheus & Grafana Interview Questions (Basics + Advanced)
+
+🔹 Prometheus
+
+• What is monitoring and why is it important?
+• What is Prometheus?
+• Push vs pull model – which one does
+Prometheus use?
+• Prometheus architecture
+• What is a metric?
+• Types of metrics (Counter, Gauge, Histogram, Summary)
+• What is an exporter?
+• Common exporters (Node Exporter, Blackbox Exporter)
+• What is a scrape configuration?
+• What is PromQL?
+• Basic PromQL queries
+• What is Alertmanager?
+• How do alerts work in Prometheus?
+• What is recording rule?
+
+🔹 Advanced Prometheus Concepts
+
+• How does Prometheus work with Kubernetes?
+• What is ServiceMonitor?
+• What is federation in Prometheus?
+• How do you handle high-cardinality metrics?
+• How do you scale Prometheus?
+• Prometheus data retention
+• How do you secure Prometheus endpoints?
+• Common Prometheus mistakes beginners make
+
+🔹 Grafana
+
+• What is Grafana?
+• Grafana vs Kibana
+• What is a dashboard in Grafana?
+• What is a panel?
+• What are data sources?
+• How does Grafana integrate with Prometheus?
+• What are variables in Grafana?
+• How do you create alerts in Grafana?
+• How do you share dashboards?
+
+🔹 Advanced Grafana Concepts
+
+• Grafana provisioning
+• Grafana folders & dashboard permissions
+• How do you secure Grafana?
+• Grafana alerting vs Prometheus alerting
+• How do you design effective dashboards?
+• Common Grafana mistakes beginners make
+• Real-world monitoring & alerting use case
+
+💡 Interview Tip:
+If you explain:
+👉 “Metrics → Prometheus → Alerts → Grafana Dashboard”
+you already sound like a production-ready
+DevOps engineer.
