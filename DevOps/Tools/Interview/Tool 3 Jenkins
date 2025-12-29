@@ -1,0 +1,54 @@
+DevOps Interview Jenkins
+2–4 Years Experience | Tool 3
+
+Production-Level CI/CD
+
+For 2–4 years experience, interviewers expect you to design, manage, secure, and troubleshoot Jenkins pipelines, not just create a basic job.
+
+🔹 Jenkins Interview Questions (2–4 yrs)
+
+• What is Jenkins and where is it used in production?
+• Jenkins architecture (Controller / Agent)
+• Why do we use agents instead of running jobs on controller?
+• Freestyle job vs Pipeline job
+• What is Jenkinsfile? Why is it important?
+• Declarative vs Scripted pipeline
+• Structure of a production Jenkinsfile
+• What are stages, steps, and post actions?
+• How do you trigger Jenkins jobs?
+• Webhooks vs polling — which is better and why?
+• How do you integrate Jenkins with GitHub?
+• How do you handle credentials securely in Jenkins?
+• How does Jenkins work with Docker?
+• Jenkins with Kubernetes — dynamic agents
+• What is a Jenkins shared library?
+• How do you manage Jenkins plugins safely?
+• How do you secure Jenkins?
+• How do you take Jenkins backup and restore?
+• How do you scale Jenkins for large teams?
+
+🔹 Real-World Jenkins Scenarios
+
+• Jenkins pipeline failed after plugin upgrade — what will you do?
+• Build is very slow — how will you optimize it?
+• Jenkins job stuck in running state — troubleshooting steps
+• Secrets accidentally printed in Jenkins logs — how will you fix it?
+• Jenkins controller goes down — what is your recovery plan?
+• How do you implement rollback using
+Jenkins pipelines?
+
+🔹 Best Practices (2–4 yrs Level)
+
+• Use Jenkinsfile in Git
+• Use shared libraries for reusable logic
+• Run builds on agents, not controller
+• Store secrets in credentials manager
+• Restrict plugin installation
+• Enable role-based access control
+• Monitor Jenkins using Prometheus & Grafana
+
+Interview Tip:
+If you say:
+👉 “We use Jenkins pipelines with shared
+libraries and Kubernetes-based dynamic agents”
+you already sound like a strong 2–4 years DevOps engineer.
