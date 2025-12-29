@@ -1,0 +1,23 @@
+Post 8: Platform Engineer Interview  
+Intermediate Level (2–4 Years)
+
+Platform Engineers don't just build infrastructure — they build **developer platforms** that teams love! 🌐  
+At 2–4 years, you're creating self-service portals, golden paths, and internal tools that boost engineering velocity.  
+
+Ready to showcase your platform-building skills? 👇  
+
+💡 Common Platform Engineer Interview Questions for 2–4 Years Experience:
+1️⃣ How do you design **self-service provisioning** for developers (VMs, Kubernetes namespaces, databases)?  
+2️⃣ What's your approach to building an **Internal Developer Platform (IDP)** using tools like Backstage or Port?  
+3️⃣ How do you create **golden templates** for standardized deployments across teams?  
+4️⃣ Explain **service catalogs** and how they enable one-click environment provisioning.  
+5️⃣ How do you implement **developer portals** that abstract infrastructure complexity?  
+6️⃣ What's your strategy for **multi-tenancy** in shared Kubernetes clusters?  
+7️⃣ How do you measure **developer experience (DX)** and platform adoption metrics?  
+8️⃣ Describe **cross-team collaboration** between platform and product engineering.  
+9️⃣ How do you handle **platform evolution** without breaking existing workflows?  
+🔟 What tools do you use for **observability of platform health** (SLOs for provisioning, error budgets)?  
+
+🎯 Pro Tip:  
+Great Platform Engineers think like **product managers for infrastructure**.  
+Show metrics: *"Our self-service portal reduced provisioning time from 2 weeks to 15 minutes, with 95% developer satisfaction."* 📊  
