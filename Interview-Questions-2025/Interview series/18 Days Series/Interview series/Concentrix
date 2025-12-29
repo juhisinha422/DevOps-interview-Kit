@@ -1,0 +1,16 @@
+DevOps L1 Interview Series 
+(From Concentrix!)
+
+Colleague’s real interview 
+
+
+Q: Zero Downtime K8s Upgrades?
+Q: How to upgrade Kubernetes clusters without downtime?
+
+Quick tip: Use rolling updates via Deployment strategies + multiple node pools (drain/cordon old nodes first).
+
+Deep dive in comments:
+1.	Scale up new version replicas gradually
+2.	Readiness probes ensure traffic only hits healthy pods
+3.	Automate with Cluster Autoscaler on GKE/EKS
+Master this for L1 roles! What’s your go-to strategy?
