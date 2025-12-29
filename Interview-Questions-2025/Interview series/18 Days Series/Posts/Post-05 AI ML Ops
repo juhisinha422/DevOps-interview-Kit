@@ -1,0 +1,23 @@
+Post 5: AI/ML Ops Engineer Interview  
+Fresher Level (0–1 Year)
+
+The hottest role in tech right now — **AI/ML Ops** where DevOps meets Machine Learning! 🔥  
+MLOps Engineers bridge data scientists and production infrastructure to deploy AI models at scale.  
+
+If you're starting in this exciting space, these foundational questions will get you interview-ready 👇  
+
+💡 Common AI/ML Ops Interview Questions for Freshers:
+1️⃣ What is **MLOps**, and how does it differ from traditional DevOps?  
+2️⃣ Explain the key stages of the **ML lifecycle** (data prep → training → deployment → monitoring).  
+3️⃣ What tools are commonly used for **model versioning** (e.g., MLflow, DVC)?  
+4️⃣ How do you containerize ML models for deployment (Docker + inference servers)?  
+5️⃣ What is **model drift**, and why does it matter in production?  
+6️⃣ Explain the difference between **batch inference** and **real-time inference**.  
+7️⃣ How would you deploy a simple ML model using **Kubernetes** or serverless platforms?  
+8️⃣ What role does **CI/CD** play in the MLOps workflow?  
+9️⃣ How do you monitor ML models in production (accuracy, latency, data drift)?  
+🔟 What are some challenges in scaling ML inference across multiple GPUs?  
+
+🎯 Pro Tip:  
+Start with a **simple end-to-end project** — train a model with scikit-learn, containerize it, deploy to cloud, and add basic monitoring.  
+Hands-on MLOps demos > theoretical knowledge every time! 🧪  
