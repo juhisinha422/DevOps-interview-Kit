@@ -1,0 +1,44 @@
+DevOps Interview Command Series — Kubernetes (Day 10) ☸️
+
+Kubernetes is the backbone of container orchestration in modern DevOps.
+From auto-scaling and self-healing to zero-downtime deployments, Kubernetes runs production at scale.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Kubernetes commands you must know:
+
+kubectl version
+kubectl cluster-info
+kubectl get nodes
+kubectl get namespaces
+
+kubectl get pods
+kubectl get pods -n namespace
+kubectl describe pod pod-name
+kubectl logs pod-name
+kubectl logs pod-name -c container
+
+kubectl exec -it pod-name -- /bin/sh
+kubectl top pod
+kubectl top node
+
+kubectl apply -f file.yaml
+kubectl delete -f file.yaml
+
+kubectl get deploy
+kubectl rollout status deploy app
+kubectl rollout history deploy app
+kubectl rollout undo deploy app
+
+kubectl get svc
+kubectl describe svc service-name
+kubectl get ingress
+
+kubectl get configmap
+kubectl get secret
+
+🎯 Interview Focus
+• Pod lifecycle & crash troubleshooting
+• Deployment strategies & rollbacks
+• Service types & networking
+• ConfigMaps vs Secrets
+• Resource monitoring & scaling basics
+• Kubernetes vs Docker runtime
