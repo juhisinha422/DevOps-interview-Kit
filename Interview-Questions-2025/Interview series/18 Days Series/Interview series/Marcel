@@ -1,0 +1,14 @@
+DevOps Interview Series :  Marcel Deep Dive! (Terraform + Azure + K8s Focus)
+
+Colleague crushed these at Marcel! L1-L2 mix on IaC, pipelines, and troubleshooting. 
+
+Quick teaser: Terraform modules > ARM for multi-cloud reusability.
+
+Top 5 picks (full list + answers in comments 👇):
+1.	Terraform vs ARM templates? (Terraform: declarative, state mgmt, multi-cloud)
+2.	Import existing Azure resources into Terraform? (terraform import)
+3.	count vs for_each in Terraform? (count: indexed; for_each: set-based)
+4.	Troubleshoot K8s pod issues? (kubectl logs/describe/events)
+5.	Azure DevOps pipeline stages? (Build > Test > Deploy > Key Vault secrets)
+
+Pro tip: Always share folder structure (env/prod/dev > modules > main.tf)!
