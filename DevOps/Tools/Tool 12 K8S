@@ -1,0 +1,51 @@
+🚀 DevOps Interview Preparation – Tool 12
+
+Kubernetes (Basics + Advanced) | 0–2 Years Experience
+
+Kubernetes is the heart of cloud-native DevOps.
+Interviewers don’t expect mastery — but they do expect you to understand how applications actually run in Kubernetes.
+
+📌 Focus: Kubernetes Interview Questions (Basics + Advanced)
+
+• What is Kubernetes and why is it used?
+• Kubernetes architecture (master vs worker nodes)
+• What is a cluster?
+• What is a Pod?
+• Pod vs container
+• What is a Deployment?
+• Deployment vs StatefulSet vs DaemonSet
+• What is a ReplicaSet?
+• What is a Service in Kubernetes?
+• Service types (ClusterIP, NodePort, LoadBalancer)
+• What is Ingress?
+• Ingress vs LoadBalancer service
+• What is ConfigMap?
+• What is Secret?
+• How do you store sensitive data in Kubernetes?
+• What is Namespace?
+• Why are namespaces used?
+• What is a label and selector?
+🔹 Advanced Kubernetes Concepts (Beginner-Friendly)
+
+• What is HPA (Horizontal Pod Autoscaler)?
+• How does auto-scaling work in Kubernetes?
+• What is liveness and readiness probe?
+• Difference between liveness and readiness probe
+• What is resource request and limit?
+• What happens when a pod exceeds memory limit?
+• What is rolling update?
+• Rolling update vs recreate strategy
+• What is Helm?
+• Why is Helm used?
+• What is CRD (Custom Resource Definition)?
+• What is RBAC?
+• Role vs ClusterRole
+• How do you secure a Kubernetes cluster?
+• How do you troubleshoot a failing pod?
+• Common Kubernetes mistakes beginners make
+• Real-world Kubernetes deployment flow
+
+Interview Tip:
+If you can explain:
+👉 “Docker image → Deployment → Service → Ingress → Scale”
+you already sound like a real Kubernetes DevOps engineer, even with 0–2 years of experience.
