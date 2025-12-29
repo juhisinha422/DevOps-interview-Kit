@@ -1,0 +1,56 @@
+DevOps Interview Preparation
+2–4 Years Experience | Tool 2
+Git & GitHub (Advanced + Real-World Usage)
+
+At 2–4 years, interviewers expect you to:
+
+Work confidently with teams
+
+Handle merge conflicts
+
+Follow branching strategies
+
+Use Git in CI/CD & GitOps workflows
+
+🔹 Git Interview Questions (2–4 yrs)
+
+• Difference between git fetch and git pull
+• git rebase vs git merge — when do you use which?
+• What is a detached HEAD state?
+• How do you resolve merge conflicts?
+• Explain Git branching strategies (GitFlow, Trunk-based)
+• How do you revert a commit already pushed to remote?
+• Difference between git reset --soft, --mixed, --hard
+• What is git cherry-pick and its use case?
+• How do you squash commits and why?
+• How do you tag releases in Git?
+• What are hooks in Git?
+• How do you maintain clean commit history?
+• How do you handle secrets in Git repositories?
+
+🔹 GitHub Interview Questions
+
+• GitHub vs GitLab vs Bitbucket
+• What are protected branches?
+• What are pull request best practices?
+• How do code reviews improve quality?
+• What is GitHub Actions?
+• How does GitHub Actions integrate with CI/CD?
+• How do you secure GitHub repositories?
+• What are GitHub environments?
+• How do you manage secrets in GitHub?
+• What is GitOps?
+• GitHub + Kubernetes GitOps flow (high level)
+
+🔹 Real-World Scenarios
+
+• Accidentally pushed wrong code to main — what will you do?
+• Multiple developers modifying the same file — how do you handle it?
+• Pipeline triggered on every commit — how do you optimize it?
+• How do you enforce quality checks before merge?
+• How do you rollback a release using Git?
+
+ Interview Tip:
+Say this confidently:
+
+👉 “We use feature branches, PR reviews, protected main branch, and CI checks before merge.”
