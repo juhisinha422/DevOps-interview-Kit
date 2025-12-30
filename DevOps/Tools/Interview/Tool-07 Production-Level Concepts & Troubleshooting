@@ -1,0 +1,48 @@
+ DevOps Interview Preparation hashtag#Kubernetes 2–4 Years Experience | Tool 7 
+Production-Level Concepts & Troubleshooting
+
+For 2–4 years experience, interviewers expect you to design, operate, scale, and troubleshoot Kubernetes clusters, not just deploy a basic pod.
+
+🔹 Kubernetes Interview Questions (2–4 yrs)
+
+• What is Kubernetes and why is it used in production?
+• Kubernetes architecture (Control Plane & Worker Nodes)
+• Role of API Server, Scheduler, Controller Manager, etcd
+• Pod vs Deployment vs StatefulSet vs DaemonSet
+• ReplicaSet vs Deployment
+• What happens when a pod crashes?
+• Liveness vs Readiness vs Startup probes
+• ConfigMap vs Secret
+• How does Kubernetes handle service discovery?
+• Service types (ClusterIP, NodePort, LoadBalancer)
+• Ingress vs Service
+• What is Helm and why is it used?
+• Rolling updates and rollback in Kubernetes
+• Horizontal Pod Autoscaler (HPA)
+• How does Kubernetes handle node failure?
+• Resource requests vs limits
+• How do you secure Kubernetes workloads?
+• RBAC in Kubernetes
+• Namespaces and their importance
+• Kubernetes networking basics (CNI)
+• Pod-to-pod communication
+• Node affinity vs pod affinity
+• Taints and tolerations
+• Stateful applications in Kubernetes
+• Persistent Volumes (PV) & Persistent Volume Claims (PVC)
+• Kubernetes secrets encryption
+• Cluster upgrades strategy
+• Multi-environment Kubernetes setup
+• Kubernetes monitoring (Prometheus & Grafana)
+• Pod stuck in CrashLoopBackOff — troubleshooting steps
+• Application not accessible via Ingress — what will you check?
+• Pods not scaling even when CPU is high — why?
+• Node goes NotReady — what actions will you take?
+• Deployment failed after update — how will you rollback?
+• Config change without redeployment — how?
+• Secrets accidentally exposed — mitigation steps
+
+💡 Interview Tip:
+If you say:
+👉 “I troubleshoot using kubectl logs, describe, events, and metrics”
+you already sound like a production-ready Kubernetes engineer.
