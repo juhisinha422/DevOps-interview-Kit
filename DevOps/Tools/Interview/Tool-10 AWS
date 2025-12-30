@@ -1,0 +1,57 @@
+DevOps Interview Preparation AWS 
+2–4 Years Experience | Tool 10 
+
+Production-Level Cloud for DevOps Engineers
+
+At 2–4 years, interviewers expect you to design, secure, monitor, and optimize AWS workloads, not just create resources.
+
+🔹 Core AWS Interview Questions (2–4 yrs)
+
+• Why AWS is widely used in production?
+• AWS global infrastructure (Region, AZ, Edge)
+• What happens when you launch an EC2 instance?
+• EC2 vs ECS vs EKS — when to use which?
+• EC2 vs ECS vs EKS — when to use which?
+• AMI — why and how do you create it?
+• Auto Scaling Groups — real use case
+• Application Load Balancer vs Network Load Balancer
+• How does ALB routing work?
+• What is IAM and why is it critical?
+• IAM user vs role vs policy
+• How do you follow least-privilege access?
+• How do you manage secrets in AWS?
+
+🔹 Networking & Storage (Important for Interviews)
+
+• What is VPC and why do we need it?
+• Public vs private subnet
+• Route tables and Internet Gateway
+• NAT Gateway — why is it required?
+• Security Group vs NACL
+• S3 storage classes and lifecycle rules
+• EBS vs EFS vs S3
+• How do you secure S3 buckets?
+
+🔹 DevOps-Focused AWS Services
+
+• CloudWatch — metrics, logs, alarms
+• CloudTrail — auditing & security
+• AWS CodeBuild / CodeDeploy / CodePipeline
+• ECR — Docker image registry
+• Secrets Manager vs Parameter Store
+• AWS CLI vs SDK
+• How does AWS integrate with CI/CD?
+
+🔹 Real-World AWS Scenarios
+
+• EC2 instance is unreachable — troubleshooting steps
+• Application is slow — how will you debug using AWS tools?
+• Sudden AWS cost spike — how will you investigate?
+• IAM permission issue blocking deployment — how to fix?
+• How do you implement high availability in AWS?
+• How do you do rollback in AWS deployments?
+
+Interview Tip:
+If you say:
+ “We use ALB, Auto Scaling, IAM roles, and CloudWatch for production workloads”
+you already sound like a strong 2–4 years DevOps engineer.
