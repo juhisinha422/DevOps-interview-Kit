@@ -1,0 +1,50 @@
+ DevOps Interview preparation GitHub Action 2–4 Years Experience | Tool 4
+
+
+GitHub Actions – Modern CI/CD (Production Ready)
+
+For 2–4 years experience, interviewers expect you to design secure, optimized, and scalable CI/CD pipelines, not just write a basic YAML file.
+
+🔹 GitHub Actions Interview Questions (2–4 yrs)
+
+• What is GitHub Actions and why is it popular?
+• How does GitHub Actions work internally?
+• Workflow vs Job vs Step 
+• What are runners? (Hosted vs Self-hosted)
+• How does GitHub Actions differ from Jenkins?
+• What triggers can start a workflow?
+• How do you control pipeline execution using filters?
+• What are matrix builds and their use cases?
+• How do you manage secrets securely in GitHub Actions?
+• What are GitHub environments?
+• How do approvals work before deployment?
+• How do you reuse workflows?
+• How do you optimize pipeline execution time?
+• GitHub Actions with Docker
+• GitHub Actions with Kubernetes
+• How do you implement CI + CD using GitHub Actions?
+• How do you secure GitHub Actions pipelines?
+
+🔹 Real-World GitHub Actions Scenarios
+
+• Pipeline running on every commit — how do you restrict it?
+• Secrets exposed in workflow logs — how will you fix it?
+• Workflow passes in feature branch but fails in main — why?
+• Deployment should happen only after manual approval — how?
+• How do you rollback a deployment using GitHub Actions?
+• How do you manage multi-environment deployments (Dev / QA / Prod)?
+
+🔹 Best Practices (2–4 yrs Level)
+
+• Use environment protection rules
+• Use reusable workflows
+• Separate CI and CD pipelines
+• Store secrets in GitHub Secrets (never in YAML)
+• Use self-hosted runners for better control
+• Enable branch protection rules
+• Follow least-privilege access
+
+💡 Interview Tip:
+If you say:
+ “We use GitHub Actions with environment approvals, reusable workflows, and branch protection rules”
+you already sound like a strong 2–4 years DevOps engineer.
