@@ -1,0 +1,51 @@
+ DevOps Interview Preparation Terraform 2–4 Years Experience | Tool 8
+ Infrastructure as Code (Production Level)
+
+For 2–4 years experience, interviewers expect you to design reusable, secure, and scalable IaC, not just write basic Terraform code.
+
+🔹 Terraform Interview Questions (2–4 yrs)
+
+• What is Infrastructure as Code (IaC)?
+• Why Terraform over CloudFormation / ARM templates?
+• Terraform architecture
+• Terraform init, plan, apply — what happens internally?
+• What is Terraform state and why is it important?
+• Local state vs remote state
+• How do you store Terraform state securely?
+• What is state locking and why is it needed?
+• What are Terraform providers?
+• What are Terraform modules?
+• How do you create reusable modules?
+• Variables vs locals
+• count vs for_each
+• How do you manage multiple environments in Terraform?
+• How do you handle secrets in Terraform?
+• Terraform workspaces — when to use and when not?
+• How do you import existing infrastructure into Terraform?
+• How do you destroy resources safely?
+• How do you perform rollback using Terraform?
+
+🔹 Advanced Terraform Concepts
+
+• Backend configuration (S3 + DynamoDB)
+• Terraform dependency graph
+• Lifecycle rules
+• Prevent accidental deletion (prevent_destroy)
+• Handling drift in infrastructure
+• Terraform with CI/CD pipelines
+• Terraform security best practices
+• Terraform vs Terragrunt
+• Managing large Terraform codebases
+🔹 Real-World Terraform Scenarios
+
+• Terraform apply failed midway — what will you do?
+• State file got corrupted — recovery steps
+• Resource created manually in cloud — how do you manage it?
+• Multiple engineers running Terraform — how do you avoid conflicts?
+• How do you review Terraform changes before applying?
+
+💡 Interview Tip:
+If you say:
+👉 “We use remote state with locking, modular Terraform, and CI/CD-based applies”
+you already sound like a strong 2–4 years
+DevOps engineer.
