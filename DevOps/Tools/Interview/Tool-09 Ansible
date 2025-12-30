@@ -1,0 +1,45 @@
+DevOps Interview Preparation Ansible
+2–4 Years Experience | Tool 9
+Configuration Management & Automation
+
+For 2–4 years experience, interviewers expect you to automate at scale, write clean playbooks, and troubleshoot failures, not just run ad-hoc commands.
+
+🔹 Ansible Interview Questions (2–4 yrs)
+
+• What is Ansible and why is it used?
+• Agentless architecture — how does Ansible work?
+• Push vs pull model
+• Inventory file (static vs dynamic)
+• What are playbooks?
+• Role of YAML in Ansible
+• Tasks vs handlers
+• Variables and facts
+• What are Ansible roles?
+• How do you structure Ansible roles?
+• Ansible modules vs plugins
+• Idempotency — why is it important?
+• Ansible vault — why and how?
+• How do you manage secrets securely?
+• Ansible vs Terraform — when to use which?
+• Ansible vs Chef/Puppet
+• How do you run Ansible at scale?
+• Error handling in Ansible playbooks
+• Dynamic inventory with cloud providers
+• Jinja2 templates
+• Ansible collections
+• Tags and their use cases
+• Delegation & serial execution
+• Rolling updates using Ansible
+• Check mode & diff mode
+• Performance tuning in Ansible
+• Ansible AWX / Tower basics
+• Playbook fails on one host — how will you handle it?
+• Configuration drift — how do you detect and fix it?
+• Secrets accidentally committed — mitigation steps
+• Need zero-downtime update using Ansible — how?
+• How do you rollback configuration changes?
+
+💡 Interview Tip:
+If you say:
+👉 “We use Ansible roles, vault for secrets, and dynamic inventory”
+you already sound like a production-ready DevOps engineer.
