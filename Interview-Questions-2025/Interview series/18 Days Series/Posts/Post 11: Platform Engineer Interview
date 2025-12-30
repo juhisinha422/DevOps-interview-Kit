@@ -1,0 +1,20 @@
+Post 11: Platform Engineer Interview
+Staff / Principal Level (8–12 Years)
+Building platforms at enterprise scale — where self-service, standardization, and sustainability define success! 🌐  
+At this level, you’re not just managing systems — you’re architecting ecosystems that accelerate thousands of developers across the org.
+
+Test your strategic Platform Engineering mind 👇
+💡 Common Platform Engineer Interview Questions (8–12 Years Experience):  
+1️⃣ How do you architect a self-service internal developer platform (IDP) used by 500+ teams?  
+2️⃣ Explain how you’d measure developer productivity on such platforms.  
+3️⃣ What’s your approach to multi-cloud abstraction and standardization using Terraform modules or blueprints?  
+4️⃣ Describe your cost governance and chargeback model for shared infrastructure.  
+5️⃣ How do you ensure observability as a platform service (logs, metrics, traces) across org-wide workloads?  
+6️⃣ What’s your strategy for policy enforcement and golden paths without blocking innovation?  
+7️⃣ Share how you’ve implemented progressive delivery (feature flags, canary, blue-green) at organizational scale.  
+8️⃣ How do you integrate security and compliance natively into your platform workflows?  
+9️⃣ What frameworks do you use for disaster recovery and business continuity at global scale?  
+🔟 How do you promote a platform-first culture where teams want to onboard?
+🎯 Pro Tip:  
+Staff-level platform engineers blend architecture with advocacy — “Our unified IDP cut environment provisioning time from 2 days to 15 minutes, empowering 700+ developers globally.”  
+Remember: platforms are products — treat developers as users, not consumers.
