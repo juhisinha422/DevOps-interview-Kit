@@ -1,0 +1,44 @@
+DevOps Interview Preparation GitLab CI/CD 2–4 Years Experience | Tool 5
+
+ Enterprise-Level CI/CD Deep Dive
+
+GitLab CI/CD is powerful because CI, CD, security, and DevOps live in one platform.
+For 2–4 years experience, interviewers expect real pipeline ownership, not just YAML basics.
+
+🔹 GitLab CI/CD Interview Questions (2–4 yrs)
+
+• What is GitLab CI/CD and how does it work?
+• GitLab CI architecture
+• What is .gitlab-ci.yml and where is it stored?
+• Stages vs Jobs — difference and execution flow
+• What are GitLab Runners? (Shared vs Specific)
+• How does a runner pick a job?
+• What are GitLab CI variables?
+• How do you manage secrets securely in GitLab CI?
+• What are artifacts and cache?
+• Cache vs artifacts — when to use which?
+• How do you implement multi-stage pipelines?
+• GitLab CI with Docker
+• GitLab CI with Kubernetes
+• What is GitLab Auto DevOps?
+• GitLab CI vs Jenkins vs GitHub Actions
+• How do you secure GitLab CI pipelines?
+• How do you scale GitLab runners?
+• Runner not picking jobs — troubleshooting steps
+• Pipeline slow due to Docker image pull — optimization
+• Secrets printed in logs — immediate fix
+• Different deployments for Dev / QA / Prod — how?
+• How do you implement rollback in GitLab CI?
+• Pipeline failed in production stage — what next?
+• Keep .gitlab-ci.yml clean and modular
+• Use cache to speed up pipelines
+• Protect variables for production
+• Restrict runner permissions
+• Use manual jobs for production deployments
+• Monitor runners for performance
+• Follow least privilege access
+
+Interview Tip:
+If you say:
+👉 “We use protected variables, manual approvals, and environment-based deployments in GitLab CI”
+you already sound like a solid 2–4 years DevOps engineer.
