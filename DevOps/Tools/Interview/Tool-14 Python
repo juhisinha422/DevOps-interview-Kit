@@ -1,0 +1,53 @@
+DevOps Interview Preparation 
+2–4 Years Experience | Tool 14 | Python for DevOps
+Advanced Automation & Scripting
+
+At 2–4 years, companies expect you to automate repetitive work, integrate APIs, and support CI/CD & cloud operations using Python.
+
+🔹 Core Python Concepts (DevOps Focused)
+
+• Why Python is preferred in DevOps?
+• Virtual environments & dependency management
+• Python scripting vs shell scripting
+• Exception handling — real use cases
+• Logging in Python
+• Working with JSON & YAML
+• Environment variables in Python
+
+🔹 Python for System & Cloud Automation
+
+• File & directory automation
+• OS module vs subprocess module
+• Automating Linux admin tasks
+• Calling REST APIs using Python
+• Using Python with AWS / Azure / GCP SDKs
+• Python for cloud resource automation
+🔹 Python in CI/CD Pipelines
+
+• Using Python scripts in Jenkins pipelines
+• Python in GitHub Actions
+• Python in GitLab CI
+• Writing custom pipeline utilities
+• Handling secrets securely in Python scripts
+
+🔹 Advanced Python Concepts (Interview Favorite)
+
+• Writing modular & reusable scripts
+• Python packaging basics
+• Multithreading vs multiprocessing
+• Async Python — when to use?
+• Python performance optimization
+• Error handling in production scripts
+🔹 Real-World Python Scenarios
+
+• Pipeline failing due to Python dependency issue — fix?
+• API automation script failing intermittently — debugging steps?
+• Script works locally but fails in CI — why?
+• Secrets accidentally printed in logs — how to prevent?
+• Long-running script blocking pipeline — solution?
+
+ Interview Tip:
+If you say:
+👉 “I write modular Python scripts, handle APIs, and integrate them into CI/CD pipelines”
+you instantly stand out as a strong DevOps
+engineer.
