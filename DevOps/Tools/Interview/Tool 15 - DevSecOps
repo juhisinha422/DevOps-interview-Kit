@@ -1,0 +1,64 @@
+DevOps Interview Preparation DevSecOps | 2–4 Years Experience | Tool 15
+Security & DevSecOps – Real-World DevOps Security
+
+At 2–4 years, interviewers expect you to build secure pipelines, manage secrets properly, and follow cloud & Kubernetes security best practices.
+
+🔹 Core Security Concepts
+
+• What is DevSecOps?
+• Shift-left security — why it matters?
+• Shared responsibility model
+• Principle of least privilege
+• Secrets vs credentials vs tokens
+• Common security mistakes in DevOps
+
+🔹 CI/CD Pipeline Security
+
+• Securing Jenkins pipelines
+• GitHub Actions security best practices
+• GitLab CI security features
+• Protecting secrets in pipelines
+• Secret rotation strategies
+• Securing self-hosted runners
+
+🔹 Cloud Security (AWS / Azure / GCP)
+
+• IAM roles vs users
+• Service accounts (GCP) — best practices
+• Managed identities (Azure)
+• AWS IAM roles for EC2 & EKS
+• Network security — VPC, NSG, Security Groups
+• Cloud security monitoring
+
+🔹 Docker & Kubernetes Security
+
+• Docker image security best practices
+• Distroless & minimal base images
+• Image vulnerability scanning
+• Kubernetes RBAC
+• Network policies in Kubernetes
+• Pod Security Standards (PSS)
+• Secrets management in Kubernetes
+
+🔹 Advanced DevSecOps Concepts
+
+ (Interview Favorites)
+• SAST vs DAST vs SCA
+• Policy-as-Code (OPA, Kyverno)
+• Admission controllers in Kubernetes
+• Zero-trust architecture
+• Supply chain security
+• Securing Terraform & IaC
+
+🔹 Real-World Security Scenarios
+
+• Secrets leaked in Git — immediate actions?
+• Kubernetes pod compromised — response steps?
+• Pipeline exposed sensitive logs — how to fix?
+• IAM permission too broad — how to redesign?
+• Vulnerability found in production image — what next?
+
+ Interview Tip:
+If you say:
+ “We follow least privilege, secure pipelines, scan images, and manage secrets properly”
+you already sound like a security-aware DevOps engineer.
