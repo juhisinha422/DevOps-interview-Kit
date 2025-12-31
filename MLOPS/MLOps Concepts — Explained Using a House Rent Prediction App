@@ -1,0 +1,130 @@
+MLOps Concepts — Explained Using a House Rent Prediction App
+
+Many engineers struggle with MLOps terms because everything sounds similar.
+Let’s clear it up with one real example.
+
+---
+
+### 1️⃣ Algorithm
+
+👉 The learning method
+
+Example:
+Linear Regression
+
+It defines how the system learns the relationship between:
+
+* house size
+* location
+* number of rooms
+ and rent
+
+---
+
+### 2️⃣ Training
+
+👉 The learning process
+
+We give the algorithm:
+
+* historical house data
+* actual rents
+
+Training =
+finding the best numbers (weights) that fit the data.
+
+---
+
+### 3️⃣ Model
+
+👉 The learned result
+
+After training, we get a formula like:
+
+```
+rent = (size × w1) + (rooms × w2) + (location × w3) + bias
+```
+
+This trained formula is the model.
+
+---
+
+### 4️⃣ Model Artifact
+
+👉 Stored version of the model
+
+The trained model is saved as a file:
+
+* `rent_model.pkl`
+* `rent_model.json`
+
+This file contains:
+
+* learned weights
+* model metadata
+
+This is what MLOps systems track and deploy.
+
+---
+
+### 5️⃣ Inference
+
+👉 Using the model
+
+When a user enters:
+
+* 2 BHK
+* 1200 sq ft
+* Bangalore
+
+The system runs the model on this input.
+That process is inference.
+
+---
+
+### 6️⃣ Prediction
+
+👉 The output
+
+The result:
+
+```
+Predicted rent = ₹32,000
+```
+
+That number is the prediction.
+
+---
+
+### 7️⃣ Model Deployment
+
+👉 Making the model available
+
+We expose the model as:
+
+* an API
+* a service
+* a container
+
+So apps can call:
+
+```
+/predict-rent
+```
+
+---
+
+### 🧠 One-line memory trick
+
+* **Algorithm** → how to learn
+* **Training** → learning happens
+* **Model** → learned knowledge
+* **Artifact** → saved model file
+* **Inference** → model running
+* **Prediction** → output value
+* **Deployment** → model in production
+
+---
+
+If these terms ever felt confusing — you’re not alone.
+MLOps becomes simple when you tie it to a real use case.
