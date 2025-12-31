@@ -1,0 +1,57 @@
+DevOps Interview Preparation
+2–4 Years Experience | Tool 13 Monitoring & Observability – Production Level Systems
+
+For 2–4 years experience, interviewers expect you to design monitoring, create meaningful alerts, and troubleshoot production incidents — not just install tools.
+
+🔹 Core Monitoring Concepts
+
+• What is monitoring vs observability?
+• Metrics vs logs vs traces
+• White-box vs black-box monitoring
+• SLIs, SLOs & SLAs — why they matter?
+• Alert fatigue — how do you avoid it?
+• What should you monitor in production systems?
+
+🔹 Prometheus Interview Questions (2–4 yrs)
+
+• Prometheus architecture
+• Pull vs push model — pros & cons
+• Types of Prometheus metrics
+• Exporters and ServiceMonitor
+• PromQL basics (interview-level)
+• Recording rules — why are they needed?
+• Alertmanager — how it works?
+• Prometheus with Kubernetes
+• Handling high-cardinality metrics
+• Prometheus scaling strategies
+• Securing Prometheus endpoints
+🔹 Grafana Interview Questions
+
+• Grafana vs Kibana
+• Data sources in Grafana
+• Dashboard & panel design best practices
+• Variables and templating
+• Grafana alerting
+• Dashboard sharing & permissions
+• Grafana provisioning
+
+🔹 Cloud Monitoring (AWS / Azure / GCP)
+
+• CloudWatch vs Azure Monitor vs Cloud Monitoring
+• Logs, metrics & alerts in cloud
+• Centralized logging architecture
+• Monitoring cloud-native services
+• Cost-aware monitoring
+
+🔹 Real-World Monitoring Scenarios
+
+• Alert triggered but application is healthy — why?
+• Too many alerts during peak traffic — how to fix?
+• Prometheus not scraping targets — troubleshooting steps
+• Grafana dashboard showing no data — what will you check?
+• CPU is normal but application is slow — next steps?
+
+💡 Interview Tip:
+If you say:
+👉 “We monitor SLIs, use meaningful alerts, and troubleshoot using metrics + logs”
+you already sound like a production-ready DevOps engineer.
