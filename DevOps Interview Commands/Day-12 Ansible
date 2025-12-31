@@ -1,0 +1,38 @@
+DevOps Interview Command Series — Ansible (Day 12) ⚙️
+
+Ansible is a powerful configuration management & automation tool.
+From server provisioning to application deployments, Ansible enables agentless automation at scale.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Ansible commands you must know:
+
+ansible --version
+
+ansible all -m ping
+ansible web -m ping
+
+ansible-inventory --list
+ansible-inventory --graph
+
+ansible-playbook playbook.yml
+ansible-playbook playbook.yml --check
+ansible-playbook playbook.yml --diff
+
+ansible-playbook playbook.yml --syntax-check
+ansible-playbook playbook.yml --start-at-task "task-name"
+
+ansible-playbook playbook.yml -i inventory
+ansible-playbook playbook.yml -l hostgroup
+
+ansible-doc -l
+ansible-doc yum
+
+ansible-galaxy init role_name
+ansible-galaxy install role_name
+
+🎯 Interview Focus
+• Agentless architecture (SSH-based)
+• Inventory & host grouping
+• Playbooks, roles & idempotency
+• Check mode & dry runs
+• Variables, handlers & templates
+• Ansible vs Terraform vs Bash
