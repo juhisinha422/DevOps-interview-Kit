@@ -1,0 +1,33 @@
+once asked this in a CI/CD interview....
+
+Q: Your pipeline succeeds, but the deployment doesn’t reflect in production. How do you troubleshoot?
+
+A: I’d verify whether the deployment stage actually ran, check environment-specific configs, and confirm the artifact version deployed matches the one built in the pipeline.
+
+Q: A CI pipeline suddenly starts failing without any code changes. What’s going on?
+
+A: It’s often due to external dependencies expired secrets, rotated credentials, updated base images, or third-party service outages. I’d check pipeline logs and recent infra changes.
+
+Q: Your CD pipeline deploys broken code even though tests passed. Why might that happen?
+
+A: Tests may not cover real production scenarios. I’d review test quality, add integration or contract tests, and ensure the pipeline blocks deployment on critical failures.
+
+Q: Pipeline execution is slow and delaying releases. How do you optimize it?
+
+A: I’d enable parallel stages, cache dependencies, reuse build artifacts, and eliminate redundant steps across environments.
+
+Q: Secrets are exposed in pipeline logs. How do you prevent this?
+
+A: I’d store secrets in a secure vault, mask sensitive variables, avoid echoing values in scripts, and enforce least-privilege access.
+
+Q: A rollback is required, but the pipeline doesn’t support it. How do you handle it?
+
+A: I’d deploy immutable artifacts with versioning so rollback is just redeploying a previous version, not rebuilding or patching live systems.
+
+Q: Different environments behave differently with the same pipeline. Why?
+
+A: Environment drift is the usual cause. I’d standardize configs, use the same artifacts across environments, and manage differences through controlled variables.
+
+Q: A pipeline deployment partially succeeds and leaves the system unstable. What do you do?
+
+A: I’d implement atomic deployments with health checks, automatic rollbacks, and post-deployment validation to ensure system consistency.
