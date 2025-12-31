@@ -1,0 +1,45 @@
+DevOps Interview Preparation | Advanced Kubernetes Troubleshooting
+2–4 Years Experience | Tool 17
+Interview Questions
+
+
+• Pod is stuck in Pending state — possible reasons?
+• Pod is in CrashLoopBackOff — how will you debug?
+• Difference between CrashLoopBackOff and ImagePullBackOff
+• Pod running but application not accessible — what will you check?
+• Node is NotReady — troubleshooting steps?
+• How do you debug a pod that keeps restarting?
+• Service is created but not reachable — why?
+• ClusterIP vs NodePort vs LoadBalancer — troubleshooting use cases
+• DNS issues inside Kubernetes — how to debug?
+• Pod-to-pod communication failing — reasons?
+• What is kube-proxy and how can it cause issues?
+• NetworkPolicy blocking traffic — how to identify?
+• Pod getting OOMKilled — how to fix?
+• CPU throttling in Kubernetes — how do you identify it?
+• Requests vs limits — impact on scheduling
+• Node running out of disk — what happens?
+• How does Kubernetes handle resource starvation?
+• Application not picking up updated ConfigMap — why?
+• Secret updated but pod still using old value — solution?
+• Deployment rollout stuck — how to debug?
+• Difference between RollingUpdate and
+Recreate
+• How do you rollback a failed deployment?
+• GKE node pool upgrade failed — what could be wrong?
+• Pod failing due to cloud IAM permissions — how to debug?
+• LoadBalancer service not getting external IP — checks?
+• Private cluster debugging challenges?
+• What happens when a node goes down?
+• Pod eviction — when does it happen?
+• How does Kubernetes self-healing work?
+• Difference between liveness & readiness probes
+• When should you use startup probes?
+• How do you debug etcd-related issues (high level)?
+• Traffic suddenly dropped after deployment — investigation steps?
+• One pod behaving differently from others — why?
+• Cluster works fine but CI/CD deployment fails — possible causes?
+• Kubernetes upgrade caused application failure — rollback strategy?
+
+Interview Tip:
+If you clearly explain how you debug step by step, interviewers know you’ve handled real production issues.
