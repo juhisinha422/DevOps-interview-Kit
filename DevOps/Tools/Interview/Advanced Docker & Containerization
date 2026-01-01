@@ -1,0 +1,55 @@
+ DevOps Interview Preparation | Advanced Docker & Containerization
+2–4 Years Experience | Day 19
+interview Questions 
+
+🔹 Docker Core Concepts (Advanced)
+
+• Docker architecture (client, daemon, registry)
+• How Docker uses Linux namespaces & cgroups?
+• Container vs VM — real production differences
+• What happens internally when you run docker run?
+• Difference between ENTRYPOINT and CMD
+
+🔹 Docker Images & Optimization
+
+• Docker image layers — how do they work?
+• Why are Docker images immutable?
+• How do you reduce Docker image size?
+• Multi-stage Docker builds — use cases
+• Distroless images — why and when?
+• How do you manage image versioning?
+
+🔹 Docker Networking & Storage
+
+• Docker bridge vs host vs overlay network
+• How does container DNS work?
+• Exposing ports — best practices
+• Docker volumes vs bind mounts
+• Data persistence in containers
+
+🔹 Docker Security (Interview Favorite)
+
+• Common Docker security risks
+• Running containers as non-root — why?
+• How do you scan Docker images for vulnerabilities?
+• Secrets management in Docker
+• Securing Docker daemon
+
+🔹 Docker in CI/CD Pipelines
+
+• Building Docker images in CI/CD
+• Docker caching in pipelines
+• Docker build failing in CI but working locally — why?
+• Handling Docker credentials securely in pipelines
+• Pushing images to private registries
+
+🔹 Real-World Docker Scenarios
+
+• Container keeps restarting — debugging approach?
+• Application works locally but fails in container — why?
+• High memory usage inside container — how to debug?
+• Image pulled successfully but container not starting — checks?
+• Docker disk space full — how to clean safely?
+
+ Interview Tip:
+If you explain how containers work internally, you clearly stand out from tool-only DevOps engineers.
