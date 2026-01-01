@@ -30,3 +30,15 @@ I faced these following questions and I have also added a small gist of answer:
 
 
 Note: I don't remember exactly how the questions were asked or framed in a scenario based way.
+
+
+Also, some questions are-
+1. Git branching strategy used in your project.
+2. Difference between git clone and git fork
+3. How the pods communicate with external internet?
+4. About connectivity in containers 
+5. How the state file are managed when 2 teams work simultaneously.
+6. Given a scenario like, if 2 teams are working on the same code then how the changes are committed.
+7. Suppose resources are created in the cloud then how you manage the state file.
+8. How to optimise the size of the docker image.
+9. What are the best way to secure the cicd pipeline which is followed in your project?
