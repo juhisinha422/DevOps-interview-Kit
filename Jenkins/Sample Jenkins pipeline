@@ -1,0 +1,54 @@
+Sample Jenkins Pipeline :
+
+ A Jenkins pipeline defines the entire application lifecycle, from build to deployment, using code written in a Jenkinsfile. The two types of syntax are Declarative (easier to use) and Scripted (more flexible, Groovy-based). 
+
+Here is a sample Declarative Jenkins pipeline
+
+
+pipeline {
+    agent any // Instructs Jenkins to run the entire pipeline on any available agent
+
+    stages {
+        stage('Build') {
+            steps {
+                // Run a shell command to build the project (e.g., 'make' or 'npm install')
+                sh 'echo "Building the application..."'
+                sh 'make' 
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                // Run tests and archive JUnit test reports
+                sh 'echo "Running tests..."'
+                sh 'make check'
+                junit 'reports/**/*.xml'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Deploy the application (e.g., to a staging or production environment)
+                sh 'echo "Deploying the application..."'
+                sh 'make publish'
+            }
+        }
+    }
+
+    // Post-actions that run after the pipeline completes, regardless of the status
+    post {
+        always {
+            echo 'Pipeline finished.'
+            // Example: Clean up the workspace
+            deleteDir()
+        }
+        success {
+            echo 'Pipeline succeeded! Sending email notification...'
+        }
+        failure {
+            echo 'Pipeline failed! Check console output for details.'
+        }
+    }
+}
+
+No alternative text description for this image
