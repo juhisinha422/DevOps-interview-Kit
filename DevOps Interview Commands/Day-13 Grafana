@@ -1,0 +1,36 @@
+DevOps Interview Command Series — Prometheus (Day 13) 📊
+
+Prometheus is the core monitoring & alerting system in cloud-native and Kubernetes environments.
+It helps DevOps & SRE teams observe system health, performance, and reliability in real time.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Prometheus commands & queries you must know:
+
+prometheus --version
+
+systemctl start prometheus
+systemctl status prometheus
+systemctl restart prometheus
+
+curl http://localhost:9090/metrics
+curl http://localhost:9090/api/v1/targets
+curl http://localhost:9090/api/v1/label/__name__/values
+
+# PromQL (Very Important)
+up
+node_cpu_seconds_total
+node_memory_MemAvailable_bytes
+rate(node_cpu_seconds_total[5m])
+sum(rate(container_cpu_usage_seconds_total[5m])) by (pod)
+histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))
+
+# Alertmanager
+amtool check-config alertmanager.yml
+amtool alert
+
+🎯 Interview Focus
+• Pull-based monitoring model
+• Exporters (node_exporter, kube-state-metrics)
+• PromQL basics & aggregations
+• Alert rules vs recording rules
+• Monitoring vs observability
+• Prometheus limitations & scalability
