@@ -1,0 +1,32 @@
+Attended interview for Sr Container Security Role even though I had like only 2 YOE.
+I faced these following questions and I have also added a small gist of answer:
+
+1) Docker Image Hardening - Reducing unwanted packages 
+2) How do you implement Docker security and integrity - Trivy Scan post docker build and SLSA Framework based hardening like Cosign Key for verifing integrity 
+3) Pod Security Context 
+4) Pod Security Policies ( Deprecated)
+5) Pod Security Standards and Pod Security Admission 
+6) Pod Disruption Budget 
+7) How will you implement a DevSecOps pipleline for Java Application 
+8) Container Host Hardening & Container Sandboxing - We can talk about Seccomp, SELinux, AppArmor and differences between them and additionally We can talk about Gvisor and Kata Containers. Removing unwanted packages and modules from the system.
+9) Kubernetes Secrets Management - ESO & Sealed Secrets 
+10) How Seccomp or Apparmor is implemented in Cluster ?
+11) K8s Runtime Detection - Falco, Tetragon or Stackrox
+12) IAC Scanning
+13) Terraform Validate vs Terraform Plan 
+14) SAST, SCA AND SBOM
+15) I was asked to write a CI workflow implementing SAST for Java application 
+16) Side Car Container 
+17) You're patching a VM for a vulnerability and How will you do it without down time ?
+18) How can you patch a group of servers ? - Ansible or Chef 
+19) Canary Deployment 
+20) Blue Green Deployment 
+21) I was asked to write a Docker File and reduce the attack surface of it.
+22) Service Mesh - Istio
+23) MTLS in Service Mesh - Istio 
+24) Istio deployment patterns - Sidecar Injection and Ambient Mesh Patterns 
+25) OPA Gatekeeper in K8s
+26) How will you keep track and maintain the docker image tags in CI and how will you incrementally do the release builds.
+
+
+Note: I don't remember exactly how the questions were asked or framed in a scenario based way.
