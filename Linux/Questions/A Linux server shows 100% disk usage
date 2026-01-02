@@ -1,0 +1,17 @@
+Interview Question
+A Linux server shows 100% disk usage on /var, but `du -sh /var` reports much less than the actual disk usage. How would you troubleshoot and fix this?
+
+Expected L2-Level Answer
+- First, confirm actual disk usage using `df -h`. If /var is 100%, move to next checks.
+- Run `du -sh /var/*` to verify directory-level usage. If it doesn’t match `df`, suspect deleted-but-open files.
+- Use `lsof | grep deleted` to find processes still holding deleted files. These files don’t appear in du but still consume space.
+- Identify which process is holding the space (e.g., a log file). Restart the service or truncate the file using `: > /proc/<PID>/fd/<FD>`.
+- If journal logs are large, check `journalctl --disk-usage` and vacuum with `journalctl --vacuum-size=500M`.
+- Verify inode usage with `df -i`. If inode exhaustion is the issue, find directories with too many small files using `find /var -xdev -type f | wc -l` and clean unnecessary files.
+
+Key Commands / Files
+- df -h, df -i
+- du -sh /var/*
+- lsof | grep deleted
+- journalctl, /var/log/
+- /proc/<PID>/fd/
