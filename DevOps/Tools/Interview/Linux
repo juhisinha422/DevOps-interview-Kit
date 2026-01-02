@@ -1,0 +1,40 @@
+DevOps Interview Preparation Series
+4–6 Years Experience | Tool 1 | Linux 
+
+Senior DevOps Interview Questions
+
+At 4–6 years, interviewers test depth, production exposure, troubleshooting & decision-making, not basic commands.
+
+Explain Linux boot process in detail
+Difference between BIOS and UEFI
+What happens after kernel is loaded?
+User space vs kernel space
+What is systemd and why is it important?
+Difference between process and thread
+How do you troubleshoot high CPU usage?
+How do you identify memory leaks in Linux?
+Zombie vs orphan process
+What happens when a process is killed?
+Inode — what is it and why it matters?
+Hard link vs soft link (real use cases)
+Difference between ext4 and xfs
+Disk is full but df -h shows free space — why?
+How do you troubleshoot disk I/O issues?
+How does DNS resolution work in Linux?
+How do you debug network connectivity issues?
+Difference between TCP and UDP at OS level
+What is iptables / nftables used for?
+How do you check open ports and connections?
+Explain Linux permission model in depth
+What is SUID, SGID, sticky bit?
+How do you secure a Linux server?
+SELinux — why do DevOps engineers fear it?
+How do you audit user activity in Linux?
+Server rebooted unexpectedly — what will you check?
+Application running but service is not accessible
+SSH login suddenly stopped working — why?
+System is slow but CPU & memory look normal
+Logs are not getting generated — troubleshooting steps
+
+ Interview Tip (4–6 yrs):
+If you explain WHY something happens internally, not just HOW to fix it, you clearly sound senior & production-ready.
