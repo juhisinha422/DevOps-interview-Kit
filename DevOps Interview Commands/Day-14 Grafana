@@ -1,0 +1,34 @@
+ DevOps Interview Command Series — Grafana (Day 14) 📈
+
+Grafana is the visualization layer of observability.
+It helps DevOps & SRE teams turn metrics into actionable insights using dashboards, alerts, and data sources like Prometheus, Loki, CloudWatch, and more.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Grafana commands & operations you must know:
+
+grafana-server -v
+
+systemctl start grafana-server
+systemctl status grafana-server
+systemctl restart grafana-server
+
+grafana-cli plugins list-remote
+grafana-cli plugins install plugin-name
+grafana-cli plugins update-all
+
+curl http://localhost:3000/api/health
+curl -u admin:password http://localhost:3000/api/datasources
+curl -u admin:password http://localhost:3000/api/search
+
+# Common Grafana Query Usage (Prometheus)
+rate(http_requests_total[5m])
+sum(rate(container_cpu_usage_seconds_total[5m])) by (pod)
+node_memory_MemAvailable_bytes
+histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))
+
+🎯 Interview Focus
+• Grafana vs Prometheus roles
+• Dashboards vs Panels
+• Alerts & notification channels
+• Datasource integrations
+• Variables & templating
+• Troubleshooting missing metrics
