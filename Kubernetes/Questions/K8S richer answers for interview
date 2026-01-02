@@ -1,0 +1,17 @@
+Network Policies
+✅ Strong answer: We improved cluster security by applying network policies so each app/ms talked only to what it needed. We added audit logging and automated rollout via CI.
+⚠️ Weak answer: I know NetworkPolicies.
+⚠️ Challenge: DNS broke because UDP 53 was blocked, so we updated rules to allow kube-dns traffic. We migrated to a CNI that supported NetworkPolicy properly.
+Video: https://lnkd.in/gCfkW7ba
+
+Ingress and Load Balancers
+✅ Strong answer: We used AWS Load Balancer Controller for secure routing, TLS termination and automated certificates. This improved uptime and simplified deployments.
+⚠️ Weak answer: I know AWS ALB and Kubernetes Ingress.
+⚠️ Challenge: Pods were not spreading across AZs, so we added topology spread constraints and tuned probes and autoscaling to balance traffic.
+Video: https://lnkd.in/g6iNyfYW
+
+StatefulSets
+✅ Strong answer: We deployed PostgreSQL as StatefulSets with persistent volumes and snapshot backups, and documented failover steps for quick recovery.
+⚠️ Weak answer: I know StatefulSets and persistent volumes.
+⚠️ Challenge: Replicas needed to be in separate AZs, so we used pod anti-affinity and fixed storage topology with proper volumeBindingMode.
+📺 Video: https://lnkd.in/gs7RMK9c
