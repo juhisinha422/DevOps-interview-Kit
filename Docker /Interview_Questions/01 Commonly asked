@@ -1,0 +1,33 @@
+once asked this in a Docker interview....!
+
+Q: Your container keeps restarting in production. How do you troubleshoot?
+
+A: I’d check container logs first, then inspect the exit code and health check configuration. Most restarts happen due to app crashes or failing health probes.
+
+Q: A Docker image works locally but fails in production. Why?
+
+A: The production environment may differ in OS, architecture, or environment variables. I’d compare base images, runtime configs, and secrets between environments.
+
+Q: Your container is running, but the application is unreachable. What’s wrong?
+
+A: It’s usually a port binding issue. I’d verify the exposed port, container port, and whether the app is listening on the correct interface.
+
+Q: Disk usage on the Docker host suddenly spikes and impacts production. How do you handle it?
+
+A: I’d check for unused images, containers, and volumes. Then I’d clean them safely and implement log rotation and image lifecycle policies.
+
+Q: A new container version breaks production traffic immediately after deploy. Why?
+
+A: The image may have changed behavior or dependencies. I’d roll back to the previous image tag and analyze the diff before redeploying.
+
+Q: Environment variables are set, but the container doesn’t pick them up. What’s happening?
+
+A: The container might need a restart, or variables may be overridden in the Dockerfile. I’d verify runtime flags and entrypoint scripts.
+
+Q: Containers can’t communicate with each other in production. How do you debug?
+
+A: I’d check Docker networks, container DNS resolution, and whether they’re attached to the same network.
+
+Q: A container passes health checks but still causes outages. How do you prevent this?
+
+A: Health checks may be too shallow. I’d implement deeper application-level checks and include readiness validation before routing traffic.
