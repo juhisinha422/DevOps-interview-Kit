@@ -1,0 +1,65 @@
+DevOps Interview Preparation Bash Script 4–6 Years Experience | Tool 2
+
+Senior DevOps Interview Questions.
+
+At 4–6 years, Bash scripting is evaluated on logic, reliability, error handling, performance, and real production usage.
+
+Difference between #!/bin/bash and #!/bin/sh
+
+How does Bash interpret a script
+internally?
+
+Difference between source and executing a script
+
+What are positional parameters and $@ vs $*?
+
+How does variable scope work in Bash?
+
+[[ ]] vs [ ] — differences
+
+Case statement vs if-else — when to use?
+
+For loop vs while loop — real use cases
+
+How do you break nested loops?
+
+What happens if a condition fails in a script?
+How do you define and use functions in Bash?
+
+How do you pass arguments to a function?
+
+Return value vs exit code — difference
+
+How do you reuse scripts across projects?
+
+How do you debug function-level issues?
+
+What is set -e, set -u, set -o pipefail?
+
+How do you handle failures gracefully in scripts?
+
+Difference between exit codes 0 and non-zero
+
+How do you log errors in Bash scripts?
+
+How do you debug a script running in production?
+
+Use cases of awk, sed, and grep
+
+How do you parse logs using Bash?
+
+How do you handle large files efficiently?
+
+Difference between cut and awk
+
+How do you automate daily admin tasks?
+
+Script works locally but fails in CI — why?
+
+Script stuck in infinite loop — how to debug?
+
+Script running slow — optimization approach?
+
+Handling secrets securely in Bash scripts
+
+When should Bash NOT be used and Python preferred?
