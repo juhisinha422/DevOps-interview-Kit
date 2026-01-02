@@ -1,0 +1,74 @@
+ DevOps Interview Preparation 4–6 Years Experience | Tool 3 | GIT
+
+For 4–6 years experience, interviewers focus on Git internals, branching strategies, conflict handling, and real production workflows — not just basic commands.
+
+🔹 Git Core & Internals
+
+How does Git work internally?
+
+What is the difference between working tree, staging area, and repository?
+
+What is a commit object in Git?
+How does Git store data (snapshots vs diffs)?
+
+What is the role of HEAD in Git?
+
+🔹 Branching & Merging
+
+What is a branching strategy and why is it important?
+
+Git Flow vs Trunk-based development
+
+Difference between merge and rebase
+
+When should you avoid rebasing?
+
+How do you resolve merge conflicts in production code?
+Advanced Git Commands
+
+Difference between git reset --soft, --mixed, --hard
+
+What does git cherry-pick do and when do you use it?
+
+git revert vs git reset — real use cases
+
+What is git stash and how do you use it effectively?
+
+How do you clean up local and remote branches?
+
+🔹 Collaboration & Code Review
+
+How do you manage large teams using Git?
+
+Pull request best practices
+How do you enforce code quality using Git workflows?
+
+How do you handle long-running feature branches?
+
+How do you prevent direct commits to main/master?
+
+🔹 Git Security & Best Practices
+
+How do you handle secrets committed to Git accidentally?
+
+How do you rewrite Git history safely?
+
+Signed commits — why are they important?
+
+How do you limit access to repositories?
+
+Git hooks — use cases in DevOps
+Real-World Git Scenarios
+
+Production bug fix needed but feature branch is incomplete — what will you do?
+
+Commit pushed with wrong message — how to fix?
+
+Large binary file pushed to repo — how to remove it?
+
+CI failing due to Git history issues — troubleshooting steps
+
+Repo size growing too fast — how do you control it?
+
+💡 Interview Tip (4–6 yrs):
+If you explain why you choose a branching strategy and how you protect main branches, you immediately sound senior & reliable.
