@@ -381,5 +381,7 @@ Use IAM Roles for Service Accounts (IRSA)
 Attach IAM role to Kubernetes service account
 
 ### Commands
-```kubectl annotate serviceaccount <sa> eks.amazonaws.com/role-arn=<arn>
+```bash
+kubectl annotate serviceaccount <sa> eks.amazonaws.com/role-arn=<arn>
+```
 
