@@ -1,0 +1,64 @@
+🚀 DevOps Interview Preparation #Azure
+4–6 Years Experience | Tool 6
+
+Explain Azure global architecture (regions, region pairs)
+
+Azure subscription vs management group vs resource group
+
+How does Azure Resource Manager (ARM) work internally?
+
+Azure RBAC vs Azure AD roles — differences
+
+Managed Identity — why and when do you use it?
+
+Azure VM Scale Sets — real production use cases
+Azure Load Balancer vs Application Gateway
+
+Azure VNet peering — limitations and scenarios
+
+Private Endpoint vs Service Endpoint
+
+Azure DNS resolution flow
+
+Azure Storage account types and performance tiers
+
+Blob vs File vs Queue vs Table storage — when to use what?
+
+Azure Backup vs Azure Site Recovery
+
+Azure Monitor vs Log Analytics vs Application Insights
+
+How do you design high availability in Azure?
+
+Azure autoscaling — how does it actually work?
+
+Azure Key Vault — secrets vs keys vs
+certificates
+
+How do you secure Azure resources at scale?
+
+Azure Policy vs Azure Blueprints
+
+Cost optimization strategies in Azure
+
+Azure Kubernetes Service (AKS) architecture
+
+AKS networking modes — differences
+
+AKS authentication & authorization
+
+AKS upgrade strategy in production
+
+Azure DevOps vs GitHub — when do you choose which?
+
+CI/CD deployment strategy for Azure workloads
+
+Azure outage happened — immediate action plan?
+
+Application slow in Azure but VM metrics look normal — why?
+Sudden cost spike in Azure — investigation steps
+
+How do you design multi-region disaster recovery in Azure?
+
+💡 Interview Tip (4–6 yrs):
+If you explain design choices, trade-offs, and failure handling, interviewers know you’ve worked on real Azure production systems.
