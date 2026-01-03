@@ -35,14 +35,14 @@ NAT Gateway in a public subnet with Internet Gateway
 
 Outbound rules in Security Groups and NACLs
 
-Commands
+### Commands
 ```bash
 aws ec2 describe-route-tables
 aws ec2 describe-nat-gateways
 ```
 
-3. Jenkins Docker build fails but works locally
-Theory
+### 3. Jenkins Docker build fails but works locally
+### Theory
 
 Docker builds in Jenkins depend on agent permissions, Docker runtime, and platform compatibility.
 
@@ -55,9 +55,11 @@ Docker daemon status
 OS or architecture mismatch
 
 Commands
+```bash
 docker ps
 systemctl status docker
 groups jenkins
+```
 
 4. New deployment caused high latency
 Theory
