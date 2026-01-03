@@ -1,0 +1,64 @@
+DevOps Interview Preparation AWS
+4–6 Years Experience | Tool 5
+
+Explain AWS global infrastructure in detail
+
+How does AWS IAM work internally?
+
+IAM user vs role vs group — real production use cases
+
+What is STS and why is it important?
+
+How does AWS ensure high availability?
+
+EC2 placement groups — types and use cases
+
+How does Auto Scaling work behind the scenes?
+
+ALB vs NLB vs CLB — when to use what?
+How does AWS Load Balancer health check work?
+
+How do you design highly available architecture in AWS?
+
+EBS vs EFS vs S3 — real production comparison
+
+What happens when an EBS volume is detached unexpectedly?
+
+S3 consistency model — explain with examples
+
+How do you secure S3 buckets at scale?
+
+How do you manage lifecycle policies in S3?
+
+How does VPC routing work internally?
+
+NAT Gateway vs NAT Instance — why is NAT Gateway preferred?
+
+What is VPC peering and its limitations?
+
+How do Security Groups differ from NACLs?
+
+How do you debug VPC connectivity issues?
+
+CloudWatch metrics vs logs vs alarms
+
+How do you design centralized logging in AWS?
+
+What is AWS Config and why is it used?
+
+How do you monitor cost anomalies in AWS?
+
+How do you optimize AWS costs without affecting performance?
+
+Terraform vs CloudFormation — what do you use in production and why?
+
+How do you manage multiple AWS accounts securely?
+
+What happens if IAM permissions are misconfigured in production?
+
+Region outage — how will your application behave?
+
+Production incident in AWS — step-by-step troubleshooting approach
+
+ Interview Tip (4–6 yrs):
+If you explain architecture decisions, failure scenarios, and cost + security trade-offs, you instantly sound senior & production-ready.
