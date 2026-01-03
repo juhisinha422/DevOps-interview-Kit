@@ -46,7 +46,7 @@ aws ec2 describe-nat-gateways
 
 Docker builds in Jenkins depend on agent permissions, Docker runtime, and platform compatibility.
 
-What to Check
+### What to Check
 
 Jenkins user Docker permissions
 
@@ -54,19 +54,19 @@ Docker daemon status
 
 OS or architecture mismatch
 
-Commands
+### Commands
 ```bash
 docker ps
 systemctl status docker
 groups jenkins
 ```
 
-4. New deployment caused high latency
-Theory
+### 4. New deployment caused high latency
+### Theory
 
 Latency can be introduced at application, container, or infrastructure layers after a deployment.
 
-What to Check
+### What to Check
 
 Metrics to identify latency source
 
@@ -76,12 +76,14 @@ Pod and node resource usage
 
 Load balancer and network configuration
 
-Commands
+### Commands
+```bash
 kubectl top pods
 kubectl logs <pod>
+```
 
-5. How do you rotate Kubernetes secrets without downtime?
-Theory
+### 5. How do you rotate Kubernetes secrets without downtime?
+### Theory
 
 Updating a secret does not restart pods automatically. A rolling update is required.
 
@@ -93,17 +95,19 @@ Update deployment to reference the new secret
 
 Let rolling update restart pods gradually
 
-Commands
+### Commands
+```bash
 kubectl create secret generic new-secret
 kubectl apply -f deployment.yaml
 kubectl rollout status deployment/<name>
+```
 
-6. Kubernetes node goes NotReady
-Theory
+### 6. Kubernetes node goes NotReady
+### Theory
 
 A node becomes NotReady when kubelet cannot communicate with the control plane or resources are exhausted.
 
-What to Check
+### What to Check
 
 Node conditions and events
 
@@ -111,16 +115,18 @@ Kubelet and container runtime
 
 Disk, memory, and network health
 
-Commands
+### Commands
+```bash
 kubectl describe node <node>
 systemctl status kubelet
+```
 
-7. Pods stuck in Pending state
-Theory
+### 7. Pods stuck in Pending state
+### Theory
 
 Pending means the scheduler cannot find a suitable node.
 
-Common Causes
+### Common Causes
 
 Node not ready or insufficient resources
 
@@ -128,12 +134,14 @@ Taints without tolerations
 
 NodeSelector or affinity mismatch
 
-Commands
+### Commands
+```bash
 kubectl describe pod <pod>
 kubectl describe node <node>
+```
 
-8. Traffic still going to old pods after deployment
-Theory
+### 8. Traffic still going to old pods after deployment
+### Theory
 
 Traffic routing depends on Services and pod readiness.
 
@@ -145,16 +153,18 @@ Deployment rollout stuck
 
 Ingress or routing misconfiguration
 
-Commands
+### Commands
+```bash
 kubectl get svc
 kubectl describe deployment <name>
+```
 
-9. App works inside cluster but fails via Ingress
-Theory
+### 9. App works inside cluster but fails via Ingress
+### Theory
 
 Ingress routes external traffic and depends on correct rules, services, and controller health.
 
-What to Check
+### What to Check
 
 Ingress host and path rules
 
@@ -162,16 +172,18 @@ Service name and port
 
 Ingress controller health
 
-Commands
+### Commands
+```bash
 kubectl describe ingress <name>
 kubectl get pods -n ingress-nginx
+```
 
-10. EKS node is Ready but no pods are scheduled
-Theory
+### 10. EKS node is Ready but no pods are scheduled
+### Theory
 
 Scheduler avoids nodes that violate scheduling rules.
 
-Possible Reasons
+### Possible Reasons
 
 Node taints without tolerations
 
@@ -179,15 +191,17 @@ Insufficient CPU or memory
 
 Label or selector mismatch
 
-Commands
+### Commands
+```bash
 kubectl describe node <node>
+```
 
-11. Pod restarts randomly but logs show no errors
-Theory
+### 11. Pod restarts randomly but logs show no errors
+### Theory
 
 Restarts may occur due to probe failures or resource pressure.
 
-What to Check
+### What to Check
 
 Pod events
 
@@ -197,16 +211,18 @@ Liveness and readiness probes
 
 Node stability
 
-Commands
+### Commands
+```bash
 kubectl describe pod <pod>
 kubectl top pod <pod>
+```
 
-12. Pods cannot resolve DNS names
-Theory
+### 12. Pods cannot resolve DNS names
+### Theory
 
 Kubernetes uses CoreDNS for internal and external DNS resolution.
 
-What to Check
+### What to Check
 
 CoreDNS pod status
 
@@ -214,17 +230,19 @@ kube-dns service and endpoints
 
 Pod DNS configuration
 
-Commands
+### Commands
+```bash
 kubectl get pods -n kube-system
 kubectl get svc kube-dns -n kube-system
 kubectl exec <pod> -- cat /etc/resolv.conf
+```
 
-13. kubectl exec into a pod is timing out
-Theory
+### 13. kubectl exec into a pod is timing out
+### Theory
 
 Exec requires network connectivity between API server, node, and kubelet.
 
-What to Check
+### What to Check
 
 Pod readiness
 
@@ -232,16 +250,18 @@ Network connectivity to node
 
 Kubelet status
 
-Commands
+### Commands
+```bash
 kubectl get pod <pod>
 systemctl status kubelet
+```
 
-14. Service shows endpoints = 0
-Theory
+### 14. Service shows endpoints = 0
+### Theory
 
 Endpoints are created only when Ready pods match service selectors.
 
-Common Causes
+### Common Causes
 
 Selector mismatch
 
@@ -249,16 +269,18 @@ Pods not Ready
 
 Namespace mismatch
 
-Commands
+### Commands
+```bash
 kubectl get endpoints <svc>
 kubectl get pods --show-labels
+```
 
-15. Application cannot pull images from a private registry
-Theory
+### 15. Application cannot pull images from a private registry
+### Theory
 
 Image pull failures occur due to authentication, naming, or network issues.
 
-What to Check
+### What to Check
 
 Image name and tag
 
@@ -266,16 +288,18 @@ imagePullSecrets configuration
 
 Node access to registry
 
-Commands
+### Commands
+```bash
 kubectl describe pod <pod>
 kubectl get secret
+```
 
-16. Pods are getting OOMKilled even with enough limits
-Theory
+### 16. Pods are getting OOMKilled even with enough limits
+### Theory
 
 OOMKill happens when memory usage exceeds container or namespace limits.
 
-Possible Causes
+### Possible Causes
 
 Application memory leaks
 
@@ -283,16 +307,18 @@ ResourceQuota or LimitRange restrictions
 
 Sudden memory spikes
 
-Commands
+### Commands
+```bash
 kubectl describe pod <pod>
 kubectl get resourcequota
+```
 
-17. Cluster Autoscaler is not scaling nodes
-Theory
+### 17. Cluster Autoscaler is not scaling nodes
+### Theory
 
 Cluster Autoscaler reacts only to unschedulable Pending pods.
 
-What to Check
+### What to Check
 
 Pending pods exist
 
@@ -300,15 +326,17 @@ Scheduling constraints
 
 Pod resource requests exceed node capacity
 
-Commands
+### Commands
+```bash
 kubectl get pods --field-selector=status.phase=Pending
+```
 
-18. Deployment rollout is stuck
-Theory
+### 18. Deployment rollout is stuck
+### Theory
 
 Rollouts pause when new pods fail readiness or availability constraints.
 
-What to Check
+### What to Check
 
 Deployment events
 
@@ -316,16 +344,18 @@ Pod readiness status
 
 Rollout strategy
 
-Commands
+### Commands
+```bash
 kubectl rollout status deployment/<name>
 kubectl describe deployment <name>
+```
 
-19. 502 / 504 errors at Ingress during traffic spikes
-Theory
+### 19. 502 / 504 errors at Ingress during traffic spikes
+### Theory
 
 These errors indicate backend services are slow or unreachable.
 
-What to Check
+### What to Check
 
 Ingress controller logs
 
@@ -333,21 +363,23 @@ Service and pod health
 
 Timeout configuration and autoscaling
 
-Commands
+### Commands
+```bash
 kubectl logs -n ingress-nginx <controller-pod>
 kubectl get hpa
+```
 
-20. EKS pods need AWS access without access keys
-Theory
+### 20. EKS pods need AWS access without access keys
+### Theory
 
 AWS recommends using IAM roles instead of static credentials.
 
-Solution
+### Solution
 
 Use IAM Roles for Service Accounts (IRSA)
 
 Attach IAM role to Kubernetes service account
 
-Commands
-kubectl annotate serviceaccount <sa> eks.amazonaws.com/role-arn=<arn>
+### Commands
+```kubectl annotate serviceaccount <sa> eks.amazonaws.com/role-arn=<arn>
 
