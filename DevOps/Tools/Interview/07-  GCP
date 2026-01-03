@@ -1,0 +1,72 @@
+DevOps Interview Preparation GCP
+4–6 Years Experience | Tool 7
+
+🔹 Core Platform Questions
+
+Explain GCP global infrastructure
+
+Project vs Folder vs Organization
+
+IAM in GCP — role hierarchy
+
+Service account vs user account
+
+Why GCP is preferred for Kubernetes?
+
+🔹 Compute & Containers
+
+Compute Engine vs GKE vs Cloud Run
+
+GKE architecture explained
+
+Autopilot vs Standard GKE
+Node pools & autoscaling
+
+Workload Identity — how it works?
+
+🔹 Networking
+
+GCP VPC — global vs regional
+
+Subnet modes in GCP
+
+Cloud Load Balancing types
+
+Private GKE cluster networking
+
+Firewall rules vs routes
+
+🔹 Storage & Data
+
+Cloud Storage classes
+
+Persistent Disk vs Filestore
+
+Backup strategies in GCP
+
+Data encryption in GCP
+BigQuery — when to use?
+
+🔹 Monitoring & Security
+
+Cloud Monitoring vs Cloud Logging
+
+Audit logs in GCP
+
+Secret Manager — why needed?
+
+VPC Service Controls
+
+Cost management in GCP
+
+🔹 Production Scenarios
+
+GKE pods not scaling — debugging
+
+Permission denied using service account
+
+LoadBalancer not getting IP
+
+CI/CD failing in Cloud Build
+
+Multi-region DR strategy in GCP
