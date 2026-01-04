@@ -1,0 +1,49 @@
+once asked this in a Kubernetes on-call interview.....!
+
+Q: Pods are stuck in CrashLoopBackOff right after a deployment. What do you check first?
+
+A: I’d inspect pod logs and events to identify startup errors, misconfigured env variables, or failing dependencies before rolling back.
+
+Q: New pods are not scheduling even though nodes look healthy. Why?
+
+A: It’s usually due to resource requests, taints, or node selectors. I’d check pending pod events and node constraints.
+
+Q: A service is up, but traffic isn’t reaching the pods. How do you debug it?
+
+A: I’d verify Service selectors, endpoints, and pod labels, then confirm ports match the container configuration.
+
+Q: One pod is consuming excessive CPU and affecting others. How do you mitigate it?
+
+A: I’d enforce resource limits, scale replicas, and investigate the workload causing contention.
+
+Q: Nodes suddenly go NotReady during peak traffic. What’s your response?
+
+A: I’d check node conditions, kubelet status, and underlying cloud resources, then cordon and drain if needed.
+
+Q: A rolling update causes partial outages. Why does this happen?
+
+A: Improper readiness probes or insufficient replicas can cause downtime. I’d review rollout strategy and probe configuration.
+
+Q: DNS resolution fails intermittently inside the cluster. What do you do?
+
+A: I’d check CoreDNS pods, resource usage, and recent config changes affecting name resolution.
+
+Q: You fixed the issue, but pods keep restarting hours later. What’s next?
+
+A: I’d analyze memory leaks, garbage collection behavior, and long-running workload patterns.
+
+Q: Horizontal Pod Autoscaler is not scaling during high load. Why?
+
+A: Metrics may be unavailable or thresholds misconfigured. I’d verify metrics-server health and HPA target values.
+
+Q: Pods are running, but requests randomly timeout. What could be wrong?
+
+A: Network policies, misconfigured ingress, or overloaded sidecars can cause timeouts. I’d trace traffic flow and check latency metrics.
+
+Q: You see frequent pod evictions even though usage looks normal. Why?
+
+A: Node-level memory pressure or disk pressure can trigger evictions. I’d check node conditions and resource overcommitment.
+
+Q: An ingress change causes a cluster-wide outage. How do you recover?
+
+A: I’d roll back the ingress config immediately, validate rules in a lower environment, and reapply with staged rollout.
