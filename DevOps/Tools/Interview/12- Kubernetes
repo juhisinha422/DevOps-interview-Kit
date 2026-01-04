@@ -1,0 +1,59 @@
+ DevOps Interview Questions hashtag#Kubernetes | 4–6 Years | Tool 12
+
+Explain Kubernetes architecture and control plane components
+
+What happens internally when you create a Pod?
+
+Pod vs Deployment vs StatefulSet vs DaemonSet
+
+ReplicaSet role in Kubernetes
+
+How does Kubernetes scheduling work?
+
+Node goes NotReady — what happens to Pods?
+
+Kubernetes networking model explained
+
+Service types — when to use which?
+Ingress vs LoadBalancer service
+
+How does kube-proxy work?
+
+ConfigMap vs Secret — real use cases
+
+How are secrets stored and encrypted in etcd?
+
+Resource requests vs limits
+
+HPA vs VPA vs Cluster Autoscaler
+
+Pod evicted — possible reasons?
+
+Rolling updates — how Kubernetes ensures zero downtime?
+
+Blue-green and canary deployments in Kubernetes
+
+Liveness vs Readiness vs Startup probes
+
+CrashLoopBackOff — root cause analysis
+
+ImagePullBackOff — debugging steps
+
+Kubernetes RBAC — how it works
+
+Network policies — why and when?
+Securing Kubernetes cluster in production
+
+Upgrading Kubernetes cluster — best practices
+
+Backup and restore strategies for Kubernetes
+
+Kubernetes logging and monitoring approach
+
+Debugging production traffic issues in Kubernetes
+
+Multi-cluster strategy — why and how?
+
+Kubernetes cost optimization techniques
+
+When should Kubernetes NOT be used?
