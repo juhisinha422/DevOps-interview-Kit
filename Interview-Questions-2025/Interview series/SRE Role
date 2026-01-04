@@ -1,0 +1,24 @@
+SRE role, and these were some of the core questions that focused heavily on real-world reliability, incident handling, and system design rather than just tools.
+
+🔹SRE Concepts (Observability & Reliability Engineering)
+1. Describe your experience in defining and managing Service Level Objectives (SLOs) and Service Level Agreements (SLAs), and the metrics used to measure them?
+2. What would be the guidelines for defining SLOs?
+3. If you are asked to assess a platform in the context of reliability, what would be your approach or methodology?
+4. What’s the difference between monitoring, observability and alerting? Which tools have you used for them?
+5. What metrics do you monitor first when a service is down?
+6. How do you prevent the same Incident from happening again?
+7. What is Root Cause Analysis? Have you been involved in any RCA?
+
+🔹Linux / System Fundamentals
+1. How do you identify which process is consuming the highest CPU or memory on a Linux system?
+2. What steps or commands do you use to check disk usage and locate large files or directories?
+3. How do you monitor system load, and how do you interpret load average values?
+4. Write a Python or Bash script to alert if disk usage exceeds a threshold.
+5. How do you identify zombie or stuck processes, and how do you handle them?
+
+🔹Kubernetes
+1. How do Kubernetes readiness and liveness probes contribute to application reliability?
+2. What strategies do you use to ensure high availability for services running on Kubernetes?
+🔹AWS / Cloud
+1. How do you design, manage, and test backup and disaster recovery strategies for production systems?
+2. What principles and AWS services do you use to design for failure in cloud architectures?
