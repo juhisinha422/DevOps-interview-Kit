@@ -1,0 +1,26 @@
+Quest Global – DevOps / Kubernetes Interview Scenarios 🔹
+Preparing for DevOps & Kubernetes interviews?
+ Here are some frequently asked scenario-based questions that came up during interviews 👇
+☸️ Kubernetes – Scenario & Concept Questions
+1️⃣ What happens internally when you delete a pod using the command kubectl delete pod <pod-name>?
+ Will the pod come back again? Explain the internal process.
+2️⃣ If one Kubernetes cluster has 3 nodes and another cluster has only 1 node, what is the difference?
+ What are the advantages of a multi-node cluster over a single-node cluster?
+3️⃣ Why do we use Persistent Volumes (PV) and Persistent Volume Claims (PVC)?
+ How are storage resources provided to pods? Explain the complete flow.
+4️⃣ What is a Service in Kubernetes?
+ What are the different types of services?
+ Explain ClusterIP in detail.
+5️⃣ How can you check the top 10 resource-consuming processes or pods in a Kubernetes cluster?
+6️⃣ How do you list all running pods in Kubernetes?
+ If a pod is stuck in the ContainerCreating state, how do you troubleshoot and fix it?
+7️⃣ Have you faced any recent errors while creating a Kubernetes cluster?
+ What were the issues and how did you resolve them?
+8️⃣ Which Kubernetes version is currently used in your organization or production environment?
+🤖 Ansible – Interview Questions
+9️⃣ What is the difference between an Ansible Playbook and an Ansible Role?
+🔟 Explain Ansible Playbooks.
+ What is their structure and how are they used in real-time projects?
+📦 Kubernetes Resource Management
+1️⃣1️⃣ What are Resource Quotas in Kubernetes?
+ Which commands are used to manage and verify resource quotas?
