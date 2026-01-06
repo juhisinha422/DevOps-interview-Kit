@@ -1,0 +1,60 @@
+DevOps Interview Preparation #GCPDevOps 4–6 Years Experience 
+
+What does DevOps mean in the GCP ecosystem?
+
+GCP-native CI/CD reference architecture
+
+Cloud Build architecture and execution flow
+
+Cloud Build vs GitHub Actions vs Jenkins
+
+Build triggers — types and use cases
+
+Cloud Deploy — purpose and workflow
+
+Deployment strategies supported by Cloud Deploy
+
+Rollback handling in Cloud Deploy
+
+Managing multi-environment deployments in GCP
+
+Secrets management in GCP DevOps pipelines
+
+Container Registry vs Artifact Registry
+
+CI/CD for GKE — production approach
+
+Workload Identity — role in CI/CD security
+
+IAM best practices for CI/CD service accounts
+
+Cross-project deployments — how do you secure them?
+
+Infrastructure as Code on GCP
+
+Deployment Manager vs Terraform — comparison
+
+Managing GCP state and drift
+
+Multi-project DevOps strategy
+
+Cost optimization in GCP pipelines
+
+Monitoring CI/CD using Cloud Monitoring
+
+Logging and auditing pipeline executions
+Handling flaky builds in Cloud Build
+
+Pipeline triggered unexpectedly — root cause analysis
+
+GCP outage impact on CI/CD — mitigation
+
+Deployment succeeded but service is down — investigation steps
+
+Secrets leaked in logs — immediate response
+
+GCP DevOps vs AWS DevOps vs Azure DevOps
+
+Security best practices for GCP DevOps
+
+When should GCP DevOps NOT be used?
