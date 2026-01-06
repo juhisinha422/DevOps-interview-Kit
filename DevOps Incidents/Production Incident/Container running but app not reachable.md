@@ -4,3 +4,8 @@ In one of our production microservices deployments, a container was in Running s
 
 
 ![Image](https://github.com/user-attachments/assets/78b1f41a-6ba5-47c3-b529-303600e991ce)
+
+
+![Image](https://github.com/user-attachments/assets/f051fa22-3a42-4475-a6dc-96157a719985)
+
+![Image](https://github.com/user-attachments/assets/26271d8b-170d-4a73-b510-58f233cc9802)
