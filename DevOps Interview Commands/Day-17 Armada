@@ -1,0 +1,33 @@
+DevOps Interview Command Series — Armada (Day 17) 🚢
+
+Armada is a batch workload scheduler for Kubernetes.
+It’s used when you need to queue, prioritize, and schedule large-scale jobs efficiently across clusters.
+
+If you’re preparing for DevOps / SRE / Platform interviews, these are the Armada commands & concepts you must know:
+
+armadactl version
+
+armadactl submit job.yaml
+armadactl submit job.yaml --queue queue-name
+
+armadactl get queues
+armadactl get jobs --queue queue-name
+armadactl get job job-id
+
+armadactl cancel job-id
+armadactl reprioritize job-id --priority 100
+
+armadactl watch job-id
+
+kubectl get pods -n armada
+kubectl get events
+kubectl describe pod pod-name
+
+
+🎯 Interview Focus
+• What problem Armada solves vs native Kubernetes Jobs
+• Queues, priorities & fairness scheduling
+• Handling large-scale batch & ML workloads
+• Multi-tenant Kubernetes scheduling
+• Debugging pending or failed jobs
+• Armada vs Argo Workflows vs CronJobs
