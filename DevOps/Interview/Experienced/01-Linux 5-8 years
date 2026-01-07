@@ -1,0 +1,33 @@
+DevOps Interview Questions hashtag#Linux
+5–8 Years Experience | Tool 1 (Real-Time Focus)
+
+Production server is running but application is slow — which Linux metrics do you check first and why?
+
+How do you identify a memory leak in a Linux system running containers?
+
+Disk usage is normal but I/O wait is high — how do you troubleshoot?
+
+A critical process gets killed randomly — how do you find the root cause?
+
+How do you debug zombie and defunct processes in production?
+
+What Linux tuning changes have you done for high-traffic applications?
+
+How do you trace a process consuming intermittent high CPU?
+
+Explain how cgroups and namespaces affect container performance.
+
+Log rotation failed and disk is full — how do you recover without downtime?
+
+How do you audit who changed system configurations on a production server?
+
+System rebooted unexpectedly — what logs and checks do you perform?
+
+How do you secure Linux servers used in CI/CD pipelines?
+
+How do you debug networking issues between pods and the host?
+
+What steps do you take before hardening
+a Linux server for compliance?
+
+How does a senior DevOps engineer use Linux differently than a mid-level engineer?
