@@ -1,0 +1,52 @@
+Below is a real snapshot of interview depth 👇
+
+Please introduce yourself.
+You mentioned a Kubernetes-based chatter project — do you have knowledge of Kubernetes?
+Between Azure and AWS, which cloud platform do you have the best command over?
+In AWS, what services have you worked with?
+What is IAM in AWS?
+What is a VPC?
+What components exist inside a VPC?
+What are public and private subnets?
+What is an Internet Gateway?
+What is a NAT Gateway?
+🔹 CI/CD Fundamentals
+What is a CI/CD pipeline?
+What tools have you used for CI/CD?
+What is DevSecOps?
+What is SonarQube used for?
+What is Trivy used for?
+What is the difference between Continuous Deployment and Continuous Delivery?
+Explain a scenario where pipeline success does NOT mean deployment success.
+How do you design pipelines to catch such failures?
+What is the difference between build-time validation vs runtime validation?
+Can CI catch runtime issues?
+If a backend change passes CI but crashes after deployment, what checks are missing in CI?
+What would you look at first in such a case?
+Terraform apply succeeds, but Kubernetes nodes do not join the cluster — what do you check first?
+What could prevent Kubernetes nodes from joining the cluster?
+If a CI pipeline suddenly becomes slow without code changes, what do you inspect first?
+What Jenkins metrics or resources would you check?
+What are CI runner resources?
+What is Docker layer caching?
+How does Docker layer caching improve pipeline speed?
+One service in Docker Compose crashes repeatedly while others are healthy — what do you inspect before touching code?
+What logs would you check?
+What configuration issues could cause this?
+What role do environment variables play?
+What about port binding?
+What about volume permissions?
+A Docker Compose service works locally but fails on EC2 — what infrastructure differences could cause this?
+How can port conflicts cause this issue?
+How can Linux filesystem or permissions cause this?
+EC2 is running, Docker container is running, NGINX is running
+ 👉 But API is unreachable externally — list the exact order you would debug.
+What is container port binding?
+What is NGINX upstream configuration?
+What is the role of EC2 Security Groups?
+Explain the architecture of your deployment project.
+What are the steps from code commit to deployment?
+Why do we keep backend services on private ports and expose only NGINX?
+What role does NGINX as a reverse proxy play?
+How do you reload NGINX in production without dropping traffic?
+What command is used to reload NGINX safely?
