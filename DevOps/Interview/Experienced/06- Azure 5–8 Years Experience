@@ -1,0 +1,32 @@
+DevOps Interview hashtag#Questions hashtag#Azure
+5–8 Years Experience | Tool 6
+
+How do you design enterprise-scale architecture in Azure for high availability?
+
+Azure application is slow only for on-prem users — how do you debug hybrid networking?
+
+How do you structure Azure subscriptions and management groups for large orgs?
+
+Azure cost suddenly spikes — what investigation steps do you follow?
+
+How do you design RBAC for DevOps teams across multiple subscriptions?
+
+When do you choose Azure DevOps vs GitHub in enterprise environments?
+
+How do you implement blue-green or canary deployments in Azure?
+
+How do you secure secrets across Azure Pipelines, AKS, and Key Vault?
+
+Explain how you design monitoring using Azure Monitor and Log Analytics.
+
+How do you troubleshoot AKS networking issues in production?
+
+How do you design disaster recovery using Azure regions and paired regions?
+
+What common Azure architecture mistakes have you seen in production?
+
+How do you manage Azure service limits and quotas at scale?
+
+How do you integrate on-prem AD with Azure AD securely?
+
+What Azure practices clearly show senior DevOps ownership?
