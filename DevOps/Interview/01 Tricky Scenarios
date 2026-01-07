@@ -1,0 +1,147 @@
+DevOps Interview: Tricky Scenarios You’ll Get Stuck In (With Best Answers)
+
+1️⃣ Production Server Is Down – What Will You Do?
+
+❌ Where Candidates Get Stuck
+
+●Panic
+
+●Jump directly to restarting servers
+
+●No clear troubleshooting order
+
+
+✅ What Interviewer Wants
+
+●Calm, structured incident handling
+
+●Prioritization
+
+●Communication mindset
+
+
+⭐ Best Answer Format
+
+1. Check monitoring alerts (CPU, memory, disk, network)
+2. Identify scope (single service / entire system)
+3. Check recent deployments or config changes
+4. Check logs (application, system, load balancer)
+5. Rollback if needed
+6. Communicate status to stakeholders
+7. Do post-incident RCA
+
+🎯 Pro Tip Line
+
+“I focus on restoring service first, then root cause.”
+
+
+2️⃣ CI/CD Pipeline Fails Suddenly
+
+❌ Where Candidates Get Stuck
+
+●Saying “I’ll check logs” (too generic)
+
+●Not mentioning recent changes
+
+
+✅ What Interviewer Wants
+
+●Debugging approach
+
+●Understanding of pipeline stages
+
+
+⭐ Best Answer Format
+
+1. Identify which stage failed (build/test/deploy)
+2. Check recent code or dependency changes
+3. Verify credentials/secrets didn’t expire
+4. Re-run pipeline with verbose logs
+5. Fix and add validation to prevent recurrence
+
+🎯 Smart Add-On
+
+“I prefer small commits to isolate failures faster.”
+
+
+3️⃣ Kubernetes Pod Is Not Starting
+
+❌ Where Candidates Get Stuck
+
+●Only saying: kubectl get pods
+
+●Not knowing next steps
+
+
+✅ What Interviewer Wants
+
+●Hands-on kubectl knowledge
+
+●K8s fundamentals
+
+⭐ Best Answer Format
+
+kubectl describe pod <pod>
+kubectl logs <pod>
+Check:
+- Image pull errors
+- CrashLoopBackOff
+- Resource limits
+- ConfigMaps / Secrets
+
+🔥 Interview Gold Line
+
+“Most pod issues are config, image, or resource related.”
+
+
+4️⃣ Application Is Slow After Deployment
+
+❌ Where Candidates Get Stuck
+
+●Blaming the app team immediately
+
+●No performance analysis steps
+
+
+✅ What Interviewer Wants
+
+●Observability knowledge
+
+●Dev + Ops mindset
+
+⭐ Best Answer Format
+
+1. Compare metrics before and after deployment
+2. Check CPU, memory, DB latency
+3. Review application logs
+4. Check autoscaling behavior
+5. Rollback if SLA is impacted
+
+
+5️⃣ Secrets Are Exposed in Git Repo
+
+❌ Where Candidates Get Stuck
+
+●Saying “I’ll delete the repo”
+
+●Ignoring damage control
+
+
+✅ What Interviewer Wants
+
+●Security awareness
+
+●Real-world response
+
+
+⭐ Best Answer Format
+
+1. Rotate exposed secrets immediately
+2. Remove secrets from Git history
+3. Use secret manager (Vault / AWS Secrets Manager)
+4. Add pre-commit hooks
+5. Educate team
+
+🔐 Strong Line
+
+> “Deleting the repo doesn’t fix leaked credentials.”
