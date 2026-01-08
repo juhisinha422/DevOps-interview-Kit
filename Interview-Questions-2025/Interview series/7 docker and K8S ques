@@ -1,0 +1,93 @@
+7 Docker & Kubernetes Interview Questions Every DevOps Engineer Should Master
+
+If you’re preparing for DevOps, Cloud, or Platform Engineer interviews, these are not “nice-to-know” questions.
+
+These are baseline expectations in most Docker & Kubernetes interviews — even for mid-level roles.
+Save this for revision 👇
+
+1️⃣ What is the use of Ingress in Kubernetes?
+By default, Kubernetes services are not exposed to the outside world.
+Ingress solves this problem.
+Ingress:
+- Exposes HTTP/HTTPS traffic to internal services
+- Routes traffic based on hostnames and URL paths
+- Acts like a Layer 7 load balancer
+- Reduces cost by avoiding one LoadBalancer per service
+Think of Ingress as a smart receptionist that knows exactly which service to forward traffic to.
+
+2️⃣ What is the minimum instruction required in a Dockerfile?
+The strict minimum instruction is: FROM
+
+Even this is valid:
+FROM scratch
+
+It creates an empty image and is commonly used for statically compiled binaries (Go, Rust, etc.).
+
+⚠️ Note:
+ARG can appear before FROM
+But FROM is mandatory for a valid build
+
+3️⃣ What is the difference between CMD and ENTRYPOINT?
+This question tests whether you understand container behavior, not syntax.
+ENTRYPOINT defines the main command the container runs
+CMD provides default arguments for that command
+
+Best mental model:
+ENTRYPOINT → fixed executable
+CMD → default parameters
+
+ENTRYPOINT is usually stable; CMD is meant to be overridden.
+
+4️⃣ CMD vs ENTRYPOINT — which one overrides which?
+This is where many candidates fail.
+
+When both are present:
+- CMD becomes the argument to ENTRYPOINT
+- User input in docker run overrides CMD
+- ENTRYPOINT stays unless overridden explicitly with --entrypoint
+
+Example:
+ENTRYPOINT ["echo"]
+CMD ["Hello"]
+
+- docker run image → Hello
+- docker run image World → World
+
+Only the last CMD and ENTRYPOINT in a Dockerfile are effective.
+
+5️⃣ What is the difference between ARG and ENV?
+This is a build-time vs run-time question.
+- ARG
+  -  Exists only during image build
+  -  Not available inside the running container
+- ENV
+  - Persists at runtime
+  - Readable by the application
+
+Use ARG for build-only values (versions, flags).
+Use ENV for runtime configuration.
+
+6️⃣ Which one is available at runtime: ARG or ENV?
+The answer is ENV ✅
+ARG disappears after the image is built.
+Pro tip many interviews love:
+You can promote ARG to ENV:
+
+ARG VERSION
+ENV APP_VERSION=$VERSION
+
+This allows build-time values to be passed into runtime intentionally.
+
+7️⃣ What is the standard way to reduce Docker image size?
+The gold standard answer: Multi-stage builds
+
+Why?
+- One stage builds the app using heavy tools
+- Final stage uses a clean, lightweight base
+- Only the final artifact is copied
+
+Result:
+- Smaller image
+- Faster pulls
+- Better security
+- Cleaner production containers
