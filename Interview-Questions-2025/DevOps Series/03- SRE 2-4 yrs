@@ -1,0 +1,21 @@
+Post 3: Site Reliability Engineer (SRE) Interview 
+Intermediate Level (2–4 Years)
+
+Here are 10 questions that challenge your practical mindset 👇 
+
+💡 Common SRE Interview Questions for 2–4 Years Experience:
+1️⃣ How do you define **SLIs, SLOs, and SLAs**, and how do you track them in production? 
+2️⃣ What are the key metrics behind the **Four Golden Signals**? 
+3️⃣ Explain your approach to **alert fatigue** and how you manage noisy alerts. 
+4️⃣ How would you design a **reliable rollout process** for new application deployments? 
+5️⃣ What’s your strategy for handling **incident response** and documentation? 
+6️⃣ How do you use tools like **Prometheus**, **Grafana**, or **Stackdriver** for observability? 
+7️⃣ Describe how you manage **error budgets** and collaborate with dev teams on reliability goals. 
+8️⃣ How do you ensure **disaster recovery readiness** and validate your runbooks? 
+9️⃣ What automation or scripting techniques do you use for operational efficiency? 
+🔟 Explain a situation where you improved reliability without increasing cost or complexity. 
+
+🎯 Pro Tip: 
+Focus on your **problem-solving patterns**. 
+SRE interviewers love when you explain *not only* what tools you used, but *why* they were the right choice. 
+Framework‑based thinking = long‑term reliability success. 💪
