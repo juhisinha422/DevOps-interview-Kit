@@ -1,0 +1,21 @@
+Post 1: Site Reliability Engineer (SRE) Interview 
+Fresher Level (0–1 Year)
+
+Today’s spotlight is on: **SRE – The reliability guardians of modern systems** ⚙️ 
+If you’re new to this path, mastering the “Ops + Software Engineering” mindset is your key to success. 
+
+💡 Common SRE Interview Questions for Freshers:
+1️⃣ What is Site Reliability Engineering, and how does it differ from traditional operations? 
+2️⃣ Explain what **SLI, SLO, and SLA** mean with a simple example. 
+3️⃣ Why is **error budget** an important concept in SRE? 
+4️⃣ What tools do SREs use for monitoring and alerting? 
+5️⃣ Describe how you’d handle an outage or major incident as a junior engineer. 
+6️⃣ What is the difference between **proactive** and **reactive** monitoring? 
+7️⃣ How is automation critical to reliability? 
+8️⃣ What are the common metrics you’d track to ensure service health? 
+9️⃣ What is the purpose of **post‑incident reviews** or **blameless retrospectives**? 
+🔟 Explain how containers and Kubernetes have changed reliability operations. 
+
+🎯 Pro Tip: 
+As a fresher aiming for SRE, focus on understanding **reliability principles over tools**. 
+Set up a small lab to trigger and resolve simulated outages — it’ll teach you more than any tutorial ever could! ⚡️ 
