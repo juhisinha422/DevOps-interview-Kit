@@ -1,0 +1,33 @@
+DevOps Interview hashtag#Questions hashtag#Kubernetes 5–8 Years Experience | Tool 12
+
+How do you design a production-grade Kubernetes cluster for high availability?
+
+A Kubernetes cluster is healthy but users face latency — how do you troubleshoot end to end?
+
+How do you design namespace strategy for multiple teams and environments?
+
+How do you manage Kubernetes upgrades without downtime?
+
+Explain pod disruption budgets — real production use cases?
+
+How do you secure Kubernetes clusters
+at enterprise scale?
+
+How do you handle secrets in Kubernetes securely?
+
+How do you design autoscaling using HPA, VPA, and Cluster Autoscaler?
+
+Kubernetes deployment failed but pods are running — what went wrong?
+
+How do you debug networking issues between services and pods?
+
+How do you implement blue-green or canary deployments in Kubernetes?
+
+How do you design observability for Kubernetes workloads?
+
+How do you handle etcd backup and disaster recovery?
+
+How do you manage multi-cluster Kubernetes environments?
+
+What Kubernetes practices clearly show
+senior DevOps ownership?
