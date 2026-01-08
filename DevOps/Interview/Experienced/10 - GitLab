@@ -1,0 +1,32 @@
+DevOps Interview hashtag#Questions hashtag#Gitlab
+5–8 Years Experience | Tool 10
+
+How do you design GitLab CI pipelines for large-scale microservices?
+
+How do you manage GitLab Runners (shared vs specific) at enterprise scale?
+
+A pipeline passed but production failed — what governance was missing?
+
+How do you secure GitLab CI pipelines from secret leaks?
+
+How do you optimize pipeline execution time and runner cost?
+
+Explain GitLab CI caching vs artifacts — when do you use each?
+
+How do you implement environment-level approvals in GitLab CI?
+
+How do you design reusable CI templates using include?
+
+How do you handle monorepos in GitLab CI?
+
+How do you audit GitLab activity for compliance and security?
+
+GitLab CI vs GitHub Actions vs Jenkins — decision at org level?
+
+How do you integrate GitLab CI with Kubernetes deployments?
+
+How do you handle GitLab outages during critical releases?
+
+How do you enforce quality gates in GitLab CI pipelines?
+
+What GitLab CI practices reflect senior DevOps ownership?
