@@ -1,0 +1,31 @@
+DevOps Interview hashtag#Terraform hashtag#Questions 5–8 Years Experience | Tool 13
+
+How do you design Terraform code for large, multi-team environments?
+
+Terraform state file got corrupted — how do you recover safely?
+
+How do you manage remote state and locking across environments?
+
+Explain Terraform modules — how do you version and govern them?
+
+How do you handle secrets in Terraform without exposing them?
+
+Terraform plan looks safe but apply breaks production — what went wrong?
+
+How do you manage drift between Terraform state and real infrastructure?
+
+How do you design Terraform workflows for multi-cloud environments?
+
+How do you enforce guardrails using Sentinel or OPA?
+
+How do you manage Terraform provider upgrades safely?
+
+How do you design CI/CD pipelines for Terraform?
+
+How do you handle partial failures during terraform apply?
+
+How do you manage Terraform at scale with 1000+ resources?
+
+Terraform vs Cloud-native IaC tools — when do you choose which?
+
+What Terraform practices clearly show senior DevOps maturity?
