@@ -1,0 +1,31 @@
+ DevOps Interview hashtag#Ansible hashtag#Questions 5–8 Years Experience | Tool 14
+
+How do you design Ansible roles for large-scale infrastructure automation?
+
+An Ansible playbook works on one server but fails on others — how do you debug?
+
+How do you ensure idempotency in complex Ansible playbooks?
+
+Explain Ansible inventory design for multi-environment setups.
+
+How do you handle secrets securely in Ansible?
+
+How do you manage Ansible at scale with hundreds of nodes?
+
+An Ansible run partially failed — how do you safely recover?
+
+How do you test Ansible playbooks before production rollout?
+
+Ansible vs Terraform — when do you use each in real projects?
+
+How do you optimize Ansible execution speed?
+
+How do you manage OS patching using Ansible without downtime?
+
+How do you audit Ansible changes for compliance?
+
+How do you integrate Ansible with CI/CD pipelines?
+
+How do you manage Ansible collections and versions?
+
+What Ansible practices clearly show senior DevOps ownership?
