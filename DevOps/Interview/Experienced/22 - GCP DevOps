@@ -1,0 +1,23 @@
+Tool 22 — hashtag#GCPDevOps (5–8 Years | Real-World Interview Level)
+
+If you work with cloud-native DevOps, GCP is everywhere — from startups to enterprise data platforms.
+
+Here are 15 real-world GCP DevOps interview questions 👇
+
+1. How do you design a highly available architecture in GCP?
+2. What is the difference between GKE Autopilot and Standard mode?
+3. How do you secure workloads running in GKE?
+4. How does IAM differ from AWS IAM?
+5. How do you implement CI/CD using Cloud
+Build and GKE?
+6. How do you use Terraform with GCP?
+7. How do you handle secrets in GCP?
+8. How do you implement blue-green or canary deployments in GKE?
+9. How do you monitor GKE workloads using Cloud Monitoring?
+10. How do you optimize GCP costs in production?
+11. How does VPC-SC help in securing sensitive workloads?
+12. How do you enable private GKE clusters?
+13. How do you implement disaster recovery in GCP?
+14. How do you control outbound and inbound traffic in GCP?
+15. How do you design logging and
+observability in GCP?
