@@ -1,0 +1,23 @@
+Post 8 : DevOps Engineer Interview 
+Experienced Level (5–8 Years)
+
+Time to level up — **DevOps at scale** where you're designing systems for enterprise reliability and team velocity! 🏗️ 
+At 5–8 years, you're expected to architect CI/CD platforms, manage Kubernetes at scale, and drive organizational automation. 
+
+Test your senior-level expertise 👇 
+
+💡 Common DevOps Interview Questions for 5–8 Years Experience:
+1️⃣ How do you design **multi-cluster Kubernetes** architectures for global applications? 
+2️⃣ Explain your approach to **GitOps** using tools like ArgoCD or Flux. 
+3️⃣ How do you implement **progressive delivery** (canary, blue-green, feature flags)? 
+4️⃣ What's your strategy for **observability** across distributed microservices? 
+5️⃣ How do you handle **infrastructure cost governance** across multiple teams? 
+6️⃣ Describe your **disaster recovery** and chaos engineering practices. 
+7️⃣ How do you standardize **golden paths** for development teams using Internal Developer Platforms? 
+8️⃣ What’s your approach to **automating compliance** and security scanning in pipelines? 
+9️⃣ How do you measure DevOps maturity using **DORA metrics** (deployment frequency, lead time, etc.)? 
+🔟 Explain how you've scaled CI/CD to handle **1000+ deployments per day**. 
+
+🎯 Pro Tip: 
+Senior DevOps roles demand **leadership through systems** — show how your platforms reduced toil, improved velocity, and enabled self-service. 
+Numbers speak: *"Our pipeline went from 2-hour deploys to 5-minute promotions across 50 teams."*
