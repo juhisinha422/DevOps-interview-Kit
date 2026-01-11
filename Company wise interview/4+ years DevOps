@@ -1,0 +1,39 @@
+4+ Years DevOps Engineer – Interview Flow
+
+A. Introduction & Project
+	1.	Tell me about yourself
+	2.	Explain your project architecture and roles & responsibilities
+
+B. CI/CD
+3. Explain your CI process
+4. Explain your deployment process
+
+C. ArgoCD & GitOps
+5. How do you integrate ArgoCD for deployment?
+6. After pushing image to ECR, how do you configure ArgoCD?
+7. How is ArgoCD connected to Kubernetes and how does it deploy?
+8. How does ArgoCD get notified when a new image is pushed to ECR?
+9. How does ArgoCD detect image changes and deploy to the correct cluster?
+10. How do you integrate ECR and ArgoCD?
+
+D. ArgoCD Architecture
+11. What do you see on the ArgoCD dashboard?
+12. What do we call a Kubernetes cluster in ArgoCD?
+
+E. Kubernetes
+13. How do Kubernetes services find pods?
+14. How are services linked to pods?
+15. How does one namespace pod communicate with another namespace?
+
+F. Ansible
+16. How do you configure rolling updates using Ansible?
+17. Run playbook in batches of 20 on 100 servers – how?
+18. Fetch IP and OS family of 100 servers using Ansible – how?
+19. How do you run a specific task in Ansible?
+20. What summary do you get after playbook execution?
+21. Explain Ansible roles folder structure and purpose
+
+G. Jenkins
+22. How do you add a Linux server as a Jenkins worker node?
+23. How do you handle multiple Java versions on a Jenkins worker?
+24. What do you write in the pipeline to use multiple Java versions?
