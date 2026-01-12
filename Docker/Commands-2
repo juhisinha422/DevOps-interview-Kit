@@ -1,0 +1,34 @@
+Docker Commands Every Engineer Should Know
+
+Docker simplifies how we build, ship, and run applications. Whether you’re into DevOps, Cloud, or Backend engineering, these commands form your daily toolkit:
+
+🔹 docker version – Check Docker client & engine details
+
+🔹 docker info – View system-wide Docker information
+
+🔹 docker pull <image> – Download an image from Docker Hub
+
+🔹 docker images – List available images
+
+🔹 docker run <image> – Create and start a container
+
+🔹 docker ps / docker ps -a – View running / all containers
+
+🔹 docker stop <container> – Stop a running container
+
+🔹 docker rm <container> – Remove a container
+
+🔹 docker rmi <image> – Remove an image
+
+🔹 docker logs <container> – Inspect container logs
+
+🔹 docker exec -it <container> /bin/bash – Access a running container
+
+🔹 docker build -t app:tag . – Build an image from Dockerfile
+
+🔹 docker compose up -d – Run multi-container apps
+
+🔹 docker compose down – Stop and clean up services
+
+
+Docker isn’t just a tool — it’s a standard for modern application delivery.
