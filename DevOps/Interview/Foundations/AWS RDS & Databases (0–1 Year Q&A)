@@ -1,0 +1,29 @@
+AWS RDS & Databases (0–1 Year Q&A)
+
+If you can’t handle databases in cloud, you won’t survive real production workloads 👇
+
+1. What is Amazon RDS?
+2. Which databases does RDS support?
+3. What is the difference between RDS and EC2 hosted database?
+4. What is Multi-AZ in RDS?
+5. What is Read Replica?
+6. What is automated backup in RDS?
+7. What is manual snapshot?
+8. What is Amazon Aurora?
+9. Difference between Aurora and MySQL?
+10. What is DynamoDB?
+11. Difference between RDS and DynamoDB?
+12. What is DynamoDB partition key?
+13. What is DynamoDB Global Secondary Index?
+14. What is provisioned capacity?
+15. What is on-demand capacity in DynamoDB?
+16. What is AWS ElastiCache?
+17. What is Redis vs Memcached?
+18. What is a database endpoint?
+19. What is failover in RDS?
+20. What is point-in-time recovery?
+21. What is data encryption in RDS?
+22. How do you secure RDS?
+23. What is VPC DB subnet group?
+24. What happens when the RDS primary fails?
+25. What is AWS DMS?
