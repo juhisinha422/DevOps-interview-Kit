@@ -1,0 +1,29 @@
+*****AWS VPC & Networking Interview Q&A*****
+
+Networking is what separates a normal cloud user from a real AWS engineer 👇
+
+1. What is a VPC?
+2. What is a subnet?
+3. What is the difference between public and private subnet?
+4. What is an Internet Gateway?
+5. What is a NAT Gateway?
+6. Why do we need a route table?
+7. What is CIDR?
+8. What is a security group?
+9. What is a Network ACL?
+10. Difference between Security Group and NACL?
+11. What is VPC peering?
+12. What is a VPC endpoint?
+13. What is a bastion host?
+14. What is Elastic IP?
+15. What is AWS Direct Connect?
+16. What is VPN in AWS?
+17. What is DNS?
+18. What is Route 53?
+19. What is a hosted zone?
+20. What is a load balancer?
+21. What is ALB vs NLB?
+22. What is cross-zone load balancing?
+23. What is VPC flow log?
+24. What is private link?
+25. What happens if you delete a VPC?
