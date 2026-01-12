@@ -1,0 +1,52 @@
+ L1 Network Engineer Interview Questions ⭐
+
+1. What is the OSI model, and what are its 7 layers? 
+2. What is the difference between a hub, switch, and router? 
+3. How do you configure a basic network setup, including IP addressing and subnetting? 
+4. What is the purpose of DNS, and how does it work? 
+5. What is DHCP, and how does it assign IP addresses? 
+6. What is the difference between TCP and UDP? 
+7. How do you troubleshoot basic network issues, such as connectivity problems or slow network speeds? 
+8. What is a VLAN, and how is it used in a network? 
+9. What is the purpose of a subnet mask, and how is it used? 
+10. What is the difference between IPv4 and IPv6? 
+11. How do you configure a router for basic routing? 
+12. What is the purpose of a default gateway? 
+13. How do you troubleshoot DNS resolution issues? 
+14. What is the difference between a static IP address and a dynamic IP address? 
+15. How do you configure a switch for basic switching? 
+16. What is the purpose of STP (Spanning Tree Protocol)? 
+17. How do you troubleshoot network congestion issues? 
+18. What is the difference between a Layer 2 switch and a Layer 3 switch? 
+19. How do you configure a firewall for basic security? 
+20. What is the purpose of NAT (Network Address Translation)? 
+21. How do you troubleshoot VPN connectivity issues? 
+22. What is the difference between a WAN and a LAN? 
+23. How do you configure a router for NAT? 
+24. What is the purpose of QoS (Quality of Service)? 
+25. How do you troubleshoot wireless network issues? 
+26. What is the difference between a router and a gateway? 
+27. How do you configure a switch for VLANs? 
+28. What is the purpose of ARP (Address Resolution Protocol)? 
+29. How do you troubleshoot network latency issues? 
+30. What is the difference between a unicast, multicast, and broadcast transmission? 
+31. How do you configure a router for OSPF routing? 
+32. What is the purpose of a routing table? 
+33. How do you troubleshoot routing issues? 
+34. What is the difference between a static route and a dynamic route? 
+35. How do you configure a switch for STP? 
+36. What is the purpose of BPDU (Bridge Protocol Data Unit)? 
+37. How do you troubleshoot STP issues? 
+38. What is the difference between a root bridge and a non-root bridge? 
+39. How do you configure a router for RIP routing? 
+40. What is the purpose of a metric in routing? 
+41. How do you troubleshoot RIP issues? 
+42. What is the difference between RIPv1 and RIPv2? 
+43. How do you configure a switch for port security? 
+44. What is the purpose of 802.1X authentication? 
+45. How do you troubleshoot 802.1X issues? 
+46. What is the difference between a network diagram and a network map? 
+47. How do you document a network configuration? 
+48. What is the purpose of network monitoring? 
+49. How do you use network monitoring tools? 
+50. What is the importance of network security? 
