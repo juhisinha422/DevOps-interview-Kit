@@ -1,0 +1,30 @@
+AWS Cost Management & Optimization (0–1 Year Interview Questions)
+
+Companies don’t hire cloud engineers who waste money 💰
+They hire engineers who control AWS costs 👇
+
+1. What is AWS Cost Explorer?
+2. What is AWS Budgets?
+3. What is AWS Free Tier?
+4. What are Reserved Instances?
+5. What are Savings Plans?
+6. What is Spot Instance?
+7. Difference between Reserved and Spot Instances?
+8. What is right-sizing?
+9. How do you reduce EC2 cost?
+10. How do you reduce S3 cost?
+11. What is S3 lifecycle policy?
+12. What is AWS Trusted Advisor?
+13. What is cost allocation tag?
+14. What is consolidated billing?
+15. What is AWS Organizations?
+16. How do you track project-wise cost?
+17. What is idle resource?
+18. How do you find unused EC2?
+19. What is CloudWatch billing alarm?
+20. What is data transfer cost?
+21. How does NAT Gateway cost work?
+22. What is AWS Pricing Calculator?
+23. What is reserved capacity?
+24. How do you avoid surprise AWS bills?
+25. Why is cost optimization important?
