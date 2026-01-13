@@ -1,0 +1,29 @@
+CI/CD & DevOps on AWS (0–1 Year Interview Questions)
+
+Every cloud engineer is expected to understand automation & pipelines 👇
+
+1. What is CI/CD?
+2. What is AWS CodeCommit?
+3. What is AWS CodeBuild?
+4. What is AWS CodeDeploy?
+5. What is AWS CodePipeline?
+6. How does CodePipeline work?
+7. What is a buildspec.yml file?
+8. What is blue-green deployment?
+9. What is rolling deployment?
+10. What is AWS Elastic Beanstalk?
+11. What is AWS ECS?
+12. What is AWS EKS?
+13. Difference between ECS and EKS?
+14. What is AWS Fargate?
+15. What is a container?
+16. What is Docker?
+17. What is ECR?
+18. What is infrastructure as code?
+19. What is AWS CloudFormation?
+20. What is AWS CDK?
+21. How do you automate EC2 provisioning?
+22. How do you deploy an application in AWS?
+23. How do you rollback a failed deployment?
+24. What is continuous monitoring?
+25. What is DevOps in AWS?
