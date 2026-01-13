@@ -1,0 +1,29 @@
+AWS Lambda & Serverless (0–1 Year Interview Questions)
+
+Serverless is where modern AWS workloads run 👇
+
+1. What is AWS Lambda?
+2. What is serverless computing?
+3. How does Lambda work?
+4. What is an event trigger in Lambda?
+5. What services can trigger Lambda?
+6. What is Lambda timeout?
+7. What is Lambda memory?
+8. What is Lambda execution role?
+9. What is API Gateway?
+10. How does API Gateway work with Lambda?
+11. What is a cold start?
+12. What is a warm start?
+13. What is AWS Step Functions?
+14. What is a Lambda layer?
+15. What is AWS SAM?
+16. What is AWS CDK?
+17. What is concurrency in Lambda?
+18. What is throttling in Lambda?
+19. What is dead-letter queue (DLQ)?
+20. What is asynchronous invocation?
+21. What is synchronous invocation?
+22. How do you secure Lambda?
+23. How do you log Lambda execution?
+24. What is Lambda VPC integration?
+25. When should you use Lambda instead of EC2?
