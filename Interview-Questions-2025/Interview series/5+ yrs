@@ -1,0 +1,17 @@
+Interview Questions for DevOps Roles (5+ Years Experience)
+
+Below are the questions 👇
+
+1) What is a NAT Gateway, and how does it work?
+2) If an EC2 instance has 50GB storage, how do you attach extra storage to an existing instance?
+3) If the pipeline fails due to pods starting and stopping, who will fix the issue?
+4) How do you pass the port in Docker when writing a Dockerfile?
+5) What is CMD and ENTRYPOINT in Docker?
+6) Which deployment strategies have you worked on, and what is Blue-Green deployment?
+7) How do you migrate Jenkins from one server to another?
+8) What is Terraform drift?
+9) If two people are working on the same Terraform module, how does it work?10) How do you remove a Terraform lock file so the next person can apply?
+11) If someone created a resource from the AWS console, how do you sync it with the current Terraform state?
+12) How does it work internally when you apply a Kubernetes manifest file?
+13) What is taint and toleration in Kubernetes?
+14) What load balancers are you using in Kubernetes, and why are you using them in your project?
