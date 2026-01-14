@@ -1,0 +1,64 @@
+Suppose your api server is not working in k8s
+What are the multiple ways to troubleshoot it?
+
+✅ *Troubleshooting API Server Issues in Kubernetes*
+
+If your API server is not working in Kubernetes, here are multiple ways to troubleshoot the issue:
+
+*1. Check API Server Logs*
+
+- `kubectl logs -n kube-system <api-server-pod-name>`
+- Look for errors or warnings in the logs
+- Check for any configuration issues or authentication errors
+
+*2. Verify API Server Configuration*
+
+- `kubectl get apiserver -o yaml`
+- Check the API server configuration file for any errors or typos
+- Verify that the API server is configured to listen on the correct port and IP address
+
+*3. Check API Server Pod Status*
+
+- `kubectl get pods -n kube-system | grep api-server`
+- Check the status of the API server pod
+- If the pod is not running, check the pod logs for errors
+
+*4. Verify API Server Service*
+
+- `kubectl get svc -n kube-system | grep api-server`
+- Check if the API server service is created and has an IP address
+- Verify that the service is pointing to the correct API server pod
+
+*5. Check Network Connectivity*
+
+- `kubectl exec -it <api-server-pod-name> -- curl https://localhost:6443`
+- Verify that the API server is responding to requests
+- Check if there are any network policies or firewalls blocking traffic to the API server
+
+*6. Verify Authentication and Authorization*
+
+- `kubectl auth can-i --list`
+- Check if you have the necessary permissions to access the API server
+- Verify that the authentication and authorization mechanisms are correctly configured
+
+*7. Check etcd Cluster Status*
+
+- `kubectl exec -it <etcd-pod-name> -- etcdctl cluster-health`
+- Verify that the etcd cluster is healthy and responding to requests
+- Check if there are any issues with etcd configuration or connectivity
+
+*8. Verify Kubeconfig Configuration*
+
+- `kubectl config view`
+- Check if the kubeconfig file is correctly configured
+- Verify that the API server URL and credentials are correct
+
+*9. Check System Logs*
+
+- `journalctl -u kube-apiserver`
+- Check system logs for any errors or warnings related to the API server
+
+*10. Restart API Server*
+
+- `kubectl delete pod <api-server-pod-name>`
+- Restart the API server pod to see if it resolves the issue
