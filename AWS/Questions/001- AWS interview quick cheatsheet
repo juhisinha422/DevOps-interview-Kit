@@ -1,0 +1,55 @@
+1. Difference between security group and NACL.
+Sg controls in & out at instance level
+nacl controls in & out at subnet level
+
+Using SG we can configure rules for allowing traffic 
+NACL is used for deny and allow
+
+Sg is used for instance level for security to access inbound and outbound role and NaCl is used for subnet level based on priority
+
+remember the concept statefull and stateless
+Stateful: using SG we handle only inbound rule, out bound is fixed
+Stateless: but In Stateless we can hanle both inbound and outbound
+so NACL's is stateless to control both inbound and boutboud cause NACL provide securiry firewall on top to the SG means provide extra layer of security
+
+2. Which port is used for RDP?
+3389
+
+3. How many ways/tool you can connect an instance?
+Portal
+CLI
+You can use third party tools like mobaxterm or choclaty, Putty
+Using mobaxterm,direct connect to aws console and using putty
+Else we can copy ssh client example link and copy in our cmd then it works
+
+4. Different between ppk and pem file?
+
+5. How the ec2 instance connect to external internet
+Through the internet gateway attached to the vpc
+or directly create ec2 instance with default settings
+
+5. What to do if you are getting connection time out error while doing ssh to the instance?
+Verify inbound rules of security group attached to that instance
+inbound rule add 22, 80 port for all
+
+5. Difference between Private subnet and Public Subnet.
+for private subnet need NAT gateway to provide internet access throw public subnet
+add route to IP then associate with public IP
+then you will get internet connection
+
+but for public subnet you neet only IGW
+
+6. How you can access S3 bucket created in account A through account B ?
+By using IAM role, In IAM we have a component called policy i e set of permission in permission allow S3 full access.
+
+More access, permission - big risk
+Less access, permission- more secure and safe.
+
+
+7. Q: Why do we need NACLs if we already have Security Groups?
+A:Security Groups protect individual instances, while NACLs provide an additional, subnet-wide security layer for broader traffic control.
+
+8. How NACL works?
+“A Network ACL is a stateless, subnet-level firewall in AWS that evaluates inbound and outbound traffic using ordered allow and deny rules.”
+nacl provide extra layer of security on top the SG
+by nacl we can block someones IP, so that IP wont get enter in the service.
