@@ -1,0 +1,37 @@
+Tool 1 — Linux (Intermediate Level)
+(DevOps Interview Questions Series)
+
+Now we move from basic commands to how Linux works in real production systems.
+
+Linux – Intermediate Interview Questions
+
+1. What is a Linux process and how do you view it?
+2. What is the difference between ps and top?
+3. What is a zombie process?
+4. What is a parent and child process?
+5. What is file permission in Linux?
+6. What is the difference between chmod, chown, and chgrp?
+7. What is a symbolic link?
+8. What is a hard link?
+9. Difference between hard link and soft link?
+10. What is grep?
+11. What is awk?
+12. What is sed?
+13. What is the crontab?
+14. What is a Linux service?
+15. What is systemctl?
+16. What is journalctl?
+17. What is a mount point?
+18. What is /proc filesystem?
+19. What is df and du?
+20. What is swap memory?
+21. What is load average?
+22. What is ulimit?
+23. What is nice and renice?
+24. What is an inode?
+25. What is the purpose of /etc/fstab?
+26. What is a runlevel or target?
+27. What is nohup?
+28. What is screen or tmux?
+29. What is a core dump?
+30. What is a Linux environment variable?
