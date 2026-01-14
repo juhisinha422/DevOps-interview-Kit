@@ -1,0 +1,51 @@
+Devops Engineer Job.
+
+Exp: 4+ years
+
+🐧 Linux / OS Fundamentals
+Write a shell script to verify whether SSH connectivity to a server is working.
+How do you troubleshoot and recover from a failed Ubuntu OS upgrade?
+How can you access a Windows C: drive from an Ubuntu system (dual boot / mounted disk)?
+What could be the reasons for high CPU usage on a Linux node even when pods appear healthy?
+🐳 Docker & Containers
+What is a multi-stage Docker build, and why is it used?
+Write a sample multi-stage Dockerfile.
+Create a Dockerfile for running a database container (example: MySQL or PostgreSQL).
+What is the advantage of multi-stage builds over single-stage builds?
+☸️ Kubernetes (General & GKE)
+What does the pod status ContainerStatusUnknown mean, and when does it occur?
+What is CoreDNS, and what role does it play in Kubernetes?
+What is a startup probe, and how is it different from liveness and readiness probes?
+How do you migrate data from one pod to another in MongoDB?
+What are the differences between GKE Ingress and NGINX Ingress Controller?
+How would you secure a Kubernetes / GKE cluster?
+☁️ Google Cloud Platform (GCP)
+What is Cloud Armor, and how does it protect applications?
+What network services are available in GCP?
+What are the GCP security services other than Cloud Armor and VPC?
+What is the GCP equivalent of CloudFormation?
+What is the CloudWatch equivalent in GCP?
+How do you restrict and protect a web application from cyber attacks on GCP?
+What is a CDN, and how does GCP Cloud CDN work?
+☁️ AWS
+What is CloudFront, and when would you use it?
+What is Route 53, and how is it different from CoreDNS?
+What is a read replica in RDS?
+If the primary RDS database fails, how can you promote a read replica?
+How can a developer securely access a private RDS instance without using a bastion host?
+What are best practices to protect an AWS-hosted web application?
+🏗️ Terraform & IaC
+What are the two main types of variables in Terraform?
+Input variables
+Environment variables (TF_VAR_*)
+In which Terraform file/resource can you identify non-cloud-native alternatives to Terraform?
+🔐 Security (General / DevOps)
+How do you secure Kubernetes clusters at: Network level, Pod level, Identity& access level
+What security measures would you implement while hosting a production web application?
+What policies and tools are used for policy compliance checks?
+OPA / Gatekeeper
+IAM policies
+Organization policies
+Pod Security Standards
+🔁 Jenkins
+How do you refactor or modularize a Jenkinsfile that exceeds practical limits?
