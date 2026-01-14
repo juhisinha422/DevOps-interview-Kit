@@ -1,0 +1,37 @@
+Tool 1 — Linux (Scenario-Based Level)
+(DevOps Interview Series Real-World Questions)
+
+This is what separates a resume DevOps engineer from a production DevOps engineer 🚀
+
+🧩 Linux – Real-World Scenario Based Questions
+
+1. A Linux server is slow — how do you start troubleshooting?
+2. CPU is 100% — how do you identify the root cause?
+3. Memory is full — what steps will you take?
+4. Disk is 100% — how do you free space safely?
+5. A service is down — how do you bring it back online?
+6. SSH is not working — how do you troubleshoot?
+7. A process is stuck — how do you kill it?
+8. Logs are not getting generated — what do you check?
+9. A user cannot login — how do you fix it?
+10. Application is not starting after reboot — what do you do?
+11. How do you find which process is using a port?
+12. How do you troubleshoot network issues in Linux?
+13. Files got deleted — how do you recover them?
+14. Server rebooted automatically — how do you find the reason?
+15. High I/O wait — how do you troubleshoot?
+16. A cron job is not running — what do you check?
+17. Root filesystem is full — what is your action plan?
+18. A service keeps crashing — how do you debug?
+19. Logs are filling disk — how do you control it?
+20. A process is consuming too much memory — what do you do?
+21. How do you find recently modified files?
+22. A server got compromised — what are your first steps?
+23. How do you safely restart a production server?
+24. How do you trace application startup failure?
+25. How do you identify kernel-related issues?
+26. How do you troubleshoot DNS problems on Linux?
+27. How do you handle a server that won’t boot?
+28. How do you investigate random server crashes?
+29. How do you validate system health after recovery?
+30. How do you prepare a Linux server for production?
