@@ -1,0 +1,43 @@
+Can you share project related interview questions like how to explain project in interview and questions related to that
+
+Interview Qs After You Explain Project (Very Realistic)
+1️⃣ Why did the team choose Kubernetes for this project?
+🗝 Answer Key: Scalability / Reliability / Automation / Rollouts / Infra abstraction
+2️⃣ How did you deploy to Kubernetes?
+🗝 Answer Key: CI/CD → YAML/Helm → GitOps (optional) → Rollouts → Monitoring
+3️⃣ How do you handle secret management?
+🗝 Answer Key: KV (Vault/Secrets/External Secrets) + Rotation + RBAC
+4️⃣ Production issue happened — how did you debug?
+🗝 Answer Key: Logs + Events + Metrics + Timeline + Root cause
+5️⃣ How is monitoring set up?
+🗝 Answer Key: Prometheus + Grafana + Alerts + SLOs + Logging (Loki/ELK)
+6️⃣ How do you handle deployments?
+🗝 Answer Key: Blue/Green / Rolling / Canary (depending on stack)
+7️⃣ What’s your CI/CD flow?
+🗝 Answer Key: Commit → Build → Test → Scan → Deploy → Verify
+8️⃣ How do you handle rollback?
+🗝 Answer Key: GitOps / Helm rollback / Deployment history
+9️⃣ How do you handle scaling?
+🗝 Answer Key: HPA / VPA / Autoscaler / Resource requests + limits
+🔟 How do you store state or persistence?
+🗝 Answer Key: PVC/PV / StorageClass / DB Managed Service (Cloud)
+1️⃣1️⃣ How do you manage config changes?
+🗝 Answer Key: ConfigMaps / Secret / Versioned / Reload strategy
+1️⃣2️⃣ How do you handle cost optimization?
+🗝 Answer Key: Requests vs Limits / Autoscaler / Pod/node sizing
+1️⃣3️⃣ How did you secure the project?
+🗝 Answer Key: RBAC / NetworkPolicy / SSO / Vulnerability Scans
+1️⃣4️⃣ What challenges faced in production?
+🗝 Answer Key: Outages / Scaling / Network / DB / Latency / CI/CD failure
+1️⃣5️⃣ What was your biggest contribution to the project?
+🗝 Answer Key: (Must be unique — not generic)
++++++++++
+
+
+Sample Project Explanation (DevOps/Kubernetes)
+I worked on a production-grade microservices platform deployed on Kubernetes (AKS).
+We had around 18 microservices. CI/CD was done using Azure DevOps, deployments with Helm, monitoring via Prometheus + Grafana, and logging via Loki.
+My responsibilities were CI/CD automation, Kubernetes deployments, scaling (HPA), secret management (Key Vault + External Secrets), and production troubleshooting.
+A major challenge was handling load spikes — we tuned resource requests and enabled autoscaling which improved performance and reduced cost.
+Outcome: Faster releases, fewer manual tasks, and better reliability in production.
+
