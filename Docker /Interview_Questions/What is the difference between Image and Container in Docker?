@@ -1,0 +1,57 @@
+What is the difference between Image and Container in Docker?
+
+
+When you start learning Docker, Image vs Container is the first confusion everyone faces. They sound related — and they are — but they are not the same thing.
+
+Let’s understand this clearly, step by step.
+
+First, understand what a Docker Image is :
+A Docker Image is a static blueprint of an application.
+It contains everything your app needs to run:
+ Application code
+ Runtime (Python, Java, Node, etc.)
+ Required libraries & dependencies
+ Configuration
+An image is created once using a Dockerfile. After it is created, it does not run and does not change.
+
+You can store this image in a registry and reuse it anywhere — dev, test, or production.
+Simply put: Image = "What to run" (but not running yet)
+
+
+
+
+Now, understand what a Docker Container is:
+A Docker Container is what you get when you run an image.
+When you execute: docker run myapp:1.0
+Docker creates a container from that image.
+
+A container is:
+ A live running process
+ Actively using CPU, memory, and network
+ Something you can start, stop, restart, or delete
+If the application stops, the container stops.
+Simply put: Container = "Image in action"
+
+
+
+
+Scenario-based understanding :
+
+Socho ek developer hai — Rahul.
+Rahul ne ek application banayi. 
+Usne socha: "Mujhe chahiye ki ye app har jagah same tarah se chale — Dev, QA aur Prod me."
+
+Isliye Rahul ne pehle ek Docker Image banayi. Is image me usne app ka code, required libraries, runtime — sab pack kar diya. Ab ye image ek fixed package hai. Ye kahin bhi bheji ja sakti hai, lekin abhi ye chal nahi rahi.
+
+Phir ek din QA team ne bola: "Hume is app ko test karna hai."
+Rahul ne wahi image uthayi aur usse run kiya. Jaise hi image run hui, ek Docker Container ban gaya. Ab app chal rahi thi, logs generate ho rahe the, aur system resources use ho rahe the.
+
+
+Same image se:
+QA ne 2 containers chalaye
+Prod ne 10 containers chalaye
+Image same rahi. Sirf containers badalte rahe.
+
+Is story ka simple meaning:
+Image = tayaar ki hui application (but not running)
+Container = wahi application, jab wo actually chal rahi ho
