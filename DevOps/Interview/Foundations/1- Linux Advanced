@@ -1,0 +1,37 @@
+ Tool 1 — Linux (Advanced Level)
+(DevOps Interview Questions Series)
+
+This is the level asked for SRE, DevOps & Production Support roles.
+
+Linux – Advanced Interview Questions
+
+1. What happens during the Linux boot process?
+2. What is systemd and how does it work?
+3. What is a cgroup?
+4. What are namespaces in Linux?
+5. What is the difference between a process and a thread?
+6. What is OOM Killer?
+7. What is strace?
+8. What is lsof?
+9. What is iostat?
+10. What is vmstat?
+11. How do you troubleshoot high CPU usage?
+12. How do you troubleshoot high memory usage?
+13. What is file descriptor?
+14. What is a socket?
+15. What is epoll?
+16. What is SELinux?
+17. What is AppArmor?
+18. What is swap thrashing?
+19. What is kernel panic?
+20. What is journaling file system?
+21. What is ext4 vs xfs?
+22. What is RAID?
+23. What is iSCSI?
+24. What is NFS?
+25. What is TCP vs UDP?
+26. What is a zombie vs orphan process?
+27. What is process priority?
+28. What is load balancer vs reverse proxy?
+29. What is sysctl?
+30. What is Linux capability?
