@@ -1,0 +1,23 @@
+✨DAY TO DAY ACTIVITY AS DEVOPS ENGINEER ✨
+
+Hello Fam! 👋 Nowadays most frequently asked question is to explain Day to Day activity as devops engineer.
+
+ Here's a breakdown of what I might do on a typical day
+
+1. Monitoring and Incident Response: I start by checking the health and performance of our systems using monitoring tools like Prometheus, Grafana, or ELK stack. If there are any alerts or incidents, I respond promptly to investigate and resolve them to ensure minimal downtime and disruption to our services.
+
+2. Infrastructure Management: I manage our cloud infrastructure on  AWS, ensuring scalability, reliability, and security. This involves provisioning, configuring, and optimizing resources such as EC2 instances, S3 buckets, or Kubernetes clusters based on the needs of our applications.
+
+3. Continuous Integration/Continuous Deployment (CI/CD): I work on automating and optimizing our CI/CD pipelines using tools like Jenkins, GitLab CI/CD, or CircleCI. This includes writing and maintaining pipeline scripts, integrating with version control systems, and orchestrating deployments across different environments (dev, staging, production).
+
+4. Configuration Management: I use tools like Ansible, Chef, or Puppet to automate the configuration and management of our servers and applications. This ensures consistency and repeatability across our infrastructure, reducing the chances of configuration drift and manual errors.
+
+5. Collaboration and Communication: I collaborate closely with developers, QA engineers, and other stakeholders to understand their requirements and provide support for their workflows. I also participate in meetings and discussions to share updates, gather feedback, and align on priorities.
+
+6. Security and Compliance: I implement security best practices and compliance standards (such as GDPR, HIPAA) across our infrastructure and applications. This includes regular vulnerability assessments, patch management, and access control measures to protect our data and systems from potential threats.
+
+7. Documentation and Knowledge Sharing: I document our infrastructure, processes, and best practices to ensure that knowledge is shared effectively within the team. This includes creating runbooks, architectural diagrams, and troubleshooting guides to help onboard new team members and facilitate smooth operations.
+
+8. Continuous Learning and Improvement: I stay updated on the latest trends, technologies, and best practices in DevOps through reading, online courses, and attending conferences or meetups. I also actively seek feedback and identify areas for improvement in our processes and workflows to drive efficiency and innovation.
+
+Overall, my goal is to enable our development teams to deliver high-quality software faster and more reliably by building and maintaining robust, automated, and scalable infrastructure and processes.
