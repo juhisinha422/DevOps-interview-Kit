@@ -1,0 +1,51 @@
+ SRE Interview Reality Check (Read Before Your Next Interview) 🚨
+
+
+“These questions keep coming in SRE / DevOps interviews…
+What should I answer in real production terms?”
+
+So I’m sharing this for every fresher, mid-level, and experienced engineer preparing for SRE roles 👇
+
+⸻
+
+🔹 Do companies always use Amazon Linux in production?
+No. OS choice depends on project, security, and application compatibility. Amazon Linux is common, but Ubuntu is equally used in many real environments.
+
+🔹 Is AWS usage in production just console login?
+Absolutely not. Production access is controlled using IAM roles, MFA, SSO, CLI, and CI/CD automation. Manual console work is minimal.
+
+🔹 Team structure in real SRE teams?
+SREs work closely with developers, QA, DB, network, and security teams. Reliability is a shared responsibility.
+
+🔹 Critical issues handled in production?
+High CPU, memory leaks, pod crashes, disk full, failed deployments, misconfigured load balancers — real problems, real pressure.
+
+🔹 On-call & incident handling?
+Late-night alerts, incident bridges with 5+ teams, client updates, RCA calls, and post-mortems. This is where engineers are truly tested.
+
+🔹 Kubernetes clusters & nodes?
+Multiple clusters per environment. Nodes scale based on load using autoscaling, not fixed numbers.
+
+🔹 Applications in infrastructure?
+Usually 10–30+ microservices, isolated via namespaces, monitored and deployed independently.
+
+🔹 Day-to-day SRE work?
+Monitoring, incident response, CI/CD, Terraform, Kubernetes ops, automation, and reliability improvements — not just deployments.
+
+🔹 EC2 instances in AWS?
+Instances serve different roles: K8s nodes, monitoring, CI/CD, bastion, apps — and they scale dynamically.
+
+⸻
+
+🎯 Interview truth most candidates miss:
+
+Interviewers don’t want perfect numbers.
+They want production thinking, clarity, and calm problem-solving.
+
+If you’re answering interviews like a tutorial,
+you’ll struggle in a production-focused SRE round.
+
+⸻
+
+💬 Question for you:
+Which SRE interview question scared you the most — and why?
