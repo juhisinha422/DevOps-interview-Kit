@@ -1,0 +1,102 @@
+Scenario 1: Multiple people run Terraform and infra breaks, how do you fix it?
+
+Answer:
+This happens when state locking is not enabled. I fix it by moving state to a remote backend like Azure Storage or S3 and enable locking. After that, only one apply can run at a time, preventing corruption.
+
+⸻
+
+Scenario 2: Terraform plan shows resource replacement, but you do not want downtime, what will you do?
+
+Answer:
+First I check which attribute is forcing replacement. If possible, I use lifecycle rules like create_before_destroy. If downtime is critical, I plan the change during maintenance or redesign the resource.
+
+⸻
+
+Scenario 3: A resource was deleted manually in the cloud console, what happens?
+
+Answer:
+Terraform will detect drift during terraform plan. It will show that the resource is missing and will recreate it during apply, because state and real infra are out of sync.
+
+⸻
+
+Scenario 4: You want same Terraform code for dev, test, and prod, how do you manage it?
+
+Answer:
+I use reusable modules and environment specific variable files. Each environment has its own backend state so changes in dev never affect prod.
+
+⸻
+
+Scenario 5: Terraform apply failed in the middle, what is your action?
+
+Answer:
+First I check the error and Terraform state. Terraform is usually safe and partial resources are tracked. I fix the issue and rerun apply. If state is locked, I ensure the lock is released safely.
+
+⸻
+
+Scenario 6: Sensitive values are exposed in Terraform state, how do you handle it?
+
+Answer:
+I mark variables as sensitive, store secrets in Key Vault or Secrets Manager, and restrict access to state storage using RBAC. I never commit state files to Git.
+
+⸻
+
+Scenario 7: You need to create resources dynamically from a list, what will you use?
+
+Answer:
+I use for_each instead of count because it provides stable resource identity and avoids unwanted recreation when items change.
+
+⸻
+
+Scenario 8: Different teams manage different parts of infrastructure, how do you design Terraform?
+
+Answer:
+I split infrastructure into multiple modules and separate state files. Networking, security, and application infra are isolated to avoid cross team impact.
+
+⸻
+
+Scenario 9: Terraform destroy was accidentally triggered in production, how do you prevent it?
+
+Answer:
+I restrict permissions, disable destroy in pipelines, add manual approvals, and use lifecycle prevent_destroy for critical resources.
+
+⸻
+
+Scenario 10: Existing resources are already created manually, but you want Terraform control, what do you do?
+
+Answer:
+I use terraform import to bring existing resources into Terraform state, then align the code with the actual configuration.
+
+⸻
+
+Scenario 11: Terraform plan is very slow in large environments, how do you optimize?
+
+Answer:
+I break infrastructure into smaller states, avoid unnecessary data sources, and reduce cross module dependencies.
+
+⸻
+
+Scenario 12: How do you handle Terraform version mismatch in team?
+
+Answer:
+I lock Terraform versions using required_version and provider versions, and enforce it through CI pipelines.
+
+⸻
+
+Scenario 13: You need approval before applying Terraform in production, how do you do it?
+
+Answer:
+I run terraform plan in pipeline, store the plan output, add manual approval stage, then apply the same plan after approval.
+
+⸻
+
+Scenario 14: Terraform is recreating resources even when no change was made, why?
+
+Answer:
+Common reasons are provider version changes, computed values, or manual changes. I check lifecycle settings and provider upgrades.
+
+⸻
+
+Scenario 15: How do you explain Terraform to a non technical manager?
+
+Answer:
+Terraform is like a blueprint for infrastructure. Instead of manually creating servers, we write code once and Terraform creates everything consistently and safely.
