@@ -1,0 +1,78 @@
+25 Real Interview Questions on Azure DevOps, GitHub Actions, Kubernetes, and Docker
+
+1. What is an Azure DevOps pipeline?
+I see it as an automated workflow that builds, tests, and deploys code so teams can release faster with confidence.
+
+2. Difference between classic and YAML pipeline?
+Classic is UI driven, YAML is code driven. I prefer YAML because it is version controlled and reusable.
+
+3. How do you secure secrets in Azure DevOps?
+I never hardcode them. I use variable groups connected to Azure Key Vault.
+
+4. What triggers a pipeline?
+Usually code push, pull request, or manual trigger, depends on the environment.
+
+5. How do you handle multiple environments?
+Using stages like dev, test, and prod with approvals for production.
+
+6. Why GitHub Actions over other tools?
+It is tightly integrated with GitHub and easy to start with simple workflows.
+
+7. How do GitHub Actions work?
+Events trigger workflows, workflows run jobs, and jobs run steps on runners.
+
+8. How do you store secrets in GitHub Actions?
+Using GitHub repository or organization secrets.
+
+9. Difference between self hosted and GitHub hosted runner?
+GitHub hosted is managed, self hosted gives more control and performance.
+
+10. What is Docker?
+Docker packages application and dependencies together so it runs the same everywhere.
+
+11. Difference between image and container?
+Image is a template, container is a running instance.
+
+12. How do you optimize Docker images?
+Using multi stage builds and smaller base images.
+
+13. What is Kubernetes in simple words?
+It manages containers at scale, handling deployment, scaling, and recovery.
+
+14. What is a pod?
+Smallest deployable unit in Kubernetes, one or more containers running together.
+
+15. What is a deployment?
+It manages replicas and ensures desired state of pods.
+
+16. How do services work in Kubernetes?
+They expose pods and provide stable networking.
+
+17. Difference between ClusterIP and LoadBalancer?
+ClusterIP is internal, LoadBalancer exposes externally.
+
+18. What is Helm?
+Package manager for Kubernetes that simplifies deployments.
+
+19. How do you do zero downtime deployment?
+Using rolling updates or blue green strategies.
+
+20. How do you monitor Kubernetes?
+Using logs, metrics, and tools like Prometheus and Azure Monitor.
+
+21. How do you troubleshoot a failing pod?
+kubectl describe, logs, and events are my first steps.
+
+22. What is RBAC?
+Role based access control to restrict who can do what in the cluster.
+
+23. How do pipelines and Kubernetes connect?
+Pipeline builds image, pushes to registry, deploys to cluster.
+
+24. Biggest mistake beginners make in DevOps?
+Focusing on tools instead of understanding workflows.
+
+25. What is real DevOps for you?
+Automation with responsibility, visibility, and reliability.
+
+Sharing this because interviews are less about perfect answers and more about clear thinking and real experience.
