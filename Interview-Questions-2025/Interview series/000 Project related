@@ -1,0 +1,19 @@
+Interviewer: Can you explain how you design a real CI/CD pipeline in a production environment?
+
+Me: I start with clarity on the workflow, not tools. I design the pipeline using Azure DevOps where the first stage builds and tests Docker images. Once the image is validated, it is pushed to the registry and deployed to AKS using Helm charts. For production safety, I prefer blue green deployments so traffic can switch without downtime.
+
+Interviewer: How do you handle security in the pipeline and AKS?
+
+Me: Security is baked in from day one. I use RBAC to control cluster access, pod security standards to restrict privileges, and Azure Key Vault to manage secrets securely instead of hardcoding them in pipelines or manifests.
+
+Interviewer: What networking concepts do you consider with Docker and Kubernetes?
+
+Me: I clearly understand Docker networking like bridge, host, overlay, and custom networks. In Kubernetes, I focus more on service networking, pod communication, and isolation using namespaces and network policies.
+
+Interviewer: What Git strategy do you follow?
+
+Me: It depends on the team size, but for fast delivery I recommend trunk based development. For structured releases, Git flow works well. The goal is always faster feedback and fewer merge conflicts.
+
+Interviewer: What matters most in CI/CD according to you?
+
+Me: Automation is important, but observability and rollback strategy matter more. A pipeline should fail fast, deploy safely, and be easy to debug.
