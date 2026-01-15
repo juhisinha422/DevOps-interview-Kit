@@ -1,0 +1,37 @@
+ Tool 2 — Git (Advanced Level)
+(DevOps Interview Questions Series)
+
+Now let’s go into enterprise-grade Git concepts that real DevOps teams use in production.
+
+Git – Advanced Interview Questions
+
+1. How does Git internally store objects?
+2. What are Git blobs, trees, and commits?
+3. What is the .git directory?
+4. What is packfile in Git?
+5. What is garbage collection in Git?
+6. How does Git handle file renames?
+7. What is three-way merge?
+8. How does Git detect merge conflicts?
+9. What is commit graph?
+10. What is the index (staging area) in Git?
+11. How does Git calculate diffs?
+12. What is shallow fetch?
+13. What is sparse checkout?
+14. What is monorepo vs multirepo?
+15. What is Git LFS?
+16. How does Git handle large binary files?
+17. What is commit signing?
+18. What is GPG signing in Git?
+19. What is pre-commit hook?
+20. What is post-commit hook?
+21. How do you enforce branch protection?
+22. What is Git server side hooks?
+23. What is bare repository?
+24. Difference between bare and non-bare repo?
+25. What is reference (refs) in Git?
+26. What is HEAD symbolic reference?
+27. What is upstream branch?
+28. What is reflog expiry?
+29. How do you clean corrupted Git repo?
+30. How do large enterprises manage Git at scale?
