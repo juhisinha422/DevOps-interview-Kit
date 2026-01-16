@@ -1,0 +1,13 @@
+Did anyone done peer review in DevOps?
+
+Consider a case where developer has written a code share with the DevOps Engineer for deployment, and now it is asked to do the peer review to ensure the deployment works as expected
+
+Yes that's very common for Merge Requests raised
+
+So what approach is followed and how it is documented?
+
+Code share is done via MRs only, while raising MR description is provided, that's all we document, nothing else
+
+
+If a developer has created a documentation on confluence for example, then that is reviewed. We are not documenting any peer review as such
+
