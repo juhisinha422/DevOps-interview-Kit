@@ -1,0 +1,4 @@
+here is my two cent 
+
+1. Provide details on your branching strategy and artifact versioning startegy. 
+2. ⁠ Your pipeline needs database or FTP credentials to deploy an application. How do you store and inject secrets securely, avoid exposing them in logs, and verify the pipeline is not leaking sensitive data?
