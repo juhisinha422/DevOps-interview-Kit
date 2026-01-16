@@ -1,0 +1,93 @@
+𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 
+
+✨ 𝗦𝘁𝗮𝘁𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 :
+
+What are the problems with local state?
+What is remote backend in Terraform?
+How do you store state securely?
+What happens if the state file is deleted accidentally?
+How do you recover a lost state file?
+What is state locking?
+How does Terraform handle concurrent runs?
+
+✨ 𝗘𝗻𝘃𝗶𝗿𝗼𝗻𝗺𝗲𝗻𝘁 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 :
+
+How do you manage multiple environments (Dev, QA, Prod) in Terraform?
+What are Terraform workspaces?
+When should you avoid using workspaces?
+How do you handle environment-specific variables?
+How do you structure Terraform code for multiple environments?
+
+✨ 𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝗖𝗼𝗻𝘁𝗿𝗼𝗹 :
+
+How do you prevent resource deletion in Terraform?
+What is lifecycle block?
+What is create_before_destroy?
+What is prevent_destroy?
+How do you modify only tags without recreating the resource?
+Why does Terraform plan show resource replacement?
+
+✨ 𝗔𝗪𝗦 + 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 :
+
+What parameters do you consider while creating an EC2 using Terraform?
+How do you create EC2 in a specific VPC and subnet?
+How do you attach Security Groups to EC2?
+How do you attach an IAM role to EC2?
+How do you run scripts during EC2 creation?
+How do you provision EBS volumes using Terraform?
+How do you change EBS volume type (gp3 → io1)?
+Will data be lost when modifying EBS type?
+
+✨ 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 & 𝗦𝗲𝗰𝗿𝗲𝘁𝘀 :
+
+How do you handle secrets in Terraform?
+How do you integrate Terraform with AWS Secrets Manager?
+How do you prevent secrets from leaking into logs?
+How do you mark outputs as sensitive?
+
+✨ 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 & 𝗗𝗲𝗯𝘂𝗴𝗴𝗶𝗻𝗴 :
+
+Terraform plan shows unexpected changes — how do you debug?
+Terraform apply fails midway -what happens to resources?
+How do you import existing resources into Terraform?
+What is terraform taint?
+What is terraform refresh?
+
+✨ 𝗖𝗜/𝗖𝗗 𝗜𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗶𝗼𝗻 :
+
+How do you use Terraform in Jenkins pipelines?
+How do you manage Terraform state in CI/CD?
+How do you ensure safe Terraform apply in production?
+How do you implement approval before Terraform apply?
+
+𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗦𝗰𝗿𝗲𝗲𝗻-𝗦𝗵𝗮𝗿𝗶𝗻𝗴 / 𝗖𝗼𝗱𝗶𝗻𝗴 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 : 
+
+Write Terraform code to:
+Create an EC2 module
+Reuse it for dev, qa, and prod without duplication
+Show folder structure for:
+Root module
+Child EC2 module
+
+Write Terraform backend configuration to:
+Store state in an S3 bucket
+Use DynamoDB for state locking
+Write Terraform code to:
+Use different state files for dev and prod
+
+Write Terraform code to:
+Run a shell script during EC2 creation using remote-exec
+
+Write Terraform code to:
+Copy a file to EC2 using file provisioner
+
+Write Terraform code to:
+Prevent accidental deletion of an EC2 instance
+Write Terraform code to:
+Replace resource without downtime
+
+Write Terraform code to:
+Create an EBS volume
+Attach it to an EC2 instance
+Write Terraform code to:
+Modify EBS volume type without data loss
