@@ -1,0 +1,61 @@
+ Top 50 Linux Advanced-Level Interview Questions (DevOps / SRE / Cloud)
+
+These questions are asked for 3–8 years experience roles and focus on internals, performance, security, and production troubleshooting.
+
+Linux – Advanced Interview Questions.
+
+1. How does the Linux boot process work step by step?
+2. What is systemd and how is it different from init?
+3. Explain Linux process states in detail.
+4. How does Linux scheduling work?
+5. Difference between preemptive and non-preemptive scheduling?
+6. What is CFS (Completely Fair Scheduler)?
+7. How does memory management work in Linux?
+8. Difference between virtual memory and physical memory?
+9. What is swap and when is it used?
+10. What happens when Linux runs out of memory?
+
+11. What is OOM killer and how does it work?
+12. How do you analyze high CPU usage in Linux?
+13. How do you debug memory leaks on Linux servers?
+14. What is load average and how do you interpret it?
+15. Difference between load average and CPU utilization?
+16. How do you find zombie and orphan processes?
+17. What is context switching?
+18. How does nice and renice work?
+19. What is ulimit and why is it important?
+20. Difference between soft and hard limits?
+
+21. How does Linux handle file permissions internally?
+22. What are SUID, SGID, and Sticky bits?
+23. How do ACLs work in Linux?
+24. Difference between inode and file descriptor?
+25. What happens when inodes are exhausted?
+26. How does Linux handle open files?
+27. What is /proc filesystem?
+28. What is /sys filesystem?
+29. Difference between ext4, xfs, and btrfs?
+30. How does journaling work in Linux filesystems?
+
+31. What is LVM and why is it used?
+32. Difference between RAID levels (0,1,5,10)?
+33. How do you resize a filesystem online?
+34. How does Linux networking stack work?
+35. Difference between TCP and UDP at kernel level?
+36. What is epoll and why is it better than select?
+37. What is netfilter and iptables?
+38. Difference between iptables and nftables?
+39. How does SSH authentication work
+internally?
+40. How do you secure a Linux server?
+
+41. What is SELinux and how does it work?
+42. Difference between SELinux enforcing, permissive, disabled?
+43. What is AppArmor?
+44. How do you troubleshoot disk I/O issues?
+45. What is iowait?
+46. How does cron work internally?
+47. Difference between cron and systemd timers?
+48. What is chroot and how is it used?
+49. How do containers use Linux namespaces and cgroups?
+50. How do you troubleshoot a Linux server that suddenly becomes slow?
