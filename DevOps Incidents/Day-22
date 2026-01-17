@@ -1,0 +1,24 @@
+#IncidentPostmortem
+
+Day 22: Service Routing Failed After Deployment
+
+Incident:
+Deployment completed, but users saw old behavior for 15 minutes.
+
+
+What Happened Next:
+Service endpoints did not update to include new pods.
+
+
+Root Cause:
+1. Label Mismatch: Pods had app=v2, Service selector expected app=v1.
+2. Service Uses Labels Only: Kubernetes Services ignore deployments and versions.
+
+
+Fix:
+ 1. Aligned pod labels with Service selector.
+ 2. Verified endpoint updates post-deploy.
+
+
+Takeaway:
+In Kubernetes, labels decide traffic flow.
