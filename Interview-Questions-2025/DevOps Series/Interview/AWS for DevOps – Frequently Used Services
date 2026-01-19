@@ -1,0 +1,37 @@
+AWS for DevOps – Frequently Used Services
+
+If you work as a DevOps / Cloud / SRE engineer, you should be able to answer these without Googling 👇
+
+🔹 EC2
+ • When would you prefer EC2 over container-based services?
+ • How do you handle EC2 patching in production?
+ • What happens to EC2 when an Auto Scaling instance is terminated?
+
+🔹 IAM
+ • Why should IAM roles be used instead of access keys?
+ • How do you design least-privilege policies for CI/CD pipelines?
+ • Difference between IAM role trust policy and permission policy?
+
+🔹 S3
+ • How do you secure S3 buckets in a production environment?
+ • When would you use S3 versioning?
+ • How do you prevent accidental deletion of critical objects?
+
+🔹 VPC
+ • Why are private subnets important for backend workloads?
+ • How does NAT Gateway work internally?
+ • Difference between Security Groups and NACLs in real use cases?
+
+🔹 CloudWatch
+ • What metrics are critical to monitor for EC2 and ALB?
+ • How do you reduce CloudWatch cost in large environments?
+ • When do you use logs vs metrics vs alarms?
+
+🔹 ALB / NLB
+ • When do you choose ALB over NLB?
+ • How does health check failure impact traffic routing?
+ • Can one ALB serve multiple applications?
+
+🔹 ECR
+ • How do you manage image versioning and cleanup in ECR?
+ • How do you scan container images for vulnerabilities?
