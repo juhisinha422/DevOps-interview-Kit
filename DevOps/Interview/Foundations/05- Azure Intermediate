@@ -1,0 +1,66 @@
+ DevOps Interview Series | Tool 5 Azure (Intermediate Level)
+
+For 2–6 years DevOps / Cloud Engineers
+
+If you already know Azure basics, these intermediate-level questions will push you toward real-world readiness 👇
+
+How does Azure Resource Manager (ARM) differ from classic deployment?
+
+What is an Azure Virtual Scale Set (VMSS)?
+
+Difference between Availability Sets and Availability Zones
+
+What is Azure Application Gateway and
+how is it different from Load Balancer?
+
+What is Azure Traffic Manager?
+
+What is Azure Front Door?
+
+How does Azure DNS work?
+
+What is Azure Private Endpoint?
+
+What is Azure Service Endpoint?
+
+Difference between Service Endpoint and Private Endpoint
+
+What is Azure Bastion?
+
+How does Azure VNet peering work?
+
+What is Azure ExpressRoute?
+
+What is Azure Storage Replication (LRS, ZRS, GRS, RA-GRS)?
+
+What is Azure Key Vault and how is it used in CI/CD?
+
+What is Managed Identity in Azure?
+
+Difference between System-assigned and User-assigned Managed Identity
+What is Azure DevOps and its core services?
+
+What is Azure Pipeline?
+
+What is Azure Artifacts?
+
+How do you deploy resources using ARM templates?
+
+What is Bicep and how is it different from ARM?
+
+What is Azure Policy?
+
+What is Azure Blueprints?
+
+What is Azure Automation?
+
+What is Azure Logic Apps?
+
+What is Azure Functions?
+
+What is Azure API Management?
+
+How do you monitor Azure resources using Azure Monitor?
+
+How do you implement role-based access control (RBAC) in a project?
+Career Transition & End-to-End Guidance
