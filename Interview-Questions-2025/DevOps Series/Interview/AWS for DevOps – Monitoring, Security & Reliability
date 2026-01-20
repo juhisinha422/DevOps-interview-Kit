@@ -1,0 +1,41 @@
+ AWS for DevOps – Monitoring, Security & Reliability
+
+If you manage production workloads on AWS, you should have clarity on these 👇
+
+🔹 CloudWatch
+ • Which CloudWatch metrics are critical for production EC2 workloads?
+ • Difference between CloudWatch Logs, Metrics, and Alarms?
+ • How do you design actionable alarms instead of noisy alerts?
+ • How do you retain logs while controlling CloudWatch cost?
+
+🔹 AWS X-Ray
+ • When should you use X-Ray instead of logs?
+ • How does distributed tracing help in microservices?
+ • What are the limitations of X-Ray?
+
+🔹 Security – IAM & Secrets
+ • How do you implement least privilege in production?
+ • How do you manage secrets in AWS securely?
+ • Why is hardcoding secrets in pipelines dangerous?
+
+🔹 AWS WAF & Shield
+ • When do you use AWS WAF?
+ • Difference between WAF and Security Groups?
+ • How does AWS Shield protect against DDoS attacks?
+
+🔹 GuardDuty & Security Hub
+ • What kind of threats does GuardDuty detect?
+ • How do you respond to GuardDuty findings?
+ • Difference between GuardDuty and CloudTrail?
+
+🔹 Backup & Disaster Recovery
+ • What backup strategy do you follow for EC2 and RDS?
+ • Difference between backup, snapshot, and replication?
+ • How do RPO and RTO impact DR design?
+
+🔹 Reliability & High Availability
+ • How do you design fault-tolerant architectures in AWS?
+ • How does Multi-AZ improve availability?
+ • What are common single points of failure in AWS setups?
+
+💡 Monitoring tells you what is broken. Reliability decides how fast you recover.
