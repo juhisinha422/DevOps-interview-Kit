@@ -1,0 +1,57 @@
+Infosys Interview Experience – Real DevOps & Cloud Question
+
+🔹 Docker & Security
+
+How do you create a Docker image and perform a security scan on it?
+
+🔹 CI/CD & DevOps
+
+What happens in the build stage of a CI/CD pipeline?
+
+Explain a typical CI/CD workflow
+
+How do you set up a CI/CD pipeline?
+How do you integrate Jenkins with GitHub?
+
+How do you handle environment variables/secrets in CI/CD so they don’t appear in logs?
+
+🔹 Java & Maven
+
+How are Java-based microservices deployed?
+
+What are common Maven build commands?
+
+How do you add a dependency in pom.xml?
+
+What do you do when Java heap memory goes down?
+
+🔹 Git & GitHub
+
+What Git branching strategy is used in your organization?
+How do you use GitHub in day-to-day development?
+
+🔹 AWS & Cloud
+
+How do you access instances that have private IPs only?
+
+What is VPC Peering and when do you use it?
+
+Explain Transit Gateway with a real-life use case
+
+Explain S3, VPC, and lifecycle policies
+
+Explain Networking, IAM, Target Groups, Auto Scaling, Load Balancer
+
+🔹 Terraform
+
+What are terraform init, plan, and apply?
+
+🔹 Kubernetes & EKS
+Explain Kubernetes deployment strategies (Rolling, Blue-Green, Canary)
+
+What is a StatefulSet and when is it used?
+
+High-level steps to set up EKS
+
+💬 Note:
+If you’re preparing for Infosys or any DevOps role, these questions are a solid checklist. Focus on hands-on practice + real-world use cases.
