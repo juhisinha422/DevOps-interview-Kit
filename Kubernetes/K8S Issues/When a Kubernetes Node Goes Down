@@ -1,0 +1,12 @@
+When a Kubernetes Node Goes Down: What Happens Next?
+
+Node failures are inevitable but Kubernetes is designed to recover automatically. When a node becomes unreachable, several things happen behind the scenes to keep your workloads running.
+
+Here’s the flow:
+- The node is marked NotReady
+- Pods on the node stop responding
+- The controller manager reschedules affected Pods
+- New Pods are started on healthy nodes
+- Pods on the failed node are eventually terminated
+
+If your apps aren’t resilient to node loss, the issue isn’t Kubernetes, it’s your configuration.
