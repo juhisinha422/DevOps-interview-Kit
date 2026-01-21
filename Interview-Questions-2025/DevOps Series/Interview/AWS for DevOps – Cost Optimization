@@ -1,0 +1,40 @@
+AWS for DevOps – Cost Optimization / FinOps
+
+If you run workloads in production, cost is your responsibility too 👇
+
+🔹 Cost Visibility
+	•	How do you track cost per application or environment in AWS?
+	•	Which AWS services help you visualize and analyze spending?
+	•	How do you identify sudden cost spikes?
+
+🔹 EC2 Cost Optimization
+	•	When do you use On-Demand vs Reserved vs Spot instances?
+	•	How do you right-size EC2 instances?
+	•	How do you automate stopping non-prod resources?
+
+🔹 Auto Scaling & Scheduling
+	•	How does auto scaling reduce cost?
+	•	What risks come with aggressive scaling policies?
+	•	How do you handle predictable vs unpredictable workloads?
+
+🔹 Storage Optimization
+	•	How do you control S3 storage cost?
+	•	When should you move data to Glacier?
+	•	How do you clean up unused EBS volumes and snapshots?
+
+🔹 Containers & Serverless
+	•	How does Fargate pricing differ from EC2-based containers?
+	•	When does serverless become more expensive than EC2?
+	•	How do you optimize Lambda execution cost?
+
+🔹 Monitoring & Alerts
+	•	How do you set cost alerts and budgets?
+	•	How do you prevent runaway billing incidents?
+	•	Who should receive cost alerts in an organization?
+
+🔹 FinOps Culture
+	•	Why is FinOps a shared responsibility?
+	•	How do you enforce cost ownership across teams?
+	•	How do you balance performance vs cost?
+
+💡 The best DevOps engineers don’t just scale systems — they scale them cost-effectively.
