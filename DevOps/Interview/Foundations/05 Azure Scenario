@@ -1,0 +1,61 @@
+DevOps Interview Series | Tool 5 – Azure (Scenario Based Questions)
+
+If you can solve these, you’re thinking like a real Azure Engineer, not just a certified one 👇
+
+Your Azure VM is running but not reachable — how will you troubleshoot?
+
+How would you debug high latency in an Azure Application Gateway?
+
+Your AKS pods are restarting continuously — how do you find the root cause?
+Azure SQL is slow during peak hours — how would you optimize it?
+
+How do you handle region failure for a production Azure app?
+
+How do you design DR for a business-critical application in Azure?
+
+A private endpoint is not accessible — what steps will you follow?
+
+Storage account access is failing — how will you debug it?
+
+How would you rotate secrets in Azure Key Vault without downtime?
+
+How do you reduce Azure cloud cost for a production workload?
+
+Azure DevOps pipeline is failing intermittently — how do you debug it?
+
+How would you migrate a monolithic app to Azure microservices?
+How do you secure PaaS services without exposing them publicly?
+
+What would you do if AKS cluster is not scaling automatically?
+
+How do you implement zero downtime deployments in Azure?
+
+How do you handle a DDoS attack on your Azure application?
+
+How do you ensure compliance in a regulated Azure environment?
+
+How would you audit access across multiple subscriptions?
+
+How do you monitor and alert on business-critical metrics?
+
+How do you rollback a faulty production deployment in Azure?
+
+How do you debug a failed Azure ARM/Bicep deployment?
+
+How do you manage secrets for multi-region deployments?
+
+How do you design network isolation for multiple teams?
+
+How do you troubleshoot slow blob storage performance?
+
+How do you implement GitOps for AKS using Azure DevOps?
+
+How do you prevent accidental deletion of critical Azure resources?
+
+How would you migrate on-prem workloads to Azure securely?
+
+How do you handle certificate expiration in production?
+
+How do you design centralized logging for Azure workloads?
+
+How do you respond to a complete Azure region outage?
