@@ -1,0 +1,66 @@
+DevOps Interview Series | Tool 5 – Azure (Advanced Level)
+
+If you’re aiming for senior Azure / DevOps roles, these questions test your design, scalability, security, and automation skills 👇
+
+🔹 Azure – Advanced Level Interview Questions (30)
+
+How do you design a highly available architecture in Azure across regions?
+
+How does Azure Site Recovery work in DR scenarios?
+
+What is Azure Landing Zone and why is it important?
+
+How do you implement Zero Trust
+Architecture in Azure?
+
+How do you secure multi-tenant applications in Azure?
+
+How does Azure AD integrate with on-prem AD (Hybrid Identity)?
+
+How do you implement SSO and Conditional Access in Azure AD?
+
+How do you secure secrets across multiple subscriptions?
+
+How does Azure Policy enforce governance at scale?
+
+How do you manage multi-subscription and multi-tenant Azure environments?
+
+How do you design cost-optimized Azure architecture?
+
+How does Azure Cost Management work internally?
+
+What are Azure Management Groups and their real use cases?
+
+How do you implement CI/CD with Azure DevOps for infrastructure?
+
+How do you implement GitOps in Azure Kubernetes Service (AKS)?
+
+How does Azure Monitor integrate with Log Analytics?
+
+How do you design centralized logging across services?
+
+How do you implement observability in AKS?
+
+How do you secure AKS clusters at enterprise scale?
+
+What are Azure Blue-Green and Canary deployments?
+
+How do you automate compliance using Azure Security Center (Defender for Cloud)?
+
+How do you implement network security across VNets and regions?
+
+What is Azure Firewall and when do you prefer it over NSGs?
+
+How do you manage secrets and certificates lifecycle in Key Vault?
+
+How do you implement private connectivity to PaaS services?
+
+How do you design disaster recovery for Azure SQL and Cosmos DB?
+
+How do you implement autoscaling in AKS and App Services?
+
+How do you design event-driven architecture using Azure services?
+
+How do you integrate Azure with third-party SIEM tools?
+
+How do you handle major Azure service outages in production?
