@@ -1,0 +1,21 @@
+ Recent DevOps Interview Experience
+
+
+
+👉 Linux & System Basics
+What is the command to check open port numbers in Linux?
+What is systemctl used for?
+Difference between soft link and hard link?
+
+👉 Git & Version Control
+Difference between git pull and git fetch?
+What is git cherry-pick and when do we use it?
+
+👉 Terraform & Infrastructure as Code
+Which language is Terraform written in?
+How do we refer to or call existing resources in Terraform?
+What happens if the Terraform state file is accidentally deleted and there is no backup?
+What are the basic Terraform commands used in day-to-day work?
+
+💡 Key takeaway:
+The interview focused more on fundamentals and real understanding rather than just definitions. Especially around Terraform state management and Git workflows — areas where practical clarity really matters.
