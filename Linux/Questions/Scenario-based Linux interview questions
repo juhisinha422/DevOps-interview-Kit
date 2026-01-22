@@ -1,0 +1,73 @@
+Scenario-based Linux interview questions******
+
+1. User Management: A user complains they cannot log in. How will you troubleshoot?
+
+2. File Permissions: A script is executable by one user but not another. How do you resolve this?
+
+3. Process Management: A service is consuming 100% CPU. How will you find and fix it?
+
+4. SSH Issues: You cannot SSH into a remote machine. How do you debug?
+
+5. Disk Space Full: / partition is full. How do you find and delete large files safely?
+
+6. File Corruption: A log file is showing junk characters. How will you check and recover it?
+
+7. Crontab Not Running: A scheduled job is not executing. How do you debug?
+
+8. Package Installation Failing: yum or apt is failing. How will you resolve it?
+
+9. User Cannot Sudo: A user was added to sudoers, but sudo still doesn't work. What could be wrong?
+
+10. Kernel Panic: How do you troubleshoot and recover from a kernel panic?
+
+11. Zombie Processes: How do you identify and remove zombie processes?
+
+12. Too Many Open Files Error: How do you fix "Too many open files" in Linux?
+
+13. Finding and Killing Processes: A process is causing high memory usage. How do you locate and stop it?
+
+14. Home Directory Missing: A user's home directory is missing. How will you restore it?
+
+15. Time Sync Issues: The server time is incorrect. How do you fix NTP sync?
+
+16. Finding Recently Changed Files: How do you find all files modified in the last 10 minutes?
+
+17. Deleting Large Files But Space Not Freeing Up: What could be the reason?
+
+18. Checking System Load: How do you analyze high system load issues?
+
+19. NFS Mount Issues: How do you troubleshoot an NFS mount not working?
+
+20. Hostname Resolution Issues: ping is working, but ssh is failing by hostname. Why?
+
+File System & Storage
+
+21. How do you extend a partition without unmounting it?
+
+22. What steps are needed to add a new disk to a Linux server?
+
+23. How to check which processes are writing to a file in real time?
+
+24. How to recover a deleted file in Linux?
+
+25. How to check disk I/O performance in Linux?
+
+26. A directory is taking too much space. How do you analyze it?
+
+27. How do you remount a filesystem in read-write mode without rebooting?
+
+28. What happens when a file is deleted but is still in use by a process?
+
+29. How do you create and mount a swap file?
+
+30. How do you find large unused files across multiple partitions?
+
+31. How do you fix a corrupted file system using fsck?
+
+32. What is inode exhaustion, and how do you resolve it?
+
+33. You need to copy a huge file across servers. What do you think the fastest way?
+
+34. Your df -h and du-sh show different disk usage. Why?
+
+35. How do you find out which directory is consuming the most in /var?
