@@ -1,0 +1,14 @@
+𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗧𝗵𝗮𝘁 𝗚𝗼 𝗕𝗲𝘆𝗼𝗻𝗱 ‘𝗪𝗵𝗮𝘁 𝗜𝘀...?
+
+1. A developer reports a high latency for a specific service, what steps and tools you would use to pin-point whether its application, network or infra related ?
+2. In k8s architecture which component is not running as pod
+3. Any reason why we cannot place our app pods in master node by default
+4. how you switch between clusters, tell me the command
+5. Etcd is sql or no sql database and reason
+6. How to check linux process without use of ps or top command
+7. If an object is deleted from S3, can it be restored? If Yes, How ?
+8. Why do we perform Docker image scanning, and what exactly does it check for?
+9. How do you identify and handle configuration drift using Ansible?
+10. How does cache layering work when routing traffic across specific  subnets or networks?
+11. how can you ensure traffic is forwarded securely inside vpc ?
+12. In GitHub, after a code commit, what validations do you perform? Do you validate before the commit or after the commit?
