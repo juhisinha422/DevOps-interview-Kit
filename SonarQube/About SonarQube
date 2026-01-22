@@ -1,0 +1,39 @@
+Let’s talk about SonarQube.
+
+𝐒𝐨, 𝐰𝐡𝐚𝐭 𝐞𝐱𝐚𝐜𝐭𝐥𝐲 𝐢𝐬 𝐒𝐨𝐧𝐚𝐫𝐐𝐮𝐛𝐞?
+
+SonarQube is a code quality and security analysis platform.
+When you run a SonarQube scan, it looks for:
+
+1.	Bugs (logic errors, bad patterns)
+2.	Security vulnerabilities
+3.	Code smells (maintainability issues)
+4.	Duplicated code
+5.	Code coverage (via test reports)
+
+It doesn’t run your application.
+It reads your code and applies thousands of rules.
+
+𝐖𝐡𝐲 𝐝𝐨 𝐭𝐞𝐚𝐦𝐬 𝐮𝐬𝐞 𝐒𝐨𝐧𝐚𝐫𝐐𝐮𝐛𝐞?
+
+Because code reviews don’t scale.
+Humans miss things.
+SonarQube doesn’t.
+
+𝐈𝐭 𝐠𝐢𝐯𝐞𝐬 𝐭𝐞𝐚𝐦𝐬:
+
+•	A single definition of code quality
+•	Objective, repeatable checks
+•	Early feedback (before production)
+•	Most importantly — it introduces Quality Gates.
+
+𝐖𝐡𝐚𝐭 𝐢𝐬 𝐚 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 𝐆𝐚𝐭𝐞?
+A Quality Gate is a set of rules like:
+•	No new critical bugs
+•	No new security vulnerabilities
+•	Minimum test coverage
+If the gate fails, the build should not pass.
+
+𝐐𝐮𝐚𝐥𝐢𝐭𝐲 𝐆𝐚𝐭𝐞𝐬 𝐝𝐞𝐜𝐢𝐝𝐞:
+•	Pass → pipeline moves forward
+•	Fail → fix the code first
