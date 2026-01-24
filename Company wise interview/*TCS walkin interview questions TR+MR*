@@ -1,0 +1,33 @@
+*TCS walkin interview questions TR+MR* 
+
+Tell me about what is EC2 instance and where we will use in real time,
+What is S3 and versioning? 
+Which IAM policy we will use for the S3 bucket.
+What is VPC and why will we use.
+Private vs public subnet 
+How to launch the EC2 instance in private subnet
+Instance types and route table 
+What is jenkisfile? How many stages you have written 
+What is pipeline and explain the stages ?
+What is node in Jenkins and how to run the job in particular node(master-slave) concept.
+What is docker compose?
+Docker uses and image vs container?
+What are the command used while writing the dockerfile
+Is it necessary to mention the RUN command in dockerfile or is it optional 
+What are mandatory commands needed to mention in dockerfile
+CMD vs Entrypoint-- > where we will use in real-time scenarios 
+Reduce docker the docker image size 
+Multi stage dockerfile realtime usage
+Terraform steps 
+Command to create the resources using the already created terraform statefile
+Why we use terraform? Explain me the scenario.
+Kubernetes architecture ---> explanation of each component 
+What is node and pod in kubernetes? How it will works
+Pod vs deployment 
+What is the troubleshooting you have done while doing the project? 
+Deployment strategies? And explain how it will used in real-time 
+How many pods we will create in the realtime project?
+Ingress vs Load balancer
+Can we do terraform apply without terraform plan
+Explain CI/CD.
+Branching strategies
