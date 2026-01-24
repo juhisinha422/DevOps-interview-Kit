@@ -1,0 +1,21 @@
+🖥 *DevOps Engineer Interview Questions at Stripe* ❓
+
+
+⚡️ *Round 1 - Infrastructure & Reliability at Scale* 
+1. Stripe runs payments across multiple regions with active-active architecture. How would you ensure transaction consistency and prevent drift during partial regional failovers?
+2. Your team reports slow API response times, but CPU, memory, and request volume look stable. What non-obvious infra metrics do you check before suspecting the app layer?
+3. You’re asked to migrate a Terraform backend from S3 to GCS without breaking concurrent CI pipelines. How do you plan for state locking, parallel applies, and drift protection during migration?
+4. A new container image passed CI but failed readiness probes in production. No logs, no crashloops - just hangs. How would you debug this, step by step?
+5. Describe your zero-downtime strategy for rolling out config changes to Nginx ingress across 500+ services, when 20% of traffic is long-lived HTTP connections.
+
+⚡️ *Round 2 - Incident Simulation & RCA* 
+1. Payments API latency spikes by 600ms only in one region. No new deploys. DNS propagation, load balancers, and instances are all healthy. Where do you start your RCA?
+2. You rolled out a new sidecar container for caching, and suddenly, Redis connection resets appear intermittently. What’s your hypothesis, and how do you prove or disprove it?
+3. One of your CI runners keeps deleting the /tmp directory during builds, breaking workflows. Walk through your isolation, tracing, and mitigation steps.
+4. During an SRE review, your system passes SLO targets but still experiences user complaints. What hidden reliability gaps could explain this discrepancy?
+
+⚡️ *Round 3 - Reliability Leadership & Culture* 
+1. How would you build a postmortem process that improves velocity without creating fear?
+2. You’re asked to roll out service-level chaos testing across payments infra.
+3. How do you choose test boundaries without risking actual transactions?
+4. What does “reliability” mean when the cost of one incident equals $5M in transactions?
