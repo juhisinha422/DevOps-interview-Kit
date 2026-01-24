@@ -1,0 +1,29 @@
+Here are most-asked interview questions — 5 per topic crisp and practical, exactly how interviewers usually ask (DevOps / Support / CI-CD focused).
+🔍 SonarQube – Top 5 Interview Questions
+
+What is SonarQube and why is it used in CI/CD pipelines?
+What are bugs, vulnerabilities, and code smells in SonarQube?
+How does SonarQube measure code quality and coverage?
+Difference between SonarQube Scanner and SonarQube Server?
+How do you integrate SonarQube with Jenkins or Maven?
+🧱 Maven – Top 5 Interview Questions
+
+What is Maven and what problems does it solve?
+Explain the Maven lifecycle phases (clean, validate, compile, test, package, install, deploy).
+What is a POM.xml file and its key elements?
+Difference between dependencies and plugins in Maven?
+How does Maven manage dependency conflicts?
+☸️ Minikube – Top 5 Interview Questions
+
+What is Minikube and when do you use it?
+How does Minikube differ from a production Kubernetes cluster?
+How do you start, stop, and delete a Minikube cluster?
+How can you expose a service in Minikube?
+What drivers are supported by Minikube (Docker, VirtualBox, etc.)?
+🌐 NGINX – Top 5 Interview Questions
+
+What is NGINX and where is it commonly used?
+Difference between NGINX and Apache?
+How does NGINX act as a reverse proxy?
+What is load balancing in NGINX and its methods?
+Where are NGINX configuration files and logs located?
