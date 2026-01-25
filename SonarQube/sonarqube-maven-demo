@@ -1,0 +1,106 @@
+SonarQube + Completed a SonarQube‑integrated Maven project with automated tests and quality gates.
+
+Maven is a very solid DevOps / Java interview project.
+Below is a complete step-by-step SonarQube project using Maven (Java 17). You can run this locally and also push it to GitHub.
+
+🔹 Project Overview
+Project Name: sonarqube-maven-demo
+ Tech Stack:
+Java 17
+Maven
+SonarQube
+SonarScanner for Maven
+
+Goal:
+ Analyze Java code quality (bugs, vulnerabilities, code smells, coverage).
+🔹 Step 1: Install Prerequisites
+
+1️⃣ Install Java 17
+
+java -version
+If not installed:
+
+sudo apt install openjdk-17-jdk -y
+
+2️⃣ Install Maven
+
+mvn -version
+If not installed:
+
+sudo apt install maven -y
+
+3️⃣ Install & Start SonarQube (Docker – Recommended)
+
+docker run -d \
+--name sonarqube \
+-p 9000:9000 \
+sonarqube:lts
+Access SonarQube:
+
+http://localhost:9000
+Default login
+
+Username: admin
+Password: admin
+
+👉 Change password after login.
+🔹 Step 2: Create Maven Project
+create file then next
+    
+🔹 Step 4: Add Sample Java Code (With Issues 😄)
+📁 src/main/java/com/demo/App.java
+
+package com.demo;
+
+public class App {
+
+    public static void main(String[] args) {
+        App app = new App();
+        app.divide(10, 0); // BUG: Division by zero
+    }
+
+    public int divide(int a, int b) {
+        return a / b;
+    }
+
+    public void unusedMethod() {
+        System.out.println("I am never used"); // Code smell
+    }
+}
+🔹 Step 5: Add Test Case
+📁 src/test/java/com/demo/AppTest.java
+
+package com.demo;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class AppTest {
+
+    @Test
+    public void testDivide() {
+        App app = new App();
+        assertEquals(5, app.divide(10, 2));
+    }
+}
+🔹 Step 6: Generate SonarQube Token
+Go to SonarQube UI
+My Account → Security
+Generate token
+Copy it
+🔹 Step 7: Run SonarQube Analysis
+
+mvn clean verify sonar:sonar \
+-Dsonar.login=YOUR_TOKEN_HERE
+
+✅ Build will run
+
+✅ Code analyzed
+
+✅ Results sent to SonarQube
+
+🔹 Step 8: View Report
+
+Open:
+
+http://localhost:9000
