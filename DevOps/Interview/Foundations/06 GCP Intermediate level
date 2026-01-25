@@ -1,0 +1,60 @@
+GCP – Intermediate Level Interview Questions (DevOps / Cloud Engineers)
+
+If you already know the basics of GCP, these questions will push you toward real-world understanding and interview readiness 🚀
+
+What is the difference between Compute Engine and App Engine?
+
+When should you use Cloud Run over GKE?
+
+How does IAM hierarchy work in GCP (Org, Folder, Project)?
+
+What is the difference between Service Accounts and User Accounts?
+
+How do you secure GCP resources using IAM best practices?
+What is VPC Peering and when do you use it?
+
+Difference between VPC Peering and Shared VPC?
+
+How does Cloud NAT work?
+
+What is Cloud Armor and where is it used?
+
+Explain Cloud Load Balancing types in GCP.
+
+Difference between Internal and External Load Balancer.
+
+What is a Managed Instance Group (MIG)?
+
+How does autoscaling work in GCP?
+
+What is Cloud SQL vs Cloud Spanner vs Bigtable?
+
+When would you use BigQuery over Cloud SQL?
+What is Cloud Pub/Sub and where is it used?
+
+Difference between Pub/Sub and Kafka (conceptually)?
+
+What is Cloud Functions and typical use cases?
+
+What is Cloud Build and how is it used in CI/CD?
+
+Explain Artifact Registry vs Container Registry.
+
+How do you manage secrets in GCP?
+
+What is Secret Manager and how is it used?
+
+How does Cloud Monitoring and Logging work?
+
+What is Stackdriver (now Operations Suite)?
+How do you design HA architecture in GCP?
+
+What is Regional vs Zonal resource?
+
+How do you handle backups in GCP?
+
+What is Terraform’s role in GCP infrastructure?
+
+How do you enforce policies using Organization Policies?
+
+What is the difference between GKE Standard and Autopilot?
