@@ -1,0 +1,61 @@
+DevOps Interview Series | Tool 6 – GCP (Basic Level)
+
+If you’re working with Google Cloud Platform, these basic questions are mandatory before moving to higher levels 👇
+
+What is Google Cloud Platform (GCP)?
+
+What are the core components of GCP?
+
+What is a GCP Project?
+
+What is the difference between Project, Folder, and Organization?
+
+What is IAM in GCP?
+What are roles in GCP IAM?
+
+Difference between Primitive, Predefined, and Custom roles
+
+What is Compute Engine?
+
+What is Google Kubernetes Engine (GKE)?
+
+What is App Engine?
+
+Difference between Compute Engine and App Engine
+
+What is Cloud Storage?
+
+Types of Cloud Storage in GCP
+
+What is BigQuery?
+
+What is Cloud SQL?
+
+Difference between Cloud SQL and BigQuery
+
+What is VPC in GCP?
+
+What is a subnet in GCP?
+
+What is a firewall rule in GCP?
+What is Cloud Load Balancing?
+
+What is Cloud DNS?
+
+What is Cloud IAM service account?
+
+What is a service account used for?
+
+What is Stackdriver (now Cloud Operations)?
+
+What is Cloud Monitoring?
+
+What is Cloud Logging?
+
+What is a region and zone in GCP?
+
+What is Cloud Shell?
+
+What is Deployment Manager?
+
+How do you secure resources in GCP at a basic level?
