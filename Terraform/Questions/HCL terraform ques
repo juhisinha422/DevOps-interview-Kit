@@ -1,0 +1,56 @@
+HCL Technologies – Terraform Interview Questions (DevOps)
+
+
+1. What is Terraform state and why is it critical for infrastructure management?
+
+2. Difference between Terraform and ARM / CloudFormation from an enterprise perspective?
+
+3. What happens internally during terraform init, plan, and apply?
+
+4. How does Terraform handle resource dependency automatically?
+
+5. What are providers, and how does version locking work?
+
+🧱 State & Backend (Very Important for HCL)
+
+6. Difference between local state and remote backend?
+
+
+7. How do you manage state locking in a team environment?
+
+
+8. What is state drift and how do you detect and fix it?
+
+
+9. When and how should terraform import be used?
+
+10. Risks of manually editing a .tfstate file?
+
+
+🧩 Modules & Reusability
+
+11. What are Terraform modules and how do they help in large projects?
+
+
+12. How do you pass variables between root module and child modules?
+
+
+13. How do you version and reuse modules across environments (dev/test/prod)?
+
+
+
+🔁 Advanced Terraform Logic
+
+14. Difference between count and for_each — when to use which?
+
+15. What are dynamic blocks and real use cases?
+
+16. How does lifecycle meta-argument help in production safety?
+
+17. How do you manage secrets securely in Terraform?
+
+18. What are Terraform workspaces, and are they recommended for enterprises?
+
+19. How do you implement Terraform with CI/CD pipelines safely?
+
+20. How do you roll back infrastructure changes if terraform apply causes issues?
