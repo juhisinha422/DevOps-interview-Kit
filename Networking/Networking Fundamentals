@@ -1,0 +1,22 @@
+Brushing Up on Networking Fundamentals: IPs, Subnets & CIDR
+
+Understanding these basics is key for designing efficient and scalable networks.
+
+🏠 IP Address – Your Device’s Home Address
+ Every device on a network needs a unique identifier, just like every house has an address.
+ Example: 192.168.1. 10
+IPv4 = 4 octets × 8 bits = 32 bits
+Binary: 11000000.10101000.00000001.00001010
+
+🌆 Subnet – Neighborhoods in a City
+ Subnetting divides a big network into smaller “neighborhoods” to organize traffic and improve efficiency.
+ Think of it like streets in a city – mail gets delivered efficiently because each street has a range of house numbers.
+
+🛣️ CIDR – Flexible Street Planning
+ CIDR (Classless Inter-Domain Routing) defines how big each neighborhood is.
+ Written as: 192.168.1. 0/24 → /24 = network bits
+IPs calculation: 2^(32 - subnet bits)
+CIDRIPs AvailableAnalogy/321 IPSingle house/24256 IPsSmall neighborhood/221024 IPsLarge neighborhood
+
+✅ Key Takeaway:
+ Subnetting and CIDR are like planning a city efficiently. With them, networks stay organized, scalable, and easy to manage.
