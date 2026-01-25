@@ -1,0 +1,39 @@
+AWS for DevOps – Serverless
+
+If you’re working with event-driven and serverless architectures, these should be clear 👇
+
+🔹 AWS Lambda
+	•	When should you use Lambda instead of EC2 or containers?
+	•	What are cold starts and how do you reduce them?
+	•	What are Lambda execution limits you must design around?
+	•	How do you version and roll back Lambda functions?
+
+🔹 API Gateway
+	•	Difference between REST API and HTTP API?
+	•	How do you secure APIs exposed via API Gateway?
+	•	How do you handle rate limiting and throttling?
+	•	How do you deploy APIs safely without downtime?
+
+🔹 EventBridge
+	•	When do you use EventBridge over SNS or SQS?
+	•	How does EventBridge support event-driven architectures?
+	•	What are event buses and rules?
+	•	How do you handle failed events?
+
+🔹 SQS
+	•	Difference between Standard and FIFO queues?
+	•	How do you handle message retries and dead-letter queues?
+	•	What causes message duplication in SQS?
+	•	How do you tune visibility timeout?
+
+🔹 SNS
+	•	When do you use SNS vs SQS?
+	•	How does fan-out messaging work?
+	•	How do you secure SNS topics and subscriptions?
+
+🔹 Observability & Reliability
+	•	How do you monitor Lambda failures?
+	•	How do you trace requests across serverless services?
+	•	How do you design idempotent serverless functions?
+
+💡 Serverless removes servers — not responsibility.
