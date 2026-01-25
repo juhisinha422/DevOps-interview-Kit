@@ -1,0 +1,29 @@
+Kubernetes Interview Questions From Beginner to Intermediate (Must Prepare!)
+
+If you’re preparing for a DevOps / Cloud / Kubernetes interview,
+these are some most commonly asked Kubernetes questions you should be ready for 👇
+
+🔹 Kubernetes Interview Questions
+
+Can you explain what Kubernetes is and why it’s important?
+ What’s the difference between a Pod and a Container in Kubernetes?
+ How would you handle a situation where a Pod keeps crashing?
+ Can you explain the concept of Rolling Updates in Kubernetes?
+What is a Kubernetes Service and why is it important?
+ How does Kubernetes handle network security between Pods?
+ What is a Kubernetes Ingress and when would you use it?
+How do you manage application secrets in Kubernetes?
+ Can you explain the concept of Kubernetes Namespaces?
+ How would you approach scaling a Kubernetes application?
+ What is the purpose of a Kubernetes Node?
+ Can you explain what a ReplicaSet is and how it works?
+ How do you monitor the health of your Kubernetes cluster?
+Describe the role of etcd in a Kubernetes cluster
+ What is a ConfigMap and how do you use it?
+How would you troubleshoot a deployment issue in Kubernetes?
+ Difference between a StatefulSet and a Deployment?
+ Explain the role of kubelet in a Kubernetes cluster
+Steps to upgrade a Kubernetes cluster
+ How do you implement resource limits and requests?
+How would you debug a Pod in CrashLoopBackOff?
+Difference between DaemonSet and Deployment?
