@@ -1,0 +1,41 @@
+Github Actions Workflow Triggers :
+ 
+When working with GitHub Actions, the most important thing to understand is what actually triggers a workflow. GitHub Actions is completely event-driven. If an action does not change the repository state, no workflow runs. 
+
+In real projects, the most commonly used triggers are push, pull_request, and workflow_dispatch. A pull_request trigger runs when a PR is created or updated and is mainly used for validation or preview checks. A push trigger runs when code is actually added to a branch and is typically used for real deployments. workflow_dispatch is a manual trigger.
+
+on:
+    workflow_dispatch:
+
+    push:
+        branches: [ main,dev ]
+    
+    pull_request:
+
+    push:
+        path:
+            - '.github/workflows/test2..yml'
+    
+    pull_request:
+        branches: [main]
+
+    schedule:
+        cron:
+            - "60 * * * *"
+    
+    pull_request:
+        branches:
+            - main
+            - dev
+
+    release:
+        types: [created]
+
+
+Branch protection is critical for environments like UAT. In my setup, the UAT branch is protected, which means no one can push code directly to it. All changes must come through a pull request. When a developer raises a PR from a dev or feature branch to UAT, a workflow triggered by 
+on: pull_request runs. This allows reviewers to validate the changes and verify outputs before approving.
+
+After the approver is satisfied, the pull request is merged. This merge creates a new commit in the UAT branch, resulting in a push event on UAT. Any workflow configured with on: push for the UAT branch runs at this point, and this is where the actual UAT deployment happens using approved code.
+The key takeaway is that approval itself does not trigger any workflow. 
+
+Approval only gives permission. The merge moves the code, and the push created by that merge triggers the deployment. Keeping this separation clear makes GitHub Actions workflows predictable and production-ready.
