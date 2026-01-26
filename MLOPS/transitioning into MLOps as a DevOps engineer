@@ -1,0 +1,54 @@
+transitioning into MLOps as a DevOps engineer, this is the exact roadmap I’d follow.
+
+You already know CI/CD, containers, and infrastructure.
+Now it’s about learning how these apply to ML systems.
+
+3-Month Foundation (Getting ML-aware)
+• Use Programming for ML workflows
+↳ Learn Python basics for scripts, automation, and simple ML tasks
+
+• Strengthen Version Control for ML
+↳ Use Git to track code, configs, and experiments
+
+• Understand ML Basics
+↳ Learn what training, evaluation, and deployment actually mean
+
+• Learn Data Fundamentals
+↳ Understand datasets, pipelines, and how data flows into models
+
+• Run ML on the Cloud
+↳ Understand IAM, compute, storage, and cloud managed ML services
+
+• Containerize ML Applications
+↳ Package training and inference using Docker
+↳ Deploy workloads on Kubernetes
+
+Target: Entry-level / Junior MLOps Engineer ($110k+)
+-----
+3-Month Advanced Track (Beginner → Practitioner)
+• Familiarize yourself with MLOps Practices
+↳ Understand CI/CD/CT concepts and why monitoring matters
+↳ Explore: GitHub Actions (for end-to-end pipelines)
+
+• Track ML Experiments & Data
+↳ Version data and experiments (MLflow, DVC ~ concepts first)
+
+• Provision a Simple ML Infrastructure
+↳ Understand how Terraform is used for training and deployment setups (along with cloud-based compute)
+
+• Learn how you can automate ML Pipelines
+↳ Create simple training and deployment pipelines (Github Actions, Kubeflow)
+
+• Serve Models Reliably
+↳ Deploy models and understand inference workflows 
+(FastAPI, Docker-based model serving, GPU deployments)
+
+• Monitor Models in Production
+↳ Learn model drift, data drift, and performance monitoring fundamentals
+(DCGM, Prometheus/Grafana)
+
+Target: Mid-level MLOps Engineer ($130k+)
+
+If you want a guided learning path that explains these concepts from scratch and includes an end-to-end project ~ Abhishek's MLOps Zero to Hero course is an excellent resource.
+
+It’s curated to help you build a solid, step-by-step foundation.
