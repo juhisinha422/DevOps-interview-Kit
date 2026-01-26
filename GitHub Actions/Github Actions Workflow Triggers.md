@@ -39,3 +39,6 @@ After the approver is satisfied, the pull request is merged. This merge creates 
 The key takeaway is that approval itself does not trigger any workflow. 
 
 Approval only gives permission. The merge moves the code, and the push created by that merge triggers the deployment. Keeping this separation clear makes GitHub Actions workflows predictable and production-ready.
+
+
+![Image](https://github.com/user-attachments/assets/037fb5bc-ef64-4804-8dfe-f966c65ea1ef)
