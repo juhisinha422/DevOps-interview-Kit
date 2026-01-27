@@ -1,0 +1,35 @@
+SonarQube
+SonarQube is a code quality and security analysis platform widely used in DevOps and CI/CD pipelines.
+What it does
+It performs static code analysis to find issues without running the code:
+🐞 Bugs (logic errors)
+🔐 Security vulnerabilities
+⚠️ Code smells (maintainability issues)
+📊 Code coverage & duplication
+📐 Technical debt
+Why it’s important in DevOps
+Acts as a quality gate before code is merged or deployed
+Prevents bad or insecure code from reaching production
+Encourages clean, maintainable code across teams
+How to Setup SonarQube?
+Step 1: Java is mandatory to install Sonarqube
+Step 2: To download and rename the sonarqube 
+-->cd /opt
+-->sudo wget https://lnkd.in/dK79nktS
+-->sudo unzip sonarqube-10.4.1.88267.zip
+-->sudo mv sonarqube-10.4.1.88267 sonarqube
+Step 3: Create SonarQube user and give permissions
+-->sudo adduser sonarqube
+-->sudo chown -R sonarqube:sonarqube /opt/sonarqube
+-->chmod -R 775 /opt/sonarqube
+Step 4: Configure system limits (MANDATORY)
+-->Here go inside file /etc/sysctl.conf for that use the command sudo nano /etc/sysctl.conf and then add the following line “vm.max_map_count=262144” and then apply the same for that use command sudo sysctl -p
+-->After that Edit the limits: for that go inside file sudo nano /etc/security/limits.conf and Add below lines and save the file and get out from the file
+sonarqube  -  nofile  65536
+sonarqube  -  nproc   4096
+Step 5: Switch to sonarqube user and start
+-->sudo su – sonarqube here we will switch to the sonarqube user
+-->/opt/sonarqube/bin/linux-x86-64/sonar.sh start By running this command sonarqube will get start
+This is how our Sonarqube will get configure successfully!!!
+Step 6: Access SonarQube By using EC2-instance’s public ip:9000 as below
+http://public ip:9000, Port 9000 is the default port of the Sonarqube.
