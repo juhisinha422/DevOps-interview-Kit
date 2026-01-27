@@ -1,0 +1,56 @@
+SonarQube – Answers
+1. What is SonarQube and why is it used in CI/CD pipelines?
+ SonarQube is a code quality and security analysis tool. It automatically checks source code for bugs, vulnerabilities, and code smells during CI/CD to ensure clean and secure code before deployment.
+2. What are bugs, vulnerabilities, and code smells?
+Bugs: Coding errors that can cause failures
+Vulnerabilities: Security weaknesses
+Code Smells: Poor coding practices that affect maintainability
+3. How does SonarQube measure code quality and coverage?
+ It uses static code analysis, quality gates, metrics like code coverage, duplications, and complexity, often using reports from tools like JaCoCo.
+4. Difference between SonarQube Scanner and Server?
+Scanner: Analyzes the code and sends results
+Server: Stores results and displays reports on the dashboard
+5. How do you integrate SonarQube with Jenkins or Maven?
+ By configuring SonarQube plugin in Jenkins and running mvn sonar:sonar with proper credentials and project keys.
+🧱 Maven – Answers
+1. What is Maven and what problems does it solve?
+ Maven is a build automation and dependency management tool that simplifies project builds and manages libraries automatically.
+2. Explain Maven lifecycle phases.
+Clean: Removes old build files
+Compile: Compiles source code
+Test: Runs unit tests
+Package: Creates JAR/WAR
+Install: Installs to local repo
+Deploy: Deploys to remote repo
+3. What is POM.xml?
+ POM.xml is Maven’s configuration file containing project info, dependencies, plugins, and build settings.
+4. Difference between dependencies and plugins?
+Dependencies: Libraries needed for code
+Plugins: Tools that perform build tasks.
+☸️ Minikube – Answers
+1. What is Minikube and when do you use it?
+ Minikube runs a single-node Kubernetes cluster locally for learning, testing, and development.
+2. Difference between Minikube and production Kubernetes?
+ Minikube is local and single-node, while production clusters are multi-node, highly available, and scalable.
+3. How do you start, stop, and delete Minikube?
+minikube start
+minikube stop
+minikube delete
+4. How do you expose a service in Minikube?
+ Using:
+kubectl expose
+minikube service <service-name>
+5. What drivers are supported by Minikube?
+ Docker, VirtualBox, Hyper-V, KVM, Podman.
+🌐 NGINX – Answers
+1. What is NGINX and where is it used?
+ NGINX is a web server, reverse proxy, and load balancer used for high-performance web applications.
+2. Difference between NGINX and Apache?
+ NGINX is event-driven (faster, lightweight), while Apache is process-based.
+3. How does NGINX act as a reverse proxy?
+ It forwards client requests to backend servers and returns responses, hiding backend details.
+4. What is load balancing in NGINX?
+ It distributes traffic across servers using methods like round-robin, least connections, IP hash.
+5. Where are NGINX config files and logs located?
+Config: /etc/nginx/nginx.conf
+Logs: /var/log/nginx/access.log, error.log.
