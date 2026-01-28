@@ -1,0 +1,134 @@
+Linux, Git & Terraform Interview Answers (4+ Years Experience)
+
+Linux & System Basics (4+ Years Perspective)
+
+1. Command to check open port numbers in Linux
+
+Best answer (modern systems):
+ss -tulnp
+
+Other valid commands:
+netstat -tulnp
+lsof -i :8080
+
+Senior explanation:
+I usually use ss -tulnp because it’s faster and more reliable than netstat.
+It shows listening ports, protocol, PID, and the process using the port, which helps in quick troubleshooting.
+
+
+2. What is systemctl used for?
+
+Answer:
+systemctl is used to manage services and system states on Linux systems that use systemd.
+
+Common operations:
+systemctl start nginx
+systemctl stop nginx
+systemctl restart nginx
+systemctl status nginx
+systemctl enable nginx
+systemctl disable nginx
+
+Senior insight:
+In production, I mostly use systemctl status and journalctl together to debug service failures.
+
+
+3. Difference between soft link and hard link
+
+Hard Link:
+Points to inode
+Works even if original file is deleted
+Cannot link directories
+Must be on same filesystem
+
+Soft Link (Symlink):
+Points to file path
+Breaks if original file is deleted
+Can link directories
+Can cross filesystems
+
+Senior explanation:
+Hard links are rarely used in DevOps.
+Soft links are commonly used for configs, binaries, and version switching.
+
+
+Git & Version Control
+
+4. Difference between git pull and git fetch
+
+Answer:
+git fetch only downloads changes from the remote repository.
+git pull downloads and merges changes into the current branch.
+
+Senior usage:
+I prefer git fetch followed by git diff or git rebase to avoid unexpected merges in production branches.
+
+
+5. What is git cherry-pick and when do we use it?
+
+Answer:
+git cherry-pick is used to apply a specific commit from one branch to another.
+
+Example use case:
+A critical hotfix made in a feature branch needs to be applied to the production branch without merging the entire branch.
+
+Command:
+git cherry-pick <commit-id>
+
+Senior insight:
+I use cherry-pick carefully because it can create duplicate commits and conflicts if overused.
+
+
+Terraform & Infrastructure as Code
+
+6. Which language is Terraform written in?
+
+Answer:
+Terraform is written in Go (Golang).
+
+Extra point:
+Terraform configuration uses HCL (HashiCorp Configuration Language).
+
+
+7. How do we refer to existing resources in Terraform?
+
+Answer:
+We use data sources to reference existing resources.
+
+Example:
+data "aws_vpc" "existing" {
+  default = true
+}
+
+Senior explanation:
+Data sources allow Terraform to read existing infrastructure without managing its lifecycle.
+
+
+8. What happens if Terraform state file is deleted and no backup exists?
+
+Answer:
+Terraform loses track of the infrastructure it created, but the resources still exist in the cloud.
+
+Recovery approach:
+terraform import
+Or recreate state by re-writing Terraform code.
+
+Senior insight:
+That’s why we always store state in remote backends like S3 with DynamoDB locking.
+
+
+9. Basic Terraform commands used day-to-day
+
+terraform init
+terraform validate
+terraform plan
+terraform apply
+terraform destroy
+terraform fmt
+terraform state list
+terraform state rm
+
+
+Senior explanation:
+
+In daily work, plan and apply are most common, but state commands are critical during migrations and refactoring.
