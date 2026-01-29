@@ -15,3 +15,7 @@ Sample CI/CD pipeline for deploying a Java project:
 Once you build the docker image there could the the image scanner tool like twistlocksscaner or triviy based on the vulnerability percentage deployment team or change magement team will proceed to deploy else developers need to fix the vulnerabilities follow the smae.
 
 Note this is applicable for dev and Qa environments
+
+
+
+So, once the application is deployed to QA/TST environment and tested, you'd promote the image to subsequent environments (Model, Preprod, Production) by simply renaming the image tag. This approach ensures consistency across environments and reduces the risk of configuration drift.
