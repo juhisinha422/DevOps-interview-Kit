@@ -1,0 +1,60 @@
+**Amazon CloudWatch** is a **monitoring and observability service** provided by AWS.
+It helps you **watch what’s happening with your AWS resources and applications** in real time.
+
+Think of it as the **health monitor + alarm system** for your cloud 🔍⏰
+
+### What CloudWatch does
+
+1. **Monitoring**
+
+ * Tracks metrics like:
+
+ * EC2 CPU utilization
+ * Memory (with agent)
+ * Disk usage
+ * Network traffic
+ * Works with services like EC2, RDS, Lambda, S3, etc.
+
+2. **Logs**
+
+ * Collects and stores logs from:
+
+ * EC2 applications
+ * Lambda functions
+ * VPC Flow Logs
+ * CloudTrail logs
+ * Helps in **debugging and troubleshooting**
+
+3. **Alarms**
+
+ * Set alarms on metrics
+ * Example:
+
+ * If CPU > 80% → send email or trigger Auto Scaling
+ * Alerts via **SNS**
+
+4. **Dashboards**
+
+ * Create visual dashboards (graphs, charts)
+ * See system health at a glance
+
+5. **Events / EventBridge**
+
+ * React to AWS events
+ * Example: EC2 stopped → trigger a Lambda function
+
+### Why CloudWatch is important
+
+* Detect problems early 🚨
+* Improve performance 📈
+* Reduce downtime
+* Essential for **DevOps & AWS monitoring**
+
+### Simple real-life example
+
+👉 You run a website on EC2
+CloudWatch:
+
+* Monitors CPU & traffic
+* Sends alert if load is high
+* Helps you decide when to scale
