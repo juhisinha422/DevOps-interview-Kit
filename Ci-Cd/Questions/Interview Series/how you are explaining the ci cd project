@@ -19,3 +19,45 @@ Note this is applicable for dev and Qa environments
 
 
 So, once the application is deployed to QA/TST environment and tested, you'd promote the image to subsequent environments (Model, Preprod, Production) by simply renaming the image tag. This approach ensures consistency across environments and reduces the risk of configuration drift.
+
+
+If we are creating a docker img  then y it req to create jar file ??
+
+For tagging 
+Just use one environment variable 
+TAG_VERSION = ${BUILD_NUMBER}
+
+In the pipeline docker build stage 
+Sh "docker build --build env=  -- tag ECR_registry/repo_name: ${TAG_VERSION}. 
+"
+For Rollback we are following blue-green deployment strategies.
+Two similar set of services running parlelly all the time ..
+If anything goes wrong simple perfome blue-green switch job..
+
+
+Basically two set of services running in different protocol basis
+
+Basically these jar/war files will add in docker file inthe workspace
+
+
+----
+To deploy app to prod env we need to first download all library and dependency that are required to run app..and for security purpose that need to store in one place not to download from internet every time this can be done using storing jar files in nexus repo..docker is used so we can run app on any server and we can scale accordingly
+
+
+Springboot java app uses maven that's why we create Jar/war file so it has libraries to run app
+
+In case to python app we can or cannot use build tool, if we don't use any build tool we can directly create docker image for it
+
+Here's an example of an Infrastructure Pipeline
+using Git github/gitrepo, Terraform, and Jenkins/gitlab:
+
+1. *Code Storage*: IAC is stored in repo
+2. *CI/CD Pipeline*: Jenkins detects changes in Git and triggers a pipeline.
+3. *Terraform Plan*: Jenkins runs `terraform plan` to generate an execution plan.
+4. *Approval*: Plan is reviewed and approved (if required).
+5. *Terraform Apply*: Jenkins runs `terraform apply` to deploy infrastructure changes.
+6. *State Storage*: Terraform state is stored in a remote backend
+
+Even you can include one more stage to scan Terraform code tools like checkov
+
+It helps to detect any not  encrypted databases, least privileges, not following proper tagging, backup not enabled like that
