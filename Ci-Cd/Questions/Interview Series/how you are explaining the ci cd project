@@ -1,0 +1,17 @@
+how you are explaining the CI/CD pipeline project? Which project you are explaining? If anyone could kindly help
+
+Sample CI/CD pipeline for deploying a Java project:
+
+1. *Code Checkout*: Jenkins pulls code from the repository github/bitbucket into its workspace.
+2. *Build Stage*: Maven builds the project, creating a JAR/WAR file.
+3. *Artifact Storage*: The artifact is pushed to Nexus Repository Manager.
+4. *Docker Build*: Jenkins builds a Docker image, tagging it with the job build number.
+5. *Push to ECR*: The image is pushed to Amazon ECR (Elastic Container Registry).
+6. *AWS Login*: Jenkins assumes an IAM role to access AWS resources.
+7. *Deployment*: The image is deployed to a specified cluster (e.g., Kubernetes, ECS) based on configurations in `pom.xml`, including environment, networking, and certificates.
+
+`pom.xml` might include profiles for different environments.
+
+Once you build the docker image there could the the image scanner tool like twistlocksscaner or triviy based on the vulnerability percentage deployment team or change magement team will proceed to deploy else developers need to fix the vulnerabilities follow the smae.
+
+Note this is applicable for dev and Qa environments
