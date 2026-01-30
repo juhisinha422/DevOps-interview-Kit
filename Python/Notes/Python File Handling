@@ -1,0 +1,37 @@
+Python File Handling – Revision & Practice
+
+with open('test.txt','r')as f: 
+content = f.read()
+print(f.closed)
+
+Reading Files: Multiple Approaches
+
+python
+# Read entire file
+with open('test.txt', 'r') as f:
+    content = f.read()
+
+# Read line by line (memory efficient)
+with open('test.txt', 'r') as f:
+    for line in f:
+        print(line, end='')
+
+# Read in chunks (best for large files)
+with open('test.txt', 'r') as f:
+    chunk_size = 10
+    chunk = f.read(chunk_size)
+    while chunk:
+        print(chunk, end='*')
+        chunk = f.read(chunk_size)
+
+Copying Files 
+# Binary files (images, etc.) - chunked approach
+with open('image.jpg', 'rb') as rf:
+    with open('image_copy.jpg', 'wb') as wf:
+        chunk_size = 4096
+        chunk = rf.read(chunk_size)
+        while chunk:
+            wf.write(chunk)
+            chunk = rf.read(chunk_size)
+
+Resource: https://lnkd.in/dXFRr9Dp
