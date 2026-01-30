@@ -1,0 +1,40 @@
+30-Day Plan to Crack Senior DevOps Interview
+
+Week 1 – Core Systems & Linux Mastery
+1. Revise Linux internals: systemd, processes, file descriptors, signals.
+2. Practice strace, lsof, netstat, tcpdump, debug 3 real scenarios.
+3. Daily: Solve 1 bash scripting challenge.
+4. Interview Edge: Most fail here. “Pod is healthy, service is green, users see 502.”, Only those who know syscalls + sockets survive.
+
+Week 2 – Kubernetes & Cloud Chaos
+1. Re-learn Kubernetes internals: kubelet, controller manager, scheduler, kube-proxy.
+2. Practice with KubeSim or minikube chaos: crash DNS, corrupt etcd, simulate node pressure.
+3. AWS/GCP: Build multi-region HA VPC.
+4. Run a Fault Injection Simulator drill.
+5. Interview Edge: Expect: “HPA shows CPU >90%, but no scaling.” 
+You’ll be ready to debug metrics pipeline, not YAML.
+
+Week 3 – CI/CD, Infra as Code & Observability
+1. CI/CD: Build a pipeline in GitHub Actions + Jenkins.
+2. Add rollback + artifact promotion logic.
+3. Terraform/Ansible: Create + break infra, recover drift with terraform import & state rm.
+4. Observability: Build Prometheus + Grafana dashboards.
+5. Trace latency with eBPF or Jaeger.
+6. Interview Edge: Be ready for: “Terraform apply failed mid-way” or “Latency doubled with no logs.”
+
+Week 4 – Real Prod Simulation & Story Building
+Run 3 outage simulations:
+1. Pod OOMKilled, logs missing.
+2. DB replication lag 5s under load.
+3. Canary passed, but prod is failing.
+Write RCA documents using Google/Netflix templates.
+
+Practice answering in STAR format (Situation, Task, Action, Result).
+Mock Interview Drill:
+Round 1: Linux + Networking.
+Round 2: Kubernetes + Cloud Chaos.
+Round 3: Leadership + RCA storytelling.
+Interview Edge: Senior rounds don’t test YAML. They test if you can stay calm, narrate chaos, and recover with judgment.
+The Takeaway: In 30 days, you won’t just “learn tools.” You’ll build scars + stories that make interviewers listen.
+
+That’s the same way we prepare you inside InfraThrone , giving you real war-room drills and stories to defend in interviews.
