@@ -1,0 +1,43 @@
+DevOps Interview Series | Jenkins – Intermediate Level
+
+These questions check whether you’ve actually worked with Jenkins in real CI/CD pipelines, not just created a hello-world job.
+
+How does Jenkins Pipeline work internally?
+
+What is the difference between Declarative and Scripted pipeline in real projects?
+
+Explain the structure of a Declarative Jenkinsfile
+
+What are Jenkins pipeline stages and steps?
+
+How do you pass parameters to a Jenkins job?
+
+How do you store and use credentials securely in Jenkins?
+
+Environment variables in Jenkins — global vs job level
+
+How do you integrate Jenkins with GitHub/GitLab?
+
+What is a Jenkins webhook and how does it work?
+
+How do you trigger one Jenkins job from another?
+
+What is a shared library in Jenkins?
+
+Why do we use Jenkins shared libraries?
+
+How do you handle build failures in Jenkins pipelines?
+
+How do you run jobs on specific Jenkins agents?
+
+Difference between node, agent, and label
+
+How do you archive artifacts in Jenkins?
+
+How do you manage multiple environments (dev, qa, prod) in Jenkins?
+
+How do you integrate Jenkins with Docker?
+
+How do you secure Jenkins access and roles?
+
+Common Jenkins issues faced in daily CI/CD work
