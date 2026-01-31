@@ -1,0 +1,48 @@
+Top 20 Git Interview Questions & Answers
+1. What is Git?
+• 	Answer: Git is a distributed version control system that tracks changes in source code, enabling collaboration and rollback.
+2. What is the difference between Git and GitHub?
+• 	Answer: Git is the version control tool; GitHub is a cloud-based hosting service for Git repositories.
+3. What is a repository in Git?
+• 	Answer: A repository (repo) is a directory that contains your project files and the git folder with version history.
+4. What is the difference git clone between git fork and ?
+• 	Answer: git clone a repo locally; creates a git fork under your GitHub account for independent development.
+5. What is the purpose of git init?
+Answer: Initializes a new Git repository in the current directory.
+6. What does git add do?
+Answer: Stages changes for the next commit.
+7. What is git commit?
+Answer: Saves staged changes to the repository with a message.
+8. What is the difference between git pull and git fetch?
+Answer: git fetch downloads changes; git pull downloads and merges them into your branch.
+9. What is a branch in Git?
+• 	Answer: A branch is a pointer to a snapshot of your changes. It allows parallel development.
+10. How do you create and switch to a new branch?
+• 	Answer:git checkout -b new-branch
+11. What is ?
+• 	Answer: Combines changes from one branch into another.
+12. What is a merge conflict?
+• 	Answer: Edit the conflicting files, remove conflict markers, then stage and commit the resolved files.
+14. What is git rebase ?
+• 	Answer: Reapplies commits on top of another base branch, creating a linear history.
+15. What is the difference between git reset and git revert?
+• 	Answer:
+• 	: Removes commits (destructive).
+• 	: Creates a new commit that undoes changes (safe).
+16. What is .gitignore ?
+• 	Answer: A file that tells Git which files/folders to ignore (e.g., logs, temp files).
+17. What is git stash?
+• 	Answer: Temporarily saves changes not ready to commit, allowing you to switch branches.
+18. How do you view commit history?
+• 	Answer:git log
+
+19. What is git-cherry-pick?
+• 	Answer: Applies a specific commit from one branch to another.
+20. What are Git best practices?
+• 	Answer:
+• 	Commit often with clear messages.
+• 	Use branches for features.
+• 	Pull before pushing.
+• 	Resolve conflicts carefully.
+• 	Use and .gitignore tags.
+20. What are Git best practices?
