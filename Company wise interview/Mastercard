@@ -1,0 +1,66 @@
+DevOps Interview Experience – Mastercard 🚀
+
+
+Here are some of the questions discussed during the interview:
+
+🔹 General
+Walk us through your profile and the projects you’ve worked on
+What does your typical day look like in your current role?
+
+🔹 Linux
+How do you list and analyze active processes in Linux?
+Write a cron expression to run a job every 15 minutes
+Hard link vs soft link | find vs locate
+How do you identify processes consuming high CPU or memory?
+Explain log rotation, inodes, and Linux runlevels
+What permissions does chmod 755 assign?
+How do you define default permissions for files and directories?
+Ways to verify whether a port is open or listening
+Steps to configure a static IP on a Linux system
+Commands to check disk partitions and storage usage
+Explain sticky bit, setuid, and setgid
+
+🔹 CI/CD
+What approach would you take to migrate pipelines between CI/CD tools?
+How do you manage and protect secrets in CI/CD pipelines?
+Why is GitHub Actions becoming widely adopted?
+Can containers act as CI/CD runners? How?
+How do you secure the entire pipeline from source control to production?
+
+🔹 Terraform
+Best practices for storing Terraform state securely
+How do you prevent secrets from being exposed in Terraform/Terragrunt?
+How can you block resource deletion while still allowing plan/apply?
+count vs for_each – when would you choose one over the other?
+Lifecycle rules – practical use cases
+What exactly happens during terraform init, plan, and apply?
+
+🔹 AWS
+Differences between public and private subnets
+Use cases for CloudFront and Elastic IPs
+VPC Peering vs Direct Connect – comparison scenarios
+Route53 routing policies explained with examples
+How would you monitor CPU, memory, and disk for 50+ EC2 instances?
+What would you do if the EC2 private key is lost and SSM is not enabled?
+
+🔹 Docker
+CMD vs ENTRYPOINT vs RUN – execution behavior
+Bind mounts vs volumes – real-world usage
+What are cgroups and dangling Docker resources?
+How do you optimize Docker layer caching in CI pipelines?
+Command to clean up all Docker artifacts
+ADD vs COPY – which should you prefer and why?
+
+🔹 Kubernetes
+Explain Kubernetes architecture at a high level
+Responsibilities of kubelet, kube-apiserver, and kube-proxy in EKS
+Deployment vs StatefulSet – selection criteria
+How would you debug 503 errors from a LoadBalancer?
+Scenario 1: Pod not reachable from inside the cluster
+Scenario 2: Pod reachable internally but not via LoadBalancer
+Secure handling of secrets and certificates in EKS
+How can pod-to-pod communication be restricted within the same namespace?
+Multiple StatefulSet pods using the same volume – what’s the issue?
+Purpose of liveness, readiness, and startup probes
+Safe steps to upgrade a Kubernetes cluster
+Which tools did you use for centralized logging, monitoring, and audit trails?
