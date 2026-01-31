@@ -1,0 +1,17 @@
+🔍 What a DevSecOps Engineer Actually Does in a Day.
+
+Most people think DevSecOps is just “running pipelines.”
+The reality is much more systems, security, and problem-solving.
+
+Here’s a snapshot of my typical day as a DevSecOps Engineer.
+
+⚙️ Reviewing merge requests & pipeline results
+ 🔐 Checking security scans & vulnerability reports
+ ☁️ Monitoring cloud resources & environment health
+ 🐳 Troubleshooting Docker/Kubernetes deployments
+ 🏗️ Updating Terraform/IaC for infra changes
+ 📊 Looking at logs, metrics & deployment performance
+ 🤝 Syncing with dev & QA teams for smooth releases
+
+Biggest lesson:
+ 👉 DevSecOps isn’t about tools — it’s about making systems reliable for people who build and use them.
