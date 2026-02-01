@@ -1,1 +1,13 @@
+NEXUS: - Artifact Repositry Tool
+
+-> Nexus repository is a powerful tool which is used in DevOps for managing and storing the software components and dependencies.
+
+-> Source Code: GitHub, GitLab, AWS Code Commit
+-> Docker Images: Docker Hub, ECR
+-> Maven (Build Tool) - Artifacts (jar (java archive) or war (web archive) files)
+-> Artifact Repo Tools: Nexus, JFrog
+
+Keypoints of Nexus: -
+-> Components storage 
+-> Centralized repository
 
