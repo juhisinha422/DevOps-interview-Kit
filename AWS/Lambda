@@ -1,0 +1,105 @@
+ AWS Lambda — Simple Explanation Every Cloud Engineer Should Know
+
+Most people say:
+
+“Lambda is just a serverless function.”
+
+But in reality, AWS Lambda is an execution engine that runs your code only when something happens.
+
+Let’s break it down step-by-step 👇
+
+🔹 1️⃣ Everything starts with an Event
+
+AWS Lambda never runs on its own.
+It always waits for an event.
+
+Some common events:
+ • 📂 File uploaded to S3
+ • 🌐 API request via API Gateway
+ • ⏰ Scheduled job via EventBridge
+ • 📊 Data change in DynamoDB
+ • 🔄 Workflow step from Step Functions
+
+👉 No event = no execution
+
+🔹 2️⃣ What AWS does behind the scenes
+
+When an event occurs:
+
+✅ AWS creates a secure container
+✅ Loads your runtime (Python / Node / Java)
+✅ Injects your code & configuration
+✅ Allocates memory + CPU automatically
+
+💡 You don’t manage:
+❌ Servers
+❌ OS patching
+❌ Auto-scaling
+
+AWS handles everything.
+
+🔹 3️⃣ Lambda Execution Lifecycle
+
+Lambda follows a very clean lifecycle:
+
+➡️ Start
+➡️ Execute logic
+➡️ Finish work
+➡️ Stop execution
+
+👉 Lambda is not running 24/7
+👉 You pay only for execution time
+
+That’s why Lambda is cost-efficient 💰
+
+🔹 4️⃣ Cold Start vs Warm Start (Important!)
+
+❄️ Cold Start
+ • First execution
+ • New container created
+ • Slight delay
+
+🔥 Warm Start
+ • Existing container reused
+ • Faster execution
+
+💡 Lightweight code = faster Lambda
+
+🔹 5️⃣ Scaling is automatic ⚡
+
+Traditional servers:
+ • Limited capacity
+ • Manual scaling
+
+Lambda:
+ • 1 request = 1 execution
+ • 1,000 requests = 1,000 executions
+
+👉 AWS auto-scales without any config
+
+🔹 6️⃣ Memory = Performance (Hidden Trick)
+
+In Lambda:
+ • More memory = more CPU
+ • CPU is indirectly controlled
+
+💡 Sometimes increasing memory:
+ • Reduces execution time
+ • Lowers total cost
+
+🔹 7️⃣ When should you use Lambda?
+
+✅ APIs & backend services
+✅ Data pipeline triggers
+✅ Automation jobs
+✅ Event-driven systems
+
+❌ Avoid Lambda for:
+ • Long-running processes
+ • Heavy stateful applications
+
+🧠 In simple words:
+
+👉 AWS Lambda lets you focus on logic
+👉 AWS manages servers, scaling, availability
+👉 You pay only when your code runs
