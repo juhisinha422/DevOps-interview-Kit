@@ -10,4 +10,8 @@ NEXUS: - Artifact Repositry Tool
 Keypoints of Nexus: -
 -> Components storage 
 -> Centralized repository
+-> Security features
+-> Integrate with other DevOps Tools (Jenkins)
+
+JENKINS + NEXUS --> Pipeline
 
