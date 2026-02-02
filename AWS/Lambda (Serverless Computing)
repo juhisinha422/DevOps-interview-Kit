@@ -1,0 +1,60 @@
+Lambda (Serverless Computing) :-
+
+                 AWS Lambda is a serverless compute service that lets you run code without provisioning or managing servers. You simply upload your code, define a trigger, and AWS takes care of infrastructure, scaling, availability, and patching for you.
+
+🔹 What is Serverless?
+     • No server management 🖥️❌
+     • Pay only for execution time 💰
+     • Automatic scaling ⚡
+     • High availability by default ✅
+     • You focus only on code, AWS handles the rest.
+
+🧠 How AWS Lambda Works (Workflow)
+
+1️⃣ Event Source An event triggers Lambda, such as:
+     • API Gateway (HTTP requests)
+     • S3 (file upload)
+     • DynamoDB (table updates)
+     • CloudWatch (scheduled jobs)
+     • SQS / SNS (messages)
+2️⃣ Lambda Function
+     • Code written in Python, Node.js, Java, Go, etc.
+     • Stateless execution (no data stored between runs)
+3️⃣ Execution Environment
+     • AWS spins up a secure container
+     • Allocates CPU & memory automatically
+     • Runs the function
+4️⃣ Integration with AWS Services
+     • Read/write from DynamoDB
+     • Store files in S3
+     • Publish logs to CloudWatch
+     • Trigger other Lambdas
+5️⃣ Response / Output
+     • Returns response (for APIs)
+     • Or completes background processing
+
+⚙️ Key Lambda Concepts (Simple Explanation)
+  🔸 Function – Your code 
+  🔸 Trigger – Event that runs the function 
+  🔸 Runtime – Language environment (Python, Node.js, etc.) 
+  🔸 Handler – Entry point of execution 
+  🔸 Timeout – Max execution time (up to 15 minutes) 
+  🔸 Memory – 128 MB to 10 GB (affects CPU) 
+  🔸 IAM Role – Permissions for Lambda to access AWS services
+
+💡 Why Use AWS Lambda?
+   ✅ No server management
+   ✅ Auto-scaling 
+   ✅ Cost-efficient (pay per execution) 
+   ✅ Fast deployment
+   ✅ Ideal for microservices & event-driven apps
+
+🧪 Common Use Cases
+  ✔️ REST APIs & Backend services
+  ✔️ File processing (S3 triggers) 
+  ✔️ Automation & cron jobs 
+  ✔️ Data transformation 
+  ✔️ Real-time stream processing
+
+📌 Final Thought
+                      AWS Lambda is a core building block of modern cloud-native & DevOps architectures. Mastering Lambda helps you design scalable, cost-effective, and highly available systems.
