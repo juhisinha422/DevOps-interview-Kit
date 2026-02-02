@@ -1,0 +1,9 @@
+the following one was the question interviewer asked in my recent interview 
+
+You are managing a production AKS cluster using Terraform and GitOps.
+A Terraform change was applied through pipeline to update networking resources.
+The pipeline succeeded, but immediately after that, production traffic started failing across multiple services.
+There is no manual access to the cluster.
+How do you diagnose this issue, identify the root cause, and recover production without data loss or downtime?
+
+Git revert in prod to get back to old config and validate the same in non prod pipeline first, watch monitoring metrices or anomalies. There and debug and validate the change in non prod infra. , if we didn't have non prod infra using terraform may be put more testing stage for infra, manual check before deploy.
