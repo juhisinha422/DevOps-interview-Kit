@@ -1,0 +1,14 @@
+⚠️Question:-Terraform drift detected how we can fix the issue? 🛑🛑
+
+✅When we do manual changes to resources controlled by Terraform, the state file will be out of sync, or "drift," from the real infrastructure. 
+
+Example : when we create an EKS cluster using Terraform (desired state) and make manual changes in the cloud provider, such as decreasing the size of the nodes, our deployment can fail due to insufficient space or resources for virtual machines. An infrastructure drift will occur when the actual state differs from the desired state, causing Terraform Drift. 
+
+1.Revert the infrastructure to match the terraform code 
+we can run the terraform apply command to overwrite the manual changes and force the infrastructure back to the state defined in our configuration files. 
+ 
+2. Update the Terraform code to match the actual infrastructure . 
+
+3. we use IAM policies to limit direct access to the cloud console, forcing all changes through the Terraform workflow. 
+
+4. we can use tools like HCP Terraform health assessments or open-source tools like driftctl to continuously monitor for drift and send notifications (e.g., to Slack or email). 
