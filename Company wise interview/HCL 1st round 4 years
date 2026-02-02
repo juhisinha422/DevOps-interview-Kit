@@ -1,0 +1,26 @@
+✅HCL DevOps Interview 1st round (4 years)⚡
+1.Self Intro
+2.Flow of project
+3.What is Docker & flow?
+4.What is K8s & flow?
+5.Why do we use Jenkins?
+6.What CI/CD tool is comfortable to use?
+7.What is the security in Jenkins?
+8.What is secret in Jenkins and how do you use that?
+9.What are all the component you used in Jenkins?
+10.How can you see the error or any fails?
+11.What are all the steps you do before deployment
+12.What cloud service are you most used  and why?
+13.What is EC2 (Explain to a 10y old boy)
+14.What is Terraform?
+15.What method you used to retrieve the configuration in Terraform?
+16.Terraform vs CloudFormation, which one is easy & fast?
+17.If you have any production failure, how will you overcome?
+18.If the pods or container failed, what command you used?
+19.What are all the deployment stages?
+20.What monitoring tool you used?
+21.What is the alerting in Prometheus, how can you use?
+22.What tools did you use in your project?
+23.What is Gradle in Java deployment?
+24.How you use AI in your Devops project?
+25.Do you have any questions to ask me?
