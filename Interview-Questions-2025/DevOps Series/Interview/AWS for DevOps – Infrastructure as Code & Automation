@@ -1,0 +1,42 @@
+AWS for DevOps – Infrastructure as Code & Automation
+
+If your infrastructure is still created manually, these questions will expose gaps 👇
+
+🔹 Infrastructure as Code Basics
+	•	Why is IaC critical for production environments?
+	•	What problems does IaC solve that manual provisioning cannot?
+	•	How do you review infrastructure changes before applying them?
+
+🔹 CloudFormation
+	•	When would you choose CloudFormation over Terraform?
+	•	How do CloudFormation stacks handle failures?
+	•	What are change sets and why are they important?
+	•	How do you manage multiple environments using CloudFormation?
+
+🔹 Terraform (on AWS)
+	•	Why is Terraform widely preferred for AWS IaC?
+	•	How do you manage Terraform state files securely?
+	•	Difference between local state and remote state?
+	•	How do you handle Terraform state locking?
+
+🔹 Modules & Reusability
+	•	Why should infrastructure be modular?
+	•	How do you design reusable Terraform modules?
+	•	How do you version and maintain modules safely?
+
+🔹 Automation & CI/CD
+	•	How do you integrate Terraform with CI/CD pipelines?
+	•	How do you prevent accidental infrastructure deletion?
+	•	How do you enforce approvals for production changes?
+
+🔹 Drift & Governance
+	•	What is infrastructure drift?
+	•	How do you detect and fix drift?
+	•	Should manual changes ever be allowed in production?
+
+🔹 Secrets & Security in IaC
+	•	How do you avoid hardcoding secrets in IaC?
+	•	How do you manage sensitive variables securely?
+	•	How do you audit IaC changes?
+
+💡 If it’s not in code, it doesn’t exist.
