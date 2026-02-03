@@ -41,6 +41,21 @@ Drift is detected during refresh
 -refresh=false hides real changes
 
 
++++++
+
+I understood plan will show the drift how this can be handled in cicd why because plan and apply everything will be in one cicd file only right so if it finds any drift in plan will pipeline gets aborted ?
+
+
+1.It will fail if we don't put any logics to validate and review.
+
+2.Terraform drift: maintain state file.
+
+3.What will happen when manual changes happen on production: Ideally production environment should not or will not have any permissions for a common entra user. But there is still a possibility where some unknown permission setup given to a service principals with contributor permissions, which is attached to some other pipelines in the process, we have possibility of resources getting altered or managed or changed by configurations. So, there is suggested solution for this is locking production resources.
+
+
+
+
+
 
 
 
