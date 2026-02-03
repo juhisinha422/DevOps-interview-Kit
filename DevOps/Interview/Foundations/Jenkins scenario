@@ -1,0 +1,45 @@
+DevOps Interview Series | Jenkins – Scenario Based Questions
+
+These are real production-level Jenkins scenarios that interviewers use to check whether you can design, troubleshoot, secure, and scale CI/CD pipelines — not just talk theory.
+
+Your Jenkins master goes down. How do you recover and prevent this in future?
+
+Jenkins jobs are running very slow. How
+will you troubleshoot and optimize them?
+
+Multiple teams are using Jenkins. How will you isolate workloads safely?
+
+A Jenkins pipeline is stuck in running state. How do you debug it?
+
+Secrets are hardcoded in Jenkinsfile. How do you fix this securely?
+
+You need to trigger Jenkins builds only on specific Git branch changes. How will you configure it?
+
+Jenkins builds fail randomly. What steps will you take to identify the root cause?
+
+You need approval before deploying to production. How will you implement this in Jenkins?
+
+Jenkins disk space is getting full frequently. How do you handle it?
+
+You want to deploy Jenkins on Kubernetes. How will you design the architecture?
+
+Developers want self-service pipelines. How will you enable this safely?
+
+A plugin upgrade broke multiple pipelines. How do you recover?
+
+Jenkins agents are going offline randomly. How do you troubleshoot?
+
+You want different credentials for dev, stage, and prod. How will you manage them?
+
+Jenkins is exposed publicly. How do you secure it?
+
+You want parallel execution to reduce pipeline time. How do you implement it?
+
+Jenkins jobs need to deploy to multiple environments. How do you design the
+pipeline?
+
+Jenkins server restart caused job failures. How do you prevent this?
+
+Auditors ask for CI/CD access logs. How will you provide them?
+
+You are asked to replace Jenkins in future. What limitations would you highlight?
