@@ -1,0 +1,70 @@
+Let’s break the difference between **ALB** and **NLB** in a simple, clear way.
+
+---
+
+## 🔹 Application Load Balancer (ALB)
+
+Application Load Balancer
+
+**Works at:** **Layer 7 (Application layer)**
+**Best for:** Web applications (HTTP / HTTPS)
+
+### Key Features
+
+* Supports **HTTP & HTTPS**
+* **Path-based routing** (`/login`, `/api`, `/images`)
+* **Host-based routing** (`app.example.com`, `api.example.com`)
+* Supports **WebSockets**
+* Integrates with **AWS WAF**
+* Returns **HTTP response codes** (404, 503, etc.)
+
+### Example
+
+> Route `/api` traffic to backend servers and `/images` to another set of servers.
+
+✅ Ideal for **microservices**, **REST APIs**, **web apps**
+
+---
+
+## 🔹 Network Load Balancer (NLB)
+
+Network Load Balancer
+
+**Works at:** **Layer 4 (Transport layer)**
+**Best for:** High-performance & low-latency workloads
+
+### Key Features
+
+* Supports **TCP, UDP, TLS**
+* Handles **millions of requests per second**
+* **Ultra-low latency**
+* Preserves **client IP address**
+* Static IP support
+* More fault-tolerant than ALB
+
+### Example
+
+> Load balancing for a **database**, **gaming server**, or **real-time streaming app**
+
+✅ Ideal for **non-HTTP traffic** and **extreme performance needs**
+
+---
+
+## 🔑 ALB vs NLB (Quick Comparison)
+
+| Feature     | ALB               | NLB                          |
+| ----------- | ----------------- | ---------------------------- |
+| OSI Layer   | Layer 7           | Layer 4                      |
+| Protocols   | HTTP / HTTPS      | TCP / UDP / TLS              |
+| Routing     | Path & Host based | No routing logic             |
+| Performance | Moderate          | Extremely high               |
+| Latency     | Slightly higher   | Ultra-low                    |
+| Client IP   | ❌ Not preserved   | ✅ Preserved                  |
+| Use Case    | Web apps, APIs    | Databases, gaming, streaming |
+
+---
+
+## 🧠 Easy Interview Tip
+
+* **ALB = Smart routing for web traffic**
+* **NLB = Super-fast traffic forwarding**
