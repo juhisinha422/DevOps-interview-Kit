@@ -1,0 +1,46 @@
+How do you handle the drift in terraform?
+
+Terraform drift happens when the real infrastructure in the cloud is different from what Terraform thinks it is.
+
+In interviews you can say like this-
+
+Terraform drift occurs when the actual infrastructure differs from the Terraform state or configuration, usually due to manual changes or external systems. We detect drift using terraform plan or -refresh-only. To handle it, we either let Terraform reconcile the infrastructure, update code to match reality, or explicitly ignore expected changes using lifecycle rules. In production, we prevent drift through CI/CD pipelines, remote state, locking, and strict no-manual-change policies.
+
+Terraform drift happens when you change infra manually, like deleting instance,
+
+
+terraform refresh will revoke that changes, it compares with state file, and when you apply terraform again it refreshs and brings back original infra.
+
+Check the logs when drift occurs
+debug issue 
+
+----
+Terraform refresh accept reality - it does not fix reality
+It updates the Terraform state file to match what exists in real infrastructure.
+
++++++
+
+
+No separate pipeline is required to check for drift. Running a terraform plan within your existing pipeline is sufficient. Each time you execute plan before apply, you gain visibility into the proposed changes—whether resources will be added, modified, or destroyed. Reviewing this output ensures you maintain control over the infrastructure state.
+
+If manual changes have been introduced, the plan will highlight potential destruction or mismatches. In such cases, you must incorporate those changes back into your Terraform code to keep everything consistent. Best practice dictates that no manual modifications should be made directly to the infrastructure; all changes should flow through Terraform.
+
+For urgent resource creation, you can provision manually if absolutely necessary, but the next pipeline run must include the corresponding Terraform code. Adding an explicit block for that resource ensures your cloud environment stays in sync with your Terraform configuration
+
+
+Below is internal terraform plan command .tf files  =  Desired State
+tfstate    =  Known State
+Cloud APIs =  Real State
+
+Terraform Plan = Diff(Desired vs Real)
+
+plan does call cloud APIs
+
+Drift is detected during refresh
+
+-refresh=false hides real changes
+
+
+
+
+
