@@ -1,0 +1,28 @@
+******AWS Interview Questions******
+AWS Compute & Access Control
+1. You have 20 EC2 instances running in AWS If a user requests access to only one specific instance (for example, the 2nd instance), how would you provide that
+access securely?
+2. Can you explain IAM roles and IAM policies? What is the difference between them?
+AWS Networking
+3. What is a VPC and why do we need it ?
+4. What is a Route Table in AWS?
+5. What is the difference between a Route Table and Auto Scaling?
+6. What is a Load Balancer ?
+Why do we use it in real-time applications?
+Security
+7. What are Security Groups?
+8. Where do you use Security Groups and Network ACLS (NACLs)?
+What is the difference between them?
+Infrastructure & Cost Management
+9, How did you manage your infrastructure in your project?
+10. What cost optimization techniques did you implemeni in AWS?
+11. Why did vou use Amazon S3 Glacier: In which scenarios is it useful?
+Storage & Databases
+12. Can you explain Amazon S3 and Amazon RDS? What are their use cases?
+CI/CD & DevOps
+pipeline?
+13. What was your main responsibility in the CI/CD
+14. What do you understand by a CI/CD pipeline? Can you explain the flow?
+Containers
+15. What is Amazon ECS (Elastic Container Service)? 16. What is AWS Fargate?
+17. What is the difference between ECS and Fargate?
