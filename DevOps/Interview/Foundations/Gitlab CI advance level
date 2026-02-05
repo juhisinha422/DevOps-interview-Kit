@@ -1,0 +1,41 @@
+DevOps Interview Series | #GitLab CI – Advanced Level
+
+How does GitLab CI scale in large organizations?
+
+How do you design reusable CI templates in GitLab?
+
+What is include and how is it used for
+pipeline standardization?
+
+How do you implement organization-wide CI/CD governance in GitLab?
+
+GitLab shared runners vs self-hosted runners — deep comparison
+
+How do you secure GitLab runners?
+
+How do you control pipeline permissions and job access?
+
+How do you manage secrets securely at scale in GitLab CI?
+
+How do you optimize GitLab CI pipelines for performance?
+
+How do you design monorepo CI/CD pipelines in GitLab?
+
+How do you implement deployment approvals and gates?
+
+How do you handle rollback strategies in GitLab CI?
+How do you deploy applications to Kubernetes using GitLab CI?
+
+How do you integrate GitLab CI with cloud providers (AWS/Azure/GCP)?
+
+How do you implement multi-region deployments?
+
+How do you audit GitLab CI pipelines for compliance?
+
+How do you manage pipeline execution costs?
+
+GitLab CI limitations compared to Jenkins and GitHub Actions
+
+How do you migrate from Jenkins/GitHub Actions to GitLab CI?
+
+Common anti-patterns in GitLab CI at enterprise scale
