@@ -1,0 +1,39 @@
+DevOps Interview Series | hashtag#GitLab CI – Basic Level
+
+What is GitLab CI/CD?
+
+How is GitLab CI different from Jenkins?
+
+What is a .gitlab-ci.yml file?
+Where is .gitlab-ci.yml stored?
+
+What are pipelines in GitLab CI?
+
+What are stages in GitLab CI?
+
+What are jobs in GitLab CI?
+
+How does GitLab CI execute jobs?
+
+What are GitLab Runners?
+
+Difference between shared runners and specific runners
+
+What is a GitLab Runner executor?
+
+What are tags in GitLab CI?
+
+How do you trigger a pipeline on code push?
+
+What is only and except in GitLab CI?
+
+How do you define environment variables in GitLab CI?
+
+How do you store secrets in GitLab CI?
+
+What is an artifact in GitLab CI?
+
+What is cache in GitLab CI?
+How do you fail or stop a pipeline?
+
+Common use cases of GitLab CI in real projects
