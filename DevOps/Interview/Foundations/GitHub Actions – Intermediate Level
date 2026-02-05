@@ -1,0 +1,39 @@
+ DevOps Interview Series | GitHub Actions – Intermediate Level
+
+How does GitHub Actions workflow execution work internally?
+
+Explain the structure of a workflow YAML file
+
+What are reusable workflows and why are they used?
+
+Difference between jobs and steps in detail
+
+How do you share data between steps in a job?
+
+How do you share data between jobs?
+
+What is needs keyword and when do you use it?
+
+How do you handle environment-specific deployments (dev/stage/prod)?
+
+How do you manage secrets securely in GitHub Actions?
+
+What are GitHub environments and protection rules?
+
+How do you implement manual approval in GitHub Actions?
+
+What is a self-hosted runner and when do you use it?
+
+How do you cache dependencies to speed up workflows?
+
+What is matrix strategy and real-world use cases?
+
+How do you trigger workflows conditionally?
+
+How do you restrict workflow execution to specific branches?
+
+How do you integrate GitHub Actions with Docker?
+
+How do you upload and download artifacts in workflows?
+
+How do you debug a failed GitHub Actions workflow?
