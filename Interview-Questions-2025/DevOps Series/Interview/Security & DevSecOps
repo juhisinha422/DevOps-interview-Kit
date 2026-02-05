@@ -1,0 +1,45 @@
+ AWS for DevOps – CI/CD Security & DevSecOps
+
+If security enters after deployment, it’s already too late 👇
+
+🔹 DevSecOps Fundamentals
+ • What does DevSecOps mean in real projects?
+ • How is DevSecOps different from traditional DevOps?
+ • Who owns security in a DevSecOps model?
+
+🔹 Pipeline Access & Identity
+ • How do you secure CI/CD pipelines using IAM roles?
+ • Why should pipelines avoid long-lived credentials?
+ • How do you implement least privilege for build systems?
+
+🔹 Secrets in CI/CD
+ • Where should secrets be stored for pipelines?
+ • How do you inject secrets securely at runtime?
+ • How do you rotate secrets without breaking pipelines?
+
+🔹 Code Security
+ • How do you integrate SAST into CI pipelines?
+ • When should DAST be triggered?
+ • How do you handle security findings without slowing delivery?
+
+🔹 Dependency & Image Security
+ • How do you scan dependencies for vulnerabilities?
+ • How do you secure container images before deployment?
+ • What is the role of image signing?
+
+🔹 Infrastructure Security
+ • How do you validate Terraform or CloudFormation templates?
+ • How do you prevent insecure infrastructure from being deployed?
+ • How do you detect drift from approved configurations?
+
+🔹 Runtime Security
+ • How do you monitor security issues in running workloads?
+ • How do you respond to a compromised container?
+ • How do you enforce security policies at runtime?
+
+🔹 Audit & Compliance
+ • How do you audit CI/CD actions?
+ • How do you maintain compliance in fast-moving pipelines?
+ • What logs are critical during security investigations?
+
+💡 DevSecOps is not a toolchain — it’s a mindset shift.
