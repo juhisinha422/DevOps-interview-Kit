@@ -1,0 +1,43 @@
+DevOps Interview Series | GitHub Actions – Advanced Level
+
+
+How does GitHub Actions scale for large organizations?
+
+How do you design reusable workflows across multiple repositories?
+
+How do you implement organization-wide CI/CD standards using GitHub Actions?
+
+GitHub-hosted vs self-hosted runners — deep comparison
+
+How do you secure self-hosted runners?
+
+How do you prevent secret leakage in GitHub Actions?
+
+How do you rotate secrets used in workflows?
+
+How do you control workflow permissions using permissions block?
+
+How do you optimize workflow execution time at scale?
+
+How do you handle monorepo CI/CD with GitHub Actions?
+
+How do you manage environment-specific approvals and gates?
+
+How do you implement rollback 
+strategies using GitHub Actions?
+
+How do you integrate GitHub Actions with Kubernetes deployments?
+
+How do you design multi-cloud CI/CD pipelines using GitHub Actions?
+
+How do you audit GitHub Actions workflows for compliance?
+
+How do you manage action versioning safely?
+
+How do you handle breaking changes in third-party actions?
+
+GitHub Actions limitations compared to Jenkins/GitLab CI
+
+How do you migrate from Jenkins to GitHub Actions?
+
+Common anti-patterns in GitHub Actions at enterprise scale 
