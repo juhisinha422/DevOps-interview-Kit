@@ -1,0 +1,44 @@
+MLOps Interview Series Part 6️⃣ - Versioning Strategies (10 Must-Know Questions!)"
+
+Here are the 10 questions that always come up about versioning strategies—
+
+1️⃣ MLflow Setup & Experiment Tracking 
+Q: How would you set up MLflow in your ML project?
+ 💡 Hint: Mention 4 components (Tracking, Projects, Models, Registry). Talk about logging parameters, metrics, artifacts. Backend store (SQL) + Artifact store (S3/GCS). 
+
+2️⃣ Model Registry & Deployment
+ Q: How do you handle model versioning and production stages?
+💡 Hint: Explain lifecycle: Staging → Production → Archived. Use Model Registry for version management. Mention rollback strategy (1-click revert to previous version). 
+
+3️⃣ DVC for Data Versioning 
+Q: How would you version large datasets? 
+💡 Hint: DVC (Data Version Control) creates .dvc files, stores data in S3/GCS. Workflow: dvc add data.csv → git commit → dvc push. Easy data switching with git checkout + dvc checkout. Perfect for 50GB+ datasets.
+
+4️⃣ Experiment Tracking & Model Selection 
+Q: You trained 5 models. How do you pick the best?
+ 💡 Hint: Log parameters (lr, batch_size), metrics (accuracy, F1), artifacts (model, plots). Use MLflow UI to compare visually. Filter by best metric. 
+
+5️⃣ Git Repository Structure 
+Q: How do you organize an ML Git repo? 
+💡 Hint: Git tracks code + configs. DVC tracks data + models. Structure: src/ (code) → configs/ (YAML) → data/ (DVC) → models/ (DVC/MLflow). Add .gitignore for data & models. Remote: GitHub (code) + S3 (data).
+
+6️⃣ Weights & Biases Collaboration
+ Q: How does W&B help team collaboration? 
+💡 Hint: Cloud platform for experiment tracking (like MLflow but team-focused). Features: Sweeps (hyperparameter tuning), Reports (interactive), Artifacts, Team dashboard. Real-time alerts & visualization. 
+
+7️⃣ Dataset & Config Versioning
+ Q: Why version datasets and configs together? 
+💡 Hint: Reproducibility! Same data + config = same model. Use DVC for data hashes, Git for configs. 
+
+8️⃣ Reproducibility & Audit Trail Q: How ensure reproducibility 6 months later?
+ 💡 Hint: Track: random seed (42), dependencies lock, data version, config version, Git commit, timestamp. Use requirements.lock (exact versions). Log everything in MLflow. 
+
+9️⃣ Model Artifacts & Dependencies 
+Q: How manage model artifacts & dependencies?
+ 💡 Hint: Lock dependencies (pip freeze), choose format (joblib/h5/ONNX), save supporting files (scaler, encoder). Test in Docker. Checklist: model + scaler + encoder + config + requirements.lock.
+
+🔟 End-to-End Versioning Pipeline
+ Q: Design complete versioning strategy (data→train→deploy)?
+ 💡 Hint: DVC (data) → MLflow (training) → Registry (staging) → Production (live) → Monitor (metrics) → Rollback (if needed). Tools: Git (code) + DVC (data) + MLflow (models) + Docker (consistency).
+
+Master these 10 Q&As, and you'll crush any ML/MLOps interview! 🚀
