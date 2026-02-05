@@ -1,0 +1,70 @@
+CI/CD** stands for **Continuous Integration** and **Continuous Deployment (or Delivery)**.
+It’s a DevOps practice that helps teams **build, test, and release software faster and more reliably** 🚀
+
+---
+
+## 🔁 Continuous Integration (CI)
+
+CI is about **integrating code frequently**.
+
+**What happens in CI?**
+
+* Developers push code to a shared repo (Git)
+* Automated build starts
+* Automated tests run
+* Errors are caught early
+
+**Why CI?**
+
+* Detect bugs early 🐞
+* Avoid “it works on my machine” problems
+* Improve code quality
+
+👉 Tools commonly used:
+
+* **Jenkins**
+* **GitHub Actions**
+* **GitLab CI**
+
+---
+
+## 🚀 Continuous Deployment / Continuous Delivery (CD)
+
+### Continuous Delivery
+
+* Code is **automatically tested**
+* Ready for production
+* **Manual approval** needed to deploy
+
+### Continuous Deployment
+
+* Code is **automatically deployed** to production
+* No manual steps
+
+---
+
+## 🔄 CI/CD Pipeline Flow
+
+```
+Code → Build → Test → Deploy → Monitor
+```
+
+---
+
+## 🌟 Benefits of CI/CD
+
+* Faster releases ⚡
+* Fewer bugs in production
+* Automated & repeatable process
+* Better collaboration between Dev & Ops
+
+---
+
+## 🧠 Simple Example
+
+Imagine you push code:
+
+* **CI** checks → “Does the code work?”
+* **CD** answers → “Can we safely release it?”
+
+---
