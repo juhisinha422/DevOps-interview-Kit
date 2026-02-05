@@ -1,0 +1,45 @@
+DevOps Interview Series | GitHub Actions – Basic Level
+
+GitHub Actions is heavily used in modern CI/CD.
+Interviewers expect you to know how it works, not just YAML syntax.
+
+What is GitHub Actions?
+
+How is GitHub Actions different from Jenkins?
+
+What is CI/CD and how does GitHub
+Actions support it?
+
+What are workflows in GitHub Actions?
+
+What is a GitHub Actions workflow file?
+
+Where are workflow files stored in a repository?
+
+What are events in GitHub Actions?
+
+What is a job in GitHub Actions?
+
+What are steps in a job?
+
+What are GitHub Actions runners?
+
+Difference between GitHub-hosted and self-hosted runners
+
+What is a GitHub Action?
+
+Types of GitHub Actions (JavaScript, Docker, Composite)
+
+What is the uses keyword in workflow files?
+
+What is the run keyword?
+
+How do you trigger a workflow on push or pull request?
+
+What are environment variables in GitHub Actions?
+
+How do you pass secrets to workflows?
+
+What is a matrix strategy in GitHub Actions (basic idea)?
+
+Common use cases of GitHub Actions in real projects
