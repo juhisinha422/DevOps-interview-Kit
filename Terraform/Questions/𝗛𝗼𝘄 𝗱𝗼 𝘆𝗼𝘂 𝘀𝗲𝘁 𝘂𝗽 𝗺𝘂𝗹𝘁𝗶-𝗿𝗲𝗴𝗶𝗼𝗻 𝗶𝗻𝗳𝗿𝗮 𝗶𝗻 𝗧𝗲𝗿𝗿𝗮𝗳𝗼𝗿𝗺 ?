@@ -1,0 +1,41 @@
+𝗗𝗲𝘃𝗢𝗽𝘀 𝗮𝗻𝗱 𝗖𝗹𝗼𝘂𝗱(𝗔𝗪𝗦) 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗘𝘅𝗽𝗹𝗮𝗶𝗻𝗲𝗱 — 𝗢𝗻𝗲 𝗮𝘁 𝗮 𝗧𝗶𝗺𝗲!
+
+𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝘀𝗲𝘁 𝘂𝗽 𝗺𝘂𝗹𝘁𝗶-𝗿𝗲𝗴𝗶𝗼𝗻 𝗶𝗻𝗳𝗿𝗮 𝗶𝗻 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 ? 
+Ans : By default, Terraform only talks to one region. To talk to a second region (e.g., creating a Disaster Recovery site in Mumbai while your main app is in N. Virginia), we need to define a second "Provider Block" with a specific "𝗣𝗿𝗼𝘃𝗶𝗱𝗲𝗿 𝗮𝗹𝗶𝗮𝘀".
+Here is the 3-step process to do it:
+
+1. 𝗗𝗲𝗳𝗶𝗻𝗲 𝗠𝘂𝗹𝘁𝗶𝗽𝗹𝗲 𝗣𝗿𝗼𝘃𝗶𝗱𝗲𝗿𝘀 : In 𝗺𝗮𝗶𝗻.𝘁𝗳 𝗼𝗿 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿.𝘁𝗳 , define the primary region as usual, and then add a second provider block with an alias and a different region.
+# 1. The Default Provider (e.g., N. Virginia)
+provider "aws" {
+ 𝗿𝗲𝗴𝗶𝗼𝗻 = "𝘂𝘀-𝗲𝗮𝘀𝘁-𝟭"
+}
+# 2. The Secondary Provider (e.g., Mumbai)
+provider "aws" {
+ alias = "mumbai_dr" # <--- This is the crucial part
+ 𝗿𝗲𝗴𝗶𝗼𝗻 = "𝗮𝗽-𝘀𝗼𝘂𝘁𝗵-𝟭"
+}
+
+𝟮. 𝗠𝗮𝗽 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 𝘁𝗼 𝘁𝗵𝗲 𝗔𝗹𝗶𝗮𝘀 : When we create a resource, Terraform uses the default provider automatically. To use the secondary region, we must explicitly add the provider argument.
+
+# This goes to us-east-1 (Default)
+resource "aws_instance" "web_server_primary" {
+ ami      = "ami-12345678"
+ instance_type = "t2.micro"
+}
+# This goes to ap-south-1 (Mumbai)
+resource "aws_instance" "web_server_dr" {
+ 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿   = 𝗮𝘄𝘀.𝗺𝘂𝗺𝗯𝗮𝗶_𝗱𝗿 # <--- 𝗥𝗲𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝘁𝗵𝗲 𝗮𝗹𝗶𝗮𝘀 𝗵𝗲𝗿𝗲
+ ami      = "ami-87654321" 
+ instance_type = "t2.micro"
+}
+
+3. 𝗪𝗶𝘁𝗵 𝘁𝗵𝗲 𝗠𝗼𝗱𝘂𝗹𝗲𝘀: If we are using Modules, the alias does not pass down automatically. We must explicitly pass the providers into the module block like,
+
+module "vpc_mumbai" {
+ source = "./modules/vpc"
+  
+ # must explicitly tell the module which provider to use
+ 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿𝘀 = {
+  𝗮𝘄𝘀 = 𝗮𝘄𝘀.𝗺𝘂𝗺𝗯𝗮𝗶_𝗱𝗿
+ }
+}
