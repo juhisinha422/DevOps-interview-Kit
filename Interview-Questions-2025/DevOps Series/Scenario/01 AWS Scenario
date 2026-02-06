@@ -1,0 +1,18 @@
+DAY 1 – AWS (Scenario-Based Questions)
+
+☁️ AWS – 15 Real-World Scenarios
+	1.	Your EC2 cost suddenly doubled last month. How would you investigate and reduce it?
+	2.	An application deployed on EC2 is unreachable, but the instance is running. How do you troubleshoot?
+	3.	Your Auto Scaling Group is not scaling even though CPU is high. What could be wrong?
+	4.	How would you design a highly available architecture for a web app in AWS?
+	5.	S3 data was deleted accidentally. How would you recover it?
+	6.	Your ALB is healthy, but traffic is not reaching the backend instances. What checks would you perform?
+	7.	How do you manage multiple environments (dev, qa, prod) in AWS?
+	8.	A Lambda function is timing out. How do you debug and fix it?
+	9.	How would you secure secrets used by EC2, Lambda, and ECS?
+	10.	You need zero-downtime deployment in AWS. Which services and strategy would you use?
+	11.	How do you monitor application-level metrics beyond CPU & memory?
+	12.	What happens if an AZ goes down? How do you design for it?
+	13.	How would you restrict developers from deleting production resources?
+	14.	You need to copy data across AWS accounts securely. How would you do it?
+	15.	How do you troubleshoot slow performance in a VPC-based application?
