@@ -1,0 +1,54 @@
+DevOps Scenario-Based Learning Series
+
+🎯 Goal
+
+Help DevOps learners think like engineers, not textbook parrots — using real interview + production scenarios.
+
+⸻
+
+🧰 Tools Covered (25+)
+
+We’ll cover at least 15 scenario-based questions per tool 👇
+
+☁️ Cloud Platforms
+	1.	AWS
+	2.	Azure
+	3.	GCP
+
+🔁 CI/CD
+	4.	Jenkins
+	5.	GitHub Actions
+	6.	GitLab CI/CD
+
+📦 Build & Artifacts
+	7.	Maven
+	8.	SonarQube
+	9.	Nexus
+	10.	JFrog Artifactory
+
+🧱 Infrastructure as Code
+	11.	Terraform
+	12.	Ansible
+	13.	CloudFormation
+	14.	ARM Templates
+
+🐳 Containers & Orchestration
+	15.	Docker
+	16.	Kubernetes
+	17.	Helm
+
+📊 Monitoring & Logging
+	18.	Prometheus
+	19.	Grafana
+	20.	ELK Stack
+	21.	Splunk
+
+🔐 Security
+	22.	HashiCorp Vault
+	23.	Trivy
+	24.	Veracode
+
+🐧 OS & Scripting
+	25.	Linux
+	26.	Bash
+	27.	Python (DevOps use-cases)
