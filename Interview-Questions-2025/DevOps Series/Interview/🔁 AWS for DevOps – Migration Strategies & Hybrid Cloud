@@ -1,0 +1,48 @@
+🔁 AWS for DevOps – Migration Strategies & Hybrid Cloud
+
+Cloud adoption is easy. Migration done right is not. 👇
+
+🔹 Migration Fundamentals
+ • Why do organizations migrate to AWS?
+ • What are the common risks in cloud migration?
+ • How do you decide what to migrate first?
+
+🔹 Migration Strategies (6 Rs)
+ • What is the difference between Rehost and Replatform?
+ • When should you Refactor an application?
+ • Why is Retire often ignored but important?
+ • How do business goals influence the migration strategy?
+
+🔹 Assessment & Planning
+ • How do you assess application dependencies before migration?
+ • How do you estimate migration effort and risk?
+ • What data is critical to collect before migrating?
+
+🔹 Data Migration
+ • How do you migrate large databases with minimal downtime?
+ • When do you use AWS DMS?
+ • How do you validate data integrity after migration?
+
+🔹 Hybrid Connectivity
+ • When do you choose VPN vs Direct Connect?
+ • How do you design secure hybrid connectivity?
+ • How do you manage latency-sensitive applications?
+
+🔹 Identity & Access
+ • How do you integrate on-prem identity with AWS?
+ • How does IAM Identity Center support hybrid environments?
+ • How do you manage access consistently across environments?
+
+🔹 Post-Migration Optimization
+ • How do you validate application performance after migration?
+ • How do you optimize cost post-migration?
+ • How do you decommission on-prem resources safely?
+
+🔹 Operational Readiness
+ • How do you ensure monitoring and alerting post-migration?
+ • How do you train teams for cloud operations?
+ • What defines a successful migration?
+
+💡 Migration success is measured after go-live, not on go-live.
+
+⸻
