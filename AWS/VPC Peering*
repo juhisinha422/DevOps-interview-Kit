@@ -1,0 +1,63 @@
+VPC Peering** is a networking connection between two Virtual Private Clouds (VPCs) that allows them to communicate with each other **privately using AWS’s internal network**, just as if they were part of the same network.
+
+### 🔹 Simple Meaning
+
+It connects two VPCs so that resources like EC2 instances, RDS databases, or Lambda functions in one VPC can talk to resources in another VPC using **private IP addresses** — without going through the internet.
+
+---
+
+## ✅ Key Features of VPC Peering
+
+* Works within the **same AWS account** or **different AWS accounts**
+* Can connect VPCs in:
+
+  * Same region
+  * Different regions (Inter-Region Peering)
+* Traffic stays on the **AWS private backbone** (secure & fast)
+* No single point of failure – highly reliable
+
+---
+
+## 🧩 How It Works
+
+1. One VPC sends a **peering request** to another VPC.
+2. The other VPC **accepts** the request.
+3. Both VPCs update their:
+
+   * **Route tables**
+   * **Security groups / NACLs**
+
+After that, instances can communicate using private IPs.
+
+---
+
+## ⚠️ Limitations
+
+* ❌ VPC peering is **not transitive**
+
+  * If VPC A is peered with B
+  * And B is peered with C
+  * 👉 A cannot talk to C through B.
+
+* IP ranges of both VPCs must **not overlap**.
+
+---
+
+## 🧪 Example Use Case
+
+* You have:
+
+  * VPC-1 → Web servers
+  * VPC-2 → Database servers
+
+Instead of exposing the DB to the internet, you peer both VPCs so the web app can securely access the database.
+
+---
+
+### 🆚 VPC Peering vs Internet Gateway
+
+| Feature  | VPC Peering         | Internet Gateway |
+| -------- | ------------------- | ---------------- |
+| Traffic  | Private AWS network | Public internet  |
+| Security | More secure         | Less secure      |
+| Cost     | Low                 | Higher           |
