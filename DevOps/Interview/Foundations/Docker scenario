@@ -1,0 +1,42 @@
+DevOps Interview #Questions Series | #Docker Scenario Based Questions
+
+A container keeps restarting. How do you troubleshoot it?
+
+Docker image size is very large. How will you reduce it?
+
+Application inside a container cannot be
+accessed externally. How do you debug it?
+
+Container loses data after restart. What went wrong?
+
+High CPU usage by containers impacts the host. How do you control it?
+
+Secrets are hardcoded in a Dockerfile. How do you fix this?
+
+You need different configs for dev, stage, and prod. How do you manage them?
+
+Docker build is slow in CI pipelines. How do you optimize it?
+
+A container works locally but fails in production. How do you investigate?
+
+Multiple containers need to communicate securely. How do you design networking?
+
+You need zero-downtime deployment using Docker. How will you achieve it?
+
+Logs are not visible from containers. How do you centralize logging?
+
+Containers need persistent storage across nodes. How do you solve this?
+
+A container is running as root. Why is this risky and how do you fix it?
+
+You need to scan images for vulnerabilities before deployment. How do you implement it?
+
+Docker daemon crashes on a production host. What is your recovery plan?
+
+You need rollback support for Docker-based deployments. How do you implement it?
+
+Multiple teams push images to the same registry. How do you manage access?
+
+Docker networking causes IP conflicts. How do you fix it?
+
+You are asked to replace Docker. What limitations would you highlight?
