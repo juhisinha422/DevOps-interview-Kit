@@ -1,0 +1,41 @@
+DevOps Interview #Questions Series | #Kubernetes  Intermediate Level
+
+How does Kubernetes scheduling work?
+
+What happens when a Pod crashes?
+
+Difference between Rolling Update and Recreate strategy
+
+What are liveness and readiness probes?
+
+What is a StatefulSet and when do you use it?
+
+Difference between StatefulSet and Deployment
+
+What is DaemonSet and its real-world use cases?
+
+What is Ingress and why is it used?
+
+How does Ingress differ from Service LoadBalancer?
+
+What is Helm and why is it used?
+
+How do ConfigMaps and Secrets get mounted into Pods?
+
+How does Kubernetes handle service discovery?
+
+What is Horizontal Pod Autoscaler (HPA)?
+
+How does Kubernetes manage resource requests and limits?
+
+What is a PersistentVolume (PV)?
+
+What is a PersistentVolumeClaim (PVC)?
+
+How does storage provisioning work in Kubernetes?
+
+How do you perform rolling deployments safely?
+
+How do you debug a failing Pod?
+
+Common Kubernetes mistakes in real projects
