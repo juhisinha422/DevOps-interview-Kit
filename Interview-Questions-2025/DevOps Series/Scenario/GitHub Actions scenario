@@ -1,0 +1,12 @@
+Questions/scenarios;
+
+1.	What are GitHub Actions and workflows?
+2.	Runners in GitHub Actions.
+3.	Caching dependencies like Maven.
+4.	Passing secrets securely.
+5.	Matrix builds explanation.
+6.	Reusable workflows with workflow_call.
+7.	Handling failures with continue-on-error.
+8.	Composite actions usage.
+9.	Deployment automation steps.
+10.	Event-driven automation examples.
