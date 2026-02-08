@@ -1,0 +1,42 @@
+DevOps Interview #Questions Series | #Docker Advanced Level
+
+Explain Docker internals (namespaces, cgroups)
+
+How does Docker isolate containers at the OS level?
+
+Difference between container runtime and Docker Engine
+
+What is containerd and runc?
+
+How does Docker handle resource limits (CPU, memory)?
+
+How do you secure Docker containers in production?
+
+What is Docker Content Trust?
+
+How do you scan Docker images for vulnerabilities?
+
+How do you implement least privilege in containers?
+
+How do you run Docker in rootless mode?
+
+How do you design Docker images for
+high availability?
+
+What happens when a Docker daemon crashes?
+
+How do you manage logs in Docker at scale?
+
+How do you handle secrets in Docker for production?
+
+How do you integrate Docker with Kubernetes?
+
+How do you optimize Docker performance in CI/CD pipelines?
+
+How do you manage private Docker registries?
+
+How do you version Docker images effectively?
+
+Docker limitations in large-scale systems
+
+When should Docker NOT be used?
