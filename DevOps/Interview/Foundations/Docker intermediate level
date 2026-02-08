@@ -1,0 +1,41 @@
+DevOps Interview Questions Series | #Docker Intermediate Level
+
+Explain Docker architecture in detail
+
+What happens internally when you run docker run?
+
+Difference between CMD and ENTRYPOINT with use cases
+
+How does Docker image layering work?
+
+What is a multi-stage Docker build and why is it used?
+
+How do you reduce Docker image size?
+
+What is .dockerignore and why is it important?
+
+How does Docker networking work internally?
+
+Difference between bridge, host, and overlay networks
+
+How do containers discover each other?
+
+How do you persist data in Docker containers?
+
+When should you use volumes vs bind mounts?
+
+How do you manage environment variables in Docker?
+
+How do you pass secrets securely to containers?
+
+What is Docker Compose and when do you use it?
+
+How does Docker Compose handle dependencies?
+
+How do you debug a failing Docker container?
+
+What happens when a container crashes?
+
+How do you monitor Docker containers?
+
+Common mistakes teams make when using Docker
