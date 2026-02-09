@@ -1,0 +1,13 @@
+SonarQube 
+Questions/scrnarios;
+
+1.	What is SonarQube and its purpose?
+2.	Quality profiles definition
+3.	Static code analysis for 20+ languages.
+4.	Bugs, vulnerabilities, and code smells.
+5.	Integration in CI/CD pipelines
+6.	False positives handling.
+7.	Security hotspots review.
+8.	Metrics for code quality.
+9.	Scanner setup and rules.
+10.	Compliance and best practices.
