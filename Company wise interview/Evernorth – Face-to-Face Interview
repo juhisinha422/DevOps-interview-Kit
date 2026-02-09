@@ -1,0 +1,27 @@
+🔹 Evernorth – Face-to-Face Interview
+
+Role: DevOps Engineer
+
+✅ Level 1 – Core DevOps, Cloud & CI/CD
+	1.	Can you introduce yourself?
+	2.	What are Ansible best practices you follow in production?
+	3.	Why do we store Terraform state files in Amazon S3?
+	4.	Write a basic Dockerfile.
+	5.	Explain how you build a Docker image and deploy it to Kubernetes using CI/CD
+(Dockerfile, Kubernetes Deployment manifest, Jenkins pipeline stages).
+	6.	Write a Terraform configuration to create an S3 bucket.
+	7.	What is Blue/Green deployment?
+	8.	How does a Rolling Update work in Kubernetes?
+	9.	How does a Canary Deployment work?
+	10.	What is an Ingress Controller in Kubernetes?
+	11.	What are terraform taint and terraform import, and when do you use them?
+
+✅ Level 2 – Troubleshooting, Architecture & Real-World Experience
+	1.	A pod is continuously restarting and entering CrashLoopBackOff. How do you troubleshoot it?
+	2.	How would you migrate a CI/CD pipeline from Jenkins to GitHub Actions?
+	3.	You accidentally ran terraform destroy instead of terraform apply. How would you handle this situation?
+	4.	Can you explain your hands-on experience with Kubernetes in production?
+	5.	What Kubernetes security best practices have you implemented?
+	6.	Where and how do you store secrets securely?
+	7.	Why are you looking to move on from your current organization?. 
+Thanks a lot Nikhil.
