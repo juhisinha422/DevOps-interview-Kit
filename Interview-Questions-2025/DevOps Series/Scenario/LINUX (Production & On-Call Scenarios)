@@ -1,0 +1,32 @@
+LINUX (Production & On-Call Scenarios)
+
+These are actual production issues you’ll face during on-call, outages, and interviews.
+
+⸻
+
+🐧 Linux – Real-World DevOps Scenarios
+	1.	A production server is running out of disk space. How do you identify and fix it safely?
+	2.	CPU usage is 100%, but no single process looks abnormal. How do you troubleshoot?
+	3.	A critical service is down after a reboot. How do you bring it back online?
+	4.	Application logs are growing rapidly and filling disk. How do you handle this?
+	5.	A user cannot SSH into a server. What checks do you perform?
+	6.	A process is running but the application is not responding. How do you debug?
+	7.	How do you identify and fix memory leaks on a Linux server?
+	8.	A cron job is not running as expected. How do you troubleshoot?
+	9.	Network connectivity between two servers is slow. How do you diagnose it?
+	10.	A server suddenly rebooted. How do you find the root cause?
+	11.	How do you handle zombie or stuck processes?
+	12.	File permissions broke an application deployment. How do you fix it without downtime?
+	13.	How do you safely apply OS patches on production systems?
+	14.	A log file shows “Too many open files”. What does it mean and how do you fix it?
+	15.	How do you prepare a Linux server for high availability and resilience?
+
+⸻
+
+🧠 What Interviewers Are Testing
+
+✔ Troubleshooting mindset
+✔ Linux internals understanding
+✔ Production safety awareness
+✔ On-call readiness
+✔ Command-line confidence
