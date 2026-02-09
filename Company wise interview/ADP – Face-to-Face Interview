@@ -1,0 +1,34 @@
+🔹 ADP – Face-to-Face Interview
+
+Role: DevOps / SRE
+
+✅ Level 1 – Fundamentals, CI/CD, Cloud & Kubernetes
+	1.	How do you configure Jenkins from scratch?
+	2.	How does Blue/Green deployment work?
+	3.	Is there any downtime in Blue/Green deployment? Explain why or why not.
+	4.	A user is unable to access an S3 bucket. How do you troubleshoot this issue?
+	5.	How do you design a highly available Kubernetes cluster?
+	6.	How do you route 50% traffic to Team A and 50% to Team B in Kubernetes?
+	7.	What are your roles and responsibilities as a DevOps Engineer?
+	8.	Where do you usually deploy applications—on-premises or cloud? Why?
+	9.	Write Terraform code to create an S3 bucket.
+	10.	What recent Kubernetes production issue have you troubleshot?
+	11.	Which command is used to check Kubernetes pod logs?
+	12.	How does ArgoCD work?
+	13.	Explain an end-to-end CI/CD workflow using Jenkins.
+	14.	How do you troubleshoot a server that is not responding?
+	15.	What automations have you implemented using Ansible?
+
+✅ Level 2 – Advanced Kubernetes, Terraform & Observability
+	1.	How do you list Kubernetes pods based on their age?
+	2.	Explain the Terraform workflow.
+	3.	If a Terraform project contains 100 resources, how do you apply only one resource?
+	4.	Explain the differences between Deployment, StatefulSet, and DaemonSet.
+	5.	What is a headless service in Kubernetes, and how does it work?
+	6.	What are Kubernetes probes? How many types are there?
+	7.	Can we create a StatefulSet without Persistent Volumes and PVCs?
+	8.	Can we attach PVs and PVCs to a Deployment?
+	9.	How do you provide S3 access to an EC2 instance securely?
+	10.	What is Backstage, and how does it work?
+	11.	What is APM (Application Performance Monitoring)?
+	12.	Have you worked on observability, monitoring, and distributed tracing? Explain.
