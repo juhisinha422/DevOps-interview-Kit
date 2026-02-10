@@ -1,0 +1,22 @@
+DOCKER (Real-World Scenarios)
+
+These scenarios focus on container failures, image issues, and production debugging — exactly what interviewers expect.
+
+⸻
+
+🐳 Docker – Real-World DevOps Scenarios
+ 1. A Docker container exits immediately after starting. How do you debug it?
+ 2. Your Docker image size is very large. How do you optimize it?
+ 3. A container works locally but fails in production. How do you troubleshoot?
+ 4. Multiple containers need to communicate with each other. How do you design and debug networking?
+ 5. Environment variables are not being picked up inside the container. What could be wrong?
+ 6. A container is running, but the application inside is not accessible. What checks do you perform?
+ 7. How do you handle secrets securely in Docker-based applications?
+ 8. A Docker build is very slow. How do you optimize the Dockerfile?
+ 9. How do you debug high CPU or memory usage inside a container?
+ 10. How do you persist data when containers restart?
+ 11. A container works fine but crashes under load. How do you identify the issue?
+ 12. What happens if the Docker host restarts? How do you ensure application resilience?
+ 13. How do you manage different configurations for dev, qa, and prod?
+ 14. A Docker image fails security scanning. How do you fix and prevent it?
+ 15. How do you implement zero-downtime deployments using Docker?
