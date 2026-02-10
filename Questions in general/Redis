@@ -1,0 +1,60 @@
+Redis in 60 Second 👇
+
+What is Redis ? 
+Redis = REmote DIctionary Server
+
+An in-memory data store used mainly as:
+- Cache
+- Session store
+- Message broker
+- Real-time data store
+
+It’s insanely fast because data lives in RAM, not on disk.
+
+🟢 Why Redis exists
+Typical flow without Redis:
+
+User → Application → Database
+
+- Database is slow
+- High traffic = high DB load
+- Latency increases
+- DB becomes a bottleneck
+- This doesn’t scale.
+
+🟢 Redis comes into the picture
+- Redis sits between Application and Database
+
+New flow:
+
+User → Application → Redis → Database
+
+- Redis acts as a fast access layer
+
+🟢 Complete Redis request flow 
+1️⃣ User sends a request
+2️⃣ Application checks Redis first
+3️⃣ If data exists in Redis → Cache HIT
+Data returned in milliseconds
+4️⃣ If data not found → Cache MISS
+App fetches data from Database
+Stores it in Redis with TTL
+
+- Returns response to user
+- This is called Cache Aside Pattern
+
+🟢 Where Redis is used in real systems?
+- Login sessions
+- API response caching
+- Rate limiting
+- Leaderboards
+- Real-time analytics
+- Background jobs / queues
+- Almost every high-traffic app uses Redis.
+
+🟢 Redis in DevOps & System Design :
+As a DevOps, Redis knowledge is used in:
+- Application performance tuning
+- Scaling backend systems
+- Reducing DB cost
+- Designing high-availability systems
