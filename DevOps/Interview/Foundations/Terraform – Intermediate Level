@@ -1,0 +1,41 @@
+ DevOps Interview Series | Terraform – Intermediate Level
+
+How does Terraform dependency graph work?
+
+What are Terraform modules and why do we use them?
+
+How do you structure Terraform code for large projects?
+
+Difference between count and for_each
+
+What is a data source in Terraform?
+
+When do you use depends_on explicitly?
+
+What is remote state locking and why is it important?
+
+How do you configure remote backend (S3 + DynamoDB)?
+
+How do you manage multiple environments using Terraform?
+
+How do you pass variables between modules?
+
+What are workspaces and their limitations?
+
+How do you handle secrets in Terraform?
+
+How do you import existing infrastructure into Terraform?
+
+What is terraform taint and when is it used?
+
+What is terraform refresh?
+
+How do you manage provider versions safely?
+
+How do you detect and handle drift?
+
+How do you collaborate in teams using Terraform?
+
+How do you integrate Terraform with CI/CD pipelines?
+
+Common Terraform mistakes in real projects
