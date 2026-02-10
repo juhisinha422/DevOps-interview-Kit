@@ -1,0 +1,41 @@
+ DevOps Interview hashtag#Questions Series | hashtag#Terraform Scenario Based Questions
+
+Terraform state is accidentally deleted. What will you do?
+
+Two engineers run terraform apply at the same time. What happens?
+
+terraform apply partially fails. How do you recover?
+
+You need to manage infra across multiple AWS/GCP/Azure accounts. How do you design it?
+
+Terraform keeps detecting changes even when nothing was modified. Why?
+
+A resource was manually deleted in cloud but still exists in Terraform state. How do you fix it?
+
+You need different configurations for dev, stage, and prod. How do you manage them?
+
+Secrets are exposed in Terraform files. How do you secure them?
+
+A module change breaks multiple environments. How do you prevent this?
+
+Terraform deployment deletes a critical resource. How do you stop this in the future?
+
+CI/CD pipeline runs Terraform but fails due to permission issues. How do you debug?
+
+Terraform state file is locked and cannot be unlocked. What do you do?
+
+You need to rotate cloud credentials without downtime. How do you implement it?
+
+Terraform plan shows unexpected resource replacement. How do you analyze it?
+
+Terraform version upgrade breaks existing code. How do you handle it safely?
+
+Terraform code is duplicated across teams. How do you standardize it?
+
+Drift is detected in production. What steps do you take?
+
+You are asked to implement approval before terraform apply. How do you do it?
+
+Terraform performance is slow in large infrastructures. How do you optimize it?
+
+When would you avoid using Terraform and choose another IaC tool?
