@@ -1,0 +1,43 @@
+ DevOps Interview hashtag#Questions Series hashtag#Prometheus Scenario Based Questions
+
+Prometheus server suddenly crashes. How do you recover?
+
+Disk usage on Prometheus server is 95%. What will you do?
+
+Alerts are firing repeatedly even though the system is healthy. How do you debug?
+
+Critical alert was missed during an outage. What could be the reasons?
+
+High memory usage in Prometheus. How do you investigate?
+
+Metrics are missing from certain Kubernetes pods. How do you troubleshoot?
+
+Scrape target shows DOWN. What steps will you take?
+
+You need monitoring across multiple Kubernetes clusters. How do you design
+it?
+
+Developers are adding too many labels causing performance issues. How do you control it?
+
+PromQL query is very slow. How do you optimize it?
+
+Alert noise is overwhelming the team. How do you redesign alerting?
+
+You need long-term metric storage for 1+ years. What is your approach?
+
+You must ensure high availability of monitoring itself. How do you design it?
+
+You need SLO-based alerting instead of threshold-based. How do you implement it?
+
+Prometheus data got corrupted. What is your recovery plan?
+
+You need secure access to Prometheus
+UI. How do you implement it?
+
+CPU spike alert triggered but application was fine. What could be wrong?
+
+How do you monitor black-box endpoints (like external APIs)?
+
+You are asked to monitor 10,000+ nodes. How will you scale?
+
+When would you recommend using an enterprise monitoring tool instead?
