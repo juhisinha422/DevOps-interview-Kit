@@ -1,0 +1,64 @@
+What is Versioning in Amazon S3?**
+
+**S3 Versioning** is a feature that allows you to **keep multiple versions of an object in the same bucket**.
+Instead of overwriting or permanently deleting a file, S3 stores every change as a new version.
+
+So you can:
+
+* Recover **deleted objects**
+* Roll back to a **previous version**
+* Protect against **accidental overwrite or deletion**
+
+---
+
+### 🔹 **How it works**
+
+Once you **enable versioning on a bucket**:
+
+| Action | What S3 does |
+| ------------- | ----------------------------------------------------------- |
+| Upload a file | Creates a new version (with a unique Version ID) |
+
+| Update a file | Keep the old version and add a new one |
+
+| Delete a file | Adds a *delete marker* instead of removing it |
+
+| Restore | You can remove the delete marker or retrieve older versions |
+
+Each object has:
+
+* **Key** (object name)
+* **Version ID** (unique identifier)
+
+---
+
+### 🔹 **Example**
+
+You upload `resume.pdf`:
+
+* Version 1 → `resume.pdf`
+ You upload a new `resume.pdf` again:
+
+* Version 2 → `resume.pdf`
+ Delete `resume.pdf`:
+
+* S3 adds a **delete marker**, but both versions still exist.
+
+You can restore Version 1 or Version 2 anytime.
+
+---
+
+### 🔹 **Benefits**
+
+* 🛡 **Data protection** from accidental deletes/overwrites
+* 🔄 **Easy rollback** to previous versions
+* 📜 **Audit & compliance** (keeps history of changes)
+* 🧩 Works well with **replication and backups**
+
+---
+
+### 🔹 **Important points**
+
+* Versioning is **bucket-level** and once enabled **cannot be disabled**, only suspended.
+* Old versions **still consume storage and cost money**.
+* You can combine versioning with **Lifecycle Policies** to delete or archive old versions automatically.
