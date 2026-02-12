@@ -1,0 +1,32 @@
+JENKINS (CI/CD Failure & Production Scenarios)
+
+These scenarios are straight from real pipelines, outages, and interview rounds.
+
+⸻
+
+🔁 Jenkins – Real-World DevOps Scenarios
+ 1. A Jenkins job is failing, but it works fine when run manually. How do you debug?
+ 2. Jenkins pipeline suddenly became slow. What could be the reasons?
+ 3. A Jenkins agent goes offline during a build. How do you handle it?
+ 4. Credentials stored in Jenkins got exposed accidentally. What immediate and long-term actions do you take?
+ 5. How do you implement zero-downtime deployments using Jenkins?
+ 6. A pipeline works in dev but fails in prod. How do you troubleshoot?
+ 7. Jenkins restarts during a build. How do you prevent job failures?
+ 8. How do you manage secrets securely in Jenkins pipelines?
+ 9. Multiple teams are using Jenkins. How do you isolate jobs and permissions?
+ 10. A deployment stage failed after partial deployment. How do you roll back safely?
+ 11. Jenkins disk space is full. How do you fix it and prevent recurrence?
+ 12. How do you version and manage Jenkins pipelines?
+ 13. How do you integrate Jenkins with Docker and Kubernetes?
+ 14. Jenkins jobs are running in parallel and impacting performance. How do you control this?
+ 15. How do you migrate Jenkins from one server to another without downtime?
+
+⸻
+
+🧠 Interview Signals This Sends
+
+✔ CI/CD ownership
+✔ Production-safe thinking
+✔ Security awareness
+✔ Scaling Jenkins for teams
+✔ Rollback & recovery skills
