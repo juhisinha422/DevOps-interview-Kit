@@ -1,0 +1,41 @@
+ DevOps Interview hashtag#Questions Series hashtag#Grafana Intermediate Level
+
+How do you design a production-grade Grafana dashboard?
+
+How do you use variables to make dashboards dynamic?
+
+How do you filter metrics using PromQL inside Grafana?
+
+How do you reduce dashboard loading time?
+
+What are repeating panels and when do you use them?
+
+How does unified alerting work in Grafana?
+
+Difference between Grafana alerting and Prometheus Alertmanager
+
+How do you manage multi-environment dashboards (dev/stage/prod)?
+
+How do you integrate Grafana with Kubernetes?
+
+How do you configure role-based access control (RBAC)?
+
+How do you secure Grafana using OAuth/SSO?
+
+How do you create custom alerts with thresholds?
+
+How do you handle noisy alerts in Grafana?
+
+What are dashboard provisioning and why are they important?
+
+How do you manage dashboards using Git (Infrastructure as Code approach)?
+
+How do you connect Grafana to multiple data sources?
+
+How do you debug “No Data” issues in panels?
+
+How do you monitor application-level metrics visually?
+
+How do you optimize queries used in dashboards?
+
+Common mistakes while designing Grafana dashboards
