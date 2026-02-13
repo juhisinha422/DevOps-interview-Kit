@@ -1,0 +1,13 @@
+Terraform 
+Questions/scenarios;
+
+1. State management best practices.
+2. Variables and modules usage.
+3. Import existing resources.
+4. Phased rollout strategies.
+5. Debugging deployment failures.
+6. Multi-cloud configurations.
+7. Workspaces for environments.
+8. Remote backends setup.
+9. Drift detection methods.
+10. Cost optimization with Terraform.
