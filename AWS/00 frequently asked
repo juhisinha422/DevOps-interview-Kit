@@ -3,3 +3,6 @@ Most frequently asked question I get,
 "How traffic flows from Client to your workloads running in EKS in Production?"
 
 Browser > Route53  > ALB >Target Groups ->service -> Pod
+
+
+In production, traffic first resolves via Route53 with health-check-based failover routing. It then hits CloudFront where WAF and Shield provide security and caching. From there, it routes to a multi-AZ ALB configured with ACM certificates. The ALB forwards traffic to the EKS cluster via AWS Load Balancer Controller-managed Ingress. Services distribute traffic to pods running across multiple AZs with HPA and PDB ensuring zero downtime. For HA, every layer is multi-AZ. For DR, we maintain a secondary region cluster with replicated ECR images and cross-region DB replication, with Route53 performing regional failover.
