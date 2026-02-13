@@ -1,0 +1,32 @@
+TERRAFORM (State, Drift & Production Scenarios)
+
+These scenarios reflect real infrastructure failures, IaC mistakes, and interview trap questions.
+
+⸻
+
+🧱 Terraform – Real-World DevOps Scenarios
+ 1. Terraform apply fails halfway. What happens to your infrastructure and how do you recover?
+ 2. Infrastructure was changed manually in the cloud console. How do you detect and fix state drift?
+ 3. Your Terraform state file got deleted or corrupted. What do you do?
+ 4. Multiple team members are running Terraform simultaneously. How do you prevent conflicts?
+ 5. How do you manage multiple environments (dev, qa, prod) using Terraform?
+ 6. A resource was accidentally deleted from Terraform code but still exists in cloud. What happens on apply?
+ 7. How do you safely destroy only one resource without impacting others?
+ 8. Terraform plan shows unexpected changes. How do you analyze and avoid them?
+ 9. How do you manage secrets and sensitive data in Terraform?
+ 10. How do you implement rollback in Terraform?
+ 11. How do you version Terraform modules across teams?
+ 12. Terraform execution is slow. How do you optimize it?
+ 13. How do you migrate Terraform state from local to remote backend?
+ 14. A provider version upgrade breaks your infrastructure. How do you handle it?
+ 15. How do you enforce policies and guardrails for Terraform usage?
+
+⸻
+
+🧠 What Interviewers Are Checking
+
+✔ Terraform internals & state management
+✔ Team collaboration practices
+✔ Safe infrastructure changes
+✔ Rollback & recovery strategy
+✔ Security & governance mindset
