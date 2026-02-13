@@ -1,0 +1,5 @@
+Interviews for DevOps Role, targeting 3-4years experienced roles in Gurgaon.
+Most frequently asked question I get, 
+"How traffic flows from Client to your workloads running in EKS in Production?"
+
+Browser > Route53  > ALB >Target Groups ->service -> Pod
