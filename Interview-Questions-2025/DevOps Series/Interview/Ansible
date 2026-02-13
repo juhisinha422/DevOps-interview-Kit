@@ -1,0 +1,13 @@
+ Ansible 
+Questions/scenarios;
+
+1. Playbook structure and idempotency.
+2. Inventory design and dynamic sources.
+3. Roles, handlers, and Jinja2 templates.
+4. Vault for secrets management.
+5. Microservice deployment scenario.
+6. Async tasks and scaling.
+7. Include vs import tasks.
+8. Modules like copy, service, yum.
+9. Ansible Galaxy collections.
+10. Debugging failing tasks.
