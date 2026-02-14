@@ -1,0 +1,41 @@
+#Deloitte DevOps Engineer Interview Questions Complete Technical Experience
+
+One of my Friend recently given an interview to hashtag#Deloitte.
+
+Round 1: Technical Screening
+
+Explain your end-to-end CI/CD workflow. Which type of Jenkins pipeline do you use and why?
+Difference between Declarative and Scripted Jenkins pipelines.
+How do you define and trigger Jenkins pipelines?
+What are Jenkins Shared Libraries? How are they structured and used in Jenkinsfiles?
+What types of applications have you deployed using Jenkins pipelines?
+Which deployment tools have you used (Docker, Kubernetes, Helm, Terraform)?
+If a Jenkins pipeline runs but the build does not trigger, what could be the reasons?
+What is a webhook, and how is it used in a CI/CD pipeline?
+How do you create and manage Kubernetes clusters using Terraform?
+What is the role of the master (control plane) and worker nodes?
+What common Kubernetes errors have you faced (CrashLoopBackOff, ImagePullBackOff), and how did you resolve them?
+How do you access a running pod, and how do you define Kubernetes objects?
+Explain the folder structure of a Helm chart.
+What are the stages involved in building a Docker image?
+What is the difference between ENTRYPOINT and CMD in Docker?
+How do you connect and manage services such as Databases, EC2, EKS, and ECS?
+What is the command used to connect to a running ECS container?
+Which container registry do you use to store Docker images?
+
+Round 2: In-Depth Technical Screening
+
+Which branching strategy do you follow (GitFlow / Trunk-based), and how do you avoid breaking the release branch?
+If a critical bug is found in production, what is your approach to fixing it?
+Explain your complete deployment workflow from code commit to production.
+What stages do you define in your Jenkins pipeline to ensure code quality?
+How do you design and reuse Jenkins Shared Libraries?
+How do you perform Docker image vulnerability scanning during build time and at the registry level?
+Which security tools or plugins have you used for image scanning?
+How do you pass environment variables during Docker build and runtime?
+Which services or registries do you use to store Docker images?
+How do you establish secure connections with databases?
+How do you authenticate to EKS clusters and securely manage secrets?
+How do you create and deploy AWS Lambda functions?
+What are the different ways to push artifacts to AWS Lambda?
+What is email signing and Helm chart signing? Which tools are used?
