@@ -1,0 +1,32 @@
+ANSIBLE (Automation & Configuration Drift Scenarios)
+
+These are real-life automation failures and recovery scenarios commonly asked in DevOps interviews.
+
+⸻
+
+🤖 Ansible – Real-World DevOps Scenarios
+ 1. An Ansible playbook runs successfully, but changes are not applied. How do you troubleshoot?
+ 2. A playbook works on one server but fails on another. What could be the reasons?
+ 3. How do you detect and fix configuration drift using Ansible?
+ 4. A playbook partially executed and failed in the middle. How do you recover safely?
+ 5. Secrets are hardcoded in playbooks. How do you fix this securely?
+ 6. Ansible execution is slow across many hosts. How do you optimize performance?
+ 7. A service restarted unexpectedly during a playbook run. How do you prevent downtime?
+ 8. How do you manage different environments (dev, qa, prod) in Ansible?
+ 9. An Ansible module is deprecated and breaks automation. How do you handle it?
+ 10. SSH authentication fails during playbook execution. How do you debug?
+ 11. How do you implement idempotency in Ansible playbooks?
+ 12. Logs are insufficient to debug a failed run. How do you improve observability?
+ 13. A configuration change caused a production outage. How do you roll back using Ansible?
+ 14. How do you integrate Ansible with CI/CD pipelines?
+ 15. How do you scale Ansible for hundreds or thousands of servers?
+
+⸻
+
+🧠 Interview Signals This Sends
+
+✔ Automation-first mindset
+✔ Safe change management
+✔ Security awareness (Vault)
+✔ Idempotent design thinking
+✔ Large-scale operations
