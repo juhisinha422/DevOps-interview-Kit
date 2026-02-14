@@ -1,0 +1,23 @@
+Argo CD – Git-Ops for Kubernetes :
+Deploying applications manually to Kubernetes works until you want consistency, automation, and reliability. That’s where Argo CD comes in picture.
+
+🟦 What is Argo CD?
+Argo CD is a Git-Ops continuous delivery tool for Kubernetes. It continuously syncs your Kubernetes cluster with Git. Git becomes the single source of truth.
+
+ What is Git-Ops?
+      Git-Ops means:
+      1) Kubernetes manifests live in Git
+      2) Git defines the desired state
+      3) Cluster automatically matches Git state
+
+🧠 How Argo CD works:
+       Git Repository -> Argo CD watches Git -> Automatically syncs to K8S
+
+Why Argo CD is used in production:
+❌ Manual kubectl apply
+❌ Environment drift
+❌ Hard rollbacks
+✅ Automated deployments
+✅ Easy rollbacks
+✅ Clear audit trail
+✅ Safer & repeatable releases
