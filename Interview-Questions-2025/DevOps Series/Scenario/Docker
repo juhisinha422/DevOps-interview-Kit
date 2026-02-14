@@ -1,0 +1,13 @@
+Docker 
+Questions/scenarios;
+
+1. Docker image as blueprint.m
+2. Dockerfile instructions like FROM, RUN.
+3. Volumes for persistent data.
+4. Networking modes: bridge, host.
+5. Multi-stage builds optimization.
+6. Compose for multi-container apps.
+7. Security best practices.
+8. Image size reduction techniques.
+9. Troubleshooting container issues.
+10. Swarm for orchestration basics.
