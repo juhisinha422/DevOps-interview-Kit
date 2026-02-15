@@ -1,0 +1,13 @@
+Kubernetes 
+Scenarios/questions;
+
+1.	Pod communication and Services.
+2.	Ingress and network policies.
+3.	HPA and cluster autoscaler.
+4.	RBAC and Pod security.
+5.	Troubleshooting stuck Pods.
+6.	Deployments vs StatefulSets.
+7.	Secrets and ConfigMaps management.
+8.	Helm for package management.
+9.	Node failures handling.
+10.	Scaling workloads strategies.
