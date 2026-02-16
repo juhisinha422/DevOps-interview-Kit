@@ -1,0 +1,32 @@
+PROMETHEUS & GRAFANA (Monitoring & Alerting Scenarios)
+
+These scenarios focus on real outages, noisy alerts, and observability gaps seen in production systems.
+
+⸻
+
+📊 Prometheus & Grafana – Real-World DevOps Scenarios
+ 1. Alerts are firing, but the application seems healthy. How do you handle false positives?
+ 2. CPU usage is normal, but response time is high. What metrics do you investigate?
+ 3. Prometheus is running out of disk space. How do you fix and prevent it?
+ 4. A new service is deployed, but metrics are missing. How do you troubleshoot?
+ 5. How do you design meaningful alerts instead of noisy ones?
+ 6. Grafana dashboards are slow to load. How do you optimize them?
+ 7. An alert fired, but no one responded. How do you improve alert routing?
+ 8. How do you monitor Kubernetes pod-level and service-level metrics?
+ 9. Metrics disappeared after a restart. How do you prevent data loss?
+ 10. How do you detect memory leaks using monitoring tools?
+ 11. How do you monitor external dependencies (APIs, DBs)?
+ 12. Prometheus scrape targets are down. How do you debug?
+ 13. How do you define SLIs, SLOs, and SLAs using Prometheus metrics?
+ 14. A production incident occurred, but metrics are insufficient. How do you improve observability?
+ 15. How do you secure Prometheus and Grafana in production?
+
+⸻
+
+🧠 What Interviewers Look For
+
+✔ Observability mindset
+✔ Alert quality over quantity
+✔ Metrics-driven decisions
+✔ Incident response maturity
+✔ Kubernetes monitoring skills
