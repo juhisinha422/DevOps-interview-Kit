@@ -1,0 +1,15 @@
+In one of the interview I got the below question.
+
+In same VPC Same SUBNET there are two EC2 servers. But user is able to access only one EC2 server and not able to login on 2nd server. How you can troubleshoot?
+
+What could be the answer for this one
+
+Different security groups issue probably
+
+Most likely port 22 is enabled on both EC2 or not ...
+
+Ssh should be allowed
+
+May be using different security groups or blocked the ingress of particular port at NACL level  or not allowed the traffic from particular ip range of user in security group
+
+Since both instances are in same VPC and subnet, routing is likely correct. I would first compare the Security Groups, then check NACL rules, verify route table and Internet Gateway configuration. If network is correct, I would check instance status checks and then troubleshoot at OS level like SSH service, firewall, disk space, or CPU utilization.
