@@ -1,0 +1,44 @@
+AWS Learning Roadmap
+-------------------------------------------------------------------------------------
+   Step 1: Foundation Services
+These are the absolute basics — think of them as the CPU, hard drive, and operating system of the cloud.
+Amazon EC2 → Virtual servers for running applications.
+Amazon S3 → Object storage for files, backups, and media.
+Amazon RDS → Managed relational databases (like MySQL, PostgreSQL).
+IAM (Identity & Access Management) → Securely manage users and permissions.
+
+Step 2: Monitoring & Scaling
+Once you know the basics, move to services that help you manage and scale.
+CloudWatch → Monitoring and logging.
+Auto Scaling → Automatically adjust EC2 capacity.
+Elastic Load Balancing (ELB) → Distribute traffic across servers.
+
+Step 3: Advanced Storage & Databases
+Amazon DynamoDB → NoSQL database.
+Amazon Aurora → High-performance relational database.
+Amazon Glacier → Archival storage for long-term backups.
+
+Step 4: Application & Serverless
+AWS Lambda → Run code without servers (serverless).
+Amazon API Gateway → Manage APIs for apps.
+Amazon ECS/EKS → Container orchestration (Docker/Kubernetes).
+
+Step 5: Security & Compliance
+AWS KMS → Encryption key management.
+AWS Shield & WAF → Protect against DDoS and web attacks.
+AWS Config → Track compliance and resource changes.
+
+Step 6: Analytics & AI
+Amazon Redshift → Data warehousing.
+Amazon Athena → Query data directly from S3.
+Amazon SageMaker → Build and train ML models.
+Amazon Recognition → Image/video analysis. 
+
+🧭 Suggested Learning Path
+Start with EC2, S3, RDS, IAM, VPC → Core infrastructure.
+Add CloudWatch, Auto Scaling, ELB → Monitoring & scaling.
+Explore Lambda & API Gateway → Modern serverless apps.
+Dive into DynamoDB & Aurora → Advanced databases.
+Finish with Analytics & AI → Specialized services.
+
+👉 This roadmap ensures you build confidence layer by layer. By the time you reach Step 6, you’ll be comfortable with both infrastructure and innovation services.
