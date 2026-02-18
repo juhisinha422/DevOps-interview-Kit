@@ -1,0 +1,11 @@
+Ec2 System Health (Disk,Memory,CPU)..
+
+1. How do you check CPU/memory usage on EC2?
+2. How do you find which process is consuming most CPU? 
+3. How do you check available disk space and inode usage? 
+4. How do you monitor EBS volume performance from EC2? 
+5. How do you detect a memory leak in an EC2 instance?
+6. How do you identify a process causing high load average? 
+7. How do you find uptime of an EC2 instance?
+8. How do you check which user started a process?
+9. How do you check if swap memory is enabled and used? 10. How do you find top 10 memory-consuming processes?
