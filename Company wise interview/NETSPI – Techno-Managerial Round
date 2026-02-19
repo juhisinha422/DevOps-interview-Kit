@@ -1,0 +1,18 @@
+🔹 NETSPI – Techno-Managerial Round
+
+DevOps / Cloud Interview Questions (3 YOE)
+	1.	Which branching strategy have you used in your projects and why?
+	2.	Explain the difference between Git, GitHub, and Trunk-Based Development.
+	3.	Which deployment platform have you worked on – ECS or EKS? Why did you choose it?
+	4.	What happens if a resource block is removed from Terraform and you run terraform plan?
+	5.	What is Helm? Have you used it? Explain the Helm chart folder structure.
+	6.	What challenges did you face while working across multiple environments (Dev/UAT/Prod)? How did you handle environment variables?
+	7.	How do you check pods in a specific namespace in Kubernetes?
+	8.	How do you identify if a pod is failing? What could be the reasons and how do you troubleshoot?
+	9.	Have you handled production issues during night/on-call support? What steps did you take?
+	10.	How do you configure a pipeline stage to skip execution for a specific environment like UAT or PROD?
+	11.	If you receive an alert from PagerDuty or email, what do you check first – logs or dashboards? Why?
+	12.	What is an OOM (Out Of Memory) error in Kubernetes and how do you resolve it?
+	13.	How do you secure credentials in Jenkins, Docker, and Kubernetes?
+	14.	What do you understand by least privilege access policies?
+	15.	What questions would you ask the interviewer at the end of the interview?
