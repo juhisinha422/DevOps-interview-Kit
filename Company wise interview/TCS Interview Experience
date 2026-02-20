@@ -1,0 +1,27 @@
+Selected Student – TCS Interview Experience
+
+Role: DevOps / SRE
+
+⸻
+
+🔹 Round 1 – Technical Interview
+	1.	Can you explain your day-to-day responsibilities in your current DevOps role?
+	2.	What is the difference between Kubernetes Ingress and Istio?
+	3.	Have you configured secrets or handled Terraform state files? Explain your experience.
+	4.	If a node has 10 pods running, where 7 are healthy and 3 are failing, how would you troubleshoot and fix the issue?
+	5.	What specific actions or implementations have you done to make your infrastructure more reliable?
+	6.	If the CI stage succeeds but the CD stage fails in Jenkins, how would you debug and resolve it?
+	7.	Which tools have you used to build a complete CI/CD pipeline?
+	8.	If you encounter a secret-related error in your application or pipeline, how would you troubleshoot it?
+	9.	What is the difference between Horizontal Scaling and Vertical Scaling?
+	10.	What is etcd, and why is it important in Kubernetes?
+
+⸻
+
+🔹 Round 2 – Managerial / SRE Round
+	1.	What is an Error Budget, and why is it important?
+	2.	Can you explain SLI, SLO, and SLA with real-world examples?
+	3.	What is the default Prometheus port number?
+	4.	What is toil, and how do you reduce it in DevOps/SRE teams?
+	5.	Why is horizontal scaling generally preferred over vertical scaling?
+	6.	What are the Golden Signals of Monitoring?
