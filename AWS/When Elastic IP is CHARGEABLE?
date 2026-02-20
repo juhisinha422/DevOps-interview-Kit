@@ -1,0 +1,13 @@
+When Elastic IP is CHARGEABLE?
+ 
+Elastic IP is NOT attached to any instance
+ Example: You allocated an EIP but didn’t attach it
+ 
+Elastic IP is attached to a STOPPED instance
+ Instance stopped = EIP idle = charge
+ 
+More than one Elastic IP attached to the same instance
+ First one is free, extra ones are charged
+ 
+Elastic IP attached to resources other than EC2
+ Like unused or mis configured setups.
