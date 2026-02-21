@@ -1,0 +1,55 @@
+had an interview with #TechaheadSoftware, and it was a solid deep-dive into real-world DevOps & Cloud concepts. 🚀
+
+Here are some of the advanced & scenario-level questions that were asked:
+
+🔹 Kubernetes
+
+• How would you troubleshoot pods going into CrashLoopBackOff in production?
+ • If your cluster is killing pods automatically, how do you identify whether it’s OOM, resource pressure, or node issue?
+ • Explain how you would design a highly available Kubernetes cluster on Amazon Web Services.
+ • Difference between StatefulSet and Deployment with a real-time use case.
+ • How do you implement zero-downtime deployments?
+ • How would you debug networking issues between two pods?
+ • Explain HPA vs VPA and when to use which.
+ • How would you secure secrets in Kubernetes in production?
+
+🔹 Docker 
+• Why should we avoid running containers as root?
+ • Explain multi-stage builds with a real production example.
+ • How do you reduce Docker image size for production workloads?
+ • What happens internally when you run docker run?
+ • Difference between ENTRYPOINT and CMD (real-time example).
+ • How would you scan Docker images for vulnerabilities in CI?
+
+🔹 SRE 
+• What would you do if production went down at 2 AM?
+ • Explain SLA vs SLO vs SLI with a real example.
+ • How do you calculate error budgets?
+ • How would you reduce MTTR in your organization?
+ • Explain incident management lifecycle.
+ • How would you implement monitoring and alerting strategy for microservices?
+
+🔹 AWS 
+• How would you design a highly available architecture in AWS?
+ • Difference between ALB and NLB with use cases.
+ • How does Auto Scaling work internally?
+ • How would you secure an application hosted in private subnets?
+ • Explain VPC Peering vs Transit Gateway.
+ • How do you manage secrets in AWS securely?
+ • How would you reduce AWS cloud cost in production?
+
+🔹 Terraform
+• How does Terraform state work internally?
+ • What happens if state file is deleted?
+ • How do you manage remote backend in AWS?
+ • Explain lifecycle rules in Terraform.
+ • How would you manage multiple environments (dev, stage, prod)?
+ • How do you import existing infrastructure into Terraform?
+
+🔹 Jenkins
+• How do you design a scalable Jenkins architecture?
+ • Difference between Declarative and Scripted pipeline.
+ • How would you handle secrets in Jenkins pipeline?
+ • How do you implement parallel stages?
+ • What if Jenkins master goes down?
+ • How do you version control Jenkins pipelines?
