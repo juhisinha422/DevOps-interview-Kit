@@ -1,0 +1,9 @@
+HTTP vs HTTPS – Explained Simply
+
+Ever noticed http:// vs https:// in your browser?
+
+👉 HTTP sends data in plain text – anyone can read it
+👉 HTTPS encrypts data using SSL/TLS, keeping it safe
+
+💡 Rule to remember:
+If it’s a login, payment, or sensitive data → Always use HTTPS
