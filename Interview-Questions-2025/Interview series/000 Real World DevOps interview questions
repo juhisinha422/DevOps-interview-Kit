@@ -1,0 +1,168 @@
+Real-World DevOps Interview Questions
+
+> CI/CD & Deployment Strategy
+
+Q1. How do you design a CI/CD pipeline for a microservices-based application?
+
+Expected answer focus:
+	•	Git (Bitbucket/GitHub)
+	•	Build → Test → Scan → Package → Deploy
+	•	Blue-Green / Canary deployment
+	•	Rollback strategy
+
+Mention tools like Jenkins, GitHub Actions, ArgoCD, Helm.
+
+
+
+Q2. How do you prevent a bad deployment from breaking production?
+
+Interviewers want:
+	•	Canary deployments
+	•	Feature flags
+	•	Health checks
+	•	Automated rollback
+	•	SLO/SLA monitoring
+
+Q3. What is the difference between GitOps and CI/CD?
+
+CI/CD                       GitOps
+
+Push based              Pull based
+
+Jenkins deploys       ArgoCD deploys
+
+Less secure               More secure
+
+Manual rollback          Git-based rollback
+
+
+
+> Kubernetes (Must Know)
+
+Q4. How does Kubernetes decide where to run a Pod?
+
+They expect:
+	•	Scheduler
+	•	Node resources
+	•	Taints & tolerations
+	•	Node affinity
+	•	Pod anti-affinity
+
+
+Q5. What happens when a Pod crashes?
+
+Answer should include:
+	•	kubelet
+	•	restartPolicy
+	•	ReplicaSet
+	•	Liveness probe
+	•	Controller recreates Pod
+
+
+Q6. How do you do zero-downtime deployment in Kubernetes?
+
+Expected:
+	•	Rolling update
+	•	Readiness probe
+	•	Service load balancing
+	•	HPA (optional)
+
+
+> Terraform & Infrastructure
+
+Q7. How do you manage multiple environments (Dev, QA, Prod) in Terraform?
+
+Best answers:
+	•	Workspaces OR
+	•	Separate state files
+	•	Environment folders
+	•	Remote backend (S3 + DynamoDB)
+
+⸻
+
+Q8. How do you avoid breaking production while applying Terraform?
+
+Expected:
+	•	terraform plan
+	•	Code review
+	•	GitOps flow
+	•	State locking
+	•	Apply via pipeline only
+
+⸻
+
+Q9. How do you handle secrets in Terraform?
+
+Answer:
+	•	Vault
+	•	AWS Secrets Manager
+	•	Terraform variables encrypted
+	•	Never store secrets in tfvars or Git
+
+> Cloud & AWS Production
+
+Q10. What happens if an EC2 instance running Kubernetes dies?
+
+They expect:
+	•	Auto Scaling Group
+	•	Node replacement
+	•	Pod rescheduling
+	•	Load Balancer reroute
+
+⸻
+
+Q11. How do you make applications highly available in AWS?
+
+Mention:
+	•	Multi-AZ
+	•	Load balancer
+	•	Auto Scaling
+	•	RDS Multi-AZ
+	•	Kubernetes replicas
+
+⸻
+
+>Monitoring & Reliability
+
+Q12. What do you monitor in a production Kubernetes cluster?
+
+Must say:
+	•	Pod CPU & memory
+	•	Node health
+	•	API server
+	•	Disk
+	•	Latency
+	•	Error rate
+Tools: Prometheus, Grafana, Alertmanager
+
+⸻
+
+Q13. What is SRE error budget?
+
+Expected:
+
+Allowed failure rate before we stop deploying new features.
+
+
+> DevOps Troubleshooting (Most Important)
+
+Q14. Production is down, website not loading. What do you do?
+
+Correct flow:
+	1.	Check monitoring
+	2.	Check recent deployments
+	3.	Rollback
+	4.	Check logs
+	5.	Fix root cause
+	6.	Post-mortem
+
+⸻
+
+Q15. Pod is in CrashLoopBackOff — how do you debug?
+
+
+kubectl logs
+kubectl describe pod
+kubectl exec
+check env vars
+check DB connectivity
