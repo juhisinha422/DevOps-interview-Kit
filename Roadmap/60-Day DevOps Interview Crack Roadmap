@@ -1,0 +1,86 @@
+60-Day DevOps Interview Crack Roadmap
+
+Since you’re already strong in Terraform & CI/CD, this will sharpen you for mid → senior level.
+
+⸻
+
+🗓️ Phase 1 (Day 1–20): Strong Foundations
+
+✅ Terraform
+	•	Modules
+	•	Remote backend
+	•	Workspaces
+	•	State import
+	•	Lifecycle rules
+	•	Destroy protection
+
+✅ Kubernetes
+	•	Pods, Deployments, Services
+	•	HPA
+	•	Ingress
+	•	ConfigMaps & Secrets
+	•	Probes
+	•	Rolling updates
+
+Goal:
+
+Be able to explain everything without looking at notes.
+
+⸻
+
+🗓️ Phase 2 (Day 21–40): Production Engineering
+
+Build This Project:
+
+Terraform:
+	•	Create VPC
+	•	Create EKS
+	•	Create RDS
+	•	Create ALB
+
+Kubernetes:
+	•	Deploy app with Helm
+	•	Enable HPA
+	•	Setup Ingress
+	•	Configure secrets
+
+Add:
+	•	CI/CD pipeline
+	•	GitOps flow
+
+Now you have real interview story.
+
+⸻
+
+🗓️ Phase 3 (Day 41–60): Interview Mastery
+
+Practice:
+	•	20 scenario-based questions daily
+	•	Whiteboard architecture explanation
+	•	Explain:
+	•	Multi-region design
+	•	Disaster recovery
+	•	Cost optimization
+	•	Security hardening
+
+Must Be Able To Explain:
+	•	How traffic flows from user → ALB → Ingress → Service → Pod
+	•	How Terraform state works internally
+	•	What happens when node crashes
+	•	How autoscaling works
+
+⸻
+
+🎯 Interview Winning Formula
+
+In every answer:
+
+1️⃣ Mention monitoring
+2️⃣ Mention rollback
+3️⃣ Mention automation
+4️⃣ Mention security
+5️⃣ Mention prevention
+
+That’s what separates junior from senior.
+
+⸻
