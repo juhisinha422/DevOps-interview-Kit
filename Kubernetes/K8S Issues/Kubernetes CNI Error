@@ -1,0 +1,39 @@
+ Kubernetes CNI Error? Here’s What I Faced & Fixed!
+
+While setting up my Kubernetes cluster using kubeadm, I ran into a common but confusing issue related to CNI (Container Network Interface) in Kubernetes.
+
+❌ Error I Faced:
+
+NetworkPluginNotReady: network plugin is not ready: cni config uninitialized.
+
+Pods were stuck in Pending state and CoreDNS wasn’t starting 😓
+
+🔍 Root Cause:
+
+The CNI plugin was not installed after initializing the cluster using kubeadm init.
+
+Kubernetes does NOT install a network plugin by default — we must install one manually.
+
+✅ Solution:
+
+I installed a CNI plugin (Flannel in my case):
+
+kubectl apply -f https://lnkd.in/d63tsU6G
+
+After that:
+
+✔️ CoreDNS started running
+✔️ Nodes became Ready
+✔️ Pods started communicating properly
+
+💡 Lesson Learned:
+
+Always install a CNI plugin immediately after cluster initialization.
+
+Popular CNI options:
+
+🔹 Calico
+🔹 Flannel
+🔹 Weave Net
+
+Understanding networking in Kubernetes is 🔑 for every DevOps Engineer.
