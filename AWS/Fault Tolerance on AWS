@@ -1,0 +1,23 @@
+Fault Tolerance on AWS 🛡️
+
+High availability is not automatic.
+It must be designed.
+
+Common mistakes:
+❌ Single-AZ deployments
+❌ One NAT Gateway for everything
+❌ No health checks configured
+❌ No rollback strategy
+
+Fault-tolerant architecture includes:
+✔ Multi-AZ deployments
+✔ Load balancers with health checks
+✔ Auto Scaling Groups
+✔ Graceful degradation strategy
+
+Important mindset:
+Don’t design for “no failure”.
+Design for “failure handling”.
+
+Cloud makes scaling easy.
+Resilience still requires engineering discipline.
