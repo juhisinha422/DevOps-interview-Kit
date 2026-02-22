@@ -1,0 +1,32 @@
+GITHUB ACTIONS (Real-World CI/CD Scenarios)
+
+These scenarios reflect real failures, security gaps, and scaling challenges seen in production pipelines.
+
+⸻
+
+⚙️ GitHub Actions – Real-World DevOps Scenarios
+ 1. A workflow runs on every commit, but you want it only on pull requests. How do you fix it?
+ 2. A GitHub Actions workflow passes locally but fails in the pipeline. How do you debug?
+ 3. Secrets are printed in GitHub Actions logs. What immediate actions do you take?
+ 4. A workflow suddenly stopped triggering. How do you investigate?
+ 5. How do you design multi-environment deployments using GitHub Actions?
+ 6. A job is stuck waiting for a runner. How do you fix and scale runners?
+ 7. How do you securely manage secrets in GitHub Actions?
+ 8. A deployment succeeded, but production is not updated. How do you debug?
+ 9. How do you implement approval-based deployments in GitHub Actions?
+ 10. Workflow execution time increased significantly. How do you optimize it?
+ 11. How do you integrate GitHub Actions with Kubernetes?
+ 12. A third-party GitHub Action is compromised. How do you respond?
+ 13. How do you prevent unauthorized workflow execution?
+ 14. How do you version and reuse workflows across repositories?
+ 15. How do you audit who triggered what workflow and when?
+
+⸻
+
+🧠 What Interviewers Are Checking
+
+✔ Event-driven CI/CD understanding
+✔ Pipeline security awareness
+✔ Secrets management
+✔ Multi-env deployment strategy
+✔ Troubleshooting mindset
