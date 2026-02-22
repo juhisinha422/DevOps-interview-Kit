@@ -1,0 +1,83 @@
+Docker ENTRYPOINT vs CMD — finally made simple 🚀
+
+🔹 ENTRYPOINT
+Defines the main application that always runs when the container starts. It turns your container into an executable.
+
+🔹 CMD
+Provides default arguments to ENTRYPOINT (or a default command if ENTRYPOINT isn’t set). It can be overridden.
+
+💡 In short:
+ENTRYPOINT = WHAT runs
+CMD = WITH WHAT arguments
+
+📌 Example:
+
+ENTRYPOINT ["python", "app.py"]
+CMD ["--port", "8080"]
+
+Run normally:
+docker run myapp
+➡ Runs: python app.py --port 8080
+
+Override CMD:
+docker run myapp --port 9090
+➡ Runs: python app.py --port 9090
+
+ENTRYPOINT stays. CMD changes.
+
+Understanding this helps in: 
+✔️ Writing flexible containers
+✔️ Creating reusable images
+✔️ Running apps correctly in Kubernetes
+
+
+often asked question: 
+
+1. If both are present in your dockerfile then what will happen?
+2. If two CMD are present in your dockerfile then what will happen?
+
+
+If both ENTRYPOINT and CMD are present in a Dockerfile
+Docker combines them.
+👉 ENTRYPOINT = main command
+👉 CMD = default arguments to ENTRYPOINT
+
+If two CMD instructions exist in a Dockerfile, Only the last CMD is used.
+Docker ignores previous CMDs.
+
+
+
+----
+Below is the more simplified
+
+1. If both ENTRYPOINT and CMD are present?
+If both are defined, they work together in a parent-child relationship.
+
+ENTRYPOINT becomes the fixed executable for the container.
+CMD becomes the default arguments passed to that executable.
+
+How it works:
+
+If your Dockerfile looks like this:
+
+Dockerfile
+ENTRYPOINT ["python3", "app.py"] CMD ["--port", "8080"] 
+When you run the container normally, it executes: python3 app.py --port 8080
+
+The "Override" catch: If a user runs your container with an extra argument (e.g., docker run my-image --port 9090), the CMD is completely ignored and replaced by the user's input. The ENTRYPOINT remains fixed.
+
+
+2. If two CMD instructions are present?
+
+Docker is quite strict here: Only the last CMD instruction will take effect.
+If your Dockerfile looks like this:
+
+Dockerfile
+CMD ["echo", "Hello World"] 
+CMD ["echo", "Goodbye World"] 
+
+Docker will completely ignore the first line. When the container starts, it will only output: Goodbye World.
+
+
+---
+Super clear breakdown. ENTRYPOINT = app, CMD = defaults — once this clicks, Docker suddenly makes way more sense. This also explains why Kubernetes args behave the way they do. Solid explanation.
