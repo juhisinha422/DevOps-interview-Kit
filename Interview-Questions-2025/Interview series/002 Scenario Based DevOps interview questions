@@ -1,0 +1,136 @@
+Scenario-Based DevOps Interview Questions (Real Production)
+
+> Production Outage
+
+❓ Your production website is down. What do you do?
+
+Best-practice answer flow:
+	1.	Check monitoring (Grafana / CloudWatch)
+	2.	Check last deployment (Jenkins / ArgoCD)
+	3.	Roll back if needed
+	4.	Check logs (Pod / App / Nginx)
+	5.	Scale or restart services
+	6.	Identify root cause
+	7.	Write post-mortem
+
+❌ Don’t say “restart server” — say rollback + RCA
+
+
+> Kubernetes Pods Crashing
+
+❓ Pods are in CrashLoopBackOff. How do you debug?
+
+Expected steps:
+
+kubectl describe pod
+kubectl logs <pod>
+kubectl get events
+kubectl exec -it <pod> -- sh
+
+Check:
+	•	Environment variables
+	•	DB connectivity
+	•	Missing secrets
+	•	Application errors
+
+
+> Terraform Broke Production
+
+❓ A Terraform apply deleted a live resource. What went wrong?
+
+You should say:
+	•	No approval process
+	•	No plan review
+	•	No remote state lock
+	•	No environment separation
+
+Correct design:
+	•	GitOps
+	•	terraform plan → review → apply
+	•	Separate state per env
+	•	S3 + DynamoDB lock
+
+> Zero-Downtime Deployment
+
+❓ How do you deploy without users noticing?
+
+Expected:
+	•	Kubernetes rolling update
+	•	Readiness probes
+	•	Service load balancer
+	•	Canary or Blue-Green
+	•	Automatic rollback
+
+> Database Change Caused Failure
+
+❓ New version broke DB queries. What do you do?
+
+Correct answer:
+	•	Rollback app
+	•	Restore DB if needed
+	•	Add backward-compatible schema
+	•	Use migrations
+	•	Deploy in canary mode next time
+
+> CI/CD Pipeline is Too Slow
+
+❓ Build takes 40 minutes. How do you optimize?
+
+They want:
+	•	Parallel stages
+	•	Cache dependencies
+	•	Use Docker layer cache
+	•	Remove unused tests
+	•	Use smaller base images
+
+Secrets Exposed in Git
+
+❓ Someone committed AWS keys. What do you do?
+
+Expected:
+	1.	Revoke keys immediately
+	2.	Rotate secrets
+	3.	Remove from Git history
+	4.	Use Secrets Manager / Vault
+	5.	Add pre-commit hooks
+
+> One Pod Gets All Traffic
+
+❓ Only one Pod is overloaded.
+
+You should say:
+	•	Service load balancing
+	•	Readiness probe misconfigured
+	•	Session affinity enabled
+	•	Fix service or ingress
+
+
+> Kubernetes Node Crashed
+
+❓ One node died. What happens?
+
+Correct answer:
+	•	Pods rescheduled
+	•	Load balancer redirects
+	•	Auto Scaling adds new node
+	•	Zero impact if designed correctly
+
+> Release Caused High Latency
+
+❓ After deployment, response time increased.
+
+Expected:
+	•	Compare old vs new version
+	•	Check CPU, memory, DB, API
+	•	Rollback
+	•	Find slow query or bug
+	•	Fix before redeploy
+
+> How to Answer Like a Senior DevOps Engineer
+
+Always show:
+	1.	Monitoring
+	2.	Automation
+	3.	Rollback
+	4.	Root cause
+	5.	Prevention
