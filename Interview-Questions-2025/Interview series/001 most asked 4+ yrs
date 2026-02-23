@@ -1,0 +1,17 @@
+How do you secure SSH access on a production Linux server?
+	2.	What is the key difference between iptables and firewalld?
+	3.	How do you troubleshoot high CPU and high memory usage on a Linux server?
+	4.	If CPU and RAM usage are normal but the production server and application are still slow, how do you investigate the issue?
+	5.	Have you worked on Apache or Nginx, and how do you tune Nginx to handle 10,000 concurrent users?
+	6.	What steps do you follow for OS and application patching in a production environment?
+	7.	Which CI/CD tools do you use, and can you explain the CI/CD pipeline flow from developer to production deployment?
+	8.	How do you manage secrets like database credentials and API keys securely during the CI/CD pipeline?
+	9.	What kind of work have you done on Docker and Kubernetes?
+	10.	How do you reduce a very large Docker image size?
+	11.	If thousands of Docker containers are running and CPU usage suddenly spikes, how do you identify which container is consuming high resources?
+	12.	What is Docker inspect?
+	13.	If a Kubernetes pod is running but the application is not reachable, how do you debug it?
+	14.	What are the possible reasons for pods or containers restarting randomly?
+	15.	How do you secure Docker and Kubernetes environments in production?
+	16.	How do you block a brute-force attacking IP on an EC2 instance from the AWS side?
+	17.	Why do EC2 instances behind a load balancer show as unhealthy in the target group even though traffic is working?
