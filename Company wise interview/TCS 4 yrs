@@ -1,0 +1,43 @@
+Jenkins 
+
+What is the flow of the Jenkins in your project 
+
+How can you print the msgs 
+
+Cron jobs and explain it 
+
+Jenkins secrets 
+
+Docker 
+
+CMD and Entry Point 
+Arg
+Docker architecture 
+Multi stage docker file
+How to reduce the cache in docker file
+
+K8s
+
+About pod Carshloop
+Blue green and Canary deployment 
+Write A deployment file 
+What will you do if cx not accessing the product server
+How can you setup metrics in pod
+What is argocd and how can you implement 
+How could you find out which pod is consuming high cpu and memory
+What is helm chat and why it is useful, what are those templates
+What are the services you used (Load balancer, cluster IP, Node Selector)
+
+
+Linux
+
+How can you check cpu 
+About kernel 
+Disk usages 
+
+Git & Git hub
+
+What git ammend 
+Cherry pick 
+Merge and merge conflicts 
+Branching strategies
