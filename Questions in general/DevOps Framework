@@ -1,0 +1,40 @@
+Every DevOps team argues about CI/CD tools. Here's the framework I use to kill the debate in 5 minutes. 🔁
+
+𝗧𝗵𝗲 𝗵𝗼𝗻𝗲𝘀𝘁 𝗰𝗼𝗺𝗽𝗮𝗿𝗶𝘀𝗼𝗻 :
+
+𝗚𝗶𝘁𝗛𝘂𝗯 𝗔𝗰𝘁𝗶𝗼𝗻𝘀
+✓ Best for: GitHub-hosted code, SaaS/startup environments
+✓ Setup time: 10 minutes to first working pipeline
+✓ Marketplace has 20,000+ pre-built actions
+✗ Watch out: costs spiral fast — 2,000 free minutes/month vanishes in busy teams
+✗ Vendor lock-in: your pipelines are YAML inside GitHub
+→ Fix: use self-hosted runners to eliminate per-minute costs
+
+𝗝𝗲𝗻𝗸𝗶𝗻𝘀
+✓ Best for: enterprise, complex multi-step pipelines, on-prem or air-gapped environments
+✓ 1,900+ plugins — if you need it, there's a plugin
+✓ Full control over infrastructure and data residency
+✗ Watch out: JVM memory hunger, plugin conflicts, upgrade pain
+✗ The "Jenkins tax": every team ends up with one person who truly understands the setup
+→ Fix: use Jenkins as an orchestrator with declarative pipelines only (no scripted chaos)
+
+𝗚𝗶𝘁𝗟𝗮𝗯 𝗖𝗜
+✓ Best for: GitLab-native teams, teams that want a single platform for SCM + CI + registry + security
+✓ Container registry and package registry are built in
+✓ Auto DevOps templates get you to prod faster than any other tool
+✗ Watch out: tightly coupled to GitLab — migrating later is painful
+✗ Shared runners on free tier are slow during peak hours
+
+𝗔𝗿𝗴𝗼𝗖𝗗 (𝗯𝗼𝗻𝘂𝘀)
+✓ Best for: Kubernetes-native GitOps deployments
+✓ The deployment side of the pipeline, not the build side
+✓ Pairs perfectly with GitHub Actions (build) + ArgoCD (deploy)
+
+𝗠𝘆 𝗱𝗲𝗰𝗶𝘀𝗶𝗼𝗻 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸:
+1. Where is your code hosted? → Match the CI tool to your SCM ecosystem
+2. Do you need on-prem? → Jenkins or GitLab self-hosted
+3. Are you on Kubernetes? → Add ArgoCD regardless of build tool
+4. Is cost a concern at scale? → Self-hosted runners on any platform
+
+𝗪𝗵𝗮𝘁 𝗺𝗮𝗸𝗲𝘀 𝗮𝗻𝘆 𝗖𝗜/𝗖𝗗 𝗲𝘅𝗰𝗲𝗹𝗹𝗲𝗻𝘁:
+A pipeline isn't good because of its tool. It's good because of its speed, test coverage, failure notifications, and rollback story. I've seen terrible pipelines on great tools and brilliant pipelines on legacy Jenkins.
