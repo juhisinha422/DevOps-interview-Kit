@@ -1,0 +1,61 @@
+Here are some of the questions I was asked in one of my DevOps interviews 
+
+
+1.  Roles and responsibilities
+2. Explain about  your current project
+3. Explain the concept of pipeline as a code in Jenkins
+4. How you will manually trigger the Jenkins job in the manual checking is required for developer
+5. What are agents and runners
+6. How you will deploy the new Jenkins deployment by zero down time
+7. Explain the concept of how will create multi stage jobs in Jenkins
+8. Docker images vs docker container
+9. Kubernetes deployment vs stateful sets
+10. Pod struck in crash loopback error how will you troubleshoot
+11. One job working fine in dev environment and not working in production how will you troubleshoot
+12. One stage is failed in Jenkins pipeline due to credentials issue how you will make it work
+13. One pod not reachable to other pod in Kubernetes
+14. Explain the deployment strategy used in your organisation
+15. How you will create monitoring dashboard for your organisation
+16. Explain logs, metrics and traces
+17. Write a script to alert cpu utilisation is 80%
+18. How you will alert cpu utilisation is 80% in prometues
+19. Graphana dashboard is responding slow , how will you troubleshoot
+20. Explain the branching strategy in your organisation
+21. How do you ensure zero-downtime deployments?
+22. what is the difference between liveness and readiness probes
+
+
+
+
+Here's another set of interview questions recently I've faced.
+
+
+1. Continuous integration and deployment
+2. CI/CD pipeline explain
+3. Ci/cd security
+4. Pipeline long time to complete how to troubleshoot
+5. Merge conflict explain
+6. How to ensure that new code commit in jenkins
+7. Declarative and scripted difference
+8. How to ensure the application is high availability in aws
+9. Difference between public and private subnet
+10. What is vpc
+11. Difference between s3 standard and s3 glacier
+12. What is security group why need in ec2
+13. What is cloudwatch metrics and can you set up alerts in cloudwatch how to set up
+14. If Linux server is down how you troubleshoot what are commands use to check
+15. What is  different  types of file permissions and how to change what is 777
+16. What is curl command do
+17. What are the advantages of containerized the application
+18. What is docker image and docker container
+19. What is docker file
+20. Explain the architecture of kubernetes
+21. What is difference between cluster ip and nodeport
+22. What is ingress
+23. How will you manage the secret
+24. What are the common issue you troubleshoot like crashbackloop
+25. What is data source in grafana
+26. Suppose you can get logs from one month in Prometheus how to get
+27. What is the sonarqube
+28. Can you tell the advantages of argocd
+29. Can you explain the recently written shell script.
