@@ -1,0 +1,21 @@
+##VPC interview 20 questions.. 
+1. How do you design a public and private subnet structure in a VPC? 
+2. How do you connect two VPCs securely using VPC peering? 
+3. How do you configure NAT Gateway for private subnet internet access? 
+4. How do you troubleshoot no internet access in a public subnet? 
+5. How do you analyze and fix route table misconfigurations? 
+6. How do you restrict VPC communication using NACLs? 
+7. How do you implement security group best practices? 
+8. How do you connect VPCs across regions using Transit Gateway? 
+9. How do you analyze VPC flow logs for denied traffic? 
+10. How do you fix DNS resolution failures in a private subnet? 
+11. How do you establish a VPN connection to on-premises? 
+12. How do you configure VPC endpoints for S3 and DynamoDB? 
+13. How do you troubleshoot overlapping CIDR issues between VPCs? 
+14. How do you migrate resources from one VPC to another? 
+15. How do you enable IPv6 support in an existing VPC? 
+16. How do you secure VPC resources using AWS Network Firewall? 
+17. How do you implement Bastion host for SSH access? 
+18. How do you use PrivateLink for secure cross-service access? 
+19. How do you analyze packet loss in VPC communication? 
+20. How do you test routing path between subnets??
