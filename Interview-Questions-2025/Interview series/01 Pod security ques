@@ -1,0 +1,22 @@
+Recently, I attended a DevOps interview where I was asked an interesting question focused on pod security.
+In Kubernetes, we often run multiple pods, but sometimes only one pod should have access to an AWS S3 bucket.
+How would you achieve this,
+Given Scenario
+You have an Amazon EKS cluster running multiple pods:
+1. frontend-pod – serves the UI
+ 2. auth-pod – handles authentication
+ 3.worker-pod – processes files and uploads them to Amazon S3
+Requirement:  Only worker-pod should access the S3 bucket.  All other pods must have NO AWS permissions.
+
+Solution: EKS Pod Identity Agent
+Following steps need to perform:
+1 .Create an IAM Role with required S3 permissions.
+2.Enable Pod Identity Agent in the EKS cluster
+3.Create a Pod Identity Association
+4.Attach the IAM role only to worker-pod
+5.Other pods remain completely isolated
+After that interviewer asked cross question me Why Choose EKS Pod Identity Agent?
+ 1. Pod-level IAM access
+ 2. No hardcoded AWS credentials
+ 3. Least-privilege security model
+ 4. AWS-managed & simpler than IRSA
