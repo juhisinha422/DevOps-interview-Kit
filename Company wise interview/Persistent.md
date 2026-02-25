@@ -181,17 +181,17 @@ This should give you a solid understanding of how to approach this issue based o
 
 ### 1. How do you reuse workflows across repositories?
 - **GitHub Actions Reusable Workflows**: You can create reusable workflows by defining them in one repository and referencing them in others using the `workflow_call` event. For example:
-  ```yaml
+  
   # In the calling repo
+  ```bash
   jobs:
     call-workflow:
       uses: org/repo/.github/workflows/workflow.yml@main
 ```
 
-  This makes it easier to manage shared workflows such as deployment or CI processes.
+This makes it easier to manage shared workflows such as deployment or CI processes.
 
-
- ### 2. How to manage large workflow files efficiently?
+### 2. How to manage large workflow files efficiently?
 
 Modularize Workflows: Break large workflow files into smaller, reusable jobs or steps. GitHub Actions allows workflows to reference other workflows or jobs, making them modular.
 
@@ -199,7 +199,7 @@ Use Action Repositories: Create custom actions and store them in separate reposi
 
 Use Workflow Includes: Organize your workflows using includes or external files for common steps, which can be reused across different workflows.
 
-3. What’s the difference between public and private workflow repositories?
+### 3. What’s the difference between public and private workflow repositories?
 
 Public Workflow Repositories: These repositories are accessible to everyone, and workflows in them can be referenced publicly. They are ideal for open-source projects where anyone can contribute.
 
