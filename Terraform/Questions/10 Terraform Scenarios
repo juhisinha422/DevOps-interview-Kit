@@ -1,0 +1,39 @@
+10 Terraform Scenarios Every DevOps Engineer Eventually Faces
+Most people learn Terraform by creating an EC2 instance.
+
+Real DevOps work starts when the second terraform apply breaks production.
+
+After working with Infrastructure as Code, I noticed the same failures repeat — not because Terraform is bad, but because production systems behave differently from tutorials.
+
+Common situations:
+• State file deleted → Terraform recreates infrastructure
+
+• Concurrent apply → state corruption
+
+• Half-failed deployment → tainted resources
+
+• API throttling → rollout stops midway
+
+• Manual console change → invisible drift
+
+• Removing code → unexpected destruction
+
+• Provider upgrade → resource recreation
+
+• Circular dependency → Terraform refuses to run
+
+• Service quota exceeded → deployment blocked
+
+• Backend access lost → infrastructure unmanaged
+And the solutions are rarely complex — they’re operational discipline:
+✔ Remote state + locking
+✔ Drift detection before apply
+✔ Version pinning
+✔ prevent_destroy for critical resources
+✔ Staging validation before upgrades
+
+Big realization:
+Infrastructure automation is easy.
+Infrastructure reliability is process.
+
+Terraform doesn’t break production — uncontrolled change does.
