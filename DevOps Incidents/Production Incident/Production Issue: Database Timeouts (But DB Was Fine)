@@ -1,0 +1,23 @@
+Production Issue: Database Timeouts (But DB Was Fine)
+
+1. Pods were healthy.
+2. Database CPU was 30%.
+3. Still users were getting ⏳ timeouts.
+
+Root cause?
+
+👉 Connection Pool Exhaustion
+
+App allowed only 20 DB connections.
+Traffic spike → 50 concurrent requests.
+
+*20 processed.
+*30 waited.
+*Timeout. 💥
+
+Database wasn’t overloaded.
+Application concurrency was.
+
+🎯 Lesson:
+
+CPU doesn’t tell the full story. Concurrency limits break systems silently.
