@@ -187,7 +187,7 @@ This should give you a solid understanding of how to approach this issue based o
   jobs:
     call-workflow:
       uses: org/repo/.github/workflows/workflow.yml@main
-```
+
 
 This makes it easier to manage shared workflows such as deployment or CI processes.
 
