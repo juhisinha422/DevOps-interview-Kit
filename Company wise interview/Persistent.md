@@ -106,7 +106,7 @@ Terraform Version: Use required_version to enforce a consistent Terraform versio
 
 Terraform Lock Files: Use .terraform.lock.hcl to lock provider versions to avoid unexpected changes when running Terraform.
 
-2. How would you provision infra across 10 AWS regions simultaneously?
+### 2. How would you provision infra across 10 AWS regions simultaneously?
 
 Multi-Region Provider Setup: Define multiple provider blocks in the Terraform configuration for each AWS region:
 
