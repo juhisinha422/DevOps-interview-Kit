@@ -1,0 +1,32 @@
+ADVANCED AWS (Architecture, Scale & Failure Scenarios)
+
+These scenarios focus on large-scale systems, outages, security, and cost trade-offs commonly discussed in senior interviews.
+
+⸻
+
+☁️ Advanced AWS – Real-World DevOps Scenarios
+ 1. A production application is down in one AZ. How do you investigate and restore service?
+ 2. Traffic spikes suddenly (10× normal). How do you handle scaling without outages?
+ 3. How would you design a multi-region active-active architecture in AWS?
+ 4. An ELB is healthy, but users report intermittent failures. How do you debug?
+ 5. RDS performance is degraded during peak traffic. How do you troubleshoot?
+ 6. How do you design zero-downtime deployments for stateful applications?
+ 7. A Lambda function hits concurrency limits. How do you fix it?
+ 8. IAM permissions are too open in production. How do you audit and tighten them?
+ 9. S3 latency increased for a critical workload. How do you investigate?
+ 10. How do you protect applications from DDoS attacks?
+ 11. A region-wide outage occurs. What is your failover strategy?
+ 12. How do you implement centralized logging and monitoring at scale?
+ 13. How do you manage secrets across hundreds of AWS accounts?
+ 14. Cost is increasing due to over-provisioning. How do you optimize safely?
+ 15. How do you enforce infrastructure standards across teams?
+
+⸻
+
+🧠 What Interviewers Are Evaluating
+
+✔ System design thinking
+✔ Failure & recovery strategy
+✔ Scalability & performance
+✔ Security governance
+✔ Cost vs reliability trade-offs
