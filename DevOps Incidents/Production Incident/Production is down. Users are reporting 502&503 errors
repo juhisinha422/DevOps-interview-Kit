@@ -1,0 +1,56 @@
+ Interview Question:
+
+“Production is down. Users are reporting 502/503 errors. What will you do?”
+
+✅ Structured Answer (What Interviewers Expect)
+
+1️⃣ Stay Calm & Acknowledge
+First, I would confirm:
+Is it affecting all users or specific regions?
+Since when did it start?
+Any recent deployment or infra changes?
+
+2️⃣ Check Monitoring & Alerts
+Immediately check:
+Application metrics (CPU, memory, request count)
+Error rate dashboard
+Load balancer health status
+Recent deployment history
+If using Amazon CloudWatch, I would check alarms and logs.
+
+3️⃣ Identify Layer of Failure
+I troubleshoot layer by layer:
+🔹 Load Balancer Layer
+Are targets healthy?
+Any spike in 5xx from LB?
+🔹 Application Layer
+Check app logs
+Check if instances are running
+Check resource utilization
+If using Auto Scaling with Amazon EC2, I verify:
+Instances are healthy
+No scaling failure
+No crash due to memory leak
+🔹 Database Layer If DB latency is high in Amazon RDS, it can cascade and cause 5xx errors.
+
+4️⃣ Immediate Mitigation
+Depending on root cause:
+If bad deployment → Rollback immediately
+If high traffic → Scale out
+If instance crash → Replace unhealthy nodes
+If DB bottleneck → Increase capacity or enable read replica
+Goal: Restore service first, then investigate deeply.
+
+5️⃣ Communication
+Inform stakeholders
+Share ETA
+Update incident channel
+Avoid blame during incident
+
+6️⃣ Post-Incident (Very Important)
+After recovery:
+Perform RCA (Root Cause Analysis)
+Document timeline
+Add monitoring if gap found
+Improve deployment strategy (Blue-Green / Canary)
+Add autoscaling or better alerts if needed.
