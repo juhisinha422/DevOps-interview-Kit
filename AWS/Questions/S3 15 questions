@@ -1,0 +1,16 @@
+#####hashtag#S3 15 questions#####
+1. How do you host a static website on S3? 
+2. How do you secure S3 bucket access to a single VPC? 
+3. How do you enable versioning and lifecycle policies on S3? 
+4. How do you recover deleted S3 objects? 
+5. How do you configure cross-region replication for S3 buckets? 
+6. How do you restrict access to S3 buckets using IAM policies? 
+7. How do you analyze S3 access logs for security breaches? 
+8. How do you reduce S3 storage costs using Intelligent-Tiering? 
+9. How do you upload large files to S3 efficiently? 
+10. How do you enable encryption at rest for S3 objects? 
+11. How do you troubleshoot AccessDenied errors in S3? 
+12. How do you configure event notifications from S3 to Lambda? 
+13. How do you serve S3 content securely through CloudFront? 
+14. How do you configure MFA Delete for S3 versioning? 
+15. How do you analyze S3 performance using metrics?
