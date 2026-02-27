@@ -1,0 +1,100 @@
+11 Senior-Level Tricky DevOps Interview Questions
+
+ 1️⃣ How does Terraform build the dependency graph internally?
+
+👉 Terraform creates a Directed Acyclic Graph (DAG) based on resource references.
+It executes resources in parallel where possible.
+Dependencies are derived from interpolation references and depends_on.
+
+Senior Tip: Mention parallelism & execution plan graph.
+
+2️⃣ What happens if two engineers run terraform apply at the same time?
+
+👉 If remote backend with locking (S3 + DynamoDB) is enabled → one will fail due to state lock.
+Without locking → state corruption risk.
+
+3️⃣ How would you design Terraform for multi-region AWS DR setup?
+Expected thinking:
+	•	Separate state per region
+	•	Region-specific providers
+	•	RDS cross-region replica
+	•	Route53 failover
+	•	Replicated S3
+	•	Tested restore process
+
+They test disaster recovery maturity here.
+
+4️⃣ Explain how Kubernetes service discovery works.
+👉 Kubernetes uses:
+	•	DNS (CoreDNS)
+	•	ClusterIP services
+	•	kube-proxy (iptables/IPVS)
+
+Pods communicate using:
+
+service-name.namespace.svc.cluster.local
+
+5️⃣ How does Kubernetes handle network routing internally?
+
+Expected:
+	•	kube-proxy manages iptables rules
+	•	CNI plugin (Calico / AWS VPC CNI) handles pod networking
+	•	Each pod gets its own IP
+
+Bonus if you mention overlay vs VPC-native networking.
+
+6️⃣ What is etcd and why is it critical?
+👉 etcd is a distributed key-value store used by Kubernetes to store cluster state.
+If etcd is down → cluster control plane fails.
+
+Senior engineers mention:
+	•	Backup strategy
+	•	Snapshot restore
+
+7️⃣ Cluster Autoscaler vs HPA — how do they work together?
+👉 HPA scales pods
+👉 If pods can’t schedule → Cluster Autoscaler scales nodes via Auto Scaling Group
+
+Mention integration with AWS ASG in EKS.
+
+8️⃣ How would you debug high memory usage in Kubernetes?
+Answer structure:
+	1.	Check metrics (Prometheus)
+	2.	Check pod resource limits
+	3.	Check memory leaks
+	4.	Check OOMKilled events
+	5.	Adjust requests/limits
+
+Never say just “increase memory”.
+
+9️⃣ Your EKS cluster suddenly stops scheduling pods. What could be wrong?
+
+Expected:
+	•	No available nodes
+	•	Node taints
+	•	Resource exhaustion
+	•	PVC binding issue
+	•	CNI failure
+
+This tests deep K8s understanding.
+
+🔟 How do you secure Kubernetes at production level?
+
+Mention:
+	•	RBAC
+	•	Network Policies
+	•	Pod Security Standards
+	•	Image scanning
+	•	Secrets encryption
+	•	IAM roles for service accounts (IRSA in EKS)
+
+1️⃣1️⃣ How do you upgrade EKS cluster with zero downtime?
+
+Expected:
+	1.	Upgrade control plane
+	2.	Create new node group
+	3.	Drain old nodes
+	4.	Monitor
+	5.	Remove old node group
+
+Never directly upgrade
