@@ -1,0 +1,52 @@
+I once saw a candidate lose a DevOps job in 60 seconds.
+
+The interviewer asked:
+
+“A service is slow in production. What will you check?”
+
+The candidate answered:
+
+“CPU usage… memory… logs…”
+
+Not wrong.
+
+But not enough.
+
+Because performance issues are rarely about just one metric.
+
+Here’s how experienced engineers approach it 
+
+---
+
+When an application becomes slow:
+
+✔ Check latency & response time trends
+✔ Look for recent deployments or config changes
+✔ Inspect database query performance
+✔ Verify external API response times
+✔ Check thread pools / connection limits
+✔ Look for traffic spikes or load imbalance
+
+Sometimes the server is healthy…
+
+…but the database is locked.
+…or an external API is timing out.
+…or a new release introduced slow queries.
+
+---
+
+Interview insight
+
+If you answer with only CPU & memory,
+it shows basic knowledge.
+
+If you consider dependencies, latency, and recent changes,
+it shows real production thinking.
+
+That’s what interviewers want to see.
+
+---
+
+Performance issues aren’t always resource problems.
+
+They’re system problems.
