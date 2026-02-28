@@ -1,0 +1,45 @@
+DevSecOps just means adding a few scanners to CI/CD?
+
+You're probably doing it wrong.
+
+Here’s what real DevSecOps actually looks like 👇
+━━━━━━━━━━━━━━━━━━━━
+🔴 ANTI-PATTERNS
+→ Secrets committed to Git
+ → Containers running as root
+ → *:* IAM permissions
+ → Terraform applied without scanning
+ → Kubernetes deployed with default RBAC
+ → CI/CD that reports vulnerabilities but never blocks them
+
+Result:
+ Silent risk.
+ Security theatre.
+ Future incidents waiting to happen.
+
+━━━━━━━━━━━━━━━━━━━━
+🟢 BEST PRACTICES
+1️⃣ Shift Left for real
+ Security starts at commit time.
+ Pre-commit hooks. Secret scanning. Protected branches.
+2️⃣ Enforce least privilege
+ IAM, Git access, Kubernetes RBAC — no broad permissions.
+3️⃣ Secure containers by default
+ Non-root users. Minimal images. Runtime restrictions.
+4️⃣ Scan infrastructure before provisioning
+ Terraform & Kubernetes manifests must be validated before apply.
+5️⃣ CI/CD as a security gate
+ Fail builds on critical vulnerabilities.
+ No exceptions without review.
+━━━━━━━━━━━━━━━━━━━━
+
+📊 THE REALITY
+• Most breaches start with misconfiguration
+ • Most misconfigurations are preventable
+ • Prevention costs far less than incident response
+
+DevSecOps isn’t about tools.
+ It’s about disciplined engineering decisions.
+
+Security isn’t a phase.
+ It’s a responsibility.
