@@ -1,0 +1,52 @@
+Ansible Architecture
+
+Today I explored how Ansible works internally and how its components interact to automate infrastructure efficiently.
+
+Understanding Ansible architecture makes automation clear, predictable, and scalable.
+
+🔹 Control Node
+The control node is the machine where:
+Ansible is installed
+Playbooks are written
+Commands are executed
+It acts as the brain of automation and communicates with all target systems.
+
+🔹 Managed Nodes
+Managed nodes are:
+Target servers
+Cloud instances
+Virtual machines
+They do not require any agent.
+ Ansible connects using SSH or WinRM to perform tasks.
+
+🔹 Inventory
+
+The inventory defines:
+Which hosts Ansible manages
+How hosts are grouped
+Environment separation
+
+It can be:
+Static (INI / YAML files)
+Dynamic (AWS, Azure, GCP)
+
+Inventory is the map of your infrastructure.
+
+🔹 Modules
+
+Modules are:
+Small reusable units of work
+Used to perform tasks like install, copy, start services
+
+Examples:
+yum / apt
+service
+copy
+file
+
+Modules are what actually do the work on managed nodes.
+
+🔥 3-Line Takeaway
+Control node runs automation.
+ Inventory defines targets.
+ Modules execute actions.
