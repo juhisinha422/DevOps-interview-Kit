@@ -1,0 +1,29 @@
+Reusable Workflows in GitHub Actions
+
+Today I learned how reusable workflows help reduce duplication and standardize CI/CD pipelines.
+
+🔹 workflow_call
+workflow_call allows one workflow to:
+Call another workflow
+Pass inputs and secrets
+Reuse common logic
+This enables modular pipelines.
+
+🔹 Sharing Workflows
+Reusable workflows can be:
+Shared across repositories
+Maintained in a central repo
+Version-controlled
+This improves consistency.
+
+🔹 DRY Principles
+Reusable workflows follow DRY:
+Don’t Repeat Yourself
+Less duplication
+Easier maintenance
+Cleaner pipelines scale better.
+
+🔥 3-Line Takeaway
+Reuse reduces complexity.
+ DRY improves consistency.
+ Workflows scale better.
