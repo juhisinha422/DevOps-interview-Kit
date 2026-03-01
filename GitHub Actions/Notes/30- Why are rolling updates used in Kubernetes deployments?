@@ -1,0 +1,11 @@
+Q. Why are rolling updates used in Kubernetes deployments?
+The author can see how you vote. Learn more
+Q. Why are rolling updates used in Kubernetes deployments?
+A. Reduce YAML size
+0%
+B. Avoid application downtime
+90%
+C. Increase pod count
+0%
+D. Secure cluster access
+10%
