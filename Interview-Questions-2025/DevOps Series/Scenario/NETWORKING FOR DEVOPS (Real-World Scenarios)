@@ -1,0 +1,32 @@
+NETWORKING FOR DEVOPS (Real-World Scenarios)
+
+These scenarios test how well you understand traffic flow, isolation, security, and cloud networking failures.
+
+⸻
+
+🌐 Networking for DevOps – Real-World DevOps Scenarios
+	1.	Application is running, but users cannot access it. How do you trace the network path end to end?
+	2.	A service is accessible internally but not externally. How do you debug this?
+	3.	Latency is high between services in different subnets. How do you investigate?
+	4.	DNS resolution intermittently fails. How do you troubleshoot it?
+	5.	Traffic is not reaching Kubernetes pods through Ingress. How do you debug?
+	6.	How do you design network isolation between dev, qa, and prod?
+	7.	A firewall rule change caused an outage. How do you identify and fix it?
+	8.	How do you troubleshoot NAT / outbound internet access issues?
+	9.	Load balancer health checks are failing. How do you debug?
+	10.	How do you secure service-to-service communication?
+	11.	VPC peering is configured, but traffic is blocked. Why?
+	12.	How do you debug packet loss in cloud networks?
+	13.	A region-wide networking issue occurs. How do you fail over?
+	14.	How do you design hybrid connectivity (on-prem ↔ cloud)?
+	15.	How do you monitor and alert on network health?
+
+⸻
+
+🧠 What Interviewers Are Testing
+
+✔ Network flow understanding
+✔ Cloud networking basics
+✔ Kubernetes networking
+✔ Security & firewall rules
+✔ Incident troubleshooting
