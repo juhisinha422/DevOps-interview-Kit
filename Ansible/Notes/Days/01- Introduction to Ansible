@@ -1,0 +1,48 @@
+Introduction to Ansible
+
+Ansible is one of the most important tools for automation and configuration management in real-world DevOps environments.
+
+🔹 What is Ansible?
+Ansible is an open-source automation tool used to:
+Configure servers
+Deploy applications
+Automate repetitive tasks
+It uses simple YAML-based playbooks and works over SSH, making automation easy and readable.
+
+🔹 Why Ansible in DevOps?
+In DevOps, managing hundreds of servers manually is impossible. Ansible helps by:
+Automating server configuration
+Ensuring consistency across environments
+Reducing human errors
+Speeding up deployments
+It bridges the gap between infrastructure and application delivery.
+
+🔹 Agentless Architecture
+One of Ansible’s biggest strengths is that it is agentless:
+No software needed on managed nodes
+Uses SSH (Linux) or WinRM (Windows)
+Easy to set up and maintain
+This makes Ansible lightweight and secure.
+
+🔹 Ansible vs Shell Scripts vs Chef/Puppet
+Shell Scripts :-
+Hard to maintain at scale
+No idempotency
+Error handling is complex
+
+Chef / Puppet :-
+Agent-based
+Complex setup
+Steeper learning curve
+
+Ansible :-
+Agentless
+Simple YAML syntax
+Easy to learn and scale
+
+That’s why Ansible is widely preferred in DevOps teams.
+
+🔥 3-Line Takeaway
+Automation saves time.
+ Ansible simplifies operations.
+ DevOps scales with confidence.
