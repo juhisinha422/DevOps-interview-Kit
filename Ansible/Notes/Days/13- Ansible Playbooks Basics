@@ -1,0 +1,55 @@
+Ansible Playbooks Basics
+
+Today I learned about Ansible Playbooks, which are the backbone of structured automation.
+If Ad-Hoc commands are quick actions ⚡
+ Playbooks are complete automation plans 📘
+Think of them as a step-by-step execution blueprint.
+
+🔹 📘 Playbook Structure
+A Playbook is written in YAML and contains:
+• Plays
+ • Tasks
+ • Target hosts
+ • Modules
+
+Basic structure:
+
+- name: Install nginx
+ hosts: webservers
+ become: yes
+ tasks:
+ - name: Install package
+ apt:
+ name: nginx
+ state: present
+
+Each section clearly defines what action will run and where.
+
+🔹 🎯 Plays & Tasks
+✔ Play → Defines which machines to target
+ ✔ Tasks → Define the actions to execute
+
+A single play can contain multiple tasks.
+ Tasks always run in sequence (top to bottom) 🔄
+
+🔹 🌐 hosts & become
+🔸 hosts → Specifies target server or group
+ Example: hosts: webservers
+🔸 become → Enables privilege escalation (sudo)
+ Example: become: yes
+This ensures tasks run with required permissions 🔐
+
+🔹 ▶ Running Playbooks
+
+To execute a playbook:
+ansible-playbook playbook.yml
+
+With custom inventory:
+ansible-playbook -i inventory playbook.yml
+
+Playbooks are reusable, scalable, and production-ready 🚀
+
+🔥 3-Line Takeaway
+Playbooks bring structure to automation.
+ Plays define where, tasks define what.
+ Automation becomes powerful when it’s reusable.
