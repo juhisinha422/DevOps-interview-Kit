@@ -1,0 +1,11 @@
+Q. Why are groups used in Ansible inventory files?
+The author can see how you vote. Learn more
+Q. Why are groups used in Ansible inventory files?
+A. To reduce SSH usage
+0%
+B. To organize hosts logically
+88%
+C. To store playbooks
+0%
+D. To run modules faster
+13%
