@@ -1,0 +1,47 @@
+Templates (Jinja2)
+
+Today I learned about Jinja2 Templates in Ansible, which are used to create dynamic configuration files instead of static ones 🧩
+Templates allow us to generate configs based on variables, conditions, and loops.
+ This makes automation flexible and environment-aware ⚡
+
+🔹 🧠 Jinja2 Basics
+Jinja2 is a templating engine used in Ansible to insert dynamic values into files.
+
+It uses:
+ {{ }} → for variables
+ {% %} → for logic (if, for, etc.)
+This helps in generating customized configuration files automatically.
+
+🔹 📦 Variables in Templates
+We can directly use Ansible variables inside templates using Jinja2 syntax.
+
+Example:
+server_name = {{ app_name }}
+port = {{ app_port }}
+Here, values are dynamically replaced during Playbook execution.
+ No need to manually edit config files ✨
+
+🔹 🔁 if / for in Templates
+Jinja2 supports conditional and loop logic inside templates.
+✔ if condition → For decision-based configs
+ ✔ for loop → For multiple entries generation
+
+Example logic:
+{% if env == "production" %}
+debug = false
+{% endif %}
+This allows one template to work for multiple environments 🌍
+
+🔹 ⚙️ Config File Generation
+Templates are mainly used with the template module to generate configuration files.
+
+Example use case:
+ • Generate Nginx config
+ • Create app config files
+ • Dynamic environment-based settings
+Templates ensure consistent and automated configuration management 📄
+
+🔥 3-Line Takeaway
+Jinja2 enables dynamic configuration files.
+ Templates use variables, loops, and conditions.
+ One template can serve multiple environments.
