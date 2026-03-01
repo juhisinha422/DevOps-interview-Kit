@@ -1,0 +1,48 @@
+Facts & Conditionals
+
+Today I learned about Facts & Conditionals in Ansible, which help in making automation intelligent and environment-aware 🤖
+Instead of running the same task everywhere, Ansible can make decisions based on system information.
+Smart automation = Conditional automation ⚡
+
+🔹 📊 Ansible Facts
+Ansible Facts are system information automatically collected from managed nodes.
+These include:
+ • OS name
+ • IP address
+ • Hostname
+ • Memory details
+ • CPU information
+Facts help Playbooks understand the target system before executing tasks.
+
+🔹 🔍 Gathering Facts
+By default, Ansible gathers facts at the start of a Playbook using:
+ gather_facts: yes
+
+Example:
+- hosts: all
+ gather_facts: yes
+This allows Ansible to use system data during execution.
+ You can also disable it to speed up execution if not needed 🚀
+
+🔹 ⚙️ when Conditions
+The when condition is used to run tasks only when a specific condition is true.
+Example:
+- name: Install nginx on Ubuntu
+ apt:
+ name: nginx
+ state: present
+ when: ansible_os_family == "Debian"
+This makes Playbooks dynamic and decision-based instead of static.
+
+🔹 🖥️ OS-Based Tasks
+Using facts + when conditions, we can run different tasks based on the operating system.
+Example logic:
+ • Use apt for Ubuntu/Debian
+ • Use yum for RedHat/CentOS
+This ensures the same Playbook works across multiple environments 🌍
+OS-based automation is widely used in real production setups.
+
+🔥 3-Line Takeaway
+Facts provide system intelligence.
+ Conditions control task execution.
+ Smart Playbooks adapt to any OS automatically.
