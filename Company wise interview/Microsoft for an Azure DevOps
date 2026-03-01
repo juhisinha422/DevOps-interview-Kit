@@ -1,0 +1,88 @@
+interview with Microsoft for an Azure DevOps / Cloud role and the level of depth in the discussion was truly inspiring.
+
+The interview process was structured into 3 comprehensive rounds, each testing not just technical expertise but also architectural thinking, governance, AI integration, and business alignment.
+
+🔹 1️⃣ Round 1 – Azure & DevOps Fundamentals
+The discussion focused heavily on:
+
+Azure Cloud Adoption Framework (CAF)
+
+Landing Zones & Management Groups
+
+Azure Governance (RBAC, Policies, Blueprints)
+
+Azure Data Factory & Integration Runtime
+
+Hub-and-Spoke Networking & VNet design
+
+Terraform (state management, backend config, imports)
+
+Azure DevOps Pipelines & Agents
+
+Docker & Containerization
+
+AI Services in Azure
+
+This round tested real-world implementation experience, not just theory.
+
+🔹 2️⃣ Round 2 – Deep Technical & Architecture
+This round was intense and scenario-driven. Topics included:
+
+Designing Azure Landing Zones at scale
+
+Hub & Spoke vs Mesh topology decisions
+
+Availability Sets vs Availability Zones
+
+Custom Azure Policies with JSON logic
+
+Azure Monitor & Diagnostic Settings
+
+NSG troubleshooting scenarios
+
+DNS resolution & Private Endpoints
+
+Application Gateway vs Load Balancer
+
+Advanced Terraform practices (state conflicts, refresh, for_each, naming validation)
+
+AKS deployment strategies & Helm
+
+AI integration using Python & Azure AI services
+
+The focus was on decision-making ability, governance strategy, scalability, and optimization.
+
+🔹 3️⃣ Round 3 – Hiring Manager (Business + Strategy + AI Vision)
+This was beyond technical skills. It included:
+
+End-to-end migration lifecycle
+
+Migrating 400+ servers to Azure
+
+Mainframe migration strategy
+
+AI licensing & cost justification
+
+CEO-level strategic thinking
+
+Solution architecture & ROI discussion
+
+Real customer AI use cases & automation outcomes
+
+This round evaluated leadership mindset, consulting skills, cost optimization, and business alignment.
+
+Key Takeaways
+✅ Microsoft evaluates depth, not buzzwords
+✅ Strong fundamentals in Azure governance & networking are critical
+✅ Terraform & IaC must be practical, not theoretical
+✅ AI integration knowledge is becoming mandatory
+✅ Business justification & architecture thinking matter as much as technical skills
+
+If you are preparing for Azure DevOps / Cloud Architect roles, focus on:
+
+Azure CAF & Landing Zones
+Enterprise-scale networking
+Terraform advanced concepts
+AKS & container strategies
+Azure AI services
+Migration lifecycle & cost modeling
