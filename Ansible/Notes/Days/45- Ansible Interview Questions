@@ -1,0 +1,37 @@
+Ansible Interview Questions 🎯
+
+🔹 PHASE 6: Projects & Interview Prep
+Today I focused on Ansible Interview Preparation, covering real-world scenarios and DevOps-focused questions 💼
+Understanding concepts is important — but being able to explain them clearly in interviews is even more important 🚀
+
+🔹 🌍 Real-World Scenarios
+Interviewers often ask scenario-based questions like:
+• How would you deploy an application using Ansible?
+ • How do you handle different configurations for dev and prod?
+ • How do you restart services only when configs change?
+ • How do you manage secrets securely?
+These questions test practical understanding, not just theory.
+
+🔹 ⚙️ DevOps-Focused Q&A
+Common technical areas covered:
+✔ Difference between Ad-Hoc and Playbooks
+ ✔ How idempotency works
+ ✔ Variable precedence
+ ✔ Roles and directory structure
+ ✔ Error handling (block, rescue, always)
+ ✔ CI/CD integration
+Interview focus is usually on automation design thinking 🧠
+
+🔹 ⚠️ Common Mistakes
+Many candidates make mistakes like:
+• Not explaining idempotency clearly
+ • Ignoring security practices (Vault)
+ • Confusing host_vars and group_vars
+ • Not knowing how to debug failures
+ • Giving only theoretical answers
+Clear, structured answers make a strong impression 💪
+
+🔥 3-Line Takeaway
+Interviews test practical automation thinking.
+ Understand concepts, not just syntax.
+ Confidence + clarity = strong DevOps interviews.
