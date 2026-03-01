@@ -1,0 +1,59 @@
+YAML Basics for Ansible
+
+Today I learned about YAML, the language used to write Ansible Playbooks.
+ Before automating anything, understanding YAML structure is very important.
+Think of YAML as the “grammar” of automation.
+
+🔹 YAML Syntax
+YAML uses simple key-value pairs:
+key: value
+It is:
+ Human-readable
+ Clean and structured
+ Easy to understand
+Everything in Ansible Playbooks is written using this format.
+
+🔹 Indentation Rules
+Indentation is the most important part of YAML.
+Use spaces only (not tabs)
+ Maintain consistent spacing (commonly 2 spaces)
+ Wrong indentation = Playbook error
+In YAML, structure depends completely on spacing.
+
+🔹 Lists in YAML
+Lists are written using -
+Example:
+
+
+packages:
+ - nginx
+ - git
+ - curl
+
+Lists are used when defining multiple items like packages, users, or servers.
+
+🔹 Dictionaries in YAML
+Dictionaries contain multiple key-value pairs under one parent key.
+Example:
+
+user:
+ name: aditya
+ shell: /bin/bash
+ state: present
+
+This helps organize structured configuration data.
+
+🔹 Variables in YAML
+Variables make Playbooks dynamic and reusable.
+Example:
+
+vars:
+ package_name: nginx
+
+These variables can be reused inside tasks using {{ variable_name }} syntax.
+This makes automation flexible instead of hardcoded.
+
+🔥 3-Line Takeaway
+YAML defines structure.
+ Indentation defines hierarchy.
+ Clean YAML = Clean Automation.
