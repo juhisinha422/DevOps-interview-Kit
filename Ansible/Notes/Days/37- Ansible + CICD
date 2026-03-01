@@ -1,0 +1,37 @@
+ Ansible + CI/CD
+
+🔹 PHASE 5: DevOps Integration
+Today I learned how Ansible integrates with CI/CD pipelines to automate deployments and infrastructure changes seamlessly 🚀
+Instead of manual deployments, Ansible can be triggered automatically through CI/CD tools.
+ This ensures faster, consistent, and error-free releases ⚡
+
+🔹 🔄 Ansible with GitHub Actions
+Ansible can be integrated with CI/CD workflows using GitHub Actions.
+Workflow:
+ • Push code to repository
+ • Trigger pipeline automatically
+ • Run Ansible Playbooks for deployment
+This enables fully automated deployment pipelines with zero manual intervention 📦
+
+🔹 🛠️ Jenkins Integration
+Ansible works very well with Jenkins for continuous deployment.
+Common pipeline flow:
+ • Build application
+ • Run tests
+ • Execute Ansible Playbook
+ • Deploy to servers
+Jenkins + Ansible = Powerful DevOps automation 🔥
+
+🔹 🚀 Automated Deployments
+Using Ansible in CI/CD helps in:
+ • Automated server configuration
+ • Application deployments
+ • Rolling updates
+ • Infrastructure provisioning
+This reduces human errors and ensures consistent deployments across environments 🌍
+Automated deployments are a core practice in modern DevOps pipelines.
+
+🔥 3-Line Takeaway
+Ansible enables automated deployments in CI/CD.
+ Integration with pipelines improves speed and consistency.
+ Automation reduces manual errors in production.
