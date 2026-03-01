@@ -1,0 +1,27 @@
+Conditional Workflows in GitHub Actions
+
+Today I learned how conditions control whether jobs or steps run based on specific rules.
+
+🔹 if Conditions
+if conditions allow workflows to:
+Run only when conditions match
+Skip unnecessary execution
+Handle different scenarios
+They add logic to CI/CD.
+
+🔹 Job-Level Conditions
+Job-level if:
+Controls whether a job runs
+Evaluated before job starts
+Useful for environment-specific jobs
+
+🔹 Step-Level Conditions
+Step-level if:
+Controls individual steps
+Allows fine-grained execution
+Useful for optional tasks
+
+🔥 3-Line Takeaway
+Conditions add logic.
+ Jobs control stages.
+ Steps control actions.
