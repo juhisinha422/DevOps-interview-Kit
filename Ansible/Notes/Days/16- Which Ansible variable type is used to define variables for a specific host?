@@ -1,0 +1,11 @@
+Which Ansible variable type is used to define variables for a specific host?
+The author can see how you vote. Learn more
+Which Ansible variable type is used to define variables for a specific host?
+A) vars_files
+38%
+B) group_vars
+0%
+C) host_vars
+63%
+D) defaults
+0%
