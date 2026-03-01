@@ -1,0 +1,40 @@
+Ansible Error Handling
+
+Today I learned about Error Handling in Ansible, which helps in controlling failures and managing task behavior intelligently ⚠️
+In real automation, tasks may fail due to network issues, permissions, or configuration errors.
+ Proper error handling ensures Playbooks continue safely and predictably 🔄
+
+🔹 🚫 ignore_errors
+The ignore_errors: yes keyword allows a Playbook to continue even if a task fails.
+Example use case:
+ • Non-critical task failure
+ • Optional package installation
+ • Temporary service issues
+This prevents the entire Playbook from stopping due to a minor error.
+
+🔹 ❌ failed_when
+failed_when is used to define custom failure conditions.
+Instead of default failure behavior, we can control when a task should be marked as failed.
+ This is useful when command output determines success or failure 🎯
+It gives more control over automation logic.
+
+🔹 🔄 changed_when
+changed_when controls whether a task is marked as “changed” or not.
+This helps in:
+ • Accurate reporting
+ • Avoiding unnecessary handler triggers
+ • Better automation visibility
+It improves efficiency and prevents false change results ⚡
+
+🔹 🐞 Debug Module
+The debug module is used for troubleshooting and displaying variable values.
+Common uses:
+ • Print variable values
+ • Check outputs
+ • Troubleshoot Playbooks
+It is one of the most useful modules during development and testing 🧪
+
+🔥 3-Line Takeaway
+Error handling makes automation resilient.
+ Custom conditions improve control over tasks.
+ Debugging helps identify issues faster.
