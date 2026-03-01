@@ -1,0 +1,11 @@
+Which directory in an Ansible Role is used to store dynamic configuration files with variables?
+The author can see how you vote. Learn more
+Which directory in an Ansible Role is used to store dynamic configuration files with variables?
+A) files
+13%
+B) templates
+50%
+C) handlers
+13%
+D) defaults
+25%
