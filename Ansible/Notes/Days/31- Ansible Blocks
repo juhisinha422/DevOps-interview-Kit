@@ -1,0 +1,41 @@
+Ansible Blocks
+
+Today I learned about Ansible Blocks, which are used to group tasks and handle errors in a structured way 🧱
+Blocks help in organizing tasks and provide built-in error recovery mechanisms.
+ This makes Playbooks more reliable and production-ready ⚙️
+
+🔹 📦 block
+A block is used to group multiple tasks together under one section.
+This is useful when:
+ • Tasks are logically related
+ • Common conditions apply
+ • Error handling is needed for a group of tasks
+It improves readability and better task organization 📘
+
+🔹 🚑 rescue
+The rescue section runs only if a task inside the block fails.
+It acts like an error recovery mechanism.
+ Instead of stopping the Playbook, Ansible executes the rescue tasks to handle failures gracefully 🔄
+This is very useful in real-world automation where failures are expected.
+
+🔹 🔁 always
+The always section runs no matter what happens — success or failure.
+Common use cases:
+ • Cleanup tasks
+ • Logging
+ • Notifications
+ • Final checks
+This ensures important steps are never skipped ⚠️
+
+🔹 🛠️ Error Recovery
+Using block + rescue + always together provides powerful error handling.
+Workflow:
+ • Try main tasks (block)
+ • If failure occurs → run rescue
+ • Finally → run always tasks
+This approach increases automation reliability and fault tolerance 🚀
+
+🔥 3-Line Takeaway
+Blocks group related tasks logically.
+ Rescue handles failures gracefully.
+ Always ensures critical tasks run every time.
