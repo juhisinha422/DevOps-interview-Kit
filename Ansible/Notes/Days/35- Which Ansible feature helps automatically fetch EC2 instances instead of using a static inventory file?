@@ -1,0 +1,9 @@
+Which Ansible feature helps automatically fetch EC2 instances instead of using a static inventory file?
+The author can see how you vote. Learn more
+Which Ansible feature helps automatically fetch EC2 instances instead of using a static inventory file?
+A) Static hosts file
+B) Dynamic inventory
+C) AWS CLI
+D) Forks
+
+ANS: Dynamic inventory
