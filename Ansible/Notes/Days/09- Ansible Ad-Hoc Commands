@@ -1,0 +1,58 @@
+Ansible Ad-Hoc Commands
+
+Today I learned about Ad-Hoc commands, which are quick, one-line commands used to perform tasks instantly — without writing a playbook.
+Think of them as “quick automation shortcuts.”
+
+🔹 ansible Command
+
+The ansible command is used to:
+Run tasks directly from terminal
+Target specific hosts or groups
+Execute modules instantly
+
+It’s useful for:
+Quick checks
+Emergency fixes
+Testing connectivity
+Ad-hoc commands are great for small tasks.
+
+🔹 ping Module
+The ping module:
+Tests connectivity
+Confirms SSH access
+Verifies Ansible communication
+It does not ping like ICMP, instead it checks if Ansible can execute Python on the node.
+Very useful for troubleshooting.
+
+🔹 shell vs command
+Both run commands on remote nodes, but:
+
+command :- 
+Safer
+Does not use shell
+No pipes or redirection
+
+shell :-
+Uses shell interpreter
+Supports pipes & variables
+More flexible
+Use command when possible for better security.
+
+🔹 file & service Modules
+These modules help in configuration tasks:
+
+file module :-
+Create/delete files
+Change permissions
+Manage directories
+
+service module :-
+Start/stop services
+Restart applications
+Enable services at boot
+These are commonly used in real production automation.
+
+🔥 3-Line Takeaway
+Ad-hoc = quick automation.
+ Modules perform actions.
+ Use wisely, automate smartly.
