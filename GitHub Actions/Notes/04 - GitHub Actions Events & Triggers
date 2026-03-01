@@ -1,0 +1,33 @@
+GitHub Actions Events & Triggers
+
+Today I learned how events and triggers decide when a GitHub Actions workflow should run.
+
+🔹 push
+Triggers a workflow when code is pushed to a branch.
+ Commonly used for:
+Build
+Test
+Lint checks
+
+🔹 pull_request
+Runs workflows on PR actions like open or update.
+ Helps in:
+Code quality checks
+Validation before merge
+
+🔹 workflow_dispatch
+Allows manual execution of workflows.
+ Useful for:
+On-demand deployments
+Manual testing pipelines
+
+🔹 schedule
+Runs workflows on a cron-based schedule.
+ Used for:
+Nightly builds
+Periodic scans
+
+🔥 3-Line Takeaway
+Events control execution.
+ Triggers automate timing.
+ CI/CD starts with actions.
