@@ -1,0 +1,33 @@
+Runners in GitHub Actions
+
+Today I explored runners, the machines that actually execute CI/CD jobs in GitHub Actions.
+
+🔹 GitHub-Hosted Runners
+Managed by GitHub
+Preconfigured environments
+Auto-scaled and maintained
+Best for quick CI/CD setups
+
+🔹 Self-Hosted Runners
+Managed by users
+Run on own infrastructure
+More control & customization
+Useful for private networks
+
+🔹 Runner Selection
+Workflows can specify:
+OS type
+Runner labels
+Custom environments
+Correct selection ensures compatibility.
+
+🔹 Security Considerations
+Limit runner access
+Isolate sensitive jobs
+Protect secrets
+Monitor runner usage
+
+🔥 3-Line Takeaway
+Runners execute workflows.
+ Choice affects security.
+ Control impacts performance.
