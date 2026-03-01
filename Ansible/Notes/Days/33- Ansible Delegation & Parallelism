@@ -1,0 +1,42 @@
+Ansible Delegation & Parallelism
+
+Today I learned about Delegation & Parallelism in Ansible, which help control where tasks run and how fast they execute ⚡
+In large infrastructures, running tasks efficiently and on the right nodes is very important.
+ This is where delegation and parallel execution become powerful 🚀
+
+🔹 🎯 delegate_to
+The delegate_to keyword is used to run a task on a different host instead of the target host.
+Example use cases:
+ • Run DB tasks from control node
+ • Load balancer updates
+ • Centralized operations
+This allows better control over task execution location 🌐
+
+🔹 🔁 run_once
+The run_once: true keyword ensures a task runs only once, even if multiple hosts are targeted.
+Useful when:
+ • Downloading a file once
+ • Running migrations
+ • Performing one-time setup tasks
+It avoids duplicate execution across multiple servers.
+
+🔹 📊 Serial Execution
+serial controls how many hosts run tasks at a time.
+Example:
+ serial: 2 → Runs tasks on 2 hosts at a time
+This is helpful for:
+ • Rolling updates
+ • Zero-downtime deployments
+ • Controlled automation
+It reduces risk during large-scale changes 🔄
+
+🔹 🚀 forks (Parallelism)
+forks defines how many hosts Ansible can manage in parallel.
+Higher forks = faster execution ⚡
+ Lower forks = controlled execution
+It is configured in the Ansible configuration file and is very useful in large environments with many servers.
+
+🔥 3-Line Takeaway
+Delegation controls where tasks run.
+ run_once prevents duplicate executions.
+ Parallelism improves speed and scalability.
