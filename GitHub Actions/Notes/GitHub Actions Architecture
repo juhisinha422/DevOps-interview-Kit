@@ -1,0 +1,42 @@
+GitHub Actions Architecture
+
+Today I explored the core building blocks that make GitHub Actions work behind the scenes.
+
+🔹 Events
+Events are triggers that start workflows.
+ Examples:
+Code push
+Pull request
+Manual trigger
+They tell GitHub when to run automation.
+
+🔹 Workflows
+Workflows are YAML files stored in .github/workflows/.
+ They define:
+When automation runs
+What jobs should execute
+Each repo can have multiple workflows.
+
+🔹 Jobs
+Jobs are a set of steps that run on the same runner.
+Can run sequentially or in parallel
+Can depend on other jobs
+
+🔹 Steps
+Steps are individual tasks inside a job.
+ Examples:
+Checkout code
+Run commands
+Use actions
+Steps execute top to bottom.
+
+🔹 Runners
+Runners are machines that execute jobs.
+GitHub-hosted runners
+Self-hosted runners
+They provide the environment for CI/CD.
+
+🔥 3-Line Takeaway
+Events start automation.
+ Workflows define the process.
+ Runners execute DevOps pipelines.
