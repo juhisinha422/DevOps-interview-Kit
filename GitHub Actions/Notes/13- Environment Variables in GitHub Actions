@@ -1,0 +1,26 @@
+Environment Variables in GitHub Actions
+
+Today I learned how environment variables make workflows flexible by storing reusable values like paths, flags, and configuration settings.
+
+🔹 env Keyword
+env is used to define environment variables in workflows.
+ It helps avoid hardcoding values and makes pipelines easier to maintain.
+
+🔹 Job-level vs Step-level Variables
+Job-level env applies to all steps in that job
+Step-level env applies only to one step
+Step-level variables override job-level values
+This gives precise control of configuration.
+
+🔹 Default Environment Variables
+GitHub provides built-in variables automatically, like:
+Repository info
+Workflow info
+Runner details
+Commit/branch context
+These are useful for dynamic CI/CD behavior.
+
+🔥 3-Line Takeaway
+Env vars improve reuse.
+ Scope controls visibility.
+ Defaults add context.
