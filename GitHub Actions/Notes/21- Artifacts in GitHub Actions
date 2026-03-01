@@ -1,0 +1,29 @@
+Artifacts in GitHub Actions
+
+Today I learned how artifacts are used to store and share files generated during workflow runs.
+
+🔹 Upload Artifacts
+Artifacts can store:
+Build outputs
+Test reports
+Logs
+They are uploaded at the end of a job.
+
+🔹 Download Artifacts
+Artifacts can be downloaded:
+In later jobs
+After workflow completion
+For debugging or review
+This enables data sharing across jobs.
+
+🔹 Use Cases in Pipelines
+Artifacts are useful for:
+Passing build results
+Storing test evidence
+Debugging failed runs
+They improve CI/CD visibility.
+
+🔥 3-Line Takeaway
+Artifacts store outputs.
+ Jobs share results.
+ Pipelines gain traceability.
