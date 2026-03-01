@@ -1,0 +1,50 @@
+Variables in Ansible
+
+Today I learned about Variables in Ansible, which make automation flexible and reusable instead of hardcoding values.
+Instead of writing the same values again and again, variables help us write smarter and dynamic Playbooks ⚡
+
+🔹 🧩 vars (Inline Variables)
+The vars keyword is used to define variables directly inside a Playbook.
+Example:
+
+vars:
+ package_name: nginx
+
+These variables can be reused in tasks using {{ variable_name }}.
+ It makes Playbooks cleaner and easier to manage.
+
+🔹 📂 vars_files
+vars_files allows us to store variables in a separate file and import them into the Playbook.
+Example:
+
+vars_files:
+ - vars.yml
+
+Benefits:
+ ✔ Better organization
+ ✔ Reusability
+ ✔ Clean Playbook structure
+This is very useful in real production environments.
+
+🔹 🖥️ host_vars & group_vars
+Ansible allows defining variables based on hosts and groups.
+📌 host_vars → Variables specific to a single host
+ 📌 group_vars → Variables applied to a group of hosts
+Example use cases:
+ Different IPs for different servers
+ Different configurations for dev & prod environments
+This makes automation more environment-specific 🌍
+
+🔹 🏆 Variable Precedence
+Variable precedence decides which variable value Ansible will use if the same variable is defined in multiple places.
+
+Order (high to low priority concept):
+ Extra vars > Playbook vars > host_vars/group_vars > defaults
+
+Higher precedence variables override lower ones.
+ Understanding this prevents unexpected configuration issues ⚠️
+
+🔥 3-Line Takeaway
+Variables make Playbooks dynamic.
+ host_vars & group_vars enable environment-specific automation.
+ Correct precedence = predictable automation.
