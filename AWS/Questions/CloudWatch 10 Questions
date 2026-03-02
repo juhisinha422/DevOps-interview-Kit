@@ -1,0 +1,11 @@
+####hashtag#CloudWatch 10 Questions.... 
+1. How do you create custom CloudWatch metrics? 
+2. How do you set CloudWatch alarms for EC2 CPU utilization? 
+3. How do you send logs from EC2 to CloudWatch? 
+4. How do you visualize metrics on a CloudWatch dashboard? 
+5. How do you configure CloudWatch Logs Insights for log analysis? 
+6. How do you create composite alarms in CloudWatch? 
+7. How do you troubleshoot missing CloudWatch metrics? 
+8. How do you monitor AWS billing using CloudWatch?
+ 9. How do you enable anomaly detection in CloudWatch? 
+10. How do you integrate CloudWatch alerts with SNS notifications?
