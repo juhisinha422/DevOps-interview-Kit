@@ -1,0 +1,35 @@
+Interview experience - LSEG(London Stock Exchange Group)
+
+Role: SITE RELIABILITY ENGINEER
+
+1.	Difference between Public and Private Subnet?
+2.	How does Internet Gateway work?
+3.	What is NAT Gateway?
+4.	How do you connect to a private EC2 instance?
+5.	What to check if S3 Put/Get is failing?
+6.	How does IAM policy evaluation work?
+7.	How do you ensure zero downtime in RDS upgrade?
+8.	What is Blue-Green deployment in RDS?
+9.	What happens during Multi-AZ failover?
+10.	Difference between Security Group and NACL?
+11.	Difference between cp and mv?
+12.	What are permission numbers (4,2,1)?
+13.	How to give read & execute permission to a specific user?
+14.	How to check running processes?
+15.	What is a zombie process?
+16.	How to check disk usage?
+17.	Explain your deployment process end-to-end.
+18.	What happens after deployment?
+19.	What to do if alerts spike after release?
+20.	How do you rollback?
+21.	Difference between Blue-Green and Rolling deployment?
+22.	How does Grafana communicate with Prometheus?
+23.	What is PromQL?
+24.	What is rate() function?
+25.	How do you parameterize dashboards?
+26.	What monitoring tools are available in AWS?
+27.	Production is down at 11 PM – what will you do?
+28.	CPU is 100% after deployment – next steps?
+29.	Instance is unhealthy – how to handle?
+30.	S3 bucket suddenly inaccessible – troubleshooting steps?
+31.	Multiple alerts triggered – how to prioritize?
