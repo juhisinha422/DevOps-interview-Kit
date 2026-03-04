@@ -1,0 +1,62 @@
+DevOps Interview Experience – Senior DevOps Engineer #Capgemini
+Recently, I went through a 3-round interview process for a Senior DevOps Engineer role. Sharing my experience — hope this helps someone preparing for similar roles.
+🔹 Round 1 (L1 – Technical | 30 Minutes)
+The interviewer was polite and punctual.
+We started with:
+Tell me about yourself
+Explain your day-to-day responsibilities
+Walk me through your project architecture end-to-end
+Then the discussion moved into Kubernetes:
+Explain Kubernetes architecture and request flow
+Difference between Taints & Node Affinity
+How Load Balancer works in Kubernetes (end-to-end setup)
+Real production issues faced in K8s and how I resolved them
+CI/CD & Security:
+End-to-end Jenkins pipeline flow
+How I secure pipelines
+Credential management and storage
+Docker:
+Why multi-stage Dockerfile?
+Basic Docker commands
+Terraform:
+Remote state management
+Folder structure
+State handling
+Other topics:
+Ansible usage and real-world scenarios
+Monitoring tools and setup
+After 2 days, I was shortlisted for L2.
+🔹 Round 2 (L2 – Senior Manager | Scenario-Based | 30 Minutes)
+This round focused more on real-world scenarios and leadership.
+Questions included:
+Biggest challenges in your DevOps career and how you handled them
+Team structure and my role (individual contributor vs leadership)
+Handling production pressure
+Deep dive into:
+Kubernetes architecture (end-to-end explanation)
+Securing Kubernetes clusters
+Managing secrets and credentials
+Cloud:
+AWS services used
+Openness to multi-cloud
+Practical questions:
+Write a simple Dockerfile
+Python: Program to find max number in a list
+Ansible-related scenarios
+After 2–3 days, I was informed I cleared L2.
+🔹 HR Round
+Standard HR discussion:
+Why do you want to join?
+Career goals
+Past challenges
+Compensation discussion
+Final Verdict: ✅ Selected & Offer Received.
+Key Takeaways
+ 1️⃣ Interviews are not just about tools — they are about clarity of thought.
+ 2️⃣ Scenario-based questions matter more at senior levels.
+ 3️⃣ Listen carefully to the interviewer before answering.
+ 4️⃣ Explain with structure — not random points.
+ 5️⃣ Real production experience always stands out.
+💻 When preparing, don’t just revise commands.
+Understand architecture, failure handling, security, and decision-making.
+Hope this helps someone preparing for DevOps interviews.
