@@ -1,0 +1,37 @@
+Top 10 Scenario-Based Argo CD Interview Questions (Quick Professional Answers)
+
+If you’re preparing for a DevOps / GitOps role, these real-world Argo CD scenarios are commonly asked in interviews:
+👇 Save for later.
+
+1. App shows OutOfSync. What do you do?
+→ Review diff, sync application, verify Git vs cluster state.
+
+2. Manual kubectl change done on cluster — result?
+→ Argo CD detects drift and reconciles back to Git.
+
+3. How do you rollback?
+→ Revert Git commit; Argo CD redeploys automatically.
+
+ 4. Application stuck in Progressing?
+→ Check pods, events, logs (image issues, probes, crashes).
+
+5. Deploy same app to Dev & Prod?
+→ Separate namespaces + Helm values or Kustomize overlays.
+
+6. Deployment deleted manually?
+→ Argo CD recreates it (self-healing).
+
+ 7. How are secrets handled?
+→ Use Sealed Secrets / External Secrets / Vault (never plain Git).
+
+8. Restrict production access?
+→ Configure Argo CD RBAC.
+
+9. Auto deployment after Git push?
+→ Enable webhooks + auto-sync.
+
+10. Argo CD vs traditional CD?
+→ Pull-based GitOps, drift detection, easy rollback, self-healing.
+
+💡 Key takeaway:
+Argo CD enforces Git as the single source of truth and continuously reconciles Kubernetes state.
