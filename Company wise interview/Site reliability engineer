@@ -1,0 +1,22 @@
+Role: Site reliability engineer 
+
+1.	What happens internally when a request hits a Load Balancer before reaching an application server?
+2.	How would you troubleshoot a Kubernetes pod stuck in CrashLoopBackOff?
+3.	A deployment was successful but users report 502/503 errors. What could be the possible reasons?
+4.	What steps would you take if a CI/CD pipeline suddenly starts failing after working for months?
+5.	How does Horizontal Pod Autoscaler (HPA) decide when to scale pods?
+6.	Your CPU usage spikes to 95% in production after a new release. How will you investigate?
+7.	How do you implement zero downtime deployments in Kubernetes?
+8.	A Docker container exits immediately after starting. How do you debug it?
+9.	What is the difference between Infrastructure as Code and Configuration Management?
+10.	If a database suddenly becomes slow, what metrics would you check first?
+11.	Your Prometheus alerts are firing continuously even though the system looks healthy. What could be wrong?
+12.	A Kubernetes node goes into NotReady state. What troubleshooting steps would you take?
+13.	What is the difference between Liveness Probe and Readiness Probe in Kubernetes?
+14.	How would you secure secrets in a CI/CD pipeline?
+15.	How do you investigate memory leaks in a containerized application?
+16.	Your Terraform deployment failed halfway. How do you recover from the inconsistent state?
+17.	What are the key SLIs, SLOs, and SLAs you track for a production system?
+18.	A microservice suddenly starts returning high latency. What tools would you use to debug it?
+19.	How would you design a highly available system that can handle traffic spikes during peak sales?
+20.	If multiple monitoring alerts fire at the same time, how do you prioritize incident response?
