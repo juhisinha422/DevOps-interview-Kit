@@ -1,0 +1,8 @@
+DevOps Interview Experience – Senior DevOps Engineer #LTIMindtree.
+The interview lasted around 10 minutes, but it gave me some valuable lessons.
+The interviewer asked a few questions around Kubernetes architecture, such as:
+• Can you explain the components and architecture of Kubernetes?
+ • If a Dockerfile is deleted, will the existing container keep running?
+ • What happens if the scheduler goes down in Kubernetes?
+ • What happens if a controller goes down?
+ 
