@@ -1,0 +1,25 @@
+ GitOps vs CI/CD 
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring an important topic: GitOps vs CI/CD. Many people think they are the same, but they actually work together in modern DevOps workflows. 🚀
+Let’s understand the difference.
+
+🔹 Role of CI/CD Pipeline
+ CI/CD focuses on building, testing, and delivering applications automatically.
+CI (Continuous Integration): Code is built and tested whenever developers push changes.
+CD (Continuous Delivery/Deployment): The application is prepared or deployed automatically to environments.
+
+🔹 Where GitOps Fits
+ GitOps focuses on how applications are deployed and managed in infrastructure, especially in Kubernetes environments.
+Git stores the desired state of the system
+GitOps tools continuously ensure the infrastructure matches what is defined in Git
+
+🔹 DevOps Pipeline Integration
+Typical modern pipeline:
+Developer → Git Commit → CI Pipeline (Build/Test) → Update Config Repo → GitOps Tool Deploys to Cluster
+In this model:
+CI builds the application
+GitOps handles the deployment
+
+💡 Key Idea:
+ CI/CD automates software delivery, while GitOps automates infrastructure deployment using Git as the source of truth.
