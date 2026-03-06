@@ -1,0 +1,78 @@
+Scenario-Based DevOps Interview Question
+
+1. Question:
+ Your DevOps team uses Terraform to manage AWS infrastructure. Multiple engineers sometimes run terraform apply at the same time, which can corrupt the Terraform state file.
+ How would you prevent state corruption and ensure only one person modifies the state at a time?
+
+Answer (Production-Oriented):
+
+To prevent Terraform state corruption when multiple engineers work on the same infrastructure, we should store the state in a remote backend and enable state locking.
+
+In newer Terraform versions, when using the S3 backend, we can enable native state locking using use_lockfile = true. This creates a lock file (.tflock) in the S3 bucket whenever someone runs terraform apply.
+
+If another team member tries to run Terraform at the same time, Terraform detects the lock file and blocks the operation until the first process completes.
+
+This ensures only one person modifies the infrastructure state at a time, preventing state corruption.
+
+Example Terraform Backend Configuration
+
+terraform {
+ backend "s3" {
+ bucket = "devops-terraform-state"
+ key = "prod/terraform.tfstate"
+ region = "us-east-1"
+ encrypt = true
+ use_lockfile = true
+ }
+}
+
+How It Works in Practice
+
+Engineer A runs: - terraform apply
+
+Terraform creates a lock file in S3: - terraform.tfstate.tflock
+
+If Engineer B tries to run: - terraform apply
+
+Terraform will return an error similar to: - Error acquiring the state lock
+
+Engineer B must wait until Engineer A finishes and the lock file is removed.
+
+When Engineer A finishes the Terraform operation, the lock file is automatically removed by Terraform.
+
+Scenario-Based DevOps Interview Question
+
+2. Question:
+ You are managing infrastructure using Terraform, and some resources require sensitive data such as database passwords, API keys, or access tokens.
+
+ How would you securely manage secrets in Terraform without exposing them in the code or state files?
+
+Answer (Production-Oriented):
+
+In production environments, secrets should never be hardcoded in Terraform code because they may get exposed in Git repositories or Terraform state files.
+
+To manage secrets securely, we integrate Terraform with secret management services such as:
+
+AWS Secrets Manager
+AWS Systems Manager Parameter Store
+HashiCorp Vault
+
+Terraform retrieves secrets dynamically during deployment instead of storing them in the code.
+
+Example Using AWS Secrets Manager
+
+First store the secret in AWS Secrets Manager.
+
+Then Terraform can read it using a data source.
+
+data "aws_secretsmanager_secret_version" "db_password" {
+ secret_id = "prod-db-password"
+}
+
+Use the secret in a resource:
+
+resource "aws_db_instance" "example" {
+ identifier = "prod-db"
+ username = "admin"
+ password = data.aws_secretsmanager_secret_version.db_password.secret_string
+}
