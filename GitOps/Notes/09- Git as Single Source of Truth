@@ -1,0 +1,28 @@
+Git as Single Source of Truth
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring an important GitOps concept: Git as the Single Source of Truth. 🚀
+This idea is one of the foundations of GitOps and plays a critical role in reliable and automated infrastructure management.
+
+🔹 Config Stored in Git
+ In GitOps, all infrastructure and application configurations are stored in Git repositories.
+Kubernetes manifests
+Deployment YAML files
+Infrastructure configurations
+This means the entire system state is defined in Git.
+
+🔹 Version History Benefits
+ Since everything is stored in Git:
+Every change is tracked and auditable
+Teams can see who changed what and when
+Configuration changes are reviewed through pull requests
+This improves collaboration and prevents unexpected changes.
+
+🔹 Rollback Using Git
+ If something goes wrong in production:
+Simply revert to a previous Git commit
+GitOps tools automatically sync the system back to that version
+This makes rollbacks fast, safe, and reliable compared to manual fixes.
+
+💡 Key Insight:
+ When Git becomes the source of truth, infrastructure becomes predictable, transparent, and easy to manage.
