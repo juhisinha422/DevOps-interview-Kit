@@ -1,0 +1,43 @@
+Deleting a Dockerfile will NOT stop your running containers.
+
+This surprises many beginners in DevOps.
+
+You might think:
+
+“If the Dockerfile is gone, the container should break… right?”
+
+Nope.
+
+Here’s why 👇
+
+Containers don’t run from the Dockerfile.
+
+They run from the Docker image that was built using that Dockerfile.
+
+The real flow looks like this:
+
+Dockerfile
+→ docker build
+→ Docker Image
+→ docker run
+→ Container
+
+Once the image is created and the container is running:
+
+✅ The container keeps running normally
+✅ The image still exists locally
+❌ But you cannot rebuild the image again without the Dockerfile
+
+Because the Dockerfile is the blueprint that tells Docker how the image was built.
+
+That’s why in real DevOps environments:
+
+• Dockerfiles are stored in Git repositories
+• CI/CD pipelines automatically rebuild images
+• Infrastructure stays reproducible and traceable
+
+A simple rule I follow:
+
+📦 Image = Artifact
+📄 Dockerfile = Blueprint
+🚀 Container = Running instance
