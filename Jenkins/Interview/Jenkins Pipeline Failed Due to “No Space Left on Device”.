@@ -1,0 +1,40 @@
+DevOps Issue: Jenkins Pipeline Failed Due to “No Space Left on Device”.
+
+While running a CI/CD pipeline in Jenkins, one of my builds suddenly failed with this error:
+
+No space left on device.
+
+ At first the pipeline looked correct, but the build kept failing again and again.
+
+🔍 Debugging Steps:
+
+* First I checked disk usage on the Jenkins server:
+
+df -h
+
+It showed that the /var directory was 100% full.
+
+* Then I checked Docker images because Jenkins was building Docker images for every build.
+
+docker images
+
+There were many unused images and containers consuming disk space.
+
+✅ Solution:
+
+I cleaned unused Docker resources:
+
+docker system prune -a
+
+This removed unused containers, networks, and images.
+After freeing disk space, I re-ran the pipeline and the build completed successfully.
+
+💡 Lesson Learned :- CI/CD servers can quickly fill up disk space because of:
+
+• Old Docker images
+• Build artifacts
+• Logs
+
+Regular cleanup or automation is important to keep pipelines running smoothly.
+
+⚙️ DevOps is not only about building pipelines — it's also about maintaining the systems running them
