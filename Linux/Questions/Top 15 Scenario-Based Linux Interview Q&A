@@ -1,0 +1,46 @@
+Top 15 Scenario-Based Linux Interview Q&A
+1. Disk Space Issue
+Q: A server reports “No space left on device.” How do you troubleshoot?
+A: Use df -h to check filesystem usage, du -sh /path/* for directory sizes, and find / -type f -size +100M to locate large files. Clear logs or move archives to free space.
+2. High CPU Usage
+Q: A process is consuming 100% CPU. What steps do you take?
+A: Run top or htop to identify the process. Use kill -9 PID if it’s stuck, or investigate with strace -p PID to see system calls.
+3. Memory Leak
+Q: Application memory usage keeps growing. How do you confirm?
+A: Use free -m and vmstat. Check per-process memory with ps aux --sort=-%mem. Use valgrind or pmap for deeper analysis.
+4. Network Connectivity
+Q: Users can’t reach a web app. How do you debug?
+A: Check ping, traceroute, and netstat -tulnp. Verify firewall rules (iptables -L or firewalld-cmd). Confirm DNS resolution with dig or nslookup.
+5. Slow Boot
+Q: System takes too long to boot. How do you investigate?
+A: Use systemd-analyze blame to identify slow services. Disable unnecessary services with systemctl disable.
+6. File Permission Denied
+Q: A user reports “Permission denied” accessing a file.
+A: Check ownership with ls -l. Use chmod or chown to correct. Confirm SELinux/AppArmor policies if enabled.
+7. SSH Login Failure
+Q: SSH login is failing.
+A: Check /var/log/secure or /var/log/auth.log. Verify sshd_config settings. Ensure firewall allows port 22.
+8. Cron Job Not Running
+Q: A scheduled job didn’t execute.
+A: Check crontab -l. Verify cron service is running (systemctl status cron). Inspect logs in /var/log/cron.
+9. Kernel Panic
+Q: Server crashes with kernel panic.
+A: Review /var/log/messages. Boot into rescue mode. Check hardware drivers or recent kernel updates.
+10. User Account Locked
+Q: A user can’t log in due to account lock.
+A: Use passwd -S username to check status. Unlock with passwd -u username.
+11. Service Down
+Q: Apache/Nginx is not responding.
+A: Check systemctl status apache2. Review logs in /var/log/httpd/. Test configuration with apachectl configtest.
+12. Package Dependency Issue
+Q: Installation fails due to dependency errors.
+A: Use yum deplist package or apt-cache depends package. Resolve with yum install or apt-get -f install.
+13. Firewall Blocking Traffic
+Q: Application traffic is blocked.
+A: Inspect rules with iptables -L -n. Add exceptions using iptables -A INPUT -p tcp --dport 8080 -j ACCEPT.
+14. DNS Resolution Failure
+Q: Hostnames don’t resolve.
+A: Check /etc/resolv.conf. Test with dig. Restart systemd-resolved.
+15. File Corruption
+Q: A file is corrupted after transfer.
+A: Compare checksums using md5sum or sha256sum. Use rsync --checksum for reliable transfer.
