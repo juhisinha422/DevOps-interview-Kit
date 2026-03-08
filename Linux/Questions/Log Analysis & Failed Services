@@ -1,0 +1,11 @@
+Log Analysis & Failed Services
+1. How do you find log files of failed services?
+2. How do you analyze EC2 boot logs for startup issues?
+3. How do you check application logs for crash info?
+4. How do you continuously monitor a log file for errors?
+5. How do you search for specific error keywords in all log files? 
+6. How do you check system logs for kernel or hardware errors?
+ 7. How do you troubleshoot failed 'systemctl start' command?
+8. How do you check which process failed recently?
+9. How do you track service restart history?
+10. How do you debug permission errors found in logs?
