@@ -1,0 +1,37 @@
+Declarative vs Imperative Infrastructure
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring an important concept in infrastructure management: Declarative vs Imperative Infrastructure. 🚀
+Understanding this difference is key to how GitOps works with modern DevOps tools.
+
+🔹 Imperative Infrastructure
+ In the imperative approach, you tell the system exactly how to perform each step.
+Commands are executed manually or through scripts
+You control the sequence of actions
+Example: running multiple commands to create and configure resources
+This approach can become complex and harder to maintain as systems grow.
+
+🔹 Declarative Infrastructure
+ In the declarative approach, you simply define the desired end state of your system.
+Configuration is written in YAML or configuration files
+Tools automatically make the system match the defined state
+Example: defining Kubernetes resources using YAML manifests
+
+🔹 YAML-Based Deployments
+ In Kubernetes and GitOps workflows, applications and infrastructure are defined using YAML configuration files.
+ These files describe:
+Pods
+Deployments
+Services
+Configurations
+The system then ensures the cluster matches what is defined in the YAML files.
+
+🔹 Infrastructure as Code Connection
+ Declarative infrastructure is closely related to Infrastructure as Code (IaC).
+Examples:
+Terraform defines infrastructure declaratively
+Kubernetes YAML defines application deployment state
+Together, they help create automated, reproducible, and version-controlled infrastructure.
+
+💡 Key Idea:
+ GitOps relies on the declarative model, where the desired system state is stored in Git and automatically enforced.
