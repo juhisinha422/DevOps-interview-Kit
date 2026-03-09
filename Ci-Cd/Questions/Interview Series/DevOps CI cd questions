@@ -1,0 +1,19 @@
+DevOps CI/CD Interview Questions🧳
+
+1️⃣ Can you explain the CI/CD pipeline flow in your project from code commit to production?
+2️⃣ What tools have you used for CI/CD automation?
+3️⃣ What happens when a developer pushes code to Git? Explain the pipeline trigger.
+4️⃣ What is the difference between Continuous Integration, Continuous Delivery, and Continuous Deployment?
+5️⃣ How do you build and package applications in your pipeline?
+6️⃣ How do you perform code quality checks and security scanning in CI/CD?
+7️⃣ How do you create and store artifacts (Docker images / build packages)?
+8️⃣ How does the pipeline deploy applications to Dev, QA, Staging, and Production environments?
+9️⃣ How do you ensure zero downtime deployments during releases?
+🔟 What is the difference between Blue-Green deployment and Rolling deployment?
+1️⃣1️⃣ What will you do if a CI/CD pipeline fails during deployment?
+1️⃣2️⃣ A new release is deployed but users start reporting errors. How do you troubleshoot?
+1️⃣3️⃣ How do you rollback a deployment if something goes wrong in production?
+1️⃣4️⃣ How do you secure secrets and credentials in CI/CD pipelines?
+1️⃣5️⃣ How do you optimize slow pipelines and reduce build time?
+
+📌 Tip:In interviews, try to explain CI/CD with a real-time project example instead of only naming 
