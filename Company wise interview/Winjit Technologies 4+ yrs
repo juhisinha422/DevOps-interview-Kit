@@ -1,0 +1,50 @@
+🚀 DevOps Interview Experience – Winjit Technologies (L1 Round | Hyderabad | 4+years )
+
+Sharing a recent DevOps interview experience of one of the aspirants for the benefit of the community. 
+Hope this helps aspiring engineers preparing for Cloud / DevOps / SRE roles.
+
+📍 Company: Winjit Technologies
+📍 Location: Hyderabad
+📍 Round: L1 Technical
+
+Below are some of the questions asked:
+
+1️⃣ Tell me about your daily activities in your project.
+(They wanted to understand real-time responsibilities like CI/CD management, infrastructure provisioning, monitoring, troubleshooting, etc.)
+
+2️⃣ Explain the Maven lifecycle.
+Phases like:
+	•	validate
+	•	compile
+	•	test
+	•	package
+	•	verify
+	•	install
+	•	deploy
+
+3️⃣ An EC2 server is running services like Jenkins, Docker, HTTPS etc. Which Linux command can show the running services on the server?
+Commands like:
+	•	systemctl status
+	•	systemctl list-units --type=service
+	•	ps -ef | grep <service>
+	•	netstat -tulnp or ss -tulnp
+
+4️⃣ If an EC2 instance was created using Terraform with a 50GB EBS volume, but someone manually increased it to 100GB from the AWS console and the state file is not updated, how will Terraform know about the change?
+👉 By running terraform refresh or terraform plan, Terraform compares the real infrastructure with the state file and updates the state accordingly.
+
+5️⃣ Explain the Terraform lifecycle.
+Typical workflow:
+	•	terraform init
+	•	terraform plan
+	•	terraform apply
+	•	terraform destroy
+
+6️⃣ Explain how Prometheus and Grafana work together.
+	•	Prometheus collects metrics from targets using exporters and stores them as time-series data.
+	•	Grafana connects to Prometheus as a data source and visualizes those metrics through dashboards and alerts.
+
+7️⃣ Default ports of Prometheus and Grafana:
+	•	Prometheus → 9090
+	•	Grafana → 3000
+
+💡 Tip: Most DevOps interviews focus on real-time scenarios rather than theoretical definitions, so try to connect every concept with practical use cases.
