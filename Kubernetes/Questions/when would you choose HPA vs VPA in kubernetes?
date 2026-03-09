@@ -1,0 +1,17 @@
+when would you choose HPA vs VPA in kubernetes?  
+
+1.HPA (Horizontal Pod Autoscaler) is for scaling stateless applications to handle traffic spikes by increasing replica counts 
+
+2.VPA (Vertical Pod Autoscaler) for right-sizing resource-intensive, stateful, or unpredictable workloads by adjusting CPU/memory requests. 
+
+3.HPA is best for rapid expansion (web/API), while VPA is best for efficiency.
+
+4.HPA is suitable for Web servers, APIs, and microservices that can easily run multiple instances. 
+
+5.HPA Scaling based on request queue depth or external 
+
+6.VPA is suitable for Databases, machine learning jobs, or legacy apps that cannot scale horizontally. 
+
+7.VPA often requires restarting pods to apply resource changes, while HPA adds new ones. 
+
+8.we can use VPA in "Recommendation" mode to right-size, then we use HPA to handle traffic, or VPA for pods and HPA for replicas only on custom metrics.
