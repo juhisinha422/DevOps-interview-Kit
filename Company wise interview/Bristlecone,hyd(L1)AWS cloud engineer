@@ -1,0 +1,54 @@
+Bristlecone,hyd(L1)AWS cloud engineer.
+
+1.introduce yourself.
+
+2.how will you Deploy an application in cloud,with high availability and high security.(No docker and kubernetes)
+
+3.what exactly VPC do?
+
+4.explain VPC Architecture.
+After these questions,coding assessment conducted,I have shared the screen,10 questions are there,I need to answer 6 questions.
+Note:code will be there in the question itself,you just need find out the missing part in the code and write it and submit the answer.
+
+1.liveless probe and readiness probe deployment file.(Liveness probe part is missing in the manifest file)
+
+2.python application docker file.(Expose 5000 is missing)
+
+3.Write an IAM policy JSON that grants a user the necessary permissions to work with an EKS cluster, allowing operations like List, Describe, and Update on clusters and nodes.(Permissions are there for clusters,for nodes permissions are missing,you need write json format code for nodes permissions)
+
+4.shell scripting-- taking backup of log files
+(echo ('backup is successful") only this line is missing in the script.
+
+5.log rotation script.
+
+6.AWS Lambda Function to Process s3 Events
+Design an AWS Lambda function using Python that gets trigged by S3 events. Your function should process the event data and log the details of the uploaded file.
+Ensure that the Lambda function has the appropriate IAM permissions to access the S3 bucket.
+
+7.Validate JSON in Python Create a Python function that validates the syntax of a JSON string. The function should return True if the JSON is valid and False otherwise.
+
+8.ECS Task Definition Configuration
+Create a JSON definition for an ECS task that runs a Python application. The application should pull an image from ECR, and define resource limits and environment variables necessary for the application to run.
+
+9.Python Script to Monitor EC2
+Write a Python script that uses the Boto3 library
+to check the status of all EC2 instances in a specified region. The script should print the instance ID and status for each instance.
+
+10.Python Script for CI/CD Deployment
+Develop a Python script that triggers a CI/CD pipeline in AWS CodePipeline. The script should allow users to provide the pipeline name as an argument and start the execution.
+
+Assessment time:25 mins.
+
+YAML Configuration
+Question 9: Create a Shell Script for Backup
+Write a shell script that compresses data from a specified directory and saves the backup to a designated backup directory in Linux.
+\#!/bin/bash
+SOURCE\_DIR=\$1
+BACKUP\_DIR=\$2
+DATE=\$(date +%Y%m%d%H%M%S)
+tar -czf \$BACKUP\_DIR/backup\_\$DATE.tar.gz \$SOURCE\_DIR
+Skills Evaluated:
+Linux
+Shell Scripting
+File Management
+
