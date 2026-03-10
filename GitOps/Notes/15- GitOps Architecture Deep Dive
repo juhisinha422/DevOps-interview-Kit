@@ -1,0 +1,36 @@
+GitOps Architecture Deep Dive
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring the GitOps Architecture and how different components work together to automate deployments. 🚀
+Understanding this architecture helps us see how Git, automation tools, and Kubernetes collaborate to maintain reliable infrastructure.
+
+🔹 Git Repository
+ The Git repository acts as the single source of truth.
+ It stores all configuration files such as:
+Kubernetes YAML manifests
+Infrastructure configuration files
+Application deployment definitions
+Any change in the system must first go through Git commits and pull requests.
+
+🔹 Operator / Controller
+ A GitOps operator continuously monitors the Git repository and the cluster.
+ Its responsibilities include:
+Detecting changes in Git
+Comparing desired state with actual state
+Applying updates automatically to the cluster
+This ensures deployments remain consistent and automated.
+
+🔹 Kubernetes Cluster
+ The Kubernetes cluster is where the actual applications and services run.
+ The GitOps controller ensures the cluster state always matches what is defined in Git.
+If any configuration drift occurs, the system automatically reconciles the difference.
+
+🔹 CI Tools Integration
+ CI tools play an important role in the pipeline by:
+Building application code
+Running automated tests
+Updating configuration repositories with new versions
+After CI completes, the GitOps controller detects the change and deploys it to the cluster automatically.
+
+💡 Key Insight:
+ GitOps architecture creates a fully automated deployment workflow where Git controls infrastructure, applications, and system state.
