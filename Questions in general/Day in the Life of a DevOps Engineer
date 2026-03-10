@@ -1,0 +1,18 @@
+A Day in the Life of a DevOps Engineer
+Behind every reliable application, seamless deployment, and scalable system is a DevOps Engineer working to bridge the gap between development and operations.
+DevOps isn’t just a role — it’s a mindset focused on automation, collaboration, and continuous improvement.
+What DevOps Engineers do:
+1. Build and maintain CI/CD pipelines
+2. Automate infrastructure with Infrastructure as Code (IaC)
+3. Monitor system performance and reliability
+4. Improve deployment speed while maintaining stability
+5. Collaborate with developers, QA, and operations teams
+Key tools often used:
+1. Docker & Kubernetes
+2. Terraform & Ansible
+3. GitHub Actions / Jenkins / GitLab CI
+4. AWS, Azure, or GCP
+5. Monitoring tools like Prometheus & Grafana
+The goal?
+Deliver software faster, safer, and more reliably while enabling teams to focus on innovation instead of manual processes.
+DevOps Engineers turn complex systems into scalable, automated, and resilient platforms.
