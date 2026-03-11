@@ -1,0 +1,7 @@
+In GitOps architecture, what component continuously syncs Git with the cluster?
+A) CI pipeline server
+B) Docker container runtime
+C) GitOps operator/controller
+D) Application load balancer
+
+ANS C
