@@ -1,0 +1,31 @@
+GitOps Workflow (End-to-End)
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring the end-to-end GitOps workflow and how changes move from a developer to a running application in Kubernetes. 🚀
+GitOps simplifies deployments by ensuring that Git controls the entire delivery process.
+
+🔹 Step 1 — Developer Makes Changes
+ A developer writes application code or updates configuration files.
+ These changes may include:
+Kubernetes YAML manifests
+Deployment configurations
+Infrastructure settings
+The changes are then committed to the Git repository.
+
+🔹 Step 2 — Changes Stored in Git
+ Once the code is pushed, Git becomes the source of truth.
+ Teams can review changes through pull requests and version control history before merging them.
+This ensures better collaboration and traceability.
+
+🔹 Step 3 — GitOps Tool Detects Changes
+ GitOps tools continuously monitor the Git repository.
+ When a new commit is detected, the tool compares the desired state in Git with the current state in the cluster.
+If differences exist, the system prepares to apply updates automatically.
+
+🔹 Step 4 — Deployment to Kubernetes
+ The GitOps tool synchronizes the cluster with the Git repository.
+ The Kubernetes cluster is updated so that the actual state matches the desired state defined in Git.
+This creates a fully automated and reliable deployment process.
+
+💡 Key Idea:
+ The GitOps workflow ensures that every deployment begins with a Git change, making infrastructure predictable, traceable, and automated.
