@@ -1,0 +1,5 @@
+If HTTP is stateless, how does a website remember you after login?
+
+HTTP is stateless, so websites remember logged-in users using cookies, sessions, or tokens like JWT. In distributed systems such as Kubernetes, sessions are typically stored in Redis or replaced with stateless JWT authentication to support scaling.
+
+
