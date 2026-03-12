@@ -18,6 +18,7 @@ Before doing anything, **backup the corrupted state file**. Always ensure you ca
 
 ```bash
 cp terraform.tfstate terraform.tfstate.backup
+```
 
 Additionally, snapshot your production resources if possible (e.g., EC2 snapshots, disk backups, etc.) to ensure no data is lost in case something goes wrong during the recovery.
 
