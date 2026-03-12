@@ -1,0 +1,7 @@
+In the GitOps workflow, what triggers deployment to Kubernetes?
+A) Manual SSH deployment
+B) Kubernetes node restart
+C) New commit in Git repo
+D) Local script execution
+
+ANS C
