@@ -99,15 +99,15 @@ Verify that resources are correctly imported: If terraform plan identifies resou
 
 To avoid state corruption in the future, consider implementing the following best practices:
 
-a. Use Remote State Storage
+## a. Use Remote State Storage
 
 Store your state remotely (e.g., in AWS S3, Terraform Cloud, or Azure Blob Storage) with versioning enabled. This ensures you have backups in case of corruption.
 
-b. Enable State Locking
+## b. Enable State Locking
 
 Enable state locking in your remote backend (e.g., DynamoDB for S3) to prevent multiple users from modifying the state concurrently.
 
-c. Automate State Backups
+## c. Automate State Backups
 
 Set up regular automated backups for your state file, especially in production environments, to ensure you can restore it easily.
 
@@ -115,6 +115,6 @@ d. Use Terraform Workspaces
 
 For complex environments, consider using Terraform workspaces to segregate state for different environments (e.g., dev, staging, production).
 
-Conclusion
+## Conclusion
 
 Dealing with a corrupted state file can be complex, but by following a structured recovery process, you can restore Terraform's understanding of your infrastructure with minimal impact on production. Always backup your state file and use remote state storage for long-term stability.
