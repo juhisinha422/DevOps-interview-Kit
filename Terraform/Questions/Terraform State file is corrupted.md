@@ -111,7 +111,7 @@ Enable state locking in your remote backend (e.g., DynamoDB for S3) to prevent m
 
 Set up regular automated backups for your state file, especially in production environments, to ensure you can restore it easily.
 
-d. Use Terraform Workspaces
+## d. Use Terraform Workspaces
 
 For complex environments, consider using Terraform workspaces to segregate state for different environments (e.g., dev, staging, production).
 
