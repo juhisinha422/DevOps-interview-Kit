@@ -1,0 +1,34 @@
+Terraform for_each vs for (Simple Explanation for Interviews)
+
+In Terraform, both for_each and for expressions are used with collections like maps, sets, or lists — but they serve different purposes.
+
+for_each
+
+for_each is used to create multiple instances of a resource.
+
+It loops through a map or set and creates one resource for each item.
+
+Example:
+
+If you have 3 servers in a map → Terraform will create 3 resources automatically.
+
+👉 In simple words:
+for_each controls how many resources Terraform creates.
+
+for Expression
+
+The for expression is used to transform or generate data.
+
+👉 In simple words:
+for is used for data transformation.
+
+Short Interview Answer
+for_each → controls resource creation
+for → used for data transformation
+
+Easy way to remember
+
+🏗️ for_each → Creates resources
+🔄 for → Transforms data
+
+Both are powerful when working with lists, maps, and sets in Terraform.
