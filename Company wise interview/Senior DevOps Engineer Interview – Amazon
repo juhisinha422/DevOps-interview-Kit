@@ -1,0 +1,48 @@
+Senior DevOps Engineer Interview – Amazon
+
+Round 1 – System Thinking (45 min)
+
+• Walk me through how a user request flows through your system from DNS → Load Balancer → Service → Pod → Database.
+• Your Kubernetes pods are restarting every few minutes. What’s your debugging flow?
+• Your system latency suddenly increased after a deployment. What would you check first?
+• Traffic increases 10x during peak hours. Which components become bottlenecks?
+• Your monitoring didn’t detect an outage for 10 minutes. What went wrong?
+
+⸻
+
+Round 2 – Production Debugging (60 min)
+
+• Your cluster nodes are healthy but users get 502 errors. Where do you investigate?
+• Redis latency spikes during peak traffic. How do you trace the root cause?
+• HPA didn’t scale even though CPU usage is high. Why could this happen?
+• A deployment introduced a memory leak. Which signals expose it early?
+
+⸻
+
+Round 3 – Engineering Depth (30 min)
+
+• How do you design systems that fail gracefully?
+• How do you reduce MTTR in production systems?
+• How do you prevent repeated incidents in a platform team?
+
+⸻
+
+💡 Reality
+
+Most engineers prepare by learning tools:
+
+• Kubernetes
+• Terraform
+• CI/CD
+• Cloud services
+
+But senior interviews test something deeper:
+
+🧠 System understanding
+🔥 Production debugging
+🏗️ Architecture thinking
+
+That’s where many engineers struggle.
+
+Not because they lack experience —
+but because they rarely practice thinking through real systems.
