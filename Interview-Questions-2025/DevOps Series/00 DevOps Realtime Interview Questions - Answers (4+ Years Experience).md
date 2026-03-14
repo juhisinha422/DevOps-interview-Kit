@@ -94,7 +94,7 @@ Use Kubernetes Network Policies. Network policies define rules that allow or blo
 --------------------------------------------------
 
 14. Could you write a small Python script that backs up all files older than 30 days from a folder?
-
+```
 import os
 import shutil
 import time
@@ -110,7 +110,7 @@ for file in os.listdir(source):
   shutil.copy(path,backup)
 
 --------------------------------------------------
-
+```
 15. If your team is seeing a spike in cloud costs, how would you go about figuring out why — and cutting cost without hurting performance?
 
 Use AWS Cost Explorer to identify services causing the increase. Check unused EC2 instances, unattached EBS volumes, idle load balancers, and unused storage. Review autoscaling policies, right-size instances, enable reserved instances or savings plans, and remove unused resources.
