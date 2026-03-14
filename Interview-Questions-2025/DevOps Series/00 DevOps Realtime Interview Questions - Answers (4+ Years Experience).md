@@ -9,7 +9,7 @@ Use cross-account IAM roles. Create an IAM role in the S3 bucket account and all
 --------------------------------------------------
 
 2. Can you write a Dockerfile for a Node.js app using multi-stage builds — just something you’d actually use in a real project?
-
+```
 FROM node:18 AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -22,7 +22,7 @@ WORKDIR /app
 COPY --from=builder /app .
 EXPOSE 3000
 CMD ["node","server.js"]
-
+```
 Multi-stage builds reduce image size and remove unnecessary build dependencies.
 
 --------------------------------------------------
