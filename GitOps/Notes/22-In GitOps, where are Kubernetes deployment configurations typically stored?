@@ -1,0 +1,6 @@
+In GitOps, where are Kubernetes deployment configurations typically stored?
+In GitOps, where are Kubernetes deployment configurations typically stored?
+A) Application source repo
+B) Configuration repository
+C) Container registry
+D) CI pipeline server
