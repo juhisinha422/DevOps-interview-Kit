@@ -539,3 +539,191 @@ Key Docker skills expected from a **4+ years DevOps engineer**:
 * Container security
 
 ---
+# 22. Your login endpoint is receiving 100k requests per minute from bots.
+
+How do you stop the attack without blocking real users?
+
+This is usually a **bot attack or credential stuffing attack**. The solution should involve **rate limiting, bot detection, and infrastructure protection** while ensuring legitimate users are not blocked.
+
+---
+
+## 1. Enable Rate Limiting
+
+Limit the number of requests per IP address.
+
+Example using **Nginx**:
+
+```nginx
+limit_req_zone $binary_remote_addr zone=login_limit:10m rate=10r/s;
+
+server {
+    location /login {
+        limit_req zone=login_limit burst=20 nodelay;
+    }
+}
+```
+
+This prevents a single IP from sending thousands of login requests.
+
+---
+
+## 2. Add CAPTCHA for Suspicious Traffic
+
+Introduce **CAPTCHA after multiple failed login attempts**.
+
+Example:
+
+```
+After 5 failed attempts → show CAPTCHA
+```
+
+This stops automated bots while allowing real users.
+
+Common tools:
+
+* Google reCAPTCHA
+* hCaptcha
+
+---
+
+## 3. Use Web Application Firewall (WAF)
+
+Deploy a **WAF to filter malicious traffic**.
+
+Examples:
+
+* AWS WAF
+* Cloudflare WAF
+* Akamai
+
+WAF can block:
+
+* Known bot signatures
+* SQL injection attempts
+* Credential stuffing patterns
+
+---
+
+## 4. Implement IP Reputation Blocking
+
+Block traffic from **known malicious IPs or bot networks**.
+
+Examples:
+
+* Cloudflare Bot Management
+* AWS Shield
+* IP reputation databases
+
+---
+
+## 5. Add Account Lockout Policy
+
+Temporarily lock accounts after repeated failed logins.
+
+Example:
+
+```
+5 failed attempts → lock account for 10 minutes
+```
+
+This prevents credential stuffing attacks.
+
+---
+
+## 6. Use CDN and Edge Protection
+
+Deploy a **CDN in front of the application**.
+
+Examples:
+
+* Cloudflare
+* AWS CloudFront
+* Akamai
+
+Benefits:
+
+* Absorbs high traffic
+* Filters bots
+* Reduces load on backend servers
+
+---
+
+## 7. Monitor Traffic and Create Alerts
+
+Use monitoring tools:
+
+* Prometheus + Grafana
+* Datadog
+* ELK Stack
+
+Example alert:
+
+```
+If login requests > 5000/min → trigger alert
+```
+
+---
+
+## 8. Behavioral Analysis
+
+Identify bot patterns such as:
+
+* Same user agent
+* Very fast login attempts
+* Requests without cookies or JavaScript
+
+Block or challenge such traffic.
+
+---
+
+## 9. Add Multi-Factor Authentication (MFA)
+
+Even if bots guess passwords, **MFA prevents unauthorized access**.
+
+Example methods:
+
+* OTP
+* Authenticator apps
+* SMS verification
+
+---
+
+## 10. Production-Level Architecture
+
+A secure architecture would look like:
+
+```
+Users
+   ↓
+CDN / WAF
+   ↓
+Load Balancer
+   ↓
+Rate Limiting Layer (Nginx / API Gateway)
+   ↓
+Application Servers
+   ↓
+Authentication Service
+```
+
+This ensures bots are **filtered before reaching the application**.
+
+---
+
+## Final Answer (Interview Summary)
+
+To mitigate a bot attack on the login endpoint without blocking real users, I would implement **multi-layer protection** including:
+
+* Rate limiting on login endpoints
+* CAPTCHA after repeated login attempts
+* Web Application Firewall (WAF) filtering
+* CDN-based bot protection
+* IP reputation blocking
+* Account lockout policies
+* Traffic monitoring and alerts
+* MFA for stronger authentication
+
+This approach protects the system while ensuring **legitimate users can still log in normally**.
+
+---
+
