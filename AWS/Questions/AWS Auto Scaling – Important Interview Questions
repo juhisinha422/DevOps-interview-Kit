@@ -1,0 +1,25 @@
+AWS Auto Scaling – Important Interview Questions for DevOps Engineers
+Auto Scaling is one of the most important services in AWS for building highly available and scalable applications. Here are some commonly asked Auto Scaling interview questions.
+🔹 1. What is Auto Scaling in AWS?
+ Auto Scaling automatically adjusts the number of EC2 instances based on traffic or demand to maintain performance and reduce cost.
+🔹 2. What are the main components of Auto Scaling?
+ • Launch Template / Launch Configuration
+ • Auto Scaling Group (ASG)
+ • Scaling Policies
+🔹 3. What is Desired Capacity?
+ Desired capacity is the number of EC2 instances that the Auto Scaling Group tries to maintain at all times.
+🔹 4. What is the difference between Scale Out and Scale In?
+ • Scale Out – Adding more EC2 instances when demand increases.
+ • Scale In – Removing EC2 instances when demand decreases.
+🔹 5. What is a Health Check in Auto Scaling?
+ Auto Scaling monitors instance health using EC2 or Load Balancer health checks. If an instance becomes unhealthy, it automatically replaces it.
+🔹 6. What are Scaling Policies?
+ Scaling policies define when Auto Scaling should add or remove instances based on CloudWatch metrics.
+💡 Common metrics used for scaling:
+ • CPU Utilization
+ • Network traffic
+ • ALB request count
+📌 Auto Scaling helps achieve:
+ ✔ High availability
+ ✔ Fault tolerance
+ ✔ Cost optimization
