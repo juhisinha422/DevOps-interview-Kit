@@ -1,0 +1,30 @@
+GitOps and Kubernetes Relationship
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring the relationship between GitOps and Kubernetes. 🚀
+GitOps is widely adopted in modern DevOps environments because it works perfectly with Kubernetes’ declarative infrastructure model.
+
+🔹 Why GitOps Works Well with Kubernetes
+ Kubernetes uses a declarative configuration approach, where the desired state of the system is defined using YAML manifests.
+GitOps follows the same principle:
+Infrastructure and application configurations are stored in Git repositories
+GitOps tools continuously ensure the cluster state matches what is defined in Git
+This makes Kubernetes a natural platform for implementing GitOps workflows.
+
+🔹 Kubernetes Controllers and GitOps
+ Kubernetes already uses controllers to maintain system state.
+ For example:
+If a pod crashes, Kubernetes automatically recreates it.
+GitOps tools extend this concept by ensuring:
+The cluster configuration matches the Git repository
+Any configuration drift is automatically corrected.
+
+🔹 Benefits of Combining GitOps with Kubernetes
+ Using GitOps with Kubernetes provides:
+Automated and consistent deployments
+Version-controlled infrastructure
+Easy rollback using Git history
+Improved visibility and collaboration
+
+💡 Key Insight:
+ GitOps and Kubernetes both rely on the declarative desired-state model, which makes them a powerful combination for modern cloud-native deployments.
