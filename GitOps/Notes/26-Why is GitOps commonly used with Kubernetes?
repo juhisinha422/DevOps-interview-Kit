@@ -1,0 +1,7 @@
+Why is GitOps commonly used with Kubernetes?
+It uses a declarative model
+It replaces container runtime
+It removes YAML configs
+It avoids version control
+
+ANS A
