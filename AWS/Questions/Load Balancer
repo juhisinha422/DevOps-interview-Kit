@@ -1,0 +1,44 @@
+1. What is a Load Balancer?
+A Load Balancer distributes incoming network traffic across multiple servers to ensure high availability, fault tolerance, and better performance.
+In Amazon Elastic Load Balancing, the load balancer automatically distributes traffic across multiple EC2 instances.
+2. What are the types of Load Balancers in AWS?
+AWS provides four types of load balancers in Amazon Elastic Load Balancing:
+1️⃣ Application Load Balancer (ALB) – Works at Layer 7 (HTTP/HTTPS)
+ 2️⃣ Network Load Balancer (NLB) – Works at Layer 4 (TCP/UDP)
+ 3️⃣ Gateway Load Balancer (GWLB) – Used for security appliances
+ 4️⃣ Classic Load Balancer (CLB) – Legacy load balancer
+3. What is the difference between ALB and NLB?
+FeatureALBNLBLayerLayer 7Layer 4ProtocolHTTP / HTTPSTCP / UDPRoutingPath-based routingPort-based routingUse CaseWeb applicationsHigh-performance applications
+4. What is a Target Group in ALB?
+A Target Group is a group of backend servers (like EC2 instances) where the load balancer sends traffic.
+Example:
+ Client → ALB → Target Group → EC2 Instances
+5. What is a Health Check?
+A Health Check monitors the health of instances.
+If an instance becomes unhealthy, the load balancer stops sending traffic to it.
+6. What is Cross-Zone Load Balancing?
+Cross-Zone Load Balancing distributes traffic evenly across instances in different Availability Zones.
+It improves availability and load distribution.
+7. What is Sticky Session?
+Sticky Session (Session Affinity) ensures that a user's request always goes to the same backend server.
+This is useful for session-based applications.
+8. What is the difference between Internet-facing and Internal Load Balancer?
+Internet-facing Load Balancer
+Accessible from the internet
+Used for public applications
+Internal Load Balancer
+Accessible only within VPC
+Used for internal services
+9. Can a Load Balancer work without EC2?
+Yes. Load balancers can send traffic to:
+EC2 instances
+IP addresses
+Containers
+Lambda functions (ALB)
+10. What are real-time use cases of Load Balancers?
+High traffic websites
+Microservices architecture
+Auto scaling environments
+High availability systems
+Example:
+ User → Load Balancer → Multiple EC2 servers
