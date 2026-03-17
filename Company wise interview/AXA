@@ -1,0 +1,41 @@
+My DevOps Engineer Interview Experience for AXA🚀
+
+Here are some of the key questions I faced:
+
+🔹 AWS Cloud Questions
+
+1. Introduce yourself and explain your project.
+2. What is EBS (Elastic Block Store) and its use cases?
+3. What is a Snapshot and how is it different from a backup?
+4. What is an AMI (Amazon Machine Image)?
+5. What are different EC2 instance types and when to use them?
+6. Explain different S3 storage classes.
+7. How do you write an S3 bucket lifecycle policy?
+8. How do you secure an S3 bucket?
+9. What is a VPC (Virtual Private Cloud)?
+10. What is the difference between a Public Subnet and a Private Subnet?
+11. How do you make a subnet public or private?
+12. What is an Internet Gateway (IGW) and NAT Gateway?
+13. Which ports are used for HTTP and HTTPS?
+14. If you install Nginx, which configuration file do you modify?
+15. Are Security Groups stateful or stateless? Explain.
+16. How do you make an application Highly Available?
+17. Explain a 3-Tier Architecture. How would you set it up for a banking application?
+18. Can we attach an S3 bucket to an EC2 instance directly?
+19. What are some Linux commands you use daily?
+20. Explain different use cases of the grep command.
+21. Explain multiple options of the ls command.
+
+🔹 DevOps Questions
+
+1. Explain the Docker container lifecycle.
+2. What is CI/CD and why is it important?
+3. Can you write a basic Jenkins pipeline script?
+4. What is Terraform and how does it work?
+5. How do you secure the Terraform state file (tf.state)?
+6. Explain important Terraform commands.
+7. What is the difference between terraform plan and terraform apply?
+8. What are some common issues you have faced while working with DevOps tools?
+9. Explain Prometheus architecture and its components
+10. If an application becomes unresponsive, how would you troubleshoot?
+11. What are your day-to-day responsibilities as a DevOps Engineer?
