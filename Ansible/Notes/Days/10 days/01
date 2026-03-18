@@ -1,0 +1,15 @@
+Starting with the 10 days of ansible challenge 
+Day 1/10 – Starting my Ansible Journey
+Configuration management is one of the most powerful parts of DevOps.
+Instead of manually logging into servers and running commands, Ansible lets us automate everything with simple YAML playbooks.
+✨ What I learned today:
+• Ansible is agentless – it works over SSH
+• Uses YAML playbooks to define tasks
+• Great for configuration management and automation
+Quick example:
+Run command:
+ansible all -m ping
+Dry Run (Check Mode):
+ansible-playbook install_nginx.yml --check
+Check mode lets you see what will change without actually changing anything.
+Safe automation = Happy DevOps 
