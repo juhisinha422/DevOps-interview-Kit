@@ -1,0 +1,27 @@
+HCL 1st round I Q&ANS:
+1.Main Docker Network Types
+2.What is the use of Dockerfile?
+3.Why We Use Dockerfile?
+4.Dockerfile Instructions?
+5.How do you execute a script even if the resource is not created?
+6.What is Terraform State File? why use?
+7.terraform Block and required_providers in Terraform ?
+8.What is remote-exec in Terraform?
+9.What is null_resource in Terraform?
+10.Worker Node Keeps Restarting – How to Resolve?
+11.Which Kubernetes resource is used to store token, secret, and password?
+12.Readiness Probe in Kubernetes?
+13.Liveness Probe and Readiness Probe in Kubernetes?
+14.Storage Resources in a Pod?
+15.ReplicaSet Manifest in Kubernetes?
+16.NodePort Range in Kubernetes?
+17.ClusterIP vs NodePort in Kubernetes?
+18.Default Namespaces in Kubernetes?
+19.On What Basis We Use SSL Termination?
+20.What is SSL Termination?
+21.Difference Between Application Load Balancer and Network Load Balancer?
+22.What is Amazon Route 53?
+23.Is Elastic IP single per AWS account?
+24.What are Security Groups?
+25.What is NACL?
+26.What is User Data in EC2?
