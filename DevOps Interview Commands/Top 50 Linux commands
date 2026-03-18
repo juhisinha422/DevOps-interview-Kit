@@ -1,0 +1,69 @@
+Top 50 Linux commands every DevOps engineer should know.
+
+Whether you are debugging a broken deployment or securing your servers, mastering the Linux terminal is necessary. I've broken down the 50 essential commands by their missions:
+
+→ 𝗦𝘆𝘀𝘁𝗲𝗺 𝗵𝗲𝗮𝗹𝘁𝗵 𝗮𝗻𝗱 𝗺𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴
+1. uptime: Check server load averages.
+2. free: Monitor RAM usage and check 'available' memory.
+3. df: Track disk usage. 100% means apps will crash.
+4. top: Live monitor for processes.
+5. htop: A colorful, user-friendly version of top.
+6. vmstat: Get a snapshot of CPU, memory, and IO.
+7. iostat: View detailed disk I/O metrics.
+
+→ 𝗛𝗶𝘀𝘁𝗼𝗿𝘆 𝗮𝗻𝗱 𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀
+8. dmesg: Read kernel messages for OOM kills or segfaults.
+9. journalctl: View the systemd master log.
+10. sar: Review historical stats.
+11. systemctl: Control and check the status of services.
+12. ps aux: See all running processes.
+
+→ 𝗟𝗼𝗴𝘀 𝗮𝗻𝗱 𝗳𝗶𝗹𝗲𝘀
+13. grep: Search text and find patterns.
+14. sed: Stream editor for in-place text replacement.
+15. awk: Extract columns from text output.
+16. find: Locate files by name, type, or size.
+17. du: Check directory sizes.
+18. xargs: Pipe outputs to commands.
+
+→ 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗱𝗶𝗮𝗴𝗻𝗼𝘀𝘁𝗶𝗰𝘀
+19. curl / wget: Test HTTP requests and timing.
+20. ss: Check socket stats and open ports.
+21. netstat: The legacy version of ss.
+22. dig: Troubleshoot DNS lookups.
+23. ip addr: View IP configuration and interface status.
+24. ifconfig: Legacy IP configuration.
+25. mtr: Combine traceroute and ping to find network loss.
+26. tcpdump: Capture packets for detailed analysis.
+27. nmap: Scan for open, closed, or filtered ports.
+
+→ 𝗨𝘀𝗲𝗿𝘀 𝗮𝗻𝗱 𝗽𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻𝘀
+28. id: Show user and group IDs.
+29. usermod: Modify users. 
+30. groupmod: Rename a group while keeping members intact.
+31. visudo: Safely edit /etc/sudoers with syntax checking.
+32. chmod / chown: Change permissions and file ownership.
+33. umask: Set default permissions for new files.
+
+→ 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗮𝗻𝗱 𝗽𝗿𝗼𝗰𝗲𝘀𝘀𝗲𝘀
+34. sshd: Configure SSH access, like disabling root login.
+35. iptables: Set firewall rules top-to-bottom.
+36. kill: Send signals like SIGTERM (-15) or SIGKILL (-9).
+37. pkill / pgrep: Kill or find processes by their name.
+38. nice / renice: Adjust process priority.
+39. lsof: List open files or ports.
+40. strace: Trace system calls and signals.
+
+→ 𝗗𝗲𝗽𝗹𝗼𝘆 𝗮𝗻𝗱 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗲
+41. tar: Archive and compress files.
+42. rsync: Sync files across environments.
+43. tmux: Keep terminal sessions alive if SSH dies.
+44. crontab: Schedule recurring jobs.
+45. logrotate: Auto-manage log files to prevent disks from filling up.
+
+→ 𝗦𝘁𝗼𝗿𝗮𝗴𝗲 𝗮𝗻𝗱 𝗱𝗲𝗲𝗽 𝘀𝘆𝘀𝘁𝗲𝗺
+46. lsblk: List block devices and their mount points.
+47. fdisk: List and manage partitions.
+48. mount: Make partitions accessible to the system.
+49. chroot: Change the root directory.
+50. ldd: Show shared libraries for a binary.
