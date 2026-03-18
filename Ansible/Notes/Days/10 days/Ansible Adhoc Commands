@@ -1,0 +1,11 @@
+ Ansible Adhoc Commands
+Sometimes we don’t need a full playbook.
+We just need to run a quick command on multiple servers.
+That’s where Ansible Adhoc commands help.
+Example:
+Check uptime on all servers
+ansible all -m command -a "uptime"
+Install package
+ansible web -m yum -a "name=nginx state=present"
+Simple. Fast. Powerful.
+Perfect for quick operations in production.
