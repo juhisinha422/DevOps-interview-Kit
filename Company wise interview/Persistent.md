@@ -3,7 +3,9 @@
 ## Kubernetes (K8s)
 
 ### 1. What is the current version of K8s you are using in your project?
-In most enterprise projects, we'd strive to use a stable version, generally within 1-2 versions of the latest stable release. For example, Kubernetes 1.22/1.23 is quite common in production, though we monitor for security patches and upgrades regularly. The exact version would depend on our upgrade cycle.
+"In our project, we strive to maintain a stable Kubernetes version within 1-2 versions of the latest stable release. Currently, we are using Kubernetes v1.33 in our production environment. We chose this version after evaluating the stability and new features that align with our infrastructure needs.
+
+We follow a structured upgrade cycle, where we monitor the release notes of each version, especially security patches and bug fixes. Our upgrade process typically involves testing new versions in staging environments to ensure compatibility with our workloads before deploying them to production. We also keep an eye on deprecations and ensure that any APIs or features that are being phased out are addressed before upgrading."
 
 ### 2. What was the last production issue you faced and how did you resolve it?
 A recent issue involved a service being intermittently unavailable due to node resource exhaustion (CPU/Memory). We used `kubectl top nodes` and `kubectl describe pod` to identify which pods were consuming excessive resources. Once pinpointed, we adjusted resource limits in the deployment manifest and used Horizontal Pod Autoscaling (HPA) to balance load. We also updated our Cluster Autoscaler settings to add more nodes dynamically.
