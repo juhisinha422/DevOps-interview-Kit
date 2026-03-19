@@ -1,0 +1,51 @@
+What is AWS CodeBuild?
+
+This question was asked in a recent AWS DevOps interview.
+
+AWS CodeBuild is a fully managed Continuous Integration (CI) service provided by Amazon Web Services that compiles source code, runs tests, and produces deployable build artifacts automatically.
+
+It eliminates the need to manage build servers.
+
+🔹 Key Features:
+• Automatically builds source code
+• Runs unit tests
+• Generates build artifacts
+• Scales automatically
+• Integrates with AWS services like CodePipeline, S3, ECR, and CloudWatch
+
+⚙️ How CodeBuild Works
+
+Typical workflow:
+
+Developer pushes code → Repository (GitHub/CodeCommit)
+        ↓
+AWS CodeBuild pulls source code
+        ↓
+Runs build commands from buildspec.yml
+        ↓
+Creates artifacts (Jar / Docker Image / Package)
+        ↓
+Stores in S3 or pushes to ECR
+
+📄 Example buildspec.yml
+This file defines build steps for CodeBuild.
+
+version: 0.2
+
+phases:
+ install:
+  commands:
+   - echo Installing dependencies
+
+ build:
+  commands:
+   - echo Build started
+   - docker build -t myapp .
+
+ post_build:
+  commands:
+   - echo Build completed
+
+💡 Simple Interview Answer:
+
+AWS CodeBuild is a fully managed CI service that automatically builds source code, runs tests, and generates artifacts without requiring us to manage build servers.
