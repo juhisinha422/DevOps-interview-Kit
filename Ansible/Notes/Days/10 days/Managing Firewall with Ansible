@@ -1,0 +1,11 @@
+Managing Firewall with Ansible
+Security is a critical part of infrastructure.
+Instead of manually configuring firewall rules on each server, Ansible can automate it.
+Example task:
+name: Allow HTTP
+firewalld:
+service: http
+permanent: yes
+state: enabled
+One playbook → firewall configured across all servers.
+Automation + Security = DevOps win 
