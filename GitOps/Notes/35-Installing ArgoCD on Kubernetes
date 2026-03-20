@@ -1,0 +1,38 @@
+Installing ArgoCD on Kubernetes
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m doing a hands-on setup of Argo CD on Kubernetes. 🚀
+This is a crucial step to start working with real GitOps workflows in a live environment.
+
+🔹 Prerequisites
+Before installing ArgoCD, make sure you have:
+A running Kubernetes cluster
+kubectl installed and configured
+Basic understanding of Kubernetes resources
+
+🔹 Installation Steps
+
+1️⃣ Create Namespace:-
+kubectl create namespace argocd
+ 
+2️⃣ Install ArgoCD:-
+kubectl apply -n argocd -f https://lnkd.in/dPY5uSn9
+
+3️⃣ Check Pods Status:-
+kubectl get pods -n argocd
+
+4️⃣ Access ArgoCD API Server:-
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+Now open in browser:
+👉 https://localhost:8080
+
+5️⃣ Get Initial Admin Password:-
+kubectl get secret argocd-initial-admin-secret -n argocd -o yaml
+
+Decode the password and login using:
+Username: admin
+Password: (decoded value)
+
+💡 Key Insight:
+Installing ArgoCD on Kubernetes allows you to automate deployments directly from Git repositories, enabling a complete GitOps workflow.
