@@ -1,0 +1,39 @@
+Explain CI/CD Flow in a Real Project
+
+This is one of the most common questions asked in DevOps interviews.
+
+A typical CI/CD pipeline automates the process of building, testing, and deploying applications from code commit to production.
+
+🔹 Typical CI/CD Flow
+
+1️⃣ Developer writes code and pushes it to Git (GitHub / GitLab / Bitbucket)
+
+2️⃣ CI Tool triggers the pipeline
+(Jenkins / GitHub Actions / GitLab CI)
+
+3️⃣ Build Stage
+The application is compiled and dependencies are installed.
+
+4️⃣ Test Stage
+Automated unit tests and code quality checks are executed.
+
+5️⃣ Build Artifact
+A Docker image or build artifact is created.
+
+6️⃣ Artifact Storage
+Images are pushed to a container registry (ECR / Docker Hub / Artifact Registry).
+
+7️⃣ Deployment Stage
+Deployment is done using Kubernetes / ECS / EC2 / VM servers.
+
+8️⃣ Continuous Delivery / Deployment
+Application is deployed to Dev → QA → UAT → Production environments.
+
+
+🔹 Simple Real-World Flow
+
+Developer → Git Push → CI Pipeline Trigger → Build → Test → Docker Image Build → Push to Registry → Deploy to Kubernetes
+
+
+💡 Interview Tip:
+In real projects, CI/CD pipelines are integrated with tools like Jenkins, Docker, Kubernetes, Terraform, and cloud services like AWS.
