@@ -1,0 +1,11 @@
+Your AWS VPC just ran out of available IP addresses.
+You cannot rebuild the VPC.
+Traffic must continue.
+What would you do?
+
+First, we should quickly free unused IPs by deleting unused EC2s, ENIs, and old resources.Then  add a new CIDR block to the existing VPC (VPC CIDR expansion) and create new subnets from it, so we get more IP space without rebuilding the VPC.
+If needed,  move or scale workloads into the new subnets and use load balancers to shift traffic gradually.
+To avoid this later, plan proper CIDR sizing or use multiple CIDRs from the start.
+
+
+Secondary CIDR
