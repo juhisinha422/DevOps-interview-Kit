@@ -1,0 +1,27 @@
+If we receive oom killed error in prod how will we address it in real enterprise projects
+
+Have you ever encountered such issues in production and what's the issues you identified and how did you address it.
+
+
+Yes, I have handled OOMKilled issues in production. Initially, I stabilized the system by scaling pods and increasing memory limits. Then I analyzed metrics and found a gradual memory increase, which pointed to a memory leak caused by unclosed DB connections. After fixing the application and tuning resources, we implemented HPA, alerts, and monitoring dashboards to prevent recurrence. In another case, it was due to traffic spikes, which we handled using autoscaling
+
+
+
+
+---
+
+Yes, I have handled OOMKilled issues in production.
+
+Initially, I focused on stabilizing the application by increasing the memory limits and scaling the number of pods so that the load was distributed. This helped restore the service quickly.
+
+After that, I analyzed the memory usage using monitoring tools and observed that memory consumption was gradually increasing over time instead of sudden spikes. This indicated a possible memory leak.
+
+I worked with the development team and identified that the issue was due to unclosed database connections, which were continuously consuming memory. Once the code was fixed, we redeployed the application with optimized resource configurations.
+
+To prevent similar issues in the future, we defined proper resource requests and limits, enabled HPA based on memory usage, and set up alerts and dashboards for better monitoring.
+
+In another case, the issue was due to a sudden traffic spike, which we handled by scaling the application horizontally and tuning autoscaling policies.
+
+
+
+
