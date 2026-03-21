@@ -1,0 +1,9 @@
+1 - if CPU usage is crossing between 82-87%, your team needs to get an alert email. 
+
+2- if /var FS is reaching above 85%, your team needs to get an alert email notification so that you/your team will login the server and clean up some cache files or will reach out to the Application owner to clean up the /var FS before hanging the server. 
+
+3 - how to create a user/ service account by using the shell script 
+
+4 - write the scripting about to take the pre checks of the server before doing any patching/ OS update activity. 
+
+5 - increasing any FS by using the LVM command so write the shell scripting.
