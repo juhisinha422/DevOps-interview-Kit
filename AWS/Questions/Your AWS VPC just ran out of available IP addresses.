@@ -9,3 +9,6 @@ To avoid this later, plan proper CIDR sizing or use multiple CIDRs from the star
 
 
 Secondary CIDR
+
+
+If a VPC runs out of IPs and rebuilding is not an option, I would first identify IP consumption and free unused resources for immediate relief. Then, I would attach a secondary CIDR block to the VPC and create new subnets. For EKS workloads, I’d migrate node groups to the new subnets gradually to avoid downtime. This ensures traffic continues while expanding IP capacity. I would also implement monitoring and better CIDR planning to prevent recurrence.
