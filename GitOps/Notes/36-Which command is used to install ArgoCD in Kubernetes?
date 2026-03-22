@@ -1,0 +1,13 @@
+Which command is used to install ArgoCD in Kubernetes?
+:
+A) kubectl create deployment
+0%
+B) kubectl apply install.yaml
+33%
+C) kubectl run argocd
+67%
+D) kubectl start cluster
+0%
+
+
+ans b
