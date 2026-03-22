@@ -1,0 +1,80 @@
+What Git branching strategies do you use in projects?
+
+Here are the 3 most common Git models used in real projects.
+
+✅ Git Branching Strategies (Git Flow / GitHub Flow / Trunk Based)
+
+🚀  Git Flow Model
+This is one of the most structured branching strategies used in enterprise projects.
+
+Long-lived branches:
+main → Production code
+develop → Integration branch where all development happens
+
+Short-lived branches:
+feature/ → New feature development
+release/ → Preparing code for production release
+bugfix/ → Fix issues found during testing
+hotfix/ → Emergency production fixes
+
+Typical Workflow
+1️⃣ Create feature branch from develop
+
+develop → feature/login
+
+2️⃣ After development, raise Pull Request to develop.
+3️⃣ Code gets deployed to Dev environment.
+4️⃣ When features are stable, create a release branch
+
+develop → release/v1.0
+
+5️⃣ Deploy release branch to QA / UAT for testing.
+6️⃣ If bugs appear:
+
+release → bugfix branch
+
+7️⃣ Once everything is fixed:
+Merge release → main (Production)
+Tag the release.
+
+8️⃣ Merge changes back to develop.
+
+👉 Production Emergency
+
+If a production issue occurs:
+main → hotfix branch
+
+Fix the issue → merge back to main and develop.
+
+🚀  GitHub Flow Model (Feature Branching)
+This is a simpler model used by many modern teams.
+
+Branches:
+main
+feature branches
+
+Workflow
+1️⃣ Create a branch from main
+
+main → feature/payment-api
+
+2️⃣ Push code.
+3️⃣ Create Pull Request.
+4️⃣ Code review + CI checks.
+5️⃣ Merge to main.
+6️⃣ Deploy to production.
+
+✔ Simple
+ ✔ Fast releases
+ ✔ Ideal for CI/CD environments
+
+🚀 Trunk-Based Development Model
+Very popular in high-speed DevOps teams like Google.
+Branches
+main (trunk)
+Developers create very short-lived branches or commit directly to main.
+Features are controlled using Feature Flags.
+
+✔ Faster integration
+ ✔ Avoids long branch conflicts
+ ✔ Works best with strong CI/CD pipelines
