@@ -93,3 +93,12 @@ In such scenarios, even though the containers are identical in configuration, th
 Identical configurations do not guarantee identical performance. The execution environment and external dependencies play a critical role in how an application behaves in production.
 
 ---
+
+
+Can be onto different servers. The one with 4 sec might be taking long to run image due to poor system specs. Need more clarifications
+----
+
+Even if the containers are identical the difference can come from external factors.
+ One possibility is network latency the request path, DNS resolution or connection routing might be different causing delay.
+
+ Another reason could be cold vs warm state one container might already have cached data or established connections while the other is handling the request for the first time, leading to slower response.
