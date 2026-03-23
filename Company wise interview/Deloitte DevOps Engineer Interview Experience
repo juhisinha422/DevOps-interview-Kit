@@ -1,0 +1,30 @@
+Deloitte DevOps Engineer Interview Experience
+Recently went through a DevOps Engineer interview process, and it was a really insightful experience that tested both practical knowledge and real-world problem solving.
+Here are some of the key areas and questions discussed 👇
+🔹 CI/CD & Jenkins
+Designed end-to-end CI/CD pipeline
+Declarative vs Scripted pipelines
+Jenkins triggers, webhooks, and Shared Libraries
+Debugging pipelines when builds don’t trigger
+🔹 Docker & Kubernetes
+Docker image build lifecycle (ENTRYPOINT vs CMD)
+Kubernetes architecture (Control Plane vs Worker Nodes)
+Troubleshooting: CrashLoopBackOff, ImagePullBackOff
+Helm chart structure and deployments
+Accessing and managing running pods
+🔹 Cloud (AWS)
+Working with EC2, EKS, ECS, and container registries
+Connecting to ECS containers
+Secure communication with databases
+🔹 Terraform & Automation
+Creating and managing infrastructure using Terraform
+Reusable and scalable infrastructure design
+🔹 Advanced DevOps Practices
+Branching strategies (GitFlow vs Trunk-based)
+Handling production issues and hotfix releases
+End-to-end deployment flow (Code → Build → Deploy → Monitor)
+🔹 Security & Best Practices
+Docker image vulnerability scanning
+Managing secrets securely in EKS
+Environment variable handling
+Helm chart signing & secure deployments
