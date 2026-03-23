@@ -1,0 +1,13 @@
+What types of applications have you deployed using Jenkins pipelines? 
+
+Jenkins pipelines are used to deploy a wide range of applications, from traditional monoliths to modern cloud-native architectures. Because of its extensive plugin ecosystem, it can integrate with almost any technology stack to automate building, testing, and deployment. 
+
+1.Frequently deployed using Maven for build automation. These are often hosted on servers like Apache Tomcat 
+
+2.Automation of PHP and Python applications for deployment onto web servers like Apache or Nginx. 
+
+3.Pipelines frequently build Docker images, push them to registries (like AWS ECR), and deploy them using Docker Compose. 
+
+4.Jenkins automates the entire flow building a container, updating Kubernetes configuration files, and deploying the app directly into a cluster. 
+
+5.managing infrastructure deployments using tools like Terraform and Ansible 
