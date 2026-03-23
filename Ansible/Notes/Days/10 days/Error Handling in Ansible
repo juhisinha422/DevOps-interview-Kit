@@ -1,0 +1,16 @@
+Error Handling in Ansible
+Automation should be resilient.
+Ansible provides ways to handle failures gracefully.
+Example:
+ignore_errors: yes
+Or using blocks:
+block:
+name: Install nginx
+apt:
+name: nginx
+state: present
+rescue:
+debug:
+msg: "Installation failed"
+Automation should not break the entire workflow.
+Good DevOps = good failure handling.
