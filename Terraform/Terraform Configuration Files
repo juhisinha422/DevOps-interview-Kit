@@ -1,0 +1,17 @@
+Terraform Configuration Files
+Terraform automatically reads all .tf files in a directory. Structuring these files properly helps teams manage infrastructure efficiently.
+
+Common Terraform Files:
+main.tf → Defines the core infrastructure logic
+provider.tf → Specifies the cloud provider (AWS, Azure, GCP, etc.)
+variables.tf → Stores input values for flexibility and reusability
+outputs.tf → Captures output values to use in other modules or for reporting
+Tip: File names don’t matter to Terraform; what matters is the content.
+
+✔️Enables Infrastructure as Code (IaC), reducing manual errors and deployment time
+✔️Improves scalability and repeatability across environments
+✔️Supports collaboration in DevOps teams with modular and reusable code
+
+✔️Deploying multi-tier cloud environments automatically (e.g., VPCs, subnets, EC2 instances)
+✔️Integrating with CI/CD pipelines for automated deployments
+✔️Managing cloud resources in production, staging, and dev environments with minimal effort
