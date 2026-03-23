@@ -1,0 +1,7 @@
+What action triggers deployment in a GitOps workflow?
+A) Restarting pods
+B) Updating Git repository
+C) Running local scripts
+D) Manual SSH login
+
+Ans B
