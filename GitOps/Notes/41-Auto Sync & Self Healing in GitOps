@@ -1,0 +1,32 @@
+Auto Sync & Self Healing in GitOps
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring one of the most powerful features of GitOps: Auto Sync & Self-Healing 🚀
+These features make systems fully automated, reliable, and resilient in production environments.
+
+🔹 Continuous Reconciliation
+ GitOps tools continuously monitor:
+Desired state (defined in Git)
+Actual state (running in the cluster)
+They constantly compare both states and ensure the system is always aligned with Git configuration.
+This process is called continuous reconciliation.
+
+🔹 Drift Correction (Self-Healing)
+ Sometimes the actual system state may change due to:
+Manual changes
+Failed deployments
+Unexpected errors
+This creates configuration drift.
+GitOps tools automatically detect this drift and:
+Revert the system back to the desired state
+Apply correct configurations from Git
+This behavior is known as self-healing.
+
+🔹 Auto Sync Feature
+ With auto-sync enabled:
+Any change in Git is automatically deployed
+No manual sync required
+Faster and consistent updates
+
+💡 Key Insight:
+ Auto Sync and Self-Healing ensure that your infrastructure is always correct, consistent, and aligned with Git without manual intervention.
