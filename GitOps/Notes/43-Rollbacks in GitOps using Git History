@@ -1,0 +1,28 @@
+Rollbacks in GitOps using Git History
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring how rollbacks work in GitOps using Git history 🚀
+This is one of the biggest advantages of GitOps — making deployments safe and easily reversible.
+
+🔹 Safe Deployments
+ In GitOps, every change goes through:
+Git commits
+Pull requests
+Version tracking
+This ensures that all deployments are controlled and auditable, reducing the risk of failures in production.
+
+🔹 Version Rollback using Git
+ If a deployment causes issues:
+Simply revert to a previous stable commit in Git
+GitOps tools automatically detect the change
+The system is restored to the previous working state
+No need for manual fixes or complex rollback scripts.
+
+🔹 Why It Matters in Real Projects
+Faster recovery from failures
+Reduced downtime
+Reliable release management
+Confidence in deployments
+
+💡 Key Insight:
+ GitOps turns Git into a powerful rollback mechanism, making deployments safer and easier to manage in production environments.
