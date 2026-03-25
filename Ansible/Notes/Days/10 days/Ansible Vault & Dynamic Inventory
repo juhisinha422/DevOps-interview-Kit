@@ -1,0 +1,12 @@
+Ansible Vault & Dynamic Inventory
+Final day of my Ansible learning series.
+Two powerful features:
+Ansible Vault
+Encrypt secrets like passwords and API keys.
+Example:
+ansible-vault encrypt secrets.yml
+
+Dynamic Inventory
+Instead of manually listing servers, Ansible can fetch them directly from cloud providers like AWS.
+Your infrastructure updates automatically.
+Automation + Security + Cloud = DevOps power
