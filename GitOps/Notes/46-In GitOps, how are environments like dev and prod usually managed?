@@ -1,0 +1,7 @@
+In GitOps, how are environments like dev and prod usually managed?
+A) Using same config always
+B) Using manual scripts only
+C) Separate Git configs/folder
+D) Single deployment pipeline
+
+ANS C
