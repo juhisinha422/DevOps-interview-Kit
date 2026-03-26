@@ -1,0 +1,23 @@
+1.Tell me about your team ?
+2.How your team works ?
+3.On which tool you worked the most ?
+4.How you mange infrastructure with terraform ?
+5.How you create the resources using terraform ?
+6.How you use modules ?
+7.Tell me about state file ?
+8.Can we do the changes manually to the state file ?
+9.How you secure state file ?
+10. If someone does changes manually to AWS Infrastructure ,then can we use it in terraform ?
+11. ⁠How terraform import works ?
+12. ⁠Have you ever used terraform import ?
+13. ⁠How terraform refresh works ?
+14. ⁠what is IAM policies ?
+15. ⁠how you make ec2 instance highly available ?
+16. ⁠What is CIDR block ?
+17. ⁠How CIDR Block works ?18.  if EC2 is down how can we check this ?
+19. ⁠Howe we secure S3 buckets ?
+20. ⁠How we use MFA ?
+21. ⁠how we create IAM Policies ?
+22. ⁠How can we check EC2 instance has Public Access ?
+23. ⁠How the pipeline works automatically ?
+24. ⁠How Webhooks works ?
