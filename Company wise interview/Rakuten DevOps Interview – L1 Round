@@ -1,0 +1,29 @@
+Rakuten DevOps Interview – L1 Round | Key Questions
+I recently attended a DevOps L1 interview with Rakuten and wanted to share some of the key topics discussed. 
+🔹 CI/CD & Jenkins
+End-to-end pipeline design
+Jenkinsfile implementation
+Artifact management and deployment flow
+🔹 Docker
+Dockerfile best practices
+Layer caching vs image optimization
+Versioned images vs latest tag
+🔹 Kubernetes
+Deployment vs StatefulSet
+Horizontal Pod Autoscaler (HPA)
+NetworkPolicy (Ingress/Egress)
+Secrets management
+🔹 Helm
+Handling multiple values.yaml files
+Precedence of values.yaml, -f, and --set
+🔹 AWS & Networking
+Public vs Private Subnet
+NAT Gateway and its working
+Communication between instances across VPCs
+Ephemeral ports
+🔹 Scenario-Based Questions
+Debugging deployment failures
+Root Cause Analysis (RCA)
+Handling production issues
+💡 Key Takeaway:
+The interview focused heavily on practical knowledge, real-time scenarios, and clarity of understanding rather than just theoretical concepts.
