@@ -27,7 +27,9 @@ As a result, Terraform will attempt to recreate the missing 50 VMs to match the 
 ## 🎯 One-Line Answer (Interview Ready)
 
 Terraform detects infrastructure drift and recreates the deleted resources to match the desired state.
+
 OR
+
 Terraform will detect drift and recreate the 50 deleted VMs to match the desired state defined in the configuration
 
 ---
