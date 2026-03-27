@@ -1,0 +1,34 @@
+GitOps Security Best Practices
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m focusing on GitOps Security Best Practices — a crucial topic for building secure and production-ready DevOps systems 🚀
+Security in GitOps ensures that only authorized changes are deployed and sensitive data is protected.
+
+🔹 RBAC (Role-Based Access Control)
+ RBAC helps in defining who can access and modify resources.
+Assign roles like admin, developer, viewer
+Restrict permissions based on responsibilities
+Prevent unauthorized changes
+
+🔹 Access Control
+ Proper access control ensures:
+Only approved users can push changes to Git
+Deployment actions are controlled
+Sensitive operations require authentication
+This reduces the risk of accidental or malicious changes.
+
+🔹 Secure Repositories
+ Git repositories must be secured by:
+Using private repositories
+Enabling branch protection rules
+Enforcing pull request approvals
+Scanning for secrets and vulnerabilities
+
+🔹 Additional Best Practices
+Avoid storing secrets in plain text
+Use encrypted secrets (Sealed Secrets / Vault)
+Enable audit logs for tracking changes
+Use least privilege principle
+
+💡 Key Insight:
+ Strong security in GitOps ensures that your infrastructure is safe, controlled, and protected from unauthorized access.
