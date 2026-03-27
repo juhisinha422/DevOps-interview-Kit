@@ -1,0 +1,13 @@
+How many microservices were in your production environment?
+ 
+1. In my previous role  the entire ecosystem consisted of about 40 microservices
+
+2.my specific team was directly responsible for 5 core services related to the user domain. 
+
+3.To manage these services, we used centralized logging (ELK Stack)  
+
+4. We used an API Gateway to handle cross-cutting concerns like authentication. 
+
+5.To handle data consistency we used the Event-Driven Architecture. 
+
+6. To monitor many services we used Prometheus/Grafana for metrics 
