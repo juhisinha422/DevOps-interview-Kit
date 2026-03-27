@@ -143,8 +143,7 @@ Used for **direct pod access (DNS-based)** like StatefulSets.
 
 ---
 
-## 19. If you run kubectl apply -f pod.yaml -n namespace-A
-but the pod manifest specifies namespace-B, what will happen?
+## 19. If you run kubectl apply -f pod.yaml -n namespace-A but the pod manifest specifies namespace-B, what will happen?
 
 Namespace in manifest (**namespace-B**) takes precedence.
 
