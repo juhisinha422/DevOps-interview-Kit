@@ -1,0 +1,93 @@
+What is Datadog?
+
+Datadog is a cloud-based monitoring, logging, and observability platform used by DevOps & SRE teams to monitor infrastructure, applications, logs, and user experience — all in one place.
+
+It provides real-time visibility into your systems running on:
+☁️ Cloud (AWS, Azure, GCP)
+🐳 Containers (Docker, Kubernetes)
+🖥️ On-prem servers
+🧠 Core Concept (In Simple Words)
+👉 Datadog collects Metrics + Logs + Traces + Events
+👉 Correlates them in one platform
+👉 Helps you detect, troubleshoot, and optimize issues faster
+
+⚙️ Datadog Architecture (Flow Explained)
+        Applications / Servers / Containers
+                     |
+              Datadog Agent
+                     |
+        ---------------------------
+        |     Datadog Platform    |
+        | Metrics | Logs | APM    |
+        ---------------------------
+                     |
+           Dashboards / Alerts / AI
+
+🔍 Step-by-Step Flow
+Data Collection (Agent)
+Install Datadog Agent on hosts (EC2, VM, Kubernetes nodes)
+
+Collects:
+CPU, Memory, Disk (metrics)
+
+Logs
+Network data
+Data Ingestion
+Agent sends data securely to Datadog SaaS platform
+Processing & Correlation
+Datadog correlates:
+Logs ↔ Metrics ↔ Traces
+Uses tags (env, service, host)
+Visualization
+Dashboards (real-time monitoring)
+Alerting
+Alerts triggered via thresholds or anomalies
+
+🔑 Key Features of Datadog
+📈 1. Infrastructure Monitoring
+Monitor servers, containers, cloud services
+Pre-built integrations with AWS, Kubernetes, etc.
+🔍 2. APM (Application Performance Monitoring)
+Track request flow across services
+Identify latency issues
+🧾 3. Log Management
+Centralized logging
+Search, filter, and analyze logs
+🌐 4. Real User Monitoring (RUM)
+Track user experience in real time
+Page load time, errors, session data
+
+🔔 5. Alerting & Incident Management
+Threshold alerts
+Anomaly detection (AI-based)
+🔗 6. Integrations (600+)
+AWS, Docker, Kubernetes, Jenkins, Slack, etc.
+📊 Datadog Data Types
+TypeExamplePurposeMetricsCPU usage, MemoryPerformance trackingLogsApplication logsDebuggingTracesAPI request journeyLatency analysisEventsDeployments, config changesContext
+
+🔥 Real-World Example (DevOps Scenario)
+👉 Your app is slow in production:
+Check Dashboard → CPU spike
+Check APM → API latency increased
+Check Logs → Database timeout errors
+Root cause identified quickly ✅
+
+⚖️ Advantages
+✔️ Single platform for full observability
+✔️ Easy integration with cloud-native tools
+✔️ Powerful dashboards & alerting
+✔️ AI-based anomaly detection
+⚠️ Challenges
+❌ Cost can increase with high data volume
+❌ Learning curve for advanced queries
+❌ Requires tagging strategy for best results
+🧠 Pro Tips (Interview + Real Use)
+Always use tags (env:prod, service:web)
+Use dashboards + monitors together
+Enable APM + logs correlation for faster debugging
+Optimize log ingestion to control cost
+
+🚀 Quick Summary
+👉 Datadog = Observability Platform
+👉 Collects → Metrics + Logs + Traces
+👉 Helps → Monitor, Alert, Troubleshoot
