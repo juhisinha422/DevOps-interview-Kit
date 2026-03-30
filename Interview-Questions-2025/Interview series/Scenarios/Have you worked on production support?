@@ -1,0 +1,15 @@
+Have you worked on production support? What insights/monitoring did you check?  
+
+Yes, I have experience with DevOps production support, focusing on ensuring service reliability, performance, and uptime through continuous monitoring and proactive incident management. 
+
+1.I monitor CPU, memory, and network throughput across EC2 instances, nodes, or serverless functions, looking for saturation over 85%, which can trigger pod evictions, throttling, or scheduling failures. 
+
+2.I track EBS volume metrics, such as VolumeReadLatency and VolumeWriteLatency, ensuring they remain low to avoid silent performance bottlenecks that cause slow database queries or application timeouts. 
+
+3.I monitor for changes made outside the IaC (Infrastructure as Code) pipeline, which can cause misconfigurations and unexpected service degradation. 
+ 
+4.I actively track HTTP 5xx errors and application-level exceptions, using centralized logging (like ELK/Kibana or Datadog) to trace errors in real-time. 
+
+5.I monitor how often code is deployed and ensure a high success rate to detect issues in the CI/CD pipeline  
+
+6.I check CI/CD logs for failed builds, test failures, or long-running jobs that indicate infrastructure constraints. 
