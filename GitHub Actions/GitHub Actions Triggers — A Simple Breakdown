@@ -1,0 +1,28 @@
+GitHub Actions Triggers — A Simple Breakdown
+
+Everything in GitHub Actions starts with a trigger.
+No trigger = no automation. Simple as that.
+
+ Flow: Event → Trigger → Workflow → Jobs → Steps
+
+⚡ Common Triggers
+
+1️⃣ Manual (workflow_dispatch)
+→ Click "Run workflow" in Actions tab
+→ Best for testing & learning
+
+2️⃣ Push (on: push)
+→ Triggers when code is pushed
+→ Filter to specific branches (e.g. main)
+→ Most common in CI/CD
+
+3️⃣ Pull Request (on: pull_request)
+→ Runs when a PR is opened or updated
+→ Validates code before merging
+
+4️⃣ Schedule (on: schedule)
+→ Cron-based — e.g. every Friday 9PM UTC
+→ Perfect for planned deploys & maintenance
+
+💡 Simple rule:
+Event happens → Trigger fires → Automation runs
