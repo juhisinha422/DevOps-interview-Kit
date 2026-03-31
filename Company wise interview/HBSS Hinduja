@@ -1,0 +1,49 @@
+🚀 HBSS | DevOps Interview Questions (3–5 Years Experience)
+
+Recently asked in HBSS (Hinduja Business Services) interview — sharing for practice 👇
+
+⸻
+
+🔹 Linux
+	1.	Explain the booting process of Linux.
+	2.	What are services in Linux?
+	3.	How do you check open ports in Linux?
+	4.	Explain the Linux file system structure.
+	5.	Command to check OS version in Linux?
+
+⸻
+
+🔹 Azure
+6. What is Azure App Service?
+7. How do you switch between deployment slots in Azure App Service?
+
+⸻
+
+🔹 Docker
+8. Explain Docker architecture.
+9. Write a basic Dockerfile.
+10. If a Docker image is built and you manually install missing packages inside a container, how will you convert it into a new Docker image?
+11. Difference between CMD, ENTRYPOINT, and RUN in Docker.
+
+⸻
+
+🔹 Kubernetes
+12. What is kubeconfig in Kubernetes?
+13. How do you handle secrets in Kubernetes?
+14. How do you manage environment variables in Kubernetes?
+15. How do you fetch secrets from Azure Key Vault and use them in Kubernetes?
+16. What is Ingress and how do you use it?
+
+⸻
+
+🔹 Terraform
+17. If Terraform state file has older entries and infra was created manually, how will you add it to Terraform?
+18. If there are 1000+ changes to be managed in Terraform state, how will you handle it?
+
+⸻
+
+⚡ Note:
+Many advanced Kubernetes & Terraform scenario-based questions were also asked.
+
+⸻
+
