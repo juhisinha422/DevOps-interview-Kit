@@ -1,0 +1,75 @@
+
+1. Effectively Sharing Cluster Resources Among Multiple Development Teams
+Challenge: Multiple teams often deploy workloads on the same cluster, leading to resource contention.
+
+Issues:
+
+One team’s application could consume excessive CPU/memory.
+
+Risk of "noisy neighbor" problems.
+
+Solutions:
+
+Use Namespaces to logically isolate team environments.
+
+Set Resource Quotas and Limit Ranges to restrict CPU/memory usage per namespace.
+
+Implement Network Policies for traffic isolation.
+
+Monitor usage with Prometheus + Grafana or Kubernetes Metrics Server.
+
+2. Addressing Out-of-Memory (OOMKilled) Errors in Pods
+Challenge: Pods are terminated by the kubelet due to exceeding memory limits.
+
+Causes:
+
+Inaccurate memory requests/limits.
+
+Memory leaks in applications.
+
+High traffic spikes not accounted for in resource planning.
+
+Solutions:
+Get inside pod and share Heap dumps and thread dump to the dev team, they will fix the issue.
+To get thread dump, get inside pod and execute kill -3 
+to get heap dump, execute jstack command 
+kubectl logs -f <pod> --since=2m
+
+(Interview ans for OOMKilled : - I have noticed this issue in our production environment. I have noticed that one of my pod was going down because of the OOMKilled issue. I have already setup the resource quotas and limits. Still the pod was going in the OOMKilled. Even after giving 8GB ram as per the performance benchmarking of the Development team.
+So what I have done is as my application was a java app or microservice, so I went to that pod and shared the thread and heap dump.
+
+Set appropriate resources.requests and resources.limits in pod specs.
+
+Analyze metrics and logs with kubectl describe pod, Grafana, or ELK Stack.
+
+Conduct load testing and profiling during CI/CD pipeline stages.
+
+Use Horizontal Pod Autoscaler (HPA) to scale pods based on memory or CPU metrics.
+
+3. Complexities in Performing Kubernetes Cluster Upgrades
+Challenge: Upgrading Kubernetes without downtime or breaking workloads is complex.
+
+Issues:
+
+Compatibility problems with older APIs/deprecated features.
+
+Downtime if upgrades aren’t properly staged.
+
+Risk of cluster instability.
+
+Solutions:
+
+Follow a staged upgrade process:
+
+Backup etcd and cluster resources.
+
+Upgrade the control plane first, then worker nodes.
+
+Use kubeadm upgrade or cloud-managed tools (EKS, AKS, GKE upgrade features).
+
+Validate with pre-upgrade testing environments.
+
+Review Kubernetes deprecation notices before upgrades.
+
+Use tools like kured for safe node reboots post-upgrade.
+
