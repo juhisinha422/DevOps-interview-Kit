@@ -1,0 +1,7 @@
+In GitOps workflow, where is deployment configuration stored?
+A) Docker container
+B) Kubernetes node
+C) Git repository
+D) CI server
+
+ANS C
