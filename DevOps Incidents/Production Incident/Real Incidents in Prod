@@ -36,7 +36,7 @@ to get heap dump, execute jstack command
 kubectl logs -f <pod> --since=2m
 
 (Interview ans for OOMKilled : - I have noticed this issue in our production environment. I have noticed that one of my pod was going down because of the OOMKilled issue. I have already setup the resource quotas and limits. Still the pod was going in the OOMKilled. Even after giving 8GB ram as per the performance benchmarking of the Development team.
-So what I have done is as my application was a java app or microservice, so I went to that pod and shared the thread and heap dump with the dev team.
+So what I have done is as my application was a java app or microservice, so I went to that pod and shared the thread and heap dump with the dev team. So they will understand which thread or which part of the microservice is leaking the memory and they will perform their analysis or they will create a JIRA ticket and will come up with the RCA.
 
 Set appropriate resources.requests and resources.limits in pod specs.
 
