@@ -72,4 +72,22 @@ Validate with pre-upgrade testing environments.
 Review Kubernetes deprecation notices before upgrades.
 
 Use tools like kured for safe node reboots post-upgrade.
+=================
+
+Upgrades of Kubernetes Cluster: - (Production Scenario)
+--------------------------------------------- 
+One of my challenges was upgrades. As a devops engineer, who have experienced in upgrades.
+I have prepared an end-to-end manual with detailed steps.
+Where I have documented things like how to take backup of resources before upgrading, how to go through release notes. (without going to release notes ur cluster may go down, bcoz there might be a change in version, feature that might be deprecated also)
+I have divided steps for control plane and worker node components.
+In control plane components, I have detailed steps on how to start with etcd,
+And how to upgrade version of kube API server, then how to upgrade version of scheduler.
+I have noted down the steps and order to be performed.
+
+And then for the worker node, I have explained first we drain a node (u give node time to move the pods to different nodes, when the node is empty , u will make the node unschedulable, u will taint the node)
+Will upgrade the kubelet to the new version. And will bring the node up will join the node back to k8s cluster. And will remove the taints which are applied.
+
+
+
+
 
