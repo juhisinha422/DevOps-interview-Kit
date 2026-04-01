@@ -1,0 +1,63 @@
+Kubernetes Production Incident – Pods Restarting & Intermittent 502 Errors
+
+Recently, I handled a production issue where users experienced intermittent 502 errors while accessing a customer-facing application. The alert was triggered from the monitoring dashboard, indicating increased error rates and pod instability.
+
+Initial observations:
+* Multiple pods were restarting frequently
+* Load balancer health checks were failing
+* Nodes were healthy
+* CPU and memory usage looked normal
+
+This pointed towards an application-level or configuration issue rather than infrastructure.
+
+Debugging approach:
+
+First, I checked pod status:
+
+'kubectl get pods -n production'
+
+Observed pods in CrashLoopBackOff state.
+
+Next, I checked application logs:
+
+'kubectl logs app-service-xxxxx'
+
+Logs indicated database connection timeout errors.
+
+To validate further, I verified the service configuration:
+
+'kubectl get svc'
+
+Service looked healthy.
+
+Then I exec’d into the pod to test connectivity:
+
+'kubectl exec -it app-service-xxxxx -- /bin/sh'
+
+The database hostname was not reachable.
+
+Root Cause:
+ConfigMap was recently updated with an incorrect database endpoint.
+Application pods failed to connect to database and continuously restarted.
+
+Resolution:
+Updated ConfigMap with correct DB hostname and applied changes:
+
+'kubectl apply -f configmap.yaml'
+
+Restarted deployment to load new configuration:
+
+'kubectl rollout restart deployment app-service'
+
+Result:
+* Pods stabilized within minutes
+* Error rate dropped to zero
+* Service restored successfully
+
+Post-incident improvements:
+* Added ConfigMap validation in CI/CD pipeline
+* Implemented CrashLoopBackOff alerting
+* Documented runbook for DB connectivity failures
+* Conducted RCA discussion with team and stakeholders
+
+This incident reinforced the importance of configuration management and structured debugging in Kubernetes production environments
