@@ -1,0 +1,103 @@
+REAL DevOps / SRE Interview Questions 
+
+These are practical scenario-based questions + short answers that are commonly asked in DevOps / Cloud interviews.
+
+------------------------------------------------------------
+
+☁️ Cloud & DevOps Technical Questions:
+
+Q. How do you handle secret management in Kubernetes?
+Ans:
+- Use Kubernetes Secrets (base64 encoded)
+- Integrate with AWS Secrets Manager / HashiCorp Vault
+- Enable encryption at rest
+- Use IAM Roles (IRSA) instead of hardcoding credentials
+
+------------------------------------------------------------
+
+Q. How does Horizontal Pod Autoscaler (HPA) work?
+Ans:
+- Scales pods based on CPU/Memory metrics
+- Uses Metrics Server
+- Formula:
+ desired replicas = current replicas × (current metric / target metric)
+
+------------------------------------------------------------
+
+Q. How to debug CrashLoopBackOff?
+Ans:
+- kubectl logs <pod>
+- kubectl describe pod <pod>
+- Check env variables, configs, resource limits
+- Verify external dependencies (DB/APIs)
+
+------------------------------------------------------------
+
+Q. Cluster Autoscaler vs Karpenter?
+Ans:
+- Cluster Autoscaler → scales node groups
+- Karpenter → dynamic, faster node provisioning
+- Karpenter is more cost efficient
+
+------------------------------------------------------------
+
+Q. ALB vs NLB?
+Ans:
+- ALB → Layer 7 (HTTP/HTTPS, path-based routing)
+- NLB → Layer 4 (TCP/UDP, high performance, low latency)
+
+------------------------------------------------------------
+
+🧑‍🔧 Real-Time Scenario Questions:
+
+Q. Pods running but service not accessible?
+Ans:
+- Check Service type (ClusterIP/NodePort/LoadBalancer)
+- Check Ingress / ALB config
+- Verify Security Groups & ports
+- Check port mismatch
+
+------------------------------------------------------------
+
+Q. Sudden spike in AWS bill?
+Ans:
+- Check Cost Explorer
+- Find unused EC2, EBS, snapshots
+- Check auto-scaling issues
+- Set budget alerts
+
+------------------------------------------------------------
+
+Q. Deployment failing but old pods working?
+Ans:
+- New image issue
+- ConfigMap/Secret mismatch
+- Resource limits issue
+- Dependency failures
+
+------------------------------------------------------------
+
+Q. High latency in microservices?
+Ans:
+- Use tracing tools (X-Ray / Jaeger)
+- Identify slow service
+- Check DB/API latency
+- Analyze CPU/Network usage
+
+------------------------------------------------------------
+
+Q. CI/CD pipeline intermittent failures?
+Ans:
+- Check network issues
+- Runner resource limits
+- Dependency version conflicts
+- Timeout issues
+
+------------------------------------------------------------
+
+Q. DB CPU high?
+Ans:
+- Identify slow queries
+- Add indexes
+- Optimize queries
+- Use read replicas / scaling
