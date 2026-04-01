@@ -1,0 +1,42 @@
+First: What is an AMI?
+
+AMI = A pre-configured template to launch EC2 instances.
+It contains:
+OS (Linux/Ubuntu/Windows)
+Pre-installed software (e.g., Apache, Nginx, Java, Python, MySQL)
+Configuration (patches, drivers, security updates)
+So, instead of installing everything manually each time, companies use AMIs to launch servers quickly and consistently.
+🏢 Real-time Company Usage of AMIs
+
+1) Base OS Images
+Example: A bank’s cloud team may say:
+"All new Linux servers must come from our hardened Ubuntu AMI with security patches and monitoring agent pre-installed."
+Why? → Compliance, consistency, and security.
+Companies maintain Golden AMIs (official, company-approved images).
+
+2) Application-specific AMIs
+DevOps teams build AMIs that already include:
+App server (Tomcat, Node.js, Nginx)
+Code artifacts (latest build of the app)
+Security configs (firewall, IAM agent, antivirus)
+Example:
+An E-commerce company builds a custom AMI with Apache, PHP, and Magento → every time they scale (Auto Scaling Group), new servers come pre-installed and ready.
+
+3) Auto Scaling & Load Balancers
+AMIs are used with Auto Scaling Groups (ASG).
+Example:
+Netflix has an AMI with their video-streaming app.
+When demand spikes, ASG launches more EC2 instances from that AMI instantly.
+
+4) Disaster Recovery (DR)
+Companies keep AMIs of critical systems.
+Example: If a prod web server crashes, they launch a new one from the saved AMI → restores in minutes.
+
+5) Migration & Testing
+Lift-and-shift migration: create an AMI of an on-prem server and run it on AWS.
+QA teams: create AMIs with pre-installed test tools → spin up test environments quickly.
+
+📌 Types of AMIs Companies Use
+AWS-provided AMIs (Amazon Linux, Ubuntu, Windows)
+Marketplace AMIs (vendor software like Splunk, Palo Alto, MySQL, RedHat)
+Custom/Golden AMIs (created in-house by Cloud/DevOps teams for security and compliance).
