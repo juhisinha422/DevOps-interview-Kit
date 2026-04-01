@@ -1,0 +1,26 @@
+AWS Cost Optimization – Interview Guide
+🔹 1. What is AWS Cost Optimization?
+Answer:
+ Cost optimization is the process of reducing cloud spending while maintaining performance and reliability.
+It follows the AWS Well-Architected Framework (Cost Optimization Pillar).
+🔹 2. Key Principles of Cost Optimization
+Pay only for what you use
+Right-size resources
+Use managed services
+Monitor and optimize continuously
+Use pricing models wisely
+🔹 3. Core AWS Services for Cost Optimization
+📊 Monitoring & Billing
+AWS Cost Explorer → Analyze usage and trends
+AWS Budgets → Set alerts
+Amazon CloudWatch → Track metrics
+🔹 4. EC2 Cost Optimization
+💡 Best Practices:
+Use right instance type (avoid over-provisioning)
+Stop unused instances
+Use Auto Scaling
+Use:
+Reserved Instances (up to 75% savings)
+Spot Instances (up to 90% savings)
+👉 Example:
+If CPU usage is <20%, downgrade instance type
