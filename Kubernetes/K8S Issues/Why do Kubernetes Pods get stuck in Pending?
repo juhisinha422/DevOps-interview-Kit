@@ -1,0 +1,21 @@
+Why do Kubernetes Pods get stuck in Pending?
+One of the first real Kubernetes problems I had to debug was a pod that simply refused to start.
+No crash.
+No error message in the container.
+Just:
+STATUS: Pending
+This usually means the scheduler cannot place the pod on a node.
+Some common causes I’ve seen:
+• Insufficient CPU or memory on nodes
+• Node selector mismatch
+• Taints without tolerations
+• Persistent volume not bound
+• Resource quotas exceeded
+When debugging, these are usually the first commands I check:
+ 
+kubectl describe pod <pod-name>
+kubectl get events
+kubectl describe node <node-name>
+Most Kubernetes issues are not actually application problems.
+They’re resource scheduling problems.
+Understanding how the scheduler, nodes, and resources interact makes debugging much easier.
