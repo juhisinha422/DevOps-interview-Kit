@@ -1,0 +1,9 @@
+If a Docker image is built and you manually install missing packages inside a container, how will you convert it into a new Docker image?
+ 
+To convert a container with manual changes into a new Docker image, we use the docker commit command. This creates a snapshot of the container's current state, including any installed packages or modified files 
+
+1. docker commit <container_id_or_name> <new_image_name>:<tag> . 
+
+2. While docker commit is useful for quick prototyping or debugging, it is generally recommended to use a Dockerfile for production 
+
+3.Committing snapshots can lead to larger image sizes because every change adds a new layer 
