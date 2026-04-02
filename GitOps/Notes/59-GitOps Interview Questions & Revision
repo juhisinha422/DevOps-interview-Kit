@@ -1,0 +1,31 @@
+GitOps Interview Questions & Revision
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m doing a complete revision of GitOps concepts along with important interview questions 🚀
+This is the final step to prepare for real DevOps interviews confidently.
+
+🔹 Important Interview Concepts
+ Make sure you are clear with:
+GitOps principles (Declarative, Version Control, Reconciliation)
+Git as Single Source of Truth
+Push vs Pull model
+ArgoCD workflow and architecture
+Auto Sync & Self-Healing
+Multi-environment deployments
+
+🔹 Scenario-Based Questions
+ Interviewers often ask real-world scenarios like:
+What will you do if production goes down after deployment?
+How will you handle configuration drift?
+Staging works but production fails — why?
+How do you roll back a failed deployment?
+These test your practical understanding, not just theory.
+
+🔹 Quick Revision Strategy
+Revise all GitOps workflows
+Practice explaining architecture clearly
+Focus on real-world use cases
+Understand tool integration (CI/CD + GitOps)
+
+💡 Key Insight:
+ Strong GitOps knowledge combined with real-world scenarios and clear explanations is the key to cracking DevOps interviews.
