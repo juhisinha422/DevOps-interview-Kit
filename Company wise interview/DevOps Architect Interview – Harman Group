@@ -1,0 +1,29 @@
+DevOps Architect Interview – Harman Group
+
+Round 1 – Infrastructure & Kubernetes thinking
+
+• Design a multi-tenant Kubernetes cluster with isolation across environments.
+• Manage multiple Kustomize overlays without configuration drift.
+• Terraform state got corrupted during backend migration. What is your recovery strategy?
+• Perform zero-downtime upgrades for a stateful workload using Helm.
+• Prevent lateral movement between pods inside a cluster.
+• Your team wants custom AMIs for nodes. What checks happen before production?
+
+⸻
+
+Round 2 – Production debugging scenarios
+
+• TLS handshakes start failing after an ALB config change. Trace the RCA.
+• Nodes are healthy but kubectl logs returns nothing. What could cause this?
+• Deploy a logging sidecar and CPU throttling spikes. What’s happening?
+• Autoscaling isn’t triggering despite high CPU. Metrics, HPA, or API issue?
+• Users see 504 errors but LB health checks are green. Where do you investigate?
+• A production pod is OOMKilled but logs are missing. How do you debug?
+
+⸻
+
+Round 3 – Architecture & engineering thinking
+
+• How do you design infrastructure that empowers developers but prevents misuse?
+• What checks do you perform before approving a custom AMI to production?
+• Observability architecture change — what trade-offs do you consider?
