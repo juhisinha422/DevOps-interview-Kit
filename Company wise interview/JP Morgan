@@ -1,0 +1,14 @@
+Senior Devops Enginner(6+ Years) Interview Questions for #JPMORGAN 
+
+1. What is the use of modules and why do we use modules in Terraform?
+2. If the azurerm provider does not support newly added resources, how can we provision them using Terraform?
+3. What is the difference between Managed Identity and Service Principal?
+4. What is Managed Identity and how does it work?
+5. Can we use a Service Principal instead of Managed Identity for internal communication of services?
+6. What is a Private Endpoint?
+7. What is RBAC in Azure?
+8. If you have Contributor access to an Azure Storage Account, can you access blobs? What is the use of blob access?
+9. What is a Log Analytics Workspace?
+10. If a pipeline fails while provisioning resources in Azure, where would you check to identify the issue?
+11. What are Azure Policies and what are the types of policies?
+12. What is Azure Sentinel and why do we use it?
