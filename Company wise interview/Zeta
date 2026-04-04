@@ -1,0 +1,97 @@
+SRE Interview Questions – Zeta
+
+Recently, I interviewed for a Site Reliability Engineer (SRE) role at Zeta and wanted to share the set of questions that were asked during the process. Posting this here for anyone preparing for SRE / Reliability / Platform roles.
+
+Interview Questions:
+
+1. Tell me about yourself and your day-to-day work
+
+
+2. How does Auto Scaling Group instance refresh work?
+
+
+3. How do you secure AMI artifacts using IAM, S3, and VPC?
+
+
+4. Can you describe a P1 incident you handled and your RCA approach?
+
+
+5. What are SLI, SLO, and SLA, and how are they related?
+
+
+6. How do you reduce incident recurrence?
+
+
+7. How do you perform post-incident reviews?
+
+
+8. What steps do you follow during a live production outage?
+
+
+9. How do you prioritize multiple P1 and P2 tickets?
+
+
+10. How would you design a highly available multi-AZ architecture?
+
+
+11. Explain your Jenkins pipeline for AMI builds
+
+
+12. What is the difference between Ansible and Terraform?
+
+
+13. Can you brief your role in your previous company?
+
+
+14. How do you implement rollback strategies?
+
+
+15. What monitoring tools have you used?
+
+
+16. How do you fetch metrics from your cluster?
+
+
+17. How do microservices expose metrics to Prometheus?
+
+
+18. Do you have hands-on experience with Kubernetes?
+
+
+19. What is the difference between HPA and VPA?
+
+
+20. What happens when a pod crashes?
+
+
+21. Which Linux command is used to copy a file?
+
+
+22. Which command is used to move a file from one place to another?
+
+
+23. How do you find the current working directory?
+
+
+24. How do readiness and liveness probes work?
+
+
+25. What is the difference between Security Groups and NACLs in AWS?
+
+
+26. How do you handle a production incident during weekends?
+
+
+27. How do you find the top 10 memory-consuming processes?
+
+
+28. What are file permissions in Linux, and how does chmod work?
+
+
+29. How do you reduce excessive application log count?
+
+
+30. Can you brief the change management process?
+
+
+31. How do you configure alerts for your applications?
