@@ -1,0 +1,37 @@
+A pod in your Kubernetes cluster is eating memory. It started at 200MB at deploy time. It's now at 1.8GB and climbing.
+
+No memory limit was set in the deployment. Other pods on the same node are getting OOMKilled.
+
+What do you do as an immediate fix? And what do you change so this never happens again?
+
+The immediate fix is not to kill the pod.
+
+Your first instinct is to delete it. Don't. If there's a deployment behind it, Kubernetes will restart it immediately and the memory leak starts all over again. 
+
+You've bought yourself 20 minutes before you're back in the same situation.
+
+Instead, cordon the node first. This tells Kubernetes to stop scheduling new pods on that node. The damage is now contained. No new victims.
+
+Then set a memory limit on the deployment and redeploy. Even a generous limit like 512MB is better than no limit. The pod will get OOMKilled when it crosses 512MB instead of eating 1.8GB and starving everything around it. The leak still exists but now it has a ceiling.
+
+After that, check the other pods that were OOMKilled. They didn't die because of their own problems. They died because your leaking pod stole their memory. 
+
+Kubernetes kills the pods it considers least important when the node runs out of memory. Your perfectly healthy services got evicted because one pod had no manners.
+
+Now the real work. Making sure this never happens again.
+
+Every pod in your cluster needs resource requests and limits. Every single one. No exceptions. A pod without memory limits is a pod that can consume the entire node. It's not a question of if. It's when.
+
+Enforce this with admission controllers. Use OPA Gatekeeper or Kyverno to reject any deployment that doesn't include resource limits. Don't rely on code reviews to catch this. Humans miss things. Policy engines don't.
+
+Add monitoring on container memory trends. Not just current usage. The trend.
+
+A pod sitting at 400MB is fine. A pod that was at 200MB yesterday and is at 400MB today and will be at 800MB tomorrow is a leak. Alert on the rate of change, not just the threshold.
+
+Set up namespace-level ResourceQuotas. Even if one team forgets limits on a pod, the namespace itself has a ceiling. One team's leak can't consume the entire cluster.
+
+And finally, fix the actual memory leak. Profile the application. Check for unclosed connections, growing caches, event listeners that never get cleaned up. The infrastructure guardrails keep you alive but the application code is where the real fix lives.
+
+Systems without boundaries will always consume everything available to them.
+
+Your job isn't just to fix incidents. It's to make sure the environment enforces good behavior even when humans forget.
