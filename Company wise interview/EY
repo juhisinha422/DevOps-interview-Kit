@@ -1,0 +1,48 @@
+DevOps Interview @ EY
+
+How do you store these TLS certificates? (follow up again)
+How do you rotate these TLS certificates?
+What is a CNI? Why is it used?
+How to configure the credentials so that a pod can communicate to RDS? (AWS Secrets Manager) How do you call this secret?
+
+🔹AWS
+
+What are the AWS Services you have used? (EC2, S3, VPC, RDS, Lambda)
+
+How to provide a Lambda function access to write in an S3 bucket? (Asking the exact role name)
+
+I have an AWS Lambda function where the deployment package (ZIP) is generated from a Git repository. Due to recent code changes, the ZIP size has increased and is now exceeding Lambda limits, causing failures. What are the best practices to handle large deployment packages in AWS Lambda?
+
+During the deployment of EC2, I want to install all the dependencies. How can I achieve this?
+
+How to provide AWS Lambda permission to write in S3? How to monitor my S3 bucket for an event like (GET or PUT)? Follow-up (AWS EventBridge)
+
+Explain the concept of S3 event notifications and how they can be used to trigger AWS Lambda functions.
+(There were few more questions, which I am not able to recall)
+
+🔹 Terraform
+
+What is a state file? How does locking work? (Do you know now we don't need DynamoDB lock?)
+
+How do you manage state files if there are 20 different projects and each project has 4 different environments? Don't you think there should be a better way to manage the state files?
+
+Dynamic block in Terraform.
+
+What is map() function in Terraform? Why do we use it?
+
+Do you use Terraform Open Source or Enterprise? I want to limit my deployments to 5 regions only. How to achieve this? (Sentinel)
+
+🔹 DevSecOps / Security
+
+What are the DevSecOps tools you have used?
+
+What is SAST & DAST?
+
+Sonar stage. (Answered for Python code, explicitly interested in Java and .NET project)
+
+🔹 CI/CD (Jenkins)
+
+What are the plugins that you have used in Jenkins?
+
+
+It's all about Kubernetes & Terraform
