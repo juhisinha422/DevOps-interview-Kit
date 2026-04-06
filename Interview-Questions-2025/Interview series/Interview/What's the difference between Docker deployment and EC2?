@@ -1,0 +1,16 @@
+The interviewer asked -- "What's the difference between Docker deployment and EC2?"
+
+Seems simple but there's more to it than most people think.
+
+Docker is a containerization platform. It packages your app and its dependencies into a lightweight container. Containers share the host OS kernel, so they spin up fast and use fewer resources.
+
+EC2 is a virtual machine on AWS. You get a full OS environment with control over CPU, RAM, storage and networking. Heavier than containers but more isolated and flexible for different workloads.
+
+The key difference -- 
+Docker gives you application-level isolation, 
+EC2 gives you machine-level isolation. 
+And here's the thing -- you can actually run Docker containers on top of an EC2 instance. That's one of the most common production setups out there.
+
+Then the follow-ups came around scaling.
+
+Docker scales through orchestration tools like Kubernetes or ECS -- you're scaling pods and tasks, not machines. EC2 scales through Auto Scaling Groups, adding or removing VM instances based on load. Containers are faster and cheaper to scale. EC2 gives you more control over the underlying infrastructure.
