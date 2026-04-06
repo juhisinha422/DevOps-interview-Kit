@@ -1,0 +1,32 @@
+Fault Tolerance vs High Availability — this is a very common interview topic, especially for SRE/Cloud roles.  
+
+🔹 High Availability (HA)
+
+A system designed to remain operational most of the time, even if some components fail.
+
+⚙️ How it works
+Uses redundancy
+Detects failure and recovers quickly
+May have brief interruption
+
+🛠 Common Techniques
+Load Balancer (e.g., AWS ELB)
+Auto Scaling
+Multi-AZ deployment
+Health checks
+
+====
+
+🔹 Fault Tolerance (FT)
+
+A system that continues to operate without any disruption, even when components fail.
+
+⚙️ How it works
+Uses real-time replication
+No failover delay
+Fully redundant components running simultaneously
+
+🛠 Common Techniques
+Active-Active architecture
+Synchronous replication
+Distributed systems with consensus
