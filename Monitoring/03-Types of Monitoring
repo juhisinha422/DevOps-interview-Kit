@@ -1,0 +1,34 @@
+Types of Monitoring
+
+🔹 What is it? 📊
+ Monitoring is not just one thing—it includes different layers of your system.
+ The main types are Infrastructure, Application, and Network monitoring.
+
+🔹 Why it matters in real-world? 🏗️
+ Modern systems are complex. A failure can happen at any layer.
+ 👉 You need different types of monitoring to detect issues everywhere.
+
+🔹 Key Types of Monitoring: ⚡
+✔ Infrastructure Monitoring 🖥️
+Tracks servers, CPU, memory, disk
+Focus: System health
+✔ Application Monitoring 🚀
+Tracks app performance
+Response time, errors, requests
+✔ Network Monitoring 🌐
+Tracks network traffic
+Latency, packet loss, connectivity
+
+🔹 Real-world Examples: 💡
+👉 Infrastructure Issue
+CPU usage = 95% → Server overload
+👉 Application Issue
+API response slow → Code or DB issue
+👉 Network Issue
+High latency → Slow communication between services
+
+🔹 Key Concepts to Remember: 🧠
+✔ Infra = System health 🖥️
+ ✔ App = Performance 🚀
+ ✔ Network = Connectivity 🌐
+ ✔ All 3 together = Complete monitoring
