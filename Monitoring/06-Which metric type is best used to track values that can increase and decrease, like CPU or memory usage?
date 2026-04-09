@@ -1,0 +1,6 @@
+Which metric type is best used to track values that can increase and decrease, like CPU or memory usage? 
+A. Counter
+B. Gauge
+C. Histogram
+D. Summary
+ANS B
