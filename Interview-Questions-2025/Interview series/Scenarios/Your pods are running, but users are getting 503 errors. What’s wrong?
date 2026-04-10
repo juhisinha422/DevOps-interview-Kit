@@ -1,0 +1,11 @@
+Your pods are running, but users are getting 503 errors. What’s wrong?
+
+ If pods are running but returning 503 errors, the most common cause is that they are not ready to serve traffic Although Kubernetes reports them as "Running," they are removed from the service endpoints. 
+
+1.The application within the container is not starting correctly, it is too slow to start, or it is overloaded, causing it to fail readiness checks. As a result, Kubernetes removes the pod from the load balancer. 
+
+2.The Kubernetes Service selector does not match the labels assigned to the Pods, leading to empty endpoint lists 
+
+3.The service is too busy, or high traffic is exhausting resources, leading to 503 errors from the backend. 
+
+ 4.If using HTTPS/SSL at the ingress, a failed handshake between the ingress controller and the backend pod can result in a 503 error. 
