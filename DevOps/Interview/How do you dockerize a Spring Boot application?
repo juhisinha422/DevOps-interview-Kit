@@ -1,0 +1,28 @@
+1. How do you dockerize a Spring Boot application?
+===========================================
+First, I build the Spring Boot application into a JAR file using Maven or Gradle.
+Then, I create a Dockerfile where I define the base image, copy the JAR file, and specify the startup command.
+After that, I build the Docker image using the docker build command.
+Finally, I run the container using docker run with port mapping to access the application.
+
+Example Explanation (with steps)
+Step 1: Build JAR
+I build the application:
+mvn clean package
+
+Step 2: Create Dockerfile
+I create a Dockerfile like this:
+
+FROM openjdk:17-jdk-alpine
+WORKDIR /app
+COPY target/myapp.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+Step 3: Build Image
+I build the Docker image:
+docker build -t springboot-app .
+
+Step 4: Run Container
+I run the container:
+docker run -d -p 8080:8080 springboot-app
