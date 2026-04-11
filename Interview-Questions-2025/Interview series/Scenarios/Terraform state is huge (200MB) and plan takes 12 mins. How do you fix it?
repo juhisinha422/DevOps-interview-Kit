@@ -1,0 +1,18 @@
+Terraform state is huge (200MB) and plan takes 12 mins. How do you fix it? 
+ 
+1. A 200MB Terraform state file with 12-minute plans is a classic sign of a monolithic infrastructure, where too many resources are managed in a single state  
+
+2.The core issue is that Terraform must refresh every resource, causing massive API call overhead and slower parsing. 
+
+3.The most effective solution is breaking our monolithic state into smaller, focused state files (e.g., networking, database, application) 
+
+4.Create separate directories for components and use terraform state mv to move resources to new state files. 
+
+5.we can use terraform_remote_state data sources to read outputs from other states (e.g., networking VPC ID). 
+
+6.If we know the infrastructure has not changed outside of Terraform, run:  terraform plan -refresh=false  
+
+7.we use terraform state list and terraform state rm to remove resources that no longer exist or are not managed by Terraform 
+
+8.we separate our networking, data, and application resources into three separate state files. This will immediately improve performance and reduce the blast radius of any potential errors
+ 
