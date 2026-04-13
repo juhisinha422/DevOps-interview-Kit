@@ -1,0 +1,18 @@
+Tell me about yourself and your roles & responsibilities
+Do you have experience in observability platforms?
+Do you have experience working with data (metrics, logs, traces)?
+What is your reason for changing your current company?
+Do you have migration experience? Which tools have you used?
+How do you migrate OpenTelemetry across hundreds of services?
+After migration, if distributed traces are not appearing, what is the cause and fix?
+If Datadog metrics are missing after migration, how do you handle it?
+How do you map Datadog metrics to OpenTelemetry metrics?
+If metrics are not getting generated, how do you troubleshoot?
+How do you transform and normalize metrics in OpenTelemetry Collector?
+How do you rename traces in OpenTelemetry?
+During an outage with multiple alerts, how do you identify the root cause?
+If traces are missing between services in Datadog, what could be the cause?
+How do you decide where to instrument applications using OpenTelemetry?
+How do you design Datadog dashboards for production monitoring?
+How do you integrate datadog in an observability pipeline?
+How do you create a CI/CD pipeline for observability or monitoring systems?
