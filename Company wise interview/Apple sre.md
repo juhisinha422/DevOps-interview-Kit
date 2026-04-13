@@ -1,201 +1,166 @@
-# 🍏 SRE / DevOps Interview Preparation (4 Years Experience)
-
-## 1. Roles & Responsibilities as an SRE/DevOps Engineer
-
-* Manage CI/CD pipelines for faster and reliable deployments
-* Ensure high availability, scalability, and reliability of applications
-* Implement monitoring, alerting, and logging solutions
-* Automate infrastructure using IaC tools (Terraform, CloudFormation)
-* Handle incident management, root cause analysis (RCA)
-* Improve system performance and reduce toil through automation
-* Collaborate with dev teams for better release strategies
+#  SRE / DevOps Interview (4 Years Experience)
 
 ---
 
-## 2. How do you build a standard Linux image?
+### 1.Explain your roles and responsibilities as an SRE/DevOps engineer
 
-* Use tools like **Packer** to automate image creation
-* Start from a base image (AMI / ISO)
-* Install required packages, security patches
-* Configure users, SSH, firewall rules
-* Harden OS (disable unused services, enforce policies)
-* Validate image using test scripts
-* Store image in repository (AWS AMI, VM templates)
+* Managing CI/CD pipelines for automated deployments
+* Ensuring system reliability, availability, and scalability
+* Monitoring applications using tools like Prometheus/Grafana
+* Automating infrastructure using Terraform/Ansible
+* Handling incidents, troubleshooting, and performing RCA
+* Reducing manual work by implementing automation
+* Collaborating with developers for smooth releases
 
 ---
 
-## 3. Partitioning Standards & Security Parameters
+### 2.How do you build a standard Linux image?
+
+* Use tools like Packer for automated image creation
+* Start with a base image (AMI/ISO)
+* Install required packages and dependencies
+* Apply security patches and updates
+* Configure users, SSH, firewall, and services
+* Harden the OS (disable unnecessary services)
+* Validate image and store it (e.g., AMI)
+
+---
+
+### 3.What partitioning standards and security parameters do you follow while building Linux images?
 
 **Partitioning:**
 
-* `/` → Root (20–30 GB)
-* `/var` → Logs & apps (separate to avoid root fill)
+* `/` → Root partition
+* `/var` → Logs and application data
 * `/home` → User data
-* `/tmp` → Temporary files (mounted with restrictions)
+* `/tmp` → Mounted with restricted permissions
 
-**Security Parameters:**
+**Security:**
 
-* Enable firewall (iptables/firewalld)
-* SELinux enforcing mode
+* Enable firewall
+* SELinux in enforcing mode
 * Disable root login
 * Strong password policies
-* File permissions (least privilege)
+* Least privilege permissions
 
 ---
 
-## 4. SSH Hardening Techniques
+### 4.What are SSH hardening techniques you have implemented?
 
-* Disable root login (`PermitRootLogin no`)
-* Use SSH key-based authentication
-* Change default port (optional)
+* Disable root login
+* Enable key-based authentication
 * Disable password authentication
-* Limit users/groups (`AllowUsers`)
-* Enable fail2ban to block brute force attacks
-* Set idle timeout
+* Restrict users using AllowUsers
+* Change default SSH port (optional)
+* Enable fail2ban
+* Configure idle session timeout
 
 ---
 
-## 5. Deploy Multiple Linux Servers using Ansible
+### 5.How do you deploy multiple Linux servers using Ansible?
 
-* Create inventory file with server details
-* Use playbooks for automation
-* Example tasks:
-
-  * Install packages
-  * Configure services
-  * Deploy applications
-* Use roles for reusable structure
-* Execute:
-
-```bash
-ansible-playbook -i inventory.ini deploy.yml
-```
+* Maintain inventory file with all server details
+* Write playbooks to install packages and configure services
+* Use roles for reusable components
+* Execute playbook across servers:
+  ansible-playbook -i inventory deploy.yml
 
 ---
 
-## 6. Create User & Assign Permissions
+### 6.How do you create a user and assign permissions to directories like /apps?
 
-```bash
-useradd appuser
-passwd appuser
-mkdir /apps
-chown appuser:appuser /apps
-chmod 755 /apps
-```
-
-* Use groups for better access control
-* Follow least privilege principle
+* Create user: `useradd appuser`
+* Set password: `passwd appuser`
+* Create directory: `mkdir /apps`
+* Assign ownership: `chown appuser:appuser /apps`
+* Set permissions: `chmod 755 /apps`
 
 ---
 
-## 7. Troubleshoot Intermittent Image Build Failures
+### 7.How do you troubleshoot intermittent failures during image building?
 
-* Check logs (Packer / CI logs)
-* Validate network connectivity
-* Verify repository/package availability
-* Check disk/memory constraints
-* Retry with debug mode
+* Check build logs (Packer/CI logs)
+* Verify network connectivity
+* Validate package repositories
+* Check resource issues (CPU, memory, disk)
 * Identify flaky scripts or dependencies
+* Run build in debug mode
 
 ---
 
-## 8. Disk Shows 100% Usage but Data is Less
+### 8.If disk shows 100% usage but actual data is less, what could be the issue?
 
-Possible reasons:
-
-* Deleted files still held by processes
-  → Use: `lsof | grep deleted`
-* Inode exhaustion
-  → `df -i`
+* Deleted files still held by running processes (`lsof | grep deleted`)
+* Inode exhaustion (`df -i`)
 * Hidden large files
-* Mounted directories issues
+* Log files not rotated
+* Mount point issues
 
 ---
 
-## 9. Troubleshoot Memory / Heap Issues
+### 9.How do you troubleshoot memory or heap issues in Linux/Java applications?
 
 **Linux:**
 
-* `top`, `htop`, `free -m`
-* Check OOM killer logs (`dmesg`)
+* Use `top`, `htop`, `free -m`
+* Check OOM logs using `dmesg`
 
 **Java:**
 
-* Analyze heap dump using tools (jmap, jstack)
+* Analyze heap dump (jmap, jstack)
 * Check GC logs
 * Tune JVM parameters (-Xms, -Xmx)
 
 ---
 
-## 10. Auto-start Applications on Boot
+### 10.How do you configure applications to start automatically on system boot?
 
-* Use systemd service:
-
-```bash
-systemctl enable myapp.service
-systemctl start myapp.service
-```
-
-* Ensure proper service file configuration
+* Create systemd service file
+* Enable service: `systemctl enable app.service`
+* Start service: `systemctl start app.service`
 
 ---
 
-## 11. Patch Management Process
+### 11.What is your organization’s patch management process?
 
 * Identify vulnerabilities
-* Schedule patch window
+* Schedule patching window
 * Test patches in staging
-* Apply using automation tools (Ansible, WSUS, etc.)
-* Validate systems post-patch
+* Apply patches using automation tools
+* Validate systems after patching
 * Maintain compliance reports
 
 ---
 
-## 12. Handling Production Outage
+### 12.How do you handle a production application outage?
 
 * Acknowledge alert immediately
-* Check monitoring dashboards
-* Identify impact & affected services
-* Rollback or apply hotfix
+* Identify impacted services
+* Check logs and monitoring dashboards
+* Apply fix or rollback deployment
 * Communicate with stakeholders
 * Perform RCA after resolution
-* Implement preventive measures
 
 ---
 
-## 13. CI/CD Pipeline (Jenkins: Dev → UAT → Prod)
+### 13.Explain your CI/CD pipeline process using Jenkins (Dev → UAT → Prod)
 
-1. Code commit → Git
-2. Build → Compile & package
-3. Test → Unit & integration tests
-4. SonarQube → Code quality
-5. Artifact → Store in Nexus/Artifactory
-6. Deploy to Dev
-7. Promote to UAT after approval
-8. Manual/automated approval
-9. Deploy to Production
+* Code commit triggers pipeline
+* Build stage (compile/package)
+* Test stage (unit/integration tests)
+* Code quality checks (SonarQube)
+* Store artifact (Nexus/Artifactory)
+* Deploy to Dev → UAT → Prod
+* Approval before production deployment
 
 ---
 
-## 14. Handling Deployment Failure in UAT
+### 14.How do you handle deployment failure in staging/UAT environment?
 
-* Analyze logs & error messages
+* Check logs and identify root cause
 * Rollback to previous stable version
-* Fix configuration/code issues
+* Fix configuration or code issues
 * Re-run pipeline
-* Validate thoroughly before promoting
-* Add checks to prevent future failures
+* Validate before promoting to production
 
 ---
-
-## ✅ Pro Tips (Apple-Level Expectations)
-
-* Focus on **automation + reliability mindset**
-* Strong understanding of **Linux internals**
-* Experience with **scalability & failure handling**
-* Be ready for **real incident scenarios**
-* Emphasize **monitoring, observability, and RCA**
-
----
-
-🚀 This README is optimized for **4 years experienced SRE/DevOps interviews**
