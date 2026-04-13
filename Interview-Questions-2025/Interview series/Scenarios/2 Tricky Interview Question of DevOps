@@ -1,0 +1,22 @@
+Tricky Interview Question of DevOps :
+
+What Happened if POD received more traffic/load than its limit? ( Where Auto scale is not configured )
+
+Answer:
+
+1. If CPU limit is exceeded
+Kubernetes throttles the container:
+
+The app becomes slow / high latency
+Requests may start timing out
+
+👉 Example: If CPU limit = 500m and traffic spikes → container can’t use more → performance drops
+
+ 2. If the memory limit is exceeded:
+
+Kubernetes triggers OOMKilled (Out Of Memory)
+Container is killed and restarted
+
+👉 This is dangerous for:
+APIs (downtime)
+Stateful apps (data loss risk).
