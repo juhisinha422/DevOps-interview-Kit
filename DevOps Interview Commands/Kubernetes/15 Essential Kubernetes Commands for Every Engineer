@@ -1,0 +1,105 @@
+15 Essential Kubernetes Commands for Every Engineer
+
+🔍 Phase 1: Cluster & Resource Inspection
+Before making changes, you need to see the current state of your environment.
+
+Check Cluster Nodes
+
+kubectl get nodes
+
+Displays all nodes and their status (e.g., Ready/NotReady) to ensure the infrastructure is healthy.
+
+View Running Pods
+
+kubectl get pods
+
+The go-to command for checking the status of your applications in the current namespace.
+
+View Pods with Detailed Info
+
+kubectl get pods -o wide
+
+Adds crucial context like the Pod IP and which Node the pod is scheduled on.
+
+Check Services (Networking)
+
+kubectl get svc
+
+Lists services to verify ClusterIPs, NodePorts, or LoadBalancer status.
+Check Deployments
+
+kubectl get deployments
+
+Shows the desired vs. actual state of your application instances.
+
+Get All Resources
+
+kubectl get all
+
+A "bird’s eye view" that shows pods, services, deployments, and replica sets simultaneously.
+
+🛠️ Phase 2: Troubleshooting & Debugging
+
+When things go wrong, use these commands to find the "Why."
+Describe a Pod (The Gold Standard)
+kubectl describe pod <pod-name>
+Essential for seeing events (like ImagePullBackOff or OOMKilled) and container lifecycle details.
+
+View Pod Logs
+
+kubectl logs <pod-name>
+
+Retrieves the application's stdout/stderr logs to find code-level errors.
+
+Stream Logs in Real-Time
+kubectl logs -f <pod-name>
+
+Follows the logs live—perfect for monitoring a crash or a startup sequence.
+
+Logs for Specific Containers
+
+kubectl logs <pod-name> -c <container-name>
+
+Used when a Pod has multiple containers (sidecars) and you need to isolate one.
+
+View Cluster Events
+
+kubectl get events
+
+ --sort-by=.metadata.creationTimestamp
+Provides a chronological timeline of everything happening in the cluster.
+
+🚀 Phase 3: Operations & Interaction
+These commands are used to apply changes or interact directly with the workload.
+
+Apply Configuration
+
+kubectl apply -f deployment.yaml
+
+The standard way to create or update resources using declarative YAML files.
+
+Execute a Shell Inside a Pod
+
+kubectl exec -it <pod-name> -- /bin/bash
+
+Allows you to "ssh" into a container to check files, environment variables, or network connectivity.
+
+Scale a Deployment
+
+kubectl scale deployment <name> --replicas=5
+
+Instantly increases or decreases the number of running pods to handle traffic.
+
+Delete Resources
+
+kubectl delete -f deployment.yaml
+
+Gracefully removes all resources defined in a specific file.
+
+💡 The "Golden Rule" of K8s Troubleshooting
+
+If an application isn't working, always follow this order:
+get pods (Is it running?)
+describe pod (If it's not running, did the cluster fail to start it?)
+logs (If it is running but crashing, what does the application say?)
+Mastering this sequence will save you hours of "poking around" in the dark!
