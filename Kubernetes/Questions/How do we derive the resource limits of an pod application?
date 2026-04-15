@@ -1,0 +1,45 @@
+How do we derive the resource limits of an pod application?
+-----------------------------------------------------------------
+Neither the devops engineer nor the developer can define or decide the resources (cpu & memory) that needs to be alloted to the pod application. Usually the application would be put for performance testing with performance engineering team, for deriving the bench mark metrix of cpu and memory usage levels of the application. The team generates virtual traffic simulating the real-world traffic to the application and derives the min & max resource requirements
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hangoutpod
+spec:
+  containers:
+    - name: hangout
+      image: hangout:1.0
+      ports:
+        - name: hangoutport
+          containerPort: 8080
+          protocol: TCP
+      readinessProbe:
+        httpGet:
+          path: /hangout/actuator/health/readiness
+          port: 8080
+        initialDelaySeconds: 3
+        timeoutSeconds: 10
+        failureThreshold: 3
+      livenessProbe:
+        httpGet:
+          path: /hangout/actuator/health/liveness
+          port: 8080
+        initialDelaySeconds: 5
+        timeoutSeconds: 10
+        failureThreshold: 3
+      resources:
+        requests:
+          cpu: "500m"
+          memory: "512Mi"
+        limits:
+          cpu: "1000m"
+          memory: "1024Mi"
+
+1 core = 1000 millicores 
+
+Memory:
+Binary Units: (IEC Standard)
+Ki = kibibyte = 1024 bytes
+Mi = mebibyte = 1024^2
+Gi = gibibyte = 1024^3
