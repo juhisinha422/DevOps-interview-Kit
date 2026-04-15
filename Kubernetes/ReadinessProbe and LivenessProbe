@@ -1,0 +1,44 @@
+#1. ReadinessProbe and LivenessProbe
+--------------------------------------------
+ReadinessProbe and LivenessProbe are the 2 checks that is performed by the kubernetes on the underlying pod application to report or manage the pod based on the real status of the application
+
+1. ReadinessProbe
+When we pass the kubernetes specfile as an input to the kubectl asking the control plane to create and run the pod, the control plane makes its best effort on determining the appropriate workernode on the cluster and schedule the pod for execution.
+  
+The kubelet process that is running on the workernode will interacts with the docker engine and pull the image from the container registry and ask the docker engine to create and run the pod container on that worker node. upon creating the pod immediately the control plane reports the pod status as running, even though the underlying application is not yet started
+
+since the pod status has been reported as running even though the underlying application has not started, the control plane will open the pod for accepting the taffic that leads to failures. So to avoid this problem of routing the requests to the pod application the kubernetes has to support ReadinessProbe
+
+2. LivenessProbe
+While the pod is running on the cluster, there is always a chance that due to lack of resources or failures within the application of the pod, pod may become unresponsive and all the requests routed to the pod application would result in failure. Since kubernetes does know such application failures, it sill routes the traffic to the pod application that leads to failures and results in wastage of resources in keeping such pods running on the cluster
+
+If the kubernetes can somehow perform real running status check on the underlying application, and it is not available it can terminate the pod and recreate another pod on the cluster when the application is not running, this is where livenessProbe comes into picture
+
+Note: until readinessProbe has been passed, the kubernetes will not being livenessProbe.
+  
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hangoutpod
+spec:
+  containers:
+    - name: hangout
+      image: hangout:1.0
+      ports:
+        - name: hangoutport
+          containerPort: 8080
+          protocol: TCP
+      readinessProbe:
+        httpGet:
+          path: /hangout/actuator/health/readiness
+          port: 8080
+        initialDelaySeconds: 3
+        timeoutSeconds: 10
+        failureThreshold: 3
+      livenessProbe:
+        httpGet:
+          path: /hangout/actuator/health/liveness
+          port: 8080
+        initialDelaySeconds: 5
+        timeoutSeconds: 10
+        failureThreshold: 3
