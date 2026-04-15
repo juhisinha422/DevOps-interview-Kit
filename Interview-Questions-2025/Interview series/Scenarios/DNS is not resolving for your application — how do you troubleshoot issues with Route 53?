@@ -1,0 +1,11 @@
+ DNS is not resolving for your application — how do you troubleshoot issues with Route 53? 
+
+1. Mismatched NS records are the most common cause of failures, often requiring a manual update of the NS records at the registrar level. 
+
+2.we need to check DNS Propagation changes can take up to 48 hours to propagate, often caused by ISPs caching old records. 
+
+3.CNAMEs cannot be used at the root we need to verify that the target of our alias points to a valid AWS resource. 
+
+4.If we using private DNS, check that VPC settings enableDnsHostnames and enableDnsSupport are enabled, and the zone is associated with the correct VPC.  
+
+5. We need to use diagnostic tools like dig or nslookup to check for cached or incorrect responses 
