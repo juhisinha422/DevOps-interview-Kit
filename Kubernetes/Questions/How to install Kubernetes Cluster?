@@ -1,0 +1,7 @@
+How to install Kubernetes Cluster?
+There are many ways we can setup Kubernetes (k8s) cluster:
+1. on-premise within Physical Server / Virtual Machines 
+2. Minikube = Minikube is a simple way to spin up a local kubernetes environment. Instead of deploying a full-scale kubernetes cluster on cloud, we can use minikube to simulate a single-node cluster on our laptop or desktop machine
+3. cloud providers (eks on aws cloud)
+4. docker-for-desktop (mac/windows/linux)    
+    
