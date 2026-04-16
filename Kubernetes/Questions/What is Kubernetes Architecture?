@@ -1,0 +1,19 @@
+What is Kubernetes Architecture?
+
+Kubernetes architecture is built on a highly resilient Master–Worker design that allows us to run applications at massive scale with automation, reliability, and self-healing capabilities.
+
+🔹 Control Plane – Where We Make Decisions
+We rely on the control plane to manage the entire cluster.
+ It includes:
+API Server – the central access point for everything in the cluster
+etcd – the source of truth where cluster state is stored
+Scheduler – intelligently picks the best node for each Pod
+Controller Manager – constantly monitors and corrects cluster state
+These components work together so we always maintain the desired state.
+
+🔹 Worker Nodes – Where We Run Our Applications
+Our workloads run on worker nodes, each powered by:
+kubelet – ensures containers are healthy and running
+kube-proxy – manages all networking and service routing
+Container Runtime – executes containers efficiently
+This layer ensures our applications are always available, scalable, and stable.
