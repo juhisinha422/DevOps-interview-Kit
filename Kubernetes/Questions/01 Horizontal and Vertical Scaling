@@ -1,0 +1,10 @@
+Important Interview Question 🥳
+
+What do you understand by Horizontal and Vertical Scaling and which one is useful in which scenario?
+
+
+When we talk about scaling, we mean increasing our system’s ability to handle more users, data, or traffic. There are two main types — Vertical Scaling and Horizontal Scaling. In Vertical Scaling, we add more power to the existing server, such as increasing CPU, RAM, or storage. I usually prefer vertical scaling when we work with databases or monolithic applications because it’s easy to implement and doesn’t require big architectural changes. However, it has some limits — we can only upgrade hardware up to a certain point, and if that single server fails, the whole system may go down.
+
+On the other hand, Horizontal Scaling means adding more servers or nodes to distribute the load across multiple systems. We often use horizontal scaling in cloud or microservices environments where high traffic and fault tolerance are required. It allows us to scale almost infinitely and maintain availability even if one node fails. But it’s more complex because we need load balancers and proper data distribution.
+
+In short, I prefer vertical scaling for small or simple systems that need quick performance improvement, and horizontal scaling for large-scale, cloud-based applications where we need better performance, flexibility, and reliability.
