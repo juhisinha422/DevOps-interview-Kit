@@ -1,0 +1,4 @@
+use case of network load Balancer 
+
+In my company they use it for the static IP address benefits as the customer they need to white list the IP to pass firewall
+And  alb is dynamic u can't white list
