@@ -1,0 +1,64 @@
+1. How do we check the Kubernetes cluster health?
+
+We normally run kubectl get componentstatus or in newer versions check kubectl get nodes and kubectl get pods -A. If any node is NotReady, we inspect kubelet logs or network issues.
+
+2. What steps do we follow when a Pod is stuck in CrashLoopBackOff?
+We first check logs using kubectl logs <pod>. If needed, we exec into the pod. Then we check liveness/readiness probes, configMaps, secrets, and image issues. Most of the time the issue is wrong env variables or application errors.
+
+3. What do we do if a Pod stays in Pending state?
+We check node resources using kubectl describe pod and kubectl get nodes -o wide. Usually it means not enough CPU/memory, taints/tolerations mismatch, or no node matching nodeSelector or affinity rules.
+
+4. How do we troubleshoot image pull errors?
+We check the reason with kubectl describe pod. Common issues include wrong image name, registry authentication, or private repo credentials. We fix using ImagePullSecrets.
+
+5. How do we restart a Pod in Kubernetes?
+Pods cannot be manually restarted. We restart the controlling workload:
+
+kubectl rollout restart deployment <name>
+This creates new pods and removes old ones.
+
+6. How do we handle a node going NotReady?
+We check system logs on the node, kubelet service, disk pressure, memory pressure, and network issues. If node is permanently bad, we drain it and recreate the VM.
+
+7. What is your approach when application is not accessible through Service?
+We check:
+Pod is running
+Correct port exposed
+Service selector matching pod labels
+Service endpoints
+ If mismatch exists, we update labels or selector.
+
+
+8. How do we scale pods in real time?
+We scale manually using:
+
+kubectl scale deployment <name> --replicas=5
+Or enable HPA to auto-scale based on CPU/memory or custom metrics.
+
+9. How do you perform a zero-downtime deployment?
+We use RollingUpdate strategy in deployments. We keep maxUnavailable=0 and maxSurge=1. This ensures old pod terminates only after new pod is available.
+
+10. How do we check which node a pod is running on?
+
+kubectl get pod -o wide
+It shows the node name and pod IP.
+
+11. What do we do when a ConfigMap or Secret is updated but pod is not picking it?
+
+ConfigMaps and Secrets do not reload automatically. We restart the deployment using:
+
+kubectl rollout restart deployment <name>
+
+12. How do we debug networking issues inside a pod?
+We exec into pod using:
+
+kubectl exec -it <pod> -- sh
+We check DNS using nslookup, connectivity using curl, ping, or create a temporary debug pod.
+
+13. What do you do if PVC is stuck in Pending?
+We check the storage class, volume type, and events using kubectl describe pvc. Often no storage available, wrong storage class, or insufficient capacity are the causes.
+
+14. How do you view events in Kubernetes?
+
+kubectl get events --sort-by=.metadata.creationTimestamp
+Helpful for debugging scheduling, node, and volume issues.
