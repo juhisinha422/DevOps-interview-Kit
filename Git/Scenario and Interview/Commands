@@ -1,0 +1,57 @@
+Git Commands 
+---------------------------------------------------------------
+# 1. What is git init?
+
+git init is a command we use to create a new local Git repository in a Project directory.
+# git init
+
+---------------------------------------------------------------
+# 2. git add
+ 
+we use git add command move a file from working are to staging are 
+# git add <file-name>            : We add only one specific file to staging.
+
+# git add file1.txt file2.txt        : This command is used to add multiple files to the staging area at once.
+
+# git add .                                 : This command is used to add all changes (files & folders) in the current directory to the staging area.
+
+# git add -A                              : This command is used to stage all changes in the entire repository.
+
+# git add -u                               : This command is used to stage changes only for already tracked files.
+
+# git add *.txt                            : This command is used to stage all .txt files in the current directory.
+
+---------------------------------------------------------------
+# 3. git commit 
+The git commit command is used to save the staged changes into the local repository.
+We use it after git add to permanently record our changes.
+Each commit creates a snapshot of our project at that point in time.
+It also helps us track history and revert changes if needed.
+
+# git commit -m "your message"          : This command is use  to permanently save staged changes into the repository with a meaningful message.
+
+# git commit -a -m "Updated existing files"  : This command is used to commit changes of already tracked files directly, without running git  add separately.
+               -a → Automatically stages modified & deleted tracked files
+               -m → Adds a commit message
+
+Example
+# Modify an existing file
+echo "update" >> file1.txt
+
+git commit -a -m "Updated existing files"
+
+ No need to run git add file1.txt
+
+# git commit   : This command is used to save staged changes, but it will open a text editor to write the commit message.
+ 
+# git commit --amend -m "Updated commit message"  : This command is used to modify the last commit. 
+               Changes the last commit messag         
+               Can also include any new staged changes
+               Rewrites the previous commit
+
+git add file1.txt
+git commit -m "Wrong message"
+
+# Fix the message
+git commit --amend -m "Corrected message"
+---------------------------------------------------------------
