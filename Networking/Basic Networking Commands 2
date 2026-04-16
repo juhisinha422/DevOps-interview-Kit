@@ -1,0 +1,47 @@
+Basic Network Commands
+
+ip addr – Show IP address
+ip link – Show network interfaces
+ifconfig – Display IP (old command)
+hostname -I – Show system IP
+hostnamectl – Show host details
+
+📡 Connectivity Testing
+
+ping host – Check connectivity
+traceroute host – Trace network path
+mtr host – Continuous traceroute
+arp -a – Show ARP table
+
+🔍 Port & Connection Checking
+
+netstat -tulnp – Show open ports
+ss -lntup – Show listening ports
+lsof -i – Show port usage
+nmap ip – Scan open ports
+
+🌎 DNS Commands
+
+nslookup domain – DNS lookup
+dig domain – Detailed DNS info
+host domain – Simple DNS query
+
+📥 File Transfer
+
+scp file user@ip:/path – Secure copy
+rsync -avz – Remote sync
+wget url – Download file
+curl url – Test API / URL
+
+🔐 Remote Access
+
+ssh user@ip – Remote login
+ssh-keygen – Generate SSH key
+ssh-copy-id user@ip – Copy SSH key
+
+🛠 Network Configuration
+
+nmcli – Network manager CLI
+route -n – Routing table
+ip route – Show routes
+ethtool eth0 – Network interface info
