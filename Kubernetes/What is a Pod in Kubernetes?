@@ -1,0 +1,5 @@
+What is a Pod in Kubernetes?
+A Pod is the smallest and simplest deployable unit in Kubernetes.
+ We use a Pod to run one or more containers that are tightly coupled and need to share resources.
+ All containers inside a Pod share the same network (IP, ports) and storage volumes.
+ In real projects, we usually deploy applications by creating Pods, either directly or through controllers like Deployments or ReplicaSets.
