@@ -1,0 +1,215 @@
+Round 1 (Technical Screening) and Round 2 (Managerial/Technical Discussion), and provide comprehensive answers for each one.
+
+Round 1 (Technical Screening)
+1. What is HTTP? Basic introduction
+HTTP (HyperText Transfer Protocol) is an application-layer protocol used for transferring data over the web. It is the foundation of any data exchange on the Web and is a protocol used for fetching resources, such as HTML documents. HTTP works on a request-response model where the client (usually a browser) sends a request to the server, and the server responds with the requested resource.
+Request: The client (browser) sends an HTTP request to the server (e.g., GET /index.html).
+Response: The server responds with the requested content (e.g., HTML page, image, JSON data).
+2. Difference between HTTP and HTTPS
+HTTP (Hypertext Transfer Protocol) is unsecured. Data is transmitted in plain text, meaning anyone who intercepts the communication can read it.
+
+HTTPS (Hypertext Transfer Protocol Secure) is the secured version of HTTP. It uses SSL/TLS encryption to secure the data between the client and the server. This ensures that the data remains private and secure during transmission.
+
+Differences:
+
+Security: HTTP sends data in plaintext, while HTTPS encrypts the data.
+Port: HTTP uses port 80, while HTTPS uses port 443.
+Encryption: HTTPS uses SSL/TLS encryption to secure the communication.
+3. What is Horizontal Scaling vs Vertical Scaling?
+Horizontal Scaling (Scaling Out/In): This refers to adding or removing instances (servers) to handle increased load. It involves distributing traffic across multiple servers.
+Example: Adding more EC2 instances to handle more web traffic or adding more Pods in Kubernetes.
+
+Vertical Scaling (Scaling Up/Down): This refers to upgrading the capacity of an individual instance (increasing CPU, RAM, etc.). It doesn’t involve adding new servers.
+
+Example: Upgrading an EC2 instance type to a larger one with more memory and processing power.
+
+Key Difference: Horizontal scaling is generally more flexible and robust for high availability and fault tolerance, while vertical scaling is simpler but has a limit to how much you can scale a single machine.
+
+4. What is a VPC in AWS?
+
+VPC (Virtual Private Cloud) is a logically isolated network in AWS where you can launch AWS resources, such as EC2 instances, RDS databases, etc., in a custom-defined virtual network.
+
+Subnets: Divide the VPC into smaller sub-networks.
+Security Groups and NACLs: Control access to resources within the VPC.
+Route Tables: Control traffic flow between subnets and external networks.
+Internet Gateway: Provides internet access to resources in the VPC.
+
+VPC allows you to define network rules, create private or public subnets, and have full control over the environment.
+
+5. How do you access a remote server (SSH concept)?
+
+SSH (Secure Shell) is a network protocol used for securely accessing and managing remote servers.
+
+Usage: To access a remote server, you would use an SSH client (e.g., ssh <username>@<server-ip>).
+Private/Public Key Authentication: SSH uses public and private keys for authentication. The public key is stored on the remote server, and the private key is kept on your local machine. This ensures secure access without requiring a password.
+
+Example command:
+
+ssh -i /path/to/private-key.pem user@remote-server-ip
+6. What is Route 53 and its use cases?
+Amazon Route 53 is a scalable DNS (Domain Name System) web service designed to route end-user requests to internet applications hosted on AWS.
+DNS Routing: It translates human-readable domain names (like www.example.com) into IP addresses.
+Health Checking: Route 53 can check the health of your resources and reroute traffic if one of your resources becomes unhealthy.
+Domain Registration: It can also be used to register domain names directly with AWS.
+Routing Policies: Supports several routing policies, including simple routing, weighted routing, latency-based routing, and geolocation routing.
+7. How to secure an S3 bucket?
+To secure an S3 bucket, follow these practices:
+Bucket Policies: Apply bucket policies to restrict access to specific IP ranges, VPCs, or AWS services.
+IAM Roles/Users: Assign appropriate permissions to IAM roles and users instead of making the bucket public.
+Block Public Access: AWS provides settings to block all public access to the bucket.
+Enable Logging: Enable access logging to track who is accessing your data.
+Encryption: Enable encryption (e.g., SSE-S3, SSE-KMS) to encrypt objects at rest.
+Versioning: Enable versioning to protect against accidental data loss.
+8. Basics of ELK pipeline
+
+ELK stands for Elasticsearch, Logstash, and Kibana, a powerful suite used for searching, analyzing, and visualizing log data.
+
+Elasticsearch: A search and analytics engine that stores, searches, and analyzes large volumes of data.
+Logstash: A log collection, transformation, and forwarding pipeline. It ingests logs from various sources, processes them, and forwards them to Elasticsearch.
+Kibana: A data visualization tool that allows you to create dashboards, charts, and reports based on the data stored in Elasticsearch.
+
+Use case: The ELK stack is often used for centralized logging, where logs from multiple systems are aggregated, analyzed, and visualized for insights.
+
+9. What is CI/CD?
+CI (Continuous Integration): The practice of automatically integrating code changes into a shared repository multiple times a day. This helps catch issues early in the development cycle.
+
+CD (Continuous Deployment/Delivery): The process of automating the release and deployment of code. Continuous Delivery ensures that the code is always in a deployable state, while Continuous Deployment involves automatically deploying every change that passes tests to production.
+
+CI/CD ensures faster, more reliable software development and deployment by automating the testing and deployment pipeline.
+
+Round 2 (Managerial/Technical Discussion)
+1. AWS WAF and its purpose
+
+AWS WAF (Web Application Firewall) is a service that protects your web applications from common web exploits that could affect availability, compromise security, or consume excessive resources.
+
+Use cases:
+
+Filtering: Protect your application by filtering malicious traffic based on IP, request patterns, and other factors.
+DDoS Protection: AWS WAF can help mitigate certain types of DDoS attacks.
+Custom Rules: Allows you to create custom rules to filter traffic based on specific patterns or conditions.
+2. HTTP vs HTTPS (again) and how HTTPS encryption works
+
+HTTPS Encryption works via SSL/TLS. The server and client establish a secure connection before any data is transmitted. The steps are:
+
+The client requests a secure connection.
+The server sends its SSL certificate (containing a public key).
+The client verifies the certificate (trusting a certificate authority).
+A symmetric encryption key is created for the session, and data is encrypted using this key.
+
+This ensures data confidentiality, integrity, and authentication.
+
+3. Scenario: If you have an EC2 instance running two containers (PostgreSQL + Spring Boot), how will the application connect to the database?
+
+Container Networking: If the containers are running on the same EC2 instance, they can communicate through Docker's default network or by explicitly setting up a bridge network.
+
+PostgreSQL Container: The Spring Boot application can connect to PostgreSQL by using the PostgreSQL container’s IP address or container name (if in the same Docker network).
+
+Connection String: The Spring Boot application would have a JDBC connection string like:
+
+jdbc:postgresql://<container-ip>:<port>/dbname
+
+Ensure the appropriate ports are exposed, and Docker Compose can simplify managing multiple containers.
+
+4. What is CI/CD and why we use it?
+
+(Already covered in Round 1)
+
+5. What is Kubernetes Ingress?
+Ingress is an API object in Kubernetes that manages external access to services within the cluster, typically HTTP/HTTPS traffic.
+Ingress Controller: A reverse proxy or load balancer (such as NGINX or Traefik) that implements the rules defined in the Ingress resource.
+Routing: Ingress allows routing based on the host and path of the request. For example, you can route traffic to api.example.com to one service and www.example.com to another service.
+
+
+
+6. Why do we use Docker containers?
+Consistency Across Environments: Docker containers ensure that the application runs the same way in every environment. Whether it’s a developer's local machine, a staging environment, or production, Docker containers encapsulate all dependencies and configuration.
+Isolation: Containers isolate applications from each other, allowing multiple applications to run on the same host without interfering with each other. This helps with better resource utilization and security.
+Portability: Docker containers can run on any machine that supports Docker (Windows, macOS, Linux, etc.), making them highly portable across different environments and cloud providers.
+Faster Deployment: Containers start quickly compared to traditional virtual machines, allowing for faster development cycles and easier scalability.
+Microservices: Docker is often used in microservices architectures because each service can run in its own container, enabling easy scaling, deployment, and management.
+7. Why Kubernetes instead of just Docker?
+
+Docker is an excellent tool for containerization, but it lacks orchestration capabilities. Kubernetes is built on top of Docker (or other container runtimes) to provide orchestration, scalability, and management of containerized applications in production.
+
+Why Kubernetes over Docker?
+
+Orchestration: Kubernetes automates the deployment, scaling, and management of containerized applications. It provides tools for scheduling containers, managing their lifecycle, and ensuring they are running as intended.
+Scaling: Kubernetes allows you to scale applications automatically based on resource usage, without having to manually scale the number of containers.
+Self-Healing: Kubernetes ensures that your desired state is always met. If a container fails, Kubernetes will automatically restart it or reschedule it to another node, ensuring high availability.
+Load Balancing: Kubernetes has built-in load balancing and service discovery features to distribute traffic evenly across containers.
+State Management: Kubernetes provides StatefulSets for managing stateful applications (such as databases), whereas Docker on its own doesn’t offer an easy way to manage state persistence across containers.
+8. How do you deploy an application in Kubernetes?
+
+Step-by-step Process to Deploy an Application in Kubernetes:
+
+Containerize the Application:
+
+Ensure your application is containerized using Docker. Create a Dockerfile for the application and build the container image.
+docker build -t my-app .
+
+Push to a Container Registry:
+
+After building the container image, push it to a container registry like Docker Hub or AWS ECR.
+docker push <repository>/my-app:latest
+
+Create a Deployment:
+
+Create a Kubernetes Deployment YAML file that describes your application (number of replicas, container image, ports, etc.).
+Example deployment.yaml:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: <repository>/my-app:latest
+        ports:
+        - containerPort: 8080
+
+Create a Service:
+
+Expose the application inside the cluster using a Service (ClusterIP, LoadBalancer, or NodePort).
+Example service.yaml:
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
+
+Apply the YAML Files:
+
+Use kubectl apply to create or update the resources in your Kubernetes cluster.
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+Verify Deployment:
+
+Check the status of the deployment and the created Pods:
+kubectl get deployments
+kubectl get pods
+kubectl get services
+Access the Application:
+If the service is of type LoadBalancer, it will automatically create an external load balancer in cloud environments (like AWS). You can access the application through the load balancer's external IP.
+If using NodePort, you can access the application via the node's IP and the exposed port.
+
+Additional Concepts:
+
+Scaling: You can scale the application by adjusting the replicas in the Deployment YAML or by running kubectl scale deployment <deployment-name> --replicas=5.
+Rolling Updates: When updating the application, Kubernetes will gradually replace old Pods with new ones, ensuring no downtime during the update.
