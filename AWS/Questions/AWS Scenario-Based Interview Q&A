@@ -1,0 +1,74 @@
+AWS Scenario-Based Interview Q&A 
+
+🔹 1. EC2 instance is running, but application not accessible – How to troubleshoot?
+
+✅ Steps:
+
+Check Security Groups → Ensure required ports (80/443) are open
+Verify NACLs → Allow inbound/outbound traffic
+Check Application status → systemctl status nginx / netstat -tulnp
+Validate Public IP / DNS
+Check OS firewall → iptables / firewalld
+Review logs → /var/log/messages, app logs
+
+💡 Example:
+Port 80 was not open in Security Group → Added rule → Application became accessible.
+
+🔹 2. Application slow during peak traffic – What to check?
+
+✅ Check:
+
+CloudWatch Metrics → CPU, Memory, Network
+Enable Auto Scaling
+Use Elastic Load Balancer (ALB)
+Enable CloudFront CDN
+Optimize DB (RDS read replicas)
+
+💡 Example:
+High CPU (90%) during peak → Enabled Auto Scaling → Traffic distributed → Performance improved.
+
+🔹 3. Design a Highly Available AWS Architecture
+
+✅ Best Practices:
+
+Deploy across Multiple AZs
+Use ALB + Auto Scaling Group
+Store static content in S3
+Use RDS Multi-AZ
+Add Route 53 health checks
+
+💡 Example Architecture:
+Users → Route53 → ALB → EC2 (Multi-AZ) → RDS Multi-AZ
+
+4. EC2 instance terminated accidentally – What to do?
+
+✅ Recovery options:
+
+Restore from AMI backup
+Restore from EBS snapshot
+Check Auto Scaling Group (auto-recreates instance)
+
+💡 Example:
+Instance deleted → Launched new EC2 from AMI → Attached EBS → Service restored quickly.
+
+🔹 5. Securely access EC2 without access keys
+
+✅ Best Methods:
+
+Use IAM Roles (no hardcoded keys)
+Use SSM Session Manager (no SSH required)
+Enable MFA authentication
+
+💡 Example:
+Used SSM Session Manager → Connected to EC2 without SSH key → More secure & auditable.
+
+🔹 6. S3 data deleted accidentally – How to recover?
+
+✅ Recovery:
+
+Enable Versioning → Restore previous version
+Use Cross-Region Replication
+Check Backup policies
+
+💡 Example:
+File deleted → Retrieved older version from S3 versioning → No data loss.
