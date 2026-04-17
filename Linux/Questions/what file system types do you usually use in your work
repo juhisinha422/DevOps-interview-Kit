@@ -1,0 +1,3 @@
+Can you please tell me, what file system types do you usually use in your work?
+
+Overall, ext4 and XFS are my go-to file systems for most Linux-based production workloads, depending on performance and scalability requirements.
