@@ -1,0 +1,15 @@
+Deployment frequency is high, but failures are also increasing. How would you stabilize CI/CD pipelines using tools like Jenkins and GitHub Actions?  
+
+1.To stabilize CI/CD pipelines while maintaining high deployment frequency, we must shift from simple automation to a focus on reliability and observability.
+ 
+2.Advanced teams use retry logic or separate "quarantine" jobs to prevent these from blocking the main pipeline until they are fixed. 
+
+3.Build a single artifact once (e.g., a Docker image) and promote it through staging to production to eliminate "works on my machine" bugs caused by environment-specific rebuilds. 
+
+4.Prefer the Declarative Pipeline syntax for its built-in error handling and readability compared to complex Groovy scripts.  
+
+5.Centralize and version common pipeline logic across multiple projects by using Jenkins Shared Libraries to reduce maintenance burdens and ensure consistency. 
+
+6. Use the concurrency key to prevent multiple deployments to the same environment from overlapping, which can cause resource contention and failures. 
+
+7.Establish clear metrics to track Mean Time to Recovery (MTTR) and Change Failure Rate. Integrating tools like Prometheus and Grafana with Jenkins, or using GitHub's built-in Actions insights. 
