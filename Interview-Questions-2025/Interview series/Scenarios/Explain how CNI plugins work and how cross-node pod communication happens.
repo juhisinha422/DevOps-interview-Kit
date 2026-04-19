@@ -1,0 +1,18 @@
+Explain how CNI plugins work and how cross-node pod communication happens. 
+
+1.The Container Network Interface (CNI) is a standardized framework and set of libraries that Kubernetes uses to delegate pod networking to external plugins. 
+
+2.When a pod is scheduled to a node, the local Kubelet interacts with the container runtime (like containerd or CRI-O) to initiate the networking setup. 
+
+3.The container runtime creates a dedicated network namespace for the pod. It then calls the CNI plugin executable (e.g., Calico, Flannel, or Cilium) with an ADD command. 
+
+4.The CNI plugin creates a veth (virtual ethernet) pair—a virtual cable with two ends. One end is placed inside the pod's namespace (as eth0), and the other remains in the host's root namespace, typically attached to a bridge like cni0. 
+
+5.The main plugin delegates IP address assignment to an IPAM (IP Address Management) plugin. This plugin pulls a unique IP from a pre-defined range (CIDR) assigned to that specific node.  
+
+Cross-node communication occurs without Network Address Translation (NAT), fulfilling the core Kubernetes requirement that pods see each other by their original IP addresses. 
+
+There are two primary methods 
+1. Overlay Networks (Encapsulation): Plugins like Flannel or Weave Net create a logical Layer 2 network over the existing Layer 3 infrastructure
+
+2.Direct Routing (Unencapsulated): Plugins like Calico (in BGP mode) avoid the overhead of encapsulation. 
