@@ -1,0 +1,25 @@
+How do you design a secure CI/CD pipeline with integrated DevSecOps practices? 
+ 
+1.we can secure the initial development environment to catch vulnerabilities before they enter the repository. 
+
+2.we can use tools like GitLeaks or Talisman to automatically block commits containing hardcoded secrets or sensitive data. 
+
+3.Need to install security analysis tools like SonarLint directly in developer editors to highlight bugs and vulnerabilities in real-time. 
+
+4.Integrate tools such as SonarQube or Checkmarx to analyze source code for insecure patterns without executing it. 
+
+5.We need to use Snyk or OWASP Dependency-Check to scan third-party libraries for known vulnerabilities . 
+
+6.Instead of hardcoding credentials, retrieve them at runtime from a secure vault like HashiCorp Vault or AWS Secrets Manager.
+ 
+7.Scan Docker images for OS-level vulnerabilities and misconfigurations using Trivy or Aqua Security.
+ 
+8.Validate cloud configurations (Terraform, Kubernetes manifests) with tools like Checkov or KubeLinter to prevent permissive security groups or unencrypted storage. 
+
+9.Perform automated vulnerability scans on running applications in staging environments using OWASP ZAP or Burp Suite. 
+
+10.Implement Policy as Code using Open Policy Agent (OPA) or Kyverno to block deployments that don't meet security standards.
+ 
+11.Deploy agents like Falco to detect anomalous behavior, such as unauthorized shell access or unexpected system calls, in production. 
+
+12.Aggregate logs from build servers and production into a SIEM like the ELK Stack or Splunk for real-time alerting and incident.
