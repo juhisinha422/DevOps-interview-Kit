@@ -1,0 +1,18 @@
+Pods Stuck in Pending? Why Kubernetes Isn’t Scheduling Them
+
+You deploy your workload, but the Pods stay in Pending. No crashes, no logs; just waiting.
+This usually means the scheduler can’t find a suitable node.
+
+Common causes:
+- Insufficient CPU or memory on available nodes
+- Node selectors or affinity rules not matching any node
+- Taints without matching tolerations
+- Persistent Volume claims not yet bound
+
+How to troubleshoot:
+- Run kubectl describe pod to check scheduling events
+- Review node capacity and allocatable resources
+- Validate affinity, tolerations, and selectors
+- Check PVC and storage class status
+
+Pending Pods aren’t broken, they’re waiting for a condition you haven’t met yet.
