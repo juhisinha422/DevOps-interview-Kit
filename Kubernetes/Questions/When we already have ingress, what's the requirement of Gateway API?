@@ -1,0 +1,13 @@
+When we already have ingress, what's the requirement of Gateway API? 
+
+
+Rate limiting, throttling before traffic hits LB
+
+If it's is gateway api 
+
+Then here is your answer :
+Ingress mainly provides basic HTTP/HTTPS routing within Kubernetes, whereas Gateway API is a more advanced and extensible model that supports multiple protocols like HTTP, HTTPS, TCP, UDP, and gRPC. It introduces a clear separation of concerns using Gateway and Route resources, enabling better traffic control.
+
+
+For api gateway:
+However, both Ingress and Gateway API operate at the Kubernetes networking layer. For external exposure and enterprise requirements, an API Gateway is still needed. API Gateway provides features like authentication (JWT/IAM), rate limiting, security policies, monitoring, and API lifecycle management.
