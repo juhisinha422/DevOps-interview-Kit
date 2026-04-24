@@ -1,0 +1,12 @@
+What is the difference Transit Gateway vs. VPC Peering ? 
+
+1.Transit Gateway  it is a centralized architecture with hundreds of VPCs, multi-region connectivity, hybrid cloud connections (VPN/Direct Connect). 
+
+2.VPC Peering means Connecting two VPCs for shared services, staging/production environments with low-latency needs, simple 1-to-1 data transfer. 
+
+3.Transit Gateway charges for attachment hours + data processing. VPC Peering only charges for data transfer across zones/regions, making it generally more cost-effective for simple connections 
+
+4. Transit Gateway supports hundreds of VPCs via a single hub. VPC Peering becomes difficult to manage at scale, as each VPC requires a direct link, creating a "full-mesh" 
+
+5.Transit Gateway supports it (A can talk to C via B). VPC Peering does not support transitive routing; each connection must be explicitly created.
+ 
