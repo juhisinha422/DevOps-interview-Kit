@@ -1,0 +1,19 @@
+1)Explain swap space
+2)If I want to change swappiness value temporarily from a file rather than using sysctl command how can I achieve it?
+3)What does /proc contains 
+4)I want to find files in my machine criteria:files should be more than 10 days old
+5)If we don't write shebang in script what will happen
+6)If the first line is blank and shebang is in second line will the script work?
+7)How to redirect std output and error to one file 
+7)Difference between find and locate
+8)If I have a large file system which is better to use (find or locate) and why?
+9)Drawback of using locate command
+10)How data goes into locate database
+11)Only one particular user should execute shutdown command how would you do it?
+12)What is sudo?
+13)Difference between Softlink and Hardlink 
+14)How many hard links I can create for one file
+15)How can I find out how many hardlinks are linked to that particular file
+16)If I want to delete all these hardlinks in oneshot how can I delete without manually using rm -rf
+
+These are the questions  asked in the OS3 Infotech for Freshers for Linux Administrator role
