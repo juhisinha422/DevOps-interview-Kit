@@ -1,0 +1,15 @@
+How do you perform zero-downtime upgrades for a stateful workload using Helm 3?  
+
+1.Performing zero-downtime upgrades for stateful workloads with Helm 3 relies on configuring Kubernetes StatefulSets and utilizing Helm’s atomic flags 
+
+2. we set spec.updateStrategy type to RollingUpdate. For StatefulSets, this replaces pods one by one in reverse ordinal order (e.g., pod-2, then pod-1, then pod-0). 
+
+3.we can use the partition parameter to perform "canary" upgrades by only updating pods with an ordinal index greater than or equal to the partition value.
+
+4.we can define a PodDisruptionBudget in our Helm templates. This prevents Kubernetes from draining too many pods at once during node-level upgrades or maintenance.
+  
+5.use below helm upgrade command  
+helm upgrade <release-name> <chart-path> --wait --atomic --timeout 10m 
+* use --wait to make Helm wait until all pods are in a ready state 
+* --atomic to automatically roll back to the previous stable version if the upgrade fails or times out. 
+* --timeout long enough to allow for stateful initialization, such as data synchronization 
