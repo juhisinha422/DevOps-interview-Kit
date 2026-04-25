@@ -1,0 +1,19 @@
+So basically if customers are getting 502 and 503 errors while accessing the application. What could be the issue from server end . What we need to check and how can we fix this as a Devops/ SRE Engineer
+
+
+500 series are from server side error .. you need to check how your backend services are wired up
+And health check of services are fine or not
+
+https://youtu.be/aoo_dLVvy-I?si=OfQnzC418Vp41L0-
+
+
+
+For 503, what I have observed is, there could be multiple reasons like application run failed or application is taking more resources during  startup or ingress is not configured properly etc.
+
+First thing you can do is to identify the service and check if it's running properly or crashing, also check the server metrics for any sudden spikes. And What I recommend is to implement tracing for better observability.
+
+
+And if we talk about 502, we check the system metrics first and also it could happen due to a poor internet connection, or it is not getting response from the server, or any wrong configuration in nginx.conf or whatever you're using, and also there could be issues from the backend team , they might be handling the response incorrectly. You need to check the payload/response they're sending in the inspect.
+
+
+Same for 502, no set rules of resolution.
