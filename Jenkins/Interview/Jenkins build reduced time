@@ -1,0 +1,12 @@
+1) How can we reduce the Jenkins pipeline time duration. 
+2) Is it recommended or not ?
+
+1. by using parallel execution we can reduce the time duration
+2. yes it is recommended
+
+
+- parallel execution
+- build cache
+- agent disk full
+- docker image layer build up
+- too many plugins
