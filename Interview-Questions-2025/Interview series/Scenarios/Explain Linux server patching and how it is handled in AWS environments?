@@ -1,0 +1,17 @@
+Explain Linux server patching and how it is handled in AWS environments?  
+
+1.Linux server patching is the process of updating the operating system (OS) and installed software packages to fix security vulnerabilities, correct bugs, or add new functionality. 
+
+2.Patching involves upgrading the software packages (RPM, DEB) on a Linux system. 
+
+3.Downloads updates from repositories (e.g., yum, dnf, apt) and applies them, often requiring a service restart or a full server reboot to activate the changes. 
+
+4.AWS Systems Manager (SSM) Agent Software installed on EC2 instances that executes patch commands sent by AWS.
+  
+5.The core tool within SSM that automates scanning and installing patches.
+
+6. we can use tags (e.g., Patch Group = Production) used to categorize instances and apply specific patch baselines to specific groups. 
+
+7.Ensure the SSM agent is installed and the EC2 instance has an IAM role attached (AmazonEC2RoleforSSM) that allows it to communicate with SSM. 
+
+8.Need to monitor the Patch Manager Dashboard to see which instances are missing patches 
