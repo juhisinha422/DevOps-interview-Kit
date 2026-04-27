@@ -1,0 +1,13 @@
+Prod users reporting 504s, but ELB health checks are green. Explain your isolation + triage process.  
+
+A 504 Gateway Timeout with green ELB health checks indicates that the load balancer can successfully reach the application (passing simple health checks), but the application is taking too long to process user requests, exceeding the ELB's Idle Timeout setting (default 60s).  
+
+1. Check HTTPCode_ELB_504_Count and TargetResponseTime in CloudWatch. If TargetResponseTime is high (approaching 60s), the backend is sluggish. 
+
+2. Need to enable ELB access logs to identify specific URLs, client IPs, or backend instances (target_status_code) returning 504s.
+ 
+3.Check CloudWatch metrics for ECS tasks or EC2 instances. If CPU/memory is near 100%, instances are overwhelmed and cannot process requests. 
+
+4.Check database CPU, lock contention, or slow query logs. Often, 504s are caused by an overloaded database that the application is waiting for.
+ 
+5.If the application requires long-running processes (e.g., file uploads, large data exports), increase the ELB idle timeout to exceed the maximum application processing time. 
