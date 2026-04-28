@@ -65,8 +65,7 @@ Networking Configuration:
   data "aws_vpc" "existing_vpc" {
     id = "vpc-12345"
   }
-
-```
+  ```
 ### 9) What are key differences between terraform fmt vs terraform validate?
 
 terraform fmt: Automatically formats your .tf configuration files to a consistent style.
