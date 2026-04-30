@@ -1,0 +1,53 @@
+Prometheus Architecture
+
+🔹 What is it? 🏗️
+ Prometheus follows a simple yet powerful architecture to collect, store, and query metrics.
+ It works by pulling data from different sources and storing it as time-series data.
+
+🔹 Why it matters in real-world? 🌍
+ Understanding architecture helps you:
+ ✔ Troubleshoot issues
+ ✔ Scale monitoring systems
+ ✔ Design production-ready setups
+👉 Without this, you’re just using the tool—not mastering it.
+
+🔹 Core Components of Prometheus: ⚡
+✔ Prometheus Server 🖥️
+Main component
+Collects (scrapes) metrics
+Stores data
+Runs queries
+✔ Targets 🎯
+Systems/apps from which metrics are collected
+Example: Servers, containers, APIs
+✔ Exporters 📦
+Convert system data into Prometheus format
+Example: Node Exporter (CPU, memory metrics)
+👉 App → Exporter → Prometheus
+✔ Time-Series Database (TSDB) 📈
+Stores metrics with timestamps
+Helps track changes over time
+Enables historical analysis
+
+🔹 How It Works (Flow): 🔄
+Prometheus server sends request
+Targets (via exporters) expose metrics
+Server collects (scrapes) data
+Data stored in TSDB
+Queries used for dashboards & alerts
+
+🔹 Real-world Example: 💡
+You have a web application running on servers
+👉 Exporter collects:
+CPU usage
+Memory usage
+👉 Prometheus server pulls data every 15 seconds
+ 👉 Stores it in TSDB
+ 👉 If CPU > 90% 🚨 → Alert triggered
+
+🔹 Key Concepts to Remember: 🧠
+✔ Server = Brain 🧠
+ ✔ Targets = Data sources 🎯
+ ✔ Exporters = Data converters 📦
+ ✔ TSDB = Storage 📈
+ ✔ Pull model = Data collection 🔄
