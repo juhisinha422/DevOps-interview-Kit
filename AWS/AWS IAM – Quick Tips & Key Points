@@ -1,0 +1,18 @@
+AWS IAM – Quick Tips & Key Points
+
+🔐 IAM (Identity & Access Management) is the backbone of AWS security. Always follow best practices:
+
+✅ Never use Root User for daily tasks – create IAM users instead  
+✅ Enable MFA (Multi-Factor Authentication) for extra security  
+✅ Follow Principle of Least Privilege – give only required permissions  
+✅ Use IAM Roles instead of access keys for services (EC2, Lambda, etc.)  
+✅ Avoid hardcoding Access Keys in code – use roles or secure services like Secrets Manager  
+✅ Regularly rotate credentials and remove unused users/keys  
+✅ Use Groups to manage permissions efficiently  
+✅ Enable CloudTrail for auditing and tracking activities  
+✅ Use IAM Policies carefully – prefer managed policies over inline where possible  
+
+💡 Pro Tip:  
+👉 “If your architecture depends on access keys, rethink it. Use IAM Roles wherever possible.”
+
+🔒 Secure IAM = Secure AWS Account
