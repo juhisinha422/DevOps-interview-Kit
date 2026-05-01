@@ -1,0 +1,37 @@
+shell scripting
+******************************************************
+Shell scripting is the native linux scripting. 
+---> A Shell is a program that takes your commands and tells Linux to execute them. 
+---> If you keep all your linux commands in a single file and execute that file is called shell scripting.
+---> It is used to automate the manual process.
+---> Shell scripting is used to fetch the information from linux servers.
+Syntax:
+=============
+#!/bin/bash
+echo “hello world”
+save as “filename.sh”
+#!/bin/bash ---> It should be the first line in shell script. It can be called as “shebang” used to interpret and execute the commands and syntax inside shell script.
+In shell script, we use “ Datatypes, Variables, Functions, Loops, conditions “ to enhance the script.
+Some special variables used in shell script are:
+*****************************************
+$@ : All variables passed
+$# : No of variables
+$0 : script name
+$pwd : Present working directory
+$Home : Home directory of current user
+$USER : Which user is running the script
+$$ : process id of current script
+$! : Process id of last command in background
+$? : exit status, 0 -> success , other than “0” --> failure
+Datatypes:
+*************
+Integer : number, Float : decimals, Boolean : True/false, String : Text,
+Array : [“name1” “name 2” “name 3”], map : name: value, name2: value
+operators used in conditions:
+*****************************
+-eq :equal
+-ne : not equal
+-gt : greater than
+-lt : Less than
+-ge : greater or equal
+-le : less or equal
