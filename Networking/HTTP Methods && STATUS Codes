@@ -1,0 +1,54 @@
+HTTP Methods && STATUS Codes
+-------------------------------------------------
+(i) GET -- > Get or fetch data from server
+           If you open a website, browser sends a GET request
+(ii) POST --> posting or sending the information to the server.
+           Filling a signup form → data is saved in database
+(iii) PUT --> Used to update existing data completely
+          Updating your full profile (name, email, phone all together)
+(iv) DELETE --> Used to delete data from server
+          Deleting your account
+******************************
+Better understanding with simple real life example of “Food Order”
+GET → See menu
+POST → Order food
+PUT → Change entire order
+DELETE → Cancel order
+
+STATUS CODE
+*************************
+1** -- > Informational
+---------------------------------
+100 -> continue --- wait I’m processing.
+******************
+2** -- > Success
+-----------------------------
+200 -> OK --- Everything worked fine
+201 -> created --- New data created
+204 -> No content ---- Success but no data to return
+_________________________________
+3** --> Redirectional
+--------------------------------------
+301 -> Moved permanantly --- URL changed permanently
+302 - > Found ---- Temporary redirect
+*********************************
+4** --> Client Errors
+-----------------------------------------
+400 -> Bad request ---- Wrong request format
+401 -> Unauthorized ---- Login required
+403 -> Forbidden ---- No permission
+404 -> Not found --- resource not found
+******************************
+5** --> Server errors
+----------------------------------------
+500 -> Internal Server Error --- Server crashed
+502 -> Bad gateway --- Server got wrong response
+503 - > Service Unavailable --- Server is down
+***********************************
+Better understanding with simple real life example of “Food Order”
+-----------------------------------------------
+200 → Your food is served
+201 → New order created
+404 → Item not on menu
+403 → You’re not allowed
+500 → Chef messed up
