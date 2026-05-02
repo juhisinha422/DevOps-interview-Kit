@@ -1,0 +1,23 @@
+Interview Experience - Angel one - SRE 🚀
+
+
+1. Tell me about yourself and your DevOps journey.
+2. Explain your current role at Goldman Sachs and what exactly you are working on.
+3. Can you walk me through your end-to-end project architecture?
+4. You mentioned Azure governance platform — what problem were you solving and how?
+5. How did you design Azure Policy implementation at scale?
+6. Explain your alert orchestration system using Logic Apps in detail.
+7. You reduced alert noise by 60% — how exactly did you achieve that?
+8. How does your monitoring architecture (Azure Monitor + KQL + dashboards) work?
+9. Can you explain your CI/CD pipeline flow across environments (QA → Prod)?
+10. How did you design modular deployments using Terraform/Bicep?
+11. Your Terraform deployment failed in production — how do you debug and recover?
+12. You said you handled 20,000+ user migration — what challenges did you face?
+13. Alerts suddenly spike in production — how do you identify real vs noise alerts?
+14. Your Azure Workbook deployment fails without error logs — how will you debug?
+15. How do you ensure no configuration drift between QA and Production?
+16. A deployment worked in QA but failed in Prod — what’s your approach?
+17. Your monitoring shows everything healthy, but users report issues — what next?
+18. How do you design high availability and fault tolerance in your Azure architecture?
+19. Your CI/CD pipeline reduced deployment time by 40% — what optimizations did you implement?
+20. If production goes down at midnight, what is your step-by-step incident response approach?
