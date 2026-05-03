@@ -1,0 +1,74 @@
+AWS_CLI_Commands (Production Focus) (0–3 Years DevOps Engineer)
+
+These AWS CLI commands are commonly used in real production environments…
+
+Useful for automation, scripting, and quick troubleshooting 👇
+
+🔹 General
+
+1. aws help → CLI help  
+2. aws configure → Configure credentials  
+3. aws configure list → View config  
+4. aws sts get-caller-identity → Check active user  
+5. aws --version → CLI version  
+
+🔹 EC2 (Compute)
+
+6. aws ec2 describe-instances → List instances  
+7. aws ec2 start-instances --instance-ids <id>  
+8. aws ec2 stop-instances --instance-ids <id>  
+9. aws ec2 reboot-instances --instance-ids <id>  
+10. aws ec2 terminate-instances --instance-ids <id>  
+11. aws ec2 describe-security-groups  
+12. aws ec2 describe-key-pairs  
+
+🔹 S3 (Storage)
+
+13. aws s3 ls → List buckets  
+14. aws s3 mb s3://bucket-name → Create bucket  
+15. aws s3 rb s3://bucket-name → Delete bucket  
+16. aws s3 cp file s3://bucket/ → Upload file  
+17. aws s3 sync . s3://bucket/ → Sync folder  
+18. aws s3 rm s3://bucket/file → Delete file  
+
+🔹 IAM (Security)
+
+19. aws iam list-users  
+20. aws iam create-user --user-name <name>  
+21. aws iam delete-user --user-name <name>  
+22. aws iam list-roles  
+23. aws iam list-policies  
+
+🔹 CloudWatch (Monitoring)
+
+24. aws logs describe-log-groups  
+25. aws logs tail <log-group> --follow  
+26. aws cloudwatch list-metrics  
+27. aws cloudwatch describe-alarms  
+
+🔹 RDS (Database)
+
+28. aws rds describe-db-instances  
+29. aws rds start-db-instance --db-instance-identifier <id>  
+30. aws rds stop-db-instance --db-instance-identifier <id>  
+
+🔹 VPC & Networking
+
+31. aws ec2 describe-vpcs  
+32. aws ec2 describe-subnets  
+33. aws ec2 describe-route-tables  
+34. aws ec2 describe-internet-gateways  
+
+🔹 ECR (Container Registry)
+
+35. aws ecr get-login-password  
+36. aws ecr describe-repositories  
+37. aws ecr create-repository --repository-name <name>  
+
+🔹 ECS / EKS (Containers)
+
+38. aws ecs list-clusters  
+39. aws ecs list-tasks  
+40. aws eks list-clusters  
+
+💡 These commands are part of daily AWS operations in DevOps environments
