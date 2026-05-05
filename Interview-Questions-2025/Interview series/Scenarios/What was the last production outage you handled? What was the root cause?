@@ -1,0 +1,15 @@
+What was the last production outage you handled? What was the root cause? 
+
+I faced docker-related production outages 
+
+1.Mainly due to resource mismanagement, networking misconfigurations, or external infrastructure dependencies. 
+
+2.Docker experienced a widespread outage affecting Docker Hub, Scout, and Build Cloud due to a major failure in AWS's US-East-1 region.
+ 
+3.Failed due to trigger by outages in AWS DynamoDB, EC2, and Network Load Balancers, leading to increased failure rates that ultimately took Docker services offline for over 24 hours. 
+
+4.Containers frequently hit Out-of-Memory (OOM) limits (Exit Code 137). This is often due to application memory leaks or setting limits that are too low for actual production workloads. 
+
+5.Unused images, stopped containers, and rapidly growing log files can fill the host's disk space, preventing the Docker daemon from writing state and leading to a full system hang 
+
+6.Overlay networks often fail due to MTU (Maximum Transmission Unit) mismatches between the container network and the physical host network, causing packet fragmentation and connection timeouts.
