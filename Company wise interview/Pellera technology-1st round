@@ -1,0 +1,11 @@
+Interview for Senior DevOps Role in  Technology - They have asked below question - 1st round
+
+What steps do you follow to create infra for an 3Tier Application?
+How would you reduce docker image size?
+What deployment strategies do you use, explain?
+Explain data types in Terraform?
+Have you faced any problems in production systems, explain how did you resolve that.
+Explain Kubernetes architecture.
+How do you upgrade Kubernetes cluster?
+How do you manage resources via terraform if they are already created on cloud.
+What is nat gateway?
