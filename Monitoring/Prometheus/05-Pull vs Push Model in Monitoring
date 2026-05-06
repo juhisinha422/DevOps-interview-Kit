@@ -1,0 +1,55 @@
+Pull vs Push Model in Monitoring
+
+🔹 What is it? 🔄
+ In monitoring systems, data collection happens in two ways:
+ 👉 Pull Model and Push Model
+Understanding this is key to how tools like Prometheus work.
+
+🔹 Why it matters in real-world? 🏗️
+ The way metrics are collected impacts:
+ ✔ Reliability
+ ✔ Scalability
+ ✔ Debugging
+👉 Choosing the right model = better monitoring system 🚀
+
+🔹 Pull Model Explained: 📥
+✔ Monitoring system requests (pulls) data from targets
+ ✔ Targets expose metrics via endpoints
+👉 Example:
+ Prometheus → sends request → gets metrics
+✔ Advantages:
+Better control over data collection
+Easy to detect if target is down
+Works well in dynamic systems
+
+🔹 Push Model Explained: 📤
+✔ Applications send (push) data to monitoring system
+👉 Example:
+ App → sends metrics → monitoring tool
+✔ Advantages:
+Useful for short-lived jobs
+No need for scraping endpoints
+✔ Limitation:
+Harder to track failed systems
+Can lead to data inconsistency
+
+🔹 Why Prometheus Uses Pull Model? 💡
+👉 Prometheus follows pull model by design because:
+✔ Can check if target is alive (health check)
+ ✔ Centralized control of scraping
+ ✔ Better suited for Kubernetes & microservices
+ ✔ Avoids duplicate or inconsistent data
+
+🔹 Real-world Example: 🌍
+👉 Pull Model:
+ Prometheus checks server every 15s
+ If no response → server is down 🚨
+👉 Push Model:
+ Server sends data
+ If server crashes → no data sent ❌ (hard to detect issue)
+
+🔹 Key Concepts to Remember: 🧠
+✔ Pull = Prometheus collects 📥
+ ✔ Push = App sends 📤
+ ✔ Pull = More reliable 🔄
+ ✔ Push = Useful for short jobs
