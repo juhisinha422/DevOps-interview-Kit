@@ -1,0 +1,22 @@
+06 May 2026 Photon Interview
+
+Mainly AWS and K8 are asked
+
+AWS
+
+What is VPC and what are the main components of VPC
+Diff bet Security Grp vs WAF
+VPC Peering vs 
+DNS record types
+Wht are the diff storage types in AWS
+IAM User vs IAM ROLE
+Where will you store the secrets in AWS?
+Diff between Multi High Availability Zone vs Read Replica
+How will you design the architechure of Highly available application
+
+K8
+K8 components
+
+Docker
+CMD vs ENTRYPOINT
+Diff bet image and container
