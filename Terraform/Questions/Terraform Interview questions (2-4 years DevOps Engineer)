@@ -1,0 +1,22 @@
+#Terraform Interview questions (2-4 years DevOps Engineer)
+
+You have multiple engineers working on Terraform. How will you prevent state conflicts and ensure safe collaboration?
+Your Terraform state file got corrupted. How would you recover the infrastructure?
+You need to deploy the same infrastructure in dev, staging, and production with minimal duplication. How would you design it?
+An existing AWS infrastructure is already running manually. How will you bring it under Terraform management?
+Your terraform apply failed after creating some resources. What steps will you take next?
+You need to update a production resource without downtime. How would you handle it in Terraform?
+How would you manage secrets like DB passwords securely in Terraform?
+You notice a drift between Terraform state and actual infrastructure. How will you detect and fix it?
+How will you structure a Terraform project for a large microservices-based application?
+You need to reuse infrastructure code across multiple teams/projects. How would you design it?
+Explain how Terraform handles dependency resolution internally.
+What is the lifecycle block? Explain real use cases of create_before_destroy and prevent_destroy.
+How does Terraform ensure idempotency?
+What is the difference between count and for_each in real production scenarios?
+How does remote backend configuration work? Explain with locking mechanism.
+What are provisioners? Why should they be avoided in production?
+What is the purpose of terraform import and its limitations?
+Explain Terraform workspaces and when you should NOT use them.
+What is a data source in Terraform and how is it different from a resource?
+How do you optimize Terraform performance for large infrastructures?
