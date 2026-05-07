@@ -1,0 +1,31 @@
+5 Years in DevOps — Real Interview Questions 
+
+DevOps interview round after 5 years of hands-on work with AKS, Terraform, Kubernetes, and the Elastic Stack.
+
+Q1: How do you manage Terraform state in a team?
+In my current setup, we store state in Azure Blob Storage with lease-based locking. I've built reusable Terraform modules from scratch — things like AKS node pool configs, Key Vault policies, ACR setup. We use separate workspaces for dev, QA, UAT, and prod so there's zero risk of one environment bleeding into another.
+
+Q2: HPA vs KEDA — when do you use what?
+HPA works great for CPU/memory-based scaling. But in our environment we needed to scale based on Kafka queue depth — that's where KEDA came in. KEDA also supports scale-to-zero, which saved us real cost on non-prod clusters.
+
+Q3: Pod stuck in Pending — how do you debug it?
+First thing I do is kubectl describe pod and go straight to the Events section. I've seen this caused by CPU/memory requests being too high for available nodes, taints and tolerations not matching, and PVCs not binding. Once I found a whole node pool was over-committed because resource requests weren't set properly across teams — fixed it by enforcing LimitRanges at namespace level.
+
+Q4: How do you handle secrets in AKS?
+We use Azure Key Vault with the Secrets Store CSI Driver. Pods mount secrets as volumes at runtime — nothing sensitive sits in etcd. Access is controlled through Managed Identity and Azure RBAC. I've worked with both the Access Policy model and the newer RBAC model during a migration.
+
+Q5: Walk me through a CI/CD pipeline you've built.
+We run GitHub Actions on merge to main it triggers lint, unit tests, Docker build, push to ACR, then Helm upgrade on AKS. If the post-deploy health check fails, Helm auto-rolls back. 
+
+Q6: Liveness vs Readiness vs Startup probes?
+
+Q7: How do you monitor and observe your clusters?
+We use the full Elastic Stack — Filebeat runs as a DaemonSet on every node, ships logs to Elasticsearch, Kibana for dashboards and data views.
+
+Q8: How do you handle node pool upgrades without downtime?
+We do rolling upgrades surge upgrade settings in Terraform so new nodes come up before old ones drain. We also use PodDisruptionBudgets
+
+Q9: Cross-namespace networking in Kubernetes — how does it work?
+By default pods across namespaces can talk to each other via service.namespace.svc.cluster.local.
+
+Q10: How do you approach onboarding a new application team onto AKS?
