@@ -5,6 +5,24 @@ DevOps interview round after 5 years of hands-on work with AKS, Terraform, Kuber
 Q1: How do you manage Terraform state in a team?
 In my current setup, we store state in Azure Blob Storage with lease-based locking. I've built reusable Terraform modules from scratch — things like AKS node pool configs, Key Vault policies, ACR setup. We use separate workspaces for dev, QA, UAT, and prod so there's zero risk of one environment bleeding into another.
 
+For AWS
+
+In our current setup, we manage Terraform state centrally using AWS S3 with DynamoDB-based locking.
+
+The Terraform state files are stored in S3 buckets that are versioned and secured with proper IAM policies.
+To prevent multiple people from modifying the same state at the same time, we use DynamoDB tables for state locking. This ensures that if one person is applying changes, others cannot make concurrent modifications.
+We have built reusable Terraform modules for common AWS resources such as:
+VPCs and subnets
+EKS (Elastic Kubernetes Service) node pools
+IAM roles and policies
+S3 buckets and KMS encryption policies
+ECR repositories
+We manage environments with separate workspaces (dev, qa, uat, prod) so that each environment has isolated state. This guarantees that changes in dev or QA don’t accidentally affect production.
+Overall, this setup allows the team to collaborate safely, re-use modules, and maintain environment isolation, just like we did in Azure but fully in AWS.
+Extra Notes for Interview
+
+
+
 Q2: HPA vs KEDA — when do you use what?
 HPA works great for CPU/memory-based scaling. But in our environment we needed to scale based on Kafka queue depth — that's where KEDA came in. KEDA also supports scale-to-zero, which saved us real cost on non-prod clusters.
 
