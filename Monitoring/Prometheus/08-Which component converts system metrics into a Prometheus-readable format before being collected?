@@ -1,0 +1,7 @@
+Which component converts system metrics into a Prometheus-readable format before being collected? 
+A. Target
+B. Exporter
+C. Server
+D. Dashboard
+
+ANS B
