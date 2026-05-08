@@ -1,0 +1,30 @@
+Here are the questions you asked in this session:
+
+1. Could you briefly outline your professional experience and career aspirations?
+
+2. What is the difference between Continuous Integration, Continuous Delivery, and Continuous Deployment?
+
+3. What is the difference between a Docker image, a Docker container, and a virtual machine?
+
+4. What is k8s pod and how is it different from deployment?
+
+5. What is the difference between vertical scaling and horizontal scaling? When would you use each?
+
+6. How do you check if a port is open and which process is using it?
+
+7. If a Linux server is slow, what are the first things you would check?
+
+8. Pick one production system you have worked on and explain:
+
+   * Architecture
+   * Your role
+   * One major issue you solved
+
+9. You have a CI/CD pipeline where deployments fail intermittently. How would you debug and stabilise it?
+
+10. What is CrashLoopBackOff?
+
+11. AWS bill spikes suddenly and increase issue what you will check first?
+
+12. Using Terraform, if someone manually changes infrastructure, what problems can happen?
+
