@@ -1,0 +1,14 @@
+Ensono for AWS DevOps Engineer L2 Round
+
+1. Self intro
+2. client raised as a P1 incident for application down. So their critical application is not working, so they are facing intermittent issue. So once you receive the ticket, what is the process you follow there?
+3. what are the things you can optimize AWS cost?
+4. I want to create an EC2 instance via Terraform. So how can you, you know, create an EC2 instance via Terraform?
+5. how do you manage AWS resources that were created outside of Terraform?
+6. you need to write a Terraform code for an all only for AWS. In that you need to provision the resources in an all multiple regions. How will you write the code in that?
+7. what are the core services you've been working with the AWS cloud?
+8. You are completely managed Terraform or you've been doing work on the Terraform and planning the architecture of the environment?
+9. I wanted to unmanage the resource from a Terraform, going forward, I don't want to manage any resources from the account is via the Terraform. So how do you unmanage it?
+10. after you remove the resource from Terraform state file, the order command you run that, it is been on tracked. So when you do the Terraform plan next time, if you see that the new resources, we are not trying to create it. When you run the Terraform plan, the resource will be created one. So how do you fix this drift?
+11. you have deployed the EC2 instance via the auto scaling group. so it is having the application traffic for your production workload. So suddenly, the EC2, whichever launched from auto-scaling, launched and terminated within five minutes. The cycle is repeating frequently due to the health check issue. you need to review the instance, why it is failing the health checks, and wanted to retain the log from the failed instance to know for the investigation. So how do you achieve this?
+
