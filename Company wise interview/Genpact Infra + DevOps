@@ -1,0 +1,20 @@
+Infra + DevOps Engineer interview at Genpact for a 5 Years Experience role.
+
+Below are the questions discussed after the introduction round:
+
+* What will you do if an application is not reachable?
+* What will you check if a port is not working/open?
+* What will you do if network connectivity is not working?
+* Difference between Azure Load Balancer and Azure Application Gateway.
+* Explain NSG and how traffic flows in Azure.
+* How will you troubleshoot connectivity issues in Azure?
+* What will you do if Terraform state file gets corrupted?
+* How do different teams work together during a production issue?
+* If the issue is application-related, which team handles it?
+* If the issue is related to Kubernetes or CI/CD pipeline, which team handles it?
+* Are you comfortable with rotational/night shifts?
+* Discussion around TechOps/Product Support environment.
+* Discussion around Windows/.NET-based product environment.
+* Discussion around 24x7 support operations.
+
+Good mix of Azure networking, troubleshooting, Terraform, Kubernetes, support operations, and real-time production scenarios.
