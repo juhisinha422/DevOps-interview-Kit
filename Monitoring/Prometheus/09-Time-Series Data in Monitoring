@@ -1,0 +1,53 @@
+Time-Series Data in Monitoring
+
+🔹 What is Time-Series Data? 📈
+ Time-series data is data that is stored along with a timestamp.
+ It helps track how values change over time.
+👉 Example:
+ CPU Usage → 40% at 10:00 AM
+ CPU Usage → 75% at 10:05 AM
+Each metric is stored with time information ⏱️
+
+🔹 Why it matters in real-world? 🏗️
+ Modern monitoring systems generate huge amounts of metrics continuously.
+ Time-series data helps engineers:
+✔ Analyze trends
+ ✔ Detect anomalies
+ ✔ Compare historical performance
+ ✔ Predict future issues 🚨
+
+🔹 Data Storage Concept: 💾
+In tools like Prometheus, metrics are stored in a Time-Series Database (TSDB).
+👉 Each data point contains:
+Metric name
+Value
+Timestamp
+Labels (metadata)
+
+🔹 Example Structure: 📊
+cpu_usage{server="app1"} 75 10:05AM
+
+Here:
+ ✔ cpu_usage → Metric name
+ ✔ 75 → Metric value
+ ✔ 10:05AM → Timestamp
+ ✔ server="app1" → Label
+
+🔹 Real-world Examples: 💡
+👉 CPU usage over time
+ 👉 Memory consumption trends
+ 👉 API request count per minute
+ 👉 Response time history
+These help teams understand system behavior 📊
+
+🔹 Why Time-Series Data is Powerful? ⚡
+✔ Helps create dashboards 📈
+ ✔ Enables alerting 🚨
+ ✔ Supports historical analysis
+ ✔ Useful for forecasting trends
+
+🔹 Key Concepts to Remember: 🧠
+✔ Time-series = Data + Time ⏱️
+ ✔ Stored in TSDB 💾
+ ✔ Metrics change continuously 📊
+ ✔ Helps analyze trends over time
