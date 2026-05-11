@@ -1,0 +1,85 @@
+Xoriant L1 20-4-26
+INTRO
+### 🔹 Kubernetes / EKS / Containers
+
+1. Can you please explain me what's the difference between **self-hosted Kubernetes** and **EKS cluster**?
+2. Can you please give major differences between **self-hosted Kubernetes** and **EKS** in bullet points?
+3. Which is the latest **Kubernetes cluster version** in AWS?
+4. Have you worked on upgrading the **EKS cluster**?
+5. Can we directly upgrade from **1.26 to 1.35** in Terraform?
+6. Can we upgrade directly from **1.26 to 1.30 or 1.31**, or do we need some standards?
+7. What do you mean by **minor upgradation**?
+8. What type of **containers** do you know in Kubernetes?
+9. Any other container types you are missing?
+10. Have you heard about the **pause container**?
+11. What are the major components in **Kubernetes architecture**?
+12. If I execute `kubectl get pods`, how does the request flow internally?
+13. What do you mean by **Authorization**?
+14. What is **Authentication**?
+15. After authentication, what happens?
+16. Is there any way to prevent **silly mistakes in production clusters**?
+17. Have you worked on policies like **OPA Gatekeeper / Kyverno**?
+18. When should we use **HPA (Horizontal Pod Autoscaler)** vs **VPA (Vertical Pod Autoscaler)**?
+19. When exactly do we use **VPA**?
+20. What is your understanding of **stateful vs stateless applications** in Kubernetes?
+21. What is missing in a **headless service/pod**?
+22. What is **CrashLoopBackOff** error in Kubernetes?
+
+---
+
+### 🔹 Argo CD / CI-CD
+
+23. Jenkins can do deployments — why are people moving to **Argo CD**?
+24. Any other reasons apart from Git sync?
+25. How will you manage emergency changes when **Argo CD pipeline takes time**?
+26. How will you document manual changes done directly in the cluster?
+27. How will you detect what changes were made in the cluster?
+28. Have you heard about **drift detection in Argo CD**?
+29. What do **Prune** and **Self-Heal** do in Argo CD?
+30. Have you created an **application in Argo CD**?
+
+---
+
+### 🔹 Terraform
+
+31. What is the **terraform state command**?
+32. How do you manage **multiple environments** in Terraform?
+33. What do you mean by **separate modules**?
+34. How does Terraform understand resource order (VPC → EC2 → S3)?
+35. How do you store the **Terraform state file securely**?
+36. How do you manage **multiple developers working on the same state file**?
+37. Is there any better approach than locking for multiple developers?
+38. How do you manage concurrent Terraform operations?
+39. If the **state file is lost**, how do you recover it?
+
+---
+
+### 🔹 Microservices
+
+40. What is your understanding of **microservices**?
+41. What is **microservices architecture**?
+42. Why are companies moving from **monolithic to microservices**?
+
+---
+
+### 🔹 Monitoring / Observability
+
+43. What monitoring tools have you used?
+44. Where are logs coming from in your setup?
+45. How is **Prometheus deployed** (DaemonSet / Deployment)?
+46. What metrics do you monitor in a cluster?
+47. How do you calculate **number of requests / traffic**?
+48. What is the difference between **logs and events** in Kubernetes?
+
+---
+
+### 🔹 AWS
+
+49. What AWS services have you used?
+50. What are **global services in AWS**? Name any three.
+51. What is your understanding of **global vs regional services**?
+52. If S3 asks for region, how is it global?
+53. Name two more **global services**.
+54. How will you update software (like Apache/Nginx) across multiple EC2 instances?
+55. Have you heard about **AWS Systems Manager (Session Manager)**?
+56. How will you give **S3 access to a pod in EKS**?
