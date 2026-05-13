@@ -1,0 +1,24 @@
+Introducing myself to an interviewer:
+
+Hello, I am Juhi, and I have 2-5 years of experience working with various DevOps tools. I have had the opportunity to utilize AWS as my cloud platform. Here are some key tools and technologies I work with:
+
+- Container orchestration using Kubernetes
+- Containerization with Docker
+- Continuous integration and development through Jenkins
+- Infrastructure development and provisioning with Terraform
+- Continuous deployment and rollback management using Helm 
+- Incident handling and alert monitoring with Prometheus and Grafana
+
+In my day-to-day activities, I focus on:
+
+- Checking Jira tickets and prioritizing severity tickets
+- Responding to alerts and attending to incidents
+- Troubleshooting pod and node issues
+- Onboarding new services on AWS
+- Managing new job onboarding on Jenkins
+- Addressing network issues
+- Working on patches and upgrades
+
+A highlight of my introduction is that I start with AWS and conclude with deployment processes. By emphasizing my attention to Jira ticket severity, I demonstrate my commitment to addressing issues promptly. 
+
+After this introduction, I anticipate that your first question will be about the AWS services I have used so far. This approach helps guide the conversation toward my areas of expertise. 
