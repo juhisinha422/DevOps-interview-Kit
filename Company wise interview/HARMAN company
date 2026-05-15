@@ -1,0 +1,15 @@
+screening round with HARMAN company for a DevOps/SRE related opportunity.
+
+These were some of the questions asked during the discussion:
+
+✅ Write a Python program to get input from user and find frequency of numbers in a list
+✅ Jenkins pipeline — how to execute Stage 2 even if Stage 1 fails
+✅ Difference between CMD and ENTRYPOINT in Docker
+✅ What is EKS Control Plane
+✅ Difference between ALB and NLB
+✅ Pod/application unable to access S3 bucket — troubleshooting steps
+✅ What is IRSA in EKS
+✅ Why Terraform is used in real-time projects
+✅ Core components of AWS VPC
+
+It was a good discussion focused more on real-time troubleshooting, Kubernetes, AWS networking, CI/CD, and practical DevOps scenarios rather than only theoretical concepts.
