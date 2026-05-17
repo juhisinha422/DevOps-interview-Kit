@@ -1,0 +1,19 @@
+NeoSOFT for a 3+ years DevOps role, 
+
+
+1. Tell me about yourself
+2. What are policies in Auto Scaling?
+3. How do path-based routing and host-based routing work in ALB, and which has priority?
+4. How can you give SSH access to an EC2 instance without sharing the PEM key?
+5. What is Terraform lifecycle?
+6. Difference between count and for_each in Terraform?
+7. What is a data block and how is it different from a dynamic block?
+8. What are provisioners in Terraform?
+9. What are the parameters of SonarQube and how do you test an application?
+10. If production keys are exposed, how do you troubleshoot and resolve the issue?
+11. How do you upgrade a Kubernetes cluster without downtime?
+12. which Kubernetes version you have used?
+13. What are liveness and readiness probes?
+14. What are static pods and how do you handle them?
+15. Explain niginx pod structure 
+16. Explain Kubernetes deployment YAML file
