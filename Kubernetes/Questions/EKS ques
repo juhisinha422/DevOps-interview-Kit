@@ -1,0 +1,21 @@
+Real-World 
+• What is Amazon EKS and how does it work?
+• What is the difference between EKS and self-managed Kubernetes?
+• How do you create and manage EKS clusters?
+• What are managed node groups in EKS?
+• How does EKS integrate with IAM?
+• What is IAM Roles for Service Accounts (IRSA)?
+• How do you secure Amazon EKS clusters?
+• How do you manage networking in EKS using VPC and CNI?
+• What is the role of kube-proxy in EKS?
+• How do you deploy applications to EKS?
+• How do you implement autoscaling in EKS?
+• What is Cluster Autoscaler in EKS?
+• How do you monitor EKS clusters using CloudWatch and Prometheus?
+• How do you troubleshoot failed Pods in EKS?
+• How do you handle upgrades in Amazon EKS?
+• How do you implement blue-green deployments in EKS?
+• How do you manage secrets securely in EKS?
+• How do you integrate EKS with CI/CD pipelines?
+• What are common Amazon EKS production issues and fixes?
+• What are best practices for running Amazon EKS in production?
