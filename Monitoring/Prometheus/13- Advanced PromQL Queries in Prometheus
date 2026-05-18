@@ -1,0 +1,60 @@
+ Advanced PromQL Queries in Prometheus
+
+🔹 What is Advanced PromQL? 🧠
+ Advanced PromQL functions help engineers perform calculations, aggregations, and trend analysis on monitoring data.
+Instead of viewing raw metrics, you can analyze patterns and system behavior in production 📊
+
+🔹 Why it matters in real-world? 🏗️
+ Production systems generate massive amounts of metrics.
+ Advanced queries help you:
+✔ Detect traffic spikes 🚨
+ ✔ Analyze performance trends 📈
+ ✔ Calculate averages
+ ✔ Build meaningful dashboards
+
+🔹 Important PromQL Functions: ⚡
+✔ rate() 🔄
+ Calculates how fast a counter increases over time.
+
+👉 Example:
+rate(http_requests_total[5m])
+
+✔ Shows request rate per second over 5 minutes
+✔ sum() ➕
+ Adds values together.
+
+👉 Example:
+sum(cpu_usage)
+
+✔ Total CPU usage across systems
+✔ avg() 📊
+ Calculates average value.
+
+👉 Example:
+avg(memory_usage)
+
+✔ Average memory usage across servers
+
+🔹 Real-world Queries: 💡
+
+👉 Total requests from all APIs
+sum(http_requests_total)
+
+👉 Average CPU usage of all nodes
+avg(node_cpu_usage)
+
+👉 Request rate in last 5 minutes
+rate(http_requests_total[5m])
+
+🔹 Real-world Example: 🌍
+Your application traffic suddenly increases 📈
+👉 rate() shows request spike
+ 👉 avg() shows high memory usage
+ 👉 sum() shows total traffic load
+✅ Engineers quickly understand system pressure and scale services 🚀
+
+🔹 Key Concepts to Remember: 🧠
+✔ rate() = Speed of change 🔄
+ ✔ sum() = Total value ➕
+ ✔ avg() = Average value 📊
+ ✔ Used for dashboards & alerts 🚨
