@@ -1,5 +1,6 @@
 Here are detailed README-style notes for HTTP Error Codes with DevOps, AWS, Kubernetes, Nginx, and real-time production examples.
 
+https://www.anjidevops.online/blog/
 # HTTP Status Codes – Complete DevOps & AWS Notes
 
 ## What are HTTP Status Codes?
