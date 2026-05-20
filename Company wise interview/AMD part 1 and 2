@@ -1,0 +1,60 @@
+Interview Experience – AMD – Part 1 ✅ 
+
+1. What is a Set in Python?
+2. What is a membership test in Python?
+3. Can dictionary keys be stored in a set?
+4. Can a set be used as a dictionary key?
+5. Which data types are valid as dictionary keys in Python?
+6. How do you sort dictionary keys based on their values?
+7. How do you sort a dictionary and retrieve values in sorted order?
+8. Explain sorting using lambda x: x[1]
+9. What does x[1] represent in a lambda function?
+10. How do you sort a tuple in Python?
+11. How do you return tuples from sorted dictionary items?
+12. How do you retrieve only keys after sorting a dictionary?
+13. What is the purpose of dict.get() in Python?
+14. Which Python modules have you worked with?
+15. Explain the use cases of NumPy and Pandas
+16. What additional Python modules have you used in projects?
+17. Ho w do you list all .txt files in a directory?
+18. How can the subprocess module be used to list files?
+19. What is Popen in Python?
+20. Explain __name__ == "__main__"
+21. Implement Binary Search in Python
+22. How do you handle edge cases in Binary Search?
+23. Describe your current project
+24. What is your involvement in GitHub Actions workflows?
+25. How do you trigger workflows from the GitHub UI?
+26. What are the different “Run Workflow” options available?
+27. How do branch selection and input parameters work in workflows?
+
+Interview Experience – AMD – Part 2 ✅ 
+
+1. What is a Git repository?  
+2. Scenario: You fixed a bug, pushed the code, but it broke the system. What will you do?  
+3. What is git revert?  
+4. What happens when you run git revert <commit>?  
+5. How do you handle a bad commit when other commits already exist after it?  
+6. What is history rewrite in Git?  
+7. How can you avoid affecting other developers’ commits?  
+8. Can you hide changes from others in Git?  
+9. What is git fetch?  
+10. What is git pull?  
+11. What are the types of Git merge?  
+12. What is Fast-forward merge?  
+13. What is the prerequisite for Fast-forward merge?  
+14. Explain Git rebase with a scenario  
+15. What is Continuous Integration (CI)?  
+16. What problems existed before CI/CD?  
+17. What are the different ways to trigger GitHub Actions workflows?  
+18. Difference between schedule and workflow_dispatch in GitHub Actions  
+19. How do you run jobs in parallel in GitHub Actions?  
+20. Explain GitHub Actions basics  
+21. When would you prefer a VM over Docker?  
+22. What is isolation in Docker?  
+23. Why do legacy applications require a full OS?  
+24. Difference between ENTRYPOINT and CMD in Docker  
+25. When should CMD be used?  
+26. What does supersede mean in Docker commands?  
+27. Can CMD and ENTRYPOINT be overridden?  
+28. Can a container start by itself?  
