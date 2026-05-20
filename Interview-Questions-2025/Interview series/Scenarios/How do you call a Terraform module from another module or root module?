@@ -1,0 +1,25 @@
+How do you call a Terraform module from another module or root module?  
+
+To call a Terraform module from either a root or another child module, we use the module block in our configuration file 
+
+module "my_service" {
+  source = "./modules/service_name" # Required: Path or URL to the module
+  
+  # Input variables defined in the child module
+  variable_name = "value"
+}
+
+Terraform can load modules from several types of locations 
+
+Local Paths 
+Terraform Registry
+GitHub 
+Private Registries  
+
+Example: 
+module "module_local_name" {
+  source = "path_or_repository_url"
+
+  # Input variables required by the module
+  variable_name = "value"
+}
