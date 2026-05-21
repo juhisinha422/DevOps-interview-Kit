@@ -1,0 +1,59 @@
+DevSecOps in Production
+
+🔐 DevSecOps in Production — A Real-Time Pipeline Guide Nobody Talks About in Enough Detail
+If you're building software and shipping it to production without security baked into every step, you're gambling with your systems.
+
+Here's the exact production-grade DevSecOps pipeline I use — 8 stages, 6 tools, running in real time with GitLab triggering Jenkins. Let me walk you through every step so you can implement it today. 👇
+
+🏗️ The Pipeline Overview
+
+GitLab → [Build & Unit Test] → [Code Coverage] → [SCA] → [SAST]
+       → [Quality Gates] → [Build Image] → [Scan Image] → [Smoke Test] → 📧 Notification.
+
+Every stage has a specific tool. Every tool has a job. Nothing ships unless the pipeline is green.
+
+🔧 Stage 1 — Build & Unit Test | Maven
+✅ Compiles code & runs tests
+🔌 Plugin: Maven Integration Plugin
+Why it matters: If the code doesn't build or tests fail, there's zero point running security scans. Fail fast, fix fast.
+
+Stage 2 — Code Coverage | JaCoCo
+✅ Measures test coverage %
+🔌 Plugin: JaCoCo Plugin
+Why it matters: High test coverage = lower risk of shipping bugs. JaCoCo gives you hard numbers, not guesses.
+
+Stage 3 — SCA | OWASP Dependency Check
+✅ Scans 3rd-party libs for CVEs
+🔌 Plugin: OWASP Dependency-Check Plugin
+Why it matters: Log4Shell happened because of an unchecked dependency. SCA makes sure you're not unknowingly shipping known exploits.
+
+Stage 4 — SAST | SonarQube
+✅ Static code analysis — finds bugs, secrets & vulnerabilities
+🔌 Plugin: SonarQube Scanner for Jenkins
+Why it matters: SAST catches vulnerabilities before the code even runs — it's your first line of code defense.
+
+Stage 5 — Quality Gate | SonarQube
+✅ Hard stop — pipeline fails if standards aren't met
+🔌 Same SonarQube plugin + configure threshold in SonarQube UI
+Why it matters: This is your automated code reviewer. No human approval needed — the gate enforces standards automatically.
+
+Stage 6 — Build Image | Dockerfile + Docker
+✅ Containerizes the app
+🔌 Plugin: Docker Pipeline Plugin
+Why it matters: "It works on my machine" is dead. Containers ensure your app runs identically from dev to prod.
+
+Stage 7 — Scan Image | Aqua Trivy
+✅ Scans Docker image for OS CVEs & misconfigs
+🔌 No plugin needed — install via: apt-get install trivy
+Why it matters: A clean source code doesn't mean a clean image. Base images carry their own CVEs — Trivy catches them before they hit production.
+
+Stage 8 — Smoke Test
+✅ Validates app is alive in staging
+🔌 Use curl: curl -f http://staging:8080/health || exit 1
+Notification | Email Extension Plugin
+✅ Alerts team on every build result.
+Why it matters: Every pipeline run should notify your team — success or failure. No surprises in production.
+
+💬 Final 
+Security is not a checkbox at the end of sprint. It's a pipeline.
+Build it once. Let it run forever. Sleep better at night. 
