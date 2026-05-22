@@ -1,0 +1,33 @@
+AWS S3 CLI Commands Every DevOps Engineer Should Know
+Managing Amazon Simple Storage Service using AWS Command Line Interface makes cloud operations faster and easier. ☁️
+✅ Common AWS S3 CLI Commands
+📌 List all S3 buckets
+
+aws s3 ls
+
+📌 Create a new bucket
+
+aws s3 mb s3://my-demo-bucket
+
+📌 Upload file to S3
+
+aws s3 cp file.txt s3://my-demo-bucket
+
+📌 Download file from S3
+
+aws s3 cp s3://my-demo-bucket/file.txt .
+
+📌 Sync local folder with S3
+
+aws s3 sync ./website s3://my-demo-bucket
+
+📌 Remove file from S3
+
+aws s3 rm s3://my-demo-bucket/file.txt
+
+💡 Why Use AWS CLI?
+✔ Faster resource management
+ ✔ Easy automation
+ ✔ Useful in CI/CD pipelines
+ ✔ Saves time for DevOps Engineers
+Learning CLI commands is one of the best ways to improve cloud and automation skills. 🚀
