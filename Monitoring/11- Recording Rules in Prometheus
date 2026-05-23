@@ -1,0 +1,47 @@
+Recording Rules in Prometheus
+
+🔹 What are Recording Rules? 🧠
+ Recording rules are used to precompute PromQL query results and store them as new metrics.
+Instead of running heavy queries repeatedly, Prometheus calculates them once and saves the result 📊
+👉 Think of it as:
+ “Save query result now, use it later quickly.”
+
+🔹 Why are Recording Rules Needed? 🏗️
+In large production systems, complex PromQL queries can become expensive ⚠️
+Without recording rules:
+ ❌ Queries become slow
+ ❌ Dashboards load slowly
+ ❌ High CPU usage on Prometheus server
+👉 Recording rules solve this problem 🚀
+
+🔹 How It Works: ⚡
+✔ Prometheus runs query at intervals
+ ✔ Result stored as a new metric
+ ✔ Dashboards & alerts use stored metric
+
+🔹 Example Recording Rule: 📊
+record: job:http_requests:rate5m
+expr: rate(http_requests_total[5m])
+
+👉 This stores request rate as a reusable metric.
+
+🔹 Performance Benefits: 🚀
+✔ Faster dashboard loading 📈
+ ✔ Reduced query execution time ⏱️
+ ✔ Lower Prometheus server load 🖥️
+ ✔ Better scalability for large environments 🌍
+
+🔹 Real-world Example: 💡
+Imagine a company monitoring 500+ servers 🏢
+👉 A complex query calculating CPU usage for all systems runs every few seconds
+Without recording rules:
+Slow dashboards 🐢
+High Prometheus load 🚨
+With recording rules:
+ ✔ Query result already stored
+ ✔ Dashboards become fast ⚡
+🔹 Key Concepts to Remember: 🧠
+✔ Recording rules = Precomputed queries 📊
+ ✔ Improve dashboard speed ⚡
+ ✔ Reduce server load 🖥️
+ ✔ Useful for large-scale monitoring 🌍
