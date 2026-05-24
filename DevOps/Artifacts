@@ -1,0 +1,19 @@
+An Artifact is a file or package generated during the software development or CI/CD process and used in later stages.
+Examples of Artifacts
+Compiled application files (.jar, .war, .exe)
+ZIP packages
+Docker images
+Build logs
+Test reports
+In CI/CD
+During a pipeline: 1️⃣ Source code is built
+2️⃣ Build output is created
+3️⃣ That output is called an artifact
+4️⃣ Artifact is stored and deployed later
+Example
+In Amazon Web Services CodePipeline:
+Source stage → fetches code
+Build stage → creates artifact
+Deploy stage → deploys artifact
+💡 Simple Definition:
+Artifact = Final output generated after build process.
