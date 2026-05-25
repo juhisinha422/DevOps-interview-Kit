@@ -1,0 +1,13 @@
+What happens when systemd hits a failing unit in a containerized node? How would you auto-recover? 
+
+In a container, systemd acts as the PID 1 init process, bringing up and managing background services. It handles process management, automatically restarting crashed services and reaping "zombie" processe. 
+
+1.To implement auto-recovery, we can configure systemd to handle restarts automatically using specific directives in the unit files.  
+
+2.Restart=on-failure or Restart=always to the [Service] section of the unit file. on-failure is generally preferred for production as it only triggers for non-zero exit codes or unclean signals.
+ 
+3.RestartSec=5s to give the system time to breathe before attempting a restart, preventing rapid-fire "rebound" failures. 
+
+4.StartLimitBurst=3 and StartLimitIntervalSec=60s means if it fails 3 times in a minute, systemd stops trying. 
+
+5.For critical infrastructure, we can set StartLimitAction=reboot to reboot the entire node if a critical service hits its restart limit and remains failed 
