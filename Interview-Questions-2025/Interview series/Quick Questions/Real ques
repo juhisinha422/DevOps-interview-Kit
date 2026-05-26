@@ -1,0 +1,210 @@
+part 1
+1. You mentioned that you achieved a 30% cost reduction while migrating servers and databases from on-premises to AWS Cloud. How did you achieve this?
+A. Right-Sizing Infrastructure
+On-premises servers were overprovisioned.
+Using AWS Migration Evaluator and CloudWatch metrics, we analyzed actual CPU, memory, and storage utilization.
+We selected optimized EC2 instance types instead of matching on-prem server sizes directly.
+B. Moving Databases to Managed Services.
+Self-managed databases were migrated to Amazon RDS.
+This reduced:
+Licensing costs
+Maintenance overhead
+Backup management effort
+Operational support cost
+C. Auto Scaling Implementation
+Instead of running servers 24/7 at peak capacity, we implemented Auto Scaling.
+Resources scaled dynamically based on workload demand.
+This significantly reduced idle infrastructure cost.
+D. Reserved Instances / Savings Plans
+For predictable workloads, we used:
+Reserved Instances
+Savings Plans
+This reduced EC2 costs considerably compared to on-demand pricing.
+E. Storage Optimization
+Old unused storage and snapshots were cleaned up.
+Implemented:
+S3 lifecycle policies
+Intelligent tiering
+EBS optimization
+F. Reduced Data Center and Operational Costs
+By moving to AWS, the organization eliminated:
+Physical server maintenance
+Power and cooling
+Hardware refresh cycles
+Data center operational expenses
+G. Automation and DevOps
+Using Terraform, CI/CD pipelines, and automation reduced:
+Manual operational effort
+Deployment time
+Infrastructure management overhead
+2. How did you implement infrastructure automation?
+
+We used Terraform and Ansible for automation. Terraform was used for infrastructure provisioning, while Ansible was used for configuration management and software deployment.
+In my previous project, we automated the provisioning and configuration of around 500 servers within a week. Using Terraform, we provisioned the infrastructure, including compute, networking, and storage resources. After provisioning, Ansible playbooks were used to perform software installation, server hardening, package updates, and user creation automatically.
+This automation significantly reduced manual effort, improved deployment consistency, minimized configuration errors, and accelerated the overall delivery timeline
+
+3. How did you design a three-tier application on AWS Cloud? What components did you use in the architecture? 
+For Web tire.
+-------------
+Route 53 or DNS (Accept the traffic) but I assumed that use transit gateway which is easy to understand rather that Route 53. 
+Then WAFT(Web Application Firewall), you can finetune the unnecessary traffic.
+Than ALB( Application road Balancer) and ASG (Auto Scaling Group).
+Then EC2, NACL, SG and public subnet.
+For Application Tier.
+----------------------
+ALB and ASG
+EC2 instances
+Private Subnets
+For Database Tier
+-------------------
+Amazon RDS (MySQL/PostgreSQL) With reserve Proxy
+Multi-AZ deployment
+Private Subnets
+
+
+----------------------------
+A. Shall we implement EC2 then Load balancer or Load balancer then EC2.
+Load Balancer → EC2 instances
+Because traffic first reaches the Load Balancer, and then the Load Balancer distributes requests to EC2 servers.
+B. Why you used reserve Proxy here?
+A Reverse Proxy sits between clients/users and backend servers.
+It receives requests from users and forwards them to the appropriate backend servers.
+In short, a reverse proxy is used to receive user requests and forward them to backend servers securely and efficiently. It also reuses existing connections to improve performance.
+4. As you mentioned, we can use an ALB for application access and an NLB for databases. What is the difference between ALB and NLB?
+ALB (Application Load Balancer) works on Layer 7 (Application Layer). It accepts HTTP, HTTPS, and WebSocket traffic and supports content-based routing, including path-based and host-based routing.
+NLB (Network Load Balancer) works on Layer 4 (Transport Layer). It accepts TCP, UDP, and TLS traffic and supports IP- and port-based routing. 
+It provides very high performance and low latency.
+5. Why is NLB faster than ALB?
+NLB is faster than ALB because it operates at Layer 4 and performs only TCP/UDP-level routing without inspecting application content. 
+ALB works at Layer 7 and processes HTTP headers, URLs, and routing rules, which adds additional overhead and latency.
+6. What is the purpose of an AWS Landing Zone?
+The purpose of an AWS Landing Zone is to provide a secure, scalable, and well-governed multi-account AWS environment based on AWS best practices.
+7. How do you reduce Amazon S3 storage costs?
+a. Use Appropriate S3 Storage Classes
+b. Configure Lifecycle Policies
+c. Delete Unused Data
+d. Enable Intelligent-Tiering
+e. Compress Files
+f. Optimize Versioning
+g. Monitor Using S3 Storage Lens and Cost Explorer
+h. Reduce Data Transfer Costs
+
+I reduce Amazon S3 storage costs by using appropriate storage classes, enabling lifecycle policies, deleting unused data, implementing Intelligent-Tiering, optimizing versioning, and monitoring storage usage through S3 Storage Lens and AWS Cost Explorer.
+8. What are the main components of a VPC?
+a. Subnets
+b. Route Tables
+c. Internet Gateway (IGW)
+d. NAT Gateway / NAT Instance
+e. Security Groups
+f. Network ACLs (NACLs)
+g. Elastic IP Address
+h. VPC Peering
+i. DHCP Option Set
+9. I created one public subnet and one private subnet in a VPC, but no resources are deployed inside them. 
+How can we identify which subnet is public and which is private?
+This is a very tricky question.
+A public subnet uses a route table associated with an Internet Gateway (IGW).
+A private subnet uses a route table associated with a NAT Gateway.
+Without that you can not identify.
+
+Please find the below answers part 3 and follow the links
+
+https://lnkd.in/gUc2G_aj (part1)
+
+https://lnkd.in/geNf893P (Part2)
+
+10. Suppose EC2 instance costs are very high due to increased application load. How would you reduce the cost?
+
+a. Enable Auto Scaling
+b. Use Load Balancer
+c. Choose the Right Instance Type
+d. Purchase Savings Plans or Reserved Instances
+e. Use Spot Instances
+f. Optimize Application Architecture
+g. chedule Non-Production Servers (Automatically stop development or testing instances during non-working hours)
+
+
+11. Suppose I ask you to migrate 5 TB of data from on-premises to AWS Cloud. Can you explain the high-level migration approach?
+
+a. Online Migration (Over Internet/VPN)
+
+Create an S3 bucket in AWS
+Establish secure connectivity:
+VPN or Direct Connect
+Use migration tools such as:
+AWS DataSync
+AWS CLI
+S3 Transfer Acceleration
+Validate data integrity
+Perform incremental sync before cutover
+
+b. Offline Migration Using AWS Snowball (Recommended for 5 TB)
+
+Request an AWS Snowball Edge device from AWS
+AWS ships the device to the data center
+Copy 5 TB data into the Snowball device
+Encrypt data automatically using AWS-managed keys
+Ship the device back to AWS
+AWS uploads the data into S3
+
+12. Assume an application running on a standalone Linux server is very slow. How would you improve the application performance?
+
+a. Identify the Bottleneck
+CPU utilization
+Memory usage
+Disk I/O
+Network latency
+Application-level problems
+
+b. Check CPU and Memory Usage
+If CPU usage is high:
+Identify heavy processes
+Optimize application threads/processes
+Scale vertically if needed
+If memory usage is high:
+Check for memory leaks
+Increase RAM
+Optimize caching
+
+c. Analyze Disk Performance
+If disk I/O is slow:
+
+Check read/write latency using iostat
+Remove unnecessary logs/files
+Use faster SSD storage
+Optimize database queries if DB is local
+
+d. Optimize the Application
+Enable caching (Redis/Memcached)
+Optimize inefficient code
+Reduce unnecessary API calls
+Tune application server configurations
+Use connection pooling
+
+e. Check Logs
+Errors
+Crashes
+Timeouts
+Resource exhaustion
+
+f. Monitor Network Performance
+Check latency and packet drops
+Verify DNS resolution
+Test connectivity using:
+
+g. Scale the Server
+Increase CPU/RAM
+Move to load-balanced architecture
+Use Auto Scaling in cloud environments
+
+I would first identify the bottleneck by checking CPU, memory, disk, and network utilization using Linux monitoring tools. 
+Then I would optimize the application, tune system resources, analyze logs, and improve storage or scaling if required.
+
+13. In the top command, if the load average shows 5, 5, 5, what does it mean?
+
+In Linux, the load average in the top command shows the system load over:
+
+Last 1 minute
+Last 5 minutes
+Last 15 minutes
+
