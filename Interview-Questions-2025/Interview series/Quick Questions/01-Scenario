@@ -69,3 +69,262 @@ I generate reports showing infrastructure configuration, IAM permissions, encryp
 
 I also provide Git commit history, approval workflows, pull request reviews, and pipeline execution logs to demonstrate change management controls. These records prove that infrastructure changes are reviewed, version-controlled, and traceable. In enterprise environments, Infrastructure as Code is extremely valuable for compliance because it provides repeatability, transparency, and automated governance for infrastructure management.
 
+
+
+
+# 🚀 DevOps Interview Questions — Terraform & Kubernetes (3–5 Years Experience)
+
+---
+
+# What are provisioners in Terraform?
+
+Provisioners in Terraform are used to execute scripts or commands on either the local machine or remote infrastructure during the creation or destruction of resources. They help automate post-deployment activities such as software installation, configuration setup, file copying, or executing shell commands after infrastructure provisioning is completed.
+
+Terraform mainly supports three types of provisioners:
+- local-exec
+- remote-exec
+- file provisioner
+
+The `local-exec` provisioner runs commands on the machine where Terraform is executed. The `remote-exec` provisioner connects to remote resources such as EC2 instances using SSH or WinRM and executes commands directly on those servers. The `file` provisioner is used to copy files from the local machine to remote infrastructure.
+
+In real-world DevOps environments, provisioners are commonly used for:
+- Installing packages after VM creation
+- Running bootstrap scripts
+- Configuring application dependencies
+- Registering servers in monitoring systems
+- Initializing databases or services
+
+However, provisioners are generally considered a last-resort approach because they are not fully idempotent and can introduce configuration drift. Most enterprise organizations prefer using cloud-init scripts, AMIs, Docker images, Ansible, or configuration management tools instead of relying heavily on Terraform provisioners.
+
+A common production example is automatically installing Nginx after launching an EC2 instance using remote-exec. Terraform first creates the infrastructure and then executes commands such as package installation and service startup.
+
+Provisioners should be used carefully because failed provisioner execution can leave infrastructure partially configured. Therefore, infrastructure provisioning and configuration management are usually separated in mature DevOps environments.
+
+---
+
+# Explain dynamic block code and explain with an example?
+
+Dynamic blocks in Terraform are used to generate repeated nested configuration blocks dynamically based on variables, maps, or lists. They help eliminate repetitive code and improve reusability and maintainability in Infrastructure as Code.
+
+In Terraform, many resources contain nested blocks such as ingress rules, egress rules, route definitions, IAM statements, or listener configurations. Writing these blocks manually for every configuration can make the code lengthy and difficult to maintain. Dynamic blocks solve this problem by creating nested blocks automatically using loops.
+
+For example, suppose a security group requires multiple ingress ports such as 80, 443, and 8080. Instead of manually writing separate ingress blocks for each port, a dynamic block can iterate through a list of ports and create all ingress rules automatically.
+
+Dynamic blocks are highly useful in:
+- Security group management
+- IAM policy generation
+- Route tables
+- Kubernetes manifest templates
+- Load balancer listener rules
+- Multi-environment infrastructure modules
+
+The biggest advantage of dynamic blocks is scalability. If a new port or configuration needs to be added, only the variable value changes instead of modifying the entire Terraform resource configuration.
+
+In enterprise infrastructure environments, dynamic blocks are widely used inside reusable Terraform modules because they reduce duplicate code, improve readability, and simplify maintenance across multiple environments such as DEV, UAT, and PROD.
+
+---
+
+# What is SVC in Kubernetes? How does it communicate in real-time?
+
+SVC in Kubernetes refers to a Kubernetes Service object. A Service provides a stable network identity and communication layer for pods running inside a Kubernetes cluster.
+
+Pods in Kubernetes are ephemeral, meaning their IP addresses can change whenever pods restart, scale, or get recreated. Because of this, direct pod-to-pod communication is unreliable. Kubernetes Services solve this problem by providing a stable virtual IP address and DNS name through which applications communicate consistently.
+
+A Service works using label selectors. It identifies backend pods that match specific labels and automatically routes traffic to healthy pods. Kubernetes uses kube-proxy and iptables/ipvs internally to manage traffic forwarding and load balancing across pod replicas.
+
+Real-time communication happens continuously because Kubernetes dynamically updates Service endpoints whenever pod states change. If new pods are created during scaling, the Service automatically includes them in traffic routing. If pods fail or terminate, they are automatically removed from the endpoint list.
+
+Different Service types are used depending on communication requirements:
+- ClusterIP for internal communication
+- NodePort for exposing services externally
+- LoadBalancer for cloud-based external access
+- ExternalName for DNS-based external mapping
+
+For example, a frontend application communicates with a backend API using the backend Service DNS name rather than individual pod IPs. Even during deployments, scaling, or pod failures, communication remains stable because the Service abstracts the underlying pod infrastructure.
+
+In production Kubernetes environments, Services are critical for microservice communication, load balancing, service discovery, and high availability.
+
+---
+
+# How do you achieve zero downtime in Terraform?
+
+Terraform itself is an Infrastructure as Code tool and does not directly guarantee zero downtime, but infrastructure changes can be designed carefully to minimize or completely avoid service interruption.
+
+One of the most important techniques is using the `create_before_destroy` lifecycle rule. This ensures Terraform creates new infrastructure resources first before deleting existing ones. This approach is commonly used for load balancers, EC2 instances, autoscaling groups, and networking resources.
+
+Organizations also use deployment patterns such as:
+- Blue-green deployments
+- Rolling updates
+- Canary deployments
+- Auto Scaling Groups
+- Load balancer traffic switching
+
+In real-world production environments, infrastructure provisioning is usually separated from application deployment. Terraform handles infrastructure creation, while Kubernetes, Jenkins, or deployment tools manage rolling application updates.
+
+To achieve zero downtime, organizations ensure:
+- Multiple application replicas are running
+- Load balancers distribute traffic only to healthy instances
+- Health checks and readiness probes are configured
+- Traffic shifts gradually during updates
+- Rollback mechanisms are available
+
+For databases and stateful applications, extra planning is required because replacing storage or databases may cause temporary disruption. Migration scripts, replication, failover mechanisms, and backup strategies are important in such cases.
+
+Production-grade DevOps environments also perform infrastructure changes during maintenance windows or use canary rollout approaches to minimize customer impact.
+
+---
+
+# Kubernetes deploy: How do you update manifest files in the Jenkins deploy pipeline?
+
+In Jenkins deployment pipelines, Kubernetes manifest files are typically updated dynamically during the deployment stage after the application build process completes successfully.
+
+The common deployment flow is:
+1. Build application
+2. Build Docker image
+3. Push image to Docker registry
+4. Update Kubernetes manifest file
+5. Deploy manifests to Kubernetes cluster
+
+The Jenkins pipeline usually replaces the old image tag in the deployment YAML file with the latest build version. This can be done using shell scripts, sed commands, environment variables, Helm charts, or Kustomize templates.
+
+After updating the manifest file, Jenkins executes kubectl apply commands to deploy the updated resources into the Kubernetes cluster.
+
+In modern DevOps organizations, raw YAML modification is less common. Instead, organizations use:
+- Helm charts
+- Kustomize
+- GitOps workflows
+- ArgoCD
+- FluxCD
+
+These tools provide:
+- Version-controlled deployments
+- Better rollback capability
+- Environment-specific configuration management
+- Reusable deployment templates
+
+After deployment, Jenkins also performs:
+- Health checks
+- Rollout status verification
+- Smoke testing
+- Monitoring validation
+
+In enterprise production environments, automated deployment validation is critical because successful deployment execution does not always guarantee application health.
+
+---
+
+# A VPC is created manually in Terraform. How do you configure in Terraform?
+
+If a VPC already exists manually in AWS and needs to be managed using Terraform, the first step is importing the existing infrastructure into Terraform state.
+
+Initially, Terraform configuration code for the VPC resource is written manually. After defining the resource block, the `terraform import` command is used to associate the existing AWS VPC with Terraform state management.
+
+Once the import is successful, Terraform becomes aware of the infrastructure and can track future changes using Infrastructure as Code.
+
+This process is commonly used when organizations migrate from manually managed infrastructure to automated Terraform-based infrastructure management.
+
+After importing, the following steps are important:
+- Run terraform plan
+- Verify configuration consistency
+- Ensure no unintended resource replacement occurs
+- Validate networking configurations
+
+Sometimes imported resources contain manually configured settings that are missing from Terraform code. Therefore, the Terraform configuration must accurately match the actual infrastructure state to avoid drift.
+
+In enterprise cloud environments, importing existing infrastructure is very common during cloud modernization projects or Terraform adoption phases.
+
+---
+
+# crashloopbackoff explain?
+
+CrashLoopBackOff is a Kubernetes pod state that occurs when a container repeatedly crashes after startup and Kubernetes continuously attempts to restart it with increasing delay intervals.
+
+When a container fails, Kubernetes automatically tries to restart it based on the pod restart policy. If the application keeps crashing repeatedly, Kubernetes gradually increases the restart delay to avoid constant restart loops. This state is called CrashLoopBackOff.
+
+Common causes include:
+- Application startup failure
+- Incorrect environment variables
+- Missing secrets or ConfigMaps
+- Database connection failure
+- Invalid application configuration
+- Dependency service unavailable
+- Out of memory errors
+- Port conflicts
+- Failed liveness probes
+
+Troubleshooting usually starts by checking:
+- Pod events
+- Container logs
+- Previous container logs
+- Resource utilization
+- Kubernetes events
+
+In production environments, CrashLoopBackOff incidents are frequently caused by configuration changes, faulty deployments, external dependency failures, or incorrect secrets.
+
+Readiness probes and liveness probes play an important role in reducing production impact. Monitoring systems such as Prometheus and Grafana also help detect recurring crashes early before they affect users significantly.
+
+---
+
+# How do you start the backend pod first and then the frontend pod in k8s? Walk me through the steps?
+
+Kubernetes does not automatically guarantee startup order between applications, so dependency handling must be implemented explicitly.
+
+The first step is deploying the backend application with proper readiness probes configured. The readiness probe ensures Kubernetes marks the backend pod as healthy only after the application becomes fully operational.
+
+Once the backend service is stable and accessible, the frontend application can safely start.
+
+To ensure this dependency behavior, frontend deployments commonly use init containers. An init container continuously checks backend availability before allowing the main frontend container to start.
+
+The process usually works like this:
+1. Backend deployment starts first
+2. Backend pod initializes and becomes healthy
+3. Kubernetes Service exposes backend endpoint
+4. Frontend init container continuously checks backend connectivity
+5. Once backend becomes reachable, frontend application starts
+
+This prevents frontend failures caused by unavailable APIs or backend services during startup.
+
+Organizations also use:
+- Readiness probes
+- Startup probes
+- Dependency retry mechanisms
+- Service discovery validation
+
+In enterprise microservice environments, dependency management is extremely important because distributed applications often depend on APIs, databases, queues, or authentication services during startup.
+
+---
+
+# What is a rolling update strategy? What deployment strategy do you follow in your organisation?
+
+A rolling update strategy is a deployment method where old application instances are gradually replaced with new versions without bringing down the entire application at once.
+
+Instead of shutting down all old pods simultaneously, Kubernetes incrementally creates new pods and removes old ones while keeping the application available to users throughout the deployment process.
+
+This strategy helps achieve:
+- Minimal downtime
+- Controlled rollout
+- Reduced deployment risk
+- Easier rollback
+- Continuous application availability
+
+During rolling updates, Kubernetes controls:
+- Maximum unavailable pods
+- Maximum surge pods
+- Traffic routing
+- Health validation
+
+In most enterprise organizations, rolling updates are the default deployment strategy because they are simple, stable, and well-integrated with Kubernetes deployments.
+
+For highly critical applications, organizations may additionally use:
+- Canary deployments
+- Blue-green deployments
+- Feature flags
+- Progressive delivery
+
+In production environments, deployments are always combined with:
+- Readiness probes
+- Liveness probes
+- Monitoring dashboards
+- Automated rollback
+- Alerting systems
+
+In my organization, rolling updates are primarily used for standard application deployments, while canary or blue-green strategies are used for high-risk production releases where gradual traffic shifting and rapid rollback are required.
