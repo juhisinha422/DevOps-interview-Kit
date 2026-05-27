@@ -1,0 +1,65 @@
+Service Discovery in Prometheus
+
+🔹 What is Service Discovery? 🔍
+ Service Discovery is the process of automatically finding targets that Prometheus should monitor.
+Instead of manually adding every server or application, Prometheus can discover them automatically 🚀
+👉 “How does Prometheus know what to monitor?”
+
+🔹 Why is it needed? 🏗️
+Modern environments change constantly.
+Servers start, containers stop, pods scale up/down ⚡
+Manual configuration becomes difficult and error-prone.
+Service discovery solves this by:
+✔ Automatically finding targets
+ ✔ Reducing manual work
+ ✔ Supporting scalable environments
+
+🔹 Static vs Dynamic Discovery: ⚡
+✔ Static Discovery 📋
+Targets are added manually in configuration files.
+👉 Example:
+targets:
+- server1:9090
+- server2:9090
+
+Good for:
+ ✔ Small environments
+ ✔ Fixed infrastructure
+Limitation:
+ ❌ Not ideal for frequently changing systems.
+✔ Dynamic Discovery 🔄
+Targets are found automatically from cloud platforms, containers, or orchestration tools.
+Examples:
+Kubernetes
+AWS EC2
+Docker
+Good for:
+ ✔ Cloud-native systems
+ ✔ Auto-scaling workloads
+
+🔹 Kubernetes Integration: ☸️
+One of the biggest strengths of Prometheus is its integration with Kubernetes.
+Prometheus can automatically discover:
+✔ Pods
+ ✔ Nodes
+ ✔ Services
+ ✔ Endpoints
+When a new pod starts, Prometheus can begin monitoring it automatically 🚀
+No manual updates needed.
+
+🔹 Real-world Example: 💡
+You run an application on Kubernetes.
+Traffic increases 📈
+ Kubernetes creates 3 new pods automatically.
+👉 With static discovery:
+ You must manually update configuration ❌
+👉 With dynamic discovery:
+ Prometheus detects new pods automatically ✅
+Result → Continuous monitoring without extra effort.
+
+🔹 Key Concepts to Remember: 🧠
+✔ Service Discovery = Finding monitoring targets 🔍
+ ✔ Static = Manual configuration 📋
+ ✔ Dynamic = Automatic discovery 🔄
+ ✔ Kubernetes = Native integration ☸️
+ ✔ Essential for scalable monitoring 🚀
