@@ -640,3 +640,555 @@ resources:
   limits:
     memory: "512Mi"
 ```
+
+
+# DevOps Interview Questions & Answers (4 Years Experience)
+
+## 1️⃣ Your pod is running but returning 503. Is it the pod or the service? How do you find out in under 2 minutes?
+
+### Answer:
+
+First I check whether the issue is from the application pod or Kubernetes service routing.
+
+#### Step 1: Check Pod Status
+
+```bash
+kubectl get pods -o wide
+kubectl describe pod <pod-name>
+kubectl logs <pod-name>
+```
+
+* Verify pod is Running and Ready
+* Check restart count
+* Check readiness/liveness probe failures
+
+#### Step 2: Check Service Endpoints
+
+```bash
+kubectl get svc
+kubectl describe svc <service-name>
+kubectl get endpoints <service-name>
+```
+
+If endpoints are empty, service is not connected to pods due to label mismatch or readiness failure.
+
+#### Step 3: Test Directly
+
+```bash
+kubectl exec -it <pod-name> -- curl localhost:<port>
+```
+
+If pod responds locally but service returns 503, issue is with service, ingress, or load balancer.
+
+#### Step 4: Check Ingress / ALB
+
+```bash
+kubectl describe ingress
+```
+
+Main things I verify:
+
+* Label selector mismatch
+* Readiness probe failure
+* Wrong target port
+* Ingress backend issue
+
+---
+
+# 2️⃣ Terraform apply failed halfway. State file is now broken. How do you recover without destroying everything?
+
+### Answer:
+
+First I never directly destroy infrastructure.
+
+#### Step 1: Check State
+
+```bash
+terraform state list
+terraform plan
+```
+
+#### Step 2: Pull Backup State
+
+```bash
+terraform state pull > backup.tfstate
+```
+
+If remote backend is enabled like S3, I check versioning and restore previous state version.
+
+#### Step 3: Refresh State
+
+```bash
+terraform refresh
+```
+
+#### Step 4: Import Missing Resources
+
+If resources exist in AWS but not in state:
+
+```bash
+terraform import aws_instance.example i-123456
+```
+
+#### Step 5: Validate Plan
+
+```bash
+terraform plan
+```
+
+I ensure only missing resources are reconciled and no production resource deletion is planned.
+
+Main causes:
+
+* Interrupted apply
+* State lock issue
+* Manual infra changes
+* Backend corruption
+
+---
+
+# 3️⃣ Jenkins pipeline passed. But production is still on old code. What are the first 3 things you check?
+
+### Answer:
+
+#### 1. Check Deployment Trigger
+
+Verify deployment stage actually executed:
+
+```bash
+kubectl rollout history deployment <deployment-name>
+```
+
+Sometimes build passes but deployment stage is skipped.
+
+#### 2. Check Docker Image Tag
+
+```bash
+kubectl describe pod
+```
+
+I verify:
+
+* Latest image tag used
+* ImagePullPolicy
+* Correct registry image
+
+Common issue:
+Using same tag like `latest` causes old image caching.
+
+#### 3. Check Rollout Status
+
+```bash
+kubectl rollout status deployment <deployment-name>
+kubectl get rs
+```
+
+Verify new ReplicaSet was created successfully.
+
+Also check:
+
+* ArgoCD/Helm sync issues
+* Failed rollout rollback
+* Jenkins deployed to wrong namespace
+
+---
+
+# 4️⃣ Your Docker image is 2.1 GB. Deployment is too slow. How do you reduce it to under 300 MB?
+
+### Answer:
+
+#### 1. Use Lightweight Base Image
+
+Instead of:
+
+```dockerfile
+FROM ubuntu
+```
+
+Use:
+
+```dockerfile
+FROM alpine
+```
+
+or slim images.
+
+#### 2. Multi-Stage Build
+
+```dockerfile
+FROM maven:3.9 AS build
+COPY . .
+RUN mvn clean package
+
+FROM openjdk:17-jdk-slim
+COPY --from=build app.jar app.jar
+CMD ["java","-jar","app.jar"]
+```
+
+#### 3. Remove Unnecessary Packages
+
+* Remove cache
+* Remove temp files
+* Avoid installing debugging tools
+
+#### 4. Optimize Layers
+
+Combine RUN commands:
+
+```dockerfile
+RUN apt update && apt install -y curl && apt clean
+```
+
+#### 5. Use .dockerignore
+
+Exclude:
+
+* node_modules
+* git files
+* logs
+* test data
+
+#### 6. Scan Large Layers
+
+```bash
+docker history <image>
+```
+
+Tools:
+
+* dive
+* docker-slim
+
+This usually reduces Java images from 2GB to 200-300MB.
+
+---
+
+# 5️⃣ AWS bill doubled this month. No new resources added. How do you find the cause in under 10 minutes?
+
+### Answer:
+
+#### Step 1: Check Cost Explorer
+
+I check:
+
+* Service-wise cost increase
+* Region-wise spike
+* Daily trend
+
+#### Step 2: Identify Top Resource
+
+Usually causes:
+
+* Data transfer spike
+* NAT Gateway cost
+* Unused EBS volumes
+* Load balancer traffic
+* CloudWatch logs
+* Auto scaling issue
+
+#### Step 3: Use AWS CLI
+
+```bash
+aws ce get-cost-and-usage
+```
+
+#### Step 4: Check Recently Modified Resources
+
+```bash
+aws cloudtrail lookup-events
+```
+
+#### Step 5: Verify Autoscaling
+
+Sometimes pods or EC2 scaled unexpectedly due to traffic or faulty metrics.
+
+Main real-time issues I have seen:
+
+* Huge NAT Gateway billing
+* Infinite logging
+* Cross-region transfer
+* Orphan EBS snapshots
+
+---
+
+# 6️⃣ Node is NotReady. Pods are stuck in Pending. Walk me through your exact debug steps.
+
+### Answer:
+
+#### Step 1: Check Node Status
+
+```bash
+kubectl get nodes
+kubectl describe node <node-name>
+```
+
+#### Step 2: Verify Kubelet
+
+SSH into node:
+
+```bash
+systemctl status kubelet
+journalctl -u kubelet
+```
+
+#### Step 3: Check Disk / Memory
+
+```bash
+df -h
+free -m
+```
+
+Disk pressure or memory pressure often causes NotReady.
+
+#### Step 4: Check Container Runtime
+
+```bash
+systemctl status docker
+systemctl status containerd
+```
+
+#### Step 5: Verify Networking
+
+Check:
+
+* CNI plugin
+* Calico/Flannel pods
+* DNS
+* Security groups
+
+#### Step 6: Check Pending Pods
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+Common causes:
+
+* No resources
+* Taints/tolerations mismatch
+* IP exhaustion
+* PVC issue
+
+---
+
+# 7️⃣ A secret was committed to Git 2 weeks ago. What do you do right now?
+
+### Answer:
+
+First priority is assuming the secret is compromised.
+
+#### Immediate Actions:
+
+1. Rotate the secret immediately
+2. Disable old credentials
+3. Check access logs
+
+#### Remove Secret from Git History
+
+Using:
+
+```bash
+git filter-branch
+```
+
+or
+
+```bash
+BFG Repo Cleaner
+```
+
+#### Force Push Cleaned History
+
+```bash
+git push --force
+```
+
+#### Scan Entire Repo
+
+Tools:
+
+* trufflehog
+* git-secrets
+* gitleaks
+
+#### Prevent Future Issues
+
+Implement:
+
+* Secret scanning in CI/CD
+* Vault/Secrets Manager
+* Pre-commit hooks
+
+Main point:
+Even if repo is private, leaked credentials must always be rotated.
+
+---
+
+# 8️⃣ Two microservices work fine alone. Together they fail. How do you debug this in your CI/CD pipeline?
+
+### Answer:
+
+#### Step 1: Check Service Communication
+
+Verify:
+
+* DNS resolution
+* Service discovery
+* API endpoint URLs
+
+```bash
+kubectl exec -it <pod> -- nslookup service-name
+```
+
+#### Step 2: Check Environment Variables
+
+Usually mismatch happens in:
+
+* URLs
+* Ports
+* Secrets
+* Authentication tokens
+
+#### Step 3: Verify Network Policies
+
+```bash
+kubectl get networkpolicy
+```
+
+#### Step 4: Validate Integration Testing
+
+I add:
+
+* Contract testing
+* API integration tests
+* Smoke tests in pipeline
+
+#### Step 5: Check Logs and Tracing
+
+Tools:
+
+* Grafana
+* Loki
+* Jaeger
+* ELK
+
+Main real-time issues:
+
+* Timeout mismatch
+* SSL/TLS mismatch
+* Incorrect API response format
+* Authentication failure
+
+---
+
+# 9️⃣ Grafana shows CPU is normal. But users say app is slow. What else do you check?
+
+### Answer:
+
+CPU alone is not enough.
+
+I check:
+
+#### Memory Usage
+
+* Memory leaks
+* High heap usage
+* OOM kills
+
+#### Disk I/O
+
+Slow database or storage latency.
+
+#### Network Latency
+
+* API response time
+* Packet drops
+* DNS delays
+
+#### Application Metrics
+
+* Thread count
+* Connection pool
+* Garbage collection
+* Request queue
+
+#### Database Performance
+
+* Slow queries
+* Locking
+* High connections
+
+#### Kubernetes Metrics
+
+* Pod restarts
+* Readiness failures
+* HPA scaling
+* Node pressure
+
+Tools I use:
+
+* Grafana
+* Prometheus
+* APM tools
+* Jaeger tracing
+
+---
+
+# 1️⃣🔟 HPA is set up but pods are not scaling during traffic spike. What could be wrong?
+
+### Answer:
+
+#### Step 1: Verify Metrics Server
+
+```bash
+kubectl top pods
+kubectl get apiservice
+```
+
+If metrics are unavailable, HPA cannot scale.
+
+#### Step 2: Check HPA Status
+
+```bash
+kubectl describe hpa
+```
+
+#### Step 3: Verify Resource Requests
+
+HPA works based on CPU/memory requests.
+
+If requests are missing:
+
+```yaml
+resources:
+  requests:
+    cpu: "200m"
+```
+
+HPA may not work properly.
+
+#### Step 4: Check Max Replicas
+
+```yaml
+maxReplicas: 10
+```
+
+Maybe already reached limit.
+
+#### Step 5: Verify Cluster Autoscaler
+
+Sometimes HPA creates pods but nodes are unavailable.
+
+#### Step 6: Check Cooldown Period
+
+Scaling may delay due to stabilization window.
+
+Common real-time issues:
+
+* Metrics server down
+* Wrong target utilization
+* Missing resource requests
+* Pending pods due to insufficient nodes
+* HPA configured on wrong deployment
+
+---
