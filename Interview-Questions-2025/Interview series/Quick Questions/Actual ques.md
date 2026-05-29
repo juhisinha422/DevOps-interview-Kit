@@ -853,5 +853,24 @@ Typical troubleshooting order:
 In production incidents, Security Group misconfigurations are far more common than NACL problems.
 
 ---
+## "𝗔 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗶𝘀 𝗿𝘂𝗻𝗻𝗶𝗻𝗴 𝗶𝗻 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗮𝗻𝗱 𝘀𝘂𝗱𝗱𝗲𝗻𝗹𝘆 𝘀𝘁𝗼𝗽𝘀. 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗲𝗯𝘂𝗴 𝗶𝘁?"
+
+Here is how an experienced engineer answers this:
+
+𝗦𝘁𝗲𝗽 𝟭 → 𝗖𝗵𝗲𝗰𝗸 𝗹𝗼𝗴𝘀
+docker logs <container_id>
+This shows exactly what happened before it stopped.
+
+𝗦𝘁𝗲𝗽 𝟮 → 𝗖𝗵𝗲𝗰𝗸 𝗲𝘅𝗶𝘁 𝗰𝗼𝗱𝗲
+docker inspect <container_id> --format='{{.State.ExitCode}}'
+
+Exit code 0   = process finished on its own
+Exit code 1   = application crashed
+Exit code 137 = killed due to out of memory
+
+𝗦𝘁𝗲𝗽 𝟯 → 𝗙𝗶𝘅 𝗯𝗮𝘀𝗲𝗱 𝗼𝗻 𝘄𝗵𝗮𝘁 𝘆𝗼𝘂 𝗳𝗶𝗻𝗱
+→ App crashed?     Fix the error in your code or config
+→ Out of memory?   Add --memory flag when running container
+→ Wrong command?   Fix CMD or ENTRYPOINT in your Dockerfile
 
  
