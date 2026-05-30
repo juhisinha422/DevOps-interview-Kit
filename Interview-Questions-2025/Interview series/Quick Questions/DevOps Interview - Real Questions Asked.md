@@ -1192,3 +1192,368 @@ Common real-time issues:
 * HPA configured on wrong deployment
 
 ---
+
+
+# DevOps Interview Questions & Answers (4+ Years Experience)
+
+---
+
+# 1. What are the different ways to create a pipeline?
+
+In Jenkins, pipelines can be created using two primary approaches: Declarative Pipeline and Scripted Pipeline. Declarative Pipeline is the most commonly used approach because it follows a structured syntax, is easier to maintain, and provides built-in features such as stages, post actions, parameters, and environment variables. Scripted Pipeline provides more flexibility and is written using Groovy code, making it suitable for complex workflows.
+
+Pipelines can also be created directly through the Jenkins UI or stored as code in a Jenkinsfile within a Git repository. Storing pipelines as code is considered a best practice because it enables version control, peer review, auditing, and easier collaboration across teams. In modern DevOps environments, most organizations follow the Pipeline as Code approach where the Jenkinsfile is maintained alongside application source code.
+
+---
+
+# 2. What are the different sections in Declarative Pipeline?
+
+A Declarative Pipeline consists of several predefined sections that define the CI/CD workflow. The most commonly used sections are agent, stages, steps, environment, parameters, tools, post, options, and triggers.
+
+The agent section specifies where the pipeline will execute. Stages represent different phases of the pipeline such as Build, Test, Security Scan, Docker Build, Push, and Deploy. Each stage contains steps that execute actual commands or scripts.
+
+The environment section defines environment variables that can be reused throughout the pipeline. Parameters allow user inputs before pipeline execution. The post section contains actions that run after pipeline completion such as notifications, cleanup tasks, or artifact archiving. Triggers can be used to automatically start pipelines based on schedules or repository events.
+
+A typical enterprise pipeline contains stages for source code checkout, unit testing, static code analysis, Docker image creation, image scanning, deployment, and post-deployment validation.
+
+---
+
+# 3. What are the different agents you used?
+
+In Jenkins, agents define where pipeline jobs execute. The most commonly used agents are any, label-based agents, Docker agents, Kubernetes agents, and specific node agents.
+
+The any agent allows Jenkins to run the pipeline on any available executor. Label-based agents execute jobs on nodes that match specific labels such as Linux, Docker, or Kubernetes. Docker agents run pipeline stages inside Docker containers, ensuring consistent execution environments. Kubernetes agents dynamically create pods for pipeline execution, which is very common in cloud-native CI/CD environments.
+
+In my projects, I have primarily used Kubernetes agents integrated with Jenkins because they provide dynamic scaling, better resource utilization, isolation, and faster build execution. For specialized tasks such as Terraform deployments or Docker image creation, dedicated labeled agents are often used.
+
+---
+
+# 4. What are the different parameter types you used?
+
+Jenkins supports multiple parameter types to make pipelines dynamic and reusable. The commonly used parameter types include String Parameter, Choice Parameter, Boolean Parameter, Text Parameter, Password Parameter, Active Choice Parameter, and Active Choice Reactive Parameter.
+
+String parameters are used for inputs such as application version numbers or environment names. Choice parameters provide predefined options such as DEV, UAT, or PROD. Boolean parameters allow users to enable or disable specific stages. Password parameters securely store sensitive values. Text parameters are useful for multiline input.
+
+In enterprise CI/CD pipelines, parameters are commonly used to select deployment environments, application versions, rollback versions, AWS accounts, Kubernetes namespaces, and infrastructure configurations.
+
+---
+
+# 5. How do you populate value for your parameter dynamically?
+
+Dynamic parameter population is commonly achieved using the Active Choices Plugin in Jenkins. Instead of hardcoding parameter values, Groovy scripts are used to fetch real-time data from external systems.
+
+For example, a deployment pipeline can dynamically retrieve available Docker image tags from ECR, artifact versions from Nexus, Git branches from GitHub, or Kubernetes namespaces from a cluster. This ensures users always see updated values without modifying pipeline code.
+
+Dynamic parameters improve automation, reduce manual errors, and provide a better user experience by displaying only valid deployment options at runtime.
+
+---
+
+# 6. Which parameter you are using to populate value for your parameter dynamically?
+
+The most commonly used parameter type for dynamic value population is the Active Choice Parameter. This parameter executes a Groovy script and displays dynamically generated values in a dropdown list.
+
+For dependent dropdowns, Active Choice Reactive Parameters are often used. For example, if a user selects an AWS account, the second parameter can dynamically display environments associated with that account. Similarly, selecting an environment can dynamically populate available application versions.
+
+This approach is widely used in production deployment pipelines where values need to be fetched dynamically from cloud services, repositories, or deployment platforms.
+
+---
+
+# 7. What is the difference between Active Choice Reactive Parameter and Active Choice Reactive Reference Parameter?
+
+An Active Choice Reactive Parameter dynamically updates its values based on selections made in another parameter. It is typically used when one dropdown depends on another dropdown.
+
+For example, if a user selects the PROD environment, the next parameter may automatically display only production-approved application versions.
+
+An Active Choice Reactive Reference Parameter behaves differently because it is mainly used for displaying additional information rather than passing values into the pipeline. It can display formatted HTML, tables, descriptions, or deployment details based on previous parameter selections.
+
+In short, Reactive Parameters are used for dynamic user input selection, while Reactive Reference Parameters are used for displaying contextual information to users.
+
+---
+
+# 8. What is branching strategy?
+
+A branching strategy defines how developers manage source code changes, releases, hotfixes, and feature development in a version control system.
+
+The most commonly used strategies include Git Flow, GitHub Flow, GitLab Flow, and Trunk-Based Development.
+
+In enterprise environments, Git Flow is widely used. It typically contains:
+- Main or Master branch for production code
+- Develop branch for integration testing
+- Feature branches for development
+- Release branches for pre-production testing
+- Hotfix branches for emergency production fixes
+
+A well-defined branching strategy improves collaboration, reduces merge conflicts, and supports controlled software releases across multiple environments.
+
+---
+
+# 9. In DevOps Life Cycle, where CI and CD will fit into?
+
+Continuous Integration (CI) and Continuous Delivery/Deployment (CD) are core components of the DevOps lifecycle.
+
+CI starts after developers commit code to a repository. It includes code checkout, compilation, unit testing, static code analysis, security scanning, and artifact generation. The goal is to continuously validate code quality and detect issues early.
+
+CD begins after CI successfully completes. It includes artifact promotion, deployment automation, infrastructure provisioning, environment validation, application deployment, smoke testing, and production release.
+
+In a complete DevOps lifecycle, CI bridges development and testing, while CD bridges testing and operations, enabling faster and more reliable software delivery.
+
+---
+
+# 10. What are the different AWS services you used?
+
+In my projects, I have worked extensively with AWS services across compute, networking, storage, security, monitoring, and DevOps domains.
+
+For compute, I have used EC2, Auto Scaling Groups, ECS, EKS, Lambda, and Fargate. For storage, I have used S3, EBS, and EFS. For networking, I have worked with VPC, Route 53, NAT Gateway, Internet Gateway, Load Balancers, Security Groups, and NACLs.
+
+For security, I have used IAM, KMS, Secrets Manager, and Parameter Store. For monitoring and logging, I have worked with CloudWatch, CloudTrail, AWS Config, and X-Ray. For DevOps automation, I have experience with CodePipeline, CodeBuild, ECR, and CloudFormation along with Terraform.
+
+Most of my production experience involves EKS, EC2, VPC, IAM, Route 53, ALB, S3, CloudWatch, and Terraform.
+
+---
+
+# 11. In Route 53, what do you mean by A record and CNAME record?
+
+An A Record (Address Record) maps a domain name directly to an IPv4 address. When a user accesses a domain, DNS resolves the domain to the configured IP address.
+
+For example, application.example.com can point directly to an EC2 instance IP address using an A record.
+
+A CNAME (Canonical Name) Record maps one domain name to another domain name rather than an IP address. It acts as an alias. When DNS resolves the CNAME, it performs another lookup to find the final IP address.
+
+For example, app.example.com can point to my-alb.amazonaws.com. This is commonly used with AWS Load Balancers because their IP addresses can change over time while the DNS name remains stable.
+
+A Records point directly to IP addresses, whereas CNAME Records point to another domain name.
+
+
+# 12. What is the difference between A Record and CNAME Record?
+
+An A Record (Address Record) maps a domain name directly to an IPv4 address. When a user accesses a website, DNS resolves the domain name directly to the specified IP address. For example, if application.company.com points to 10.0.1.15, Route 53 returns that IP address to the client.
+
+A CNAME (Canonical Name) Record maps one domain name to another domain name instead of directly mapping to an IP address. For example, app.company.com can point to my-alb-123456.ap-south-1.elb.amazonaws.com. DNS first resolves the CNAME and then resolves the final destination domain.
+
+The main difference is that an A Record points directly to an IP address, while a CNAME points to another DNS name. In AWS environments, CNAME records are commonly used for Load Balancers because the underlying IP addresses may change, while the DNS name remains constant. Route 53 also provides Alias Records, which behave similarly to A Records but can point directly to AWS resources such as ALBs, CloudFront distributions, and S3 static websites.
+
+---
+
+# 13. So suppose you have a web application running and enabled HA for that. If one zone goes down, it needs to be automatically routed to the other region or availability zone. What will you do?
+
+To achieve high availability and automatic failover, I would deploy the application across multiple Availability Zones and place them behind an Application Load Balancer. The load balancer continuously performs health checks on backend instances or pods and automatically routes traffic only to healthy targets.
+
+If the requirement is cross-region disaster recovery, I would use Route 53 Failover Routing Policy or Route 53 Health Checks. The primary region serves traffic during normal operations, and if Route 53 detects that the primary endpoint is unhealthy, it automatically redirects traffic to the secondary region.
+
+In Kubernetes environments, applications are deployed with multiple replicas distributed across Availability Zones using node groups and topology spread constraints. Combined with load balancers, auto scaling, health checks, and Route 53 failover routing, this architecture ensures minimal service interruption even if an entire Availability Zone or region becomes unavailable.
+
+---
+
+# 14. What are the limitations of Lambda functions?
+
+AWS Lambda is a serverless compute service that eliminates infrastructure management, but it comes with certain limitations. Lambda functions have a maximum execution time of 15 minutes, making them unsuitable for long-running workloads. Memory allocation is limited and directly impacts CPU allocation.
+
+Lambda functions may experience cold starts when invoked after inactivity, especially for large packages or VPC-enabled functions. There are deployment package size limitations, concurrency limits, and execution environment constraints. Persistent storage is not available except for temporary storage within the execution environment.
+
+Lambda is excellent for event-driven workloads, API backends, automation, image processing, and scheduled jobs, but it is not ideal for applications requiring long-running processes, persistent connections, large compute workloads, or high-performance stateful services.
+
+---
+
+# 15. Write a Lambda function for any of the use cases you want?
+
+One common use case is automatically processing files uploaded to an S3 bucket. Whenever a file is uploaded, S3 triggers a Lambda function that validates the file and logs its details.
+
+Example Python Lambda function:
+
+```python
+import json
+
+def lambda_handler(event, context):
+    for record in event['Records']:
+        bucket = record['s3']['bucket']['name']
+        file_name = record['s3']['object']['key']
+
+        print(f"New file uploaded: {file_name} in bucket {bucket}")
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps('File processed successfully')
+    }
+```
+
+In production, similar Lambda functions are used for image resizing, log processing, automated notifications, backup validation, security checks, and triggering CI/CD workflows.
+
+---
+
+# 16. What are the difference between these two private and public subnet?
+
+A public subnet is a subnet that has a route to an Internet Gateway. Resources deployed in a public subnet can communicate directly with the internet if they have public IP addresses assigned. Common examples include Application Load Balancers, Bastion Hosts, and public-facing web servers.
+
+A private subnet does not have a direct route to an Internet Gateway. Resources inside private subnets cannot be accessed directly from the internet. Outbound internet access is typically provided through a NAT Gateway located in a public subnet.
+
+Private subnets are commonly used for application servers, Kubernetes worker nodes, databases, caching systems, and internal services because they provide better security by preventing direct internet exposure.
+
+---
+
+# 17. Where will you attach your NAT Gateway?
+
+A NAT Gateway must always be deployed inside a public subnet because it requires internet connectivity through an Internet Gateway. The NAT Gateway is assigned an Elastic IP address, allowing resources in private subnets to access external services while remaining inaccessible from the internet.
+
+In production environments, NAT Gateways are often deployed in multiple Availability Zones to improve availability and reduce dependency on a single zone.
+
+---
+
+# 18. How is the traffic from private subnet to this NAT Gateway configured?
+
+Traffic routing is controlled using Route Tables. Private subnet route tables are configured with a default route (0.0.0.0/0) pointing to the NAT Gateway.
+
+When a resource inside the private subnet initiates an outbound request, the traffic is forwarded to the NAT Gateway. The NAT Gateway translates the private IP address into its public Elastic IP address and forwards the traffic to the internet through the Internet Gateway. Response traffic returns through the NAT Gateway and is routed back to the originating resource.
+
+This setup enables secure outbound internet access without exposing private resources directly to inbound internet traffic.
+
+---
+
+# 19. What is a blue green deployment?
+
+Blue-Green Deployment is a deployment strategy that uses two identical production environments. One environment, called Blue, serves live production traffic, while the other environment, called Green, contains the new application version.
+
+The new version is deployed and fully validated in the Green environment without affecting users. Once testing is complete, traffic is switched from Blue to Green using a load balancer or DNS update. If any issues are detected after deployment, traffic can quickly be redirected back to Blue.
+
+This strategy minimizes downtime, reduces deployment risk, and provides near-instant rollback capability, making it popular for mission-critical applications.
+
+---
+
+# 20. How is your Auto Scaling strategy working in your EKS cluster?
+
+In EKS, scaling typically occurs at both the pod level and node level. Horizontal Pod Autoscaler (HPA) automatically increases or decreases the number of pod replicas based on metrics such as CPU, memory, or custom application metrics.
+
+Cluster Autoscaler monitors pending pods and automatically adds worker nodes when existing nodes lack sufficient resources. When demand decreases, unused nodes are removed to optimize costs.
+
+In production environments, HPA handles application scaling while Cluster Autoscaler handles infrastructure scaling. Together they provide elasticity, maintain application performance during traffic spikes, and optimize resource utilization during low-demand periods.
+
+---
+
+# 21. What is PDB?
+
+PDB stands for PodDisruptionBudget. It is a Kubernetes resource used to ensure a minimum number of application pods remain available during voluntary disruptions such as node maintenance, cluster upgrades, or manual pod evictions.
+
+For example, if an application has five replicas and the PDB specifies a minimum of four available pods, Kubernetes will not allow operations that reduce availability below four running pods.
+
+PDBs are critical for maintaining high availability during infrastructure maintenance and rolling updates in production environments.
+
+---
+
+# 22. What are the steps you will take in upgrading your EKS cluster?
+
+Upgrading an EKS cluster begins with reviewing AWS and Kubernetes release notes to identify deprecated APIs and compatibility concerns. I first validate application compatibility in a staging environment before touching production.
+
+The control plane is upgraded first because AWS manages it separately. After successful control plane upgrades, worker node groups are upgraded using rolling replacement. During the process, nodes are drained gracefully to move workloads to healthy nodes.
+
+Throughout the upgrade, I verify PodDisruptionBudgets, readiness probes, monitoring dashboards, ingress controllers, CNI plugins, and application functionality. Once node upgrades are completed, I perform end-to-end validation, monitor production metrics, and confirm cluster stability.
+
+A rollback strategy is always prepared before starting the upgrade process.
+
+---
+
+# 23. What is Ingress?
+
+Ingress is a Kubernetes resource that manages external access to services within a cluster, typically HTTP and HTTPS traffic. Instead of exposing every application using separate load balancers, Ingress provides centralized traffic routing based on hostnames, paths, or rules.
+
+Ingress Controllers such as NGINX Ingress Controller or AWS Load Balancer Controller process Ingress resources and configure underlying load balancers accordingly.
+
+Ingress supports SSL termination, path-based routing, host-based routing, authentication integrations, and traffic management, making it a critical component in production Kubernetes environments.
+
+---
+
+# 24. In ArgoCD, what are the different components available?
+
+ArgoCD consists of several components that work together to implement GitOps-based deployments. The API Server acts as the central management component and exposes APIs for users and UI interactions. The Repository Server manages Git repositories and generates manifests from Helm, Kustomize, or plain YAML files.
+
+The Application Controller continuously compares the desired state stored in Git with the actual state running in Kubernetes and performs synchronization when drift is detected. Redis is used for caching and improving performance. The Web UI provides visualization and management capabilities.
+
+Together these components enable automated, declarative, and Git-driven application deployments.
+
+---
+
+# 25. What are the different methods to create an application in ArgoCD?
+
+Applications in ArgoCD can be created using multiple methods. The most common approach is using the ArgoCD Web UI, where users specify repository details, cluster information, and deployment paths.
+
+Applications can also be created using the ArgoCD CLI, Kubernetes manifests, or GitOps automation pipelines. In enterprise environments, applications are often defined declaratively using YAML manifests stored in Git repositories and automatically deployed through ApplicationSets.
+
+ApplicationSets are particularly useful when deploying the same application across multiple clusters or environments because they automate large-scale application management.
+
+---
+
+# 26. In Terraform, what is a state file?
+
+The Terraform state file is a critical component that stores metadata about infrastructure resources managed by Terraform. It maintains mappings between Terraform configurations and actual cloud resources.
+
+Terraform uses the state file to determine which resources already exist, which resources need modification, and which resources should be created or destroyed. Without the state file, Terraform cannot accurately track infrastructure changes.
+
+In enterprise environments, state files are typically stored remotely in S3 buckets with DynamoDB state locking to prevent concurrent modifications and state corruption.
+
+---
+
+# 27. What is the use of a lifecycle block in Terraform resources?
+
+The lifecycle block controls how Terraform manages resource creation, updates, and deletion. It provides additional behavior that helps prevent downtime or accidental resource removal.
+
+Common lifecycle settings include create_before_destroy, prevent_destroy, and ignore_changes. The create_before_destroy option creates replacement resources before deleting old resources, reducing downtime. The prevent_destroy option protects critical resources from accidental deletion. The ignore_changes option prevents Terraform from modifying specific attributes even if changes are detected.
+
+Lifecycle blocks are frequently used for production databases, load balancers, and mission-critical infrastructure components.
+
+---
+
+# 28. Can you name some of the functions you used in Terraform?
+
+Terraform provides many built-in functions for string manipulation, collection processing, conditional logic, and data transformations. Commonly used functions include concat, merge, join, split, lookup, contains, upper, lower, replace, element, length, format, jsonencode, and file.
+
+These functions help create dynamic and reusable infrastructure code. For example, lookup is used for retrieving values from maps, join combines strings, merge combines multiple maps, and jsonencode converts Terraform objects into JSON format.
+
+Functions significantly improve module flexibility and reduce code duplication.
+
+---
+
+# 29. What is the use of element?
+
+The element function is used to retrieve a specific item from a list based on its index position. It is commonly used when distributing resources across Availability Zones or selecting values dynamically.
+
+For example, if a list contains multiple subnet IDs, the element function can select a subnet based on an index value. This is particularly useful in multi-AZ deployments where resources must be distributed evenly across different zones.
+
+The function helps create scalable and reusable Terraform modules.
+
+---
+
+# 30. What is the difference between count and for_each?
+
+Both count and for_each are used to create multiple instances of resources, but they work differently. Count uses numeric indexes and is suitable when resources are nearly identical. Resources are referenced using index positions.
+
+For_each uses unique keys from maps or sets and provides more stable resource management. Because resources are tracked using keys instead of indexes, modifications are easier and less likely to trigger unnecessary resource replacement.
+
+For_each is generally preferred in production environments because it offers better readability, flexibility, and resource tracking.
+
+---
+
+# 31. What is Multi-stage image?
+
+A multi-stage Docker image uses multiple build stages within a single Dockerfile. The first stage is typically used for compiling or building the application, while the final stage contains only the runtime dependencies required to run the application.
+
+This approach significantly reduces image size by excluding build tools, source code, and temporary files from the final image. Smaller images improve deployment speed, reduce storage consumption, and enhance security.
+
+Multi-stage builds are considered a Docker best practice for production containerization.
+
+---
+
+# 32. What is the difference between ENTRYPOINT and CMD?
+
+ENTRYPOINT defines the main executable that always runs when a container starts. CMD provides default arguments to the ENTRYPOINT or acts as the default command when no ENTRYPOINT is specified.
+
+The key difference is that ENTRYPOINT cannot be easily overridden during container startup, while CMD can be replaced by providing alternative arguments at runtime.
+
+ENTRYPOINT is commonly used to define the primary application, while CMD supplies configurable parameters. Together they provide flexibility and predictable container behavior.
+
+---
+
+# 33. In Grafana how have you created dashboards?
+
+In Grafana, dashboards are created by connecting data sources such as Prometheus, CloudWatch, Elasticsearch, Loki, or InfluxDB. After configuring the data source, panels are created using queries that retrieve metrics relevant to the application or infrastructure.
+
+For Kubernetes environments, I typically create dashboards that display CPU utilization, memory usage, pod status, node health, disk utilization, network traffic, container restarts, and application response times. For application monitoring, dashboards include request rates, latency percentiles, error rates, database performance, and business KPIs.
+
+I also create variables to make dashboards dynamic, allowing users to filter by cluster, namespace, application, or environment. Alerts are integrated directly into Grafana or Prometheus Alertmanager to provide proactive notification when critical thresholds are exceeded. In production environments, dashboards are version-controlled and reused across DEV, UAT, and PROD environments to ensure consistent observability.
