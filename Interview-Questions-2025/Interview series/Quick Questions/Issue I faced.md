@@ -213,3 +213,11 @@ kubectl logs <pod-name> -n tcs-prod
 # 🚀 Final Resolution
 
 Dashboard V2.0 APIs were restored successfully after correcting Zuul route configuration for OLAP report microservice in API Gateway configuration.
+
+
+In one of the production incidents, most of the Dashboard V2.0 APIs suddenly started returning HTTP 404 errors. Users were unable to load dashboard components like Pendency Analysis, approval counts, and dashboard cards. I started troubleshooting from the frontend by checking the browser Network tab and noticed that APIs such as `/gateway/nsws_olap_report/getPendencyData` were failing with 404 responses. Initially, we suspected an ingress or ALB issue, so I verified Kubernetes ingress resources and checked ingress path mappings using `kubectl describe ingress`. Everything looked healthy at the Kubernetes and ALB level.
+
+Then I moved to the API Gateway layer and reviewed the Zuul route configuration inside the `application.gateway2` properties file. During analysis, I found that the OLAP report microservice route was incorrectly configured with the `/gateway/` path reference. Because of this incorrect routing, requests were not reaching the actual backend service and resulted in 404 errors. I corrected the Zuul route mapping, updated the configuration in SVN, and restarted the API Gateway pods. After deployment, all dashboard APIs started returning 200 responses and the dashboard loaded successfully.
+
+This issue taught me the importance of checking the complete request flow in microservice architecture — from frontend calls, ingress routing, API Gateway configuration, and backend service mapping — instead of assuming every 404 is a Kubernetes ingress issue.
+
