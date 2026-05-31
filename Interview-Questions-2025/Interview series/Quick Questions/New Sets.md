@@ -980,8 +980,13 @@ My answer: Challenge accepted, let’s go!
 ► Then run terraform apply — only after plan looks correct.
 
 𝗛𝗼𝘄 𝗜 𝗽𝗿𝗲𝘃𝗲𝗻𝘁 𝘁𝗵𝗶𝘀 𝗮𝘀 𝗮 𝗗𝗲𝘃𝗢𝗽𝘀 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿:
+
 • Always use remote state with S3 + DynamoDB locking
+
 • Never run apply directly — always plan first
+
 • Use workspaces to separate environments
+
 • Enable versioning on S3 state bucket
+
 • Use terraform validate in CI/CD before apply
