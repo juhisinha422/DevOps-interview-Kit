@@ -287,3 +287,232 @@ I usually document:
 
 In one project, the pipeline had no documentation and only one senior engineer understood it. I created detailed Confluence documentation and architecture flowcharts, which reduced onboarding and troubleshooting time for the entire team.
 
+# Introduction & Experience
+
+## 1. Tell me about yourself and your DevOps journey.
+
+I have around 4 years of experience as a DevOps Engineer, mainly working on cloud and containerized environments. My experience includes CI/CD pipeline automation, Kubernetes administration, Docker containerization, infrastructure provisioning using Terraform, and cloud services on AWS. I started my career with Linux and deployment support activities and gradually moved into automation and DevOps practices.
+
+Currently, I work extensively with Jenkins, GitLab, Docker, Kubernetes, Helm, Terraform, AWS, Prometheus, Grafana, and monitoring tools. My day-to-day activities involve automating deployments, managing Kubernetes clusters, troubleshooting production issues, monitoring infrastructure, handling CI/CD pipelines, and supporting development teams during releases.
+
+I have also worked on incident management, RCA preparation, deployment optimization, infrastructure automation, and improving application reliability and scalability in production environments.
+
+---
+
+## 2. What are your current roles and responsibilities at your current company?
+
+My current responsibilities include managing CI/CD pipelines using Jenkins and GitLab, deploying applications into Kubernetes clusters, and maintaining AWS cloud infrastructure. I work on Docker image creation, Helm deployments, Terraform-based infrastructure provisioning, monitoring setup, and production support activities.
+
+I also handle:
+
+* Kubernetes troubleshooting
+* Production deployments and rollbacks
+* Infrastructure monitoring using Prometheus and Grafana
+* Secret and ConfigMap management
+* Autoscaling and resource optimization
+* Incident handling and RCA documentation
+* Collaboration with development, QA, and infrastructure teams
+
+Additionally, I support release activities, optimize deployment pipelines, and ensure high availability of applications running in production environments.
+
+---
+
+## 3. Describe the architecture of your current project.
+
+My current project follows a microservices-based architecture deployed on AWS EKS Kubernetes clusters. Applications are containerized using Docker and deployed through Helm charts. CI/CD pipelines are managed using Jenkins integrated with Git repositories.
+
+The architecture includes:
+
+* Frontend microservices
+* Backend APIs
+* Database layer
+* Messaging systems
+* Monitoring stack
+* Logging stack
+
+Ingress controllers and AWS Load Balancers are used for external traffic routing. Internal communication happens through Kubernetes Services and DNS. Monitoring is implemented using Prometheus and Grafana, while logs are centralized using ELK stack or CloudWatch.
+
+Infrastructure provisioning is automated using Terraform, and deployments follow rolling update strategies with rollback mechanisms. Autoscaling is enabled using HPA and Cluster Autoscaler for dynamic scaling during traffic spikes.
+
+---
+
+## 4. What DevOps tools are you currently using and why?
+
+I currently use Jenkins for CI/CD automation because it provides flexibility and plugin support for different integrations. Docker is used for containerization to ensure consistent application environments. Kubernetes is used for orchestration and scaling of containerized workloads.
+
+Terraform is used for Infrastructure as Code to automate cloud resource provisioning. Helm is used for Kubernetes package management and deployment standardization. AWS services such as EKS, EC2, IAM, S3, CloudWatch, and Route53 are used for cloud infrastructure management.
+
+For monitoring and observability, I use Prometheus and Grafana. For logging, ELK stack and CloudWatch are used. Git and GitLab/GitHub are used for version control and collaboration.
+
+---
+
+## 5. What were the biggest challenges you faced in your current project?
+
+One of the biggest challenges was handling production incidents during peak traffic periods. We faced issues like pod crashes, autoscaling failures, image pull failures, and application downtime due to readiness or dependency issues.
+
+Another challenge was optimizing deployment pipelines because builds and deployments were taking too long. We improved this by implementing caching, parallel execution, Docker layer optimization, and pipeline restructuring.
+
+We also faced infrastructure scaling issues in Kubernetes due to subnet IP exhaustion and autoscaler permission problems. Troubleshooting these required coordination with cloud teams, developers, and infrastructure teams while keeping stakeholders updated during incidents.
+
+---
+
+# CI/CD (Jenkins)
+
+## 1. Explain your Jenkins pipeline architecture.
+
+Our Jenkins architecture follows a master-agent setup. The Jenkins master handles scheduling, pipeline orchestration, and plugin management, while agents execute builds and deployment tasks. Agents can be static or dynamically provisioned using Kubernetes or cloud-based agents.
+
+The pipeline is integrated with Git repositories and triggers automatically on commits, merge requests, or scheduled builds. Build artifacts are stored in repositories, Docker images are pushed to registries, and deployments are performed into Kubernetes environments using Helm or kubectl.
+
+The architecture also includes:
+
+* Source code management
+* Build and test stages
+* Security scanning
+* Artifact management
+* Deployment automation
+* Notifications and monitoring
+
+---
+
+## 2. Difference between Declarative and Scripted Pipeline.
+
+Declarative Pipeline uses a structured and simplified syntax with predefined stages and blocks. It is easier to read, maintain, and standardize across teams. Scripted Pipeline uses Groovy scripting and provides more flexibility for complex workflows and dynamic logic.
+
+Declarative pipelines are generally preferred for standard CI/CD implementations because they are cleaner and easier to manage, while scripted pipelines are used when advanced custom logic or conditional execution is required.
+
+---
+
+## 3. How do you handle pipeline failures?
+
+When a pipeline fails, I first identify the failed stage from Jenkins console logs. I analyze whether the issue is related to code, dependencies, infrastructure, credentials, network connectivity, or deployment configuration.
+
+I usually troubleshoot in this order:
+
+* Build logs
+* Test reports
+* Docker build logs
+* Deployment logs
+* Kubernetes events
+* Environment variables
+* Credential access
+
+For production pipelines, rollback mechanisms are implemented to restore stable versions quickly. Notifications are also configured through email, Slack, or Teams for faster response.
+
+---
+
+## 4. What stages do you typically include in a CI/CD pipeline?
+
+Typical stages include:
+
+* Code checkout
+* Dependency installation
+* Code compilation/build
+* Unit testing
+* Static code analysis
+* Security scanning
+* Docker image build
+* Image scanning
+* Push to registry
+* Deployment to lower environments
+* Integration testing
+* Production deployment
+* Smoke testing
+* Notifications
+
+Additional approval stages may be included for production releases.
+
+---
+
+## 5. How do you secure Jenkins credentials?
+
+Jenkins credentials are managed using Jenkins Credentials Manager. Sensitive data such as passwords, tokens, SSH keys, and API keys are stored securely and injected into pipelines during runtime.
+
+Best practices include:
+
+* Role-based access control
+* Restricting credential visibility
+* Integrating with secret management systems
+* Avoiding hardcoded credentials
+* Using masked variables in logs
+
+In cloud-native environments, Jenkins is often integrated with AWS Secrets Manager or HashiCorp Vault for secure secret retrieval.
+
+---
+
+## 6. Have you configured Jenkins agents dynamically?
+
+Yes. I have worked with dynamic Jenkins agents using Kubernetes plugin and cloud-based autoscaling agents. Instead of maintaining permanent build servers, agents are created dynamically whenever a pipeline starts and are destroyed after execution.
+
+This approach improves:
+
+* Resource utilization
+* Scalability
+* Cost optimization
+* Isolation between builds
+
+In Kubernetes environments, Jenkins dynamically launches temporary pods as build agents.
+
+---
+
+## 7. How do you optimize a slow Jenkins pipeline?
+
+To optimize slow pipelines, I first identify which stages consume the most time. Then I apply optimizations such as:
+
+* Parallel execution
+* Dependency caching
+* Incremental builds
+* Docker layer caching
+* Reducing unnecessary stages
+* Reusing artifacts
+* Dynamic agents
+* Selective test execution
+
+I also optimize Docker images and reduce network dependency wherever possible.
+
+In one project, we reduced pipeline execution time from 45 minutes to 15 minutes using caching, parallel execution, and optimized Docker builds.
+
+---
+
+## 8. Explain rollback strategy in Jenkins deployment.
+
+Rollback strategies are implemented to quickly restore stable application versions during failed deployments. We usually maintain versioned Docker images and Helm releases.
+
+If deployment fails:
+
+* Previous stable image is redeployed
+* Helm rollback is executed
+* Kubernetes rollout undo is used
+
+Rollback can be manual or automated depending on pipeline configuration. Health checks and smoke tests help determine whether rollback is required.
+
+---
+
+# Scenario:
+
+## A Jenkins pipeline suddenly starts taking 45 minutes instead of 15 minutes. How would you troubleshoot?
+
+First, I would compare recent pipeline runs to identify which stage is taking additional time. I would check Jenkins console logs, stage timing, agent performance, resource utilization, and recent code or dependency changes.
+
+Possible areas to investigate:
+
+* Slow build agents
+* Increased test execution time
+* Dependency download delays
+* Docker build inefficiencies
+* Network latency
+* Resource bottlenecks
+* Artifact repository slowness
+* Infrastructure issues
+
+I would also check:
+
+* CPU and memory utilization on agents
+* Disk space
+* Parallel execution status
+* Docker layer cache availability
+* Plugin updates or failures
+
+If recent changes introduced additional tests or large dependencies, I would optimize them through caching or selective execution.
+
+In one real scenario, pipeline duration increased because Docker cache was not being reused after agent recreation. We implemented persistent caching and optimized build stages, reducing execution time significantly.
