@@ -516,3 +516,92 @@ I would also check:
 If recent changes introduced additional tests or large dependencies, I would optimize them through caching or selective execution.
 
 In one real scenario, pipeline duration increased because Docker cache was not being reused after agent recreation. We implemented persistent caching and optimized build stages, reducing execution time significantly.
+
+
+## Real Production Incident — Kubernetes Nodes Running Out of Disk Space
+
+A few months ago, we faced a production incident where multiple application pods started failing unexpectedly.
+
+### Symptoms observed:
+
+❌ Pods stuck in Pending state
+
+❌ New deployments failing
+
+❌ Frequent container restarts
+
+❌ Alerts from Kubernetes cluster
+
+Initial Investigation:
+
+kubectl get nodes
+
+kubectl describe node <node-name>
+
+kubectl get events --sort-by='.lastTimestamp'
+
+Error Found:
+
+DiskPressure=True
+
+The worker nodes had reached critical disk utilization.
+
+Root Cause Analysis:
+
+After logging into the node:
+
+df -h
+
+du -sh /var/lib/docker/*
+
+We found:
+
+✅ Old Docker images were consuming huge disk space
+
+✅ Unused containers were not cleaned up
+
+✅ Application logs had grown significantly over time
+
+Impact:
+
+- New pods could not be scheduled
+
+- Existing workloads became unstable
+
+- Deployment pipeline was blocked
+
+Immediate Fix:
+
+docker system prune -a
+
+For containerd environments:
+
+crictl images
+
+crictl rmi <image-id>
+
+Additional Actions:
+
+✅ Cleaned old logs
+
+✅ Increased monitoring on node disk usage
+
+✅ Configured image retention policies
+
+✅ Added alerts at 70%, 80%, and 90% disk utilization
+
+Lessons Learned:
+
+👉 Kubernetes failures are not always application-related.
+
+Sometimes the issue lies in:
+
+- Node resources
+
+- Storage management
+
+- Log retention
+
+- Container image lifecycle
+
+As DevOps Engineers, monitoring node health is just as important as monitoring applications
