@@ -19,12 +19,19 @@
 ► Network Policy — Blocking traffic between service and pod.
 
 𝗛𝗼𝘄 𝗜 𝗱𝗲𝗯𝘂𝗴 𝗮𝘀 𝗮 𝗗𝗲𝘃𝗢𝗽𝘀 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿:
+
 • kubectl get pods — check pod status
+
 • kubectl describe pod — check events and errors
+
 • kubectl logs pod-name — check app logs
+
 • kubectl get svc — verify service selector matches pod labels
+
 • kubectl get endpoints — if empty, label mismatch is the issue
+
 • kubectl describe ingress — check routing rules
+
 • curl pod-ip directly — bypass service to isolate issue
 
 
