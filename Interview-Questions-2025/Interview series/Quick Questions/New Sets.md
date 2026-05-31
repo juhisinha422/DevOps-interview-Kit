@@ -605,3 +605,46 @@ Sometimes the issue lies in:
 - Container image lifecycle
 
 As DevOps Engineers, monitoring node health is just as important as monitoring applications
+
+
+=========
+
+## AWS Security Groups vs NACL — Common Interview Question
+
+Here’s a simple comparison 👇
+### ✅ Security Group
+
+Works at INSTANCE level
+
+Acts as a virtual firewall for EC2
+
+Supports only ALLOW rules
+
+Stateful:
+
+Return traffic is automatically allowed
+
+Example:
+If port 22 is allowed inbound, response traffic is automatically permitted.
+
+### ✅ Network ACL (NACL)
+
+Works at SUBNET level
+
+Acts as an additional security layer
+
+Supports ALLOW and DENY rules
+
+Stateless:
+
+Need to allow inbound and outbound traffic separately
+
+Example:
+If inbound SSH is allowed, outbound response must also be allowed manually.
+
+Quick Summary:
+✔ Security Group → Instance Protection
+✔ NACL → Subnet Protection
+### Real-world usage:
+
+In production environments, Security Groups are commonly used for application-level access control, while NACLs provide an additional subnet-level security layer for stricter network filtering.
