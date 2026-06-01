@@ -1,0 +1,13 @@
+ What will you verify if Jenkins shared library causes failures? 
+
+1. Jenkins has correct permissions and keys to clone the repository. 
+
+2.Need to verify that the specified branch version exists (e.g., @Library('my-library@main') 
+
+3.Look for connection timeouts or host verification errors if the Jenkins controller cannot reach the Git server  
+
+4.Need to check that custom step files are lower-case or camelCase and end strictly with a .groovy extension (e.g., vars/myStep.groovy) 
+
+5.If we see MissingMethodException, confirm the signature called in the Jenkinsfile exactly matches the method defined in the library. 
+
+6. If the pipeline throws a RejectedAccessException or a script security warning, investigate the Script Approval ($JENKINS_URL/scriptApproval/) 
