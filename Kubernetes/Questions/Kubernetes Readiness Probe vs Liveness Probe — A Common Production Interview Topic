@@ -1,0 +1,84 @@
+Kubernetes Readiness Probe vs Liveness Probe — A Common Production Interview Topic
+
+One of the most important concepts in Kubernetes production environments is understanding the difference between Readiness and Liveness probes.
+
+Many application outages occur because probes are configured incorrectly.
+
+✅ Readiness Probe
+
+Determines whether a pod is ready to receive traffic.
+
+If the readiness probe fails:
+
+- Pod remains running
+- Pod is removed from the Service endpoints
+- No traffic is sent to the pod
+
+Example:
+A Spring Boot application takes 60 seconds to start.
+
+Without a readiness probe, traffic may reach the application before it is fully initialized.
+
+---
+
+✅ Liveness Probe
+
+Determines whether the application is still healthy.
+
+If the liveness probe fails:
+
+- Kubernetes restarts the container automatically
+
+Example:
+Application gets stuck due to a deadlock or memory issue.
+
+The liveness probe detects the unhealthy state and triggers a restart.
+
+---
+
+Example Configuration:
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 30
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  initialDelaySeconds: 10
+
+---
+
+Real Production Scenario:
+
+We once had an application where pods showed:
+
+STATUS: Running
+
+But users were receiving errors.
+
+Root cause:
+👉 The application was running, but it was not ready to serve requests.
+
+After implementing a proper readiness probe:
+✅ Traffic was routed only to healthy pods
+✅ Deployment stability improved
+✅ User-facing errors were reduced
+
+---
+
+📌 Interview Tip:
+
+A common question is:
+
+"What's the difference between Readiness and Liveness Probes?"
+
+A good answer:
+
+✔ Readiness → Controls traffic flow to the pod
+✔ Liveness → Controls container restart behavior
+
+Understanding this difference is critical for running reliable applications in Kubernetes.
