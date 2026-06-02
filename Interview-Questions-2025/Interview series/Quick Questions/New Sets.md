@@ -1456,3 +1456,514 @@ After recovery, I run Terraform plan to verify that the restored state accuratel
 
 Finally, I identify the root cause of corruption, whether it was caused by manual modifications, concurrent deployments, backend issues, or failed CI/CD pipelines. I then implement preventive measures such as state locking, backup validation, restricted access controls, and improved deployment governance to prevent recurrence.
 
+# Terraform, Kubernetes, Git, AWS & Linux Interview Questions (4+ Years Experience)
+
+---
+
+# 1. What is Terraform workspace?
+
+Terraform Workspace is a feature that allows multiple state files to be managed using the same Terraform configuration. Each workspace maintains its own separate state file, enabling teams to deploy the same infrastructure code across multiple environments such as Development, UAT, and Production.
+
+For example, a single Terraform codebase can create separate resources for dev, test, and prod by switching between workspaces. While workspaces are useful for smaller projects, many enterprise organizations prefer separate backend configurations and state files for production environments to ensure better isolation and security.
+
+---
+
+# 2. Where do we store the state file for Terraform?
+
+In production environments, Terraform state files are usually stored remotely rather than on local machines. The most common approach is storing the state file in an AWS S3 bucket while using DynamoDB for state locking.
+
+Remote storage provides centralized access, versioning, backup, security, collaboration, and disaster recovery. Storing state remotely ensures all engineers and CI/CD pipelines work with the same source of truth.
+
+---
+
+# 3. If I don't want to store the state file in S3, what are the other options?
+
+Terraform supports multiple backend options for storing state files. Besides S3, state files can be stored in:
+
+- Terraform Cloud
+- Azure Storage Account
+- Google Cloud Storage (GCS)
+- HashiCorp Consul
+- HTTP Backend
+- Kubernetes Backend
+- Local Backend
+- PostgreSQL-based remote backends
+
+Terraform Cloud is often preferred because it provides state storage, locking, collaboration, policy enforcement, and execution management in a single platform.
+
+---
+
+# 4. If two people run terraform apply at the same time, whose apply will be successful?
+
+When Terraform state locking is configured correctly using a backend such as S3 and DynamoDB, only one user can acquire the lock.
+
+The first person who acquires the lock successfully proceeds with the deployment. The second user receives a state lock error and must wait until the first deployment completes.
+
+This mechanism prevents concurrent modifications, state corruption, and infrastructure inconsistencies.
+
+---
+
+# 5. What is deadlock in Terraform?
+
+Terraform itself does not commonly experience traditional database deadlocks, but interviewers usually refer to a stale or stuck state lock situation.
+
+For example, if a Jenkins job acquires a DynamoDB lock and crashes before releasing it, Terraform believes another deployment is still running. Future deployments fail with:
+
+```bash
+Error acquiring the state lock
+```
+
+This situation is often referred to as a Terraform lock deadlock. The lock must be verified and manually released using:
+
+```bash
+terraform force-unlock <LOCK_ID>
+```
+
+after ensuring no active deployment is running.
+
+---
+
+# 6. What all things happen when we run terraform init?
+
+Terraform init is the first command executed in a Terraform project.
+
+When it runs, Terraform:
+
+- Initializes the working directory
+- Downloads required provider plugins
+- Configures backend storage
+- Downloads Terraform modules
+- Validates backend configuration
+- Creates the .terraform directory
+- Sets up state management components
+
+No infrastructure changes occur during terraform init. It only prepares the environment for future plan and apply operations.
+
+---
+
+# 7. If a colleague manually changes/deletes resources in the cloud console and the manager says those changes are correct, how do you incorporate them into Terraform?
+
+Infrastructure should always remain aligned with Terraform code. If manual changes are approved and need to become permanent, I first identify exactly what was modified.
+
+I then update the Terraform code to reflect the approved changes. After updating the code, I run terraform plan to verify the desired state matches the current infrastructure.
+
+If resources were created manually outside Terraform, I use terraform import to bring them under Terraform management.
+
+The goal is to eliminate infrastructure drift and ensure Terraform remains the single source of truth.
+
+---
+
+# 8. How many types of Services are there in Kubernetes?
+
+Kubernetes provides four primary service types:
+
+### ClusterIP
+
+Default service type used for internal communication within the cluster.
+
+### NodePort
+
+Exposes the application on a static port across worker nodes.
+
+### LoadBalancer
+
+Creates an external cloud load balancer and exposes the application publicly.
+
+### ExternalName
+
+Maps a Kubernetes service to an external DNS name.
+
+ClusterIP is commonly used for internal microservices, while LoadBalancer and Ingress are preferred for external access.
+
+---
+
+# 9. What is the purpose of Ingress?
+
+Ingress provides centralized HTTP and HTTPS routing for applications running inside Kubernetes.
+
+Instead of creating a separate load balancer for every application, Ingress allows multiple services to share a single entry point. It supports:
+
+- Path-based routing
+- Host-based routing
+- SSL termination
+- Load balancing
+- Authentication integration
+
+Ingress simplifies traffic management and reduces infrastructure costs.
+
+---
+
+# 10. How many branching strategies are there in Git?
+
+There are several Git branching strategies commonly used in organizations:
+
+### Git Flow
+
+Uses feature, develop, release, and hotfix branches.
+
+### Feature Branch Workflow
+
+Each feature is developed in a separate branch before merging.
+
+### GitHub Flow
+
+Simple branching model focused on continuous deployment.
+
+### GitLab Flow
+
+Combines environment-based deployment workflows.
+
+### Trunk-Based Development
+
+Developers commit frequently to a shared main branch.
+
+Modern DevOps teams often prefer Trunk-Based Development because it supports rapid CI/CD workflows.
+
+---
+
+# 11. What is Git rebase?
+
+Git rebase moves or reapplies commits from one branch onto another branch.
+
+Instead of creating a merge commit, rebase creates a cleaner and more linear commit history.
+
+For example:
+
+```bash
+git rebase main
+```
+
+This replays current branch commits on top of the latest main branch changes.
+
+Rebase helps keep commit history clean but should be used carefully on shared branches.
+
+---
+
+# 12. How do you rename a branch in Git?
+
+To rename the current branch:
+
+```bash
+git branch -m new-branch-name
+```
+
+To rename a different branch:
+
+```bash
+git branch -m old-branch-name new-branch-name
+```
+
+After renaming, update the remote repository:
+
+```bash
+git push origin -u new-branch-name
+git push origin --delete old-branch-name
+```
+
+---
+
+# 13. How do you remove the second last commit from Git history?
+
+One common approach is interactive rebase:
+
+```bash
+git rebase -i HEAD~2
+```
+
+The editor opens and displays the last two commits.
+
+Change:
+
+```text
+pick
+pick
+```
+
+to:
+
+```text
+drop
+pick
+```
+
+for the commit you want to remove.
+
+After saving, Git rewrites history and removes the selected commit.
+
+---
+
+# 14. What is Git history?
+
+Git history is the complete record of changes made to a repository over time.
+
+It contains:
+
+- Commits
+- Authors
+- Commit messages
+- Timestamps
+- Branch information
+
+Common commands:
+
+```bash
+git log
+```
+
+```bash
+git log --oneline
+```
+
+Git history helps teams track changes, audit modifications, troubleshoot issues, and understand code evolution.
+
+---
+
+# 15. What is NACL and Security Group in AWS?
+
+Security Groups and Network ACLs are AWS security mechanisms used to control network traffic.
+
+Security Groups operate at the instance level and act as virtual firewalls. They are stateful, meaning return traffic is automatically allowed.
+
+Network ACLs operate at the subnet level and control inbound and outbound traffic. They are stateless, meaning rules must be explicitly configured for both directions.
+
+Security Groups are generally the first layer checked during application connectivity troubleshooting.
+
+---
+
+# 16. Between NACL rule 99 and 100, which has higher priority?
+
+Lower numbered NACL rules have higher priority.
+
+Therefore:
+
+```text
+Rule 99
+```
+
+has higher priority than:
+
+```text
+Rule 100
+```
+
+AWS evaluates NACL rules from lowest to highest number and applies the first matching rule.
+
+---
+
+# 17. What are the key components of the Kubernetes Control Plane (Master Plane)?
+
+The Kubernetes Control Plane consists of:
+
+### API Server
+
+Entry point for all cluster operations.
+
+### etcd
+
+Distributed key-value database storing cluster state.
+
+### Scheduler
+
+Assigns pods to worker nodes.
+
+### Controller Manager
+
+Maintains desired cluster state.
+
+### Cloud Controller Manager
+
+Integrates Kubernetes with cloud provider services.
+
+These components collectively manage cluster operations, scheduling, scaling, and resource lifecycle.
+
+---
+
+# 18. Developers need view access and DevOps need write access in production. How would you define this in Kubernetes?
+
+This is implemented using RBAC (Role-Based Access Control).
+
+I would create:
+
+- A Read-Only Role for developers
+- A Read/Write Role for DevOps engineers
+
+Developers receive permissions such as:
+
+- get
+- list
+- watch
+
+DevOps teams receive additional permissions:
+
+- create
+- update
+- patch
+- delete
+
+Roles are attached to users or groups using RoleBindings or ClusterRoleBindings.
+
+This follows the principle of least privilege and improves production security.
+
+---
+
+# 19. How do you block pod-to-pod communication in Kubernetes?
+
+Pod-to-pod communication can be controlled using Network Policies.
+
+A Network Policy defines which pods can communicate with other pods based on:
+
+- Labels
+- Namespaces
+- Ports
+- Protocols
+
+By default, Kubernetes allows unrestricted pod communication.
+
+To block communication, I create restrictive Network Policies and allow only required traffic paths.
+
+This is commonly used in production to implement micro-segmentation and improve security.
+
+---
+
+# 20. What are the different forms of scaling in Kubernetes?
+
+Kubernetes supports multiple scaling mechanisms.
+
+### Horizontal Pod Autoscaler (HPA)
+
+Scales pod replicas based on resource utilization.
+
+### Vertical Pod Autoscaler (VPA)
+
+Adjusts CPU and memory allocations.
+
+### Cluster Autoscaler
+
+Adds or removes worker nodes automatically.
+
+### KEDA
+
+Scales workloads based on external events such as queue length or message count.
+
+Production environments often combine HPA and Cluster Autoscaler for complete elasticity.
+
+---
+
+# 21. What are maxUnavailable and maxSurge in Kubernetes?
+
+These settings control rolling updates.
+
+### maxUnavailable
+
+Maximum number of pods that can be unavailable during deployment.
+
+Example:
+
+```yaml
+maxUnavailable: 1
+```
+
+allows only one unavailable pod.
+
+### maxSurge
+
+Maximum number of extra pods created during deployment.
+
+Example:
+
+```yaml
+maxSurge: 1
+```
+
+allows one additional pod beyond the desired replica count.
+
+Proper configuration helps achieve zero-downtime deployments.
+
+---
+
+# 22. What is a Pod Disruption Budget (PDB) in Kubernetes?
+
+A Pod Disruption Budget defines the minimum number of application pods that must remain available during voluntary disruptions.
+
+Examples:
+
+- Node upgrades
+- Cluster maintenance
+- Pod evictions
+
+Example:
+
+```yaml
+minAvailable: 2
+```
+
+ensures at least two healthy pods remain available.
+
+PDBs help maintain application availability during infrastructure operations.
+
+---
+
+# 23. What is an inode in Linux?
+
+An inode is a data structure that stores metadata about a file.
+
+It contains:
+
+- Owner information
+- Permissions
+- File size
+- Timestamps
+- Disk block locations
+
+An inode does not store the filename itself.
+
+Every file and directory has a unique inode number within a filesystem.
+
+---
+
+# 24. If I change file permissions, will the inode number change?
+
+No.
+
+Changing permissions updates metadata stored inside the inode, but the inode number itself remains unchanged.
+
+Operations such as:
+
+```bash
+chmod
+```
+
+or
+
+```bash
+chown
+```
+
+modify inode contents but do not create a new inode.
+
+---
+
+# 25. Can I search for a file or work with it using the inode number?
+
+Yes.
+
+Files can be searched using inode numbers.
+
+Example:
+
+```bash
+find / -inum 123456
+```
+
+This locates a file based on its inode.
+
+You can also perform operations such as:
+
+- Delete
+- Change permissions
+- Change ownership
+
+after locating the file through its inode.
+
+However, most commands operate on filenames rather than directly using inode numbers, so the inode is usually used for identification and troubleshooting purposes.
+
