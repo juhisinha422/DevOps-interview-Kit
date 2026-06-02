@@ -1234,3 +1234,225 @@ latest but latest was not updated.
 • Always check target group after blue-green switch
 
 
+# Kubernetes & Terraform Interview Questions (4+ Years Experience)
+
+---
+
+# Kubernetes
+
+## 1. Explain the Kubernetes architecture.
+
+Kubernetes follows a master-worker architecture. The Control Plane (Master Node) manages the cluster, while Worker Nodes run application workloads. The Control Plane consists of components such as API Server, etcd, Scheduler, and Controller Manager. The API Server acts as the entry point for all cluster operations. etcd is a distributed key-value store that stores cluster state and configuration. The Scheduler decides which worker node should run a pod based on resource availability and scheduling constraints. The Controller Manager continuously monitors the cluster and ensures the desired state matches the actual state.
+
+Worker Nodes contain components such as kubelet, kube-proxy, and the container runtime. Kubelet communicates with the Control Plane and manages pods on the node. Kube-proxy handles networking and service communication. The container runtime, such as containerd or Docker, is responsible for running containers. Together these components provide container orchestration, scaling, self-healing, service discovery, and automated deployments.
+
+---
+
+## 2. Difference between Deployment, StatefulSet, and DaemonSet.
+
+A Deployment is used for stateless applications where pod identity does not matter. It supports rolling updates, rollbacks, scaling, and self-healing. Examples include web applications, APIs, and frontend services.
+
+A StatefulSet is used for stateful applications where pod identity and storage persistence are important. Each pod gets a unique hostname and stable storage. Examples include databases such as MySQL, PostgreSQL, MongoDB, and Kafka.
+
+A DaemonSet ensures that exactly one pod runs on every worker node. Whenever a new node joins the cluster, Kubernetes automatically schedules a DaemonSet pod on that node. Examples include Fluentd, Prometheus Node Exporter, Datadog agents, and log collection services.
+
+In production, Deployments are used for stateless microservices, StatefulSets for databases, and DaemonSets for node-level monitoring and logging agents.
+
+---
+
+## 3. What happens when a pod crashes?
+
+When a pod crashes, Kubernetes automatically attempts to recover it based on the restart policy. The kubelet running on the node detects that the container has exited unexpectedly. If the restart policy is set to Always, Kubernetes restarts the container automatically.
+
+If the application repeatedly crashes during startup, Kubernetes enters a CrashLoopBackOff state. In this condition, Kubernetes keeps restarting the container but introduces increasing delays between restart attempts to avoid excessive resource consumption.
+
+If the underlying node fails completely, the controller responsible for the workload, such as Deployment or StatefulSet, creates replacement pods on healthy nodes. This self-healing capability is one of the key advantages of Kubernetes.
+
+---
+
+## 4. How do readiness and liveness probes work?
+
+Readiness and liveness probes are health checks used by Kubernetes to determine application availability and health.
+
+A readiness probe determines whether a pod is ready to receive traffic. If the readiness probe fails, Kubernetes removes the pod from service endpoints, preventing user requests from reaching it. The pod remains running but does not receive traffic.
+
+A liveness probe determines whether the application is healthy internally. If the liveness probe fails repeatedly, Kubernetes restarts the container automatically.
+
+For example, during application startup, readiness probes may fail because the application is still initializing. Once initialization completes, readiness succeeds and traffic is routed to the pod. If the application later becomes unresponsive due to a deadlock or memory issue, the liveness probe fails and Kubernetes restarts the container.
+
+Together these probes improve application reliability and reduce downtime.
+
+---
+
+## 5. Explain HPA (Horizontal Pod Autoscaler).
+
+Horizontal Pod Autoscaler automatically adjusts the number of pod replicas based on workload demand. It continuously monitors metrics such as CPU utilization, memory utilization, or custom Prometheus metrics and scales pods up or down accordingly.
+
+For example, if CPU utilization exceeds 80%, HPA may increase pod replicas from three to six. When traffic decreases and resource usage falls below configured thresholds, HPA reduces the number of replicas to save resources and costs.
+
+In production environments, HPA is commonly combined with Cluster Autoscaler. HPA scales application pods, while Cluster Autoscaler adds or removes worker nodes when additional infrastructure capacity is required.
+
+This combination provides elasticity and ensures applications can handle traffic spikes efficiently.
+
+---
+
+## 6. How do you perform zero-downtime deployments?
+
+Zero-downtime deployments ensure application availability throughout the deployment process. The most common approach is Rolling Update deployment strategy.
+
+In a rolling update, Kubernetes gradually replaces old pods with new ones while keeping a minimum number of healthy pods available. Proper readiness probes ensure traffic is routed only to healthy pods. PodDisruptionBudgets prevent excessive pod termination during updates.
+
+Other deployment strategies include Blue-Green Deployment and Canary Deployment. Blue-Green Deployment maintains two identical environments and switches traffic after validation. Canary Deployment gradually shifts a small percentage of traffic to the new version before full rollout.
+
+In production, readiness probes, multiple replicas, rolling updates, and rollback plans are essential for achieving zero downtime.
+
+---
+
+## 7. What is a ConfigMap and Secret?
+
+A ConfigMap is used to store non-sensitive configuration data such as application settings, environment variables, URLs, feature flags, and configuration files. It allows applications to consume configuration without hardcoding values into container images.
+
+A Secret is used to store sensitive information such as passwords, API keys, database credentials, tokens, and certificates. Kubernetes stores secrets in a base64-encoded format and can integrate with external secret management systems such as AWS Secrets Manager or HashiCorp Vault.
+
+Using ConfigMaps and Secrets improves security, configuration management, and deployment flexibility by separating configuration from application code.
+
+---
+
+## 8. How do you troubleshoot a pod in CrashLoopBackOff state?
+
+When a pod enters CrashLoopBackOff, it means Kubernetes is repeatedly restarting the container because the application is failing to start successfully.
+
+The first step is checking pod logs to identify application errors. Next, I inspect pod events to determine whether the issue is related to image pull failures, resource constraints, failed probes, configuration errors, or dependency issues.
+
+I verify:
+- Application logs
+- Environment variables
+- Secrets and ConfigMaps
+- Resource limits
+- Resource requests
+- Readiness and liveness probes
+- Image versions
+- External dependency connectivity
+
+Common causes include application crashes, invalid configuration, insufficient memory, missing secrets, database connectivity failures, and startup script errors.
+
+After identifying the root cause, I apply the fix, redeploy the workload, and monitor pod stability.
+
+---
+
+## Scenario: Application is inaccessible but all pods are running. How will you troubleshoot?
+
+If all pods are running but the application is inaccessible, I do not immediately assume the pods are healthy because a Running state only indicates that containers are running, not that the application is serving traffic.
+
+I first verify pod readiness status because pods may be running while failing readiness probes. Next, I check the Service configuration to ensure selectors match the correct pods and endpoints are populated properly.
+
+After verifying Services, I inspect Ingress resources, ingress controller logs, load balancer health checks, DNS resolution, and network policies. I also test connectivity between pods and services to identify networking issues.
+
+If infrastructure components appear healthy, I review application logs and metrics to determine whether the application is experiencing internal errors despite running containers.
+
+My troubleshooting flow is:
+
+Application → Pod Health → Readiness → Service → Endpoints → Ingress → Load Balancer → DNS → Network Policies → Logs → Monitoring
+
+This systematic approach helps identify the exact failure point quickly in production environments.
+
+---
+
+# Terraform (IaC)
+
+## 1. What is Infrastructure as Code?
+
+Infrastructure as Code (IaC) is the practice of managing and provisioning infrastructure through code rather than manual processes. Instead of creating resources through cloud consoles, engineers define infrastructure using configuration files.
+
+With IaC, infrastructure becomes version-controlled, repeatable, automated, and auditable. It enables teams to provision environments consistently across development, testing, and production.
+
+Terraform, CloudFormation, Pulumi, and Ansible are common Infrastructure as Code tools used in modern DevOps environments.
+
+---
+
+## 2. Explain Terraform state file.
+
+Terraform state file is a metadata file that stores information about infrastructure resources managed by Terraform. It acts as the source of truth that maps Terraform configuration to actual cloud resources.
+
+The state file contains:
+- Resource IDs
+- Resource attributes
+- Dependency information
+- Infrastructure metadata
+
+Terraform uses the state file to determine which resources already exist and what changes need to be applied during future deployments.
+
+Without the state file, Terraform cannot accurately track or manage infrastructure.
+
+---
+
+## 3. What is remote state and why is it required?
+
+Remote state refers to storing Terraform state files in a centralized backend rather than on a local machine. Common backends include AWS S3, Azure Storage Accounts, and Terraform Cloud.
+
+Remote state is required because multiple engineers and CI/CD pipelines may manage the same infrastructure. Centralized state storage ensures consistency, collaboration, backup, and recovery.
+
+In AWS environments, S3 is typically used for state storage while DynamoDB provides state locking to prevent concurrent modifications.
+
+Remote state is considered a production best practice.
+
+---
+
+## 4. Difference between Terraform and CloudFormation.
+
+Terraform is an Infrastructure as Code tool developed by HashiCorp that supports multiple cloud providers including AWS, Azure, Google Cloud, and Kubernetes. It uses HCL (HashiCorp Configuration Language) and provides a provider-based architecture.
+
+CloudFormation is AWS's native Infrastructure as Code service and only supports AWS resources. It uses JSON or YAML templates and integrates deeply with AWS services.
+
+Terraform is preferred in multi-cloud environments, while CloudFormation is suitable for organizations operating exclusively within AWS.
+
+---
+
+## 5. What are Terraform modules?
+
+Terraform modules are reusable collections of Terraform resources that encapsulate infrastructure logic. They help eliminate code duplication and improve maintainability.
+
+For example, instead of repeatedly writing VPC configurations for multiple environments, a reusable VPC module can be created and invoked with different parameters.
+
+Modules improve standardization, scalability, and code organization, making them essential in enterprise Terraform projects.
+
+---
+
+## 6. How do you manage multiple environments?
+
+Multiple environments such as Development, UAT, and Production can be managed using separate state files, workspaces, variable files, and environment-specific configurations.
+
+A common approach is maintaining separate directories or variable files for each environment while reusing the same Terraform modules. Each environment has its own backend configuration and state file to ensure isolation.
+
+This approach enables consistent infrastructure provisioning while preventing accidental changes across environments.
+
+---
+
+## 7. How do you secure Terraform state files?
+
+Terraform state files often contain sensitive information such as passwords, resource identifiers, and infrastructure metadata. Therefore, securing them is critical.
+
+In production environments, state files are stored in encrypted S3 buckets with versioning enabled. Access is restricted using IAM roles and policies following the principle of least privilege.
+
+Additional security measures include:
+- State encryption
+- Access logging
+- Remote state storage
+- State locking with DynamoDB
+- Secret management integration
+- Regular backups
+
+Sensitive values should never be hardcoded into Terraform code or exposed publicly.
+
+---
+
+## Scenario: Terraform state file gets corrupted. What steps will you take?
+
+If a Terraform state file becomes corrupted, the first step is preventing additional deployments to avoid further inconsistencies. I immediately verify the extent of corruption and check whether backups or previous state versions are available.
+
+If the state is stored in S3 with versioning enabled, I restore a previous healthy version of the state file. Before restoring, I compare the infrastructure currently running in the cloud with the state version being restored to avoid introducing drift.
+
+After recovery, I run Terraform plan to verify that the restored state accurately reflects the actual infrastructure. If required, I use terraform import to bring unmanaged resources back into state tracking.
+
+Finally, I identify the root cause of corruption, whether it was caused by manual modifications, concurrent deployments, backend issues, or failed CI/CD pipelines. I then implement preventive measures such as state locking, backup validation, restricted access controls, and improved deployment governance to prevent recurrence.
+
