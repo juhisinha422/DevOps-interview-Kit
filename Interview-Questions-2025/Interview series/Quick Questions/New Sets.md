@@ -1,3 +1,99 @@
+# DevOps Scenario-Based Interview Questions & Answers (4 Years Experience)
+
+## 1. A Kubernetes deployment is healthy, all pods are running, but users are getting 503 errors. How would you troubleshoot it end-to-end?
+
+If all pods are running but users are receiving 503 errors, I would start by checking whether the Kubernetes Service has healthy endpoints using `kubectl get endpoints`. Next, I would verify the Ingress Controller or Load Balancer configuration and review its logs to ensure traffic is correctly routed to backend services. I would test connectivity from inside the cluster to the service and pod IPs using curl commands. I would also validate readiness probes because pods may be running but not ready to receive traffic. Finally, I would inspect application logs, service selectors, network policies, and DNS resolution to identify where the request flow is failing.
+
+---
+
+## 2. Terraform state shows resources that no longer exist in AWS. How would you identify and recover from state drift?
+
+I would run `terraform plan` to compare the Terraform state file with the actual AWS infrastructure and identify drift. If resources were manually deleted outside Terraform, I would verify them in AWS and decide whether to recreate them or remove them from the state file using `terraform state rm`. For existing resources that are not tracked properly, I would use `terraform import` to bring them back into the state. After correcting the drift, I would run another plan to ensure the infrastructure and state are synchronized before applying any changes.
+
+---
+
+## 3. Your GitHub Actions pipeline suddenly starts taking 3x longer than usual. How would you investigate the bottleneck?
+
+I would begin by comparing recent successful and slow pipeline runs to identify which stage has increased execution time. I would review GitHub Actions logs, job durations, cache hit rates, dependency downloads, test execution times, and runner performance. I would verify whether self-hosted runners are overloaded or GitHub-hosted runners are experiencing delays. Additionally, I would check for recent code changes, dependency upgrades, external API calls, or infrastructure issues that could impact pipeline performance. Based on findings, I would optimize caching, parallelize jobs, or allocate better runner resources.
+
+---
+
+## 4. A microservice is intermittently failing under load, but CPU and memory metrics look normal. What would be your debugging approach?
+
+Since CPU and memory appear healthy, I would investigate other bottlenecks such as database connections, thread pools, network latency, API rate limits, and downstream service dependencies. I would analyze application logs, distributed tracing data, Prometheus metrics, and request latency patterns. Load testing tools can help reproduce the issue and identify failure points. I would also review connection pool configurations, timeout settings, and error rates to determine whether the issue is related to resource exhaustion beyond CPU and memory utilization.
+
+---
+
+## 5. How would you perform a zero-downtime deployment for a critical production application?
+
+I would use deployment strategies such as Rolling Updates, Blue-Green Deployments, or Canary Releases. Before deployment, I would ensure readiness and liveness probes are properly configured. During deployment, new instances would be brought up and verified before old instances are terminated. Traffic would gradually shift to the new version while monitoring application health, latency, and error rates. If any issue is detected, rollback procedures would be triggered immediately to restore the previous stable version without impacting users.
+
+---
+
+## 6. A node becomes NotReady during peak traffic. What happens to workloads and how would you handle the situation?
+
+When a node becomes NotReady, Kubernetes stops scheduling new pods on that node and eventually evicts workloads depending on configured tolerations. I would first investigate the node by checking kubelet status, system logs, disk space, network connectivity, and resource utilization. If the node cannot recover quickly, I would cordon and drain it to safely move workloads to healthy nodes. I would also ensure cluster autoscaling and high availability mechanisms are functioning correctly to minimize user impact.
+
+---
+
+## 7. Prometheus shows increased latency, but application logs show no errors. What layers would you investigate?
+
+I would investigate the entire request path including load balancers, ingress controllers, service mesh components, network latency, DNS resolution, databases, caches, and external service dependencies. Distributed tracing tools such as Jaeger or OpenTelemetry can help identify slow requests. I would also review pod restart counts, network throughput, connection saturation, and infrastructure metrics to determine whether latency originates from the application layer or an underlying platform component.
+
+---
+
+## 8. How would you design a multi-environment CI/CD strategy for 100+ microservices?
+
+I would implement a standardized CI/CD framework using reusable pipeline templates and Infrastructure as Code. Each microservice would follow the same workflow for build, test, security scanning, containerization, and deployment. Separate environments such as Development, QA, Staging, and Production would be managed through GitOps practices and environment-specific configurations. Automated approvals, deployment gates, and monitoring integrations would ensure consistent and scalable deployments across all services.
+
+---
+
+## 9. A container works perfectly in development but repeatedly fails in production Kubernetes clusters. What would you check first?
+
+I would compare the development and production environments, including environment variables, ConfigMaps, Secrets, resource limits, storage configurations, and network policies. I would inspect pod logs, describe pod events, and check for CrashLoopBackOff or OOMKilled conditions. Differences in Kubernetes versions, image tags, permissions, or external dependencies can also cause failures. My focus would be on identifying environment-specific differences that do not exist in development.
+
+---
+
+## 10. How would you secure secrets across GitHub Actions, Kubernetes, and cloud infrastructure?
+
+I would avoid storing secrets directly in repositories or container images. GitHub Actions secrets would be used for CI/CD workflows, while Kubernetes secrets would be managed through tools such as External Secrets Operator or HashiCorp Vault. Cloud-native secret managers such as AWS Secrets Manager would be used for centralized secret storage and rotation. Access would follow least privilege principles with proper auditing, encryption, and periodic rotation policies.
+
+---
+
+## 11. During deployment, database schema changes are required. How would you avoid downtime and rollback risks?
+
+I would use backward-compatible database migration strategies. Schema changes would be deployed first without affecting the current application version. The application would then be updated to use the new schema while maintaining compatibility with the previous version. Database migrations would be automated through CI/CD pipelines and tested in lower environments before production rollout. Rollback plans would ensure the previous application version can continue operating without schema conflicts.
+
+---
+
+## 12. How would you identify the root cause of sudden cloud cost spikes in a production environment?
+
+I would analyze cloud cost reports, billing dashboards, and resource utilization metrics to identify which services contributed to the increase. Tag-based cost allocation would help pinpoint affected applications or teams. I would review recent deployments, autoscaling activities, storage growth, data transfer usage, and orphaned resources. After identifying the cause, I would implement cost optimization measures and configure alerts to detect similar spikes proactively.
+
+---
+
+## 13. An application is consuming memory continuously and eventually crashes. How would you prove whether it's a memory leak?
+
+I would monitor memory utilization trends over time using Prometheus, CloudWatch, or Grafana dashboards. Heap dumps and profiling tools would be used to analyze memory allocation patterns and identify objects that are not being released. Load testing can help reproduce the issue consistently. If memory usage continuously grows without returning to normal levels after garbage collection, it strongly indicates a memory leak that requires code-level investigation.
+
+---
+
+## 14. Explain a strategy for disaster recovery if an entire Kubernetes cluster becomes unavailable.
+
+A disaster recovery strategy should include Infrastructure as Code, automated cluster provisioning, backup of application data, and backup of Kubernetes resources. Tools such as Velero can be used for backup and restore operations. Applications should be deployed across multiple availability zones, and critical workloads can be replicated in secondary regions. Recovery procedures should be tested regularly to ensure business continuity during a complete cluster outage.
+
+---
+
+## 15. You receive a critical alert at 2 AM stating "Application Down". What is your first 30-minute action plan?
+
+In the first few minutes, I would acknowledge the alert and assess its impact by checking monitoring dashboards and user-facing services. I would verify application health, infrastructure status, Kubernetes resources, and recent deployments. If a recent release is suspected, I would initiate a rollback. Simultaneously, I would review logs, metrics, and alerts to identify the root cause while keeping stakeholders informed. The priority during the first 30 minutes is to restore service availability quickly and then perform a detailed root cause analysis after stabilization.
+
+---
+
+**Suitable for:** DevOps Engineer (4 Years Experience) | Kubernetes | AWS | Terraform | GitHub Actions | CI/CD | Monitoring | Production Support
+
+
+
 "A pod enters CrashLoopBackOff. What do you do?"
 
 ━━━━━━━━━━━━━━━━━━━━━
@@ -63,7 +159,7 @@ kubectl debug -it <pod> --image=busybox --target=<container>
 
 • Use Atlantis or Terraform Cloud for team collaboration
 
-
+-----------------------------
 
 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝗲𝗿: 𝗬𝗼𝘂 𝗵𝗮𝘃𝗲 𝟮 𝗺𝗶𝗻𝘂𝘁𝗲𝘀. 𝗬𝗼𝘂𝗿 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗽𝗼𝗱 𝗶𝘀 𝗿𝘂𝗻𝗻𝗶𝗻𝗴 𝗯𝘂𝘁 𝘂𝘀𝗲𝗿𝘀 𝗮𝗿𝗲 𝗴𝗲𝘁𝘁𝗶𝗻𝗴 𝟱𝟬𝟯. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗼?
 
