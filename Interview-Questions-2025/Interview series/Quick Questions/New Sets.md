@@ -1,3 +1,39 @@
+𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗮𝗽𝗽𝗹𝘆 𝗶𝘀 𝘀𝘁𝘂𝗰𝗸. 𝗦𝘁𝗮𝘁𝗲 𝗳𝗶𝗹𝗲 𝗶𝘀 𝗹𝗼𝗰𝗸𝗲𝗱. 𝗧𝗲𝗮𝗺 𝗶𝘀 𝘄𝗮𝗶𝘁𝗶𝗻𝗴. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗼?
+
+𝗠𝘆 𝗮𝗻𝘀𝘄𝗲𝗿: 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲 𝗮𝗰𝗰𝗲𝗽𝘁𝗲𝗱. 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗺𝘆 𝗲𝘅𝗮𝗰𝘁 𝗮𝗽𝗽𝗿𝗼𝗮𝗰𝗵.
+
+► Check who locked the state — DynamoDB table holds the lock record.
+  aws dynamodb scan --table-name terraform-lock
+
+► If the previous apply crashed — lock was never released automatically.
+
+► Force unlock only after confirming no apply is running:
+  terraform force-unlock LOCK-ID
+
+► Never force unlock blindly — if two applies run simultaneously, state gets corrupted.
+
+► After unlock — run terraform plan first. Never apply directly.
+
+► Check what partial changes were made — some resources may already exist.
+
+► Run terraform refresh — sync state with actual AWS infrastructure.
+
+► Targeted apply if needed — fix only the failed resource:
+ 
+  terraform apply -target=aws_instance.web
+
+𝗛𝗼𝘄 𝗜 𝗽𝗿𝗲𝘃𝗲𝗻𝘁 𝘁𝗵𝗶𝘀:
+
+• Always use remote state with S3 + DynamoDB locking
+
+• Set timeout on CI/CD pipeline — auto cancel stuck apply
+
+• Never run terraform apply locally in production
+
+• Use Atlantis or Terraform Cloud for team collaboration
+
+
+
 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝗲𝗿: 𝗬𝗼𝘂 𝗵𝗮𝘃𝗲 𝟮 𝗺𝗶𝗻𝘂𝘁𝗲𝘀. 𝗬𝗼𝘂𝗿 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗽𝗼𝗱 𝗶𝘀 𝗿𝘂𝗻𝗻𝗶𝗻𝗴 𝗯𝘂𝘁 𝘂𝘀𝗲𝗿𝘀 𝗮𝗿𝗲 𝗴𝗲𝘁𝘁𝗶𝗻𝗴 𝟱𝟬𝟯. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗼?
 
 𝗠𝘆 𝗮𝗻𝘀𝘄𝗲𝗿: 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲 𝗮𝗰𝗰𝗲𝗽𝘁𝗲𝗱, 𝗹𝗲𝘁’𝘀 𝗴𝗼!
