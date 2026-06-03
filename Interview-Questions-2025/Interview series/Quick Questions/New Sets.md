@@ -1,3 +1,34 @@
+"A pod enters CrashLoopBackOff. What do you do?"
+
+━━━━━━━━━━━━━━━━━━━━━
+
+CrashLoopBackOff means your container keeps exiting and Kubernetes is backing off before restarting it. It is NOT the error — it's the symptom.
+
+Here's the exact 5-step playbook:
+
+𝟭. kubectl describe pod → Events section tells you what Kubernetes saw
+
+𝟮. kubectl logs --previous → this shows the LAST crash, not the current one (most people miss this)
+
+𝟯. Read the exit code:
+
+   • 137 = OOMKilled (memory limit hit)
+ 
+   • 1   = Application crash / unhandled error
+ 
+   • 127 = Binary not found in image
+
+   • 139 = Segmentation fault
+
+𝟰. Check ENV vars, ConfigMaps, Secrets — a missing variable kills apps on startup
+
+𝟱. Fix root cause in the deployment spec → redeploy → monitor
+
+𝗕𝗼𝗻𝘂𝘀: On K8s 1.23+ use ephemeral debug containers:
+
+kubectl debug -it <pod> --image=busybox --target=<container>
+
+
 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗮𝗽𝗽𝗹𝘆 𝗶𝘀 𝘀𝘁𝘂𝗰𝗸. 𝗦𝘁𝗮𝘁𝗲 𝗳𝗶𝗹𝗲 𝗶𝘀 𝗹𝗼𝗰𝗸𝗲𝗱. 𝗧𝗲𝗮𝗺 𝗶𝘀 𝘄𝗮𝗶𝘁𝗶𝗻𝗴. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗼?
 
 𝗠𝘆 𝗮𝗻𝘀𝘄𝗲𝗿: 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲 𝗮𝗰𝗰𝗲𝗽𝘁𝗲𝗱. 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗺𝘆 𝗲𝘅𝗮𝗰𝘁 𝗮𝗽𝗽𝗿𝗼𝗮𝗰𝗵.
