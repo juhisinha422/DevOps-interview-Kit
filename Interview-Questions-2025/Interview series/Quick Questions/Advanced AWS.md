@@ -1,3 +1,136 @@
+# AWS EC2 Interview Questions & Answers (4+ Years Experience)
+
+---
+
+# What is EC2 and why is it used?
+
+Amazon Elastic Compute Cloud (EC2) is a web service provided by AWS that allows users to launch and manage virtual servers in the cloud. It provides scalable computing capacity without requiring physical hardware management. EC2 is used to host applications, websites, APIs, databases, CI/CD servers, container platforms, and enterprise workloads. The primary advantage of EC2 is that resources can be provisioned, scaled, modified, and terminated on demand, making it highly flexible and cost-effective. In production environments, EC2 forms the backbone of many cloud architectures because it allows organizations to quickly deploy infrastructure while maintaining control over operating systems, networking, security, and storage.
+
+---
+
+# What are different EC2 instance types and how do you choose them?
+
+AWS provides different EC2 instance families optimized for various workloads. General Purpose instances such as T3 and M5 provide a balance of CPU, memory, and networking resources and are commonly used for web applications and business workloads. Compute Optimized instances such as C5 and C6 are designed for CPU-intensive workloads like high-performance APIs, gaming servers, and batch processing. Memory Optimized instances such as R5 and X1 are used for databases, caching systems, and in-memory analytics. Storage Optimized instances such as I3 and D2 are suitable for workloads requiring high disk throughput and low latency. GPU instances such as P-series and G-series are used for machine learning, artificial intelligence, and graphics processing. The selection depends on workload requirements, expected traffic, memory usage, CPU utilization, storage performance, and budget considerations.
+
+---
+
+# What is the difference between On-Demand, Reserved, and Spot Instances?
+
+On-Demand Instances are billed per second or hour and require no long-term commitment. They are ideal for short-term, unpredictable, or development workloads. Reserved Instances provide significant cost savings in exchange for committing to a one-year or three-year usage term. They are commonly used for stable production workloads. Spot Instances allow users to utilize unused AWS capacity at heavily discounted prices, often up to 90% cheaper than On-Demand pricing. However, AWS can terminate Spot Instances when capacity is required elsewhere. Spot Instances are typically used for fault-tolerant workloads such as batch processing, testing, CI/CD jobs, and data analytics.
+
+---
+
+# What is an AMI in AWS?
+
+An Amazon Machine Image (AMI) is a preconfigured template used to launch EC2 instances. It contains the operating system, application software, configuration settings, and necessary dependencies. AMIs enable consistent deployments because every instance launched from the same AMI starts with identical configurations. AWS provides standard AMIs for operating systems such as Linux and Windows, while organizations often create custom AMIs containing application-specific configurations. Custom AMIs help reduce provisioning time and ensure consistency across environments.
+
+---
+
+# How does EC2 pricing work?
+
+EC2 pricing depends on several factors including instance type, operating system, region, storage usage, data transfer, and purchasing model. Larger instance types with more CPU and memory cost more than smaller instances. Additional costs may arise from EBS volumes, snapshots, Elastic IPs, and outbound network traffic. Organizations optimize costs using Reserved Instances, Savings Plans, Auto Scaling, Spot Instances, and right-sizing recommendations from AWS Cost Explorer and Compute Optimizer.
+
+---
+
+# What is the difference between EBS-backed and Instance Store-backed instances?
+
+EBS-backed instances use Amazon Elastic Block Store volumes as their primary storage. Data stored on EBS persists even if the instance is stopped or restarted. EBS supports snapshots, encryption, backups, and resizing, making it suitable for most production workloads.
+
+Instance Store-backed instances use physically attached disks on the host machine. These disks provide extremely high performance but are ephemeral. If the instance stops, terminates, or moves to another host, all stored data is lost. Instance Store is typically used for temporary caches, buffers, scratch storage, and high-performance workloads where persistence is not required.
+
+---
+
+# How do you connect to an EC2 instance (Linux/Windows)?
+
+For Linux instances, connectivity is typically established using SSH. A private key file associated with the instance's key pair is used for authentication. The command usually specifies the key file, username, and instance public IP or DNS name.
+
+For Windows instances, administrators generally connect using Remote Desktop Protocol (RDP). AWS generates an encrypted administrator password that can be decrypted using the private key associated with the EC2 instance. The decrypted password is then used to establish the RDP session.
+
+Successful connectivity requires proper Security Group rules, network routing, and valid credentials.
+
+---
+
+# What is a Key Pair in EC2?
+
+A Key Pair is an authentication mechanism used to securely access EC2 instances. It consists of a public key stored on the EC2 instance and a private key retained by the user. During login, AWS verifies that the private key matches the stored public key before granting access. Key Pairs eliminate the need for password-based authentication and provide stronger security. Losing the private key can make instance access difficult, so proper backup and key management practices are important.
+
+---
+
+# What are Security Groups in EC2?
+
+Security Groups act as virtual firewalls that control inbound and outbound traffic at the instance level. They define which protocols, ports, and source or destination IP ranges are allowed. Security Groups are stateful, meaning return traffic is automatically permitted when an incoming connection is allowed. Multiple Security Groups can be attached to an EC2 instance, providing flexible access control. Security Groups are one of the most commonly used security mechanisms in AWS and are often the first component checked during connectivity troubleshooting.
+
+---
+
+# What is the difference between Security Groups and NACL?
+
+Security Groups operate at the instance level and are stateful. When inbound traffic is allowed, the corresponding outbound response is automatically permitted. Security Groups only support allow rules and do not support explicit deny rules.
+
+Network Access Control Lists (NACLs) operate at the subnet level and are stateless. Both inbound and outbound rules must be configured explicitly. NACLs support both allow and deny rules and are evaluated in numerical order. Security Groups are generally used for fine-grained instance-level security, while NACLs provide an additional layer of subnet-level protection.
+
+---
+
+# How do you troubleshoot if you cannot SSH into an EC2 instance?
+
+I follow a structured troubleshooting process. First, I verify that the instance is running and has the correct public IP address. Next, I confirm that the Security Group allows inbound SSH traffic on port 22 from my source IP. I then inspect NACL rules and route tables to ensure network traffic is not blocked.
+
+If networking appears healthy, I verify that the correct private key is being used and that file permissions on the key are configured properly. I also check whether the SSH service is running on the instance and review system logs through the AWS console if direct access is unavailable. For private instances, I ensure connectivity through VPN, bastion hosts, or AWS Systems Manager Session Manager.
+
+---
+
+# What are Elastic IPs and when should you use them?
+
+An Elastic IP is a static public IPv4 address allocated by AWS and associated with an AWS account. Unlike standard public IPs, Elastic IPs remain allocated even if an EC2 instance is stopped or restarted. Elastic IPs are commonly used when a consistent public endpoint is required for applications, DNS records, firewalls, or external integrations. They are also useful during disaster recovery because the address can quickly be reassigned to another instance.
+
+---
+
+# What is the difference between Public IP and Private IP?
+
+A Public IP allows communication with resources over the internet and is globally routable. A Private IP is used for internal communication within a VPC and cannot be accessed directly from the internet. Public IPs are commonly assigned to web servers, load balancers, and bastion hosts, while private IPs are used for databases, internal services, backend applications, and secure workloads. In production environments, sensitive resources are generally kept in private subnets and accessed through controlled mechanisms.
+
+---
+
+# What is User Data in EC2?
+
+User Data is a script or set of commands executed automatically during instance startup. It is commonly used to install software, configure applications, update packages, start services, and perform initialization tasks. User Data enables infrastructure automation and reduces manual configuration effort. Organizations often use User Data to bootstrap web servers, install monitoring agents, configure application dependencies, and register instances with management systems.
+
+---
+
+# How do you automate EC2 instance setup?
+
+EC2 setup can be automated using several methods. User Data scripts provide simple bootstrapping capabilities during instance launch. Configuration management tools such as Ansible, Chef, Puppet, and SaltStack can automate software installation and system configuration. Infrastructure as Code tools such as Terraform and CloudFormation automate infrastructure provisioning. Custom AMIs further reduce setup time by preinstalling required software and configurations. Combining Infrastructure as Code with configuration management is a common production approach.
+
+---
+
+# What is an Auto Scaling Group in AWS?
+
+An Auto Scaling Group (ASG) automatically adjusts the number of EC2 instances based on demand. It helps maintain application availability while optimizing infrastructure costs. Scaling policies can be based on metrics such as CPU utilization, request count, memory utilization, or custom CloudWatch metrics. During traffic spikes, ASG launches additional instances. When demand decreases, unnecessary instances are terminated. Auto Scaling improves fault tolerance, availability, and resource efficiency in production environments.
+
+---
+
+# How does a Load Balancer work with EC2?
+
+A Load Balancer distributes incoming traffic across multiple EC2 instances to improve availability, scalability, and fault tolerance. It continuously performs health checks and routes requests only to healthy targets. If an instance becomes unhealthy, traffic is automatically redirected to healthy instances. Load Balancers work closely with Auto Scaling Groups by automatically registering and deregistering instances as scaling events occur. This architecture ensures applications remain available even during instance failures.
+
+---
+
+# What is the difference between ALB, NLB, and CLB?
+
+Application Load Balancer (ALB) operates at Layer 7 and supports HTTP and HTTPS traffic. It provides advanced features such as host-based routing, path-based routing, SSL termination, and microservice integration.
+
+Network Load Balancer (NLB) operates at Layer 4 and handles TCP, UDP, and TLS traffic. It offers extremely high performance, low latency, and static IP support.
+
+Classic Load Balancer (CLB) is the older generation AWS load balancer that supports both Layer 4 and Layer 7 functionality but lacks many modern features. ALB and NLB are generally preferred for new deployments.
+
+---
+
+# How do you monitor EC2 instances?
+
+I use Amazon CloudWatch as the primary monitoring solution. Key metrics include CPU utilization, network throughput, disk I/O, status checks, memory usage, and application-specific metrics. CloudWatch Alarms are configured to trigger notifications when thresholds are breached.
+
+For deeper visibility, I integrate CloudWatch with Prometheus, Grafana, AWS X-Ray, or third-party observability platforms. I also monitor operating system logs, application logs, Auto Scaling activities, and security events. Effective monitoring combines infrastructure metrics, application metrics, logs, and alerting to ensure proactive issue detection and rapid incident response.
+
+
 # AWS CloudWatch Interview Questions and Answers (Detailed) – DevOps Engineer (4+ Years Experience)
 
 ## 1. What is AWS CloudWatch and why is it used?
