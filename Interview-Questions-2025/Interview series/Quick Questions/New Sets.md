@@ -28,7 +28,7 @@ Here's the exact 5-step playbook:
 
 kubectl debug -it <pod> --image=busybox --target=<container>
 
-
+---------
 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺 𝗮𝗽𝗽𝗹𝘆 𝗶𝘀 𝘀𝘁𝘂𝗰𝗸. 𝗦𝘁𝗮𝘁𝗲 𝗳𝗶𝗹𝗲 𝗶𝘀 𝗹𝗼𝗰𝗸𝗲𝗱. 𝗧𝗲𝗮𝗺 𝗶𝘀 𝘄𝗮𝗶𝘁𝗶𝗻𝗴. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗼?
 
 𝗠𝘆 𝗮𝗻𝘀𝘄𝗲𝗿: 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲 𝗮𝗰𝗰𝗲𝗽𝘁𝗲𝗱. 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗺𝘆 𝗲𝘅𝗮𝗰𝘁 𝗮𝗽𝗽𝗿𝗼𝗮𝗰𝗵.
