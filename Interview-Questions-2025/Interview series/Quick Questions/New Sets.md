@@ -1,5 +1,59 @@
 # DevOps Scenario-Based Interview Questions & Answers (4 Years Experience)
 
+# 𝗟𝗶𝗻𝘂𝘅 𝘀𝗲𝗿𝘃𝗲𝗿 𝗱𝗶𝘀𝗸 𝗶𝘀 𝟭𝟬𝟬% 𝗳𝘂𝗹𝗹. 𝗔𝗽𝗽 𝗶𝘀 𝗰𝗿𝗮𝘀𝗵𝗲𝗱. 𝗙𝗶𝘅 𝗶𝘁 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝗿𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴. 𝗬𝗼𝘂 𝗵𝗮𝘃𝗲 𝟮 𝗺𝗶𝗻𝘂𝘁𝗲𝘀.
+
+► Check disk usage immediately:
+ 
+  df -h — see which partition is full
+  
+  du -sh /* 2>/dev/null | sort -rh | head -10 — find biggest folders
+
+► Check logs first — most common cause of disk full:
+  
+  du -sh /var/log/* | sort -rh | head -5
+  
+  Logs growing without rotation fills disk silently overnight.
+
+► Clear old logs safely:
+  
+  sudo truncate -s 0 /var/log/syslog
+  
+  sudo journalctl --vacuum-size=100M
+
+► Clear temp files:
+  
+  sudo rm -rf /tmp/*
+  
+  sudo rm -rf /var/tmp/*
+
+► Check for deleted files still held open by process:
+  
+  lsof | grep deleted | awk '{print $7}' | sort -rn | head
+  
+  Restart that process — disk space releases immediately.
+
+► Check Docker if installed:
+
+  docker system df — see how much Docker is using
+  
+  docker system prune — remove unused images and containers
+
+► After freeing space — set up log rotation:
+  
+  /etc/logrotate.conf — never let this happen again.
+
+𝗛𝗼𝘄 𝗜 𝗽𝗿𝗲𝘃𝗲𝗻𝘁 𝗱𝗶𝘀𝗸 𝗳𝘂𝗹𝗹 𝗶𝗻 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻:
+
+• CloudWatch alarm on disk usage above 80%
+
+• Configure logrotate for all application logs
+
+• Set log retention policy — delete logs older than 30 days
+
+• Use centralized logging — ship logs to ELK or CloudWatch
+
+----------------------------------
+
 ## Builds Not Running? How to Troubleshoot Broken Jenkins Agents
 
 Your pipeline is queued, but nothing happens.
