@@ -162,8 +162,6 @@ If recovery is not possible through member restoration, I restore etcd from a re
 
 ---
 
-```markdown
-# Infosys DevOps Interview Questions & Answers (4+ Years Experience)
 
 # 21. Pods are getting evicted frequently due to resource pressure. How would you prevent this?
 
