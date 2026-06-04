@@ -1,5 +1,35 @@
 # DevOps Scenario-Based Interview Questions & Answers (4 Years Experience)
 
+## Builds Not Running? How to Troubleshoot Broken Jenkins Agents
+
+Your pipeline is queued, but nothing happens.
+
+The Jenkins controller is healthy, yet builds refuse to start. Often, the real issue is a broken or disconnected agent.
+
+Common causes:
+
+- Agent disconnected from the Jenkins controller
+
+- SSH, authentication, or credential failures
+
+- Insufficient disk space or system resources
+
+- Missing tools required by the pipeline (Docker, Java, Git, etc.)
+
+How to troubleshoot:
+
+- Check the agent status in Jenkins and review connection logs
+
+- Verify CPU, memory, and disk utilization on the agent
+
+- Test agent authentication and network connectivity
+
+- Confirm required tools and dependencies are installed
+
+A failing pipeline isn’t always a pipeline problem; sometimes, the worker responsible for running it needs attention.
+
+-------------------------------
+
 𝗗𝗼𝗰𝗸𝗲𝗿 𝗶𝗺𝗮𝗴𝗲 𝗶𝘀 𝟮.𝟭 𝗚𝗕. 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗶𝘀 𝘁𝗼𝗼 𝘀𝗹𝗼𝘄. 𝗙𝗶𝘅 𝗶𝘁. 𝗬𝗼𝘂 𝗵𝗮𝘃𝗲 𝟮 𝗺𝗶𝗻𝘂𝘁𝗲𝘀.
 
 𝗠𝘆 𝗮𝗻𝘀𝘄𝗲𝗿: 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲 𝗮𝗰𝗰𝗲𝗽𝘁𝗲𝗱. 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗵𝗼𝘄 𝗜 𝗿𝗲𝗱𝘂𝗰𝗲 𝗶𝘁 𝘁𝗼 𝘂𝗻𝗱𝗲𝗿 𝟮𝟬𝟬 𝗠𝗕.
