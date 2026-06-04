@@ -289,3 +289,34 @@ If the traffic surge is legitimate, I optimize scaling policies and increase ava
 
 Throughout the incident, I continuously monitor error rates, latency, throughput, and resource utilization while communicating updates to stakeholders. Once stability is restored, I perform a post-incident review and implement improvements to handle future traffic surges more effectively.
 ```
+
+# 31. 𝗣𝗶𝗽𝗲𝗹𝗶𝗻𝗲 𝗽𝗮𝘀𝘀𝗲𝗱. 𝗕𝘂𝘁 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝘀𝘁𝗶𝗹𝗹 𝗵𝗮𝘀 𝗼𝗹𝗱 𝗰𝗼𝗱𝗲. 𝗘𝘅𝗽𝗹𝗮𝗶𝗻 𝘄𝗵𝘆. 𝗬𝗼𝘂 𝗵𝗮𝘃𝗲 𝟮 𝗺𝗶𝗻𝘂𝘁𝗲𝘀.
+
+► Deployment stage skipped — pipeline has test and build but deploy step is commented out or conditional.
+  Check pipeline logs — did deploy stage actually run?
+
+► Wrong environment — pipeline deployed to staging not production.
+  Check environment variable in deploy script. Which env is set?
+
+► CDN cache — CloudFront is serving old cached version to users.
+  Fix: invalidate CloudFront cache after deployment.
+  aws cloudfront create-invalidation --paths "/*"
+
+► Health check rollback — new version failed health check silently.
+  Load balancer rolled back to old version automatically.
+  Check target group — which version is marked healthy?
+
+► Wrong image tag — deployment used :latest but latest was not updated in ECR.
+  Always use specific tags. Never use :latest in production.
+
+► Blue-Green switch missed — new version deployed but traffic not switched to it.
+  Check ALB listener rules — still pointing to old target group.
+
+𝗛𝗼𝘄 𝗜 𝗺𝗮𝗸𝗲 𝗱𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁𝘀 𝗯𝘂𝗹𝗹𝗲𝘁𝗽𝗿𝗼𝗼𝗳:
+• Add smoke test step after deploy — verify new version is actually live
+
+• Always use specific image tags — never :latest
+
+• Add deployment verification in pipeline before marking success
+
+• Alert on deployment events in CloudWatch
