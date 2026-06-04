@@ -1,0 +1,12 @@
+What’s the difference between metrics, logs, and traces, and when do you start with each? 
+
+metrics tell what is wrong 
+traces show where it broke down
+logs explain why it happened  
+
+Metrics :-Numeric measurements of system health, like CPU usage, request counts, or error rates, aggregated over time. 
+Setting up active alerts and monitoring long-term performance trends. 
+
+Traces:- Visual maps that follow a single user request as it travels through multiple microservices, networks, and databases.  use case is Troubleshooting latency and mapping out complex dependencies. 
+
+Logs:- Discrete, time-stamped text records of specific events, such as a stack trace or an "Order Processed" notification. use case is digging into the root cause of an error. 
