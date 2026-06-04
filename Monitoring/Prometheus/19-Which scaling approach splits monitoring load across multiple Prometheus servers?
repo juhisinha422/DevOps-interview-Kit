@@ -1,0 +1,7 @@
+Which scaling approach splits monitoring load across multiple Prometheus servers? 
+A. Federation
+B. Sharding
+C. Alerting
+D. Exporting
+
+ANS B
