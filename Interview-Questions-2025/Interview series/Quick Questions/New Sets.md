@@ -1,5 +1,53 @@
 # DevOps Scenario-Based Interview Questions & Answers (4 Years Experience)
 
+𝗗𝗼𝗰𝗸𝗲𝗿 𝗶𝗺𝗮𝗴𝗲 𝗶𝘀 𝟮.𝟭 𝗚𝗕. 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗶𝘀 𝘁𝗼𝗼 𝘀𝗹𝗼𝘄. 𝗙𝗶𝘅 𝗶𝘁. 𝗬𝗼𝘂 𝗵𝗮𝘃𝗲 𝟮 𝗺𝗶𝗻𝘂𝘁𝗲𝘀.
+
+𝗠𝘆 𝗮𝗻𝘀𝘄𝗲𝗿: 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲 𝗮𝗰𝗰𝗲𝗽𝘁𝗲𝗱. 𝗛𝗲𝗿𝗲 𝗶𝘀 𝗵𝗼𝘄 𝗜 𝗿𝗲𝗱𝘂𝗰𝗲 𝗶𝘁 𝘁𝗼 𝘂𝗻𝗱𝗲𝗿 𝟮𝟬𝟬 𝗠𝗕.
+
+► Use alpine base image — biggest win immediately.
+ 
+  FROM python:3.9 → FROM python:3.9-alpine
+  
+  Saves 800MB+ instantly.
+
+► Use multi-stage build — build in one stage, copy only final output.
+
+  Stage 1: install dependencies and build
+  
+  Stage 2: copy only binary or built files
+  
+  Build tools stay in Stage 1. Never go to production image.
+
+► Remove cache after package install:
+  
+  RUN apt-get install -y curl \
+      && rm -rf /var/lib/apt/lists/*
+
+► Combine RUN commands — each RUN creates a new layer.
+  
+  More layers = bigger image.
+
+► Add .dockerignore — exclude node_modules, .git, logs, test files.
+  
+  These get copied accidentally and bloat the image.
+
+► Remove dev dependencies — only install what production needs.
+  
+  npm install --production
+
+► Use docker history image-name — see which layer is the biggest.
+  
+  Fix the largest layer first.
+
+𝗛𝗼𝘄 𝗜 𝗸𝗲𝗲𝗽 𝗶𝗺𝗮𝗴𝗲𝘀 𝘀𝗺𝗮𝗹𝗹 𝗮𝗹𝘄𝗮𝘆𝘀:
+
+• Set image size limit in CI/CD pipeline — fail if image exceeds limit
+
+• Scan image with Trivy — remove vulnerabilities and unused packages
+
+• Use distroless images for maximum security and minimum size
+
+-----------------------------
 ## 1. A Kubernetes deployment is healthy, all pods are running, but users are getting 503 errors. How would you troubleshoot it end-to-end?
 
 If all pods are running but users are receiving 503 errors, I would start by checking whether the Kubernetes Service has healthy endpoints using `kubectl get endpoints`. Next, I would verify the Ingress Controller or Load Balancer configuration and review its logs to ensure traffic is correctly routed to backend services. I would test connectivity from inside the cluster to the service and pod IPs using curl commands. I would also validate readiness probes because pods may be running but not ready to receive traffic. Finally, I would inspect application logs, service selectors, network policies, and DNS resolution to identify where the request flow is failing.
