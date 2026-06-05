@@ -2262,3 +2262,209 @@ after locating the file through its inode.
 
 However, most commands operate on filenames rather than directly using inode numbers, so the inode is usually used for identification and troubleshooting purposes.
 
+
+----------
+# Jenkins, Docker, Terraform, Kubernetes & AWS Interview Answers (4 Years Experience)
+
+## 1. Which type of Jenkins pipeline do you prefer—Declarative or Scripted? Why?
+
+In my projects, I mostly use Declarative Pipelines because they are easier to read, maintain, and standardize across teams. Declarative syntax provides built-in features such as stages, post actions, environment variables, and agent definitions, making pipeline management simpler. I use Scripted Pipelines only when I need complex logic, loops, or dynamic execution that cannot be easily achieved with Declarative syntax.
+
+---
+
+## 2. Can you write and explain a Jenkins pipeline?
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "myapp"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/company/app.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t myapp:${BUILD_NUMBER} .'
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                sh 'docker push myapp:${BUILD_NUMBER}'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f deployment.yaml'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Deployment Successful"
+        }
+        failure {
+            echo "Pipeline Failed"
+        }
+    }
+}
+```
+
+This pipeline checks out code from Git, builds the application, runs tests, creates a Docker image, pushes it to a registry, and deploys it to Kubernetes. Post actions are used for success and failure notifications.
+
+---
+
+## 3. What stages have you used in your CI/CD pipeline?
+
+In my projects, the pipeline generally consists of Checkout, Build, Unit Testing, Static Code Analysis using SonarQube, Security Scanning using Trivy, Docker Image Build, Image Push to ECR, Kubernetes Deployment, Smoke Testing, and Notification stages. This ensures code quality, security, and successful deployment before release.
+
+---
+
+## 4. Where do you store secrets in Jenkins?
+
+I store secrets in Jenkins Credentials Manager. Sensitive information such as AWS access keys, Docker registry credentials, Git tokens, and Kubernetes kubeconfig files are stored as credentials and accessed securely within pipelines using Jenkins credential bindings. For production environments, we also integrate Jenkins with AWS Secrets Manager or HashiCorp Vault to avoid hardcoding secrets.
+
+---
+
+## 5. If your Jenkins server is not accessible, how would you troubleshoot it?
+
+First, I check whether the Jenkins service is running using systemctl status jenkins. Then I verify server CPU, memory, and disk utilization. Next, I review Jenkins logs located in /var/log/jenkins/jenkins.log. I check whether port 8080 is listening and verify firewall or security group rules. If Jenkins is behind a load balancer or reverse proxy, I validate Nginx or ALB configurations. Finally, I inspect JVM memory issues and restart the service if necessary.
+
+---
+
+## 6. Your Jenkins pipeline failed—how do you debug it?
+
+I start by reviewing the failed stage in the Jenkins console output. Then I identify the exact error message and verify environment variables, credentials, network connectivity, and permissions. If the issue occurs during deployment, I check Kubernetes events and pod logs. If the failure is related to Docker, I validate image builds locally. My approach is to isolate the failing component and reproduce the issue manually whenever possible.
+
+---
+
+## 7. How do you reduce the size of a Docker image?
+
+I use lightweight base images such as Alpine Linux, implement multi-stage builds, remove unnecessary packages and cache files, combine RUN commands to reduce layers, and use a .dockerignore file to exclude unwanted files. These practices significantly reduce image size and improve deployment speed.
+
+---
+
+## 8. Why do we use Terraform?
+
+Terraform is an Infrastructure as Code (IaC) tool used to provision and manage cloud resources in a consistent and automated manner. It enables version control of infrastructure, reduces manual effort, ensures repeatability, and allows teams to manage environments such as development, staging, and production using the same codebase.
+
+---
+
+## 9. What is a Docker container?
+
+A Docker container is a lightweight, portable, and isolated runtime environment that packages an application along with its dependencies, libraries, and configurations. Containers ensure that applications run consistently across different environments such as development, testing, and production.
+
+---
+
+## 10. How do you check if a container is running?
+
+I use the following commands:
+
+```bash
+docker ps
+```
+
+To view all containers including stopped ones:
+
+```bash
+docker ps -a
+```
+
+To inspect a specific container:
+
+```bash
+docker inspect <container-id>
+```
+
+---
+
+## 11. How do you deploy an application to Kubernetes using a pipeline?
+
+The pipeline builds the application, creates a Docker image, pushes it to ECR or another container registry, updates the Kubernetes deployment manifest, and deploys it using kubectl apply. After deployment, the pipeline verifies pod status, rollout status, and application health before marking the deployment successful.
+
+---
+
+## 12. What is the difference between an IAM role and an IAM user?
+
+An IAM User represents a person or application with long-term credentials such as access keys and passwords. An IAM Role does not have permanent credentials and is assumed temporarily by users, services, or applications. In AWS environments, I prefer IAM Roles because they are more secure and eliminate the need for storing credentials.
+
+---
+
+## 13. What is an S3 bucket?
+
+An S3 bucket is a storage container in AWS Simple Storage Service (S3). It is used to store files, backups, logs, static website content, Terraform state files, and application artifacts. S3 provides high durability, scalability, and availability for object storage.
+
+---
+
+## 14. Can you write a Kubernetes Deployment YAML file?
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nginx-deployment
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: nginx
+
+  template:
+    metadata:
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+
+        ports:
+        - containerPort: 80
+```
+
+This deployment creates two replicas of the Nginx container and ensures high availability.
+
+---
+
+## 15. If your application is not accessible, how would you troubleshoot it?
+
+I follow a layered approach. First, I verify whether pods are running using kubectl get pods. Then I inspect pod logs and events. Next, I validate service configuration and endpoints using kubectl get svc and kubectl get endpoints. I verify ingress rules, DNS records, and load balancer health checks. Finally, I check network policies, security groups, and application logs to identify the root cause.
+
+---
+
+## 16. What is the difference between a Virtual Machine and a Container?
+
+A Virtual Machine includes a complete operating system along with the application and runs on a hypervisor. Containers share the host operating system kernel and package only the application and its dependencies. Containers start much faster, consume fewer resources, and provide better scalability compared to virtual machines.
+
+Interview Answer:
+
+"Virtual machines virtualize hardware, while containers virtualize the operating system. Containers are lightweight, faster, and ideal for microservices and cloud-native applications, whereas VMs are heavier but provide stronger isolation."
+
+
