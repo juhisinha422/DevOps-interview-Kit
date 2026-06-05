@@ -208,3 +208,37 @@ Last 1 minute
 Last 5 minutes
 Last 15 minutes
 
+
+==================
+
+ Terraform Workspaces: Managing Multiple Environments Efficiently
+As infrastructure grows, managing separate environments (Dev, QA, UAT, Prod) becomes challenging.
+One Terraform feature that simplifies this is Workspaces.
+✅ What are Terraform Workspaces?
+Workspaces allow you to manage multiple state files using the same Terraform configuration.
+Example:
+terraform workspace list
+terraform workspace new dev
+terraform workspace new prod
+terraform workspace select prod
+Benefits:
+✔ Reuse the same code for multiple environments
+✔ Maintain separate state files automatically
+✔ Reduce code duplication
+✔ Simplify environment management
+Example Use Case:
+resource "aws_instance" "web" {
+  instance_type = terraform.workspace == "prod" ? "t3.medium" : "t3.micro"
+}
+In this example:
+Dev environment uses a smaller instance
+Production uses a larger instance
+Same Terraform codebase manages both
+⚠️ Best Practice:
+For enterprise environments, combine Terraform Workspaces with:
+Remote State (S3)
+State Locking (DynamoDB)
+Separate CI/CD Pipelines
+Environment-specific variables
+Using Terraform Workspaces correctly helps maintain clean, scalable, and reusable Infrastructure as Code.
+
