@@ -1,0 +1,42 @@
+Understanding Load Balancers: Why, When, and Which Type? 🚦
+
+Imagine a highway with thousands of vehicles trying to enter a city through a single gate. Traffic congestion is inevitable.
+A Load Balancer (LB) acts like a smart traffic controller, distributing incoming requests across multiple servers so that no single server becomes overloaded.
+Why Do We Need a Load Balancer?
+✅ Improves application performance
+✅ Increases availability and reliability
+✅ Prevents server overload
+✅ Enables horizontal scaling
+✅ Eliminates single points of failure
+When Should We Use a Load Balancer?
+🔹 When your application receives high traffic
+🔹 When multiple application servers are running
+🔹 When high availability is required
+🔹 During auto-scaling in cloud environments
+🔹 When you want zero/minimal downtime during maintenance
+
+Types of Load Balancers
+
+1️⃣ Application Load Balancer (Layer 7)
+Works at the HTTP/HTTPS level
+Routes traffic based on URL paths, hostnames, headers, etc.
+Best for web applications and microservice
+Example:
+app.com/api → Server A
+app.com/images → Server B
+2️⃣ Network Load Balancer (Layer 4)
+Works at the TCP/UDP level
+Handles millions of requests with very low latency
+Best for high-performance applications
+Example: Gaming servers, real-time applications
+3️⃣ Gateway Load Balancer
+Used for security appliances such as firewalls and intrusion detection systems
+Distributes traffic through security devices before reaching applications
+4️⃣ Classic Load Balancer (Legacy)
+Supports basic Layer 4 and Layer 7 balancing
+Mostly replaced by modern load balancers
+
+Real-World Example 🛒
+During a festival sale, an e-commerce website may receive millions of user requests. Without a Load Balancer, a single server can crash. With a Load Balancer, traffic is distributed across multiple servers, ensuring a smooth shopping experience.
+No Load Balancer = Traffic Jam 🚗🚗🚗
+With Load Balancer = Smart Traffic Management
