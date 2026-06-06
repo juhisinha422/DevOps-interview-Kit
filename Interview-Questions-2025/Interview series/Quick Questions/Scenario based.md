@@ -241,3 +241,38 @@ I also use:
 - Smoke testing after deployment
 
 In production-grade DevOps pipelines, integration testing is critical because many failures occur only when services communicate with each other.
+
+
+----------
+# "How do Docker containers talk to each other?"
+
+Docker creates virtual networks.
+
+If two containers are on the same network, they can communicate using container names.
+
+Example 👇
+
+𝗖𝗿𝗲𝗮𝘁𝗲 𝗻𝗲𝘁𝘄𝗼𝗿𝗸
+
+docker network create app-network
+
+𝗥𝘂𝗻 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝘀
+```
+docker run -d --name backend --network app-network backend-image
+docker run -d --name frontend --network app-network frontend-image
+
+𝗡𝗼𝘄 𝗳𝗿𝗼𝗻𝘁𝗲𝗻𝗱 𝗰𝗮𝗻 𝗰𝗮𝗹𝗹:
+http://backend:5000
+
+𝗗𝗼𝗰𝗸𝗲𝗿 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗰𝗮𝗹𝗹𝘆 𝗿𝗲𝘀𝗼𝗹𝘃𝗲𝘀:
+backend → container IP
+
+And if you want your laptop/browser to access a container:
+
+docker run -p 8080:80 nginx
+
+𝗡𝗼𝘄:
+localhost:8080 → container port 80
+
+```
+
