@@ -1,0 +1,24 @@
+Docker image build takes too long how do you optimize it? 
+
+1. Most build delays occur because package managers reinstall everything from scratch whenever a minor source code file changes. Separate manifest copies solve this type of  issue
+
+COPY . .  
+RUN npm install       It is not good 
+
+COPY package.json package-lock.json ./ 
+RUN npm ci # Cached securely unless packages change COPY . .     It is good 
+
+2.Without a .dockerignore file, Docker packs up our entire local directory—including heavy directories like .git, local node_modules, or massive database storage folders  
+
+3.Compilers, test suites, and temporary SDK tooling drastically bloat images and add unnecessary processing overhead to runtime configurations. we can divide environments using multi-stage parameters 
+
+4.Every unique RUN, COPY, or ADD declaration generates an immutable layer within the container image file structure. Chaining commands prevents intermediate bloat 
+
+Best practice is  
+ 
+RUN apt-get update
+RUN apt-get install -y curl
+RUN rm -rf /var/lib/apt/lists/* # This clean-up fails because previous layers are locked!
+
+5. we can avoid massive general operating system base tags like ubuntu:latest or node:latest. we can use highly stripped-down variants like -alpine 
+
