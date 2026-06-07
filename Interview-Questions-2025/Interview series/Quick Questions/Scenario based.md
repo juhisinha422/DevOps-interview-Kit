@@ -418,3 +418,38 @@ Always verify:
 • Resource limits
 
 • External dependencies
+
+-----
+
+# 𝗬𝗼𝘂𝗿 𝗔𝗪𝗦 𝗯𝗶𝗹𝗹 𝗱𝗼𝘂𝗯𝗹𝗲𝗱 𝘁𝗵𝗶𝘀 𝗺𝗼𝗻𝘁𝗵. 𝗡𝗼 𝗻𝗲𝘄 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 𝗮𝗱𝗱𝗲𝗱. 𝗙𝗶𝗻𝗱 𝘁𝗵𝗲 𝗰𝗮𝘂𝘀𝗲. 𝗬𝗼𝘂 𝗵𝗮𝘃𝗲 𝟮 𝗺𝗶𝗻𝘂𝘁𝗲𝘀.
+
+Here is exactly how I find it.
+
+► AWS Cost Explorer — open immediately. Filter by service. Find which service spiked.
+
+► Check EC2 — any instances running 24x7 that should be stopped at night?
+  Large instance types left on by mistake = massive bill.
+
+► Check NAT Gateway — most hidden cost. High data processing charges.
+  Fix: replace with VPC Endpoints for S3 and DynamoDB. Free.
+
+► Check Data Transfer — cross region traffic is expensive.
+  Moving data between regions without realizing = surprise bill.
+
+► Check RDS — Multi-AZ or read replicas running in wrong environment?
+
+► Check Elastic IPs — charged when not attached to running instance.
+  Release unused EIPs immediately.
+
+► Check S3 requests — millions of API calls add up silently.
+  Add CloudFront in front of S3 to reduce direct calls.
+
+𝗛𝗼𝘄 𝗜 𝗽𝗿𝗲𝘃𝗲𝗻𝘁 𝘀𝘂𝗿𝗽𝗿𝗶𝘀𝗲 𝗯𝗶𝗹𝗹𝘀:
+
+• AWS Budgets alert when cost crosses threshold
+
+• Cost Anomaly Detection for automatic alerts
+
+• Tag every resource — know which team spends what
+
+• Schedule non-prod EC2 to stop at night
