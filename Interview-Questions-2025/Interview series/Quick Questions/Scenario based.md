@@ -276,3 +276,53 @@ localhost:8080 → container port 80
 
 ```
 
+# DevOps Scenario-Based Interview Questions & Answers (3+ Years Experience)
+
+## 1️⃣ Your microservice is returning 500 errors only for specific users.
+
+### How do you isolate and debug it?
+
+When a microservice returns 500 errors only for specific users, my first step is identifying what makes those users different from others. I start by collecting failed request details such as user IDs, request payloads, API endpoints, timestamps, and correlation IDs. Next, I check application logs, distributed tracing tools, and monitoring dashboards to identify exceptions occurring during those requests. I verify whether the issue is related to user-specific data, authorization permissions, feature flags, database records, caching inconsistencies, or third-party integrations. I also compare successful and failed requests to identify differences. If needed, I reproduce the issue in a lower environment using the affected user's data. Once the root cause is identified, I implement the fix, validate the affected workflow, monitor error rates, and document the incident to prevent recurrence.
+
+---
+
+## 2️⃣ Jenkins pipeline is running for 2 hours. Normal time is 15 minutes.
+
+### What do you check first?
+
+If a Jenkins pipeline suddenly increases from 15 minutes to 2 hours, I first identify which stage is consuming the additional time. I review Jenkins build logs and stage duration metrics to locate the bottleneck. Common causes include infrastructure resource constraints, agent issues, network latency, dependency download delays, external service failures, artifact repository slowness, test execution problems, or stuck deployment stages. I verify CPU, memory, disk utilization, and network performance on Jenkins agents. I also check whether recent code changes introduced long-running tests or inefficient build steps. If the issue is related to infrastructure, I scale build agents or increase resources. Once the root cause is found, I optimize the pipeline and establish monitoring to detect future performance degradation early.
+
+---
+
+## 3️⃣ Kubernetes HPA is configured but not scaling during peak traffic.
+
+### What could be wrong?
+
+If Horizontal Pod Autoscaler is not scaling during high traffic, I begin by verifying that the Metrics Server is running and collecting resource metrics successfully. I inspect the HPA status using kubectl commands and check whether CPU, memory, or custom metrics are reaching the configured threshold. Common issues include missing resource requests, incorrect HPA thresholds, unavailable metrics, custom metric adapter failures, or workload bottlenecks unrelated to the configured scaling metric. I also verify that the Deployment, ReplicaSet, and Cluster Autoscaler are functioning correctly. Sometimes traffic increases but CPU remains low because the application is blocked on database queries or external APIs. In such cases, CPU-based scaling may not trigger. After identifying the issue, I adjust scaling metrics, thresholds, or infrastructure capacity accordingly.
+
+---
+
+## 4️⃣ Your team pushed a change and latency jumped from 200ms to 3 seconds.
+
+### How do you find the exact cause?
+
+When latency increases immediately after a deployment, I first correlate the timing of the change with monitoring data to confirm the deployment is responsible. I compare application metrics before and after deployment, focusing on response time, error rates, database queries, CPU utilization, memory usage, and network latency. I analyze application logs and distributed tracing data to identify slow transactions and determine where delays are occurring. I also review the deployment changes, configuration updates, feature flags, dependency versions, and infrastructure modifications introduced in the release. If necessary, I perform a rollback to restore service while continuing the investigation. Once the root cause is identified, I validate the fix in lower environments before redeploying it to production.
+
+---
+
+## 5️⃣ New developer committed AWS secret keys to GitHub by mistake.
+
+### What do you do in the next 5 minutes?
+
+This is a critical security incident requiring immediate action. My first step is revoking or disabling the exposed AWS access keys from the IAM console to eliminate the security risk. Next, I verify whether the repository is public or private and assess the exposure scope. I then remove the secrets from Git history using tools such as BFG Repo-Cleaner or git filter-repo because simply deleting the file is not sufficient. After key rotation, I review AWS CloudTrail logs to determine whether the compromised credentials were used by unauthorized parties. I notify security teams and stakeholders, document the incident, and implement preventive controls such as secret scanning, GitHub secret detection, pre-commit hooks, and secure secret management solutions like AWS Secrets Manager or HashiCorp Vault.
+
+---
+
+## 6️⃣ You need to deploy to 3 environments with one click and zero downtime.
+
+### How do you design the pipeline?
+
+For this requirement, I design a multi-stage CI/CD pipeline that follows a build-once-deploy-many approach. The application is built, tested, scanned, and packaged only once, producing a versioned artifact or container image. The same artifact is promoted sequentially through Development, UAT, and Production environments to ensure consistency. Each stage includes automated validation checks and approval gates where required. For zero-downtime deployments, I use Kubernetes Rolling Updates, Blue-Green Deployments, or Canary Deployments depending on application requirements. Health checks, readiness probes, and automated rollback mechanisms are integrated into the pipeline to ensure failed releases do not impact users. Monitoring, alerting, and deployment verification steps are executed after each deployment stage to confirm application health before promoting the release further. This design provides reliability, traceability, consistency, and minimal business disruption.
+
+
+
