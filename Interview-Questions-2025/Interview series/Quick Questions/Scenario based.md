@@ -453,3 +453,262 @@ Here is exactly how I find it.
 • Tag every resource — know which team spends what
 
 • Schedule non-prod EC2 to stop at night
+
+--------------------
+
+# DevOps Engineer Interview Answers (4 Years Experience)
+
+## 1. Tell me about yourself / your responsibilities in previous organization.
+
+I have around 4 years of experience as a DevOps Engineer working on AWS, Kubernetes, Jenkins, Docker, Terraform, GitLab CI/CD, Helm, Prometheus, Grafana, and Linux administration. My responsibilities included managing CI/CD pipelines, containerizing applications, deploying workloads on Kubernetes/EKS clusters, automating infrastructure using Terraform, monitoring applications and infrastructure, troubleshooting production issues, implementing security best practices, and collaborating with development teams to ensure reliable and scalable deployments. I was also responsible for cluster maintenance, application releases, vulnerability remediation, and cloud resource optimization.
+
+---
+
+## 2. Do you have experience in OpenShift or only Kubernetes?
+
+My primary experience is with Kubernetes, particularly AWS EKS. I understand OpenShift architecture, deployment models, Routes, Security Context Constraints (SCC), integrated registry, and Operator-based management. Since OpenShift is built on Kubernetes, most concepts such as Pods, Deployments, Services, ConfigMaps, Secrets, and Ingress remain similar.
+
+---
+
+## 3. What are the differences between Kubernetes and OpenShift?
+
+Kubernetes is an open-source container orchestration platform used to manage containerized workloads. OpenShift is a Kubernetes distribution provided by Red Hat with additional enterprise features. OpenShift includes integrated CI/CD tools, image registry, monitoring, enhanced security through SCC, built-in Routes, and Operator management. Kubernetes provides flexibility while OpenShift focuses on enterprise-grade security and ease of operations.
+
+---
+
+## 4. Do you have experience in Jenkins pipelines?
+
+Yes, I have extensive experience creating and maintaining Declarative Jenkins Pipelines. Pipelines were used for building applications, running unit tests, performing code quality checks with SonarQube, scanning vulnerabilities using Trivy, building Docker images, pushing images to registries, and deploying applications to Kubernetes environments. I have integrated Jenkins with GitHub, GitLab, Docker, Kubernetes, SonarQube, and Slack notifications.
+
+---
+
+## 5. Your Jenkins pipeline is taking too much time. How will you troubleshoot it?
+
+I first identify which stage consumes the most time by reviewing Jenkins stage logs. Then I check build duration history, agent resource utilization, network latency, Docker image build times, dependency downloads, test execution duration, and deployment steps. I optimize by enabling parallel execution, caching dependencies, using lightweight Docker images, reducing unnecessary stages, scaling Jenkins agents, and cleaning workspace artifacts. If infrastructure is overloaded, I verify CPU, memory, and disk utilization on Jenkins nodes.
+
+---
+
+## 6. Have you worked on vulnerabilities / DevSecOps?
+
+Yes. I have worked on vulnerability management using Trivy, SonarQube, and container image scanning. Vulnerabilities were identified during CI/CD execution before deployment. Critical and high severity findings were remediated by upgrading libraries, patching OS packages, using secure base images, removing unused packages, implementing least privilege access, and enforcing security policies before production releases.
+
+---
+
+## 7. If a production cyber attack happens due to API endpoint exposure, how will you handle it?
+
+First, I would contain the attack by blocking malicious traffic using WAF, security groups, network policies, or API gateway rules. Then I would analyze logs to identify the attack source and affected systems. Compromised credentials would be rotated immediately. I would verify application integrity, perform root cause analysis, patch vulnerabilities, restore services if required, and monitor the environment for further suspicious activities. Finally, I would document the incident and implement preventive controls to avoid recurrence.
+
+---
+
+## 8. How do applications communicate with each other in Kubernetes?
+
+Applications communicate through Kubernetes Services. Each microservice is exposed internally using a ClusterIP Service. Kubernetes DNS resolves service names to cluster IPs, allowing applications to communicate using service names instead of pod IP addresses.
+
+Example:
+
+http://user-service.default.svc.cluster.local
+
+---
+
+## 9. How does traffic flow between two applications running on different nodes?
+
+When Application A sends a request to Application B using a Service name, Kubernetes DNS resolves the Service IP. Kube-proxy programs iptables/IPVS rules that forward traffic to one of the backend pods. If the target pod is on another node, the CNI plugin handles inter-node networking and routes traffic to the destination node and pod.
+
+---
+
+## 10. Can we apply rules to control pod-to-pod communication?
+
+Yes. Kubernetes Network Policies are used to control communication between pods. We can define ingress and egress rules based on namespaces, pod labels, and IP ranges. This helps enforce zero-trust networking and restrict unauthorized traffic between applications.
+
+---
+
+## 11. Do you have experience provisioning Kubernetes clusters?
+
+Yes. I have provisioned AWS EKS clusters using Terraform and eksctl. The process involved creating VPCs, subnets, IAM roles, worker node groups, security groups, storage classes, ingress controllers, monitoring tools, and application namespaces.
+
+---
+
+## 12. What is bootstrap in cluster provisioning?
+
+Bootstrap is the initial process where worker nodes join the Kubernetes cluster. During bootstrap, nodes download required configurations, register with the control plane, install kubelet and networking components, and become available to schedule workloads.
+
+---
+
+## 13. How do you deploy applications without downtime?
+
+I use Rolling Update deployment strategy. Kubernetes gradually replaces old pods with new pods while maintaining application availability. Readiness probes ensure traffic is sent only to healthy pods. In critical applications, blue-green or canary deployments can also be used for zero-downtime releases.
+
+---
+
+## 14. If pods go into CrashLoopBackOff state, how will you troubleshoot?
+
+I start by checking pod logs using:
+
+kubectl logs <pod-name>
+
+Then I describe the pod:
+
+kubectl describe pod <pod-name>
+
+I verify application errors, environment variables, secrets, configuration issues, resource limits, image problems, database connectivity, and health probe failures. Based on findings, I fix the root cause and redeploy the application.
+
+---
+
+## 15. How will you increase CPU and memory limits for a deployment?
+
+I modify the deployment manifest and update the resources section under the container specification. After applying the changes, Kubernetes performs a rolling update and recreates pods with the new resource limits.
+
+---
+
+## 16. Which command is used to increase CPU and memory limits?
+
+Using kubectl edit:
+
+kubectl edit deployment <deployment-name>
+
+Or update YAML and apply:
+
+kubectl apply -f deployment.yaml
+
+Example:
+
+resources:
+requests:
+cpu: "500m"
+memory: "512Mi"
+limits:
+cpu: "1"
+memory: "1Gi"
+
+---
+
+## 17. Do you have experience with Route 53?
+
+Yes. I have used Route 53 for DNS management, domain routing, load balancer integration, health checks, and traffic routing. It was commonly used to map application domains to AWS Application Load Balancers and Kubernetes ingress endpoints.
+
+---
+
+## 18. What DNS records have you used in Route 53?
+
+I have worked with A Records, CNAME Records, Alias Records, MX Records, TXT Records, and NS Records for application routing, email verification, SSL validation, and domain management.
+
+---
+
+## 19. Difference between A Record, CNAME Record, and Alias Record.
+
+A Record maps a domain name directly to an IP address.
+
+CNAME Record maps one domain name to another domain name.
+
+Alias Record is an AWS-specific feature that maps domains directly to AWS resources such as Load Balancers, CloudFront distributions, and S3 websites without requiring an IP address.
+
+---
+
+## 20. Which monitoring tools have you used?
+
+I have worked with Prometheus, Grafana, CloudWatch, AlertManager, and Container Insights. These tools were used for infrastructure monitoring, application monitoring, log analysis, alerting, and capacity planning.
+
+---
+
+## 21. How did you utilize monitoring tools in your project?
+
+Prometheus collected metrics from Kubernetes clusters and applications. Grafana dashboards visualized CPU, memory, disk, pod health, API response times, and application metrics. AlertManager generated alerts for threshold breaches. CloudWatch was used for AWS resource monitoring and centralized logging.
+
+---
+
+## 22. How do you verify and scan metrics in Prometheus/Grafana?
+
+In Prometheus, I use PromQL queries to validate metrics and verify targets through the Targets page. In Grafana, I validate dashboard queries, compare historical trends, create alerts, and correlate infrastructure metrics with application performance issues.
+
+---
+
+## 23. Can you write a Kubernetes deployment YAML file?
+
+Yes. A Deployment YAML includes API version, kind, metadata, replica count, selectors, pod template, container image, ports, environment variables, resource limits, and health probes.
+
+---
+
+## 24. Deployment YAML with 2 replicas, port 8080, secret mounted as environment variable
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+      - name: sample-app
+        image: nginx:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: password
+```
+
+---
+
+## 25. Was your application monolithic or microservices-based?
+
+The applications I worked on were primarily microservices-based. Different services handled separate business functions and were independently developed, deployed, scaled, and monitored.
+
+---
+
+## 26. How were microservices deployed and connected?
+
+Microservices were containerized using Docker and deployed to Kubernetes using Helm charts. Each service had its own Deployment and Service resources. Communication occurred through internal Kubernetes Services, API Gateway, and DNS-based service discovery.
+
+---
+
+## 27. Do you have experience with Helm charts?
+
+Yes. I have created and maintained Helm charts for deploying applications, databases, ingress resources, ConfigMaps, Secrets, and monitoring components. Helm helped standardize deployments across development, staging, and production environments.
+
+---
+
+## 28. How do you pass values in Helm using values.yaml?
+
+Configuration values are defined in values.yaml and referenced in templates using Helm syntax.
+
+Example values.yaml:
+
+```yaml
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: latest
+```
+
+Deployment template:
+
+```yaml
+replicas: {{ .Values.replicaCount }}
+
+image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+```
+
+Deploy command:
+
+```bash
+helm install my-app ./chart -f values.yaml
+```
+
+For environment-specific overrides:
+
+```bash
+helm upgrade my-app ./chart -f prod-values.yaml
+```
+
