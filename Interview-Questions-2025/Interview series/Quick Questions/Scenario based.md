@@ -365,3 +365,56 @@ My answer: Challenge accepted. Multiple things could have gone wrong. Here is ho
 • Branch protection on main always
 
 
+-----------------
+# CrashLoopBackOff Error
+
+After successfully deploying an application, a pod continuously restarting and showing:
+
+❌ CrashLoopBackOff
+
+This is one of the most frequently encountered issues in Kubernetes environments.
+
+Recently, I faced a situation where an application pod was repeatedly crashing immediately after startup. Kubernetes kept trying to restart the container, resulting in a CrashLoopBackOff state.
+
+🔍 My troubleshooting approach:
+
+✅ Checked pod logs using:
+kubectl logs <pod-name>
+
+✅ Reviewed previous container logs:
+kubectl logs <pod-name> --previous
+
+✅ Inspected pod events:
+kubectl describe pod <pod-name>
+
+✅ Verified environment variables and ConfigMaps
+
+✅ Checked Secrets and application configuration
+
+✅ Reviewed resource limits and requests
+
+✅ Confirmed database and external service connectivity
+
+🎯 Root Cause:
+
+The application was expecting a mandatory environment variable that was missing from the deployment configuration. As a result, the application exited immediately after startup.
+
+Once the configuration was corrected and the deployment was restarted, the pod became healthy and stable.
+
+💡 Key Takeaway:
+
+When troubleshooting CrashLoopBackOff, focus on understanding why the application is exiting rather than simply restarting the pod.
+
+Always verify:
+
+• Application logs
+
+• Configuration settings
+
+• Environment variables
+
+• Secrets and ConfigMaps
+
+• Resource limits
+
+• External dependencies
