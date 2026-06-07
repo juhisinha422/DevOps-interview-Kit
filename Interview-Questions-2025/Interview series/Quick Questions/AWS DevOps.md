@@ -87,3 +87,169 @@ I follow several cloud cost optimization strategies, including right-sizing EC2 
 ## 22. Do you have any questions for me?
 
 Yes. I would like to understand the team's current CI/CD process and deployment strategy. I am also interested in learning about the cloud architecture used in the organization, the tools used for monitoring and automation, and the opportunities available for working on modern technologies such as Kubernetes, serverless computing, and Infrastructure as Code. Additionally, I would like to know how success is measured for this role and what growth opportunities are available within the team.
+
+
+
+----
+# Common DevOps Networking & Port Interview Questions
+
+## Which port is used by SSH?
+
+SSH (Secure Shell) uses **TCP port 22** by default. It is used for secure remote login, command execution, file transfers (SCP/SFTP), and server administration. In production environments, some organizations change the default port for additional security, but 22 remains the standard SSH port.
+
+---
+
+## Which port is used by HTTP and HTTPS?
+
+HTTP uses **TCP port 80** and HTTPS uses **TCP port 443**.
+
+* **HTTP (Port 80):** Transfers data in plain text and is generally used for redirects to HTTPS.
+* **HTTPS (Port 443):** Encrypts communication using SSL/TLS and is the standard protocol for secure web traffic.
+
+Most modern applications use HTTPS to ensure secure communication between users and servers.
+
+---
+
+## Which port is required for Amazon EFS?
+
+Amazon Elastic File System (EFS) uses **TCP port 2049**.
+
+EFS is based on the Network File System (NFS) protocol. When EC2 instances, EKS worker nodes, or containers need to mount an EFS filesystem, Security Groups and NACLs must allow TCP traffic on port 2049 between clients and EFS mount targets.
+
+---
+
+## Which port does MySQL use?
+
+MySQL uses **TCP port 3306** by default.
+
+Applications connect to MySQL databases through this port for executing queries, reading data, and performing transactions. When troubleshooting database connectivity issues, verifying Security Groups, NACLs, and firewall access to port 3306 is a common step.
+
+---
+
+## Difference between TCP and UDP?
+
+TCP (Transmission Control Protocol) is a connection-oriented protocol that guarantees reliable data delivery. UDP (User Datagram Protocol) is a connectionless protocol that prioritizes speed over reliability.
+
+### TCP Characteristics:
+
+* Connection-oriented
+* Reliable communication
+* Error checking and retransmission
+* Ordered packet delivery
+* Slower than UDP
+
+### UDP Characteristics:
+
+* Connectionless
+* Faster communication
+* No delivery guarantee
+* No retransmission
+* Lower overhead
+
+### Examples:
+
+* TCP: HTTP, HTTPS, SSH, FTP, MySQL
+* UDP: DNS, VoIP, Video Streaming, Online Gaming
+
+In production systems, TCP is used when reliability is critical, while UDP is preferred for latency-sensitive workloads.
+
+---
+
+## Which port is used by Jenkins?
+
+Jenkins uses **TCP port 8080** by default.
+
+This port provides access to the Jenkins web interface where users can create pipelines, monitor builds, manage plugins, and configure jobs. Organizations often place Jenkins behind a reverse proxy such as NGINX or an Application Load Balancer and expose it through HTTPS on port 443.
+
+---
+
+## Which port is used by Kubernetes API Server?
+
+The Kubernetes API Server uses **TCP port 6443**.
+
+All Kubernetes components communicate with the API Server through this port, including:
+
+* kubectl
+* kubelets
+* controllers
+* schedulers
+* external automation tools
+
+When kubectl commands fail, one of the first troubleshooting steps is verifying connectivity to port 6443.
+
+---
+
+## Which port is used by Docker daemon?
+
+The Docker daemon typically uses:
+
+* **Unix Socket:** `/var/run/docker.sock` (most common)
+* **TCP Port 2375:** Unsecured Docker API
+* **TCP Port 2376:** Secure Docker API with TLS
+
+In production environments, Docker communication generally occurs through the Unix socket or TLS-secured port 2376 rather than the unsecured 2375 port.
+
+---
+
+## Which port is used by Grafana?
+
+Grafana uses **TCP port 3000** by default.
+
+Users access dashboards, metrics visualizations, alerts, and monitoring data through this port. In production environments, Grafana is often placed behind NGINX, Ingress Controllers, or Load Balancers and exposed through HTTPS.
+
+---
+
+## Which port is used by Prometheus?
+
+Prometheus uses **TCP port 9090** by default.
+
+This port provides:
+
+* Prometheus UI
+* Query interface (PromQL)
+* Metrics exploration
+* Alert configuration
+
+Grafana commonly connects to Prometheus on port 9090 to retrieve monitoring metrics for dashboard visualization.
+
+---
+
+# Quick Revision Table
+
+| Service                | Protocol | Default Port |
+| ---------------------- | -------- | ------------ |
+| SSH                    | TCP      | 22           |
+| HTTP                   | TCP      | 80           |
+| HTTPS                  | TCP      | 443          |
+| Amazon EFS (NFS)       | TCP      | 2049         |
+| MySQL                  | TCP      | 3306         |
+| Jenkins                | TCP      | 8080         |
+| Kubernetes API Server  | TCP      | 6443         |
+| Docker Daemon (TLS)    | TCP      | 2376         |
+| Docker Daemon (No TLS) | TCP      | 2375         |
+| Grafana                | TCP      | 3000         |
+| Prometheus             | TCP      | 9090         |
+
+# Most Asked DevOps Interview Ports
+
+| Component             | Port        |
+| --------------------- | ----------- |
+| SSH                   | 22          |
+| HTTP                  | 80          |
+| HTTPS                 | 443         |
+| DNS                   | 53          |
+| MySQL                 | 3306        |
+| PostgreSQL            | 5432        |
+| Jenkins               | 8080        |
+| Grafana               | 3000        |
+| Prometheus            | 9090        |
+| Kubernetes API Server | 6443        |
+| Docker Daemon         | 2375 / 2376 |
+| EFS                   | 2049        |
+| Redis                 | 6379        |
+| MongoDB               | 27017       |
+| Elasticsearch         | 9200        |
+| Kibana                | 5601        |
+
+
+
