@@ -793,3 +793,91 @@ Then I run `terraform plan` to ensure state consistency before allowing further 
 ---
 
 
+# Capgemini DevOps Interview Questions & Answers (4+ Years Experience)
+
+## 1. Can you give your introduction.
+
+I am a DevOps Engineer with around 4 years of experience working on cloud infrastructure, CI/CD automation, containerization, Kubernetes orchestration, and Infrastructure as Code. My primary expertise is in AWS, Kubernetes, Docker, Jenkins, GitLab CI/CD, Terraform, Helm, ArgoCD, and monitoring tools such as Prometheus and Grafana. In my current role, I am responsible for designing and maintaining CI/CD pipelines, managing Kubernetes and OpenShift clusters, automating infrastructure provisioning, implementing GitOps practices, and ensuring application reliability in production environments. I have worked closely with development, QA, and operations teams to improve deployment efficiency, reduce downtime, and strengthen security and compliance controls.
+
+---
+
+## 2. How the typical CI/CD architecture looks like. Entire Process.
+
+A typical CI/CD architecture starts when a developer commits code to a Git repository such as GitHub, GitLab, or Bitbucket. This commit triggers a Jenkins or GitLab CI pipeline. During the CI phase, the application code is compiled, unit tests are executed, code quality analysis is performed using SonarQube, and security scans are conducted using tools such as Nexus IQ, Trivy, or Aqua Security. Once validation succeeds, a Docker image is built and pushed to a container registry such as Nexus, Harbor, Docker Hub, or Amazon ECR. During the CD phase, deployment manifests or Helm charts are updated and synchronized to Kubernetes using ArgoCD. Kubernetes performs rolling updates while monitoring readiness and health checks. Finally, Prometheus and Grafana monitor the deployed application, and alerts are generated through Alertmanager if issues occur.
+
+---
+
+## 3. How the Helm chart structure looks like.
+
+A Helm chart consists of a predefined directory structure used to package Kubernetes applications. The chart contains a Chart.yaml file that stores chart metadata such as name and version. The values.yaml file contains configurable parameters that can be customized per environment. The templates directory contains Kubernetes resource templates such as Deployment, Service, Ingress, ConfigMap, Secret, and HPA definitions. The charts directory can contain dependent charts. During deployment, Helm combines templates with values from values.yaml and generates Kubernetes manifests dynamically. This allows the same chart to be reused across development, staging, and production environments with different configurations.
+
+---
+
+## 4. What is the difference between ReplicaSet and Replication Controller?
+
+Replication Controller is the older Kubernetes resource responsible for maintaining a specified number of pod replicas. ReplicaSet is the newer generation resource that extends Replication Controller functionality by supporting set-based label selectors in addition to equality-based selectors. In modern Kubernetes environments, ReplicaSets are rarely created directly because Deployments manage them automatically. Deployments use ReplicaSets internally to support rolling updates, rollbacks, and version management. Therefore, ReplicaSet is more flexible and commonly used in production through Deployments.
+
+---
+
+## 5. What all stages have you written in Jenkins pipeline?
+
+In my projects, Jenkins pipelines typically contain stages such as Checkout, Build, Unit Testing, Static Code Analysis, Dependency Scanning, Security Scanning, Docker Image Build, Docker Image Scan, Artifact Upload, Container Registry Push, Helm Chart Validation, Deployment to Development, Integration Testing, UAT Deployment, Production Approval, Production Deployment, Smoke Testing, and Notifications. Depending on project requirements, rollback and post-deployment validation stages are also included. The objective is to ensure code quality, security, and deployment reliability before production release.
+
+---
+
+## 6. Did you use GitOps automation. How do you manage this approach in production?
+
+Yes, I have used GitOps extensively with ArgoCD. In GitOps, Git serves as the single source of truth for infrastructure and application deployment configurations. Developers commit deployment changes to a Git repository, and ArgoCD continuously monitors the repository. Whenever changes are detected, ArgoCD automatically synchronizes the Kubernetes cluster with the desired state defined in Git. In production, we maintain separate repositories or branches for different environments and enforce pull request approvals before changes are merged. This approach provides version control, auditability, rollback capability, and deployment consistency across environments.
+
+---
+
+## 7. What happens if CMD or ENTRYPOINT is not provided in Dockerfile? Will the container run?
+
+A container requires a running process to stay alive. If neither CMD nor ENTRYPOINT is specified in the Dockerfile and the base image also does not define one, the container will start and immediately exit because no process is available to execute. However, if the base image already defines an ENTRYPOINT or CMD, the container may still run successfully using the inherited configuration. Therefore, whether the container runs depends on the base image configuration. In production, it is recommended to explicitly define CMD or ENTRYPOINT to avoid ambiguity and ensure predictable behavior.
+
+---
+
+## 8. What is RBAC? Have you provided any RBAC roles for users or service accounts?
+
+RBAC stands for Role-Based Access Control and is used to control permissions within Kubernetes. RBAC determines what actions users, groups, or service accounts can perform on cluster resources. I have implemented Roles and RoleBindings for namespace-level permissions and ClusterRoles and ClusterRoleBindings for cluster-wide access. For example, developers may receive read-only access to pods, deployments, and logs, while DevOps engineers receive deployment and administration permissions. Service accounts are assigned specific permissions following the principle of least privilege to reduce security risks.
+
+---
+
+## 9. How did you package Maven builds?
+
+Maven builds are packaged using the Maven lifecycle. After code checkout, I execute commands such as `mvn clean package` or `mvn clean install`. The build process compiles source code, executes unit tests, resolves dependencies, and generates artifacts such as JAR or WAR files. These artifacts are then uploaded to repositories such as Nexus or Artifactory. If containerization is required, the generated artifact is copied into a Docker image and pushed to a container registry for deployment through Kubernetes.
+
+---
+
+## 10. What is Nexus IQ and Aqua Security scan used for?
+
+Nexus IQ is a Software Composition Analysis (SCA) tool used to identify vulnerabilities, license violations, and risks in open-source dependencies. It helps ensure that applications do not use insecure or non-compliant third-party libraries. Aqua Security is a container security platform used to scan Docker images, Kubernetes workloads, and cloud-native applications for vulnerabilities, malware, secrets, and configuration risks. In production pipelines, Nexus IQ is typically used for dependency security while Aqua Security is used for container and runtime security validation.
+
+---
+
+## 11. Is HashiCorp Vault and CyberArk both used for secret management?
+
+Yes, both HashiCorp Vault and CyberArk are secret management solutions, but they are commonly used for different purposes. HashiCorp Vault is widely used in cloud-native and DevOps environments to manage dynamic secrets, API keys, certificates, and application credentials. CyberArk is traditionally focused on privileged access management and securing high-privilege credentials such as administrator accounts. Many enterprises use both tools together, with CyberArk managing privileged accounts and Vault managing application and infrastructure secrets.
+
+---
+
+## 12. What is the OpenShift version you are using?
+
+The exact version depends on the organization. A strong interview answer is: "In my recent project, we were using OpenShift 4.x, which is based on Kubernetes and provides additional enterprise features such as integrated authentication, enhanced security policies, operator-based management, built-in image registry, and developer tooling. The specific version may vary depending on the project's upgrade cycle."
+
+---
+
+## 13. How did you configure OpenShift workloads?
+
+OpenShift workloads are configured similarly to Kubernetes workloads using DeploymentConfigs, Deployments, Services, Routes, ConfigMaps, Secrets, and Horizontal Pod Autoscalers. We define resource requests and limits, configure health probes, assign service accounts, and manage environment-specific settings using ConfigMaps and Secrets. Routes are used instead of traditional Kubernetes Ingress in many OpenShift environments. Security Context Constraints (SCCs) are also configured to comply with OpenShift security requirements.
+
+---
+
+## 14. How did you make sure vulnerability thresholds are defined for SonarQube?
+
+In SonarQube, vulnerability thresholds are enforced through Quality Gates. We configure Quality Gates to define acceptable limits for vulnerabilities, code smells, bugs, duplicated code, and code coverage. During pipeline execution, SonarQube analyzes the code and compares results against the configured thresholds. If the Quality Gate fails, the Jenkins or GitLab pipeline automatically fails and prevents deployment progression. This ensures that only code meeting predefined quality and security standards can move toward production environments.
+
+
+
+
+
