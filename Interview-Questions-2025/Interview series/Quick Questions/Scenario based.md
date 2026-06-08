@@ -711,4 +711,85 @@ For environment-specific overrides:
 ```bash
 helm upgrade my-app ./chart -f prod-values.yaml
 ```
+--------
+# DevOps Scenario-Based Interview Questions & Answers (4+ Years Experience)
+
+## 1️⃣ Pod is running. App returns 503. What is your first command?
+
+My first command would be:
+
+```bash
+kubectl describe svc <service-name>
+```
+
+A 503 error typically indicates that the service has no healthy backend endpoints available. Even though the pod is running, it may not be passing readiness probes, may not be selected by the service labels, or may not be registered as an endpoint. After checking the service, I would run `kubectl get endpoints <service-name>` to verify whether endpoints exist. Then I would inspect the pod status, readiness probes, labels, logs, and ingress configuration. In production, many 503 issues are caused by readiness probe failures rather than actual application crashes.
+
+---
+
+## 2️⃣ terraform plan shows destroy and recreate. Production is live. What do you do?
+
+I would never immediately run `terraform apply`. My first step is understanding why Terraform wants to recreate the resource. I would carefully review the plan output to identify which attribute change is triggering replacement. Sometimes resource names, immutable properties, provider version changes, or manual infrastructure modifications cause recreation. I would compare the current state file with actual infrastructure and verify whether drift exists. If the replacement could impact production availability, I would investigate alternatives such as importing resources, modifying lifecycle rules, or performing changes during a maintenance window. In production, blindly applying a destroy-and-recreate plan can cause outages, so validation and impact assessment come before execution.
+
+---
+
+## 3️⃣ Pipeline passed. Prod has old code. Name 3 possible reasons.
+
+The first possibility is that the deployment stage never actually deployed the new artifact despite the build succeeding. The second possibility is image caching where Kubernetes or the deployment platform continues using an old container image tag such as `latest`. The third possibility is that the deployment completed successfully but traffic is still being routed to older pods through a load balancer, ingress, CDN, or cache layer. I would verify artifact versions, deployment history, running pod image versions, ingress routing, and cache invalidation. In production, successful pipelines do not always guarantee successful deployments.
+
+---
+
+## 4️⃣ EC2 unreachable. You cannot SSH. Walk me through every step.
+
+I start by verifying whether the EC2 instance is running and passing both AWS status checks. Next, I check whether the correct Security Group allows inbound TCP port 22 from my source IP. Then I verify subnet route tables, Internet Gateway configuration, Elastic IP assignment, and Network ACL rules. If networking appears healthy, I inspect the instance console output and system logs through the AWS console. For private instances, I verify VPN, bastion host, or Session Manager access. If necessary, I detach the root EBS volume, attach it to another instance, and inspect SSH configuration files, disk usage, and system logs. My troubleshooting always follows a layered approach: infrastructure, network, operating system, and application.
+
+---
+
+## 5️⃣ Docker image is 2GB. You have 10 minutes to reduce it. Go.
+
+My first action would be checking the Dockerfile for inefficient layers and unnecessary dependencies. I would immediately switch to a smaller base image such as Alpine if compatible. Next, I would implement multi-stage builds so that build tools remain only in the build stage while the final runtime image contains only the application artifacts. I would remove package manager caches, temporary files, logs, and unused binaries. I would review `.dockerignore` to exclude source control files, test data, documentation, and unnecessary assets. In many cases, multi-stage builds alone reduce image sizes by more than 70%, making them one of the quickest optimization techniques.
+
+---
+
+## 6️⃣ AWS bill doubled. No new resources. Find the cause in under 5 minutes.
+
+My first stop would be AWS Cost Explorer to identify which service category increased spending. I would compare current and previous billing periods and filter by service, region, and usage type. Common causes include data transfer charges, NAT Gateway traffic, increased EBS snapshot storage, S3 requests, CloudWatch logs growth, load balancer traffic, or autoscaling events. I would also review Trusted Advisor and Cost Anomaly Detection alerts. Even if no new resources were created, increased utilization of existing services can significantly increase costs. The objective is identifying the service responsible before performing deeper analysis.
+
+---
+
+## 7️⃣ Node is NotReady. 3 pods stuck in Pending. What do you check first?
+
+My first check is:
+
+```bash
+kubectl describe node <node-name>
+```
+
+I want to determine why the node entered the NotReady state. Common causes include kubelet failure, network connectivity issues, resource exhaustion, disk pressure, memory pressure, or container runtime failures. I would review node conditions, events, kubelet logs, and container runtime status. For the Pending pods, I would inspect scheduling events using `kubectl describe pod`. Frequently, pending pods occur because Kubernetes cannot find a healthy node with sufficient CPU, memory, storage, or matching taints and tolerations.
+
+---
+
+## 8️⃣ Developer committed secret keys to GitHub. What do you do right now?
+
+The immediate action is revoking or disabling the exposed credentials. Security comes before cleanup. After revocation, I rotate all affected secrets and verify whether the repository is public or private. Next, I remove the secrets from Git history using tools such as BFG Repo-Cleaner or git filter-repo because deleting the file alone is insufficient. I review CloudTrail logs to determine whether the credentials were abused. Finally, I implement preventive controls including GitHub secret scanning, pre-commit hooks, branch protection policies, and secret management systems such as AWS Secrets Manager or HashiCorp Vault.
+
+---
+
+## 9️⃣ HPA is set. Traffic spiked. Pods not scaling. Why?
+
+The most common reason is that Metrics Server is unavailable or not reporting metrics. I would verify HPA status and metrics collection first. Other possibilities include missing resource requests, incorrect scaling thresholds, misconfigured custom metrics, API server issues, or traffic patterns that do not impact the configured metric. For example, traffic may increase while CPU remains low due to external bottlenecks such as database latency. I would inspect HPA events, metrics availability, Deployment configuration, and Cluster Autoscaler status. Understanding which metric drives scaling is critical for troubleshooting.
+
+---
+
+## 🔟 State file locked. Team cannot deploy. How do you fix it safely?
+
+First, I confirm whether another engineer or pipeline is currently running Terraform. I never force unlock without verification because it can corrupt infrastructure state. If the deployment process crashed and left a stale lock behind, I identify the lock ID from the error message and verify no active Terraform operations exist. After confirmation, I execute:
+
+```bash
+terraform force-unlock <LOCK_ID>
+```
+
+Then I run `terraform plan` to ensure state consistency before allowing further deployments. In production environments using S3 and DynamoDB backends, stale locks commonly occur after interrupted CI/CD executions. Safe validation before unlocking is essential to prevent concurrent modifications and state corruption.
+
+---
+
 
