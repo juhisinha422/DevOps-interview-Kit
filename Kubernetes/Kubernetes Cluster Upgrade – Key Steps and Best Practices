@@ -1,0 +1,34 @@
+ Kubernetes Cluster Upgrade – Key Steps and Best Practices
+Recently, I was revisiting Kubernetes cluster upgrade procedures and thought I'd share some important considerations that every DevOps Engineer should know.
+✅ Why Upgrade Kubernetes?
+Access to new features
+Security patches and bug fixes
+Better performance and stability
+Support for latest APIs and tools
+🔹 Pre-Upgrade Checklist
+✔ Review Kubernetes Release Notes
+kubectl version --short
+✔ Verify Node Health
+kubectl get nodes
+kubectl top nodes
+✔ Check Deprecated APIs
+kubectl get apiservices
+✔ Take ETCD Backup (for self-managed clusters)
+ETCDCTL_API=3 etcdctl snapshot save backup.db
+🔹 Upgrade Strategy
+Upgrade Control Plane
+Upgrade Worker Nodes
+Drain Nodes Before Upgrade
+kubectl drain <node-name> --ignore-daemonsets
+Upgrade Node Components
+Uncordon Node
+kubectl uncordon <node-name>
+🔹 Post-Upgrade Validation
+✔ Verify all nodes are Ready
+kubectl get nodes
+✔ Check Pod Health
+kubectl get pods -A
+✔ Validate Critical Applications
+✔ Monitor Logs and Metrics
+Lessons Learned:
+A successful Kubernetes upgrade is not just about running commands—it requires proper planning, backups, compatibility checks, and validation to avoid production downtime.
