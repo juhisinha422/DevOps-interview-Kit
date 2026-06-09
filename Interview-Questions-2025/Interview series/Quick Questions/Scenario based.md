@@ -907,6 +907,65 @@ OpenShift workloads are configured similarly to Kubernetes workloads using Deplo
 
 In SonarQube, vulnerability thresholds are enforced through Quality Gates. We configure Quality Gates to define acceptable limits for vulnerabilities, code smells, bugs, duplicated code, and code coverage. During pipeline execution, SonarQube analyzes the code and compares results against the configured thresholds. If the Quality Gate fails, the Jenkins or GitLab pipeline automatically fails and prevents deployment progression. This ensures that only code meeting predefined quality and security standards can move toward production environments.
 
+# DevOps Production Scenarios – Interview Answers (4+ Years Experience)
+
+## 1. Pod is Running but Returning 503. Is it the Pod or Service?
+
+When a pod is running but users receive a 503 error, my first step is to identify whether the issue is at the application layer, service layer, or ingress layer. I start by checking the pod status using `kubectl get pods` and reviewing container logs with `kubectl logs`. Next, I verify whether the service has healthy endpoints using `kubectl get endpoints <service-name>`. If the endpoints list is empty, the service selector is not matching the pod labels. If endpoints exist, I test connectivity directly to the pod IP and service ClusterIP using curl. I also inspect ingress or load balancer configurations if traffic is routed through them. Within a couple of minutes, I can determine whether the issue is due to an unhealthy application, incorrect service selectors, readiness probe failures, or ingress routing problems.
+
+---
+
+## 2. Terraform Apply Failed Halfway and State File is Out of Sync
+
+When Terraform apply fails midway, I first avoid making any manual changes. My priority is to understand the current state by running `terraform state list` and comparing it with the actual infrastructure in AWS. I then execute `terraform plan` to identify resource drift. If resources were created successfully but are missing from the state file, I import them using `terraform import`. If the state file itself is corrupted, I restore it from the remote backend version history, such as an S3 bucket with versioning enabled. Once the state is synchronized with the actual infrastructure, I run another plan to ensure no unexpected changes are pending before executing a controlled apply. This approach prevents accidental resource recreation or deletion.
+
+---
+
+## 3. Pipeline Passed but Production Still Has Old Code
+
+A successful pipeline does not always mean the deployment succeeded. I begin by validating whether a new Docker image was actually built and pushed by checking image tags and registry timestamps. Next, I verify whether the deployment was triggered and completed successfully in Kubernetes using rollout history and deployment status. I check if the new image tag was updated in the deployment manifest and confirm the running pods are using the latest image. Other possibilities include browser caching, CDN caching, ingress routing issues, failed rolling updates, image pull policy misconfiguration, or deployments targeting the wrong environment. I systematically verify each layer—from CI pipeline, container registry, deployment configuration, Kubernetes rollout, and application version endpoint—to identify where the deployment process broke.
+
+---
+
+## 4. EC2 Instance is Unreachable and SSH Access is Not Available
+
+When an EC2 instance becomes unreachable, I follow a structured troubleshooting approach. First, I verify the instance state in AWS and ensure it is running. I then review system status checks and instance status checks from the EC2 console. If checks fail, I inspect the system logs and console output for kernel panics, filesystem issues, or boot failures. I validate security group rules, network ACLs, route tables, internet gateway configuration, and public IP assignment. If the instance appears healthy but SSH remains inaccessible, I use AWS Systems Manager Session Manager if configured. Otherwise, I detach the root EBS volume, attach it to a rescue instance, inspect logs, correct configuration issues such as SSH daemon failures or disk space exhaustion, and then reattach the volume. This method allows recovery without rebuilding the server.
+
+---
+
+## 5. Docker Image is 2.1 GB and Deployment is Slow
+
+To reduce a large Docker image, I first identify which layers consume the most space using image history analysis. I replace full operating system images with lightweight base images such as Alpine or Distroless whenever compatible. I implement multi-stage builds to ensure only runtime artifacts are included in the final image while build dependencies remain in intermediate stages. I remove unnecessary packages, caches, logs, documentation files, and development tools. Language-specific optimizations such as pruning Node.js dependencies, excluding Maven repositories, or removing Python build tools are also applied. By combining these techniques, I have reduced multi-gigabyte images to a few hundred megabytes while maintaining application functionality and security.
+
+---
+
+## 6. AWS Bill Doubled Without New Resources
+
+When AWS costs suddenly increase, I immediately open Cost Explorer and compare the current billing period with the previous month grouped by service. This quickly identifies the service contributing to the cost spike. I then drill down by usage type, linked account, region, and resource tags. Common causes include increased data transfer, NAT Gateway usage, CloudWatch log ingestion, EBS snapshots, load balancer traffic, or autoscaling events. I also review AWS Budgets, Cost Anomaly Detection alerts, and CloudTrail logs to identify unusual activities. Within a few minutes, I can usually isolate the exact service and resource responsible for the increase and recommend corrective actions.
+
+---
+
+## 7. HPA Configured but Pods Are Not Scaling During Traffic Spike
+
+If Horizontal Pod Autoscaler is not scaling, I investigate four primary areas. First, I verify that the Metrics Server is healthy and metrics are available. Second, I confirm resource requests are defined because HPA calculates utilization based on requests. Third, I inspect HPA events and current metrics using `kubectl describe hpa` to determine whether scaling thresholds are being met. Fourth, I check whether cluster capacity exists to schedule additional pods. Even if HPA requests more replicas, scaling will fail if nodes lack CPU or memory resources. These checks usually reveal whether the issue is metrics collection, configuration, threshold tuning, or infrastructure capacity.
+
+---
+
+## 8. Secret Keys Accidentally Committed to GitHub
+
+If credentials are exposed in GitHub, my first action is to treat them as compromised. I immediately revoke or rotate the affected keys, tokens, passwords, or certificates. Next, I assess the exposure scope and determine whether the repository is public or private. I remove the secret from Git history using repository cleaning tools and force-push the sanitized history if appropriate. I review audit logs, monitor for suspicious activity, and notify relevant stakeholders. Finally, I implement preventive controls such as secret scanning, pre-commit hooks, CI/CD security checks, and centralized secret management systems like Vault or AWS Secrets Manager.
+
+---
+
+## 9. Grafana Shows Green but Users Are Reporting Issues
+
+When dashboards indicate healthy systems while users experience problems, it usually means observability is focused only on infrastructure metrics. CPU, memory, and disk usage can appear normal while business transactions fail. To solve this, I ensure observability includes the three pillars: metrics, logs, and distributed tracing. In addition, I monitor application-level KPIs such as response time, error rate, request success percentage, transaction completion rate, and user journey metrics. Synthetic monitoring and real-user monitoring help detect issues that infrastructure dashboards miss. Effective observability should reflect actual user experience, not just server health.
+
+---
+
+## 10. Designing a Zero-Downtime Blue-Green Deployment Strategy
+
+For zero-downtime deployments, I create two identical production environments: Blue and Green. Blue serves live traffic while Green receives the new application version. After deploying to Green, I execute automated smoke tests, health checks, and validation tests. Once verification succeeds, I gradually switch traffic using a load balancer, ingress controller, or weighted routing mechanism. The previous Blue environment remains intact, enabling immediate rollback if issues are detected. Database migrations are designed to be backward compatible to support both versions during transition. This strategy minimizes risk, provides instant rollback capability, and ensures continuous service availability during production releases.
 
 
 
