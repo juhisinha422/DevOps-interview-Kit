@@ -11,6 +11,23 @@ Helm is the package manager for Kubernetes. It helps you deploy and manage appli
 
 Think of Helm as “apt/yum” for Kubernetes.
 
+## Helm Chart: -
+A Helm Chart is a collection of YAML templates and configuration files that define a Kubernetes application. It includes metadata (Chart.yaml), default values (values.yaml), templates, and dependencies.
+
+## Structure of a Helm Chart
+
+A Helm Chart typically contains:
+
+1. Chart.yaml – metadata about the chart.
+
+2. values.yaml – default configuration values.
+
+3. templates/ – Kubernetes manifest templates.
+
+4. charts/ – dependent charts.
+
+5. NOTES.txt – post-installation instructions.
+
 # 🚀 DevOps Scenario-Based Interview Questions (3+ Years Experience)
 
 ---
