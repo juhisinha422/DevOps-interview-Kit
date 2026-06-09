@@ -1,3 +1,16 @@
+# What is HELM? 
+Helm is the package manager for Kubernetes. It helps you deploy and manage applications in EKS using a single command instead of multiple YAML files.
+
+✅ Faster deployments
+
+✅ Easy upgrades & rollbacks
+
+✅ Reusable Helm Charts
+
+✅ Simplified Kubernetes management
+
+Think of Helm as “apt/yum” for Kubernetes.
+
 # 🚀 DevOps Scenario-Based Interview Questions (3+ Years Experience)
 
 ---
