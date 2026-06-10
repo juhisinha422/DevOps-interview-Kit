@@ -1,3 +1,90 @@
+# AWS, Kubernetes & SRE Interview Questions (4+ Years Experience)
+
+## How do you reduce storage costs?
+
+Storage costs can be reduced using a combination of lifecycle policies, storage tiering, compression, cleanup automation, and monitoring. In AWS, I use S3 Lifecycle Rules to automatically move objects from S3 Standard to Standard-IA, Glacier Instant Retrieval, or Glacier Deep Archive based on access patterns. I regularly identify unused EBS volumes, old snapshots, orphaned AMIs, and unnecessary log files and remove them. For databases, retention policies are optimized to avoid storing backups longer than required. Compression is enabled wherever possible, and monitoring tools such as AWS Cost Explorer and Trusted Advisor are used to identify storage optimization opportunities. In production environments, lifecycle management provides the highest cost savings without affecting application performance.
+
+---
+
+## What is EC2 User Data?
+
+EC2 User Data is a script or set of commands that automatically executes when an EC2 instance launches for the first time. It is commonly used for bootstrapping servers by installing packages, configuring applications, updating operating system settings, downloading deployment artifacts, and starting services. User Data helps automate server provisioning and ensures every instance is configured consistently without manual intervention. In Auto Scaling Groups, User Data is frequently used to configure new instances automatically as they are launched.
+
+---
+
+## IAM Role vs Access Key – which one is used?
+
+In modern AWS environments, IAM Roles are preferred over Access Keys because they provide temporary credentials and eliminate the need to store long-term secrets. IAM Roles are commonly attached to EC2 instances, Lambda functions, ECS tasks, and EKS workloads through IRSA. Access Keys are generally used only when external systems require programmatic access to AWS services and cannot assume roles directly. From a security perspective, IAM Roles are recommended because credentials are automatically rotated and significantly reduce the risk of secret leakage.
+
+---
+
+## Can you make only one folder public in an S3 bucket?
+
+Yes. Although S3 does not have real folders and instead uses object prefixes, access can be controlled at the prefix level using bucket policies. A policy can be created that grants public read access only to objects within a specific prefix while denying access to all other objects in the bucket. For example, the `public/` prefix can be exposed publicly while all other data remains private. This approach is commonly used for hosting static website assets while protecting sensitive application data.
+
+---
+
+## Which S3 storage class is used for archiving?
+
+The primary S3 storage classes used for archiving are Glacier Instant Retrieval, Glacier Flexible Retrieval, and Glacier Deep Archive. Glacier Deep Archive provides the lowest storage cost and is designed for long-term archival workloads where retrieval times are acceptable. It is commonly used for compliance records, historical backups, audit logs, and disaster recovery data that may not need to be accessed for months or years.
+
+---
+
+## What are the different Service types?
+
+Kubernetes supports multiple Service types. ClusterIP is the default service type and exposes applications internally within the cluster. NodePort exposes the application on a port across all worker nodes and allows external access through node IPs. LoadBalancer integrates with cloud providers and provisions an external load balancer automatically. ExternalName maps a service to an external DNS name. In production environments, ClusterIP combined with Ingress is the most common pattern for exposing applications securely and efficiently.
+
+---
+
+## What is the difference between a Deployment and a Service?
+
+A Deployment manages application lifecycle operations such as pod creation, scaling, rolling updates, rollbacks, and maintaining the desired number of replicas. A Service provides stable network access to those pods. Pods created by a Deployment may be recreated and receive different IP addresses, but the Service provides a consistent virtual IP and DNS name through which applications can communicate. In simple terms, Deployment manages application instances while Service manages application connectivity.
+
+---
+
+## How do you expose an application to the internet?
+
+In Kubernetes, applications are commonly exposed using an Ingress Controller combined with a LoadBalancer Service. The external load balancer receives internet traffic and forwards requests to the Ingress Controller, which routes traffic to the appropriate backend services based on hostnames or URL paths. For simpler use cases, a Service of type LoadBalancer can directly expose an application. In production, Ingress is preferred because it provides centralized routing, SSL termination, authentication integration, and better traffic management capabilities.
+
+---
+
+## What are PVs, StatefulSets, and DaemonSets?
+
+Persistent Volumes (PVs) provide durable storage for Kubernetes workloads and exist independently of pod lifecycles. StatefulSets are used for stateful applications such as databases, Kafka, or Elasticsearch where stable identities, persistent storage, and ordered deployments are required. DaemonSets ensure that a copy of a pod runs on every node in the cluster and are typically used for monitoring agents, log collectors, security scanners, and networking components. Each resource serves a different purpose depending on application requirements.
+
+---
+
+## What is a Sidecar?
+
+A Sidecar is an additional container running alongside the main application container within the same pod. Both containers share networking and storage resources. Sidecars are commonly used for log collection, monitoring, service mesh proxies, configuration synchronization, security agents, and traffic management. Examples include Fluent Bit for log forwarding and Envoy Proxy in Istio service mesh environments. The Sidecar pattern enables separation of supporting functionality from the core application.
+
+---
+
+## What are SLI, SLO, and SLA?
+
+SLI (Service Level Indicator) is a measurable metric used to evaluate service performance, such as latency, availability, or error rate. SLO (Service Level Objective) defines the target value for that metric, such as maintaining 99.9% availability. SLA (Service Level Agreement) is a formal agreement with customers that specifies expected service levels and often includes penalties if targets are not met. In practice, engineering teams monitor SLIs, aim to meet SLOs, and ensure compliance with SLAs.
+
+---
+
+## What is an Error Budget?
+
+An Error Budget represents the amount of service unreliability allowed while still meeting the defined SLO. For example, if an application has a 99.9% availability target, it is permitted approximately 43 minutes of downtime per month. Teams use the error budget to balance innovation and reliability. If the budget is consumed quickly due to incidents, feature releases may be paused until reliability improves. Error budgets help organizations make data-driven decisions regarding operational risk.
+
+---
+
+## What metrics do you monitor?
+
+I monitor infrastructure, application, and business metrics. Infrastructure metrics include CPU utilization, memory usage, disk consumption, network throughput, pod counts, node health, and resource pressure indicators. Application metrics include request rate, latency, response time, error rate, throughput, and dependency performance. Kubernetes-specific metrics include pod restarts, deployment status, HPA activity, and cluster health. Business metrics may include transaction success rate, user signups, order processing rates, or payment completion rates. Monitoring all three layers provides complete visibility into system health.
+
+---
+
+## How do you trace an API request when logs show a problem?
+
+I start by identifying the affected request using correlation IDs, trace IDs, or request IDs generated by the application or API gateway. Using distributed tracing tools such as Jaeger, Zipkin, OpenTelemetry, or AWS X-Ray, I follow the request path across services, databases, message queues, and external dependencies. I correlate traces with application logs, infrastructure metrics, and monitoring dashboards to identify bottlenecks or failures. This approach allows me to determine whether the issue originated in the application, network, database, downstream service, or infrastructure layer. In microservices architectures, distributed tracing is often the fastest way to identify the exact root cause of request failures.
+
+This set is commonly asked in **Capgemini, Infosys, Accenture, Cognizant, TCS, Wipro, HCL, Deloitte, EY, PwC, LTIMindtree, and product-based company DevOps interviews for 3–6 years experience.**
+
+
 # What is HELM? 
 Helm is the package manager for Kubernetes. It helps you deploy and manage applications in EKS using a single command instead of multiple YAML files.
 
