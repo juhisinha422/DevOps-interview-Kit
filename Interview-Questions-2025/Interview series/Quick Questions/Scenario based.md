@@ -968,5 +968,218 @@ When dashboards indicate healthy systems while users experience problems, it usu
 For zero-downtime deployments, I create two identical production environments: Blue and Green. Blue serves live traffic while Green receives the new application version. After deploying to Green, I execute automated smoke tests, health checks, and validation tests. Once verification succeeds, I gradually switch traffic using a load balancer, ingress controller, or weighted routing mechanism. The previous Blue environment remains intact, enabling immediate rollback if issues are detected. Database migrations are designed to be backward compatible to support both versions during transition. This strategy minimizes risk, provides instant rollback capability, and ensures continuous service availability during production releases.
 
 
+-----
 
+# Linux, Kubernetes, Docker, Jenkins, Terraform, AWS & GKE Interview Questions (4+ Years Experience)
+
+## 1️⃣ How do you create a new user in Linux, and where is the default home directory created?
+
+A new user can be created using the `useradd` or `adduser` command. For example, `sudo useradd -m devuser` creates a user and automatically generates a home directory. By default, Linux creates the user's home directory under `/home/<username>`. User information is stored in `/etc/passwd`, encrypted passwords are stored in `/etc/shadow`, and group information is maintained in `/etc/group`. After creating the user, a password can be assigned using the `passwd` command. In enterprise environments, users are often managed through LDAP or Active Directory integration rather than local user accounts.
+
+---
+
+## 2️⃣ How do you search for files containing a specific string in a directory?
+
+To search for a specific string within files, I use the `grep` command with recursive search. For example:
+
+```bash
+grep -r "database connection failed" /var/log/
+```
+
+This recursively scans all files within the directory and displays matching lines. Additional options such as `-i` for case-insensitive search and `-n` for line numbers are commonly used during troubleshooting.
+
+---
+
+## 3️⃣ How do you find all files containing a specific sentence and print only the file names?
+
+I would use:
+
+```bash
+grep -rl "specific sentence" /directory/path
+```
+
+The `-r` option performs recursive searching, while `-l` displays only file names containing the matching text. This is useful when locating configuration files, secrets, log entries, or code references across large repositories.
+
+---
+
+## 4️⃣ How would you validate command-line arguments in a shell script?
+
+Argument validation ensures scripts receive the correct inputs before execution. I usually check the argument count using `$#` and validate values using conditional statements.
+
+Example:
+
+```bash
+if [ $# -ne 2 ]; then
+  echo "Usage: script.sh <env> <version>"
+  exit 1
+fi
+```
+
+For production automation, I also validate argument formats, required values, file existence, and environment names to prevent accidental execution against incorrect systems.
+
+---
+
+# Kubernetes
+
+## 5️⃣ Can Kubernetes function without etcd? Why or why not?
+
+No. Kubernetes cannot function without etcd because etcd acts as the primary datastore for the cluster. All cluster information including pods, deployments, services, ConfigMaps, Secrets, nodes, and cluster state are stored in etcd. The API Server continuously reads and writes data to etcd. If etcd becomes unavailable, the control plane loses its source of truth and cluster management operations stop functioning. Existing workloads may continue running temporarily, but no new scheduling or management actions can occur.
+
+---
+
+## 6️⃣ What is the difference between a Deployment and a ReplicaSet?
+
+A ReplicaSet ensures a specified number of pod replicas are always running. If a pod fails, the ReplicaSet automatically recreates it. A Deployment sits above the ReplicaSet and provides advanced features such as rolling updates, rollbacks, version history, and deployment strategies. In production environments, Deployments are used almost exclusively, while ReplicaSets are automatically managed by Deployments.
+
+---
+
+## 7️⃣ How do you create an Nginx Deployment and expose it through a Service?
+
+First, create a Deployment:
+
+```bash
+kubectl create deployment nginx --image=nginx
+```
+
+Then expose it:
+
+```bash
+kubectl expose deployment nginx --port=80 --type=ClusterIP
+```
+
+For external access, NodePort, LoadBalancer, or Ingress resources can be used. Kubernetes creates endpoints automatically based on pod labels and service selectors.
+
+---
+
+## 8️⃣ Why are Services necessary in Kubernetes?
+
+Pods are ephemeral and their IP addresses can change whenever they are recreated. Services provide a stable virtual IP and DNS name that applications can use consistently. They enable service discovery, load balancing, and reliable communication between microservices. Without Services, applications would need to track constantly changing pod IP addresses.
+
+---
+
+## 9️⃣ How does a Service know which Pods to route traffic to?
+
+A Service uses label selectors. When a Service is created, it specifies labels that identify target pods. Kubernetes continuously monitors matching pods and automatically updates the Service endpoints. Traffic sent to the Service is distributed only to pods whose labels match the selector criteria.
+
+---
+
+## 🔟 Explain Kubernetes architecture and the role of each control-plane component.
+
+The Kubernetes architecture consists of Control Plane components and Worker Nodes.
+
+The API Server serves as the central communication hub for all cluster operations. etcd stores the cluster state and configuration data. The Scheduler decides which node should run a pod based on available resources and scheduling rules. The Controller Manager continuously monitors cluster state and ensures the desired state matches the actual state. Worker Nodes run kubelet, kube-proxy, and container runtimes such as containerd or Docker to execute workloads. Together, these components provide orchestration, scheduling, networking, scaling, and self-healing capabilities.
+
+---
+
+## 1️⃣1️⃣ You have 6 Pods and 3 Nodes. How would you ensure only 2 Pods run on each Node?
+
+I would use Pod Topology Spread Constraints or Pod Anti-Affinity rules. These mechanisms instruct Kubernetes to distribute pods evenly across available nodes. This prevents pod concentration on a single node and improves fault tolerance. For critical workloads, topology spread constraints are preferred because they provide predictable workload distribution across the cluster.
+
+---
+
+## 1️⃣2️⃣ A Node has reached its Pod capacity. What would you do?
+
+I would first verify the maximum pod limit configured on the node and identify resource bottlenecks such as CPU, memory, storage, or IP exhaustion. Next, I would check Cluster Autoscaler status and add additional worker nodes if necessary. If autoscaling is unavailable, I would optimize resource requests, remove unused workloads, or increase node size. Long-term solutions include capacity planning and cluster scaling strategies.
+
+---
+
+# Docker
+
+## 1️⃣3️⃣ How does Docker networking work?
+
+Docker provides networking through virtual network drivers. The default bridge network enables container communication on a single host. Host networking allows containers to use the host network directly. Overlay networks support communication across multiple hosts in Docker Swarm or Kubernetes environments. Docker assigns virtual interfaces, performs NAT, and manages DNS-based service discovery between containers.
+
+---
+
+## 1️⃣4️⃣ Explain the purpose and structure of a Dockerfile.
+
+A Dockerfile defines the instructions required to build a container image. Common directives include FROM, WORKDIR, COPY, RUN, EXPOSE, ENTRYPOINT, and CMD. The Dockerfile creates a reproducible and version-controlled image build process. During CI/CD execution, Docker uses these instructions to package applications and dependencies into deployable container images.
+
+---
+
+## 1️⃣5️⃣ Besides multi-stage builds and slim images, how can you reduce Docker image size?
+
+Image size can be reduced by removing unnecessary packages, deleting package manager caches, excluding files using `.dockerignore`, minimizing image layers, avoiding unnecessary dependencies, compressing static assets, and using optimized runtime environments. Security scanning tools also help identify unnecessary packages that can be removed from production images.
+
+---
+
+# Jenkins & CI/CD
+
+## 1️⃣6️⃣ How would you optimize a CI/CD pipeline?
+
+Pipeline optimization includes parallel execution of independent stages, dependency caching, incremental builds, selective testing, reusable shared libraries, optimized container images, and scalable build agents. I also monitor stage execution times to identify bottlenecks and continuously improve pipeline performance.
+
+---
+
+## 1️⃣7️⃣ What happens if the Jenkins Controller goes down while builds are running on Agents?
+
+Running builds may continue temporarily on agents, but communication with the Jenkins Controller is lost. Build status updates, artifact archiving, pipeline coordination, and job scheduling stop functioning. Depending on the Jenkins version and configuration, builds may eventually fail. High Availability architectures and regular backups are recommended for production Jenkins environments.
+
+---
+
+## 1️⃣8️⃣ How would you handle a production incident caused by a faulty deployment?
+
+I first assess business impact and notify stakeholders. Next, I identify the affected deployment, review monitoring dashboards, logs, and alerts, and execute a rollback if service availability is impacted. Once the service is restored, I perform root cause analysis, document findings, implement preventive controls, and update deployment validation procedures to prevent recurrence.
+
+---
+
+# Terraform
+
+## 1️⃣9️⃣ How does Terraform prevent duplicate resource creation?
+
+Terraform maintains infrastructure state within the state file. Before creating resources, Terraform compares the desired configuration with the current state. If a resource already exists and is tracked in state, Terraform avoids recreating it. State locking mechanisms using S3 and DynamoDB prevent concurrent modifications that could lead to duplicate resource creation.
+
+---
+
+## 2️⃣0️⃣ How would you troubleshoot and contain the blast radius if Terraform accidentally deleted production resources?
+
+I would immediately stop all further Terraform executions and assess the affected resources. Next, I would restore critical services using backups, snapshots, disaster recovery procedures, or infrastructure rollback mechanisms. I would review Terraform plans, audit logs, and state history to identify the root cause. After recovery, I would implement safeguards such as `prevent_destroy`, approval workflows, environment protections, and stricter access controls.
+
+---
+
+# AWS
+
+## 2️⃣1️⃣ How can you access an EC2 instance that does not have a public IP?
+
+Access can be achieved through a Bastion Host, AWS Systems Manager Session Manager, VPN connectivity, Direct Connect, or VPC Peering. Session Manager is increasingly preferred because it eliminates the need for SSH keys and public network exposure.
+
+---
+
+## 2️⃣2️⃣ If VPC A is peered with VPC B and VPC B is peered with VPC C, can A communicate with C?
+
+No. VPC Peering does not support transitive routing. Even though A can communicate with B and B can communicate with C, A cannot automatically communicate with C. To enable communication, additional peering relationships or AWS Transit Gateway must be configured.
+
+---
+
+## 2️⃣3️⃣ What are the different S3 storage classes and their use cases?
+
+S3 Standard is used for frequently accessed data. Standard-IA is used for infrequently accessed data requiring rapid retrieval. One Zone-IA stores data in a single Availability Zone at lower cost. Glacier Instant Retrieval, Glacier Flexible Retrieval, and Glacier Deep Archive are designed for archival workloads. Intelligent-Tiering automatically moves data between storage tiers based on access patterns.
+
+---
+
+# Google Kubernetes Engine (GKE)
+
+## 2️⃣4️⃣ How many IP ranges are required for a VPC-native GKE cluster, and what is each range used for?
+
+A VPC-native GKE cluster requires one primary subnet range and two secondary IP ranges. One secondary range is allocated for Pod IP addresses, while the other secondary range is allocated for Service Cluster IP addresses. This approach improves IP management and scalability within Kubernetes environments.
+
+---
+
+# Scenario-Based Questions
+
+## 2️⃣5️⃣ A Terraform script bypasses validation and deletes a production database during peak business hours. What would be your action plan?
+
+I would immediately stop further deployments, notify stakeholders, and activate incident response procedures. Next, I would restore the database from the most recent backup or snapshot and validate application functionality. Once service is restored, I would perform a detailed root cause analysis and implement safeguards such as approval gates, prevent_destroy, backup validation, automated testing, and stricter deployment controls.
+
+---
+
+## 2️⃣6️⃣ A Node has exhausted its Pod capacity. What would you check first?
+
+I would check node resource utilization, pod density limits, available IP addresses, and Cluster Autoscaler status. I would also review scheduling events to determine why new pods cannot be placed on the node. Understanding whether the limitation is resource-related or configuration-related is critical for selecting the correct remediation.
+
+---
+
+## 2️⃣7️⃣ How would you ensure even Pod distribution across Nodes in a Kubernetes cluster?
+
+I would use Pod Topology Spread Constraints, Pod Anti-Affinity rules, and Cluster Autoscaler integration. These mechanisms distribute workloads evenly across nodes and availability zones, reducing the risk of single-node failures affecting large portions of the application. Even distribution improves availability, resilience, and resource utilization across the cluster.
 
