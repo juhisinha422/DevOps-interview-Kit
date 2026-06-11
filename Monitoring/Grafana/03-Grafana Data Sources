@@ -1,0 +1,74 @@
+Grafana Data Sources
+
+🔹 What are Data Sources? 📊
+A data source is the system from which Grafana retrieves data for visualization.
+Grafana itself does not store monitoring data.
+Instead, it connects to external systems and displays their data through dashboards.
+👉 Think of it this way:
+📦 Data Source → Stores Data
+ 📊 Grafana → Visualizes Data
+
+🔹 Why are Data Sources Important? 🏗️
+Without data sources, Grafana has nothing to display.
+They enable:
+✔ Real-time monitoring
+ ✔ Historical analysis
+ ✔ Performance tracking
+ ✔ Business insights
+
+🔹 Prometheus Connection 🔗
+The most common Grafana integration is with Prometheus.
+How it works:
+1️⃣ Prometheus collects metrics
+ 2️⃣ Stores metrics as time-series data
+ 3️⃣ Grafana queries Prometheus
+ 4️⃣ Dashboards display the results
+Examples:
+📊 CPU Usage
+ 📊 Memory Usage
+ 📊 Request Rate
+ 📊 Error Rate
+This combination is one of the most widely used monitoring stacks in modern DevOps environments.
+
+🔹 Other Popular Data Sources 🚀
+Grafana can connect to many platforms.
+✔ Elasticsearch
+Log analysis
+Search and monitoring
+✔ InfluxDB
+Time-series metrics
+IoT and monitoring workloads
+✔ MySQL
+Business reports
+Database analytics
+✔ PostgreSQL
+Application and business data
+✔ Cloud Monitoring Platforms ☁️
+AWS monitoring services
+Azure monitoring services
+Google Cloud monitoring services
+
+🔹 Real-world Example 💡
+A company wants a single monitoring dashboard.
+Data comes from:
+📊 Prometheus → Infrastructure metrics
+ 📜 Elasticsearch → Application logs
+ 🗄️ MySQL → Business data
+Grafana combines all of them into one dashboard.
+👉 Engineers can monitor the entire platform from a single screen.
+
+🔹 Benefits of Multiple Data Sources ⚡
+✔ Centralized visibility 👀
+ ✔ Faster troubleshooting 🚨
+ ✔ Better decision-making 📊
+ ✔ Unified monitoring experience 🔗
+
+🔹 Key Concepts to Remember 🧠
+✔ Data Source = Source of monitoring data 📦
+ ✔ Grafana does not store metrics ❌
+ ✔ Prometheus is the most common source 📊
+ ✔ Multiple sources can be connected 🔗
+ ✔ One dashboard can display different datasets 🚀
+
+💡 Pro Tip:
+ A powerful Grafana setup often combines metrics, logs, and business data into a single dashboard for complete observability.
