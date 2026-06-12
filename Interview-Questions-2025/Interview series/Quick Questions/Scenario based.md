@@ -1270,3 +1270,54 @@ I would check node resource utilization, pod density limits, available IP addres
 
 I would use Pod Topology Spread Constraints, Pod Anti-Affinity rules, and Cluster Autoscaler integration. These mechanisms distribute workloads evenly across nodes and availability zones, reducing the risk of single-node failures affecting large portions of the application. Even distribution improves availability, resilience, and resource utilization across the cluster.
 
+
+----
+# Scenario-Based DevOps Interview Questions (4+ Years Experience)
+
+## 1️⃣ A pod is OOMKilled every 6 hours. You increased memory limit. It still happens. Why?
+
+If a pod continues getting OOMKilled even after increasing the memory limit, I would not assume the issue is simply insufficient memory. The first step is to check whether the application has a memory leak. A memory leak occurs when the application continuously allocates memory but never releases it, causing memory consumption to grow over time until it reaches the limit again. I would analyze memory usage trends in Grafana, Prometheus, or CloudWatch to determine whether memory steadily increases before the restart. I would also check JVM heap settings if it's a Java application, application logs, garbage collection logs, and container metrics. Another possibility is that the node itself is under memory pressure, causing Kubernetes to evict containers. In production, increasing memory limits may temporarily delay the failure, but identifying and fixing the underlying application memory leak is the permanent solution.
+
+---
+
+## 2️⃣ Terraform plan shows 0 changes but your AWS console shows drift. How?
+
+This situation usually occurs when Terraform is not aware of the manual changes made in AWS. First, I would verify whether the modified resource is actually managed by Terraform state. If the resource is not present in the state file, Terraform cannot detect the drift. Another possibility is that the changed attribute is not managed by Terraform or is ignored using a lifecycle block such as `ignore_changes`. Sometimes cached state information or outdated remote state can also cause this behavior. I would run `terraform refresh` or inspect the state using `terraform state show` to compare actual infrastructure with Terraform's recorded state. If the manual change is intended, I would update the Terraform code accordingly. If the drift is unintended, I would allow Terraform to reconcile the infrastructure back to the desired state.
+
+---
+
+## 3️⃣ Your Docker container works locally. Fails in Kubernetes. Same image. Why?
+
+When the same image works locally but fails in Kubernetes, the problem is usually environmental rather than image-related. I would first check pod logs and events using `kubectl logs` and `kubectl describe pod`. Common causes include missing ConfigMaps, incorrect Secrets, environment variables not configured in Kubernetes, insufficient CPU or memory resources, incorrect Service configuration, failed readiness probes, network policies, or RBAC restrictions. I would also verify whether the application is listening on the expected interface. Many applications work locally because they bind to localhost but fail in Kubernetes because they must listen on `0.0.0.0`. In production troubleshooting, I always compare the runtime environment inside Kubernetes with the local environment to identify configuration differences.
+
+---
+
+## 4️⃣ Jenkins pipeline runs for 3 hours. Normal time is 20 minutes. Where do you look?
+
+I would begin by identifying which pipeline stage is consuming the extra time. Jenkins stage timing data usually reveals whether the delay occurs during source checkout, build, testing, image creation, security scanning, artifact upload, or deployment. Next, I would check Jenkins agent health, CPU utilization, memory usage, disk space, and network connectivity. If the build is waiting in the queue, I would investigate executor availability. I would also review recent code changes because newly added integration tests, dependency downloads, or inefficient scripts can significantly increase execution time. In large environments, slow artifact repositories, container registries, or external API dependencies often contribute to pipeline delays. My goal would be to isolate the bottleneck before proposing optimizations.
+
+---
+
+## 5️⃣ EC2 instance passes status checks but app is not responding on port 80. Why?
+
+AWS status checks only verify infrastructure health, not application health. If the EC2 instance is healthy but the application is inaccessible, I would first confirm whether the application process is running. I would check listening ports using commands like `ss -tulpn` or `netstat -tulpn`. Next, I would review application logs, system logs, and web server configuration. Security Groups, NACLs, and local firewalls such as iptables or firewalld would also be verified. Another possibility is that the application is listening on a different port or bound only to localhost. If the instance is behind an Application Load Balancer, I would also check target group health checks because unhealthy targets often cause traffic failures despite healthy EC2 instances.
+
+---
+
+## 6️⃣ You added a new node to the cluster. Pods are still not scheduling on it. Why?
+
+If pods are not scheduling on a newly added node, I would first verify that the node is in Ready state using `kubectl get nodes`. Next, I would inspect node labels, taints, and resource availability. Frequently, nodes are added with taints that prevent scheduling unless pods have matching tolerations. I would also check node selectors, affinity rules, anti-affinity rules, and topology constraints that may prevent workloads from being placed on the new node. Another possibility is that all pods are already running and no scaling event has occurred, meaning Kubernetes has no reason to move existing workloads automatically. In production, I often cordon and drain older nodes or trigger workload scaling to verify scheduling behavior on new nodes.
+
+---
+
+## 7️⃣ S3 bucket is private. IAM policy allows access. Still getting 403. Why?
+
+A 403 error indicates authorization is being denied somewhere in the access chain. Even if the IAM policy allows access, S3 authorization also depends on bucket policies, bucket ownership settings, object ACLs, encryption permissions, and AWS Organizations Service Control Policies (SCPs). I would first use IAM Policy Simulator to validate effective permissions. Then I would review bucket policies for explicit deny statements because explicit denies always override allows. If SSE-KMS encryption is enabled, I would verify KMS key permissions because missing KMS access commonly causes 403 errors. Cross-account access misconfigurations are another frequent cause. In production environments, I always evaluate all authorization layers before concluding the IAM policy is correct.
+
+---
+
+## 8️⃣ Your deployment has 3 replicas. One replica is always unhealthy. Others are fine. Why?
+
+If only one replica consistently fails while the others remain healthy, I would investigate whether the issue is node-specific or pod-specific. First, I would identify the node hosting the unhealthy pod using `kubectl get pods -o wide`. If the failed replica always lands on the same node, the node may have resource issues, disk problems, networking issues, or kubelet failures. If the problem follows the pod regardless of node placement, I would inspect logs, events, startup behavior, readiness probes, and configuration differences. Shared resources such as databases, caches, mounted volumes, or third-party APIs may also be involved. Another possibility is that traffic patterns expose a specific application bug only under certain conditions. I would compare healthy and unhealthy pod metrics to identify the exact point of failure before implementing a fix.
+
+
