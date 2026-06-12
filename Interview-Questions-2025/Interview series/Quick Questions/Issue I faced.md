@@ -221,3 +221,83 @@ Then I moved to the API Gateway layer and reviewed the Zuul route configuration 
 
 This issue taught me the importance of checking the complete request flow in microservice architecture — from frontend calls, ingress routing, API Gateway configuration, and backend service mapping — instead of assuming every 404 is a Kubernetes ingress issue.
 
+
+-------
+
+I've debugged broken Kubernetes clusters at 2am more times than I'd like to admit.
+
+After years of doing this — here are the 7 most painful scenarios I've personally debugged in production. Save this. You WILL need it.
+
+━━━━━━━━━━━━━━━━━━━━━
+🔴 Scenario 1 — CrashLoopBackOff
+━━━━━━━━━━━━━━━━━━━━━
+
+You deploy a new service. Pod comes up. Dies. Comes back. Dies again.
+
+Real example: We had a Node.js service that needed a DATABASE_URL env var to boot. It was missing in the Deployment spec. Pod exited with code 1 every 10 seconds.
+
+How I fixed it:
+
+→ kubectl logs <pod> --previous (the "previous" flag is gold — logs from the dead container)
+
+→ kubectl describe pod <pod> — looked at the Exit Code and Events
+
+→ Found the missing env var, patched the secret, redeployed
+
+Pro tip: "--previous" is the most underused kubectl flag. Use it.
+
+━━━━━━━━━━━━━━━━━━━━━
+🟡 Scenario 2 — Pod Stuck in Pending Forever
+━━━━━━━━━━━━━━━━━━━━━
+
+Pod created. Status: Pending. 10 minutes pass. Still Pending.
+
+Real example: A data pipeline pod requested 8Gi memory. Every node had 6Gi free. Nobody noticed the mismatch for 45 minutes.
+
+How I fixed it:
+
+→ kubectl describe pod — Events said "0/3 nodes available: Insufficient memory"
+
+→ kubectl top nodes — confirmed memory pressure across all nodes
+
+→ Reduced the memory request + added a new spot node group
+
+Pro tip: Always set realistic resource requests. Wildly high requests will silently strand your pods.
+
+━━━━━━━━━━━━━━━━━━━━━
+🔴 Scenario 3 — ImagePullBackOff
+━━━━━━━━━━━━━━━━━━━━━
+
+Happens on almost every first deploy to a new cluster.
+
+Real example: Team pushed image to a private ECR repo. Forgot to attach the AmazonEC2ContainerRegistryReadOnly policy to the node IAM role. Classic.
+
+How I fixed it:
+
+→ kubectl describe pod — Events showed "401 Unauthorized" from ECR
+
+→ Verified IAM role attached to the node group in AWS console
+
+→ Added the ECR read policy. Pods started in under 2 minutes.
+
+Pro tip: For EKS, always verify node IAM permissions before your first deploy. Don't wait for the 2am call.
+
+━━━━━━━━━━━━━━━━━━━━━
+🔴 Scenario 4 — OOMKilled (Exit Code 137)
+━━━━━━━━━━━━━━━━━━━━━
+
+Pod dies. No obvious error. Restart count climbing. Exit code 137.
+
+Real example: A Spring Boot service had no -Xmx flag set. JVM grew until Linux killed the container. Memory limit was 512Mi. JVM was eating 900Mi. This ran fine for weeks until traffic doubled.
+
+How I fixed it:
+
+→ kubectl describe pod — Last State showed OOMKilled
+
+→ kubectl top pod --containers — saw the actual usage spike
+
+→ Added -Xmx400m to the JVM flags and bumped the limit to 640Mi
+
+Pro tip: Never run JVM apps in containers without explicitly setting -Xmx. The JVM will use whatever it sees.
+
+
