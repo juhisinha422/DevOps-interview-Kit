@@ -1372,4 +1372,221 @@ A 403 error indicates authorization is being denied somewhere in the access chai
 
 If only one replica consistently fails while the others remain healthy, I would investigate whether the issue is node-specific or pod-specific. First, I would identify the node hosting the unhealthy pod using `kubectl get pods -o wide`. If the failed replica always lands on the same node, the node may have resource issues, disk problems, networking issues, or kubelet failures. If the problem follows the pod regardless of node placement, I would inspect logs, events, startup behavior, readiness probes, and configuration differences. Shared resources such as databases, caches, mounted volumes, or third-party APIs may also be involved. Another possibility is that traffic patterns expose a specific application bug only under certain conditions. I would compare healthy and unhealthy pod metrics to identify the exact point of failure before implementing a fix.
 
+# Capgemini DevOps Interview Preparation (4–6 Years Experience)
+
+## AWS
+
+### Explain your current AWS architecture end-to-end
+
+In my current project, the application is hosted on AWS using a highly available and scalable architecture. DNS requests are managed through Route 53, which routes traffic to an Application Load Balancer (ALB). The ALB distributes traffic across applications running on Amazon EKS. Worker nodes are deployed in private subnets across multiple Availability Zones for high availability. Container images are stored in ECR, infrastructure is provisioned using Terraform, CI/CD pipelines are managed through Jenkins, and monitoring is implemented using CloudWatch, Prometheus, and Grafana. Secrets are stored in AWS Secrets Manager, and access is controlled through IAM roles following the least privilege principle.
+
+### How do you design a highly available application in AWS?
+
+To achieve high availability, I deploy applications across multiple Availability Zones. Route 53 performs DNS routing, ALBs distribute traffic, and Auto Scaling Groups automatically adjust capacity based on demand. Databases are configured with Multi-AZ deployments and backups. Kubernetes workloads run on multiple worker nodes across different AZs, ensuring that failure of a node or zone does not impact application availability.
+
+### Explain the complete request flow from Route 53 → ALB → EKS/EC2
+
+A user sends a request to the application domain. Route 53 resolves the domain and forwards traffic to the Application Load Balancer. The ALB evaluates listener rules and forwards traffic to the target group. For EKS, traffic reaches the Ingress Controller and is routed to the appropriate Kubernetes Service. The Service forwards requests to healthy Pods. For EC2-based applications, the ALB directly forwards requests to application instances registered in the target group.
+
+### How do you secure workloads running in AWS?
+
+Security is implemented using IAM roles, Security Groups, private subnets, encrypted EBS volumes, encrypted S3 buckets, Secrets Manager, and least privilege access. Workloads run in private networks whenever possible. Vulnerability scanning is performed on container images, CloudTrail is enabled for auditing, and CloudWatch alerts monitor suspicious activities.
+
+### Difference between Security Groups and NACLs with real use cases
+
+Security Groups operate at the instance level and are stateful. If inbound traffic is allowed, the return traffic is automatically permitted. NACLs operate at the subnet level and are stateless, requiring explicit inbound and outbound rules.
+
+For example, I use Security Groups to allow ALB traffic to EKS worker nodes on port 80/443. I use NACLs to block specific IP ranges from accessing an entire subnet.
+
+### How do you troubleshoot high CPU utilization on an EC2 instance?
+
+First, I verify CPU metrics in CloudWatch. Then I log into the instance and use commands such as top, htop, ps aux, and vmstat to identify resource-consuming processes. I review application logs, analyze recent deployments, check memory and disk utilization, and determine whether the issue is application-related or infrastructure-related. Based on findings, I either optimize the application or scale resources.
+
+### How have you implemented Auto Scaling in your project?
+
+For EKS, I use Cluster Autoscaler to add or remove worker nodes based on resource demand. Horizontal Pod Autoscaler scales application Pods based on CPU and memory metrics. For EC2 workloads, Auto Scaling Groups increase or decrease instance count based on CloudWatch alarms.
+
+### Explain IAM Roles, Cross-Account Access, and AssumeRole
+
+IAM Roles provide temporary credentials to AWS resources without storing access keys. Cross-account access allows users or services in one AWS account to access resources in another account. AssumeRole is used to temporarily obtain permissions defined by a target role through AWS STS.
+
+### How do you manage secrets in AWS?
+
+Secrets are stored in AWS Secrets Manager and accessed through IAM roles. Applications retrieve secrets dynamically during runtime. Sensitive values are never stored in source code, Terraform files, or Jenkins pipelines.
+
+### What monitoring and alerting mechanisms have you implemented?
+
+CloudWatch monitors AWS infrastructure metrics. Prometheus collects Kubernetes metrics. Grafana provides dashboards. Alertmanager sends notifications to Slack, Teams, or email when predefined thresholds are breached.
+
+### How would you troubleshoot application downtime in AWS?
+
+I begin by checking Route 53 health checks, ALB target health, EC2 or EKS status, application logs, CloudWatch metrics, and recent deployments. I verify database connectivity, security groups, network configuration, and service health to identify the root cause.
+
+### Explain the AWS services used in your current project and why they were chosen
+
+Route 53 for DNS management, ALB for load balancing, EKS for container orchestration, ECR for image storage, IAM for access control, CloudWatch for monitoring, Secrets Manager for secret storage, S3 for artifact storage, and Terraform for infrastructure automation.
+
+---
+
+# Kubernetes
+
+### Explain Kubernetes architecture in detail
+
+Kubernetes consists of a Control Plane and Worker Nodes. The Control Plane includes API Server, Scheduler, Controller Manager, and etcd. Worker Nodes contain kubelet, kube-proxy, and container runtime. The API Server acts as the entry point, Scheduler assigns Pods to nodes, Controller Manager maintains desired state, and etcd stores cluster data.
+
+### How does the scheduler decide where to place Pods?
+
+The Scheduler evaluates resource requests, node capacity, taints, tolerations, node affinity, anti-affinity, topology constraints, and scheduling policies before selecting the most suitable node.
+
+### Difference between Deployment, StatefulSet, DaemonSet, and Job
+
+Deployment manages stateless applications. StatefulSet manages stateful applications requiring stable identities. DaemonSet ensures one Pod runs on every node. Job executes tasks until completion.
+
+### How do rolling updates and rollbacks work internally?
+
+During rolling updates, Kubernetes gradually replaces old Pods with new ones while maintaining availability. ReplicaSets track versions. Rollback reverts traffic to a previous ReplicaSet if issues occur.
+
+### Explain Kubernetes networking architecture
+
+Each Pod receives a unique IP. Pods communicate directly without NAT. Services provide stable endpoints. kube-proxy manages traffic routing. Ingress provides external access.
+
+### How does Ingress communicate with Services?
+
+Ingress Controller watches Ingress resources and configures routing rules. Incoming requests are routed to Services, which forward traffic to backend Pods.
+
+### How would you troubleshoot a Pod stuck in Pending state?
+
+I use kubectl describe pod to check scheduling events. Common causes include insufficient resources, taints, node selectors, affinity rules, PVC issues, or unavailable nodes.
+
+### How would you troubleshoot CrashLoopBackOff issues?
+
+I inspect logs using kubectl logs, review events using kubectl describe pod, verify environment variables, resource limits, application startup errors, and external dependencies.
+
+### What steps would you take if a node becomes NotReady?
+
+Check node status, kubelet service, system logs, network connectivity, disk pressure, memory pressure, and cloud provider status. If necessary, cordon and drain the node before replacement.
+
+### How do you secure Kubernetes clusters?
+
+RBAC, Network Policies, Pod Security Standards, image scanning, secrets management, TLS encryption, private container registries, and regular patching are used.
+
+### Explain Network Policies with practical examples
+
+Network Policies control Pod-to-Pod communication. For example, I restrict database Pods so they only accept traffic from application Pods and deny all other access.
+
+---
+
+# Terraform
+
+### Explain your Terraform project structure
+
+I organize Terraform using reusable modules for networking, compute, storage, and Kubernetes resources. Separate environment folders exist for development, staging, and production.
+
+### How do you manage Terraform state files?
+
+State files are stored remotely in S3 and protected using versioning. State locking is enabled using DynamoDB.
+
+### Why do we use remote backends?
+
+Remote backends enable centralized state management, team collaboration, state locking, backup, and recovery.
+
+### Explain state locking and its importance
+
+State locking prevents multiple users from modifying infrastructure simultaneously, avoiding corruption and resource conflicts.
+
+### How do you handle multiple environments using Terraform?
+
+I use environment-specific variable files and workspaces. Shared infrastructure logic is maintained in reusable modules.
+
+### What are Terraform modules and how have you used them?
+
+Modules are reusable infrastructure components. I create modules for VPC, EKS, Security Groups, IAM, and databases to improve maintainability.
+
+### Explain Terraform lifecycle rules
+
+Lifecycle rules such as create_before_destroy, prevent_destroy, and ignore_changes control resource behavior during updates.
+
+### Difference between count and for_each
+
+Count uses numerical indexing. for_each uses unique keys and is preferred when managing distinct resources.
+
+### How do you import existing AWS resources into Terraform?
+
+I use terraform import to bring existing resources into state and then define matching Terraform configurations.
+
+### How do you manage secrets in Terraform deployments?
+
+Secrets are retrieved from AWS Secrets Manager or parameter stores and never hardcoded in Terraform code.
+
+---
+
+# Jenkins & CI/CD
+
+### Explain your CI/CD pipeline architecture
+
+Developers commit code to Git. Jenkins triggers builds, executes tests, scans code, builds Docker images, pushes images to ECR, and deploys applications to Kubernetes using Helm.
+
+### How is Jenkins integrated with Kubernetes?
+
+Jenkins runs dynamic agents inside Kubernetes Pods. Pipelines execute inside containers and deploy applications directly to EKS.
+
+### How do you implement automated deployments?
+
+Deployment stages are triggered after successful build and testing. Helm or kubectl updates Kubernetes workloads automatically.
+
+### What strategies do you use for deployment rollbacks?
+
+Kubernetes rollbacks, Helm rollback, previous Docker image tags, and Git version rollback strategies are used.
+
+---
+
+# Docker
+
+### How do you optimize Docker image size?
+
+I use Alpine base images, multi-stage builds, .dockerignore files, remove unnecessary packages, and minimize image layers.
+
+### Explain multi-stage Docker builds
+
+Multi-stage builds separate build dependencies from runtime dependencies. The application is compiled in one stage and copied into a lightweight runtime image.
+
+### How do you scan Docker images for vulnerabilities?
+
+I use Trivy and container registry scanning tools to identify security vulnerabilities before deployment.
+
+### How do you troubleshoot container startup failures?
+
+I check container logs, entrypoint commands, environment variables, image versions, resource limits, and dependency availability.
+
+---
+
+# Production Scenarios
+
+### Production application is inaccessible after deployment. How will you troubleshoot?
+
+I verify deployment status, Pods, Services, Ingress, ALB health checks, DNS records, application logs, and recent configuration changes. I compare current and previous releases to identify the issue.
+
+### One Kubernetes node suddenly goes down. What happens and how do you recover?
+
+Pods running on the failed node become unavailable. Kubernetes reschedules workloads to healthy nodes. If capacity is insufficient, Cluster Autoscaler provisions additional nodes.
+
+### Terraform apply failed after creating some resources. What steps will you take?
+
+I review Terraform logs, inspect state files, run terraform refresh, verify partially created resources, import resources if needed, and safely re-run terraform apply.
+
+### Jenkins deployment succeeded but application is not working. How will you investigate?
+
+I verify image tags, deployment status, Pod health, application logs, Service endpoints, Ingress routing, configuration changes, and database connectivity.
+
+### High latency is reported by users. How will you identify the root cause?
+
+I analyze application metrics, infrastructure metrics, database performance, network latency, resource utilization, and distributed tracing data to locate bottlenecks.
+
+### Kubernetes Pods are restarting frequently. What logs and commands will you use?
+
+I use kubectl get pods, kubectl describe pod, kubectl logs, node logs, resource metrics, and event logs to determine restart causes.
+
+### Terraform state file got corrupted. How will you recover it?
+
+I restore the latest version from the S3 version history, validate integrity, compare resources with actual infrastructure, and resume deployments after verification.
 
