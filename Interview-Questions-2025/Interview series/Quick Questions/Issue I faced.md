@@ -224,12 +224,11 @@ This issue taught me the importance of checking the complete request flow in mic
 
 -------
 
-I've debugged broken Kubernetes clusters at 2am more times than I'd like to admit.
+## I've debugged broken Kubernetes clusters at 2am more times than I'd like to admit.
 
-After years of doing this — here are the 7 most painful scenarios I've personally debugged in production. Save this. You WILL need it.
-
+After years of doing this — here are the 7 most painful scenarios I've personally debugged in production. 
 ━━━━━━━━━━━━━━━━━━━━━
-🔴 Scenario 1 — CrashLoopBackOff
+## 🔴 Scenario 1 — CrashLoopBackOff
 ━━━━━━━━━━━━━━━━━━━━━
 
 You deploy a new service. Pod comes up. Dies. Comes back. Dies again.
@@ -247,7 +246,7 @@ How I fixed it:
 Pro tip: "--previous" is the most underused kubectl flag. Use it.
 
 ━━━━━━━━━━━━━━━━━━━━━
-🟡 Scenario 2 — Pod Stuck in Pending Forever
+## 🟡 Scenario 2 — Pod Stuck in Pending Forever
 ━━━━━━━━━━━━━━━━━━━━━
 
 Pod created. Status: Pending. 10 minutes pass. Still Pending.
@@ -265,7 +264,7 @@ How I fixed it:
 Pro tip: Always set realistic resource requests. Wildly high requests will silently strand your pods.
 
 ━━━━━━━━━━━━━━━━━━━━━
-🔴 Scenario 3 — ImagePullBackOff
+## 🔴 Scenario 3 — ImagePullBackOff
 ━━━━━━━━━━━━━━━━━━━━━
 
 Happens on almost every first deploy to a new cluster.
@@ -283,7 +282,7 @@ How I fixed it:
 Pro tip: For EKS, always verify node IAM permissions before your first deploy. Don't wait for the 2am call.
 
 ━━━━━━━━━━━━━━━━━━━━━
-🔴 Scenario 4 — OOMKilled (Exit Code 137)
+## 🔴 Scenario 4 — OOMKilled (Exit Code 137)
 ━━━━━━━━━━━━━━━━━━━━━
 
 Pod dies. No obvious error. Restart count climbing. Exit code 137.
