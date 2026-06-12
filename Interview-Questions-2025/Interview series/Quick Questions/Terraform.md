@@ -170,4 +170,141 @@ Terraform import only updates the state file. It does not automatically generate
 
 I use state management commands such as `terraform state mv` and `terraform import` to relocate resources within Terraform configurations while preserving existing infrastructure. For module restructuring, resource renaming, or environment migrations, these commands update Terraform's resource mappings without deleting and recreating live resources. This minimizes downtime and protects production workloads.
 
+## 1. How does an S3 backend with DynamoDB locking work?
+
+In production environments, Terraform state is typically stored in an AWS S3 bucket while state locking is handled through a DynamoDB table. When a user or CI/CD pipeline executes `terraform apply`, Terraform first contacts DynamoDB and creates a unique lock entry. If the lock is acquired successfully, Terraform reads the latest state file from S3, compares the infrastructure with the configuration, and performs the required changes. Once the deployment completes successfully, Terraform updates the state file in S3 and releases the lock by removing the DynamoDB entry. If another engineer attempts to run Terraform while the lock exists, Terraform blocks the operation to prevent concurrent modifications and infrastructure corruption.
+
+---
+
+## 2. Why is state locking important?
+
+State locking prevents multiple users or pipelines from modifying the same infrastructure simultaneously. Without locking, two engineers could run `terraform apply` at the same time, causing race conditions where both deployments attempt to update the same resources. This can lead to inconsistent state files, failed deployments, duplicate resources, or infrastructure corruption. State locking ensures only one deployment can modify the infrastructure at a time, maintaining consistency and reliability.
+
+---
+
+## 3. What happens if the lock isn't released?
+
+If Terraform crashes, the CI/CD pipeline fails unexpectedly, or the network connection is interrupted during deployment, the lock may remain in DynamoDB even though no deployment is running. Future Terraform operations will fail with a state lock error because Terraform believes another process is still modifying the infrastructure. After confirming that no deployment is active, the lock can be safely removed using:
+
+```bash
+terraform force-unlock <LOCK_ID>
+```
+
+However, force unlocking should be performed carefully because removing an active lock could result in state corruption.
+
+---
+
+## 4. How do you securely manage DB passwords and API keys?
+
+I never store secrets directly in Terraform code or repositories. Instead, I use secret management solutions such as HashiCorp Vault, AWS Secrets Manager, Azure Key Vault, or Google Secret Manager. During deployment, Terraform retrieves secrets dynamically from these systems and injects them into resources as needed. Access is controlled through IAM policies and RBAC, ensuring only authorized users and services can access sensitive credentials.
+
+---
+
+## 5. Why should secrets never be hardcoded in .tf files?
+
+Hardcoding secrets in Terraform files creates significant security risks. Terraform code is usually stored in Git repositories, shared among teams, and reviewed by multiple users. Hardcoded credentials can be exposed through version control history, logs, CI/CD pipelines, and accidental code sharing. Even if secrets are removed later, they remain accessible in Git history. Storing secrets externally ensures better security, easier rotation, and compliance with organizational security standards.
+
+---
+
+## 6. How do you integrate Terraform with Vault or cloud secret managers?
+
+Terraform provides data sources that allow it to retrieve secrets directly from external secret management systems. During deployment, Terraform authenticates with Vault or a cloud secret manager and retrieves the required credentials dynamically. These secrets can then be passed to resources without storing them in Terraform code. This approach centralizes secret management, improves security, and simplifies credential rotation.
+
+---
+
+## 7. Explain create_before_destroy with a production example.
+
+The `create_before_destroy` lifecycle setting instructs Terraform to create a replacement resource before deleting the existing resource. For example, suppose a production Auto Scaling Group or Load Balancer requires a configuration change that forces resource recreation. Without this setting, Terraform would destroy the existing resource first, causing downtime. With `create_before_destroy`, Terraform provisions the new resource, verifies it is healthy, and only then removes the old resource. This approach enables near-zero downtime infrastructure updates.
+
+Example:
+
+```hcl
+resource "aws_launch_template" "app" {
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+```
+
+---
+
+## 8. When would you use prevent_destroy?
+
+The `prevent_destroy` lifecycle rule is used for critical resources that should never be deleted accidentally. Examples include production databases, S3 buckets containing business data, EKS clusters, and critical networking components. If someone attempts to delete a protected resource through Terraform, the deployment fails immediately. This provides an additional safety mechanism against accidental infrastructure destruction.
+
+Example:
+
+```hcl
+resource "aws_db_instance" "prod_db" {
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+```
+
+---
+
+## 9. How does Terraform resolve dependencies internally?
+
+Terraform builds a dependency graph before executing any operations. Dependencies can be explicitly defined using the `depends_on` attribute or automatically inferred when one resource references another resource's attributes. Terraform analyzes this graph and determines the correct creation, modification, and deletion order. Resources without dependencies can be processed in parallel, improving deployment efficiency.
+
+---
+
+## 10. How do you optimize Terraform for very large infrastructures?
+
+For large infrastructures, I split resources into multiple Terraform projects and state files rather than managing everything in a single configuration. I use reusable modules, remote state management, CI/CD automation, and environment isolation. Breaking infrastructure into logical components such as networking, Kubernetes, databases, and applications improves maintainability and reduces deployment complexity. This approach also limits the blast radius of changes.
+
+---
+
+## 11. How do you reduce terraform plan execution time?
+
+I reduce plan execution time by minimizing unnecessary resources within a single state file, using smaller modular deployments, limiting provider API calls, and avoiding overly complex data sources. Running targeted plans for specific components and using remote backends with efficient state management also improves performance. Large monolithic Terraform projects often result in slower planning and should be avoided when possible.
+
+---
+
+## 12. How do you organize code for hundreds of resources?
+
+For large environments, I organize Terraform code using a modular structure. Separate modules are created for networking, security, compute, databases, monitoring, and Kubernetes. Environment-specific configurations are stored separately from reusable modules. A common directory structure might include modules, environments, shared variables, backend configurations, and CI/CD integration files. This organization improves readability, reusability, and team collaboration.
+
+---
+
+## 13. How do you integrate Terraform with Jenkins, GitHub Actions, or Azure DevOps?
+
+Terraform is typically integrated into CI/CD pipelines through stages such as validation, planning, approval, and deployment. The pipeline checks out code, executes `terraform fmt`, `terraform validate`, and `terraform plan`, then publishes the plan for review. After approval, the pipeline executes `terraform apply`. Remote backends, state locking, secret management, and role-based access control are used to ensure secure and reliable deployments.
+
+---
+
+## 14. How do you implement approval before terraform apply?
+
+In production environments, I separate the planning and deployment stages. The pipeline first generates a Terraform plan and presents it for review. Manual approval is required before the apply stage can proceed. Tools such as Jenkins input steps, GitHub environment approvals, GitLab manual jobs, or Azure DevOps approval gates are commonly used. This ensures infrastructure changes are reviewed before execution.
+
+---
+
+## 15. How do you handle rollbacks in Terraform pipelines?
+
+Terraform does not provide a direct rollback mechanism like application deployments. Instead, rollback is achieved by reverting the Terraform code to the previous known-good version and reapplying the configuration. Because infrastructure state is tracked declaratively, Terraform reconciles the environment back to the desired state. Maintaining version-controlled infrastructure code is critical for safe rollback operations.
+
+---
+
+## 16. count vs for_each—when would you use each?
+
+The `count` meta-argument is best suited when creating multiple identical resources based on a numeric value. For example, creating three identical EC2 instances. The `for_each` meta-argument is preferred when resources are based on unique keys or names, such as creating different security groups or IAM users. `for_each` provides more stable resource tracking because resources are associated with unique identifiers rather than numeric indexes.
+
+---
+
+## 17. What is the difference between a resource and a data source?
+
+A resource creates, modifies, or manages infrastructure objects. Examples include EC2 instances, VPCs, databases, and security groups. A data source does not create infrastructure. Instead, it retrieves information about existing resources for use within Terraform configurations. For example, fetching an existing VPC ID or retrieving the latest AMI ID. Resources manage infrastructure, while data sources consume infrastructure information.
+
+---
+
+## 18. How does Terraform ensure idempotency?
+
+Terraform ensures idempotency by continuously comparing the desired state defined in code with the current state of the infrastructure. If the infrastructure already matches the desired configuration, Terraform performs no changes regardless of how many times the deployment is executed. This guarantees predictable and repeatable deployments while preventing duplicate resource creation.
+
+---
+
+## 19. Why should provisioners be avoided in production?
+
+Provisioners such as `local-exec` and `remote-exec` introduce procedural behavior into Terraform, which is designed to be declarative. Provisioners can fail unpredictably, are difficult to track in state, increase deployment complexity, and often create dependencies outside Terraform's control. Production environments typically use configuration management tools such as Ansible, cloud-init, user data scripts, or CI/CD automation instead of provisioners. Provisioners should only be used when no alternative solution exists.
 
