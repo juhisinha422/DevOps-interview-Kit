@@ -1,5 +1,57 @@
 # AWS, Kubernetes & SRE Interview Questions (4+ Years Experience)
 
+## My client was burning $40,000/month on AWS.
+
+I cut it by 20% in 90 days — without touching a single line of application code. 
+
+Here's exactly how I did it at my project. 
+
+First — I didn't guess. I audited.
+
+AWS Cost Explorer + Trusted Advisor exposed the waste hiding in plain sight:
+
+✅ Oversized EC2 instances running at 8% CPU utilization
+
+✅ RDS provisioned for peak load but idle 80% of the time
+
+✅ EKS nodes running 24x7 for workloads that only needed 8 hours/day
+
+✅ TBs of logs sitting in S3 Standard for 18 months untouched
+
+✅ Zombie resources — unattached EBS volumes, unused Elastic IPs, idle Load Balancers
+
+So I fixed all 5. Systematically.
+
+```
+💡 Fix 1 — Right-sized EC2 instances
+
+Moved from m5.2xlarge to m5.large for non-critical workloads.
+Same performance. Half the cost.
+Saving: ~$4,000/month
+
+💡 Fix 2 — HPA on EKS instead of static node groups
+Implemented Horizontal Pod Autoscaler across microservices.
+Clusters scaled down during off-peak hours automatically.
+Saving: ~$3,500/month
+
+💡 Fix 3 — S3 Intelligent Tiering
+Moved to Intelligent Tiering + Lifecycle policies.
+Saving: ~$1,200/month
+
+💡 Fix 4 — Reserved Instances for predictable workloads
+Converted 6 always-on EC2s from On-Demand to 1-year Reserved.
+Same compute. 40% cheaper.
+Saving: ~$2,000/month
+
+💡 Fix 5 — Deleted zombie resources
+Nobody noticed they existed. AWS was charging anyway.
+Saving: ~$800/month
+
+Total saved: ~$11,500/month 💰
+Presented to client engineering leads with full data.
+They asked me to do the same for 2 more environments.
+```
+
 ## How do you reduce storage costs?
 
 Storage costs can be reduced using a combination of lifecycle policies, storage tiering, compression, cleanup automation, and monitoring. In AWS, I use S3 Lifecycle Rules to automatically move objects from S3 Standard to Standard-IA, Glacier Instant Retrieval, or Glacier Deep Archive based on access patterns. I regularly identify unused EBS volumes, old snapshots, orphaned AMIs, and unnecessary log files and remove them. For databases, retention policies are optimized to avoid storing backups longer than required. Compression is enabled wherever possible, and monitoring tools such as AWS Cost Explorer and Trusted Advisor are used to identify storage optimization opportunities. In production environments, lifecycle management provides the highest cost savings without affecting application performance.
