@@ -1,4 +1,4 @@
-## explanation of the issue and resolution for your interview:
+## Explanation of the issue and resolution for your interview:
 
 ---
 
