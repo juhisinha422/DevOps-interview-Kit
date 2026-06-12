@@ -22,3 +22,15 @@ In my day-to-day activities, I focus on:
 A highlight of my introduction is that I start with AWS and conclude with deployment processes. By emphasizing my attention to Jira ticket severity, I demonstrate my commitment to addressing issues promptly. 
 
 After this introduction, I anticipate that your first question will be about the AWS services I have used so far. This approach helps guide the conversation toward my areas of expertise. 
+
+
+
+----
+explain me your current project and let me know your day to day activities***
+
+sure, in my current project, we work on aws platform, we use ec2 to compute and alb for load balancing, we use s3 for storage and cloudwatch to conclude matrics, infrastructure is archestrated using terrafrom, we use git for version control and we maintain source code in github, we use jenkins pipleline for deployment, When a developer pushes code, the pipeline automatically triggers — it builds the artifact using Maven, pushes it to Nexus repository, builds a Docker image, and deploys it to the target environment.
+I also handle the Kubernetes cluster side — managing deployments, services, namespaces, RBAC for developer access, and network policies. Overall my role sits between infrastructure, automation, and supporting the development team.
+
+i will check jira tickets and look into the priority of tasks based on critical issue, i will attend it and any new services need to onboard on aws, any new jobs need to create on jenkins i will look into it, any dns issues any pod issues any node issues need any toubleshooting will take care of it. 
+
+will perform upgrade activities part of 15 days sprint, will work on patch, update release by considering release notes by reserving CR(change request) window. 
