@@ -1,5 +1,75 @@
 # AWS, Kubernetes & SRE Interview Questions (4+ Years Experience)
 
+## Node NotReady
+
+```
+One of the most critical issues in a Kubernetes cluster is when a worker node suddenly changes its status to:
+
+❌ NotReady
+
+When a node becomes NotReady, Kubernetes may stop scheduling new pods, existing workloads can be impacted, and overall cluster health may be at risk.
+
+Recently, I encountered a situation where multiple application pods started reporting issues because one of the worker nodes entered the NotReady state.
+
+🔍 My troubleshooting approach:
+
+✅ Checked node status:
+kubectl get nodes
+
+✅ Investigated node details:
+kubectl describe node <node-name>
+
+✅ Verified Kubelet service health
+
+✅ Checked node disk utilization
+
+✅ Reviewed node conditions and events
+
+✅ Validated network connectivity with the control plane
+
+✅ Examined system logs and kubelet logs
+
+🎯 Root Cause:
+
+The node had exhausted its available disk space, causing Kubernetes to report DiskPressure.
+
+As a result, the Kubelet was unable to function properly, and the node eventually transitioned to the NotReady state.
+
+After cleaning up unused container images and log files, the node recovered and returned to the Ready state.
+
+💡 Key Takeaway:
+
+When troubleshooting a Node NotReady issue, focus on node health rather than application-level logs.
+
+Always verify:
+
+• Kubelet service status
+
+• Disk pressure conditions
+
+• Memory pressure conditions
+
+• Network connectivity
+
+• Control plane communication
+
+• Container runtime health
+
+• Node events and system logs
+
+In most cases, the node conditions section will quickly reveal the root cause.
+
+Remember:
+
+📌 A healthy cluster starts with healthy nodes.
+
+📌 Kubelet is the heartbeat of every Kubernetes worker node.
+
+📌 Disk, memory, and network issues are among the most common causes of Node NotReady.
+
+Every troubleshooting session deepens our understanding of Kubernetes infrastructure and cluster operations.
+
+```
 ## My client was burning $40,000/month on AWS.
 
 I cut it by 20% in 90 days — without touching a single line of application code. 
