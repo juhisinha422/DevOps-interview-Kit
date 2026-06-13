@@ -1,3 +1,76 @@
+## Pod Not Accessible Through Service
+```
+Have you ever deployed an application successfully, confirmed that the pod is running, but still couldn't access it through the Kubernetes Service?
+
+✅ Pod Status: Running
+
+❌ Application Not Reachable Through Service
+
+This is one of the most common networking issues in Kubernetes.
+
+Recently, I encountered a situation where the application pods were healthy and running, but requests sent to the Service were failing.
+
+🔍 My troubleshooting approach:
+
+✅ Verified pod status
+
+✅ Checked Service configuration
+
+✅ Reviewed Service selectors
+
+✅ Verified Endpoint objects
+
+✅ Compared pod labels with Service selectors
+
+✅ Tested connectivity using ClusterIP
+
+✅ Examined application listening ports
+
+✅ Checked Network Policies
+
+🎯 Root Cause:
+
+The Service selector did not match the labels assigned to the application pods.
+
+Because of the selector mismatch, Kubernetes could not associate the pods with the Service.
+
+As a result, the Service had no active endpoints to route traffic.
+
+After correcting the selector labels, Kubernetes automatically created endpoints and traffic started flowing successfully.
+
+💡 Key Takeaway:
+
+When a Service is not working, don't immediately suspect networking issues.
+
+Always verify:
+
+• Pod labels
+
+• Service selectors
+
+• Endpoint objects
+
+• TargetPort configuration
+
+• Application listening port
+
+• Network Policies
+
+• DNS resolution
+
+One of the first commands I run is:
+
+kubectl get endpoints
+
+If the endpoint list is empty, the issue is usually related to selectors or pod availability.
+
+Remember:
+
+📌 Service → Selector → Pod Labels → Endpoints
+
+If any link in this chain is broken, traffic will fail.
+```
+
 ## 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝗲𝗿: 𝗬𝗼𝘂 𝗷𝗼𝗶𝗻𝗲𝗱 𝗮 𝗻𝗲𝘄 𝗰𝗼𝗺𝗽𝗮𝗻𝘆. 𝗢𝗻 𝗱𝗮𝘆 𝟭 𝘆𝗼𝘂 𝗱𝗶𝘀𝗰𝗼𝘃𝗲𝗿 𝘁𝗵𝗲𝗿𝗲 𝗶𝘀 𝗻𝗼 𝗺𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 𝘀𝗲𝘁𝘂𝗽 𝗮𝘁 𝗮𝗹𝗹. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗼?
 ```
 My answer: Challenge accepted. Here is exactly how I build it from scratch.
