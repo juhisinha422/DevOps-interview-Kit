@@ -1,3 +1,44 @@
+## 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝗲𝗿: 𝗬𝗼𝘂 𝗷𝗼𝗶𝗻𝗲𝗱 𝗮 𝗻𝗲𝘄 𝗰𝗼𝗺𝗽𝗮𝗻𝘆. 𝗢𝗻 𝗱𝗮𝘆 𝟭 𝘆𝗼𝘂 𝗱𝗶𝘀𝗰𝗼𝘃𝗲𝗿 𝘁𝗵𝗲𝗿𝗲 𝗶𝘀 𝗻𝗼 𝗺𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 𝘀𝗲𝘁𝘂𝗽 𝗮𝘁 𝗮𝗹𝗹. 𝗪𝗵𝗮𝘁 𝗱𝗼 𝘆𝗼𝘂 𝗱𝗼?
+```
+My answer: Challenge accepted. Here is exactly how I build it from scratch.
+
+► Week 1 — understand the current state
+  
+  What services are running? What infra exists?
+ 
+  What does “down” look like for this team?
+
+► Set up Prometheus — scrape metrics from all services.
+  
+  Node Exporter for EC2 metrics.
+  kube-state-metrics for Kubernetes.
+
+► Set up Grafana — build dashboards.
+  CPU, memory, disk, network for every service.
+  Request rate, error rate, latency for every API.
+
+► Set up Alertmanager — configure alerts.
+  CPU above 80► alert.
+  Error rate above 5► page the team.
+  Disk above 85► warn before it is full.
+
+► Centralized logging — ELK Stack or CloudWatch Logs.
+  Every service ships logs to one place.
+  Never SSH into servers to read logs.
+
+► Distributed tracing — Jaeger or AWS X-Ray.
+  Track a request across every microservice.
+  Find exactly where latency is introduced.
+
+► Runbook — document every alert with a fix.
+  3 AM incident should not require senior engineer.
+
+How I prioritize monitoring:
+• Alerts before dashboards — know before users complain
+• Less alerts but meaningful — no alert fatigue
+• Every alert must have a runbook
+
+```
 # AWS, Kubernetes & SRE Interview Questions (4+ Years Experience)
 
 ## Node NotReady
