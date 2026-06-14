@@ -1,3 +1,268 @@
+
+# DevOps Interview Questions & Answers (4+ Years Experience)
+
+# Kubernetes
+
+## 1. How do you separate environments (like Dev, Staging, Prod) within Kubernetes or across clusters?
+
+There are two common approaches. The first is using separate namespaces within the same cluster, where Dev, Staging, and Prod each have their own namespace. Resource Quotas, Network Policies, and RBAC are applied to isolate workloads. This approach is cost-effective and easier to manage. The second approach is using separate Kubernetes clusters for each environment. Production workloads usually run in dedicated clusters for stronger security, compliance, and fault isolation. In enterprise environments, I prefer separate clusters for Production and non-Production environments because issues in Dev or Staging cannot impact Production.
+
+---
+
+## 2. What is the purpose of a ServicePort in Kubernetes?
+
+ServicePort defines the port on which a Kubernetes Service listens for incoming traffic. It acts as an abstraction layer between clients and Pods. For example, a Service may listen on port 80 while forwarding requests to application containers running on port 8080. ServicePort allows applications to be accessed consistently even when Pod IP addresses change. It provides stable networking and service discovery within the cluster.
+
+---
+
+## 3. What is a Deployment in K8s, and how does it manage pods?
+
+A Deployment is a Kubernetes controller used to manage stateless applications. It ensures the desired number of Pod replicas are always running. If a Pod crashes or a node fails, 6the Deployment automatically creates replacement Pods. Deployments also support rolling updates, rollbacks, scaling, and self-healing. Internally, a Deployment creates and manages ReplicaSets, which in turn manage the Pods. In production environments, Deployments are commonly used for web applications, APIs, and microservices.
+
+---
+
+# AWS (Amazon Web Services)
+
+## 1. What are the primary differences between AWS EC2 and AWS Fargate?
+
+EC2 provides virtual machines where users are responsible for managing the operating system, patching, scaling, and infrastructure maintenance. Fargate is a serverless compute engine for containers where AWS manages the underlying infrastructure. With EC2, you have full control over the instances, while Fargate eliminates server management completely. EC2 is generally preferred when more customization is needed, whereas Fargate is ideal for teams that want to focus only on applications and containers without managing servers.
+
+---
+
+## 2. Explain the different Routing Policies available in Route 53.
+
+Route 53 supports several routing policies. Simple Routing directs traffic to a single resource. Weighted Routing distributes traffic based on assigned weights and is commonly used for canary deployments. Latency Routing sends users to the region with the lowest latency. Failover Routing directs traffic to a secondary resource when the primary resource becomes unhealthy. Geolocation Routing routes traffic based on the user's geographic location. Multi-Value Routing returns multiple healthy endpoints and provides basic load balancing. Geoproximity Routing routes users based on geographical distance from AWS regions.
+
+---
+
+## 3. What is the use of a Rotation Policy in AWS KMS (Key Management Service)?
+
+A Rotation Policy automatically rotates cryptographic keys at regular intervals. This improves security by reducing the amount of data encrypted with a single key over long periods. Automatic key rotation minimizes risks associated with key compromise and helps organizations meet security and compliance requirements. AWS KMS can automatically rotate customer-managed keys annually, while applications continue functioning without manual intervention.
+
+---
+
+## 4. What are the main parameters or attributes used when configuring Auto Scaling on AWS?
+
+When configuring Auto Scaling, key parameters include minimum capacity, maximum capacity, desired capacity, scaling policies, health checks, launch templates, cooldown periods, and CloudWatch metrics. Common scaling metrics include CPU utilization, memory utilization, request count, and custom application metrics. These settings allow the Auto Scaling Group to dynamically add or remove EC2 instances based on workload demand.
+
+---
+
+# Terraform (IaC)
+
+## 1. What is the purpose of the depends_on meta-argument in Terraform?
+
+The `depends_on` meta-argument is used to explicitly define resource dependencies when Terraform cannot automatically determine them. It ensures one resource is created only after another resource has been successfully created. For example, if an EC2 instance depends on an IAM role attachment that is not directly referenced in the configuration, `depends_on` guarantees the correct creation order. This helps avoid race conditions during deployment.
+
+---
+
+## 2. How do you view or extract outputs in Terraform after a deployment?
+
+Outputs can be viewed using the command:
+
+```bash
+terraform output
+```
+
+To retrieve a specific output value:
+
+```bash
+terraform output vpc_id
+```
+
+Outputs are typically used to expose important information such as VPC IDs, Load Balancer DNS names, database endpoints, and Kubernetes cluster details. They can also be consumed by CI/CD pipelines and other Terraform configurations through remote state.
+
+---
+
+## 3. What is the use of terraform taint, and when should it be applied?
+
+`terraform taint` marks a resource for recreation during the next apply operation. It is useful when a resource is unhealthy, corrupted, or requires replacement even though Terraform does not detect any configuration changes. For example, if an EC2 instance becomes unstable due to operating system corruption, the instance can be tainted so Terraform destroys and recreates it during the next deployment.
+
+Example:
+
+```bash
+terraform taint aws_instance.web
+```
+
+---
+
+# Docker
+
+## 1. What is Docker Compose, and why is it used?
+
+Docker Compose is a tool used to define and manage multi-container applications using a YAML file. Instead of starting containers individually, developers can define services, networks, volumes, and dependencies in a single configuration file and launch everything with one command. Docker Compose is commonly used for local development and testing environments where multiple services such as web applications, databases, and caching systems need to work together.
+
+---
+
+## 2. How can you run multiple containers on the same port in Docker?
+
+Multiple containers cannot bind directly to the same host port. To expose multiple applications on a single port, a reverse proxy or load balancer such as Nginx, HAProxy, or Traefik is used. The proxy listens on the host port and routes traffic to the appropriate backend containers based on domain names, paths, or routing rules. This is a common architecture in production environments.
+
+---
+
+## 3. What is the purpose of the EXPOSE command in a Dockerfile?
+
+The `EXPOSE` instruction documents which ports the containerized application intends to use. It serves as metadata for developers and orchestration tools. However, EXPOSE alone does not publish the port externally. To make the port accessible outside the container, port mapping must be specified using Docker run commands or Kubernetes Services.
+
+Example:
+
+```dockerfile
+EXPOSE 8080
+```
+
+---
+
+## 4. If you need to run multiple versions of Python or different base image versions, how do you handle that in a Dockerfile build?
+
+Different versions can be managed using separate base images and build arguments. For example, one image may use Python 3.10 while another uses Python 3.12. Build arguments allow dynamic selection of the base image version during the build process. In CI/CD pipelines, separate image tags can be created for each supported version, enabling multiple application versions to coexist.
+
+---
+
+# Linux & Scripting
+
+## 1. What does the command chmod 777 do, and what is the meaning of the permission code 5777?
+
+`chmod 777` grants read, write, and execute permissions to the owner, group, and all other users. This means anyone can modify or execute the file, making it highly insecure for production systems.
+
+The permission code `5777` includes the Sticky Bit along with full permissions. The Sticky Bit ensures that only the file owner or root user can delete files within a shared directory. A common example is the `/tmp` directory.
+
+Example:
+
+```bash
+chmod 5777 /shared-directory
+```
+
+---
+
+## 2. Which command is used to substitute a string or pattern within a particular directory in Linux?
+
+The `sed` command is commonly used for string substitution.
+
+Example:
+
+```bash
+sed -i 's/oldvalue/newvalue/g' file.txt
+```
+
+To update multiple files within a directory:
+
+```bash
+find . -type f -exec sed -i 's/oldvalue/newvalue/g' {} \;
+```
+
+---
+
+## 3. How do you filter or search for a specific word/pattern in Linux using grep or sed?
+
+Using grep:
+
+```bash
+grep "error" application.log
+```
+
+Case-insensitive search:
+
+```bash
+grep -i "error" application.log
+```
+
+Recursive search:
+
+```bash
+grep -r "database" /var/log
+```
+
+Using sed:
+
+```bash
+sed -n '/error/p' application.log
+```
+
+These commands are frequently used during production troubleshooting.
+
+---
+
+## 4. Write a Python script to search for a specific file within a folder or directory.
+
+```python
+import os
+
+filename = "config.yaml"
+search_path = "/home/user"
+
+for root, dirs, files in os.walk(search_path):
+    if filename in files:
+        print(os.path.join(root, filename))
+```
+
+This script recursively searches all directories and prints the full path when the file is found.
+
+---
+
+# CI/CD & Git
+
+## 1. How do you build parallel stages in a Jenkins pipeline?
+
+Parallel stages allow multiple tasks to run simultaneously, reducing pipeline execution time. Common examples include running unit tests, security scans, and code quality checks in parallel.
+
+```groovy
+stage('Parallel Tasks') {
+    parallel {
+        stage('Unit Tests') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                sh 'trivy image app:latest'
+            }
+        }
+    }
+}
+```
+
+This significantly improves CI/CD performance.
+
+---
+
+## 2. What is the difference between git merge and git rebase?
+
+Git merge combines two branches by creating a merge commit while preserving branch history. Git rebase moves commits from one branch onto another, creating a cleaner and more linear history. Merge is safer for shared branches, while rebase is commonly used for feature branches before merging into the main branch.
+
+---
+
+## 3. What is meant by "staging" in Git?
+
+Staging refers to the process of selecting changes before committing them. When files are added using `git add`, they are placed in the staging area. This allows developers to review and control exactly which changes will be included in the next commit.
+
+Example:
+
+```bash
+git add app.py
+git commit -m "Added new feature"
+```
+
+---
+
+## 4. Explain the concept of Blue-Green Deployment.
+
+Blue-Green Deployment is a deployment strategy that maintains two identical environments. The Blue environment serves production traffic while the Green environment contains the new version. After testing the Green environment, traffic is switched from Blue to Green. If issues occur, traffic can be instantly routed back to Blue. This approach minimizes downtime and simplifies rollbacks.
+
+---
+
+## 5. What is Git stash used for?
+
+Git stash temporarily saves uncommitted changes without creating a commit. It allows developers to switch branches, pull updates, or work on urgent tasks while preserving their current modifications. Later, the changes can be restored using `git stash apply` or `git stash pop`.
+
+---
+
+## 6. What is Git commit used for? Are all git commits same if we do git rebase?
+
+A Git commit captures a snapshot of changes in the repository and stores them in version history. Every commit has a unique SHA identifier.
+
+When Git rebase is performed, commit history is rewritten. Even if the code content remains the same, rebased commits receive new commit IDs because Git creates new commit objects. Therefore, commits before and after a rebase are not considered the same commits from Git's perspective, even if the code changes are identical.
+
+
 ## Question: Your CI/CD pipeline is green but the deployment is failing silently in production. How do you detect and fix this?
 ```
 ► Silent failure means no error thrown — but app is not working.
