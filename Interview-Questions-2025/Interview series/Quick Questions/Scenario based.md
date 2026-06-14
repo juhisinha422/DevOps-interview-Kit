@@ -17,10 +17,10 @@
 
 ► Add deployment verification step in pipeline:
   Deploy → wait 30 seconds → run smoke test → only then mark success.
-
+```
 
 ## Pod Not Accessible Through Service
-```
+
 Have you ever deployed an application successfully, confirmed that the pod is running, but still couldn't access it through the Kubernetes Service?
 
 ✅ Pod Status: Running
