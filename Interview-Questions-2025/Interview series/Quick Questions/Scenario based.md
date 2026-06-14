@@ -1,3 +1,24 @@
+## Question: Your CI/CD pipeline is green but the deployment is failing silently in production. How do you detect and fix this?
+```
+► Silent failure means no error thrown — but app is not working.
+  Most dangerous type of failure in production.
+
+► Add smoke tests after every deployment — hit critical endpoints.
+  If /health or /api/status returns non-200 — fail the pipeline.
+
+► Check ALB target group — new version may have failed health check.
+  Load balancer silently routing to old version.
+
+► Check application logs — no error in pipeline but errors in app.
+  kubectl logs or CloudWatch Logs — look for silent exceptions.
+
+► Check feature flags — new feature deployed but flag not turned on.
+  Users seeing old behaviour even with new code.
+
+► Add deployment verification step in pipeline:
+  Deploy → wait 30 seconds → run smoke test → only then mark success.
+
+
 ## Pod Not Accessible Through Service
 ```
 Have you ever deployed an application successfully, confirmed that the pod is running, but still couldn't access it through the Kubernetes Service?
