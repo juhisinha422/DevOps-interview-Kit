@@ -81,6 +81,38 @@ Remember:
 📌 Most Ingress issues are caused by routing, controller, DNS, or TLS misconfigurations.
 
 ```
+## 𝗬𝗼𝘂𝗿 𝗥𝗗𝗦 𝗱𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗶𝘀 𝘀𝗹𝗼𝘄. 𝗨𝘀𝗲𝗿𝘀 𝗮𝗿𝗲 𝗰𝗼𝗺𝗽𝗹𝗮𝗶𝗻𝗶𝗻𝗴. 𝗬𝗼𝘂 𝗵𝗮𝘃𝗲 𝟮 𝗺𝗶𝗻𝘂𝘁𝗲𝘀. 𝗚𝗼.
+
+```
+𝗛𝗲𝗿𝗲 𝗶𝘀 𝗲𝘅𝗮𝗰𝘁𝗹𝘆 𝘄𝗵𝗮𝘁 𝗜 𝗰𝗵𝗲𝗰𝗸.
+
+► CloudWatch metrics first — CPUUtilization, FreeableMemory, DatabaseConnections, ReadLatency, WriteLatency.
+
+► DatabaseConnections maxed out — too many app instances hitting DB directly.
+  Fix: add RDS Proxy — connection pooling.
+
+► Enable Performance Insights — find exact slow queries in seconds.
+
+► Run EXPLAIN on slow query — missing index is the most common reason.
+  Add index — query goes from 10 seconds to 0.1 second.
+
+► Check if Multi-AZ failover happened recently — causes brief slowness.
+
+► FreeableMemory too low — DB is swapping to disk. Upgrade instance.
+
+► Read-heavy app — add Read Replica. Route SELECT queries to replica.
+  Removes load from primary instantly.
+
+► Long running transactions blocking others — find and kill them.
+  SELECT * FROM information_schema.processlist WHERE time > 60;
+
+How I prevent DB slowness:
+• Always monitor DatabaseConnections + ReadLatency
+• Set CloudWatch alarm on latency above threshold
+• Use ElastiCache for repeated queries
+• Review slow query log every week
+```
+
 # DevOps Interview Questions & Answers (4+ Years Experience)
 
 # Kubernetes
