@@ -1,4 +1,86 @@
+## Ingress Not Working
+```
+Your application pods are running.
 
+Your Service is healthy.
+
+But when users access the application through the URL...
+
+❌ Website Not Reachable
+
+❌ 404 Not Found
+
+❌ SSL/TLS Errors
+
+This is where Kubernetes Ingress troubleshooting becomes critical.
+
+Recently, I encountered a situation where an application was working perfectly inside the cluster but could not be accessed externally through the configured domain.
+
+🔍 My troubleshooting approach:
+
+✅ Verified Ingress resource configuration
+
+✅ Checked Ingress Controller health
+
+✅ Reviewed Ingress Controller logs
+
+✅ Validated host and path rules
+
+✅ Verified Service and backend configuration
+
+✅ Checked DNS records
+
+✅ Examined TLS certificates and secrets
+
+✅ Tested connectivity from outside the cluster
+
+🎯 Root Cause:
+
+The Ingress resource was configured with an incorrect path rule.
+
+The incoming requests did not match the configured routing path, causing the Ingress Controller to return 404 errors.
+
+After correcting the path configuration and reapplying the manifest, traffic was routed successfully to the application.
+
+💡 Key Takeaway:
+
+When troubleshooting Ingress issues, focus on the complete request flow.
+
+Always verify:
+
+• Ingress Controller status
+
+• Host rules
+
+• Path routing
+
+• Backend service configuration
+
+• DNS resolution
+
+• TLS certificates
+
+• Ingress Controller logs
+
+Useful commands:
+
+kubectl get ingress
+
+kubectl describe ingress <ingress-name>
+
+kubectl get pods -n ingress-nginx
+
+kubectl logs <ingress-controller-pod>
+
+Remember:
+
+📌 DNS → Ingress → Service → Pod
+
+📌 A failure at any layer can prevent users from accessing the application.
+
+📌 Most Ingress issues are caused by routing, controller, DNS, or TLS misconfigurations.
+
+```
 # DevOps Interview Questions & Answers (4+ Years Experience)
 
 # Kubernetes
