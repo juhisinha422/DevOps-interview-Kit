@@ -135,6 +135,68 @@ A Deployment is a Kubernetes controller used to manage stateless applications. I
 
 ---
 
+# Kubernetes, Docker, Terraform, AWS & CI/CD Interview Answers (4+ Years Experience)
+
+## What is the difference between a Pod and a Deployment in Kubernetes?
+
+A Pod is the smallest deployable unit in Kubernetes and can contain one or more containers that share the same network namespace and storage volumes. Pods are ephemeral by nature, meaning if a pod fails, Kubernetes does not automatically recreate it unless it is managed by a higher-level controller. A Deployment is a Kubernetes resource that manages pods and ensures the desired number of pod replicas are running at all times. It provides features such as rolling updates, rollbacks, self-healing, and scaling. In production environments, applications are typically deployed using Deployments rather than standalone Pods because Deployments provide reliability and lifecycle management.
+
+---
+
+## Explain the difference between Docker CMD and ENTRYPOINT.
+
+Both CMD and ENTRYPOINT are Dockerfile instructions used to define what runs when a container starts. ENTRYPOINT specifies the main executable that will always run when the container starts, making the container behave like a dedicated application. CMD provides default arguments to the ENTRYPOINT or acts as the default command if no ENTRYPOINT is specified. CMD can be easily overridden at runtime, whereas ENTRYPOINT is more difficult to override and is generally used when the container should always execute a specific application. In most production Dockerfiles, ENTRYPOINT is used for the application binary, while CMD provides default runtime parameters.
+
+Example:
+
+```dockerfile
+ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["--server.port=8080"]
+```
+
+When the container starts, it executes:
+
+```bash
+java -jar app.jar --server.port=8080
+```
+
+---
+
+## What is Terraform State, and why is it important?
+
+Terraform State is a file that stores the current state of infrastructure managed by Terraform. It maintains the mapping between Terraform configuration files and the actual resources created in cloud providers such as AWS, Azure, or GCP. Terraform uses this state file to determine which resources need to be created, updated, or deleted during execution. Without the state file, Terraform would not know the current infrastructure status and could create duplicate resources or fail to detect changes. In production environments, Terraform State is typically stored remotely in an S3 bucket with DynamoDB locking to ensure consistency, collaboration, and protection against concurrent updates.
+
+---
+
+## How does a Kubernetes Service communicate with Pods?
+
+A Kubernetes Service provides a stable network endpoint for a group of Pods. Services use label selectors to identify the Pods that belong to them. When a Service is created, Kubernetes automatically creates endpoints containing the IP addresses of matching Pods. kube-proxy running on each worker node programs iptables or IPVS rules to route incoming traffic from the Service IP to one of the backend Pod IPs. This enables load balancing across multiple Pod replicas. Even if Pods are recreated and receive new IP addresses, the Service continues to provide a consistent endpoint, ensuring reliable communication within the cluster.
+
+---
+
+## What is the difference between a Security Group and a NACL in AWS?
+
+Security Groups and Network Access Control Lists (NACLs) are both AWS network security mechanisms, but they operate at different levels.
+
+Security Groups work at the instance level and act as virtual firewalls for EC2 instances, Load Balancers, and other AWS resources. They are stateful, meaning if inbound traffic is allowed, the return traffic is automatically permitted.
+
+NACLs operate at the subnet level and control traffic entering and leaving an entire subnet. They are stateless, meaning inbound and outbound rules must be explicitly configured separately.
+
+In practice, Security Groups are used for application-level access control, while NACLs provide an additional layer of subnet-level security. Most organizations use Security Groups for day-to-day access management and NACLs for broader network segmentation and security requirements.
+
+---
+
+## Walk me through a CI/CD pipeline from code commit to deployment.
+
+A typical CI/CD pipeline starts when a developer commits code to a Git repository such as GitHub, GitLab, or Bitbucket. This commit triggers the CI/CD tool, such as Jenkins, GitLab CI/CD, or Azure DevOps.
+
+The first stage performs source code checkout followed by code quality checks such as linting, static code analysis, and security scanning. The next stage executes unit tests and integration tests to validate the application. If all tests pass, a Docker image is built and tagged with a version number or commit ID. The image is then pushed to a container registry such as Amazon ECR.
+
+In the deployment stage, Kubernetes manifests or Helm charts are updated with the new image version. The CI/CD pipeline then deploys the application to the target Kubernetes cluster, such as EKS. Kubernetes performs a rolling update, gradually replacing old Pods with new ones while maintaining application availability. After deployment, health checks, smoke tests, and monitoring tools verify that the application is functioning correctly. If any issues are detected, Kubernetes rollback or deployment rollback mechanisms can be used to restore the previous stable version.
+
+This process ensures automated, repeatable, and reliable software delivery from code commit to production deployment.
+
+
 # AWS (Amazon Web Services)
 
 ## 1. What are the primary differences between AWS EC2 and AWS Fargate?
