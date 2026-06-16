@@ -1,5 +1,3 @@
-Here's a single README.md format with detailed 4+ years experience level answers for the questions you shared.
-
 # DevOps Interview Questions & Answers (4+ Years Experience)
 
 ## 1. Some of the applications are in AWS and some are on Azure, How can u achieve the communication between these 2 ?
