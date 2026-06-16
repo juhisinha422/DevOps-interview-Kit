@@ -1,5 +1,36 @@
 # Kubernetes Interview Questions & Answers (4+ Years Experience)
 
+
+### How does etcd store Kubernetes state — and how do you recover from quorum loss?
+
+**Answer:**
+
+etcd is the distributed key-value database used by Kubernetes to store the entire cluster state. Whenever we create a Pod, Deployment, Service, ConfigMap, Secret, or any Kubernetes resource, the information is stored in etcd. The Kubernetes API Server reads and writes all cluster information through etcd, which is why etcd is considered the source of truth for the cluster.
+
+In production, etcd usually runs as a cluster with an odd number of members (3, 5, or 7) and follows the Raft consensus algorithm. A majority of members must be available for the cluster to function. This majority is called a **quorum**.
+
+For example:
+
+* 3-node etcd cluster → minimum 2 nodes required
+* 5-node etcd cluster → minimum 3 nodes required
+
+If quorum is lost, Kubernetes cannot make changes because the API Server cannot write to etcd. Existing workloads may continue running, but cluster management operations will fail.
+
+To recover from quorum loss:
+
+1. Check which etcd members are down.
+2. Restore failed nodes if possible.
+3. If recovery is not possible, restore etcd from the latest snapshot backup.
+4. Rebuild the etcd cluster and verify all members are healthy.
+5. Validate that the Kubernetes API Server is communicating properly with etcd.
+
+In my projects, I ensure regular automated etcd snapshots are taken because etcd is the most critical component of the Kubernetes control plane. Without a healthy etcd cluster, Kubernetes cannot manage workloads effectively.
+
+**One-line interview answer:**
+
+*"etcd is Kubernetes' source of truth that stores all cluster state. It requires quorum (majority of nodes) to function. If quorum is lost, I would restore failed members or recover the cluster using the latest etcd snapshot backup."*
+
+
 ## 1. What are the components of a Kubernetes cluster — control plane vs worker nodes?
 
 A Kubernetes cluster consists of two major layers: the Control Plane and Worker Nodes. The Control Plane acts as the brain of the cluster and is responsible for managing the overall state of the environment. It includes the API Server, etcd, Scheduler, Controller Manager, and Cloud Controller Manager. The API Server acts as the entry point for all cluster operations and processes requests from users, automation tools, and internal components. etcd is a distributed key-value database that stores the entire cluster state including Pods, Deployments, Services, Secrets, ConfigMaps, and RBAC configurations. The Scheduler continuously evaluates newly created Pods and determines the most suitable worker node based on resource availability, affinity rules, taints, tolerations, and scheduling policies. The Controller Manager runs multiple controllers that ensure the actual state matches the desired state. For example, if a Pod crashes unexpectedly, the controller automatically creates a replacement Pod.
