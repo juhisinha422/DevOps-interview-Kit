@@ -1,3 +1,26 @@
+## 𝗤𝘂𝗲 : There is a scenario where, there are many bugs in main.tf file, but i want you to address few of them through terraform, not all, how would you solve this issue ?
+
+```
+𝗔𝗻𝘀 :Targeted Bug Fixing Strategies in Terraform
+Apply changes to only specific resources using -𝘁𝗮𝗿𝗴𝗲𝘁 flag
+The -𝘁𝗮𝗿𝗴𝗲𝘁 flag lets you plan/apply changes to specific resources only:
+# 𝗧𝗮𝗿𝗴𝗲𝘁 𝗮 𝘀𝗽𝗲𝗰𝗶𝗳𝗶𝗰 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲
+terraform plan -target=aws_instance.web_server
+terraform apply -target=aws_instance.web_server
+
+# 𝗧𝗮𝗿𝗴𝗲𝘁 𝗮 𝗺𝗼𝗱𝘂𝗹𝗲
+terraform apply -target=module.networking
+
+# 𝗧𝗮𝗿𝗴𝗲𝘁 𝗺𝘂𝗹𝘁𝗶𝗽𝗹𝗲 𝘀𝗽𝗲𝗰𝗶𝗳𝗶𝗰 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀
+terraform apply -target=aws_s3_bucket.logs -target=aws_iam_role.lambda_role
+
+This means Terraform only evaluates and fixes those targeted resources, leaving everything else untouched.
+
+⚠️ 𝗜𝗺𝗽𝗼𝗿𝘁𝗮𝗻𝘁 𝗡𝗼𝘁𝗲 :
+Terraform itself warns that -𝘁𝗮𝗿𝗴𝗲𝘁 is meant for 𝗘𝗫𝗖𝗘𝗣𝗧𝗜𝗢𝗡𝗔𝗟 𝗨𝗦𝗘, not routine workflow — because it can cause dependency inconsistencies. Always run a full terraform plan afterward to confirm the overall state is clean.
+The cleanest long-term fix is to refactor main.tf into smaller module files so bugs are naturally isolated by scope.
+```
+
 # Terraform Interview Questions (3–5 Years DevOps Engineer)
 
 ## 1. How do you prevent Terraform state conflicts when multiple engineers work on the same project?
