@@ -1,3 +1,21 @@
+## Recovering a Deleted Terraform State File
+-----------------------------------------------
+```
+If my Terraform state file is deleted, I can recover it using one of the following methods:
+Restore from Backup
+I first check whether a terraform.tfstate.backup file is available.
+If it exists, I restore it as the main state file.
+Recover from a Remote Backend
+If I am using a remote backend such as Amazon S3, Azure Storage, Google Cloud Storage, or Terraform Cloud, I retrieve the latest state file from the backend.
+If versioning is enabled, I can restore a previous version of the state file.
+Restore from Backup Systems
+I check backup solutions, snapshots, or source control repositories where the state file may have been backed up.
+Rebuild the State
+If no backup is available, I recreate the state by importing the existing infrastructure resources into Terraform using the terraform import command.
+After importing the resources, I run terraform plan to verify that the state matches the actual infrastructure.
+To avoid this issue in the future, I store Terraform state in a remote backend and enable versioning and regular backups.
+```
+
 ## 𝗤𝘂𝗲 : There is a scenario where, there are many bugs in main.tf file, but i want you to address few of them through terraform, not all, how would you solve this issue ?
 
 ```
