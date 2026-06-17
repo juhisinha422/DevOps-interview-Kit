@@ -1,0 +1,12 @@
+etcd healthy but kubectl commands freezing intermittently. Why? 
+
+When etcd logs report a healthy state, but kubectl commands freeze intermittently, the issue typically lies in the communication pipeline between kubectl and the kube-apiserver 
+
+1.The kube-apiserver acts as a proxy for aggregated APIs and admission webhooks. When we run a command like kubectl get, the server may block the response while waiting for a down or slow external service to reply. 
+
+2.If the API server is hitting its Kubernetes resource limits or node limits, it will intermittently freeze processing its internal connection queue. 
+
+3.kubectl checks for updated discovery APIs frequently. If our local DNS server or corporate VPN intermittently delays resolving the API server's endpoint, kubectl will freeze for several seconds before executing. 
+
+4.Need to Identify if any registered API extensions are currently in a failed state
+ kubectl get apiservice | grep -v True  
