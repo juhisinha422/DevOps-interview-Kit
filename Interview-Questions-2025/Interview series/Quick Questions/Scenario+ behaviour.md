@@ -1,3 +1,94 @@
+# DevOps Scenario-Based Interview Questions & Answers (4+ Years Experience)
+
+## Kubernetes
+
+### 1. A Production Pod is in CrashLoopBackOff After a Deployment. How Would You Troubleshoot and Restore the Service?
+
+If a production pod enters a CrashLoopBackOff state immediately after deployment, my first priority is restoring business functionality while simultaneously identifying the root cause. I start by checking the pod status, deployment events, and recent rollout history using kubectl commands. The `kubectl describe pod` output often provides valuable information about container failures, probe failures, image issues, resource exhaustion, or application startup errors. I then examine the container logs, including previous container logs if the pod has restarted multiple times. In my experience, common causes include incorrect environment variables, missing ConfigMaps or Secrets, application code defects, failed database connections, invalid API endpoints, or resource limitations resulting in OOMKilled events.
+
+If the issue started immediately after a deployment and affects production traffic, I prioritize service restoration by rolling back to the previous stable deployment version using Kubernetes rollout commands. Once services are restored, I perform a detailed root cause analysis by comparing deployment manifests, container image versions, configuration changes, and application logs. I also verify readiness and liveness probe configurations because misconfigured health checks can continuously restart otherwise healthy containers. After identifying the root cause, I implement preventive measures such as deployment validation checks, automated testing, canary deployments, monitoring alerts, and configuration management improvements to reduce the risk of future incidents.
+
+---
+
+### 2. One Node in the Cluster Becomes Unhealthy and Several Applications Go Down. What Steps Would You Take to Identify and Resolve the Issue?
+
+When a Kubernetes node becomes unhealthy, my first objective is to assess the impact on workloads and prevent further disruption. I start by checking node health and conditions to determine whether the issue is related to memory pressure, disk pressure, network connectivity, kubelet failures, container runtime issues, or underlying infrastructure problems. I identify which applications and pods are running on the affected node and determine whether high-availability replicas are available on other nodes.
+
+To stabilize the cluster, I immediately cordon the unhealthy node to prevent new workloads from being scheduled there. If necessary, I drain the node to safely move workloads to healthy nodes while minimizing service disruption. Next, I investigate the node itself by checking kubelet status, container runtime logs, operating system health, disk utilization, memory usage, and network connectivity. In managed Kubernetes environments such as EKS, AKS, or GKE, I also review autoscaling groups or node pools to determine whether replacing the node is faster than repairing it. After resolving the issue or replacing the node, I validate application health, ensure workloads are redistributed correctly, and review monitoring data to understand why the node became unhealthy. Finally, I implement preventive measures such as node health monitoring, autoscaling policies, resource limits, and proactive alerting.
+
+---
+
+## Terraform
+
+### 3. A Terraform Deployment Fails Halfway Through and Leaves Resources in an Inconsistent State. How Would You Recover Safely?
+
+When Terraform fails during deployment, there is a possibility that some resources were successfully created while others failed, resulting in infrastructure drift between the actual cloud environment and the Terraform state file. My first step is to stop any further deployments and carefully assess the current state of the infrastructure. I inspect the Terraform state file and compare it with resources that actually exist in the cloud provider. Running a Terraform plan helps identify discrepancies between the desired state and the actual infrastructure.
+
+If resources exist but are not tracked in the state file, I use Terraform import to bring them under management. If the state file itself is corrupted, I restore it from backend backups or previous versions. In AWS environments, I typically use an S3 backend with versioning enabled and DynamoDB locking, which provides a safe recovery mechanism. After reconciling the state and validating resource consistency, I perform another Terraform plan to confirm that the infrastructure matches the desired configuration. Only after careful verification do I proceed with a controlled Terraform apply. Throughout the process, I avoid manually deleting resources unless absolutely necessary because manual changes can introduce additional drift and complexity.
+
+---
+
+### 4. Multiple Engineers Are Working on the Same Terraform Codebase. How Would You Prevent State File Conflicts and Accidental Infrastructure Changes?
+
+In collaborative Terraform environments, preventing state conflicts and accidental modifications is critical. I implement a remote backend using services such as AWS S3, Azure Storage Account, or Terraform Cloud to ensure all engineers work from a centralized state file. State locking mechanisms, such as DynamoDB for AWS backends, prevent multiple engineers from modifying infrastructure simultaneously and eliminate race conditions.
+
+Beyond state management, I enforce a strict Git workflow where all infrastructure changes are made through feature branches and reviewed through pull requests before being merged. Automated CI/CD pipelines perform Terraform formatting, validation, security scanning, and plan generation before any changes are approved. Engineers review the generated Terraform plan to understand exactly what infrastructure modifications will occur. I also separate environments using different state files, workspaces, or backend configurations to avoid accidental changes across development, testing, and production environments. Additionally, role-based access controls ensure engineers only have permissions appropriate for their responsibilities. Together, these controls significantly reduce the risk of accidental infrastructure modifications and state corruption.
+
+---
+
+## CI/CD
+
+### 5. A Deployment Pipeline Succeeds, but the Application is Failing in Production. How Would You Investigate the Root Cause?
+
+A successful deployment pipeline only confirms that deployment steps completed successfully; it does not guarantee application functionality. Therefore, I approach this situation systematically by validating each layer of the deployment process. First, I verify that the correct application version was deployed and that the expected container image or artifact is running in production. Next, I review application logs to identify startup failures, configuration errors, dependency issues, or runtime exceptions.
+
+I then examine health checks, readiness probes, and deployment status to ensure traffic is being routed correctly. Network connectivity between the application and dependent services such as databases, caches, external APIs, and message queues is also validated. Configuration differences between lower environments and production are a common source of failures, so I carefully compare environment variables, secrets, ConfigMaps, and application settings. Simultaneously, I review monitoring dashboards and alerting systems to identify abnormal patterns in latency, error rates, resource consumption, or request failures. If necessary, I trace user requests through distributed tracing tools to pinpoint failures across microservices. This systematic approach helps determine whether the issue originates from the application, infrastructure, networking, configuration, or deployment process.
+
+---
+
+### 6. A Critical Security Vulnerability is Detected During the Build Process. How Would You Integrate Security Checks into the CI/CD Pipeline?
+
+Security should be integrated throughout the software delivery lifecycle rather than treated as a final checkpoint. I follow a DevSecOps approach by embedding security controls directly into the CI/CD pipeline. During the code stage, static application security testing tools scan source code for vulnerabilities, insecure coding practices, and exposed secrets. Dependency scanning tools analyze third-party libraries to identify known CVEs and outdated packages.
+
+For containerized applications, image scanning tools evaluate Docker images for vulnerabilities, misconfigurations, and outdated components before images are pushed to registries. Infrastructure-as-Code templates are scanned using tools such as Checkov or tfsec to detect security risks before infrastructure is provisioned. Security gates are implemented within the pipeline to block deployments when critical vulnerabilities exceed predefined thresholds. Beyond build-time controls, runtime security monitoring tools continuously monitor production workloads for suspicious behavior, policy violations, and emerging threats. This layered security strategy ensures vulnerabilities are identified and remediated as early as possible while maintaining compliance and reducing organizational risk.
+
+---
+
+## Azure Cloud
+
+### 7. An Application Hosted on Azure Suddenly Experiences High Latency. Which Azure Services and Monitoring Tools Would You Use to Troubleshoot It?
+
+When investigating high latency in Azure, I begin by identifying whether the issue originates from the application, infrastructure, database, or network layer. Azure Monitor provides visibility into resource-level metrics such as CPU, memory, disk throughput, and network utilization. Application Insights is particularly valuable because it offers detailed telemetry including request response times, dependency performance, failed requests, exceptions, and distributed transaction tracing.
+
+I also use Log Analytics to run Kusto queries and analyze logs across multiple Azure resources. If network-related issues are suspected, Azure Network Watcher helps identify connectivity problems, routing issues, latency bottlenecks, and packet loss. Load balancer and Application Gateway metrics are reviewed to ensure traffic is distributed correctly and backend instances remain healthy. If the application depends on Azure SQL or Cosmos DB, I examine database performance metrics, slow queries, lock contention, and connection pool utilization. By correlating metrics, logs, traces, and dependency performance data, I can accurately identify the root cause and implement corrective actions.
+
+---
+
+### 8. A Business-Critical Application Must Remain Available Even if an Entire Azure Region Fails. How Would You Design the Architecture?
+
+To achieve resilience against a complete Azure regional failure, I would design a multi-region architecture based on high availability and disaster recovery principles. The application would be deployed across at least two Azure regions, with traffic distributed through Azure Front Door or Azure Traffic Manager. These services continuously monitor endpoint health and automatically redirect traffic to healthy regions during outages.
+
+The application layer would run on redundant infrastructure such as AKS clusters, virtual machine scale sets, or App Services in both regions. Data resilience is equally important, so databases would use geo-replication features such as Azure SQL Active Geo-Replication or Cosmos DB multi-region replication. Storage accounts would utilize geographically redundant storage configurations to ensure data durability. Infrastructure would be provisioned using Terraform to maintain consistency across regions. Regular disaster recovery testing would validate failover procedures and ensure recovery objectives can be met. This architecture minimizes downtime, protects against regional outages, and provides business continuity for critical workloads.
+
+---
+
+## Observability & Monitoring
+
+### 9. Users Report Intermittent Issues, but Dashboards Show Everything is Healthy. How Would You Use Logs, Metrics, and Traces to Identify the Problem?
+
+Intermittent issues are often difficult to identify because traditional dashboards display aggregated metrics that can hide short-lived failures. In this situation, I rely on the three pillars of observability: metrics, logs, and traces. I start by reviewing application metrics for spikes in latency, error rates, or request volume during the reported incident windows. Next, I analyze logs across application components to identify exceptions, retries, timeout errors, or unusual patterns that coincide with user complaints.
+
+Distributed tracing is particularly valuable because it allows me to follow individual requests across multiple services and dependencies. Even when average system health appears normal, traces can reveal intermittent bottlenecks, slow database queries, overloaded services, or network delays affecting specific requests. I also correlate observability data with deployment events, infrastructure changes, traffic spikes, and external dependency performance. By combining metrics, logs, and traces rather than relying on a single source of information, I can uncover hidden issues that are not visible through standard dashboards.
+
+---
+
+### 10. CPU and Memory Usage Look Normal, Yet Response Times Are Increasing. What Observability Approach Would You Follow to Find the Bottleneck?
+
+When response times increase despite normal CPU and memory utilization, the bottleneck is usually located elsewhere in the application ecosystem. My investigation begins with distributed tracing because it provides end-to-end visibility into request execution paths. By analyzing traces, I can identify which service, dependency, or operation is consuming the most time.
+
+I then investigate database performance, focusing on slow queries, locking issues, connection pool exhaustion, and transaction delays. External APIs and third-party services are reviewed to determine whether increased response times originate outside the application boundary. Network analysis helps identify latency introduced by load balancers, DNS resolution, routing problems, or packet loss. I also evaluate thread pools, worker queues, and application concurrency settings because applications can experience saturation without high CPU utilization. Finally, I analyze the four golden signals of observability—latency, traffic, errors, and saturation—to gain a comprehensive understanding of system behavior. This methodical approach helps identify hidden bottlenecks that are not reflected in basic infrastructure metrics.
+
+
 ## Round 1: DevOps & CI/CD Assessment
 
 ### 1. Difference Between Continuous Integration, Continuous Delivery, and Continuous Deployment
