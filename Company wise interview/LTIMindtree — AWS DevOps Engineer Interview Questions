@@ -1,0 +1,78 @@
+🎯 LTIMindtree — AWS DevOps Engineer Interview Questions (3+ Years Experience)
+
+
+🔹 Round 1: DevOps & CI/CD Assessment
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+
+(1) What is the difference between Continuous Integration, Continuous Delivery, and Continuous Deployment? Give a real-world example.
+
+
+
+(2) What is Infrastructure as Code (IaC)? How does Terraform differ from AWS CloudFormation?
+
+
+
+(3) Explain the concept of "shift-left" in DevOps. How does it improve software quality?
+
+
+
+(4) What is a blue-green deployment strategy? How does it differ from canary deployment?
+
+
+
+(5) What are the key differences between monolithic and microservices architecture from a DevOps perspective?
+
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🔹 Round 2: Linux, AWS, Jenkins, Docker & Kubernetes
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+
+
+(1) What is AWS Elastic Load Balancer (ELB)? Explain the difference between ALB, NLB, and CLB.
+
+
+
+(2) What is AWS CloudWatch? How do you set up alarms and custom metrics for your application?
+
+
+
+(3) Explain the concept of AWS Lambda. What are cold starts and how do you minimize them?
+
+
+
+(4) What is the difference between Security Groups and Network ACLs in AWS?
+
+
+
+(5) How does Jenkins handle parallel execution of stages in a pipeline? Write an example snippet.
+
+
+
+(6) What are shared libraries in Jenkins and why are they used in large-scale CI/CD setups?
+
+
+
+(7) What is the difference between Docker COPY and ADD instructions? When would you use each?
+
+
+
+(8) Explain Docker multi-stage builds. How do they help reduce image size in production?
+
+
+
+(9) What is a Kubernetes ConfigMap and Secret? How do they differ and how are they mounted into pods?
+
+
+
+(10) How do you write a Linux shell script to monitor a service and restart it automatically if it goes down?
+
+
+
+
+
