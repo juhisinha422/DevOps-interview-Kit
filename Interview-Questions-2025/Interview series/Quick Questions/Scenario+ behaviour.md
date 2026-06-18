@@ -1,3 +1,314 @@
+## Round 1: DevOps & CI/CD Assessment
+
+### 1. Difference Between Continuous Integration, Continuous Delivery, and Continuous Deployment
+
+Continuous Integration (CI) is the practice of frequently merging code changes into a shared repository where automated builds and tests are executed. Continuous Delivery (CD) extends CI by ensuring that the application is always in a deployable state, but deployment to production requires manual approval. Continuous Deployment goes one step further by automatically deploying every successful change to production without human intervention.
+
+**Real-world Example:**
+In my project, developers push code to GitLab. Jenkins triggers a build, runs unit tests, SonarQube scans, and creates a Docker image (CI). The image is deployed automatically to a staging environment after successful validation (Continuous Delivery). In some non-production environments, deployment to Kubernetes happens automatically after pipeline success without manual approval (Continuous Deployment).
+
+---
+
+### 2. What is Infrastructure as Code (IaC)? Terraform vs CloudFormation
+
+Infrastructure as Code (IaC) is the process of provisioning and managing infrastructure through code rather than manual configuration. It enables version control, automation, consistency, and repeatability.
+
+Terraform is cloud-agnostic and supports AWS, Azure, GCP, Kubernetes, and many other providers using HCL (HashiCorp Configuration Language). CloudFormation is AWS-native and designed specifically for AWS resources using JSON or YAML templates.
+
+Terraform provides better multi-cloud support, reusable modules, state management, and a large provider ecosystem. CloudFormation offers tighter AWS integration and does not require separate state file management.
+
+---
+
+### 3. Explain Shift-Left in DevOps
+
+Shift-Left is a DevOps practice where testing, security scanning, code quality checks, and compliance validation are moved earlier in the software development lifecycle. Instead of identifying issues during deployment or production, they are detected during development and CI stages.
+
+For example, in our Jenkins pipeline we perform SonarQube analysis, dependency vulnerability scanning using Trivy, and unit testing before creating Docker images. This reduces production defects, improves software quality, lowers remediation costs, and accelerates release cycles.
+
+---
+
+### 4. Blue-Green Deployment vs Canary Deployment
+
+Blue-Green deployment uses two identical environments called Blue and Green. The current version runs on Blue while the new version is deployed to Green. After validation, traffic is switched completely to Green. Rollback is simple by redirecting traffic back to Blue.
+
+Canary deployment releases the new version gradually to a small percentage of users such as 5%, 10%, or 20%. Monitoring is performed before increasing traffic.
+
+Blue-Green focuses on instant switching between environments, while Canary focuses on gradual risk reduction through phased rollout. Canary provides better real-user validation, whereas Blue-Green offers faster rollback.
+
+---
+
+### 5. Monolithic vs Microservices Architecture from DevOps Perspective
+
+A Monolithic architecture consists of a single application where all components are tightly coupled and deployed together. A Microservices architecture breaks the application into independent services that can be developed, deployed, and scaled separately.
+
+From a DevOps perspective, microservices provide independent deployments, better scalability, fault isolation, and faster release cycles. However, they introduce complexity in service discovery, monitoring, networking, CI/CD pipelines, and observability.
+
+In Kubernetes environments, microservices are preferred because each service can have its own deployment, autoscaling policy, and release strategy.
+
+---
+
+# Round 2: Linux, AWS, Jenkins, Docker & Kubernetes
+
+## 1. What is AWS Elastic Load Balancer (ELB)?
+
+AWS Elastic Load Balancer distributes incoming traffic across multiple targets such as EC2 instances, containers, and IP addresses.
+
+### Application Load Balancer (ALB)
+
+* Layer 7 (HTTP/HTTPS)
+* Supports path-based routing
+* Supports host-based routing
+* Ideal for web applications and microservices
+
+### Network Load Balancer (NLB)
+
+* Layer 4 (TCP/UDP)
+* Extremely low latency
+* Handles millions of requests per second
+* Suitable for gaming, streaming, and real-time applications
+
+### Classic Load Balancer (CLB)
+
+* Legacy load balancer
+* Supports basic Layer 4 and Layer 7 routing
+* Recommended only for older applications
+
+---
+
+## 2. What is AWS CloudWatch?
+
+CloudWatch is AWS's monitoring and observability service used to collect metrics, logs, events, and alarms.
+
+To set up monitoring:
+
+1. Enable CloudWatch metrics for AWS resources.
+2. Create custom metrics using CloudWatch Agent or AWS SDK.
+3. Define alarms based on thresholds.
+4. Configure SNS notifications for alerts.
+5. Integrate dashboards for visualization.
+
+Example:
+If EC2 CPU utilization exceeds 80% for 5 minutes, CloudWatch triggers an alarm and sends notifications through SNS.
+
+---
+
+## 3. Explain AWS Lambda and Cold Starts
+
+AWS Lambda is a serverless compute service that executes code without managing servers. AWS automatically handles provisioning, scaling, patching, and infrastructure management.
+
+A cold start occurs when Lambda initializes a new execution environment before processing a request. This initialization causes additional latency.
+
+To reduce cold starts:
+
+* Use Provisioned Concurrency.
+* Keep deployment packages small.
+* Optimize dependencies.
+* Use lightweight runtimes.
+* Reuse connections outside the handler function.
+
+---
+
+## 4. Difference Between Security Groups and NACLs
+
+Security Groups act as virtual firewalls at the instance level and are stateful. If inbound traffic is allowed, the response is automatically allowed.
+
+Network ACLs operate at the subnet level and are stateless. Separate inbound and outbound rules must be configured.
+
+| Feature     | Security Group | NACL              |
+| ----------- | -------------- | ----------------- |
+| Level       | Instance       | Subnet            |
+| Stateful    | Yes            | No                |
+| Allow Rules | Yes            | Yes               |
+| Deny Rules  | No             | Yes               |
+| Evaluation  | All Rules      | Rule Number Order |
+
+Security Groups are used for instance-level protection, while NACLs provide subnet-level security.
+
+---
+
+## 5. Jenkins Parallel Execution Example
+
+Jenkins supports parallel execution to reduce pipeline duration by running multiple stages simultaneously.
+
+```groovy
+pipeline {
+    agent any
+
+    stages {
+        stage('Parallel Tests') {
+            parallel {
+                stage('Unit Tests') {
+                    steps {
+                        sh 'mvn test'
+                    }
+                }
+
+                stage('Security Scan') {
+                    steps {
+                        sh 'trivy fs .'
+                    }
+                }
+
+                stage('Code Quality') {
+                    steps {
+                        sh 'sonar-scanner'
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+This approach significantly reduces CI execution time.
+
+---
+
+## 6. What are Shared Libraries in Jenkins?
+
+Shared Libraries allow reusable pipeline code to be centralized and shared across multiple Jenkins pipelines.
+
+Benefits:
+
+* Avoid code duplication
+* Standardize CI/CD processes
+* Easier maintenance
+* Faster pipeline development
+* Better governance
+
+In large organizations, common functions such as Docker builds, Kubernetes deployments, Terraform execution, and security scans are stored in shared libraries and reused across projects.
+
+---
+
+## 7. Difference Between Docker COPY and ADD
+
+COPY only copies files and directories from the local machine into the image.
+
+ADD provides additional functionality such as:
+
+* Extracting local tar archives automatically
+* Downloading files from URLs
+
+Example:
+
+```dockerfile
+COPY app.jar /app/
+
+ADD application.tar.gz /app/
+```
+
+For most production use cases, COPY is preferred because it is predictable and follows the principle of least surprise.
+
+---
+
+## 8. Docker Multi-Stage Builds
+
+Multi-stage builds use multiple FROM statements within a Dockerfile to separate build and runtime environments.
+
+Example:
+
+```dockerfile
+FROM maven:3.9-jdk-17 AS build
+
+WORKDIR /app
+COPY . .
+RUN mvn clean package
+
+FROM eclipse-temurin:17-jre
+
+COPY --from=build /app/target/app.jar app.jar
+
+CMD ["java","-jar","app.jar"]
+```
+
+Benefits:
+
+* Smaller image size
+* Reduced attack surface
+* Faster deployments
+* Improved security
+
+Only the final artifact is included in the runtime image.
+
+---
+
+## 9. Kubernetes ConfigMap and Secret
+
+ConfigMap stores non-sensitive configuration data such as environment variables and application settings.
+
+Secret stores sensitive information such as passwords, API keys, tokens, and certificates.
+
+### ConfigMap Example
+
+```yaml
+env:
+  - name: APP_ENV
+    valueFrom:
+      configMapKeyRef:
+        name: app-config
+        key: environment
+```
+
+### Secret Example
+
+```yaml
+env:
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: db-secret
+        key: password
+```
+
+Both can be mounted as:
+
+* Environment variables
+* Files inside volumes
+
+Secrets are Base64 encoded and should be protected using RBAC and encryption mechanisms.
+
+---
+
+## 10. Linux Script to Monitor and Restart a Service
+
+```bash
+#!/bin/bash
+
+SERVICE="nginx"
+
+if ! systemctl is-active --quiet $SERVICE
+then
+    echo "$(date) - $SERVICE is down. Restarting..."
+    systemctl restart $SERVICE
+else
+    echo "$(date) - $SERVICE is running."
+fi
+```
+
+This script checks the service status and automatically restarts it if it is not running.
+
+To run every minute:
+
+```bash
+* * * * * /opt/scripts/service_monitor.sh
+```
+
+This is a common production monitoring approach for critical Linux services.
+
+---
+
+# Interview Tip for 4+ Years Experience
+
+While answering, always explain:
+
+1. Concept
+2. Real-time project implementation
+3. Benefits
+4. Troubleshooting scenario
+
+This demonstrates practical experience rather than theoretical knowledge and creates a strong impression during DevOps interviews.
+
+
 # DevOps Interview Questions & Answers (4+ Years Experience)
 
 ## 1. Some of the applications are in AWS and some are on Azure, How can u achieve the communication between these 2 ?
