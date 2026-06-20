@@ -1,3 +1,97 @@
+Here's a single README.md you can copy directly.
+
+# Advanced AWS Interview Questions & Answers (4+ Years DevOps Engineer)
+
+## 1. An EC2 instance passes status checks but the app on port 80 doesn't respond. Walk through every layer you check.
+
+When an EC2 instance passes both system and instance status checks but the application is not responding on port 80, I troubleshoot layer by layer. First, I verify whether the application process is actually running using commands such as `ps -ef`, `systemctl status`, or `docker ps` if containerized. Next, I check whether the application is listening on port 80 using `netstat -tulnp` or `ss -tulnp`. If the process is not listening, the issue is application-related. If it is listening, I verify Security Group rules to ensure inbound HTTP traffic is allowed. Then I check NACL rules, route tables, and whether the instance has a public IP or is behind a Load Balancer. If an ALB is used, I validate target group health checks and target registration. I also review web server logs such as Nginx or Apache logs, application logs, and CloudWatch metrics. Finally, I test connectivity locally using curl and externally from another system. This structured approach helps isolate whether the issue is application, OS, networking, or AWS infrastructure related.
+
+---
+
+## 2. Explain a real scenario where adding more EC2 capacity made latency worse, not better.
+
+One common production scenario occurs when applications depend heavily on a backend database. During a traffic spike, engineers often increase EC2 instances assuming it will improve performance. However, adding more application servers can increase the number of concurrent database connections, overwhelming the database. Instead of reducing latency, database contention, locking, and connection pool exhaustion cause response times to increase significantly. I experienced a situation where scaling application servers doubled the number of database connections, causing RDS CPU utilization to reach 95% and query latency to increase dramatically. The solution was database optimization, query tuning, connection pooling, and read replicas rather than simply adding more compute capacity.
+
+---
+
+## 3. How do you safely rotate IAM credentials in production without breaking active sessions?
+
+The safest approach is to follow a phased rotation strategy. First, create new credentials while keeping existing credentials active. Update applications, CI/CD pipelines, Lambda functions, and automation scripts to use the new credentials. Validate that all services can authenticate successfully using the new credentials. Monitor logs for authentication failures and verify production traffic remains healthy. After confirming successful usage of the new credentials, disable the old credentials temporarily while continuing to monitor. Finally, permanently delete the old credentials. Wherever possible, I prefer IAM Roles over Access Keys because roles eliminate manual credential rotation and significantly improve security.
+
+---
+
+## 4. What problems arise when multiple services share the same Security Group, and how do you design around it?
+
+Sharing a single Security Group across multiple services often leads to excessive permissions and reduced security. Over time, teams keep adding rules to support new applications, resulting in a broad attack surface. Troubleshooting also becomes difficult because changes intended for one service can unintentionally affect others. In production, I prefer assigning dedicated Security Groups per application or service tier. For example, web servers, application servers, and databases each receive their own Security Group. Communication is controlled through Security Group references rather than wide-open CIDR ranges. This follows least-privilege principles and improves maintainability.
+
+---
+
+## 5. Difference between Security Group and NACL - and why misunderstanding this opens production to attack.
+
+Security Groups operate at the instance level and are stateful, meaning return traffic is automatically allowed. NACLs operate at the subnet level and are stateless, requiring both inbound and outbound rules to be explicitly defined. Many engineers mistakenly assume NACLs provide the same protection as Security Groups. Misconfigured NACLs can unintentionally allow or block traffic across entire subnets. In production environments, Security Groups are typically used as the primary firewall mechanism, while NACLs provide an additional subnet-level security layer. Understanding the distinction is critical because overly permissive NACLs or Security Groups can expose applications to unauthorized access.
+
+---
+
+## 6. How do you handle secrets in AWS without exposing them in environment variables or Lambda config?
+
+I use AWS Secrets Manager or AWS Systems Manager Parameter Store to securely store sensitive information such as database passwords, API keys, and tokens. Applications retrieve secrets dynamically at runtime through IAM-authenticated API calls. This ensures secrets are encrypted at rest using KMS and are never hardcoded in source code, Terraform files, Docker images, or Lambda configurations. Secret rotation can also be automated through Secrets Manager. This approach significantly improves security and compliance while reducing operational risk.
+
+---
+
+## 7. Explain cost drift. How do you detect a silent billing spike before it shows up on the invoice?
+
+Cost drift occurs when cloud spending gradually increases without intentional infrastructure changes. Common causes include idle resources, oversized instances, unattached EBS volumes, data transfer growth, snapshot accumulation, or inefficient architecture changes. To detect cost drift early, I configure AWS Budgets, Cost Explorer alerts, Cost Anomaly Detection, and CloudWatch billing alarms. Daily cost monitoring dashboards allow teams to identify unusual spending patterns before monthly invoices arrive. Regular FinOps reviews and tagging strategies also help pinpoint cost ownership and optimization opportunities.
+
+---
+
+## 8. What happens internally when an S3 bucket policy and IAM policy conflict on the same action?
+
+AWS follows an explicit deny model. First, AWS evaluates all applicable policies, including IAM policies, bucket policies, SCPs, and permission boundaries. If any policy explicitly denies access, the request is denied regardless of any allow statements. If there are no explicit denies and at least one allow exists, access is granted. For example, even if an IAM policy allows access to an S3 bucket, a bucket policy containing an explicit deny will override the allow and block access. Understanding policy evaluation order is essential for troubleshooting authorization issues.
+
+---
+
+## 9. How do you design a multi-account AWS setup without permissions becoming tightly coupled?
+
+I follow a multi-account strategy using AWS Organizations. Separate accounts are maintained for Production, Non-Production, Security, Shared Services, and Logging. Access between accounts is controlled using IAM Roles and STS AssumeRole instead of long-term credentials. Shared services such as CI/CD, monitoring, and logging operate from centralized accounts. Service Control Policies enforce governance at the organizational level. This architecture improves security, isolation, compliance, and operational scalability while preventing tightly coupled permission structures.
+
+---
+
+## 10. Explain NAT Gateway vs NAT Instance vs VPC Endpoint - when does choosing wrong waste money?
+
+A NAT Gateway is a managed AWS service that allows private subnet resources to access the internet. It offers high availability but incurs hourly and data processing charges. A NAT Instance is a self-managed EC2 instance providing similar functionality but requires maintenance and scaling. A VPC Endpoint allows private communication with AWS services without internet access or NAT usage. Choosing a NAT Gateway for workloads that only access S3 or DynamoDB can waste significant money because a VPC Endpoint would eliminate NAT data transfer costs. Selecting the right option depends on traffic patterns, availability requirements, and cost considerations.
+
+---
+
+## 11. How does cross-account role assumption actually work, and why is it dangerous if misconfigured?
+
+Cross-account role assumption uses AWS Security Token Service (STS). An IAM user or role in one account assumes a role in another account based on trust policies. Temporary credentials are generated and used for authorized actions. If trust relationships are overly permissive, unauthorized accounts may gain access to critical resources. Misconfigured AssumeRole permissions can create privilege escalation paths. Therefore, trust policies should be tightly controlled, least privilege should be enforced, and CloudTrail monitoring should be enabled for auditing.
+
+---
+
+## 12. How do you refactor a flat VPC into private/public subnets without taking production down?
+
+The migration must be gradual. First, create public and private subnets alongside the existing infrastructure. Deploy NAT Gateways, route tables, and Security Groups. Then move stateless workloads incrementally into the new subnet architecture while validating connectivity. Load Balancers are used to direct traffic between old and new environments during migration. Database and stateful components are migrated carefully with replication and failover planning. Infrastructure as Code and extensive testing are critical. The goal is to perform migration in phases rather than attempting a risky big-bang cutover.
+
+---
+
+## 13. What are partial failovers, and how do you recover safely during a Multi-AZ RDS failure?
+
+A partial failover occurs when some components recover while others remain unavailable or degraded. In a Multi-AZ RDS setup, AWS automatically promotes the standby instance during failures. However, applications may still experience connection issues, DNS propagation delays, stale connection pools, or transaction retries. During recovery, I verify RDS failover completion, application connectivity, DNS resolution, database replication status, and application health. Monitoring dashboards help confirm full service restoration before closing the incident.
+
+---
+
+## 14. What is the real difference between an Elastic IP and a Public IP, and why does that matter at scale?
+
+A Public IP is automatically assigned by AWS and may change when an instance stops and starts. An Elastic IP is a static public IPv4 address allocated to an AWS account and retained until released. At scale, Elastic IPs are important for systems requiring fixed IP allowlists, partner integrations, VPN connections, or external firewall configurations. However, unused Elastic IPs incur charges, so proper lifecycle management is important for cost optimization.
+
+---
+
+## 15. Describe a real incident caused by an overly permissive IAM policy. How did you fix it?
+
+A common production incident involved an IAM policy containing `s3:*` permissions on all buckets using the `*` wildcard. A developer accidentally deleted objects from a production bucket while testing automation scripts. Although versioning allowed recovery, the incident highlighted excessive permissions. The fix involved implementing least-privilege IAM policies, restricting actions to specific buckets, enabling MFA for sensitive operations, introducing approval workflows for production changes, and conducting periodic IAM access reviews. We also implemented IAM Access Analyzer and automated compliance checks to prevent similar issues in the future.
+
+
+
 # AWS DevOps Engineer (4 Years Experience) - Interview Questions & Answers
 
 ## 1. Can you describe the different types of Load Balancers and provide examples?
