@@ -1,3 +1,203 @@
+Copy the entire README below:
+
+# CGI DevOps Interview Questions & Answers (4+ Years Experience)
+
+# AWS
+
+## Explain the complete request flow from a user accessing an application hosted in AWS.
+
+When a user accesses an application, the request first reaches the DNS service, typically Route 53, which resolves the domain name to the appropriate endpoint. If CloudFront is configured, the request is routed to the nearest Edge Location where cached content is served. If the content is not cached, CloudFront forwards the request to the Application Load Balancer (ALB). The ALB evaluates listener rules and forwards the request to a healthy target group containing EC2 instances, ECS tasks, or Kubernetes pods running in EKS. The application processes the request and may interact with backend services such as RDS, DynamoDB, ElastiCache, or S3. The response follows the same path back through the ALB, CloudFront, and finally reaches the user. Throughout the process, Security Groups, NACLs, IAM permissions, and route tables ensure secure communication. In production environments, monitoring tools such as CloudWatch, Prometheus, and Grafana continuously track the health and performance of every component involved in the request flow.
+
+---
+
+## Difference between Security Groups and NACLs?
+
+Security Groups operate at the EC2 instance or ENI level and act as virtual firewalls. They are stateful, meaning if inbound traffic is allowed, the response traffic is automatically allowed regardless of outbound rules. NACLs operate at the subnet level and are stateless, requiring explicit inbound and outbound rules. Security Groups only support allow rules, whereas NACLs support both allow and deny rules. In production, Security Groups are generally used as the primary security mechanism, while NACLs provide an additional subnet-level layer of protection. A common mistake is relying solely on NACLs while leaving Security Groups overly permissive, which can increase security risks.
+
+---
+
+## How does a NAT Gateway work internally?
+
+A NAT Gateway allows instances in private subnets to access the internet without exposing them to inbound internet traffic. When a private EC2 instance initiates outbound communication, traffic is routed through the NAT Gateway located in a public subnet. The NAT Gateway replaces the private IP address with its own public Elastic IP and forwards the request to the internet. The response is then translated back and sent to the originating private instance. Because NAT Gateway only supports outbound initiated connections, external systems cannot directly reach private instances. It is highly available within an Availability Zone and is commonly used for software updates, package downloads, and external API communication.
+
+---
+
+## How would you design a highly available architecture across multiple Availability Zones?
+
+For high availability, I would distribute application instances across at least two or three Availability Zones. Route 53 would route traffic to an Application Load Balancer deployed across multiple AZs. The ALB would distribute requests to EC2 instances or EKS worker nodes running in different AZs. Databases would use Multi-AZ deployments such as RDS Multi-AZ. Auto Scaling Groups would maintain desired capacity and automatically replace failed instances. Application data would be stored on durable services such as S3 or EFS. Monitoring, alerting, and automated failover mechanisms would be implemented to ensure minimal downtime. This architecture eliminates single points of failure and provides resilience against infrastructure outages.
+
+---
+
+## Difference between ALB, NLB, and CLB?
+
+Application Load Balancer operates at Layer 7 and supports HTTP and HTTPS traffic. It provides advanced routing capabilities such as host-based routing, path-based routing, SSL termination, and WebSocket support. Network Load Balancer operates at Layer 4 and handles TCP, UDP, and TLS traffic. It provides extremely low latency and can handle millions of requests per second. Classic Load Balancer is the older generation load balancer supporting basic Layer 4 and Layer 7 functionality but lacks many modern features. For microservices and Kubernetes workloads, ALB is generally preferred, while NLB is used for high-performance network applications.
+
+---
+
+## How do you provide cross-account access in AWS?
+
+Cross-account access is typically implemented using IAM Roles and AWS STS. The target account creates an IAM role with a trust policy allowing another AWS account to assume it. Users or services in the source account call AssumeRole and receive temporary credentials. These temporary credentials inherit the permissions defined by the target role. This approach is more secure than sharing access keys because credentials are temporary and centrally managed.
+
+---
+
+## What happens when an EC2 instance in an Auto Scaling Group becomes unhealthy?
+
+When an instance fails health checks, the Auto Scaling Group marks it as unhealthy. Health checks can come from EC2 status checks, ELB target group health checks, or custom health checks. The ASG automatically terminates the unhealthy instance and launches a replacement instance to maintain the desired capacity. This self-healing capability ensures application availability without manual intervention.
+
+---
+
+## How would you troubleshoot connectivity issues between private and public subnets?
+
+I would first verify route tables to ensure private subnets route internet-bound traffic through a NAT Gateway. Then I would check Security Groups, NACLs, VPC peering configurations, Transit Gateway routes if applicable, and DNS resolution settings. I would use tools such as telnet, nc, traceroute, curl, and VPC Flow Logs to identify where communication is failing. Most connectivity issues are caused by missing routes, incorrect Security Group rules, or NACL restrictions.
+
+---
+
+## How does EKS integrate with IAM?
+
+EKS integrates with IAM through IAM Roles for Service Accounts (IRSA). Worker nodes use IAM roles to access AWS resources, while Kubernetes service accounts can assume dedicated IAM roles without sharing node-level permissions. Authentication to the Kubernetes API server is controlled using IAM identities mapped through aws-auth configurations. This integration provides fine-grained access control and follows least-privilege principles.
+
+---
+
+## How would you optimize AWS infrastructure costs?
+
+I would begin by identifying underutilized resources using Cost Explorer, Trusted Advisor, Compute Optimizer, and CloudWatch metrics. Idle EC2 instances, unattached EBS volumes, unused Elastic IPs, and outdated snapshots would be removed. Auto Scaling would be configured appropriately to match demand. Spot Instances would be used for non-critical workloads, and Savings Plans or Reserved Instances would be purchased for predictable workloads. S3 lifecycle policies, VPC Endpoints, Graviton instances, and Karpenter-based Kubernetes scaling would also be implemented to reduce costs without affecting performance.
+
+---
+
+# Terraform
+
+## What is Terraform State and why is it important?
+
+Terraform State is a file that stores the current mapping between Terraform configuration and real infrastructure resources. It tracks resource IDs, dependencies, metadata, and configuration details. Terraform uses the state file to determine what changes are required during future plan and apply operations. Without state, Terraform would not know which resources it manages, making updates and deletions unreliable.
+
+---
+
+## What happens if the Terraform State file gets corrupted?
+
+If the state file becomes corrupted, Terraform may lose track of managed resources, resulting in failed plans, incorrect resource recreation, or accidental infrastructure changes. In production environments, state files should be backed up regularly and stored in versioned S3 buckets. Recovery usually involves restoring the latest backup version or reconstructing the state using terraform import.
+
+---
+
+## How do you recover from state file issues?
+
+The first step is identifying whether backups are available. If using S3 versioning, I would restore a previous version of the state file. If no backup exists, I would use terraform import to re-establish resource mappings. Before making changes, I would run terraform plan to verify the recovered state accurately reflects production infrastructure.
+
+---
+
+## Difference between count and for_each?
+
+Count creates resources using numerical indexes, such as instance[0], instance[1], and instance[2]. It is suitable when resources are identical. For_each uses unique keys, making it ideal when resources require individual identities. For_each provides better stability because removing one resource does not cause index shifting and unintended replacements.
+
+---
+
+## Explain Terraform backend and state locking.
+
+A backend defines where Terraform stores its state file. Common backends include local storage, S3, Azure Storage, and Terraform Cloud. State locking prevents multiple users from modifying infrastructure simultaneously. Before Terraform performs an apply operation, it acquires a lock. This prevents concurrent changes that could corrupt infrastructure state.
+
+---
+
+## Why do we use DynamoDB with Terraform?
+
+DynamoDB provides state locking for Terraform when using an S3 backend. Before Terraform performs an operation, it creates a lock record in DynamoDB. If another user attempts to run Terraform simultaneously, the lock prevents concurrent modifications. After completion, Terraform removes the lock. This mechanism protects infrastructure from race conditions and state corruption.
+
+---
+
+## What are Terraform modules and how do you structure them?
+
+Modules are reusable collections of Terraform resources that standardize infrastructure deployment. A typical structure includes separate modules for VPC, EKS, EC2, RDS, Security Groups, and Load Balancers. Environment-specific configurations are stored separately while common logic remains inside reusable modules. This approach improves maintainability, consistency, and scalability.
+
+---
+
+## How does Terraform identify infrastructure drift?
+
+Terraform compares the actual infrastructure state with the desired configuration and stored state file. During terraform plan, any differences between cloud resources and Terraform configuration appear as proposed changes. Drift often occurs when resources are modified manually through the AWS Console.
+
+---
+
+## What is Terraform Import and when would you use it?
+
+Terraform Import allows existing manually created infrastructure to be brought under Terraform management without recreating resources. It is commonly used during migration projects where infrastructure already exists but needs to be managed through Infrastructure as Code.
+
+---
+
+## How would you manage Terraform code for multiple environments?
+
+I usually create separate state files, variable files, and backend configurations for Development, QA, Staging, and Production. Reusable modules remain common across environments while environment-specific values are injected through variables. This ensures isolation, consistency, and easier maintenance.
+
+---
+
+# Kubernetes
+
+## Explain the complete Kubernetes architecture.
+
+Kubernetes consists of a Control Plane and Worker Nodes. The Control Plane includes the API Server, Scheduler, Controller Manager, and etcd. The API Server acts as the central management component. The Scheduler assigns Pods to Nodes. The Controller Manager continuously ensures the desired state matches the actual state. Etcd stores cluster configuration and metadata. Worker Nodes contain Kubelet, Kube Proxy, and container runtimes such as containerd. Together, these components provide orchestration, scaling, self-healing, and service discovery.
+
+---
+
+## What happens internally when you create a Pod?
+
+When a Pod manifest is submitted, the API Server validates the request and stores it in etcd. The Scheduler selects an appropriate node based on resource availability and scheduling constraints. The Kubelet on the selected node receives instructions and requests the container runtime to pull the required image and start the containers. Once containers are running and readiness checks pass, the Pod becomes available for serving traffic.
+
+---
+
+## Difference between Deployment, StatefulSet, and DaemonSet?
+
+Deployment is used for stateless applications and supports rolling updates, scaling, and rollbacks. StatefulSet is used for stateful applications requiring stable network identities and persistent storage, such as databases. DaemonSet ensures one Pod runs on every node and is commonly used for monitoring agents, log collectors, and security tools.
+
+---
+
+## How does Kubernetes Service work?
+
+A Service provides a stable endpoint for accessing Pods. Since Pod IPs change frequently, Services maintain a consistent virtual IP and DNS name. Services use label selectors to identify target Pods and distribute traffic among healthy endpoints.
+
+---
+
+## Difference between ClusterIP, NodePort, and LoadBalancer?
+
+ClusterIP exposes applications internally within the cluster. NodePort exposes applications through a port on every node. LoadBalancer provisions a cloud provider load balancer and exposes applications externally. In production environments, LoadBalancer combined with Ingress is the most common pattern.
+
+---
+
+## How do Readiness and Liveness Probes work?
+
+Readiness Probes determine whether a Pod is ready to receive traffic. If readiness checks fail, Kubernetes removes the Pod from Service endpoints. Liveness Probes determine whether the application is healthy. If liveness checks fail repeatedly, Kubernetes restarts the container. Together, they improve application reliability and availability.
+
+---
+
+## What would you do if a Pod is stuck in Pending state?
+
+I would start by running `kubectl describe pod` to identify scheduling failures. Common causes include insufficient CPU or memory, node selector mismatches, taints without tolerations, missing Persistent Volumes, resource quotas, or node capacity limitations. Kubernetes events usually provide clear clues about the root cause.
+
+---
+
+## How would you troubleshoot CrashLoopBackOff?
+
+I would inspect Pod events and logs using `kubectl describe pod` and `kubectl logs`. Common causes include application crashes, incorrect environment variables, missing Secrets, failed database connectivity, resource exhaustion, image issues, and probe failures. Once the root cause is identified, I would redeploy the corrected configuration and monitor recovery.
+
+---
+
+## Explain Taints, Tolerations, and Node Affinity.
+
+Taints prevent Pods from being scheduled onto specific nodes unless the Pods have matching tolerations. Node Affinity allows Pods to express preferences or requirements for node selection. Together, they provide advanced workload placement controls. For example, critical production workloads can be isolated onto dedicated nodes.
+
+---
+
+## How does Kubernetes perform rolling updates and rollbacks?
+
+During a rolling update, Kubernetes gradually creates new Pods while terminating old Pods based on maxSurge and maxUnavailable settings. This ensures continuous availability during deployments. If issues occur, Kubernetes can rollback to a previous ReplicaSet using deployment revision history.
+
+---
+
+## How does Ingress route traffic to applications?
+
+Ingress acts as an HTTP and HTTPS routing layer. An Ingress Controller such as NGINX or AWS Load Balancer Controller watches Ingress resources and configures routing rules. Requests are routed to the correct backend Services based on hostnames, paths, or other routing conditions.
+
+---
+
+## How would you troubleshoot an application returning 502/503 errors?
+
+I would trace the request flow end-to-end. First, I would verify Ingress health, ALB target group status, and Service endpoints. Next, I would check Pod readiness status, application logs, and resource utilization. I would confirm that Services correctly select Pods and that readiness probes are passing. If Pods are healthy but traffic still fails, I would inspect networking, DNS resolution, backend dependencies, and load balancer health checks. This systematic approach quickly identifies whether the issue exists at the ingress, service, pod, application, or infrastructure layer.
+
 # HCL DevOps Interview Questions & Answers (4+ Years Experience)
 
 ## Q1. Can you introduce yourself and explain your professional experience?
