@@ -1,0 +1,8 @@
+Round: 1
+1. Tell me about yourself ?
+2. How you have used CI/CD in your project.
+3. Share your screen and write a docker file.
+4. What strategy you have followed while deployment into k8s cluster, In-depth discussion. 
+5. How you can achieve zero downtime while doing deployment, In-depth discussion. 
+6. How you have done scaling and container orchestration for your application.
+7. What is state file in terraform, in-depth discussion.
