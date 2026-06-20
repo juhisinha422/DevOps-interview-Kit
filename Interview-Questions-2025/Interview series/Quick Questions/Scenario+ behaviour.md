@@ -1,5 +1,3 @@
-Copy the entire README below:
-
 # CGI DevOps Interview Questions & Answers (4+ Years Experience)
 
 # AWS
