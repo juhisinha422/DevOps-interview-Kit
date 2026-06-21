@@ -1,3 +1,53 @@
+# Terraform Interview Questions & Answers (4+ Years DevOps Engineer)
+
+## 1. How do you manage Terraform state securely in a multi-team environment?
+
+In a multi-team environment, Terraform state management is critical because the state file contains the mapping between Terraform code and actual cloud resources. In production, I store Terraform state remotely in an AWS S3 backend with versioning enabled and use DynamoDB for state locking. S3 versioning protects against accidental deletion or corruption, while DynamoDB prevents concurrent modifications by multiple engineers or CI/CD pipelines. The state file is encrypted using AWS KMS and access is controlled through IAM roles following the principle of least privilege. Separate state files or AWS accounts are maintained for Dev, QA, and Production environments to ensure isolation. CloudTrail is enabled to audit all state-related activities. In large organizations, infrastructure is divided into separate state files such as networking, security, EKS, databases, and application infrastructure to reduce blast radius and improve team ownership.
+
+---
+
+## 2. When would you use for_each instead of count in Terraform?
+
+I use `for_each` when resources have unique identities and need stable lifecycle management. With `count`, Terraform manages resources based on index positions. If an item is removed from the middle of the list, Terraform may recreate other resources because their indexes shift. This can cause unintended changes in production. On the other hand, `for_each` uses unique keys and maintains resource identity even when new items are added or removed.
+
+For example, if I need to create Security Groups for multiple applications such as frontend, backend, and database, I use `for_each` because each resource has a unique name. This ensures Terraform only modifies the specific resource that changed rather than recreating unrelated resources. For simple identical resources where order does not matter, such as creating three identical EC2 instances, `count` may still be sufficient.
+
+---
+
+## 3. How do you move existing resources into a module without recreating them?
+
+When refactoring Terraform code into modules, it is important to avoid recreating production resources. The safest approach is to move the Terraform state rather than recreating infrastructure. First, I create the module structure and move the resource definition into the module. Then I use the `terraform state mv` command to update the resource address in the state file.
+
+For example:
+
+```bash
+terraform state mv aws_instance.web module.ec2.aws_instance.web
+```
+
+This tells Terraform that the existing resource now belongs to the module. After moving the state, I run `terraform plan` to verify that Terraform shows no infrastructure changes. This approach allows code refactoring without downtime or resource recreation. In Terraform 1.1 and later, moved blocks can also be used to track resource relocation in code.
+
+---
+
+## 4. How do you detect and manage infrastructure drift in Terraform?
+
+Infrastructure drift occurs when someone manually changes cloud resources outside Terraform. Examples include modifying Security Group rules, resizing EC2 instances, or changing RDS configurations through the AWS Console. Since Terraform is unaware of these manual changes, the actual infrastructure no longer matches the code.
+
+I detect drift by running `terraform plan`, which compares the current infrastructure state with the desired state defined in code. In CI/CD environments, scheduled drift detection jobs can automatically execute plans and notify teams about differences. Once drift is identified, I evaluate whether the manual change was intentional. If the change should remain, I update the Terraform code accordingly. If the change was unauthorized, I allow Terraform to restore the intended configuration. This ensures infrastructure remains consistent, auditable, and predictable.
+
+---
+
+## 5. How do you enforce security and compliance checks before running terraform apply?
+
+In production environments, Terraform changes should never go directly from code commit to deployment. I integrate multiple validation and security controls into the CI/CD pipeline before allowing `terraform apply`.
+
+The pipeline first runs `terraform fmt` and `terraform validate` to verify syntax and configuration correctness. Then static analysis tools such as Checkov, Tfsec, Terrascan, or Sentinel policies are executed to detect security misconfigurations. These tools identify issues such as public S3 buckets, unrestricted Security Groups, unencrypted storage, or missing logging configurations.
+
+Next, a `terraform plan` is generated and stored as an artifact for review. For production environments, a manual approval stage is required before execution. The plan is reviewed by senior engineers or change management teams to verify the expected changes. Only after successful validation, security scanning, policy checks, and approvals does the pipeline execute `terraform apply`.
+
+This process ensures infrastructure deployments remain secure, compliant, auditable, and aligned with organizational governance standards.
+-------
+
+
 # Advanced Terraform Interview Questions & Answers (4+ Years DevOps Engineer)
 
 ## 1. How does Terraform handle state locking, and what happens if the lock is lost mid-apply?
