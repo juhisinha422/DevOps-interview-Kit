@@ -1,3 +1,244 @@
+# AWS, Terraform, Docker, Kubernetes, CI/CD Interview Questions & Answers (4+ Years DevOps)
+
+## 1. What all AWS services have you used, explain in terms of security.
+
+In my current project, I primarily work with AWS services such as VPC, EC2, EKS, IAM, S3, RDS, Route53, ALB, CloudWatch, CloudTrail, Secrets Manager, KMS, Auto Scaling Groups, ECR, Lambda, and SNS. From a security perspective, IAM is used to implement least-privilege access by creating roles instead of long-term access keys. Security Groups and NACLs are used for network-level protection. S3 buckets are configured with encryption using KMS keys, bucket policies, and Block Public Access settings. CloudTrail is enabled for auditing all API activities. Secrets Manager stores database passwords and API keys securely instead of hardcoding them in code or Terraform files. EKS workloads use IRSA (IAM Roles for Service Accounts) to provide fine-grained AWS permissions to pods. CloudWatch and GuardDuty help detect suspicious activity, while KMS ensures encryption of data at rest across services.
+
+---
+
+## 2. You have lost the key to access an EC2 server, how will you regain access?
+
+If the private key is lost, the recovery method depends on the environment. In AWS, I would first check whether AWS Systems Manager Session Manager is enabled because it allows secure shell access without SSH keys. If Session Manager is unavailable, I would stop the affected EC2 instance, detach its root EBS volume, and attach that volume to a temporary recovery instance. After mounting the volume, I would modify the authorized_keys file or create a new user with a new SSH key. Then I would detach the volume, reattach it to the original EC2 instance, and start the server. This process restores access without affecting application data. For production systems, enabling Session Manager is considered a best practice because it eliminates dependency on SSH key management.
+
+---
+
+## 3. How will you restrict access of a user who has the private key of an EC2 server?
+
+If a user possesses a private key and access must be revoked immediately, I would remove the corresponding public key from the `authorized_keys` file on the EC2 instance. If the key is shared among multiple users, I would rotate the entire key pair and distribute new credentials only to authorized personnel. Additionally, I would restrict access using Security Groups, IAM policies, VPN controls, and AWS Systems Manager Session Manager. In enterprise environments, SSH access should be tightly controlled and monitored through centralized identity management systems instead of relying solely on shared private keys.
+
+---
+
+## 4. How will you provide access to the S3 bucket? Do you know the S3 bucket policy created? Write it down.
+
+Access to an S3 bucket can be granted through IAM policies, bucket policies, or access points. In production, I generally provide access using IAM roles because they offer better control and auditing. Bucket policies are used when cross-account access or public access is required.
+
+Example Bucket Policy:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:role/AppRole"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::my-app-bucket/*"
+      ]
+    }
+  ]
+}
+```
+
+This policy allows a specific IAM role to read and upload objects to the bucket.
+
+---
+
+## 5. Can you write a Terraform script creating VPC, subnets, and route tables?
+
+At a high level, Terraform creates a VPC as the network boundary, then creates public and private subnets inside the VPC, and finally configures route tables to control traffic flow. Public route tables usually contain routes to an Internet Gateway, while private route tables use NAT Gateways for outbound internet access. In production projects, I implement this using reusable Terraform modules with separate files for VPC, subnets, route tables, NAT Gateways, and security configurations. This modular approach improves maintainability and allows the same code to be reused across development, staging, and production environments.
+
+---
+
+## 6. Why are VPC, subnets, and route tables used?
+
+A VPC provides an isolated virtual network inside AWS where cloud resources can be securely deployed. Subnets divide the VPC into smaller logical networks and help separate public-facing and private workloads. Public subnets host resources such as Load Balancers and Bastion Hosts, while private subnets host databases and application servers. Route tables define how network traffic is routed between subnets, internet gateways, NAT gateways, VPN connections, and VPC peering connections. Together, these components provide network isolation, security, scalability, and controlled traffic flow.
+
+---
+
+## 7. How will you get back the .tfstate file if it gets corrupted in S3?
+
+In production, I always enable S3 versioning for Terraform state files. If a state file becomes corrupted, I first identify the last healthy version from S3 object version history. After verifying the version, I restore it and validate the contents before resuming deployments. If versioning is unavailable, recovery becomes much more difficult and may require importing resources back into Terraform state using `terraform import`. This is why enabling versioning and maintaining regular backups is considered a critical best practice for Terraform state management.
+
+---
+
+## 8. What is Terraform drift?
+
+Terraform drift occurs when infrastructure is modified outside Terraform after deployment. Examples include manually changing Security Group rules, resizing EC2 instances, or modifying RDS settings through the AWS Console. Since Terraform is unaware of these manual changes, the actual infrastructure state differs from the desired configuration stored in code. Drift is usually detected during `terraform plan`, which compares the current infrastructure against the Terraform configuration. To resolve drift, I either update Terraform code to match the manual changes or allow Terraform to restore the intended state.
+
+---
+
+## 9. If the same person is working on Terraform code, how will you ensure state locking?
+
+Even if only one engineer typically manages the infrastructure, state locking should still be enabled because deployments may also be triggered through CI/CD pipelines. I use an S3 backend with DynamoDB state locking. Before every apply operation, Terraform acquires a lock in DynamoDB, preventing concurrent updates. If another process attempts to modify the infrastructure simultaneously, Terraform blocks the operation until the lock is released. This protects the state file from corruption and ensures consistency.
+
+---
+
+## 10. Can you write a Dockerfile to install a Node.js application? Explain best practices.
+
+For Node.js applications, I typically use a multi-stage Docker build. The first stage installs dependencies and builds the application, while the second stage copies only the required artifacts into a lightweight runtime image. Best practices include using official base images, minimizing image layers, excluding unnecessary files through `.dockerignore`, running containers as non-root users, pinning image versions, scanning images for vulnerabilities, and reducing image size through multi-stage builds. These practices improve security, performance, and deployment speed.
+
+---
+
+## 11. What is a staging build?
+
+A staging build is a production-like deployment environment used for final validation before releasing changes to end users. It mirrors production as closely as possible in terms of infrastructure, configurations, integrations, and security controls. Teams use staging environments to perform user acceptance testing, integration testing, performance validation, and deployment verification. This helps identify issues before production deployment and reduces release risk.
+
+---
+
+## 12. How will you ensure communication between containers in Docker?
+
+Docker provides networking capabilities that allow containers to communicate with each other. In modern environments, I create custom bridge networks and attach related containers to the same network. Containers can then communicate using container names as DNS entries. For microservices, Docker Compose or Kubernetes networking is often used. Network segmentation, service discovery, and proper port exposure ensure secure and reliable container-to-container communication.
+
+
+
+## 13. Write Kubernetes manifest file for database server and mount PVC to it.
+
+In production, databases require persistent storage because pod data is lost when pods are recreated. To ensure data persistence, Kubernetes uses Persistent Volumes (PV) and Persistent Volume Claims (PVC). The database deployment mounts a PVC to store data outside the container filesystem. When the pod restarts or moves to another node, the data remains available. For example, MySQL can mount `/var/lib/mysql` to a PVC backed by EBS in AWS. In real projects, I typically deploy stateful applications using StatefulSets along with PVCs because StatefulSets provide stable identities and persistent storage management.
+
+Example:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password123
+        volumeMounts:
+        - name: mysql-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+```
+
+---
+
+## 14. Explain Architecture of Kubernetes.
+
+Kubernetes architecture consists of two major components: the Control Plane and Worker Nodes. The Control Plane manages the cluster and makes scheduling decisions, while Worker Nodes run the actual application workloads.
+
+The Control Plane includes API Server, etcd, Scheduler, Controller Manager, and Cloud Controller Manager. The API Server acts as the entry point for all cluster operations. etcd stores the entire cluster state. The Scheduler decides where pods should run based on available resources and constraints. Controller Manager continuously monitors cluster health and ensures the desired state matches the actual state.
+
+Worker Nodes contain kubelet, kube-proxy, and container runtime such as containerd. Kubelet communicates with the API Server and ensures pods are running correctly. Kube-proxy manages networking and load balancing. The container runtime runs the containers.
+
+When a deployment is created, the request goes to the API Server, gets stored in etcd, the Scheduler selects a node, kubelet pulls the image, creates the container, and the Service routes traffic to the running pod. This architecture provides scalability, self-healing, and high availability.
+
+---
+
+## 15. Any idea about Helm Charts? Can you explain where you have used it?
+
+Helm is the package manager for Kubernetes and is often referred to as the "apt" or "yum" of Kubernetes. It simplifies application deployment by packaging Kubernetes manifests into reusable Helm Charts.
+
+A Helm Chart consists of templates, values.yaml, Chart.yaml, and supporting files. Instead of maintaining separate YAML files for each environment, variables can be defined in values files and reused across Dev, QA, and Production.
+
+In my project, I use Helm for deploying microservices on EKS. Each microservice has its own Helm Chart containing Deployment, Service, Ingress, ConfigMap, Secret, and HPA templates. Jenkins or ArgoCD passes environment-specific values during deployment. This reduces duplication, improves maintainability, and standardizes deployments across environments.
+
+---
+
+## 16. If application is deployed in one AZ, how will you ensure restoration in less time? Explain Disaster Recovery.
+
+Running an application in a single Availability Zone creates a single point of failure. To minimize downtime, I would design the application using Multi-AZ architecture. Application servers would run across multiple Availability Zones behind an Application Load Balancer. Databases would use Multi-AZ RDS or clustered database solutions.
+
+For Disaster Recovery, I follow backup and recovery strategies based on Recovery Time Objective (RTO) and Recovery Point Objective (RPO). Critical databases are backed up regularly and replicated across regions if required. Infrastructure is defined using Terraform, allowing rapid recreation in another AZ or region. Containerized workloads in EKS can automatically reschedule pods on healthy nodes. Route53 health checks and failover routing can redirect traffic to a standby environment during outages.
+
+This architecture significantly reduces recovery time and ensures business continuity.
+
+---
+
+## 17. Any idea about Service Mesh?
+
+A Service Mesh is an infrastructure layer that manages service-to-service communication in microservices architectures. Popular service meshes include Istio, Linkerd, and Consul.
+
+Instead of adding networking logic to applications, a sidecar proxy such as Envoy is injected alongside each pod. These sidecars handle traffic routing, load balancing, mutual TLS encryption, retries, circuit breaking, observability, and service discovery.
+
+In large microservice environments, service meshes simplify communication and improve security. For example, Istio can automatically encrypt traffic between services using mTLS and provide detailed metrics without requiring code changes. This improves reliability, visibility, and operational control.
+
+---
+
+## 18. What is your strategy to deploy in production? How will you implement it with no downtime?
+
+For production deployments, I generally use Rolling Updates, Blue-Green Deployments, or Canary Deployments depending on the application's criticality.
+
+For most applications, Rolling Updates are sufficient. Kubernetes gradually replaces old pods with new pods while keeping a minimum number of healthy pods available. Readiness Probes ensure traffic is only sent to healthy containers.
+
+For highly critical applications such as payment services, I prefer Blue-Green Deployment. A complete new environment is deployed alongside the existing one. After validation, traffic is switched to the new environment. If any issue occurs, rollback is immediate.
+
+For high-risk releases, Canary Deployment is used where a small percentage of traffic is routed to the new version. Monitoring metrics such as latency, error rate, and CPU utilization help determine whether the rollout should continue.
+
+These strategies ensure zero downtime and safe deployments.
+
+---
+
+## 19. Do you know about logging and monitoring? How have you configured it?
+
+Yes. In my current project, I have implemented a complete observability stack consisting of logging, monitoring, and alerting.
+
+For monitoring, Prometheus collects metrics from Kubernetes nodes, pods, applications, and infrastructure. Grafana visualizes these metrics through dashboards. Key metrics include CPU, memory, disk utilization, network traffic, pod restarts, error rates, response times, and application throughput.
+
+For logging, Fluent Bit collects container logs and forwards them to Elasticsearch or CloudWatch. Kibana dashboards help developers search and analyze logs. Structured JSON logging is implemented wherever possible.
+
+Alerting is configured using Alertmanager integrated with Slack, Microsoft Teams, and email notifications. Critical alerts include pod failures, node failures, high latency, memory leaks, disk utilization thresholds, and application error spikes.
+
+This setup enables proactive monitoring and faster incident resolution.
+
+---
+
+## 20. What way did you use to write Pipeline Script?
+
+I primarily use Declarative Pipelines in Jenkins because they are easier to read, maintain, and standardize across teams. Declarative Pipelines provide built-in support for stages, post actions, environment variables, parameters, and agent definitions.
+
+A typical pipeline in my project includes stages such as Source Checkout, Build, Unit Testing, SonarQube Analysis, Security Scanning, Docker Image Build, Image Push to ECR, Terraform Validation, Deployment to Kubernetes, Smoke Testing, and Notifications.
+
+For highly complex workflows requiring dynamic logic, loops, or advanced scripting, I use Scripted Pipeline sections within Declarative Pipelines. This combination provides flexibility while maintaining readability.
+
+---
+
+## 21. Are you using SonarQube? Do you know how to configure it?
+
+Yes. SonarQube is integrated into our CI/CD pipeline for static code analysis and code quality enforcement. Jenkins triggers SonarQube scans during the build process using the Sonar Scanner plugin.
+
+The application source code is analyzed for bugs, code smells, vulnerabilities, duplicated code, maintainability issues, and security hotspots. Quality Gates are configured to define minimum acceptable standards such as code coverage percentage, vulnerability thresholds, and bug counts.
+
+If a Quality Gate fails, Jenkins automatically blocks the deployment process. This prevents low-quality or vulnerable code from reaching production. Reports are published to SonarQube dashboards where developers can review findings and fix issues before deployment.
+
+In enterprise projects, SonarQube acts as an important quality control checkpoint within the CI/CD pipeline and significantly improves code quality and security.
+````
+
+
 # CGI DevOps Interview Questions & Answers (4+ Years Experience)
 
 # AWS
