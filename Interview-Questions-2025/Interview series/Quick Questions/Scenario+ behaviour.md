@@ -236,7 +236,7 @@ The application source code is analyzed for bugs, code smells, vulnerabilities, 
 If a Quality Gate fails, Jenkins automatically blocks the deployment process. This prevents low-quality or vulnerable code from reaching production. Reports are published to SonarQube dashboards where developers can review findings and fix issues before deployment.
 
 In enterprise projects, SonarQube acts as an important quality control checkpoint within the CI/CD pipeline and significantly improves code quality and security.
-````
+
 
 
 # CGI DevOps Interview Questions & Answers (4+ Years Experience)
