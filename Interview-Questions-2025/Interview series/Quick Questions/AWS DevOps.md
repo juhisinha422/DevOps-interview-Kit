@@ -1,5 +1,3 @@
-Here's a single README.md you can copy directly.
-
 # Advanced AWS Interview Questions & Answers (4+ Years DevOps Engineer)
 
 ## 1. An EC2 instance passes status checks but the app on port 80 doesn't respond. Walk through every layer you check.
