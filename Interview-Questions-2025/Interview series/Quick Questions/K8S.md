@@ -1,3 +1,56 @@
+# Your pod is receiving traffic even after your app crashes. kubectl get pods shows it as Running. No liveness probe defined. What's happening?
+
+Kubernetes only restarts a container when the main process exits or a liveness probe fails. Without a liveness probe, a deadlocked or stuck app that keeps the process alive can still look healthy to the kubelet. So the Pod stays Running, and the Service may keep routing traffic to it.
+
+This situation occurs because Kubernetes only knows that the container process is still running, not whether the application inside the container is actually healthy. The `Running` status simply means the container process has not exited and the kubelet sees the pod as active.
+
+If no **Liveness Probe** is configured, Kubernetes has no mechanism to detect that the application has crashed, hung, deadlocked, or stopped serving requests. As a result, the pod remains in the `Running` state even though the application is not functioning correctly.
+
+If a **Readiness Probe** is also missing, the pod continues to be listed as a healthy endpoint behind the Kubernetes Service. The Service keeps routing traffic to the pod because Kubernetes assumes it is available. Users then experience errors such as 500, 502, 503, connection timeouts, or failed requests even though `kubectl get pods` shows the pod as running.
+
+The correct solution is to configure both Readiness and Liveness Probes:
+
+* **Readiness Probe** determines whether the pod is ready to receive traffic.
+* **Liveness Probe** determines whether the application is healthy and should continue running.
+
+For example, if a Java application becomes unresponsive due to a deadlock, the Readiness Probe will remove the pod from the Service endpoints so no new traffic reaches it. If the issue persists, the Liveness Probe will fail and Kubernetes will automatically restart the container.
+
+My troubleshooting steps would be:
+
+1. Check pod status:
+
+   ```bash
+   kubectl get pods
+   ```
+
+2. Verify whether probes are configured:
+
+   ```bash
+   kubectl describe pod <pod-name>
+   ```
+
+3. Check Service endpoints:
+
+   ```bash
+   kubectl get endpoints <service-name>
+   ```
+
+4. Review application logs:
+
+   ```bash
+   kubectl logs <pod-name>
+   ```
+
+5. Test application health endpoint:
+
+   ```bash
+   kubectl exec -it <pod-name> -- curl localhost:8080/health
+   ```
+
+In a production environment, every application should have properly configured Startup, Readiness, and Liveness Probes. Without them, Kubernetes can report a pod as Running even when the application is completely unusable, leading to traffic being routed to unhealthy instances and causing outages.
+
+
+
 # Kubernetes Interview Questions & Answers (4+ Years Experience)
 
 
