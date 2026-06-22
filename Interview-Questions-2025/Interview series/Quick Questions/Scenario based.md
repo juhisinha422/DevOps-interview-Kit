@@ -112,7 +112,6 @@ How I prevent DB slowness:
 • Use ElastiCache for repeated queries
 • Review slow query log every week
 ```
-Here's the README.md content format. Since all 20 answers are very long, below is the structure and first few answers. You can continue similarly for the remaining questions.
 
 # DevOps Interview Questions & Answers (4+ Years Experience)
 
