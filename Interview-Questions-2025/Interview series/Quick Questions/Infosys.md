@@ -1,5 +1,67 @@
 # Infosys DevOps Interview Questions & Answers (4+ Years Experience)
 
+## Q1. How would you approach migrating a monolithic application to a microservices architecture? What steps would you follow, and what key challenges might you encounter during the migration process?
+
+Migrating a monolithic application to microservices is a gradual process and should not be done in a single release. My approach starts with understanding the existing application architecture, business domains, dependencies, database interactions, and traffic patterns. I first identify bounded contexts and separate the application into logical services such as user management, payment, notification, authentication, and reporting. Instead of rewriting everything at once, I follow the Strangler Fig Pattern where new functionality is developed as microservices while existing functionality continues to run in the monolith.
+
+The next step is containerization using Docker and deploying services on Kubernetes or EKS. API Gateway and Ingress are introduced to manage routing, authentication, and traffic control. CI/CD pipelines are created for each microservice to enable independent deployments. Monitoring, logging, and tracing are implemented using Prometheus, Grafana, ELK, and distributed tracing tools. Database decomposition is usually the most challenging part because monoliths often share a single database. During migration, data ownership, consistency, service communication, and distributed transactions become major concerns. Other challenges include increased operational complexity, network latency, service discovery, observability, and security management. A phased migration strategy with proper testing and monitoring minimizes risk and downtime.
+
+---
+
+## Q2. After deploying an application, it becomes slow. How would you troubleshoot the issue and rectify it?
+
+When an application becomes slow after deployment, my first objective is to determine whether the issue is related to infrastructure, application code, database performance, networking, or external dependencies. I start by checking monitoring dashboards such as Grafana and CloudWatch to identify spikes in CPU, memory, disk I/O, network utilization, response times, and error rates. Next, I review deployment changes and compare them with the previous stable release.
+
+I analyze application logs, pod logs, and APM metrics to identify bottlenecks. If the application runs on Kubernetes, I verify pod health, resource requests, limits, HPA behavior, and node utilization. Database performance is checked for slow queries, connection pool exhaustion, locks, and latency. If resource utilization is normal but response times have increased, I investigate code changes, third-party API dependencies, and caching behavior. Depending on the findings, corrective actions may include scaling resources, rolling back the deployment, tuning database queries, adjusting resource limits, fixing application code, or optimizing caching layers. Once the issue is resolved, I perform a root cause analysis and implement preventive measures to avoid recurrence.
+
+---
+
+## Q3. What happens if the Terraform state file stored in an Amazon S3 bucket is accidentally deleted? How would you recover it and prevent such incidents in the future?
+
+The Terraform state file is the source of truth that maps Terraform-managed resources to actual cloud infrastructure. If the state file stored in S3 is accidentally deleted, Terraform loses track of existing resources, and future deployments may attempt to recreate or modify resources incorrectly.
+
+In production environments, I always enable S3 versioning for Terraform state storage. If the state file is deleted, I recover it by restoring the most recent version from S3 version history. After restoration, I verify the integrity of the state file and perform a terraform plan to ensure consistency. If versioning was not enabled, recovery becomes more complex and may require rebuilding the state using terraform import commands.
+
+To prevent such incidents, I enable S3 versioning, MFA Delete where applicable, KMS encryption, IAM least-privilege access, and CloudTrail auditing. DynamoDB state locking is also configured to prevent concurrent modifications. Regular state backups and restricted access policies significantly reduce the risk of accidental deletion.
+
+---
+
+## Q4. What Jenkins strategy and pipeline type did you use?
+
+In my current project, I primarily use Jenkins Declarative Pipelines because they are easier to maintain, standardize, and review across teams. The pipeline is defined as code using Jenkinsfiles stored in Git repositories. A typical pipeline includes stages such as Source Code Checkout, Build, Unit Testing, SonarQube Analysis, Security Scanning, Docker Image Build, Image Push to ECR, Terraform Validation, Deployment to Kubernetes, Smoke Testing, and Notifications.
+
+For execution, I use a Master-Agent architecture where build workloads run on dedicated Jenkins agents instead of the controller. Agents are dynamically provisioned when required to improve scalability and resource utilization. Shared Libraries are used to standardize reusable pipeline logic across multiple projects. For production deployments, approval gates are included before release stages. This approach improves maintainability, consistency, and governance across CI/CD workflows.
+
+---
+
+## Q5. What Kubernetes deployment strategy did you use in your project?
+
+The primary deployment strategy used in my project is Rolling Update because it provides zero downtime while gradually replacing old application versions with new ones. Kubernetes ensures that a minimum number of healthy pods remain available throughout the deployment process. Readiness Probes prevent traffic from reaching pods until they are fully initialized and healthy.
+
+For business-critical services such as payment or customer-facing applications, we also use Blue-Green and Canary deployment strategies when additional risk mitigation is required. Blue-Green deployment creates a parallel environment and shifts traffic only after validation. Canary deployment releases changes to a small percentage of users before full rollout. These strategies reduce deployment risk and allow rapid rollback if issues are detected. The choice depends on application criticality, release risk, and business requirements.
+
+---
+
+## Q6. What is immutable infrastructure in Terraform? How does Terraform support the concept of immutability?
+
+Immutable infrastructure is a practice where existing infrastructure is not modified after deployment. Instead of updating resources in place, new infrastructure is created and old infrastructure is replaced. This eliminates configuration drift, ensures consistency across environments, and improves deployment reliability.
+
+Terraform supports immutability through its declarative approach and lifecycle management capabilities. Features such as create_before_destroy allow Terraform to provision replacement resources before removing existing ones, minimizing downtime. For example, instead of modifying an EC2 instance directly, Terraform can create a new instance with updated configuration and then terminate the old one. This approach ensures predictable deployments, easier rollbacks, and improved infrastructure consistency. Immutable infrastructure is commonly combined with Auto Scaling Groups, Launch Templates, and containerized workloads to achieve highly reliable deployments.
+
+---
+
+## Q7. Do you maintain a single CI/CD pipeline for all environments (Development, SIT, UAT, and Production), or do you use separate pipelines? How do you manage environment-specific configurations and deployments?
+
+In my projects, I generally maintain a single reusable CI/CD pipeline with environment-specific configurations rather than creating completely separate pipelines for each environment. The pipeline logic remains the same, but deployment behavior changes based on parameters, environment variables, configuration files, and secrets.
+
+For example, Kubernetes deployments use different values files for Development, SIT, UAT, and Production environments. Terraform uses separate backend configurations and variable files for each environment. Secrets are stored securely in AWS Secrets Manager, HashiCorp Vault, or Kubernetes Secrets rather than being hardcoded in the pipeline. Deployment approvals are required only for higher environments such as UAT and Production.
+
+This approach reduces duplication, improves maintainability, ensures consistency across environments, and simplifies governance. At the same time, each environment remains isolated through separate infrastructure, state files, namespaces, accounts, and access controls.
+
+
+
+# Infosys DevOps Interview Questions & Answers (4+ Years Experience)
+
 # 1. An application hosted behind an ALB is returning 503 errors. How would you troubleshoot the issue?
 
 When an Application Load Balancer returns HTTP 503 errors, it usually means the load balancer cannot find any healthy backend targets to forward requests to. My first step is checking the Target Group health status in AWS. If targets are marked unhealthy, I review the configured health check path, response codes, timeout values, and intervals. I then verify whether EC2 instances, ECS tasks, or Kubernetes pods are actually listening on the expected ports. Next, I inspect Security Groups, NACLs, and routing rules to ensure traffic can reach the backend. I also review application logs and CloudWatch metrics to identify application-level failures. If the issue started after a deployment, I verify the latest release and perform a rollback if necessary. My troubleshooting flow is ALB → Target Group → Backend Service → Application Logs → Network Configuration.
