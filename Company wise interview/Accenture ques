@@ -1,0 +1,14 @@
+1. What is the difference between private subnets and public subnets, and how are they used?
+2. What are the different types of Kubernetes clusters?
+3. What resources related to Kubernetes on GCP have you provisioned?
+4. What does a Terraform module look like, and what files should it contain?
+5. What is a NAT Gateway?
+6. What is a static Pod, and how is it provisioned and handled?
+7. What is the resource hierarchy in GCP?
+8. What is an Identity and IAM policy in GCP?
+9. How do you handle Terraform state?
+10. What are your daily routine tasks as a DevOps engineer?
+11. How do you provision IAM roles or permissions to resources in GCP?
+12. What are the Kubernetes API server and kubelet?
+13. What is bootstrapping in GCP?
+14. Where would you place a database in private vs public subnet, and how would it securely access external traffic?
