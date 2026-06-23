@@ -88,4 +88,699 @@ A restart stops and starts the same container instance while preserving its conf
 
 One production incident involved a payment processing application running in Kubernetes. The application had memory limits set too low compared to actual workload requirements. During peak traffic periods, the JVM heap usage exceeded the configured limit, causing Kubernetes to terminate containers with OOMKilled events. Initially, increasing memory limits provided temporary relief, but the root cause was improper JVM tuning and insufficient autoscaling. I analyzed memory metrics in Grafana, reviewed heap dumps, and identified excessive memory consumption. We optimized JVM heap settings, adjusted Kubernetes memory requests and limits, enabled HPA based on memory utilization, and implemented proactive monitoring alerts. After these improvements, the application remained stable during peak traffic without further OOM events.
 
-This version is suitable for **4+ years DevOps Engineer interviews at Infosys, TCS, Capgemini, CGI, HCL, Cognizant, Accenture, Deloitte, Wipro, PwC, and product-based companies**.
+# Docker Interview Questions and Answers (4+ Years DevOps Engineer)
+
+# Beginner Level
+
+## 1. What is Docker?
+
+Docker is an open-source containerization platform that enables developers and operations teams to package applications along with their dependencies, libraries, and runtime environments into lightweight containers. These containers can run consistently across different environments such as development, testing, staging, and production.
+
+Before Docker, applications often worked on one machine but failed on another due to dependency differences. Docker solves this problem by creating a portable and consistent runtime environment. In modern DevOps practices, Docker plays a crucial role in microservices architecture, CI/CD pipelines, and Kubernetes deployments.
+
+---
+
+## 2. Difference Between Docker and Virtual Machines
+
+Docker containers and Virtual Machines both provide isolated environments, but they differ significantly in architecture and resource utilization.
+
+Virtual Machines run on top of a hypervisor and include a complete guest operating system along with application dependencies. This makes VMs heavier and slower to start.
+
+Docker containers share the host operating system kernel and only package application-specific dependencies. As a result, containers are lightweight, start within seconds, consume less memory, and support higher density on the same hardware.
+
+In our projects, Docker is preferred for application deployment due to faster scaling and resource efficiency, while VMs are typically used for infrastructure-level isolation.
+
+---
+
+## 3. What is a Docker Image?
+
+A Docker Image is a read-only template used to create containers. It contains everything required to run an application, including source code, libraries, runtime, dependencies, and configurations.
+
+Images are built using Dockerfiles and stored in registries such as Docker Hub, Amazon ECR, or JFrog Artifactory. Once an image is created, it remains immutable and can be deployed consistently across multiple environments.
+
+For example, an image may contain a Java application along with JDK, Maven dependencies, and required configuration files.
+
+---
+
+## 4. What is a Docker Container?
+
+A Docker Container is a running instance of a Docker Image. While an image is a static template, a container is a live, executable environment where the application actually runs.
+
+Containers have their own filesystem, network interfaces, processes, and resource limits while sharing the host operating system kernel.
+
+For example:
+
+```bash
+docker run nginx
+```
+
+This command creates and starts a container from the Nginx image.
+
+---
+
+## 5. Difference Between Image and Container
+
+A Docker Image is a blueprint or template that contains application code and dependencies. It is immutable and stored in registries.
+
+A Docker Container is a running instance of an image. Containers are dynamic and can be started, stopped, restarted, or deleted.
+
+Think of an image as a class in programming and a container as an object created from that class.
+
+---
+
+## 6. What is Docker Hub?
+
+Docker Hub is a cloud-based container image registry provided by Docker. It stores and distributes Docker images.
+
+It offers:
+
+* Public repositories
+* Private repositories
+* Image versioning
+* Automated builds
+* Team collaboration
+
+Organizations use Docker Hub or private registries such as Amazon ECR and JFrog Artifactory to manage application images securely.
+
+---
+
+## 7. What is a Dockerfile?
+
+A Dockerfile is a text file that contains instructions for building a Docker image.
+
+It defines:
+
+* Base image
+* Application dependencies
+* File copy operations
+* Environment variables
+* Startup commands
+
+Example:
+
+```dockerfile
+FROM openjdk:17
+COPY app.jar /app.jar
+CMD ["java","-jar","/app.jar"]
+```
+
+Docker reads these instructions sequentially to create image layers.
+
+---
+
+## 8. How Do You Build a Docker Image?
+
+Docker images are built using the docker build command.
+
+Example:
+
+```bash
+docker build -t myapp:v1 .
+```
+
+Where:
+
+* -t assigns a tag.
+* myapp is the image name.
+* v1 is the image version.
+* . represents the current directory containing the Dockerfile.
+
+---
+
+## 9. How Do You Run a Container?
+
+Containers are started using:
+
+```bash
+docker run -d -p 8080:80 nginx
+```
+
+Here:
+
+* -d runs container in background.
+* -p maps host port to container port.
+* nginx is the image name.
+
+Docker creates and starts the container automatically.
+
+---
+
+## 10. Difference Between CMD and ENTRYPOINT
+
+CMD provides default arguments for a container and can be overridden during runtime.
+
+Example:
+
+```dockerfile
+CMD ["nginx","-g","daemon off;"]
+```
+
+ENTRYPOINT specifies the main executable that always runs.
+
+Example:
+
+```dockerfile
+ENTRYPOINT ["java","-jar","app.jar"]
+```
+
+The key difference is that CMD is easily overridden, whereas ENTRYPOINT enforces execution of the specified application.
+
+---
+
+# Intermediate Level
+
+## 11. What Are Docker Volumes?
+
+Docker Volumes provide persistent storage for containers.
+
+By default, container data is lost when the container is removed. Volumes store data outside the container filesystem, ensuring persistence.
+
+Common use cases:
+
+* Database storage
+* Application logs
+* Shared files
+
+Example:
+
+```bash
+docker volume create myvolume
+```
+
+---
+
+## 12. Difference Between Bind Mount and Volume
+
+Bind Mount directly maps a host directory into a container.
+
+Example:
+
+```bash
+-v /host/path:/container/path
+```
+
+Volume is managed by Docker itself.
+
+Example:
+
+```bash
+-v myvolume:/data
+```
+
+Volumes are preferred in production because Docker manages them efficiently and independently of host filesystem structure.
+
+---
+
+## 13. What is Docker Networking?
+
+Docker Networking enables communication between containers, hosts, and external systems.
+
+Each container receives its own network namespace, allowing isolated networking environments.
+
+Docker automatically manages IP allocation, DNS resolution, and network connectivity.
+
+---
+
+## 14. Types of Docker Networks
+
+Docker supports several network types:
+
+* Bridge Network
+* Host Network
+* Overlay Network
+* None Network
+* Macvlan Network
+
+Each serves different deployment requirements.
+
+---
+
+## 15. What is Bridge Network?
+
+Bridge Network is Docker's default network type.
+
+Containers connected to the same bridge network can communicate using container names.
+
+Example:
+
+```bash
+docker network create mybridge
+```
+
+This network is commonly used for standalone Docker hosts.
+
+---
+
+## 16. What is Host Network?
+
+Host Network removes network isolation between the container and host.
+
+The container directly uses the host's network stack.
+
+Benefits:
+
+* Better performance
+* Lower network overhead
+
+Drawback:
+
+* Reduced isolation
+
+---
+
+## 17. What is Overlay Network?
+
+Overlay Network enables communication between containers running on different Docker hosts.
+
+It is mainly used in Docker Swarm and multi-host deployments.
+
+Overlay networks create a virtual network spanning multiple servers.
+
+---
+
+## 18. How Do Containers Communicate With Each Other?
+
+Containers communicate through Docker networks.
+
+If containers are on the same custom network, Docker provides internal DNS resolution.
+
+Example:
+
+```bash
+mysql:3306
+```
+
+The application container can connect directly using the container name instead of an IP address.
+
+---
+
+## 19. What is Docker Compose?
+
+Docker Compose is a tool for defining and managing multi-container applications using a YAML file.
+
+Example services:
+
+* Application
+* Database
+* Redis
+* Nginx
+
+Single command deployment:
+
+```bash
+docker-compose up -d
+```
+
+Compose simplifies local development and testing environments.
+
+---
+
+## 20. Difference Between Docker Compose and Docker Swarm
+
+Docker Compose is used for managing containers on a single host.
+
+Docker Swarm is Docker's native orchestration platform supporting:
+
+* Multi-host deployments
+* Load balancing
+* Scaling
+* High availability
+
+Swarm is suitable for production clusters, while Compose is primarily used for development.
+
+---
+
+# Advanced Level
+
+## 21. Explain Docker Architecture
+
+Docker architecture consists of:
+
+### Docker Client
+
+Used by users to execute Docker commands.
+
+### Docker Daemon
+
+Handles image management, container creation, networking, and storage.
+
+### Docker Registry
+
+Stores Docker images.
+
+### Docker Objects
+
+Includes images, containers, volumes, and networks.
+
+The client communicates with the daemon through REST APIs.
+
+---
+
+## 22. What Are Docker Layers?
+
+Each Dockerfile instruction creates a layer.
+
+Example:
+
+```dockerfile
+FROM ubuntu
+RUN apt update
+RUN apt install nginx
+COPY . /app
+```
+
+Each command generates a separate layer.
+
+Benefits:
+
+* Faster builds
+* Efficient storage
+* Layer reuse
+
+---
+
+## 23. How Does Docker Caching Work?
+
+Docker caches image layers.
+
+If an instruction hasn't changed, Docker reuses the existing layer instead of rebuilding it.
+
+This significantly reduces build times.
+
+Best practice:
+
+Place frequently changing instructions near the bottom of the Dockerfile.
+
+---
+
+## 24. How Do You Optimize a Docker Image?
+
+Image optimization techniques include:
+
+* Use minimal base images.
+* Remove unnecessary packages.
+* Use multi-stage builds.
+* Reduce layer count.
+* Clean package cache.
+* Exclude unnecessary files using .dockerignore.
+
+These practices improve deployment speed and security.
+
+---
+
+## 25. What is a Multi-Stage Dockerfile?
+
+Multi-stage builds separate build and runtime environments.
+
+Example:
+
+```dockerfile
+FROM maven:3.9 AS build
+COPY . .
+RUN mvn package
+
+FROM openjdk:17
+COPY --from=build target/app.jar app.jar
+CMD ["java","-jar","app.jar"]
+```
+
+Only the final artifact is copied into the runtime image.
+
+This significantly reduces image size.
+
+---
+
+## 26. How Do You Reduce Docker Image Size?
+
+I typically:
+
+* Use Alpine images.
+* Implement multi-stage builds.
+* Remove build tools.
+* Remove temporary files.
+* Minimize dependencies.
+
+These methods often reduce image size by 50–80%.
+
+---
+
+## 27. What Happens When You Run docker run?
+
+Docker performs:
+
+1. Checks local image.
+2. Pulls image if missing.
+3. Creates writable container layer.
+4. Creates network interfaces.
+5. Allocates resources.
+6. Executes ENTRYPOINT/CMD.
+7. Starts container process.
+
+---
+
+## 28. How Do You Troubleshoot a Container That Is Not Starting?
+
+Steps:
+
+```bash
+docker ps -a
+docker logs container-id
+docker inspect container-id
+```
+
+Check:
+
+* Startup errors
+* Missing environment variables
+* Port conflicts
+* Application crashes
+* Resource limitations
+
+---
+
+## 29. How Do You Check Container Logs?
+
+```bash
+docker logs container-id
+```
+
+Real-time logs:
+
+```bash
+docker logs -f container-id
+```
+
+This is usually the first step during troubleshooting.
+
+---
+
+## 30. How Do You Enter a Running Container?
+
+```bash
+docker exec -it container-id /bin/bash
+```
+
+or
+
+```bash
+docker exec -it container-id sh
+```
+
+This allows direct inspection of files, processes, and configurations.
+
+---
+
+# Real-Time Scenario Questions
+
+## 31. A Container Is Continuously Restarting. How Do You Troubleshoot?
+
+I first check:
+
+```bash
+docker ps -a
+docker logs container-id
+```
+
+Then verify:
+
+* Application startup errors
+* Missing environment variables
+* Database connectivity
+* Memory limits
+* Incorrect CMD or ENTRYPOINT
+
+If needed, I inspect container events and resource utilization.
+
+---
+
+## 32. Docker Image Size Is 2GB. How Will You Reduce It?
+
+I would:
+
+* Use Alpine base image.
+* Implement multi-stage builds.
+* Remove build dependencies.
+* Delete temporary files.
+* Use .dockerignore.
+* Compress static assets.
+
+This typically reduces image size significantly.
+
+---
+
+## 33. Application Works Locally But Fails Inside Docker. What Will You Check?
+
+I would verify:
+
+* Environment variables
+* Network connectivity
+* File permissions
+* Missing dependencies
+* Container ports
+* Application configuration
+
+Using:
+
+```bash
+docker exec -it container-id bash
+```
+
+I inspect runtime behavior inside the container.
+
+---
+
+## 34. Container Cannot Connect to Database. How Do You Debug?
+
+I check:
+
+* Database availability
+* Network configuration
+* DNS resolution
+* Firewall rules
+* Security groups
+* Connection strings
+* Port accessibility
+
+Testing:
+
+```bash
+telnet db-host 3306
+```
+
+or
+
+```bash
+nc -zv db-host 3306
+```
+
+helps identify connectivity issues.
+
+---
+
+## 35. How Do You Persist Data After Container Deletion?
+
+Persistent data should be stored using Docker Volumes.
+
+Example:
+
+```bash
+docker run -v mydata:/var/lib/mysql mysql
+```
+
+Even if the container is deleted, the data remains available.
+
+---
+
+## 36. How Do You Secure Docker Containers?
+
+Best practices include:
+
+* Use trusted images.
+* Run as non-root user.
+* Minimize container privileges.
+* Use read-only filesystems.
+* Enable image scanning.
+* Limit resource usage.
+* Store secrets securely.
+* Keep images updated.
+
+---
+
+## 37. How Do You Scan Docker Images for Vulnerabilities?
+
+Common tools:
+
+* Trivy
+* Snyk
+* Clair
+* Anchore
+
+Example:
+
+```bash
+trivy image myapp:v1
+```
+
+These tools identify CVEs and security risks before deployment.
+
+---
+
+## 38. What Is the Difference Between COPY and ADD?
+
+COPY only copies files from local system to image.
+
+Example:
+
+```dockerfile
+COPY app.jar /app.jar
+```
+
+ADD provides additional features such as extracting archives and downloading URLs.
+
+Example:
+
+```dockerfile
+ADD app.tar.gz /app
+```
+
+COPY is generally recommended unless ADD-specific functionality is required.
+
+---
+
+## 39. Explain Docker Registry
+
+A Docker Registry stores and distributes Docker images.
+
+Examples:
+
+* Docker Hub
+* Amazon ECR
+* Azure ACR
+* Google GCR
+* JFrog Artifactory
+
+Registries enable centralized image management and version control.
+
+---
+
+## 40. How Do You Push an Image to Docker Hub?
+
+Login:
+
+```bash
+docker login
+```
+
+Tag image:
+
+```bash
+docker tag myapp:v1 username/myapp:v1
+```
+
+Push image:
+
+```bash
+docker push username/myapp:v1
+```
+
+The image becomes available in Docker Hub repositories for deployment.
