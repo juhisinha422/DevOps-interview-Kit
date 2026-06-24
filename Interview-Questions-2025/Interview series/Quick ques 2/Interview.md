@@ -1,3 +1,64 @@
+# 10 Real DevOps Interview Questions (4+ Years Experience)
+
+## 1. Your Kubernetes cluster shows all nodes healthy, but pod scheduling randomly fails for one specific workload. What are you actually checking, and in what order?
+
+When I encounter a scheduling issue affecting only one workload while all nodes appear healthy, I start by describing the pod using `kubectl describe pod <pod-name>` because Kubernetes events often reveal the exact scheduling reason. I then check node selectors, node affinity, anti-affinity rules, taints, and tolerations because these are common causes of selective scheduling failures. Next, I verify resource requests and limits to ensure sufficient CPU, memory, and ephemeral storage are available on target nodes. I review PodDisruptionBudgets, topology spread constraints, and any custom scheduler configurations. If the workload requires specific storage, I validate Persistent Volume Claims and Storage Classes. Finally, I inspect scheduler logs and cluster autoscaler events. In production, I have seen workloads fail scheduling because of overly restrictive node affinity rules that unintentionally limited placement to a small subset of nodes.
+
+---
+
+## 2. A Terraform apply succeeds, but two weeks later someone discovers a resource was silently recreated with different settings. How do you trace exactly when and why that happened?
+
+My first step is reviewing Terraform state history and CI/CD pipeline execution logs to determine when the change occurred. If the backend uses S3 with versioning enabled, I compare historical state file versions to identify resource modifications. I then review Git commit history, pull requests, and Jenkins or GitHub Actions execution logs to determine whether a configuration change triggered recreation. Terraform plan outputs from previous deployments can reveal if a resource was marked for replacement due to immutable attribute changes. I also inspect CloudTrail logs to determine whether the change originated from Terraform or a manual console action. In production, this type of issue often occurs when attributes such as subnet IDs, AMI IDs, or resource names change, causing Terraform to recreate resources rather than update them in place.
+
+---
+
+## 3. Your CI pipeline has 8 stages. Stage 5 fails intermittently, maybe 1 in 10 runs. How do you debug something that doesn't fail consistently?
+
+Intermittent failures are usually caused by race conditions, network instability, resource contention, dependency availability, or timing issues. I first isolate Stage 5 and rerun it independently multiple times to reproduce the behavior. Then I compare successful and failed execution logs line by line to identify differences. I examine build agent utilization, network latency, external service dependencies, artifact repositories, and API rate limits. If the stage executes automated tests, I investigate flaky tests and parallel execution conflicts. Additional logging and timestamps are often added temporarily to gather more diagnostic information. My goal is to identify patterns rather than focus on a single failed run because intermittent issues usually emerge only after comparing multiple executions.
+
+---
+
+## 4. You're told response time degraded by 300ms, but every dashboard shows green. Walk through what you check that the dashboards don't show.
+
+When dashboards show healthy infrastructure but users report increased latency, I investigate areas not captured by standard CPU and memory metrics. I analyze application logs, distributed tracing data, database query execution times, connection pool utilization, cache hit ratios, DNS resolution times, TLS handshake delays, and external API response times. I compare latency percentiles such as P95 and P99 rather than averages because averages often hide performance degradation affecting specific users. I also review recent deployments, feature flags, database schema changes, and traffic patterns. In many real incidents, infrastructure metrics remain healthy while application-level bottlenecks introduce noticeable latency.
+
+---
+
+## 5. Two services need to talk to each other, but only during a specific 10-minute window each day. How do you design this without manual intervention?
+
+I would implement automated network controls using infrastructure and scheduling mechanisms. In Kubernetes, I could dynamically apply and remove Network Policies using a CronJob. In AWS, I could automate Security Group rule modifications through EventBridge and Lambda functions. Another approach is introducing an API Gateway or service mesh policy that allows communication only during approved time windows. All changes should be logged, auditable, and automatically reversible. The objective is to enforce communication policies through automation rather than relying on manual operational procedures.
+
+---
+
+## 6. A rollback fixes the immediate issue, but the same bug returns 3 deployments later in a different form. What does this pattern usually tell you about the actual root cause?
+
+This pattern typically indicates that the deployment itself is not the root cause. Instead, there is likely a deeper architectural, configuration, dependency, or process issue. Examples include database schema incompatibilities, hidden race conditions, environment drift, poor test coverage, or shared libraries introducing recurring defects. A rollback temporarily removes symptoms, but future deployments reintroduce the underlying problem. In this situation, I focus on root cause analysis rather than deployment recovery. I review incident timelines, compare deployments, analyze recurring patterns, and identify the common factor present across all affected releases.
+
+---
+
+## 7. Your team wants zero-downtime deployments, but the database schema change required for the new feature is not backward compatible. What's your actual approach here?
+
+Backward-incompatible database changes require careful planning. I use an expand-and-contract migration strategy. First, I deploy a schema change that supports both old and new application versions. Then I deploy application updates that use the new schema while maintaining compatibility with existing structures. Once all services have migrated successfully, I remove deprecated schema components in a later release. Feature flags are often used to control rollout behavior. Directly changing a schema in a way that breaks older application versions during deployment creates significant risk and often prevents true zero-downtime releases.
+
+---
+
+## 8. You inherit a system with no documentation and the person who built it left. How do you safely make your first change without breaking something you don't understand yet?
+
+Before making any changes, I focus on understanding the system. I review source code repositories, infrastructure definitions, CI/CD pipelines, monitoring dashboards, architecture diagrams, and deployment histories. I create my own documentation while exploring dependencies and data flows. The first change I make is intentionally small and low-risk, usually in a non-production environment. I validate rollback procedures and deployment processes before touching production. The goal is to reduce unknowns incrementally rather than making assumptions about undocumented systems.
+
+---
+
+## 9. A cost optimization change you made last month is now being blamed for a performance issue this month. How do you prove, one way or the other, whether it's actually related?
+
+I start with evidence rather than assumptions. I compare performance metrics before and after the optimization, analyze infrastructure changes, review deployment timelines, and correlate incident occurrence with resource modifications. CloudWatch, Prometheus, Grafana, and billing reports help establish whether resource reductions coincided with performance degradation. If necessary, I temporarily revert the optimization in a controlled environment to validate its impact. Root cause analysis should be data-driven because correlation alone does not prove causation. Many performance issues blamed on cost optimizations are actually caused by unrelated application changes introduced later.
+
+---
+
+## 10. You're in an incident call, three people are suggesting three different fixes, and you don't have full context yet. What do you say and do in the next 60 seconds?
+
+The first priority is preventing uncontrolled changes. I would say, "Let's pause changes for a moment and establish the current impact, timeline, and known facts." I assign one person to collect monitoring data, another to review recent deployments, and another to gather application logs. I identify the incident commander role to coordinate communication and decision-making. If customer impact is severe and a recent deployment is suspected, I evaluate rollback as a recovery option. The key is creating structure and avoiding multiple simultaneous fixes that could worsen the incident. During critical outages, disciplined communication is often as important as technical troubleshooting.
+
+
 # AWS DevOps Engineer (4+ Years Experience) – Scenario-Based Interview Answers
 
 ## 1. How Would You Design a CI/CD Pipeline for Multiple Microservices with Zero-Downtime Deployment?
