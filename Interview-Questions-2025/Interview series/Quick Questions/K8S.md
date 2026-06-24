@@ -1,3 +1,257 @@
+# Kubernetes CrashLoopBackOff – Issues, Causes, and Troubleshooting Guide
+
+## What is CrashLoopBackOff?
+
+**CrashLoopBackOff is not an error; it is a Pod state in Kubernetes.**
+
+It indicates that a container inside a Pod is repeatedly crashing, and Kubernetes is continuously attempting to restart it. After each failure, Kubernetes waits for an increasing amount of time before attempting another restart, which is known as the **back-off period**.
+
+Typical flow:
+
+1. Container starts.
+2. Application crashes or exits unexpectedly.
+3. Kubernetes restarts the container.
+4. Container crashes again.
+5. Kubernetes increases the wait time before restarting.
+6. Pod enters **CrashLoopBackOff** state.
+
+---
+
+# Common Causes of CrashLoopBackOff
+
+| No. | Issue / Reason                   | Error / Message                                   | What Happens                                                                | Resolution                                                                 |
+| --- | -------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| 1   | Wrong Application Configuration  | `Configuration error`, `Invalid config`           | Application fails during startup due to incorrect configuration.            | Verify configuration files, ConfigMaps, and application settings.          |
+| 2   | Missing Environment Variables    | `Environment variable not found`, `Key not found` | Required environment variables are unavailable, causing startup failure.    | Check Deployment YAML, Secrets, and ConfigMaps.                            |
+| 3   | Database Connection Failure      | `Connection refused`, `Connection timeout`        | Application cannot connect to the database and exits.                       | Verify database availability, credentials, networking, and firewall rules. |
+| 4   | Out of Memory (OOMKilled)        | `OOMKilled`                                       | Container exceeds allocated memory and gets terminated by Kubernetes.       | Increase memory limits or optimize application memory usage.               |
+| 5   | Liveness/Readiness Probe Failure | `Liveness probe failed`, `Readiness probe failed` | Kubernetes assumes the application is unhealthy and restarts the container. | Validate probe configuration and application health endpoints.             |
+| 6   | Missing File or Directory        | `No such file or directory`                       | Application expects files or directories that do not exist.                 | Verify volume mounts, file paths, and container contents.                  |
+| 7   | Permission Issues                | `Permission denied`                               | Application lacks required permissions to access files or resources.        | Correct file permissions and container user privileges.                    |
+| 8   | Image or Command Issues          | `exec: not found`, `Exit code 127`                | Invalid startup command, entrypoint, or Docker image configuration.         | Verify Docker image, ENTRYPOINT, CMD, and container arguments.             |
+| 9   | Insufficient CPU Resources       | `CPU throttling`, `Resource limits exceeded`      | Application becomes unstable due to CPU starvation.                         | Increase CPU requests/limits and optimize application performance.         |
+| 10  | Application Bugs                 | `NullPointerException`, `Segmentation fault`      | Application crashes due to coding defects.                                  | Review application logs and fix the underlying code issue.                 |
+
+---
+
+# How to Troubleshoot CrashLoopBackOff
+
+## Step 1: Check Pod Status
+
+```bash
+kubectl get pods -A | grep CrashLoopBackOff
+```
+
+This command identifies all Pods currently experiencing CrashLoopBackOff.
+
+---
+
+## Step 2: Describe the Pod
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Review:
+
+* Events section
+* Restart count
+* Resource limits
+* Probe failures
+* Scheduling issues
+
+Example:
+
+```bash
+kubectl describe pod nginx-app-5f8b7d9f4d-xk7pt -n production
+```
+
+---
+
+## Step 3: Check Container Logs
+
+### Current Container Logs
+
+```bash
+kubectl logs <pod-name> -n <namespace>
+```
+
+Example:
+
+```bash
+kubectl logs nginx-app-5f8b7d9f4d-xk7pt -n production
+```
+
+---
+
+### Previous Container Logs
+
+When the container has already restarted, check logs from the previous instance:
+
+```bash
+kubectl logs <pod-name> -n <namespace> --previous
+```
+
+Example:
+
+```bash
+kubectl logs nginx-app-5f8b7d9f4d-xk7pt -n production --previous
+```
+
+This is often the most useful command because it shows the actual error that caused the crash.
+
+---
+
+## Step 4: Verify Resource Usage
+
+Check whether the Pod is running out of memory or CPU.
+
+```bash
+kubectl top pod <pod-name> -n <namespace>
+```
+
+Example:
+
+```bash
+kubectl top pod nginx-app-5f8b7d9f4d-xk7pt -n production
+```
+
+Look for:
+
+* High memory consumption
+* CPU throttling
+* OOMKilled events
+
+---
+
+## Step 5: Verify Environment Variables
+
+Inspect Deployment configuration:
+
+```bash
+kubectl describe deployment <deployment-name> -n <namespace>
+```
+
+Check:
+
+* Environment variables
+* Secrets
+* ConfigMaps
+* Mounted volumes
+
+---
+
+## Step 6: Verify Health Probes
+
+Review liveness and readiness probes:
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+```
+
+Common issues:
+
+* Wrong endpoint path
+* Incorrect port number
+* Application startup delay too short
+
+---
+
+## Step 7: Verify Container Image and Startup Command
+
+Check image configuration:
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Review:
+
+* Image name
+* Command
+* Args
+* ENTRYPOINT
+* CMD
+
+Common errors:
+
+```text
+exec: not found
+command not found
+exit code 127
+```
+
+---
+
+# Quick Troubleshooting Checklist
+
+✅ Check Pod status
+
+```bash
+kubectl get pods -A
+```
+
+✅ Describe the Pod
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+✅ View current logs
+
+```bash
+kubectl logs <pod-name> -n <namespace>
+```
+
+✅ View previous logs
+
+```bash
+kubectl logs <pod-name> -n <namespace> --previous
+```
+
+✅ Check resource usage
+
+```bash
+kubectl top pod <pod-name> -n <namespace>
+```
+
+✅ Verify ConfigMaps and Secrets
+
+```bash
+kubectl get configmap
+kubectl get secrets
+```
+
+✅ Validate liveness/readiness probes
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+✅ Check image and startup command
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+---
+
+# Interview Answer
+
+**What is CrashLoopBackOff in Kubernetes?**
+
+CrashLoopBackOff is a Pod state that indicates a container is repeatedly crashing and Kubernetes is continuously attempting to restart it. Kubernetes introduces a back-off delay between restart attempts to prevent endless rapid restarts. Common causes include application configuration errors, missing environment variables, database connectivity issues, OOMKilled events, probe failures, permission problems, incorrect container commands, insufficient resources, and application bugs. Troubleshooting typically involves checking Pod events using `kubectl describe pod`, reviewing container logs with `kubectl logs --previous`, and validating resource limits, health probes, ConfigMaps, Secrets, and application configuration.
+
+
+
 # Your pod is receiving traffic even after your app crashes. kubectl get pods shows it as Running. No liveness probe defined. What's happening?
 
 Kubernetes only restarts a container when the main process exits or a liveness probe fails. Without a liveness probe, a deadlocked or stuck app that keeps the process alive can still look healthy to the kubelet. So the Pod stays Running, and the Service may keep routing traffic to it.
