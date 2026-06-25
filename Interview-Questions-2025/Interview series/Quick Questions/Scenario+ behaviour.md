@@ -1,3 +1,14 @@
+## For local env variables and secrets, how to manage secrets centrally? Which is the free of cost or low cost option to centrally manage secrets for developers?
+
+```
+keeping secrets in locals is not best practice.
+Use this bigger-picture approach:
+1. Store secrets in AWS Secrets Manager or HashiCorp Vault.
+2. Terraform should only reference the secret, not hardcode the value.
+3. Application/EKS/Lambda/EC2 should access secrets using IAM role permissions.
+4. Do not commit secrets into Git, .tfvars, locals, or pipeline variables unless encrypted/secured.
+```
+
 # AWS, Terraform, Docker, Kubernetes, CI/CD Interview Questions & Answers (4+ Years DevOps)
 
 ## 1. What all AWS services have you used, explain in terms of security.
