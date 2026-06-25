@@ -113,6 +113,119 @@ How I prevent DB slowness:
 • Review slow query log every week
 ```
 
+# Kubernetes Troubleshooting Scenarios – Detailed Answers (4 Years Experience Level)
+
+## 1️⃣ A Pod is in CrashLoopBackOff.
+
+### How would you troubleshoot it from start to finish?
+
+When I encounter a Pod in a CrashLoopBackOff state, I follow a structured troubleshooting approach. First, I check the Pod status using `kubectl get pods` and identify the affected Pod. Then, I inspect the Pod details using `kubectl describe pod <pod-name>` to review events, container states, restart counts, and any errors reported by Kubernetes. Since CrashLoopBackOff indicates that the container starts and then repeatedly crashes, I check the container logs using `kubectl logs <pod-name>` and, if the container has restarted multiple times, I use `kubectl logs <pod-name> --previous` to view logs from the previous failed instance.
+
+Next, I verify whether the application is crashing due to configuration issues, missing environment variables, Secrets, ConfigMaps, database connectivity failures, or dependency issues. I also validate resource allocations because insufficient memory can cause OOMKilled events, which can be confirmed through the Pod description. If liveness or startup probes are configured, I verify whether they are incorrectly failing and causing Kubernetes to restart the container. I also check image versions, application startup commands, mounted volumes, and permissions. If necessary, I create a temporary debug Pod or use `kubectl exec` to investigate the runtime environment. Once the root cause is identified, I apply the fix, redeploy the workload, and monitor the Pod until it reaches a stable Running state without restarts.
+
+---
+
+## 2️⃣ All Pods are in the Running state, but the application is not accessible.
+
+### What components would you check first?
+
+If all Pods are running but the application is inaccessible, I start by verifying the Service configuration because healthy Pods do not guarantee network accessibility. I check whether the Service is correctly selecting the Pods using matching labels by running `kubectl get svc` and `kubectl describe svc`. Then, I validate the Service endpoints using `kubectl get endpoints` to ensure traffic is being routed to the correct Pods.
+
+Next, I inspect the Ingress configuration if the application is exposed externally. I verify host rules, paths, TLS settings, and the health of the Ingress Controller. For applications exposed through LoadBalancer services, I check whether an external IP has been assigned and whether the load balancer is healthy. I also verify NetworkPolicies that might be blocking traffic between components. After confirming Kubernetes networking components, I test connectivity directly to the Pod using port-forwarding to determine whether the issue is within the application itself or the networking layer. I review application logs for startup issues, port mismatches, or runtime errors. Finally, I validate firewall rules, DNS resolution, security groups, and cloud provider networking configurations if the cluster is running in a cloud environment.
+
+---
+
+## 3️⃣ A Deployment was updated, and users immediately started reporting issues.
+
+### How would you roll back the deployment safely?
+
+When users report issues immediately after a deployment, my first step is to assess the impact and verify whether the new deployment is the root cause. I review deployment status using `kubectl rollout status deployment <deployment-name>` and inspect newly created Pods for errors. I compare logs and metrics before and after deployment to confirm the correlation.
+
+Once the issue is confirmed, I check deployment revision history using `kubectl rollout history deployment <deployment-name>`. Kubernetes maintains previous ReplicaSets, allowing a quick rollback to a stable version. I perform the rollback using `kubectl rollout undo deployment <deployment-name>` or rollback to a specific revision if necessary. After initiating the rollback, I continuously monitor the rollout status and application health to ensure the previous stable version is restored successfully.
+
+Following recovery, I investigate the root cause by reviewing code changes, configuration updates, image versions, Secrets, ConfigMaps, and infrastructure dependencies. I also verify whether deployment strategies such as Rolling Updates, Blue-Green Deployments, or Canary Releases could have minimized user impact. Finally, I document findings and update deployment validation procedures to prevent similar incidents.
+
+---
+
+## 4️⃣ A Pod is stuck in the Pending state.
+
+### What are the possible reasons, and how would you identify the root cause?
+
+A Pod remains in the Pending state when Kubernetes cannot successfully schedule it onto a node. To investigate, I first run `kubectl describe pod <pod-name>` because the Events section usually provides immediate clues about scheduling failures. One of the most common causes is insufficient cluster resources such as CPU, memory, or ephemeral storage. If no node has enough available resources to satisfy the Pod's requests, scheduling fails.
+
+Another common reason is node selectors, node affinity, anti-affinity rules, or taints and tolerations that prevent the Pod from matching available nodes. I verify whether the Pod's scheduling constraints align with the node labels and tolerations configured in the cluster. Persistent Volume issues can also cause Pending status if a requested volume cannot be provisioned or attached. Therefore, I inspect PVC and PV status using `kubectl get pvc` and `kubectl describe pvc`.
+
+In cloud environments, Pending Pods may occur when the cluster autoscaler is unable to provision additional nodes due to quota limits or infrastructure constraints. I also verify namespace resource quotas and LimitRanges that may restrict resource allocation. After identifying the root cause through event logs, scheduler messages, and node resource analysis, I apply corrective actions such as increasing cluster capacity, adjusting scheduling rules, resolving storage issues, or modifying resource requests.
+
+---
+
+## 5️⃣ A node suddenly becomes NotReady.
+
+### How would you investigate and recover the workloads?
+
+When a node enters the NotReady state, I first identify the affected node using `kubectl get nodes`. I then inspect detailed node information using `kubectl describe node <node-name>` to review conditions, events, resource pressures, and kubelet status. The most common causes include kubelet failures, network connectivity problems, disk pressure, memory pressure, container runtime failures, or underlying infrastructure issues.
+
+I access the node through SSH and examine kubelet logs using system journal logs. I verify the health of the container runtime such as containerd or Docker and check disk utilization, memory consumption, CPU usage, and network connectivity to the control plane. If the node is unhealthy, I cordon the node to prevent new workloads from being scheduled and drain it if necessary to safely relocate workloads to healthy nodes.
+
+If the issue is recoverable, I restart failed services and resolve resource bottlenecks. If the node remains unstable, I replace it through the infrastructure provisioning process. Throughout the recovery process, I monitor workload redistribution, ensure application availability, and confirm that ReplicaSets, Deployments, and StatefulSets restore the desired number of replicas across healthy nodes.
+
+---
+
+## 6️⃣ One container inside a Pod keeps restarting while the other containers are healthy.
+
+### How would you troubleshoot this issue?
+
+Since only one container is affected, I focus my investigation specifically on that container rather than the entire Pod. I begin by reviewing the Pod description to identify restart counts, container states, exit codes, and events. Then, I examine logs for the failing container using `kubectl logs <pod-name> -c <container-name>` and, if necessary, retrieve logs from previous crashes.
+
+I investigate whether the container has application-level errors, dependency failures, configuration issues, or startup command problems. Since containers within the same Pod share networking and storage resources, I verify whether the failing container depends on another service, volume mount, or shared resource that may be unavailable. I also review liveness, readiness, and startup probes because misconfigured probes can trigger unnecessary restarts even when the application is healthy.
+
+Resource exhaustion is another important factor. I check whether the container is being terminated due to memory limits, CPU throttling, or OOMKilled events. Additionally, I validate environment variables, Secrets, ConfigMaps, and file permissions. After identifying the root cause, I update the configuration, rebuild the container image if necessary, redeploy the workload, and monitor stability.
+
+---
+
+## 7️⃣ Your application cannot communicate with another service inside the cluster.
+
+### How would you determine whether the issue is related to DNS, Service, NetworkPolicy, or the application itself?
+
+I approach this systematically by validating each networking layer independently. First, I verify DNS resolution by entering the source Pod and running DNS lookup commands against the target service name. If DNS resolution fails, I investigate CoreDNS health, DNS configuration, and namespace-specific service naming.
+
+If DNS works correctly, I verify the Service configuration by checking selectors, ports, target ports, and endpoints. I confirm that the Service has active endpoints and that traffic is routed to healthy Pods. Next, I investigate NetworkPolicies because restrictive policies may block communication between namespaces or Pods. I review ingress and egress rules and temporarily test connectivity to confirm whether policies are causing the issue.
+
+If networking components appear healthy, I test direct Pod-to-Pod communication using tools such as curl, wget, or telnet. This helps determine whether the application itself is listening on the expected ports. Finally, I review application logs on both the client and server sides to identify authentication failures, protocol mismatches, timeout issues, or application-level errors. By isolating each layer sequentially, I can accurately determine the source of the communication failure.
+
+---
+
+## 8️⃣ How would you securely provide database passwords or API keys to a Kubernetes application?
+
+Sensitive information should never be hardcoded into container images, deployment manifests, or source code repositories. The standard Kubernetes approach is to store credentials in Kubernetes Secrets and inject them into Pods as environment variables or mounted volumes. This allows applications to access sensitive data securely at runtime without exposing it in code.
+
+To enhance security, I enable encryption at rest for Secrets in the Kubernetes control plane and enforce strict RBAC permissions so only authorized workloads and users can access them. In production environments, I often integrate external secret management solutions such as HashiCorp Vault, AWS Secrets Manager, Azure Key Vault, or Google Secret Manager. These solutions provide centralized secret rotation, auditing, and access control. I also follow the principle of least privilege, rotate credentials regularly, avoid logging sensitive values, and use dedicated service accounts with restricted permissions to minimize security risks.
+
+---
+
+## 9️⃣ CPU usage suddenly spikes to 100% in production.
+
+### Which Kubernetes commands and metrics would you use to identify the root cause?
+
+When CPU usage suddenly reaches 100%, I first assess cluster-wide resource utilization using `kubectl top nodes` and `kubectl top pods` to identify which workloads are consuming excessive CPU resources. After identifying the affected Pods, I inspect application logs for traffic spikes, infinite loops, inefficient queries, or abnormal processing behavior.
+
+I review deployment history to determine whether a recent release introduced performance issues. I also analyze monitoring dashboards from Prometheus and Grafana to examine CPU trends, request rates, latency, error rates, garbage collection activity, and resource saturation patterns. If Horizontal Pod Autoscaling is configured, I verify whether scaling actions occurred as expected.
+
+Additionally, I inspect node-level metrics to determine whether contention exists among workloads. I evaluate CPU requests and limits to identify throttling issues. If required, I capture application profiling data to pinpoint expensive code paths. Based on findings, I may scale workloads horizontally, optimize application logic, adjust resource allocations, or roll back problematic releases. Continuous monitoring is maintained until CPU utilization returns to normal levels.
+
+---
+
+## 🔟 A new version of your application is causing intermittent failures after deployment.
+
+### How would you perform a zero-downtime rollback?
+
+For intermittent failures, maintaining service availability during rollback is critical. First, I verify the issue using application metrics, logs, monitoring dashboards, and user reports. Once the deployment is identified as the source of failures, I leverage Kubernetes rolling update capabilities to perform a controlled rollback using `kubectl rollout undo deployment <deployment-name>`.
+
+Kubernetes gradually replaces unhealthy Pods with Pods from the previous stable ReplicaSet while maintaining the minimum number of available replicas defined in the deployment strategy. This ensures users continue to receive service during the rollback process. I closely monitor rollout progress, Pod health, readiness probes, error rates, and response times throughout the process.
+
+In mature production environments, I prefer advanced deployment strategies such as Blue-Green or Canary Deployments. These approaches allow traffic to be shifted gradually and enable immediate rollback without impacting users significantly. After successful rollback, I validate application functionality, confirm error rates have normalized, and conduct a detailed root cause analysis before attempting another release. This approach ensures service continuity, minimizes downtime, and reduces business impact during production incidents.
+
+
 # DevOps Interview Questions & Answers (4+ Years Experience)
 
 ## 1. Tell me about a production incident you handled and how you resolved it.
