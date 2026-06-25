@@ -1,3 +1,79 @@
+# Terraform Advanced Scenario-Based Interview Questions (4+ Years DevOps Engineer)
+
+## 1. Terraform plan shows zero changes, but you know the infrastructure was modified outside Terraform. What's actually happening, and how do you confirm it?
+
+In Terraform, the `plan` command compares the Terraform configuration with the current state file. If infrastructure changes are made manually in AWS, Azure, or GCP and Terraform still shows "No changes", it usually means Terraform has not refreshed the state or the modified attribute is not managed by Terraform. To confirm this, I would first run `terraform plan -refresh-only` or `terraform refresh` to synchronize the state file with the actual infrastructure. I would then compare the resource configuration in the cloud console, use AWS CLI commands, and check CloudTrail logs to identify who made the change and when. In production environments, I implement automated drift detection pipelines to identify infrastructure changes before they cause deployment inconsistencies.
+
+---
+
+## 2. You have 3 environments sharing one remote state backend by mistake. Production now reflects staging's last apply. How do you safely separate them without destroying anything?
+
+Sharing a single state file across multiple environments is one of the most dangerous Terraform misconfigurations because Terraform treats all resources in that state as part of the same infrastructure. My immediate action would be to stop all deployments and create a backup of the current state file. I would analyze resources using `terraform state list` and identify which resources belong to Development, Staging, and Production. Next, I would create separate remote backends such as separate S3 bucket paths or separate state files and migrate resources using `terraform state mv`. After migration, I would run `terraform plan` in each environment to ensure no resources are scheduled for destruction. In production projects, I always maintain isolated state files and separate backend configurations per environment to avoid this issue.
+
+---
+
+## 3. A module uses count internally. You need to insert a new item in the middle of the list. What breaks and why?
+
+When Terraform uses `count`, resources are identified by numeric indexes such as `[0]`, `[1]`, and `[2]`. If a new element is inserted in the middle of the list, all subsequent indexes shift. Terraform interprets this as existing resources being deleted and new resources being created. This can result in accidental recreation of production infrastructure. For example, if three EC2 instances exist and a new instance is inserted at index 1, Terraform may destroy instances at indexes 1 and 2 and recreate them. To avoid this issue, I prefer using `for_each` because resources are tracked using unique keys rather than index positions, making changes safer and more predictable.
+
+---
+
+## 4. Someone ran terraform apply with -auto-approve during an incident, and now half the resources are tainted. What's your exact recovery sequence?
+
+My first step would be to stop all further deployments and analyze the Terraform state. I would identify tainted resources using `terraform state list` and inspect them individually. Next, I would execute `terraform plan` to understand the impact of replacing those resources. Before making any changes, I would create a backup of the current state file. If the resources are healthy and do not need replacement, I would remove the taint using `terraform untaint`. If replacement is required, I would schedule controlled maintenance and perform a targeted replacement. Finally, I would conduct a root cause analysis to determine why the deployment was executed with `-auto-approve` and strengthen approval controls within the CI/CD pipeline.
+
+---
+
+## 5. Your state file shows a resource exists, but it was deleted manually in the console 3 weeks ago. Nobody noticed. What does this expose?
+
+This scenario exposes a lack of drift detection and governance processes. Terraform believes the resource exists because it is still present in the state file, while the actual infrastructure no longer contains the resource. This creates a mismatch between the desired and actual state. In production, this could lead to failed deployments or service outages. To fix it, I would run `terraform plan` with state refresh enabled, verify the missing resource, and either recreate it using Terraform or remove it from the state if it is no longer required. I would also implement scheduled drift detection jobs, CloudTrail monitoring, and infrastructure compliance checks to prevent similar situations.
+
+---
+
+## 6. You need to rename a resource in code without Terraform destroying and recreating it. What's the actual mechanism?
+
+Terraform identifies resources by their state address rather than the cloud resource itself. Renaming a resource block changes its address, causing Terraform to think the old resource should be deleted and a new one created. To avoid recreation, I use the `terraform state mv` command. This updates the state file to reflect the new resource name while maintaining the existing infrastructure. After moving the state, I run `terraform plan` to verify that no resources will be destroyed or recreated. This approach is commonly used during code refactoring in large Terraform projects.
+
+---
+
+## 7. Two engineers ran terraform apply simultaneously with no locking. What's corrupted and how do you recover?
+
+Without state locking, both engineers may read the same state version and attempt modifications concurrently. The first apply may complete successfully, while the second apply can overwrite state changes or create duplicate resources. This can result in state corruption, orphaned resources, and infrastructure drift. To recover, I would stop all deployments, back up the current state, inspect infrastructure changes, compare Terraform state with actual resources, and manually reconcile differences. I would then enable state locking using an S3 backend with DynamoDB locking or another supported backend to prevent future race conditions.
+
+---
+
+## 8. A provider version upgrade silently changed a default value. How do you find this before production?
+
+Provider upgrades can introduce breaking changes, including modified default values. To detect this, I always pin provider versions and review provider release notes before upgrading. I run `terraform plan` in a lower environment and compare outputs against the previous version. Automated CI pipelines execute validation and plan checks for every provider upgrade. If any unexpected changes appear, they are reviewed before promotion to production. This prevents silent infrastructure modifications caused by provider behavior changes.
+
+---
+
+## 9. You need to import 40 existing AWS resources into Terraform state. What's your approach?
+
+Manually importing 40 resources is time-consuming and error-prone. My approach is to first create Terraform configuration blocks that match the existing infrastructure. Then I automate imports using shell scripts, Python scripts, or Terraform import automation tools. For example, I can generate import commands dynamically using AWS CLI output. After importing, I run `terraform plan` to verify that Terraform sees the infrastructure as fully managed and no additional changes are required. This process ensures existing resources are brought under Infrastructure as Code management safely.
+
+---
+
+## 10. Your for_each loop depends on a value that's only known after apply. Why does this break the plan phase?
+
+Terraform must know all resource addresses during the planning phase. If `for_each` depends on values generated during apply, Terraform cannot determine how many resources need to be created. This causes planning failures because resource keys are unknown. To solve this, I redesign the workflow by separating infrastructure into multiple stages. The first stage creates resources and outputs the required values. The second stage consumes those outputs through remote state or input variables. This ensures Terraform has all required information during planning and maintains predictable deployments.
+
+---
+
+# Key Production Best Practices
+
+* Always use Remote State Storage.
+* Enable State Locking using DynamoDB.
+* Enable S3 Versioning for state recovery.
+* Use `for_each` instead of `count` whenever possible.
+* Perform drift detection regularly.
+* Pin Terraform and Provider versions.
+* Never run `terraform apply -auto-approve` directly in production.
+* Use CI/CD approval gates for infrastructure changes.
+* Back up state files before major changes.
+* Separate Dev, QA, UAT, and Production state files.
+
+
 # Terraform Interview Questions & Answers (4+ Years DevOps Engineer)
 
 ## 1. How do you manage Terraform state securely in a multi-team environment?
