@@ -7,6 +7,8 @@ Use this bigger-picture approach:
 2. Terraform should only reference the secret, not hardcode the value.
 3. Application/EKS/Lambda/EC2 should access secrets using IAM role permissions.
 4. Do not commit secrets into Git, .tfvars, locals, or pipeline variables unless encrypted/secured.
+
+I would recommend AWS Secrets Manager. If we go with a self-hosted Vault, it can become difficult to manage, patch, upgrade, monitor, and secure over time. AWS Secrets Manager is managed by AWS, so it reduces operational overhead and is better for long-term maintenance.
 ```
 
 # AWS, Terraform, Docker, Kubernetes, CI/CD Interview Questions & Answers (4+ Years DevOps)
