@@ -1,0 +1,17 @@
+1. How do you handle Terraform state management in multi-cloud projects?
+2. How do you manage multi-cloud infrastructure using Terraform?
+3. What are the common failure points in a CI/CD pipeline, and how do you address them?
+4. Can you explain the CI/CD pipeline process from code commit to production deployment? 
+5. What does “large-scale Kubernetes” mean in your experience, and how do you manage it?
+6. How do you troubleshoot a failing Pod in Kubernetes?
+7. How do you handle Terraform state drift caused by manual changes?
+8. How does Kubernetes handle traffic spikes?
+9. Why did you integrate SonarQube into your CI/CD pipeline, and at what stage?
+10. Can you explain Blue-Green deployment in Kubernetes?
+11. How do you make Terraform code reusable?
+12. What monitoring and observability tools have you worked with?
+13. How do you ensure Docker image consistency across environments? 
+14. How do you perform rollbacks in Kubernetes deployments?
+15. How does AWS handle traffic spikes?
+16. What could cause errors when EC2 instances are running?
+17. What is a real-time production issue you identified and how you troubleshooted it?
