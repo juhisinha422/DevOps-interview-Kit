@@ -1,3 +1,193 @@
+# 1. A Pod shows `Running` but the application inside never actually started serving traffic. How do you tell the difference between a process running and a service that's ready?
+
+One of the most common misconceptions in Kubernetes is assuming that a Pod in the **Running** state means the application is healthy and capable of serving requests. In reality, the Running status only means that Kubernetes successfully scheduled the Pod to a node, created the container, and the container's main process is currently running. It does **not** verify that the application has completed initialization or is ready to accept user traffic.
+
+In production, I first verify whether the Deployment has a properly configured **Readiness Probe**. Kubernetes only adds a Pod to the Service endpoints after the readiness probe succeeds. If no readiness probe exists, Kubernetes assumes the application is ready immediately after the container starts, which can cause users to receive connection failures or HTTP 503 responses while the application is still loading configuration, establishing database connections, warming caches, or initializing background services.
+
+My troubleshooting process begins by checking the Pod status using `kubectl get pods` and then inspecting the Pod details with `kubectl describe pod`. I verify whether the readiness condition is marked as **True** and examine recent events for probe failures. Next, I review the application logs using `kubectl logs` to determine whether initialization is still in progress or if startup errors are occurring. If necessary, I execute into the container and manually call the application's health endpoint using `curl` to verify whether it is actually capable of serving requests.
+
+For applications with long startup times, such as Java Spring Boot applications, I also configure a **Startup Probe**. This prevents the liveness probe from restarting the container before startup completes. In production, I always recommend using Startup, Readiness, and Liveness probes together because each serves a different purpose. Startup ensures the application has enough time to initialize, Readiness controls traffic routing, and Liveness detects hung or deadlocked applications.
+
+---
+
+# 2. Two Pods in the same Deployment are getting different amounts of traffic despite identical resource requests. What's actually causing the imbalance?
+
+Identical CPU and memory requests do not guarantee equal traffic distribution. Kubernetes Services perform network-level load balancing, but several factors can result in one Pod receiving significantly more requests than another.
+
+The first thing I verify is whether **Session Affinity** is enabled on the Service. If ClientIP affinity is configured, requests from the same client will always be routed to the same Pod, naturally creating uneven traffic patterns. I also inspect the Ingress controller or external load balancer configuration because Application Load Balancers, NGINX Ingress, or service meshes may implement their own routing logic based on connection reuse, sticky sessions, cookies, or request hashing.
+
+Another common reason is long-lived HTTP keep-alive or gRPC connections. Instead of opening new TCP connections for every request, clients often reuse existing connections. This means a single Pod may continue serving thousands of requests over an already established connection while other Pods receive fewer requests. I also verify that all Pods are passing readiness probes consistently because an intermittently failing readiness probe temporarily removes a Pod from the Service endpoints, shifting traffic to the remaining healthy Pods.
+
+I investigate this issue by checking Service endpoints, reviewing Ingress metrics, analyzing Prometheus dashboards for request counts, and examining application logs to compare traffic distribution across Pods. In production, I also review CPU utilization, response times, and active connection counts because the issue may be caused by uneven client behavior rather than Kubernetes itself.
+
+---
+
+# 3. You scale a Deployment from 3 to 10 replicas, but only 6 actually start. The rest stay Pending indefinitely. What's the cluster telling you, and where do you look first?
+
+When Pods remain in the **Pending** state, Kubernetes is indicating that it cannot find a suitable worker node that satisfies all scheduling requirements. The scheduler has evaluated the available nodes but has been unable to place the remaining Pods.
+
+The first command I execute is `kubectl describe pod <pod-name>` because the Events section usually explains the exact scheduling failure. Common messages include **Insufficient CPU**, **Insufficient Memory**, **Too many Pods**, **Untolerated taints**, **Volume binding failures**, or **Node affinity mismatch**.
+
+Next, I examine cluster capacity by checking worker node resources using `kubectl top nodes` and `kubectl describe nodes`. I verify whether Cluster Autoscaler or Karpenter is functioning correctly because if the cluster has reached its capacity and auto-scaling is not triggered, new Pods will remain Pending indefinitely.
+
+I also inspect Pod specifications for restrictive node selectors, node affinity rules, topology spread constraints, persistent volume availability, and namespace resource quotas. In production environments, I additionally verify whether PodDisruptionBudgets or maximum Pod density limits have been reached.
+
+From my experience, the majority of Pending Pods are caused by insufficient cluster resources, restrictive scheduling rules, or storage provisioning delays rather than scheduler failures themselves.
+
+---
+
+# 4. A ConfigMap update doesn't reflect in your running Pods even after the change was applied successfully. Why, and what's your actual fix—not just "restart the Pod"?
+
+Updating a ConfigMap does not always mean applications automatically begin using the new values. The behavior depends on how the ConfigMap is consumed by the application.
+
+If configuration values are injected as **environment variables**, Kubernetes reads them only during container startup. Updating the ConfigMap changes the Kubernetes object but does not update environment variables inside already running containers. A new Pod must be created to load the updated values.
+
+If the ConfigMap is mounted as a volume, Kubernetes updates the files automatically, but most applications load configuration only once during startup. Unless the application supports dynamic configuration reload or watches the mounted files, it will continue using the old values.
+
+In production, rather than manually deleting Pods, I trigger a controlled rolling update by updating the Deployment annotation or using `kubectl rollout restart deployment <deployment-name>`. This ensures zero downtime while new Pods start with the updated configuration.
+
+For applications that support dynamic configuration reload, I integrate reload controllers such as Stakater Reloader or implement application-level file watchers so configuration changes are applied without requiring Pod restarts. This approach minimizes downtime and operational effort while ensuring configuration consistency across the cluster.
+
+---
+
+# 5. Your Readiness Probe passes, but the application still throws errors for the first 10 seconds of receiving traffic. What's missing in your probe design?
+
+If the readiness probe succeeds while the application still fails immediately after receiving requests, the probe is validating only basic process availability rather than actual application readiness.
+
+A common mistake is configuring the readiness probe to check only whether the HTTP port is open or whether a simple endpoint returns HTTP 200. Although the server process has started, essential components such as database connections, cache initialization, external API connectivity, background workers, or message queue consumers may still be unavailable.
+
+In production, I design readiness probes to validate every dependency required to serve production traffic. For example, the health endpoint should verify successful database connectivity, cache initialization, service discovery registration, and any critical application startup tasks. If any dependency is unavailable, the readiness probe should fail so Kubernetes temporarily removes the Pod from the Service endpoints.
+
+For applications with lengthy initialization, I also configure a Startup Probe so Kubernetes delays liveness checks until startup completes. Proper probe timing values such as `initialDelaySeconds`, `periodSeconds`, `failureThreshold`, and `successThreshold` are equally important because aggressive timings can prematurely route traffic before the application is fully operational.
+
+A well-designed readiness probe should 
+answer one question: Can this Pod successfully process a real production request right now? If the answer is no, the probe should continue failing until the application is genuinely ready.
+
+
+# 6. A Node is marked **Ready**, but no new Pods are scheduling onto it. What three things would you check before assuming it's a scheduler issue?
+
+When a node is in the **Ready** state, it simply means the kubelet is healthy and communicating with the control plane. It does not guarantee that Kubernetes can schedule workloads onto that node. Before blaming the scheduler, I always verify three major areas: node configuration, scheduling constraints, and resource availability.
+
+The first thing I check is whether the node has been **cordoned** or contains **taints**. A cordoned node is marked as Ready but scheduling is disabled, while taints prevent Pods from being scheduled unless they have matching tolerations. I verify this using `kubectl describe node <node-name>` and look for `SchedulingDisabled` or any `NoSchedule` taints.
+
+The second area is the Pod specification itself. I verify whether the Deployment has `nodeSelector`, `nodeAffinity`, `podAffinity`, `podAntiAffinity`, or topology spread constraints that prevent scheduling onto that node. Sometimes a node satisfies the Ready condition but does not match the scheduling rules defined by the workload.
+
+The third area is available resources. Even if a node is Ready, it may not have enough allocatable CPU, memory, ephemeral storage, or Pod capacity. I inspect the node's allocated resources using `kubectl describe node` and verify CPU and memory utilization with `kubectl top node`. If the maximum number of Pods allowed on the node has been reached, Kubernetes will also refuse to schedule new workloads.
+
+In production, I also verify whether Persistent Volumes can be attached, whether Cluster Autoscaler or Karpenter is functioning correctly, and whether namespace ResourceQuotas or LimitRanges are preventing new Pod creation. Most scheduling issues are related to configuration or resource constraints rather than failures in the scheduler itself.
+
+---
+
+# 7. You delete a Deployment but the Pods keep running for several more minutes. What's actually controlling that behavior, and why isn't it instant?
+
+Deleting a Deployment does not immediately terminate all running Pods because Kubernetes follows a graceful termination process rather than abruptly killing workloads. This behavior is intentional to prevent request failures and data corruption.
+
+When the Deployment is deleted, Kubernetes first deletes the Deployment object, which then removes the ReplicaSet ownership. The ReplicaSet begins terminating Pods by sending a SIGTERM signal to each container. Containers are given time to shut down gracefully based on the configured `terminationGracePeriodSeconds`, which defaults to 30 seconds. During this period, the application is expected to complete in-flight requests, close database connections, flush logs, and release resources before exiting.
+
+If the application ignores the SIGTERM signal or continues running beyond the grace period, Kubernetes eventually sends a SIGKILL signal to force termination. Additionally, if a `preStop` lifecycle hook is configured, Kubernetes executes that hook before stopping the container, which can intentionally delay termination.
+
+Another factor is the Service endpoint update process. Kubernetes removes terminating Pods from Service endpoints only after the readiness condition changes, ensuring that no new traffic is sent to those Pods while existing requests are allowed to complete.
+
+In production, I never force-delete Pods unless absolutely necessary because doing so may interrupt active user requests or leave transactions incomplete. Instead, I allow Kubernetes to complete graceful termination so applications shut down safely without causing downtime or data inconsistency.
+
+---
+
+# 8. Your cluster has resource requests and limits set correctly, yet one namespace is still starving others of CPU during peak load. What's the missing piece?
+
+Resource requests and limits control resource allocation for individual Pods, but they do not guarantee fair resource sharing between namespaces. The missing component in this scenario is usually **ResourceQuota** or **Priority and Fairness** policies.
+
+If one namespace creates hundreds of Pods, it can consume most of the cluster's available CPU even though each Pod has reasonable resource requests. Without namespace-level quotas, Kubernetes has no mechanism to prevent one team from exhausting cluster capacity.
+
+In production, I implement **ResourceQuota** objects to define maximum CPU, memory, storage, and Pod counts for each namespace. This ensures that no single namespace can consume all cluster resources. I also configure **LimitRanges** so developers cannot create Pods without specifying appropriate requests and limits.
+
+For critical production workloads, I use **PriorityClasses**, allowing business-critical applications to receive scheduling priority over less important workloads during resource contention. If workloads are spread across multiple nodes, I also verify topology spread constraints and Pod distribution to avoid hotspot nodes.
+
+Monitoring is equally important. I continuously observe namespace-level resource utilization using Prometheus and Grafana dashboards. This allows us to detect resource starvation before it impacts production. Combining ResourceQuota, LimitRanges, PriorityClasses, and monitoring provides balanced resource allocation across multiple teams sharing the same cluster.
+
+---
+
+# 9. A rolling update is stuck halfway, with old and new Pods both running and neither set being terminated. What conditions cause Kubernetes to pause a rollout like this?
+
+A rolling update pauses when Kubernetes cannot safely continue replacing old Pods with new ones while maintaining the desired application availability. This behavior protects production workloads from complete outages.
+
+The most common reason is failing **Readiness Probes**. Kubernetes waits until newly created Pods become Ready before terminating older Pods. If new Pods never become Ready due to application failures, database connectivity issues, configuration errors, or image problems, the rollout stops automatically.
+
+Another common cause is insufficient cluster resources. If new Pods cannot be scheduled because of CPU, memory, storage, or node capacity limitations, Kubernetes cannot continue replacing old Pods. Misconfigured `maxUnavailable` and `maxSurge` values may also prevent further progress by limiting the number of Pods that can be unavailable or created simultaneously.
+
+PodDisruptionBudgets can also delay rollouts if terminating additional Pods would violate the minimum availability requirement. Likewise, failing image pulls, Persistent Volume attachment failures, admission controller rejections, or quota limitations can all prevent rollout completion.
+
+During troubleshooting, I first check rollout status using `kubectl rollout status deployment <deployment-name>`, inspect Pod events using `kubectl describe pod`, review application logs, verify Service endpoints, and confirm cluster resource availability. In production, I never force a rollout until I understand why Kubernetes intentionally paused it, because the pause itself is usually protecting application availability.
+
+---
+
+# 10. You set up a NetworkPolicy to restrict traffic, but Pods in the same namespace can still reach each other freely. What did the policy actually fail to specify?
+
+A NetworkPolicy only affects traffic that it explicitly selects. One common mistake is creating a policy that does not select the intended Pods or forgetting to define both ingress and egress rules. Another frequent issue is assuming that NetworkPolicies work without a network plugin that supports them.
+
+If the cluster uses a CNI plugin that does not enforce NetworkPolicies, such as basic Flannel, the policy is effectively ignored. Plugins like Calico or Cilium are required to enforce network isolation.
+
+Another possibility is that the policy allows all Pods in the namespace because the `podSelector` is empty or too broad. Kubernetes follows a default allow model until a Pod is selected by a NetworkPolicy. Once selected, only explicitly allowed traffic is permitted.
+
+In production, I first verify whether the CNI plugin supports NetworkPolicies, then confirm that the Pod labels match the policy selectors. I also ensure both ingress and egress rules are correctly defined and test connectivity using temporary Pods and network debugging tools. Properly designed NetworkPolicies should implement least-privilege communication rather than relying on default behavior.
+
+Continuing the same **README.md**.
+
+# 11. A StatefulSet Pod gets deleted and recreated, but it comes back with a completely different IP and can't reconnect to the same volume. What's broken in the setup?
+
+A StatefulSet is designed to provide stable identities for stateful applications such as MySQL, PostgreSQL, MongoDB, Kafka, ZooKeeper, or Elasticsearch. Although the Pod IP itself is not guaranteed to remain the same after recreation, the Pod name, DNS identity, and Persistent Volume should remain consistent. If the recreated Pod receives a different IP and cannot reconnect to its previous storage, it usually indicates that the StatefulSet has not been configured correctly.
+
+The first thing I verify is whether the StatefulSet uses a **Headless Service** (`clusterIP: None`). Kubernetes creates stable DNS records such as `mysql-0.mysql.default.svc.cluster.local` through the Headless Service. Applications should always communicate using these DNS names instead of Pod IP addresses because IP addresses are ephemeral and change whenever Pods are recreated.
+
+Next, I check the `volumeClaimTemplates` section. Every StatefulSet replica should automatically receive its own PersistentVolumeClaim (PVC), which remains bound even if the Pod is deleted. If the application is using an `emptyDir` volume or manually created PVCs incorrectly, the recreated Pod may attach to a different volume or lose its data completely.
+
+I also verify the StorageClass configuration, PVC binding status, CSI driver health, and Persistent Volume reclaim policy. Sometimes the issue is caused by manually deleting the PVC or configuring the reclaim policy as **Delete**, which removes the underlying storage when the PVC is deleted.
+
+In production, we never configure stateful applications to depend on Pod IP addresses. Instead, applications communicate using the stable DNS names provided by the StatefulSet, while persistent storage is managed through dynamically provisioned Persistent Volumes. This guarantees data persistence even if Pods are rescheduled to different nodes.
+
+---
+
+# 12. Your HPA is configured correctly, but it scales up aggressively and then immediately scales back down in a loop. What's causing the flapping?
+
+This behavior is known as **HPA flapping**. It occurs when the Horizontal Pod Autoscaler continuously scales the application up and down because the observed metrics fluctuate around the configured threshold. Although the HPA configuration itself may be correct, unstable metrics or aggressive scaling parameters can cause repeated scaling events.
+
+The first thing I check is the metric being used by the HPA. CPU utilization is the most common metric, but short traffic bursts or temporary spikes can trigger rapid scaling. Once additional Pods are created, the average CPU utilization immediately drops below the target value, causing Kubernetes to scale the Deployment back down. The cycle then repeats whenever traffic increases again.
+
+I also verify whether the **Metrics Server** or Prometheus Adapter is reporting stable metrics. Delayed or inconsistent metric collection can result in incorrect scaling decisions. Another important area is the application's startup time. If new Pods require 30–60 seconds before becoming ready, the HPA may continue scaling because the newly created Pods are not yet contributing to request processing.
+
+In production, I reduce flapping by configuring **stabilization windows**, scaling policies, and cooldown periods using the HPA v2 API. I also increase `minReplicas` for frequently used applications to reduce unnecessary scaling operations. Readiness probes, startup probes, and accurate resource requests are equally important because inaccurate CPU requests directly affect HPA calculations.
+
+Monitoring scaling events in Prometheus and Grafana helps identify repeated oscillations. The objective is not simply automatic scaling, but stable and predictable scaling behavior that matches actual workload demand.
+
+---
+
+# 13. You're asked to design multi-tenancy on a single cluster without giving any team access to another team's resources. What's your actual boundary, and what's not enough on its own?
+
+The primary security boundary for multi-tenancy in Kubernetes is the **Namespace**, but a Namespace alone is not sufficient to achieve proper isolation. Many engineers mistakenly believe that simply creating separate namespaces isolates teams completely, which is not true.
+
+In production, I create a dedicated namespace for each team or application. I then implement **RBAC** to ensure users, service accounts, and CI/CD pipelines have access only to resources within their own namespace. Developers receive Roles and RoleBindings that restrict operations to their namespace, while cluster administrators receive ClusterRoles only when absolutely necessary.
+
+Next, I implement **NetworkPolicies** to prevent communication between namespaces unless explicitly allowed. Without NetworkPolicies, Pods in different namespaces can often communicate freely over the network. I also configure **ResourceQuotas** and **LimitRanges** to prevent one team from consuming excessive CPU, memory, storage, or Pod capacity, ensuring fair resource allocation across the cluster.
+
+Secrets are stored separately within each namespace, and admission controllers such as Kyverno or OPA Gatekeeper enforce organizational security policies. Pod Security Admission is configured to prevent privileged containers, host networking, or unnecessary Linux capabilities.
+
+For highly regulated workloads requiring complete isolation, I recommend separate Kubernetes clusters or separate AWS accounts instead of relying solely on namespace isolation. Namespaces provide logical separation, but stronger isolation may require infrastructure-level segregation depending on compliance requirements.
+
+---
+
+# 14. A Liveness Probe is killing your Pod every few minutes, even though manually checking the application shows it's healthy. What's the mismatch?
+
+A liveness probe is responsible for determining whether an application has become permanently unhealthy and should be restarted. If the application appears healthy during manual testing but the liveness probe continues restarting the container, the problem usually lies in the probe configuration rather than the application itself.
+
+The first thing I verify is whether the probe timeout is too aggressive. For example, if the application occasionally experiences brief garbage collection pauses, CPU spikes, or heavy I/O operations, it may fail the health check even though it quickly recovers. A low `timeoutSeconds` or `failureThreshold` can cause unnecessary restarts.
+
+Another common issue is using the wrong endpoint. Many applications expose separate endpoints for readiness and liveness. The liveness probe should verify only whether the application process is alive, while the readiness probe should verify whether the application is capable of serving production traffic. If the liveness probe checks database connectivity, external APIs, or downstream services, temporary failures in those dependencies may cause Kubernetes to restart a perfectly healthy application.
+
+I also review node resource utilization because CPU throttling or memory pressure may delay application responses enough to fail probe timeouts. Container logs, kubelet events, and application monitoring provide valuable information about the exact timing of failures.
+
+In production, I carefully tune probe parameters such as `initialDelaySeconds`, `periodSeconds`, `timeoutSeconds`, and `failureThreshold` based on application startup time and expected response latency. For applications with slow initialization, I configure a Startup Probe so the liveness probe begins only after startup completes. My goal is to ensure Kubernetes restarts only genuinely unhealthy applications rather than terminating healthy workloads due to temporary performance fluctuations or overly strict probe settings.
+
+
+
 # Kubernetes CrashLoopBackOff – Issues, Causes, and Troubleshooting Guide
 
 ## What is CrashLoopBackOff?
