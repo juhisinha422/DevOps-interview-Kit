@@ -1,3 +1,45 @@
+## A pod is not starting in Kubernetes. How do you troubleshoot it?
+
+Answer: First, I check the pod status using:
+
+kubectl get pods
+
+Then I describe the pod to identify the exact issue:
+
+kubectl describe pod 
+
+I look for common problems such as:
+
+* ImagePullBackOff → Incorrect Docker image or registry issue
+
+* CrashLoopBackOff → Application
+  crashing repeatedly
+
+* Pending → Insufficient resources or scheduling issue
+
+* Failed Mount → Volume or ConfigMap issue
+
+Next, I check the container logs:
+
+kubectl logs 
+
+If the pod has multiple containers:
+
+kubectl logs  -c 
+
+I also verify:
+
+* Node status
+
+* CPU and Memory availability
+
+* Events section in describe output
+
+* ConfigMaps, Secrets, PVCs, and network policies
+
+Finally, after fixing the issue, I restart or redeploy the pod if required.
+
+
 ## What happens if a Kubernetes node becomes unhealthy?
 
 Answer : If a Kubernetes node becomes unhealthy or stops responding, the control plane detects it through node health checks.
