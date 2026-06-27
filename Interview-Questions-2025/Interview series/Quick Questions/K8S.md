@@ -1,3 +1,24 @@
+## What happens if a Kubernetes node becomes unhealthy?
+
+Answer : If a Kubernetes node becomes unhealthy or stops responding, the control plane detects it through node health checks.
+
+```
+Then:
+
+* The node is marked as NotReady
+* Pods running on that node become unavailable
+* Kubernetes scheduler automatically schedules those workloads onto healthy nodes if replicas are available
+* If configured, failed pods are recreated on other healthy nodes
+
+This helps maintain:
+
+* High Availability
+* Fault Tolerance
+* Application Continuity
+
+In production environments, multiple worker nodes are used to avoid single points of failure.
+```
+
 # 1. A Pod shows `Running` but the application inside never actually started serving traffic. How do you tell the difference between a process running and a service that's ready?
 
 One of the most common misconceptions in Kubernetes is assuming that a Pod in the **Running** state means the application is healthy and capable of serving requests. In reality, the Running status only means that Kubernetes successfully scheduled the Pod to a node, created the container, and the container's main process is currently running. It does **not** verify that the application has completed initialization or is ready to accept user traffic.
