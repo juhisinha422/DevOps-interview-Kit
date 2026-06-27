@@ -1,4 +1,511 @@
 
+# 1. What are the components of the Kubernetes Control Plane?
+
+The Kubernetes Control Plane is the brain of the cluster. It manages the overall state of the cluster, schedules workloads, maintains desired state, and ensures that applications continue running as expected. In production, the Control Plane is usually deployed with high availability across multiple nodes to eliminate single points of failure.
+
+The primary components are:
+
+**API Server (kube-apiserver):** The API Server is the front door of Kubernetes. Every request—whether from `kubectl`, CI/CD pipelines, controllers, or other cluster components—first reaches the API Server. It validates authentication and authorization, performs admission control, and updates the cluster state in etcd.
+
+**etcd:** etcd is the distributed key-value database where Kubernetes stores its entire cluster state. Information such as Pods, Deployments, Secrets, ConfigMaps, Services, Nodes, RBAC objects, and cluster configuration is stored here. Since etcd contains the complete cluster state, regular backups are essential for disaster recovery.
+
+**Scheduler (kube-scheduler):** The Scheduler watches for newly created Pods that do not yet have a node assigned. It evaluates CPU, memory, taints, tolerations, node affinity, topology spread constraints, and resource availability before selecting the most suitable worker node.
+
+**Controller Manager (kube-controller-manager):** This component continuously compares the desired state stored in etcd with the actual cluster state. If a Pod crashes or a node becomes unavailable, the Controller Manager automatically creates replacement Pods to maintain the desired replica count.
+
+**Cloud Controller Manager (optional):** In cloud environments such as Amazon EKS, this component integrates Kubernetes with AWS services. It provisions Load Balancers, manages cloud routes, attaches storage volumes, and synchronizes cloud resources with Kubernetes objects.
+
+Together, these components ensure that the cluster continuously maintains the desired state and automatically recovers from failures.
+
+---
+
+# 2. What components run on Worker Nodes?
+
+Worker Nodes are responsible for running application workloads. Every worker node contains several core components that allow it to communicate with the Control Plane and execute containers.
+
+The most important component is the **kubelet**. It acts as the node agent and continuously communicates with the API Server. Whenever a Pod is scheduled to the node, the kubelet receives the Pod specification, pulls the required container images, starts the containers through the container runtime, performs health checks, and reports the Pod status back to the Control Plane.
+
+The second component is the **container runtime**, such as containerd or CRI-O. It is responsible for downloading images, creating containers, starting and stopping them, and managing container execution.
+
+The third component is **kube-proxy**, which manages Kubernetes networking on the node. It configures iptables or IPVS rules so that Services can correctly route traffic to backend Pods regardless of where those Pods are running.
+
+Additionally, every node runs a **CNI plug8in** such as Calico, Cilium, or Flannel. The CNI plugin assigns Pod IP addresses and enables Pod-to-Pod communication across different nodes.
+
+In production, monitoring agents, logging agents, CSI storage drivers, and security agents are also commonly deployed on worker nodes to provide observability, storage integration, and runtime protection.
+
+---
+
+# 3. Difference between Deployment and ReplicaSet?
+
+Although Deployments and ReplicaSets are closely related, they serve different purposes.
+
+A **ReplicaSet** ensures that a specified number of identical Pod replicas are always running. If a Pod crashes or is deleted, the ReplicaSet immediately creates a replacement Pod. However, ReplicaSets do not provide deployment strategies, version management, or rollback capabilities.
+
+A **Deployment** is a higher-level controller that manages one or more ReplicaSets. When a Deployment is created, Kubernetes automatically creates the underlying ReplicaSet. During application updates, the Deployment creates a new ReplicaSet while gradually reducing the old one, enabling rolling updates and zero-downtime deployments.
+
+Deployments also maintain rollout history, making rollbacks straightforward if a deployment introduces problems. Commands such as `kubectl rollout status`, `kubectl rollout history`, and `kubectl rollout undo` all work with Deployments.
+
+In production, we almost always manage stateless applications using Deployments because they support rolling updates, controlled rollbacks, scaling, and deployment strategies. ReplicaSets are generally managed indirectly by Deployments rather than being created manually.
+
+---
+
+# 4. What is a Service in Kubernetes?
+
+Pods are temporary resources that can be created, terminated, or rescheduled at any time. Since Pod IP addresses frequently change, applications cannot reliably communicate directly with Pod IPs.
+
+A Kubernetes Service provides a stable virtual IP address and DNS name that remain constant even if the backend Pods change. The Service automatically load balances requests across all healthy Pods matching its selector.
+
+There are several Service types:
+
+* **ClusterIP** exposes the application only within the cluster.
+* **NodePort** exposes the application on a static port on every worker node.
+* **LoadBalancer** provisions an external cloud load balancer, such as an AWS Application Load Balancer or Network Load Balancer.
+* **ExternalName** maps a Kubernetes Service to an external DNS name.
+
+Services provide service discovery, load balancing, and stable connectivity for microservices running in Kubernetes.
+
+---
+
+# 5. How does a Service know which Pods to route traffic to?
+
+A Kubernetes Service uses **labels** and **selectors** to identify backend Pods. Every Pod contains metadata labels, such as:
+
+```yaml
+labels:
+  app: payment
+  env: production
+```
+
+The Service contains a selector that matches these labels:
+
+```yaml
+selector:
+  app: payment
+```
+
+Whenever Kubernetes detects a Pod whose labels match the selector, it automatically adds that Pod to the Service endpoints. If the Pod is deleted or fails its readiness probe, Kubernetes removes it from the endpoint list.
+
+Traffic is routed only to Pods that are both label-matched and Ready. This ensures users never receive requests from unhealthy Pods.
+
+In production, label consistency is extremely important because even a small typo between Pod labels and Service selectors can result in a Service with zero endpoints.
+
+---
+
+# 6. What is HPA (Horizontal Pod Autoscaler)?
+
+Horizontal Pod Autoscaler (HPA) automatically adjusts the number of Pod replicas based on resource utilization or custom metrics.
+
+Unlike manually scaling Deployments, HPA continuously monitors CPU utilization, memory utilization, or Prometheus custom metrics through the Metrics Server or Prometheus Adapter. When utilization exceeds the configured threshold, HPA increases the replica count. When utilization decreases, it scales the application back down.
+
+For example, if an application normally runs with three replicas and CPU usage rises above 70%, HPA may automatically increase the Deployment to six or ten replicas depending on demand. Once traffic decreases, Kubernetes gradually reduces the replica count to save infrastructure costs.
+
+In production, HPA works best when combined with Cluster Autoscaler or Karpenter so that additional worker nodes can be provisioned if existing nodes lack sufficient capacity.
+
+---
+
+# 7. How do you create an HPA?
+
+An HPA can be created using either YAML manifests or the `kubectl autoscale` command.
+
+A typical YAML configuration specifies the target Deployment, minimum and maximum replica counts, and CPU or memory utilization thresholds.
+
+For example, an HPA may maintain between three and ten replicas while targeting 70% average CPU utilization.
+
+Before creating an HPA, I ensure that the Metrics Server is installed because HPA depends on resource metrics. I also configure accurate CPU and memory requests in the Deployment because HPA calculates utilization based on requested resources rather than actual node capacity.
+
+After deployment, I verify scaling behavior using:
+
+```bash
+kubectl get hpa
+kubectl describe hpa
+```
+
+In production, I monitor scaling events using Prometheus and Grafana to ensure the HPA responds correctly during traffic spikes without causing unnecessary scaling fluctuations.
+
+---
+
+# 8. Difference between HPA and Cluster Autoscaler?
+
+Horizontal Pod Autoscaler and Cluster Autoscaler solve different scaling problems.
+
+HPA scales **Pods**, while Cluster Autoscaler scales **worker nodes**.
+
+If an application experiences increased traffic, HPA first creates additional Pod replicas. However, if there is insufficient CPU or memory on existing worker nodes, those Pods remain Pending. At that point, Cluster Autoscaler automatically provisions additional EC2 instances (or managed nodes in EKS) to provide capacity for the new Pods.
+
+Once traffic decreases, HPA reduces the number of Pods, and Cluster Autoscaler eventually removes underutilized worker nodes to reduce infrastructure costs.
+
+In production EKS environments, these two components work together to provide complete application and infrastructure auto-scaling.
+
+
+---
+
+# 9. How do Services communicate across namespaces?
+
+By default, a Kubernetes Service is accessible only within its own namespace using its short name. However, Services can communicate across namespaces by using their fully qualified domain name (FQDN). Kubernetes DNS automatically creates DNS records in the format:
+
+```
+<service-name>.<namespace>.svc.cluster.local
+```
+
+For example, if a Service named `payment-service` exists in the `payments` namespace, another Pod running in the `orders` namespace can access it using:
+
+```
+payment-service.payments.svc.cluster.local
+```
+
+The DNS request is resolved by CoreDNS, which returns the ClusterIP of the Service. kube-proxy then forwards the request to one of the healthy backend Pods.
+
+In production, I avoid hardcoding Pod IP addresses because Pods are ephemeral. Instead, all inter-service communication is performed using Kubernetes Services and DNS names, which remain stable even if Pods are recreated.
+
+---
+
+# 10. How does Kubernetes DNS work?
+
+Kubernetes uses **CoreDNS** as its internal DNS server. Whenever a Service is created, CoreDNS automatically creates a DNS record for that Service.
+
+For example, creating a Service named `user-service` in the `default` namespace automatically creates:
+
+```
+user-service.default.svc.cluster.local
+```
+
+Whenever a Pod sends a request to this DNS name, CoreDNS resolves it to the Service's ClusterIP. kube-proxy then forwards traffic to one of the healthy Pods behind the Service.
+
+Pods automatically receive DNS configuration through `/etc/resolv.conf`, allowing applications to communicate using service names instead of IP addresses.
+
+In production, DNS failures usually indicate CoreDNS issues, network plugin problems, or incorrect Service configurations. Commands such as `kubectl get svc`, `kubectl get endpoints`, and `nslookup` inside Pods help troubleshoot DNS-related issues.
+
+---
+
+# 11. A Pod is not coming up. How do you troubleshoot?
+
+When a Pod fails to start, I follow a structured troubleshooting approach instead of guessing.
+
+First, I check the Pod status:
+
+```bash
+kubectl get pods
+```
+
+If the Pod is Pending, I describe it:
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+This usually reveals scheduling issues such as insufficient CPU, memory shortages, node selectors, taints, tolerations, or PersistentVolume problems.
+
+If the Pod is in CrashLoopBackOff, I inspect container logs:
+
+```bash
+kubectl logs <pod-name>
+```
+
+If multiple containers exist:
+
+```bash
+kubectl logs <pod-name> -c <container-name>
+```
+
+Next, I check Kubernetes events:
+
+```bash
+kubectl get events --sort-by=.metadata.creationTimestamp
+```
+
+If image pulling fails, I verify the image name, registry credentials, and ImagePullSecrets.
+
+I also verify ConfigMaps, Secrets, PVC bindings, liveness probes, readiness probes, and application startup logs.
+
+In production, I follow this order:
+
+- Check Pod status
+- Describe Pod
+- View logs
+- Check Events
+- Verify Node health
+- Validate storage and networking
+- Review application configuration
+
+This systematic approach helps identify the root cause quickly.
+
+---
+
+# 12. Application works locally but fails on EKS. How do you troubleshoot?
+
+If an application runs locally but fails after deployment to EKS, I compare both environments systematically.
+
+First, I verify whether the container itself is healthy by checking logs:
+
+```bash
+kubectl logs
+```
+
+Next, I compare environment variables, Secrets, ConfigMaps, mounted volumes, database connectivity, IAM permissions, and network policies.
+
+I verify that:
+
+- Docker image version is correct.
+- Required Secrets exist.
+- ConfigMaps contain production values.
+- ServiceAccount has the correct IAM Role (IRSA).
+- Security Groups allow communication.
+- Readiness probes are succeeding.
+- Resource requests are sufficient.
+
+If the application communicates with AWS services, I verify IAM permissions using:
+
+```bash
+aws sts get-caller-identity
+```
+
+inside the Pod.
+
+I also test connectivity to databases and external APIs from inside the Pod using curl, nc, or nslookup.
+
+Most production issues are caused by configuration differences rather than application code.
+
+---
+
+# 13. How do you investigate CrashLoopBackOff?
+
+CrashLoopBackOff means Kubernetes repeatedly starts a container, the container crashes, Kubernetes restarts it, and eventually introduces a delay between restart attempts.
+
+I first check the Pod:
+
+```bash
+kubectl describe pod
+```
+
+Then I inspect logs:
+
+```bash
+kubectl logs <pod-name> --previous
+```
+
+The `--previous` flag is useful because the current container may already have restarted.
+
+Common causes include:
+
+- Application startup failure
+- Missing ConfigMap
+- Missing Secret
+- Database unavailable
+- Incorrect environment variables
+- Port conflicts
+- Failed startup script
+- OOMKilled
+- Permission issues
+
+I also inspect Kubernetes Events and verify readiness and liveness probes.
+
+In production, most CrashLoopBackOff issues are application-level rather than Kubernetes-level.
+
+---
+
+# 14. How do you check Kubernetes logs?
+
+Logs are checked using:
+
+```bash
+kubectl logs <pod-name>
+```
+
+For multiple containers:
+
+```bash
+kubectl logs <pod-name> -c <container-name>
+```
+
+For previous crashes:
+
+```bash
+kubectl logs --previous <pod-name>
+```
+
+To stream logs:
+
+```bash
+kubectl logs -f <pod-name>
+```
+
+For production environments, we centralize logs using Fluent Bit or Fluentd, which send logs to CloudWatch, Elasticsearch, Loki, or Splunk. Grafana dashboards are then used for searching and analysis.
+
+---
+
+# 15. How do you debug a Service not routing traffic?
+
+The first step is verifying whether the Service has healthy endpoints.
+
+```bash
+kubectl get svc
+kubectl get endpoints
+```
+
+If Endpoints are empty, the Service selector does not match Pod labels.
+
+Next, I compare:
+
+```bash
+kubectl get pods --show-labels
+kubectl describe svc
+```
+
+I also verify:
+
+- Readiness Probe status
+- Pod health
+- TargetPort
+- ContainerPort
+- Service Port
+- Network Policies
+- kube-proxy
+- CoreDNS
+
+Finally, I test connectivity from another Pod:
+
+```bash
+kubectl exec -it busybox -- curl http://service-name
+```
+
+Most Service issues are caused by incorrect selectors or readiness probe failures.
+
+---
+
+# 16. How do you troubleshoot an Ingress issue?
+
+I begin by checking whether the Ingress resource exists:
+
+```bash
+kubectl get ingress
+```
+
+Then:
+
+```bash
+kubectl describe ingress
+```
+
+Next, I verify:
+
+- Ingress Controller is running.
+- ALB/NGINX Controller logs.
+- Backend Service exists.
+- Service has endpoints.
+- TLS certificate is valid.
+- DNS points to the Load Balancer.
+- Security Groups allow traffic.
+- Target Groups are healthy.
+
+If using AWS ALB Ingress Controller, I also inspect AWS Target Groups and ALB listener rules.
+
+---
+
+# 17. How do you troubleshoot a high CPU issue in EKS?
+
+I first identify which Pods consume CPU:
+
+```bash
+kubectl top pods
+kubectl top nodes
+```
+
+Next, I determine whether the issue is application-related or infrastructure-related.
+
+I verify:
+
+- Recent deployments
+- Infinite loops
+- Traffic spikes
+- Memory pressure
+- CPU throttling
+- Resource requests and limits
+- HPA activity
+
+I also review Grafana dashboards and Prometheus metrics.
+
+If necessary, I scale the Deployment or investigate inefficient application code.
+
+The goal is to identify the actual bottleneck instead of simply adding more CPU.
+
+---
+
+# 18. What happens internally when a Pod is created?
+
+When a Pod manifest is submitted, the API Server validates it and stores it in etcd.
+
+The Scheduler detects the unscheduled Pod and selects the most suitable worker node.
+
+The kubelet on that node receives the Pod specification, pulls the required Docker image, creates networking through the CNI plugin, mounts volumes, starts the containers using containerd, and reports the Pod status back to the API Server.
+
+If Services exist, kube-proxy updates networking rules so traffic can reach the new Pod.
+
+Finally, readiness probes determine when the Pod can begin receiving production traffic.
+
+---
+
+# 19. Explain Kubernetes networking.
+
+Every Pod receives its own IP address.
+
+Pods communicate directly without NAT through the Container Network Interface (CNI) plugin.
+
+Common CNI plugins include:
+
+- Calico
+- Cilium
+- Flannel
+- Amazon VPC CNI (EKS)
+
+Services provide stable virtual IPs while kube-proxy forwards traffic to backend Pods.
+
+Ingress Controllers expose applications externally using HTTP or HTTPS routing.
+
+NetworkPolicies provide firewall-like rules controlling Pod-to-Pod communication.
+
+This flat networking model allows any Pod to communicate with another Pod unless explicitly restricted.
+
+---
+
+# 20. What is kube-proxy?
+
+kube-proxy is the networking component running on every worker node.
+
+It watches the Kubernetes API Server for changes to Services and Endpoints.
+
+Whenever a Service changes, kube-proxy updates iptables or IPVS rules so incoming traffic is forwarded to healthy backend Pods.
+
+It provides load balancing between Pods and ensures Service IPs remain stable.
+
+In modern production clusters, IPVS mode is generally preferred because it scales better than iptables.
+
+---
+
+# 21. What is CoreDNS?
+
+CoreDNS is Kubernetes' internal DNS server.
+
+It automatically creates DNS records for Services and Pods, allowing applications to communicate using names instead of IP addresses.
+
+For example:
+
+```
+payment-service.default.svc.cluster.local
+```
+
+CoreDNS continuously watches the Kubernetes API Server for new Services and updates DNS records automatically.
+
+If DNS resolution fails, I verify:
+
+- CoreDNS Pods are Running.
+- CoreDNS logs.
+- Service and Endpoint configuration.
+- Network connectivity.
+- `/etc/resolv.conf` inside Pods.
+
+In production EKS clusters, CoreDNS is one of the most critical system components because almost all service-to-service communication depends on it.
+
+
 ## 1. Walk me through the complete CI/CD lifecycle in your project, starting from a Git commit until the application is deployed to an EKS cluster.
 
 In my current project, we follow a GitOps-based CI/CD approach using GitHub, Jenkins, SonarQube, Nexus, Docker, Terraform, ArgoCD, and Amazon EKS. The process starts when a developer creates a feature branch from the develop branch and commits code after local testing. A Pull Request is raised, and after peer review and approval, the code is merged into the main integration branch. GitHub sends a webhook to Jenkins, automatically triggering the CI pipeline. Jenkins first checks out the latest source code, validates the branch, installs dependencies, and compiles the application using Maven or Gradle. Unit tests are executed, followed by static code analysis using SonarQube. The pipeline waits for the Quality Gate result, and if the Quality Gate fails, the pipeline stops immediately.
