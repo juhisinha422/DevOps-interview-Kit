@@ -1607,7 +1607,6 @@ Saving: ~$800/month
 Total saved: ~$11,500/month 💰
 Presented to client engineering leads with full data.
 They asked me to do the same for 2 more environments.
-```
 
 ## How do you reduce storage costs?
 
