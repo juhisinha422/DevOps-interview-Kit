@@ -1,0 +1,328 @@
+# Deloitte AWS DevOps Interview Questions (Extracted from Interview Transcript)
+
+## HR / Introduction
+
+1. Introduce yourself.
+2. Where are you currently located?
+3. Explain your day-to-day responsibilities.
+4. What tools and technologies do you work with?
+5. How many DevOps engineers are in your team?
+6. How many developers are in your project?
+7. Which state are you from?
+8. How long have you been in Bangalore?
+9. Are you working in the same company since joining?
+10. What is your current CTC/package?
+
+---
+
+# Kubernetes
+
+## Node & Networking
+
+1. What types of node issues have you faced?
+2. What node-related issues do you troubleshoot?
+3. What types of port-related issues have you handled?
+4. What is CNI?
+5. Which CNI plugin are you using?
+6. Explain Amazon VPC CNI.
+7. How do you configure Amazon VPC CNI?
+8. Explain ENI.
+9. How does ENI work?
+10. How are IP addresses assigned to Pods?
+11. What is awsvpc network mode?
+12. Explain IP allocation in Amazon VPC CNI.
+13. How do you troubleshoot CNI issues?
+
+---
+
+## Kubernetes Services
+
+14. What are the different types of Services in Kubernetes?
+15. Explain ClusterIP.
+16. Explain NodePort.
+17. Explain LoadBalancer.
+18. Explain ExternalName Service.
+19. When do you use each Service type?
+
+---
+
+## Ingress
+
+20. Why do we use an Ingress Controller?
+21. Explain Host-based Routing.
+22. Explain Path-based Routing.
+23. Difference between LoadBalancer and Ingress.
+24. Explain the complete traffic flow from Route53 to Pod.
+
+---
+
+## Kubernetes Controllers
+
+25. What is Deployment?
+26. What is ReplicaSet?
+27. Difference between Deployment and ReplicaSet.
+28. Difference between Deployment and StatefulSet.
+29. Difference between Deployment, ReplicaSet, DaemonSet and StatefulSet.
+30. When do you use DaemonSet?
+31. When do you use StatefulSet?
+32. When do you use ReplicaSet?
+
+---
+
+## Pod Troubleshooting
+
+33. What is CrashLoopBackOff?
+34. How do you troubleshoot CrashLoopBackOff?
+35. What commands do you use for troubleshooting Pods?
+36. How do you check Pod logs?
+37. Command to check real-time Pod logs.
+38. Difference between normal logs and streaming logs.
+39. How do you troubleshoot a failed Pod?
+
+---
+
+## Sidecar Container
+
+40. What is a Sidecar Container?
+41. Why do we use Sidecar Containers?
+42. Explain Sidecar architecture.
+43. How many containers run inside one Pod?
+44. What containers are running inside your Pods?
+45. What is Fluent Bit?
+46. Why is Fluent Bit used?
+
+---
+
+## Autoscaling
+
+47. What autoscaling mechanism are you using?
+48. Explain Horizontal Pod Autoscaler.
+49. Explain Cluster Autoscaler.
+50. How do you perform node autoscaling?
+51. Why are you using Cluster Autoscaler?
+52. Why not Karpenter?
+53. Are you planning to migrate to Karpenter?
+
+---
+
+## Kubernetes Upgrade
+
+54. Explain Kubernetes Cluster Upgrade.
+55. What precautions do you take before upgrading?
+56. Why backup etcd?
+57. Why cordon nodes?
+58. Why drain nodes?
+59. Why upgrade Control Plane first?
+60. How do you upgrade Worker Nodes?
+61. How do you validate a successful upgrade?
+
+---
+
+# Terraform
+
+## Basics
+
+62. Explain Terraform Lifecycle.
+63. Explain terraform init.
+64. Explain terraform plan.
+65. Explain terraform apply.
+66. Explain terraform destroy.
+67. Explain terraform refresh.
+
+---
+
+## Modules
+
+68. What are Terraform Modules?
+69. Why do we use Terraform Modules?
+70. Explain Terraform Module directory structure.
+71. Which modules do you use?
+72. Which AWS service modules have you created?
+73. Parent Module vs Child Module.
+74. What are Custom Modules?
+75. Do you use Custom Modules?
+
+---
+
+## Lifecycle Meta Arguments
+
+76. What are Terraform Lifecycle Rules?
+77. Explain create_before_destroy.
+78. Why use create_before_destroy?
+79. Explain prevent_destroy.
+80. Explain ignore_changes.
+
+---
+
+## Terraform Drift
+
+81. What is Terraform Drift?
+82. How do you detect Drift?
+83. Command to detect Drift.
+84. How do you resolve Drift?
+85. Best practices to prevent Drift.
+
+---
+
+## Zero Downtime
+
+86. How do you achieve Zero Downtime Deployment using Terraform?
+87. Explain Blue-Green Deployment.
+88. Explain Rolling Deployment.
+89. How does Terraform help in Zero Downtime deployments?
+
+---
+
+# Helm
+
+90. What is Helm?
+91. Why do we use Helm?
+92. What are Helm Charts?
+93. Explain Chart.yaml.
+94. Explain values.yaml.
+95. Explain templates directory.
+96. Explain charts directory.
+97. What are the important files inside a Helm Chart?
+
+---
+
+# Jenkins
+
+98. Difference between Declarative and Scripted Pipeline.
+99. How many Jenkins pipelines are there in your project?
+100. Is there one pipeline per microservice?
+101. How many ways can you trigger a Jenkins Pipeline?
+102. Explain Manual Trigger.
+103. Explain Webhook Trigger.
+104. What are the other Jenkins trigger methods?
+
+---
+
+# Docker
+
+105. Write a Multi-stage Dockerfile for a Java application.
+106. Difference between CMD and ENTRYPOINT.
+107. Why use Multi-stage Docker builds?
+
+---
+
+# SonarQube
+
+108. What is SonarQube?
+109. What are Quality Gates?
+110. Why do we use Quality Gates?
+111. What happens when the Quality Gate fails?
+
+---
+
+# AWS Networking
+
+112. Explain Route53 request flow.
+113. What are Route53 Routing Policies?
+114. Difference between Security Group and NACL.
+115. Difference between Stateful and Stateless firewalls.
+116. Why do Security Groups allow only Allow rules?
+117. Why does NACL support both Allow and Deny?
+
+---
+
+# AWS ECS
+
+118. Which networking mode are you using in ECS?
+119. Explain awsvpc mode.
+120. How are IP addresses assigned in ECS?
+
+---
+
+# AWS Storage
+
+121. Explain S3 Storage Classes.
+122. Difference between Standard and Standard-IA.
+123. What is Glacier?
+124. What is Glacier Deep Archive?
+125. When should logs be moved to Glacier?
+
+---
+
+# Databases
+
+126. Which databases are used in your project?
+127. Why do you use RDS?
+128. Why do you use MongoDB?
+129. Why are both RDS and MongoDB used together?
+
+---
+
+# Logging & Monitoring
+
+130. Explain Kibana.
+131. What are Kibana Index Patterns?
+132. Did you configure Kibana Dashboard?
+133. Explain Fluent Bit architecture.
+134. Explain your logging architecture.
+
+---
+
+# ArgoCD
+
+135. What is ArgoCD?
+136. Have you worked on ArgoCD?
+137. Explain GitOps.
+138. How does ArgoCD synchronize applications?
+
+---
+
+# SSL
+
+139. What is an SSL Certificate?
+140. What should you do if an SSL Certificate expires?
+
+---
+
+# Kafka
+
+141. Why do you use Kafka?
+142. Explain Kafka architecture.
+143. How is Kafka used in your project?
+
+---
+
+# Deployment
+
+144. How do you achieve Zero Downtime Deployment?
+145. Explain Blue-Green Deployment.
+146. Explain Rolling Deployment.
+147. How do you divert traffic during Blue-Green Deployment?
+
+---
+
+# Production Scenarios
+
+148. Explain the complete request flow in your application.
+149. How do you troubleshoot production issues?
+150. How do you troubleshoot networking issues?
+151. How do you troubleshoot Pod failures?
+152. How do you troubleshoot Node failures?
+153. How do you restore a failed deployment?
+154. How do you perform Kubernetes upgrades without downtime?
+155. How do you perform Zero Downtime deployment on EC2?
+156. How do you perform Zero Downtime deployment using Terraform?
+
+---
+
+# Project-Based Questions
+
+157. Explain your complete project architecture.
+158. How many microservices are there?
+159. How many environments do you maintain?
+160. Which deployment strategy do you use?
+161. Which monitoring tools do you use?
+162. Which logging tools do you use?
+163. Which AWS services are part of your project?
+164. What is your role during production incidents?
+165. What responsibilities do you handle during on-call support?
+
+---
+
+# Total Interview Questions: **165**
+
