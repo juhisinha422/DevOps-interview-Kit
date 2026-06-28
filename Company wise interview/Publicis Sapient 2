@@ -1,0 +1,38 @@
+🚀 DevOps Engineer Interview Experience | Publicis Sapient | 4–6 Years Experience
+
+
+📌 Interview Questions:
+✅ What Azure services have you worked on in your projects?
+✅ Explain the difference between:
+Network Security Groups (NSG)
+Azure Firewall
+Load Balancer
+When would you use each?
+✅ Explain Azure Blob Storage.
+Types of Blob Storage
+Real-world use cases
+✅ How have you implemented Disaster Recovery (DR) in your environment?
+✅ Explain the main Kubernetes components and their responsibilities.
+✅ What is etcd?
+Why is it important?
+How does Kubernetes use it?
+Best practices for etcd backup and restore
+✅ What is a Helm Chart?
+Why do we use Helm?
+Benefits over plain Kubernetes YAML files
+✅ What are the benefits of using Terraform?
+✅ How do you troubleshoot:
+Terraform Drift
+Failed terraform apply
+State file conflicts
+Dependency issues
+✅ Which monitoring tools have you worked on?
+Prometheus
+Grafana
+Azure Monitor
+Alerting configuration
+Incident handling
+
+💡 Interview Tip: Don't just define the concepts. Explain them using your production experience with architecture, troubleshooting scenarios, and the impact your solution had on the business. That's what interviewers usually look for at the 4–6 years experience level.
+
+ 
