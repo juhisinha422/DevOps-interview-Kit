@@ -1,0 +1,13 @@
+An EC2 Instance Is Communicating with an Unknown External IP. How will you investigate? 
+
+To investigate an EC2 instance communicating with an unknown external IP, immediate priority is to isolate the instance, capture network telemetry, and analyze running processes to determine if the traffic is malicious.  
+
+1.Modify the Security Group to block all inbound and outbound traffic except for our trusted investigation IP 
+
+2.Detach the instance from any AWS Auto Scaling groups and Elastic Load Balancers (ELBs) to prevent serving corrupted traffic. 
+
+3.we do not stop or reboot the instance yet, as doing so will erase volatile memory (RAM) containing critical evidence 
+
+4.By using vpc flow logs check the packet count, bytes transferred, and duration of the connection to the unknown IP. 
+
+5.To identify the process we can  run netstat -tupn or ss -tupn (Linux) or netstat -ano (Windows) to map the external IP and port to a specific Process ID (PID). 
