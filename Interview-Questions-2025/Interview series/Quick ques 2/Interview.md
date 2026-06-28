@@ -1,3 +1,379 @@
+# 1. What is Docker?
+
+Docker is an open-source containerization platform that packages an application along with its runtime, libraries, dependencies, and configuration into a lightweight, portable unit called a container. Unlike traditional deployments where applications behave differently across environments, Docker ensures consistency from development to production by running the same container image everywhere. In my project, developers package Java Spring Boot applications into Docker images, Jenkins builds and pushes them to Amazon ECR, and Kubernetes (EKS) pulls these images for deployment. Docker reduces environment-related issues, improves deployment speed, supports microservices architecture, and enables horizontal scaling.
+
+---
+
+# 2. Difference between Docker and Virtual Machines?
+
+Although both Docker and Virtual Machines provide application isolation, they work differently. Virtual Machines virtualize the entire hardware stack, requiring a complete guest operating system on top of the hypervisor. This makes VMs heavier, slower to boot, and consume more CPU, memory, and storage. Docker, on the other hand, performs operating system-level virtualization. Containers share the host operating system kernel while keeping processes isolated using Linux namespaces and cgroups. As a result, Docker containers start within seconds, consume significantly fewer resources, and allow much higher application density on the same server. In production, VMs provide stronger isolation for different operating systems, while Docker is preferred for microservices because of its lightweight nature, faster deployment, and portability.
+
+---
+
+# 3. What are Docker network types?
+
+Docker provides several networking modes to enable communication between containers and external systems.
+
+**Bridge Network** is the default network where containers communicate with each other using internal IP addresses. It is commonly used for standalone applications.
+
+**Host Network** allows the container to use the host machine's networking stack directly, eliminating network isolation and reducing latency.
+
+**None Network** completely disables networking, making it useful for highly secure or isolated workloads.
+
+**Overlay Network** connects containers running across multiple Docker hosts and is primarily used in Docker Swarm.
+
+**Macvlan Network** assigns a unique MAC and IP address to each container, allowing it to appear as a physical machine on the network.
+
+Each network type serves different use cases depending on security, performance, and deployment architecture.
+
+---
+
+# 4. Which Docker network is commonly used in production?
+
+In standalone Docker environments, the Bridge network is the most commonly used because it provides isolation while allowing containers to communicate internally. In Docker Swarm environments, Overlay networking is preferred because it enables communication across multiple Docker hosts. However, in Kubernetes environments like Amazon EKS, Docker's networking is generally replaced by the Kubernetes Container Network Interface (CNI) plugin, such as Amazon VPC CNI, Calico, or Cilium. In my project, containers run on EKS, so networking is managed by the Kubernetes CNI instead of native Docker networking.
+
+---
+
+# 5. Difference between CMD and ENTRYPOINT?
+
+Both CMD and ENTRYPOINT define what happens when a container starts, but they behave differently. ENTRYPOINT specifies the main executable that always runs when the container starts, making it difficult to override accidentally. CMD provides default arguments or a default command that can easily be overridden during docker run. When both are used together, ENTRYPOINT defines the executable while CMD supplies the default parameters.
+
+For example:
+
+```dockerfile
+ENTRYPOINT ["java","-jar"]
+CMD ["app.jar"]
+```
+
+Running the container normally executes:
+
+```
+java -jar app.jar
+```
+
+If another JAR file is specified during runtime, only the CMD argument changes while the ENTRYPOINT remains the same. In production, ENTRYPOINT is preferred for defining the application startup command, while CMD provides configurable defaults.
+
+---
+
+# 6. Write a Dockerfile using Ubuntu, install Python, and run a JAR.
+
+```dockerfile
+FROM ubuntu:22.04
+
+RUN apt-get update && \
+    apt-get install -y python3 openjdk-17-jre && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY app.jar .
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","app.jar"]
+```
+
+This Dockerfile uses Ubuntu as the base image, installs Python and Java Runtime Environment, copies the application JAR into the container, exposes port 8080, and starts the application using ENTRYPOINT. In production, I usually prefer lightweight images such as eclipse-temurin or alpine instead of Ubuntu to reduce image size.
+
+---
+
+# 7. How do you build a Docker image?
+
+To build a Docker image, I first create a Dockerfile that defines the application environment and startup commands. Then I execute:
+
+```bash
+docker build -t myapp:v1 .
+```
+
+The `-t` option assigns a repository name and tag, while the dot (`.`) specifies the build context. Docker reads the Dockerfile instruction by instruction, creates image layers, and stores the final image locally. After the build completes, I verify the image using:
+
+```bash
+docker images
+```
+
+In Jenkins pipelines, Docker images are built automatically after successful application compilation and testing.
+
+---
+
+# 8. How do you push a Docker image to a registry?
+
+After building the image, I authenticate with the container registry.
+
+For Amazon ECR:
+
+```bash
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account>.dkr.ecr.us-east-1.amazonaws.com
+```
+
+Next, I tag the image:
+
+```bash
+docker tag myapp:v1 <account>.dkr.ecr.us-east-1.amazonaws.com/myapp:v1
+```
+
+Finally, I push the image:
+
+```bash
+docker push <account>.dkr.ecr.us-east-1.amazonaws.com/myapp:v1
+```
+
+In production, Jenkins performs these steps automatically after a successful build, ensuring that Kubernetes always deploys versioned images from ECR.
+
+---
+
+# 9. What are Docker image layers?
+
+Every instruction in a Dockerfile creates a read-only layer. Docker reuses unchanged layers during future builds, significantly reducing build time through layer caching. Common layer-generating instructions include FROM, RUN, COPY, ADD, and ENV. When a container starts, Docker adds a thin writable layer on top of these read-only image layers. If one instruction changes, Docker rebuilds only that layer and the layers below it while reusing the cached layers above whenever possible. Proper layer ordering greatly improves CI/CD performance.
+
+---
+
+# 10. How do you reduce Docker image size?
+
+To reduce Docker image size, I follow several production best practices. I use lightweight base images such as Alpine or Distroless instead of full Ubuntu images whenever possible. I implement multi-stage builds so that build tools like Maven or Gradle are excluded from the final runtime image. I combine RUN commands to minimize the number of layers, remove package manager caches after installation, delete temporary files, and use `.dockerignore` to exclude unnecessary files like `.git`, logs, documentation, and local artifacts. I also copy only the required application files instead of the entire source directory. These practices reduce image size, improve deployment speed, decrease storage costs, and reduce security vulnerabilities.
+
+---
+
+# 11. What is a multi-stage Docker build?
+
+A multi-stage build allows different stages within the same Dockerfile. The first stage compiles the application using a build image containing Maven, Gradle, or Node.js. The second stage copies only the compiled artifact into a lightweight runtime image. This prevents unnecessary build tools and dependencies from being included in the final image.
+
+Example:
+
+```dockerfile
+FROM maven:3.9-eclipse-temurin-17 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn clean package
+
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=builder /app/target/app.jar app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
+```
+
+In production, this approach significantly reduces image size while improving security by removing unnecessary build dependencies.
+
+---
+
+# 12. Explain Jenkins architecture.
+
+Jenkins follows a Controller-Agent architecture. The Jenkins Controller manages the web interface, schedules jobs, stores pipeline definitions, manages plugins, and coordinates build execution. Jenkins Agents execute actual build workloads such as compiling applications, running tests, building Docker images, and deploying to Kubernetes. Agents can be static virtual machines or dynamically provisioned Kubernetes Pods. In my project, Jenkins Controller runs on Kubernetes while build agents are created dynamically, allowing builds to scale automatically based on demand. This architecture improves scalability, resource utilization, and fault isolation.
+
+---
+
+# 13. Difference between Declarative and Scripted Pipelines?
+
+Jenkins supports two types of pipelines: Declarative and Scripted. Declarative Pipeline follows a structured syntax with predefined sections such as `agent`, `stages`, `steps`, and `post`. It is easier to read, maintain, and standardize across teams, making it the preferred choice for most production CI/CD pipelines. Scripted Pipeline, on the other hand, is written entirely in Groovy and provides complete programming flexibility with loops, conditions, and custom logic. However, it is more complex to maintain and debug.
+
+In my project, we primarily use **Declarative Pipelines** because they are easier for multiple teams to maintain, support pipeline visualization in Jenkins, and integrate well with plugins like SonarQube, Docker, and Kubernetes. For complex logic, we create reusable Shared Libraries instead of switching to Scripted Pipelines.
+
+Example Declarative Pipeline:
+
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
+```
+
+---
+
+# 14. How do you build Angular applications in Jenkins?
+
+For Angular applications, Jenkins first checks out the source code from GitHub or GitLab. It installs the required Node.js version, downloads project dependencies using `npm install`, performs static code analysis if required, runs unit tests using Karma or Jasmine, and finally builds the production-ready application using:
+
+```bash
+npm install
+npm run test
+npm run build --configuration production
+```
+
+The generated `dist/` folder is then packaged into a Docker image and pushed to Amazon ECR. Kubernetes pulls the updated image during deployment.
+
+To improve build performance, we cache npm dependencies, use dedicated NodeJS Jenkins tools, and execute frontend builds on Kubernetes-based Jenkins agents.
+
+---
+
+# 15. How do you build .NET applications in Jenkins?
+
+For .NET applications, Jenkins installs the required .NET SDK and restores project dependencies using NuGet. The application is then compiled, tested, and published before being containerized.
+
+Typical build steps include:
+
+```bash
+dotnet restore
+dotnet build
+dotnet test
+dotnet publish -c Release
+```
+
+The published artifacts are copied into a Docker image and pushed to Amazon ECR. Jenkins then updates the Kubernetes deployment manifest with the latest image tag and deploys the application into Amazon EKS.
+
+We also integrate SonarQube analysis, security scanning using Trivy, and automated deployment approvals before production releases.
+
+---
+
+# 16. How do you manage multiple Angular versions on the same build server?
+
+Different projects often require different Angular CLI and Node.js versions. To avoid version conflicts, we use version managers such as **Node Version Manager (NVM)** or Jenkins NodeJS Plugin. Each Jenkins job selects the required Node.js version independently without affecting other builds.
+
+Example:
+
+```bash
+nvm use 18
+npm install
+npm run build
+```
+
+Alternatively, in Kubernetes-based Jenkins environments, every build runs inside a dedicated Docker container with the required Node.js version already installed. This provides complete isolation between projects and eliminates dependency conflicts.
+
+Containerized build agents are the preferred production approach because each pipeline uses its own immutable build environment.
+
+---
+
+# 17. Write a Jenkins Pipeline for Build → Test → Push → Deploy.
+
+A production CI/CD pipeline in my project consists of the following stages:
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        IMAGE = "123456789.dkr.ecr.us-east-1.amazonaws.com/app:${BUILD_NUMBER}"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/company/project.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                sh 'mvn sonar:sonar'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t $IMAGE ."
+            }
+        }
+
+        stage('Push to ECR') {
+            steps {
+                sh "docker push $IMAGE"
+            }
+        }
+
+        stage('Deploy to EKS') {
+            steps {
+                sh "kubectl set image deployment/app app=$IMAGE"
+            }
+        }
+
+    }
+}
+```
+
+In production, additional stages include Trivy image scanning, approval gates, Helm deployments, Slack notifications, rollback automation, and deployment verification.
+
+---
+
+# 18. How do you integrate SonarQube with Jenkins?
+
+SonarQube is integrated into Jenkins using the SonarQube Scanner plugin. During the pipeline execution, Jenkins triggers code analysis after the build stage. SonarQube scans the source code for bugs, code smells, vulnerabilities, duplicated code, and maintainability issues.
+
+Typical pipeline command:
+
+```bash
+mvn sonar:sonar
+```
+
+or
+
+```bash
+sonar-scanner
+```
+
+After analysis, Jenkins waits for the Quality Gate result.
+
+```groovy
+waitForQualityGate abortPipeline: true
+```
+
+If the Quality Gate fails, Jenkins automatically stops the pipeline and prevents insecure or poor-quality code from reaching production.
+
+In our project, SonarQube is executed before Docker image creation so that only high-quality code is packaged.
+
+---
+
+# 19. How do you secure Jenkins?
+
+Securing Jenkins is critical because it controls the entire CI/CD pipeline. In production, I implement multiple security best practices.
+
+Authentication is integrated with LDAP or Active Directory, and Role-Based Access Control (RBAC) ensures developers, QA engineers, and administrators have only the required permissions.
+
+Sensitive credentials such as AWS keys, GitHub tokens, Docker registry passwords, and Kubernetes tokens are stored in Jenkins Credentials Manager or HashiCorp Vault instead of pipeline code.
+
+Jenkins always runs behind an HTTPS-enabled reverse proxy such as NGINX or AWS Application Load Balancer. CSRF protection is enabled, anonymous access is disabled, and audit logs are collected for compliance.
+
+Build agents are isolated inside Kubernetes Pods, preventing malicious jobs from affecting other builds. Plugins are updated regularly to eliminate known vulnerabilities, and unused plugins are removed to reduce the attack surface.
+
+In our environment, we also integrate Trivy, SonarQube, and dependency scanning to identify vulnerabilities before deployment.
+
+---
+
+# 20. How do you trigger Jenkins using Git Webhooks?
+
+Instead of polling Git repositories continuously, Jenkins uses Git Webhooks to trigger builds automatically whenever developers push code.
+
+The workflow is:
+
+1. Developer pushes code to GitHub.
+2. GitHub sends an HTTP POST request to the Jenkins webhook endpoint.
+3. Jenkins receives the webhook event.
+4. Jenkins identifies the corresponding pipeline.
+5. The CI/CD pipeline starts automatically.
+
+Typical webhook URL:
+
+```
+http://jenkins-server/github-webhook/
+```
+
+GitHub webhook events usually include:
+
+- Push
+- Pull Request
+- Merge Request
+- Tag Creation
+
+This event-driven approach reduces unnecessary polling, decreases server load, and enables immediate Continuous Integration.
+
+In my project, every merge into the `develop` branch automatically triggers the Development deployment, while merges into the `main` branch trigger production pipelines after manual approval.
 
 # 1. What are the components of the Kubernetes Control Plane?
 
