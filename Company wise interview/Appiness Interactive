@@ -1,0 +1,59 @@
+ Appiness Interactive 
+
+Docker
+
+1. How do you log in to a Docker container using the command line?
+
+2. How do you list only the running (active) Docker containers?
+
+3. How do you list all Docker containers, including stopped containers?
+
+4. How do you remove all running and stopped Docker containers?
+
+5. How do you remove all Docker images from the host?
+
+6. What are the different ways to reduce the size of a Docker image?
+
+7. What is the difference between ENTRYPOINT and CMD in a Dockerfile?
+
+8. How many CMD instructions can be added in a Dockerfile? What happens if multiple CMD instructions are present?
+
+9. Can a Dockerfile contain multiple CMD instructions? If yes, what happens when multiple CMD instructions exist?
+
+10. What is the difference between COPY and ADD in a Dockerfile?
+
+---
+
+Linux / Shell Scripting
+
+1. Write a shell script to check whether the Nginx service is running. If it is not running, start the service.
+
+2. How do you create a mount point and mount a filesystem so that it is accessible?
+
+3. What does the command "echo $?" indicate in Linux?
+
+4. How do you check the available and used space of a filesystem in Linux?
+
+---
+
+AWS
+
+1. What are the main components of a Virtual Private Cloud (VPC)?
+
+2. How can you log in to an EC2 instance that is deployed in a private subnet?
+
+3. Suppose logs are not being uploaded from a server to an S3 bucket. There are no network issues and the server is functioning correctly. What could be the possible reasons?
+
+4. Why can't you attach an Internet Gateway directly to a public subnet?
+
+5. How can a server in a private subnet access the internet?
+
+---
+
+Terraform
+
+1. How do you manage different environments (such as Development, UAT, and Production) and deploy infrastructure in different AWS regions using Terraform?
+
+2. How do you secure your Terraform state file?
+
+3. What would you do if versioning was not enabled for the Terraform state file and the state file became corrupted?
