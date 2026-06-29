@@ -1,3 +1,18 @@
+When I saw a $14,000 AWS bill land in my inbox, my heart sank.
+
+Startups often operate on tight budgets, and such a spike can feel like a major setback. But sometimes, hidden inefficiencies are the real culprit, waiting to be uncovered.
+
+In one afternoon, I managed to reduce that bill to $5,800. The key was digging into our cloud architecture.
+
+1. Unused Resources: I found dozens of idle EC2 instances and S3 buckets that were no longer needed. Shutting them down was straightforward but had a massive impact.
+
+2. Overprovisioned Services: Many services were set to maximum capacity, even though our actual usage rarely peaked. Right-sizing them saved us significant costs.
+
+3. Unoptimized Data Storage: By moving some data to cheaper storage classes and deleting old logs, we cut storage costs in half.
+
+Startups must stay vigilant about their cloud usage. Small tweaks can lead to big savings, and sometimes, it only takes a couple of hours to make a real difference.
+
+
 # 1. What is Docker?
 
 Docker is an open-source containerization platform that packages an application along with its runtime, libraries, dependencies, and configuration into a lightweight, portable unit called a container. Unlike traditional deployments where applications behave differently across environments, Docker ensures consistency from development to production by running the same container image everywhere. In my project, developers package Java Spring Boot applications into Docker images, Jenkins builds and pushes them to Amazon ECR, and Kubernetes (EKS) pulls these images for deployment. Docker reduces environment-related issues, improves deployment speed, supports microservices architecture, and enables horizontal scaling.
