@@ -1,8 +1,8 @@
-Q. If terraform is accendtly destroy at 12pm how do you troubleshoot
+## Q. If terraform is accendtly destroy at 12pm how do you troubleshoot
 
 “I would first check Terraform and CI/CD logs to identify who triggered the destroy and what resources were impacted. Then I would verify the Terraform state and AWS logs like CloudTrail. After identifying the issue, I would restore infrastructure using Terraform apply or backups/snapshots if needed. Finally, I would add safeguards like approval steps, state locking, and prevent_destroy to avoid future incidents.”
 
-Q. If your application is failed around 12:30 am how do you troubleshoot it
+## Q. If your application is failed around 12:30 am how do you troubleshoot it
 
 
 “I would first check monitoring dashboards and alerts to identify the issue. Then I would review application and Kubernetes logs, check pod status, resource usage, and recent deployments or configuration changes around 12:30 AM. If a deployment caused the issue, I would rollback. After fixing the issue, I would monitor the application and document the RCA.”
