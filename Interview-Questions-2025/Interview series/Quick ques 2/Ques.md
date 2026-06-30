@@ -1,6 +1,6 @@
 # DevOps Production Scenario Interview Questions & Detailed Answers (4 Years Experience)
 
-##1) A deployment succeeded, but traffic is still going to the old version.
+# 1) A deployment succeeded, but traffic is still going to the old version.
 
 Explain exactly where you start debugging."
 
