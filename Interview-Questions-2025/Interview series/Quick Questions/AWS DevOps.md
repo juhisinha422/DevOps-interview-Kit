@@ -1,3 +1,16 @@
+## If I assign a /24 CIDR to a VPC, how many usable IPs are there?
+
+A /24 provides 256 IPs – right.
+
+But AWS reserves 5 IPs per subnet.
+
+These include: network address, broadcast, router, DNS, and one more for future use.
+
+So, /24 gives you only 251 usable IPs, not 256.
+
+<img width="800" height="576" alt="Image" src="https://github.com/user-attachments/assets/b13e1da0-9b96-46ec-bee6-70fec4d12aea" />
+
+
 # Advanced AWS Interview Questions & Answers (4+ Years DevOps Engineer)
 
 ## 1. An EC2 instance passes status checks but the app on port 80 doesn't respond. Walk through every layer you check.
