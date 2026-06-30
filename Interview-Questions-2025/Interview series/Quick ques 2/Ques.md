@@ -1,8 +1,6 @@
 # DevOps Production Scenario Interview Questions & Detailed Answers (4 Years Experience)
 
-# 1) A deployment succeeded, but traffic is still going to the old version.
-
-Explain exactly where you start debugging."
+# 1) A deployment succeeded, but traffic is still going to the old version. Explain exactly where you start debugging."
 
 The first thing I do is avoid assuming that the deployment was actually successful just because the CI/CD pipeline shows a green status. A successful pipeline only confirms that the deployment job completed without errors; it does not guarantee that production traffic is reaching the newly deployed application. Therefore, I begin my investigation by validating the deployment inside the Kubernetes cluster itself. I check the deployment status using `kubectl rollout status deployment <deployment-name>` to ensure Kubernetes completed the rollout successfully. Then I inspect the deployment details using `kubectl describe deployment` and verify that the latest image version or image digest matches the version that was built by the pipeline. If my organization follows immutable image tagging, I verify that the new tag is present. If the application uses the `latest` tag, I confirm that Kubernetes has actually pulled the latest image because image caching can sometimes cause old images to continue running.
 
@@ -26,10 +24,7 @@ Finally, I perform a post-incident review. If the issue resulted from incorrect 
 
 ---
 
-# 2) "A Kubernetes application is healthy according to kubectl get pods,
-but users report 504 errors.
-
-Walk me through your troubleshooting flow."
+# 2) "A Kubernetes application is healthy according to kubectl get pods, but users report 504 errors. Walk me through your troubleshooting flow."
 
 A `kubectl get pods` command showing all pods in the **Running** state does not necessarily indicate that the application is healthy. The `Running` status simply means that the containers are executing successfully; it does not guarantee that requests are successfully reaching the application or that the application is responding correctly. Therefore, I always begin my troubleshooting from the user's perspective instead of assuming that Kubernetes is the source of the problem. My first objective is to reproduce the issue by accessing the application through the same endpoint that users are using. I note whether the 504 Gateway Timeout occurs consistently, only for specific APIs, or only during peak traffic. Understanding the scope of the issue helps narrow down the affected component.
 
@@ -59,10 +54,7 @@ Finally, I conduct a post-incident review to identify why the issue was not dete
 
 ---
 
-# 3) "Your AWS bill spiked 3x overnight.
-No deployments happened.
-
-What's your step-by-step response?"
+# 3) "Your AWS bill spiked 3x overnight. No deployments happened. What's your step-by-step response?"
 
 Whenever I see an unexpected increase in the AWS bill, especially when no deployments or planned infrastructure changes have taken place, I treat it as both an operational and a potential security incident. My objective is not only to identify which AWS service caused the increase but also to determine whether the spike was caused by legitimate traffic, an infrastructure issue, a configuration mistake, or unauthorized activity. I avoid making assumptions and instead follow a structured investigation process that minimizes production risk while quickly identifying the root cause.
 
@@ -92,10 +84,7 @@ Finally, I document the incident thoroughly. My documentation includes the timel
 
 ---
 
-# 4) "CI/CD pipeline is taking 40+ minutes.
-Your CTO wants it under 10 without adding hardware.
-
-What will you optimize?"
+# 4) "CI/CD pipeline is taking 40+ minutes. Your CTO wants it under 10 without adding hardware. What will you optimize?"
 
 When a CI/CD pipeline takes more than 40 minutes, my first approach is not to optimize randomly but to identify exactly which stages consume the most time. I begin by analyzing the pipeline execution history in Jenkins, GitHub Actions, GitLab CI, or Azure DevOps to determine the duration of each stage such as source code checkout, dependency installation, unit testing, static code analysis, security scanning, Docker image building, artifact upload, infrastructure deployment, integration testing, and deployment verification. This helps me identify the bottleneck rather than making assumptions.
 
@@ -113,9 +102,7 @@ Finally, after implementing each optimization, I compare pipeline execution metr
 
 ---
 
-# 5) "An SRE says infra is stable, dev team says the system is slow, and monitoring shows everything is GREEN.
-
-Who do you believe — and what do you check first?"
+# 5) "An SRE says infra is stable, dev team says the system is slow, and monitoring shows everything is GREEN. Who do you believe — and what do you check first?"
 
 In this situation, I do not immediately believe either team because every team observes the system from a different perspective. The SRE team generally focuses on infrastructure metrics such as CPU, memory, disk usage, node health, and network availability. Developers usually observe application behavior, response times, exceptions, and business logic. Monitoring dashboards often display only the metrics that have been configured, meaning they can appear green while users still experience poor performance. Therefore, my priority is to collect evidence rather than relying on opinions.
 
@@ -136,16 +123,13 @@ After identifying the root cause, I communicate my findings with both teams usin
 
 ---
 
-# 6) "Terraform apply is failing due to drift, but the infra is currently live and critical.
-
-How do you fix it without causing downtime?"
+# 6) "Terraform apply is failing due to drift, but the infra is currently live and critical. How do you fix it without causing downtime?"
 
 When Terraform detects drift on a critical production environment, my first priority is to **avoid making any changes that could impact running services**. I never use `terraform apply` blindly because it may recreate or destroy production resources. Instead, I begin by running `terraform plan` to identify exactly which resources have drifted. I compare the Terraform state file with the actual infrastructure and determine whether the drift was caused by a manual change, another automation tool, or an AWS-managed update. I review CloudTrail logs and Git history to identify who made the changes and when they occurred. If the manual change was intentional and production is stable, I update the Terraform code to reflect the current infrastructure or import unmanaged resources using `terraform import`. If the drift is accidental, I evaluate whether correcting it requires resource replacement. For resources such as EC2 instances, RDS databases, Load Balancers, or EKS clusters, I avoid destructive operations and instead plan a maintenance window if necessary. Before applying any changes, I back up the Terraform state, enable state locking, verify dependencies, and test the changes in a staging environment. During the implementation, I continuously monitor CloudWatch, application health, and business metrics to ensure no customer impact occurs. After the issue is resolved, I identify why the drift occurred and implement preventive measures such as restricting manual production changes, enforcing Infrastructure as Code policies, enabling drift detection, requiring peer reviews, and using GitOps so that Terraform remains the single source of truth.
 
 ---
 
-# 7) "Your rollback script fails during a production outage.
-You have 5 minutes before SLA breach.
+# 7) "Your rollback script fails during a production outage. You have 5 minutes before SLA breach.
 
 Walk me through your decision."
 
@@ -153,18 +137,13 @@ During a production outage, my priority is **restoring customer service**, not f
 
 ---
 
-# 8) "A secret was accidentally committed to GitHub.
-It has already been cloned.
-
-What are your next exact steps?"
+# 8) "A secret was accidentally committed to GitHub. It has already been cloned. What are your next exact steps?"
 
 Once I discover that a secret has been committed to GitHub, I immediately assume that it has been compromised because anyone who cloned the repository may have access to it. My first action is **not** deleting the commit but rotating the exposed credential. If the secret is an AWS Access Key, I immediately deactivate and replace it. If it is a database password, API token, SSH key, or Kubernetes Secret, I generate new credentials and update all applications using them. After ensuring production continues to function with the new credentials, I review CloudTrail, GitHub audit logs, and application logs to identify whether the exposed secret has been used maliciously. I then remove the secret from the repository history using tools such as `git filter-repo` or BFG Repo-Cleaner and force-push the cleaned repository after coordinating with the team. Since other developers may already have cloned the repository, I communicate the incident and ask them to re-clone or clean their local repositories. I also notify the security team and document the incident according to organizational procedures. Finally, I implement preventive controls by enabling GitHub Secret Scanning, GitHub Push Protection, pre-commit hooks, automated secret detection tools such as Gitleaks or TruffleHog, secure secret management through AWS Secrets Manager or HashiCorp Vault, and developer awareness training to prevent similar incidents in the future.
 
 ---
 
-# 9) "A Kubernetes cluster upgrade works in staging but corrupts CoreDNS in production.
-
-How do you approach patching and restoring service?"
+# 9) "A Kubernetes cluster upgrade works in staging but corrupts CoreDNS in production. How do you approach patching and restoring service?"
 
 When a Kubernetes cluster upgrade succeeds in staging but causes CoreDNS failures in production, I treat it as a **high-priority production incident** because DNS is a critical component of the Kubernetes control plane. Without CoreDNS, applications cannot resolve service names, resulting in widespread communication failures between microservices. My first priority is restoring production service rather than continuing the upgrade. I immediately check the CoreDNS pod status using `kubectl get pods -n kube-system` and inspect logs with `kubectl logs` to determine whether the pods are crashing, failing readiness checks, or experiencing configuration errors. I also verify whether the CoreDNS Deployment, ConfigMap, and Service were modified during the upgrade. If the issue is directly related to the upgrade, I restore the previous working CoreDNS version or roll back the cluster upgrade if the rollback process is supported and safe. While restoring the service, I continuously monitor application health, DNS resolution, and customer-facing APIs to confirm that communication between services has resumed.
 
@@ -172,9 +151,7 @@ Once production is stabilized, I investigate why the issue occurred despite stag
 
 ---
 
-# 10) "Tell me a real scenario where YOU introduced a failure in infrastructure.
-
-What happened, what did you learn, and what changed after?"
+# 10) "Tell me a real scenario where YOU introduced a failure in infrastructure. What happened, what did you learn, and what changed after?"
 
 One production incident that taught me a valuable lesson occurred during a Terraform deployment involving AWS Security Groups. While implementing a change request, I modified an existing Security Group to improve security by restricting inbound traffic. The Terraform plan appeared correct, and the deployment completed successfully without any errors. However, within a few minutes, application health alerts started appearing in CloudWatch, and users began reporting failures while accessing the application. Investigation showed that I had unintentionally removed a rule that allowed communication between the application servers and the backend database. Since the application could no longer establish database connections, API requests started failing even though the EC2 instances, Kubernetes pods, and Load Balancer remained healthy.
 
