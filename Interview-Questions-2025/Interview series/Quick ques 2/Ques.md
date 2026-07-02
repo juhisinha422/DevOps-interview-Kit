@@ -1,3 +1,78 @@
+# How do you replace the Docker image and version in a deployment file? Write a script for this.
+
+In my project, Docker image versions are updated automatically as part of the CI/CD pipeline instead of manually editing the Kubernetes deployment YAML. During every successful build, Jenkins generates a new Docker image with a unique tag such as the Jenkins build number or Git commit ID and pushes it to Amazon Elastic Container Registry (ECR). The deployment manifest or Helm values file is then updated with the latest image tag before deployment.
+
+One approach is to use the `sed` command to replace the image tag inside the deployment YAML. This script updates the deployment file with the new image version before applying it to the Kubernetes cluster.
+
+```bash
+#!/bin/bash
+
+DEPLOYMENT_FILE="deployment.yaml"
+IMAGE_NAME="123456789012.dkr.ecr.ap-south-1.amazonaws.com/my-app"
+NEW_TAG="v2.5.0"
+
+sed -i "s|image: .*|image: ${IMAGE_NAME}:${NEW_TAG}|g" $DEPLOYMENT_FILE
+
+echo "Deployment file updated successfully."
+
+kubectl apply -f $DEPLOYMENT_FILE
+```
+
+Another and more commonly used approach is to update the running deployment directly without modifying the YAML file by using the Kubernetes command below:
+
+```bash
+kubectl set image deployment/my-app \
+my-container=123456789012.dkr.ecr.ap-south-1.amazonaws.com/my-app:v2.5.0 \
+-n abc
+```
+
+This command performs a rolling update where Kubernetes gradually replaces the old pods with new ones while maintaining application availability. During the rollout, I monitor the deployment using `kubectl rollout status deployment/my-app` and verify the new image using `kubectl describe deployment`.
+
+---
+
+# There are 100 pods in namespace `abc`, and 30 pod names contain `def`. How do you restart only these 30 pods?
+
+In Kubernetes, Pods are managed by controllers such as Deployments, ReplicaSets, StatefulSets, or DaemonSets. Therefore, instead of manually restarting containers, we delete only the required pods, and Kubernetes automatically recreates them. If there are 100 pods in namespace `abc` and only 30 pod names contain `def`, I first list those pods using `kubectl get pods` combined with `grep` to filter the required pod names.
+
+The following script deletes only the matching pods:
+
+```bash
+#!/bin/bash
+
+NAMESPACE="abc"
+
+kubectl get pods -n $NAMESPACE --no-headers | \
+grep "def" | \
+awk '{print $1}' | \
+while read POD
+do
+    echo "Restarting $POD"
+    kubectl delete pod $POD -n $NAMESPACE
+done
+
+echo "Selected pods restarted successfully."
+```
+
+If all the `def` pods belong to the same Deployment, a better production approach is to perform a rolling restart instead of deleting individual pods:
+
+```bash
+kubectl rollout restart deployment <deployment-name> -n abc
+```
+
+This is the preferred method because Kubernetes replaces the pods one by one while ensuring zero or minimal downtime. In production environments, I always verify the rollout using:
+
+```bash
+kubectl rollout status deployment <deployment-name> -n abc
+```
+
+and confirm that the newly created pods are healthy using:
+
+```bash
+kubectl get pods -n abc
+```
+
+This approach ensures controlled pod replacement, maintains application availability, and follows Kubernetes best practices.
+
 # DevOps Production Scenario Interview Questions & Detailed Answers (4 Years Experience)
 
 # 1) A deployment succeeded, but traffic is still going to the old version. Explain exactly where you start debugging."
