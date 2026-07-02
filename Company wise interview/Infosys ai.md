@@ -1,5 +1,8 @@
 # DevOps Interview Questions and Answers (Glider AI)
 
+## As a Senior Associate Consultant managing multi-cloud environments, you receive an alert that critical production workloads in one region are experiencing latency and intermittent downtime. Describe, step-by-step, the actions you would take to stabilize the cloud infrastructure, including considerations for cross-region failover and compliance."
+
+
 ## Question 1
 
 **You mentioned that you would check if entire regions or multiple services are affected — if you ... what specific steps would you take to initiate a cross-region failover and ensure continued compliance?**
@@ -206,4 +209,4 @@ CI/CD pipelines would validate Terraform code using fmt, validate, and plan befo
 
 This approach ensures consistent infrastructure across AWS, Azure, and GCP while allowing environment-specific customization.
 
-#7 "You are automating infrastructure provisioning for multiple cloud environments using Terraform. What approach would you recommend to manage environment-specific configurations while maintaining code reusability and consistency?"
+# 7 "You are automating infrastructure provisioning for multiple cloud environments using Terraform. What approach would you recommend to manage environment-specific configurations while maintaining code reusability and consistency?"
