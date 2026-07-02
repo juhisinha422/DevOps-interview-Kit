@@ -1,0 +1,19 @@
+DevOps Engineer role at Capgemini and  these are the questions :
+
+First Round interview Questions:
+
+1. What is the CI/CD process in your project?
+2. What is UAT?
+3. Explain Docker.
+4. Explain Jenkins.
+5. How would you implement DevOps practices in a project that currently has manual deployments?
+6. What is Terraform drift?
+7. How do you overcome Terraform drift?
+8. What is a data source in Terraform?
+9. What is a Terraform workspace?
+10. What are dependencies in Terraform?
+11. A Linux server with a 500 GB data volume was provisioned using Terraform. The application team wants to increase it to 750 GB. How would you perform this change?
+12. You have three nodes, and one node is not receiving traffic. How would you identify the problematic node, troubleshoot it, and fix the issue?
+13. What is a CRD (Custom Resource Definition) in Kubernetes?
+14. What is CNI (Container Network Interface)?
+15. Which CNI plugin have you used, and how did you implement it?
