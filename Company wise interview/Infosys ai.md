@@ -5,7 +5,7 @@
 
 ## Question 1
 
-**You mentioned that you would check if entire regions or multiple services are affected — if you ... what specific steps would you take to initiate a cross-region failover and ensure continued compliance?**
+**You mentioned that you would check if entire regions or multiple services are affected. If you determine that they are, what specific steps would you take to initiate a cross-region failover and ensure continued compliance?**
 
 ### Answer
 
