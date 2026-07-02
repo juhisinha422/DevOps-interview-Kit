@@ -10,13 +10,13 @@ So, /24 gives you only 251 usable IPs, not 256.
 
 <img width="800" height="576" alt="Image" src="https://github.com/user-attachments/assets/b13e1da0-9b96-46ec-bee6-70fec4d12aea" />
 
+# What is the next step after deployment?
+
+What did you deploy?
+Was it infrastructure changes, application changes, or database changes? Based on what was deployed, you should verify that the expected changes have been applied successfully and validate that everything is working as intended.
+
 # DevOps Engineer Interview Questions & Answers (Capgemini)
 
-> **Experience Level:** 4 Years DevOps Engineer (AWS | Docker | Kubernetes | Terraform | Jenkins | Linux)
-
-This document contains detailed interview questions and answers asked during a DevOps Engineer interview at Capgemini. The answers are written from the perspective of a DevOps Engineer with approximately four years of hands-on experience working with AWS, Docker, Kubernetes, Jenkins, Terraform, Linux, and CI/CD pipelines.
-
----
 
 # 1. What is the CI/CD process in your project?
 
