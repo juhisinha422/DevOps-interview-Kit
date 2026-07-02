@@ -10,6 +10,171 @@ So, /24 gives you only 251 usable IPs, not 256.
 
 <img width="800" height="576" alt="Image" src="https://github.com/user-attachments/assets/b13e1da0-9b96-46ec-bee6-70fec4d12aea" />
 
+# DevOps Engineer Interview Questions & Answers (Capgemini)
+
+> **Experience Level:** 4 Years DevOps Engineer (AWS | Docker | Kubernetes | Terraform | Jenkins | Linux)
+
+This document contains detailed interview questions and answers asked during a DevOps Engineer interview at Capgemini. The answers are written from the perspective of a DevOps Engineer with approximately four years of hands-on experience working with AWS, Docker, Kubernetes, Jenkins, Terraform, Linux, and CI/CD pipelines.
+
+---
+
+# 1. What is the CI/CD process in your project?
+
+In my current project, we follow a fully automated CI/CD pipeline that enables faster, reliable, and consistent software delivery. The process starts when a developer creates a feature branch from the main branch and begins working on a new feature or bug fix. Once development is completed, the developer raises a Pull Request, which undergoes peer review to ensure coding standards, security practices, and business requirements are met. After approval, the code is merged into the main branch. This merge automatically triggers our Jenkins pipeline through Git webhooks.
+
+The Continuous Integration phase begins with Jenkins checking out the latest source code from GitHub. It installs project dependencies, compiles the application if necessary, and executes unit tests to validate the code. We also integrate SonarQube into the pipeline to perform static code analysis, identify code smells, bugs, duplicated code, and security vulnerabilities. If any quality gate fails, Jenkins immediately stops the pipeline and sends notifications to the development team through Microsoft Teams and email. This ensures that only high-quality code progresses further in the deployment process.
+
+Once the code passes all validation stages, Jenkins builds a Docker image using the project's Dockerfile. The Docker image contains the application, runtime environment, libraries, and dependencies, ensuring that the application behaves consistently across all environments. The image is tagged using the Jenkins build number or Git commit hash to maintain version traceability. After the image is built successfully, Jenkins pushes it to Amazon Elastic Container Registry (ECR), which serves as our centralized container image repository.
+
+The infrastructure required for deployment is managed entirely through Terraform. Instead of manually provisioning AWS resources, Terraform creates and updates VPCs, IAM Roles, Security Groups, EC2 instances, Load Balancers, EKS clusters, Route53 records, and other cloud resources. Since Terraform follows Infrastructure as Code, every infrastructure change is version-controlled, peer-reviewed, and reproducible. Before applying any infrastructure changes, we execute `terraform plan` to review the proposed modifications and ensure no unintended resources will be affected.
+
+During the Continuous Deployment stage, Jenkins deploys the newly built Docker image to Amazon EKS using Helm charts. Kubernetes performs rolling updates, gradually replacing old application pods with new ones while maintaining application availability. Readiness and liveness probes ensure that traffic is routed only to healthy pods. After deployment, automated smoke tests validate that critical application functionality is working correctly. Monitoring tools such as Prometheus, Grafana, and AWS CloudWatch continuously monitor pod health, application latency, CPU utilization, memory consumption, and error rates. If any critical issue is detected after deployment, we perform an automated or manual rollback to the previous stable version. This entire CI/CD process enables multiple deployments every week while minimizing downtime, reducing manual effort, improving deployment consistency, and accelerating software delivery.
+
+---
+
+# 2. What is UAT?
+
+UAT stands for User Acceptance Testing, which is the final testing phase before an application is released to production. Unlike unit testing, integration testing, or system testing, which are performed by developers and QA engineers, UAT is conducted by business users or clients to verify that the application satisfies business requirements and behaves as expected in real-world scenarios. The objective of UAT is not to identify coding defects but to confirm that the delivered solution meets customer expectations and supports business processes correctly.
+
+In our project, once all automated testing phases have been completed successfully, Jenkins deploys the application to the UAT environment. This environment closely resembles production in terms of infrastructure, application configuration, database schema, networking, and security policies. Business users then execute predefined test cases that simulate actual business workflows. They validate reports, dashboards, user interfaces, API responses, integrations with third-party systems, authentication flows, and business rules. If any issues are discovered during UAT, they are documented, prioritized, and assigned back to the development team for resolution before the application can be approved for production deployment.
+
+As a DevOps engineer, my responsibilities during UAT include provisioning the required cloud infrastructure using Terraform, deploying the application through Jenkins pipelines, configuring Kubernetes resources, managing environment-specific configurations using ConfigMaps and Secrets, monitoring application health, and resolving any deployment or infrastructure issues encountered by testers. Once all UAT test cases pass and business stakeholders provide formal approval, the same CI/CD pipeline promotes the application to the production environment following the organization's release approval process.
+
+---
+
+# 3. Explain Docker.
+
+Docker is an open-source containerization platform that allows applications and all their dependencies to be packaged into lightweight, portable containers. Unlike traditional virtual machines, Docker containers share the host operating system kernel, making them significantly faster to start and much more resource efficient. Containers ensure that applications behave consistently across development, testing, UAT, and production environments by eliminating environment-specific differences.
+
+In my current project, developers create Dockerfiles that define the application environment, including the base image, required packages, environment variables, startup commands, and configuration files. During the Jenkins pipeline, Docker builds an image using this Dockerfile. Each image is tagged with the build number or Git commit ID and pushed to Amazon Elastic Container Registry (ECR). Kubernetes running on Amazon EKS then pulls the required image version and deploys it as application pods.
+
+To improve efficiency, we use multi-stage Docker builds, which separate the build environment from the runtime environment, significantly reducing image size. We also use lightweight base images such as Alpine Linux whenever possible to reduce vulnerabilities and improve deployment speed. Docker layer caching is implemented in the CI pipeline to avoid rebuilding unchanged layers, reducing build times considerably. Before deployment, container images are scanned using vulnerability scanning tools to identify outdated packages and security risks. Docker has greatly simplified application deployment by providing environment consistency, faster deployments, simplified dependency management, efficient resource utilization, and improved scalability.
+
+---
+
+# 4. Explain Jenkins.
+
+Jenkins is an open-source automation server used to implement Continuous Integration and Continuous Deployment. It automates repetitive software delivery tasks, enabling faster, more reliable, and consistent application deployments. In our organization, Jenkins serves as the central orchestration tool responsible for executing the entire CI/CD pipeline.
+
+Whenever developers push code to GitHub, a webhook automatically triggers the Jenkins pipeline. Jenkins checks out the latest source code, installs project dependencies, compiles the application, executes unit tests, performs SonarQube code quality analysis, runs security scans, builds Docker images, pushes those images to Amazon ECR, provisions or updates infrastructure using Terraform when necessary, and deploys the application to Kubernetes using Helm charts. All pipeline stages are defined in a Jenkinsfile, allowing pipeline configurations to be version controlled alongside application code.
+
+To reduce build time, we use multiple Jenkins agents that execute independent stages in parallel. Sensitive credentials such as AWS access keys, Kubernetes kubeconfig files, SSH keys, and API tokens are securely stored using Jenkins Credentials Manager instead of being hardcoded into pipeline scripts. Build notifications, deployment status, and pipeline failures are automatically communicated to developers through Microsoft Teams and email. Jenkins has significantly improved deployment speed, reduced manual effort, ensured repeatable deployments, and enabled our teams to release software multiple times each week with minimal operational risk.
+
+---
+
+# 5. How would you implement DevOps practices in a project that currently has manual deployments?
+
+If I join a project that relies entirely on manual deployments, my first objective would be understanding the existing release process before introducing automation. I would document every deployment step, identify repetitive manual tasks, understand approval workflows, analyze deployment failures, and determine the biggest operational pain points. Rather than replacing the entire process immediately, I would introduce DevOps practices gradually to minimize risk and encourage team adoption.
+
+The first improvement would be implementing Git as the central version control system if it is not already being used. Once source code management is standardized, I would build a Continuous Integration pipeline using Jenkins that automatically checks out code, installs dependencies, executes unit tests, performs static code analysis, executes security scans, and generates deployable artifacts. This ensures every code change is validated automatically before deployment.
+
+Next, I would containerize the application using Docker so that the same application image runs consistently across development, testing, UAT, and production environments. Infrastructure provisioning would then be automated using Terraform, eliminating manual cloud resource creation and ensuring infrastructure remains version controlled. If the application architecture supports containers, I would introduce Kubernetes for orchestration to improve scalability, self-healing, high availability, and rolling deployments.
+
+After the application and infrastructure become fully automated, I would implement Continuous Deployment pipelines that automatically deploy applications to development and QA environments while maintaining approval gates for UAT and production. Monitoring would be established using Prometheus, Grafana, and AWS CloudWatch, while centralized logging would be implemented using the ELK Stack. Secrets would be managed securely through AWS Secrets Manager or Kubernetes Secrets instead of configuration files. Finally, I would conduct training sessions for developers, testers, and operations teams to ensure everyone understands DevOps practices and automation workflows. This gradual transformation reduces deployment failures, improves collaboration, shortens release cycles, enhances infrastructure reliability, and enables organizations to deliver software more efficiently.
+
+
+---
+
+# 6. What is Terraform drift?
+
+Terraform drift occurs when the actual infrastructure deployed in the cloud no longer matches the infrastructure defined in the Terraform code or the Terraform state file. This usually happens when someone manually modifies resources through the AWS Management Console, AWS CLI, or another automation tool instead of making changes through Terraform. For example, if an engineer manually changes the EC2 instance type, adds a new security group rule, resizes an EBS volume, or modifies an Auto Scaling Group directly from the AWS console, Terraform will not be aware of those changes until a `terraform plan` is executed. During the next Terraform execution, Terraform detects that the live infrastructure differs from the desired state stored in the Terraform configuration and reports the differences as drift.
+
+In my project, Infrastructure as Code is considered the single source of truth, so Terraform drift is taken very seriously. Manual modifications can cause deployment failures, unexpected infrastructure changes, security risks, and inconsistencies between environments. Therefore, before every infrastructure deployment, we execute `terraform plan` to compare the Terraform state with the actual AWS resources. This helps us identify unauthorized or accidental changes before they impact production. Detecting drift early ensures that our infrastructure remains predictable, reproducible, and fully managed through code rather than manual intervention.
+
+---
+
+# 7. How do you overcome Terraform drift?
+
+When Terraform drift is detected, I first identify the exact resources that have changed by executing `terraform plan`. Instead of immediately applying changes, I carefully review the output to understand whether the drift was caused intentionally or accidentally. I also review AWS CloudTrail logs, Git history, and change requests to determine who modified the infrastructure and why. This helps prevent accidental overwriting of legitimate production changes.
+
+If the manual modification is approved and should remain in production, I update the Terraform configuration so that it accurately represents the current infrastructure. If the resource was created outside Terraform, I import it into the Terraform state using `terraform import`. On the other hand, if the change was accidental or unauthorized, I use Terraform to reconcile the infrastructure back to the desired state after verifying that the changes will not cause downtime. For production environments, I always review the execution plan with my team before applying any modifications.
+
+To prevent future drift, we follow strict Infrastructure as Code practices. Direct production access is restricted through IAM policies, all infrastructure changes are performed through pull requests, peer reviews are mandatory, CloudTrail continuously audits AWS API activity, and regular drift detection is included in our CI/CD pipeline. This approach ensures Terraform remains the single source of truth for managing cloud infrastructure.
+
+---
+
+# 8. What is a data source in Terraform?
+
+A data source in Terraform allows us to retrieve information about existing infrastructure without creating or modifying those resources. Instead of hardcoding values such as VPC IDs, subnet IDs, AMI IDs, Route53 hosted zones, or security group IDs, Terraform dynamically fetches them during execution. This makes the infrastructure code reusable, portable, and easier to maintain across multiple environments.
+
+In my current project, we frequently use data sources while provisioning AWS resources. For example, when launching EC2 instances, we use the `aws_ami` data source to retrieve the latest approved Amazon Linux AMI instead of specifying an image ID manually. Similarly, we use data sources to retrieve existing VPCs, private subnets, IAM roles, ACM certificates, and Route53 hosted zones created by other Terraform modules or teams. This eliminates duplication and ensures that infrastructure always references the correct existing resources.
+
+Using data sources also improves maintainability because infrastructure automatically adapts when underlying resource IDs change. Instead of updating multiple configuration files manually, Terraform retrieves the latest resource information dynamically during execution, reducing configuration errors and improving deployment consistency.
+
+---
+
+# 9. What is a Terraform workspace?
+
+A Terraform workspace is a feature that allows multiple environments to use the same Terraform configuration while maintaining separate state files. Instead of duplicating Terraform code for development, QA, UAT, and production environments, workspaces enable us to reuse the same infrastructure code while isolating each environment's resources.
+
+In my project, we use separate workspaces for Development, QA, UAT, and Production. Each workspace maintains its own Terraform state file, ensuring that infrastructure changes made in one environment do not affect another. For example, the development workspace provisions smaller EC2 instances and fewer Kubernetes worker nodes, while the production workspace creates larger instances with higher availability and additional monitoring resources. Environment-specific values such as instance sizes, subnet IDs, and scaling limits are controlled through variables while the Terraform code remains the same.
+
+Using workspaces significantly reduces code duplication, simplifies infrastructure maintenance, and ensures consistency across multiple environments. Combined with remote state storage in Amazon S3 and state locking using DynamoDB, Terraform workspaces provide a secure and efficient way to manage multi-environment infrastructure.
+
+---
+
+# 10. What are dependencies in Terraform?
+
+Dependencies in Terraform define the order in which resources are created, updated, or destroyed. Terraform automatically builds a dependency graph by analyzing references between resources. For example, if an EC2 instance references a subnet, security group, IAM role, and key pair, Terraform automatically creates those resources first before provisioning the EC2 instance. Similarly, when destroying infrastructure, Terraform deletes dependent resources in the correct sequence to avoid failures.
+
+Although Terraform usually detects dependencies automatically, there are situations where explicit dependencies are required. In such cases, we use the `depends_on` argument to instruct Terraform to wait until another resource has been created successfully before proceeding. In my project, I have used explicit dependencies while provisioning IAM policies, Kubernetes resources, EKS node groups, Route53 records, and Load Balancer components where creation order is critical.
+
+Proper dependency management is extremely important because it prevents race conditions during infrastructure provisioning. Without correct dependencies, Terraform may attempt to create resources before their prerequisites are available, resulting in deployment failures. By defining dependencies correctly, infrastructure provisioning becomes predictable, reliable, and easier to troubleshoot.
+
+
+---
+
+# 11. A Linux server with a 500 GB data volume was provisioned using Terraform. The application team wants to increase it to 750 GB. How would you perform this change?
+
+Whenever I receive a request to increase the size of a production EBS volume, my first priority is ensuring that the change is performed safely without impacting application availability. Since the server was provisioned using Terraform, I never modify the EBS volume directly from the AWS Console because doing so would introduce Terraform drift. Instead, I first review the existing Terraform configuration to identify where the EBS volume size is defined. I update the `volume_size` parameter from **500 GB to 750 GB** in the Terraform code and execute `terraform plan` to verify that Terraform intends only to modify the existing volume instead of recreating it. AWS supports online expansion of EBS volumes, so in most cases this operation does not require stopping the EC2 instance.
+
+After confirming the execution plan with my team, I apply the changes using `terraform apply`. Once AWS completes the volume expansion, I log in to the Linux server and verify that the operating system still detects the previous partition size using commands such as `lsblk`, `df -h`, and `sudo fdisk -l`. Since increasing the EBS volume only expands the block device, I then extend the partition if required using `growpart`. After the partition is resized, I expand the file system. If the server uses an XFS file system, I execute `xfs_growfs`; if it uses an EXT4 file system, I use `resize2fs`. Finally, I verify the updated capacity using `df -h` to ensure that the operating system recognizes the new 750 GB volume.
+
+Before considering the task complete, I perform application validation by checking application logs, monitoring dashboards, disk utilization, and file accessibility to ensure no production impact has occurred. I also update the infrastructure documentation and Git repository with the approved Terraform changes so that the Infrastructure as Code remains the single source of truth. This approach avoids configuration drift, minimizes downtime, and ensures that future infrastructure deployments remain consistent.
+
+---
+
+# 12. You have three nodes, and one node is not receiving traffic. How would you identify the problematic node, troubleshoot it, and fix the issue?
+
+If one node in a three-node Kubernetes cluster is not receiving traffic, I begin by confirming whether the issue is related to Kubernetes scheduling, networking, the application itself, or the underlying infrastructure. My first step is checking the health of all nodes using `kubectl get nodes`. If one node shows a **NotReady** status, I immediately inspect it using `kubectl describe node` to identify conditions such as Memory Pressure, Disk Pressure, PID Pressure, or Kubelet failures. If the node is healthy and shows a **Ready** status, I continue investigating Kubernetes scheduling.
+
+Next, I verify whether application pods are actually running on the affected node by executing `kubectl get pods -o wide`. If no pods are scheduled on that node, I check for taints, node selectors, affinity rules, or cordon status that may be preventing workloads from being scheduled there. If pods are present, I verify that they are passing readiness probes because Kubernetes Services send traffic only to Ready pods. Using `kubectl describe pod` and `kubectl logs`, I investigate application errors, readiness failures, or repeated container restarts.
+
+The next layer I examine is the Kubernetes Service and Endpoints. I verify that the Service selectors correctly match the pod labels and ensure that the endpoints include pod IP addresses running on the affected node. If the endpoints are missing, traffic will never reach those pods regardless of node health. I also inspect the Ingress Controller or AWS Application Load Balancer Target Groups to confirm that targets associated with the affected node remain healthy. If using Amazon EKS, I verify Security Groups, Network ACLs, Route Tables, and AWS Load Balancer Controller configurations to ensure network traffic is not blocked.
+
+If networking appears normal, I investigate the node itself. I review Kubelet logs, kube-proxy status, CNI plugin logs, CPU utilization, memory usage, disk utilization, and network interfaces. Sometimes kube-proxy failures, CNI plugin issues, or firewall rules prevent traffic from reaching pods even though Kubernetes reports the node as healthy. I also verify that the node can communicate with the Kubernetes API Server and other worker nodes.
+
+After identifying the root cause, I implement the appropriate fix. If the Kubelet is unhealthy, I restart the service. If networking is the issue, I restore the CNI configuration or kube-proxy. If pods are failing readiness probes, I resolve the application issue and redeploy. Once fixed, I monitor traffic distribution, pod health, response times, and application metrics using Prometheus, Grafana, and CloudWatch to confirm that traffic is evenly distributed across all three nodes. Finally, I document the incident, perform a root cause analysis, and implement monitoring alerts so similar node issues are detected before they affect users.
+
+---
+
+# 13. What is a CRD (Custom Resource Definition) in Kubernetes?
+
+A Custom Resource Definition (CRD) is a Kubernetes feature that allows users to extend the Kubernetes API by creating their own custom resource types. By default, Kubernetes provides built-in resources such as Pods, Deployments, Services, StatefulSets, ConfigMaps, and Secrets. However, modern cloud-native applications often require additional resource types that Kubernetes does not provide natively. CRDs enable developers and platform engineers to create these custom resources while allowing Kubernetes to manage them just like built-in objects.
+
+In my experience, CRDs are commonly used by Kubernetes Operators. For example, when installing Prometheus Operator, Cert Manager, ArgoCD, or External Secrets Operator, several CRDs are automatically created. These CRDs introduce new Kubernetes objects such as `ServiceMonitor`, `Certificate`, `Application`, or `ExternalSecret`. Once the CRDs are installed, Kubernetes understands these new resource types and Operators continuously monitor them to perform automated actions.
+
+The biggest advantage of CRDs is automation. Instead of manually performing repetitive administrative tasks, we simply define the desired state using a custom resource, and the corresponding Operator automatically reconciles the cluster to achieve that state. This follows Kubernetes' declarative model and greatly simplifies application lifecycle management, certificate management, database provisioning, monitoring configuration, and many other operational tasks.
+
+---
+
+# 14. What is CNI (Container Network Interface)?
+
+Container Network Interface (CNI) is a networking standard used by Kubernetes to configure networking for containers and pods. Whenever Kubernetes creates a new pod, it delegates networking responsibilities to the installed CNI plugin. The CNI plugin assigns IP addresses, configures routing, establishes pod-to-pod communication, and ensures connectivity between pods, nodes, and external services.
+
+Without a CNI plugin, Kubernetes pods would not be able to communicate with each other. Every Kubernetes cluster must therefore have a CNI implementation installed before workloads can function correctly. Popular CNI plugins include Calico, Cilium, Flannel, Weave Net, and Amazon VPC CNI. Each plugin offers different networking capabilities, security features, and performance characteristics depending on organizational requirements.
+
+In Amazon EKS, the Amazon VPC CNI plugin is commonly used because it assigns VPC IP addresses directly to pods, enabling native AWS networking. In other Kubernetes environments, plugins such as Calico are frequently selected because they provide advanced network policies and enhanced security capabilities. Understanding CNI is essential because many Kubernetes networking issues, including pod communication failures, DNS issues, and network policy enforcement, are directly related to the CNI implementation.
+
+---
+
+# 15. Which CNI plugin have you used, and how did you implement it?
+
+In my current project, we primarily use the **Amazon VPC CNI plugin** because our Kubernetes clusters are hosted on Amazon EKS. The Amazon VPC CNI allows each Kubernetes pod to receive an IP address directly from the AWS VPC subnet. This enables pods to communicate with other AWS resources without requiring additional overlay networks, resulting in better performance and simplified network management.
+
+The implementation begins during Amazon EKS cluster creation. AWS automatically deploys the VPC CNI as a DaemonSet running on every worker node. I verify the installation using `kubectl get daemonset -n kube-system` and ensure that all `aws-node` pods are healthy. I also configure appropriate IAM Roles for Service Accounts (IRSA), subnet allocation, and Security Groups to ensure that pods receive IP addresses correctly. During production operations, I monitor available IP addresses, subnet utilization, pod networking, and VPC CNI logs because subnet IP exhaustion is a common issue in large EKS clusters.
+
+In another project, I also worked with **Calico** as the CNI plugin for self-managed Kubernetes clusters. Calico was selected because it provides advanced Kubernetes Network Policies that allow us to control communication between namespaces and applications. We installed Calico using its official manifests, verified node readiness, tested pod-to-pod connectivity, and created Network Policies that restricted traffic based on security requirements. This improved application security by ensuring that only authorized services could communicate with each other while blocking unnecessary east-west traffic inside the cluster. My experience with both Amazon VPC CNI and Calico has given me a strong understanding of Kubernetes networking, network troubleshooting, IP management, and production-grade cluster security.
 
 # Advanced AWS Interview Questions & Answers (4+ Years DevOps Engineer)
 
