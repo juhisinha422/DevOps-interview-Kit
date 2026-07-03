@@ -1,0 +1,15 @@
+ Explain the complete request flow from Route 53 → ALB → EKS/EC2  
+
+1.Route 53, using a hosted zone, looks up the DNS records for our domain. It is typically configured with an Alias record that points directly to our ALB’s Fully Qualified Domain Name (FQDN). 
+
+2.Route 53 returns the IP addresses of the ALB nodes back to the user's browser. 
+
+3.The user’s browser initiates a connection to the ALB’s IP address. The ALB  (which is deployed in a public subnet) acts as the primary, secure entry point for external traffic 
+
+4.The ALB evaluates incoming requests based on its configured Listeners (e.g., port 443 for HTTPS). It offloads TLS/SSL certificates and applies security group rules to validate the traffic. 
+
+5.The ALB evaluates host and path-based routing rules (e.g., /api/* or service1.example.com) to determine which Target Group the request should go to. 
+
+6.The ALB forwards the traffic directly to the node ports of our EKS worker nodes (or directly to Pod IPs if we use AWS CNI). Inside the cluster, an Ingress controller (like NGINX) or an EKS Service (ClusterIP) receives the traffic and load-balances it to the specific, healthy application Pod.
+ 
+7.The ALB forwards traffic to its registered Target Group, which consists of backend EC2 instances running in private subnets.
