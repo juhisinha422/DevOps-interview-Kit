@@ -1,3 +1,962 @@
+# DevOps Interview Questions & Answers (4 Years Experience)
+
+## GitLab CI/CD
+
+---
+
+## 1. Difference between Continuous Integration, Continuous Delivery, and Continuous Deployment?
+
+### Answer
+
+Continuous Integration (CI), Continuous Delivery (CD), and Continuous Deployment are three important practices in a DevOps lifecycle that help automate software delivery while improving quality and reducing deployment risks.
+
+**Continuous Integration (CI)** is the process of frequently integrating developers' code changes into a shared repository. In my current project, whenever a developer raises a Merge Request or pushes code to the feature branch, GitLab automatically triggers a pipeline. The pipeline performs several activities such as code checkout, dependency installation, unit testing, static code analysis using SonarQube, security scanning, Docker image creation, and artifact generation. The primary objective of CI is to detect integration issues early instead of discovering them during release. Since multiple developers work on the same microservices, CI helps us identify compilation errors, dependency conflicts, or test failures immediately after code is committed.
+
+**Continuous Delivery** is the next stage after Continuous Integration. Once the application has been successfully built and tested, it is automatically deployed to environments such as Development or UAT. However, deployment to Production still requires a manual approval from the Release Manager or Product Owner. In our project, after all automated quality gates pass, GitLab pauses the pipeline at the Production stage and waits for an authorized approver. This gives the business team an opportunity to validate the release, schedule deployments during maintenance windows, and ensure all compliance requirements are met before releasing the application to customers.
+
+**Continuous Deployment** goes one step further by eliminating the manual approval process. Once all automated validations such as unit tests, integration tests, security scans, performance checks, and deployment verification succeed, the application is automatically deployed to Production without human intervention. Continuous Deployment is commonly used in organizations with highly mature DevOps practices and comprehensive automated testing. Although our Production deployments require manual approval due to business compliance requirements, our Development and UAT environments follow an automated Continuous Deployment approach where every successful pipeline automatically deploys the latest version.
+
+In simple terms, Continuous Integration focuses on automatically building and testing code whenever changes are committed. Continuous Delivery ensures the application is always in a deployable state while requiring manual approval before Production deployment. Continuous Deployment automates the complete software release process, including deployment to Production, without any manual intervention.
+
+---
+
+## 2. Explain your current CI/CD pipeline flow.
+
+### Answer
+
+In my current project, we use **GitLab CI/CD** to automate the complete application delivery process from source code commit to deployment on Amazon EKS. The objective of the pipeline is to reduce manual effort, improve deployment consistency, and ensure every release passes predefined quality and security checks before reaching Production.
+
+The pipeline starts when a developer creates a Merge Request or pushes code to the feature branch. GitLab automatically triggers the pipeline based on the `.gitlab-ci.yml` configuration file. During the first stage, the pipeline checks out the source code from the Git repository and installs the required dependencies. The application is then compiled and unit tests are executed to validate that the new code does not introduce compilation or functional issues.
+
+After successful compilation, the pipeline performs static code analysis using SonarQube. We have configured Quality Gates to verify code coverage, code duplication, security vulnerabilities, bugs, and code smells. If the Quality Gate fails, the pipeline immediately stops, preventing low-quality code from moving to the next stage.
+
+Once the quality checks pass, the application is packaged, and a Docker image is built using a multi-stage Dockerfile. The Docker image is then scanned for vulnerabilities before being pushed to Amazon Elastic Container Registry (ECR). This ensures that vulnerable operating system packages or libraries are identified before deployment.
+
+The deployment stage uses Kubernetes manifests or Helm charts to deploy the application into the Development environment running on Amazon EKS. After deployment, automated smoke tests and health checks verify that the application is functioning correctly. If all validations succeed, the pipeline automatically proceeds to deploy the application to the UAT environment.
+
+Production deployment is controlled through a manual approval stage. Once business approval is received, the same tested Docker image is deployed to the Production EKS cluster using a rolling deployment strategy. During deployment, Kubernetes gradually replaces old Pods with new ones while continuously monitoring health probes. This approach minimizes downtime and allows users to continue accessing the application during the deployment process.
+
+After deployment, application health is continuously monitored using Prometheus, Grafana, and AWS CloudWatch. If abnormal error rates, Pod failures, or resource utilization issues are detected, Kubernetes automatically restarts unhealthy Pods, and if required, we can quickly perform a rollback to the previous stable ReplicaSet.
+
+This automated CI/CD pipeline has significantly reduced manual deployment effort, improved release consistency, minimized production failures, and enabled multiple deployments per week while maintaining high application availability.
+
+---
+
+## 3. What are the stages in your CI/CD pipeline?
+
+### Answer
+
+Our GitLab CI/CD pipeline consists of multiple stages, each designed to validate a specific aspect of the application before allowing it to move to the next phase. The pipeline follows a quality-first approach where each stage acts as a checkpoint, ensuring only stable and secure code progresses through the deployment lifecycle.
+
+The first stage is **Source Checkout**, where GitLab retrieves the latest code from the repository based on the branch or Merge Request that triggered the pipeline. This ensures the pipeline always works with the most recent version of the application.
+
+The second stage is **Build**, where the application is compiled and all project dependencies are downloaded. For Java applications, we use Maven or Gradle, while Node.js applications use npm or yarn. This stage ensures the application can be successfully compiled without dependency issues.
+
+The third stage is **Unit Testing**, where automated unit tests verify the functionality of individual components. Running unit tests during every pipeline execution helps us identify coding errors early in the development lifecycle.
+
+Next comes **Static Code Analysis** using SonarQube. During this stage, the code is analyzed for bugs, vulnerabilities, code smells, duplicated code, and test coverage. We have configured SonarQube Quality Gates so that any critical issues automatically fail the pipeline.
+
+The fifth stage is **Security Scanning**, where we scan dependencies and Docker images for known vulnerabilities. This helps ensure that insecure libraries or outdated packages do not reach production.
+
+After successful validation, the pipeline enters the **Docker Build** stage. Here, a Docker image is created using a multi-stage Dockerfile to optimize image size and improve security. Once built, the image is tagged using the Git commit ID or release version and pushed to Amazon Elastic Container Registry (ECR).
+
+The next stage is **Deployment to Development**, where Kubernetes deploys the latest Docker image into the Development EKS cluster. Automated smoke tests verify that the application starts successfully, APIs respond correctly, and basic functionality works as expected.
+
+Once Development validation succeeds, the pipeline deploys the application to the **UAT environment**, where testers and business users perform functional and user acceptance testing. This environment closely mirrors Production, allowing comprehensive validation before release.
+
+The final stage is **Production Deployment**. This stage requires manual approval from the Release Manager. Once approved, Kubernetes performs a rolling deployment, gradually replacing existing Pods with the new version while continuously monitoring application health. After deployment, monitoring tools such as Prometheus, Grafana, and CloudWatch confirm that the application is healthy and performing as expected.
+
+By organizing the pipeline into clearly defined stages, we ensure that code quality, security, testing, and deployment validations are completed before any release reaches Production, significantly reducing deployment risks and improving software reliability.
+
+
+
+---
+
+## 4. What problems does your CI/CD pipeline solve?
+
+### Answer
+
+Before implementing CI/CD, our development and deployment process involved several manual activities. Developers would manually build the application on their local systems, operations teams would manually copy artifacts to servers, execute deployment scripts, and verify the application after deployment. This process was time-consuming, inconsistent, and highly prone to human error. Different environments often had configuration differences, resulting in "it works on my machine" issues. Deployments also required significant coordination between development, QA, and operations teams, making releases slow and increasing the risk of production failures.
+
+Our GitLab CI/CD pipeline solved these challenges by automating the entire software delivery lifecycle. Whenever a developer pushes code or raises a Merge Request, the pipeline automatically builds the application, executes unit tests, performs static code analysis using SonarQube, scans dependencies and Docker images for vulnerabilities, builds a Docker image, pushes it to Amazon ECR, and deploys it to the Development environment. This ensures that every code change goes through the same standardized process, eliminating inconsistencies caused by manual deployments.
+
+The pipeline also significantly improved code quality. Earlier, developers sometimes merged code without running sufficient tests, leading to production defects. Now, every commit must pass automated quality gates before it can be merged. SonarQube checks for bugs, code smells, security vulnerabilities, duplicated code, and code coverage. If any critical issue is detected, the pipeline fails immediately, preventing low-quality code from progressing further.
+
+Another major improvement was deployment consistency. Since all environments use the same Docker image and Kubernetes manifests, we no longer face configuration mismatches between Development, UAT, and Production. Every deployment is repeatable, version-controlled, and fully traceable. If an issue occurs, we can quickly identify the exact commit, pipeline, Docker image, and deployment responsible for the release.
+
+The CI/CD pipeline has also reduced deployment time significantly. Previously, deployments could take several hours because of manual approvals, artifact copying, and verification. Today, most deployments complete within minutes, allowing the team to release features more frequently while maintaining high quality. Automated rollback capabilities and continuous monitoring further reduce the impact of production issues, enabling faster recovery whenever incidents occur.
+
+Overall, the CI/CD pipeline has improved development speed, software quality, deployment reliability, collaboration between teams, and application availability while reducing manual effort and operational risks.
+
+---
+
+## 5. How do you troubleshoot and resolve pipeline failures?
+
+### Answer
+
+Whenever a CI/CD pipeline fails, I follow a structured troubleshooting approach instead of rerunning the pipeline immediately. The first step is to identify the exact stage where the failure occurred because different stages indicate different categories of problems. For example, failures during the build stage usually indicate compilation issues or dependency conflicts, whereas failures during deployment often point to Kubernetes configuration problems, infrastructure issues, or application startup failures.
+
+I begin by reviewing the GitLab pipeline logs to understand the exact error message. The logs usually indicate whether the issue occurred during dependency installation, code compilation, unit testing, SonarQube analysis, Docker image creation, security scanning, image push to Amazon ECR, or Kubernetes deployment. Rather than focusing only on the final error message, I carefully examine the complete log because the root cause often appears several lines before the actual failure.
+
+If the failure occurs during the build stage, I verify whether any recent code changes introduced compilation errors or dependency issues. I also check whether external package repositories are available and whether build dependencies are compatible. For test failures, I analyze the failed test cases, reproduce the issue locally if required, and determine whether the failure is caused by application logic, test data, or environmental changes.
+
+If the Docker build fails, I review the Dockerfile for syntax errors, invalid base images, permission issues, or missing application artifacts. When the pipeline cannot push the image to Amazon ECR, I verify IAM permissions, authentication tokens, repository availability, and network connectivity between GitLab runners and AWS.
+
+Deployment failures require additional investigation. I check the Kubernetes deployment status using tools such as `kubectl describe`, Kubernetes Events, Pod logs, and ReplicaSet status. Common issues include incorrect image tags, failed health probes, missing ConfigMaps or Secrets, insufficient cluster resources, or networking problems. I also review Prometheus and Grafana dashboards to determine whether the failure is related to infrastructure or application behavior.
+
+If the failure is caused by temporary external issues such as network interruptions or AWS service availability, I validate the environment before restarting the pipeline. However, I avoid repeatedly rerunning failed pipelines without understanding the root cause because this can waste build resources and delay releases.
+
+After resolving the issue, I document the root cause, update the team's knowledge base, and implement preventive measures wherever possible. For example, if a dependency issue caused the failure, I may introduce dependency version locking. If a deployment failed due to missing configuration, I update validation checks to detect the issue earlier in the pipeline. This continuous improvement approach reduces recurring failures and makes the CI/CD process more reliable over time.
+
+---
+
+## 6. Describe a GitLab pipeline failure and how you fixed it.
+
+### Answer
+
+One production issue I encountered involved a GitLab deployment pipeline that consistently failed during the Kubernetes deployment stage, even though the application had compiled successfully, passed all unit tests, cleared SonarQube Quality Gates, and the Docker image had been pushed successfully to Amazon ECR. Initially, the pipeline appeared healthy until the deployment stage, where Kubernetes reported that the Deployment had exceeded its progress deadline.
+
+Instead of rerunning the pipeline, I investigated the Kubernetes cluster. I checked the Deployment status, ReplicaSets, and Pod Events. I discovered that the newly created Pods were repeatedly entering the **CrashLoopBackOff** state. The application itself was failing during startup because it could not locate one of the required environment variables that was supposed to be provided through a Kubernetes Secret.
+
+After reviewing the deployment manifest, I noticed that the Secret had been created in the Development namespace but was missing from the UAT namespace. Since the deployment pipeline promoted the same Docker image across multiple environments, the application started successfully in Development but failed immediately in UAT because the required Secret did not exist.
+
+To resolve the issue, I created the missing Kubernetes Secret in the correct namespace and redeployed the application. The Pods started successfully, passed readiness and liveness probes, and the pipeline completed without further issues.
+
+To prevent similar incidents, we improved our deployment process by introducing a validation stage before deployment. The pipeline now automatically verifies the existence of required ConfigMaps, Secrets, namespaces, and other Kubernetes resources before deploying the application. If any required resource is missing, the pipeline fails immediately with a clear error message, preventing failed deployments and reducing troubleshooting time.
+
+This incident reinforced the importance of validating environment-specific configurations before deployment rather than assuming all Kubernetes resources are identical across environments.
+
+---
+
+## 7. Which Git branching strategy do you use?
+
+### Answer
+
+In my current project, we primarily follow a modified **GitFlow branching strategy** because it provides a structured approach for managing feature development, testing, releases, and production support. Since multiple developers work simultaneously on different microservices and features, having a well-defined branching strategy helps avoid conflicts and ensures that production code remains stable.
+
+The `main` branch always represents the production-ready version of the application. Direct commits to this branch are not permitted. Every production release is deployed from the `main` branch after passing all quality checks and obtaining the required approvals.
+
+Developers create individual **feature branches** from the `develop` branch for each new feature, enhancement, or bug fix. They perform development, testing, and code commits within their feature branch. Once development is complete, they raise a Merge Request to merge their changes into the `develop` branch. The Merge Request automatically triggers the GitLab CI/CD pipeline, which executes unit tests, static code analysis, security scanning, and build validation.
+
+For production releases, we create a **release branch** from the `develop` branch. QA teams perform final testing in this branch, and only critical bug fixes are permitted. Once testing is completed successfully, the release branch is merged into both `main` and `develop` to ensure that production changes are synchronized with ongoing development.
+
+If a critical production issue occurs, we create a **hotfix branch** directly from `main`. After resolving and validating the issue, the hotfix is merged back into both `main` and `develop` so that future releases also contain the fix.
+
+This branching strategy provides better isolation between development and production, supports parallel feature development, simplifies release management, and ensures that only thoroughly tested code reaches production. It also integrates well with GitLab Merge Requests, mandatory code reviews, and automated CI/CD pipelines, making the overall software delivery process more reliable and predictable.
+
+
+```markdown id="8fw3kd"
+```
+---
+
+## 8. How do you manage Git branches?
+
+### Answer
+
+In my current project, we follow a structured Git branching strategy to ensure smooth collaboration among developers and maintain code stability across different environments. Since multiple developers work on different features, bug fixes, and production issues simultaneously, proper branch management is essential to avoid merge conflicts and ensure that only tested code reaches production.
+
+Every new feature or bug fix begins with creating a dedicated feature branch from the `develop` branch. Developers work independently on their assigned branches without affecting the code being developed by others. We follow a naming convention such as `feature/login-enhancement`, `bugfix/payment-timeout`, or `hotfix/api-failure`, making it easy to identify the purpose of each branch.
+
+Developers commit code frequently with meaningful commit messages rather than large, infrequent commits. Before raising a Merge Request, they synchronize their branch with the latest changes from the `develop` branch to minimize merge conflicts. If conflicts occur, they resolve them locally, test the application thoroughly, and only then push the updated branch.
+
+Once development is complete, a Merge Request is created. GitLab automatically triggers the CI/CD pipeline, which performs code compilation, unit testing, SonarQube analysis, security scanning, and Docker image creation. The Merge Request cannot be merged unless all pipeline stages pass successfully. This ensures that only validated code progresses to the shared branch.
+
+Code reviews are mandatory in our project. At least one or two senior developers review the code for functionality, coding standards, security, maintainability, and performance before approving the merge. Direct commits to protected branches such as `main` and `develop` are not allowed, ensuring that every change is reviewed and validated through the CI/CD process.
+
+After successful deployment and release, feature branches are deleted to keep the repository clean. However, release tags remain available, allowing us to identify the exact version deployed to Production whenever rollback or auditing is required. This structured branch management process improves collaboration, reduces integration issues, and maintains a clean and organized Git repository.
+
+---
+
+## 9. Do you use any backup/recovery before deleting stale branches?
+
+### Answer
+
+Yes. Although deleting stale branches helps keep the repository clean and improves maintainability, we never delete branches without ensuring that the required code has been preserved. Before deleting any branch, we first verify whether its changes have already been merged into the appropriate target branch, such as `develop` or `main`. GitLab provides merge history, which allows us to confirm that all commits are safely included in the main codebase.
+
+For release branches and production deployments, we always create Git tags before deletion. Tags serve as permanent references to important releases and allow us to recreate the exact source code corresponding to any production deployment. This is extremely useful during production rollbacks, audits, and troubleshooting because we can identify the precise version that was deployed.
+
+For long-running feature branches, we review open Merge Requests and pending work before deletion. If the feature is incomplete or may be required later, we communicate with the development team before taking any action. In some cases, branches are archived instead of being deleted immediately, especially if they contain work that may be resumed in the future.
+
+Git itself also provides an additional safety mechanism through commit history and reflog. Even if a branch is accidentally deleted, it can often be recovered if the commits still exist in the repository history. However, we do not rely solely on recovery mechanisms. Our standard practice is to verify merge status, maintain release tags, and obtain team confirmation before deleting stale branches.
+
+By following this controlled approach, we maintain a clean repository while ensuring that valuable development work is never lost.
+
+---
+
+## 10. Explain your code review and merge approval process.
+
+### Answer
+
+In my current project, every code change follows a structured review and approval process before it can be merged into the shared branch. This process improves code quality, ensures compliance with development standards, and reduces the risk of introducing defects into production.
+
+Once a developer completes a feature or bug fix, they push their changes to their feature branch and create a Merge Request in GitLab. Creating the Merge Request automatically triggers the GitLab CI/CD pipeline. The pipeline performs code compilation, unit testing, static code analysis using SonarQube, security scanning, and Docker image creation. If any stage fails, the Merge Request cannot proceed until the issues are resolved.
+
+After the pipeline completes successfully, the Merge Request is assigned to one or more reviewers, typically senior developers or technical leads. During the review, they examine the code for correctness, readability, maintainability, adherence to coding standards, performance considerations, and security best practices. They also verify that the implementation aligns with business requirements and architectural guidelines.
+
+If reviewers identify any issues, they provide comments directly within the Merge Request. The developer addresses the feedback, updates the code, and pushes the revised changes. The CI/CD pipeline executes again automatically to validate the updated implementation. This review cycle continues until all concerns are resolved.
+
+Once all required reviewers approve the Merge Request and all pipeline stages pass successfully, the code is merged into the target branch. Protected branch policies prevent direct commits to important branches such as `main` and `develop`, ensuring that every code change undergoes the same validation and approval process.
+
+This structured workflow has significantly improved collaboration within the team, reduced production defects, increased code consistency, and ensured that every deployment is based on thoroughly reviewed and tested code.
+
+---
+
+## 11. Difference between Git Merge and Git Rebase? When do you use each?
+
+### Answer
+
+Both Git Merge and Git Rebase are used to integrate changes from one branch into another, but they achieve this in different ways and serve different purposes.
+
+**Git Merge** combines the histories of two branches by creating a new merge commit. The complete development history is preserved, making it easy to understand when different branches were integrated. Since Merge does not rewrite commit history, it is considered safer for shared branches that multiple developers are using. In our project, Merge is primarily used when integrating feature branches into the `develop` branch through Merge Requests because it maintains a clear history of collaboration.
+
+**Git Rebase**, on the other hand, rewrites commit history by moving commits from one branch onto the latest commit of another branch. Instead of creating a merge commit, Rebase creates a linear project history that is easier to read. Before creating a Merge Request, developers often rebase their feature branch onto the latest `develop` branch to incorporate recent changes and reduce merge conflicts. Since Rebase modifies commit history, it should only be performed on local or private branches that are not shared with other developers.
+
+In my project, I typically use Rebase during active development to keep my feature branch updated with the latest code from `develop`. Once the feature is complete, I raise a Merge Request, where GitLab performs the final merge after successful review and pipeline validation. This approach combines the benefits of a clean development history while preserving collaboration history in the shared repository.
+
+---
+
+## 12. What is Git?
+
+### Answer
+
+Git is a distributed version control system that helps developers manage source code efficiently while enabling multiple team members to work on the same project simultaneously. Unlike traditional version control systems that rely on a centralized server, Git allows every developer to have a complete copy of the repository, including its full commit history. This distributed architecture enables developers to work offline, create branches independently, and synchronize their changes whenever required.
+
+In my current project, Git is an essential part of our DevOps workflow. Every application, infrastructure configuration, Kubernetes manifest, Terraform module, and CI/CD pipeline definition is maintained in Git repositories. Developers create feature branches for new development, commit changes with meaningful messages, and raise Merge Requests for review. GitLab CI/CD automatically builds, tests, and validates the application whenever new commits are pushed, ensuring that every code change follows the same quality assurance process.
+
+Git also provides complete traceability. Every commit records who made the change, when it was made, and why it was introduced. If an issue is discovered in Production, we can quickly identify the responsible commit, compare changes between releases, or revert problematic commits if necessary. This significantly improves troubleshooting and accountability.
+
+Another major advantage of Git is its powerful branching and merging capabilities. Multiple developers can work on different features simultaneously without affecting each other's work. Once development is complete and the code has passed reviews and automated testing, the changes are merged into the main development branch. This enables parallel development while maintaining code stability and reducing integration conflicts.
+
+Overall, Git serves as the foundation of our software development lifecycle by providing version control, collaboration, change tracking, release management, and seamless integration with automated CI/CD pipelines.
+
+---
+
+## 13. Difference between Declarative and Scripted Pipelines in Jenkins?
+
+### Answer
+
+Jenkins supports two primary pipeline syntaxes: **Declarative Pipeline** and **Scripted Pipeline**. Both achieve the same objective of automating CI/CD workflows, but they differ in syntax, flexibility, and complexity.
+
+A **Declarative Pipeline** follows a structured and predefined syntax. It is easier to read, maintain, and understand because the pipeline stages, environment variables, agents, post-build actions, and conditions are organized in a standardized format. Since the syntax is more restrictive, it reduces the chances of programming errors and improves consistency across projects. In my experience, Declarative Pipelines are ideal for most enterprise CI/CD workflows because they are easier for teams to maintain and onboard new engineers.
+
+A **Scripted Pipeline** is written using the full Groovy programming language and provides much greater flexibility. It allows developers to implement complex logic, loops, conditional execution, exception handling, dynamic stage generation, and reusable functions. However, because it behaves like a programming language, Scripted Pipelines are generally more difficult to understand, debug, and maintain. Small syntax mistakes can also make troubleshooting more challenging.
+
+In my projects, we primarily use **Declarative Pipelines** because our CI/CD process follows a predictable sequence of stages such as source checkout, build, unit testing, SonarQube analysis, security scanning, Docker image creation, image push to Amazon ECR, Kubernetes deployment, and post-deployment verification. Declarative syntax makes these stages easy to visualize and maintain. However, when implementing highly customized workflows, dynamic deployments, or advanced automation logic, I have used Scripted Pipeline features within Declarative Pipelines through Groovy scripting.
+
+From an interview perspective, I usually explain that Declarative Pipelines are preferred for standard enterprise CI/CD implementations because of their readability and maintainability, while Scripted Pipelines are chosen only when advanced programming logic or dynamic behavior is required.
+
+
+# Terraform
+
+---
+
+## 1. Why is Terraform used?
+
+### Answer
+
+In my current project, Terraform is our primary **Infrastructure as Code (IaC)** tool used to provision, configure, and manage AWS infrastructure in a consistent, repeatable, and automated manner. Instead of manually creating resources through the AWS Management Console, we define the entire infrastructure using Terraform code. This includes resources such as VPCs, Subnets, Internet Gateways, NAT Gateways, Route Tables, Security Groups, EC2 instances, IAM Roles, Application Load Balancers, Auto Scaling Groups, Amazon EKS clusters, Amazon RDS databases, and S3 buckets.
+
+Before Terraform was introduced, infrastructure provisioning was largely manual. Engineers had to create resources one by one through the AWS Console, which was time-consuming and often resulted in inconsistencies between Development, UAT, and Production environments. Manual provisioning also increased the chances of configuration errors, missing security rules, and undocumented infrastructure changes.
+
+Terraform solved these challenges by allowing us to define infrastructure declaratively using HCL (HashiCorp Configuration Language). Every infrastructure change is stored in GitLab, reviewed through Merge Requests, and deployed through the CI/CD pipeline. This provides version control, peer review, auditability, and consistency across environments. If a new environment needs to be created, Terraform can provision the complete infrastructure within minutes using the same codebase, ensuring that every environment is identical.
+
+Another significant advantage is idempotency. Terraform compares the desired state defined in the code with the existing infrastructure and modifies only the resources that require changes. This minimizes unnecessary updates and reduces deployment risks. Terraform also supports modular design, allowing us to reuse infrastructure components across multiple projects, which improves maintainability and reduces code duplication.
+
+Overall, Terraform has significantly improved deployment consistency, reduced manual effort, accelerated environment provisioning, and enabled our infrastructure to be managed using the same DevOps practices as application code.
+
+---
+
+## 2. Advantages over manual infrastructure provisioning?
+
+### Answer
+
+Terraform provides several advantages over manual infrastructure provisioning, especially in large-scale cloud environments where consistency, automation, and reliability are essential. In my experience, one of the biggest benefits is **consistency**. When infrastructure is created manually through the AWS Console, different engineers may configure resources differently, leading to configuration drift between environments. Terraform eliminates this problem because every environment is created using the same code.
+
+Another major advantage is **automation**. Previously, provisioning a complete environment could take several hours or even days because engineers had to manually create networking components, IAM roles, compute instances, databases, and security configurations. With Terraform, the same infrastructure can be provisioned automatically within minutes using a single pipeline execution. This significantly reduces deployment time and improves operational efficiency.
+
+Terraform also provides **version control**. Since all infrastructure code is stored in GitLab, every change is tracked, reviewed, and approved before being applied. We always know who modified the infrastructure, when the change was made, and why it was introduced. If required, we can review previous versions or revert changes using Git history.
+
+One of the most valuable features is **state management**. Terraform maintains a state file that records the current infrastructure. During every execution, Terraform compares the desired configuration with the existing infrastructure and performs only the necessary modifications. This prevents unnecessary resource recreation and minimizes downtime during infrastructure updates.
+
+Terraform also improves disaster recovery. If an environment is accidentally deleted or a new environment is required, we do not need to recreate resources manually. We simply execute the Terraform code, and the complete infrastructure is recreated consistently. This capability has greatly simplified environment provisioning for development, testing, and production.
+
+Finally, Terraform integrates seamlessly with GitLab CI/CD, allowing infrastructure deployments to follow the same automated review and approval process as application deployments. This reduces manual intervention, improves governance, and ensures that infrastructure changes are implemented safely and consistently.
+
+---
+
+## 3. Experience with Terraform modules?
+
+### Answer
+
+Yes. In my current project, we extensively use Terraform Modules to improve code reusability, maintainability, and standardization. Instead of writing the same infrastructure code repeatedly for every environment or application, we created reusable modules that encapsulate common infrastructure components. These modules are then invoked multiple times with different input variables depending on the environment or application requirements.
+
+For example, we have separate modules for VPC creation, Security Groups, IAM Roles, EC2 instances, Amazon EKS node groups, Application Load Balancers, Auto Scaling Groups, Amazon RDS databases, and Amazon S3 buckets. Each module contains all the required resource definitions, while environment-specific values such as CIDR ranges, instance types, subnet IDs, security group rules, and tags are passed through variables.
+
+This modular approach significantly reduced code duplication and made our infrastructure easier to maintain. If a security enhancement or configuration change is required, we update the module once, and the change can be applied consistently across all environments after proper testing. This also improves standardization because every team provisions infrastructure using the same approved modules instead of writing custom Terraform code.
+
+Modules also simplified onboarding new team members. Instead of understanding hundreds of Terraform resource definitions, engineers only needed to understand how to consume existing modules by providing the required variables. This reduced development effort and improved deployment consistency across multiple AWS accounts and environments.
+
+In addition, our modules are version-controlled through GitLab repositories. Before upgrading a module version, we validate the changes in lower environments to ensure there are no unexpected impacts. Using reusable Terraform modules has significantly improved scalability, maintainability, and governance of our Infrastructure as Code implementation.
+
+---
+
+
+
+---
+
+## 4. How do you manage Terraform state files?
+
+### Answer
+
+Managing the Terraform state file is one of the most critical aspects of working with Terraform because the state file acts as the source of truth for all infrastructure managed by Terraform. It maintains the mapping between the infrastructure defined in the Terraform configuration and the actual resources running in AWS. Without a properly managed state file, Terraform cannot determine which resources need to be created, updated, or deleted, increasing the risk of infrastructure inconsistencies.
+
+In my current project, we never store the Terraform state file (`terraform.tfstate`) locally because multiple DevOps engineers work on the same infrastructure. Instead, we use a **remote backend** with an **Amazon S3 bucket** to store the state file centrally. This allows all team members and GitLab CI/CD pipelines to work with the same state, ensuring consistency across deployments. Since the state file contains sensitive information such as resource IDs, ARNs, IP addresses, and sometimes metadata about infrastructure, the S3 bucket is configured with server-side encryption using AWS KMS, versioning enabled, and restricted IAM permissions so that only authorized users and CI/CD pipelines can access it.
+
+To prevent multiple engineers from modifying the infrastructure simultaneously, we use **Amazon DynamoDB** for state locking. Whenever a Terraform operation such as `terraform apply` starts, Terraform automatically acquires a lock in the DynamoDB table. This prevents another user or pipeline from executing Terraform against the same state file until the first operation completes. This mechanism eliminates race conditions and protects the infrastructure from corruption caused by concurrent updates.
+
+We also separate infrastructure for different environments using **Terraform Workspaces** or separate backend configurations, depending on the project. Development, UAT, and Production environments maintain independent state files, ensuring that changes made to one environment cannot accidentally impact another. This isolation improves safety and simplifies environment-specific deployments.
+
+As part of our GitLab CI/CD process, every infrastructure change follows a controlled workflow. Developers first execute `terraform fmt` and `terraform validate` to verify formatting and syntax. The pipeline then runs `terraform plan`, allowing reviewers to see exactly which infrastructure changes will occur. Only after the Merge Request is approved does the pipeline execute `terraform apply`. This review process minimizes the risk of unintended infrastructure modifications.
+
+Another important practice is enabling **S3 bucket versioning**. If a state file is accidentally overwritten or corrupted, previous versions can be restored quickly without rebuilding the infrastructure. We also perform regular backups and restrict direct manual editing of the state file because modifying it outside Terraform can introduce inconsistencies.
+
+Overall, using a remote S3 backend, DynamoDB state locking, encrypted storage, versioning, isolated environments, and CI/CD-based deployments has enabled us to manage Terraform state securely and reliably while supporting multiple engineers working on the same infrastructure.
+
+---
+
+## 5. Challenges faced in Terraform and how you resolved them?
+
+### Answer
+
+During my experience with Terraform, I have encountered several real-world challenges while managing AWS infrastructure. One of the most common issues was **Terraform drift**, where infrastructure was manually modified through the AWS Management Console instead of Terraform. For example, a support engineer temporarily opened an additional Security Group rule to troubleshoot an application issue. Since this change was not reflected in the Terraform code, the next `terraform plan` detected it as drift and attempted to revert the manual modification.
+
+To resolve this, we first verified whether the manual change was intended to become permanent. If it was a valid infrastructure change, we updated the Terraform configuration accordingly and applied the new configuration so that the code remained the single source of truth. If the manual modification was temporary or unauthorized, Terraform safely restored the infrastructure to its expected state. We also educated teams to avoid manual production changes and introduced stricter IAM permissions so that infrastructure modifications were performed only through Terraform.
+
+Another challenge involved **state lock conflicts**. Occasionally, a GitLab pipeline would be interrupted due to network issues or manual cancellation while Terraform was executing. Since Terraform had already acquired the DynamoDB lock, subsequent pipeline executions failed with a "State Locked" error. Before removing the lock, we always verified that no Terraform process was still running. Once confirmed, we safely released the stale lock using `terraform force-unlock` and reran the pipeline. This prevented accidental corruption of the shared state file.
+
+I also encountered dependency-related challenges when provisioning complex AWS resources. For example, an Application Load Balancer depended on Security Groups, Subnets, Target Groups, and VPC resources. During one deployment, Terraform attempted to create resources before their dependencies were fully available, causing intermittent failures. To resolve this, we used explicit `depends_on` relationships where necessary and designed our Terraform modules to expose required outputs so that dependent resources were created in the correct order. This significantly improved deployment reliability.
+
+Another challenge involved managing infrastructure across multiple environments. Initially, environment-specific values such as CIDR blocks, instance sizes, and subnet IDs were hardcoded, making maintenance difficult. We refactored the code to use reusable Terraform modules and environment-specific variable files. This reduced duplication, simplified deployments, and ensured that Development, UAT, and Production environments followed the same architecture while still allowing environment-specific customization.
+
+We also experienced issues when team members were using different Terraform versions. Differences in provider versions occasionally caused unexpected plan outputs or compatibility issues. To solve this, we standardized Terraform and provider versions using version constraints in the configuration and ensured that all GitLab runners used the same Terraform version. This eliminated inconsistencies between local development environments and CI/CD pipelines.
+
+From these experiences, I learned that successful Terraform implementation is not only about writing Infrastructure as Code but also about following operational best practices such as centralized state management, version control, module reuse, peer reviews, automated CI/CD deployments, state locking, and minimizing manual infrastructure changes. These practices have made our infrastructure deployments more reliable, repeatable, and easier to maintain.
+
+---
+
+
+# Docker
+
+---
+
+## 1. What is Docker and why is it used?
+
+### Answer
+
+Docker is an open-source containerization platform that enables developers to package an application along with all its dependencies, libraries, runtime, and configuration files into a lightweight, portable container. The main advantage of Docker is that the application behaves consistently across different environments, whether it is running on a developer's laptop, a testing server, or a production Kubernetes cluster.
+
+In my current project, we use Docker extensively as part of our CI/CD pipeline. Whenever developers commit code to GitLab, the pipeline automatically builds the application, creates a Docker image, scans it for vulnerabilities, pushes it to Amazon Elastic Container Registry (ECR), and deploys it to Amazon EKS. This ensures that the exact same Docker image tested in the Development environment is promoted to UAT and eventually Production, eliminating environment-specific issues.
+
+Before adopting Docker, applications were deployed directly on virtual machines. Different servers often had different versions of Java, Node.js, Python, or operating system libraries, resulting in compatibility issues and deployment failures. Docker solved this problem by packaging the application together with its runtime environment. Since the container includes everything the application needs to run, it behaves identically across all environments.
+
+Another major advantage is resource efficiency. Unlike virtual machines, Docker containers share the host operating system kernel, making them significantly lighter and faster to start. A single server can run multiple isolated containers with lower CPU and memory overhead. This enables better resource utilization and faster application scaling, especially in Kubernetes environments.
+
+Docker also simplifies deployments and rollback procedures. Every image is versioned using tags, allowing us to deploy a specific application version whenever required. If a deployment introduces an issue, Kubernetes can quickly roll back to the previous stable Docker image without rebuilding the application. This has significantly improved release reliability and reduced deployment risks in our production environment.
+
+Overall, Docker has become a fundamental component of our DevOps workflow by improving application portability, deployment consistency, scalability, resource utilization, and integration with Kubernetes and CI/CD pipelines.
+
+---
+
+## 2. Difference between ENTRYPOINT and CMD?
+
+### Answer
+
+Both **ENTRYPOINT** and **CMD** are Dockerfile instructions that define what happens when a container starts, but they serve different purposes and are often used together.
+
+The **ENTRYPOINT** instruction specifies the main executable that should always run when the container starts. It defines the primary purpose of the container and cannot be easily overridden unless explicitly specified using the `--entrypoint` option during container execution. In production environments, ENTRYPOINT is commonly used to start the application itself, ensuring that the container consistently performs its intended function.
+
+The **CMD** instruction, on the other hand, provides default arguments for the ENTRYPOINT command or specifies a default command if ENTRYPOINT is not defined. Unlike ENTRYPOINT, CMD can easily be overridden when starting the container by providing a different command. This makes CMD useful for supplying configurable runtime parameters while keeping the main application unchanged.
+
+In my projects, we usually combine both instructions. For example, the ENTRYPOINT starts the Java application, while CMD supplies the default JVM options or application parameters. This provides flexibility because operations teams can override only the runtime arguments without modifying the Docker image itself.
+
+A practical example would be a Spring Boot application. The ENTRYPOINT launches the Java runtime and application JAR, while CMD specifies default JVM memory settings. If we need different memory allocation for Production compared to Development, we can override the CMD values without rebuilding the Docker image.
+
+Using ENTRYPOINT and CMD correctly makes Docker images more reusable, configurable, and easier to manage across different deployment environments.
+
+---
+
+## 3. Difference between Docker images and containers?
+
+### Answer
+
+A Docker **Image** is a read-only template that contains everything required to run an application, including the operating system libraries, runtime, application code, dependencies, environment configuration, and startup instructions. Images are created from Dockerfiles and stored in container registries such as Amazon Elastic Container Registry (ECR) or Docker Hub. Once an image is built, it remains unchanged unless a new version is created.
+
+A Docker **Container** is a running instance of a Docker image. When a container starts, Docker creates a writable layer on top of the image where temporary files, logs, and runtime changes are stored. Multiple containers can be created from the same image, each running independently with its own processes, networking, and filesystem.
+
+In our project, every successful GitLab pipeline builds a Docker image and pushes it to Amazon ECR with a unique version tag based on the Git commit ID. Kubernetes then pulls that image from ECR and creates multiple container instances depending on the required number of replicas. For example, a Deployment configured with three replicas creates three separate containers from the same Docker image. Although all three containers originate from the same image, each container operates independently and can be restarted or replaced without affecting the others.
+
+One important difference is persistence. Docker images are immutable and serve as reusable templates, whereas containers are temporary runtime instances. If a container is deleted, any changes made inside the container are lost unless external persistent storage such as Kubernetes Persistent Volumes or Amazon EFS is used.
+
+Understanding this distinction is important because CI/CD pipelines primarily produce Docker images, while Kubernetes manages the lifecycle of Docker containers during application deployment and scaling.
+
+---
+
+## 4. What are multi-stage builds?
+
+### Answer
+
+Multi-stage builds are a Docker feature that allows multiple build stages within a single Dockerfile. The primary objective is to create smaller, more secure, and production-ready Docker images by separating the build environment from the runtime environment.
+
+In traditional Docker builds, all build tools, compilers, package managers, source code, and temporary files remain inside the final Docker image. This increases the image size, introduces unnecessary security vulnerabilities, and slows down image downloads during deployments. Multi-stage builds solve this problem by performing the application compilation in one stage and copying only the required runtime artifacts into the final production image.
+
+In my current project, our Java Spring Boot applications are built using Maven. The first stage of the Dockerfile uses a Maven image to download dependencies and compile the application. After the build completes, only the generated JAR file is copied into a lightweight OpenJDK runtime image. Since Maven, source code, build caches, and temporary files are excluded from the final image, the production image becomes significantly smaller and more secure.
+
+This approach provides several advantages. Smaller Docker images are transferred faster between GitLab runners, Amazon ECR, and Kubernetes nodes, reducing deployment time. Fewer installed packages also reduce the attack surface because unnecessary build tools are not included in production containers. Additionally, smaller images consume less storage and improve Kubernetes startup times.
+
+Multi-stage builds have become one of our standard Docker best practices because they improve performance, reduce security risks, and produce clean production images suitable for enterprise deployments.
+
+---
+
+
+---
+
+## 5. How do you reduce Docker image size and why?
+
+### Answer
+
+Reducing Docker image size is an important best practice because smaller images are faster to build, transfer, store, and deploy. In our production environment, every successful GitLab CI/CD pipeline builds a Docker image, pushes it to Amazon Elastic Container Registry (ECR), and Kubernetes pulls the image before creating Pods. If the image size is unnecessarily large, deployments become slower, consume more network bandwidth, occupy additional storage in the container registry, and increase application startup time. Therefore, image optimization is a regular part of our Docker development process.
+
+The first optimization technique we use is **multi-stage builds**. During the build stage, all development tools such as Maven, Gradle, Node.js, or build dependencies are available to compile the application. Once the build is complete, only the final executable artifact, such as a JAR file or compiled application, is copied into a lightweight runtime image. This removes unnecessary source code, build tools, caches, and temporary files from the final image, significantly reducing its size.
+
+Another important practice is selecting **lightweight base images**. Instead of using large operating system images, we prefer minimal runtime images such as Alpine Linux or slim variants whenever they are compatible with the application. These images contain only the essential packages required to run the application, reducing both image size and the attack surface.
+
+We also optimize the Dockerfile by combining related commands into fewer layers. Every instruction in a Dockerfile creates a new layer, so minimizing unnecessary layers helps reduce the overall image size. Temporary files, package manager caches, and unnecessary installation artifacts are removed within the same layer to prevent them from remaining in the final image.
+
+Another optimization involves using a `.dockerignore` file. Similar to `.gitignore`, this file prevents unnecessary files such as Git repositories, local IDE configurations, documentation, logs, temporary files, and test reports from being copied into the Docker build context. Excluding these files reduces both build time and image size.
+
+Finally, we regularly scan our Docker images using vulnerability scanning tools integrated into the CI/CD pipeline. During this process, we also identify unnecessary packages and outdated libraries that can be removed or upgraded. Smaller images not only improve deployment speed but also reduce the number of installed packages, thereby lowering the potential attack surface.
+
+By following these optimization techniques, we have reduced image sizes significantly, resulting in faster Kubernetes deployments, lower storage costs, quicker image downloads, and improved overall application performance.
+
+---
+
+## 6. How do you optimize Docker images for performance and security?
+
+### Answer
+
+Optimizing Docker images involves improving both runtime performance and container security because production containers should be efficient, lightweight, and resistant to security vulnerabilities. In my current project, Docker image optimization is integrated into our DevOps pipeline and follows multiple best practices before an image is deployed to Amazon EKS.
+
+From a performance perspective, we first use **multi-stage Docker builds** so that only the application runtime artifacts are included in the final image. Build tools such as Maven, Gradle, source code, and temporary files remain in the build stage and are excluded from the production image. This significantly reduces image size, allowing Kubernetes nodes to download images faster and start Pods more quickly.
+
+We also choose lightweight base images wherever possible. Smaller runtime images consume fewer system resources and reduce startup times. Additionally, we carefully structure the Dockerfile to maximize layer caching. Instructions that change infrequently, such as dependency installation, are placed before frequently changing application source code. This enables Docker to reuse cached layers during subsequent builds, reducing pipeline execution time.
+
+From a security perspective, one of our key practices is avoiding running containers as the root user. Instead, we create a dedicated non-root user inside the Docker image and configure the application to run with minimal privileges. This significantly reduces the impact of potential container compromises.
+
+We also ensure that only required packages are installed inside the image. Unnecessary utilities, editors, debugging tools, and package managers are excluded from the final runtime image. Fewer installed packages mean fewer potential vulnerabilities and a smaller attack surface.
+
+Every Docker image is scanned automatically during the GitLab CI/CD pipeline using container vulnerability scanning tools. The scan identifies outdated operating system packages, vulnerable libraries, and known CVEs. If critical vulnerabilities are detected, the pipeline fails, preventing insecure images from reaching Production.
+
+Sensitive information such as database passwords, API keys, or AWS credentials is never embedded inside Docker images. Instead, Kubernetes Secrets, AWS Secrets Manager, or environment variables are used to inject configuration securely at runtime. This ensures that images remain generic and reusable while protecting confidential information.
+
+Finally, we regularly update base images to include the latest security patches and operating system updates. Even if the application code has not changed, rebuilding Docker images periodically ensures that newly discovered vulnerabilities are addressed before deployment.
+
+By combining lightweight images, efficient layer caching, non-root execution, vulnerability scanning, secret management, and regular updates, we create Docker images that are both performant and secure for enterprise production environments.
+
+---
+
+## 7. Explain the Dockerfile creation process.
+
+### Answer
+
+A Dockerfile is a text file containing a sequence of instructions that Docker follows to build a container image. In my current project, every microservice has its own Dockerfile, which is maintained alongside the application source code in GitLab. During the CI/CD pipeline, GitLab automatically reads the Dockerfile, builds the image, scans it for vulnerabilities, and pushes it to Amazon Elastic Container Registry (ECR) before deployment to Amazon EKS.
+
+The Dockerfile creation process begins by selecting an appropriate **base image**. The choice depends on the application's technology stack. For example, Java applications use OpenJDK runtime images, while Node.js applications use official Node runtime images. Choosing a minimal and secure base image helps improve performance and reduce vulnerabilities.
+
+The next step is configuring the application environment. This includes defining the working directory, copying dependency files, installing required packages, and downloading application dependencies. To improve Docker layer caching, dependency installation is performed before copying the complete application source code whenever possible. This allows Docker to reuse cached dependency layers if only the application code changes.
+
+After dependencies are installed, the application source code is copied into the image, and the application is compiled if necessary. For Java applications, we commonly use multi-stage builds where Maven compiles the project in the first stage, and only the generated JAR file is copied into the final runtime image.
+
+The Dockerfile also specifies runtime configuration such as environment variables, exposed ports, health checks where appropriate, and the command used to start the application. We generally use ENTRYPOINT to define the main application executable and CMD to provide configurable runtime parameters.
+
+Before finalizing the Dockerfile, we review it against security best practices. We avoid running containers as the root user, remove unnecessary packages, clean temporary files, minimize image layers, and ensure that sensitive information is never hardcoded inside the image.
+
+Once the Dockerfile is committed to GitLab, the CI/CD pipeline automatically builds the Docker image. After successful vulnerability scanning, the image is tagged using the application version or Git commit ID and pushed to Amazon ECR. Kubernetes then pulls the same immutable image for deployment across Development, UAT, and Production environments.
+
+By following this standardized Dockerfile creation process, we ensure that every application is packaged consistently, securely, and efficiently, making deployments reliable and repeatable across all environments.
+
+---
+
+
+# Kubernetes (K8s)
+
+---
+
+## 1. What is Kubernetes and why is it used?
+
+### Answer
+
+Kubernetes, commonly referred to as K8s, is an open-source container orchestration platform used to automate the deployment, scaling, management, and monitoring of containerized applications. While Docker is responsible for creating and packaging applications into containers, Kubernetes manages those containers in production environments. It ensures that applications remain highly available, scalable, and self-healing without requiring manual intervention.
+
+In my current project, we use **Amazon Elastic Kubernetes Service (EKS)** to host our microservices. Every successful GitLab CI/CD pipeline builds a Docker image, pushes it to Amazon Elastic Container Registry (ECR), and deploys the latest version to the EKS cluster. Kubernetes manages the complete lifecycle of these containers, including scheduling Pods on worker nodes, monitoring their health, restarting failed containers, scaling applications based on workload, and performing rolling deployments with minimal downtime.
+
+One of the primary reasons we use Kubernetes is its **self-healing capability**. If a Pod crashes due to an application failure or node issue, Kubernetes automatically creates a new Pod to replace it. This happens without any manual intervention, ensuring that the desired number of application instances is always maintained. This significantly improves application availability and reduces operational effort.
+
+Another important feature is **automatic scaling**. During periods of high user traffic, Kubernetes can increase the number of running Pods using the Horizontal Pod Autoscaler (HPA). When traffic decreases, it automatically reduces the number of Pods to optimize resource utilization. Combined with the Cluster Autoscaler, Kubernetes can also add or remove worker nodes based on resource requirements, making the platform highly scalable.
+
+Kubernetes also simplifies application updates. Instead of shutting down the application during deployment, it performs rolling updates by gradually replacing old Pods with new ones while continuously monitoring health checks. If the new version fails, Kubernetes supports automatic rollback to the previous stable version, minimizing downtime and reducing deployment risks.
+
+Overall, Kubernetes has become a critical component of our DevOps architecture because it provides container orchestration, high availability, automatic scaling, self-healing, service discovery, load balancing, and seamless integration with CI/CD pipelines, enabling us to manage production workloads efficiently.
+
+---
+
+## 2. Explain Kubernetes architecture.
+
+### Answer
+
+Kubernetes follows a **master-worker architecture**, where the Control Plane manages the cluster, and Worker Nodes run the actual application workloads. Understanding this architecture is important because every Kubernetes operation involves interaction between these components.
+
+The **Control Plane** is responsible for managing the entire Kubernetes cluster. It contains several core components. The **API Server** acts as the central entry point for all cluster operations. Whenever we execute commands using `kubectl` or when GitLab deploys an application, the request is sent to the API Server, which validates and processes it.
+
+The **etcd** database stores the complete state of the Kubernetes cluster, including information about Pods, Deployments, Services, ConfigMaps, Secrets, Nodes, and other Kubernetes resources. Since etcd contains the cluster configuration, its availability and backup are critical for cluster recovery.
+
+Another important component is the **Scheduler**, which determines the most suitable worker node for every newly created Pod. It considers factors such as CPU availability, memory utilization, node affinity, taints, tolerations, and resource requests before assigning a Pod to a node.
+
+The **Controller Manager** continuously monitors the desired state of the cluster and compares it with the actual state. If a Pod crashes or a node becomes unavailable, the Controller Manager automatically creates replacement Pods to restore the desired number of replicas. This is one of the reasons Kubernetes is considered self-healing.
+
+The **Worker Nodes** execute the application workloads. Every worker node contains the **Kubelet**, which communicates with the Control Plane and ensures that containers are running as instructed. The **Container Runtime**, such as containerd, is responsible for pulling Docker images from Amazon ECR and running the containers. **Kube Proxy** manages networking and load balancing between Pods by maintaining network rules for Services.
+
+In our Amazon EKS environment, AWS manages the Control Plane, while we manage the worker nodes using managed node groups. Applications are deployed through Kubernetes Deployments, and traffic is routed through Kubernetes Services and AWS Application Load Balancers. Prometheus and Grafana continuously monitor the cluster, while Cluster Autoscaler automatically adjusts node capacity based on workload.
+
+This architecture enables Kubernetes to provide scalability, high availability, fault tolerance, and automated container management, making it suitable for enterprise production environments.
+
+---
+
+## 3. Difference between ConfigMap and Secret?
+
+### Answer
+
+Both ConfigMaps and Secrets are Kubernetes resources used to externalize application configuration, but they are designed for different types of data. Understanding the distinction is important because it directly affects application security and configuration management.
+
+A **ConfigMap** is used to store non-sensitive configuration data such as application properties, environment variables, feature flags, URLs, log levels, timeout values, or configuration files. By storing configuration outside the application image, the same Docker image can be deployed across Development, UAT, and Production while using different configuration values for each environment. This improves flexibility and reduces the need to rebuild Docker images whenever configuration changes.
+
+A **Secret**, on the other hand, is specifically designed to store sensitive information such as database passwords, API keys, authentication tokens, SSL certificates, or cloud credentials. Although Kubernetes Secrets are encoded using Base64 by default, in production environments we integrate them with AWS Secrets Manager and enable encryption at rest using AWS KMS to provide stronger security. Access to Secrets is also restricted using Kubernetes RBAC policies so that only authorized Pods can retrieve them.
+
+In my project, ConfigMaps are used to store configuration such as application endpoints, logging configurations, JVM options, and environment-specific settings. Secrets are used for database credentials, third-party API tokens, OAuth client secrets, and SSL certificates. During deployment, Kubernetes injects these values into the application as environment variables or mounted files, allowing the application to retrieve configuration securely at runtime.
+
+Another advantage of separating configuration from application code is operational flexibility. If a configuration value changes, we can update the ConfigMap or Secret and restart the affected Pods without rebuilding or modifying the Docker image. This simplifies configuration management across multiple environments.
+
+From a security perspective, we follow the principle that **sensitive information should never be stored in ConfigMaps or hardcoded inside Docker images**. Instead, all confidential information is stored in Secrets or external secret management systems, ensuring that application credentials remain protected throughout the deployment lifecycle.
+
+---
+
+
+---
+
+## 4. Explain Kubernetes configuration changes/deployments you handled.
+
+### Answer
+
+In my current project, I am responsible for deploying and managing multiple microservices running on Amazon EKS. Most configuration changes are performed through Kubernetes manifests or Helm charts and are deployed using our GitLab CI/CD pipeline. Since all Kubernetes configurations are stored in Git repositories, every change goes through code review, approval, and automated deployment, ensuring consistency across Development, UAT, and Production environments.
+
+One of the common activities I handle is updating **Deployments** whenever a new application version is released. After the GitLab pipeline builds the Docker image and pushes it to Amazon ECR, the Kubernetes Deployment manifest is updated with the new image tag. Kubernetes performs a rolling update, gradually replacing old Pods with new ones while continuously monitoring readiness and liveness probes. This approach ensures that users experience minimal or no downtime during deployments.
+
+I also frequently manage **ConfigMaps** and **Secrets**. For example, when application properties such as API endpoints, logging levels, or feature flags need to change, I update the ConfigMap rather than rebuilding the Docker image. Similarly, when database passwords or API credentials are rotated, I update the Kubernetes Secret or AWS Secrets Manager integration. After these changes, the affected Pods are restarted so they can consume the updated configuration.
+
+Another area I regularly work on is resource optimization. Based on Prometheus and Grafana monitoring data, I update CPU and memory requests and limits to ensure applications have sufficient resources without overprovisioning the cluster. I have also configured Horizontal Pod Autoscaler (HPA) for several services to automatically increase or decrease the number of Pods based on CPU utilization and application traffic.
+
+Health probe configuration is another important responsibility. During one deployment, users experienced intermittent request failures because traffic was reaching the application before it had fully initialized. I resolved this by configuring appropriate readiness probes and startup probes so Kubernetes would route traffic only after the application was completely ready to serve requests. This significantly improved deployment stability.
+
+I have also managed Kubernetes Ingress resources integrated with the AWS Application Load Balancer. When new APIs or services are introduced, I update Ingress rules, SSL certificates, and routing configurations to ensure secure HTTPS communication. Throughout all configuration changes, we validate updates in Development and UAT before promoting them to Production, minimizing deployment risks.
+
+Overall, my Kubernetes responsibilities include application deployments, configuration management, scaling adjustments, resource optimization, health check tuning, Ingress updates, and production troubleshooting while following GitOps and CI/CD best practices.
+
+---
+
+## 5. How do you troubleshoot Pod issues?
+
+### Answer
+
+When a Kubernetes Pod encounters an issue, I follow a systematic troubleshooting approach rather than making assumptions. My objective is first to identify whether the problem is related to the application, Kubernetes configuration, networking, storage, or the underlying infrastructure. A structured approach helps minimize downtime and ensures the root cause is identified quickly.
+
+The first step is to check the Pod status using Kubernetes. States such as **Pending**, **CrashLoopBackOff**, **ImagePullBackOff**, **ErrImagePull**, **OOMKilled**, or **ContainerCreating** provide an initial indication of the problem. I then examine the Pod events to identify scheduling failures, image pull issues, insufficient resources, or probe failures.
+
+If the Pod is running but the application is not functioning correctly, I review the container logs. The logs often reveal application startup failures, missing environment variables, configuration issues, database connectivity problems, or runtime exceptions. If the application terminates before logs are generated, I inspect the previous container logs to understand why the container exited unexpectedly.
+
+For Pods stuck in the **Pending** state, I verify whether sufficient CPU and memory are available on the worker nodes. I also check node taints, tolerations, node selectors, resource quotas, and Persistent Volume availability. In some cases, the Cluster Autoscaler may need to provision additional worker nodes before the Pod can be scheduled.
+
+If the Pod cannot pull its Docker image, I verify that the image exists in Amazon ECR, confirm the image tag is correct, and ensure the worker nodes have the required IAM permissions to access the registry. I also check network connectivity between the EKS cluster and Amazon ECR.
+
+Networking issues require validating Kubernetes Services, Endpoints, DNS resolution, Ingress resources, and Network Policies. If an application cannot communicate with another service, I verify that the Service selector matches the Pod labels and confirm that the endpoints have been created correctly.
+
+Resource-related issues are another common cause of Pod failures. If the Pod is repeatedly being terminated due to insufficient memory, Kubernetes marks it as **OOMKilled**. In such cases, I review Prometheus and Grafana metrics, adjust resource requests and limits, and work with the development team to optimize application memory consumption if necessary.
+
+If the issue is not immediately apparent, I investigate the worker node itself by reviewing kubelet logs, node conditions, disk utilization, CPU usage, and system events. Sometimes infrastructure issues such as node failures, disk pressure, or network problems can indirectly affect Pod health.
+
+Throughout the troubleshooting process, I rely on Kubernetes Events, Prometheus, Grafana, CloudWatch logs, and centralized ELK logging to correlate application behavior with infrastructure events. This structured methodology enables me to diagnose and resolve Pod issues efficiently while minimizing production downtime.
+
+---
+
+## 6. Difference between Deployment, StatefulSet, and DaemonSet?
+
+### Answer
+
+Deployment, StatefulSet, and DaemonSet are Kubernetes workload controllers, but they are designed for different types of applications and operational requirements. Choosing the appropriate controller depends on whether the application is stateless, stateful, or infrastructure-related.
+
+A **Deployment** is used for **stateless applications** where individual Pods are interchangeable. Examples include web applications, REST APIs, frontend services, and microservices. Deployments support rolling updates, automatic rollbacks, scaling, and self-healing. In my project, almost all Spring Boot microservices are deployed using Deployments because each Pod is identical and any Pod can handle incoming requests without maintaining user-specific state.
+
+A **StatefulSet** is designed for **stateful applications** that require stable network identities, persistent storage, and predictable Pod naming. Unlike Deployments, StatefulSets create Pods in a specific order and maintain the same identity even after restarts. They are commonly used for databases such as MySQL, PostgreSQL, MongoDB, Cassandra, Kafka, or Elasticsearch. Each Pod receives its own Persistent Volume, ensuring that application data is preserved even if the Pod is recreated. Although our production databases are managed using Amazon RDS, I have worked with StatefulSets while deploying stateful applications in Kubernetes test environments.
+
+A **DaemonSet** ensures that exactly one Pod runs on every worker node in the cluster. Whenever a new node joins the cluster, Kubernetes automatically schedules a DaemonSet Pod on that node. DaemonSets are typically used for infrastructure components rather than business applications. Examples include Fluentd or Fluent Bit for log collection, Prometheus Node Exporter for infrastructure monitoring, security agents, and networking plugins. In our EKS cluster, Node Exporter and Fluent Bit are deployed as DaemonSets so that every worker node continuously exports system metrics and forwards logs to centralized logging systems.
+
+In summary, I use **Deployments** for stateless business applications, **StatefulSets** for applications requiring persistent identity and storage, and **DaemonSets** for cluster-wide infrastructure services that must run on every node.
+
+---
+
+## 7. How do you manage scaling and high availability?
+
+### Answer
+
+Ensuring scalability and high availability is one of the primary reasons we use Kubernetes in production. In my current project, we achieve this through a combination of Kubernetes features, AWS infrastructure, and continuous monitoring.
+
+For application scaling, we use the **Horizontal Pod Autoscaler (HPA)**. Based on metrics such as CPU utilization, HPA automatically increases or decreases the number of application Pods. For example, if CPU utilization exceeds our configured threshold during periods of high traffic, Kubernetes automatically creates additional Pods to distribute the workload. Once traffic decreases, the extra Pods are removed to optimize resource utilization.
+
+At the infrastructure level, we use the **Cluster Autoscaler** with Amazon EKS. If HPA creates additional Pods but the cluster lacks sufficient CPU or memory to schedule them, the Cluster Autoscaler automatically provisions new EC2 worker nodes. Similarly, when cluster utilization decreases, unnecessary nodes are removed to reduce infrastructure costs.
+
+To ensure application availability, every Deployment is configured with multiple replicas distributed across multiple Availability Zones. If a worker node fails, Kubernetes automatically reschedules the affected Pods onto healthy nodes. We also configure Pod Anti-Affinity rules where appropriate to prevent multiple replicas from running on the same node, reducing the impact of individual node failures.
+
+Health monitoring plays a significant role in maintaining availability. We configure **liveness probes**, **readiness probes**, and **startup probes** for all critical applications. Readiness probes ensure traffic is routed only to healthy Pods, while liveness probes automatically restart unhealthy containers. Startup probes provide additional time for applications with longer initialization periods before Kubernetes begins health monitoring.
+
+Deployments use a **rolling update strategy**, allowing Kubernetes to gradually replace existing Pods with new versions while maintaining application availability. If any issues are detected during deployment, Kubernetes can roll back to the previous ReplicaSet, minimizing user impact.
+
+Continuous monitoring is implemented using Prometheus, Grafana, and AWS CloudWatch. We monitor CPU usage, memory consumption, Pod restarts, response times, request rates, and application error rates. Alerts are configured so that the operations team is notified immediately whenever predefined thresholds are exceeded.
+
+By combining Horizontal Pod Autoscaler, Cluster Autoscaler, multi-replica deployments, Multi-AZ worker nodes, health probes, rolling updates, automatic rollbacks, and proactive monitoring, we maintain a highly available and scalable Kubernetes platform capable of handling production workloads efficiently while minimizing downtime.
+
+---
+
+
+# AWS
+
+---
+
+## 1. Which AWS services have you worked with?
+
+### Answer
+
+During my 4 years as a DevOps Engineer, I have worked extensively with AWS services to build, deploy, secure, monitor, and maintain cloud infrastructure for enterprise applications. My primary responsibility has been automating infrastructure provisioning using Terraform, deploying containerized applications on Amazon EKS, implementing CI/CD pipelines, monitoring production workloads, and ensuring high availability and security.
+
+One of the core services I use is **Amazon EC2**, where I have provisioned Linux instances for Jenkins servers, self-hosted GitLab runners, monitoring tools, and utility servers. I have configured Auto Scaling Groups to automatically adjust the number of EC2 instances based on workload and integrated them with Application Load Balancers to distribute traffic efficiently.
+
+For containerized workloads, I have extensive experience with **Amazon EKS (Elastic Kubernetes Service)**. Our microservices run on EKS clusters, where I manage Deployments, Services, Ingress resources, ConfigMaps, Secrets, Horizontal Pod Autoscaler (HPA), and Cluster Autoscaler. Docker images are stored in **Amazon Elastic Container Registry (ECR)** and are automatically deployed through GitLab CI/CD pipelines.
+
+I have worked extensively with **Amazon S3** for storing Terraform remote state files, application artifacts, deployment packages, backup files, and log archives. S3 bucket versioning, lifecycle policies, server-side encryption, and IAM access controls are configured to improve security and manage storage efficiently.
+
+Networking is another major area of my experience. I have created and managed **Amazon VPCs**, public and private subnets, Internet Gateways, NAT Gateways, Route Tables, Security Groups, Network ACLs, and VPC Endpoints. These components ensure secure communication between applications while preventing unnecessary internet exposure.
+
+For identity and access management, I regularly configure **AWS IAM** users, roles, instance profiles, policies, and cross-service permissions. We follow the principle of least privilege by granting only the minimum permissions required for applications and CI/CD pipelines.
+
+Our production databases are hosted on **Amazon RDS**, primarily using MySQL and PostgreSQL. I have worked on database connectivity, backup configuration, Multi-AZ deployments, security group management, and credential management through AWS Secrets Manager.
+
+Monitoring and logging are handled using **Amazon CloudWatch**, Prometheus, Grafana, and the ELK Stack. CloudWatch collects EC2 metrics, application logs, alarms, and dashboard metrics, while Prometheus and Grafana provide detailed Kubernetes monitoring.
+
+I have also worked with **Route 53** for DNS management, **AWS Secrets Manager** for secure credential storage, **AWS KMS** for encryption, **Application Load Balancer (ALB)** for traffic distribution, **Auto Scaling Groups**, and **CloudTrail** for auditing infrastructure changes.
+
+Overall, my AWS experience covers infrastructure provisioning, container orchestration, networking, security, monitoring, automation, storage, database management, and CI/CD integration across Development, UAT, and Production environments.
+
+---
+
+## 2. What AWS improvements or changes have you implemented?
+
+### Answer
+
+During my current project, I have implemented several AWS improvements focused on automation, security, performance, scalability, and operational efficiency. Most of these improvements were introduced to reduce manual effort, improve deployment reliability, and optimize cloud infrastructure costs.
+
+One of the biggest improvements was migrating manual infrastructure provisioning to **Terraform**. Previously, engineers created AWS resources manually using the AWS Management Console, resulting in inconsistent configurations across environments. By implementing Infrastructure as Code, we standardized infrastructure provisioning, introduced version control, enabled peer reviews through GitLab Merge Requests, and significantly reduced deployment time.
+
+I also contributed to migrating several applications from traditional EC2 deployments to **Amazon EKS**. Containerizing applications with Docker and deploying them on Kubernetes improved resource utilization, enabled automatic scaling, simplified rolling deployments, and reduced operational overhead. The migration also improved deployment consistency because every environment used the same Docker images.
+
+To improve deployment automation, I enhanced our **GitLab CI/CD pipelines** by integrating Docker image creation, vulnerability scanning, SonarQube code analysis, Terraform validation, Kubernetes deployment, and post-deployment health verification. These changes reduced manual deployments, minimized production errors, and accelerated release cycles.
+
+On the infrastructure side, I implemented **Horizontal Pod Autoscaler (HPA)** and **Cluster Autoscaler** in Amazon EKS. Applications now automatically scale based on CPU utilization, while worker nodes are added or removed dynamically depending on workload. This improved application availability during traffic spikes while reducing unnecessary infrastructure costs during low-traffic periods.
+
+I also strengthened cloud security by replacing hardcoded credentials with **AWS Secrets Manager** and Kubernetes Secrets. IAM policies were reviewed and refined to enforce the principle of least privilege. Sensitive S3 buckets were encrypted using AWS KMS, and unnecessary public access was removed.
+
+Monitoring was another area of improvement. I configured CloudWatch dashboards, Prometheus metrics, Grafana dashboards, and alerting rules to proactively monitor application health, Kubernetes cluster performance, resource utilization, and infrastructure availability. This significantly reduced Mean Time to Detect (MTTD) and improved incident response times.
+
+Additionally, I optimized storage costs by implementing S3 lifecycle policies that automatically moved older log files and backups to lower-cost storage classes. Regular cleanup of unused EBS volumes, snapshots, and obsolete Docker images further reduced AWS operational costs.
+
+These improvements collectively enhanced deployment speed, infrastructure consistency, security, monitoring capabilities, scalability, and overall operational efficiency within our AWS environment.
+
+---
+
+## 3. Explain your experience with EC2, S3, IAM, and VPC.
+
+### Answer
+
+I have hands-on experience with Amazon EC2, S3, IAM, and VPC, as these services form the foundation of our AWS infrastructure.
+
+For **Amazon EC2**, I have provisioned Linux instances using Terraform for Jenkins servers, GitLab runners, monitoring tools, bastion hosts, and utility servers. My responsibilities include selecting appropriate instance types, configuring security groups, attaching IAM roles, managing EBS volumes, enabling CloudWatch monitoring, and integrating instances with Auto Scaling Groups and Application Load Balancers. I have also performed operating system patching, troubleshooting, and performance monitoring of EC2 instances.
+
+With **Amazon S3**, I primarily use it for storing Terraform remote state files, CI/CD build artifacts, application backups, log archives, and static content. I have configured bucket versioning, lifecycle policies, server-side encryption using AWS KMS, access logging, and IAM-based access controls. S3 versioning has been especially useful for recovering previous Terraform state files whenever accidental modifications occurred.
+
+Regarding **AWS IAM**, I regularly create and manage IAM users, groups, roles, and policies. Rather than embedding AWS credentials inside applications, we assign IAM Roles to EC2 instances, EKS worker nodes, and Kubernetes service accounts. This allows applications to securely access AWS services without exposing long-term credentials. I also review IAM policies to ensure least privilege access and periodically remove unused permissions to strengthen security.
+
+Networking is an area where I have substantial practical experience. I have created and managed **Amazon VPCs** with public and private subnets distributed across multiple Availability Zones. I configure Internet Gateways, NAT Gateways, Route Tables, Security Groups, Network ACLs, and VPC Endpoints to ensure secure communication between application components. Our EKS worker nodes and Amazon RDS databases are deployed within private subnets, while Application Load Balancers are deployed in public subnets to receive internet traffic securely.
+
+These AWS services work together to provide a secure, scalable, and highly available cloud infrastructure that supports our containerized applications and automated DevOps workflows.
+
+---
+
+
+
+# AWS (Continued)
+
+---
+
+## 4. How do you monitor applications and infrastructure?
+
+### Answer
+
+Monitoring applications and infrastructure is a critical part of my responsibilities as a DevOps Engineer because proactive monitoring helps identify issues before they impact end users. In my current project, we use a combination of **Amazon CloudWatch, Prometheus, Grafana, and the ELK Stack** to monitor infrastructure, Kubernetes clusters, applications, and logs. This layered monitoring approach provides complete visibility into the health and performance of our production environment.
+
+For AWS infrastructure, **Amazon CloudWatch** is our primary monitoring service. It collects metrics from EC2 instances, Application Load Balancers, Auto Scaling Groups, RDS databases, and EKS worker nodes. We monitor CPU utilization, memory usage (through CloudWatch Agent), disk utilization, network throughput, EBS performance, and instance health. CloudWatch Alarms are configured with thresholds for critical metrics, such as high CPU utilization, low disk space, or unhealthy instances. When these thresholds are exceeded, notifications are sent to the operations team through Amazon SNS, enabling rapid incident response.
+
+For Kubernetes monitoring, we use **Prometheus** to collect metrics from Pods, Deployments, Nodes, Services, and other Kubernetes resources. Prometheus continuously scrapes metrics exposed by applications and infrastructure components. These metrics are then visualized using **Grafana dashboards**, which provide real-time insights into application performance, Pod health, CPU and memory utilization, request rates, response times, container restarts, and resource consumption. Grafana dashboards help us quickly identify performance bottlenecks and capacity issues.
+
+Log management is handled using the **ELK Stack (Elasticsearch, Logstash, and Kibana)**. Application logs, Kubernetes logs, and system logs are centralized into Elasticsearch through Fluent Bit or Logstash. Kibana provides powerful search and visualization capabilities, allowing us to troubleshoot production issues by filtering logs based on timestamps, services, error messages, or transaction IDs. Centralized logging eliminates the need to log in to individual servers, making troubleshooting much faster.
+
+We also implement **health checks** within Kubernetes using liveness, readiness, and startup probes. These probes continuously monitor application health and ensure that only healthy Pods receive production traffic. If a Pod becomes unhealthy, Kubernetes automatically restarts it, reducing manual intervention and improving application availability.
+
+For production incident management, monitoring tools are integrated with alerting mechanisms that notify the DevOps team whenever predefined thresholds are exceeded. Alerts are prioritized based on severity so that critical production issues receive immediate attention. During incidents, we correlate CloudWatch metrics, Prometheus dashboards, and ELK logs to quickly identify the root cause and implement corrective actions.
+
+Overall, our monitoring strategy combines infrastructure metrics, Kubernetes metrics, centralized logging, health checks, and automated alerting to ensure high application availability, faster troubleshooting, and proactive infrastructure management.
+
+---
+
+## 5. Have you worked on AWS cost optimization?
+
+### Answer
+
+Yes. AWS cost optimization has been an important part of my role because cloud resources can become expensive if they are not monitored and managed properly. In my current project, we regularly review infrastructure utilization and implement several optimization strategies to reduce unnecessary cloud costs while maintaining application performance and availability.
+
+One of the first improvements we implemented was enabling **Horizontal Pod Autoscaler (HPA)** and **Cluster Autoscaler** in Amazon EKS. Instead of running a fixed number of Pods and worker nodes throughout the day, Kubernetes now automatically scales applications based on CPU utilization and workload. During low-traffic periods, unused Pods and worker nodes are removed automatically, significantly reducing EC2 infrastructure costs.
+
+We also reviewed our EC2 instances regularly using CloudWatch metrics. Several servers were consistently underutilized, with CPU utilization remaining below 15%. Based on this data, we downsized certain EC2 instance types to more appropriate configurations without affecting application performance. We also terminated unused development and testing instances that were no longer required.
+
+For storage optimization, we implemented **Amazon S3 Lifecycle Policies**. Older log files, backups, and archived deployment artifacts were automatically moved from the Standard storage class to lower-cost storage classes such as S3 Standard-IA or Glacier. This reduced long-term storage costs while still meeting compliance and retention requirements.
+
+Another area of optimization involved cleaning up unused resources. We periodically identified and removed unattached EBS volumes, obsolete EBS snapshots, unused Elastic IP addresses, outdated Amazon Machine Images (AMIs), and old Docker images stored in Amazon ECR. These resources often continue generating costs even though they are no longer actively used.
+
+Database optimization was also part of our cost management efforts. We monitored Amazon RDS utilization and selected appropriate instance sizes based on workload patterns. Multi-AZ deployments were enabled only for production workloads that required high availability, while development environments used smaller and more cost-effective database instances.
+
+From an infrastructure automation perspective, Terraform helped reduce costs by ensuring resources were provisioned consistently and preventing duplicate or unnecessary infrastructure. Infrastructure changes went through peer review, reducing the likelihood of accidentally creating expensive resources.
+
+We also monitored AWS billing reports and CloudWatch metrics regularly to identify unusual spending trends. Whenever unexpected cost increases occurred, we investigated the affected services, identified the root cause, and implemented corrective actions before the costs continued to grow.
+
+Overall, my AWS cost optimization experience includes rightsizing EC2 instances, implementing Kubernetes auto-scaling, optimizing S3 storage, cleaning unused cloud resources, managing RDS efficiently, automating infrastructure with Terraform, and continuously monitoring resource utilization to balance performance with operational costs.
+
+---
+
+
+# Monitoring & Ticketing
+
+---
+
+## 1. Which monitoring tools do you use?
+
+### Answer
+
+In my current project, we use a combination of **Prometheus, Grafana, Amazon CloudWatch, and the ELK Stack** to monitor applications, Kubernetes clusters, AWS infrastructure, and logs. Since our applications run on Amazon EKS, no single monitoring tool provides complete visibility, so we use different tools for different purposes and integrate them to achieve end-to-end monitoring.
+
+For Kubernetes monitoring, **Prometheus** is responsible for collecting metrics from Pods, Nodes, Deployments, Services, kube-state-metrics, and Node Exporter. It continuously scrapes metrics from the Kubernetes cluster and stores them in its time-series database.
+
+To visualize these metrics, we use **Grafana**. Grafana dashboards display important production metrics such as CPU utilization, memory consumption, Pod restarts, request rates, response times, error percentages, node health, and application availability. These dashboards help both the DevOps and development teams quickly understand the health of the production environment.
+
+For AWS infrastructure monitoring, we rely on **Amazon CloudWatch**. It collects metrics from EC2 instances, EKS worker nodes, Application Load Balancers, Auto Scaling Groups, RDS databases, and EBS volumes. CloudWatch Alarms notify our operations team whenever predefined thresholds are exceeded, allowing us to respond before users are affected.
+
+For centralized log management, we use the **ELK Stack (Elasticsearch, Logstash, and Kibana)**. Application logs, Kubernetes logs, and system logs are forwarded to Elasticsearch, while Kibana provides powerful search and visualization capabilities. During production incidents, Kibana allows us to quickly locate error messages, stack traces, failed API requests, and application exceptions without logging into individual servers.
+
+Together, these monitoring tools provide complete visibility into infrastructure, applications, containers, Kubernetes clusters, and production logs, enabling proactive monitoring and faster incident resolution.
+
+---
+
+## 2. How do you monitor application and infrastructure health?
+
+### Answer
+
+Monitoring application and infrastructure health is a continuous process in our production environment. We use multiple monitoring layers to ensure that issues are detected before they impact end users. Rather than relying on a single tool, we combine infrastructure monitoring, Kubernetes monitoring, application monitoring, centralized logging, and automated alerting.
+
+At the infrastructure level, **Amazon CloudWatch** continuously monitors EC2 instances, EBS volumes, Application Load Balancers, Auto Scaling Groups, Amazon RDS, and EKS worker nodes. Important metrics include CPU utilization, memory usage, disk utilization, network throughput, instance health, and database performance. CloudWatch Alarms automatically notify the operations team whenever any metric crosses predefined thresholds.
+
+Within Kubernetes, **Prometheus** collects detailed metrics from Pods, Deployments, Nodes, Services, kube-state-metrics, and Node Exporter. These metrics are visualized using **Grafana**, where we monitor application response time, request throughput, container CPU and memory usage, Pod restart counts, error rates, and Kubernetes resource utilization. This helps us identify performance bottlenecks before they become production issues.
+
+We also configure **liveness probes**, **readiness probes**, and **startup probes** for every critical application. Readiness probes ensure that traffic is sent only to healthy Pods, while liveness probes automatically restart unhealthy containers. Startup probes allow applications with longer initialization times to start successfully before Kubernetes begins health monitoring.
+
+Centralized logging using the ELK Stack provides another important layer of monitoring. Instead of checking logs on individual servers, all application and system logs are collected in Elasticsearch and analyzed through Kibana. During production incidents, this significantly reduces troubleshooting time because logs from all services are available in a single location.
+
+In addition to automated monitoring, we review dashboards regularly to identify resource utilization trends, unusual traffic patterns, or increasing error rates. Combining infrastructure metrics, application metrics, health checks, centralized logging, and alerting enables us to maintain high application availability while reducing Mean Time to Detect (MTTD) and Mean Time to Resolve (MTTR).
+
+---
+
+## 3. Experience with Prometheus, Grafana, CloudWatch, or ELK Stack?
+
+### Answer
+
+Yes. I have practical experience working with all four tools as part of our production monitoring solution.
+
+For Kubernetes monitoring, I have worked extensively with **Prometheus**. It collects metrics from Kubernetes components, Node Exporter, kube-state-metrics, and application endpoints exposed through Prometheus metrics. These metrics include CPU usage, memory consumption, network traffic, Pod status, deployment health, container restarts, request latency, and application-specific business metrics. Prometheus serves as the primary monitoring backend for our Kubernetes clusters.
+
+We use **Grafana** to visualize Prometheus metrics through interactive dashboards. I have configured dashboards for Kubernetes clusters, EC2 instances, application performance, JVM metrics, and infrastructure health. These dashboards display important production indicators such as response times, request rates, CPU utilization, memory usage, Pod health, and resource consumption. Grafana also supports alerting, allowing us to notify the operations team whenever important metrics exceed predefined thresholds.
+
+For AWS infrastructure, we use **Amazon CloudWatch**. It monitors EC2 instances, Application Load Balancers, Amazon RDS, Auto Scaling Groups, EKS worker nodes, and other AWS resources. I have configured CloudWatch dashboards, alarms, log groups, and custom metrics. CloudWatch integrates with Amazon SNS to send email notifications whenever production infrastructure experiences high resource utilization or service degradation.
+
+For centralized logging, we use the **ELK Stack**. Fluent Bit forwards Kubernetes and application logs to Elasticsearch, where they are indexed and stored. Kibana provides a centralized interface for searching logs, filtering by application, namespace, timestamp, or error message, and visualizing production events. During production incidents, Kibana helps identify application exceptions, failed API requests, authentication failures, and infrastructure errors much faster than manually checking server logs.
+
+By integrating Prometheus, Grafana, CloudWatch, and the ELK Stack, we achieve complete visibility into infrastructure health, Kubernetes performance, application metrics, and production logs, enabling faster troubleshooting and proactive monitoring.
+
+---
+
+## 4. Which ticketing tool do you use?
+
+### Answer
+
+In my current project, we primarily use **Jira** as our ticketing and project management tool. Jira is used to track development tasks, production incidents, infrastructure changes, service requests, bug fixes, and enhancement requests throughout the software development lifecycle.
+
+Whenever a production issue occurs, a Jira incident ticket is created containing information such as the affected application, severity level, business impact, error description, and supporting logs or screenshots. The ticket is assigned to the appropriate team based on the nature of the issue. As a DevOps Engineer, my responsibility is to investigate infrastructure-related incidents, Kubernetes issues, CI/CD failures, deployment problems, cloud resource issues, or monitoring alerts.
+
+For infrastructure changes such as Terraform updates, Kubernetes configuration modifications, IAM policy updates, or production deployments, change request tickets are created and linked to the corresponding GitLab Merge Requests. This provides complete traceability from business requirements to infrastructure changes and production deployments.
+
+During production incidents, Jira is updated continuously with investigation findings, root cause analysis, mitigation steps, deployment status, and final resolution details. Once the issue is resolved, we perform a Root Cause Analysis (RCA) and document preventive measures to reduce the likelihood of similar incidents occurring in the future.
+
+Using Jira helps improve collaboration between development, DevOps, QA, and business teams while providing complete visibility into ongoing work, incident management, and deployment history.
+
+---
+
+## 5. How do you handle production incidents and escalations?
+
+### Answer
+
+Handling production incidents requires a structured and methodical approach because production systems directly impact business operations and end users. Whenever a critical production alert is received through CloudWatch, Grafana, or the monitoring system, my first priority is to assess the severity of the incident and understand its business impact.
+
+The investigation begins by reviewing monitoring dashboards to determine whether the issue is related to infrastructure, Kubernetes, networking, databases, or the application itself. I correlate metrics from CloudWatch, Prometheus, and Grafana with application logs available in Kibana to identify the root cause as quickly as possible.
+
+If the issue is infrastructure-related, I verify EC2 health, EKS node status, Auto Scaling Groups, Application Load Balancers, database connectivity, storage utilization, and network configuration. For Kubernetes-related issues, I examine Pod status, deployment health, events, logs, resource utilization, readiness probes, and service endpoints.
+
+Throughout the incident, I maintain continuous communication with developers, QA engineers, project managers, and business stakeholders. Regular updates are provided through the incident bridge or communication channels so that everyone remains informed about the investigation progress, estimated resolution time, and current system status.
+
+If the issue was introduced by a recent deployment, we immediately evaluate rollback options. Since our deployments use Kubernetes rolling updates and versioned Docker images, we can quickly roll back to the previous stable release if necessary, minimizing business impact.
+
+After service restoration, we conduct a detailed Root Cause Analysis (RCA). The RCA documents the timeline of events, root cause, corrective actions, and preventive measures. Based on the findings, we may improve monitoring alerts, optimize resource configurations, strengthen CI/CD validation, or update operational runbooks to prevent similar incidents in the future.
+
+By following a structured incident management process, maintaining clear communication, using centralized monitoring, and documenting lessons learned, we ensure rapid recovery while continuously improving the stability and reliability of our production environment.
+
+---
+
+
+# Shell Scripting & Linux
+
+---
+
+## 1. Which Linux commands do you use regularly?
+
+### Answer
+
+Linux is the primary operating system in our production environment, so I use Linux commands daily for server administration, application deployment, troubleshooting, log analysis, process management, and automation. Rather than memorizing commands, I use them as part of routine operational tasks while supporting CI/CD pipelines, Kubernetes clusters, and AWS infrastructure.
+
+For file and directory management, I regularly use commands such as `ls`, `cd`, `pwd`, `cp`, `mv`, `rm`, `mkdir`, `find`, `locate`, and `du`. These help me navigate the file system, manage deployment artifacts, identify large files consuming disk space, and organize application directories.
+
+For viewing and analyzing logs, I frequently use `cat`, `less`, `more`, `head`, `tail`, and especially `tail -f` to monitor application logs in real time during deployments or production incidents. I also use `grep`, `egrep`, `awk`, `sed`, `sort`, `uniq`, and `cut` to filter logs, extract useful information, and analyze application errors efficiently.
+
+To monitor server performance, I regularly use commands such as `top`, `htop`, `ps`, `free -h`, `vmstat`, `iostat`, `sar`, `df -h`, and `du -sh`. These commands help identify high CPU usage, memory exhaustion, disk utilization issues, and abnormal resource consumption that may affect application performance.
+
+For networking and connectivity troubleshooting, I commonly use `ping`, `curl`, `wget`, `netstat`, `ss`, `nslookup`, `dig`, `traceroute`, `telnet`, and `nc`. These commands help verify DNS resolution, API connectivity, open ports, firewall behavior, and communication between application components.
+
+For process management, I use `ps`, `kill`, `kill -9`, `systemctl`, `service`, and `journalctl` to manage services, restart applications, review system logs, and terminate unresponsive processes.
+
+I also use commands related to permissions and security, including `chmod`, `chown`, `id`, `whoami`, `sudo`, and `passwd` to manage file permissions and user access.
+
+In my daily work as a DevOps Engineer, these Linux commands are essential for troubleshooting production issues, supporting deployments, monitoring servers, managing applications, and performing routine administrative tasks efficiently.
+
+---
+
+## 2. What automation tasks have you implemented using shell scripting?
+
+### Answer
+
+Shell scripting has helped automate many repetitive operational tasks in my current project, reducing manual effort and improving consistency across environments. Instead of performing routine administrative tasks manually, we use Bash scripts that can be executed independently or integrated into GitLab CI/CD pipelines.
+
+One common automation script I developed performs **application health verification after deployment**. Once Kubernetes deployment completes, the script continuously checks the application's health endpoint until it returns a successful response or a configurable timeout is reached. If the health check fails, the script immediately reports the deployment failure and stops the pipeline, preventing unstable releases from progressing further.
+
+I have also created scripts to automate **log collection during production incidents**. Instead of manually collecting logs from multiple servers or Kubernetes Pods, the script gathers application logs, system logs, Kubernetes events, resource utilization, and diagnostic information into a single compressed archive. This significantly reduces troubleshooting time during production outages.
+
+Another useful automation involves **backup and cleanup activities**. We use shell scripts to archive old log files, remove obsolete temporary files, clean application caches, rotate logs, and monitor disk utilization. These scripts are scheduled through cron jobs, ensuring that routine maintenance occurs automatically without manual intervention.
+
+For infrastructure operations, I have developed scripts that validate environment variables, verify AWS credentials, check Kubernetes cluster connectivity, and confirm that required resources exist before Terraform or deployment pipelines begin execution. These pre-validation checks reduce deployment failures caused by configuration issues.
+
+I have also written scripts to automate Docker image cleanup on build servers by removing unused images, stopped containers, and dangling volumes. This helps prevent disk space exhaustion on Jenkins and GitLab runners while maintaining efficient CI/CD execution.
+
+Overall, shell scripting has enabled us to automate repetitive administrative tasks, reduce operational errors, improve deployment reliability, and increase team productivity by minimizing manual intervention.
+
+---
+
+## 3. Are your scripts used by the team? Explain their impact.
+
+### Answer
+
+Yes. Several shell scripts that I developed are actively used by the entire DevOps team and have become part of our standard operational processes. Instead of individual engineers performing repetitive manual tasks, these scripts provide standardized automation that improves consistency, reduces human error, and saves significant operational time.
+
+One example is our **post-deployment validation script**. After every GitLab CI/CD deployment, the script automatically verifies Kubernetes Pod status, application health endpoints, service availability, and deployment rollout status. If any validation fails, the deployment is immediately flagged, allowing the team to investigate before users experience issues. This automation has significantly improved deployment confidence and reduced production incidents caused by incomplete deployments.
+
+Another widely used script automates **Kubernetes log collection** during incident investigations. Previously, engineers manually executed multiple kubectl commands to collect logs from different Pods. The automated script retrieves logs, Kubernetes events, Pod descriptions, resource utilization, and cluster diagnostics with a single command. This standardization has reduced troubleshooting time and simplified incident investigations, especially during critical production outages.
+
+Our team also uses automated **server health check scripts** that verify CPU usage, memory consumption, disk utilization, running services, network connectivity, and critical application processes. These scripts are executed before maintenance activities and after deployments to ensure infrastructure stability.
+
+Several maintenance scripts have also been integrated into scheduled cron jobs. These scripts automate log rotation, backup verification, cleanup of temporary files, and monitoring of available disk space. By automating these routine tasks, we have reduced the likelihood of operational issues caused by neglected server maintenance.
+
+The biggest impact of these scripts has been improved operational efficiency, faster incident resolution, consistent execution of standard procedures, reduced manual effort, and lower risk of human error. Because the scripts are version-controlled in GitLab, improvements and updates are shared across the team, ensuring that everyone benefits from the latest automation enhancements.
+
+---
+
+## 4. How do you troubleshoot Linux server issues?
+
+### Answer
+
+When troubleshooting Linux servers, I always follow a structured approach instead of making assumptions. My objective is to identify the root cause as quickly as possible while minimizing the impact on production services. The first step is understanding the symptoms, such as application downtime, high response times, deployment failures, or monitoring alerts.
+
+I begin by checking overall system health, including CPU utilization, memory usage, disk space, load average, and running processes. High CPU utilization may indicate runaway processes or application loops, while memory exhaustion can lead to Out Of Memory (OOM) events. Disk utilization is also important because full file systems can prevent applications from writing logs or temporary files.
+
+Next, I examine system and application logs using tools such as `journalctl`, `/var/log/messages`, application-specific log files, and Kubernetes logs where applicable. Error messages often reveal issues related to configuration changes, failed services, permission problems, or network connectivity.
+
+If the application cannot communicate with external systems, I verify network connectivity using tools such as `ping`, `curl`, `ss`, `netstat`, `dig`, and `nslookup`. These checks help identify DNS resolution failures, blocked ports, firewall issues, or routing problems.
+
+I also verify whether essential services are running correctly using `systemctl` or `service`. If a service has stopped unexpectedly, I review recent configuration changes, restart the service if appropriate, and continue monitoring to ensure it remains stable.
+
+For performance-related issues, I analyze CPU, memory, disk I/O, and network statistics using monitoring tools such as CloudWatch, Prometheus, and Grafana in addition to Linux utilities. This helps determine whether the problem originates from the operating system, infrastructure, or application layer.
+
+Throughout the troubleshooting process, I document observations, correlate monitoring metrics with logs, communicate updates to stakeholders, and perform root cause analysis after resolving the issue. This systematic approach enables faster diagnosis while reducing the likelihood of recurring production problems.
+
+---
+
+## 5. Explain a shell script you developed for a real-time problem.
+
+### Answer
+
+One shell script that had a significant impact in our production environment was an automated **Kubernetes deployment validation script** integrated into our GitLab CI/CD pipeline.
+
+Previously, after every deployment, engineers manually checked whether Pods were running successfully, verified rollout status, tested application health endpoints, and confirmed service availability. This manual validation was time-consuming, inconsistent, and occasionally resulted in deployments being marked successful even though some Pods had not started correctly.
+
+To address this issue, I developed a Bash script that automatically performs several validation steps immediately after deployment. The script first checks whether the Kubernetes Deployment has completed successfully using rollout status verification. It then validates that all expected Pods are in the Running state and confirms that readiness probes have passed. After the infrastructure checks, the script sends HTTP requests to the application's health endpoint to ensure the service is responding correctly.
+
+If any validation step fails, the script immediately exits with a non-zero status, causing the GitLab pipeline to fail automatically. This prevents faulty deployments from progressing further and alerts the DevOps team before end users are affected. When validation succeeds, the deployment proceeds to completion without requiring manual intervention.
+
+I also included detailed logging within the script so that any failure clearly identifies which validation step failed. This greatly simplifies troubleshooting because engineers can immediately determine whether the issue involves Kubernetes scheduling, application startup, networking, or health checks.
+
+After implementing this automation, deployment verification became faster, more reliable, and fully standardized across all environments. It reduced manual effort, improved deployment quality, minimized production incidents caused by incomplete deployments, and increased confidence in our CI/CD release process. The script is now used as a standard post-deployment validation step across multiple applications in our project.
+
+---
+
+
+
 # AWS & Kubernetes/EKS Interview Questions and Answers (4+ Years DevOps Engineer)
 
 ## 1. Difference between IAM Role and IAM Policy?
