@@ -1,0 +1,13 @@
+Memory usage is normal but containers are killed. What would you check first?  
+
+Standard monitoring tools (like docker stats or basic Prometheus metrics) often fail to capture sudden, millisecond-level memory spikes, non-RSS memory overhead, or host-level resource constraints 
+
+1.When containers are killed despite normal memory usage, the most likely culprit is the Out-Of-Memory (OOM) killer operating at the host level. 
+
+2.Inspect the stopped container for exit code 137. This specifically indicates that the container was forcefully terminated by an external signal (SIGKILL), usually because it exceeded a set memory limit 
+
+3.we can use the Linux man page for dmesg to check for kernel logs by running dmesg -T | grep -i -E 'oom|kill'. This will show  exactly which process was terminated and why. 
+
+4.Nedd to check  if your orchestrator or runtime (like Docker or Kubernetes) has strict memory limits configured. A container's memory limit might be set too low, causing it to crash before overall system memory registers high usage. 
+
+5.A failing custom liveness or readiness probe can cause the platform to restart a container even if the application process itself is not technically out of memory.
