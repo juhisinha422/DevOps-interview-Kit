@@ -1,3 +1,52 @@
+# Interviewer: You have 2 minutes. Your production deployment just went live and within 60 seconds users are reporting errors. What do you do?
+
+Here is my exact sequence.
+
+► First 10 seconds — don't touch anything yet.
+  
+  Check what actually changed. Who deployed? What version? What time?
+
+► Check error rate immediately.
+ 
+  Prometheus or CloudWatch — is error rate spiking or is it isolated users?
+
+► Check application logs.
+
+  kubectl logs or CloudWatch Logs — what error is appearing?
+  Is it a new error or one that existed before?
+
+► Check the deployment rollout status.
+
+  kubectl rollout status deployment/app
+  Are all new pods healthy? Any stuck in Pending or CrashLoop?
+
+► Check downstream dependencies.
+ 
+  Is the database reachable? Is the external API responding?
+  New code may have introduced a new dependency that isn't ready.
+
+► If error rate is above 5% and 
+growing — rollback immediately.
+  
+  Don't investigate while users are suffering.
+  kubectl rollout undo deployment/app
+  Fix forward after service is restored.
+
+► Communicate throughout.
+
+ Update the team. Post in the 
+incident channel.
+  Never go silent during a production issue.
+
+How I prevent this:
+
+• Smoke test runs automatically after every deployment
+
+• Canary deployment — 5% traffic before full rollout
+
+• Rollback plan ready before every deploy, not after
+
+
 # Advanced DevOps Interview Questions & Answers (4–6 Years Experience)
 
 ## Category 1: Terraform & State Disasters
