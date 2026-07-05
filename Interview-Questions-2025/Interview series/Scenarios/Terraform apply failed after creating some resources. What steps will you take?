@@ -1,0 +1,14 @@
+ Terraform apply failed after creating some resources. What steps will you take? 
+
+1.When a terraform apply fails terraform does not support automatic rollbacks any resources successfully provisioned before the crash remain active in our cloud environment. 
+
+2. we can freeze any automated CI/CD deployments and stop all pipelines 
+
+3.we can read the terminal output from the bottom up to locate the exact resource address, provider error code (e.g., 403 Access Denied, 409 Conflict), and source file reference 
+
+4.our primary goal is to find out if the partially created resources were successfully recorded by Terraform 
+
+5.Resources exist in the cloud but NOT in the state file because the apply process was abruptly killed (like a pipeline timeout or Ctrl+C force-kill) before Terraform could write back to the state file. 
+
+6.Manually adopt them using terraform import <resource_address> <cloud_resource_id>. Alternatively, if it is safe to do so, manually delete the orphan resources from the cloud console and let Terraform rebuild them on the next run
+  
