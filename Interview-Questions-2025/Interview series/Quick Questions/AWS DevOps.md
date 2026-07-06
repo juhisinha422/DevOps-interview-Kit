@@ -1,3 +1,107 @@
+# Kubernetes & Terraform Interview Questions (4 Years DevOps Experience)
+
+---
+
+## 1. What is a Kubernetes Service?
+
+### Answer
+
+A Kubernetes Service is an abstraction that provides a stable IP address and DNS name for a group of Pods. Since Pods are temporary and their IP addresses change after restarts, a Service ensures applications can always communicate reliably. Common Service types are **ClusterIP**, **NodePort**, **LoadBalancer**, and **ExternalName**. In my project, we mainly use **ClusterIP** for internal communication and **LoadBalancer/Ingress** for external access.
+
+---
+
+## 2. What is kube-proxy?
+
+### Answer
+
+kube-proxy is a networking component that runs on every Kubernetes worker node. It maintains network rules and routes traffic from a Kubernetes Service to the appropriate backend Pods using **iptables** or **IPVS**. It also provides load balancing across healthy Pods.
+
+---
+
+## 3. Suppose there are two Pods running in different namespaces. What DNS name would you use so that one Pod can communicate with the other?
+
+### Answer
+
+I would use the Kubernetes Service DNS name:
+
+```text
+<service-name>.<namespace>.svc.cluster.local
+```
+
+For example:
+
+```text
+backend-service.backend.svc.cluster.local
+```
+
+This allows communication between Pods across different namespaces using Kubernetes DNS.
+
+---
+
+## 4. There are two applications, a frontend application and a backend application, running in two different Pods. What configuration would you write so that the frontend application starts only after the backend application is up and running?
+
+### Answer
+
+I would not depend on Pod startup order because Kubernetes doesn't guarantee it. Instead, I would configure a **readiness probe** for the backend application so it receives traffic only after becoming healthy. On the frontend, I would implement retry logic or use an **initContainer** that waits until the backend Service is reachable before starting the application.
+
+---
+
+## 5. We mostly follow Blue-Green deployment. How do you divert traffic from the Blue environment to the Green environment?
+
+### Answer
+
+In Kubernetes, traffic is switched by updating the **Service selector** or **Ingress routing rules**. Initially, the Service points to the Blue deployment. After validating the Green deployment through health checks and testing, I update the Service selector to point to the Green Pods. Since the Service IP remains unchanged, traffic is redirected immediately without downtime. If any issue occurs, I simply switch the selector back to the Blue deployment for an instant rollback.
+
+---
+
+## 6. What is a dynamic block in Terraform?
+
+### Answer
+
+A **dynamic block** is used to generate nested configuration blocks dynamically instead of writing repetitive code. It is useful when the number of nested blocks depends on input variables. This makes Terraform code cleaner, reusable, and easier to maintain.
+
+---
+
+## 7. What is the use case of a dynamic block?
+
+### Answer
+
+A dynamic block is useful when creating multiple nested configurations such as **security group ingress rules, egress rules, EBS volumes, IAM policy statements, or load balancer listener rules**. Instead of manually writing each block, Terraform generates them automatically based on the input data.
+
+---
+
+## 8. How would you create multiple S3 buckets in Terraform?
+
+### Answer
+
+I would use **for_each** with a list or set of bucket names. Terraform creates one S3 bucket for each item in the collection. I prefer **for_each** over **count** because each resource is tracked by its name, making future updates safer and preventing unnecessary resource recreation.
+
+---
+
+## 9. What is the meaning of each.value in Terraform?
+
+### Answer
+
+`each.value` refers to the current value of an item when using **for_each**. If the collection contains bucket names, `each.value` represents the current bucket name being processed. It allows Terraform to configure each resource using its corresponding value.
+
+---
+
+## 10. Why do we use each.value?
+
+### Answer
+
+We use `each.value` to access the actual value of each item in a **for_each** loop. This allows every resource to be configured dynamically without hardcoding values, making the Terraform code more reusable and scalable.
+
+---
+
+## 11. Why do we use toset() in Terraform?
+
+### Answer
+
+The `toset()` function converts a list into a set. Since **for_each** requires a map or set, `toset()` is commonly used when iterating over a list of unique values. It also removes duplicate values automatically, preventing Terraform from creating duplicate resources.
+
+---
+
 # Interviewer: You have 2 minutes. Your production deployment just went live and within 60 seconds users are reporting errors. What do you do?
 
 Here is my exact sequence.
