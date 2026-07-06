@@ -1,0 +1,59 @@
+REAL Interview questions
+Company: Genpact 
+1st Round - 12-05-2026
+
+
+🔹 Explain your previous projects from a DevOps perspective.
+🔹 You mentioned a migration project. Is that your recent project or have you worked on other projects as well?
+🔹 What AWS services have you used in your projects?
+
+🔹 Explain your CI/CD pipeline end-to-end.
+🔹 What branching strategy do you follow?
+🔹 What are the different stages involved in your CI/CD pipeline?
+🔹 What quality checks are performed in the pipeline?
+🔹 Which tools do you use for code quality and security validation?
+🔹 What is the approval process before promoting code to higher environments?
+
+🔹 How do you manage Dev, Test, UAT, and Production environments?
+🔹 Do you use separate AWS accounts for different environments?
+🔹 How do you isolate environments from each other?
+🔹 How do you manage Infrastructure as Code across multiple environments?
+
+🔹 Are security policies the same in Development and Production environments?
+🔹 What security differences exist between Dev and Production?
+🔹 Have you faced deployment issues due to IAM permissions or security restrictions?
+🔹 Can you explain a real-world example where security policies caused deployment challenges?
+🔹 How did you resolve permission-related issues in Production?
+
+🔹 Is your experience limited to AWS or do you also have experience with Azure and GCP?
+
+🔹 What monitoring mechanisms have you used?
+🔹 How do you use AWS CloudWatch?
+🔹 What types of CloudWatch alarms have you configured?
+🔹 How do you monitor infrastructure and application health?
+
+🔹 How was Prometheus integrated with AWS CloudWatch?
+🔹 How does Grafana consume CloudWatch metrics?
+🔹 Did you use any CloudWatch Exporter or custom integration?
+🔹 Was the integration handled through APIs, Lambda functions, or built-in mechanisms?
+🔹 How were alerts forwarded and visualized in Grafana?
+
+🔹 Explain your On-Premises to AWS migration project.
+🔹 What migration strategy did you follow (Rehost, Replatform, Refactor)?
+🔹 Which AWS services were used during the migration?
+🔹 How was networking established between On-Premises and AWS?
+🔹 What monitoring and disaster recovery mechanisms were implemented?
+🔹 Was the migrated application a web application?
+🔹 How was the application hosted in AWS?
+
+🔹 Before moving into Cloud and DevOps, what type of support experience did you have?
+🔹 Was it Application Support, Infrastructure Support, or Voice Support?
+🔹 What were your day-to-day responsibilities in your support role?
+
+🔹 Do you have experience designing cloud architectures?
+🔹 Have you designed architectures for migration projects?
+🔹 How do you approach designing an application architecture for cloud migration?
+🔹 What factors do you consider while moving an application from On-Premises to AWS?
+🔹 Can you explain the architecture you designed?
+🔹 What AWS services were involved in the architecture?
+🔹 How did you handle High Availability, Disaster Recovery, and Security requirements?
