@@ -1,3 +1,167 @@
+# INFOSYS - First Round DevOps Interview Questions (4 Years Experience)
+
+---
+
+## 1. Customer is unable to access the application, but he has the correct credentials. How will you debug it?
+
+### Answer
+
+I would troubleshoot layer by layer. First, I'd verify whether the application is up and healthy. Then I'd check the authentication service logs for login failures, validate the database connection, and confirm the user's account isn't locked or disabled. Next, I'd verify IAM/LDAP/OAuth integration if used, check application and Ingress logs for authentication errors, and inspect browser/network logs. Finally, I'd reproduce the issue in a test environment to identify the root cause before implementing a fix.
+
+---
+
+## 2. How do you replace a string in a file in Linux?
+
+### Answer
+
+I use the **sed** command for in-place replacement.
+
+```bash
+sed -i 's/old_string/new_string/g' filename
+```
+
+The `-i` option updates the file directly, and `g` replaces all occurrences of the string.
+
+---
+
+## 3. Your pod is getting stuck in CrashLoopBackOff, but logs show no error. How will you debug the issue?
+
+### Answer
+
+If logs don't show any errors, I first run `kubectl describe pod` to check Events for probe failures, OOMKilled, or image issues. Then I check the **previous container logs** using `kubectl logs --previous`, verify resource limits, ConfigMaps, Secrets, mounted volumes, and environment variables. I also check node health and kubelet logs if required. In many cases, the container exits before generating logs, so Pod Events provide the actual reason.
+
+---
+
+## 4. Why is the Cluster Autoscaler not scaling up even though pods are in the Pending state?
+
+### Answer
+
+First, I'd verify whether the Pending Pods are unschedulable due to insufficient CPU or memory. Then I'd check whether the Cluster Autoscaler is running correctly, review its logs, and ensure the Auto Scaling Group has not reached its maximum node limit. I'd also verify node selectors, taints, tolerations, resource quotas, and IAM permissions because these can prevent scaling even when Pods remain Pending.
+
+---
+
+## 5. What is the difference between HPA and VPA?
+
+### Answer
+
+**HPA (Horizontal Pod Autoscaler)** scales the **number of Pods** based on metrics like CPU or memory utilization, whereas **VPA (Vertical Pod Autoscaler)** increases or decreases the **CPU and memory allocated to an individual Pod**. HPA is generally used for stateless applications to handle traffic spikes, while VPA is more suitable for applications requiring dynamic resource allocation.
+
+---
+
+## 6. During peak traffic, your Ingress Controller fails to route requests efficiently. How will you diagnose the issue?
+
+### Answer
+
+I would first check the Ingress Controller Pods for CPU and memory utilization and verify whether they are overloaded. Then I'd inspect the Ingress Controller logs for routing errors, validate Ingress rules, backend Services, and Endpoints, and ensure all backend Pods are healthy. I'd also check the Load Balancer health checks, network latency, and scaling configuration. If required, I'd increase Ingress Controller replicas using HPA to handle the traffic.
+
+---
+
+## 7. How will you resolve merge conflicts in Git?
+
+### Answer
+
+First, I'd pull the latest changes from the target branch and identify the conflicting files. Then I'd manually resolve the conflicts by reviewing both versions of the code, remove the conflict markers, test the application, stage the resolved files using `git add`, and complete the merge with `git commit`. Finally, I'd push the updated branch and create or update the Merge Request.
+
+---
+
+## 8. Explain how a matrix build works in GitHub Actions.
+
+### Answer
+
+A matrix build allows the same workflow to run multiple jobs in parallel using different configurations. For example, the application can be tested simultaneously on multiple operating systems, programming language versions, or environments. This reduces overall execution time and ensures compatibility across different platforms without duplicating workflow code.
+
+---
+
+## 9. How do you import an existing VPC into Terraform?
+
+### Answer
+
+First, I write the Terraform resource block for the existing VPC. Then I use the `terraform import` command to associate the existing AWS VPC with the Terraform state file.
+
+```bash
+terraform import aws_vpc.main vpc-xxxxxxxx
+```
+
+After importing, I run `terraform plan` and update the Terraform configuration so it matches the actual AWS resource, ensuring there are no unexpected changes.
+
+---
+
+## 10. How do you integrate Jenkins with a Kubernetes cluster?
+
+### Answer
+
+Jenkins can be integrated with Kubernetes by installing the **Kubernetes Plugin**. The plugin connects Jenkins to the Kubernetes API using a kubeconfig file or Service Account credentials. Jenkins dynamically creates Kubernetes Pods as build agents, executes the pipeline inside those Pods, and automatically deletes them after the build completes. This provides better scalability and efficient resource utilization.
+
+---
+
+## 11. How can you communicate with a Jenkins server running on a Kubernetes cluster?
+
+### Answer
+
+Jenkins can be accessed using a Kubernetes **Service** such as NodePort, LoadBalancer, or Ingress. In production, we usually expose Jenkins through an Ingress with HTTPS enabled. Internally, other Pods communicate with Jenkins using its Kubernetes Service DNS name, while external users access it through the Ingress URL.
+
+---
+
+## 12. Write a Jenkins Scripted Pipeline.
+
+### Answer
+
+```groovy
+node {
+
+    stage('Checkout') {
+        git 'https://github.com/example/demo.git'
+    }
+
+    stage('Build') {
+        sh 'mvn clean package'
+    }
+
+    stage('Test') {
+        sh 'mvn test'
+    }
+
+    stage('Deploy') {
+        sh 'kubectl apply -f deployment.yaml'
+    }
+}
+```
+
+This Scripted Pipeline checks out the source code, builds the application, runs tests, and deploys it to Kubernetes.
+
+---
+
+## 13. Write a shell script that checks CPU, memory, and disk utilization, and alerts if any of them exceed 80%.
+
+### Answer
+
+```bash
+#!/bin/bash
+
+CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print int($2+$4)}')
+
+MEMORY=$(free | awk '/Mem:/ {print int($3/$2 * 100)}')
+
+DISK=$(df -h / | awk 'NR==2 {gsub("%",""); print $5}')
+
+if [ $CPU -gt 80 ]; then
+    echo "ALERT: CPU usage is ${CPU}%"
+fi
+
+if [ $MEMORY -gt 80 ]; then
+    echo "ALERT: Memory usage is ${MEMORY}%"
+fi
+
+if [ $DISK -gt 80 ]; then
+    echo "ALERT: Disk usage is ${DISK}%"
+fi
+```
+
+This script checks CPU, memory, and disk utilization and prints an alert whenever any resource crosses the 80% threshold. In production, these alerts can be integrated with email, Slack, or monitoring tools for automated notifications.
+
+---
+
+
 # Infosys DevOps Interview Questions & Answers (4+ Years Experience)
 
 ## Q1. How would you approach migrating a monolithic application to a microservices architecture? What steps would you follow, and what key challenges might you encounter during the migration process?
