@@ -326,3 +326,21 @@
 
 # Total Interview Questions: **165**
 
+
+--------
+
+Round 2
+
+Can you introduce yourself? Tell me about your technical experience and total years of experience.
+What is the project you are currently working on?
+What is the name of the client?
+What is the parent company?
+Where are you currently located?
+In Kubernetes, I'm constantly getting an ImagePullBackOff (Image BackOff) error. How do you investigate the error, and how would you resolve it?
+Suppose the AWS ECS cost is continuously increasing. Your manager asks you to reduce the cost. What are the three major things you would do to control the cost?
+Assume I want one particular container (pod) to run on one specific node. How can you achieve that?
+What are PV and PVC in Kubernetes?
+Suppose a PVC initially requests 5 GB of storage, and that storage gets exhausted. I don't want to manually request another 5 GB from the administrator. I want the storage to expand automatically whenever it is full. How can this be achieved?
+In Terraform, how many file extensions are you aware of?
+Assume the Terraform state file (terraform.tfstate) stored locally is accidentally deleted, and there is no way to recover it. How would you recover it?
+Suppose there is no remote backend configured and the local Terraform state file is also lost. What steps would you follow to recover the infrastructure state?
