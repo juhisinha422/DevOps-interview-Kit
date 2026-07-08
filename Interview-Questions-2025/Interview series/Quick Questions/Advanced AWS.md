@@ -1,3 +1,14 @@
+# If we have ec2 and ebs volume in different availability zones.can we attach it together
+
+
+EBS is availability zone specific only we can attach if both are in same zone 
+
+
+If you have a requirement like we need to attach ebs with EC2 in a different zone then take a snapshot from that ebs volume and create volume from that snapshot and attach
+
+so ans is no
+I am saying the question was can we attach the ec2 and ebs from different availability zones and if there is any requirement then also we can take the snapshot and create the same volume in the same availability zone and then attach so it's not possible to attach the Ebs in different availability zones that's it
+
 # AWS EC2 Interview Questions & Answers (4+ Years Experience)
 
 ---
