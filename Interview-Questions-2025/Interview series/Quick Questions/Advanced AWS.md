@@ -1,3 +1,41 @@
+# AWS EC2 Scenario-Based Interview Questions Scenario 1: Website is Down, Users report that the application hosted on an EC2 instance is not accessible. What will you check?
+
+Check EC2 instance state.
+
+Check if instance is Running.
+
+Check Security Group
+
+Is port 80 or 443 open?
+
+Inbound Rules
+
+80 HTTP
+
+443 HTTPS
+
+Check application status
+
+
+systemctl status httpd
+
+or
+
+systemctl status nginx
+
+
+Check logs
+
+
+tail -100 /var/log/httpd/error_log
+
+Check disk
+
+df -h
+
+A full disk can prevent services from working.
+
+
 # If we have ec2 and ebs volume in different availability zones.can we attach it together
 
 
