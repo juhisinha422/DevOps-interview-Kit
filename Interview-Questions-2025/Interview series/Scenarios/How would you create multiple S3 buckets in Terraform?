@@ -1,0 +1,29 @@
+How would you create multiple S3 buckets in Terraform? 
+
+1. we should use the for_each meta-argument or the count meta-argument inside the aws_s3_bucket resource block.  
+2. Using for_each is the industry best practice because it tracks resources by a unique key (the bucket name) rather than an array index, preventing accidental deletion 
+
+# Define a map of your buckets and their specific environment tags
+variable "s3_buckets" {
+  type = map(object({
+    environment = string
+  }))
+  default = {
+    "mycompany-app-dev-data"  = { environment = "dev" }
+    "mycompany-app-stage-data" = { environment = "staging" }
+    "mycompany-app-prod-data"  = { environment = "production" }
+  }
+}
+
+# Create buckets dynamically 
+resource "aws_s3_bucket" "multi_bucket" {
+  for_each = var.s3_buckets
+
+  bucket        = each.key
+  force_destroy = false
+
+  tags = {
+    Environment = each.value.environment
+    ManagedBy   = "terraform"
+  }
+}
