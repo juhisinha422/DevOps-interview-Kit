@@ -1,3 +1,263 @@
+
+# DevOps Interview Questions & Answers (4 Years Experience)
+
+---
+
+## 1. Tell me about yourself.
+
+### Answer
+
+Hi, I'm **Juhi Sinha**, and I have around **4 years of experience as a DevOps Engineer**. I primarily work with **AWS, Docker, Kubernetes, Jenkins, GitLab CI/CD, Terraform, Linux, and Git**. My responsibilities include building CI/CD pipelines, automating infrastructure using Terraform, deploying microservices on Amazon EKS, monitoring applications with Prometheus and Grafana, and troubleshooting production issues. I also work closely with development teams to improve deployment automation, security, and application reliability.
+
+---
+
+## 2. Explain your CI/CD pipeline project end-to-end.
+
+### Answer
+
+In my project, developers push code to Git. Jenkins automatically triggers the pipeline using a webhook. The pipeline checks out the code, builds the application using Maven, runs unit tests, performs SonarQube code analysis, builds a Docker image, scans it for vulnerabilities, pushes it to Amazon ECR, and then deploys it to Amazon EKS using Kubernetes manifests or Helm charts. After deployment, health checks are performed to verify that the application is running successfully before the pipeline is marked as successful.
+
+---
+
+## 3. Why do you push code to the main branch?
+
+### Answer
+
+The **main branch** represents stable and production-ready code. Only reviewed and approved changes are merged into the main branch after code review and testing. Our Jenkins production deployment pipeline is configured to trigger only for the main branch to ensure that only validated code reaches production.
+
+---
+
+## 4. If you push code to another branch, will the Jenkins pipeline trigger?
+
+### Answer
+
+It depends on the Jenkins configuration. If the pipeline is configured as a Multibranch Pipeline or has webhooks configured for all branches, then it will trigger. In my project, feature branches trigger CI pipelines for build and testing, while only the **main branch** triggers the deployment pipeline.
+
+---
+
+## 5. What was your role in Jenkins?
+
+### Answer
+
+I was responsible for creating and maintaining Jenkins pipelines, integrating Git repositories, configuring build agents, managing credentials, integrating SonarQube and Docker, deploying applications to Kubernetes, troubleshooting pipeline failures, and optimizing build performance.
+
+---
+
+## 6. Why did you choose Git as the Source Code Management tool?
+
+### Answer
+
+Git is a distributed version control system that supports branching, merging, version history, and collaboration. It integrates well with Jenkins and GitLab CI/CD, making it easy to automate builds, perform code reviews, and manage releases efficiently.
+
+---
+
+## 7. What is Apache Tomcat, and why did you use it?
+
+### Answer
+
+Apache Tomcat is a Java application server used to deploy **WAR-based** applications. It provides a servlet container to run Java web applications. In my earlier projects, we deployed WAR files on Tomcat. In recent projects, we mostly deploy Spring Boot JAR applications directly in Docker containers without Tomcat.
+
+---
+
+## 8. Explain the difference between a Docker Image and a Docker Container.
+
+### Answer
+
+A **Docker Image** is a read-only template containing the application, dependencies, and runtime environment. A **Docker Container** is a running instance of that image. One Docker image can be used to create multiple containers.
+
+---
+
+## 9. Write a simple Dockerfile and explain each instruction.
+
+### Answer
+
+```dockerfile
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY app.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","app.jar"]
+```
+
+- **FROM** – Defines the base image.
+- **WORKDIR** – Sets the working directory.
+- **COPY** – Copies the application JAR into the container.
+- **EXPOSE** – Documents the application port.
+- **ENTRYPOINT** – Starts the application when the container launches.
+
+---
+
+## 10. Is your Dockerfile production-ready? What improvements would you make?
+
+### Answer
+
+A production-ready Dockerfile should use **multi-stage builds**, lightweight base images, run the application as a **non-root user**, remove unnecessary files, minimize image layers, avoid hardcoding secrets, and include health checks where appropriate. It should also be scanned for vulnerabilities before deployment.
+
+---
+
+## 11. What is the purpose of WORKDIR?
+
+### Answer
+
+`WORKDIR` sets the default working directory inside the container. All subsequent commands such as COPY, RUN, and ENTRYPOINT execute relative to this directory, making the Dockerfile cleaner and easier to maintain.
+
+---
+
+## 12. What is the purpose of ENTRYPOINT?
+
+### Answer
+
+`ENTRYPOINT` defines the main command that always runs when the container starts. It is typically used to launch the application, while optional runtime arguments can be passed through `CMD`.
+
+---
+
+## 13. Why use COPY app.jar app.jar instead of COPY . .?
+
+### Answer
+
+`COPY app.jar app.jar` copies only the required application artifact, keeping the image small and secure. `COPY . .` copies everything from the project directory, including unnecessary files such as Git metadata, documentation, logs, and configuration files, increasing image size and potential security risks.
+
+---
+
+## 14. What is the difference between Maven and Gradle?
+
+### Answer
+
+Maven uses XML (`pom.xml`) for build configuration and follows a convention-based approach. Gradle uses Groovy or Kotlin DSL, provides better flexibility, supports incremental builds, and generally offers faster build performance. In my project, we primarily use Maven.
+
+---
+
+## 15. Have you worked on Spring Boot?
+
+### Answer
+
+Yes. I have deployed Spring Boot microservices packaged as executable JAR files. My responsibilities included Dockerizing the application, integrating it into Jenkins pipelines, deploying it to Kubernetes, managing ConfigMaps and Secrets, and monitoring the application after deployment.
+
+---
+
+## 16. How do you manage environment-specific configuration in Docker?
+
+### Answer
+
+I avoid hardcoding configuration inside the Docker image. Instead, I use environment variables, Kubernetes ConfigMaps, Kubernetes Secrets, or AWS Secrets Manager to provide environment-specific values for Development, UAT, and Production.
+
+---
+
+## 17. Your deployment succeeded, but the application isn't opening. How would you troubleshoot it?
+
+### Answer
+
+I would first verify whether the application container is running successfully. Then I'd check application logs, Kubernetes Pod status, Service and Ingress configuration, health probes, security groups, load balancer health checks, and network connectivity. Finally, I'd confirm that the application is listening on the correct port and accessible from the browser.
+
+---
+
+## 18. How do you connect to an AWS EC2 instance?
+
+### Answer
+
+I usually connect using SSH with a key pair:
+
+```bash
+ssh -i key.pem ec2-user@<public-ip>
+```
+
+I also ensure that the EC2 security group allows inbound SSH traffic on port 22 from my IP address.
+
+---
+
+## 19. What if port 22 is closed?
+
+### Answer
+
+If port 22 is closed, I first check the Security Group and Network ACL rules. If SSH access is intentionally disabled, I use **AWS Systems Manager Session Manager**, which allows secure access without opening port 22.
+
+---
+
+## 20. AWS provides an HTTP endpoint. How would you enable HTTPS?
+
+### Answer
+
+I would create an SSL/TLS certificate using AWS Certificate Manager (ACM), attach it to an Application Load Balancer, configure an HTTPS listener on port 443, and redirect all HTTP traffic on port 80 to HTTPS.
+
+---
+
+## 21. Does AWS provide SSL certificates? What is AWS Certificate Manager (ACM)?
+
+### Answer
+
+Yes. AWS provides **AWS Certificate Manager (ACM)**, which allows us to create, manage, and automatically renew SSL/TLS certificates. ACM integrates directly with Application Load Balancers, CloudFront, and API Gateway.
+
+---
+
+## 22. Explain the architecture of your CI/CD pipeline.
+
+### Answer
+
+The pipeline flow is:
+
+**Developer → Git Repository → Jenkins Trigger → Maven Build → Unit Tests → SonarQube Scan → Docker Build → Vulnerability Scan → Push Image to Amazon ECR → Deploy to Amazon EKS → Health Check → Production**
+
+This automation reduces manual effort and ensures consistent deployments.
+
+---
+
+## 23. Have you worked with Microservices?
+
+### Answer
+
+Yes. I have worked with Spring Boot-based microservices deployed on Kubernetes. Each microservice has its own Docker image, CI/CD pipeline, Kubernetes Deployment, Service, ConfigMap, and monitoring dashboard. This architecture allows independent deployment and scaling of each service.
+
+---
+
+## 24. How do you deploy multiple microservices using Docker Compose?
+
+### Answer
+
+Docker Compose allows multiple containers to be defined in a single `docker-compose.yml` file. Each microservice is defined as a separate service, including its image, ports, environment variables, volumes, and dependencies. Running `docker compose up` starts the complete application stack together.
+
+---
+
+## 25. What is depends_on in Docker Compose?
+
+### Answer
+
+`depends_on` defines the startup dependency between services. For example, the application container can depend on the database container so Docker starts the database first. However, it only controls startup order—it does **not** guarantee that the dependent service is fully ready.
+
+---
+
+## 26. Which dependencies are defined in your pom.xml?
+
+### Answer
+
+Our `pom.xml` typically contains Spring Boot Starter dependencies, Spring Web, Spring Data JPA, database drivers, Spring Security, Spring Boot Test, Lombok, logging libraries, and plugins such as the Maven Compiler Plugin and Spring Boot Maven Plugin.
+
+---
+
+## 27. What type of Java application did you deploy (WAR or JAR)?
+
+### Answer
+
+In my recent projects, I primarily deployed **Spring Boot executable JAR files** inside Docker containers and Kubernetes. Earlier in my career, I also worked with **WAR files** deployed on Apache Tomcat.
+
+---
+
+## 28. Do you have any questions for the interviewer?
+
+### Answer
+
+Yes, I usually ask a few questions such as:
+
+- Which CI/CD tools are currently used in your organization?
+- Is the Kubernetes environment self-managed or Amazon EKS?
+- What are the biggest DevOps challenges your team is currently facing?
+- How is the production deployment process managed?
+- What opportunities are available for learning new cloud technologies and DevOps tools?
+
+
+---
+
+
+
 # How do you replace the Docker image and version in a deployment file? Write a script for this.
 
 In my project, Docker image versions are updated automatically as part of the CI/CD pipeline instead of manually editing the Kubernetes deployment YAML. During every successful build, Jenkins generates a new Docker image with a unique tag such as the Jenkins build number or Git commit ID and pushes it to Amazon Elastic Container Registry (ECR). The deployment manifest or Helm values file is then updated with the latest image tag before deployment.
