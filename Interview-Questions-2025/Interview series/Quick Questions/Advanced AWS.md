@@ -1,3 +1,22 @@
+# Scenario 3:  EC2 Cannot Connect to RDS. Application shows *Connection refused*. What do you check?
+
+Check whether instance have the right role attached 
+Check at subnet level to see whether the ip range is allowed to access RDS because database are usually running in private subnet
+
+Check Security Group
+
+RDS
+
+Inbound
+
+3306
+
+Source
+
+Application Security Group
+
+Check RDS Status
+
 # Scenario: Unable to SSH into EC2. You cannot SSH to your Linux EC2 instance. How do you troubleshoot?
 
 We can check the security group is 22 port allowed or not....need to check.the status of the ec2 instance and if the ec2 instance in the public subnet then we can check the IG and route entry for that and also verify the correct key pair
