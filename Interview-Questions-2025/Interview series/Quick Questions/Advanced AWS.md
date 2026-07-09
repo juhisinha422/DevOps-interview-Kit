@@ -1,6 +1,7 @@
 # Scenario: Unable to SSH into EC2. You cannot SSH to your Linux EC2 instance. How do you troubleshoot?
 
 We can check the security group is 22 port allowed or not....need to check.the status of the ec2 instance and if the ec2 instance in the public subnet then we can check the IG and route entry for that and also verify the correct key pair
+Even if 22 port is  enabled but NACL is blocking  then we can't access the instance . Also check NACL as well
 
 
 # AWS EC2 Scenario-Based Interview Questions Scenario 1: Website is Down, Users report that the application hosted on an EC2 instance is not accessible. What will you check?
