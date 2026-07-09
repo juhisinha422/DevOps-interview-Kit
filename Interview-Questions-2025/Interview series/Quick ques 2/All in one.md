@@ -1,3 +1,188 @@
+# Linux, Docker, Kubernetes & Client Communication Interview Questions (4 Years Experience)
+
+---
+
+# Linux & Troubleshooting
+
+## 1. What is Exit Status 2 in Kubernetes?
+
+### Answer
+
+Exit Code **2** usually indicates that the application terminated due to an incorrect command, invalid arguments, or a shell/script execution error. I first check the container logs, startup command, entrypoint, environment variables, and Pod Events to identify the exact reason before redeploying.
+
+---
+
+## 2. What is Exit Status 143 in Kubernetes?
+
+### Answer
+
+Exit Code **143** means the container received a **SIGTERM** signal and shut down gracefully. This commonly happens during rolling updates, Pod deletion, node draining, or scaling events. It is usually expected behavior unless the application exits unexpectedly during normal operation.
+
+---
+
+## 3. If you installed a package on Linux and it worked yesterday but failed today, which logs would you check?
+
+### Answer
+
+I would first check the application logs and then review **system logs** using `journalctl`, `/var/log/messages`, `/var/log/syslog`, or service-specific logs. I would also verify whether any recent OS updates, permission changes, dependency updates, or disk space issues caused the package to stop working.
+
+---
+
+## 4. For a memory or CPU-related issue, what would be shown in logs or events?
+
+### Answer
+
+For high memory usage, I would check for **OOMKilled** events in Kubernetes or Out of Memory messages in Linux logs. For CPU issues, I would observe high CPU utilization in monitoring tools such as Prometheus, Grafana, or CloudWatch. In Kubernetes, Pod Events and `kubectl describe pod` often indicate resource-related problems.
+
+---
+
+## 5. A tool installed on a Linux server is running slowly. How would you troubleshoot and improve its performance?
+
+### Answer
+
+I would first check CPU, memory, disk I/O, and network utilization. Then I'd verify whether the server is running out of resources, inspect application logs for errors, identify long-running processes, check disk space, and review recent configuration changes. Based on the findings, I may increase resources, optimize the application configuration, or remove unnecessary background processes.
+
+---
+
+## 6. What is systemd?
+
+### Answer
+
+**systemd** is the Linux system and service manager responsible for starting, stopping, monitoring, and managing system services during boot and runtime. It uses **systemctl** commands to control services and **journalctl** to view service logs.
+
+---
+
+## 7. Which production issues have you faced, and how did you troubleshoot them?
+
+### Answer
+
+One production issue I handled involved users receiving **503 Service Unavailable** errors after deployment. I checked Kubernetes Pod status, reviewed readiness probe failures, inspected application logs, and identified an incorrect database configuration in the ConfigMap. After correcting the configuration and redeploying the application, all Pods became healthy and traffic was restored. We later added automated validation in the CI/CD pipeline to prevent similar issues.
+
+---
+
+# Docker & Containers
+
+## 8. Explain the Docker container lifecycle.
+
+### Answer
+
+The Docker container lifecycle consists of **Created → Running → Paused (optional) → Stopped → Removed**. A container is created from an image, started to run the application, may be paused if required, stopped when the application exits or is terminated, and finally removed when it is no longer needed.
+
+---
+
+## 9. A Docker container is consuming high CPU and memory. How would you check and troubleshoot it?
+
+### Answer
+
+I would first use `docker stats` to monitor CPU and memory usage. Then I'd inspect application logs, verify resource limits, identify expensive processes inside the container, review recent deployments, and analyze application performance. If required, I would optimize the application or increase resource limits.
+
+---
+
+## 10. How do you use docker stats during troubleshooting?
+
+### Answer
+
+`docker stats` provides real-time CPU, memory, network, and disk I/O usage for running containers. During troubleshooting, I use it to quickly identify containers consuming excessive resources and determine whether performance issues are caused by resource exhaustion.
+
+---
+
+## 11. What is the purpose of a Docker image?
+
+### Answer
+
+A Docker image is a read-only template containing the application, runtime, libraries, and dependencies required to run a container. It ensures the application behaves consistently across Development, QA, UAT, and Production environments.
+
+---
+
+## 12. What is the Docker daemon?
+
+### Answer
+
+The Docker daemon (**dockerd**) is the background service responsible for building images, creating containers, managing networks, volumes, and communicating with the Docker CLI. All Docker commands are executed through the daemon.
+
+---
+
+## 13. What are Docker volumes used for?
+
+### Answer
+
+Docker volumes provide persistent storage for containers. Data stored in a volume remains available even if the container is deleted or recreated. They are commonly used for databases, log files, uploaded files, and application data.
+
+---
+
+# Kubernetes
+
+## 14. Explain ClusterIP and NodePort. What is the difference between them?
+
+### Answer
+
+**ClusterIP** exposes a Service only within the Kubernetes cluster and is mainly used for internal communication between microservices. **NodePort** exposes the Service on a specific port of every worker node, allowing external access using the node's IP address and port.
+
+---
+
+## 15. What is a Deployment in Kubernetes?
+
+### Answer
+
+A Deployment manages stateless applications by maintaining the desired number of Pod replicas. It supports rolling updates, automatic rollback, self-healing, and scaling, ensuring high availability of the application.
+
+---
+
+## 16. What is a Pod Disruption Budget (PDB), and why is it important for production workloads?
+
+### Answer
+
+A Pod Disruption Budget specifies the minimum number of Pods that must remain available during voluntary disruptions such as node maintenance or cluster upgrades. It prevents too many Pods from being unavailable simultaneously, helping maintain application availability in production.
+
+---
+
+## 17. Explain PersistentVolume (PV) and PersistentVolumeClaim (PVC).
+
+### Answer
+
+A **PersistentVolume (PV)** is storage provisioned for Kubernetes clusters, while a **PersistentVolumeClaim (PVC)** is a request made by a Pod to use that storage. Kubernetes automatically binds the PVC to a matching PV, allowing data to persist even if the Pod is recreated.
+
+---
+
+## 18. Explain Kubernetes RBAC and how it controls access to cluster resources.
+
+### Answer
+
+RBAC (Role-Based Access Control) controls who can perform specific actions within a Kubernetes cluster. Permissions are defined using **Roles** or **ClusterRoles** and assigned to users or Service Accounts through **RoleBindings** or **ClusterRoleBindings**. This ensures users have only the permissions required for their responsibilities.
+
+---
+
+# Communication & Client Handling
+
+## 19. Explain the email and enterprise involvement/escalation flow followed during a production issue.
+
+### Answer
+
+When a production issue occurs, the monitoring system generates an alert, and the incident is assigned to the DevOps or Operations team. After initial investigation, stakeholders including developers, project managers, support teams, and clients are informed based on the severity. Regular status updates are shared until the issue is resolved. Once service is restored, a Root Cause Analysis (RCA) is prepared and shared along with preventive actions to avoid recurrence.
+
+---
+
+## 20. Write an email to a client explaining the issue faced and the solution provided.
+
+### Answer
+
+**Subject:** Production Issue Resolved – Application Service Restored
+
+Dear Team,
+
+We identified an issue that affected application availability due to a configuration mismatch introduced during the recent deployment. Our team immediately investigated the issue, corrected the configuration, and successfully redeployed the application.
+
+The application has now been fully restored, and all services are functioning normally. We have completed validation checks to ensure stability and are continuously monitoring the environment. Additionally, preventive validation has been added to our deployment pipeline to avoid similar issues in the future.
+
+We apologize for the inconvenience caused and appreciate your patience. Please let us know if you observe any further issues.
+
+Regards,
+
+**DevOps Team**
+
+---
+
+
 # DevOps Interview Questions & Answers (4 Years Experience)
 
 ## 1. What are policies in Auto Scaling?
