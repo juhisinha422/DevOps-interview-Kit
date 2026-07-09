@@ -1,3 +1,13 @@
+# Scenario: Users Cannot Access Files Stored in S3. Users report that they receive: Access Denied when trying to open a file from an S3 bucket. How would you troubleshoot?
+ 
+
+we can check in this order :
+
+Is the object present in the bucket?
+Check the IAM policy for the user/role.
+Check the bucket policy.
+Check whether Block Public Access is enabled (if public access is expected).
+
 # Scenario 3:  EC2 Cannot Connect to RDS. Application shows *Connection refused*. What do you check?
 
 Check whether instance have the right role attached 
