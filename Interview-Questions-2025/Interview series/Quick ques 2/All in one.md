@@ -1,5 +1,167 @@
 # DevOps Interview Questions & Answers (4 Years Experience)
 
+## 1. What are policies in Auto Scaling?
+
+Amazon EC2 Auto Scaling uses scaling policies to automatically increase or decrease the number of EC2 instances based on application demand. The most commonly used policies are **Target Tracking Scaling**, **Step Scaling**, **Simple Scaling**, and **Predictive Scaling**. In my experience, I mostly use **Target Tracking Scaling**, where the Auto Scaling Group automatically maintains a target metric such as 60% CPU utilization. For applications with predictable traffic patterns, Predictive Scaling can be used, while Step Scaling is suitable when different scaling actions are required at different metric thresholds. These policies help maintain application availability while optimizing infrastructure costs.
+
+---
+
+## 2. How do path-based routing and host-based routing work in ALB, and which has priority?
+
+Application Load Balancer (ALB) supports routing traffic based on host names and URL paths. **Host-based routing** directs requests based on the domain name, for example `api.example.com` and `app.example.com` can route to different target groups. **Path-based routing** directs requests based on the URL path such as `/api/*` or `/images/*`. ALB evaluates listener rules based on **priority numbers**, where a lower priority number is evaluated first. If multiple rules match, the rule with the highest priority (lowest number) is executed before the default rule. In production, I have used both host-based and path-based routing together to serve multiple microservices through a single ALB.
+
+---
+
+## 3. How can you give SSH access to an EC2 instance without sharing the PEM key?
+
+Instead of sharing the PEM key, I prefer secure methods such as **AWS Systems Manager Session Manager**, **EC2 Instance Connect**, or creating individual SSH key pairs for each user. Session Manager is the most secure option because it provides shell access through the AWS Console or CLI without opening port 22 or distributing private keys. Another common approach is adding the user's public key to the `authorized_keys` file or integrating EC2 with IAM and Active Directory for centralized access management.
+
+---
+
+## 4. What is the Terraform lifecycle?
+
+Terraform lifecycle is a meta-argument used to control how Terraform manages resources during creation, update, and deletion. The commonly used lifecycle rules are:
+
+- **create_before_destroy** – Creates the new resource before deleting the old one, avoiding downtime.
+- **prevent_destroy** – Prevents accidental deletion of critical resources like production databases.
+- **ignore_changes** – Ignores specific attribute changes made outside Terraform.
+- **replace_triggered_by** – Forces replacement when another dependent resource changes.
+
+In production, I have frequently used `create_before_destroy` for zero-downtime deployments and `prevent_destroy` for critical infrastructure.
+
+---
+
+## 5. Difference between count and for_each in Terraform?
+
+Both `count` and `for_each` are used to create multiple resource instances, but they work differently. `count` creates resources based on an integer value and identifies them using numeric indexes. It is suitable when all resources are similar. However, if an item is removed from the list, Terraform may recreate other resources because indexes change. `for_each` works with maps or sets and uses unique keys instead of indexes, making it more stable and easier to manage. For production infrastructure, I generally prefer `for_each` because resource identities remain consistent even when adding or removing items.
+
+---
+
+## 6. What is a data block, and how is it different from a dynamic block?
+
+A **data block** is used to fetch information about existing infrastructure instead of creating new resources. For example, retrieving the latest AMI ID or existing VPC details. A **dynamic block** is used to generate nested configuration blocks inside a resource dynamically using loops. In simple terms, data blocks read existing resources, while dynamic blocks help write repetitive configurations more efficiently.
+
+---
+
+## 7. What are provisioners in Terraform?
+
+Provisioners execute scripts or commands after a resource is created or before it is destroyed. The commonly used provisioners are `local-exec`, which runs commands on the local machine, and `remote-exec`, which executes commands on the remote server through SSH. Although provisioners are available, HashiCorp recommends avoiding them whenever possible because they are not idempotent. In my projects, I prefer using cloud-init, user data scripts, Ansible, or configuration management tools instead of provisioners.
+
+---
+
+## 8. What are the parameters of SonarQube and how do you test an application?
+
+SonarQube analyzes code quality using parameters such as Project Key, Project Name, Source Directory, Language, Sonar Host URL, Authentication Token, Coverage Reports, Exclusions, and Quality Gate settings. During CI/CD, I integrate SonarQube after the build stage. The application is tested using unit tests (JUnit), code coverage (JaCoCo), static code analysis through SonarQube, dependency vulnerability scanning, and functional testing before deployment. The pipeline proceeds only if the Quality Gate passes successfully.
+
+---
+
+## 9. If production keys are exposed, how do you troubleshoot and resolve the issue?
+
+If production keys are exposed, the first priority is containment. I immediately revoke or rotate the compromised credentials, disable access if necessary, and generate new keys. Next, I identify where the exposure occurred, such as GitHub, logs, or configuration files. I review AWS CloudTrail logs and application logs to check whether the keys were misused. After replacing the credentials, I update all dependent services, verify application functionality, and perform a security audit. Finally, I implement preventive measures such as AWS Secrets Manager, IAM roles, secret scanning, and CI/CD secret management to avoid similar incidents.
+
+---
+
+## 10. How do you upgrade a Kubernetes cluster without downtime?
+
+A Kubernetes cluster can be upgraded without downtime by following a rolling upgrade strategy. First, verify compatibility between the current and target Kubernetes versions and take backups of etcd. Upgrade the control plane components first, followed by worker nodes one at a time. Before upgrading each worker node, use `kubectl drain` to safely evict workloads while respecting Pod Disruption Budgets. Upgrade kubelet and kubectl, restart the node, and then uncordon it using `kubectl uncordon`. Since Deployments use rolling updates and replicas are distributed across multiple nodes, applications remain available throughout the upgrade.
+
+---
+
+## 11. Which Kubernetes version have you used?
+
+I have primarily worked with Kubernetes versions **1.26, 1.27, and 1.28** in production environments. My responsibilities included deploying applications using Deployments and Helm charts, managing Ingress controllers, ConfigMaps, Secrets, Horizontal Pod Autoscalers, monitoring with Prometheus and Grafana, and performing cluster upgrades while ensuring minimal downtime.
+
+---
+
+## 12. What are liveness and readiness probes?
+
+Liveness and readiness probes are Kubernetes health checks. A **liveness probe** determines whether a container is alive. If the probe fails repeatedly, Kubernetes restarts the container automatically. A **readiness probe** determines whether the application is ready to receive traffic. If it fails, Kubernetes removes the pod from the service endpoints without restarting it. Using both probes ensures application reliability by preventing unhealthy or uninitialized pods from receiving production traffic.
+
+---
+
+## 13. What are static pods and how do you handle them?
+
+Static pods are pods managed directly by the kubelet instead of the Kubernetes API server. Their manifests are stored on the node, usually under `/etc/kubernetes/manifests`. The kubelet continuously monitors this directory and automatically creates or recreates the pods if the manifest exists. Core Kubernetes components such as kube-apiserver, kube-controller-manager, kube-scheduler, and etcd are commonly deployed as static pods in kubeadm clusters. To manage static pods, I update or modify the manifest files on the node, and the kubelet automatically applies the changes.
+
+---
+
+## 14. Explain NGINX pod structure.
+
+An NGINX pod typically consists of one or more containers. The main NGINX container serves HTTP requests on port 80 or 443. Configuration is usually provided through a ConfigMap and mounted as a volume. Logs are written to stdout and stderr, allowing Kubernetes logging systems to collect them. Persistent storage can be attached if required, although most NGINX pods are stateless. Liveness and readiness probes monitor the health of the web server, while Services expose the pod internally or externally. Multiple NGINX pods are managed through a Deployment for high availability and rolling updates.
+
+---
+
+## 15. Explain Kubernetes Deployment YAML file.
+
+A Kubernetes Deployment YAML defines the desired state of an application. It starts with the API version and resource kind, followed by metadata containing the deployment name and labels. The `spec` section defines the number of replicas, selector labels, and pod template. The pod template specifies container images, ports, environment variables, resource requests and limits, ConfigMaps, Secrets, volume mounts, and health probes. The Deployment controller continuously ensures that the desired number of healthy pods are running and supports rolling updates and rollback features. This makes Deployments the preferred method for managing stateless applications in Kubernetes.
+
+Example structure:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: nginx
+
+  template:
+    metadata:
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+
+        ports:
+        - containerPort: 80
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+```
+
+### Important sections:
+
+- **apiVersion** – Kubernetes API version.
+- **kind** – Resource type (Deployment).
+- **metadata** – Name and labels.
+- **replicas** – Number of pod replicas.
+- **selector** – Matches pods managed by the deployment.
+- **template** – Pod specification.
+- **containers** – Container details.
+- **image** – Docker image.
+- **ports** – Exposed container ports.
+- **resources** – CPU and memory requests/limits.
+- **readinessProbe** – Checks if the application is ready for traffic.
+- **livenessProbe** – Restarts unhealthy containers automatically.
+
+
+
+# DevOps Interview Questions & Answers (4 Years Experience)
+
 ## GitLab CI/CD
 
 ---
