@@ -1,3 +1,126 @@
+# Advanced DevOps Interview Questions (4 Years Experience)
+
+---
+
+## Q1. A Docker image has 10 layers, and all layers are already cached. If you modify Layer 5 and rebuild the image, what will happen? Will Docker reuse the cache for Layers 6–10, or will those layers be rebuilt? Explain why.
+
+### Answer
+
+Docker builds images layer by layer. If **Layer 5** changes, Docker invalidates the cache for that layer and **all subsequent layers (6–10)** because each layer depends on the previous one. Layers **1–4** will still use the cache, while Layers **5–10** will be rebuilt. That's why it's recommended to place frequently changing instructions like `COPY` near the end of the Dockerfile and keep stable instructions like package installation near the top to maximize cache usage.
+
+---
+
+## Q2. You are unable to SSH into an EC2 instance, but the instance is running and accessible through the AWS Console. How would you install a required package on that instance without using SSH?
+
+### Answer
+
+I would use **AWS Systems Manager (SSM) Session Manager** if the SSM Agent is installed and the EC2 instance has the required IAM role. Session Manager allows secure access without opening port 22. I can either start a Session Manager shell or use **Run Command** to execute commands remotely, such as installing packages with `yum` or `apt`. This is the recommended and more secure approach than enabling SSH.
+
+---
+
+## Q3. A Kubernetes application is down, and users cannot access it. Starting with kubectl, explain your step-by-step troubleshooting approach until the issue is identified.
+
+### Answer
+
+I follow a structured approach:
+
+1. Check Pod status using `kubectl get pods`.
+2. If Pods are not Running, inspect them using `kubectl describe pod`.
+3. Review application logs using `kubectl logs`.
+4. Verify Deployment status using `kubectl rollout status`.
+5. Check whether the Service has healthy Endpoints.
+6. Verify Ingress configuration and Load Balancer health.
+7. Check readiness and liveness probes.
+8. Verify ConfigMaps, Secrets, and environment variables.
+9. Check node health and available resources.
+10. Finally, correlate findings with monitoring dashboards and application logs to identify the root cause.
+
+---
+
+## Q4. How would you create the same infrastructure for Development, QA, UAT, and Production without duplicating code using Terraform?
+
+### Answer
+
+I would create reusable **Terraform modules** for common resources like VPCs, EC2 instances, IAM roles, and Security Groups. Environment-specific values such as CIDR ranges, instance types, and tags are passed through variables or separate `.tfvars` files. I also use **Terraform Workspaces** or separate backend configurations for each environment. This allows one codebase to provision infrastructure across all environments without duplication.
+
+---
+
+## Q5. A Jenkins pipeline completed successfully, but the latest changes are not visible in production. What components would you verify before concluding the deployment failed?
+
+### Answer
+
+I would first verify whether the latest Docker image was built and pushed correctly. Then I'd check whether Kubernetes actually pulled the new image, confirm the Deployment rollout status, verify the image tag running in the Pods, inspect the Service and Ingress configuration, clear browser or CDN cache if applicable, and ensure traffic is reaching the updated Pods. Only after verifying these components would I conclude that the deployment failed.
+
+---
+
+## Q6. Explain the Pre-Build, Build, and Post-Build stages in a CI/CD pipeline. In which stage is an artifact typically generated and pushed to an artifact repository?
+
+### Answer
+
+The **Pre-Build** stage prepares the pipeline by checking out source code, validating dependencies, and configuring the environment.
+
+The **Build** stage compiles the application, runs unit tests, performs static code analysis, and generates the application artifact such as a JAR or WAR file. This is also the stage where the artifact is typically uploaded to an artifact repository like Nexus or Artifactory.
+
+The **Post-Build** stage performs deployment, sends notifications, archives reports, executes cleanup tasks, and may trigger downstream pipelines.
+
+---
+
+## Q7. Write a Python script to monitor CPU, Memory, and Disk utilization. If the usage exceeds 90%, generate an alert.
+
+### Answer
+
+```python
+import psutil
+
+cpu = psutil.cpu_percent(interval=1)
+memory = psutil.virtual_memory().percent
+disk = psutil.disk_usage('/').percent
+
+if cpu > 90:
+    print(f"ALERT: CPU Usage = {cpu}%")
+
+if memory > 90:
+    print(f"ALERT: Memory Usage = {memory}%")
+
+if disk > 90:
+    print(f"ALERT: Disk Usage = {disk}%")
+```
+
+This script uses the **psutil** library to monitor system resources and prints alerts whenever CPU, memory, or disk utilization exceeds 90%. In production, these alerts can be integrated with email, Slack, or monitoring tools.
+
+---
+
+## Q8. You need to provision 100 EC2 instances with different configurations across Development, QA, UAT, and Production environments using Terraform. What would you use, and why?
+
+### Answer
+
+I would use **Terraform modules** with **for_each**. The module defines the EC2 configuration once, while `for_each` iterates through a map containing environment-specific configurations such as instance type, subnet, AMI, and tags. I prefer **for_each** over **count** because resources are tracked by meaningful names, making updates safer and avoiding unnecessary resource recreation.
+
+---
+
+## Q9. An Amazon EKS application starts returning intermittent 502/503 errors immediately after deployment. How would you identify whether the issue is related to Kubernetes, the Load Balancer, or the application?
+
+### Answer
+
+I would first verify whether the Pods are healthy and passing readiness probes. Next, I'd check the Kubernetes Service and Endpoints to ensure traffic is reaching the correct Pods. Then I'd review Ingress Controller logs and AWS Application Load Balancer target health. Finally, I'd inspect application logs for exceptions or database connectivity issues. By checking each layer sequentially—Load Balancer, Kubernetes, and Application—I can quickly isolate the source of the problem.
+
+---
+
+## Q10. For a production e-commerce application, which deployment strategy would you recommend—Rolling Update, Blue-Green, or Canary Deployment? What factors would influence your decision?
+
+### Answer
+
+For a production e-commerce application, I would generally recommend **Canary Deployment** because it exposes the new version to a small percentage of users first. This allows us to monitor application performance, error rates, and business metrics before gradually increasing traffic. If issues occur, the deployment can be stopped with minimal customer impact.
+
+For critical releases requiring instant rollback, **Blue-Green Deployment** is also an excellent choice because traffic can be switched back immediately.
+
+**Rolling Update** is suitable for regular releases where resource utilization is important, but rollback is slower compared to Blue-Green.
+
+The decision depends on business criticality, acceptable risk, rollback requirements, infrastructure cost, and downtime tolerance.
+
+---
+
+
 ## Q. If terraform is accendtly destroy at 12pm how do you troubleshoot
 
 “I would first check Terraform and CI/CD logs to identify who triggered the destroy and what resources were impacted. Then I would verify the Terraform state and AWS logs like CloudTrail. After identifying the issue, I would restore infrastructure using Terraform apply or backups/snapshots if needed. Finally, I would add safeguards like approval steps, state locking, and prevent_destroy to avoid future incidents.”
