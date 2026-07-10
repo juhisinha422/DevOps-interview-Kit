@@ -1,3 +1,122 @@
+# Scenario-Based DevOps Interview Questions (4 Years Experience)
+
+---
+
+## 1. Your pod is running but returning 503. Is it the Pod or the Service? How do you tell in under 2 minutes?
+
+### Answer
+
+I troubleshoot layer by layer.
+
+1. First, I check whether the Pod is actually Ready using `kubectl get pods`.
+2. Then I verify the readiness probe status and application logs.
+3. Next, I check the Service Endpoints using `kubectl get endpoints <service-name>`. If there are no endpoints, the Service isn't routing traffic to the Pods.
+4. If endpoints exist, I test the Service internally using a temporary Pod or `kubectl port-forward`.
+5. Finally, I check the Ingress or Load Balancer configuration.
+
+If the Pod is healthy but the Service has no endpoints, it's a Service issue. If the Service has healthy endpoints but the application returns 503, it's an application or Pod issue.
+
+---
+
+## 2. Terraform apply failed halfway. State file is now out of sync. What is your exact recovery plan?
+
+### Answer
+
+First, I stop all further Terraform operations to avoid additional changes. I verify whether the state file is locked and release the lock only if no Terraform process is running. Next, I compare the Terraform state with the actual AWS resources using `terraform plan` and the AWS Console. If resources were created successfully but are missing from the state, I import them using `terraform import`. If the state is corrupted, I restore it from the latest S3 version backup. After confirming that the state matches the infrastructure, I run `terraform plan` again to ensure no unexpected changes exist before executing `terraform apply`.
+
+---
+
+## 3. Pipeline passed. Production still has old code. Name every possible reason and how you confirm each one.
+
+### Answer
+
+I verify the deployment step by step.
+
+- Check whether Jenkins deployed the latest artifact.
+- Verify the latest Docker image exists in ECR.
+- Confirm Kubernetes pulled the latest image instead of using a cached image.
+- Check whether the Deployment rollout completed successfully.
+- Verify the image tag running inside the Pods.
+- Check whether the Service is routing traffic to the new Pods.
+- Verify Ingress and Load Balancer configuration.
+- Check browser or CDN cache.
+- Verify the application version directly inside the running container.
+
+By checking each layer sequentially, I can quickly identify where the deployment failed.
+
+---
+
+## 4. EC2 is unreachable. You cannot SSH. Walk me through every single step you take.
+
+### Answer
+
+First, I verify that the EC2 instance is running and both system status checks are passing. Then I check the Security Group to ensure port 22 is allowed from my IP. Next, I verify the Network ACL, Route Table, Internet Gateway, and public IP assignment. If SSH is intentionally disabled, I connect using AWS Systems Manager Session Manager. If the instance is completely unreachable, I review the EC2 system logs from the AWS Console, check CloudWatch metrics, and, if necessary, detach the root volume and inspect it from another EC2 instance for further investigation.
+
+---
+
+## 5. Docker image is 2.1 GB. Deployment is too slow. How do you bring it under 300 MB without breaking the app?
+
+### Answer
+
+I would use a multi-stage Docker build so that build tools are excluded from the final image. I'd switch to a lightweight base image such as Alpine or a slim JRE, remove unnecessary packages and temporary files, use `.dockerignore` to exclude unwanted files, combine RUN commands to reduce layers, and copy only the final application artifact instead of the entire project. I would also scan the image for unused dependencies. These optimizations usually reduce the image size significantly while maintaining functionality.
+
+---
+
+## 6. AWS bill doubled this month. No new resources were added. How do you find the exact cause in under 10 minutes?
+
+### Answer
+
+I first open AWS Cost Explorer and compare this month's costs with the previous month. Then I group costs by Service, Region, and Usage Type to identify the source of the increase. I review CloudWatch metrics for abnormal traffic, verify Auto Scaling activity, inspect data transfer costs, check EBS snapshots, NAT Gateway usage, Load Balancer traffic, and S3 storage growth. Finally, I use Cost and Usage Reports to identify the exact resource responsible for the increased billing.
+
+---
+
+## 7. HPA is configured. Traffic spiked. Pods are not scaling. What are the 4 possible reasons?
+
+### Answer
+
+The most common reasons are:
+
+1. Metrics Server is not running or not reporting metrics.
+2. CPU or memory requests are not defined in the Pod specification.
+3. HPA target thresholds have not been reached or are configured incorrectly.
+4. Cluster Autoscaler cannot provision additional worker nodes due to resource limits or Auto Scaling constraints.
+
+I verify each of these before concluding the issue.
+
+---
+
+## 8. A developer committed secret keys to GitHub at 2 PM. What do you do in the next 5 minutes?
+
+### Answer
+
+My immediate priority is to minimize the security risk.
+
+1. Revoke or rotate the exposed AWS access keys immediately.
+2. Remove the secret from Git history and the repository.
+3. Force push the cleaned repository if approved.
+4. Review CloudTrail logs for any unauthorized usage of the compromised credentials.
+5. Inform the security team and document the incident.
+6. Enable Git secret scanning and pre-commit hooks to prevent future secret leaks.
+
+---
+
+## 9. Your Grafana dashboard shows everything is green. But users are flooding support with complaints. What is missing in your observability setup?
+
+### Answer
+
+Infrastructure metrics alone are not enough. We also need **Application Performance Monitoring (APM)**, distributed tracing, synthetic monitoring, real user monitoring (RUM), business metrics, centralized logging, and user experience monitoring. CPU and memory can appear healthy while users experience API failures, slow transactions, or frontend issues. Complete observability requires metrics, logs, traces, and user experience data together.
+
+---
+
+## 10. You need to deploy to production with zero downtime. Your team has never done Blue-Green before. How do you design it?
+
+### Answer
+
+I would create two identical production environments: **Blue** (current production) and **Green** (new version). The new application is deployed to Green while Blue continues serving users. After validating Green through smoke tests, health checks, and monitoring, I switch the Load Balancer or Kubernetes Service to route traffic to Green. I continue monitoring the application, and if any issue occurs, I immediately switch traffic back to Blue. This approach provides zero downtime and instant rollback capability.
+
+---
+
+
 # Linux, Docker, Kubernetes & Client Communication Interview Questions (4 Years Experience)
 
 ---
