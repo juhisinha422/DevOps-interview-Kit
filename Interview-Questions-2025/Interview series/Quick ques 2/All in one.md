@@ -1,3 +1,258 @@
+# BNP Paribas DevOps Interview Questions (4 Years Experience)
+
+---
+
+# Kafka
+
+## 1. What would be your day-to-day role when it comes to Kafka?
+
+### Answer
+
+In my day-to-day activities, I monitor Kafka cluster health, broker availability, consumer lag, topic performance, and replication status. I troubleshoot producer or consumer issues, manage topic creation and configuration, monitor disk usage, ensure high availability, and work with development teams to resolve messaging-related production issues. I also use Grafana and Prometheus to monitor Kafka metrics and respond to alerts.
+
+---
+
+## 2. Can you tell me the core components of Kafka and what each component does?
+
+### Answer
+
+Kafka consists of **Producer, Broker, Consumer, Topic, Partition, ZooKeeper/KRaft, and Consumer Groups**. Producers publish messages to Topics. Topics are divided into Partitions for scalability. Brokers store the data. Consumers read messages from Topics. Consumer Groups enable load balancing across multiple consumers. ZooKeeper (or KRaft in newer versions) manages cluster metadata and leader election.
+
+---
+
+## 3. Do you have working experience on the ELK Stack?
+
+### Answer
+
+Yes. I have worked with the ELK Stack for centralized log management. Application and system logs were collected using Filebeat, processed through Logstash, stored in Elasticsearch, and visualized using Kibana. This helped us quickly troubleshoot production issues and analyze logs from multiple servers in one place.
+
+---
+
+## 4. What sort of improvements did you make in your real-time ELK Stack project?
+
+### Answer
+
+I optimized Logstash pipelines by reducing unnecessary filters, configured Index Lifecycle Management (ILM) to automatically archive old logs, improved Elasticsearch indexing performance, created Kibana dashboards for faster troubleshooting, and configured alerts for critical application errors. These improvements reduced storage costs and improved search performance.
+
+---
+
+## 5. How good are you in development?
+
+### Answer
+
+I am not a full-time developer, but I am comfortable with Python, Bash, and Shell scripting. I have written automation scripts for deployments, monitoring, log cleanup, health checks, backup automation, and CI/CD pipeline tasks. I can also understand application code sufficiently to troubleshoot deployment and infrastructure issues.
+
+---
+
+## 6. What kind of automation have you done?
+
+### Answer
+
+I have automated infrastructure provisioning using Terraform, application deployments using Jenkins and Kubernetes, configuration management using Ansible, Docker image creation, monitoring alerts, backup scripts, log rotation, server health monitoring, and scheduled maintenance tasks using Shell and Python scripts.
+
+---
+
+## 7. Can you explain analyzers, tokenizers, and token filters in Elasticsearch?
+
+### Answer
+
+An **Analyzer** processes text before indexing. It consists of a **Tokenizer**, which breaks text into individual tokens or words, and **Token Filters**, which modify those tokens by converting them to lowercase, removing stop words, or applying stemming. Together, they improve search accuracy.
+
+---
+
+## 8. How does Kafka handle data durability?
+
+### Answer
+
+Kafka ensures durability by writing messages to disk and replicating them across multiple brokers based on the configured replication factor. Even if one broker fails, another replica becomes the leader, ensuring that data is not lost.
+
+---
+
+## 9. When should an application consider using Kafka?
+
+### Answer
+
+Kafka should be used when applications require high-throughput, real-time messaging, event streaming, asynchronous communication, log aggregation, microservices communication, or processing large volumes of data with high reliability.
+
+---
+
+## 10. What is the purpose of the replication factor in Kafka?
+
+### Answer
+
+The replication factor determines how many copies of each partition are maintained across different brokers. Higher replication improves fault tolerance because data remains available even if one or more brokers fail.
+
+---
+
+# Terraform
+
+## 11. What is Terraform?
+
+### Answer
+
+Terraform is an Infrastructure as Code (IaC) tool that allows us to provision and manage cloud infrastructure using declarative configuration files. It automates infrastructure deployment, ensures consistency, and supports multiple cloud providers.
+
+---
+
+## 12. Why do we use Terraform?
+
+### Answer
+
+Terraform eliminates manual infrastructure creation, improves consistency, enables version control, supports automation through CI/CD pipelines, and makes infrastructure repeatable across Development, QA, UAT, and Production environments.
+
+---
+
+## 13. Explain the Terraform workflow.
+
+### Answer
+
+The standard workflow is:
+
+**Write Configuration → terraform init → terraform validate → terraform plan → terraform apply → terraform destroy (if required).**
+
+---
+
+## 14. What is a Terraform state file?
+
+### Answer
+
+The Terraform state file stores the mapping between Terraform configuration and the actual infrastructure. It enables Terraform to track existing resources and perform incremental updates instead of recreating everything.
+
+---
+
+## 15. What is remote state?
+
+### Answer
+
+Remote state stores the Terraform state file in a shared backend such as Amazon S3 instead of the local machine. This allows multiple team members to collaborate safely while maintaining a single source of truth.
+
+---
+
+## 16. Why do we use an S3 bucket and DynamoDB for Terraform state?
+
+### Answer
+
+Amazon S3 stores the remote Terraform state file, while DynamoDB provides state locking. State locking prevents multiple users from modifying the same infrastructure simultaneously and protects the state from corruption.
+
+---
+
+## 17. What is state locking in Terraform?
+
+### Answer
+
+State locking prevents concurrent Terraform operations on the same infrastructure. When one user runs `terraform apply`, Terraform locks the state so that no other user can modify it until the operation completes.
+
+---
+
+## 18. What is a Terraform provider?
+
+### Answer
+
+A provider is a plugin that enables Terraform to interact with a specific platform such as AWS, Azure, GCP, or Kubernetes. It exposes the resources and services that Terraform can manage.
+
+---
+
+## 19. What is a Terraform resource?
+
+### Answer
+
+A resource represents an infrastructure component managed by Terraform, such as an EC2 instance, VPC, S3 bucket, Security Group, or Kubernetes deployment.
+
+---
+
+## 20. What are variables and outputs in Terraform?
+
+### Answer
+
+Variables allow dynamic values to be passed into Terraform configurations, making the code reusable. Outputs expose resource information such as EC2 public IPs or VPC IDs so they can be referenced by other modules or displayed after deployment.
+
+---
+
+## 21. What are Terraform modules?
+
+### Answer
+
+Modules are reusable collections of Terraform resources. They reduce code duplication, improve maintainability, and enable the same infrastructure code to be reused across multiple environments.
+
+---
+
+## 22. What is the difference between terraform plan and terraform apply?
+
+### Answer
+
+`terraform plan` shows the changes Terraform intends to make without modifying infrastructure. `terraform apply` executes those changes and updates the actual infrastructure.
+
+---
+
+## 23. What is terraform init?
+
+### Answer
+
+`terraform init` initializes the Terraform working directory by downloading providers, configuring the backend, and preparing the environment before any other Terraform command is executed.
+
+---
+
+## 24. What is Terraform drift?
+
+### Answer
+
+Terraform drift occurs when infrastructure is manually modified outside Terraform, causing the actual infrastructure to differ from the Terraform state. Drift is detected during `terraform plan`.
+
+---
+
+## 25. How do you import an existing AWS resource into Terraform?
+
+### Answer
+
+I first define the resource in the Terraform configuration and then use the `terraform import` command to associate the existing AWS resource with the Terraform state. After importing, I run `terraform plan` to verify that the configuration matches the existing infrastructure.
+
+---
+
+# Ansible
+
+## 26. Explain the structure of an Ansible playbook.
+
+### Answer
+
+An Ansible playbook consists of **Hosts**, **Variables**, **Tasks**, **Handlers**, and optionally **Roles**. Tasks define the actions to perform, handlers execute only when notified, and roles organize reusable automation code.
+
+---
+
+## 27. What is the ansible.cfg file?
+
+### Answer
+
+The `ansible.cfg` file is the main Ansible configuration file. It defines settings such as the inventory location, SSH user, private key path, timeout values, privilege escalation, and default behavior for Ansible execution.
+
+---
+
+## 28. How do you integrate Ansible with the ELK Stack?
+
+### Answer
+
+Ansible automates the installation and configuration of Elasticsearch, Logstash, Kibana, and Filebeat across multiple servers. It ensures consistent configurations, simplifies upgrades, and enables repeatable deployments.
+
+---
+
+# Monitoring
+
+## 29. What are the components of the ELK Stack?
+
+### Answer
+
+The ELK Stack consists of **Elasticsearch** for storing and searching logs, **Logstash** for collecting and processing logs, and **Kibana** for visualizing and analyzing log data. Filebeat is commonly used to ship logs from servers to Logstash.
+
+---
+
+## 30. What is the difference between Grafana and the ELK Stack?
+
+### Answer
+
+Grafana is primarily used for monitoring and visualizing metrics from tools like Prometheus and CloudWatch. ELK focuses on centralized log management and log analysis. Grafana answers **"What is happening?"**, while ELK helps answer **"Why did it happen?"**. Together, they provide complete observability.
+
+---
+
+
 # Scenario-Based DevOps Interview Questions (4 Years Experience)
 
 ---
