@@ -1,3 +1,353 @@
+# Linux & Networking + Docker & Kubernetes Interview Questions (4 Years Experience)
+
+---
+
+# Linux & Networking
+
+## 1. Explain the complete request flow from a browser to a Kubernetes Pod.
+
+### Answer
+
+When a user enters a URL in the browser, the request first goes to **DNS**, which resolves the domain name to the Load Balancer IP. The request reaches the **AWS Application Load Balancer (ALB)**, which forwards it to the Kubernetes **Ingress Controller**. The Ingress routes the request to the appropriate **Kubernetes Service** based on the host or path rules. The Service then load-balances the traffic to one of the healthy Pods using **kube-proxy**. The Pod processes the request, optionally communicates with databases or other services, and sends the response back through the same path to the browser.
+
+---
+
+## 2. Difference between TCP and UDP. Where have you used each?
+
+### Answer
+
+TCP is a connection-oriented protocol that guarantees reliable, ordered, and error-free delivery of data. It is used for applications where reliability is critical, such as HTTP/HTTPS, SSH, databases, and file transfers.
+
+UDP is connectionless and does not guarantee delivery, making it faster with lower latency. It is commonly used for DNS queries, streaming, VoIP, online gaming, and monitoring protocols.
+
+In my projects, I've mainly used TCP for web applications, SSH, Jenkins, Kubernetes API communication, and databases, while UDP is typically used by DNS services.
+
+---
+
+## 3. How does DNS resolution work internally?
+
+### Answer
+
+When a user enters a domain name, the browser first checks its local DNS cache. If the record is not found, the request goes to the local DNS resolver, which queries the Root DNS Server, then the Top-Level Domain (TLD) server, and finally the Authoritative DNS Server. The Authoritative Server returns the IP address, which is cached locally and used by the browser to connect to the application server.
+
+---
+
+## 4. How would you debug high CPU, memory, or disk utilization on a Linux server?
+
+### Answer
+
+I first identify the resource under pressure using commands like **top**, **htop**, **free -h**, **vmstat**, **df -h**, and **iostat**. Then I identify the process consuming the resources, check application and system logs, verify whether any recent deployment caused the issue, and analyze long-running processes. Based on the findings, I optimize the application, restart affected services if required, clean unnecessary files, or increase resources if justified.
+
+---
+
+## 5. Explain Load Balancer, Reverse Proxy, and Ingress with real examples.
+
+### Answer
+
+A **Load Balancer** distributes incoming requests across multiple servers to improve availability and scalability. For example, AWS Application Load Balancer distributes HTTP traffic to multiple EC2 instances or Kubernetes nodes.
+
+A **Reverse Proxy** sits in front of backend servers, receives client requests, and forwards them to the appropriate application server. NGINX is a common reverse proxy.
+
+An **Ingress** is a Kubernetes resource that manages external HTTP/HTTPS access to services inside the cluster. An Ingress Controller like NGINX or AWS Load Balancer Controller routes traffic based on hostnames or URL paths.
+
+---
+
+# Docker & Kubernetes
+
+## 6. What happens internally when you run `docker run`?
+
+### Answer
+
+When `docker run` is executed, Docker first checks whether the required image exists locally. If not, it pulls the image from the registry. It then creates a writable container layer on top of the image, allocates namespaces and cgroups for isolation, configures networking, mounts any required volumes, starts the container process using the ENTRYPOINT and CMD instructions, and finally the container enters the Running state.
+
+---
+
+## 7. Difference between CMD and ENTRYPOINT.
+
+### Answer
+
+**CMD** provides the default command that runs when the container starts, but it can easily be overridden from the command line.
+
+**ENTRYPOINT** defines the main executable that always runs when the container starts. Any command-line arguments are appended to the ENTRYPOINT.
+
+In production, ENTRYPOINT is typically used to define the application executable, while CMD supplies default arguments.
+
+---
+
+## 8. Why is a Pod stuck in CrashLoopBackOff? How would you debug it?
+
+### Answer
+
+CrashLoopBackOff indicates that the container starts but repeatedly crashes. I first check the Pod Events using `kubectl describe pod`, review current and previous container logs, verify the startup command, ConfigMaps, Secrets, environment variables, resource limits, readiness and liveness probes, image version, and application dependencies such as databases. Once the root cause is identified, I fix the configuration or application issue and redeploy the Pod.
+
+---
+
+## 9. Difference between Deployment, StatefulSet, DaemonSet, and Job.
+
+### Answer
+
+A **Deployment** is used for stateless applications and supports scaling, rolling updates, and rollbacks.
+
+A **StatefulSet** is designed for stateful applications like MySQL or Kafka, providing stable Pod names, persistent storage, and ordered deployment.
+
+A **DaemonSet** ensures exactly one Pod runs on every worker node and is commonly used for monitoring agents like Prometheus Node Exporter or Fluentd.
+
+A **Job** runs a task to completion and exits successfully. It is commonly used for database migrations, backups, or one-time batch processing.
+
+---
+
+# Kubernetes & CI/CD Interview Questions (4 Years Experience)
+
+---
+
+# Kubernetes
+
+## 10. Readiness Probe vs Liveness Probe.
+
+### Answer
+
+A **Readiness Probe** checks whether the application is ready to receive traffic. If it fails, Kubernetes removes the Pod from the Service endpoints, but the container continues running.
+
+A **Liveness Probe** checks whether the application is still healthy. If it fails repeatedly, Kubernetes restarts the container automatically.
+
+In production, Readiness Probes prevent users from accessing unhealthy Pods, while Liveness Probes recover applications that have become unresponsive.
+
+---
+
+## 11. Kubernetes Pods are Running but users receive 503 errors. What will you check?
+
+### Answer
+
+If Pods are running but users receive **503 errors**, I first verify whether the Pods are **Ready** by checking the readiness probe status. Next, I inspect the Service Endpoints to ensure the Pods are registered. Then I verify the Service selector labels, Ingress configuration, and Load Balancer target health. Finally, I review application logs and confirm backend dependencies such as databases or APIs are accessible. In most cases, 503 errors occur due to failed readiness probes, incorrect Service selectors, or unhealthy backend applications.
+
+---
+
+## 12. How does Kubernetes Service Discovery work?
+
+### Answer
+
+Kubernetes automatically assigns every Service a **ClusterIP** and DNS name. CoreDNS maintains DNS records for all Services. When one Pod wants to communicate with another service, it simply uses the Service DNS name instead of an IP address. Kubernetes resolves the DNS name and routes traffic to one of the healthy backend Pods through kube-proxy.
+
+---
+
+## 13. Explain ConfigMaps and Secrets. How do you manage them across environments?
+
+### Answer
+
+**ConfigMaps** store non-sensitive configuration such as URLs, ports, feature flags, and application settings.
+
+**Secrets** store sensitive information such as passwords, API keys, and database credentials.
+
+For multiple environments like Development, QA, UAT, and Production, I maintain separate ConfigMaps and Secrets for each environment. In production, sensitive values are stored securely using AWS Secrets Manager or HashiCorp Vault and injected into Kubernetes as Secrets instead of hardcoding them.
+
+---
+
+# CI/CD
+
+## 14. Explain your CI/CD pipeline from code commit to production.
+
+### Answer
+
+Developers commit code to GitHub, which triggers a Jenkins pipeline through a webhook. Jenkins checks out the code, builds it using Maven, executes unit tests, performs SonarQube code analysis, builds a Docker image, scans it for vulnerabilities, pushes the image to Amazon ECR, and deploys it to Amazon EKS using Kubernetes manifests or Helm. After deployment, smoke tests and health checks are executed. If all validations pass, the deployment is considered successful; otherwise, the pipeline stops and notifies the team.
+
+---
+
+## 15. How do you implement zero-downtime deployments?
+
+### Answer
+
+I typically use **Rolling Updates** or **Blue-Green Deployments**. During a Rolling Update, Kubernetes gradually replaces old Pods with new ones while maintaining the minimum number of healthy Pods. For critical production releases, I prefer Blue-Green Deployment, where the new version is deployed separately, validated, and then traffic is switched using the Load Balancer or Kubernetes Service. This enables instant rollback if any issue occurs.
+
+---
+
+## 16. How would you optimize a pipeline that takes 25 minutes to complete?
+
+### Answer
+
+I would identify the slowest stages first. Then I'd enable parallel execution for independent jobs, cache Maven and Docker dependencies, use incremental builds, reuse Docker layers, avoid rebuilding unchanged components, execute tests in parallel, and use Jenkins agents for distributed builds. These optimizations significantly reduce pipeline execution time without changing infrastructure.
+
+---
+
+## 17. How do you implement rollback if deployment fails?
+
+### Answer
+
+For Kubernetes deployments, I use **kubectl rollout undo** to restore the previous ReplicaSet. In Blue-Green deployments, rollback is even faster because traffic can immediately be redirected to the previous environment. Before rollback, I always verify the root cause using deployment logs, Kubernetes Events, and monitoring dashboards.
+
+---
+
+## 18. How do you manage secrets securely in CI/CD pipelines?
+
+### Answer
+
+Secrets are never hardcoded in the repository or pipeline scripts. Jenkins credentials, Kubernetes Secrets, AWS Secrets Manager, or HashiCorp Vault are used to store sensitive information securely. During pipeline execution, secrets are injected as environment variables or mounted securely into containers. Access is controlled using IAM roles and RBAC, and secret scanning tools are used to prevent accidental exposure.
+
+---
+
+# Terraform, AWS, Monitoring & Security Interview Questions (4 Years Experience)
+
+---
+
+# Terraform & Cloud
+
+## 19. How does Terraform state locking work?
+
+### Answer
+
+Terraform state locking prevents multiple users or pipelines from modifying the same infrastructure simultaneously. In AWS, the state file is stored in an S3 bucket, while a DynamoDB table is used for locking. When `terraform apply` starts, Terraform creates a lock entry in DynamoDB. Other users attempting to run Terraform receive a **State Locked** error until the operation completes. This prevents state corruption and conflicting infrastructure changes.
+
+---
+
+## 20. Difference between count and for_each.
+
+### Answer
+
+**count** creates multiple resources using numerical indexes (0,1,2...). It is suitable for identical resources but may recreate resources if the order changes.
+
+**for_each** creates resources using unique keys from a map or set. Since resources are tracked by name instead of index, updates are safer and unnecessary recreation is avoided. In production, I prefer **for_each** because it provides better resource management.
+
+---
+
+## 21. How do you migrate Terraform state without recreating resources?
+
+### Answer
+
+I first configure the new backend, such as an S3 bucket, and run `terraform init -migrate-state`. Terraform automatically moves the existing state to the new backend without modifying the infrastructure. If individual resources need to be moved between modules, I use `terraform state mv`. After migration, I run `terraform plan` to confirm that no infrastructure changes are detected.
+
+---
+
+## 22. What is Terraform Drift? How do you detect it?
+
+### Answer
+
+Terraform Drift occurs when infrastructure is modified manually outside Terraform, causing the actual infrastructure to differ from the Terraform state. I detect drift by running `terraform plan`, which compares the state file with the real infrastructure. If the manual change is valid, I update the Terraform code. Otherwise, I run `terraform apply` to restore the desired configuration.
+
+---
+
+## 23. Explain your Terraform module structure for multiple environments.
+
+### Answer
+
+I organize Terraform into reusable modules such as **VPC**, **EKS**, **EC2**, **IAM**, **Security Groups**, and **RDS**. Environment-specific values are stored in separate `.tfvars` files for Development, QA, UAT, and Production. Each environment has its own remote backend and state file, while all environments share the same reusable modules. This keeps the code clean, scalable, and easy to maintain.
+
+---
+
+## 24. Difference between IAM Roles and IAM Policies.
+
+### Answer
+
+An **IAM Policy** is a JSON document that defines permissions, such as allowing access to S3 or EC2.
+
+An **IAM Role** is an identity that can assume one or more policies. Roles provide temporary credentials and are commonly used by AWS services like EC2, Lambda, or EKS Pods. Policies define **what actions are allowed**, while Roles define **who or what can use those permissions**.
+
+---
+
+## 25. Explain VPC, Subnets, NAT Gateway, and Internet Gateway.
+
+### Answer
+
+A **VPC** is an isolated virtual network within AWS.
+
+A **Public Subnet** contains resources that require internet access, while a **Private Subnet** hosts internal resources such as databases and application servers.
+
+An **Internet Gateway** enables inbound and outbound internet connectivity for public subnets.
+
+A **NAT Gateway** allows private subnet instances to access the internet for updates and package downloads without exposing them to inbound internet traffic.
+
+---
+
+# Monitoring & Troubleshooting
+
+## 26. Difference between Logs, Metrics, and Traces.
+
+### Answer
+
+**Logs** contain detailed records of application and system events, helping identify errors and failures.
+
+**Metrics** are numerical values such as CPU utilization, memory usage, request count, and response time, used for monitoring system health.
+
+**Traces** follow a request across multiple microservices, showing where delays or failures occur.
+
+Together, logs, metrics, and traces provide complete observability.
+
+---
+
+## 27. How do you investigate a sudden spike in application latency?
+
+### Answer
+
+I first verify Grafana dashboards for CPU, memory, network, and response time metrics. Then I review application logs in ELK, inspect Kubernetes Pods for resource issues, verify database performance, check Load Balancer metrics, and analyze distributed traces if available. This helps identify whether the latency originates from infrastructure, networking, the application, or the database.
+
+---
+
+## 28. Explain your monitoring and alerting strategy.
+
+### Answer
+
+I use **Prometheus** to collect Kubernetes and application metrics, **Grafana** for dashboards, **CloudWatch** for AWS infrastructure monitoring, and **ELK** for centralized log analysis. Alerts are configured for CPU, memory, disk usage, pod failures, application errors, and response time. Notifications are sent through email, Slack, or Microsoft Teams, enabling quick response to production issues.
+
+---
+
+## 29. Walk me through a production issue you resolved.
+
+### Answer
+
+During one production deployment, users started receiving **503 Service Unavailable** errors. I checked Pod status and found the readiness probes were failing. Application logs showed an incorrect database connection string in the ConfigMap. After updating the configuration and redeploying the application, all Pods became Ready and traffic was restored. We later added configuration validation in the Jenkins pipeline to prevent similar issues.
+
+---
+
+# Security & Production
+
+## 30. How do you secure container images before deployment?
+
+### Answer
+
+I use minimal base images such as Alpine or Distroless, perform vulnerability scanning using Trivy or Docker Scout, remove unnecessary packages, avoid running containers as the root user, and regularly update dependencies. Only scanned and approved images are pushed to Amazon ECR and deployed to production.
+
+---
+
+## 31. How do you implement RBAC in Kubernetes?
+
+### Answer
+
+I create **Roles** or **ClusterRoles** with only the required permissions and assign them to users or Service Accounts using **RoleBindings** or **ClusterRoleBindings**. This follows the principle of least privilege, ensuring users and applications have access only to the resources they need.
+
+---
+
+## 32. How do you manage secrets in production?
+
+### Answer
+
+Sensitive information such as database passwords, API keys, and certificates is stored in **AWS Secrets Manager** or **HashiCorp Vault**. Applications retrieve secrets securely through IAM Roles or Kubernetes Service Accounts. Secrets are never stored in Git repositories or hardcoded in application code.
+
+---
+
+## 33. How would you design a disaster recovery strategy?
+
+### Answer
+
+I would deploy the application across multiple Availability Zones using Auto Scaling Groups and Load Balancers. Databases would use Amazon RDS Multi-AZ or cross-region replicas. Infrastructure would be recreated using Terraform, backups would be stored in S3, and disaster recovery drills would be performed regularly. Recovery objectives (RPO and RTO) would be defined based on business requirements.
+
+---
+
+## 34. How do you reduce cloud costs without affecting availability?
+
+### Answer
+
+I right-size EC2 instances, enable Auto Scaling, use Reserved Instances or Savings Plans for predictable workloads, leverage Spot Instances for non-critical workloads, remove unused EBS volumes and snapshots, configure S3 lifecycle policies, and continuously monitor costs using AWS Cost Explorer and CloudWatch. These optimizations reduce costs while maintaining high availability.
+
+---
+
+## 35. Explain one challenging production incident and how you resolved it.
+
+### Answer
+
+A production deployment completed successfully, but users continued seeing the old application version. I checked the Jenkins pipeline and confirmed the latest Docker image was pushed successfully. However, Kubernetes was still running Pods with the previous image because the deployment used the **latest** tag with an **IfNotPresent** image pull policy. I updated the deployment to use versioned image tags and set the appropriate image pull policy, then rolled out the deployment again. The new Pods pulled the correct image, and users immediately saw the updated application. After this incident, we standardized immutable image tagging in our CI/CD pipeline to prevent similar issues.
+
+---
+
+
+
 ## For local env variables and secrets, how to manage secrets centrally? Which is the free of cost or low cost option to centrally manage secrets for developers?
 
 ```
