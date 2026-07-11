@@ -1,0 +1,13 @@
+Explain the complete request flow from a browser to a Kubernetes pod.  
+
+1. The user types a domain (e.g., ://example.com). The browser queries DNS servers to find the external IP address associated with that domain. -->The request is directed to the load balancer configured in front of our Kubernetes cluster 
+ 
+2.Traffic reaches the cluster's ingress controller such as NGINX Ingress Controller --->The controller inspects the request's host header and path, then applies predefined routing rules to determine which internal service should handle the request. 
+
+3.The Ingress controller forwards the request to the target Kubernetes Service---->The Service provides a stable, virtual IP (ClusterIP). Depending on the Service type, it uses iptables or IPVS (IP Virtual Server) to distribute incoming connections across healthy pods. 
+
+4.To determine exactly which pods to route traffic to, the Service controller continuously checks the Kubernetes API to read the active list of EndpointSlices. 
+
+ 5.Once the specific Pod IP is selected, the request is handed over to the CNI (Container Network Interface) plugin (e.g., Calico, Cilium, Flannel) 
+ 
+6.The CNI routes the network packet through the host's virtual ethernet bridge (veth pair) directly into the target pod's isolated network namespace, where your application processes the request. 
