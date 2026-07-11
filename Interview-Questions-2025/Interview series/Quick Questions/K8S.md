@@ -1,3 +1,30 @@
+## Helm = apt for Kubernetes. That's it.
+
+Before Helm, deploying one app meant juggling 10+ YAML files manually. One wrong indent and your deployment breaks.
+
+Helm packages all of that into a single Chart — install, upgrade, rollback, done.
+
+apt install nginx        # Linux
+helm install my-nginx bitnami/nginx   # Kubernetes
+
+Same idea. Different world.
+
+3 files you actually care about:
+Chart.yaml → what this chart is
+
+ values.yaml → what you want to configure 
+
+templates/ → the actual Kubernetes manifests
+
+One Chart. Multiple Releases. Different configs, same base — that's the power.
+
+ Chart = the package 
+
+ Repository = the app store (Bitnami, Artifact Hub)
+ 
+ Release = what's running in your cluster
+-----------
+
 ## A pod is not starting in Kubernetes. How do you troubleshoot it?
 
 Answer: First, I check the pod status using:
