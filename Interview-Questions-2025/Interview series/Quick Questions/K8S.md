@@ -10,11 +10,12 @@ helm install my-nginx bitnami/nginx   # Kubernetes
 Same idea. Different world.
 
 3 files you actually care about:
-Chart.yaml → what this chart is
 
- values.yaml → what you want to configure 
+*Chart.yaml* → what this chart is
 
-templates/ → the actual Kubernetes manifests
+ *values.yaml* → what you want to configure 
+
+*templates/* → the actual Kubernetes manifests
 
 One Chart. Multiple Releases. Different configs, same base — that's the power.
 
@@ -22,7 +23,8 @@ One Chart. Multiple Releases. Different configs, same base — that's the power.
 
  Repository = the app store (Bitnami, Artifact Hub)
  
- Release = what's running in your cluster
+Release = what's running in your cluster
+
 -----------
 
 ## A pod is not starting in Kubernetes. How do you troubleshoot it?
