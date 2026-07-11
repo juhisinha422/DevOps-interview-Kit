@@ -1,0 +1,39 @@
+Round 1 at Thinkqloud. 
+
+Date: 4th July 2026
+
+Here are the exact questions asked 👇
+
+1. Introduce yourself
+
+2. Explain your project in detail
+
+3.  What is AWS and which services have you worked on?
+
+4. What is S3 and what are the different types of storage classes?
+
+5. What is Terraform? What are providers in Terraform?
+
+6.  How do you configure Terraform with AWS? Is there any other option to configure Terraform?
+
+7. What is a data source in Terraform?
+
+8. What is a Security Group?
+
+9. What is API Gateway?
+
+10. Give me the complete flow of CloudFront + S3 + API Gateway + Lambda Function (scenario based)
+
+11. What is a Lambda Function and where did you use it in your project?
+
+12. What is EKS? Which version of EKS did you use?
+
+13. How many workspaces did you manage in your project? (situation based)
+
+14.  How many members were in your project? Have you handled production?
+
+15. Were Dev, Stage and Production environments on the same account or different accounts?
+
+16. Which instance type did you use for your project?
+
+17.  What is a NAT Gateway? Where do we create a NAT Gateway?
