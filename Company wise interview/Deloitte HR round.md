@@ -794,3 +794,206 @@ The values I appreciate most are integrity, collaboration, continuous learning, 
 ### Answer
 
 I believe I will succeed because Deloitte values technical excellence, continuous learning, ownership, collaboration, and customer focus—all qualities that I strongly identify with. My experience in AWS, Kubernetes, Terraform, Jenkins, Docker, and production support, combined with my problem-solving mindset and willingness to learn, will help me contribute effectively while continuing to grow within the organization.
+
+
+# Deloitte India / USI / HashedIn - Additional HR Questions
+
+---
+
+## 76. What do you think is the biggest challenge a DevOps Engineer faces in a consulting company?
+
+### Answer
+
+I believe the biggest challenge is balancing technical excellence with client expectations. Every client has different environments, timelines, and business priorities. A DevOps Engineer must deliver reliable solutions while adapting to changing requirements, maintaining security, and ensuring minimal downtime.
+
+---
+
+## 77. How do you build trust with a new client?
+
+### Answer
+
+I build trust by understanding the client's requirements thoroughly, communicating transparently, meeting commitments, providing regular updates, and being honest about risks or limitations. Delivering consistent quality over time naturally builds credibility.
+
+---
+
+## 78. What would you do if you realized you made a mistake after deployment?
+
+### Answer
+
+I would immediately assess the impact, inform the relevant stakeholders, initiate rollback or corrective actions if required, and work on restoring the service. After resolution, I would perform an RCA, document the lessons learned, and implement preventive measures to avoid similar issues.
+
+---
+
+## 79. How do you ensure quality under tight deadlines?
+
+### Answer
+
+I prioritize critical validations, automate testing wherever possible, follow deployment checklists, and communicate risks early. Even under pressure, I avoid skipping essential quality and security checks because they protect production stability.
+
+---
+
+## 80. What does customer obsession mean to you?
+
+### Answer
+
+Customer obsession means understanding the business impact of every technical decision and always working towards improving the customer's experience. It involves proactive communication, quick issue resolution, and continuously improving system reliability.
+
+---
+
+## 81. Tell me about a time you had to learn from someone junior to you.
+
+### Answer
+
+In technology, learning is not dependent on experience. I have learned useful scripting techniques and Kubernetes troubleshooting approaches from junior teammates. I believe every team member can contribute valuable ideas.
+
+---
+
+## 82. If you disagree with a client's technical decision, how would you respond?
+
+### Answer
+
+I would respectfully explain the technical implications, discuss risks, present alternative approaches, and recommend the best solution based on facts. Ultimately, I would support the agreed decision while ensuring the client understands the trade-offs.
+
+---
+
+## 83. What would you do if you were assigned multiple high-priority tasks?
+
+### Answer
+
+I would prioritize based on business impact, production criticality, and deadlines. I would communicate with stakeholders, clarify priorities if necessary, and keep everyone informed about progress and potential risks.
+
+---
+
+## 84. How do you measure your own success?
+
+### Answer
+
+I measure success by the reliability of the systems I manage, the reduction in manual effort through automation, successful project deliveries, production stability, and positive feedback from both clients and team members.
+
+---
+
+## 85. What would your teammates say about you?
+
+### Answer
+
+I believe they would describe me as dependable, collaborative, calm during production issues, and someone who is always willing to help others solve technical problems.
+
+---
+
+## 86. What is one habit that makes you productive?
+
+### Answer
+
+I like planning my work at the beginning of the day, prioritizing tasks based on impact, documenting important activities, and automating repetitive work whenever possible.
+
+---
+
+## 87. How do you deal with changing priorities?
+
+### Answer
+
+I remain flexible and quickly reassess priorities based on business needs. I communicate changes with stakeholders, adjust my schedule, and focus on delivering the highest-value tasks first.
+
+---
+
+## 88. Have you ever mentored someone?
+
+### Answer
+
+Yes. I have helped new team members understand our CI/CD process, Kubernetes deployments, Terraform modules, and troubleshooting procedures by sharing documentation and providing hands-on guidance.
+
+---
+
+## 89. What would you do if you noticed an inefficient process?
+
+### Answer
+
+I would first understand why the process exists, identify improvement opportunities, discuss them with the team, and propose automation or process optimization while ensuring there is no impact on quality or compliance.
+
+---
+
+## 90. Describe your communication style.
+
+### Answer
+
+I prefer clear, concise, and transparent communication. I adjust my communication depending on the audience, using technical details with engineers and simpler business language when speaking with clients or management.
+
+---
+
+## 91. How do you ensure knowledge sharing within the team?
+
+### Answer
+
+I document important procedures, create runbooks, conduct knowledge-sharing sessions, and encourage collaborative troubleshooting so that knowledge is distributed across the team.
+
+---
+
+## 92. Have you ever challenged an existing process?
+
+### Answer
+
+Yes. I suggested automating manual deployment activities using Terraform and Jenkins, which reduced deployment time, improved consistency, and minimized manual errors.
+
+---
+
+## 93. What motivates you besides salary?
+
+### Answer
+
+Learning new technologies, solving challenging technical problems, working on impactful projects, and growing professionally motivate me much more than compensation alone.
+
+---
+
+## 94. What type of projects excite you the most?
+
+### Answer
+
+Cloud-native projects involving Kubernetes, AWS, Infrastructure as Code, automation, platform engineering, and large-scale DevOps implementations excite me because they provide continuous learning and technical challenges.
+
+---
+
+## 95. What is your approach to continuous learning?
+
+### Answer
+
+I regularly explore official documentation, build hands-on projects, follow cloud engineering communities, pursue certifications, and apply new knowledge in practical scenarios.
+
+---
+
+## 96. What would you do if project requirements changed suddenly?
+
+### Answer
+
+I would evaluate the impact, discuss revised priorities with stakeholders, estimate the additional effort, and adapt the implementation plan while ensuring transparency and realistic timelines.
+
+---
+
+## 97. What do you expect from your teammates?
+
+### Answer
+
+I value collaboration, accountability, respect, knowledge sharing, and a willingness to support each other in achieving common project goals.
+
+---
+
+## 98. What kind of feedback do you appreciate the most?
+
+### Answer
+
+I appreciate constructive feedback that is specific, actionable, and focused on helping me improve both technically and professionally.
+
+---
+
+## 99. How do you maintain work-life balance during critical projects?
+
+### Answer
+
+I prioritize tasks effectively, communicate proactively, plan my work carefully, and ensure I take short breaks when possible to remain productive and focused during demanding situations.
+
+---
+
+## 100. What does success at Deloitte mean to you?
+
+### Answer
+
+Success at Deloitte means becoming a trusted engineer who consistently delivers high-quality solutions, contributes to client success, mentors teammates, continuously learns new technologies, and grows into a leadership role while upholding Deloitte's values of integrity, collaboration, and excellence.
