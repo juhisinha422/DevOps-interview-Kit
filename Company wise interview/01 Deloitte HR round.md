@@ -402,6 +402,248 @@ I take ownership of my assigned work, communicate proactively, meet commitments,
 
 I bring relevant AWS DevOps experience, strong technical skills, an ownership mindset, and a commitment to continuous learning. I'm confident that I can contribute to Deloitte's projects while growing professionally within the organization.
 
+# Deloitte India HR (Ethics, Integrity & Consulting Questions)
+
+---
+
+## 71. What does integrity mean to you?
+
+### Answer
+
+Integrity means being honest, transparent, and accountable in every situation. It means admitting mistakes, protecting confidential information, following company policies, and doing the right thing even when no one is watching.
+
+---
+
+## 72. What would you do if you accidentally caused a production outage?
+
+### Answer
+
+I would immediately inform my manager and the relevant stakeholders, assess the impact, work with the team to restore the service as quickly as possible, and perform a detailed Root Cause Analysis (RCA). I believe in taking ownership rather than hiding mistakes.
+
+---
+
+## 73. What if your manager asks you to do something against company policy?
+
+### Answer
+
+I would respectfully discuss my concerns with my manager and explain why the action conflicts with company policies or compliance requirements. If needed, I would seek guidance through the appropriate internal channels while maintaining professionalism.
+
+---
+
+## 74. What would you do if you saw your teammate violating a security policy?
+
+### Answer
+
+I would first understand whether it was intentional or accidental. If it was accidental, I would inform them and help correct it. If it posed a serious security risk or violated company policies, I would report it through the appropriate process.
+
+---
+
+## 75. Have you ever made a mistake at work?
+
+### Answer
+
+Yes. Like every professional, I have made mistakes. Whenever it happened, I informed my team immediately, corrected the issue, learned from the experience, and implemented preventive measures to avoid similar situations in the future.
+
+---
+
+## 76. How do you handle confidential client information?
+
+### Answer
+
+Client confidentiality is extremely important. I strictly follow company security policies, use only approved systems, avoid sharing sensitive information unnecessarily, and ensure that client data is protected at all times.
+
+---
+
+## 77. If a client asks you to share internal company information, what will you do?
+
+### Answer
+
+I would politely explain that I can only share information that is authorized for client communication. If needed, I would consult my manager before providing any information.
+
+---
+
+## 78. Have you ever disagreed with your manager?
+
+### Answer
+
+Yes. Whenever I have a different opinion, I respectfully explain my perspective with technical reasoning while listening to my manager's viewpoint. Once a decision is made, I fully support it and work toward the team's success.
+
+---
+
+## 79. What if your teammate gets credit for your work?
+
+### Answer
+
+I believe project success is more important than individual recognition. If it becomes a recurring issue, I would discuss it professionally with my manager while maintaining a positive relationship with my teammate.
+
+---
+
+## 80. Have you ever worked with difficult clients?
+
+### Answer
+
+I've worked with stakeholders having different expectations. I focus on listening carefully, communicating clearly, setting realistic expectations, and providing regular updates to build trust.
+
+---
+
+## 81. What does client satisfaction mean to you?
+
+### Answer
+
+Client satisfaction means delivering reliable solutions, meeting commitments, communicating transparently, resolving issues quickly, and building long-term trust.
+
+---
+
+## 82. How do you ensure quality in your work?
+
+### Answer
+
+I follow established processes, validate changes thoroughly, review configurations, automate repetitive tasks, perform testing before deployment, and document important changes.
+
+---
+
+## 83. What if your client is angry during a production issue?
+
+### Answer
+
+I remain calm, acknowledge the client's concern, communicate the current status honestly, provide regular updates, and focus on restoring the service as quickly as possible.
+
+---
+
+## 84. What would you do if you don't know the answer during a client meeting?
+
+### Answer
+
+I would be honest and say that I'd like to verify the information before responding. I would then consult the relevant documentation or team members and provide an accurate answer as soon as possible.
+
+---
+
+## 85. Why consulting instead of a product company?
+
+### Answer
+
+Consulting provides exposure to diverse industries, enterprise-scale projects, global clients, and modern technologies. I enjoy solving different business challenges and continuously learning, which makes consulting an exciting career choice for me.
+
+---
+
+## 86. What does teamwork mean to you?
+
+### Answer
+
+Teamwork means collaborating effectively, respecting different viewpoints, sharing knowledge, supporting each other during challenges, and working together toward common goals.
+
+---
+
+## 87. What if you disagree with the client's technical decision?
+
+### Answer
+
+I would respectfully explain the advantages and risks of different approaches using technical facts. Ultimately, I would support the agreed decision while ensuring the client understands the implications.
+
+---
+
+## 88. How do you deal with constructive criticism?
+
+### Answer
+
+I welcome constructive feedback because it helps me improve. I listen carefully, understand the suggestions, and apply them to become a better engineer.
+
+---
+
+## 89. Are you comfortable working in a diverse team?
+
+### Answer
+
+Absolutely. I enjoy working with people from different backgrounds and cultures. Diversity brings different perspectives, improves collaboration, and leads to better solutions.
+
+---
+
+## 90. What does inclusion mean to you?
+
+### Answer
+
+Inclusion means ensuring every team member feels respected, heard, and valued regardless of their background, experience, or identity. A collaborative and inclusive environment helps everyone perform at their best.
+
+---
+
+## 91. Have you ever mentored someone?
+
+### Answer
+
+Yes. I've helped teammates understand deployment processes, troubleshoot technical issues, and shared knowledge on AWS and DevOps tools whenever needed.
+
+---
+
+## 92. How do you adapt to organizational changes?
+
+### Answer
+
+Technology changes rapidly, especially in DevOps. I stay flexible, learn new tools, adapt to new processes, and see change as an opportunity to grow professionally.
+
+---
+
+## 93. Are you comfortable using AI tools like ChatGPT in your work?
+
+### Answer
+
+Yes, where permitted by company policy. AI tools can improve productivity by helping with documentation, scripting ideas, troubleshooting guidance, and learning. However, I always validate outputs and never share confidential client information with external AI tools.
+
+---
+
+## 94. How do you maintain professionalism under pressure?
+
+### Answer
+
+I remain calm, prioritize tasks based on business impact, communicate regularly with stakeholders, and focus on resolving issues systematically rather than reacting emotionally.
+
+---
+
+## 95. If you discover a security vulnerability before deployment, but fixing it delays the release, what would you do?
+
+### Answer
+
+Security should never be compromised for speed. I would immediately communicate the issue, assess its severity with the team, fix the vulnerability, and proceed with deployment only after ensuring the application is secure.
+
+---
+
+## 96. What are Deloitte's core values, and which one resonates most with you?
+
+### Answer
+
+Deloitte emphasizes integrity, commitment to clients, respect for individuals, fostering inclusion, and delivering outstanding value. The value that resonates most with me is **integrity**, because I believe trust is the foundation of every successful client relationship.
+
+---
+
+## 97. Why do you want to work in consulting?
+
+### Answer
+
+Consulting offers exposure to different industries, challenging projects, modern technologies, and opportunities to solve complex business problems. I enjoy learning continuously and believe consulting provides an excellent environment for professional growth.
+
+---
+
+## 98. What if you are asked to work with a technology you've never used before?
+
+### Answer
+
+I'm always willing to learn. I would study the official documentation, practice in a lab environment, seek guidance from experienced colleagues, and quickly become productive.
+
+---
+
+## 99. What kind of impact do you want to create at Deloitte?
+
+### Answer
+
+I want to contribute by building reliable cloud infrastructure, improving automation, reducing deployment time, enhancing production stability, and supporting teams through collaboration and continuous learning.
+
+---
+
+## 100. Why should Deloitte trust you with enterprise production systems?
+
+### Answer
+
+I understand the responsibility of managing production environments. I follow change management processes, validate deployments carefully, communicate proactively, prioritize customer impact, and always take ownership of my work. I believe these qualities make me a reliable engineer for enterprise-scale production systems.
+
 # Deloitte India HR - Salary & Negotiation Questions
 
 ---
