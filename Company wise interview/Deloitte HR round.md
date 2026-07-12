@@ -240,6 +240,167 @@ I communicate clearly, provide regular updates, listen actively, ask questions w
 
 I'm passionate about DevOps and cloud technologies, enjoy continuous learning, and genuinely look forward to contributing to Deloitte's engineering teams while growing professionally.
 
+# Deloitte India HR (Final Round) – Additional Expected Questions
+
+---
+
+## 51. Why are you changing your job now?
+
+### Answer
+
+I've had a great learning experience at TCS and I'm grateful for the opportunities I've received. At this stage of my career, I'm looking for more challenging cloud-native projects, greater ownership, exposure to global clients, and opportunities to work with modern DevOps practices. I believe Deloitte provides the right environment for my next career step.
+
+---
+
+## 52. What if your manager asks you to stay?
+
+### Answer
+
+I respect my manager and the organization, but my decision to explore new opportunities is based on long-term career goals rather than short-term factors. I would complete my transition professionally and move forward with my career plans.
+
+---
+
+## 53. Why should we believe you won't leave Deloitte in a year?
+
+### Answer
+
+I'm looking for a long-term opportunity, not just a salary increase. My goal is to work on challenging projects, learn continuously, and grow within the organization. If Deloitte provides those opportunities, I see myself building my career here.
+
+---
+
+## 54. If we don't have an AWS project immediately, will you still join?
+
+### Answer
+
+Yes. My core expertise is AWS DevOps, but I'm also comfortable working with Kubernetes, CI/CD, Linux, Terraform, automation, and other cloud technologies. I'm always willing to learn and adapt based on project requirements.
+
+---
+
+## 55. Are you comfortable working with international clients?
+
+### Answer
+
+Yes. I'm comfortable communicating with global teams and understand the importance of professionalism, timely communication, and collaboration in client-facing environments.
+
+---
+
+## 56. What if you don't like your assigned project?
+
+### Answer
+
+I understand project allocation depends on business requirements. I believe every project offers learning opportunities, so I'll give my best and contribute professionally while continuously building my skills.
+
+---
+
+## 57. How do you handle difficult stakeholders?
+
+### Answer
+
+I focus on listening carefully, understanding their concerns, communicating transparently, and proposing practical solutions. My goal is to build trust through professionalism and consistent delivery.
+
+---
+
+## 58. Are you okay with frequent client meetings?
+
+### Answer
+
+Yes. Client interaction is an important part of consulting. I'm comfortable discussing technical updates, explaining solutions clearly, and collaborating with clients.
+
+---
+
+## 59. What if your project requires learning a completely new technology?
+
+### Answer
+
+I'm always open to learning. In DevOps, technologies evolve rapidly, so adapting to new tools is part of the job. I usually start with official documentation, hands-on practice, and guidance from experienced teammates to become productive quickly.
+
+---
+
+## 60. Suppose you're given a task outside your comfort zone. What will you do?
+
+### Answer
+
+I'll first understand the requirements, research the technology, seek guidance where necessary, and work through the task systematically. I see unfamiliar tasks as opportunities to grow.
+
+---
+
+## 61. How do you handle failure?
+
+### Answer
+
+I view failures as learning opportunities. I analyze what went wrong, identify the root cause, implement corrective actions, and apply those lessons to future projects.
+
+---
+
+## 62. What's the biggest challenge you've faced in your career?
+
+### Answer
+
+One of the biggest challenges was handling production deployment issues under tight timelines. The experience taught me the importance of structured troubleshooting, clear communication, teamwork, and maintaining composure under pressure.
+
+---
+
+## 63. What kind of recognition motivates you?
+
+### Answer
+
+I appreciate constructive feedback and recognition for meaningful contributions. However, my biggest motivation comes from solving complex problems and delivering value to the business.
+
+---
+
+## 64. What would your teammates say about your work ethic?
+
+### Answer
+
+They would describe me as dependable, collaborative, calm under pressure, and someone who takes ownership of tasks from start to finish.
+
+---
+
+## 65. If selected today, what will be your immediate priority?
+
+### Answer
+
+My immediate priority would be understanding the project, the team's processes, the existing infrastructure, and contributing to ongoing work as quickly as possible.
+
+---
+
+## 66. Do you prefer working independently or in a team?
+
+### Answer
+
+I'm comfortable with both. I can work independently when required, but I enjoy collaborating with teams because it encourages knowledge sharing and leads to better solutions.
+
+---
+
+## 67. What if your client is unhappy even after you resolve the issue?
+
+### Answer
+
+I would listen carefully to understand their remaining concerns, explain the resolution transparently, gather feedback, and work with the team to ensure the client regains confidence in our service.
+
+---
+
+## 68. What is your biggest professional achievement?
+
+### Answer
+
+One of my biggest achievements has been automating infrastructure provisioning and deployment processes using Terraform, Jenkins, and Kubernetes, which reduced manual effort, improved deployment consistency, and increased operational efficiency.
+
+---
+
+## 69. How do you ensure accountability?
+
+### Answer
+
+I take ownership of my assigned work, communicate proactively, meet commitments, and ensure timely updates to stakeholders. If challenges arise, I escalate them early and focus on resolving them effectively.
+
+---
+
+## 70. Why should Deloitte hire you today?
+
+### Answer
+
+I bring relevant AWS DevOps experience, strong technical skills, an ownership mindset, and a commitment to continuous learning. I'm confident that I can contribute to Deloitte's projects while growing professionally within the organization.
 
 # Deloitte India HR - Salary & Negotiation Questions
 
