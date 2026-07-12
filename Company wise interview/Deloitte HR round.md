@@ -997,3 +997,662 @@ I prioritize tasks effectively, communicate proactively, plan my work carefully,
 ### Answer
 
 Success at Deloitte means becoming a trusted engineer who consistently delivers high-quality solutions, contributes to client success, mentors teammates, continuously learns new technologies, and grows into a leadership role while upholding Deloitte's values of integrity, collaboration, and excellence.
+
+
+# Deloitte India - Director/Manager Round (Expected Questions)
+
+---
+
+## 101. Why should we choose you over another candidate with similar technical skills?
+
+### Answer
+
+Technical skills can be learned, but ownership, adaptability, communication, and problem-solving make a real difference. Along with hands-on experience in AWS, Kubernetes, Terraform, Jenkins, Docker, and CI/CD, I take ownership of production issues, collaborate well with cross-functional teams, and continuously look for opportunities to automate and improve processes. I believe these qualities will help me contribute effectively from day one.
+
+---
+
+## 102. If your client rejects your solution, what will you do?
+
+### Answer
+
+I would first understand the client's concerns instead of defending my solution immediately. I would ask questions, understand their business expectations, evaluate alternative approaches, and recommend the best solution based on technical feasibility and business impact. My goal would be to find a solution that satisfies both technical and business requirements.
+
+---
+
+## 103. Have you ever disagreed with an architect?
+
+### Answer
+
+Yes. Technical discussions are common in engineering teams. Whenever I disagree, I present my reasoning with supporting data, discuss the pros and cons of different approaches, and remain open to feedback. Even if my suggestion isn't selected, I fully support the team's final decision.
+
+---
+
+## 104. If you become a manager after two years, what would you change?
+
+### Answer
+
+I would focus on improving knowledge sharing, increasing automation, reducing manual operational effort, encouraging regular technical discussions, and mentoring junior engineers. I believe investing in people and automation leads to better project outcomes.
+
+---
+
+## 105. How do you define success for a DevOps Engineer?
+
+### Answer
+
+A successful DevOps Engineer delivers reliable deployments, minimizes downtime, automates repetitive tasks, improves deployment speed, enhances security, and enables developers to deliver software faster without compromising quality.
+
+---
+
+## 106. What are your career goals?
+
+### Answer
+
+My short-term goal is to strengthen my expertise in AWS, Kubernetes, DevSecOps, and Platform Engineering. My long-term goal is to become a Cloud Architect or DevOps Technical Lead, contributing to enterprise-scale cloud transformation projects.
+
+---
+
+## 107. Why consulting instead of a product company?
+
+### Answer
+
+Consulting provides exposure to different industries, cloud architectures, and business challenges. It offers continuous learning and the opportunity to solve diverse technical problems, which aligns well with my career goals.
+
+---
+
+## 108. Suppose your client calls you at midnight due to a production outage. What will you do?
+
+### Answer
+
+I understand that production issues require immediate attention. I would quickly assess the incident, restore service by following standard incident management procedures, communicate progress regularly, and perform a Root Cause Analysis after the issue is resolved.
+
+---
+
+## 109. Have you ever made a decision with incomplete information?
+
+### Answer
+
+Yes. During production incidents, complete information isn't always immediately available. In such situations, I assess available evidence, minimize business impact, take the safest possible action, and continuously adjust the approach as more information becomes available.
+
+---
+
+## 110. What does accountability mean to you?
+
+### Answer
+
+Accountability means taking responsibility for both successes and failures, communicating transparently, delivering commitments, and ensuring issues are resolved completely rather than shifting responsibility to others.
+
+---
+
+## 111. If you receive two production incidents simultaneously, which one will you handle first?
+
+### Answer
+
+I prioritize based on business impact, customer impact, and severity. The incident affecting critical customer-facing applications or revenue-generating services receives immediate attention, while I coordinate team members to investigate the second issue simultaneously.
+
+---
+
+## 112. What if your teammate continuously misses deadlines?
+
+### Answer
+
+I would first understand whether the issue is technical, workload-related, or personal. I would offer support where possible and encourage collaboration. If the issue continues despite support, I would discuss it with the manager professionally.
+
+---
+
+## 113. What would you do if you found a security vulnerability before release?
+
+### Answer
+
+I would immediately report it, assess its severity, stop the production deployment if necessary, work with the security and development teams to fix it, validate the solution, and only proceed once the application meets security standards.
+
+---
+
+## 114. How do you deal with uncertainty?
+
+### Answer
+
+I gather as much information as possible, break the problem into smaller tasks, communicate regularly with stakeholders, and make decisions based on available facts while remaining flexible if new information emerges.
+
+---
+
+## 115. If you get this job, what value will you add in the first six months?
+
+### Answer
+
+I aim to quickly understand the existing environment, contribute to infrastructure automation, improve CI/CD pipelines, optimize deployments, reduce manual effort, support production stability, and identify opportunities for automation and cost optimization.
+
+---
+
+## 116. How would you represent Deloitte in front of a client?
+
+### Answer
+
+I would represent Deloitte by maintaining professionalism, integrity, transparency, and technical excellence. I would communicate clearly, understand client needs, provide practical solutions, and always act in the client's best interest while maintaining Deloitte's quality standards.
+
+---
+
+## 117. If your manager gives negative feedback during appraisal, how will you react?
+
+### Answer
+
+I would listen carefully, understand the feedback objectively, ask for specific improvement areas, create an action plan, and work consistently to improve. I see constructive feedback as an opportunity for growth.
+
+---
+
+## 118. Tell me about a decision you regret.
+
+### Answer
+
+Early in my career, I once underestimated the effort required for an automation task, resulting in a delayed delivery. Since then, I spend more time understanding dependencies, discussing risks early, and providing realistic estimates.
+
+---
+
+## 119. What are Deloitte's core values?
+
+### Answer
+
+Deloitte emphasizes Integrity, Commitment to Each Other, Outstanding Value to Clients, Strength from Cultural Diversity, and Continuous Learning and Innovation. These values encourage ethical behavior, teamwork, client focus, and professional excellence.
+
+---
+
+## 120. Is there anything else you'd like us to know about you?
+
+### Answer
+
+I am passionate about DevOps and cloud technologies. Beyond my daily work, I actively build hands-on projects, continuously learn new technologies, and enjoy solving challenging infrastructure problems. I believe my technical skills, ownership mindset, and willingness to learn make me a strong fit for Deloitte.
+
+
+# Deloitte India HR Interview Questions (Final Set)
+
+---
+
+## 121. Why do you think you'll stay at Deloitte for a long time?
+
+### Answer
+
+I am looking for long-term career growth rather than just a job change. Deloitte offers opportunities to work on global projects, modern cloud technologies, continuous learning, and career progression. These align with my long-term goals, so I see myself growing within the organization.
+
+---
+
+## 122. What would make you leave Deloitte?
+
+### Answer
+
+I believe in long-term commitments. As long as I continue learning, contributing, and growing professionally while working on challenging projects, I don't see a reason to leave.
+
+---
+
+## 123. What does a good work environment mean to you?
+
+### Answer
+
+A good work environment encourages collaboration, learning, respect, transparency, and innovation. I enjoy working in teams where knowledge is shared openly, feedback is valued, and everyone works towards common goals.
+
+---
+
+## 124. How do you react when your idea is rejected?
+
+### Answer
+
+I respect the team's decision and try to understand the reasoning behind it. If another approach is chosen, I fully support it because the project's success is more important than proving my idea is right.
+
+---
+
+## 125. How do you handle criticism from a client?
+
+### Answer
+
+I listen carefully without becoming defensive, understand the client's concerns, acknowledge valid feedback, and work towards improving the solution. Constructive criticism helps deliver better results.
+
+---
+
+## 126. Have you ever gone beyond your responsibilities?
+
+### Answer
+
+Yes. During production incidents, I have often coordinated with developers, infrastructure teams, and application support even when the issue wasn't directly assigned to me. My priority is restoring service as quickly as possible.
+
+---
+
+## 127. What do you expect from your manager?
+
+### Answer
+
+I expect clear communication, regular feedback, support during challenging situations, and opportunities to learn and grow professionally.
+
+---
+
+## 128. What type of manager is difficult for you?
+
+### Answer
+
+I can work with different management styles. However, I believe clear communication and constructive feedback help teams perform better than micromanagement.
+
+---
+
+## 129. Are you comfortable receiving frequent feedback?
+
+### Answer
+
+Yes. Regular feedback helps me improve continuously. I appreciate constructive suggestions because they help me become a better engineer.
+
+---
+
+## 130. How do you define teamwork?
+
+### Answer
+
+Teamwork means supporting each other, sharing knowledge, respecting different opinions, and working towards a common objective instead of focusing on individual success.
+
+---
+
+## 131. Have you ever failed to meet expectations?
+
+### Answer
+
+There have been situations where tasks took longer than expected due to unforeseen dependencies. I communicated proactively, revised the plan with my manager, and ensured successful completion while improving future estimations.
+
+---
+
+## 132. What are you most proud of professionally?
+
+### Answer
+
+I am proud of automating infrastructure provisioning and deployment processes, which reduced manual effort, improved deployment consistency, and increased overall operational efficiency.
+
+---
+
+## 133. How do you stay calm under pressure?
+
+### Answer
+
+I focus on facts, prioritize tasks based on impact, communicate regularly, and solve one problem at a time instead of reacting emotionally.
+
+---
+
+## 134. If you receive an offer today, why should we believe you'll join?
+
+### Answer
+
+I have applied because Deloitte aligns with my long-term career goals. My decision is based on learning opportunities, project exposure, and career growth rather than only compensation.
+
+---
+
+## 135. What are you looking for in your next role?
+
+### Answer
+
+I'm looking for technically challenging projects, opportunities to work with modern cloud technologies, exposure to global clients, and an environment that encourages continuous learning and innovation.
+
+---
+
+## 136. How do you handle repetitive work?
+
+### Answer
+
+If a task is repetitive, I first complete it accurately and then look for opportunities to automate it using scripts or DevOps tools to improve efficiency.
+
+---
+
+## 137. Describe yourself in three words.
+
+### Answer
+
+**Reliable, Adaptable, and Curious.**
+
+---
+
+## 138. What do you do outside work?
+
+### Answer
+
+I spend time learning new cloud technologies, working on personal DevOps projects, preparing for certifications, reading technical blogs, and contributing to my GitHub repositories.
+
+---
+
+## 139. What are your salary expectations?
+
+### Answer
+
+I am looking for a compensation package that is aligned with my experience, skills, and current market standards. However, my priority is finding the right role with good learning opportunities and career growth.
+
+---
+
+## 140. Is there anything you would like to ask us?
+
+### Answer
+
+Yes.
+
+- What will be my day-to-day responsibilities?
+- What technologies does the team currently use?
+- What are the expectations from this role during the first six months?
+- How is success measured in this position?
+- What learning and certification opportunities does Deloitte provide?
+
+# Deloitte India / HashedIn HR Interview Questions (Expected)
+
+---
+
+## 1. Why did you choose DevOps instead of Software Development?
+
+### Answer
+
+I enjoy building systems that automate software delivery rather than developing individual application features. DevOps allows me to work across cloud infrastructure, CI/CD, Kubernetes, automation, monitoring, and production reliability, which matches my interests and strengths. I like solving operational challenges and improving the software delivery lifecycle.
+
+---
+
+## 2. What would your previous manager say is one area you need to improve?
+
+### Answer
+
+My manager would probably say that I sometimes spend extra time analyzing complex production issues before implementing a solution. While this helps identify the root cause, I have learned to balance analysis with timely decision-making by prioritizing business impact and communicating progress regularly.
+
+---
+
+## 3. If you had unlimited resources, what would you automate first?
+
+### Answer
+
+I would automate the complete software delivery lifecycle—from infrastructure provisioning and security scanning to deployment, monitoring, auto-remediation, and rollback. This would reduce manual effort, improve consistency, and increase deployment reliability.
+
+---
+
+## 4. What is the hardest decision you've made at work?
+
+### Answer
+
+One of the hardest decisions was recommending a production rollback after a deployment introduced application instability. Although the deployment had completed successfully, restoring service quickly was more important than trying to fix the issue in production. The rollback minimized customer impact, and we later resolved the issue safely.
+
+---
+
+## 5. Tell me about a time you had to say "No."
+
+### Answer
+
+A developer requested skipping certain validation steps to deploy quickly before a deadline. I explained the production risks, recommended completing the mandatory validation first, and proposed an optimized deployment plan. Although it delayed the deployment slightly, it prevented potential production issues.
+
+---
+
+## 6. Have you ever received negative feedback from a client? How did you handle it?
+
+### Answer
+
+Yes. During one release, a deployment took longer than expected, and the client was unhappy about the delay. I acknowledged the concern, explained the technical reason, provided regular progress updates, and ensured the issue was resolved quickly. Afterward, we improved our deployment planning to avoid similar delays.
+
+---
+
+## 7. What does integrity mean to you?
+
+### Answer
+
+Integrity means being honest, transparent, and accountable. It means admitting mistakes, communicating risks openly, protecting customer data, and always doing the right thing even when no one is watching.
+
+---
+
+## 8. If your promotion is delayed, how would you react?
+
+### Answer
+
+While promotions are important, my primary focus is continuous learning and delivering value. I would seek constructive feedback, understand the expectations, work on the improvement areas, and continue performing consistently.
+
+---
+
+## 9. What keeps you motivated during repetitive work?
+
+### Answer
+
+I see repetitive work as an opportunity for automation. Whenever I notice recurring manual tasks, I look for ways to automate them using scripts, Terraform, Jenkins, or other DevOps tools. This improves efficiency and reduces manual effort.
+
+---
+
+## 10. How do you earn the trust of a new team?
+
+### Answer
+
+I build trust by delivering quality work consistently, communicating openly, helping team members whenever possible, meeting commitments, and taking ownership of my responsibilities. Trust is earned through actions rather than words.
+
+---
+
+## 11. What would you do if your manager disagreed with your approach?
+
+### Answer
+
+I would explain my reasoning with facts and technical evidence while listening carefully to my manager's perspective. If the final decision is different, I would fully support it and focus on delivering the best outcome for the project.
+
+---
+
+## 12. How do you handle stress?
+
+### Answer
+
+I stay calm by breaking the problem into smaller tasks, prioritizing based on business impact, and focusing on one issue at a time. During production incidents, clear communication and a structured troubleshooting approach help me manage stress effectively.
+
+---
+
+## 13. What kind of company are you looking for?
+
+### Answer
+
+I'm looking for a company that values continuous learning, innovation, collaboration, and ownership. I want to work on modern cloud technologies, challenging projects, and contribute to meaningful engineering solutions, which is why Deloitte is an excellent fit.
+
+---
+
+## 14. What would make you reject our offer?
+
+### Answer
+
+My priority is career growth, learning opportunities, challenging projects, and a positive work environment. Compensation is important, but it is not the only factor in my decision.
+
+---
+
+## 15. How do you define success?
+
+### Answer
+
+Success means continuously learning, delivering high-quality solutions, earning the trust of my team and clients, and contributing to business goals through automation, reliability, and innovation.
+
+---
+
+## 16. Why should we trust you with client-facing responsibilities?
+
+### Answer
+
+I have experience working with cross-functional teams, supporting production environments, and communicating technical issues clearly. I understand the importance of professionalism, accountability, and timely communication while working with clients.
+
+---
+
+## 17. What would you do if you joined Deloitte and your project used technologies you've never worked with?
+
+### Answer
+
+I would first understand the project requirements, study the official documentation, complete hands-on practice, seek guidance from experienced teammates, and quickly become productive. Learning new technologies is an essential part of being a DevOps Engineer.
+
+---
+
+## 18. What is your biggest professional value?
+
+### Answer
+
+Ownership. I believe in taking responsibility from start to finish, whether it's a deployment, production issue, or automation task. I don't stop at identifying problems—I focus on resolving them and preventing them from happening again.
+
+---
+
+## 19. Why Deloitte instead of another MNC?
+
+### Answer
+
+Deloitte offers exposure to global clients, modern cloud technologies, and large-scale digital transformation projects. I also appreciate Deloitte's strong learning culture, engineering excellence, and opportunities for long-term career growth, which align well with my goals.
+
+---
+
+## 20. Is there anything else you would like us to know?
+
+### Answer
+
+Yes. I'm genuinely passionate about DevOps and cloud technologies. Beyond my professional work, I continuously improve my skills through hands-on projects, certifications, and learning new tools. I'm eager to contribute, learn, and grow as part of Deloitte's engineering team.
+
+
+# Deloitte India / HashedIn - HR Curveball Questions
+
+---
+
+## 1. Why did you choose DevOps instead of Software Development?
+
+### Answer
+
+I enjoy building platforms and automating software delivery rather than developing individual application features. DevOps allows me to work across infrastructure, cloud, CI/CD, Kubernetes, automation, security, and monitoring. I find it satisfying to improve deployment speed, system reliability, and developer productivity. That's why I chose DevOps as my long-term career.
+
+---
+
+## 2. What would your previous manager say is one area you need to improve?
+
+### Answer
+
+My manager would probably say that I sometimes spend extra time analyzing production issues before taking action because I like understanding the root cause. Over time, I've learned to balance analysis with quick decision-making by restoring service first and then performing detailed RCA afterward.
+
+---
+
+## 3. If you had unlimited resources, what would you automate first?
+
+### Answer
+
+I would automate the complete software delivery lifecycle—from infrastructure provisioning and security scanning to deployment, monitoring, auto-healing, rollback, and compliance reporting. This would reduce manual effort, improve reliability, and allow engineers to focus more on innovation.
+
+---
+
+## 4. What is the hardest decision you've made at work?
+
+### Answer
+
+One difficult decision was recommending a rollback immediately after a production deployment. Although the deployment itself had succeeded technically, users started experiencing application issues. Instead of trying to fix it in production, I recommended rolling back to restore service quickly. Customer impact is always more important than trying to prove a deployment successful.
+
+---
+
+## 5. Tell me about a time you had to say "No."
+
+### Answer
+
+A developer requested bypassing certain deployment validation checks to meet a tight deadline. I explained the production risks, recommended completing the essential validations first, and proposed optimizing other steps instead. Although it delayed the deployment slightly, it prevented potential production issues.
+
+---
+
+## 6. Have you ever received negative feedback from a client? How did you handle it?
+
+### Answer
+
+Yes. During one deployment, the maintenance window exceeded the estimated duration, and the client was understandably unhappy. I acknowledged the concern, communicated progress transparently, ensured the issue was resolved, and later helped improve deployment planning to provide more accurate timelines in future releases.
+
+---
+
+## 7. What does integrity mean to you?
+
+### Answer
+
+Integrity means doing the right thing even when nobody is watching. It means being honest about mistakes, communicating risks openly, protecting customer data, and never compromising security or quality for short-term convenience.
+
+---
+
+## 8. If your promotion is delayed, how would you react?
+
+### Answer
+
+While promotions are important, my primary focus is continuous learning and improving my technical skills. If my promotion is delayed, I would seek constructive feedback, understand what is expected from me, work on those areas, and continue contributing consistently.
+
+---
+
+## 9. What keeps you motivated during repetitive work?
+
+### Answer
+
+Repetitive work motivates me to automate it. Whenever I notice manual repetitive tasks, I look for opportunities to automate them using scripts, Jenkins, Terraform, or other DevOps tools. This not only saves time but also reduces manual errors.
+
+---
+
+## 10. How do you earn the trust of a new team?
+
+### Answer
+
+I earn trust by being reliable, delivering work on time, communicating transparently, helping teammates whenever possible, and taking ownership during challenging situations. Trust is built through consistent actions rather than promises.
+
+---
+
+## 11. If your teammate is technically stronger than you, how would you react?
+
+### Answer
+
+I would see it as an opportunity to learn. Every team member has different strengths, and I believe collaborating with experienced colleagues helps everyone grow. I never hesitate to ask questions or learn from others.
+
+---
+
+## 12. If your manager asks you to work over the weekend, what will you do?
+
+### Answer
+
+If it is due to a critical production issue or an important business requirement, I am willing to support the team. At the same time, I believe proper planning should minimize such situations, and maintaining a healthy work-life balance is important for long-term productivity.
+
+---
+
+## 13. Suppose you and another employee deserve a promotion, but only one gets it. What will you do?
+
+### Answer
+
+I would congratulate my colleague and seek constructive feedback from my manager to understand what I can improve. I believe career growth is a continuous journey, and I would use the feedback to prepare for future opportunities.
+
+---
+
+## 14. If you realize your manager has made a technical mistake, what will you do?
+
+### Answer
+
+I would respectfully discuss my observations with supporting facts and technical reasoning. My intention would be to help avoid risks, not to prove someone wrong. If the final decision remains unchanged, I would support it professionally.
+
+---
+
+## 15. If your client asks you something you don't know, what will you say?
+
+### Answer
+
+I would never guess or provide incorrect information. I would honestly say that I need to verify the details, consult the relevant documentation or team if required, and get back with an accurate answer. Transparency builds trust.
+
+---
+
+## 16. What if another company offers you 30% more salary after joining Deloitte?
+
+### Answer
+
+Compensation is important, but my long-term decision depends on learning opportunities, project quality, career growth, and work culture. If Deloitte continues to provide challenging work and growth, I would prioritize long-term development over short-term financial gains.
+
+---
+
+## 17. What is one professional habit you want to improve?
+
+### Answer
+
+I want to become even better at delegation and mentoring. As I progress in my career, I want to spend more time helping junior engineers while ensuring efficient knowledge sharing within the team.
+
+---
+
+## 18. If your client blames you for something you didn't do, how will you react?
+
+### Answer
+
+I would remain calm, avoid becoming defensive, collect the relevant facts, explain the situation professionally, and focus on resolving the issue. My priority would always be solving the client's problem rather than assigning blame.
+
+---
+
+## 19. What would make you unhappy at work?
+
+### Answer
+
+A lack of learning opportunities or an environment where innovation and collaboration are discouraged would reduce my motivation. I enjoy working on challenging projects where I can continuously improve my skills and contribute meaningfully.
+
+---
+
+## 20. If we don't select you today, what will you do?
+
+### Answer
+
+I would appreciate the opportunity to interview, request feedback if possible, work on my improvement areas, continue enhancing my skills, and apply again in the future. Every interview is a learning experience that helps me grow professionally.
+
+---
