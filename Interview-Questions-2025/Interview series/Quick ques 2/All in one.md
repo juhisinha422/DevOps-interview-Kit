@@ -1,3 +1,186 @@
+# DevOps Engineer Interview Questions (4 Years Experience)
+
+---
+
+# 1. How does a request flow from a browser to a Kubernetes Pod?
+
+### Answer
+
+When a user enters a URL, the browser queries DNS (Route 53) to resolve the domain name. The request reaches the Application Load Balancer (ALB), which forwards it to the Kubernetes Ingress Controller. The Ingress matches the host or path rules and routes the request to the appropriate Kubernetes Service. The Service uses kube-proxy to load balance traffic to one of the healthy Pods. The Pod processes the request, communicates with backend services if needed, and returns the response back through the same path.
+
+---
+
+# 2. What happens internally when you run a Docker container?
+
+### Answer
+
+When `docker run` is executed, Docker checks if the image exists locally. If not, it pulls it from the registry. Docker creates a writable container layer on top of the image, sets up namespaces and cgroups for isolation, configures networking and volumes, executes the ENTRYPOINT and CMD instructions, and starts the application process. Once the main process starts successfully, the container enters the Running state.
+
+---
+
+# 3. How does Kubernetes decide which node should run a Pod?
+
+### Answer
+
+The Kubernetes Scheduler evaluates all worker nodes and selects the most suitable one based on available CPU and memory, resource requests, node labels, taints and tolerations, node affinity, pod affinity/anti-affinity, and scheduling policies. After selecting a node, kubelet receives the Pod specification, pulls the image, and starts the container.
+
+---
+
+# 4. Difference between Readiness, Liveness, and Startup Probes.
+
+### Answer
+
+**Readiness Probe** checks whether the application is ready to receive traffic. If it fails, the Pod is removed from the Service endpoints.
+
+**Liveness Probe** checks whether the application is still healthy. If it fails repeatedly, Kubernetes restarts the container.
+
+**Startup Probe** is used for slow-starting applications. It disables Readiness and Liveness checks until the application has fully started, preventing unnecessary restarts.
+
+---
+
+# 5. Why would a Pod be Running but the application still be unavailable?
+
+### Answer
+
+A Pod can be Running while the application is unavailable due to failed Readiness Probes, incorrect Service selectors, missing Service Endpoints, application startup failures, database connectivity issues, ConfigMap or Secret misconfiguration, Ingress routing problems, or Load Balancer health check failures. I verify each layer systematically to identify the root cause.
+
+---
+
+# 6. Explain the complete lifecycle of a CI/CD pipeline from commit to production.
+
+### Answer
+
+Developers commit code to GitHub, triggering Jenkins via webhook. Jenkins checks out the code, builds it using Maven, runs unit tests, performs SonarQube analysis, builds a Docker image, scans it for vulnerabilities, pushes it to Amazon ECR, and deploys it to Amazon EKS using Helm or Kubernetes manifests. Post-deployment, health checks and smoke tests are executed. If successful, the deployment is completed; otherwise, the pipeline stops and alerts the team.
+
+---
+
+# 7. How does Terraform build and execute its dependency graph?
+
+### Answer
+
+Terraform analyzes resource references to automatically create a dependency graph. Resources without dependencies are created in parallel, while dependent resources are created in the correct order. If required, explicit dependencies can be defined using the `depends_on` argument.
+
+---
+
+# 8. What is Terraform Drift, and how do you handle it?
+
+### Answer
+
+Terraform Drift occurs when infrastructure is modified manually outside Terraform. I detect drift using `terraform plan`, which compares the Terraform state with the actual infrastructure. If the manual change is valid, I update the Terraform code. Otherwise, I run `terraform apply` to restore the desired state.
+
+---
+
+# 9. How does Terraform state locking work with S3 and DynamoDB?
+
+### Answer
+
+Terraform stores the state file in an Amazon S3 bucket. Before modifying the infrastructure, Terraform creates a lock entry in DynamoDB. While the lock exists, no other user or pipeline can update the same state file. Once the operation completes successfully, the lock is released automatically, preventing concurrent updates and state corruption.
+
+---
+
+# 10. How do you design reusable Terraform modules for enterprise projects?
+
+### Answer
+
+I create separate modules for resources such as VPC, EC2, IAM, Security Groups, EKS, and RDS. Common logic is placed inside modules, while environment-specific values are passed through variables or `.tfvars` files. Each environment maintains its own backend and state file. This approach reduces code duplication, improves consistency, and simplifies maintenance across Development, QA, UAT, and Production.
+
+---
+
+# 11. Explain the difference between Rolling, Blue-Green, and Canary deployments.
+
+### Answer
+
+**Rolling Deployment** gradually replaces old Pods with new ones without downtime. It is simple and is Kubernetes' default deployment strategy.
+
+**Blue-Green Deployment** maintains two identical environments. The new version is deployed to the Green environment while Blue serves production traffic. Once validated, traffic is switched to Green, providing instant rollback if needed.
+
+**Canary Deployment** releases the new version to a small percentage of users first (e.g., 5–10%). After monitoring for issues, traffic is gradually increased until all users are on the new version.
+
+I generally use Rolling Deployments for regular releases, Blue-Green for critical production deployments requiring instant rollback, and Canary for high-risk changes where gradual exposure reduces business impact.
+
+---
+
+# 12. How would you implement a zero-downtime deployment?
+
+### Answer
+
+I ensure multiple replicas of the application are running and configure proper Readiness and Liveness Probes. During deployment, Kubernetes waits for new Pods to become Ready before terminating old Pods. For critical applications, I prefer Blue-Green deployment, where the new environment is fully validated before switching traffic through the Load Balancer or Kubernetes Service. If any issue occurs, traffic can immediately be redirected to the previous version without downtime.
+
+---
+
+# 13. How do you secure secrets across CI/CD, Kubernetes, and cloud services?
+
+### Answer
+
+Secrets are never hardcoded in source code or pipeline scripts. In Jenkins, I use the Credentials Store. In Kubernetes, sensitive data is stored as Kubernetes Secrets or integrated with AWS Secrets Manager or HashiCorp Vault. IAM Roles control access to cloud resources, and only authorized applications or users can retrieve secrets. I also enable Git secret scanning and rotate credentials periodically to improve security.
+
+---
+
+# 14. Explain IAM Roles vs IAM Policies with a real-world scenario.
+
+### Answer
+
+An **IAM Policy** defines permissions, such as allowing access to Amazon S3 or EC2. An **IAM Role** is an identity that can assume one or more policies and provides temporary credentials.
+
+For example, an EC2 instance running an application needs to access an S3 bucket. Instead of storing AWS access keys on the server, I attach an IAM Role with an S3 access policy to the EC2 instance. The application automatically receives temporary credentials, improving security and eliminating long-term access keys.
+
+---
+
+# 15. How do you troubleshoot intermittent 503 errors in Kubernetes?
+
+### Answer
+
+I first check whether the Pods are Ready using `kubectl get pods`. Then I verify the Service endpoints, Service selectors, and Ingress configuration. I review application logs, Kubernetes Events, and Load Balancer target health. I also check whether backend services such as databases are available and whether resource limits are causing application instability. By validating each layer, I can quickly determine whether the issue lies in Kubernetes, networking, or the application itself.
+
+---
+
+# 16. How do you identify the bottleneck when an application becomes slow in production?
+
+### Answer
+
+I begin by reviewing Grafana dashboards for CPU, memory, network, and response time metrics. Then I analyze application logs in ELK, inspect Kubernetes Pods for resource utilization, verify database performance, check Load Balancer metrics, and review distributed traces if available. This systematic approach helps determine whether the bottleneck is in the infrastructure, network, application, or database.
+
+---
+
+# 17. Difference between logs, metrics, and traces. When do you use each?
+
+### Answer
+
+**Logs** provide detailed event information for debugging errors and application behavior.
+
+**Metrics** are numerical values such as CPU usage, memory utilization, request rate, and latency, which are used for monitoring system health and triggering alerts.
+
+**Traces** track a request across multiple services in a distributed application, helping identify where delays occur.
+
+In production, I use metrics for monitoring, logs for troubleshooting, and traces for debugging microservices performance.
+
+---
+
+# 18. How do you design monitoring and alerting to reduce alert fatigue?
+
+### Answer
+
+I monitor only critical business and infrastructure metrics instead of generating alerts for every event. Alert thresholds are carefully tuned to minimize false positives. Related alerts are grouped, duplicate notifications are suppressed, and severity levels are defined for warning and critical conditions. Dashboards provide overall health visibility, while alerts are sent only for actionable issues through email, Slack, or Microsoft Teams. This ensures the team focuses on genuine production problems.
+
+---
+
+# 19. Explain a production incident you resolved and your RCA approach.
+
+### Answer
+
+During a production deployment, users started receiving **503 Service Unavailable** errors. I checked the Pods and found the readiness probes were failing. Application logs showed an incorrect database connection string in the ConfigMap. After updating the configuration and restarting the deployment, the Pods became Ready and traffic was restored. During the Root Cause Analysis (RCA), we identified a missing configuration validation step in the CI/CD pipeline. We added automated configuration checks before deployment to prevent similar incidents in the future.
+
+---
+
+# 20. If a deployment fails midway in production, how do you recover safely?
+
+### Answer
+
+I first stop the deployment to prevent further impact. I review deployment logs, Kubernetes Events, and monitoring dashboards to identify the failure. If the application is unhealthy, I immediately roll back using `kubectl rollout undo` or switch traffic back to the previous environment in a Blue-Green deployment. After service is restored, I perform RCA, fix the issue in a lower environment, validate the changes, and then redeploy following the standard release process. This approach minimizes downtime while ensuring production stability.
+
+---
+
+
 # BNP Paribas DevOps Interview Questions (4 Years Experience)
 
 ---
