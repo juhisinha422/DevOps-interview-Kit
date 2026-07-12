@@ -1,3 +1,246 @@
+# Deloitte India HR Interview (Additional Expected Questions)
+
+---
+
+## 1. Why should we choose you over another candidate?
+
+### Answer
+
+I bring a combination of strong technical expertise, hands-on production experience, and a proactive mindset. Over the last 3.5+ years, I've worked on AWS, Kubernetes, Terraform, Jenkins, Docker, and CI/CD automation while supporting production environments. I take ownership, communicate effectively, and continuously learn new technologies, which I believe will help me contribute quickly at Deloitte.
+
+---
+
+## 2. What motivates you every day?
+
+### Answer
+
+I'm motivated by solving technical problems, learning new cloud technologies, and automating manual processes. Seeing an application deploy successfully or resolving a production issue that improves customer experience gives me a great sense of accomplishment.
+
+---
+
+## 3. What are your career goals for the next five years?
+
+### Answer
+
+In the next five years, I want to become a Senior DevOps/Cloud Engineer with expertise in cloud architecture, Kubernetes, DevSecOps, and automation. I also aim to mentor junior engineers and contribute to large-scale cloud transformation projects.
+
+---
+
+## 4. If we hire you today, what will you do in your first 90 days?
+
+### Answer
+
+My first priority would be understanding the project, infrastructure, deployment process, and team workflows. I would learn the existing architecture, contribute to ongoing tasks, identify automation opportunities, and gradually take ownership of production responsibilities.
+
+---
+
+## 5. What are your greatest strengths?
+
+### Answer
+
+My strengths are problem-solving, ownership, adaptability, continuous learning, and staying calm during production incidents. I also enjoy collaborating with cross-functional teams to deliver reliable solutions.
+
+---
+
+## 6. What is one weakness you're working on?
+
+### Answer
+
+Earlier, I tended to spend too much time analyzing issues before making a decision. I've improved by prioritizing business impact, taking timely action, and performing a detailed root cause analysis afterward.
+
+---
+
+## 7. Describe your ideal manager.
+
+### Answer
+
+I appreciate a manager who provides clear expectations, constructive feedback, encourages learning, and trusts the team to take ownership while being available for guidance when needed.
+
+---
+
+## 8. How do you prioritize multiple urgent tasks?
+
+### Answer
+
+I prioritize based on business impact, production severity, and deadlines. Critical production issues come first, followed by customer-impacting tasks, while keeping stakeholders informed throughout the process.
+
+---
+
+## 9. How do you deal with ambiguity?
+
+### Answer
+
+I gather the available information, ask relevant questions, validate assumptions, and communicate regularly with stakeholders. Breaking large problems into smaller tasks helps reduce uncertainty.
+
+---
+
+## 10. Have you ever disagreed with a teammate?
+
+### Answer
+
+Yes. I listened to their perspective, shared my reasoning with technical evidence, and we discussed the pros and cons objectively. Our focus remained on selecting the best solution for the project.
+
+---
+
+## 11. What would you do if you made a mistake in production?
+
+### Answer
+
+I would immediately inform the team, work to minimize the impact, restore service as quickly as possible, perform a root cause analysis, and implement preventive measures to avoid recurrence.
+
+---
+
+## 12. How do you handle pressure during production incidents?
+
+### Answer
+
+I stay calm, assess the impact, prioritize actions, communicate regularly with stakeholders, and focus on restoring service first before performing detailed analysis.
+
+---
+
+## 13. What does customer obsession mean to you?
+
+### Answer
+
+It means keeping the customer's experience at the center of every decision, minimizing downtime, responding quickly to issues, and continuously improving service reliability.
+
+---
+
+## 14. Tell me about a time you learned a new technology quickly.
+
+### Answer
+
+When our project introduced Kubernetes, I studied the documentation, completed hands-on practice, worked with senior engineers, and quickly became comfortable deploying and troubleshooting workloads in production.
+
+---
+
+## 15. How do you handle constructive criticism?
+
+### Answer
+
+I view feedback as an opportunity to improve. I listen carefully, understand the suggestions, and apply them to become a better engineer.
+
+---
+
+## 16. What would your teammates say about you?
+
+### Answer
+
+They would describe me as dependable, collaborative, calm during incidents, and someone who is always willing to help and share knowledge.
+
+---
+
+## 17. Are you comfortable talking directly to clients?
+
+### Answer
+
+Yes. I'm comfortable explaining technical issues in simple terms, providing updates, discussing solutions, and maintaining professional communication.
+
+---
+
+## 18. Have you ever worked under a strict deadline?
+
+### Answer
+
+Yes. During production releases and critical incidents, I have worked under tight timelines while maintaining quality and communicating progress effectively.
+
+---
+
+## 19. What type of work environment helps you perform your best?
+
+### Answer
+
+A collaborative environment that encourages learning, innovation, ownership, and open communication helps me perform at my best.
+
+---
+
+## 20. What does success mean to you?
+
+### Answer
+
+Success means continuously learning, delivering reliable solutions, earning the trust of my team and clients, and contributing to meaningful business outcomes.
+
+---
+
+## 21. How do you keep your technical skills updated?
+
+### Answer
+
+I regularly work on hands-on projects, read official documentation, follow cloud and DevOps communities, prepare for certifications, and practice new technologies in my personal lab.
+
+---
+
+## 22. Are you comfortable mentoring junior engineers?
+
+### Answer
+
+Yes. I enjoy sharing knowledge, reviewing configurations, helping troubleshoot issues, and supporting teammates whenever possible.
+
+---
+
+## 23. What if your project changes after joining?
+
+### Answer
+
+I'm flexible and understand that consulting projects evolve based on client needs. I'm happy to adapt as long as I continue learning and contributing.
+
+---
+
+## 24. How do you measure your own success?
+
+### Answer
+
+I measure success by the quality of my work, customer satisfaction, successful project delivery, reduced manual effort through automation, and continuous technical growth.
+
+---
+
+## 25. Why should Deloitte trust you with production environments?
+
+### Answer
+
+I understand the importance of production stability. I follow change management processes, validate deployments carefully, communicate clearly, and always prioritize system reliability and customer impact.
+
+---
+
+## 26. What excites you most about Deloitte?
+
+### Answer
+
+The opportunity to work with global clients, enterprise-scale cloud environments, modern DevOps practices, and a strong culture of learning and innovation.
+
+---
+
+## 27. If selected, when can you start contributing?
+
+### Answer
+
+After understanding the project and completing onboarding, I aim to contribute to project tasks as early as possible while continuously learning the team's processes.
+
+---
+
+## 28. What does professionalism mean to you?
+
+### Answer
+
+Professionalism means being accountable, respectful, honest, reliable, meeting commitments, and maintaining high standards of work and communication.
+
+---
+
+## 29. How do you ensure effective communication?
+
+### Answer
+
+I communicate clearly, provide regular updates, listen actively, ask questions when needed, and ensure all stakeholders are aligned on progress and expectations.
+
+---
+
+## 30. Is there anything else you'd like us to know?
+
+### Answer
+
+I'm passionate about DevOps and cloud technologies, enjoy continuous learning, and genuinely look forward to contributing to Deloitte's engineering teams while growing professionally.
+
+
 # Deloitte India HR - Salary & Negotiation Questions
 
 ---
