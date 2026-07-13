@@ -1,3 +1,423 @@
+# DevOps Engineer Interview Questions & Answers (Infosys)
+
+## 1. In a well-designed CI/CD pipeline for a critical banking application, is it acceptable to push code directly to production without automated testing if the developer is confident and time is limited? (True/False)
+
+**Answer:** **False**
+
+### Explanation
+
+No. In banking or any mission-critical application, automated testing is mandatory. Developer confidence is never a substitute for validation. Skipping testing increases the risk of production failures, security vulnerabilities, and compliance violations.
+
+A standard CI/CD pipeline should include:
+
+* Unit Testing
+* Integration Testing
+* Security Scanning
+* Code Quality Checks (SonarQube)
+* Approval Gates (if required)
+* Automated Deployment
+
+Only after all quality gates pass should the application be deployed to production.
+
+---
+
+## 2. Can adhering strictly to the Single Responsibility Principle in large distributed systems increase overall system complexity and make maintenance more difficult? (True/False)
+
+**Answer:** **True**
+
+### Explanation
+
+While the Single Responsibility Principle (SRP) improves modularity and maintainability, overusing it in distributed systems can create an excessive number of microservices. This increases deployment complexity, network communication, latency, monitoring overhead, service discovery challenges, and distributed transaction management.
+
+The goal is to find the right balance between modularity and operational simplicity.
+
+---
+
+## 3. As an AWS and DevOps Senior Consultant, design a secure, scalable, and highly available architecture for a global SaaS product.
+
+### Architecture
+
+```
+Users
+   │
+CloudFront
+   │
+AWS WAF
+   │
+Application Load Balancer
+   │
+Amazon EKS Cluster
+   │
+Microservices
+   ├── Amazon RDS Multi-AZ
+   ├── Amazon ElastiCache (Redis)
+   └── Amazon S3
+   │
+CloudWatch + Prometheus + Grafana
+   │
+Route 53 (Latency-Based Routing)
+```
+
+### Security
+
+* IAM Roles
+* Security Groups
+* Network ACLs
+* AWS Secrets Manager
+* AWS KMS Encryption
+* HTTPS Everywhere
+* Private Subnets
+* AWS Systems Manager Session Manager (or Bastion Host)
+
+### Scalability
+
+* Horizontal Pod Autoscaler (HPA)
+* Cluster Autoscaler
+* Auto Scaling Groups
+* Application Load Balancer
+
+### High Availability
+
+* Multi-AZ Deployment
+* Cross-Region Disaster Recovery
+* Route 53 Failover Routing
+* RDS Read Replicas
+* Automated Backups and Snapshots
+
+---
+
+## 4. How would you structure the failover process during a regional outage?
+
+### Architecture
+
+```
+Primary Region
+      │
+Route53 Health Check
+      │
+Region Failure Detected
+      │
+Traffic Redirected
+      │
+Secondary Region
+      │
+Database Replica Promotion
+      │
+Application Becomes Active
+```
+
+### Key Components
+
+* Route 53 Failover Routing
+* Cross-Region RDS Replication
+* S3 Cross-Region Replication
+* Infrastructure Provisioning using Terraform
+* Automated DNS Switching
+* Continuous Backup Strategy
+
+This minimizes Recovery Time Objective (RTO) and Recovery Point Objective (RPO).
+
+---
+
+## 5. Your team is experiencing frequent production outages due to inconsistent environments and manual deployments. What DevOps strategy would you implement?
+
+### Solution
+
+Implement a complete DevOps transformation:
+
+* Infrastructure as Code using Terraform
+* Docker for consistent environments
+* Kubernetes for orchestration
+* Jenkins CI/CD Pipelines
+* Git Branching Strategy
+* Automated Unit & Integration Testing
+* Blue-Green or Canary Deployments
+* Configuration Management
+* Continuous Monitoring with Prometheus and Grafana
+* Automated Rollback Strategy
+
+This eliminates configuration drift, reduces manual intervention, and improves deployment reliability.
+
+---
+
+## 6. How would you handle resistance from team members while adopting DevOps tools and practices?
+
+### Answer
+
+I would:
+
+* Listen to team concerns.
+* Explain the business value of DevOps.
+* Start with a small pilot project.
+* Provide hands-on training.
+* Create proper documentation.
+* Gradually introduce automation.
+* Share measurable improvements such as reduced deployment time and fewer failures.
+* Encourage continuous feedback.
+
+Successful DevOps adoption is driven by collaboration and culture rather than tools alone.
+
+---
+
+## 7. Design an end-to-end automated deployment solution for multiple environments.
+
+### CI/CD Flow
+
+```
+Developer
+    │
+Git Push
+    │
+Jenkins Pipeline
+    │
+Build Application
+    │
+Unit Tests
+    │
+SonarQube Scan
+    │
+Dependency Security Scan
+    │
+Docker Image Build
+    │
+Push Image to Registry
+    │
+Terraform Infrastructure
+    │
+Deploy to DEV
+    │
+Automated Tests
+    │
+Approval Gate
+    │
+Deploy to UAT
+    │
+Approval Gate
+    │
+Deploy to PROD
+    │
+Blue-Green Deployment
+    │
+Smoke Testing
+    │
+Monitoring
+```
+
+Use separate configurations for each environment through ConfigMaps, Secrets, Helm values, and Terraform Workspaces.
+
+---
+
+## 8. How would you measure the success of your automation initiative?
+
+### DORA Metrics
+
+* Deployment Frequency
+* Lead Time for Changes
+* Change Failure Rate
+* Mean Time to Recovery (MTTR)
+
+### Additional KPIs
+
+* Deployment Success Rate
+* Pipeline Execution Time
+* Manual Effort Reduction
+* Infrastructure Provisioning Time
+* Rollback Frequency
+* Number of Production Incidents
+* Mean Time to Detect (MTTD)
+
+---
+
+## 9. How do Jenkins, Docker, Kubernetes, Terraform, Prometheus, and Grafana work together in a complete CI/CD pipeline?
+
+### Workflow
+
+```
+Developer
+    │
+GitHub
+    │
+Jenkins
+    │
+Build & Test
+    │
+SonarQube
+    │
+Docker Build
+    │
+Push to Container Registry
+    │
+Terraform Creates Infrastructure
+    │
+Deploy to Kubernetes
+    │
+Prometheus Collects Metrics
+    │
+Grafana Dashboards & Alerts
+```
+
+### Tool Responsibilities
+
+* **Jenkins:** CI/CD Automation
+* **Docker:** Containerization
+* **Terraform:** Infrastructure Provisioning
+* **Kubernetes:** Container Orchestration
+* **Prometheus:** Metrics Collection
+* **Grafana:** Visualization and Alerting
+
+---
+
+## 10. Design the architecture of a mission-critical platform that must scale rapidly and integrate with third-party APIs.
+
+### Architecture
+
+```
+CloudFront
+      │
+AWS WAF
+      │
+Application Load Balancer
+      │
+Amazon EKS
+      │
+API Gateway
+      │
+Microservices
+      ├── Amazon SQS
+      ├── Amazon SNS
+      ├── Redis Cache
+      ├── Amazon RDS
+      └── Amazon S3
+      │
+CloudWatch
+      │
+Prometheus
+      │
+Grafana
+```
+
+### Best Practices
+
+* Circuit Breaker Pattern
+* Retry with Exponential Backoff
+* API Rate Limiting
+* Dead Letter Queues
+* Timeout Configuration
+* API Versioning
+
+---
+
+## 11. How would you manage data consistency and transactions across microservices deployed in multiple Availability Zones?
+
+### Solution
+
+Avoid distributed database transactions.
+
+Instead use:
+
+* Saga Pattern
+* Event-Driven Architecture
+* Amazon EventBridge or Kafka
+* Idempotent APIs
+* Retry Mechanism
+* Dead Letter Queues
+* Eventual Consistency
+* Distributed Tracing
+
+Each microservice should own its own database.
+
+---
+
+## 12. A cloud-based e-commerce application experiences unpredictable traffic spikes. How would you ensure responsiveness and reliability?
+
+### Solution
+
+* Application Load Balancer
+* Auto Scaling Groups
+* Horizontal Pod Autoscaler (HPA)
+* Cluster Autoscaler
+* Amazon CloudFront CDN
+* Amazon ElastiCache (Redis)
+* RDS Read Replicas
+* Connection Pooling
+* Amazon SQS for asynchronous workloads
+* Circuit Breaker Pattern
+* Rate Limiting
+* Multi-AZ Deployment
+* Continuous Monitoring with CloudWatch and Prometheus
+
+---
+
+## 13. Which Amazon CloudWatch metrics and alarms would you configure to detect performance bottlenecks during high-traffic periods?
+
+### EC2 Metrics
+
+* CPUUtilization
+* MemoryUtilization (CloudWatch Agent)
+* DiskReadOps
+* DiskWriteOps
+* DiskQueueLength
+* NetworkIn
+* NetworkOut
+* StatusCheckFailed
+
+### Application Load Balancer Metrics
+
+* RequestCount
+* TargetResponseTime
+* HTTPCode_ELB_5XX_Count
+* HTTPCode_Target_5XX_Count
+* HealthyHostCount
+* UnHealthyHostCount
+
+### Amazon RDS Metrics
+
+* CPUUtilization
+* DatabaseConnections
+* FreeStorageSpace
+* ReadLatency
+* WriteLatency
+* ReadIOPS
+* WriteIOPS
+* ReplicaLag
+
+### Amazon EKS / Kubernetes Metrics
+
+* Pod CPU Usage
+* Pod Memory Usage
+* Pod Restarts
+* Pending Pods
+* Node CPU Utilization
+* Node Memory Utilization
+* Node Disk Pressure
+
+### Auto Scaling Metrics
+
+* Desired Capacity
+* In-Service Instances
+* Pending Instances
+* Scaling Activities
+
+### CloudWatch Alarms
+
+Configure alarms for:
+
+* CPU Utilization > 80%
+* Memory Utilization > 80%
+* ALB Response Time > 2 seconds
+* HTTP 5XX Errors > Defined Threshold
+* RDS CPU > 75%
+* Replica Lag > Threshold
+* Unhealthy Targets > 0
+* Pod Restarts Increasing
+* Disk Utilization > 80%
+* Network Saturation
+* Failed EC2 Status Checks
+
+Integrate CloudWatch Alarms with Amazon SNS to send notifications through email, SMS, or incident management platforms such as PagerDuty or Slack for proactive monitoring.
+
+
+
 # INFOSYS - First Round DevOps Interview Questions (4 Years Experience)
 
 ---
