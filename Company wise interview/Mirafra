@@ -1,0 +1,24 @@
+DevOps Engineer role at Mirafra and  these are the questions :
+
+First Round interview Questions:
+
+
+1. Do you have experience with Docker?
+2. What Docker optimization techniques have you used?
+3. Can you configure an SNS topic for EC2 alerts?
+4. What is the solution for configuring SNS with EC2 notifications?
+5. What monitoring tools have you used?
+6. How have you used Splunk in your project?
+7. How have you used Grafana in your project?
+8. How have you used Prometheus in your project?
+9. What is Terraform?
+10. Why do we use Terraform?
+11. What are the advantages of Terraform?
+12. What is Infrastructure as Code (IaC)?
+13. What is a Terraform state file?
+14. What are Terraform modules?
+15. What are the commonly used Terraform commands?
+16. What is terraform taint?
+17. What is the purpose of terraform taint?
+18. What is the replacement for terraform taint in newer Terraform versions?
+19. What is the difference between terraform taint and terraform apply -replace?
