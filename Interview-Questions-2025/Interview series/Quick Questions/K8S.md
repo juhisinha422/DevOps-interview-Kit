@@ -1,5 +1,713 @@
 # Kubernetes Interview Questions and Answers (4 Years Experience)
 
+## 1. What is the difference between Docker and Kubernetes?
+
+**Answer:**
+
+Docker is a containerization platform that packages an application along with its dependencies into a lightweight and portable container. It ensures that the application runs consistently across development, testing, and production environments. However, Docker focuses only on creating and running containers and does not provide features like automatic scaling, self-healing, service discovery, or rolling updates.
+
+Kubernetes is a container orchestration platform that manages containers at scale. It automates application deployment, scaling, load balancing, rolling updates, self-healing, and resource management across multiple servers. In my project, developers build Docker images, Jenkins pushes them to Amazon ECR, and Amazon EKS uses Kubernetes to deploy and manage those containers. In simple terms, Docker creates containers, whereas Kubernetes manages them in production.
+
+---
+
+## 2. What are the main components of Kubernetes architecture? Explain the role of each component.
+
+**Answer:**
+
+A Kubernetes cluster consists of two main parts: the **Control Plane (Master Node)** and **Worker Nodes**.
+
+The **Control Plane** manages the entire cluster and makes scheduling decisions.
+
+* **API Server:** The central management component and entry point for all cluster operations. Every request from kubectl or CI/CD tools first reaches the API Server.
+* **etcd:** A distributed key-value database that stores the complete cluster state, including Pods, Deployments, Services, Secrets, ConfigMaps, and cluster configuration.
+* **Scheduler:** Assigns newly created Pods to the most suitable worker node based on CPU, memory, taints, tolerations, affinity, and resource availability.
+* **Controller Manager:** Continuously compares the desired state with the actual state and creates, deletes, or replaces resources whenever necessary.
+* **Cloud Controller Manager:** Integrates Kubernetes with cloud providers such as AWS to provision Load Balancers, storage volumes, and manage cloud resources.
+
+Each **Worker Node** runs the application workloads and contains:
+
+* **kubelet:** Communicates with the API Server, starts containers, monitors Pod health, and reports node status.
+* **kube-proxy:** Manages networking, Service communication, and load balancing using iptables or IPVS.
+* **Container Runtime:** Software such as containerd or CRI-O that pulls container images and manages container execution.
+
+Together, these components provide high availability, scalability, fault tolerance, and self-healing.
+
+---
+
+## 3. What is the difference between Docker Swarm and Kubernetes? Why is Kubernetes preferred by most organizations?
+
+**Answer:**
+
+Docker Swarm is Docker's native container orchestration platform. It is lightweight, easy to configure, and suitable for small environments or proof-of-concept deployments. However, it provides fewer enterprise features compared to Kubernetes.
+
+Kubernetes is a more advanced orchestration platform that supports automatic scaling, self-healing, rolling updates, service discovery, persistent storage, RBAC, network policies, and multi-cloud deployments. It also has a much larger ecosystem with tools such as Helm, Argo CD, Prometheus, Grafana, and Istio.
+
+Most organizations prefer Kubernetes because it offers:
+
+* Better scalability
+* High availability
+* Self-healing capabilities
+* Automatic rolling updates and rollbacks
+* Strong security features
+* Multi-cloud and hybrid cloud support
+* Large community support
+* Cloud-native integrations
+
+For enterprise production environments, Kubernetes has become the industry standard because it is more mature, flexible, and reliable.
+
+---
+
+## 4. What is the difference between a Docker container and a Kubernetes Pod?
+
+**Answer:**
+
+A Docker container is a single running instance of an application along with its dependencies. It provides process isolation using Linux namespaces and cgroups.
+
+A Kubernetes Pod is the smallest deployable unit in Kubernetes. A Pod can contain one or more containers that share the same IP address, network namespace, storage volumes, and lifecycle. Kubernetes schedules Pods rather than individual containers.
+
+In production, most Pods contain a single application container. Multiple containers are used when implementing patterns such as sidecar containers for logging, monitoring, or service mesh proxies. Docker or containerd manages containers, while Kubernetes manages Pods and their lifecycle.
+
+---
+
+## 5. What is a Namespace in Kubernetes, and why is it used?
+
+**Answer:**
+
+A Namespace is a logical partition within a Kubernetes cluster that helps organize and isolate resources. Instead of creating separate clusters for Development, UAT, Testing, and Production, multiple environments can coexist within the same cluster by using different Namespaces.
+
+Namespaces provide resource isolation, enable RBAC, support Resource Quotas, simplify administration, and improve security. In my projects, we maintain separate Namespaces such as **dev**, **uat**, **staging**, **production**, and **monitoring**. This approach allows different teams to work independently while sharing the same Kubernetes cluster efficiently.
+
+**Common Commands**
+
+```bash
+kubectl get namespaces
+kubectl create namespace dev
+kubectl get pods -n production
+kubectl config set-context --current --namespace=production
+```
+
+---
+
+## 6. What is the role of kube-proxy in Kubernetes?
+
+**Answer:**
+
+kube-proxy is the networking component that runs on every worker node. Its primary responsibility is to maintain network rules and enable communication between Kubernetes Services and Pods. It configures iptables or IPVS rules so that incoming requests to a Service are automatically routed to one of the healthy backend Pods.
+
+kube-proxy also performs load balancing across multiple Pod replicas, ensuring traffic is distributed evenly. In production environments, it plays a crucial role in providing reliable service discovery and seamless communication between microservices. If a Pod fails or is replaced, kube-proxy automatically updates the routing rules without affecting application availability.
+
+---
+
+## 7. What are the different types of Services available in Kubernetes? Explain each one.
+
+**Answer:**
+
+A Kubernetes Service provides a stable network endpoint for accessing a group of Pods. Since Pod IP addresses are temporary, Services ensure reliable communication even when Pods are recreated.
+
+The main Service types are:
+
+* **ClusterIP:** The default Service type. It exposes the application only within the Kubernetes cluster and is commonly used for communication between internal microservices.
+* **NodePort:** Exposes the application on a fixed port of every worker node. Users can access the application using `<NodeIP>:<NodePort>`. It is mainly used for development and testing.
+* **LoadBalancer:** Creates an external cloud load balancer, such as an AWS Application Load Balancer or Network Load Balancer, making the application accessible over the internet. This is the preferred choice for production workloads.
+* **ExternalName:** Maps the Service to an external DNS name, allowing Kubernetes applications to communicate with external services without using a proxy.
+
+In Amazon EKS, we generally use ClusterIP for internal services and Ingress with an AWS Application Load Balancer for external applications.
+
+---
+
+## 8. What is the difference between a NodePort Service and a LoadBalancer Service in Kubernetes?
+
+**Answer:**
+
+A NodePort Service exposes an application through a fixed port on every worker node. Users access the application using the node's IP address and the assigned port. This method is simple but not ideal for production because it requires direct access to worker nodes and lacks advanced load-balancing capabilities.
+
+A LoadBalancer Service provisions a cloud provider's external load balancer, such as an AWS Application Load Balancer or Network Load Balancer. It automatically distributes traffic across healthy Pods, provides a public endpoint, and integrates with cloud networking features. In production, I prefer LoadBalancer Services or Ingress because they offer better scalability, availability, and security.
+
+---
+
+## 9. What is the role of kubelet in Kubernetes?
+
+**Answer:**
+
+kubelet is the primary node agent that runs on every worker node. It continuously communicates with the Kubernetes API Server, receives Pod specifications, starts containers using the container runtime, monitors container health, and reports the status of the node back to the Control Plane.
+
+If a container crashes, kubelet attempts to restart it based on the Pod's restart policy. It also performs health checks using liveness and readiness probes. kubelet ensures that the actual state of the node matches the desired state defined in Kubernetes manifests.
+
+---
+
+## 10. What are your day-to-day activities as a Kubernetes/DevOps Engineer?
+
+**Answer:**
+
+As a Kubernetes/DevOps Engineer, my daily responsibilities include monitoring Kubernetes clusters, managing CI/CD pipelines, deploying applications, troubleshooting production issues, and maintaining infrastructure.
+
+My day-to-day activities include:
+
+* Monitoring cluster health using Prometheus, Grafana, and CloudWatch.
+* Deploying applications using Jenkins, Helm, and Kubernetes manifests.
+* Managing Amazon EKS clusters and worker nodes.
+* Troubleshooting Pod failures, CrashLoopBackOff errors, image pull issues, and networking problems.
+* Managing ConfigMaps, Secrets, Persistent Volumes, and StorageClasses.
+* Scaling applications using Horizontal Pod Autoscaler and Cluster Autoscaler.
+* Implementing Infrastructure as Code using Terraform.
+* Reviewing logs, analyzing alerts, and performing root cause analysis for production incidents.
+* Managing RBAC, Namespaces, and Service Accounts to maintain cluster security.
+* Collaborating with developers to optimize deployments and ensure zero-downtime releases using rolling updates and rollback strategies.
+
+These activities help ensure that applications remain secure, scalable, highly available, and reliable in production.
+
+# Kubernetes Interview Questions and Answers (4 Years Experience)
+
+## 11. What is a Deployment in Kubernetes?
+
+**Answer:**
+
+A Deployment is a Kubernetes workload resource used to manage stateless applications. It ensures that the desired number of Pod replicas are always running and provides features such as rolling updates, rollbacks, self-healing, and scaling. Instead of creating Pods directly, I create a Deployment YAML, and Kubernetes automatically creates a ReplicaSet, which in turn manages the Pods. If a Pod crashes or a worker node becomes unavailable, the Deployment ensures a new Pod is created automatically to maintain the desired state.
+
+In production, I use Deployments for Java Spring Boot APIs, Node.js applications, frontend applications, and other stateless microservices. During application upgrades, Kubernetes performs rolling updates, replacing old Pods gradually with new ones to achieve zero downtime. If an issue occurs after deployment, I can quickly roll back to the previous stable version using rollout commands.
+
+**Common Commands**
+
+```bash id="m81vqa"
+kubectl get deployments
+kubectl describe deployment frontend
+kubectl rollout status deployment/frontend
+kubectl rollout history deployment/frontend
+kubectl rollout undo deployment/frontend
+kubectl scale deployment frontend --replicas=5
+```
+
+---
+
+## 12. What is a ReplicaSet, and how does it differ from a Deployment?
+
+**Answer:**
+
+A ReplicaSet is responsible for ensuring that a specified number of identical Pod replicas are always running. If a Pod fails, is deleted, or the node hosting it becomes unavailable, the ReplicaSet automatically creates a replacement Pod to maintain the desired replica count.
+
+A Deployment is a higher-level Kubernetes resource that manages ReplicaSets. When a Deployment is created, Kubernetes automatically creates and manages the underlying ReplicaSet. Deployments provide additional features such as rolling updates, rollbacks, version history, and declarative updates, whereas a ReplicaSet only maintains the number of running Pods.
+
+In production, I never create ReplicaSets directly. Instead, I manage applications using Deployments because they simplify application lifecycle management and support safe application upgrades.
+
+**Difference**
+
+| Deployment                      | ReplicaSet                       |
+| ------------------------------- | -------------------------------- |
+| Manages application lifecycle   | Maintains desired number of Pods |
+| Supports rolling updates        | Does not support rolling updates |
+| Supports rollback               | No rollback support              |
+| Creates and manages ReplicaSets | Creates and manages Pods         |
+
+---
+
+## 13. What is an Ingress? What problem does it solve?
+
+**Answer:**
+
+An Ingress is a Kubernetes resource used to manage external HTTP and HTTPS access to applications running inside the cluster. Instead of exposing every application using a separate LoadBalancer Service, Ingress allows multiple applications to share a single external Load Balancer through host-based and path-based routing.
+
+For example:
+
+* `example.com` → Frontend Service
+* `example.com/api` → Backend Service
+* `example.com/admin` → Admin Service
+
+Ingress also provides SSL/TLS termination, URL rewriting, authentication integration, and centralized routing rules.
+
+In Amazon EKS, I use the AWS Load Balancer Controller to automatically provision an Application Load Balancer (ALB) for Ingress resources. This reduces infrastructure cost because multiple microservices share a single ALB instead of creating multiple Load Balancers.
+
+**Common Commands**
+
+```bash id="b5d3rf"
+kubectl get ingress
+kubectl describe ingress app-ingress
+kubectl get ingress -A
+```
+
+---
+
+## 14. What is the difference between ConfigMaps and Secrets?
+
+**Answer:**
+
+Both ConfigMaps and Secrets are Kubernetes objects used to provide configuration data to applications, but they are intended for different types of information.
+
+A **ConfigMap** stores non-sensitive configuration such as API URLs, application properties, feature flags, logging levels, and environment-specific settings. These values help separate configuration from application code, making deployments easier to manage across environments.
+
+A **Secret** stores sensitive information such as database passwords, API keys, OAuth tokens, TLS certificates, Docker registry credentials, and SSH keys. Although Kubernetes stores Secrets in Base64-encoded form by default, production environments should integrate with solutions such as AWS Secrets Manager or HashiCorp Vault for encryption, auditing, and secure rotation.
+
+Both ConfigMaps and Secrets can be consumed by applications as environment variables or mounted files inside Pods.
+
+**Difference**
+
+| ConfigMap                          | Secret                                        |
+| ---------------------------------- | --------------------------------------------- |
+| Stores non-sensitive data          | Stores sensitive data                         |
+| API URLs, Config Files             | Passwords, Tokens, Certificates               |
+| Plain text                         | Base64 encoded (and can be encrypted at rest) |
+| Used for application configuration | Used for authentication and security          |
+
+**Common Commands**
+
+```bash id="g6cm1v"
+kubectl get configmaps
+kubectl get secrets
+kubectl describe configmap app-config
+kubectl describe secret db-secret
+```
+
+---
+
+## 15. What is a Volume Mount, and why is it used?
+
+**Answer:**
+
+A Volume Mount is a mechanism that allows a container inside a Pod to access data stored in a Kubernetes Volume. Containers are ephemeral, meaning any data written inside the container is lost when the container is deleted or recreated. Volume Mounts solve this problem by attaching persistent or shared storage to the container.
+
+Volume Mounts are commonly used for:
+
+* Storing database files.
+* Sharing files between multiple containers in the same Pod.
+* Mounting ConfigMaps as configuration files.
+* Mounting Secrets such as TLS certificates or SSH keys.
+* Persisting Jenkins, Prometheus, Grafana, or Elasticsearch data.
+
+In production, I frequently mount PersistentVolumes backed by Amazon EBS for stateful applications such as MySQL and PostgreSQL, while Amazon EFS is used for workloads requiring shared storage across multiple Pods. ConfigMaps and Secrets are also mounted as files so applications can read configuration and credentials securely without hardcoding them into container images.
+
+**Common Commands**
+
+```bash id="k2pj9n"
+kubectl get pvc
+kubectl describe pod <pod-name>
+kubectl exec -it <pod-name> -- df -h
+kubectl exec -it <pod-name> -- ls /mnt/data
+```
+
+# Kubernetes Interview Questions and Answers (4 Years Experience)
+
+## 16. What is the difference between Persistent Volume (PV) and Persistent Volume Claim (PVC)?
+
+**Answer:**
+
+A Persistent Volume (PV) is a cluster-level storage resource that provides persistent storage independent of the Pod lifecycle. It is created either manually by an administrator or dynamically using a StorageClass. A Persistent Volume Claim (PVC) is a request for storage made by an application. Instead of directly requesting a specific storage device, the application requests storage by specifying requirements such as size, access mode, and StorageClass. Kubernetes automatically binds the PVC to a suitable PV.
+
+In production, I use PVCs because they abstract the underlying storage implementation. For example, in Amazon EKS, when a MySQL application requests a 50 GB volume through a PVC, Kubernetes dynamically provisions an Amazon EBS volume using the configured StorageClass. This approach simplifies storage management and allows developers to focus on application requirements instead of infrastructure details.
+
+**Difference**
+
+| Persistent Volume (PV)            | Persistent Volume Claim (PVC) |
+| --------------------------------- | ----------------------------- |
+| Actual storage resource           | Request for storage           |
+| Created manually or dynamically   | Created by applications       |
+| Represents physical/cloud storage | Requests storage from a PV    |
+| Exists independently of Pods      | Bound to an available PV      |
+
+**Common Commands**
+
+```bash id="2g6vpa"
+kubectl get pv
+kubectl get pvc
+kubectl describe pv
+kubectl describe pvc
+```
+
+---
+
+## 17. What is RBAC in Kubernetes? Explain Role, RoleBinding, ClusterRole, and ClusterRoleBinding.
+
+**Answer:**
+
+RBAC (Role-Based Access Control) is Kubernetes' authorization mechanism used to control who can access or modify cluster resources. It follows the principle of least privilege by granting users, groups, or ServiceAccounts only the permissions they need.
+
+A **Role** defines permissions within a specific Namespace. For example, it can allow developers to view and manage Pods only in the **development** Namespace.
+
+A **ClusterRole** defines permissions across the entire cluster or for cluster-level resources such as Nodes, PersistentVolumes, and Namespaces.
+
+A **RoleBinding** assigns a Role to a user, group, or ServiceAccount within a Namespace.
+
+A **ClusterRoleBinding** assigns a ClusterRole across the entire Kubernetes cluster.
+
+In production, developers usually receive Namespace-specific access using Roles and RoleBindings, while DevOps administrators have cluster-wide permissions through ClusterRoles and ClusterRoleBindings. This improves security and prevents unauthorized access to production resources.
+
+**Common Commands**
+
+```bash id="b4mxt8"
+kubectl get roles
+kubectl get rolebindings
+kubectl get clusterroles
+kubectl get clusterrolebindings
+kubectl describe role developer-role
+```
+
+---
+
+## 18. What is etcd, and why is it important in Kubernetes?
+
+**Answer:**
+
+etcd is a highly available, distributed key-value database that serves as the primary data store for Kubernetes. It stores the complete state of the cluster, including information about Pods, Deployments, ReplicaSets, Services, Nodes, ConfigMaps, Secrets, Namespaces, RBAC policies, and other Kubernetes resources.
+
+Whenever a resource is created, updated, or deleted, the Kubernetes API Server stores the information in etcd. The Scheduler and Controller Manager continuously read this information to maintain the desired state of the cluster.
+
+Because etcd contains the entire cluster configuration and state, regular backups are essential. If etcd is lost without a backup, the Kubernetes cluster cannot recover its configuration. In production, etcd is typically deployed as a highly available cluster with multiple members to ensure fault tolerance.
+
+---
+
+## 19. What is the role of the Kubernetes Scheduler?
+
+**Answer:**
+
+The Kubernetes Scheduler is responsible for assigning newly created Pods to the most appropriate worker node. When a Pod is created without a node assignment, the Scheduler evaluates all available worker nodes and selects the best one based on resource availability and scheduling constraints.
+
+The Scheduler considers several factors, including:
+
+* CPU and memory requests
+* Available node resources
+* Taints and tolerations
+* Node affinity and anti-affinity rules
+* Pod affinity and anti-affinity
+* Topology spread constraints
+* Resource quotas and policies
+
+For example, if an application requires 2 CPU cores and 4 GB of memory, the Scheduler selects a worker node with sufficient available resources. If no suitable node exists, the Pod remains in the **Pending** state until resources become available or additional nodes are added by the Cluster Autoscaler.
+
+The Scheduler plays a crucial role in optimizing resource utilization, maintaining workload balance, and ensuring efficient cluster performance.
+
+---
+
+## 20. What is the role of the API Server?
+
+**Answer:**
+
+The Kubernetes API Server is the central management component and the entry point for all communication within the cluster. Every request from users, kubectl, CI/CD tools, controllers, or external applications first reaches the API Server.
+
+The API Server performs several important functions:
+
+* Authenticates and authorizes requests.
+* Validates Kubernetes resource definitions.
+* Stores and retrieves cluster state from etcd.
+* Exposes the Kubernetes REST API.
+* Coordinates communication between cluster components.
+
+For example, when I execute:
+
+```bash id="8rrr2q"
+kubectl apply -f deployment.yaml
+```
+
+the request is sent to the API Server. The API Server validates the Deployment manifest, stores it in etcd, and notifies the Scheduler and Controller Manager to create the required Pods.
+
+Because every cluster operation depends on the API Server, it is considered the heart of Kubernetes. In production environments, multiple API Server instances are deployed behind a Load Balancer to provide high availability and eliminate a single point of failure.
+
+# Kubernetes Interview Questions and Answers (4 Years Experience)
+
+## 21. What is the role of the Controller Manager?
+
+**Answer:**
+
+The Kubernetes Controller Manager is a Control Plane component responsible for maintaining the desired state of the cluster. It runs multiple controllers, each monitoring specific Kubernetes resources and taking corrective actions whenever the actual state differs from the desired state stored in etcd.
+
+Some important controllers include:
+
+* **Deployment Controller** – Ensures Deployments create and maintain ReplicaSets.
+* **ReplicaSet Controller** – Maintains the desired number of Pod replicas.
+* **Node Controller** – Detects unhealthy nodes and reschedules Pods when required.
+* **Job Controller** – Manages one-time and batch jobs.
+* **Endpoint Controller** – Updates Service endpoints whenever Pods are added or removed.
+
+For example, if a Pod crashes unexpectedly, the ReplicaSet Controller detects that the number of running Pods is lower than desired and immediately creates a replacement Pod. This self-healing capability is one of Kubernetes' biggest advantages in production environments.
+
+---
+
+## 22. What is the Cloud Controller Manager?
+
+**Answer:**
+
+The Cloud Controller Manager enables Kubernetes to interact with cloud provider services while keeping cloud-specific logic separate from the core Kubernetes components. In Amazon EKS, it communicates with AWS APIs to manage cloud resources automatically.
+
+Its responsibilities include:
+
+* Provisioning Load Balancers.
+* Managing worker node information.
+* Attaching and detaching storage volumes.
+* Configuring cloud networking.
+* Managing routes and node lifecycle.
+
+For example, when a Service of type **LoadBalancer** is created, the Cloud Controller Manager automatically provisions an AWS Load Balancer and configures it to route traffic to the Kubernetes cluster. This automation eliminates manual cloud resource management and simplifies operations.
+
+---
+
+## 23. What is the difference between a Pod, ReplicaSet, and Deployment?
+
+**Answer:**
+
+A **Pod** is the smallest deployable unit in Kubernetes and contains one or more containers that share networking and storage.
+
+A **ReplicaSet** ensures that a specified number of identical Pods are always running. If a Pod fails, it automatically creates a replacement.
+
+A **Deployment** is a higher-level resource that manages ReplicaSets and provides features such as rolling updates, rollbacks, version history, and scaling.
+
+The relationship is:
+
+```
+Deployment
+      │
+ReplicaSet
+      │
+Pods
+```
+
+In production, I always deploy applications using Deployments because they simplify application lifecycle management. ReplicaSets are managed automatically by Deployments, and Pods are created by ReplicaSets.
+
+---
+
+## 24. What are Labels and Selectors in Kubernetes?
+
+**Answer:**
+
+Labels are key-value pairs attached to Kubernetes resources such as Pods, Deployments, Services, and Nodes. They help organize, identify, and group resources.
+
+Selectors use these labels to identify the resources they should manage or communicate with.
+
+For example:
+
+```yaml
+labels:
+  app: frontend
+  environment: production
+```
+
+A Service configured with the selector:
+
+```yaml
+selector:
+  app: frontend
+```
+
+will automatically route traffic only to Pods with the label `app=frontend`.
+
+In production, labels are widely used for Service discovery, monitoring, RBAC policies, scheduling, and environment separation. Proper labeling is essential for managing large Kubernetes clusters.
+
+---
+
+## 25. What is Helm, and what problems does it solve?
+
+**Answer:**
+
+Helm is the package manager for Kubernetes. It simplifies the deployment and management of applications using reusable packages called **Helm Charts**.
+
+Without Helm, managing large applications requires maintaining multiple YAML files for Deployments, Services, ConfigMaps, Secrets, Ingresses, and other resources. Helm combines these files into a single chart and allows environment-specific values through the `values.yaml` file.
+
+In production, I use Helm to deploy applications such as:
+
+* Prometheus
+* Grafana
+* NGINX Ingress Controller
+* Jenkins
+* Argo CD
+* Custom microservices
+
+Helm also supports versioning, upgrades, rollbacks, and reusable templates, making Kubernetes deployments more consistent and maintainable.
+
+**Common Commands**
+
+```bash
+helm install app ./chart
+helm upgrade app ./chart
+helm rollback app 1
+helm list
+helm uninstall app
+```
+
+---
+
+## 26. What is a DaemonSet? When would you use it?
+
+**Answer:**
+
+A DaemonSet ensures that a copy of a Pod runs on every worker node or on selected nodes within a Kubernetes cluster. Whenever a new node joins the cluster, Kubernetes automatically schedules the DaemonSet Pod on that node.
+
+DaemonSets are typically used for node-level services rather than application workloads.
+
+Common production use cases include:
+
+* Fluent Bit or Fluentd for log collection.
+* Prometheus Node Exporter for monitoring.
+* Calico or Cilium networking agents.
+* Falco security monitoring.
+* CSI storage drivers.
+
+Because these services must run on every worker node, DaemonSets are the preferred workload type.
+
+**Common Commands**
+
+```bash
+kubectl get daemonsets
+kubectl describe daemonset fluent-bit
+```
+
+---
+
+## 27. What is the difference between EBS and EFS?
+
+**Answer:**
+
+Amazon **Elastic Block Store (EBS)** provides block storage that is attached to a single EC2 instance within one Availability Zone. It offers high performance and is commonly used for databases and stateful applications.
+
+Amazon **Elastic File System (EFS)** is a fully managed shared file system that can be mounted simultaneously by multiple EC2 instances across multiple Availability Zones.
+
+**Comparison**
+
+| Amazon EBS          | Amazon EFS              |
+| ------------------- | ----------------------- |
+| Block Storage       | File Storage            |
+| Single EC2 Instance | Multiple EC2 Instances  |
+| Single AZ           | Multi-AZ                |
+| ReadWriteOnce       | ReadWriteMany           |
+| Best for Databases  | Best for Shared Storage |
+
+In Amazon EKS, I typically use EBS for MySQL, PostgreSQL, and MongoDB, while EFS is used for Jenkins home directories, shared application files, and workloads requiring ReadWriteMany access.
+
+---
+
+## 28. What is Auto Scaling in Kubernetes?
+
+**Answer:**
+
+Auto Scaling enables Kubernetes to automatically adjust application capacity based on workload demand. It improves availability during traffic spikes while reducing infrastructure costs during periods of low utilization.
+
+Kubernetes supports three types of autoscaling:
+
+* **Horizontal Pod Autoscaler (HPA):** Increases or decreases the number of Pod replicas based on CPU, memory, or custom metrics.
+* **Vertical Pod Autoscaler (VPA):** Adjusts the CPU and memory requests and limits of existing Pods.
+* **Cluster Autoscaler:** Adds or removes worker nodes when existing nodes cannot accommodate additional Pods or become underutilized.
+
+In production, I commonly use HPA together with Cluster Autoscaler in Amazon EKS to provide both application-level and infrastructure-level scalability.
+
+---
+
+## 29. How would you troubleshoot a Pod that is in the CrashLoopBackOff state?
+
+**Answer:**
+
+When a Pod enters the **CrashLoopBackOff** state, it means the container starts, crashes, and Kubernetes repeatedly attempts to restart it. My troubleshooting approach is systematic:
+
+1. Check the Pod status.
+
+```bash
+kubectl get pods
+```
+
+2. Describe the Pod to review events.
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+3. Check application logs.
+
+```bash
+kubectl logs <pod-name>
+```
+
+4. If the Pod has multiple containers:
+
+```bash
+kubectl logs <pod-name> -c <container-name>
+```
+
+5. Verify:
+
+   * Application startup errors
+   * Incorrect environment variables
+   * Missing ConfigMaps or Secrets
+   * Image version issues
+   * Resource limits
+   * Database connectivity
+   * Health probe configuration
+
+6. Monitor CPU and memory usage.
+
+```bash
+kubectl top pod
+```
+
+In production, the most common causes are incorrect application configuration, failed database connections, missing Secrets, insufficient memory leading to OOMKilled events, and misconfigured liveness probes.
+
+---
+
+## 30. If a Pod is not accessible, what steps would you take to troubleshoot the issue?
+
+**Answer:**
+
+When a Pod is not accessible, I troubleshoot layer by layer instead of assuming the root cause.
+
+**Step 1:** Verify Pod status.
+
+```bash
+kubectl get pods -o wide
+```
+
+**Step 2:** Check Pod events.
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+**Step 3:** Review application logs.
+
+```bash
+kubectl logs <pod-name>
+```
+
+**Step 4:** Verify Service configuration.
+
+```bash
+kubectl get svc
+kubectl describe svc <service-name>
+```
+
+Ensure that the Service selector matches the Pod labels.
+
+**Step 5:** Check Service Endpoints.
+
+```bash
+kubectl get endpoints
+```
+
+If no endpoints exist, the Service is not targeting any Pods.
+
+**Step 6:** Verify Ingress configuration.
+
+```bash
+kubectl get ingress
+kubectl describe ingress <ingress-name>
+```
+
+**Step 7:** Test DNS and connectivity from another Pod.
+
+```bash
+kubectl exec -it <pod-name> -- nslookup <service-name>
+kubectl exec -it <pod-name> -- curl http://<service-name>
+```
+
+**Step 8:** Check Network Policies and firewall rules.
+
+**Step 9:** Review node health.
+
+```bash
+kubectl get nodes
+kubectl top nodes
+```
+
+**Step 10:** Check monitoring dashboards in Prometheus, Grafana, and CloudWatch for resource utilization, errors, and recent alerts.
+
+By following this structured approach, I can quickly isolate whether the issue is related to the application, networking, Service configuration, Ingress, DNS, storage, or the underlying infrastructure.
+
+
+
+# Kubernetes Interview Questions and Answers (4 Years Experience)
+
 ## 1. What is Kubernetes? Explain container orchestration.
 
 **Answer:**
