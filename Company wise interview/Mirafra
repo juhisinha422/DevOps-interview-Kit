@@ -22,3 +22,55 @@ First Round interview Questions:
 17. What is the purpose of terraform taint?
 18. What is the replacement for terraform taint in newer Terraform versions?
 19. What is the difference between terraform taint and terraform apply -replace?
+
+
+
+Mirafra Final round interview questions:
+
+I recently had the opportunity to interview for a DevOps Engineer role at Mirafra and  these are the questions:
+
+DevOps Project & CI/CD
+
+1. Explain your project architecture from a DevOps perspective.
+2. Explain the complete CI/CD flow that you built end-to-end.
+3. What was your role in the CI/CD pipeline?
+4. What third-party integrations have you worked on?
+5. Explain an integration you implemented in your project? 
+6. What automation tasks have you done using Shell scripting?
+7. Do you have Python experience? How much exposure do you have?
+
+Jenkins
+
+8. Explain the Jenkins pipeline you worked on.
+9. How did you configure SonarQube with Jenkins?
+10. How did you configure the Quality Gate in SonarQube?
+11. What happens if the Quality Gate fails?
+12. How did you add the Checkmarx (security scan) stage in Jenkins?
+13. If Jenkins is working locally but not accessible through the URL, how would you troubleshoot it?
+
+SonarQube & Checkmarx
+
+14. Did you only trigger the scans, or did you also review and triage the violations?
+15. Give an example where you helped resolve a SonarQube finding.
+16. Give an example where you helped resolve a Checkmarx finding.
+17. Did you generate SonarQube or Checkmarx reports every day?
+18. Did you write any scripts to collect SonarQube or Checkmarx scan results?
+19. What types of findings does SonarQube report?
+20. What types of vulnerabilities does Checkmarx detect?
+
+Shell Scripting
+
+21. Write a Shell script to monitor CPU utilization.
+22. Explain your CPU monitoring script line by line.
+23. Write a Shell script for weekly log cleanup.
+24. How would you schedule the cleanup script every week?
+25. What is the meaning of -mtime +7?
+
+26. What is the output of the following command? 
+echo hi || echo hello
+
+Production Support
+
+27. How do you review and coordinate security findings with development and security teams?
+28. How do you troubleshoot deployment failures?
+29. What monitoring tools have you used after deployment?
