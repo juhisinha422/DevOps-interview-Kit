@@ -1,3 +1,964 @@
+# Real DevOps Interview Questions (Asked in Product & Service-Based Companies)
+
+## 1. Let's say your Pod keeps crashing. How would you troubleshoot it?
+
+**Answer:**
+
+If a Pod keeps crashing, the first thing I do is identify whether it is in the **CrashLoopBackOff**, **Error**, or **OOMKilled** state.
+
+I follow a structured troubleshooting approach:
+
+**Step 1:** Check Pod status.
+
+```bash
+kubectl get pods -n <namespace>
+```
+
+**Step 2:** Describe the Pod to view events.
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+This helps identify scheduling issues, image pull failures, failed probes, or resource problems.
+
+**Step 3:** Check application logs.
+
+```bash
+kubectl logs <pod-name>
+```
+
+If the container restarted:
+
+```bash
+kubectl logs <pod-name> --previous
+```
+
+**Step 4:** Verify:
+
+* ConfigMaps
+* Secrets
+* Environment variables
+* Database connectivity
+* Mounted volumes
+* Resource requests and limits
+* Liveness and Readiness probes
+
+**Step 5:** Monitor resource usage.
+
+```bash
+kubectl top pod
+kubectl top node
+```
+
+If memory usage exceeds the configured limit, Kubernetes terminates the container with **OOMKilled**.
+
+I also verify whether the correct Docker image was deployed and whether any recent deployment introduced the issue.
+
+If the problem is caused by the latest deployment, I immediately roll back:
+
+```bash
+kubectl rollout undo deployment <deployment-name>
+```
+
+In production, the most common causes are incorrect environment variables, missing Secrets, database connectivity issues, failed health probes, insufficient memory, incorrect image versions, and application startup exceptions.
+
+---
+
+## 2. If the Route is not able to fetch the Service, what could be the issue?
+
+**Answer:**
+
+If a Route (or Ingress/OpenShift Route) cannot reach the Service, I troubleshoot the request flow layer by layer.
+
+The request path is:
+
+```text
+Client
+   ↓
+Route / Ingress
+   ↓
+Service
+   ↓
+Endpoints
+   ↓
+Pods
+```
+
+I verify:
+
+### Route/Ingress
+
+```bash
+kubectl get ingress
+kubectl describe ingress
+```
+
+Check:
+
+* Hostname
+* Path
+* Backend Service
+* TLS configuration
+
+### Service
+
+```bash
+kubectl get svc
+kubectl describe svc
+```
+
+Ensure:
+
+* Correct selector
+* Correct targetPort
+* Correct port
+
+### Endpoints
+
+```bash
+kubectl get endpoints
+```
+
+If no endpoints exist, the Service is not selecting any Pods.
+
+### Pod Labels
+
+```bash
+kubectl get pods --show-labels
+```
+
+Verify that the Service selector matches the Pod labels.
+
+### Pod Health
+
+Ensure Pods are:
+
+* Running
+* Ready
+* Passing readiness probes
+
+Common causes include:
+
+* Incorrect Service selector
+* Incorrect targetPort
+* Pods not Ready
+* Wrong namespace
+* DNS resolution issues
+* Network Policies blocking traffic
+* Ingress misconfiguration
+
+---
+
+## 3. What is etcd in Kubernetes?
+
+**Answer:**
+
+etcd is a distributed, highly available key-value database that stores the complete state of the Kubernetes cluster. It acts as the primary datastore for all cluster information.
+
+The API Server stores information in etcd whenever resources are created, updated, or deleted.
+
+etcd stores:
+
+* Pods
+* Deployments
+* ReplicaSets
+* Services
+* ConfigMaps
+* Secrets
+* Namespaces
+* Nodes
+* RBAC objects
+* Cluster configuration
+
+For example, when I run:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+the API Server validates the request and stores the Deployment information in etcd. The Scheduler and Controller Manager then use this information to create and manage the Pods.
+
+Because etcd contains the entire cluster state, it is one of the most critical components of Kubernetes. In production, etcd is deployed as a highly available cluster and backed up regularly. Losing etcd without a backup means losing the cluster's configuration and state.
+
+---
+
+## 4. Have you used StatefulSets? In what scenarios do you use them?
+
+**Answer:**
+
+Yes. I use StatefulSets for applications that require persistent storage, stable network identities, and ordered deployment or termination.
+
+Unlike Deployments, StatefulSets provide:
+
+* Stable Pod names.
+* Stable network identities.
+* Persistent storage using Persistent Volume Claims (PVCs).
+* Ordered startup and shutdown.
+
+Typical production use cases include:
+
+* MySQL
+* PostgreSQL
+* MongoDB
+* Kafka
+* Elasticsearch
+* Cassandra
+* ZooKeeper
+
+For example, in a MySQL StatefulSet with three replicas, the Pods are named:
+
+* mysql-0
+* mysql-1
+* mysql-2
+
+Each Pod retains its own Persistent Volume even if it is restarted or rescheduled. This ensures that database data is not lost.
+
+I use Deployments for stateless applications such as APIs and frontends, and StatefulSets for databases and distributed systems where data persistence and stable identities are essential.
+
+---
+
+## 5. You mentioned using Trivy. Explain what it is and how you check for vulnerabilities.
+
+**Answer:**
+
+Trivy is an open-source security scanner used to detect vulnerabilities in container images, file systems, Git repositories, Infrastructure as Code (IaC), Kubernetes manifests, and Software Bill of Materials (SBOMs).
+
+In our CI/CD pipeline, after building the Docker image, Jenkins runs a Trivy scan before pushing the image to Amazon ECR.
+
+A typical flow is:
+
+```text
+Developer Push
+      ↓
+GitHub
+      ↓
+Jenkins Build
+      ↓
+Docker Build
+      ↓
+Trivy Scan
+      ↓
+If Scan Passes
+      ↓
+Push to Amazon ECR
+      ↓
+Deploy to Amazon EKS
+```
+
+A common command is:
+
+```bash
+trivy image myapp:latest
+```
+
+Trivy reports:
+
+* Critical vulnerabilities
+* High vulnerabilities
+* Medium vulnerabilities
+* Low vulnerabilities
+* Package details
+* CVE IDs
+* Suggested fixes
+
+In production, we configure the pipeline to fail if any **Critical** or **High** vulnerabilities are detected. Developers then update the base image, operating system packages, or application dependencies and rebuild the image.
+
+Using Trivy early in the pipeline prevents vulnerable container images from reaching production and supports a shift-left security approach.
+
+
+# Real DevOps Interview Questions (Asked in Product & Service-Based Companies)
+
+## 6. What is a `.trivyignore` file?
+
+**Answer:**
+
+The `.trivyignore` file is used to suppress specific vulnerabilities during a Trivy scan. Sometimes, Trivy reports vulnerabilities that are either false positives, accepted by the security team, or cannot be fixed immediately because no patched version is available. Instead of failing the CI/CD pipeline for these known issues, we add the specific CVE IDs to the `.trivyignore` file.
+
+For example:
+
+```text
+CVE-2023-12345
+CVE-2024-56789
+```
+
+When Trivy runs, it ignores only these listed vulnerabilities and continues reporting all others.
+
+In production, we do **not** ignore vulnerabilities permanently. Every ignored CVE must have:
+
+* A valid business justification.
+* Security team approval.
+* A review date.
+* A plan to remove it once a fix becomes available.
+
+This ensures that `.trivyignore` does not become a way to bypass security checks but is used only for controlled exceptions.
+
+---
+
+## 7. At what stage of the CI/CD pipeline do you integrate Trivy?
+
+**Answer:**
+
+I integrate Trivy immediately after the Docker image is built and before the image is pushed to Amazon ECR or any other container registry. This ensures that only secure images are stored and deployed.
+
+Our pipeline looks like this:
+
+```text
+Developer
+     │
+     ▼
+GitHub Push
+     │
+     ▼
+Jenkins Trigger
+     │
+     ▼
+Build Application (Maven/Gradle)
+     │
+     ▼
+Run Unit Tests
+     │
+     ▼
+SonarQube Analysis
+     │
+     ▼
+Docker Build
+     │
+     ▼
+Trivy Image Scan
+     │
+     ▼
+Quality Gate
+     │
+     ▼
+Push Image to Amazon ECR
+     │
+     ▼
+Deploy to Amazon EKS
+```
+
+If Trivy detects **Critical** or **High** vulnerabilities above the organization's threshold, Jenkins marks the build as failed and stops the deployment. Developers must remediate the vulnerabilities before the image can be promoted.
+
+Some organizations also perform an additional scan after deployment for continuous compliance, but the primary security gate is before the image reaches the registry.
+
+---
+
+## 8. Apart from Trivy, what other vulnerability scanning tools have you used?
+
+**Answer:**
+
+While Trivy has been my primary image scanning tool, I am familiar with several enterprise vulnerability management solutions.
+
+Some commonly used tools include:
+
+* **Amazon ECR Image Scanning** – Automatically scans images stored in Amazon ECR.
+* **Snyk** – Scans application dependencies, container images, and Infrastructure as Code.
+* **Aqua Security** – Provides image scanning, runtime protection, and Kubernetes security.
+* **Prisma Cloud (Twistlock)** – Comprehensive cloud-native security platform.
+* **Anchore** – Container image analysis and policy enforcement.
+* **Clair** – Open-source vulnerability scanner for container images.
+* **Dependency-Track** – Tracks third-party software components using SBOMs.
+* **OWASP Dependency-Check** – Detects vulnerable libraries in application dependencies.
+
+In production, image scanning is usually combined with:
+
+* SonarQube for code quality.
+* Trivy or Aqua for container security.
+* OPA/Kyverno for Kubernetes policy enforcement.
+* Falco for runtime security.
+
+This layered approach provides security throughout the software delivery lifecycle rather than relying on a single tool.
+
+---
+
+## 9. How do you monitor Amazon EKS using Prometheus and Grafana? What metrics and thresholds do you monitor?
+
+**Answer:**
+
+In Amazon EKS, I use **Prometheus** to collect metrics from Kubernetes components and applications, while **Grafana** visualizes those metrics through dashboards. For logs, I use **CloudWatch Logs**, **Loki**, or the **EFK (Elasticsearch, Fluent Bit, Kibana)** stack, depending on the project.
+
+The monitoring architecture is:
+
+```text
+Application Pods
+       │
+       ▼
+Prometheus
+       │
+       ▼
+Grafana Dashboards
+       │
+       ▼
+Alertmanager
+       │
+       ▼
+Slack / Email / PagerDuty
+```
+
+### Cluster Metrics
+
+I monitor:
+
+* Node CPU utilization
+* Node memory utilization
+* Disk usage
+* Node availability
+* Node Ready/NotReady status
+
+### Pod Metrics
+
+* CPU usage
+* Memory usage
+* Pod restarts
+* OOMKilled events
+* CrashLoopBackOff
+* Pending Pods
+
+### Application Metrics
+
+* Request rate (RPS)
+* Response time (Latency)
+* HTTP 4xx and 5xx errors
+* Availability
+* Active sessions
+
+### Kubernetes Metrics
+
+* Deployment status
+* Replica availability
+* HPA scaling events
+* API Server latency
+* etcd health
+
+### Sample Alert Thresholds
+
+* CPU > 80% for 10 minutes
+* Memory > 85% for 10 minutes
+* Disk usage > 80%
+* HTTP 5xx error rate > 5%
+* Pod restart count > 5 within 10 minutes
+* Node NotReady
+* Persistent Volume usage > 80%
+
+Critical alerts are sent to PagerDuty or Opsgenie, while warning alerts are routed to Slack or email. These thresholds are tuned over time to reduce alert fatigue while ensuring production issues are detected early.
+
+---
+
+## 10. Explain your complete CI/CD pipeline from code commit to deployment.
+
+**Answer:**
+
+In my projects, the CI/CD pipeline is fully automated and designed to deliver secure, reliable, and repeatable deployments.
+
+The flow is:
+
+```text
+Developer
+      │
+      ▼
+GitHub Push
+      │
+      ▼
+Webhook Triggers Jenkins
+      │
+      ▼
+Checkout Source Code
+      │
+      ▼
+Build (Maven/Gradle)
+      │
+      ▼
+Unit Tests
+      │
+      ▼
+SonarQube Code Analysis
+      │
+      ▼
+Quality Gate Validation
+      │
+      ▼
+Docker Image Build
+      │
+      ▼
+Trivy Security Scan
+      │
+      ▼
+Push Image to Amazon ECR
+      │
+      ▼
+Update Helm Chart/Image Tag
+      │
+      ▼
+Argo CD Detects Git Change
+      │
+      ▼
+Deploy to Amazon EKS
+      │
+      ▼
+Rolling Update
+      │
+      ▼
+Readiness & Liveness Checks
+      │
+      ▼
+Prometheus & Grafana Monitoring
+```
+
+After deployment, Kubernetes performs rolling updates to ensure zero downtime. Readiness probes verify that new Pods are healthy before they receive production traffic. If the deployment fails, Kubernetes or Argo CD can roll back to the previous stable version.
+
+Throughout the pipeline, quality and security checks are enforced using unit tests, SonarQube quality gates, Trivy vulnerability scanning, and Git pull request approvals. Infrastructure is managed with Terraform, while application deployment is handled through GitOps using Argo CD.
+
+This approach provides consistency, traceability, security, and fast recovery in production environments.
+
+
+# Real DevOps Interview Questions (Asked in Product & Service-Based Companies)
+
+## 11. Are you familiar with Dependency-Track?
+
+**Answer:**
+
+Yes. Although I have primarily worked with Trivy for container image scanning, I am familiar with **Dependency-Track**, which is an open-source Software Composition Analysis (SCA) platform. It continuously monitors third-party libraries and open-source dependencies used in an application.
+
+Unlike Trivy, which mainly scans container images and Infrastructure as Code, Dependency-Track analyzes the **Software Bill of Materials (SBOM)** to identify vulnerable libraries such as Log4j, Spring Framework, Jackson, or Apache Commons.
+
+The typical workflow is:
+
+```text
+Build Application
+       │
+       ▼
+Generate SBOM (CycloneDX/SPDX)
+       │
+       ▼
+Upload SBOM to Dependency-Track
+       │
+       ▼
+Dependency-Track analyzes vulnerabilities
+       │
+       ▼
+Alerts for vulnerable components
+```
+
+It continuously monitors newly published CVEs. Even if an application was built months ago, Dependency-Track can notify the team when a new vulnerability is discovered in one of its dependencies.
+
+In enterprise environments, it is often integrated with Jenkins, GitHub Actions, Maven, Gradle, and SonarQube as part of the DevSecOps pipeline.
+
+---
+
+## 12. The image that you build, where do you push it?
+
+**Answer:**
+
+In my projects, after Jenkins successfully builds the Docker image and completes the Trivy security scan, the image is pushed to **Amazon Elastic Container Registry (Amazon ECR)**.
+
+The deployment flow is:
+
+```text
+Developer
+      │
+      ▼
+GitHub
+      │
+      ▼
+Jenkins Pipeline
+      │
+      ▼
+Build Application
+      │
+      ▼
+Docker Build
+      │
+      ▼
+Trivy Scan
+      │
+      ▼
+Push Image to Amazon ECR
+      │
+      ▼
+Amazon EKS pulls image from ECR
+```
+
+Amazon ECR provides:
+
+* Secure private image repositories.
+* IAM-based authentication.
+* Image vulnerability scanning.
+* Lifecycle policies.
+* Cross-region replication.
+* High availability.
+* Integration with Amazon EKS.
+
+Pods running in Amazon EKS authenticate using **IAM Roles for Service Accounts (IRSA)** or node IAM roles and securely pull images from ECR without storing credentials.
+
+---
+
+## 13. Amazon ECR has storage limits. How do you manage thousands of images?
+
+**Answer:**
+
+If every deployment creates a new Docker image, repositories can quickly accumulate thousands of unused images, increasing storage costs and management complexity.
+
+To manage this efficiently, I implement **Amazon ECR Lifecycle Policies**.
+
+A typical lifecycle policy automatically deletes:
+
+* Untagged images older than 7 days.
+* Development images older than 30 days.
+* Feature branch images after merge.
+* Images exceeding a defined retention count.
+
+For example:
+
+* Keep the latest 20 Production images.
+* Keep the latest 10 UAT images.
+* Keep the latest 5 Development images.
+
+This prevents unlimited repository growth while ensuring sufficient rollback history.
+
+Additionally, I:
+
+* Use immutable image tags.
+* Remove unused repositories.
+* Enable image scanning.
+* Monitor repository size through CloudWatch and AWS Cost Explorer.
+
+This keeps storage optimized without affecting deployment reliability.
+
+---
+
+## 14. What image tagging strategy do you use?
+
+**Answer:**
+
+I avoid using the **latest** tag in production because it is mutable and makes troubleshooting difficult.
+
+Instead, every Docker image receives a unique, immutable version.
+
+Typical tagging strategies include:
+
+```text
+myapp:v1.0.0
+myapp:20260716-1250
+myapp:build-1024
+myapp:git-a4d5f67
+```
+
+In Jenkins, the image tag is usually generated automatically using one of the following:
+
+* Git Commit ID
+* Build Number
+* Semantic Version
+* Release Version
+
+For example:
+
+```bash
+myapp:build-245
+myapp:git-8c1d4ef
+```
+
+The deployment manifest or Helm values file references this exact tag.
+
+Benefits include:
+
+* Easy rollback.
+* Full traceability.
+* Immutable deployments.
+* Simplified debugging.
+* Clear deployment history.
+
+In production, I strongly recommend immutable version tags and never rely on `latest`.
+
+---
+
+## 15. Suppose a Pod was deployed 30 days ago using image V1. Your ECR lifecycle policy deleted V1 after 30 days. The Pod restarts and cannot pull the image. How would you prevent this?
+
+**Answer:**
+
+This is a common production scenario and highlights why lifecycle policies must be designed carefully.
+
+If a running Pod restarts and the required image has already been deleted from Amazon ECR, Kubernetes cannot pull the image, causing the Pod to remain in an **ImagePullBackOff** state.
+
+To prevent this, I would **not** configure lifecycle policies solely based on image age.
+
+Instead, I would design the policy around **retention count and release strategy**.
+
+For example:
+
+* Keep the latest 30 Production images regardless of age.
+* Keep the latest 10 UAT images.
+* Keep the latest 5 Development images.
+* Delete only untagged images older than 7 days.
+
+I also maintain separate repositories or tagging conventions for Production and non-Production images.
+
+For critical production applications, images currently deployed in any Kubernetes cluster should never be eligible for automatic deletion. This can be achieved by:
+
+* Using immutable version tags.
+* Maintaining a rollback window.
+* Protecting release tags from lifecycle deletion.
+* Aligning lifecycle policies with deployment frequency.
+
+For example, if production releases occur weekly and rollback may be required for several months, I would retain significantly more production images than development images.
+
+This approach ensures that even if a Pod is rescheduled or a node fails weeks later, Kubernetes can still pull the required image successfully.
+
+**Interview Tip:**
+
+If the interviewer asks, *"Would you use the `latest` tag?"*, the best answer is:
+
+> "No. In production, I always use immutable version tags such as Git commit IDs, build numbers, or semantic versions. The `latest` tag is mutable, difficult to audit, and can lead to inconsistent deployments and rollback challenges."
+
+# Real DevOps Interview Questions (Asked in Product & Service-Based Companies)
+
+## 16. Do you use the `latest` image tag in production?
+
+**Answer:**
+
+No. In production, I avoid using the **`latest`** tag because it is mutable. The same tag can point to different image versions over time, making deployments unpredictable and rollback difficult.
+
+Instead, every image is tagged with a unique and immutable version such as:
+
+* Git Commit ID
+* Jenkins Build Number
+* Semantic Version (v1.2.3)
+* Release Version
+* Timestamp
+
+For example:
+
+```text
+myapp:build-245
+myapp:git-a7c9d5f
+myapp:v2.1.0
+```
+
+This provides several benefits:
+
+* Easy rollback to a known version.
+* Complete deployment traceability.
+* Consistent deployments across Dev, UAT, and Production.
+* Better debugging and auditing.
+
+If an issue occurs after deployment, I can immediately identify which image version is running and roll back to the previous stable version without ambiguity.
+
+**Interview Tip:** If asked whether you use `latest`, confidently answer:
+
+> "No. In production, I always use immutable image tags. The `latest` tag is suitable for local development but not for production because it makes deployments difficult to reproduce and audit."
+
+---
+
+## 17. Explain Multi-Stage Docker Builds.
+
+**Answer:**
+
+A multi-stage Docker build allows us to use multiple `FROM` statements in a single Dockerfile. The application is compiled in one stage (builder stage), and only the required artifacts are copied into the final runtime image.
+
+Example:
+
+```dockerfile
+# Build Stage
+FROM maven:3.9-eclipse-temurin-17 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn clean package
+
+# Runtime Stage
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=builder /app/target/app.jar app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
+```
+
+### Advantages
+
+* Smaller image size.
+* Faster deployments.
+* Reduced attack surface.
+* No unnecessary build tools in the runtime image.
+* Improved security.
+* Better Docker layer caching.
+
+Without a multi-stage build, the final image would contain Maven, source code, caches, and temporary files. With a multi-stage build, only the compiled application is included.
+
+In production, I use multi-stage builds for Java, Node.js, and Go applications to optimize image size and improve security.
+
+---
+
+## 18. Do you use a `.dockerignore` file? What does it contain?
+
+**Answer:**
+
+Yes. I always use a `.dockerignore` file because it prevents unnecessary files from being copied into the Docker build context.
+
+Without `.dockerignore`, Docker sends the entire project directory to the Docker daemon, increasing build time and image size. It can also accidentally include sensitive files.
+
+A typical `.dockerignore` file contains:
+
+```text
+.git
+.gitignore
+README.md
+node_modules
+target/
+logs/
+*.log
+.idea/
+.vscode/
+.env
+*.tmp
+```
+
+### Benefits
+
+* Faster Docker builds.
+* Smaller build context.
+* Smaller image size.
+* Prevents accidental inclusion of secrets.
+* Improves Docker layer caching.
+
+In production, I always review the `.dockerignore` file to ensure that only the files required to build the application are included.
+
+---
+
+## 19. What is the difference between `.dockerignore` and `.trivyignore`?
+
+**Answer:**
+
+Although both files are used during the CI/CD process, they serve completely different purposes.
+
+### `.dockerignore`
+
+* Used during Docker image build.
+* Excludes unnecessary files from the Docker build context.
+* Improves build performance.
+* Reduces image size.
+* Prevents sensitive files from being copied into the image.
+
+Example:
+
+```text
+node_modules/
+.git/
+.env
+*.log
+```
+
+### `.trivyignore`
+
+* Used during Trivy vulnerability scanning.
+* Suppresses specific CVEs that have been reviewed and temporarily accepted.
+* Does **not** remove vulnerabilities—it only tells Trivy not to report specific ones.
+
+Example:
+
+```text
+CVE-2024-12345
+CVE-2023-98765
+```
+
+### Key Difference
+
+| `.dockerignore`                   | `.trivyignore`                       |
+| --------------------------------- | ------------------------------------ |
+| Used during Docker build          | Used during vulnerability scanning   |
+| Excludes files from build context | Ignores selected CVEs                |
+| Optimizes image creation          | Manages approved security exceptions |
+
+In production, I use both:
+
+* `.dockerignore` for efficient and secure image builds.
+* `.trivyignore` only after approval from the security team for known, accepted vulnerabilities.
+
+---
+
+## 20. Apart from Terraform, are you familiar with Ansible or Shell scripting?
+
+**Answer:**
+
+Yes. While Terraform is my primary Infrastructure as Code tool for provisioning cloud resources, I also use Shell scripting and have knowledge of Ansible for configuration management and automation.
+
+### Shell Scripting
+
+I use Bash scripts for tasks such as:
+
+* Automating server setup.
+* Log cleanup.
+* Backup scripts.
+* Health checks.
+* CI/CD automation.
+* File processing.
+* Cron jobs.
+
+For example:
+
+```bash
+#!/bin/bash
+
+if kubectl get pods | grep CrashLoopBackOff
+then
+  echo "Application has failed"
+else
+  echo "Application is healthy"
+fi
+```
+
+Shell scripting is lightweight and commonly used inside Jenkins pipelines for automation.
+
+### Ansible
+
+Ansible is an agentless configuration management and automation tool that communicates over SSH.
+
+I use Ansible for:
+
+* Installing software packages.
+* Configuring web servers.
+* Managing configuration files.
+* User and permission management.
+* Application deployment.
+* Server patching.
+* Provisioning middleware.
+
+Example workflow:
+
+```text
+Inventory
+      │
+      ▼
+Ansible Playbook
+      │
+      ▼
+SSH Connection
+      │
+      ▼
+Target Servers
+```
+
+A typical Ansible playbook can install NGINX, configure services, and start the application on multiple servers simultaneously.
+
+### Terraform vs Ansible
+
+| Terraform                     | Ansible                              |
+| ----------------------------- | ------------------------------------ |
+| Infrastructure Provisioning   | Configuration Management             |
+| Creates cloud resources       | Configures existing servers          |
+| Declarative                   | Mostly Declarative (Playbooks)       |
+| Uses cloud provider APIs      | Uses SSH/WinRM                       |
+| Example: Create EC2, VPC, EKS | Example: Install NGINX, Java, Docker |
+
+### Production Usage
+
+In my projects:
+
+* **Terraform** provisions AWS resources such as VPCs, EC2, EKS clusters, IAM roles, and Load Balancers.
+* **Ansible** configures operating systems and installs required software when configuration management is needed.
+* **Shell scripting** automates repetitive operational tasks and supports Jenkins pipeline stages.
+
+Using the right tool for the right task keeps the infrastructure consistent, repeatable, and easy to maintain.
+
+
+
+
 # AWS, Terraform & Kubernetes Interview Questions (4 Years Experience)
 
 ---
