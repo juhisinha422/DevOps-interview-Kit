@@ -1,3 +1,48 @@
+# 8 Real DevOps Interview Questions (That Actually Get Asked)
+
+```
+## 1. What happens if two engineers run terraform apply at the same time?
+
+• Terraform uses state locking via remote backend (S3 + DynamoDB).
+• One apply proceeds, the other fails to acquire the lock.
+• Without locking, state corruption and duplicate resources can occur.
+
+2. Why does Kubernetes show Pods as Running but users still face issues?
+• Pod status only shows container health, not application health.
+• Possible causes: failed readiness probes, network issues, downstream dependency latency, or partial AZ failure.
+• This is why readiness checks and observability matter.
+
+3. What causes CI/CD pipelines to fail intermittently?
+• Flaky tests that pass locally but fail under load.
+• Dependency version drift between environments.
+• Shared runners with resource exhaustion during peak usage.
+
+4. Why would a Docker container work locally but fail in Kubernetes?
+• Missing environment variables not injected via ConfigMap or Secret.
+• Resource limits too low — container gets OOMKilled immediately.
+• Image pull policy mismatch or wrong image tag in the manifest.
+
+5. What actually happens when you delete a Kubernetes namespace?
+• All resources inside are deleted — pods, services, configmaps, secrets.
+• Deletion can get stuck if finalizers are not cleared.
+• PersistentVolumes are NOT deleted by default — they outlive the namespace.
+
+6. Why does terraform plan show no changes but apply still modifies a resource?
+• Provider version differences can cause silent behavior changes.
+• State drift caused by manual changes outside Terraform.
+• Certain attributes are only computed after apply, not during plan.
+
+7. What is the difference between a liveness probe and a readiness probe failing?
+• Liveness failure: Kubernetes restarts the container.
+• Readiness failure: Kubernetes stops sending traffic but does not restart.
+• Mixing them up is one of the most common causes of unnecessary restarts in production.
+
+8. Why would adding more pods make your application slower?
+• Database connection pool exhausted — more pods means more connections.
+• Downstream service has rate limits that now get hit faster.
+• Pods competing for the same node resources cause CPU throttling.
+```
+
 # Real DevOps Interview Questions (Asked in Product & Service-Based Companies)
 
 ## 1. Let's say your Pod keeps crashing. How would you troubleshoot it?
