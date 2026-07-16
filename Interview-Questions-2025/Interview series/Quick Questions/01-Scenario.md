@@ -957,6 +957,365 @@ In my projects:
 Using the right tool for the right task keeps the infrastructure consistent, repeatable, and easy to maintain.
 
 
+# Real DevOps Interview Questions (Part 5)
+
+## 21. Let's say you have to provision an EC2 instance using Terraform. What resources would you define in your `.tf` files?
+
+**Answer:**
+
+To provision an EC2 instance in AWS using Terraform, I first configure the AWS provider and then define the required infrastructure resources. At a minimum, I need:
+
+* AWS Provider
+* VPC (or use an existing VPC)
+* Subnet
+* Internet Gateway (if public)
+* Route Table and Route Table Association
+* Security Group
+* Key Pair (optional for SSH access)
+* EC2 Instance
+* IAM Role/Profile (if the instance needs AWS access)
+* Variables and Outputs
+
+A typical structure is:
+
+```text
+terraform/
+│── main.tf
+│── variables.tf
+│── outputs.tf
+│── provider.tf
+│── terraform.tfvars
+```
+
+The most important EC2 resource is:
+
+```hcl
+resource "aws_instance" "web" {
+  ami                    = var.ami_id
+  instance_type          = "t3.micro"
+  subnet_id              = aws_subnet.public.id
+  vpc_security_group_ids = [aws_security_group.web.id]
+  key_name               = var.key_name
+
+  tags = {
+    Name = "Dev-Web-Server"
+  }
+}
+```
+
+In production, I avoid hardcoding values and use variables, reusable modules, remote state (S3), and state locking (DynamoDB). This makes the infrastructure scalable, reusable, and easier to maintain.
+
+---
+
+## 22. Are you familiar with AMIs? Have you created any?
+
+**Answer:**
+
+Yes. An **Amazon Machine Image (AMI)** is a template used to launch EC2 instances. It contains the operating system, required software, configurations, and application dependencies.
+
+I have primarily used AWS-managed AMIs such as Amazon Linux and Ubuntu, and I am also familiar with creating custom AMIs.
+
+A custom AMI is useful when multiple servers require the same preconfigured software. Instead of installing Java, Docker, monitoring agents, and application dependencies repeatedly, I configure one EC2 instance, create an AMI from it, and launch future instances using that image.
+
+Typical process:
+
+1. Launch an EC2 instance.
+2. Install and configure software.
+3. Validate the configuration.
+4. Create an AMI.
+5. Launch future EC2 instances from the custom AMI.
+
+This significantly reduces provisioning time and ensures consistency across environments.
+
+---
+
+## 23. Where is your Terraform state file kept, and what is it?
+
+**Answer:**
+
+The Terraform state file (`terraform.tfstate`) stores the current state of the infrastructure managed by Terraform. It maps the resources defined in the Terraform configuration to the actual resources created in the cloud.
+
+It contains information such as:
+
+* Resource IDs
+* ARNs
+* IP addresses
+* Dependencies
+* Metadata
+* Current infrastructure state
+
+For personal projects, Terraform stores the state locally. However, in production, we never keep the state locally.
+
+Instead, we use a **remote backend**:
+
+* Amazon S3 → State storage
+* DynamoDB → State locking
+
+Example:
+
+```hcl
+terraform {
+  backend "s3" {
+    bucket         = "company-terraform-state"
+    key            = "prod/network/terraform.tfstate"
+    region         = "ap-south-1"
+    dynamodb_table = "terraform-lock"
+  }
+}
+```
+
+Benefits:
+
+* Centralized state
+* Team collaboration
+* Versioning
+* Backup
+* Prevents simultaneous modifications through locking
+
+---
+
+## 24. How important is the Terraform state file? What if it gets corrupted?
+
+**Answer:**
+
+The Terraform state file is one of the most critical components of Terraform because it tells Terraform what infrastructure already exists. Without it, Terraform cannot accurately determine what to create, modify, or delete.
+
+If the state file becomes corrupted, I would:
+
+1. Stop further Terraform operations.
+2. Check whether S3 versioning is enabled.
+3. Restore the latest healthy version of the state file.
+4. Run:
+
+```bash
+terraform plan
+```
+
+to validate consistency.
+
+If specific resources are missing from the state, I use:
+
+```bash
+terraform import
+```
+
+to import existing AWS resources back into Terraform.
+
+As a last resort, if no backup exists, I recreate the state by importing resources manually.
+
+To prevent this scenario, I always:
+
+* Enable S3 versioning.
+* Use DynamoDB state locking.
+* Restrict direct access to the backend.
+* Perform regular backups.
+
+---
+
+## 25. Is your AWS deployment fully automated, or do you also perform manual deployments?
+
+**Answer:**
+
+In my projects, the CI part is fully automated. Code is committed to GitHub, Jenkins builds the application, runs tests, performs SonarQube analysis, scans the Docker image with Trivy, pushes it to Amazon ECR, and updates the deployment manifests.
+
+For CD, the approach depends on the environment.
+
+* **Development:** Automatic deployment after successful pipeline execution.
+* **UAT:** Usually requires approval before deployment.
+* **Production:** Approval is required, after which Argo CD performs the deployment automatically.
+
+This approach ensures speed in lower environments while maintaining governance and change control in production.
+
+---
+
+## 26. Since you are using Argo CD, why is the deployment stage manual?
+
+**Answer:**
+
+Argo CD supports fully automated deployments, but in production we often configure **manual approval before synchronization** to comply with organizational governance and change management policies.
+
+The workflow is:
+
+1. Jenkins builds and pushes the Docker image.
+2. Jenkins updates the Helm values or Kubernetes manifests in the GitOps repository.
+3. A pull request or approval is completed.
+4. Argo CD synchronizes the approved changes to the cluster.
+
+This provides:
+
+* Auditability
+* Change approval
+* Rollback capability
+* Compliance with enterprise release processes
+
+Development environments may use automatic sync, while production commonly uses manual approval followed by automated deployment.
+
+---
+
+## 27. Are you familiar with Canary Deployment?
+
+**Answer:**
+
+Yes. Canary Deployment is a deployment strategy where a new version is released to a small percentage of users before gradually increasing traffic.
+
+Example rollout:
+
+* Version 1 → 95%
+* Version 2 → 5%
+
+If monitoring shows healthy performance, traffic is increased:
+
+* 5%
+* 20%
+* 50%
+* 100%
+
+During the rollout, I monitor:
+
+* Response time
+* Error rate
+* CPU and memory usage
+* Business metrics
+* HTTP 5xx errors
+
+Traffic splitting can be implemented using Istio, NGINX Ingress, AWS Application Load Balancer, or Argo Rollouts.
+
+If any issue is detected, traffic is immediately shifted back to the stable version without affecting all users.
+
+---
+
+## 28. As a DevOps Engineer, which deployment strategy would you recommend?
+
+**Answer:**
+
+The deployment strategy depends on the application's business criticality.
+
+For most production applications, I recommend **Rolling Updates** because they provide zero downtime with minimal infrastructure overhead.
+
+For mission-critical applications, I prefer **Blue-Green Deployment**, as it enables immediate rollback by switching traffic back to the previous environment.
+
+For high-risk feature releases, I recommend **Canary Deployment**, allowing a small percentage of users to test the new version before a full rollout.
+
+My decision is based on:
+
+* Business criticality
+* Downtime tolerance
+* Rollback requirements
+* Infrastructure cost
+* Risk level
+* User impact
+
+There is no single strategy that fits every application; the deployment method should align with business and technical requirements.
+
+---
+
+## 29. Is there any other area of expertise that you would like to highlight?
+
+**Answer:**
+
+Yes. Apart from my core experience with AWS, Kubernetes, Docker, Jenkins, Terraform, and GitOps, I have worked extensively on production troubleshooting, CI/CD automation, Infrastructure as Code, container security, and monitoring.
+
+I have experience designing scalable deployment pipelines, troubleshooting Kubernetes production issues, implementing monitoring using Prometheus and Grafana, securing container images with Trivy, and provisioning AWS infrastructure using Terraform.
+
+I enjoy automating manual processes, improving deployment reliability, and collaborating with development teams to deliver secure and highly available applications.
+
+---
+
+## 30. Are you familiar with Red Hat OpenShift?
+
+**Answer:**
+
+Yes. I am familiar with OpenShift concepts and understand how it extends Kubernetes with enterprise features.
+
+OpenShift includes:
+
+* Built-in container registry
+* Integrated CI/CD capabilities
+* Enhanced RBAC
+* Security Context Constraints (SCC)
+* Routes instead of standard Kubernetes Ingress
+* Operator Framework
+* Web Console
+* Enterprise support from Red Hat
+
+Although my hands-on experience has primarily been with Amazon EKS, the core Kubernetes concepts such as Pods, Deployments, Services, ConfigMaps, Secrets, StatefulSets, and RBAC remain the same. I am confident that I can work with OpenShift because it builds upon standard Kubernetes.
+
+---
+
+## 31. If you have both AWS and Red Hat OpenShift available, where would you deploy your microservices and why?
+
+**Answer:**
+
+The decision depends on the organization's requirements.
+
+If the application is cloud-native and already using AWS services such as EKS, RDS, S3, IAM, and CloudWatch, I would recommend deploying on **Amazon EKS** because it integrates seamlessly with the AWS ecosystem, provides managed Kubernetes, and reduces operational overhead.
+
+If the organization has significant investment in Red Hat technologies, requires on-premises deployment, hybrid cloud, or standardized enterprise governance, then **Red Hat OpenShift** would be a better choice due to its enterprise security features, integrated tooling, and hybrid capabilities.
+
+My recommendation is based on factors such as:
+
+* Existing infrastructure
+* Compliance requirements
+* Operational expertise
+* Cost
+* Scalability
+* Integration with existing services
+* Long-term maintenance
+
+There is no universal answer—the platform should be selected based on business objectives, technical requirements, and operational strategy.
+
+
+# 28. As a DevOps Engineer, you are asked to propose the deployment strategy. Which one would you propose and why?
+
+**Answer:**
+
+I wouldn't recommend a single deployment strategy for every application because the right choice depends on business requirements, application criticality, downtime tolerance, rollback needs, and infrastructure cost.
+
+For most production applications, I recommend **Rolling Updates** because they provide zero downtime while replacing old Pods gradually with new ones. Kubernetes ensures that enough healthy Pods remain available throughout the deployment, making this strategy simple, cost-effective, and suitable for most stateless microservices.
+
+If the application is **mission-critical**, such as banking, healthcare, or payment systems where even a few seconds of downtime can impact users, I would recommend **Blue-Green Deployment**. In this strategy, we maintain two identical environments—Blue (current production) and Green (new version). After validating the Green environment through smoke tests and health checks, traffic is switched instantly using the Load Balancer, Ingress, or Service. If any issue is detected, traffic can immediately be redirected back to Blue, resulting in a near-instant rollback.
+
+For **high-risk releases**, major feature launches, or applications with millions of users, I prefer **Canary Deployment**. Initially, only a small percentage of users—such as 5%—receive the new version while the remaining users continue using the stable release. During this period, I closely monitor key metrics like CPU utilization, memory usage, request latency, HTTP 5xx errors, business KPIs, and user feedback using Prometheus and Grafana. If everything remains healthy, I gradually increase traffic from 5% to 25%, then 50%, and finally 100%. If any issue is detected, I immediately shift traffic back to the stable version.
+
+For applications where new features need to be enabled for selected users without deploying new code repeatedly, I also recommend **Feature Flags**. This allows us to enable or disable functionality dynamically for specific users or regions while minimizing deployment risk.
+
+**My recommendation depends on the scenario:**
+
+* **Rolling Update** → Best for most stateless production applications.
+* **Blue-Green** → Best when immediate rollback and zero downtime are critical.
+* **Canary** → Best for high-risk releases where gradual exposure reduces business risk.
+* **Feature Flags** → Best for controlled feature rollouts without frequent deployments.
+
+As a DevOps Engineer, my responsibility is not only to automate deployments but also to choose a strategy that balances reliability, business continuity, user experience, and operational cost.
+
+---
+
+# 31. Let's say you have both Red Hat OpenShift infrastructure and AWS, and you're asked where to deploy your microservices. How would you choose between them and why?
+
+**Answer:**
+
+I wouldn't choose AWS or OpenShift based on personal preference; I would evaluate the organization's business and technical requirements before making a recommendation.
+
+If the organization is already heavily invested in the **AWS ecosystem**, using services such as Amazon EKS, RDS, S3, IAM, CloudWatch, Route 53, ALB, and Auto Scaling, I would recommend deploying the microservices on **Amazon EKS**. EKS is a managed Kubernetes service, so AWS handles the control plane, reducing operational overhead. It integrates seamlessly with other AWS services, provides high availability across multiple Availability Zones, supports IAM-based authentication, and offers built-in monitoring and scalability. This makes it an excellent choice for cloud-native applications running entirely on AWS.
+
+On the other hand, if the organization has an existing **Red Hat OpenShift** platform, strict enterprise security requirements, or operates in a **hybrid or on-premises environment**, I would recommend OpenShift. It provides additional enterprise capabilities such as Security Context Constraints (SCC), an integrated container registry, Operator Lifecycle Manager, built-in CI/CD integrations, centralized governance, and Red Hat enterprise support. Organizations in regulated industries like banking, healthcare, or government often prefer OpenShift because of its strong governance and compliance features.
+
+When making the final decision, I would evaluate several factors:
+
+* Existing infrastructure and cloud strategy.
+* Compliance and regulatory requirements.
+* Operational and licensing costs.
+* Team expertise and skill set.
+* Scalability and high availability requirements.
+* Integration with existing services.
+* Long-term maintenance and support.
+
+**My recommendation would be:**
+
+* Choose **Amazon EKS** if the organization is cloud-first, primarily uses AWS services, and wants a fully managed Kubernetes platform with lower operational effort.
+* Choose **Red Hat OpenShift** if the organization requires hybrid cloud, on-premises deployments, enterprise governance, advanced security features, or already has significant investment in the Red Hat ecosystem.
+
+There is no universally correct answer. The best platform is the one that aligns with the organization's business goals, compliance needs, operational model, and long-term strategy. As a DevOps Engineer, my role is to evaluate these trade-offs and recommend the solution that delivers the greatest business value.
 
 
 # AWS, Terraform & Kubernetes Interview Questions (4 Years Experience)
