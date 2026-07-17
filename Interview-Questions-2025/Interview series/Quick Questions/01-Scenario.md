@@ -1,4 +1,3 @@
-```markdown
 # About the Project I Worked On
 
 ## Project: Invest India Portal
@@ -16,7 +15,7 @@ As a DevOps Engineer, my primary responsibility was to automate infrastructure p
 The project emphasized DevOps best practices such as Infrastructure as Code (Terraform), CI/CD automation (Jenkins), containerization (Docker), Kubernetes orchestration (Amazon EKS), GitOps deployments (Argo CD), package management (Helm), security scanning (Trivy), code quality analysis (SonarQube), and monitoring using Prometheus, Grafana, and AWS CloudWatch.
 
 Working on this project helped improve deployment speed, reduce manual effort, minimize configuration drift, strengthen security through automated scanning, and ensure high availability and reliability for a critical Government of India platform.
-```
+
 
 
 
