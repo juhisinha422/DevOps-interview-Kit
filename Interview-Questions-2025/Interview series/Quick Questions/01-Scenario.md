@@ -1,3 +1,25 @@
+```markdown
+# About the Project I Worked On
+
+## Project: Invest India Portal
+
+I worked on the **Invest India Portal**, which is the National Investment Promotion and Facilitation Agency of the Government of India. The platform acts as the first point of contact for both domestic and international investors looking to invest in India. It provides information on investment opportunities, sector-specific policies, startup initiatives, infrastructure projects, state-wise investment support, and government schemes.
+
+The portal supports investors throughout their investment journey by offering end-to-end assistance—from exploring investment opportunities to setting up operations in India. It also showcases India's innovation ecosystem, startup ecosystem, infrastructure projects, manufacturing sectors, and business-friendly policies.
+
+Since the platform is accessed by users across the globe, it is designed to be highly available, scalable, secure, and reliable. The application handles high user traffic and requires continuous monitoring, secure deployments, and minimal downtime to ensure a seamless user experience.
+
+The application follows a **microservices architecture**, where multiple services work together to provide different functionalities. These services are containerized using Docker and deployed on Amazon EKS, enabling high availability, scalability, and efficient resource utilization.
+
+As a DevOps Engineer, my primary responsibility was to automate infrastructure provisioning, application deployments, monitoring, and operational processes while ensuring secure and reliable software delivery. I worked closely with developers, QA, and operations teams to maintain deployment consistency across Development, UAT, and Production environments.
+
+The project emphasized DevOps best practices such as Infrastructure as Code (Terraform), CI/CD automation (Jenkins), containerization (Docker), Kubernetes orchestration (Amazon EKS), GitOps deployments (Argo CD), package management (Helm), security scanning (Trivy), code quality analysis (SonarQube), and monitoring using Prometheus, Grafana, and AWS CloudWatch.
+
+Working on this project helped improve deployment speed, reduce manual effort, minimize configuration drift, strengthen security through automated scanning, and ensure high availability and reliability for a critical Government of India platform.
+```
+
+
+
 # Deloitte DevOps Engineer Interview Questions & Answers (4+ Years Experience)
 
 ## Round 1: Technical Screening
