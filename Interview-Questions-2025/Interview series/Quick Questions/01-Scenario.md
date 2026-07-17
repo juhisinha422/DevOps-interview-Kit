@@ -1,3 +1,108 @@
+# Deloitte Hiring Manager Round Questions & Answers (4 Years Experience)
+
+## 1. Explain your current project.
+
+**Answer:**
+
+Currently, I am working on the **Invest India Portal**, which is the National Investment Promotion and Facilitation Agency of the Government of India. It is a cloud-native microservices application hosted on AWS that helps domestic and international investors explore investment opportunities, government policies, startup initiatives, and infrastructure projects across India.
+
+From a DevOps perspective, my responsibility is to automate the complete software delivery lifecycle. We use GitHub for source code management, Jenkins for CI, Docker for containerization, Amazon ECR for image storage, Amazon EKS for container orchestration, Terraform for Infrastructure as Code, Helm for application packaging, and Argo CD for GitOps-based deployments. I also monitor the application using Prometheus, Grafana, and CloudWatch.
+
+My role includes infrastructure provisioning, CI/CD pipeline development, Kubernetes administration, production support, monitoring, deployment automation, and troubleshooting production issues.
+
+---
+
+## 2. What is your exact role in the project?
+
+**Answer:**
+
+I work as a DevOps Engineer responsible for building and maintaining the CI/CD pipelines, provisioning AWS infrastructure using Terraform, managing Kubernetes deployments on Amazon EKS, writing Helm charts, configuring Argo CD, monitoring production systems, and supporting production deployments.
+
+I collaborate with developers to resolve deployment issues, automate repetitive tasks, review infrastructure changes, and ensure that deployments are secure, scalable, and highly available.
+
+---
+
+## 3. What is your biggest contribution to the project?
+
+**Answer:**
+
+One of my biggest contributions was automating the deployment process using Jenkins, Terraform, Docker, Helm, and Argo CD.
+
+Before automation, deployments involved several manual steps, which increased the chances of configuration errors and inconsistent environments. I helped standardize the deployment process by implementing Infrastructure as Code, GitOps, and automated CI/CD pipelines. This reduced deployment time, minimized manual intervention, improved consistency across environments, and made rollbacks faster and more reliable.
+
+---
+
+## 4. Which production issue are you most proud of resolving?
+
+**Answer:**
+
+One critical issue involved users receiving HTTP 503 errors immediately after a production deployment.
+
+I started by checking the Application Load Balancer, Ingress, Services, and Pod health. The Pods were running, but the readiness probe was failing due to an incorrect environment variable introduced in the latest deployment. Because the Pods were not marked as ready, Kubernetes did not route traffic to them.
+
+To restore service quickly, I rolled back the deployment to the previous stable version. After identifying and fixing the configuration issue, we redeployed successfully. We also introduced additional configuration validation checks in the CI/CD pipeline to prevent similar issues in the future.
+
+---
+
+## 5. Describe your application architecture.
+
+**Answer:**
+
+Our application follows a microservices architecture. Developers push code to GitHub, which triggers Jenkins through a webhook. Jenkins builds the application, runs unit tests, performs SonarQube analysis, scans Docker images with Trivy, builds and pushes images to Amazon ECR, and updates the Helm chart in the GitOps repository.
+
+Argo CD detects changes in Git and synchronizes them with Amazon EKS. The application is exposed through an AWS Application Load Balancer and Kubernetes Ingress. Monitoring is handled by Prometheus, Grafana, and CloudWatch, while Terraform manages the AWS infrastructure.
+
+This architecture provides scalability, high availability, automation, and simplified rollback capabilities.
+
+---
+
+## 6. How many microservices are deployed?
+
+**Answer:**
+
+The application consists of multiple microservices, each responsible for a specific business capability. Although the exact number varies depending on the release, the services are independently developed, containerized, and deployed on Amazon EKS. This architecture allows independent deployments, easier scaling, fault isolation, and simplified maintenance.
+
+---
+
+## 7. What parts of the infrastructure do you own?
+
+**Answer:**
+
+I primarily manage the DevOps and cloud infrastructure components, including Terraform modules, Amazon EKS clusters, Jenkins pipelines, Docker image management, Amazon ECR repositories, Helm charts, Argo CD applications, monitoring dashboards, and production deployments.
+
+I also participate in infrastructure reviews, troubleshoot production issues, and ensure that environments remain consistent and secure.
+
+---
+
+## 8. Which tasks are completely owned by you?
+
+**Answer:**
+
+I own the CI/CD pipelines, infrastructure provisioning through Terraform, Kubernetes deployments, Helm chart maintenance, GitOps deployment using Argo CD, production deployment support, monitoring dashboards, and deployment troubleshooting.
+
+I am also responsible for maintaining deployment documentation, improving automation, and implementing DevOps best practices to increase deployment reliability.
+
+---
+
+## 9. What improvements have you introduced in your current project?
+
+**Answer:**
+
+I contributed to improving the deployment process by increasing automation and reducing manual effort. We standardized infrastructure provisioning using Terraform, adopted GitOps with Argo CD, integrated Trivy image scanning into the CI/CD pipeline, improved monitoring dashboards using Prometheus and Grafana, and optimized deployment workflows.
+
+These improvements resulted in faster deployments, improved consistency across environments, quicker rollback capability, and reduced production deployment issues.
+
+---
+
+## 10. If you leave your current company tomorrow, what impact will it have on your team?
+
+**Answer:**
+
+I always ensure that my work is well documented and that knowledge is shared within the team, so no process depends solely on one individual. If I leave, the documentation, Terraform modules, Jenkins pipelines, Helm charts, and operational runbooks will help the team continue working smoothly.
+
+At the same time, I believe my experience with deployment automation, production troubleshooting, and CI/CD optimization has added value to the project, and replacing that knowledge would take some time. That's why I focus on knowledge sharing and mentoring team members whenever possible.
+
+
 # About the Project I Worked On
 
 ## Project: Invest India Portal
