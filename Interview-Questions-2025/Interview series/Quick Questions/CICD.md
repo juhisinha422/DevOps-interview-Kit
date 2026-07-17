@@ -1,3 +1,70 @@
+# Jenkins Interview Questions & Answers (4 Years DevOps Experience)
+
+## 1. What is Jenkins, and how does it fit into a CI/CD pipeline?
+
+### Answer
+
+Jenkins is an open-source automation server used to automate the Continuous Integration and Continuous Delivery (CI/CD) process. It helps automate software development tasks such as code checkout, building applications, running automated tests, performing code quality and security scans, creating Docker images, and deploying applications to different environments.
+
+In our project, whenever developers push code to the GitHub repository, a webhook automatically triggers the Jenkins pipeline. Jenkins checks out the latest code, builds the application using Maven, executes unit tests, performs SonarQube code quality analysis, scans Docker images using Trivy, builds the Docker image, pushes it to Amazon ECR, updates the Helm chart, and finally Argo CD deploys the application to Amazon EKS.
+
+Using Jenkins reduces manual effort, improves deployment consistency, provides faster feedback to developers, and enables reliable, repeatable deployments.
+
+---
+
+## 2. What is the difference between a Freestyle Project and a Pipeline in Jenkins?
+
+### Answer
+
+A Freestyle Project is the traditional Jenkins job where build steps are configured manually through the Jenkins UI. It is suitable for simple automation tasks but becomes difficult to maintain as projects grow. Since the configuration exists only in Jenkins, it is not version-controlled, making collaboration and change tracking more difficult.
+
+A Pipeline, on the other hand, defines the entire build and deployment process as code using a Jenkinsfile. The pipeline configuration is stored in the source code repository along with the application code, allowing version control, code reviews, collaboration, and easier maintenance. Pipelines support complex workflows such as parallel execution, conditional stages, retries, approvals, and reusable shared libraries.
+
+In enterprise environments, Pipeline as Code is preferred because it provides better maintainability, consistency, scalability, and traceability compared to Freestyle Projects.
+
+---
+
+## 3. What is the purpose of a Jenkinsfile, and what are the advantages of Pipeline as Code?
+
+### Answer
+
+A Jenkinsfile is a text file written in Groovy syntax that defines the complete CI/CD workflow. It contains all the pipeline stages such as source code checkout, application build, testing, code quality analysis, security scanning, Docker image creation, artifact publishing, and deployment.
+
+The main advantage of Pipeline as Code is that the entire pipeline becomes version-controlled along with the application code. Any pipeline changes go through the same Git workflow as application changes, including pull requests, reviews, and approvals.
+
+Pipeline as Code also improves reproducibility because every environment follows the same deployment process. It supports modularization through Shared Libraries, allows easier debugging, enables rollback of pipeline changes, and eliminates manual configuration drift between Jenkins servers.
+
+---
+
+## 4. How do you securely manage credentials such as passwords, API keys, and SSH keys in Jenkins?
+
+### Answer
+
+Sensitive information should never be hardcoded inside Jenkinsfiles or stored in source code repositories.
+
+In Jenkins, we use the built-in Credentials Manager to securely store secrets such as usernames and passwords, SSH private keys, AWS access keys, API tokens, certificates, and secret text. Credentials are encrypted and assigned unique IDs.
+
+Within the pipeline, credentials are accessed securely using the `credentials()` or `withCredentials` mechanism so that sensitive values are injected only during runtime and are masked in the Jenkins console logs.
+
+For cloud-native environments, we also integrate Jenkins with external secret management solutions such as AWS Secrets Manager, HashiCorp Vault, or Kubernetes Secrets. Access is controlled using Role-Based Access Control (RBAC) and the principle of least privilege to ensure only authorized users and pipelines can retrieve sensitive information.
+
+---
+
+## 5. How would you troubleshoot a Jenkins pipeline that suddenly starts failing after previously working successfully?
+
+### Answer
+
+I follow a structured troubleshooting approach instead of making assumptions.
+
+First, I identify the exact stage where the pipeline failed by reviewing the Jenkins console logs. Then I compare the current build with the last successful build to identify what has changed, such as application code, pipeline configuration, dependencies, plugins, credentials, infrastructure, or environment variables.
+
+Next, I verify source code changes, check whether Git checkout completed successfully, ensure required credentials are still valid, confirm Jenkins agents are online with sufficient CPU, memory, and disk space, and validate that external services such as GitHub, SonarQube, Docker Registry, Nexus, ECR, or Kubernetes are reachable.
+
+If the failure occurs during the build stage, I review build logs for compilation errors or dependency issues. If it occurs during Docker image creation, I check the Dockerfile and daemon logs. For deployment failures, I inspect Kubernetes events, Pod logs, deployment status, and Argo CD synchronization.
+
+If the issue was introduced by a recent pipeline or application change, I temporarily revert to the last known working version to restore service while investigating the root cause. Once identified, I implement the fix, rerun the pipeline, validate the deployment, and document the incident to prevent similar failures in the future.
+
+
 # 15 Advanced CI/CD Interview Questions & Answers (4+ Years Experience Level)
 
 ---
