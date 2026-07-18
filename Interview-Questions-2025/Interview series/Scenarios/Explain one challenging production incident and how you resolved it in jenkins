@@ -1,0 +1,15 @@
+Explain one challenging production incident and how you resolved it in jenkins 
+ 
+1. A challenging production incident in Jenkins is unexpectedly dropping offline mid-build or random OutOfMemory (OOM) errors .
+
+2.During high-load periods or long-running jobs (like Docker image builds or test suites), Jenkins agents would randomly disconnect with a java.io.IOException: Unexpected termination of channel error. 
+
+3.Java Remoting ping timeouts, or the Linux Out of Memory (OOM) killer terminating the gent process due to high resource usage. 
+
+4.For cloud-based or SSH agents, the Jenkins remoting ping thread occasionally drops the connection if a network packet is delayed. This was resolved by configuring the SSH client configuration on the agent nodes to keep connections alive automatically . 
+
+Host *
+    ServerAliveInterval 300
+    ServerAliveCountMax 30
+
+5. We Need to  configure pipelines to use the Jenkins Workspace Cleanup Plugin to periodically delete old workspaces and free up local disk space. 
