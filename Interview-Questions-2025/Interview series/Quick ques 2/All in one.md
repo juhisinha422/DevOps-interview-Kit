@@ -1,3 +1,536 @@
+# DevOps Interview Questions & Answers
+
+# Ansible
+
+## → Is Ansible inventory static or dynamic?
+
+Ansible inventory is the list of managed hosts on which playbooks execute. It can be either **static** or **dynamic**.
+
+A **static inventory** is a manually maintained file (INI or YAML format) containing server IPs, hostnames, and groups. It is suitable for environments where servers rarely change.
+
+Example:
+```ini
+[web]
+192.168.1.10
+192.168.1.11
+
+[db]
+192.168.1.20
+```
+
+A **dynamic inventory** automatically retrieves hosts from cloud providers or external systems such as AWS, Azure, GCP, VMware, Kubernetes, or CMDBs. It is ideal for cloud environments where instances are frequently created or terminated.
+
+For example, in AWS EC2, Ansible can automatically discover instances based on tags without manually updating the inventory file.
+
+**Difference**
+
+| Static Inventory | Dynamic Inventory |
+|------------------|-------------------|
+| Manually maintained | Automatically generated |
+| Best for on-premises | Best for cloud environments |
+| Requires manual updates | Updates automatically |
+| Simple configuration | Requires inventory plugins or scripts |
+
+---
+
+## → Difference between shell module and command module?
+
+Both modules execute commands on remote hosts, but they behave differently.
+
+### Command Module
+
+The `command` module executes commands directly without invoking a shell.
+
+Example:
+
+```yaml
+- name: Check disk usage
+  command: df -h
+```
+
+Characteristics:
+- More secure
+- Does not understand shell operators
+- Cannot use pipes (`|`), redirects (`>`), variables (`$HOME`), or wildcards (`*`)
+
+Example that will fail:
+
+```yaml
+command: cat file.txt | grep error
+```
+
+---
+
+### Shell Module
+
+The `shell` module executes commands through `/bin/sh`.
+
+Example:
+
+```yaml
+- name: Find error logs
+  shell: cat /var/log/app.log | grep ERROR
+```
+
+Characteristics:
+- Supports pipes
+- Supports redirection
+- Supports environment variables
+- Supports shell scripting
+
+Example:
+
+```yaml
+shell: echo "Backup" > backup.txt
+```
+
+### Difference
+
+| Command Module | Shell Module |
+|---------------|--------------|
+| Executes directly | Executes through shell |
+| More secure | Less secure |
+| No shell features | Supports shell features |
+| Faster | Slightly slower |
+| Preferred whenever possible | Use only when shell functionality is needed |
+
+---
+
+## → Write a playbook to copy a file and start a service.
+
+```yaml
+---
+- name: Copy configuration file and restart nginx
+  hosts: web
+  become: yes
+
+  tasks:
+
+    - name: Copy nginx configuration
+      copy:
+        src: nginx.conf
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Ensure nginx service is running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+```
+
+**Explanation**
+
+- `hosts` specifies target machines.
+- `become: yes` executes tasks with sudo privileges.
+- `copy` module copies files from the control node to managed nodes.
+- `service` module starts and enables the service.
+
+---
+
+## → What is a module in Ansible?
+
+A module is a reusable unit of work in Ansible that performs a specific task on managed nodes. Instead of writing shell scripts, Ansible modules execute predefined operations such as installing packages, copying files, managing users, starting services, creating directories, or interacting with cloud resources.
+
+Examples:
+
+Install package
+
+```yaml
+- yum:
+    name: httpd
+    state: present
+```
+
+Copy file
+
+```yaml
+- copy:
+    src: app.conf
+    dest: /etc/app.conf
+```
+
+Create user
+
+```yaml
+- user:
+    name: devops
+    state: present
+```
+
+Start service
+
+```yaml
+- service:
+    name: nginx
+    state: started
+```
+
+Common modules include:
+
+- copy
+- file
+- package
+- yum
+- apt
+- service
+- user
+- group
+- command
+- shell
+- git
+- template
+- cron
+
+---
+
+# Linux Scenarios
+
+## → Scenario based questions on the find command.
+
+The `find` command searches files and directories based on various criteria.
+
+### Find a file by name
+
+```bash
+find /home -name "config.yaml"
+```
+
+---
+
+### Find all log files
+
+```bash
+find /var/log -name "*.log"
+```
+
+---
+
+### Find files modified in last 2 days
+
+```bash
+find /var/log -mtime -2
+```
+
+---
+
+### Find files larger than 500 MB
+
+```bash
+find / -size +500M
+```
+
+---
+
+### Find empty files
+
+```bash
+find /tmp -type f -empty
+```
+
+---
+
+### Find directories only
+
+```bash
+find /opt -type d
+```
+
+---
+
+### Delete files older than 30 days
+
+```bash
+find /backup -type f -mtime +30 -delete
+```
+
+---
+
+### Change permissions of all shell scripts
+
+```bash
+find . -name "*.sh" -exec chmod +x {} \;
+```
+
+---
+
+### Find files owned by a specific user
+
+```bash
+find /home -user ubuntu
+```
+
+---
+
+### Find files containing a specific text
+
+```bash
+find /var/log -name "*.log" -exec grep -H "ERROR" {} \;
+```
+
+---
+
+## → How do you check listening ports?
+
+To identify which ports are listening for incoming connections:
+
+Using ss (recommended)
+
+```bash
+ss -tuln
+```
+
+With process information
+
+```bash
+ss -tulpn
+```
+
+Using netstat
+
+```bash
+netstat -tulpn
+```
+
+Using lsof
+
+```bash
+lsof -i -P -n
+```
+
+To check a specific port:
+
+```bash
+ss -tulpn | grep 8080
+```
+
+---
+
+## → How do you check running processes?
+
+View all running processes
+
+```bash
+ps -ef
+```
+
+Interactive process monitor
+
+```bash
+top
+```
+
+Enhanced process monitor
+
+```bash
+htop
+```
+
+Search for a process
+
+```bash
+ps -ef | grep nginx
+```
+
+Using pgrep
+
+```bash
+pgrep nginx
+```
+
+Check CPU and memory usage
+
+```bash
+top
+```
+
+Kill a process
+
+```bash
+kill -9 PID
+```
+
+---
+
+# F5 Load Balancer
+
+## → What is an iRule?
+
+An iRule is a TCL-based scripting language used in F5 BIG-IP to inspect, modify, and control traffic passing through the load balancer. It allows administrators to implement advanced traffic management logic beyond standard load balancing.
+
+Common use cases include:
+- URL redirection
+- HTTP header manipulation
+- Session persistence
+- Traffic routing based on URI or client IP
+- Blocking malicious requests
+- Custom authentication
+
+Example:
+
+```tcl
+when HTTP_REQUEST {
+    if { [HTTP::uri] starts_with "/admin" } {
+        pool admin_pool
+    }
+}
+```
+
+---
+
+## → Types of load balancing methods and how they work.
+
+### Round Robin
+
+Requests are distributed equally among all servers in sequence.
+
+Example:
+
+```
+Request1 → Server1
+Request2 → Server2
+Request3 → Server3
+```
+
+---
+
+### Least Connections
+
+New requests are sent to the server with the fewest active connections.
+
+Useful when request durations vary.
+
+---
+
+### Ratio (Weighted Round Robin)
+
+Servers receive traffic based on assigned weights.
+
+Example:
+
+```
+Server1 Weight=3
+Server2 Weight=1
+
+Traffic:
+75% → Server1
+25% → Server2
+```
+
+---
+
+### Fastest Response
+
+Traffic is directed to the server responding the fastest.
+
+---
+
+### Observed
+
+Considers both response time and active connections before selecting a server.
+
+---
+
+### Predictive
+
+Uses historical performance data to predict which server will perform best.
+
+---
+
+### Dynamic Ratio
+
+Server load is monitored dynamically (CPU, memory, etc.), and traffic is distributed accordingly.
+
+---
+
+## → Difference between Virtual Server, Pool, Pool Member and Node.
+
+| Component | Description |
+|-----------|-------------|
+| **Virtual Server** | The client-facing IP address and port where incoming traffic arrives. |
+| **Pool** | A logical collection of backend servers that provide the same application. |
+| **Pool Member** | An individual server and port within a pool (for example, `10.0.0.10:80`). |
+| **Node** | The actual backend server identified by its IP address. A node can belong to multiple pools. |
+
+Flow:
+
+```
+Client
+   |
+Virtual Server
+   |
+Pool
+   |
+Pool Members
+   |
+Backend Nodes
+```
+
+---
+
+# Jenkins
+
+## → Freestyle vs Pipeline — what is the difference?
+
+A **Freestyle Project** is the traditional Jenkins job where build steps are configured through the Jenkins UI. It is simple to create and suitable for basic automation, but it becomes difficult to manage as the CI/CD process grows. Configuration is stored in Jenkins rather than version control, making it harder to track changes and reproduce builds.
+
+A **Pipeline** defines the entire CI/CD workflow as code using a `Jenkinsfile`. It supports multiple stages such as build, test, scan, package, and deployment. Pipelines are version-controlled, reusable, easier to maintain, and better suited for modern DevOps practices. They also support advanced features like parallel execution, conditional stages, shared libraries, and integration with Git.
+
+| Freestyle | Pipeline |
+|------------|----------|
+| GUI-based configuration | Pipeline as Code |
+| Limited flexibility | Highly flexible |
+| Hard to version control | Stored in Git |
+| Best for simple jobs | Best for complex CI/CD |
+| Less reusable | Highly reusable |
+| Limited stage visibility | Clear stage-wise visualization |
+
+---
+
+## → What are plugins and what types exist?
+
+Plugins extend Jenkins functionality and allow integration with various DevOps tools and platforms. Jenkins has thousands of plugins that enable source code management, build automation, testing, security, notifications, cloud deployments, and reporting.
+
+Common plugin categories include:
+
+- **SCM Plugins:** Git, GitHub, GitLab, Bitbucket
+- **Build Tools:** Maven, Gradle, Ant
+- **Pipeline Plugins:** Pipeline, Blue Ocean, Shared Libraries
+- **Cloud Plugins:** AWS, Azure, Kubernetes, Docker
+- **Notification Plugins:** Slack, Microsoft Teams, Email Extension
+- **Security Plugins:** Role-Based Authorization, LDAP, Active Directory, Credentials
+- **Testing Plugins:** JUnit, TestNG, Cucumber
+- **Code Quality Plugins:** SonarQube, Checkstyle, PMD
+- **Artifact Repository Plugins:** Nexus Repository, JFrog Artifactory
+- **Monitoring Plugins:** Prometheus Metrics, Monitoring Plugin
+
+Plugins make Jenkins highly extensible, allowing organizations to integrate their complete DevOps toolchain into a single CI/CD platform.
+
+---
+
+# Scenario Question
+
+## → A client is observing latency in an application. What steps do you take to identify the root cause?
+
+When users report application latency, I follow a structured troubleshooting approach to isolate the bottleneck rather than making assumptions.
+
+First, I verify whether the issue is widespread or limited to specific users, regions, APIs, or environments. I review monitoring dashboards such as Prometheus, Grafana, CloudWatch, or Datadog to check response time, request rate, error rate, CPU, memory, disk I/O, and network latency.
+
+Next, I identify where the delay occurs:
+- Check the load balancer for backend health, connection counts, and response times.
+- Review application logs for slow requests, exceptions, or timeout errors.
+- Analyze web server logs (Nginx/Apache) and application logs.
+- Examine database performance by checking slow query logs, locks, CPU utilization, and connection pool usage.
+- Verify Kubernetes or server health using `kubectl top`, `kubectl describe`, and pod logs to identify resource constraints or restarts.
+- Check network connectivity, DNS resolution, firewall rules, and latency using tools such as `ping`, `traceroute`, `mtr`, and `curl`.
+
+If infrastructure resources are saturated, I evaluate scaling options such as increasing pod replicas with HPA, adding EC2 instances, or resizing compute resources. If the issue is code-related, I work with developers to profile the application and optimize inefficient queries or business logic.
+
+Finally, after implementing the fix, I validate that response times have returned to normal, continue monitoring to ensure stability, perform a root cause analysis (RCA), document the incident, and recommend preventive measures such as better monitoring, alerting, performance testing, or auto-scaling.
+
+
 # DevOps Engineer Interview Questions (4 Years Experience)
 
 ---
