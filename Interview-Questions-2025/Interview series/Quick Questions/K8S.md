@@ -1,3 +1,30 @@
+# A Kubernetes pod is healthy. Node is healthy. But users can't reach the service.
+
+```
+Here's the answer that actually gets you hired:
+
+𝟭. 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗦𝗲𝗿𝘃𝗶𝗰𝗲, 𝗻𝗼𝘁 𝘁𝗵𝗲 𝗣𝗼𝗱
+→ kubectl get svc — is the selector actually matching pod labels?
+→ A perfectly healthy pod with a mismatched label is invisible to traffic
+
+𝟮. 𝗖𝗵𝗲𝗰𝗸 𝗘𝗻𝗱𝗽𝗼𝗶𝗻𝘁𝘀
+→ kubectl get endpoints — empty endpoints means that's your real problem
+→ Tells you instantly if it's a routing issue vs an app issue
+
+𝟯. 𝗖𝗵𝗲𝗰𝗸 𝗜𝗻𝗴𝗿𝗲𝘀𝘀 / 𝗟𝗼𝗮𝗱 𝗕𝗮𝗹𝗮𝗻𝗰𝗲𝗿
+→ Is the ingress controller actually routing to this service?
+→ Check ingress logs, not just app logs
+
+𝟰. 𝗖𝗵𝗲𝗰𝗸 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗣𝗼𝗹𝗶𝗰𝗶𝗲𝘀
+→ A recently added NetworkPolicy is one of the most common "silent" outages
+→ Test with a temporary allow-all policy to confirm or deny this fast
+
+𝟱. 𝗢𝗻𝗹𝘆 𝗧𝗵𝗲𝗻 𝗟𝗼𝗼𝗸 𝗔𝘁 𝘁𝗵𝗲 𝗣𝗼𝗱
+→ If everything above checks out, now go into the container
+
+Selectors and endpoints solve most "it's up but unreachable" tickets. Most people jump straight to logs and miss this completely.
+```
+
 # Kubernetes Interview Questions and Answers (4 Years Experience)
 
 ## 1. What is the difference between Docker and Kubernetes?
