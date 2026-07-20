@@ -1,3 +1,115 @@
+## What is the difference between ConfigMap and Secret in Kubernetes? When would you use each in a production environment?
+
+## 🟦 ConfigMap
+
+A **ConfigMap** stores **non-sensitive configuration data** that your application needs.
+
+### Examples
+
+- Application properties
+- Environment names
+- Feature flags
+- URLs
+- Log levels
+- Time zones
+
+### Best for
+
+- Externalizing application configuration
+- Avoiding hardcoded values
+- Managing environment-specific settings
+
+💡 **Example:**
+
+Instead of hardcoding `LOG_LEVEL=INFO`, store it in a ConfigMap and inject it into your Pod.
+
+---
+
+## 🔒 Secret
+
+A **Secret** stores **sensitive information** such as:
+
+- Database passwords
+- API keys
+- OAuth tokens
+- TLS certificates
+- SSH keys
+
+Secrets can be mounted as **environment variables** or **files** inside a Pod.
+
+⚠️ **Important:** Kubernetes Secrets are **Base64 encoded—not encrypted by default.**
+
+Many candidates mistakenly believe Base64 equals encryption. It does **not**.
+
+---
+
+## 🔐 Production Best Practices
+
+For enterprise environments:
+
+- ✔️ Enable **Encryption at Rest** for Secrets in etcd.
+- ✔️ Restrict access using **RBAC**.
+- ✔️ Avoid storing secrets in Git repositories.
+- ✔️ Use secret management solutions such as **HashiCorp Vault**, **External Secrets Operator**, or your cloud provider's **Secret Manager**.
+- ✔️ Rotate credentials regularly.
+
+---
+
+## 💡 Quick Comparison
+
+| ConfigMap | Secret |
+|------------|--------|
+| Non-sensitive data | Sensitive data |
+| Plain configuration | Passwords, API keys, certificates |
+| Plain text | Base64 encoded |
+| No encryption | Encrypt at rest (recommended) |
+
+---
+
+## 🚨 Common Interview Mistake
+
+Many candidates say:
+
+> **"Secrets are encrypted because they're Base64 encoded."**
+
+❌ **Incorrect.**
+
+Base64 is an **encoding format**, not an **encryption mechanism**.
+
+Without enabling **Encryption at Rest**, anyone with access to **etcd** can potentially read the decoded values.
+
+---
+
+## 💬 Interview Challenge
+
+Your application needs:
+
+- Database password
+- API key
+- Application name
+- Logging level
+- Feature flag
+- TLS certificate
+
+### Which should go into ConfigMap and which into Secret?
+
+### ✅ ConfigMap
+
+- Application name
+- Logging level
+- Feature flag
+
+### ✅ Secret
+
+- Database password
+- API key
+- TLS certificate
+
+**Reason:** Non-sensitive configuration belongs in a ConfigMap, while credentials, certificates, and confidential data should always be stored in a Secret with proper access controls and encryption enabled.
+
+-----
+
+
 # Kubernetes Interview Series 
 
 ## Can you explain the differences between ClusterIP, NodePort, LoadBalancer, and Ingress? When would you use each in a production environment?
