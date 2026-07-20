@@ -1,0 +1,37 @@
+Software Supply Chain Security – Securing Every Stage of Software Delivery 🔐
+
+🔹 What is Software Supply Chain Security?
+Software Supply Chain Security focuses on protecting every component involved in building, testing, and deploying software. This includes source code, third-party libraries, build tools, CI/CD pipelines, and container images.
+A single vulnerable dependency can compromise the entire application.
+
+🔑 Key Areas
+✔ Secure source code repositories
+ ✔ Scan third-party dependencies
+ ✔ Verify package integrity
+ ✔ Secure CI/CD pipelines
+ ✔ Scan container images
+ ✔ Manage secrets securely
+
+🌟 Why is it Important?
+Without proper security:
+❌ Vulnerable open-source libraries can be exploited
+ ❌ Compromised build pipelines can inject malicious code
+ ❌ Sensitive credentials may be leaked
+
+With Software Supply Chain Security:
+✔ Reduced security risks 🔒
+ ✔ Safer software releases 🚀
+ ✔ Improved compliance 📋
+ ✔ Better protection against supply chain attacks
+
+💡 Real-world Example
+Your application uses an open-source library with a known vulnerability (CVE).
+Before deployment, a security scanner detects the issue.
+✅ The vulnerable version is updated before production, preventing a potential attack.
+
+🧠 Key Takeaways
+✔ Protect the entire software delivery process
+ ✔ Scan dependencies regularly
+ ✔ Secure CI/CD pipelines
+ ✔ Verify artifacts before deployment
+ ✔ Security should be part of every release
