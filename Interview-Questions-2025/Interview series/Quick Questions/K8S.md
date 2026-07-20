@@ -1,3 +1,37 @@
+# Walk me through what happens, end to end, when a request hits a Kubernetes Service — starting from the moment traffic arrives, through to it landing on a specific Pod. Assume it's a LoadBalancer type Service.
+
+Solution:
+
+The Core Confusion to Clear Up First:
+-------
+
+A LoadBalancer-type Service in Kubernetes typically provisions a Network Load Balancer (Layer 4) by default in AWS — not an Application Load Balancer. The ALB (Layer 7, path-based routing like /api) is what you get from an Ingress, not directly from a LoadBalancer-type Service. 
+------
+
+A Service is not a process, a server, or a router sitting in the traffic path. It's just a Kubernetes object — a piece of configuration stored in etcd. It doesn't actively "do" anything by itself. The actual traffic-forwarding work is done entirely by kube-proxy, running on every single node. This is the single biggest misconception to fix — people imagine a Service as a little box traffic flows "through," but it's really just a rulebook that kube-proxy reads and acts on.
+
+- Full picture for your original LoadBalancer question
+─────────────────────────────
+
+1. Cloud Network Load Balancer receives external traffic
+
+2. NLB forwards it to one of the cluster's Nodes, on a specific port
+
+3. That Node's kernel (rules written
+   by ITS kube-proxy) intercepts
+  the packet because its destination matches the Service's virtual IP.
+
+4. The kernel rewrites the destination to one specific real Pod IP
+  (chosen from the current Endpoints list)
+
+5. Packet is forwarded — possibly to a Pod on a COMPLETELY DIFFERENT
+  node than the one that first received it (this is normal —
+
+  Kubernetes networking is flat, any node can route to any Pod)
+
+6. The Pod receives and processes the request
+
+
 # A Kubernetes pod is healthy. Node is healthy. But users can't reach the service.
 
 ```
