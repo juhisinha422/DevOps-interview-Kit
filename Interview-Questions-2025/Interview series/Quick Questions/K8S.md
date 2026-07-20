@@ -1,3 +1,73 @@
+# Mastering Kubernetes Series
+
+Pods are disposable — they get new IPs every time they're recreated.  
+Services exist to give you a stable way to reach a constantly-changing set of pods.
+
+There are three core Service types, and picking the wrong one is a very common beginner mistake:
+
+## 🔹 ClusterIP (default)
+
+Internal-only IP, reachable only within the cluster. Use for service-to-service communication — your backend talking to your database service, for example.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - port: 80
+      targetPort: 8080
+```
+
+---
+
+## 🔹 NodePort
+
+Opens a static port (30000-32767) on every node's IP. Mostly used for dev/testing — rarely the right choice for production due to lack of proper load balancing and the awkward port range.
+
+---
+
+## 🔹 LoadBalancer
+
+Provisions an actual cloud load balancer (ELB/ALB on AWS, equivalent on GCP/Azure) and routes external traffic to your service. This is the standard way to expose a service to the internet directly.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 8080
+```
+
+---
+
+## Important Detail
+
+Many engineers miss this: a Service doesn't load balance by magic — it relies on **kube-proxy** maintaining **iptables** (or **IPVS**) rules that distribute traffic across matching pod endpoints.
+
+If traffic seems unevenly distributed, check **kube-proxy mode** and **pod readiness status** before assuming it's a bug.
+
+---
+
+## Cost Consideration
+
+A **LoadBalancer Service** for every microservice gets expensive fast (one cloud load balancer per service).
+
+That's exactly the problem **Ingress** solves — tomorrow's topic.
+
+________
+
+
 # Walk me through what happens, end to end, when a request hits a Kubernetes Service — starting from the moment traffic arrives, through to it landing on a specific Pod. Assume it's a LoadBalancer type Service.
 
 Solution:
