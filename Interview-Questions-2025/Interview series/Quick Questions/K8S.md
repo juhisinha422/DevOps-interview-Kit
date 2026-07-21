@@ -1,8 +1,5 @@
 # Advanced DevOps Interview Series | Production Scenario Questions
 
-These are the kind of questions asked for Senior DevOps, Platform Engineer, and SRE roles (₹30+ LPA). The interviewer is evaluating your troubleshooting skills, production thinking, architecture knowledge, and decision-making under pressure.
-
----
 
 # 1️⃣ A Pod is stuck in CrashLoopBackOff — but the logs are empty. How do you debug it?
 
