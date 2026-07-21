@@ -1,3 +1,129 @@
+# Advanced DevOps / SRE Interview Questions & Answers (4 Years Experience)
+
+## 1. Describe a production environment you manage(d). What are its scale, SLAs, and key components?
+
+### Answer
+
+In my current role, I manage a production environment hosted on AWS that supports multiple microservices deployed on Amazon EKS. The infrastructure is provisioned using Terraform, while application deployments are automated through Jenkins, Docker, Helm, and Argo CD following a GitOps approach. The environment includes EC2 worker nodes, VPC, IAM, Application Load Balancer, Amazon ECR, CloudWatch, Prometheus, Grafana, and centralized logging.
+
+We maintain high availability by distributing workloads across multiple Availability Zones and use Horizontal Pod Autoscaler and Cluster Autoscaler to handle traffic spikes. Our target availability SLA is 99.9%, and deployments are performed with zero downtime using Rolling Updates. Monitoring, alerting, and automated rollback strategies help us maintain reliability and quickly recover from failures.
+
+---
+
+## 2. Tell me about a major incident or outage you handled. How did you respond, and what improvements were implemented afterward?
+
+### Answer
+
+One production incident involved an application becoming unavailable immediately after a deployment. Users started receiving HTTP 503 errors. I first checked Grafana dashboards, Prometheus metrics, Kubernetes events, and Pod logs. The investigation showed that newly deployed Pods were failing readiness checks due to an incorrect environment variable configured through a ConfigMap.
+
+To minimize business impact, I immediately rolled back the deployment to the previous stable version. Once the service was restored, we corrected the configuration and redeployed after validation.
+
+As a preventive measure, we introduced configuration validation during the CI/CD pipeline, improved readiness probe testing in lower environments, and added deployment verification checks before production rollout. This significantly reduced deployment-related incidents.
+
+---
+
+## 3. How do you design CI/CD pipelines for complex microservices or multi-repository environments?
+
+### Answer
+
+For microservices, each repository has its own Jenkins pipeline triggered by Git webhooks. The pipeline performs source code checkout, dependency installation, unit testing, code quality analysis using SonarQube, vulnerability scanning using Trivy, Docker image creation, image push to Amazon ECR, Helm chart update, and deployment through Argo CD.
+
+To improve maintainability, I use Jenkins Shared Libraries so common stages such as Docker build, security scanning, notifications, and deployment logic are reused across multiple pipelines. Environment-specific configurations are managed separately using Helm values files, while Git branching strategies ensure independent releases for each service. This design enables parallel deployments, reduces duplication, and improves scalability.
+
+---
+
+## 4. What is your approach to Infrastructure as Code (IaC)? Which tools do you use, and why?
+
+### Answer
+
+I follow Infrastructure as Code by defining all cloud resources in Terraform instead of creating infrastructure manually. Terraform allows infrastructure to be version-controlled, peer-reviewed, and deployed consistently across development, testing, and production environments.
+
+I organize Terraform code into reusable modules for networking, EKS clusters, IAM roles, EC2 instances, and security groups. Remote state is stored in an S3 bucket with DynamoDB state locking to prevent concurrent modifications. Infrastructure changes are always validated using terraform plan before applying them through CI/CD. This approach improves consistency, repeatability, disaster recovery, and collaboration among team members.
+
+---
+
+## 5. Explain how you implement observability using logging, metrics, tracing, and monitoring across large distributed systems.
+
+### Answer
+
+I follow the three pillars of observability: logs, metrics, and traces.
+
+For metrics, I use Prometheus to collect Kubernetes, node, and application metrics. Grafana provides dashboards for CPU, memory, latency, request rate, error rate, and application availability.
+
+For logging, application logs are collected centrally using Fluent Bit and forwarded to Loki or Elasticsearch for analysis.
+
+For distributed tracing, OpenTelemetry with Jaeger helps identify latency across multiple microservices.
+
+Alertmanager sends alerts to email, Slack, or Microsoft Teams whenever predefined thresholds are exceeded. During production incidents, correlating logs, metrics, and traces significantly reduces Mean Time to Recovery (MTTR).
+
+---
+
+## 6. Describe your strategy for capacity planning, resource optimization, and cloud cost management.
+
+### Answer
+
+Capacity planning begins by analyzing historical CPU, memory, storage, and network utilization trends using Prometheus, Grafana, and CloudWatch.
+
+Applications are configured with appropriate resource requests and limits, while Horizontal Pod Autoscaler automatically scales Pods based on CPU or custom metrics. Cluster Autoscaler adds or removes worker nodes depending on demand.
+
+For cost optimization, I right-size EC2 instances, remove unused EBS volumes and snapshots, implement ECR lifecycle policies, schedule non-production environments to shut down outside business hours, use Spot Instances where appropriate, and continuously monitor cloud costs using AWS Cost Explorer and CloudWatch. This ensures efficient resource utilization without compromising application performance.
+
+---
+
+## 7. How do you embed security into the DevOps and SRE lifecycle using DevSecOps practices?
+
+### Answer
+
+Security is integrated throughout the CI/CD pipeline rather than being performed only before production deployment.
+
+Every code change goes through code review, SonarQube quality analysis, dependency vulnerability scanning, and Docker image scanning using Trivy before deployment.
+
+Sensitive credentials are stored securely in AWS Secrets Manager or Kubernetes Secrets with RBAC restrictions. IAM roles follow the principle of least privilege. Container images are built using minimal base images, unnecessary packages are removed, and image signing can be implemented before deployment.
+
+Infrastructure changes are managed through Terraform, ensuring all changes are auditable and version-controlled. Continuous monitoring and vulnerability remediation help maintain security throughout the application lifecycle.
+
+---
+
+## 8. Give an example of a performance bottleneck you identified and resolved in a cloud-native environment.
+
+### Answer
+
+During a production deployment, we noticed that application response times increased significantly during peak traffic hours.
+
+Using Grafana dashboards and Prometheus metrics, I identified that CPU utilization was consistently reaching 95%, causing request queuing. Kubernetes Horizontal Pod Autoscaler was configured with a very high scaling threshold, delaying scaling decisions.
+
+I reduced the CPU utilization threshold, optimized application resource requests and limits, and enabled Cluster Autoscaler to provision additional worker nodes automatically during traffic spikes.
+
+After implementing these changes, application latency decreased, throughput improved, and customer-facing performance issues were eliminated.
+
+---
+
+## 9. How do you collaborate with development teams to improve application reliability, deployment speed, and operational excellence?
+
+### Answer
+
+I work closely with developers from the beginning of the software development lifecycle rather than only during deployments.
+
+Together, we standardize Dockerfiles, Helm charts, CI/CD pipelines, deployment strategies, and monitoring practices. I help developers troubleshoot build failures, optimize Docker images, improve Kubernetes manifests, and automate repetitive deployment tasks.
+
+Regular code reviews, release planning meetings, incident reviews, and knowledge-sharing sessions ensure everyone follows the same deployment standards. This collaboration improves deployment frequency, reduces failures, and enhances overall application reliability.
+
+---
+
+## 10. What Service Level Objectives (SLOs), Service Level Indicators (SLIs), and error budgets have you managed, and how did they influence engineering decisions?
+
+### Answer
+
+Our production applications target a 99.9% availability SLO.
+
+The primary SLIs we monitor include application availability, API response latency, request success rate, error rate, deployment success rate, and Mean Time to Recovery (MTTR).
+
+Error budgets help us balance feature development with system reliability. If the application consumes too much of its error budget due to incidents or increased failure rates, we temporarily pause feature releases and prioritize reliability improvements, bug fixes, infrastructure optimization, and monitoring enhancements.
+
+This approach ensures customer experience remains the highest priority while allowing teams to continue delivering new features in a controlled and reliable manner.
+
+
+
 # Advanced DevOps Interview Series | Production Scenario Questions
 
 
