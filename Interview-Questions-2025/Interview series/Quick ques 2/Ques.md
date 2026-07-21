@@ -1,3 +1,744 @@
+# Top 10 DevOps Technical Interview Questions (6–10 Years Experience)
+
+---
+
+# 1. Production Deployment Failed. What is your Immediate Action Plan?
+
+## Answer
+
+Whenever a production deployment fails, my priority is to **restore the service as quickly as possible while minimizing customer impact**. I follow a structured troubleshooting approach instead of making random changes.
+
+### Step 1: Verify the CI/CD Pipeline
+
+First, I check whether the deployment failed during the pipeline execution or after deployment.
+
+I verify:
+
+- Jenkins/GitHub Actions/Azure DevOps pipeline logs
+- Failed stage (Build, Test, Docker Build, Push, Deploy)
+- Environment variables
+- Deployment manifests
+- Authentication errors
+
+Example:
+
+```
+Build → Success
+
+Docker Build → Success
+
+Image Push → Failed
+
+Reason:
+Authentication to Registry Failed
+```
+
+If the image itself was never pushed, Kubernetes cannot deploy it.
+
+---
+
+### Step 2: Verify Container Registry
+
+I check whether the Docker image exists.
+
+Example:
+
+```
+docker pull company/app:v2.1.0
+```
+
+or
+
+```
+aws ecr describe-images
+
+az acr repository show-tags
+
+docker images
+```
+
+Common issues
+
+- Wrong image tag
+- Image deleted
+- Registry authentication expired
+- Image corruption
+
+---
+
+### Step 3: Verify Kubernetes Deployment
+
+Check deployment status.
+
+```
+kubectl get deploy
+
+kubectl rollout status deployment app
+
+kubectl describe deployment app
+```
+
+Verify Pods.
+
+```
+kubectl get pods
+
+kubectl describe pod pod-name
+```
+
+Possible findings
+
+- ImagePullBackOff
+- CrashLoopBackOff
+- Pending
+- Failed Scheduling
+- OOMKilled
+
+---
+
+### Step 4: Check Pod Logs
+
+```
+kubectl logs pod-name
+
+kubectl logs -f pod-name
+```
+
+Look for
+
+- Database connection failure
+- Missing environment variables
+- Secret issues
+- Application exceptions
+- Port conflicts
+- Certificate errors
+
+---
+
+### Step 5: Verify ConfigMaps and Secrets
+
+```
+kubectl get configmap
+
+kubectl get secret
+```
+
+Many deployments fail because
+
+- Wrong DB password
+- Missing Secret
+- Wrong API URL
+- Missing ConfigMap
+
+---
+
+### Step 6: Verify Service and Ingress
+
+```
+kubectl get svc
+
+kubectl get ingress
+
+kubectl describe ingress
+```
+
+Check
+
+- Service selector
+- TargetPort
+- Backend endpoints
+- Load Balancer health
+
+---
+
+### Step 7: Verify Application Health
+
+```
+curl localhost:8080/health
+
+kubectl exec -it pod -- curl localhost:8080
+```
+
+Sometimes Kubernetes is healthy while the application is not.
+
+---
+
+### Step 8: Rollback
+
+If production users are affected, I immediately rollback.
+
+```
+kubectl rollout undo deployment app
+```
+
+or
+
+```
+helm rollback release 2
+```
+
+Business continuity always comes before debugging.
+
+---
+
+### Step 9: Root Cause Analysis (RCA)
+
+Once service is restored
+
+- Timeline
+- Root cause
+- Impact
+- Resolution
+- Preventive actions
+
+Example
+
+```
+Root Cause
+
+Incorrect ConfigMap deployed.
+
+Impact
+
+Application unavailable for 8 minutes.
+
+Resolution
+
+Rollback deployment.
+
+Preventive Action
+
+Add configuration validation in CI pipeline.
+```
+
+---
+
+# Interview Tip
+
+Always emphasize:
+
+> Restore Service → Identify Root Cause → Prevent Recurrence
+
+---
+
+# 2. Kubernetes Pod is Running but Application is Down. How do you troubleshoot?
+
+## Answer
+
+A Pod in **Running** state only means the container process has started. It does **not** guarantee that the application is healthy or serving traffic.
+
+### Step 1: Verify Pod Status
+
+```bash
+kubectl get pods -o wide
+```
+
+Check
+
+- Restart Count
+- Node
+- Age
+- Status
+
+---
+
+### Step 2: Describe Pod
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+Look for
+
+- Events
+- Failed mounts
+- Probe failures
+- Scheduling issues
+
+---
+
+### Step 3: Check Application Logs
+
+```bash
+kubectl logs <pod-name>
+
+kubectl logs -f <pod-name>
+```
+
+Common issues
+
+- DB unreachable
+- Null pointer exception
+- Missing Secret
+- Authentication errors
+
+---
+
+### Step 4: Verify Readiness Probe
+
+If Readiness fails
+
+```
+Pod Running
+
+↓
+
+Not Ready
+
+↓
+
+No traffic
+```
+
+Check
+
+```yaml
+readinessProbe:
+```
+
+---
+
+### Step 5: Verify Liveness Probe
+
+Wrong liveness configuration causes continuous restarts.
+
+---
+
+### Step 6: Check Service
+
+```
+kubectl get svc
+
+kubectl describe svc app
+```
+
+Verify
+
+- Selector
+- TargetPort
+- Port
+
+---
+
+### Step 7: Verify Endpoints
+
+```
+kubectl get endpoints
+```
+
+No endpoints means Service cannot reach Pods.
+
+---
+
+### Step 8: Verify Ingress
+
+```
+kubectl describe ingress
+```
+
+Check
+
+- Host
+- Path
+- Backend Service
+
+---
+
+### Step 9: DNS
+
+```
+nslookup service-name
+
+dig service-name
+```
+
+---
+
+### Step 10: Network Policies
+
+```
+kubectl get networkpolicy
+```
+
+Ensure communication isn't blocked.
+
+---
+
+### Step 11: Resource Usage
+
+```
+kubectl top pod
+```
+
+Look for
+
+- CPU throttling
+- Memory exhaustion
+- OOMKilled
+
+---
+
+# 3. How would you design a CI/CD Pipeline for an Enterprise Application?
+
+## Answer
+
+A mature enterprise CI/CD pipeline focuses on **automation, quality, security, and controlled deployments**.
+
+### Pipeline Flow
+
+```
+Developer
+
+↓
+
+Git Push
+
+↓
+
+Pull Request
+
+↓
+
+Code Review
+
+↓
+
+Build
+
+↓
+
+Unit Tests
+
+↓
+
+Static Code Analysis (SonarQube)
+
+↓
+
+Dependency Scan (Snyk/OWASP)
+
+↓
+
+Docker Build
+
+↓
+
+Container Scan (Trivy)
+
+↓
+
+Push Image to Registry
+
+↓
+
+Terraform (Infrastructure)
+
+↓
+
+Deploy to Dev
+
+↓
+
+Integration Tests
+
+↓
+
+Deploy to QA
+
+↓
+
+UAT Approval
+
+↓
+
+GitOps (ArgoCD/Flux)
+
+↓
+
+Production Deployment
+
+↓
+
+Monitoring
+
+↓
+
+Rollback (if required)
+```
+
+### Key Components
+
+- Git branching (GitFlow or Trunk-based)
+- Automated builds
+- Unit and integration testing
+- Security scanning (SAST, Dependency, Container)
+- Docker image creation
+- Push to container registry (ECR/ACR/Docker Hub)
+- Infrastructure provisioning with Terraform
+- GitOps deployment using ArgoCD or Flux
+- Blue-Green or Canary deployments
+- Monitoring with Prometheus, Grafana, CloudWatch
+- Automated rollback on failure
+
+---
+
+# 4. How do you manage Secrets securely across environments?
+
+## Answer
+
+Secrets should **never** be hardcoded in source code, Docker images, or CI/CD configuration files.
+
+### Best Practices
+
+- Use centralized secret management:
+  - AWS Secrets Manager
+  - Azure Key Vault
+  - HashiCorp Vault
+- Store only secret references in code.
+- Inject secrets at runtime.
+- Enable automatic secret rotation.
+- Encrypt secrets at rest and in transit.
+- Restrict access using IAM roles and RBAC.
+- Audit secret access.
+
+### Kubernetes
+
+Avoid plain Kubernetes Secrets for highly sensitive data unless combined with encryption and external secret managers.
+
+---
+
+# 5. Terraform State File got Corrupted. How would you recover it?
+
+## Answer
+
+Terraform state is the source of truth for managed infrastructure, so recovery should be handled carefully.
+
+### Recovery Steps
+
+1. Stop all Terraform executions.
+2. Verify remote backend (S3/Azure Storage/GCS).
+3. Check state locking (DynamoDB or equivalent).
+4. Restore the latest valid state backup.
+5. Validate with:
+
+```bash
+terraform state list
+```
+
+6. Compare infrastructure:
+
+```bash
+terraform plan
+```
+
+7. Import missing resources:
+
+```bash
+terraform import
+```
+
+8. Rebuild state only if necessary.
+
+### Prevention
+
+- Remote backend
+- State locking
+- Versioned storage
+- Automated backups
+- Restricted access
+
+---
+
+# 6. Your EKS/AKS Cluster CPU Suddenly Reaches 100%. What would you do?
+
+## Answer
+
+I follow a systematic approach:
+
+1. Verify cluster health.
+
+```bash
+kubectl top nodes
+
+kubectl top pods
+```
+
+2. Identify CPU-consuming Pods.
+
+3. Check application logs.
+
+4. Review recent deployments.
+
+5. Verify HPA status.
+
+```bash
+kubectl get hpa
+```
+
+6. Check Cluster Autoscaler.
+
+7. Validate resource requests and limits.
+
+8. Inspect metrics using Prometheus/Grafana or CloudWatch/Azure Monitor.
+
+9. Roll back if caused by a recent deployment.
+
+10. Perform RCA and optimize resource usage.
+
+---
+
+# 7. How do you secure a Kubernetes Cluster?
+
+## Answer
+
+Kubernetes security is implemented using a defense-in-depth strategy.
+
+### Identity & Access
+
+- RBAC
+- IAM Roles for Service Accounts (IRSA)
+- Least Privilege
+
+### Network Security
+
+- Network Policies
+- Private clusters
+- Restrict API server access
+
+### Workload Security
+
+- Pod Security Admission
+- Non-root containers
+- Read-only root filesystem
+- Drop Linux capabilities
+
+### Image Security
+
+- Trivy
+- Clair
+- ECR/ACR image scanning
+- Signed images
+
+### Admission Control
+
+- OPA Gatekeeper
+- Kyverno
+- Validating Admission Policies
+
+### Secrets
+
+- External Secrets
+- Vault
+- AWS Secrets Manager
+- Azure Key Vault
+
+### Monitoring
+
+- Audit logs
+- Falco
+- Prometheus
+- Grafana
+
+---
+
+# 8. How do you reduce CI/CD Pipeline Execution Time?
+
+## Answer
+
+Strategies include:
+
+- Run jobs in parallel.
+- Cache dependencies (Maven, npm, pip).
+- Reuse Docker layers.
+- Build only changed components.
+- Use incremental builds.
+- Reuse pipeline templates.
+- Optimize test execution.
+- Use self-hosted runners.
+- Compress and reuse artifacts.
+- Skip unnecessary stages based on branch rules.
+
+These optimizations reduce execution time while maintaining quality.
+
+---
+
+# 9. Tell me about the toughest Production Incident you've handled.
+
+## Answer (Sample)
+
+A production deployment introduced an incorrect API Gateway route configuration, causing all API requests to return HTTP 404 errors while the frontend remained accessible.
+
+### Actions Taken
+
+- Declared a production incident.
+- Informed stakeholders.
+- Reviewed deployment history.
+- Compared ingress and gateway configurations.
+- Identified incorrect routing rules.
+- Rolled back the deployment.
+- Restored service within minutes.
+- Conducted RCA.
+- Added automated validation and smoke tests to the deployment pipeline.
+
+### Key Learnings
+
+- Faster rollback reduces business impact.
+- Configuration validation prevents similar issues.
+- Communication during incidents is as important as technical resolution.
+
+---
+
+# 10. If you joined our company tomorrow, what improvements would you make to our DevOps Platform?
+
+## Answer
+
+Before making changes, I would assess the current platform, understand business priorities, and identify bottlenecks. My improvements would focus on reliability, security, scalability, and developer productivity.
+
+### Platform Engineering
+
+- Standardize infrastructure using reusable Terraform modules.
+- Create self-service deployment templates.
+- Provide golden CI/CD pipelines for consistency.
+
+### GitOps
+
+- Adopt ArgoCD or Flux for declarative deployments.
+- Maintain Git as the single source of truth.
+
+### DevSecOps
+
+- Integrate SAST, DAST, dependency scanning, and container image scanning.
+- Enforce policy-as-code using OPA or Kyverno.
+
+### Observability
+
+- Centralize logs with ELK/OpenSearch.
+- Monitor with Prometheus and Grafana.
+- Implement distributed tracing using OpenTelemetry.
+
+### Cost Optimization
+
+- Right-size workloads.
+- Enable cluster autoscaling.
+- Use Spot Instances where appropriate.
+- Remove idle resources.
+
+### Developer Experience
+
+- Self-service environments.
+- Standardized templates.
+- Faster feedback loops.
+- Improved documentation.
+
+### AI-Assisted Operations
+
+- Use AI for log analysis, anomaly detection, deployment insights, and incident summarization to improve operational efficiency.
+
+### Closing Statement
+
+My goal would be to build a secure, scalable, and automated DevOps platform that enables faster, safer releases while improving developer productivity and reducing operational overhead.
+
+-------------------------
 
 # DevOps Interview Questions & Answers (4 Years Experience)
 
