@@ -1,3 +1,328 @@
+# Advanced DevOps Interview Series | Production Scenario Questions
+
+These are the kind of questions asked for Senior DevOps, Platform Engineer, and SRE roles (₹30+ LPA). The interviewer is evaluating your troubleshooting skills, production thinking, architecture knowledge, and decision-making under pressure.
+
+---
+
+# 1️⃣ A Pod is stuck in CrashLoopBackOff — but the logs are empty. How do you debug it?
+
+## 🎯 What the interviewer is evaluating
+
+- Kubernetes troubleshooting
+- Linux knowledge
+- Container lifecycle
+- Debugging methodology
+
+### Answer
+
+If the logs are empty, it usually means the container is crashing before it can write any logs. I follow a structured troubleshooting approach instead of guessing.
+
+First, I describe the Pod using:
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+This helps identify events such as failed image pulls, failed probes, or OOMKilled.
+
+Next, I check the previous container logs:
+
+```bash
+kubectl logs <pod-name> --previous
+```
+
+If logs are still empty, I verify:
+
+- Container image
+- ENTRYPOINT/CMD
+- Environment variables
+- ConfigMaps
+- Secrets
+- Mounted volumes
+- Resource limits
+
+I also inspect the Deployment YAML for misconfigurations.
+
+If required, I launch an ephemeral debug container:
+
+```bash
+kubectl debug
+```
+
+or temporarily override the container command to:
+
+```bash
+sleep infinity
+```
+
+so I can inspect the filesystem.
+
+Finally, I identify the root cause, apply the fix, redeploy, and monitor the application before closing the incident.
+
+---
+
+# 2️⃣ Your Terraform apply failed halfway in a team pipeline. Walk me through recovery.
+
+### Answer
+
+My first priority is to ensure that no one else modifies the infrastructure.
+
+I verify whether the Terraform state is locked. If it's locked due to an interrupted execution, I safely release the lock only after confirming that no pipeline is running.
+
+Next, I execute:
+
+```bash
+terraform plan
+```
+
+to compare the current infrastructure with the Terraform state.
+
+If some resources were created successfully, Terraform usually detects them from the state and plans only the remaining changes.
+
+If a resource exists in AWS but is missing from the state file, I import it using:
+
+```bash
+terraform import
+```
+
+If partial resources are invalid, I remove them manually and re-run Terraform.
+
+After recovery, I perform another plan, validate that only intended changes exist, and execute:
+
+```bash
+terraform apply
+```
+
+Finally, I perform a post-deployment validation and document the incident.
+
+---
+
+# 3️⃣ Blue-Green vs Canary vs Feature Flags — when do you use each?
+
+### Blue-Green
+
+Use when complete environment switching is required.
+
+Best for:
+
+- Banking
+- Healthcare
+- Enterprise applications
+
+Advantages:
+
+- Instant rollback
+- Zero downtime
+- Low deployment risk
+
+---
+
+### Canary
+
+Deploy to a small percentage of users first.
+
+Example:
+
+- 5%
+- 20%
+- 50%
+- 100%
+
+Ideal for:
+
+- Large production systems
+- Customer-facing applications
+
+---
+
+### Feature Flags
+
+Deploy code without exposing the feature.
+
+Business teams can enable or disable features without another deployment.
+
+Useful for:
+
+- A/B Testing
+- Beta features
+- Gradual feature rollout
+
+---
+
+### Which one do I recommend?
+
+Mission-critical applications:
+
+➡ Blue-Green
+
+Large SaaS products:
+
+➡ Canary
+
+Frequent feature releases:
+
+➡ Feature Flags
+
+Many organizations combine all three strategies.
+
+---
+
+# 4️⃣ Your Pod got OOMKilled. Why won't just raising the memory limit fix it?
+
+### Answer
+
+Increasing the memory limit only treats the symptom, not the root cause.
+
+I first verify whether the application has:
+
+- Memory leak
+- Large cache
+- Infinite loop
+- Heavy data processing
+- High JVM heap
+- Inefficient code
+
+I collect metrics from Prometheus and inspect heap usage or application profiling tools.
+
+If the application genuinely requires more memory, I adjust both requests and limits appropriately.
+
+Otherwise, I work with developers to optimize memory consumption before increasing limits.
+
+---
+
+# 5️⃣ You have a 99.9% SLO. When do you STOP shipping features?
+
+### Answer
+
+With a 99.9% SLO, the application has a limited error budget.
+
+If monitoring shows that the error budget is being consumed rapidly due to incidents or instability, I recommend pausing feature releases and focusing on improving reliability.
+
+This may include fixing production defects, improving monitoring, optimizing performance, and reducing technical debt.
+
+Once the platform returns to a stable state and the error budget is under control, feature development can resume.
+
+Reliability should always take priority over release speed when customer experience is at risk.
+
+---
+
+# 6️⃣ Walk me through your GitOps flow. What happens when someone changes the cluster manually?
+
+### Answer
+
+Our Git repository is the single source of truth.
+
+Developers commit changes to Git.
+
+After code review and approval, Argo CD continuously monitors the Git repository.
+
+Whenever changes are detected, Argo CD synchronizes them with the Kubernetes cluster.
+
+If someone manually modifies a Kubernetes resource using kubectl, Argo CD detects configuration drift during its next reconciliation cycle.
+
+Depending on the sync policy, Argo CD either reports the drift or automatically restores the cluster back to the desired state stored in Git.
+
+This ensures consistency, auditability, and prevents configuration drift.
+
+---
+
+# 7️⃣ Your Docker image is 800MB. Get it under 200MB.
+
+### Answer
+
+I would optimize the image by:
+
+- Using a lightweight base image like Alpine or Distroless.
+- Implementing multi-stage builds.
+- Removing build dependencies from the final image.
+- Excluding unnecessary files using `.dockerignore`.
+- Cleaning package manager caches.
+- Combining RUN commands to reduce image layers.
+- Installing only required packages.
+- Avoiding unnecessary debugging tools in production images.
+
+These optimizations significantly reduce image size, improve deployment speed, reduce storage costs, and minimize the attack surface.
+
+---
+
+# 8️⃣ Production is down right after a release. Walk me through the first 15 minutes.
+
+### Answer
+
+My first priority is service restoration.
+
+I immediately verify monitoring dashboards, deployment status, Kubernetes events, application logs, and recent pipeline changes.
+
+If the issue is severe and cannot be fixed quickly, I roll back to the last stable release.
+
+While the rollback is in progress, I communicate with stakeholders, providing regular status updates.
+
+After service restoration, I perform a detailed Root Cause Analysis (RCA), document the findings, and implement preventive measures before the next release.
+
+---
+
+# 9️⃣ A server shows high load and "disk full" — but `df -h` says there's space. What's going on?
+
+### Answer
+
+This usually indicates one of several issues:
+
+- Deleted log files are still held open by running processes.
+- Inode exhaustion (`df -i`).
+- Large temporary files.
+- Docker overlay storage consuming space.
+- Mounted filesystem issues.
+
+I investigate using:
+
+```bash
+lsof | grep deleted
+```
+
+```bash
+df -i
+```
+
+```bash
+du -sh /*
+```
+
+I identify the root cause, clean up safely, restart affected services if required, and implement log rotation or storage monitoring to prevent recurrence.
+
+---
+
+# 🔟 Design an observability setup for 40 microservices. What do you actually alert on?
+
+### Answer
+
+I would implement the three pillars of observability:
+
+- **Metrics:** Prometheus
+- **Logs:** Loki or Elasticsearch
+- **Traces:** Jaeger or OpenTelemetry
+
+Grafana would provide centralized dashboards.
+
+I would create alerts for:
+
+- High CPU and memory usage
+- Pod restarts
+- CrashLoopBackOff
+- High application latency
+- HTTP 5xx error rate
+- API response time
+- Node disk usage
+- Kubernetes node status
+- Failed deployments
+- Certificate expiry
+- Database connectivity
+- Queue backlog
+- SLO error budget burn
+
+To reduce alert fatigue, I would prioritize actionable alerts, define severity levels, group related alerts, and configure Alertmanager for intelligent routing and deduplication.
+
+
+
 ## What are Taints and Tolerations in Kubernetes? When would you use them in a production environment?
 
 ## 🛑 What is a Taint?
