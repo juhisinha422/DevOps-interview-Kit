@@ -1,3 +1,229 @@
+# Top 15 Kubernetes Scenario-Based Interview Questions (4 Years DevOps Experience)
+
+---
+
+## 1. Your application is running on Kubernetes, but suddenly all Pods go into the Pending state. There are no node failures. How would you determine whether the problem is related to the scheduler, resource requests, taints, node affinity, or Persistent Volumes?
+
+### Answer
+
+I would start by describing one of the Pending Pods using `kubectl describe pod <pod-name>` because Kubernetes events usually indicate why the scheduler cannot place the Pod.
+
+If the events show **Insufficient CPU or Memory**, I would compare the Pod's resource requests with the available node capacity using `kubectl top nodes` and `kubectl describe node`.
+
+If I see messages about **untolerated taints**, I would inspect node taints using `kubectl describe node` and verify whether the Pod has matching tolerations.
+
+Next, I would check **Node Affinity** or **Node Selector** rules to ensure eligible nodes actually match the required labels.
+
+If the Pod uses persistent storage, I would verify whether the PVC is in the Bound state and whether the StorageClass and PersistentVolume are available.
+
+Finally, I would verify the Kubernetes Scheduler is healthy by checking scheduler logs and control plane components. This systematic approach helps identify the exact scheduling constraint instead of making assumptions.
+
+---
+
+## 2. A worker node hosting several critical Pods crashes during business hours. Explain what Kubernetes does automatically and what actions you would take if some Pods never recover.
+
+### Answer
+
+If a worker node fails, Kubernetes detects the node heartbeat failure and marks it as **NotReady**. The controller manager automatically evicts affected Pods after the configured timeout and schedules replacement Pods on healthy worker nodes if sufficient resources are available.
+
+If some Pods do not recover, I first verify node capacity, scheduler events, image availability, Persistent Volume attachment, resource requests, and application health probes.
+
+I also check whether the application uses local storage, StatefulSets, or Pod Disruption Budgets that might delay recovery.
+
+If required, I scale the cluster by adding worker nodes, restore failed storage attachments, or manually investigate application-level issues. After service recovery, I perform a Root Cause Analysis and implement preventive measures.
+
+---
+
+## 3. You deployed a new application version using a Deployment. During the rollout, users start receiving errors. How does Kubernetes detect the issue, and how would you safely roll back without downtime?
+
+### Answer
+
+Kubernetes continuously monitors Pod readiness using Readiness Probes. If newly created Pods fail the readiness check, they are removed from the Service endpoints, preventing traffic from reaching unhealthy Pods.
+
+I would immediately verify the Deployment status, Pod events, and application logs to identify the issue.
+
+If the issue cannot be resolved quickly, I would execute:
+
+```bash
+kubectl rollout undo deployment <deployment-name>
+```
+
+This rolls back to the previous ReplicaSet with minimal downtime because Kubernetes gradually restores healthy Pods while maintaining service availability.
+
+After rollback, I investigate the root cause, fix the issue in a lower environment, and redeploy after validation.
+
+---
+
+## 4. Your development team does not configure CPU or memory requests and limits. The application works in testing but becomes unstable in production. What problems can this create, and what standards would you enforce?
+
+### Answer
+
+Without resource requests, Kubernetes cannot make accurate scheduling decisions. Without limits, a single Pod may consume excessive CPU or memory, impacting other workloads on the same node.
+
+This can lead to unstable performance, noisy neighbor problems, resource starvation, OOMKilled containers, and inefficient cluster utilization.
+
+I would enforce mandatory CPU and memory requests and limits for every workload using LimitRanges and ResourceQuotas. I would also monitor resource utilization using Prometheus and periodically optimize requests and limits based on actual production metrics.
+
+---
+
+## 5. A team wants to deploy PostgreSQL using a Deployment because it is simpler than StatefulSet. Would you approve this design? Explain your reasoning.
+
+### Answer
+
+No. PostgreSQL is a stateful application that requires stable network identities, persistent storage, and predictable startup order.
+
+Deployments are designed for stateless applications where Pods can be replaced freely.
+
+StatefulSets provide stable Pod names, ordered deployment and termination, stable PersistentVolumeClaims, and consistent storage mapping, making them the correct choice for databases.
+
+Using a Deployment for PostgreSQL increases the risk of data inconsistency, storage conflicts, and application failures.
+
+---
+
+## 6. Your company has Development, QA, UAT, and Production workloads in the same Kubernetes cluster. Would you separate them using namespaces or create multiple clusters? What factors influence your decision?
+
+### Answer
+
+For smaller environments with moderate workloads, namespaces combined with RBAC, Network Policies, ResourceQuotas, and LimitRanges provide effective isolation.
+
+However, for production environments, I recommend separate Kubernetes clusters for Production and Non-Production environments.
+
+Separate clusters improve security, reduce blast radius, simplify compliance, isolate failures, and allow independent Kubernetes upgrades.
+
+The decision depends on budget, compliance requirements, workload criticality, operational overhead, and business risk.
+
+---
+
+## 7. Developers request cluster-admin access because they frequently deploy applications. As the DevOps engineer, how would you provide the access they need without compromising security?
+
+### Answer
+
+I would never grant cluster-admin access unless absolutely necessary.
+
+Instead, I would implement Role-Based Access Control (RBAC) by creating namespace-specific Roles with only the required permissions and binding them using RoleBindings.
+
+Developers receive access only to their application's namespace while administrative privileges remain restricted to the platform team.
+
+This follows the Principle of Least Privilege and significantly improves cluster security.
+
+---
+
+## 8. Application developers want to store database passwords directly inside Deployment YAML files. Why is this a bad practice, and what secure alternatives would you recommend?
+
+### Answer
+
+Storing passwords directly in Deployment manifests exposes sensitive credentials in Git repositories, CI/CD pipelines, and deployment history.
+
+Instead, I recommend storing secrets in Kubernetes Secrets or external secret management solutions such as AWS Secrets Manager, HashiCorp Vault, or External Secrets Operator.
+
+Secrets should be encrypted at rest, protected through RBAC, rotated regularly, and injected into Pods only at runtime.
+
+This approach significantly improves security and compliance.
+
+---
+
+## 9. Pods in one namespace cannot communicate with Pods in another namespace. Kubernetes networking appears healthy. What conceptual areas would you investigate before assuming it's a network plugin issue?
+
+### Answer
+
+I would first verify whether any Network Policies are restricting cross-namespace communication.
+
+Next, I would check Service definitions, DNS resolution, namespace labels, RBAC configurations, Service selectors, application listening ports, and firewall rules.
+
+I would also verify whether the application is attempting to access the correct fully qualified domain name (FQDN).
+
+Only after eliminating these configuration issues would I investigate the Container Network Interface (CNI) plugin itself.
+
+---
+
+## 10. Your application receives heavy traffic every evening between 7 PM and 10 PM. Would you use Horizontal Pod Autoscaler, Cluster Autoscaler, both, or neither? Explain your reasoning.
+
+### Answer
+
+I would use both Horizontal Pod Autoscaler (HPA) and Cluster Autoscaler.
+
+HPA automatically increases or decreases the number of Pods based on CPU utilization or custom metrics such as request rate.
+
+If existing worker nodes become fully utilized, Cluster Autoscaler automatically provisions additional nodes.
+
+Together, they provide both application-level scaling and infrastructure-level scaling, ensuring high availability during predictable traffic spikes while minimizing cloud costs during normal hours.
+
+---
+
+## 11. A Pod restarts and all uploaded files disappear. The application team says Kubernetes deleted their data. How would you explain what happened and what architectural changes are needed?
+
+### Answer
+
+I would explain that container filesystems are ephemeral by design.
+
+When a Pod is recreated, everything stored inside the container filesystem is lost.
+
+Kubernetes did not delete the data; the application stored user files inside temporary container storage instead of persistent storage.
+
+To resolve this, I would recommend using PersistentVolumes and PersistentVolumeClaims backed by storage solutions such as Amazon EBS, Amazon EFS, or cloud-native storage depending on the application's requirements.
+
+---
+
+## 12. Management wants a highly available Kubernetes cluster that can survive an entire Availability Zone failure. How would you design the control plane, worker nodes, networking, and storage?
+
+### Answer
+
+I would deploy the Kubernetes control plane across multiple Availability Zones using a managed service such as Amazon EKS.
+
+Worker nodes would be distributed evenly across at least three Availability Zones using multiple Auto Scaling Groups.
+
+Application Pods would use anti-affinity rules and topology spread constraints to distribute replicas across different zones.
+
+Application Load Balancers would distribute traffic across healthy nodes.
+
+Persistent storage would use Multi-AZ capable storage such as Amazon EFS or replicated databases.
+
+This architecture ensures high availability even if an entire Availability Zone becomes unavailable.
+
+---
+
+## 13. A newly deployed Pod enters the ImagePullBackOff state. Besides an incorrect image name, what production-related causes would you investigate?
+
+### Answer
+
+I would verify image repository permissions, registry authentication, imagePullSecrets, ECR login credentials, IAM permissions, repository existence, image tag availability, network connectivity, DNS resolution, container runtime health, registry throttling, and private registry availability.
+
+I would also review Kubernetes events because they usually indicate the exact image pull failure.
+
+---
+
+## 14. An application continuously enters CrashLoopBackOff after deployment. Explain your troubleshooting strategy from the Kubernetes platform perspective before asking developers to modify the application.
+
+### Answer
+
+I begin by checking Pod events using `kubectl describe pod`, followed by current and previous container logs.
+
+Next, I verify ConfigMaps, Secrets, mounted volumes, environment variables, resource limits, liveness and readiness probes, image version, container startup command, and application dependencies.
+
+I also check node health and resource availability.
+
+Only after confirming the Kubernetes platform is correctly configured would I involve developers to investigate application code or startup logic.
+
+---
+
+## 15. Your organization needs to upgrade Kubernetes from version 1.29 to 1.31 with minimal downtime. How would you plan and execute the upgrade?
+
+### Answer
+
+I would first review the Kubernetes release notes and verify compatibility for all applications, Helm charts, CRDs, admission controllers, and third-party components.
+
+Next, I perform the upgrade in a staging environment and execute functional testing.
+
+In production, I back up etcd (for self-managed clusters), update the control plane first, followed by worker nodes using rolling upgrades.
+
+Each node is cordoned and drained before upgrading to ensure Pods are safely rescheduled.
+
+Throughout the upgrade, I monitor application health, Prometheus metrics, and cluster events.
+
+After successful validation, I remove the cordon, complete the rollout, and perform post-upgrade verification to ensure all workloads are healthy with minimal downtime.
+
+
+
 # Advanced DevOps / SRE Interview Questions & Answers (4 Years Experience)
 
 ## 1. Describe a production environment you manage(d). What are its scale, SLAs, and key components?
