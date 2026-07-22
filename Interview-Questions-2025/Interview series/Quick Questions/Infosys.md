@@ -1,3 +1,300 @@
+# Infosys DevOps Interview – Round 2 (4 Years Experience)
+
+---
+
+## 1. Please explain your day-to-day activities as a DevOps Engineer.
+
+### Answer
+
+As a DevOps Engineer, my daily responsibilities include monitoring CI/CD pipelines, supporting application deployments, managing Kubernetes clusters, provisioning infrastructure using Terraform, and troubleshooting production issues.
+
+I review Jenkins pipeline executions, resolve build failures, and ensure successful deployments to Amazon EKS using Helm and Argo CD. I monitor infrastructure and application health using Prometheus, Grafana, and CloudWatch. I also manage Docker images in Amazon ECR, optimize cloud resources, perform infrastructure changes using Terraform, and collaborate with developers to resolve deployment and application issues. Additionally, I participate in production release planning, incident management, root cause analysis (RCA), and continuously automate manual operational tasks.
+
+---
+
+## 2. You have cloned a Git repository. While running `git pull`, you get the error "not a git repository". How will you troubleshoot and fix it?
+
+### Answer
+
+First, I verify whether I'm inside the correct project directory.
+
+```bash
+pwd
+ls -la
+```
+
+Then I check if the `.git` directory exists.
+
+```bash
+ls -la .git
+```
+
+If the `.git` directory is missing, it means either I'm in the wrong directory or the repository metadata has been deleted.
+
+Next, I verify the configured remote.
+
+```bash
+git remote -v
+```
+
+If Git reports **"not a git repository"**, I navigate to the correct cloned repository.
+
+If the repository was accidentally deleted or corrupted, I clone it again.
+
+```bash
+git clone <repository-url>
+```
+
+If necessary, I also verify the current branch.
+
+```bash
+git branch
+git status
+```
+
+Once the repository is valid, I execute:
+
+```bash
+git pull origin main
+```
+
+(or the appropriate branch).
+
+---
+
+## 3. How do you provide access to an S3 bucket, and what permissions need to be set on the bucket?
+
+### Answer
+
+The recommended approach is to use **IAM Roles** instead of long-term access keys.
+
+For EC2 instances, I attach an IAM Role containing only the required S3 permissions such as:
+
+- s3:GetObject
+- s3:PutObject
+- s3:ListBucket
+- s3:DeleteObject (if required)
+
+The bucket itself can also have a Bucket Policy restricting access to specific IAM roles, AWS accounts, VPC endpoints, or IP ranges.
+
+For Kubernetes workloads running on EKS, I use **IAM Roles for Service Accounts (IRSA)** so Pods can securely access S3 without storing AWS credentials.
+
+Following the Principle of Least Privilege ensures applications receive only the permissions they actually require.
+
+---
+
+## 4. How can an application communicate with an EC2 instance that is deployed in a private subnet behind a Multi-AZ Load Balancer?
+
+### Answer
+
+The EC2 instances remain in private subnets without public IP addresses.
+
+An **Application Load Balancer (ALB)** is deployed in public subnets across multiple Availability Zones.
+
+The ALB receives incoming client requests and forwards traffic to the EC2 instances using Target Groups.
+
+Security Groups allow inbound traffic only from the ALB Security Group rather than directly from the internet.
+
+Applications communicate using the ALB DNS name while the backend instances remain protected inside private subnets.
+
+This architecture provides high availability, security, and fault tolerance across multiple Availability Zones.
+
+---
+
+## 5. If an application is hosted in an S3 bucket and users are located in different geographic regions, how would you reduce latency?
+
+### Answer
+
+I would place **Amazon CloudFront** in front of the S3 bucket.
+
+CloudFront caches static content at AWS Edge Locations located close to end users worldwide.
+
+Instead of every request reaching the origin S3 bucket, users receive content from the nearest edge location, significantly reducing latency.
+
+I would also enable compression, configure appropriate cache-control headers, use HTTPS, and enable Origin Access Control (OAC) so the S3 bucket remains private while CloudFront securely serves the content.
+
+---
+
+## 6. You encounter high latency in an application. What monitoring and troubleshooting steps would you take?
+
+### Answer
+
+I start by identifying whether the latency is occurring at the application, infrastructure, database, or network layer.
+
+I review CloudWatch metrics such as CPU, Memory, Network In/Out, Disk IOPS, ALB Target Response Time, HTTP 5xx errors, and request count.
+
+For Kubernetes workloads, I examine Prometheus metrics including Pod CPU, memory utilization, request latency, and restart count.
+
+I inspect application logs, database performance, API response times, and distributed traces using OpenTelemetry or Jaeger if available.
+
+I also verify Auto Scaling events, resource utilization, recent deployments, and load balancer health.
+
+After identifying the bottleneck, I implement corrective actions such as scaling resources, optimizing queries, tuning application performance, or rolling back problematic deployments.
+
+---
+
+## 7. How do you manage existing (unmanaged) AWS resources using Terraform?
+
+### Answer
+
+Terraform can manage existing infrastructure by importing resources into its state file.
+
+First, I define the resource block inside the Terraform configuration.
+
+Example:
+
+```hcl
+resource "aws_instance" "web" {
+}
+```
+
+Then I import the existing resource.
+
+```bash
+terraform import aws_instance.web i-0123456789abcdef
+```
+
+After importing, I execute:
+
+```bash
+terraform plan
+```
+
+Terraform compares the imported state with the configuration.
+
+I update the Terraform code until the plan shows **No Changes**, ensuring the imported infrastructure is fully managed without recreating resources.
+
+---
+
+## 8. How do you import an existing VPC into Terraform?
+
+### Answer
+
+First, I create the VPC resource block.
+
+```hcl
+resource "aws_vpc" "main" {
+}
+```
+
+Then I import the existing VPC using its VPC ID.
+
+```bash
+terraform import aws_vpc.main vpc-xxxxxxxx
+```
+
+Next, I execute:
+
+```bash
+terraform state show aws_vpc.main
+```
+
+to review the imported attributes.
+
+Finally, I update the Terraform configuration so that it matches the actual AWS configuration.
+
+Running:
+
+```bash
+terraform plan
+```
+
+should eventually show **No Changes**, confirming Terraform fully manages the VPC.
+
+---
+
+## 9. How will you upgrade a Kubernetes cluster?
+
+### Answer
+
+I first review the Kubernetes release notes and verify compatibility with all applications, Helm charts, CRDs, and third-party components.
+
+I perform the upgrade in a staging environment before production.
+
+For managed services like Amazon EKS, I upgrade the control plane first, followed by managed node groups.
+
+Before upgrading worker nodes, I cordon and drain each node.
+
+```bash
+kubectl cordon <node>
+
+kubectl drain <node> --ignore-daemonsets
+```
+
+Pods are automatically rescheduled onto healthy nodes.
+
+After upgrading each node, I uncordon it.
+
+```bash
+kubectl uncordon <node>
+```
+
+Finally, I verify cluster health, application availability, monitoring dashboards, and perform post-upgrade validation before closing the maintenance window.
+
+---
+
+## 10. What is a Canary Deployment?
+
+### Answer
+
+A Canary Deployment gradually releases a new application version to a small percentage of users while the majority continue using the stable version.
+
+For example:
+
+- 5% Traffic → Version 2
+- 95% Traffic → Version 1
+
+If monitoring shows healthy performance, traffic is gradually increased:
+
+- 20%
+- 50%
+- 100%
+
+If issues are detected, traffic is immediately shifted back to the stable version.
+
+Canary deployments reduce deployment risk, enable early issue detection, and provide safer production releases.
+
+In Kubernetes, Canary deployments are commonly implemented using Argo Rollouts, Istio, Linkerd, or NGINX Ingress with weighted traffic routing.
+
+---
+
+## 11. During peak traffic, if the Ingress Controller fails to route requests efficiently, how would you diagnose the issue and scale the Ingress resources effectively?
+
+### Answer
+
+I would begin by checking the health of the Ingress Controller Pods.
+
+```bash
+kubectl get pods -n ingress-nginx
+```
+
+Then I inspect controller logs.
+
+```bash
+kubectl logs <ingress-controller-pod> -n ingress-nginx
+```
+
+Next, I verify:
+
+- Ingress resource configuration
+- Backend Service health
+- Endpoint availability
+- Pod readiness
+- Load Balancer health
+- DNS resolution
+- NGINX metrics
+- CPU and Memory utilization
+
+Using Prometheus and Grafana, I monitor request rate, response time, error rate, and controller resource utilization.
+
+If the Ingress Controller is resource-constrained, I increase its replicas using a Deployment or configure a Horizontal Pod Autoscaler (HPA) based on CPU or custom metrics.
+
+If worker nodes become saturated, Cluster Autoscaler provisions additional nodes automatically.
+
+Finally, I validate traffic distribution, monitor latency, and ensure the system remains stable throughout peak traffic periods.
+
+
+
 # DevOps Engineer Interview Questions & Answers (Infosys)
 
 ## 1. In a well-designed CI/CD pipeline for a critical banking application, is it acceptable to push code directly to production without automated testing if the developer is confident and time is limited? (True/False)
