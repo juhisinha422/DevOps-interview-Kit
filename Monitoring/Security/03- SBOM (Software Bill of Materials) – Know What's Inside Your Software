@@ -1,0 +1,36 @@
+ SBOM (Software Bill of Materials) – Know What's Inside Your Software 📋
+
+🔹 What is an SBOM?
+A Software Bill of Materials (SBOM) is a detailed inventory of all the components, libraries, frameworks, and dependencies used to build an application.
+Think of it like an ingredient list on a food package—it tells you exactly what's inside your software.
+
+🔑 What Does an SBOM Include?
+✔ Application name & version
+ ✔ Open-source libraries
+ ✔ Third-party dependencies
+ ✔ Component versions
+ ✔ License information
+
+🌟 Why is SBOM Important?
+Without an SBOM:
+❌ Unknown vulnerable dependencies
+ ❌ Difficult vulnerability management
+ ❌ Compliance challenges
+
+With an SBOM:
+✔ Quickly identify vulnerable components 🔍
+ ✔ Improve software transparency 📋
+ ✔ Simplify compliance and audits ✅
+ ✔ Strengthen software supply chain security 🔒
+
+💡 Real-world Example
+A new vulnerability is discovered in a popular open-source library.
+Instead of manually checking every application, the security team reviews the SBOM and immediately identifies which applications use the affected version.
+✅ The vulnerable library is updated before it can be exploited.
+
+🧠 Key Takeaways
+✔ SBOM = Inventory of software components 📋
+ ✔ Lists all dependencies and versions 📦
+ ✔ Helps identify vulnerable libraries 🔍
+ ✔ Improves compliance and security 🔒
+ ✔ Essential for modern DevSecOps 🚀
