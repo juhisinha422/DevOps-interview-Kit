@@ -46,3 +46,48 @@ AWS creates new EC2 instances, they bootstrap and register as Kubernetes nodes, 
 🔴Bonus:
 Cluster Autoscaler also works in the other direction.
 If nodes are underutilized, it can scale them down safely without disrupting the application.
+
+
+
+4 steps to install Cluster Autoscaler in AWS EKS ☁️
+ 
+1- Enable OIDC on your EKS cluster:
+
+    -Cluster Autoscaler needs to call AWS APIs securely.
+    -Enable OIDC so Kubernetes service accounts can assume IAM roles.
+👉 This is the foundation of IRSA
+ 
+2- Create IRSA (IAM Role for Service Account):
+
+◾Create an IAM role that:
+   -trusts your EKS OIDC provider
+   -is scoped to: kube-system/cluster-autoscaler-sa
+ 
+◾Attach permissions:
+   -autoscaling:Describe*
+   -autoscaling:SetDesiredCapacity
+   -autoscaling:TerminateInstanceInAutoScalingGroup
+   -ec2:Describe*
+👉 This gives autoscaler permission to scale nodes
+ 
+3- Tag your Node Groups / ASG:
+
+Cluster Autoscaler discovers node groups using tags.
+Add:
+  -https://lnkd.in/dw64VN3s = true
+  -k8s.io/cluster-autoscaler/<cluster-name> = owned
+👉 Without these tags, autoscaler won’t detect your nodes
+ 
+4- Deploy Cluster Autoscaler (Helm):
+
+◾Update Helm values:
+  -cloudProvider = aws/gcp/azure
+  -autoDiscovery.clusterName = <cluster-name>
+  -awsRegion = <region>
+ 
+◾Service account:
+  -rbac.serviceAccount.create = true
+  -rbac.serviceAccount.name = cluster-autoscaler-sa
+ 
+◾Attach IAM role:
+  -eks.amazonaws.com/role-arn = <role-arn>
