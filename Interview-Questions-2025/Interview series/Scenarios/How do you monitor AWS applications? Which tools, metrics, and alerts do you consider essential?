@@ -1,0 +1,17 @@
+How do you monitor AWS applications? Which tools, metrics, and alerts do you consider essential? 
+
+we can establish a reliable, automated monitoring environment using native AWS tools alongside critical metrics and alerts.  
+
+1.Amazon CloudWatch: Acts as our core observability hub. It collects system performance data, unifies application logs, and visualizes system trends on central dashboards. 
+
+2.AWS X-Ray: Operates as our primary troubleshooting engine. It traces requests as they travel across complex microservice architectures to isolate performance bottlenecks
+ 
+3.AWS CloudTrail: Serves as our governance and security auditor. It logs all API calls and user changes made within our infrastructure 
+
+4.Third-Party Platforms: Tools like Datadog, New Relic, or Dynatrace provide external alternatives. They aggregate multi-cloud metrics and deliver unified distributed tracing 
+
+Below are essential Metrics to Monitor 
+1. Request Count / Throughput: Total volume of traffic hitting the application. 2.4xx and 5xx Error Rates: Indicates client-side request issues or server-side application faults. 
+3.Integration Timeouts: Delays connecting to databases (e.g., RDS) or external APIs. 
+4.CPU & Memory Utilization: Tracked closely via Amazon CloudWatch to ensure workloads are not starved or over-provisioned.
+  
