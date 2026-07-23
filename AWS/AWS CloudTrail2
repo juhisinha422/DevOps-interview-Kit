@@ -1,0 +1,35 @@
+What is AWS CloudTrail?🤔
+
+👉AWS CloudTrail is a logging and monitoring service.
+
+👉It records actions and activities performed inside your AWS account.
+
+♦️What Does CloudTrail Track?
+
+CloudTrail logs things like:
+• User logins
+• API calls
+• Resource changes
+• Account activity
+
+♦️Why CloudTrail is Important 🔐
+
+CloudTrail improves:
+• Visibility
+• Monitoring
+• Security investigations
+
+If suspicious activity happens, CloudTrail helps track it.
+
+♦️Real Example
+If someone deletes an S3 bucket or changes IAM permissions:
+CloudTrail records the event.
+This helps security teams investigate incidents.
+
+♦️Security Benefit 🛡️
+
+CloudTrail is essential for:
+• Auditing
+• Compliance
+• Detecting unauthorized activity
+Logging is a major part of cloud security.
