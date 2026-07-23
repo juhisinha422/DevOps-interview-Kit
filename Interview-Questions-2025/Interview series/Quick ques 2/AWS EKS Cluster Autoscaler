@@ -1,0 +1,48 @@
+AWS EKS Cluster Autoscaler explained in 10 steps 
+ 
+Your EKS cluster is already up and running.
+You deploy an application, but the cluster does not have enough capacity to run all the pods.
+ 
+Your pods stay Pending…
+So what behind the scenes?
+ 
+🔴Let’s break it down step by step 👇
+
+1 -  Start with a running EKS cluster
+Your EKS control plane is healthy, your worker nodes are connected, and the Cluster Autoscaler is already installed in the cluster.
+ 
+2 -  You deploy your application
+You run kubectl apply to create a Deployment, StatefulSet, or another workload.
+ 
+3 -  The API Server receives the request
+The Kubernetes API Server stores the desired state and makes it available to the other control plane components.
+ 
+4 -  The Scheduler tries to place the pods
+The scheduler checks whether the existing nodes have enough CPU, memory, and matching conditions to host the new pods.
+ 
+5 -  Some pods stay Pending
+If no current node can host them, Kubernetes marks those pods as unschedulable and leaves them in the Pending state.
+ 
+6 -  Cluster Autoscaler detects unschedulable pods
+The Cluster Autoscaler watches the cluster state through the API Server and notices that some pods cannot be scheduled.
+ 
+7 -  It simulates where those pods could run
+It does not scale blindly.
+It checks things like:
+  -CPU and memory requests
+  -node selectors
+  -taints and tolerations
+  -affinity rules
+ 
+ 8 -  It selects the right node group
+Based on that simulation, it identifies which EKS node group is able to host those Pending pods.
+ 
+9 -  It calls AWS to increase capacity
+Using IAM permissions through IRSA, the Cluster Autoscaler calls AWS APIs and increases the desired capacity of the Auto Scaling Group behind that node group.
+ 
+10 - New EC2 instances launch and join the cluster
+AWS creates new EC2 instances, they bootstrap and register as Kubernetes nodes, and then the scheduler places the Pending pods on them.
+
+🔴Bonus:
+Cluster Autoscaler also works in the other direction.
+If nodes are underutilized, it can scale them down safely without disrupting the application.
