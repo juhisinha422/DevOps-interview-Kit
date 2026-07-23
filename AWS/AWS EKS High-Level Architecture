@@ -1,0 +1,75 @@
+AWS EKS High-Level Architecture 🏗️
+
+→ Amazon EKS (Elastic Kubernetes Service) is a managed Kubernetes service in AWS.
+→ It simplifies running Kubernetes clusters by offloading control plane management to AWS.
+→ EKS integrates Kubernetes with AWS networking, security, and scaling services.
+
+♦️Control Plane:
+
+→ AWS provisions and manages the Kubernetes control plane across multiple Availability Zones.
+→ The control plane includes:
+→ API Server → accepts and validates Kubernetes requests.
+→ etcd → distributed key-value store for cluster state.
+→ Controller Manager & Scheduler → maintain cluster desired state and schedule workloads.
+
+
+♦️Worker Nodes:
+
+→ Worker nodes run your containerized workloads (pods).
+→ They can be either:
+→ Managed Node Groups → EC2 instances managed by EKS for upgrades and scaling
+→ Self-Managed Nodes → EC2 instances you manage manually
+
+
+🔴AWS Fargate for Serverless Compute
+
+→ EKS integrates with AWS Fargate to run pods without managing servers.
+→ AWS provisions compute capacity automatically.
+→ Ideal for workloads that benefit from serverless container execution.
+
+♦️Networking Layer:
+
+→ EKS uses Amazon VPC to provide networking for pods and services.
+→ Pods can receive unique IP addresses using VPC CNI plugin.
+→ AWS Security Groups and Network ACLs control pod traffic.
+→ EKS integrates with Elastic Load Balancers for service exposure.
+
+♦️Load Balancing:
+
+→ When a Kubernetes Service of type LoadBalancer is created, AWS provisions:
+→ Application Load Balancer (ALB) → for HTTP/HTTPS workloads
+→ Network Load Balancer (NLB) → for TCP/UDP workloads
+→ These load balancers distribute traffic to pods across AZs.
+
+♦️Storage Integration:
+
+→ EKS supports persistent storage using:
+→ Amazon EBS → block storage for individual pods
+→ Amazon EFS → shared file storage across pods
+→ Storage is mounted via Kubernetes Persistent Volume and Persistent Volume Claim APIs.
+
+♦️IAM & Security:
+
+→ EKS uses IAM for authentication and RBAC for authorization.
+→ IAM Roles for Service Accounts (IRSA) → map IAM roles to Kubernetes service accounts.
+→ Ensures least privilege access from pods to AWS resources.
+
+♦️Autoscaling:
+
+→ EKS supports multiple scaling mechanisms:
+→ Cluster Autoscaler → adds or removes worker nodes based on pod demand
+→ Horizontal Pod Autoscaler → scales pods based on metrics (CPU, memory)
+→ AWS Auto Scaling → scales resources using CloudWatch metrics
+
+♦️Monitoring & Logging:
+
+→ EKS integrates with AWS observability services:
+→ Amazon CloudWatch → metrics and logs
+→ AWS X-Ray → distributed tracing
+→ Container Insights → pod and node performance dashboards
+
+♦️High-Level Workflow:
+
+→ Developer deploys Kubernetes manifests to EKS.
+→ EKS control plane schedules pods onto worker nodes or Fargate.
+→ Pods communicate through VPC CNI and Security Groups.
