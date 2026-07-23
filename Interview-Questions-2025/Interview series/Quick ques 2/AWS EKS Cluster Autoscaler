@@ -47,7 +47,31 @@ AWS creates new EC2 instances, they bootstrap and register as Kubernetes nodes, 
 Cluster Autoscaler also works in the other direction.
 If nodes are underutilized, it can scale them down safely without disrupting the application.
 
+Cluster Autoscaler won’t work in AWS EKS without OIDC ☠️
+ 
+Here’s why 🧐
+ 
+1 - What is OIDC?
 
+OIDC (OpenID Connect) links your EKS cluster to AWS IAM.
+It gives Kubernetes service accounts an identity.
+ 
+2 - Why do we need it?
+
+Cluster Autoscaler runs as a pod.
+To scale nodes, it must call AWS APIs.
+OIDC enables IRSA 
+so the pod can assume an IAM role securely.
+ 
+No OIDC = no AWS access = no scaling
+ 
+3 - How do you enable it?
+
+Create an IAM OIDC provider using your cluster’s issuer URL:
+ 
+read OIDC issuer from EKS
+get TLS thumbprint
+create aws_iam_openid_connect_provider
 
 4 steps to install Cluster Autoscaler in AWS EKS ☁️
  
@@ -91,3 +115,24 @@ Add:
  
 ◾Attach IAM role:
   -eks.amazonaws.com/role-arn = <role-arn>
+
+
+
+How to Run EKS Cluster Autoscaler ☁️
+
+When OIDC is enabled, the next step is to create the IAM role and policy that allow the AWS EKS service account to talk to AWS and scale worker nodes.
+
+In simple terms, Cluster Autoscaler runs inside Kubernetes as a pod, but to do its job it must call AWS APIs to:
+
+   - discover Auto Scaling Groups
+   - increase desired capacity
+   - terminate instances during scale-down
+   - read EC2 launch template and instance type details
+
+🔴To make that possible, we create:
+
+1 - An IAM role This role is trusted by the OIDC provider and can only be assumed by the Cluster Autoscaler service account.
+
+2 - An IAM policy This policy gives the permissions needed to describe, create capacity, and terminate EC2 instances through the Auto Scaling Group.
+
+3 - A role-policy attachment This links the policy to the role.
