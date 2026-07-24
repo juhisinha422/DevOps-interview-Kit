@@ -1,3 +1,239 @@
+
+# AWS Scenario-Based Interview Questions (4 Years DevOps Experience)
+
+---
+
+# 1. What is the difference between an Application Load Balancer (ALB) and a Network Load Balancer (NLB)? Why would you choose ALB? In which scenarios would NLB be a better choice? Why wouldn’t you use NLB for every application?
+
+## Answer
+
+The main difference between **ALB** and **NLB** is the OSI layer at which they operate and the type of traffic they handle.
+
+**Application Load Balancer (ALB)** operates at **Layer 7 (Application Layer)** and understands HTTP and HTTPS traffic. It can inspect the request content, such as URLs, hostnames, headers, and query parameters, allowing intelligent routing decisions.
+
+**Network Load Balancer (NLB)** operates at **Layer 4 (Transport Layer)** and routes traffic based only on IP addresses, TCP, UDP, or TLS ports. It does not inspect HTTP requests, making it extremely fast with very low latency.
+
+### Why would I choose ALB?
+
+For most web applications and microservices, I prefer ALB because it provides advanced routing capabilities such as:
+
+- Path-based routing
+- Host-based routing
+- SSL/TLS termination
+- Sticky sessions
+- WebSocket support
+- Integration with AWS WAF
+- Authentication using Cognito or OIDC
+- Native integration with Kubernetes Ingress Controller
+
+For example:
+
+```
+example.com/api      → API Service
+
+example.com/orders   → Order Service
+
+example.com/payment  → Payment Service
+```
+
+A single ALB can route traffic to multiple backend services, making it cost-effective and easy to manage.
+
+---
+
+### When would I use NLB?
+
+I would choose NLB when the application requires:
+
+- Very high throughput
+- Ultra-low latency
+- TCP or UDP traffic
+- Static Elastic IP addresses
+- Millions of concurrent connections
+- Non-HTTP protocols
+
+Typical examples include:
+
+- Gaming servers
+- Financial trading systems
+- MQTT brokers
+- SIP/VoIP applications
+- DNS services
+- High-performance databases
+- Kafka clusters
+
+---
+
+### Why not use NLB for every application?
+
+Although NLB offers better performance, it lacks Layer 7 capabilities.
+
+It cannot perform:
+
+- Path-based routing
+- Host-based routing
+- HTTP header inspection
+- URL-based routing
+- Native WAF integration
+- Authentication
+- Advanced routing rules
+
+Using NLB for web applications would require managing multiple load balancers or implementing routing logic inside the application, increasing operational complexity.
+
+---
+
+### Quick Comparison
+
+| Feature | ALB | NLB |
+|----------|-----|-----|
+| OSI Layer | Layer 7 | Layer 4 |
+| Protocols | HTTP, HTTPS | TCP, UDP, TLS |
+| Path-based Routing | ✅ | ❌ |
+| Host-based Routing | ✅ | ❌ |
+| SSL Termination | ✅ | ✅ |
+| Static IP | ❌ | ✅ |
+| Ultra-low Latency | ❌ | ✅ |
+| Kubernetes Ingress | ✅ | Limited |
+| AWS WAF Support | ✅ | ❌ |
+
+---
+
+### Interview Answer (Short)
+
+> "ALB operates at Layer 7 and is ideal for HTTP/HTTPS applications because it supports path-based routing, host-based routing, SSL termination, and WAF integration. NLB operates at Layer 4 and is designed for high-performance TCP/UDP workloads requiring very low latency and static IPs. I use ALB for most web applications and Kubernetes Ingress, while NLB is better suited for high-throughput or non-HTTP applications such as gaming, Kafka, or financial systems."
+
+---
+
+# 2. You need to provide access to an Amazon S3 object only to a specific client. How would you implement this securely? How would you ensure no one else can access the object?
+
+## Answer
+
+The most secure solution depends on how the client accesses the object, but I would never make the object public.
+
+For external clients who need temporary access, I would generate a **pre-signed URL**. The URL is signed using AWS credentials and expires after a configurable duration, such as 15 minutes or one hour. After expiration, it becomes unusable.
+
+For applications running in AWS, I would grant access through an **IAM Role** or IAM User with the minimum required S3 permissions.
+
+To further secure the object, I would:
+
+- Keep the S3 bucket private.
+- Enable **Block Public Access**.
+- Use bucket policies allowing access only to the required IAM principal or pre-signed requests.
+- Encrypt objects using SSE-S3 or SSE-KMS.
+- Enable versioning and access logging.
+- Restrict access using VPC Endpoints if the client is inside AWS.
+- Enable CloudTrail and S3 access logs for auditing.
+
+This ensures that only the intended client can access the object while all other requests are denied.
+
+---
+
+### Example
+
+```
+User
+
+↓
+
+Application
+
+↓
+
+Generate Pre-Signed URL
+
+↓
+
+Private S3 Bucket
+
+↓
+
+Temporary Secure Access
+```
+
+---
+
+### Interview Answer (Short)
+
+> "I would keep the S3 bucket private and enable Block Public Access. For external users, I would generate a time-limited pre-signed URL. For AWS applications, I would use IAM Roles with least-privilege permissions. I would also enable encryption, bucket policies, access logging, and CloudTrail to ensure only the intended client can access the object."
+
+---
+
+# 3. How would you secure an application deployed in the cloud?
+
+## Answer
+
+Securing a cloud application requires implementing multiple layers of security rather than relying on a single control.
+
+### Network Security
+
+I deploy applications in private subnets whenever possible. Only the Load Balancer is exposed publicly. Security Groups allow only required ports, while Network ACLs provide subnet-level protection. I also use AWS WAF to protect against common web attacks such as SQL Injection, Cross-Site Scripting (XSS), and malicious bots.
+
+---
+
+### Identity and Access Management
+
+I follow the **Principle of Least Privilege** by granting only the minimum required IAM permissions. Applications running on EC2 or EKS use IAM Roles instead of hardcoded AWS credentials. Multi-Factor Authentication (MFA) is enabled for privileged users.
+
+---
+
+### Secrets Management
+
+Sensitive information such as database passwords, API keys, and tokens is stored in AWS Secrets Manager or Kubernetes Secrets. Secrets are rotated regularly and never committed to Git repositories or embedded in application code.
+
+---
+
+### Encryption
+
+All communication uses HTTPS with TLS certificates managed through AWS Certificate Manager. Data stored in S3, EBS, RDS, and EFS is encrypted using AWS KMS. Encryption is also enabled for backups and snapshots.
+
+---
+
+### Infrastructure Security
+
+Infrastructure is provisioned using Terraform to ensure consistency and auditability. Amazon Inspector and Trivy are used to scan EC2 instances and container images for vulnerabilities. Docker images use minimal base images and are rebuilt regularly with security patches.
+
+---
+
+### Kubernetes Security
+
+For Kubernetes workloads, I implement:
+
+- RBAC for access control
+- Network Policies to restrict Pod communication
+- Resource requests and limits
+- Liveness and Readiness Probes
+- IAM Roles for Service Accounts (IRSA)
+- Pod Security Standards
+- Admission Controllers for policy enforcement
+
+---
+
+### Monitoring and Incident Response
+
+I continuously monitor infrastructure using CloudWatch, Prometheus, and Grafana. CloudTrail logs all AWS API activity for auditing. Alerts are configured for unusual login attempts, privilege escalation, failed deployments, high CPU utilization, and suspicious network traffic.
+
+---
+
+### CI/CD Security (DevSecOps)
+
+Security checks are integrated into the CI/CD pipeline using:
+
+- SonarQube for code quality
+- Trivy for container image scanning
+- Dependency vulnerability scanning
+- Terraform validation
+- Secret scanning
+- Image signing (where applicable)
+
+This ensures vulnerabilities are identified and remediated before deployment.
+
+---
+
+### Interview Answer (Short)
+
+> "I secure cloud applications using a defense-in-depth approach. I deploy workloads in private subnets behind an ALB, enforce least-privilege IAM policies, store secrets in AWS Secrets Manager, encrypt data in transit and at rest, integrate security scanning into CI/CD with SonarQube and Trivy, implement Kubernetes RBAC and Network Policies, and continuously monitor the environment using CloudWatch, Prometheus, Grafana, and CloudTrail. This layered approach protects the application from infrastructure, network, and application-level threats."
+
+
+
 # Scenario: Users Cannot Access Files Stored in S3. Users report that they receive: Access Denied when trying to open a file from an S3 bucket. How would you troubleshoot?
  
 
