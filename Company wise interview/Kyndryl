@@ -1,0 +1,44 @@
+Kyndryl First round interview questions:
+
+I recently had the opportunity to interview for a DevOps Engineer role at Kyndryl and  these are the questions:
+
+1. If the application becomes unavailable, what is your troubleshooting approach?
+2. How do you identify which process is consuming high CPU utilization on a Linux server?
+3. What will you do if a server is not reachable?
+4. What is the difference between a Public IP and a Private IP?
+5. Which database have you worked on?
+6. Write an SQL query to fetch the 5th highest salary from the Employee table.
+7. If the production application is down because the database partition is full, what will you do?
+8. If a user reports that the application is in a hanging state, how will you troubleshoot?
+9. If a stored procedure fails due to invalid data, how will you fix it?
+10. What is the difference between Clustered Index and Non-Clustered Index?
+11. If you see an IndexOutOfBoundsException in the application logs, how will you troubleshoot it?
+12. What is a Kafka Consumer Group?
+13. What is a Kafka Broker?
+14. How do you troubleshoot a pod in CrashLoopBackOff state in Kubernetes?
+15. What is the difference between Route and Ingress?
+16. What is a Dockerfile?
+17. What is the difference between Prometheus and Splunk?
+18. Explain the Splunk query (SPL) you use to search logs.
+19. How do you manage the Terraform state?
+20. What are Terraform Providers?
+21. What is the difference between PUT and POST in REST APIs?
+22. What does the 502 Bad Gateway error mean, and how do you troubleshoot it?
+23. If the CI/CD pipeline completes successfully but the application is not working, how will you troubleshoot?
+24. If CI builds are slow, how will you optimize or troubleshoot them?
+25. How do you install an SSL certificate?
+26. What is Azure AD (Microsoft Entra ID)?
+27. If a vendor is not responding during a P1 incident, what will you do?
+28. How do you handle sensitive features or sensitive production changes?
+29. How do you handle SLA breaches?
+30. Which SAP modules have you worked on?
+31. Explain the P2P (Procure-to-Pay) process.
+32. What is the difference between RTO and RPO?
+33. What is the Helm command to install a package?
+34. What is a Helm Chart?
+35. You have a Python microservice. Can you write a Dockerfile for it?
+36. What is the difference between a Single-stage and Multi-stage Docker build?
+37. What is the default port number of Alertmanager?
+38. What is Node Exporter?
+39. If the entire Kubernetes cluster fails, how will you investigate and recover it?
+40. How have you optimized costs using AWS Lambda?
