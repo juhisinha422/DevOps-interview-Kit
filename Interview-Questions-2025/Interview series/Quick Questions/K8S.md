@@ -1,3 +1,264 @@
+# Amazon EKS Scenario-Based Interview Questions (4 Years DevOps Experience)
+
+---
+
+# Question 1
+
+## In an Amazon EKS cluster, I have the following requirement:
+
+- R3 instances should run **50%** of the workload.
+- R4 instances should run the remaining **50%**.
+
+Example:
+
+Total Worker Nodes = **30**
+
+- 15 × R3 Nodes
+- 15 × R4 Nodes
+
+How would you distribute the Pods equally across both node groups?
+
+### Answer
+
+This requirement is achieved by combining **Node Labels**, **Node Affinity**, and **Topology Spread Constraints**. If an exact 50:50 split is required regardless of node count, **multiple Deployments** are the most reliable approach.
+
+### Approach 1 (Recommended for Exact 50:50 Distribution)
+
+Create two managed node groups in Amazon EKS.
+
+Label the nodes:
+
+```bash
+kubectl label node r3-node-1 nodegroup=r3
+kubectl label node r4-node-1 nodegroup=r4
+```
+
+Deploy the application as **two Deployments**.
+
+Deployment-1
+
+- Replicas: 5
+- Node Affinity → nodegroup=r3
+
+Deployment-2
+
+- Replicas: 5
+- Node Affinity → nodegroup=r4
+
+Example:
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: nodegroup
+          operator: In
+          values:
+          - r3
+```
+
+The second deployment uses:
+
+```yaml
+values:
+- r4
+```
+
+If the application has 10 replicas:
+
+- 5 Pods → R3
+- 5 Pods → R4
+
+If HPA scales to 20 Pods:
+
+- 10 Pods → R3
+- 10 Pods → R4
+
+This guarantees an exact **50:50 workload distribution**.
+
+---
+
+### Approach 2 (Topology Spread Constraints)
+
+If the requirement is simply to spread Pods evenly across all worker nodes, Kubernetes provides **Topology Spread Constraints**.
+
+```yaml
+topologySpreadConstraints:
+- maxSkew: 1
+  topologyKey: kubernetes.io/hostname
+  whenUnsatisfiable: DoNotSchedule
+  labelSelector:
+    matchLabels:
+      app: myapp
+```
+
+This distributes Pods evenly across nodes.
+
+---
+
+### Approach 3 (Preferred During Interview)
+
+For an exact **50% workload on each node group**, I would create:
+
+- Two Managed Node Groups
+- Node Labels
+- Node Affinity
+- Separate Deployments
+- Separate HPAs
+
+This provides deterministic scheduling and scales both node groups equally.
+
+---
+
+## Production Best Practice
+
+For production environments, I would combine:
+
+- Managed Node Groups
+- Node Labels
+- Node Affinity
+- Pod Anti-Affinity
+- Topology Spread Constraints
+- Cluster Autoscaler
+
+This ensures high availability, balanced utilization, and predictable scheduling.
+
+---
+
+# Question 2
+
+## During peak traffic, the interviewer wanted Pods to scale like this:
+
+```
+2 → 4 → 6 → 8
+```
+
+instead of
+
+```
+1 → 2 → 3 → 4
+```
+
+Similarly, when traffic decreases, the Pods should scale down using the same pattern.
+
+How would you implement this behavior?
+
+### Answer
+
+By default, the Kubernetes Horizontal Pod Autoscaler (HPA) increases or decreases replicas based on calculated metrics, typically one or a few Pods at a time.
+
+To control scaling behavior, Kubernetes provides the **behavior** field in HPA (available in autoscaling/v2).
+
+Example:
+
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: myapp
+spec:
+  minReplicas: 2
+  maxReplicas: 20
+
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+
+  behavior:
+
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Pods
+        value: 2
+        periodSeconds: 30
+      selectPolicy: Max
+
+    scaleDown:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Pods
+        value: 2
+        periodSeconds: 30
+      selectPolicy: Max
+```
+
+---
+
+### What happens?
+
+Initial replicas:
+
+```
+2
+```
+
+Traffic increases
+
+```
+2 → 4
+```
+
+Still high
+
+```
+4 → 6
+```
+
+Still high
+
+```
+6 → 8
+```
+
+Traffic decreases
+
+```
+8 → 6
+```
+
+Then
+
+```
+6 → 4
+```
+
+Then
+
+```
+4 → 2
+```
+
+This exactly matches the interview requirement.
+
+---
+
+## Why use `behavior`?
+
+The `behavior` section lets you control:
+
+- Number of Pods added per scaling event
+- Number of Pods removed per scaling event
+- Stabilization windows
+- Scaling frequency
+- Scale-up and scale-down policies
+
+This prevents sudden scaling spikes and provides predictable, production-grade autoscaling.
+
+---
+
+## Interview Answer (Short)
+
+> "For evenly distributing workloads across R3 and R4 node groups, I would create separate EKS managed node groups with node labels and use Node Affinity. If an exact 50:50 split is required, I would use two Deployments (or two ReplicaSets) with equal replicas and separate HPAs targeting each node group. For scaling in increments of 2 (2→4→6→8), I would use the HPA `behavior` field in `autoscaling/v2` and configure `scaleUp` and `scaleDown` policies with `type: Pods` and `value: 2`. This provides controlled, predictable autoscaling suitable for production workloads."
+
+
+
 # Top 15 Kubernetes Scenario-Based Interview Questions (4 Years DevOps Experience)
 
 ---
