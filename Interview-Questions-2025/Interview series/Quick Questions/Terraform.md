@@ -1,3 +1,26 @@
+# Terraform apply fails halfway through. Some resources are created, some aren't. State file is now out of sync with reality.
+```
+Here's how I'd walk through it in an interview:
+
+𝟭. 𝗗𝗼𝗻'𝘁 𝗿𝗲-𝗿𝘂𝗻 𝗯𝗹𝗶𝗻𝗱𝗹𝘆
+→ Re-running apply without understanding what succeeded can create duplicate resources or conflicts
+
+𝟮. 𝗖𝗵𝗲𝗰𝗸 𝘄𝗵𝗮𝘁 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗲𝘅𝗶𝘀𝘁𝘀
+→ terraform state list vs. the actual cloud console — find the drift
+
+𝟯. 𝗥𝗲𝗰𝗼𝗻𝗰𝗶𝗹𝗲 𝘀𝘁𝗮𝘁𝗲 𝗳𝗶𝗿𝘀𝘁
+→ terraform import for resources that exist but aren't tracked
+→ terraform state rm for resources tracked but never actually created
+
+𝟰. 𝗣𝗹𝗮𝗻 𝗯𝗲𝗳𝗼𝗿𝗲 𝘆𝗼𝘂 𝗮𝗽𝗽𝗹𝘆 𝗮𝗴𝗮𝗶𝗻
+→ terraform plan and read every single line — don't skim it
+
+𝟱. 𝗣𝗿𝗲𝘃𝗲𝗻𝘁 𝗶𝘁 𝗻𝗲𝘅𝘁 𝘁𝗶𝗺𝗲
+→ Remote state with locking (S3 + DynamoDB, or Terraform Cloud)
+→ This exact failure is usually a locking problem in disguise
+
+```
+
 # Terraform Advanced Scenario-Based Interview Questions (4+ Years DevOps Engineer)
 
 ## 1. Terraform plan shows zero changes, but you know the infrastructure was modified outside Terraform. What's actually happening, and how do you confirm it?
