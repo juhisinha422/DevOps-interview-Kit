@@ -1,3 +1,283 @@
+# Kubernetes & Jenkins Interview Questions (4 Years Experience)
+
+---
+
+# 1. What happens when a Kubernetes Pod reaches its CPU limit? How does Kubernetes handle the container?
+
+### Answer
+
+When a container reaches its configured **CPU limit**, Kubernetes does **not kill or restart the container**. Instead, the Linux kernel's **Completely Fair Scheduler (CFS)** throttles the CPU usage using Linux cgroups.
+
+This means the container cannot consume CPU beyond the configured limit, even if additional CPU is available on the node.
+
+For example:
+
+```yaml
+resources:
+  requests:
+    cpu: "500m"
+  limits:
+    cpu: "1000m"
+```
+
+In this example:
+
+- The Pod is guaranteed **0.5 CPU** (request).
+- It can use up to **1 CPU** (limit).
+- If it tries to use **1.5 CPUs**, Kubernetes throttles it to **1 CPU**.
+
+The Pod continues running, but because CPU is restricted, the application may experience:
+
+- Increased response time
+- Slower processing
+- Higher request latency
+- Timeout errors
+- Reduced throughput
+
+Unlike memory limits, exceeding a CPU limit **does not trigger an OOMKilled event**.
+
+---
+
+### CPU vs Memory (Important Interview Difference)
+
+| CPU Limit | Memory Limit |
+|------------|--------------|
+| CPU is throttled | Container is killed |
+| Pod keeps running | Pod restarts |
+| No OOMKilled | OOMKilled occurs |
+| Performance degrades | Application crashes |
+
+---
+
+### Production Best Practices
+
+- Always configure both CPU **requests** and **limits**.
+- Monitor CPU throttling using Prometheus metrics (`container_cpu_cfs_throttled_seconds_total`).
+- Use Horizontal Pod Autoscaler (HPA) to scale Pods before CPU becomes a bottleneck.
+- Right-size CPU requests and limits based on production usage to avoid excessive throttling.
+
+---
+
+### Interview Answer (Short)
+
+> "When a Pod reaches its CPU limit, Kubernetes does not terminate it. The Linux kernel throttles CPU usage through cgroups and CFS, ensuring the container cannot exceed its configured limit. The application continues running but may experience slower performance or higher latency. This differs from memory limits, where exceeding the limit results in the container being OOMKilled."
+
+---
+
+# 2. When a user sends a request to a server and the server sends a response back, how does the server know which response belongs to that particular user?
+
+### Answer
+
+The server identifies each client connection using the **TCP connection**, which is uniquely identified by a **5-tuple**:
+
+- Source IP Address
+- Source Port
+- Destination IP Address
+- Destination Port
+- Protocol (TCP/UDP)
+
+Example:
+
+```
+Client
+
+IP: 192.168.1.10
+Port: 52001
+
+↓
+
+Server
+
+IP: 54.10.20.30
+Port: 443
+```
+
+The operating system maintains a separate socket for every active connection.
+
+Even if thousands of users connect simultaneously, each connection has a unique source port, allowing the server to correctly send each response back to the originating client.
+
+For HTTP/HTTPS applications, additional mechanisms are often used:
+
+- Session IDs
+- Cookies
+- JWT Tokens
+- Authentication Tokens
+
+These help the application identify the user's session and authorization, while TCP ensures the network response reaches the correct client.
+
+---
+
+### Example
+
+User A
+
+```
+192.168.1.10:51000
+```
+
+User B
+
+```
+192.168.1.20:51005
+```
+
+Both send requests to:
+
+```
+Server:443
+```
+
+The server creates two different TCP sockets:
+
+```
+192.168.1.10:51000 → Server:443
+
+192.168.1.20:51005 → Server:443
+```
+
+Each response is returned through its respective connection, ensuring the correct user receives the correct response.
+
+---
+
+### Interview Answer (Short)
+
+> "The server identifies each request using the TCP connection, which is uniquely defined by the source IP, source port, destination IP, destination port, and protocol. The operating system maintains separate sockets for each client, allowing responses to be returned to the correct user. At the application layer, mechanisms like cookies, session IDs, or JWT tokens identify the user's session."
+
+---
+
+# 3. What is a Jenkins Shared Library? Why do we use it? Where is it used in real time?
+
+### Answer
+
+A **Jenkins Shared Library** is a reusable collection of Groovy scripts, pipeline functions, and reusable pipeline code that can be shared across multiple Jenkins pipelines.
+
+Instead of duplicating the same pipeline stages in every Jenkinsfile, common logic is stored in a Shared Library and reused by all projects.
+
+This follows the **DRY (Don't Repeat Yourself)** principle and makes pipeline maintenance much easier.
+
+---
+
+## Why do we use Shared Libraries?
+
+Without a Shared Library:
+
+Suppose an organization has **100 microservices**.
+
+Each Jenkinsfile contains:
+
+- Git Checkout
+- Maven Build
+- SonarQube Scan
+- Trivy Scan
+- Docker Build
+- Docker Push
+- Helm Deployment
+- Slack Notification
+
+If a new Trivy command or Docker build option is introduced, engineers must update **100 Jenkinsfiles**, which is time-consuming and error-prone.
+
+With a Shared Library:
+
+The common logic is stored once. Every Jenkinsfile simply calls the shared function, and updating the library automatically updates all pipelines.
+
+---
+
+## Real-Time Project Structure
+
+**Shared Library Repository**
+
+```
+jenkins-shared-library/
+
+├── vars/
+│   ├── dockerBuild.groovy
+│   ├── sonarScan.groovy
+│   ├── deployHelm.groovy
+│   ├── trivyScan.groovy
+│   └── slackNotify.groovy
+
+├── src/
+│   └── com/company/utils/
+
+├── resources/
+
+└── README.md
+```
+
+---
+
+## Jenkinsfile
+
+```groovy
+@Library('company-shared-library') _
+
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Build') {
+            steps {
+                dockerBuild()
+            }
+        }
+
+        stage('Security Scan') {
+            steps {
+                trivyScan()
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                deployHelm()
+            }
+        }
+
+    }
+}
+```
+
+The Jenkinsfile remains small, readable, and easy to maintain.
+
+---
+
+## Real-Time Usage
+
+In production, Shared Libraries are commonly used for reusable tasks such as:
+
+- Git checkout
+- Maven or Gradle builds
+- SonarQube code analysis
+- Trivy image scanning
+- Docker image build and push
+- Amazon ECR login
+- Helm deployments
+- Kubernetes deployments
+- Terraform execution
+- Slack or Microsoft Teams notifications
+- Email notifications
+- Rollback logic
+- Common error handling
+
+---
+
+## Advantages
+
+- Eliminates duplicate pipeline code.
+- Standardizes CI/CD processes across teams.
+- Simplifies maintenance and updates.
+- Improves readability of Jenkinsfiles.
+- Encourages code reuse and consistency.
+- Supports version-controlled pipeline logic.
+
+---
+
+## Interview Answer (Short)
+
+> "A Jenkins Shared Library is a reusable collection of Groovy scripts and pipeline functions used across multiple Jenkins pipelines. It helps eliminate duplicate code, standardize CI/CD processes, and simplify maintenance. In real projects, we use Shared Libraries for common tasks like Git checkout, Maven builds, SonarQube scans, Trivy scanning, Docker builds, Helm deployments, Terraform execution, and notifications. Instead of updating every Jenkinsfile, we update the library once, and all pipelines automatically use the latest logic."
+
 # Deloitte Hiring Manager Round (Round 3) - Questions & Answers
 
 ## 1. Why do you want to join Deloitte?
