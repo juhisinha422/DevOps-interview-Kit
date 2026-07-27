@@ -1,3 +1,484 @@
+# Terraform Interview Questions & Answers (4 Years Experience)
+
+This README contains practical Terraform interview answers suitable for a DevOps/Cloud Engineer with around **4 years of hands-on experience**.
+
+---
+
+# 1. What is the difference between `terraform import` and `terraform taint`?
+
+| Terraform Import | Terraform Taint |
+|-----------------|-----------------|
+| Brings an existing infrastructure resource into Terraform state. | Marks a managed resource for recreation during the next apply. |
+| Used when resources were created outside Terraform. | Used when a resource becomes unhealthy or corrupted. |
+| Does not create Terraform code automatically. | Keeps configuration the same but recreates the resource. |
+
+### Example
+
+**terraform import**
+
+```bash
+terraform import aws_instance.web i-0abc123456789
+```
+
+Terraform now manages the EC2 instance.
+
+**terraform taint** *(Legacy command; modern Terraform recommends `terraform apply -replace`.)*
+
+```bash
+terraform taint aws_instance.web
+terraform apply
+```
+
+or
+
+```bash
+terraform apply -replace="aws_instance.web"
+```
+
+The EC2 instance is destroyed and recreated.
+
+**Real-world use case**
+
+- **Import:** Existing production database created manually needs to be managed by Terraform.
+- **Replace/Taint:** EC2 instance is corrupted after OS-level issues and needs recreation.
+
+---
+
+# 2. How do you manage secrets in Terraform without hardcoding them?
+
+Hardcoding passwords or API keys inside Terraform code is not recommended.
+
+### Best Practices
+
+- Store secrets in HashiCorp Vault.
+- Use AWS Secrets Manager.
+- Use Azure Key Vault.
+- Use Google Secret Manager.
+- Use environment variables.
+- Mark variables as sensitive.
+- Store `.tfvars` securely and never commit them to Git.
+
+### Example using Environment Variable
+
+```bash
+export TF_VAR_db_password="MySecurePassword"
+```
+
+```hcl
+variable "db_password" {
+  sensitive = true
+}
+```
+
+### Example using AWS Secrets Manager
+
+```hcl
+data "aws_secretsmanager_secret_version" "db" {
+  secret_id = "prod-db-password"
+}
+```
+
+### Best Practices
+
+- Never store secrets in Git.
+- Encrypt remote state.
+- Restrict IAM permissions.
+- Rotate secrets regularly.
+
+---
+
+# 3. What is the difference between `count` and `for_each`? Give a real-world use case.
+
+| Count | For_each |
+|--------|----------|
+| Uses index numbers | Uses keys |
+| Best for identical resources | Best for unique resources |
+| Index changes can recreate resources | Stable resource addressing |
+
+### count Example
+
+```hcl
+resource "aws_instance" "server" {
+  count = 3
+}
+```
+
+Creates:
+
+```
+server[0]
+server[1]
+server[2]
+```
+
+### for_each Example
+
+```hcl
+resource "aws_instance" "server" {
+  for_each = {
+    web = "t2.micro"
+    app = "t2.small"
+    db  = "t3.medium"
+  }
+
+  instance_type = each.value
+}
+```
+
+Creates
+
+```
+server["web"]
+server["app"]
+server["db"]
+```
+
+### Real-world Example
+
+Suppose a company has:
+
+- Web Server
+- App Server
+- Database Server
+
+Each has different configurations.
+
+Using **for_each** avoids unnecessary resource recreation when one server is added or removed.
+
+---
+
+# 4. How do you handle drift detection in Terraform?
+
+**Infrastructure drift** occurs when someone manually changes infrastructure outside Terraform.
+
+Example:
+
+- Security group modified from AWS Console.
+- EC2 tags changed manually.
+- IAM policy updated manually.
+
+### Detect Drift
+
+```bash
+terraform plan
+```
+
+Terraform compares:
+
+- Configuration
+- State file
+- Actual infrastructure
+
+Any differences are displayed.
+
+### Refresh State
+
+```bash
+terraform plan -refresh-only
+```
+
+or
+
+```bash
+terraform refresh
+```
+
+> Note: `terraform refresh` is deprecated in newer Terraform versions. Prefer `terraform plan -refresh-only` or `terraform apply -refresh-only`.
+
+### Prevent Drift
+
+- Do not allow manual changes.
+- Use CI/CD pipelines.
+- Apply least-privilege IAM.
+- Regularly run Terraform plans.
+- Enable policy enforcement using Sentinel or Open Policy Agent (OPA).
+
+---
+
+# 5. What is a Terraform remote backend, and why is it important?
+
+A **remote backend** stores the Terraform state file remotely instead of on a local machine.
+
+### Common Remote Backends
+
+- Amazon S3
+- Azure Storage
+- Google Cloud Storage
+- Terraform Cloud
+
+### Example (AWS S3)
+
+```hcl
+terraform {
+  backend "s3" {
+    bucket         = "terraform-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-lock"
+  }
+}
+```
+
+### Benefits
+
+- Shared state
+- Team collaboration
+- State locking
+- Versioning
+- Backup
+- Encryption
+- Prevents state corruption
+
+### Interview Tip
+
+For production, always use:
+
+- S3 + DynamoDB (state locking)
+- Azure Storage
+- Terraform Cloud
+
+---
+
+# 6. How do you manage multiple environments (dev, staging, prod) in Terraform?
+
+Common approaches include:
+
+### Option 1: Separate folders
+
+```
+terraform/
+│
+├── dev/
+├── staging/
+└── prod/
+```
+
+### Option 2: Workspaces
+
+```bash
+terraform workspace new dev
+terraform workspace new prod
+```
+
+Switch:
+
+```bash
+terraform workspace select prod
+```
+
+### Option 3 (Recommended)
+
+```
+modules/
+envs/
+
+envs/
+    dev/
+    staging/
+    prod/
+```
+
+Each environment:
+
+- Uses different backend
+- Uses different variables
+- Uses the same reusable modules
+
+Example:
+
+```
+terraform apply -var-file=dev.tfvars
+```
+
+Production:
+
+```
+terraform apply -var-file=prod.tfvars
+```
+
+---
+
+# 7. Difference between `local-exec` and `remote-exec` provisioners
+
+| local-exec | remote-exec |
+|------------|-------------|
+| Runs commands on the machine executing Terraform | Runs commands on the remote resource |
+| No SSH required | Requires SSH or WinRM |
+| Used for local scripts | Used for remote configuration |
+
+### local-exec Example
+
+```hcl
+provisioner "local-exec" {
+  command = "echo Deployment completed"
+}
+```
+
+Runs on:
+
+- Local laptop
+- Jenkins
+- GitHub Actions runner
+
+### remote-exec Example
+
+```hcl
+provisioner "remote-exec" {
+  inline = [
+    "sudo yum update -y",
+    "sudo systemctl restart nginx"
+  ]
+}
+```
+
+Runs on the EC2 instance.
+
+### Best Practice
+
+Provisioners should be used only as a last resort. Prefer cloud-init, user data, configuration management tools (like Ansible), or image baking where possible.
+
+---
+
+# 8. How do you safely roll back infrastructure changes after a failed deployment?
+
+Terraform does not have a built-in rollback feature.
+
+### Common Approach
+
+1. Review Terraform plan.
+2. Restore previous Git commit.
+3. Run Terraform apply.
+4. Restore state backup if required.
+5. Recover resources from cloud snapshots/backups when necessary.
+
+### Example
+
+```bash
+git checkout previous_commit
+terraform apply
+```
+
+### Best Practices
+
+- Use Git version control.
+- Enable state versioning.
+- Backup state.
+- Use CI/CD approval process.
+- Test changes in lower environments before production.
+
+---
+
+# 9. Explain `terraform refresh` vs `terraform plan`
+
+| terraform refresh | terraform plan |
+|-------------------|----------------|
+| Updates the state file from actual infrastructure. | Shows what changes Terraform will make. |
+| Does not change infrastructure. | Does not change infrastructure. |
+| Deprecated as a standalone command in newer versions. | Regularly used before apply. |
+
+### Refresh
+
+```bash
+terraform refresh
+```
+
+Updates:
+
+```
+Cloud → Terraform State
+```
+
+### Plan
+
+```bash
+terraform plan
+```
+
+Compares:
+
+```
+Configuration
+State
+Actual Infrastructure
+```
+
+Outputs:
+
+- Create
+- Update
+- Delete
+
+### Modern Recommendation
+
+Use:
+
+```bash
+terraform plan -refresh-only
+```
+
+instead of `terraform refresh`.
+
+---
+
+# 10. How do you write reusable Terraform modules?
+
+A module is reusable Terraform code that can be used across multiple projects or environments.
+
+### Module Structure
+
+```
+modules/
+
+    ec2/
+        main.tf
+        variables.tf
+        outputs.tf
+```
+
+### Module Example
+
+```hcl
+module "webserver" {
+  source        = "./modules/ec2"
+  instance_type = "t2.micro"
+  ami           = "ami-123456"
+}
+```
+
+### variables.tf
+
+```hcl
+variable "instance_type" {}
+```
+
+### outputs.tf
+
+```hcl
+output "instance_id" {
+  value = aws_instance.web.id
+}
+```
+
+### Benefits
+
+- Code reuse
+- Consistency
+- Easier maintenance
+- Standardization
+- Faster deployments
+
+### Best Practices
+
+- Keep modules focused on a single responsibility.
+- Use input variables instead of hardcoded values.
+- Expose only required outputs.
+- Version modules (Git tags or module registry).
+- Write documentation and examples.
+- Follow semantic versioning for module releases.
+
+---
+
+
 # Advanced Terraform Interview Questions & Answers (4 Years DevOps Experience)
 
 ---
