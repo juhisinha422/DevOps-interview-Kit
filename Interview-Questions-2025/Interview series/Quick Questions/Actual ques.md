@@ -1,3 +1,757 @@
+# DevOps Interview Preparation (4 Years Experience)
+
+# AWS
+
+## 1. What is the difference between an Application Load Balancer (ALB) and a Network Load Balancer (NLB)?
+
+| ALB | NLB |
+|-----|-----|
+| Operates at Layer 7 (HTTP/HTTPS) | Operates at Layer 4 (TCP/UDP/TLS) |
+| Supports path-based and host-based routing | Routes based on IP and Port |
+| Best for web applications and microservices | Best for high-performance and low-latency applications |
+| Supports WebSockets, HTTP/2 | Supports static IP and Elastic IP |
+| Can integrate with AWS WAF | Handles millions of requests with very low latency |
+
+**Example**
+
+- Use **ALB** for React + Spring Boot microservices.
+- Use **NLB** for gaming servers, VoIP, or TCP-based applications.
+
+---
+
+## 2. Explain how Auto Scaling works in AWS.
+
+AWS Auto Scaling automatically adjusts EC2 instances based on demand.
+
+### Components
+
+- Launch Template
+- Auto Scaling Group (ASG)
+- Scaling Policies
+- CloudWatch Alarms
+
+### Types
+
+- Dynamic Scaling
+- Scheduled Scaling
+- Predictive Scaling
+
+### Example
+
+If CPU > 70% for 5 minutes:
+
+- Launch 2 new EC2 instances.
+
+If CPU < 30%:
+
+- Remove unnecessary instances.
+
+Benefits:
+
+- High Availability
+- Cost Optimization
+- Automatic Scaling
+
+---
+
+## 3. What are Security Groups and Network ACLs? How do they differ?
+
+| Security Group | Network ACL |
+|---------------|-------------|
+| Instance level | Subnet level |
+| Stateful | Stateless |
+| Allow rules only | Allow and Deny rules |
+| Evaluates all rules | Evaluates rules in order |
+| Default allows outbound | Default allows all traffic |
+
+**Example**
+
+Security Group
+
+- Allow SSH from office IP.
+- Allow HTTP/HTTPS from Internet.
+
+NACL
+
+- Block suspicious IP range for entire subnet.
+
+---
+
+## 4. How do you secure an S3 bucket?
+
+Best Practices:
+
+- Block Public Access
+- Enable Bucket Versioning
+- Enable Server-side Encryption (SSE-S3 or SSE-KMS)
+- Use IAM Policies with least privilege
+- Use Bucket Policies carefully
+- Enable MFA Delete
+- Enable Access Logging
+- Use VPC Endpoint instead of Internet access
+- Enable AWS Config and CloudTrail monitoring
+
+---
+
+## 5. What is the difference between NAT Gateway and Internet Gateway?
+
+### Internet Gateway (IGW)
+
+- Allows public subnet instances to access Internet.
+- Public IP required.
+
+### NAT Gateway
+
+- Allows private subnet instances to access Internet.
+- Prevents inbound Internet connections.
+
+Example:
+
+Public EC2 → Internet Gateway
+
+Private EC2 → NAT Gateway → Internet Gateway
+
+---
+
+## 6. How does Route 53 perform failover routing?
+
+Route 53 continuously checks health checks.
+
+Primary Server Healthy
+
+User → Primary
+
+Primary Server Down
+
+User → Secondary Region
+
+Uses:
+
+- Disaster Recovery
+- High Availability
+- Multi-region Applications
+
+---
+
+## 7. Explain the EBS volume types and their use cases.
+
+### gp3
+
+- General Purpose SSD
+- Default choice
+- Web Applications
+
+### io2
+
+- High IOPS SSD
+- Databases (Oracle, SQL Server)
+
+### st1
+
+- Throughput optimized HDD
+- Big Data
+- Log Processing
+
+### sc1
+
+- Cold HDD
+- Backup
+- Archive
+
+---
+
+## 8. What is the purpose of IAM Roles compared to IAM Users?
+
+### IAM User
+
+Permanent identity.
+
+Example:
+
+Developer
+Administrator
+
+### IAM Role
+
+Temporary credentials.
+
+Used by:
+
+- EC2
+- Lambda
+- ECS
+- EKS
+
+Example
+
+EC2 reads S3 without storing Access Keys.
+
+Best Practice:
+
+Never store Access Keys inside EC2.
+
+Use IAM Roles.
+
+---
+
+# CI/CD
+
+## 9. Explain the stages of a CI/CD pipeline.
+
+Typical Pipeline
+
+Developer
+↓
+Git Commit
+↓
+Build
+↓
+Unit Test
+↓
+Code Quality (SonarQube)
+↓
+Docker Build
+↓
+Push Image (ECR/Docker Hub)
+↓
+Deploy (Kubernetes)
+↓
+Smoke Test
+↓
+Production
+
+Common Tools
+
+- Git
+- Jenkins
+- GitHub Actions
+- GitLab CI
+- ArgoCD
+
+---
+
+## 10. How do you implement blue-green and canary deployments?
+
+### Blue-Green Deployment
+
+Blue = Current Version
+
+Green = New Version
+
+Deploy Green
+
+Test
+
+Switch Traffic
+
+Rollback simply by pointing traffic back to Blue.
+
+Advantages
+
+- Zero downtime
+- Easy rollback
+
+---
+
+### Canary Deployment
+
+Deploy new version to 10% users.
+
+Monitor.
+
+Increase
+
+10%
+
+25%
+
+50%
+
+100%
+
+Rollback if errors increase.
+
+---
+
+## 11. How do you handle rollback if deployment fails?
+
+Methods
+
+- Kubernetes rollout undo
+- Redeploy previous Docker image
+- Blue-Green switch back
+- Git revert
+- Helm rollback
+
+Always monitor
+
+- Error rate
+- Response time
+- CPU
+- Memory
+
+---
+
+## 12. How would you deploy the same application to multiple environments?
+
+Maintain separate configurations.
+
+Example
+
+Development
+
+Testing
+
+Staging
+
+Production
+
+Use
+
+- Terraform Workspaces
+- Separate tfvars
+- Helm Values
+- Kubernetes Namespaces
+
+CI/CD promotes the same artifact across environments.
+
+---
+
+# Terraform
+
+## 13. What are Terraform state files, and why are they important?
+
+Terraform stores infrastructure details in:
+
+terraform.tfstate
+
+Contains
+
+- Resource IDs
+- Metadata
+- Dependencies
+
+Without state file Terraform cannot determine infrastructure changes.
+
+---
+
+## 14. How do you manage remote state?
+
+Use
+
+- S3 Bucket
+- DynamoDB Lock Table
+
+Benefits
+
+- Team Collaboration
+- Versioning
+- State Locking
+- Backup
+
+Example Backend
+
+```hcl
+terraform {
+  backend "s3" {
+    bucket         = "terraform-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-lock"
+  }
+}
+```
+
+---
+
+## 15. Explain Terraform modules and workspaces.
+
+### Modules
+
+Reusable Terraform code.
+
+Example
+
+VPC Module
+
+EC2 Module
+
+RDS Module
+
+Advantages
+
+- Reusability
+- Easy Maintenance
+
+### Workspaces
+
+Separate environments using same code.
+
+Example
+
+dev
+
+qa
+
+prod
+
+---
+
+## 16. How do you detect and prevent configuration drift?
+
+Detect
+
+```bash
+terraform plan
+```
+
+Prevent
+
+- Terraform as single source of truth
+- Restrict manual AWS changes
+- Regular terraform plan
+- AWS Config
+- CI/CD validation
+
+---
+
+# Docker & Kubernetes
+
+## 17. What is the difference between Deployment, StatefulSet, and DaemonSet?
+
+### Deployment
+
+Stateless Applications
+
+Examples
+
+- Nginx
+- Spring Boot
+- React
+
+---
+
+### StatefulSet
+
+Stateful Applications
+
+Examples
+
+- MySQL
+- MongoDB
+- Kafka
+
+Provides
+
+- Stable hostname
+- Persistent storage
+
+---
+
+### DaemonSet
+
+Runs one pod per node.
+
+Examples
+
+- Fluentd
+- Prometheus Node Exporter
+- Datadog Agent
+
+---
+
+## 18. How do readiness and liveness probes work?
+
+### Readiness Probe
+
+Checks if application is ready to receive traffic.
+
+If failed
+
+Pod removed from Service.
+
+---
+
+### Liveness Probe
+
+Checks application health.
+
+If failed
+
+Pod restarted.
+
+---
+
+## 19. How do you troubleshoot a pod stuck in CrashLoopBackOff?
+
+Steps
+
+```bash
+kubectl get pods
+
+kubectl describe pod <pod>
+
+kubectl logs <pod>
+
+kubectl logs --previous <pod>
+
+kubectl exec -it <pod> -- sh
+
+kubectl get events
+```
+
+Common Causes
+
+- Wrong image
+- Missing Secret
+- ConfigMap error
+- Database unavailable
+- Application crash
+- Memory limit exceeded
+
+---
+
+## 20. What are ConfigMaps and Secrets?
+
+### ConfigMap
+
+Stores
+
+- Environment variables
+- URLs
+- Configuration
+
+Not encrypted.
+
+---
+
+### Secret
+
+Stores
+
+- Passwords
+- API Keys
+- Certificates
+
+Base64 encoded and can be encrypted using KMS.
+
+---
+
+## 21. Explain Ingress and its advantages.
+
+Ingress provides HTTP/HTTPS routing into Kubernetes.
+
+Features
+
+- Single Load Balancer
+- SSL Termination
+- Path-based Routing
+- Host-based Routing
+
+Example
+
+/api → Backend Service
+
+/ui → Frontend Service
+
+---
+
+# Monitoring & Logging
+
+## 22. How do you monitor AWS infrastructure?
+
+Tools
+
+- Amazon CloudWatch
+- CloudTrail
+- AWS Config
+- X-Ray
+- Prometheus
+- Grafana
+
+Monitor
+
+- CPU
+- Memory (CloudWatch Agent)
+- Disk
+- Network
+- Error Rate
+- Latency
+
+---
+
+## 23. What metrics would you monitor for an EC2 instance?
+
+Important Metrics
+
+- CPU Utilization
+- Memory Usage
+- Disk Usage
+- Disk IOPS
+- Network In/Out
+- Status Checks
+- Load Average
+- Application Logs
+
+---
+
+## 24. Explain CloudWatch Logs, Metrics, and Alarms.
+
+### Metrics
+
+Numerical data
+
+Example
+
+CPU = 75%
+
+---
+
+### Logs
+
+Application logs
+
+System logs
+
+Audit logs
+
+---
+
+### Alarms
+
+Trigger actions
+
+Example
+
+CPU > 80%
+
+Send SNS Notification
+
+Launch Auto Scaling
+
+---
+
+## 25. How do you centralize application logs?
+
+Common Stack
+
+Application
+
+↓
+
+Fluent Bit / Fluentd
+
+↓
+
+CloudWatch Logs
+
+↓
+
+OpenSearch / Elasticsearch
+
+↓
+
+Kibana / Grafana
+
+Benefits
+
+- Easy Searching
+- Troubleshooting
+- Alerting
+
+---
+
+# DevOps Scenario Questions
+
+## 26. A production deployment failed. What steps would you take?
+
+1. Check CI/CD logs.
+2. Verify deployment status.
+3. Check Kubernetes pod status.
+4. View pod logs.
+5. Verify ConfigMaps and Secrets.
+6. Check database connectivity.
+7. Roll back if needed.
+8. Inform stakeholders.
+9. Perform RCA after recovery.
+10. Add preventive measures.
+
+---
+
+## 27. How would you reduce deployment downtime?
+
+- Blue-Green Deployment
+- Canary Deployment
+- Rolling Updates
+- Readiness Probes
+- Multiple Replicas
+- Auto Scaling
+- Health Checks
+- Load Balancer
+
+---
+
+## 28. How do you ensure High Availability and Disaster Recovery in AWS?
+
+High Availability
+
+- Multi-AZ Deployment
+- Auto Scaling
+- Load Balancer
+- RDS Multi-AZ
+
+Disaster Recovery
+
+- Cross Region Backup
+- Route53 Failover
+- S3 Cross Region Replication
+- Infrastructure as Code
+- Regular DR Testing
+
+---
+
+## 29. How would you optimize AWS costs without impacting performance?
+
+- Right-size EC2 instances
+- Use Auto Scaling
+- Purchase Reserved Instances or Savings Plans for steady workloads
+- Use Spot Instances for fault-tolerant jobs
+- Delete unused EBS volumes and snapshots
+- Enable S3 lifecycle policies
+- Use gp3 instead of older gp2 volumes where appropriate
+- Monitor with AWS Cost Explorer and Budgets
+
+---
+
+## 30. Describe a challenging production incident you resolved.
+
+**Sample Answer (4 Years Experience)**
+
+In one production release, users started receiving HTTP 503 errors immediately after deployment.
+
+I first checked the Load Balancer health checks and noticed that the new application pods were failing readiness probes. After reviewing the pod logs using `kubectl logs`, I found that a required environment variable was missing because the ConfigMap had not been updated during deployment.
+
+I updated the ConfigMap, restarted the deployment using `kubectl rollout restart`, and verified that all pods became Ready. Traffic was restored without needing a full rollback.
+
+To prevent the issue from happening again, we added:
+- Configuration validation in the CI/CD pipeline.
+- Helm chart value checks.
+- Smoke tests after deployment.
+- Automated deployment approval only after health checks passed.
+
+This incident reinforced the importance of validating configuration changes and implementing automated post-deployment verification.
+
+---
+
+# Quick Interview Tips
+
+- Answer with real project examples whenever possible.
+- Mention AWS services you have used (EC2, S3, IAM, ALB, ASG, CloudWatch, Route53, RDS, EKS, ECR).
+- Explain Terraform modules, remote state, and workspaces with examples.
+- Demonstrate Kubernetes troubleshooting using `kubectl` commands.
+- Highlight monitoring, automation, security, and cost optimization practices.
+- Emphasize CI/CD, Infrastructure as Code, observability, and zero-downtime deployments as core DevOps principles.
+
 # DevOps Interview 2026 — Questions That Are Actually Being Asked
 
 Detailed Answers for 4+ Years Experienced DevOps Engineers
