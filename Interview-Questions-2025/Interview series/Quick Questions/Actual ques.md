@@ -1,3 +1,18 @@
+# Interviewer: "Tell me about a challenging project."
+
+```
+Strong version, using STAR:
+
+𝗦𝗶𝘁𝘂𝗮𝘁𝗶𝗼𝗻: Deployments were taking 45 minutes and failing silently about 1 in 5 times, blocking releases.
+
+𝗧𝗮𝘀𝗸: Reduce deployment time and eliminate silent failures without adding headcount.
+
+𝗔𝗰𝘁𝗶𝗼𝗻: Parallelized independent build stages, added proper health checks instead of fixed sleep timers, and added a rollback step triggered automatically on failed health checks.
+
+𝗥𝗲𝘀𝘂𝗹𝘁: Deployment time dropped from 45 to 12 minutes. Silent failures went to zero because every failure now triggered an automatic rollback and an alert.
+
+```
+
 # DevOps Interview Preparation (4 Years Experience)
 
 # AWS
