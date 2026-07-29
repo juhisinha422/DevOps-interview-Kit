@@ -1,0 +1,31 @@
+What is Log Ingestion?
+Log Ingestion is the process of collecting logs from different sources, processing them through a pipeline, and sending them to a storage system for analysis and visualization. It is a key part of centralized logging in modern DevOps and cloud environments.
+
+🔹 Log Ingestion Pipeline
+A log ingestion pipeline ensures that logs are collected, transformed if needed, and delivered to the right destination.
+
+🔹 Data Flow
+Applications / Servers
+ │
+ ▼
+ Log Collectors
+(Filebeat / Fluentd)
+ │
+ ▼
+ Logstash
+(Filter & Transform)
+ │
+ ▼
+ Elasticsearch
+(Store & Index)
+ │
+ ▼
+ Kibana
+(Search & Visualize)
+
+🚀 Benefits
+Centralized log collection
+Real-time log processing
+Easier troubleshooting
+Faster root cause analysis
+Better monitoring and observability
