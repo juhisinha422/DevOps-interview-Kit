@@ -1,0 +1,29 @@
+ What is the ELK Stack?
+The ELK Stack is a powerful open-source logging and analytics solution used to collect, process, store, search, and visualize logs from applications, servers, and cloud environments. It helps DevOps and SRE teams monitor system health, troubleshoot issues, and gain insights from log data in real time.
+
+🔹 Components of ELK
+Elasticsearch – A distributed search and analytics engine that stores and indexes log data for fast searching.
+Logstash – A data processing pipeline that collects logs from multiple sources, filters and transforms them, then sends them to Elasticsearch.
+Kibana – A web-based visualization tool used to create dashboards, charts, and reports from data stored in Elasticsearch.
+
+🔹 ELK Workflow
+Applications / Servers
+ │
+ ▼
+ Logstash
+ (Collect & Process Logs)
+ │
+ ▼
+ Elasticsearch
+(Store & Index Logs)
+ │
+ ▼
+ Kibana
+(Search & Visualize)
+
+🚀 Benefits
+Centralized log management
+Fast log searching and filtering
+Real-time monitoring and dashboards
+Easier troubleshooting and root cause analysis
+Supports security monitoring and observability
