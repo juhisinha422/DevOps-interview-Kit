@@ -1,0 +1,16 @@
+5 Terraform Commands That Prevent Production Mistakes
+
+1️⃣ terraform fmt
+Standardize formatting → Improve readability → Reduce noisy PRs
+
+2️⃣ terraform validate
+Catch syntax & configuration issues before touching infrastructure
+
+3️⃣ terraform plan
+Preview every infrastructure change before execution
+
+4️⃣ terraform state list
+Verify what's actually managed by Terraform—not what you think is managed
+
+5️⃣ terraform output
+Expose infrastructure details without hardcoding values
