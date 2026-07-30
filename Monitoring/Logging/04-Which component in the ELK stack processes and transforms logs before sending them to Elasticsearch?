@@ -1,0 +1,8 @@
+Q: Which component in the ELK stack processes and transforms logs before sending them to Elasticsearch?
+A. Kibana
+B. Elasticsearch
+C. Logstash
+D. Docker
+
+
+ANS C
