@@ -1,3 +1,34 @@
+# 🚨𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼: EC2 Instance Experiencing High CPU Usage
+
+# 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:Your EC2 instance is experiencing consistently high CPU usage. How would you troubleshoot and resolve it?
+
+```
+Here's my approach 👇
+
+1️⃣ 𝗠𝗼𝗻𝗶𝘁𝗼𝗿 𝘁𝗵𝗲 𝗜𝗻𝘀𝘁𝗮𝗻𝗰𝗲
+→ Check Amazon CloudWatch metrics for CPU utilization trends
+→ Review CPU, memory (via CloudWatch Agent), network, and disk I/O
+
+2️⃣ 𝗖𝗼𝗻𝗻𝗲𝗰𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗘𝗖𝟮 𝗜𝗻𝘀𝘁𝗮𝗻𝗰𝗲
+→ Use `top`, `htop`, `ps -ef` to identify processes consuming the most CPU
+
+3️⃣ 𝗔𝗻𝗮𝗹𝘆𝘇𝗲 𝗟𝗼𝗴𝘀
+→ Review application logs
+→ Check system logs (`/var/log/messages` or `/var/log/syslog`)
+→ Investigate recent deployments or configuration changes
+
+4️⃣ 𝗢𝗽𝘁𝗶𝗺𝗶𝘇𝗲 𝘁𝗵𝗲 𝗪𝗼𝗿𝗸𝗹𝗼𝗮𝗱
+→ Restart or optimize resource-intensive applications
+→ Tune application configurations and remove unnecessary background processes
+
+5️⃣ 𝗦𝗰𝗮𝗹𝗲 𝗪𝗵𝗲𝗻 𝗥𝗲𝗾𝘂𝗶𝗿𝗲
+→ 𝗩𝗲𝗿𝘁𝗶𝗰𝗮𝗹 𝗦𝗰𝗮𝗹𝗶𝗻𝗴: Upgrade to a larger EC2 instance type
+→ *𝗛𝗼𝗿𝗶𝘇𝗼𝗻𝘁𝗮𝗹 𝗦𝗰𝗮𝗹𝗶𝗻𝗴: Add instances using an Auto Scaling Group behind an ALB
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆:
+High CPU utilization isn't always an infrastructure issue, it could be inefficient code, traffic spikes, or misconfigured applications. Always find the root cause before scaling.
+```
+
 
 # AWS Scenario-Based Interview Questions (4 Years DevOps Experience)
 
