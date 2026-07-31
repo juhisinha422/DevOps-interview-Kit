@@ -1,3 +1,950 @@
+# Infosys DevOps Interview Experience – Round 1 (Detailed Answers)
+
+---
+
+# 1. Tell me about your current role and DevOps experience.
+
+## Answer
+
+"I'm currently working as a DevOps Engineer with around 4 years of IT experience. My primary work is on AWS cloud, Kubernetes (EKS), Docker, Jenkins, Terraform, Git, Helm, Linux, and CI/CD automation.
+
+My day-to-day responsibilities include developing and maintaining CI/CD pipelines, containerizing applications using Docker, deploying microservices on Amazon EKS, provisioning infrastructure using Terraform, monitoring applications with Prometheus and Grafana, troubleshooting production issues, and collaborating with developers to ensure smooth application releases.
+
+I also work on Infrastructure as Code, Kubernetes deployments, Helm charts, image management in Amazon ECR, security scanning using Trivy, and production incident support."
+
+---
+
+# 2. Is your DevOps experience primarily on AWS or other cloud platforms?
+
+## Answer
+
+Yes. My primary experience is on AWS.
+
+Services I've worked on include:
+
+- EC2
+- VPC
+- IAM
+- EKS
+- ECR
+- S3
+- CloudWatch
+- Route53
+- ALB
+- NLB
+- Auto Scaling
+- EBS
+- EFS
+- RDS
+- Secrets Manager
+
+Apart from AWS, I have basic exposure to Kubernetes and Terraform which are cloud-agnostic.
+
+---
+
+# 3. Have you worked with on-premises infrastructure / VMware vSphere?
+
+## Answer
+
+I have primarily worked on AWS cloud infrastructure.
+
+I have basic knowledge of VMware and understand concepts like:
+
+- Virtual Machines
+- ESXi Hosts
+- Datastores
+- vCenter
+
+However, my production experience is mainly focused on AWS cloud and Kubernetes.
+
+---
+
+# 4. Did you create CI/CD pipelines from scratch or work on existing pipelines?
+
+## Answer
+
+I have done both.
+
+Initially I worked on enhancing existing Jenkins pipelines.
+
+Later I created pipelines from scratch for new microservices.
+
+My pipeline generally includes:
+
+Developer
+
+↓
+
+Git Push
+
+↓
+
+Webhook
+
+↓
+
+Jenkins
+
+↓
+
+Build
+
+↓
+
+Unit Testing
+
+↓
+
+SonarQube
+
+↓
+
+Trivy Scan
+
+↓
+
+Docker Build
+
+↓
+
+Push to Amazon ECR
+
+↓
+
+Terraform (if infrastructure changes)
+
+↓
+
+Helm Deployment
+
+↓
+
+Amazon EKS
+
+↓
+
+Smoke Testing
+
+↓
+
+Slack/Email Notification
+
+---
+
+# 5. Explain the CI/CD pipeline you created for CSV validation and S3 upload.
+
+## Answer
+
+The pipeline flow was:
+
+CSV uploaded
+
+↓
+
+Git Trigger
+
+↓
+
+Jenkins Pipeline
+
+↓
+
+Validate CSV format
+
+↓
+
+Run Python validation script
+
+↓
+
+Reject if invalid
+
+↓
+
+Upload valid CSV to Amazon S3
+
+↓
+
+Send success notification
+
+If validation failed, the pipeline stopped immediately and notified the team with detailed error logs.
+
+---
+
+# 6. If an L3 team created the pipeline, how do you understand and troubleshoot it?
+
+## Answer
+
+My approach is:
+
+- Review the Jenkinsfile.
+- Understand pipeline stages.
+- Check Shared Libraries.
+- Review environment variables.
+- Verify credentials.
+- Check Jenkins console logs.
+- Review previous successful builds.
+- Compare recent Git commits.
+- Identify the failed stage.
+- Fix the issue or coordinate with the relevant team if necessary.
+
+---
+
+# 7. Have you written a Dockerfile?
+
+## Answer
+
+Yes.
+
+A typical Dockerfile I write includes:
+
+- Base Image
+- Working Directory
+- Copy application files
+- Install dependencies
+- Expose required port
+- Define ENTRYPOINT or CMD
+
+Example:
+
+```dockerfile
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+COPY target/app.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","app.jar"]
+```
+
+I also use multi-stage builds to reduce image size.
+
+---
+
+# 8. What is the difference between CMD and ENTRYPOINT in Docker?
+
+## Answer
+
+CMD
+
+- Provides default command.
+- Can be overridden.
+
+Example
+
+```
+CMD ["java","-jar","app.jar"]
+```
+
+ENTRYPOINT
+
+- Defines the main executable.
+- Difficult to override.
+
+Example
+
+```
+ENTRYPOINT ["java","-jar","app.jar"]
+```
+
+Difference:
+
+| CMD | ENTRYPOINT |
+|------|------------|
+| Default command | Main executable |
+| Easily overridden | Usually fixed |
+| Flexible | Mandatory execution |
+
+Production practice:
+
+ENTRYPOINT for the application.
+
+CMD for optional arguments.
+
+---
+
+# 9. What Kubernetes operations have you performed apart from deployments?
+
+## Answer
+
+I regularly perform:
+
+- Pod troubleshooting
+- Rollbacks
+- Scaling Deployments
+- Creating Namespaces
+- ConfigMaps
+- Secrets
+- Persistent Volumes
+- Persistent Volume Claims
+- Ingress configuration
+- Service creation
+- HPA configuration
+- Helm upgrades
+- Pod log analysis
+- Node troubleshooting
+- RBAC management
+- Resource optimization
+- Cluster upgrades
+- Monitoring and alerting
+
+---
+
+# 10. Have you troubleshooted CrashLoopBackOff? How?
+
+## Answer
+
+Yes.
+
+My troubleshooting steps are:
+
+```bash
+kubectl get pods
+
+kubectl describe pod
+
+kubectl logs
+
+kubectl logs --previous
+
+kubectl top pod
+```
+
+Then verify:
+
+- Image
+- ConfigMaps
+- Secrets
+- Resource limits
+- Liveness probe
+- Readiness probe
+- Database connectivity
+- External dependencies
+
+If caused by a deployment:
+
+```
+kubectl rollout undo deployment
+```
+
+---
+
+# 11. Explain CrashLoopBackOff in simple terms.
+
+## Answer
+
+CrashLoopBackOff means:
+
+The application inside the container starts.
+
+↓
+
+It crashes immediately.
+
+↓
+
+Kubernetes restarts it.
+
+↓
+
+It crashes again.
+
+↓
+
+After several failed attempts, Kubernetes waits longer between restart attempts.
+
+Common reasons:
+
+- Wrong application configuration
+- Missing Secrets
+- Missing ConfigMaps
+- Database unavailable
+- OOMKilled
+- Incorrect startup command
+- Probe failures
+
+---
+
+# 12. Explain PV and PVC in Kubernetes.
+
+## Answer
+
+Persistent Volume (PV)
+
+A storage resource available in the cluster.
+
+Persistent Volume Claim (PVC)
+
+A request made by a Pod for storage.
+
+Flow:
+
+Application
+
+↓
+
+PVC
+
+↓
+
+PV
+
+↓
+
+AWS EBS / EFS
+
+Difference:
+
+| PV | PVC |
+|----|-----|
+| Actual storage | Storage request |
+| Created by Admin/Dynamic Provisioner | Created by User |
+| Supplies storage | Consumes storage |
+
+---
+
+# 13. How do you handle autoscaling in Kubernetes?
+
+## Answer
+
+I use:
+
+Horizontal Pod Autoscaler (HPA)
+
+- Scales Pods.
+
+Cluster Autoscaler
+
+- Adds worker nodes.
+
+Vertical Pod Autoscaler (when appropriate)
+
+- Adjusts CPU/Memory recommendations.
+
+Metrics used:
+
+- CPU
+- Memory
+- Custom Metrics
+- External Metrics
+
+This ensures applications scale automatically based on demand while optimizing infrastructure usage.
+
+
+# Infosys DevOps Interview Experience – Round 1 (Part 2)
+
+---
+
+# 14. How do you achieve URL/Path-Based Routing in Kubernetes?
+
+## Answer
+
+In Kubernetes, URL or path-based routing is achieved using an **Ingress** resource along with an **Ingress Controller** (e.g., AWS Load Balancer Controller, NGINX Ingress Controller).
+
+### Architecture
+
+```
+Internet
+      │
+      ▼
+Application Load Balancer (ALB)
+      │
+      ▼
+Ingress Controller
+      │
+ ┌────┴──────────────┐
+ │                   │
+ ▼                   ▼
+/users          /orders
+ │                   │
+User Service    Order Service
+ │                   │
+Pods            Pods
+```
+
+Example:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+spec:
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /users
+        pathType: Prefix
+        backend:
+          service:
+            name: user-service
+            port:
+              number: 80
+
+      - path: /orders
+        pathType: Prefix
+        backend:
+          service:
+            name: order-service
+            port:
+              number: 80
+```
+
+### Benefits
+
+- Single entry point
+- Path-based routing
+- Host-based routing
+- SSL termination
+- Lower AWS Load Balancer cost
+- Easy traffic management
+
+### Interview Answer
+
+> In production, I use an Ingress resource with the AWS Load Balancer Controller. The ALB receives external traffic, forwards it to the Ingress Controller, and based on the URL path or hostname, the request is routed to the appropriate Kubernetes Service and Pods.
+
+---
+
+# 15. Are you familiar with middleware technologies like Tomcat, WebLogic, or WebSphere?
+
+## Answer
+
+Yes, I have worked with **Apache Tomcat** for Java-based applications.
+
+My responsibilities included:
+
+- Deploying WAR files
+- Restarting Tomcat services
+- Monitoring logs
+- Troubleshooting application startup issues
+- Configuring JVM options
+- Managing environment variables
+- Integrating Tomcat deployments into Jenkins pipelines
+
+I have basic knowledge of WebLogic and WebSphere but my production experience is mainly with Tomcat.
+
+### Interview Answer
+
+> I have production experience with Apache Tomcat for deploying Java applications and troubleshooting startup issues. I also understand the basics of WebLogic and WebSphere, though my primary hands-on experience is with Tomcat.
+
+---
+
+# 16. How comfortable are you with Linux? What activities do you perform?
+
+## Answer
+
+I work with Linux daily.
+
+Common activities include:
+
+- User management
+- File and directory permissions
+- Process monitoring
+- Disk usage monitoring
+- Network troubleshooting
+- Service management
+- Log analysis
+- Cron jobs
+- Shell scripting
+
+Frequently used commands:
+
+```bash
+ls
+cd
+pwd
+cp
+mv
+rm
+cat
+grep
+find
+chmod
+chown
+ps
+top
+htop
+free
+df
+du
+netstat
+ss
+curl
+wget
+systemctl
+journalctl
+tail -f
+```
+
+### Interview Answer
+
+> I am comfortable working with Linux and use it daily for application deployments, troubleshooting, monitoring services, analyzing logs, managing users and permissions, writing shell scripts, and performing system administration tasks.
+
+---
+
+# 17. Have you worked on incident management / production incidents?
+
+## Answer
+
+Yes.
+
+Typical production incidents I've handled include:
+
+- CrashLoopBackOff
+- ImagePullBackOff
+- High CPU usage
+- High memory utilization
+- Pod Pending
+- Application downtime
+- Jenkins pipeline failures
+- Terraform deployment failures
+- Ingress routing issues
+- Database connectivity failures
+
+### Incident Process
+
+1. Receive alert from Prometheus or CloudWatch.
+2. Identify impacted application.
+3. Analyze logs and metrics.
+4. Troubleshoot root cause.
+5. Restore service (rollback if needed).
+6. Validate application.
+7. Conduct Root Cause Analysis (RCA).
+8. Implement preventive measures.
+
+### Interview Answer
+
+> Yes, I regularly participate in production incident management. I investigate alerts, analyze logs and metrics, restore services quickly, communicate with stakeholders, perform RCA, and implement preventive actions to avoid future incidents.
+
+---
+
+# 18. Which scripting languages have you worked with?
+
+## Answer
+
+I have worked with:
+
+- Bash/Shell
+- Python (basic)
+- Groovy (Jenkins Pipelines)
+
+Examples:
+
+Bash:
+
+- Deployment automation
+- Health checks
+- Backup scripts
+- Log cleanup
+
+Python:
+
+- CSV validation
+- AWS automation using Boto3
+- API integrations
+
+Groovy:
+
+- Jenkins Declarative Pipelines
+- Shared Libraries
+
+### Interview Answer
+
+> I primarily use Bash for automation, Groovy for Jenkins pipelines, and Python for tasks such as file validation, AWS automation, and API integrations.
+
+---
+
+# 19. What repetitive tasks have you automated using Bash/Shell scripting?
+
+## Answer
+
+Examples:
+
+- Log cleanup
+- Backup scripts
+- Health checks
+- Service restart automation
+- Docker cleanup
+- Kubernetes health checks
+- ECR image cleanup
+- Disk usage monitoring
+- Deployment validation
+- User creation
+
+Example:
+
+```bash
+docker system prune -af
+```
+
+Daily health check:
+
+```bash
+kubectl get pods
+
+kubectl get nodes
+
+kubectl top pods
+```
+
+### Interview Answer
+
+> I have automated repetitive tasks such as log cleanup, service monitoring, Docker cleanup, Kubernetes health checks, backup scripts, disk monitoring, and deployment validation using Bash scripting.
+
+---
+
+# 20. Give a real-time example of automation you implemented.
+
+## Answer
+
+One automation I implemented was **Docker image cleanup** on Jenkins agents.
+
+### Before
+
+- Old images consumed disk space.
+- Jenkins builds started failing with "No space left on device".
+
+### Automation
+
+Created a Bash script:
+
+```bash
+docker image prune -af
+
+docker container prune -f
+
+docker volume prune -f
+```
+
+Configured it as a cron job.
+
+### Result
+
+- Reclaimed disk space automatically.
+- Prevented build failures.
+- Reduced manual maintenance.
+
+### Interview Answer
+
+> I automated Docker cleanup on Jenkins agents using a Bash script scheduled through cron. It removed unused images, containers, and volumes, preventing disk space issues and reducing manual intervention.
+
+---
+
+# 21. What is Terraform State Management?
+
+## Answer
+
+Terraform State is a file that stores the mapping between Terraform configuration and real infrastructure.
+
+It tracks:
+
+- Resource IDs
+- Dependencies
+- Metadata
+- Current infrastructure state
+
+Example:
+
+```
+main.tf
+
+↓
+
+terraform apply
+
+↓
+
+AWS Resources
+
+↓
+
+terraform.tfstate
+```
+
+### Why is it important?
+
+- Detects changes
+- Plans updates
+- Prevents duplicate resource creation
+- Enables infrastructure tracking
+
+### Interview Answer
+
+> Terraform state records the current infrastructure managed by Terraform. It maps configuration to real resources, allowing Terraform to calculate changes, update existing infrastructure, and avoid recreating resources unnecessarily.
+
+---
+
+# 22. How do you manage Terraform State in a team environment?
+
+## Answer
+
+Production best practice:
+
+Remote Backend:
+
+- Amazon S3 (State Storage)
+- DynamoDB (State Locking)
+
+Architecture:
+
+```
+Terraform
+
+↓
+
+S3 Backend
+
+↓
+
+DynamoDB Lock
+
+↓
+
+AWS Infrastructure
+```
+
+Benefits:
+
+- Shared state
+- Versioning
+- Encryption
+- State locking
+- Team collaboration
+
+Example:
+
+```hcl
+backend "s3" {
+  bucket         = "terraform-state"
+  key            = "prod/terraform.tfstate"
+  region         = "ap-south-1"
+  dynamodb_table = "terraform-locks"
+}
+```
+
+### Interview Answer
+
+> In a team environment, I store the Terraform state in an encrypted Amazon S3 bucket with versioning enabled and use DynamoDB for state locking to prevent multiple users from modifying the infrastructure simultaneously.
+
+---
+
+# 23. What are Terraform Modules and why do we use them?
+
+## Answer
+
+A Terraform module is a reusable collection of Terraform resources.
+
+Instead of writing EC2 creation code repeatedly, create a module once and reuse it.
+
+Example:
+
+```
+modules/
+
+EC2/
+
+VPC/
+
+EKS/
+
+RDS/
+```
+
+Benefits:
+
+- Reusability
+- Consistency
+- Easier maintenance
+- Reduced code duplication
+- Standardization
+
+### Interview Answer
+
+> Terraform modules allow us to package and reuse infrastructure code. They improve maintainability, reduce duplication, and ensure consistent infrastructure deployment across different environments.
+
+---
+
+# 24. What are Terraform Workspaces?
+
+## Answer
+
+Terraform Workspaces allow multiple environments to share the same Terraform configuration while maintaining separate state files.
+
+Example:
+
+```
+Default
+
+↓
+
+Dev
+
+↓
+
+QA
+
+↓
+
+UAT
+
+↓
+
+Production
+```
+
+Commands:
+
+```bash
+terraform workspace list
+
+terraform workspace new dev
+
+terraform workspace select prod
+```
+
+Each workspace maintains its own state.
+
+### Interview Answer
+
+> Terraform Workspaces enable us to manage multiple environments such as Dev, QA, and Production using the same Terraform code while keeping separate state files for each environment.
+
+---
+
+# 25. Do you have any questions for the interviewer?
+
+## Answer
+
+Good questions to ask:
+
+1. How is the DevOps team structured?
+
+2. Which CI/CD tools and deployment strategies are currently used?
+
+3. How do you manage Kubernetes clusters in production?
+
+4. What monitoring and observability tools do you use?
+
+5. How do you handle production incidents and on-call responsibilities?
+
+6. Are you following GitOps or traditional CI/CD?
+
+7. What are the biggest technical challenges the team is currently facing?
+
+8. What opportunities are available for learning new cloud technologies and certifications?
+
+9. What does success look like for this role in the first six months?
+
+10. What are the next steps in the interview process?
+
+### Interview Tip
+
+Avoid saying **"No, I don't have any questions."** Asking thoughtful questions demonstrates interest in the role, the team, and the company's engineering practices.
+
+
+
 # Infosys DevOps Interview – Round 2 (4 Years Experience)
 
 ---
