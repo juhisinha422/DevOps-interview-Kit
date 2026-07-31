@@ -1,0 +1,14 @@
+What is Exit Status 143 in Kubernetes? 
+
+ 1. The number is derived from the standard Linux formula for signal-based exits: 128 + Signal Number (128 + 15 = 143)  
+A container was successfully terminated by a SIGTERM (Signal 15) request. 
+
+2.Exit Status 143 is often part of normal cluster maintenance and operations, rather than an application crash 
+
+3.Kubernetes scales down a deployment, removing excess replicas. 
+
+4.A new version of your application is deployed, requiring old pods to shut down. 
+
+5.A cluster node is being prepared for maintenance, causing Kubernetes to evict and reschedule pods it's Node draining 
+  
+6.The kubelet detects the application is unhealthy and initiates a restart. 
