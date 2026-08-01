@@ -1,3 +1,164 @@
+# DevOps Interview Questions & Answers (4 Years Experience)
+
+## 🔧 TERRAFORM
+
+### 1. You lost your Terraform state file and deleted the entire code repository. No backups. What do you do immediately? You log into AWS Console and see 50+ resources running. How do you identify which are Prod resources and which are Dev resources?
+
+The first priority is to stop anyone from making infrastructure changes to prevent accidental deletion or drift. I would identify all running resources using AWS Resource Groups Tag Editor, AWS Config, AWS CLI, and Cost Explorer. If proper tagging exists (Environment=Prod, Dev, Owner, Project), separating production and development resources becomes straightforward. If tags are missing, I would inspect VPCs, subnets, security groups, IAM roles, naming conventions, CloudWatch alarms, load balancers, Route53 records, and attached volumes to determine resource ownership. I would coordinate with application teams to verify critical production workloads. Once resources are identified, I would recreate the Terraform code based on the existing infrastructure, import resources using `terraform import`, rebuild the state file, validate with `terraform plan`, and finally move the recovered state to a remote backend such as S3 with DynamoDB locking. After recovery, I would implement Git repositories, automated backups, version control, remote state management, and tagging policies to avoid similar incidents.
+
+---
+
+### 2. Creating EC2, but S3 bucket gets deleted in Terraform plan. How do you debug this?
+
+I never execute `terraform apply` until I understand why Terraform wants to delete the S3 bucket. First, I inspect the execution plan carefully to identify which resource is marked for deletion. I verify whether the bucket was removed from the Terraform configuration, renamed, moved into another module, or affected by changes in variables. Next, I compare the Terraform state with the actual AWS infrastructure using `terraform state list`, `terraform state show`, and AWS Console. I also check whether someone manually modified the infrastructure, causing state drift. If modules or providers were upgraded recently, I verify compatibility changes. I review the Git history to identify recent code modifications and run `terraform refresh` or `terraform plan` after synchronizing the state. If the bucket must never be deleted, I protect it using `lifecycle { prevent_destroy = true }`. Only after identifying the root cause and confirming that the deletion is unintended would I proceed with corrective actions.
+
+---
+
+### 3. Describe a Terraform module you created. How do you maintain it?
+
+I created reusable Terraform modules for provisioning AWS infrastructure, including VPCs, EC2 instances, Security Groups, IAM Roles, Application Load Balancers, and Amazon EKS clusters. The objective was to eliminate code duplication and maintain standardized infrastructure across development, testing, and production environments. Each module accepts configurable variables while exposing outputs for downstream modules. I maintain modules using semantic versioning, maintain backward compatibility whenever possible, document all inputs and outputs, and store modules in a centralized Git repository. Every change undergoes code review, automated validation using `terraform fmt`, `terraform validate`, and CI/CD pipelines before release. Consumers reference specific module versions instead of the latest release to avoid unexpected production changes.
+
+---
+
+### 4. 2:00 PM: You start `terraform apply` (Security Group rules). 2:01 PM: Team member starts `terraform apply` (EC2 instance). 2:02 PM: You get lock error. 2:35 PM: Still locked. Team member went on leave. Network issue kept lock active. You can't force-unlock. Production is BLOCKED. Manager asking: When will this be fixed?
+
+The lock indicates another Terraform operation is still holding the remote state. My first step is to verify whether an active Terraform process is genuinely running or whether the lock is stale due to a failed session. If the backend uses S3 and DynamoDB, I inspect the lock record in DynamoDB and confirm with the team whether any apply operation is still active. Since production is blocked, I immediately communicate the situation to the manager, explaining that the deployment is blocked due to state locking and providing regular progress updates. If force unlock is restricted, I escalate to the administrator responsible for the backend so they can safely remove the stale lock after verifying that no Terraform process is running. Once the lock is released, I rerun `terraform plan`, validate there are no partial changes, and execute the deployment. To prevent similar incidents, I recommend implementing deployment pipelines, restricting concurrent applies, using remote state locking, and establishing operational procedures for stale lock recovery.
+
+---
+
+### 5. Maintain Terraform version consistency across 15 projects and 4 developers. How?
+
+I standardize the Terraform version by specifying `required_version` inside every project and locking provider versions using the `required_providers` block. Every developer installs Terraform using a version manager such as **tfenv**, ensuring everyone uses the same version. CI/CD pipelines validate the Terraform version before execution and fail immediately if an unsupported version is detected. Provider lock files (`terraform.lock.hcl`) are committed to Git to guarantee consistent provider versions across environments. All projects use shared CI templates and documented upgrade procedures so version upgrades occur in a controlled manner after testing in lower environments before production rollout.
+
+---
+
+# 🐳 DOCKER
+
+### 6. Create Docker image supporting ARM + x86_64. How would you do this?
+
+To build images supporting both ARM and x86_64 architectures, I use Docker Buildx. I first create a Buildx builder, enable QEMU emulation if necessary, and then build a multi-platform image using platforms such as `linux/amd64` and `linux/arm64`. The resulting manifest contains both architectures, allowing Docker to automatically pull the correct image depending on the host platform. This approach enables the same image tag to run seamlessly on Apple Silicon laptops, AWS Graviton instances, Raspberry Pi devices, and traditional Intel servers.
+
+---
+
+### 7. Docker image is 2.1 GB resulting in 5–10 minute deployments. How do you reduce the size?
+
+I first analyze the image layers using Docker history to identify large components. I switch to lightweight base images such as Alpine or Distroless whenever compatible. I implement multi-stage builds so build tools and temporary dependencies are excluded from the final runtime image. I remove package caches, temporary files, documentation, and unnecessary utilities after installation. Dependencies are installed using `--no-cache` options where available, and `.dockerignore` is configured to exclude logs, Git metadata, local files, and test artifacts from the build context. I also optimize application dependencies, compress static assets, and reuse Docker layers efficiently. These optimizations typically reduce image size significantly while also improving deployment speed.
+
+---
+
+### 8. How do you parameterize the Python version instead of hardcoding `FROM python:3.12`?
+
+Instead of hardcoding the version, I define a build argument using `ARG PYTHON_VERSION=3.12` before the `FROM` statement and reference it inside the image declaration. During the build process, the required version can be supplied dynamically using the build command, allowing the same Dockerfile to build different Python versions without modification. This improves flexibility, simplifies upgrades, and allows CI/CD pipelines to test multiple runtime versions.
+
+---
+
+# ☸️ KUBERNETES
+
+### 9. Pod crashed and got deleted. How do you find its logs now?
+
+If the pod restarted, I use `kubectl logs --previous` to retrieve logs from the previous container instance. If the pod was completely deleted, Kubernetes no longer stores its logs locally. In production, I rely on centralized logging solutions such as ELK Stack, Loki, Splunk, or CloudWatch where logs are collected continuously from containers before deletion. I also inspect Deployment events, ReplicaSets, node logs, and monitoring dashboards to understand why the pod terminated.
+
+---
+
+### 10. What replaces kube-proxy in modern Kubernetes? Why would you replace it?
+
+A common replacement for kube-proxy is **Cilium**, which uses eBPF instead of iptables or IPVS for networking. eBPF provides faster packet processing, lower latency, improved scalability, enhanced observability, advanced network policies, and better performance in large Kubernetes clusters. Organizations often replace kube-proxy when they require high-performance networking, improved security, and deep network visibility.
+
+---
+
+### 11. Pod stuck in Pending for 30 minutes. Debug steps? Possible causes?
+
+I begin by running `kubectl describe pod` to inspect scheduling events. I verify whether worker nodes are Ready and have sufficient CPU, memory, and storage. I check node selectors, taints, tolerations, affinity rules, Persistent Volume Claims, storage classes, image pull secrets, quotas, and namespace resource limits. I also verify whether the cluster autoscaler is functioning correctly if no nodes are available. Common causes include insufficient cluster resources, unsatisfied scheduling constraints, missing Persistent Volumes, incorrect node selectors, taints without matching tolerations, image pull authentication failures, or exhausted Pod CIDR capacity.
+
+---
+
+### 12. Pod in CrashLoopBackOff. How do you debug?
+
+I first inspect pod events using `kubectl describe pod` and review application logs using `kubectl logs` or `kubectl logs --previous` if the container restarted. I verify the container's startup command, environment variables, ConfigMaps, Secrets, mounted volumes, and application configuration. I also check readiness and liveness probes, resource limits, image versions, dependency connectivity, and external services such as databases. If required, I reproduce the issue locally using Docker or launch a debug container into the cluster to investigate the runtime environment.
+
+---
+
+### 13. Sidecar vs DaemonSet — when do you use which one?
+
+A Sidecar container runs alongside a specific application pod and shares its lifecycle. It is typically used for log forwarding, service mesh proxies, monitoring agents, or configuration synchronization. A DaemonSet, on the other hand, ensures one pod runs on every node in the cluster and is used for node-level services such as log collectors, monitoring agents, security scanners, and networking components. In summary, Sidecars provide functionality for individual applications, while DaemonSets provide services for every node in the cluster.
+
+---
+
+### 14. How do container-level metrics get sent to Prometheus (or another monitoring tool) in Kubernetes?
+
+Container metrics are exposed by kubelet, cAdvisor, kube-state-metrics, or the application itself using Prometheus-compatible endpoints. Prometheus periodically scrapes these metrics based on configured scrape targets or ServiceMonitors when using the Prometheus Operator. Exporters such as Node Exporter, Blackbox Exporter, or custom application exporters expose additional metrics. Prometheus stores the collected metrics, Grafana visualizes them through dashboards, and Alertmanager sends alerts whenever predefined thresholds are exceeded.
+
+---
+
+# 🐍 PYTHON & CODING
+
+### 15. Write code: Check if a string is a palindrome (handle spaces, punctuation, and case).
+
+```python
+import re
+
+def is_palindrome(text):
+    cleaned = re.sub(r'[^a-zA-Z0-9]', '', text).lower()
+    return cleaned == cleaned[::-1]
+
+print(is_palindrome("A man, a plan, a canal: Panama"))
+```
+
+---
+
+### 16. Write code: Find all 500 errors in a 100GB log file.
+
+```python
+def find_500_errors(log_file):
+    with open(log_file, "r", encoding="utf-8", errors="ignore") as file:
+        for line in file:
+            if " 500 " in line or "HTTP/1.1\" 500" in line:
+                print(line.strip())
+
+find_500_errors("access.log")
+```
+
+This solution reads the log file line by line instead of loading the entire 100GB file into memory, making it memory-efficient and suitable for production-scale log analysis.
+
+### 16. Find all 500 errors in a 100GB log file (Using Bash)
+
+Since the log file is very large (100GB), I would avoid opening it in an editor or loading it into memory. Instead, I would use Linux text-processing commands that stream the file line by line, making the solution fast and memory-efficient.
+
+#### Using `grep` (Recommended)
+
+```bash
+grep ' 500 ' access.log
+```
+
+#### Save the output to another file
+
+```bash
+grep ' 500 ' access.log > 500_errors.log
+```
+
+#### Count the number of 500 errors
+
+```bash
+grep -c ' 500 ' access.log
+```
+
+#### Monitor new 500 errors in real time
+
+```bash
+tail -f access.log | grep ' 500 '
+```
+
+#### If the log is compressed (.gz)
+
+```bash
+zgrep ' 500 ' access.log.gz
+```
+
+**Interview Explanation:**
+
+For a 100GB log file, I would use `grep` because it processes the file as a stream instead of loading the entire file into memory. This makes it highly memory-efficient and fast. If I only need the total number of HTTP 500 errors, I use `grep -c`. If I need to monitor production logs continuously, I combine `tail -f` with `grep`. For compressed log files, I use `zgrep`, which searches directly inside `.gz` files without extracting them first.
+
+
 # AWS DevOps Interview Series
 
 ---
