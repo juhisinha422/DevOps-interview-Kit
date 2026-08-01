@@ -1,3 +1,294 @@
+# DevOps Interview Questions & Answers (4 Years Experience)
+
+## Q1. A Docker image has 10 layers, and all layers are already cached. If you modify Layer 5 and rebuild the image, what will happen? Will Docker reuse the cache for Layers 6–10, or will those layers be rebuilt? Explain why.
+
+Docker builds images layer by layer. If Layer 5 changes, Docker invalidates the cache for that layer. Since Layers 6–10 depend on Layer 5, Docker cannot reuse their cached versions, even if their instructions have not changed. Therefore, Layer 5 and all subsequent layers (6–10) will be rebuilt, while Layers 1–4 will still be reused from the cache. This is because each layer depends on the hash of the previous layer, so changing one layer changes the entire chain after it.
+
+---
+
+## Q2. You are unable to SSH into an EC2 instance, but the instance is running and accessible through the AWS Console. How would you install a required package on that instance without using SSH?
+
+If the instance has the AWS Systems Manager (SSM) Agent installed and an IAM role with the `AmazonSSMManagedInstanceCore` policy attached, I would use AWS Systems Manager Session Manager or Run Command. Using Run Command, I can execute shell commands remotely without SSH.
+
+Example:
+
+```bash
+sudo yum install -y nginx
+```
+
+or
+
+```bash
+sudo apt-get update
+sudo apt-get install -y nginx
+```
+
+If SSM is unavailable, I would troubleshoot why SSH is inaccessible by checking Security Groups, NACLs, route tables, key pairs, and instance networking.
+
+---
+
+## Q3. A Kubernetes application is down, and users cannot access it. Starting with `kubectl`, explain your step-by-step troubleshooting approach until the issue is identified.
+
+I start by checking whether the pods are running using `kubectl get pods -A`. If pods are not running, I inspect them using `kubectl describe pod` and `kubectl logs`. If the pods are healthy, I verify the Deployment and ReplicaSet to ensure the desired number of replicas are available. Next, I check the Service to confirm it is correctly selecting the application pods using label selectors. Then I verify the Endpoints object to ensure the Service has healthy backend pods. If an Ingress is being used, I inspect the Ingress resource, its events, and the Ingress Controller logs. For cloud environments such as Amazon EKS, I also verify the Load Balancer health checks, target groups, and listener configuration. If networking appears healthy, I test connectivity from inside the cluster using a temporary debug pod to determine whether the application itself is responding correctly. Finally, I review application logs, resource utilization, recent deployments, ConfigMaps, Secrets, and monitoring dashboards to identify the root cause before implementing a fix.
+
+---
+
+## Q4. How would you create the same infrastructure for Development, QA, UAT, and Production without duplicating code using Terraform?
+
+I would create reusable Terraform modules for common infrastructure components such as VPCs, EC2 instances, Security Groups, IAM roles, and Load Balancers. Each environment would have its own variable file (`dev.tfvars`, `qa.tfvars`, `uat.tfvars`, and `prod.tfvars`) containing environment-specific values like instance types, CIDR ranges, and scaling parameters. The same module code would be reused across all environments, while remote state files would be stored separately for each environment. This approach eliminates code duplication, improves maintainability, and ensures infrastructure consistency across environments.
+
+---
+
+## Q5. A Jenkins pipeline completed successfully, but the latest changes are not visible in production. What components would you verify before concluding the deployment failed?
+
+A successful Jenkins pipeline does not necessarily mean the application was successfully deployed. I would first verify whether Jenkins deployed the latest artifact or image by checking the build number, Git commit ID, and image tag. Next, I would confirm that the artifact repository or container registry contains the new version. If Kubernetes is used, I would verify the Deployment image, rollout status, pod creation time, and whether new pods are running. I would also check the Service, Ingress, Load Balancer, DNS, browser cache, CDN cache, and application logs. Finally, I would confirm the application version directly from the running container before concluding that the deployment failed.
+
+---
+
+## Q6. Explain the Pre-Build, Build, and Post-Build stages in a CI/CD pipeline. In which stage is an artifact typically generated and pushed to an artifact repository?
+
+The **Pre-Build** stage prepares the environment by checking out the source code, installing dependencies, validating configuration, running code quality checks, and performing security scans. The **Build** stage compiles the application, executes unit tests, creates binaries or Docker images, and generates the deployable artifact. This is the stage where the artifact is typically produced. After the artifact is successfully created, it is pushed to an artifact repository such as Nexus, JFrog Artifactory, Amazon ECR, or Docker Hub. The **Post-Build** stage handles deployment, integration testing, notifications, cleanup, publishing reports, and archiving build information.
+
+---
+
+## Q7. Write a Python script to monitor CPU, Memory, and Disk utilization. If the usage exceeds 90%, generate an alert.
+
+```python
+import psutil
+import time
+
+THRESHOLD = 90
+
+while True:
+    cpu = psutil.cpu_percent(interval=1)
+    memory = psutil.virtual_memory().percent
+    disk = psutil.disk_usage('/').percent
+
+    print(f"CPU: {cpu}% | Memory: {memory}% | Disk: {disk}%")
+
+    if cpu > THRESHOLD:
+        print("ALERT: High CPU Usage!")
+
+    if memory > THRESHOLD:
+        print("ALERT: High Memory Usage!")
+
+    if disk > THRESHOLD:
+        print("ALERT: High Disk Usage!")
+
+    time.sleep(5)
+```
+
+---
+
+## Q8. You need to provision 100 EC2 instances with different configurations across Development, QA, UAT, and Production environments using Terraform. What would you use, and why?
+
+I would use reusable Terraform modules together with `for_each` because each EC2 instance has different configurations such as instance type, subnet, AMI, security groups, and tags. I would define the instance configurations in a map variable and iterate over them using `for_each`. This approach makes the code scalable, readable, and easy to maintain. If all instances had identical configurations, I would use `count`, but since each instance differs, `for_each` is the better choice.
+
+---
+
+## Q9. An Amazon EKS application starts returning intermittent 502/503 errors immediately after deployment. How would you identify whether the issue is related to Kubernetes, the Load Balancer, or the application?
+
+I would first verify whether the application pods are healthy by checking pod status, restart counts, readiness probes, and application logs. If the pods are healthy, I would inspect the Kubernetes Service and Endpoints to confirm traffic is reaching the correct pods. Next, I would verify the Ingress resource and Ingress Controller logs. If the issue persists, I would inspect the AWS Load Balancer target group health checks, listener rules, and target registration status. CloudWatch metrics and ALB access logs can help determine whether the 502/503 responses originate from the Load Balancer or the backend application. If both Kubernetes and the Load Balancer appear healthy, I would investigate the application itself for issues such as database connectivity, resource exhaustion, configuration problems, or slow startup after deployment.
+
+---
+
+## Q10. For a production e-commerce application, which deployment strategy would you recommend—Rolling Update, Blue-Green, or Canary Deployment? What factors would influence your decision?
+
+For a production e-commerce application, my preferred strategy is **Canary Deployment** because it minimizes risk by gradually routing a small percentage of user traffic to the new version while monitoring application health, latency, error rates, and business metrics. If any issue is detected, traffic can quickly be redirected to the stable version. For major architectural changes or high-risk releases requiring instant rollback, I would recommend **Blue-Green Deployment**, as it allows switching all traffic between two identical environments. **Rolling Update** is suitable for routine deployments where downtime must be avoided but maintaining duplicate infrastructure is unnecessary. The decision depends on factors such as application criticality, rollback requirements, infrastructure cost, release frequency, database compatibility, user impact, and organizational risk tolerance.
+
+# DevOps Interview Questions & Answers (4 Years Experience)
+
+---
+
+## 1. A deployment succeeded, but users get 503. Pods are Running. How would you troubleshoot?
+
+A 503 error usually indicates the application is unavailable even though the pods are running. I first verify whether the pods are **Ready** using `kubectl get pods`. If they are not Ready, I inspect the readiness probe using `kubectl describe pod`. Next, I verify the Service configuration and ensure its selector matches the pod labels. I then check the Endpoints object to confirm the Service has healthy backend pods. If an Ingress or Load Balancer is used, I inspect the Ingress resource, Ingress Controller logs, and ALB/NLB target group health checks. I also verify whether the application is actually listening on the expected port inside the container. Finally, I review application logs, recent deployment changes, ConfigMaps, Secrets, and resource utilization before identifying the root cause.
+
+---
+
+## 2. A Pod is stuck in CrashLoopBackOff. What would you check first?
+
+The first thing I check is the application logs using `kubectl logs` or `kubectl logs --previous` if the container has restarted. Then I inspect pod events using `kubectl describe pod` to identify errors such as failed probes, missing ConfigMaps, Secrets, volume mount failures, or image issues. I verify the application startup command, environment variables, dependencies like databases, and resource limits. If required, I reproduce the issue locally or use an ephemeral debug container to investigate further.
+
+---
+
+## 3. Pods remain in Pending for over 20 minutes. How do you identify the root cause?
+
+I begin by running `kubectl describe pod` to check scheduler events. Then I verify whether worker nodes are Ready and have enough CPU, memory, and storage. I inspect node selectors, affinity rules, taints and tolerations, Persistent Volume Claims, Storage Classes, namespace quotas, and cluster autoscaler status. Common causes include insufficient cluster resources, missing Persistent Volumes, scheduling constraints, exhausted Pod CIDR, or node failures.
+
+---
+
+## 4. The CI/CD pipeline succeeded, but production still serves the old version. How would you investigate?
+
+I first verify that the latest Git commit was actually built and that the correct artifact or Docker image was pushed to the registry. Then I confirm the deployment is using the latest image tag instead of a cached image. In Kubernetes, I verify the Deployment image, rollout status, newly created pods, and pod creation timestamps. I also check the Service, Ingress, Load Balancer, browser cache, CDN cache, and DNS. Finally, I compare the running application version with the expected release before concluding that deployment failed.
+
+---
+
+## 5. A Jenkins pipeline suddenly fails without code changes. What would you verify first?
+
+I first determine whether the issue is environmental rather than application-related. I verify Jenkins agent availability, disk space, memory, CPU utilization, credentials, network connectivity, SCM access, plugin updates, expired certificates, Docker daemon status, and external dependencies such as artifact repositories. I also check whether infrastructure or cloud resources changed recently. Only after eliminating infrastructure issues do I investigate the pipeline configuration itself.
+
+---
+
+## 6. A Docker host reaches 100% disk usage. How would you safely clean it up?
+
+I first identify what is consuming disk space using `docker system df` and standard Linux disk commands. I remove unused stopped containers, dangling images, unused networks, build cache, and unused volumes only after confirming they are not required. Commands such as `docker image prune`, `docker container prune`, `docker volume prune`, and `docker system prune` are useful when executed carefully. I also configure Docker log rotation and implement regular cleanup policies to prevent future disk exhaustion.
+
+---
+
+## 7. A container exits immediately after starting. Which commands would you use to debug it?
+
+I would begin by checking the container status using `docker ps -a`. Then I inspect logs using `docker logs <container-id>`. If needed, I inspect container configuration using `docker inspect`. I also verify the image entrypoint and command, environment variables, mounted volumes, and exit code. If the container exits too quickly, I may override the entrypoint and launch an interactive shell to investigate the runtime environment.
+
+---
+
+## 8. Application latency jumps from 150 ms to 3 seconds. How would you isolate the issue?
+
+I start by checking monitoring dashboards to determine whether the latency increase is application-wide or isolated to specific endpoints. I review CPU, memory, disk I/O, network utilization, database response times, cache hit ratios, pod restarts, and garbage collection metrics. I inspect recent deployments, infrastructure changes, application logs, tracing data, and external dependencies. By correlating infrastructure metrics with application metrics, I can isolate whether the bottleneck is in the application, database, network, Kubernetes, or cloud infrastructure.
+
+---
+
+## 9. Auto Scaling doesn’t launch new EC2 instances during high CPU. What would you check?
+
+I verify whether the CloudWatch alarm has entered the ALARM state and whether the Auto Scaling policy is correctly attached. I inspect the Auto Scaling Group's minimum, maximum, and desired capacity, launch template or launch configuration, subnet availability, instance quotas, IAM permissions, and scaling activities. I also verify that the required AMI still exists and there are no capacity constraints within the selected Availability Zones.
+
+---
+
+## 10. An EC2 instance is running but SSH is unreachable. How would you regain access?
+
+I first verify Security Group rules, Network ACLs, route tables, Internet Gateway, public IP assignment, and key pair usage. If AWS Systems Manager Session Manager is available, I connect through SSM without SSH. If SSM is unavailable, I inspect the instance console output and EC2 serial console if enabled. As a last resort, I detach the root EBS volume, attach it to another EC2 instance, repair SSH configuration or authorized keys, reattach the volume, and restart the instance.
+
+---
+
+## 11. Two engineers execute `terraform apply` simultaneously. What problems can occur?
+
+Simultaneous Terraform operations can cause state corruption, conflicting infrastructure changes, inconsistent resource creation, and race conditions. Using a remote backend with DynamoDB state locking prevents concurrent modifications by allowing only one Terraform operation at a time. If state locking is unavailable, manual coordination becomes necessary to avoid infrastructure inconsistencies.
+
+---
+
+## 12. Terraform plans to destroy production resources unexpectedly. What would you verify before applying?
+
+I would never approve the deployment immediately. I first inspect the execution plan to identify why Terraform wants to destroy resources. I verify the Terraform state, recent Git changes, provider versions, module updates, variable files, workspace selection, manual infrastructure changes, and resource imports. I also confirm that production configuration is correct and review the plan with the team before taking any action.
+
+---
+
+## 13. Write a Python script to find the top 5 errors from a log file. How would you optimize it for large logs?
+
+```python
+from collections import Counter
+
+errors = Counter()
+
+with open("application.log", "r", encoding="utf-8", errors="ignore") as file:
+    for line in file:
+        if "ERROR" in line:
+            errors[line.strip()] += 1
+
+for error, count in errors.most_common(5):
+    print(f"{count} : {error}")
+```
+
+For very large log files, I process the file line by line instead of loading it entirely into memory. This streaming approach is memory-efficient and scales well even for multi-gigabyte log files.
+
+---
+
+## 14. Users report issues after a Blue-Green deployment. Would you roll back immediately? Why?
+
+Not immediately. I first verify whether the issue is genuine and determine its impact using monitoring dashboards, application logs, error rates, and business metrics. If the issue significantly affects users or business transactions, I immediately switch traffic back to the stable environment because Blue-Green deployments allow instant rollback. If the issue is minor and affects only a small subset of users, I investigate further before deciding whether a rollback is necessary.
+
+---
+
+# Solution Architecture & Advanced DevOps
+
+## 1. You are onboarding a new customer with 5 million+ users. How would you design the complete application architecture?
+
+For a large-scale production application, I would design a highly available, scalable, and fault-tolerant architecture. Traffic first reaches Route 53, then AWS WAF for security, followed by CloudFront for caching static content. Requests are forwarded to an Application Load Balancer, which routes traffic to an Amazon EKS cluster spread across multiple Availability Zones. The application runs in Kubernetes with Horizontal Pod Autoscaling and Cluster Autoscaler enabled. Databases such as Amazon RDS are deployed in Multi-AZ mode, while Redis is used for caching and S3 for object storage. Monitoring is handled using Prometheus, Grafana, CloudWatch, and centralized logging. CI/CD pipelines automate deployments using Jenkins, GitHub Actions, Argo CD, and Terraform for Infrastructure as Code.
+
+---
+
+## 2. Explain your complete CI/CD pipeline from code commit to production deployment.
+
+Developers commit code to Git, triggering the CI pipeline. The pipeline checks out the code, performs code quality analysis, runs unit tests, security scans, dependency checks, and builds the application. A Docker image is created and pushed to a container registry. Terraform provisions or updates infrastructure if required. Deployment manifests or Helm charts are updated, and Argo CD synchronizes the Kubernetes cluster with the Git repository. Kubernetes performs a rolling, Blue-Green, or Canary deployment. After deployment, automated smoke tests run, monitoring dashboards are checked, and notifications are sent to the team.
+
+---
+
+## 3. If Git is already the source of truth, why do we need Argo CD?
+
+Git stores the desired state, but it does not continuously ensure the cluster matches that state. Argo CD continuously watches Git and automatically reconciles any drift between Git and the Kubernetes cluster. It provides automated synchronization, rollback, deployment history, health monitoring, RBAC, and self-healing. Without Argo CD, engineers would need to manually execute `kubectl apply` or Helm commands after every change, increasing operational risk.
+
+---
+
+## 4. Explain the complete request flow when a user accesses a website until the request reaches the application pod.
+
+The user's browser performs DNS resolution through Route 53, connects to CloudFront if configured, passes through AWS WAF, and reaches the Application Load Balancer. The Load Balancer forwards traffic to the Kubernetes Ingress Controller, which routes the request to the appropriate Kubernetes Service. The Service forwards traffic to one of the healthy application pods based on label selectors. The application processes the request, accesses databases or caches if required, and sends the response back through the same path to the user.
+
+---
+
+## 5. Pods in different namespaces can communicate. How would you block that communication?
+
+I would implement Kubernetes NetworkPolicies. The NetworkPolicy is created in the namespace where traffic should be restricted. It defines which pods are allowed to communicate based on labels and namespaces. A CNI plugin that supports NetworkPolicies, such as Calico or Cilium, is required for enforcement.
+
+---
+
+## 6. Suppose you are implementing a Canary Deployment where only 10% of users receive the new version. How would you implement it through your CI/CD pipeline?
+
+The CI pipeline builds and pushes the new Docker image. Argo Rollouts or a service mesh such as Istio manages traffic splitting by gradually routing 10% of user traffic to the new version while keeping 90% on the stable release. After automated validation and monitoring, traffic is gradually increased until the deployment reaches 100%.
+
+---
+
+## 7. During a Canary deployment, how would you verify that the 10% deployment is healthy?
+
+I monitor HTTP error rates, latency, request success rate, CPU, memory, pod restarts, readiness probes, business KPIs, database performance, and user feedback. If these metrics remain stable compared to the baseline, I gradually increase traffic. Otherwise, I immediately roll back.
+
+---
+
+## 8. Do you execute Terraform locally or through a CI/CD pipeline?
+
+For production environments, I execute Terraform only through CI/CD pipelines. Developers create Pull Requests, code reviews are completed, and the pipeline runs `terraform fmt`, `terraform validate`, security scanning, and `terraform plan`. After approval, `terraform apply` is executed using a remote backend with state locking. Local execution is limited to development and testing.
+
+---
+
+## 9. Two engineers are working on the same Terraform code. How do you prevent conflicts?
+
+We use Git feature branches, Pull Requests, mandatory code reviews, remote state stored in S3, DynamoDB state locking, and automated CI/CD pipelines. Regular `terraform plan` executions detect infrastructure drift, while state locking prevents concurrent modifications.
+
+---
+
+## 10. Have you worked on Disaster Recovery (DR)? Explain your strategy.
+
+A Disaster Recovery strategy includes defining Recovery Time Objective (RTO) and Recovery Point Objective (RPO), deploying workloads across multiple Availability Zones or Regions, maintaining database replication, storing backups in multiple locations, automating infrastructure using Terraform, and documenting failover procedures. During disasters, DNS or Load Balancer traffic is redirected to the secondary environment, and regular DR drills verify recovery readiness.
+
+---
+
+## 11. For a mission-critical production application, which deployment strategy would you choose?
+
+For mission-critical applications, I generally recommend Canary Deployment because it minimizes user impact while allowing continuous monitoring before a full rollout. If instant rollback is the highest priority and infrastructure cost is acceptable, Blue-Green Deployment is an excellent choice.
+
+---
+
+## 12. A developer accidentally commits AWS credentials to Git. What is your complete incident response process?
+
+I immediately revoke the exposed credentials, generate new credentials, review CloudTrail for unauthorized activity, rotate all affected secrets, remove the credentials from Git history, notify the security team, verify IAM permissions, enable secret scanning, and implement preventive controls such as Git hooks, GitHub Secret Scanning, and AWS IAM best practices.
+
+---
+
+## 13. What metrics do you monitor using Prometheus?
+
+I monitor CPU usage, memory utilization, disk usage, network traffic, pod status, container restarts, node health, API server latency, request rate, error rate, response time, database metrics, JVM metrics, application-specific business metrics, and Kubernetes resource utilization.
+
+---
+
+## 14. What dashboards and alerts have you configured in Grafana?
+
+I configure dashboards for Kubernetes cluster health, node utilization, pod resource usage, application performance, API latency, error rates, database performance, Load Balancer metrics, and infrastructure health. Alerts are configured for high CPU, memory usage, pod restarts, failed deployments, disk utilization, application downtime, high latency, and HTTP 5xx errors.
+
+---
+
+## 15. Where do you store application configuration and secrets?
+
+Non-sensitive configuration is stored in Kubernetes ConfigMaps. Sensitive information such as passwords, API keys, and certificates is stored in Kubernetes Secrets or HashiCorp Vault. In production, I prefer HashiCorp Vault integrated with Kubernetes for dynamic secrets, automatic rotation, encryption, auditing, and fine-grained access control.
+
+
 # Top 10 DevOps Technical Interview Questions (6–10 Years Experience)
 
 ---
