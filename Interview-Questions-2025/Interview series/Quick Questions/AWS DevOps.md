@@ -1,3 +1,37 @@
+# DevOps Interview Questions & Answers (4 Years Experience)
+
+## 1. Walk me through how you'd containerize a legacy monolith application.
+
+When containerizing a legacy monolithic application, I first understand the application's architecture, dependencies, runtime requirements, configuration files, and startup process. I identify external dependencies such as databases, file storage, messaging systems, and third-party services that should remain outside the container. Then I create an optimized Dockerfile using a lightweight base image and, if possible, a multi-stage build to reduce the final image size. I externalize configuration using environment variables or ConfigMaps and Secrets instead of hardcoding values. Static assets and persistent data are moved to external storage or volumes so the container remains stateless. After building the image, I test it locally using Docker Compose to verify application functionality. Once validated, I push the image to a container registry such as Docker Hub or Amazon ECR. Finally, I deploy the application to Kubernetes using Deployments, Services, ConfigMaps, Secrets, Ingress, and Persistent Volumes if required. Before production deployment, I implement health checks, resource limits, monitoring, logging, and CI/CD automation to ensure reliable and repeatable deployments.
+
+---
+
+## 2. What's your approach to zero-downtime deployments?
+
+My approach to zero-downtime deployment focuses on ensuring users experience no service interruption during application updates. I use Kubernetes Rolling Updates where new pods are created before old pods are terminated. Proper Readiness Probes ensure traffic is only routed to healthy pods, while Liveness Probes automatically recover unhealthy containers. I configure rolling update parameters such as `maxUnavailable` and `maxSurge` to control deployment behavior. Before deployment, I run automated unit tests, integration tests, security scans, and image validation within the CI/CD pipeline. For high-risk releases, I prefer Blue-Green or Canary deployments, allowing gradual traffic shifting and quick rollback if issues are detected. Database schema changes are handled using backward-compatible migrations to prevent application downtime. Continuous monitoring through Prometheus, Grafana, and centralized logging helps verify application health after deployment, and if any issue is detected, Kubernetes rollback or ArgoCD rollback can quickly restore the previous stable version.
+
+---
+
+## 3. How do you monitor for issues that don't show up as errors, like a slow memory leak?
+
+Memory leaks often don't generate explicit application errors, so proactive monitoring is essential. I continuously monitor memory usage, CPU utilization, garbage collection metrics, container restart counts, response times, and pod resource consumption using Prometheus and Grafana dashboards. I configure alerts that trigger when memory usage continuously increases over time without returning to normal after garbage collection. Kubernetes metrics such as OOMKilled events, container restarts, and node resource utilization also help identify potential memory issues. I analyze application logs using ELK Stack or Loki to identify abnormal behavior even when no exceptions are logged. If memory growth continues, I capture heap dumps or profiling data using language-specific tools such as VisualVM for Java or memory profilers for Python and Node.js. Resource requests and limits are configured appropriately to prevent node exhaustion while allowing sufficient memory for the application. Combining infrastructure metrics, application metrics, and long-term trend analysis helps detect slow memory leaks before they impact production.
+
+---
+
+## 4. Explain the trade-offs between using managed Kubernetes vs self-managed Kubernetes.
+
+Managed Kubernetes services such as Amazon EKS, Azure AKS, and Google GKE significantly reduce operational overhead because the cloud provider manages the control plane, high availability, security patches, upgrades, and etcd maintenance. This allows engineering teams to focus more on application development rather than cluster administration. Managed Kubernetes also integrates well with cloud-native services like IAM, load balancers, storage, monitoring, and autoscaling. However, it introduces additional cloud service costs and offers less control over the underlying control plane configuration.
+
+Self-managed Kubernetes provides complete control over cluster configuration, networking, security policies, Kubernetes versions, and infrastructure customization. It is suitable for organizations requiring strict compliance, air-gapped environments, or highly customized deployments. However, the organization becomes responsible for installing, upgrading, backing up etcd, securing the control plane, monitoring cluster health, handling high availability, and troubleshooting infrastructure issues. For most enterprise production workloads, managed Kubernetes is preferred because it reduces maintenance effort, improves reliability, and accelerates application delivery, while self-managed Kubernetes is generally chosen only when full infrastructure control is a business requirement.
+
+---
+
+## 5. How would you structure IAM permissions for a team of 10 engineers with different responsibilities?
+
+I follow the Principle of Least Privilege by granting users only the permissions required to perform their responsibilities. Instead of assigning permissions directly to individual users, I create IAM groups or IAM roles based on job functions. For example, Developers receive permissions to access source code repositories, CloudWatch logs, and development environments but cannot modify production infrastructure. DevOps Engineers receive permissions to manage CI/CD pipelines, Kubernetes clusters, ECR repositories, EC2 instances, and infrastructure automation tools. QA Engineers are provided access only to testing environments and application logs. Security Engineers receive permissions to manage IAM policies, security services, audit logs, and compliance tools, while Production Administrators have elevated permissions that require MFA and temporary role assumption through AWS STS. Sensitive actions such as deleting infrastructure, modifying IAM policies, or accessing production secrets are restricted using permission boundaries and approval workflows. CloudTrail is enabled for auditing all API activities, and IAM Access Analyzer is regularly used to review unused or excessive permissions. This role-based access control model improves security, simplifies permission management, and ensures compliance with organizational security standards.
+```
+
+
 # Kubernetes & Terraform Interview Questions (4 Years DevOps Experience)
 
 ---
