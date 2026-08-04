@@ -1,3 +1,2314 @@
+# DevOps Engineer – 2nd Round Interview (Scenario-Based)
+## Part 1 (Questions 1–5)
+
+---
+
+# 1. Your EC2 instance suddenly stops responding to SSH. How do you debug it without a reboot?
+
+## Answer
+
+When an EC2 instance becomes unreachable over SSH, I avoid rebooting immediately because it may erase valuable diagnostic information. Instead, I troubleshoot systematically.
+
+### Step 1: Verify EC2 Instance Status
+
+Check:
+
+- Instance State (Running/Stopped)
+- System Status Checks
+- Instance Status Checks
+
+AWS Console:
+
+```
+EC2 → Instances → Status Checks
+```
+
+If either status check fails, it indicates an infrastructure or OS issue.
+
+---
+
+### Step 2: Verify Security Group
+
+Ensure Security Group allows:
+
+```
+Inbound Rule
+
+Port: 22
+
+Source: My Public IP
+```
+
+Verify your current public IP hasn't changed.
+
+---
+
+### Step 3: Check Network ACL
+
+Ensure:
+
+- Port 22 inbound allowed
+- Ephemeral ports (1024–65535) allowed outbound
+- No DENY rule blocking traffic
+
+---
+
+### Step 4: Verify Route Table
+
+Confirm the subnet has a valid route:
+
+```
+0.0.0.0/0
+
+↓
+
+Internet Gateway
+```
+
+For private subnets, verify VPN, Direct Connect, or Bastion Host connectivity.
+
+---
+
+### Step 5: Use EC2 Serial Console or SSM Session Manager
+
+If enabled:
+
+- AWS Systems Manager Session Manager
+- EC2 Serial Console
+
+These allow shell access without SSH.
+
+---
+
+### Step 6: Check Disk Space
+
+If the root filesystem is full, SSH daemon may fail.
+
+Commands:
+
+```bash
+df -h
+
+du -sh /*
+```
+
+---
+
+### Step 7: Check SSH Service
+
+```bash
+sudo systemctl status sshd
+
+sudo journalctl -u sshd
+```
+
+Restart if required:
+
+```bash
+sudo systemctl restart sshd
+```
+
+---
+
+### Step 8: Verify CPU & Memory
+
+High CPU or memory exhaustion may make SSH unresponsive.
+
+Check CloudWatch metrics:
+
+- CPUUtilization
+- Memory (if CloudWatch Agent installed)
+- Disk I/O
+- Network
+
+---
+
+### Step 9: Review System Logs
+
+AWS Console:
+
+```
+Get System Log
+```
+
+Look for:
+
+- Kernel panic
+- Filesystem errors
+- OOMKilled
+- Boot issues
+
+---
+
+### Production Interview Answer
+
+> I first verify instance health, Security Groups, NACLs, and routing. Then I use AWS Systems Manager Session Manager or the EC2 Serial Console for access without SSH. I inspect disk usage, SSH service status, CloudWatch metrics, and system logs. I only reboot after collecting enough evidence to identify the root cause.
+
+---
+
+# 2. A Docker container works locally but crashes immediately in production. What's your debugging approach?
+
+## Answer
+
+### Step 1: Check Container Status
+
+```bash
+docker ps -a
+```
+
+---
+
+### Step 2: View Logs
+
+```bash
+docker logs <container-id>
+```
+
+Check for:
+
+- Missing environment variables
+- Database connection failures
+- Missing files
+- Startup exceptions
+
+---
+
+### Step 3: Verify Image Version
+
+Ensure the correct image tag was deployed.
+
+```bash
+docker images
+```
+
+---
+
+### Step 4: Inspect Environment Variables
+
+```bash
+docker inspect <container-id>
+```
+
+Compare production variables with local development.
+
+---
+
+### Step 5: Verify Mounted Volumes
+
+Incorrect volume mounts often cause startup failures.
+
+```bash
+docker inspect
+```
+
+---
+
+### Step 6: Test the Image Locally
+
+Run the same image used in production:
+
+```bash
+docker run -it image:tag
+```
+
+---
+
+### Step 7: Check Resource Limits
+
+Container may be OOMKilled.
+
+```bash
+docker stats
+```
+
+---
+
+### Step 8: Verify Network Connectivity
+
+Check access to:
+
+- Database
+- Redis
+- Kafka
+- APIs
+
+---
+
+### Step 9: Compare Production Configuration
+
+Validate:
+
+- Secrets
+- ConfigMaps
+- Environment variables
+- File permissions
+
+---
+
+### Production Interview Answer
+
+> I inspect container logs, verify the deployed image version, compare production environment variables with local settings, validate mounted volumes and external dependencies, check resource usage for OOM issues, and reproduce the problem using the same production image locally. Most production failures are caused by configuration differences rather than application code.
+
+---
+
+# 3. Explain how a Kubernetes Service routes traffic to Pods. What happens if labels don't match?
+
+## Answer
+
+A Kubernetes Service provides a stable endpoint to access a dynamic set of Pods.
+
+### Traffic Flow
+
+```
+Client
+   │
+   ▼
+Service (ClusterIP)
+   │
+   ▼
+Endpoints
+   │
+   ▼
+Pods
+```
+
+The Service identifies Pods using **label selectors**.
+
+Example:
+
+Pod labels:
+
+```yaml
+labels:
+  app: payment
+```
+
+Service:
+
+```yaml
+selector:
+  app: payment
+```
+
+Because the labels match, Kubernetes automatically creates endpoints and routes traffic.
+
+### If Labels Don't Match
+
+If the Service selector doesn't match any Pod labels:
+
+- No endpoints are created.
+- Requests to the Service fail.
+- Users may receive HTTP 503 or connection refused.
+
+Check:
+
+```bash
+kubectl get endpoints
+```
+
+If you see:
+
+```
+ENDPOINTS: <none>
+```
+
+it usually indicates a selector mismatch.
+
+### Production Interview Answer
+
+> A Kubernetes Service uses label selectors to identify backend Pods and routes traffic through endpoints managed by kube-proxy. If the Service selector doesn't match Pod labels, no endpoints are created, so the Service cannot forward requests.
+
+---
+
+# 4. Your S3 bucket costs suddenly spiked 5x overnight. How do you investigate?
+
+## Answer
+
+### Step 1: Review AWS Cost Explorer
+
+Identify:
+
+- Which bucket
+- Which storage class
+- Which API operations
+- Time of increase
+
+---
+
+### Step 2: Check S3 Storage Metrics
+
+Review:
+
+- Bucket size
+- Object count
+- Storage class distribution
+
+---
+
+### Step 3: Analyze Access Logs
+
+Enable or inspect:
+
+- S3 Server Access Logs
+- CloudTrail Data Events
+
+Look for:
+
+- Excessive GET requests
+- PUT requests
+- LIST operations
+
+---
+
+### Step 4: Check Lifecycle Policies
+
+Confirm objects are transitioning to cheaper storage classes (e.g., Glacier) as expected.
+
+---
+
+### Step 5: Investigate Large Uploads
+
+Determine whether a backup job or application uploaded unexpected data.
+
+---
+
+### Step 6: Review Replication
+
+Verify that Cross-Region Replication isn't duplicating excessive data.
+
+---
+
+### Step 7: Check Public Access
+
+A publicly accessible bucket may experience unexpected downloads.
+
+---
+
+### Step 8: Enable AWS Budgets
+
+Configure cost alerts to detect future anomalies early.
+
+### Production Interview Answer
+
+> I analyze Cost Explorer to identify the cost driver, review S3 storage metrics, inspect CloudTrail and access logs for unusual API activity, verify lifecycle policies and replication settings, and check for unexpected uploads or public access. I then implement budgets and alerts to prevent similar spikes.
+
+---
+
+# 5. What causes a Kubernetes node to go NotReady, and how do you recover it?
+
+## Answer
+
+A node enters the **NotReady** state when the control plane determines it cannot reliably schedule or run workloads.
+
+### Common Causes
+
+- Kubelet stopped
+- Network failure
+- Disk pressure
+- Memory pressure
+- PID pressure
+- CNI plugin failure
+- Container runtime failure
+- Node disconnected from API Server
+
+---
+
+### Step 1: Verify Node Status
+
+```bash
+kubectl get nodes
+```
+
+---
+
+### Step 2: Describe the Node
+
+```bash
+kubectl describe node <node-name>
+```
+
+Check:
+
+- Conditions
+- Events
+- Resource pressure
+
+---
+
+### Step 3: Verify Kubelet
+
+```bash
+sudo systemctl status kubelet
+
+sudo journalctl -u kubelet
+```
+
+---
+
+### Step 4: Check Container Runtime
+
+For containerd:
+
+```bash
+sudo systemctl status containerd
+```
+
+---
+
+### Step 5: Verify Disk Usage
+
+```bash
+df -h
+```
+
+---
+
+### Step 6: Check Memory
+
+```bash
+free -m
+```
+
+---
+
+### Step 7: Verify CNI Plugin
+
+Ensure the networking plugin (AWS VPC CNI, Calico, Cilium, etc.) is healthy.
+
+```bash
+kubectl get pods -n kube-system
+```
+
+---
+
+### Step 8: Recover the Node
+
+Depending on the cause:
+
+- Restart kubelet
+- Restart container runtime
+- Free disk space
+- Resolve network issues
+- Replace or drain the node if necessary
+
+```bash
+kubectl drain <node-name>
+
+kubectl delete node <node-name>
+```
+
+Cluster Autoscaler can provision a replacement node if configured.
+
+### Production Interview Answer
+
+> I inspect the node status and events, verify kubelet and the container runtime, check for disk, memory, or network issues, and ensure the CNI plugin is healthy. After resolving the root cause, I restore the node or replace it by draining and removing it, allowing the Cluster Autoscaler to provision a new one if enabled.
+
+# DevOps Engineer – 2nd Round Interview (Scenario-Based)
+## Part 2 (Questions 6–10)
+
+---
+
+# 6. Your IAM role has correct permissions but the API call still fails. What do you check?
+
+## Answer
+
+Even if the IAM role appears to have the required permissions, several other factors can cause API failures.
+
+### Step 1: Verify the IAM Policy
+
+Ensure the policy explicitly allows the required action.
+
+Example:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": [
+    "s3:GetObject"
+  ],
+  "Resource": "*"
+}
+```
+
+Look for:
+
+- Explicit Deny statements
+- Missing actions
+- Incorrect resource ARNs
+
+---
+
+### Step 2: Check Resource-Based Policies
+
+Some AWS services (S3, KMS, SNS, SQS, Lambda) also require resource policies.
+
+Example:
+
+- Bucket Policy
+- KMS Key Policy
+- Lambda Resource Policy
+
+Even with IAM permissions, the resource policy can deny access.
+
+---
+
+### Step 3: Verify Trust Relationship
+
+For assumed roles:
+
+```
+IAM Role
+↓
+
+Trust Policy
+
+↓
+
+EC2 / Lambda / EKS
+```
+
+Ensure the role trusts the service using it.
+
+---
+
+### Step 4: Check Service Control Policies (SCP)
+
+If AWS Organizations is used:
+
+```
+Organization
+
+↓
+
+SCP
+
+↓
+
+Account
+
+↓
+
+IAM Role
+```
+
+An SCP can override IAM permissions.
+
+---
+
+### Step 5: Verify Region
+
+Resources may exist in another region.
+
+Example:
+
+```
+Bucket
+
+ap-south-1
+
+Application
+
+us-east-1
+```
+
+---
+
+### Step 6: Check Credentials
+
+Verify:
+
+```bash
+aws sts get-caller-identity
+```
+
+This confirms which IAM role or user is making the request.
+
+---
+
+### Step 7: Review CloudTrail
+
+CloudTrail shows:
+
+- Which API failed
+- Error code
+- Principal
+- Reason for denial
+
+---
+
+### Step 8: Validate Temporary Credentials
+
+For STS AssumeRole:
+
+- Session not expired
+- Correct session token
+- Proper role assumption
+
+---
+
+## Production Interview Answer
+
+> I verify IAM policies, resource-based policies, trust relationships, SCPs, region configuration, and temporary credentials. I also use `aws sts get-caller-identity` to confirm the active identity and review CloudTrail logs to identify the exact authorization failure.
+
+---
+
+# 7. Explain how Terraform decides what to destroy and recreate vs update in-place.
+
+## Answer
+
+Terraform compares three things:
+
+```
+Terraform Configuration
+
+↓
+
+Terraform State
+
+↓
+
+Actual Infrastructure
+```
+
+This comparison creates an execution plan.
+
+---
+
+### Update In-Place
+
+Terraform updates existing resources when supported.
+
+Example:
+
+```hcl
+instance_type = "t3.medium"
+```
+
+Changing to
+
+```hcl
+instance_type = "t3.large"
+```
+
+results in:
+
+```
+Modify Existing EC2
+```
+
+No replacement required.
+
+---
+
+### Destroy and Recreate
+
+Some attributes are immutable.
+
+Examples:
+
+- AMI ID
+- Certain subnet changes
+- Resource name (depending on provider)
+- Availability Zone (for some resources)
+
+Terraform output:
+
+```
+-/+
+
+Destroy
+
+Create
+```
+
+---
+
+### Force Replacement
+
+Terraform indicates:
+
+```
+forces replacement
+```
+
+Example:
+
+```
+~ ami = ami-123
+
+→ ami-456
+
+Forces replacement
+```
+
+---
+
+### Dependencies
+
+Terraform builds a dependency graph.
+
+```
+VPC
+
+↓
+
+Subnet
+
+↓
+
+EC2
+
+↓
+
+ALB
+```
+
+Resources are created and destroyed in dependency order.
+
+---
+
+## Production Interview Answer
+
+> Terraform compares the desired configuration, the state file, and the actual infrastructure. It updates resources in place whenever possible, but if an immutable attribute changes, Terraform destroys and recreates the resource. The dependency graph ensures resources are processed in the correct order.
+
+---
+
+# 8. Two team members ran terraform apply at the same time. What happens, and how do you prevent it?
+
+## Answer
+
+Without state locking:
+
+```
+Engineer A
+
+↓
+
+terraform apply
+
+↓
+
+terraform.tfstate
+
+↑
+
+Engineer B
+
+↓
+
+terraform apply
+```
+
+Both users attempt to modify the same state file.
+
+Possible outcomes:
+
+- State corruption
+- Duplicate resources
+- Partial infrastructure
+- Failed deployments
+
+---
+
+### Best Practice
+
+Use a remote backend.
+
+```
+Terraform
+
+↓
+
+S3 Backend
+
+↓
+
+DynamoDB Lock Table
+```
+
+When Engineer A runs:
+
+```
+terraform apply
+```
+
+Terraform acquires a lock.
+
+Engineer B receives:
+
+```
+Error acquiring state lock
+```
+
+and must wait until the first operation completes.
+
+---
+
+### Additional Protection
+
+- CI/CD pipelines instead of manual applies
+- Branch protection
+- Pull request approvals
+- Separate workspaces
+- Least privilege IAM access
+
+---
+
+## Production Interview Answer
+
+> In production, I use an S3 backend with DynamoDB state locking. If two engineers run `terraform apply` simultaneously, the second operation is blocked until the first releases the lock, preventing state corruption and conflicting infrastructure changes.
+
+---
+
+# 9. Explain the difference between Readiness and Liveness Probes with a real failure scenario.
+
+## Answer
+
+## Readiness Probe
+
+Determines whether a Pod is ready to receive traffic.
+
+If it fails:
+
+- Pod continues running.
+- Removed from Service endpoints.
+- No traffic is sent.
+
+---
+
+### Example
+
+Application startup:
+
+```
+Application
+
+↓
+
+Database Migration
+
+↓
+
+Warm Cache
+
+↓
+
+Ready
+```
+
+During initialization:
+
+```
+Readiness = Failed
+```
+
+Users are not routed to the Pod.
+
+---
+
+## Liveness Probe
+
+Determines whether the application is healthy.
+
+If it fails:
+
+```
+Restart Container
+```
+
+---
+
+### Example
+
+Application enters deadlock.
+
+The process is still running but no longer responds.
+
+```
+Liveness Failed
+
+↓
+
+Kubelet Restarts Container
+```
+
+---
+
+### Real Production Scenario
+
+A Spring Boot application requires 60 seconds to initialize.
+
+Without a readiness probe:
+
+```
+ALB
+
+↓
+
+Routes traffic
+
+↓
+
+Application still starting
+
+↓
+
+HTTP 500
+```
+
+With a readiness probe:
+
+```
+Traffic waits
+
+↓
+
+Application Ready
+
+↓
+
+Users receive successful responses
+```
+
+Later, the application hangs due to a memory leak.
+
+```
+Liveness Probe
+
+↓
+
+Restart Container
+```
+
+---
+
+## Production Interview Answer
+
+> Readiness probes determine whether a Pod can receive traffic, while liveness probes determine whether the application should be restarted. For example, during application startup, the readiness probe prevents traffic from reaching the Pod until initialization is complete. If the application later hangs because of a deadlock or memory leak, the liveness probe detects the failure and restarts the container automatically.
+
+---
+
+# 10. Your Jenkins pipeline works for one branch but fails for another with the same code. Why?
+
+## Answer
+
+Even if the application code is identical, branch-specific configurations often differ.
+
+### Step 1: Compare Jenkinsfile
+
+Check whether each branch has the same:
+
+- Pipeline stages
+- Environment variables
+- Credentials
+- Shared Libraries
+
+---
+
+### Step 2: Verify Branch Configuration
+
+Multibranch Pipeline:
+
+```
+main
+
+↓
+
+feature/login
+
+↓
+
+release
+```
+
+Different branches may trigger different logic.
+
+Example:
+
+```groovy
+if (env.BRANCH_NAME == "main")
+```
+
+---
+
+### Step 3: Check Environment Variables
+
+Missing variables:
+
+```
+AWS_REGION
+
+DOCKER_TAG
+
+ECR_REPOSITORY
+
+JAVA_HOME
+```
+
+---
+
+### Step 4: Verify Credentials
+
+Ensure:
+
+- AWS credentials
+- Docker registry credentials
+- Git credentials
+- Kubernetes kubeconfig
+
+are available to all branches.
+
+---
+
+### Step 5: Compare Build Agents
+
+Different branches may run on different Jenkins agents.
+
+Check:
+
+- Installed tools
+- Java version
+- Docker version
+- Available disk space
+
+---
+
+### Step 6: Review Shared Libraries
+
+A branch may reference a different library version.
+
+---
+
+### Step 7: Check Branch Protection
+
+Verify:
+
+- Webhooks
+- Git permissions
+- Pipeline triggers
+
+---
+
+### Step 8: Review Build Logs
+
+Compare:
+
+```
+Successful Branch
+
+↓
+
+Failed Branch
+```
+
+Identify differences in:
+
+- Build stage
+- Test stage
+- Docker build
+- Deployment
+
+---
+
+## Production Interview Answer
+
+> I compare the Jenkinsfile, environment variables, credentials, shared libraries, and agent configurations across branches. I also verify branch-specific conditions in the pipeline and compare build logs. In most cases, the issue is caused by configuration differences rather than differences in the application code.
+
+
+# DevOps Engineer – 2nd Round Interview (Scenario-Based)
+## Part 3 (Questions 11–15)
+
+---
+
+# 11. Explain how Kubernetes handles a Rolling Update if the new Pod keeps crashing.
+
+## Answer
+
+A Rolling Update allows Kubernetes to replace old Pods with new ones gradually while minimizing downtime. It is managed by the **Deployment** controller.
+
+### Normal Rolling Update Flow
+
+```
+Old Pods (v1)
+
+↓
+
+Create New Pod (v2)
+
+↓
+
+Readiness Probe Success
+
+↓
+
+Traffic Shifted
+
+↓
+
+Old Pod Deleted
+
+↓
+
+Repeat Until Complete
+```
+
+---
+
+### If the New Pod Keeps Crashing
+
+Suppose the new version has an application bug.
+
+```
+Deployment
+
+↓
+
+New Pod Created
+
+↓
+
+CrashLoopBackOff
+
+↓
+
+Readiness Probe Fails
+
+↓
+
+Pod Never Added to Service
+
+↓
+
+Old Pods Continue Serving Traffic
+```
+
+Since the new Pod never becomes **Ready**, Kubernetes does **not** send production traffic to it.
+
+---
+
+### How Kubernetes Detects the Failure
+
+Deployment monitors:
+
+- Readiness Probe
+- Liveness Probe
+- Pod Status
+- Replica availability
+
+Commands:
+
+```bash
+kubectl get pods
+
+kubectl describe pod <pod-name>
+
+kubectl logs <pod-name>
+```
+
+---
+
+### Deployment Status
+
+```bash
+kubectl rollout status deployment myapp
+```
+
+Possible output:
+
+```
+Waiting for deployment to finish...
+```
+
+or
+
+```
+ProgressDeadlineExceeded
+```
+
+---
+
+### Rollback
+
+```bash
+kubectl rollout undo deployment myapp
+```
+
+or
+
+```bash
+kubectl rollout undo deployment myapp --to-revision=3
+```
+
+---
+
+### Production Best Practices
+
+Configure:
+
+```yaml
+strategy:
+  rollingUpdate:
+    maxUnavailable: 0
+    maxSurge: 1
+```
+
+Use:
+
+- Readiness Probes
+- Liveness Probes
+- Startup Probes
+- Canary Deployments
+- Blue-Green Deployments
+
+---
+
+## Production Interview Answer
+
+> During a Rolling Update, Kubernetes gradually creates new Pods and waits for them to become Ready before routing traffic. If the new Pods continuously crash or fail readiness checks, Kubernetes keeps serving traffic through the existing healthy Pods. I monitor the rollout using `kubectl rollout status`, inspect logs and events, identify the root cause, and roll back using `kubectl rollout undo` if required.
+
+---
+
+# 12. Your RDS database is hitting connection limits during peak traffic. How do you fix it?
+
+## Answer
+
+This usually indicates that the application is opening more database connections than the RDS instance can handle.
+
+---
+
+### Step 1: Confirm the Issue
+
+Check CloudWatch Metrics:
+
+- DatabaseConnections
+- CPUUtilization
+- FreeableMemory
+- ReadIOPS
+- WriteIOPS
+
+---
+
+### Step 2: Identify Connection Sources
+
+Check:
+
+- Application
+- Lambda Functions
+- Kubernetes Pods
+- EC2 Instances
+
+Look for connection leaks.
+
+---
+
+### Step 3: Use Connection Pooling
+
+Instead of creating a new database connection for every request, configure connection pools.
+
+Examples:
+
+- HikariCP
+- PgBouncer
+- ProxySQL
+
+---
+
+### Step 4: Enable RDS Proxy
+
+Architecture
+
+```
+Application
+
+↓
+
+RDS Proxy
+
+↓
+
+Amazon RDS
+```
+
+Benefits:
+
+- Connection reuse
+- Faster failover
+- Better scalability
+
+---
+
+### Step 5: Scale the Database
+
+Increase:
+
+- Instance class
+- CPU
+- Memory
+
+Example:
+
+```
+db.t3.medium
+
+↓
+
+db.r6g.large
+```
+
+---
+
+### Step 6: Add Read Replicas
+
+For read-heavy workloads:
+
+```
+Primary
+
+↓
+
+Read Replica 1
+
+↓
+
+Read Replica 2
+```
+
+---
+
+### Step 7: Optimize Queries
+
+Identify slow queries using:
+
+- Performance Insights
+- Slow Query Log
+
+---
+
+## Production Interview Answer
+
+> I first verify CloudWatch metrics to confirm connection exhaustion, then investigate connection leaks in the application. I implement connection pooling or RDS Proxy, optimize slow queries, add read replicas for read-heavy workloads, and scale the database if necessary.
+
+---
+
+# 13. Explain the difference between a Kubernetes Deployment and a StatefulSet, with a real use case.
+
+## Answer
+
+## Deployment
+
+Used for **stateless applications**.
+
+Characteristics:
+
+- Pods are interchangeable.
+- Pod names are random.
+- No stable storage.
+- Easy horizontal scaling.
+
+Examples:
+
+- React
+- Spring Boot APIs
+- Node.js
+- NGINX
+
+Example:
+
+```
+Frontend
+
+↓
+
+Deployment
+
+↓
+
+ReplicaSet
+
+↓
+
+Pods
+```
+
+---
+
+## StatefulSet
+
+Used for **stateful applications**.
+
+Characteristics:
+
+- Stable Pod names
+- Stable network identity
+- Persistent storage
+- Ordered deployment
+- Ordered scaling
+
+Examples:
+
+- PostgreSQL
+- MySQL
+- MongoDB
+- Kafka
+- Elasticsearch
+
+---
+
+### Example
+
+```
+postgres-0
+
+↓
+
+PVC-0
+
+↓
+
+EBS Volume
+```
+
+Even after restart:
+
+```
+postgres-0
+
+↓
+
+Same Storage
+
+↓
+
+Same Network Identity
+```
+
+---
+
+### Real Production Example
+
+Microservices
+
+```
+API
+
+↓
+
+Deployment
+```
+
+Database
+
+```
+PostgreSQL
+
+↓
+
+StatefulSet
+
+↓
+
+Persistent Volume
+```
+
+---
+
+## Production Interview Answer
+
+> Deployments are designed for stateless applications where Pods are interchangeable, while StatefulSets provide stable identities and persistent storage for stateful workloads such as databases. In production, I deploy APIs using Deployments and databases like PostgreSQL using StatefulSets.
+
+---
+
+# 14. Your CloudWatch alarms didn't trigger during an actual outage. How do you investigate?
+
+## Answer
+
+### Step 1: Verify Alarm State
+
+Check:
+
+```
+CloudWatch
+
+↓
+
+Alarms
+
+↓
+
+History
+```
+
+---
+
+### Step 2: Verify Metrics
+
+Ensure the monitored metric exists.
+
+Example:
+
+```
+CPUUtilization
+
+NetworkIn
+
+5XXError
+
+HealthyHostCount
+```
+
+---
+
+### Step 3: Verify Threshold
+
+Example:
+
+Alarm:
+
+```
+CPU > 90%
+```
+
+Actual:
+
+```
+CPU = 85%
+```
+
+Alarm will never trigger.
+
+---
+
+### Step 4: Verify Evaluation Period
+
+Example:
+
+```
+Threshold
+
+90%
+
+Evaluation Period
+
+5 Minutes
+
+```
+
+If the outage lasted only 2 minutes, the alarm won't fire.
+
+---
+
+### Step 5: Check Missing Data Configuration
+
+CloudWatch options:
+
+- Treat as Missing
+- Ignore
+- Breaching
+- Not Breaching
+
+Incorrect settings can suppress alarms.
+
+---
+
+### Step 6: Verify SNS Notifications
+
+Check:
+
+- SNS Topic
+- Email Subscription
+- Slack Integration
+- PagerDuty
+- OpsGenie
+
+---
+
+### Step 7: Review IAM Permissions
+
+Ensure CloudWatch can publish notifications.
+
+---
+
+## Production Interview Answer
+
+> I review the alarm configuration, threshold, evaluation period, monitored metric, missing data handling, and alarm history. I also verify SNS delivery and notification integrations to ensure alerts reach the operations team.
+
+---
+
+# 15. Explain how DNS resolution fails inside a VPC with a private subnet setup.
+
+## Answer
+
+DNS failures inside a private subnet are usually related to networking or VPC DNS configuration.
+
+---
+
+### Normal Flow
+
+```
+Application
+
+↓
+
+CoreDNS
+
+↓
+
+Amazon Route53 Resolver
+
+↓
+
+Private DNS
+
+↓
+
+Target Resource
+```
+
+---
+
+### Possible Causes
+
+### 1. DNS Resolution Disabled
+
+Check:
+
+```
+enableDnsSupport
+
+enableDnsHostnames
+```
+
+Both should be enabled.
+
+---
+
+### 2. CoreDNS Failure
+
+```bash
+kubectl get pods -n kube-system
+```
+
+Check:
+
+```
+coredns
+
+Running
+```
+
+---
+
+### 3. Security Groups
+
+Ensure DNS traffic is allowed:
+
+```
+UDP 53
+
+TCP 53
+```
+
+---
+
+### 4. Route Tables
+
+Private subnet should reach:
+
+- Route53 Resolver
+- NAT Gateway (if Internet access is required)
+
+---
+
+### 5. DHCP Options Set
+
+Incorrect DHCP configuration may point to invalid DNS servers.
+
+---
+
+### 6. Network ACL
+
+Allow:
+
+```
+UDP 53
+
+TCP 53
+```
+
+---
+
+### Debug Commands
+
+Inside a Pod:
+
+```bash
+nslookup kubernetes.default
+
+dig google.com
+
+cat /etc/resolv.conf
+```
+
+---
+
+## Production Interview Answer
+
+> I verify that DNS support and hostnames are enabled for the VPC, ensure CoreDNS is healthy, check security groups, NACLs, route tables, and DHCP options, and test DNS resolution using `nslookup`, `dig`, and `/etc/resolv.conf` from inside a Pod. This helps isolate whether the issue is with Kubernetes DNS, the VPC, or the application.
+
+
+# DevOps Engineer – 2nd Round Interview (Scenario-Based)
+## Part 4 (Questions 16–20)
+
+---
+
+# 16. A Terraform module works in Dev but fails in Prod with the same variables. What's your approach?
+
+## Answer
+
+Even if the Terraform code and variables are the same, differences in the production environment can cause failures. I follow a structured troubleshooting approach.
+
+### Step 1: Review the Error Message
+
+Run:
+
+```bash
+terraform plan
+
+terraform apply
+```
+
+Check whether the failure is due to:
+
+- Permission denied
+- Resource already exists
+- Dependency failure
+- Quota exceeded
+- Invalid configuration
+
+---
+
+### Step 2: Compare Environment Configurations
+
+Verify:
+
+- AWS Account ID
+- AWS Region
+- Backend Configuration
+- Terraform Workspace
+- Provider Version
+
+Commands:
+
+```bash
+terraform workspace show
+
+terraform providers
+```
+
+---
+
+### Step 3: Check IAM Permissions
+
+Production often has stricter IAM policies than Dev.
+
+Verify:
+
+- EC2 permissions
+- VPC permissions
+- IAM role permissions
+- S3 backend access
+- DynamoDB lock table access
+
+---
+
+### Step 4: Compare Existing Infrastructure
+
+Production may already contain:
+
+- VPC
+- Subnets
+- Security Groups
+- IAM Roles
+
+Terraform may attempt to recreate existing resources.
+
+Use:
+
+```bash
+terraform state list
+
+terraform import
+```
+
+if required.
+
+---
+
+### Step 5: Validate Module Inputs
+
+Check:
+
+```bash
+terraform validate
+
+terraform plan
+```
+
+Ensure all required variables are supplied.
+
+---
+
+### Step 6: Check Resource Limits
+
+Production may have reached AWS service quotas.
+
+Examples:
+
+- VPC Limits
+- EIP Limits
+- EC2 Limits
+- EBS Limits
+
+---
+
+### Step 7: Compare Terraform Versions
+
+```bash
+terraform version
+```
+
+Different Terraform or provider versions may behave differently.
+
+---
+
+### Step 8: Review Logs
+
+Enable debugging:
+
+```bash
+export TF_LOG=DEBUG
+terraform apply
+```
+
+---
+
+## Production Interview Answer
+
+> I first review the Terraform error message, compare Dev and Prod configurations, verify IAM permissions, ensure the correct workspace and backend are being used, check for existing resources that may require import, validate module inputs, review AWS service quotas, and enable Terraform debug logs if necessary. In production, environment differences are often the root cause rather than the Terraform module itself.
+
+---
+
+# 17. Explain how Kubernetes Secrets are stored, and why that matters for security.
+
+## Answer
+
+Kubernetes Secrets store sensitive information such as:
+
+- Database passwords
+- API Keys
+- OAuth Tokens
+- TLS Certificates
+- SSH Keys
+
+---
+
+### Storage Flow
+
+```
+Secret YAML
+
+↓
+
+API Server
+
+↓
+
+etcd
+
+↓
+
+Pod
+```
+
+Secrets are stored inside **etcd**, the Kubernetes key-value database.
+
+---
+
+### Important Security Fact
+
+Secrets are **Base64 encoded**, **not encrypted** by default.
+
+Example:
+
+```yaml
+data:
+  password: YWRtaW4xMjM=
+```
+
+Anyone with access to etcd can decode the value unless encryption at rest is enabled.
+
+---
+
+### Production Best Practices
+
+✔ Enable Encryption at Rest
+
+```text
+API Server
+↓
+
+Encryption Provider
+↓
+
+Encrypted etcd
+```
+
+---
+
+✔ Restrict access using RBAC
+
+```yaml
+Role
+
+RoleBinding
+
+ServiceAccount
+```
+
+---
+
+✔ Never store secrets in Git
+
+Instead use:
+
+- HashiCorp Vault
+- AWS Secrets Manager
+- External Secrets Operator
+- Azure Key Vault
+
+---
+
+✔ Rotate secrets regularly
+
+---
+
+### How Pods Consume Secrets
+
+As Environment Variables
+
+```yaml
+env:
+- name: DB_PASSWORD
+  valueFrom:
+    secretKeyRef:
+```
+
+Or
+
+Mounted as files
+
+```
+/etc/secrets
+```
+
+---
+
+## Production Interview Answer
+
+> Kubernetes Secrets are stored in etcd and are Base64 encoded by default, which is not encryption. In production, I enable Encryption at Rest, enforce RBAC, avoid storing secrets in Git, integrate with AWS Secrets Manager or HashiCorp Vault, and rotate credentials regularly to ensure sensitive data remains protected.
+
+---
+
+# 18. Your Lambda function times out intermittently. How do you find the root cause?
+
+## Answer
+
+Intermittent Lambda timeouts usually indicate dependency, networking, or resource issues rather than problems with the Lambda service itself.
+
+### Step 1: Review CloudWatch Logs
+
+Check:
+
+```
+START
+
+END
+
+REPORT
+```
+
+Look for:
+
+```
+Task timed out after 30 seconds
+```
+
+---
+
+### Step 2: Check CloudWatch Metrics
+
+Review:
+
+- Duration
+- Errors
+- Throttles
+- Concurrent Executions
+
+---
+
+### Step 3: Verify Timeout Configuration
+
+Example:
+
+```
+Lambda Timeout
+
+30 seconds
+
+Application Execution
+
+35 seconds
+
+↓
+
+Timeout
+```
+
+Increase timeout if justified.
+
+---
+
+### Step 4: Check VPC Networking
+
+If Lambda runs inside a VPC:
+
+Verify:
+
+- NAT Gateway
+- Route Tables
+- Security Groups
+- Subnets
+
+---
+
+### Step 5: Investigate Downstream Services
+
+Slow responses from:
+
+- RDS
+- DynamoDB
+- External APIs
+- Redis
+- S3
+
+can delay Lambda execution.
+
+---
+
+### Step 6: Check Cold Starts
+
+Large deployment packages or VPC-enabled Lambdas may experience cold start delays.
+
+Mitigation:
+
+- Provisioned Concurrency
+- Smaller packages
+- Dependency optimization
+
+---
+
+### Step 7: Optimize Code
+
+Identify:
+
+- Infinite loops
+- Long-running queries
+- Unnecessary retries
+
+Use AWS X-Ray for tracing.
+
+---
+
+## Production Interview Answer
+
+> I analyze CloudWatch logs and metrics, verify timeout settings, inspect downstream service latency, review VPC networking, investigate cold starts, and use AWS X-Ray to trace the request path. Most intermittent timeouts are caused by slow dependencies or networking issues rather than Lambda itself.
+
+---
+
+# 19. Explain the tradeoffs between Self-Managed Kubernetes and Amazon EKS.
+
+## Answer
+
+| Feature | Self-Managed Kubernetes | Amazon EKS |
+|----------|-------------------------|------------|
+| Control Plane | Managed by you | Managed by AWS |
+| Upgrades | Manual | AWS Managed |
+| High Availability | Configure yourself | Built-in |
+| Maintenance | High | Low |
+| Cost | Lower infrastructure cost but higher operational effort | EKS control plane cost + reduced operational effort |
+| Security | Fully managed by your team | AWS handles control plane security |
+| Scaling | Manual configuration | Integrated with Cluster Autoscaler, Managed Node Groups, Fargate |
+| Monitoring | Manual setup | Easy integration with CloudWatch and AWS services |
+
+### When to Use Self-Managed Kubernetes
+
+- On-premises deployments
+- Full control over Kubernetes components
+- Highly customized environments
+
+### When to Use Amazon EKS
+
+- Production workloads on AWS
+- Reduced operational overhead
+- Managed control plane
+- Faster upgrades
+- Better integration with AWS services
+
+---
+
+## Production Interview Answer
+
+> Self-managed Kubernetes provides maximum flexibility but requires the team to manage the control plane, upgrades, security, backups, and high availability. Amazon EKS manages the control plane, reduces operational effort, integrates seamlessly with AWS services, and is generally my preferred choice for production workloads running on AWS.
+
+---
+
+# 20. Your CI/CD pipeline deploys successfully but users still see the old version of the application. How do you troubleshoot?
+
+## Answer
+
+A successful deployment doesn't always mean users are accessing the latest version. I investigate the entire deployment path.
+
+### Step 1: Verify Deployment
+
+```bash
+kubectl rollout status deployment my-app
+
+kubectl get pods
+```
+
+Ensure new Pods are running.
+
+---
+
+### Step 2: Verify Image Version
+
+```bash
+kubectl describe pod
+
+kubectl get pods -o wide
+```
+
+Check the image tag.
+
+Avoid using:
+
+```
+latest
+```
+
+Use immutable version tags:
+
+```
+v1.2.5
+
+Build-125
+```
+
+---
+
+### Step 3: Verify Rolling Update
+
+```bash
+kubectl rollout history deployment my-app
+```
+
+Confirm the new ReplicaSet is active.
+
+---
+
+### Step 4: Check Service Endpoints
+
+```bash
+kubectl get endpoints
+```
+
+Ensure traffic points to the new Pods.
+
+---
+
+### Step 5: Verify Ingress / Load Balancer
+
+Check:
+
+- ALB Target Groups
+- NGINX Ingress
+- AWS Load Balancer Controller
+
+Healthy targets should point to the new Pods.
+
+---
+
+### Step 6: Clear Application Cache
+
+Possible caches:
+
+- Browser Cache
+- CloudFront CDN
+- Redis Cache
+- API Gateway Cache
+
+Invalidate cache if necessary.
+
+---
+
+### Step 7: Verify DNS
+
+Ensure DNS still isn't pointing to an old environment.
+
+---
+
+### Step 8: Check Application Version
+
+Expose a health endpoint:
+
+```
+/version
+```
+
+Example response:
+
+```json
+{
+  "version":"1.2.5",
+  "build":"125"
+}
+```
+
+This confirms what version is actually serving traffic.
+
+---
+
+### Production Interview Answer
+
+> I verify the deployment rollout, confirm the correct image tag is running, inspect ReplicaSets and Service endpoints, validate Ingress and Load Balancer routing, check for CDN or browser caching, verify DNS, and confirm the application version through a health endpoint. Successful deployment does not always guarantee users are receiving traffic from the latest application version.
+
+---
+
+# ⭐ Interview Tip
+
+For scenario-based questions, interviewers expect you to follow a structured troubleshooting methodology:
+
+1. **Identify the issue** using logs, metrics, and alerts.
+2. **Validate the infrastructure** (network, IAM, storage, compute).
+3. **Inspect the application** (logs, health checks, configuration).
+4. **Implement the fix** with minimal downtime.
+5. **Verify recovery** using monitoring and user validation.
+6. **Perform RCA (Root Cause Analysis)** and implement preventive measures.
+
+Following this approach demonstrates strong production experience and systematic problem-solving skills.
+
+
+
 # DevOps Interview Questions & Answers (4 Years Experience)
 
 ---
