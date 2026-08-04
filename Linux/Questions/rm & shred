@@ -1,0 +1,6 @@
+What is the difference between the command 'Shred' and 'rm'?
+
+
+rm - Completely delete the file , data might be recoverable. It removes the entry(pointer) but the data blocks remain on the disk until overwritten.
+
+shred- Securely deletes the file by overwriting its data first , Very hard to recover.
