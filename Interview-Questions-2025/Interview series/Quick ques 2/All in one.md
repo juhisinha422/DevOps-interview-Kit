@@ -1,3 +1,1573 @@
+# Docker, Kubernetes, Terraform, CI/CD, Linux & Networking Interview Questions
+## Senior DevOps Interview Preparation (Part 1)
+
+---
+
+# 🐳 DOCKER & CONTAINERS
+
+# 1. What is the actual difference between ADD and COPY in a Dockerfile?
+
+## Answer
+
+Both `ADD` and `COPY` are Dockerfile instructions used to copy files from the host into the Docker image, but `ADD` provides additional functionality.
+
+### COPY
+
+- Simply copies files or directories from the local system to the image.
+- Preferred for most use cases because it is predictable and secure.
+- Does **not** extract archives or download files from URLs.
+
+Example:
+
+```dockerfile
+COPY app.jar /app/
+```
+
+---
+
+### ADD
+
+In addition to copying files, `ADD` can:
+
+- Automatically extract local `.tar` archives.
+- Download files from remote URLs (although this is generally discouraged).
+
+Example:
+
+```dockerfile
+ADD app.tar.gz /opt/
+```
+
+Docker automatically extracts `app.tar.gz` into `/opt`.
+
+---
+
+### Comparison
+
+| Feature | COPY | ADD |
+|----------|------|-----|
+| Copy local files | ✅ | ✅ |
+| Extract local tar files | ❌ | ✅ |
+| Download remote URLs | ❌ | ✅ |
+| Recommended for most cases | ✅ | ❌ |
+
+---
+
+### Best Practice
+
+Use **COPY** unless you specifically need automatic archive extraction.
+
+---
+
+### Production Interview Answer
+
+> I prefer `COPY` because it performs only file copying, making Dockerfiles more predictable and secure. I use `ADD` only when I intentionally need automatic extraction of local tar archives. Downloading files with `ADD` is generally avoided in production because it reduces build reproducibility.
+
+---
+
+# 2. How do multi-stage builds help reduce production image sizes?
+
+## Answer
+
+Multi-stage builds allow us to separate the build environment from the runtime environment.
+
+Instead of shipping the entire build toolchain (Maven, Gradle, Node.js, compilers), we copy only the compiled application into a lightweight runtime image.
+
+---
+
+### Without Multi-Stage Build
+
+```
+Ubuntu
+↓
+
+JDK
+
+↓
+
+Maven
+
+↓
+
+Source Code
+
+↓
+
+Dependencies
+
+↓
+
+Application
+```
+
+Final image may exceed **800 MB**.
+
+---
+
+### With Multi-Stage Build
+
+```
+Stage 1
+
+Maven
+
+↓
+
+Compile Application
+
+↓
+
+Generate JAR
+
+------------------------
+
+Stage 2
+
+OpenJDK Slim
+
+↓
+
+Copy JAR Only
+
+↓
+
+Run Application
+```
+
+Final image may be **150–250 MB**.
+
+---
+
+### Benefits
+
+- Smaller image size
+- Faster deployments
+- Reduced attack surface
+- Faster image pull times
+- Lower storage costs
+
+---
+
+### Example
+
+```dockerfile
+# Build Stage
+FROM maven:3.9-eclipse-temurin-17 AS builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN mvn clean package
+
+# Runtime Stage
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+COPY --from=builder /app/target/app.jar app.jar
+
+ENTRYPOINT ["java","-jar","app.jar"]
+```
+
+---
+
+### Production Interview Answer
+
+> Multi-stage builds separate the build and runtime environments. I compile the application in the first stage using build tools such as Maven, then copy only the generated artifact into a lightweight runtime image. This significantly reduces image size, improves security, and speeds up deployments.
+
+---
+
+# 3. Which two Linux kernel mechanisms are responsible for container isolation and resource limits?
+
+## Answer
+
+Containers rely primarily on two Linux kernel features:
+
+### 1. Namespaces
+
+Namespaces provide **isolation**.
+
+Each container gets its own:
+
+- Process IDs (PID)
+- Network stack
+- Mount points
+- Hostname
+- IPC
+- Users
+
+Example:
+
+```
+Container A
+
+PID 1
+
+Container B
+
+PID 1
+```
+
+Both containers think they are running their own PID 1 process.
+
+---
+
+### 2. Control Groups (cgroups)
+
+cgroups control **resource allocation**.
+
+They limit:
+
+- CPU
+- Memory
+- Disk I/O
+- Network bandwidth
+- Processes
+
+Example:
+
+```yaml
+resources:
+  limits:
+    cpu: "2"
+    memory: "4Gi"
+```
+
+The kernel enforces these limits.
+
+---
+
+### Production Interview Answer
+
+> Containers use Linux namespaces for process and network isolation, while cgroups enforce resource limits such as CPU and memory. Together, they provide secure isolation and controlled resource usage without requiring full virtual machines.
+
+---
+
+# 4. What is the difference between CMD and ENTRYPOINT?
+
+## Answer
+
+Both define the default command executed when a container starts.
+
+---
+
+### CMD
+
+Provides a default command that users can easily override.
+
+Example:
+
+```dockerfile
+CMD ["nginx","-g","daemon off;"]
+```
+
+Override:
+
+```bash
+docker run image ls
+```
+
+The `ls` command replaces the CMD.
+
+---
+
+### ENTRYPOINT
+
+Defines the main executable.
+
+Example:
+
+```dockerfile
+ENTRYPOINT ["python"]
+```
+
+Running:
+
+```bash
+docker run image app.py
+```
+
+Executes:
+
+```
+python app.py
+```
+
+---
+
+### CMD + ENTRYPOINT Together
+
+```dockerfile
+ENTRYPOINT ["python"]
+
+CMD ["app.py"]
+```
+
+Default:
+
+```
+python app.py
+```
+
+Override:
+
+```bash
+docker run image test.py
+```
+
+Executes:
+
+```
+python test.py
+```
+
+---
+
+### Comparison
+
+| Feature | CMD | ENTRYPOINT |
+|----------|-----|------------|
+| Default command | ✅ | ❌ |
+| Main executable | ❌ | ✅ |
+| Easily overridden | ✅ | ❌ |
+
+---
+
+### Production Interview Answer
+
+> `ENTRYPOINT` defines the main executable that always runs, while `CMD` provides default arguments or commands that can be overridden. In production, I often use `ENTRYPOINT` for the application binary and `CMD` for default runtime arguments.
+
+---
+
+# ☸️ KUBERNETES
+
+# 5. What is the core difference between a ClusterIP and a NodePort Service?
+
+## Answer
+
+### ClusterIP
+
+- Default Service type.
+- Accessible only within the Kubernetes cluster.
+- Used for internal service-to-service communication.
+
+Example:
+
+```
+Frontend
+
+↓
+
+Backend Service
+
+↓
+
+Database
+```
+
+---
+
+### NodePort
+
+- Exposes the Service on a static port (30000–32767) on every worker node.
+- Accessible from outside the cluster.
+
+Example:
+
+```
+Client
+
+↓
+
+NodeIP:30080
+
+↓
+
+Service
+
+↓
+
+Pods
+```
+
+---
+
+### Comparison
+
+| ClusterIP | NodePort |
+|------------|----------|
+| Internal only | External access |
+| Default Service | Opens a port on each node |
+| More secure | Primarily for development/testing |
+
+---
+
+### Production Interview Answer
+
+> ClusterIP is used for internal communication between services inside the cluster, while NodePort exposes the service externally through a static port on every worker node. In production, I typically use ClusterIP with an Ingress Controller rather than exposing services directly through NodePort.
+
+---
+
+# 6. Why would you use a StatefulSet over a standard Deployment?
+
+## Answer
+
+A StatefulSet is designed for applications that require:
+
+- Stable network identities
+- Persistent storage
+- Ordered deployment and scaling
+
+Examples:
+
+- PostgreSQL
+- MySQL
+- MongoDB
+- Kafka
+
+A Deployment is intended for stateless applications where Pods are interchangeable.
+
+---
+
+### Comparison
+
+| Deployment | StatefulSet |
+|------------|-------------|
+| Stateless | Stateful |
+| Random Pod names | Stable Pod names |
+| Ephemeral storage | Persistent Volumes |
+| Suitable for web apps | Suitable for databases |
+
+---
+
+### Production Interview Answer
+
+> I use Deployments for stateless applications such as APIs and web services, and StatefulSets for databases or messaging systems that require stable identities and persistent storage.
+
+# Kubernetes, Terraform & IaC Interview Questions
+## Senior DevOps Interview Preparation (Part 2)
+
+---
+
+# ☸️ KUBERNETES
+
+# 7. What is the function of the mutation phase in a Kubernetes Admission Controller?
+
+## Answer
+
+The **Mutation Admission Controller** intercepts API requests **before objects are stored in etcd** and can automatically modify or inject additional configurations into Kubernetes resources.
+
+It runs **after authentication and authorization** but **before validation**.
+
+### Request Flow
+
+```
+kubectl apply
+      │
+      ▼
+Authentication
+      │
+      ▼
+Authorization
+      │
+      ▼
+Mutating Admission Controller
+      │
+      ▼
+Validating Admission Controller
+      │
+      ▼
+etcd
+```
+
+---
+
+### Common Use Cases
+
+- Inject sidecar containers (Istio, Linkerd)
+- Add default labels and annotations
+- Automatically inject resource requests/limits
+- Add imagePullSecrets
+- Enforce security settings
+- Add tolerations or node selectors
+- Inject environment variables
+
+---
+
+### Example
+
+A user creates a Pod without CPU and memory limits:
+
+```yaml
+containers:
+- name: app
+  image: nginx
+```
+
+The Mutating Admission Controller automatically adds:
+
+```yaml
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+```
+
+---
+
+### Popular Mutating Admission Controllers
+
+- MutatingAdmissionWebhook
+- Istio Sidecar Injector
+- Kyverno
+- Open Policy Agent (OPA)
+- Gatekeeper
+
+---
+
+### Production Interview Answer
+
+> The Mutation Admission Controller modifies Kubernetes objects before they are persisted in etcd. It is commonly used to inject sidecars, resource limits, labels, annotations, security policies, and default configurations automatically, ensuring consistency across production workloads.
+
+---
+
+# 8. What is the exact difference between livenessProbe and readinessProbe?
+
+## Answer
+
+Both probes monitor container health but serve different purposes.
+
+---
+
+## Liveness Probe
+
+Checks whether the application is **still running correctly**.
+
+If the liveness probe fails:
+
+- Kubernetes assumes the application is unhealthy.
+- The container is restarted automatically.
+
+Example:
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+```
+
+---
+
+## Readiness Probe
+
+Checks whether the application is **ready to serve traffic**.
+
+If the readiness probe fails:
+
+- The Pod is removed from the Service endpoints.
+- No traffic is sent to the Pod.
+- The container is **not restarted**.
+
+Example:
+
+```yaml
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+```
+
+---
+
+## Real Production Scenario
+
+During application startup:
+
+```
+Pod Created
+
+↓
+
+Application Initializing
+
+↓
+
+Readiness = Failed
+
+↓
+
+Traffic NOT Sent
+
+↓
+
+Initialization Complete
+
+↓
+
+Readiness = Success
+
+↓
+
+Traffic Starts
+```
+
+---
+
+If later the application hangs:
+
+```
+Application Frozen
+
+↓
+
+Liveness Fails
+
+↓
+
+Container Restarted
+```
+
+---
+
+## Comparison
+
+| Liveness Probe | Readiness Probe |
+|----------------|-----------------|
+| Detects unhealthy containers | Detects if application is ready |
+| Restarts container | Stops traffic only |
+| Used for recovery | Used for load balancing |
+| Prevents hung applications | Prevents failed requests |
+
+---
+
+### Production Interview Answer
+
+> Liveness probes determine whether a container should be restarted, while readiness probes determine whether a Pod should receive traffic. In production, readiness probes prevent users from hitting unready applications, and liveness probes recover applications that become unhealthy or unresponsive.
+
+---
+
+# 🌍 TERRAFORM / IaC
+
+# 9. What is the primary purpose of the terraform.tfstate file?
+
+## Answer
+
+The **terraform.tfstate** file is Terraform's source of truth. It stores the current state of infrastructure so Terraform knows what resources already exist and how they map to the configuration.
+
+Without the state file, Terraform cannot accurately determine which resources need to be created, updated, or destroyed.
+
+---
+
+## State File Contains
+
+- Resource IDs
+- Resource attributes
+- Metadata
+- Dependency information
+- Outputs
+- Module information
+
+---
+
+## Why is it Important?
+
+Terraform compares:
+
+```
+Terraform Code
+
+VS
+
+terraform.tfstate
+
+↓
+
+Execution Plan
+```
+
+Without the state file, Terraform may attempt to recreate existing resources or fail to manage them correctly.
+
+---
+
+## Where Should It Be Stored?
+
+For team environments:
+
+- AWS S3 (Remote Backend)
+- Azure Storage Account
+- Google Cloud Storage
+- Terraform Cloud
+
+Use **DynamoDB** (AWS) for state locking.
+
+---
+
+## Best Practices
+
+- Never commit the state file to Git.
+- Enable S3 versioning.
+- Encrypt the state file.
+- Restrict IAM access.
+- Enable state locking.
+
+---
+
+### Production Interview Answer
+
+> The terraform.tfstate file is Terraform's source of truth. It records the actual infrastructure state, allowing Terraform to compare it with the desired configuration. In production, I store it remotely in an encrypted S3 bucket with versioning enabled and use DynamoDB for state locking.
+
+---
+
+# 10. When should you use count versus for_each to loop through resources?
+
+## Answer
+
+Both create multiple resource instances but differ in how they identify those instances.
+
+---
+
+## count
+
+Uses numeric indexes.
+
+Example:
+
+```hcl
+count = 3
+```
+
+Creates:
+
+```
+server[0]
+server[1]
+server[2]
+```
+
+---
+
+### Best For
+
+- Identical resources
+- Simple scaling
+- Fixed number of resources
+
+---
+
+## for_each
+
+Uses unique keys.
+
+Example:
+
+```hcl
+for_each = {
+  dev = "t3.micro"
+  prod = "t3.large"
+}
+```
+
+Creates:
+
+```
+server["dev"]
+server["prod"]
+```
+
+---
+
+### Best For
+
+- Resources with unique names
+- Maps
+- Sets
+- Environment-specific resources
+
+---
+
+## Why count Can Become a Problem
+
+Suppose:
+
+```
+count = 3
+```
+
+Resources:
+
+```
+server[0]
+
+server[1]
+
+server[2]
+```
+
+If you remove the second resource, indexes shift:
+
+```
+server[0]
+
+server[1]
+```
+
+Terraform may destroy and recreate resources unnecessarily.
+
+With **for_each**, keys remain stable.
+
+---
+
+## Comparison
+
+| count | for_each |
+|--------|----------|
+| Index-based | Key-based |
+| Better for identical resources | Better for unique resources |
+| Index changes can recreate resources | Stable resource identity |
+
+---
+
+### Production Interview Answer
+
+> I use `count` for creating identical resources, such as multiple EC2 instances with the same configuration. I use `for_each` when resources have unique names or configurations because stable keys prevent unnecessary resource recreation during updates.
+
+---
+
+# 11. How does state locking work, and why is it crucial in a team environment?
+
+## Answer
+
+State locking prevents multiple users or CI/CD pipelines from modifying the same Terraform state simultaneously.
+
+Without locking:
+
+```
+Engineer A
+
+terraform apply
+
+↓
+
+Engineer B
+
+terraform apply
+
+↓
+
+State Corruption
+```
+
+---
+
+### AWS Implementation
+
+```
+Terraform
+
+↓
+
+S3 Backend
+
+↓
+
+DynamoDB Lock Table
+```
+
+Terraform acquires a lock before making changes. Other users must wait until the lock is released.
+
+---
+
+### Benefits
+
+- Prevents race conditions
+- Prevents state corruption
+- Ensures infrastructure consistency
+- Safe collaboration
+
+---
+
+### Production Interview Answer
+
+> State locking ensures only one Terraform operation can modify the state at a time. In AWS, I use an S3 backend for remote state storage and a DynamoDB table for state locking to prevent concurrent updates and state corruption.
+
+---
+
+# 12. What is the difference between `terraform plan` and `terraform apply -refresh-only`?
+
+## Answer
+
+### terraform plan
+
+- Compares Terraform configuration with the current infrastructure.
+- Shows proposed changes.
+- Does not modify infrastructure or state.
+
+Example:
+
+```bash
+terraform plan
+```
+
+---
+
+### terraform apply -refresh-only
+
+- Refreshes the Terraform state with the actual infrastructure.
+- Updates only the state file.
+- Does not create, modify, or destroy resources.
+
+Example:
+
+```bash
+terraform apply -refresh-only
+```
+
+---
+
+### When to Use refresh-only
+
+- Manual infrastructure changes occurred.
+- State drift is suspected.
+- Need to synchronize state without applying configuration changes.
+
+---
+
+## Comparison
+
+| terraform plan | terraform apply -refresh-only |
+|----------------|-------------------------------|
+| Shows planned changes | Updates state only |
+| No changes applied | No infrastructure changes |
+| Detects drift | Synchronizes state with reality |
+
+---
+
+### Production Interview Answer
+
+> `terraform plan` previews the changes required to align infrastructure with the configuration, while `terraform apply -refresh-only` updates the Terraform state to reflect the current infrastructure without making any changes. I use `refresh-only` when I need to synchronize the state after manual changes or investigate state drift.
+
+
+# CI/CD, Observability, Linux & Networking Interview Questions
+## Senior DevOps Interview Preparation (Part 3)
+
+---
+
+# 🚀 CI/CD & OBSERVABILITY
+
+# 13. What is the technical difference between Continuous Delivery and Continuous Deployment?
+
+## Answer
+
+Both Continuous Delivery and Continuous Deployment automate software delivery, but they differ in the final deployment step.
+
+### Continuous Delivery
+
+Every code change automatically goes through:
+
+- Build
+- Unit Testing
+- Security Scanning
+- Integration Testing
+- Packaging
+
+The application is **ready for production**, but deployment requires **manual approval**.
+
+```
+Developer
+
+↓
+
+Git Push
+
+↓
+
+CI Pipeline
+
+↓
+
+Tests
+
+↓
+
+Build
+
+↓
+
+Manual Approval
+
+↓
+
+Production
+```
+
+**Example:** Jenkins pipeline waits for manager approval before production deployment.
+
+---
+
+### Continuous Deployment
+
+Everything is automated.
+
+If all tests pass, the application is automatically deployed to production without human intervention.
+
+```
+Developer
+
+↓
+
+Git Push
+
+↓
+
+CI Pipeline
+
+↓
+
+Tests
+
+↓
+
+Production
+```
+
+---
+
+### Comparison
+
+| Continuous Delivery | Continuous Deployment |
+|----------------------|------------------------|
+| Manual production approval | Fully automated |
+| Production-ready artifacts | Automatically deployed |
+| More control | Faster releases |
+| Common in enterprises | Common in SaaS companies |
+
+---
+
+### Production Interview Answer
+
+> Continuous Delivery automates building, testing, and packaging but requires manual approval before production deployment. Continuous Deployment extends this by automatically deploying every successful build to production without human intervention. In enterprise environments, Continuous Delivery is more common because it provides better release control.
+
+---
+
+# 14. How do you efficiently use caching in a CI pipeline to speed up build times?
+
+## Answer
+
+Caching avoids downloading the same dependencies repeatedly, significantly reducing pipeline execution time.
+
+---
+
+### Common Cache Types
+
+- Maven Repository (`~/.m2`)
+- Gradle Cache
+- npm Cache
+- pip Packages
+- Docker Layers
+- Terraform Providers
+- Sonar Scanner Cache
+
+---
+
+### Example (GitHub Actions)
+
+```yaml
+- uses: actions/cache@v3
+  with:
+    path: ~/.m2
+    key: maven-cache
+```
+
+---
+
+### Jenkins Example
+
+Cache:
+
+```
+~/.m2
+
+Docker Layers
+
+Node Modules
+```
+
+instead of downloading every build.
+
+---
+
+### Docker Layer Cache
+
+Without Cache:
+
+```
+Download Dependencies
+
+↓
+
+Compile
+
+↓
+
+Package
+```
+
+Every build repeats all steps.
+
+With Cache:
+
+```
+Reuse Existing Layers
+
+↓
+
+Build Only Changed Layers
+```
+
+---
+
+### Benefits
+
+- Faster builds
+- Reduced network traffic
+- Lower cloud costs
+- Faster developer feedback
+
+---
+
+### Best Practices
+
+- Cache dependencies only
+- Avoid caching build artifacts
+- Use checksum-based cache keys
+- Invalidate cache when dependency files change
+
+---
+
+### Production Interview Answer
+
+> I cache dependency repositories such as Maven, npm, Docker layers, and Terraform plugins to reduce build time. Cache keys are tied to dependency files like `pom.xml` or `package-lock.json`, ensuring caches are refreshed only when dependencies change.
+
+---
+
+# 15. What is the difference between structured logging and unstructured plain-text logging?
+
+## Answer
+
+### Unstructured Logging
+
+Logs are plain text.
+
+Example:
+
+```
+User login failed for admin from IP 10.0.0.5
+```
+
+Problems:
+
+- Difficult to search
+- Difficult to filter
+- Hard to analyze automatically
+
+---
+
+### Structured Logging
+
+Logs are stored in JSON or key-value format.
+
+Example:
+
+```json
+{
+  "timestamp":"2026-08-05T10:15:20Z",
+  "level":"ERROR",
+  "user":"admin",
+  "ip":"10.0.0.5",
+  "service":"login-api",
+  "message":"Authentication failed"
+}
+```
+
+---
+
+### Benefits
+
+- Easy filtering
+- Better querying
+- Faster troubleshooting
+- Machine-readable
+- Works well with ELK/OpenSearch
+
+---
+
+### Comparison
+
+| Structured | Unstructured |
+|------------|--------------|
+| JSON format | Plain text |
+| Searchable | Difficult to search |
+| Better analytics | Limited analysis |
+| Production recommended | Small applications |
+
+---
+
+### Production Interview Answer
+
+> Structured logging stores logs in JSON format with consistent fields such as timestamp, service, request ID, and log level. This makes searching and correlation much easier in tools like ELK or OpenSearch. Plain-text logging is harder to query and is generally avoided in large production environments.
+
+---
+
+# 16. In Prometheus, what is the difference between a Gauge and a Counter metric type?
+
+## Answer
+
+Prometheus provides different metric types for different monitoring use cases.
+
+---
+
+## Counter
+
+A Counter only increases.
+
+It can only:
+
+- Increase
+- Reset to zero after restart
+
+Examples:
+
+- HTTP requests
+- Login attempts
+- Errors
+- API calls
+
+Example:
+
+```
+100
+
+↓
+
+150
+
+↓
+
+210
+```
+
+Never decreases.
+
+---
+
+## Gauge
+
+A Gauge can increase or decrease.
+
+Examples:
+
+- CPU usage
+- Memory usage
+- Active users
+- Queue length
+- Temperature
+
+Example:
+
+```
+65%
+
+↓
+
+40%
+
+↓
+
+82%
+
+↓
+
+55%
+```
+
+---
+
+### Comparison
+
+| Counter | Gauge |
+|----------|-------|
+| Only increases | Increases & decreases |
+| Request count | CPU usage |
+| Error count | Memory usage |
+| Login count | Queue size |
+
+---
+
+### Production Interview Answer
+
+> I use Counters for cumulative values such as total requests or errors because they only increase. Gauges are used for values that fluctuate, such as CPU utilization, memory consumption, active sessions, or queue lengths.
+
+---
+
+# 🐧 LINUX & NETWORKING
+
+# 17. What is the difference between a hard link and a soft (symbolic) link in Linux?
+
+## Answer
+
+A **hard link** points directly to the file's inode, while a **soft link** points to the file's path.
+
+---
+
+### Hard Link
+
+- Shares the same inode
+- Remains valid even if the original filename is deleted
+- Cannot span different filesystems
+- Cannot link directories
+
+Example:
+
+```bash
+ln file.txt hardlink.txt
+```
+
+---
+
+### Soft Link
+
+- Points to the file path
+- Breaks if the original file is removed
+- Can cross filesystems
+- Can link directories
+
+Example:
+
+```bash
+ln -s file.txt softlink.txt
+```
+
+---
+
+### Comparison
+
+| Hard Link | Soft Link |
+|------------|-----------|
+| Same inode | Different inode |
+| Survives original deletion | Breaks if target is deleted |
+| Same filesystem only | Cross-filesystem supported |
+| Files only | Files and directories |
+
+---
+
+### Production Interview Answer
+
+> A hard link references the same inode as the original file, so deleting the original filename does not remove the data until all hard links are deleted. A symbolic link simply points to the file path and becomes invalid if the target file is removed.
+
+---
+
+# 18. How do you debug a network connectivity issue between two microservices using CLI tools?
+
+## Answer
+
+I follow a structured troubleshooting process.
+
+### Step 1: Verify Pod Status
+
+```bash
+kubectl get pods
+```
+
+---
+
+### Step 2: Verify Service
+
+```bash
+kubectl get svc
+```
+
+---
+
+### Step 3: Verify Endpoints
+
+```bash
+kubectl get endpoints
+```
+
+Ensure the Service has healthy Pod endpoints.
+
+---
+
+### Step 4: Test DNS
+
+```bash
+nslookup service-name
+
+dig service-name
+```
+
+---
+
+### Step 5: Test Connectivity
+
+```bash
+curl http://service-name
+
+wget
+
+telnet
+
+nc
+```
+
+---
+
+### Step 6: Check Network Policies
+
+```bash
+kubectl get networkpolicy
+```
+
+---
+
+### Step 7: Verify Logs
+
+```bash
+kubectl logs pod-name
+```
+
+---
+
+### Step 8: Check Kubernetes Events
+
+```bash
+kubectl get events
+```
+
+---
+
+### Production Interview Answer
+
+> I verify Pod health, Service configuration, Endpoints, DNS resolution, and network policies before testing connectivity with tools like `curl`, `telnet`, or `nc`. I then review application logs and Kubernetes events to isolate whether the issue is related to networking, service discovery, or the application itself.
+
+---
+
+# 19. What does a 502 Bad Gateway error usually mean in an Nginx reverse proxy setup?
+
+## Answer
+
+A **502 Bad Gateway** means **Nginx successfully received the client's request but failed to obtain a valid response from the upstream backend server**.
+
+---
+
+### Common Causes
+
+- Backend application is down
+- Application crashed
+- Wrong upstream IP or port
+- Backend timeout
+- Kubernetes Pods unhealthy
+- Service has no endpoints
+- Firewall or Security Group issue
+
+---
+
+### Troubleshooting Steps
+
+Check Nginx logs:
+
+```bash
+tail -f /var/log/nginx/error.log
+```
+
+Check backend:
+
+```bash
+curl backend-service
+```
+
+Check Kubernetes:
+
+```bash
+kubectl get endpoints
+
+kubectl describe svc
+```
+
+Check Pod health:
+
+```bash
+kubectl get pods
+```
+
+---
+
+### Production Interview Answer
+
+> A 502 Bad Gateway indicates that Nginx could not get a valid response from the upstream application. I check backend application health, Service endpoints, Pod readiness, Nginx logs, network connectivity, and timeout settings to identify the root cause.
+
+---
+
+# 20. Which DNS record type is used to map an alias name to a canonical domain name?
+
+## Answer
+
+The **CNAME (Canonical Name)** record maps one domain name to another.
+
+Example:
+
+```
+api.example.com
+
+↓
+
+backend.example.com
+```
+
+DNS resolves:
+
+```
+api.example.com
+
+↓
+
+backend.example.com
+
+↓
+
+A Record
+
+↓
+
+IP Address
+```
+
+---
+
+### Common DNS Records
+
+| Record | Purpose |
+|---------|----------|
+| A | Maps domain to IPv4 address |
+| AAAA | Maps domain to IPv6 address |
+| CNAME | Maps one hostname to another |
+| MX | Mail server |
+| TXT | Verification, SPF, DKIM |
+| NS | Name server |
+| PTR | Reverse DNS lookup |
+
+---
+
+### Production Interview Answer
+
+> A CNAME record maps one hostname to another canonical hostname instead of directly to an IP address. It is commonly used for aliases such as `www.example.com` pointing to `example.com` or application endpoints that resolve through cloud-managed DNS.
+
+
 # DevOps Engineer – Scenario-Based Interview Questions
 ## Production Operations & Incident Management
 
