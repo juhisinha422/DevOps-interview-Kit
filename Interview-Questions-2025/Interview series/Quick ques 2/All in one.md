@@ -1,3 +1,47 @@
+# 🔍𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗘𝘅𝗽𝗹𝗮𝗶𝗻𝗲𝗱 — 𝗢𝗻𝗲 𝗮𝘁 𝗮 𝗧𝗶𝗺𝗲!
+
+𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼 : 𝗔 𝘁𝗲𝗮𝗺𝗺𝗮𝘁𝗲 𝗮𝗰𝗰𝗶𝗱𝗲𝗻𝘁𝗮𝗹𝗹𝘆 𝗽𝘂𝘀𝗵𝗲𝗱 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝘀𝗲𝗰𝗿𝗲𝘁𝘀 𝘁𝗼 𝗚𝗶𝘁 ? 𝗛𝗼𝘄 𝘄𝗶𝗹𝗹 𝘆𝗼𝘂 𝘁𝗮𝗰𝗸𝗹𝗲 𝘁𝗵𝗶𝘀 𝗶𝘀𝘀𝘂𝗲 ?
+
+ ```
+𝗦𝘁𝗲𝗽 𝟭: 𝗔𝘀𝘀𝗲𝘀𝘀 𝘁𝗵𝗲 𝗘𝘅𝗽𝗼𝘀𝘂𝗿𝗲 :
+ 1. Was the repository public or private?
+ 2. What kind of secret was exposed?
+ • AWS Access Key
+ • Kubernetes Secret manifest
+ • Database password
+ • API token
+ • SSH private key
+ 3. Has anyone cloned or forked the repository?
+ 4. How long has the secret been exposed?
+This helps determine the severity of the incident.
+
+𝗦𝘁𝗲𝗽 𝟮: 𝗥𝗼𝘁𝗮𝘁𝗲 𝘁𝗵𝗲 𝗦𝗲𝗰𝗿𝗲𝘁 𝗜𝗺𝗺𝗲𝗱𝗶𝗮𝘁𝗲𝗹𝘆 (𝗛𝗶𝗴𝗵𝗲𝘀𝘁 𝗣𝗿𝗶𝗼𝗿𝗶𝘁𝘆)
+* If an AWS Access Key was exposed:
+ • Create a new Access Key.
+ • Update applications to use the new key.
+ • Disable and delete the compromised key.
+* If it's a Kubernetes Secret containing API credentials:
+ • Generate new credentials.
+ • Update the Secret object.
+ • Redeploy workloads if required.
+
+𝗦𝘁𝗲𝗽 𝟯: 𝗥𝗲𝗺𝗼𝘃𝗲 𝘁𝗵𝗲 𝗦𝗲𝗰𝗿𝗲𝘁 𝗳𝗿𝗼𝗺 𝗚𝗶𝘁 :
+If the secret has already been pushed, the secret should be removed from the repository history using tools designed for history rewriting, such as:
+𝗴𝗶𝘁 𝗳𝗶𝗹𝘁𝗲𝗿-𝗿𝗲𝗽𝗼 (𝗿𝗲𝗰𝗼𝗺𝗺𝗲𝗻𝗱𝗲𝗱)
+𝗕𝗙𝗚 𝗥𝗲𝗽𝗼-𝗖𝗹𝗲𝗮𝗻𝗲𝗿
+After rewriting history: 𝗴𝗶𝘁 𝗽𝘂𝘀𝗵 --𝗳𝗼𝗿𝗰𝗲 (Be aware that collaborators will need to synchronize their local clones because history has changed.)
+
+𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗥𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 𝗛𝗶𝘀𝘁𝗼𝗿𝘆 : 
+Search the repository to ensure the secret doesn't exist elsewhere by using 𝗴𝗶𝘁 𝗹𝗼𝗴 command.
+
+𝗦𝘁𝗲𝗽 𝟱: 𝗡𝗼𝘁𝗶𝗳𝘆 𝘁𝗵𝗲 𝗧𝗲𝗮𝗺
+
+𝗦𝘁𝗲𝗽 𝟲: 𝗣𝗿𝗲𝘃𝗲𝗻𝘁 𝗜𝘁 𝗳𝗿𝗼𝗺 𝗛𝗮𝗽𝗽𝗲𝗻𝗶𝗻𝗴 𝗔𝗴𝗮𝗶𝗻 (𝗠𝗼𝘀𝘁 𝗜𝗺𝗽𝗼𝗿𝘁𝗮𝗻𝘁)
+* 𝗨𝘀𝗲 𝗚𝗶𝘁 𝗽𝗿𝗲-𝗰𝗼𝗺𝗺𝗶𝘁 𝗵𝗼𝗼𝗸𝘀 and tools like 𝗚𝗶𝘁𝗹𝗲𝗮𝗸𝘀, 𝗚𝗶𝘁 𝗦𝗲𝗰𝗿𝗲𝘁𝘀 to block commits containing secrets.
+* 𝗨𝘀𝗲 𝗮 𝗦𝗲𝗰𝗿𝗲𝘁 𝗠𝗮𝗻𝗮𝗴𝗲𝗿 : Instead of storing secrets in Git,use AWS Secrets Manager , AWS Systems Manager Parameter Store,HashiCorp Vault or External Secrets Operator for Kubernetes
+* 𝗖𝗜/𝗖𝗗 𝗦𝗲𝗰𝗿𝗲𝘁 𝗦𝗰𝗮𝗻𝗻𝗶𝗻𝗴 :Run secret scanning during pull requests.
+```
+
 # Docker, Kubernetes, Terraform, CI/CD, Linux & Networking Interview Questions
 ## Senior DevOps Interview Preparation (Part 1)
 
