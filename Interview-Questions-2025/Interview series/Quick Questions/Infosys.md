@@ -1,3 +1,1722 @@
+# Infosys AWS DevOps Interview Questions & Answers
+
+---
+
+## 1. Explain the CI/CD pipeline you implemented using Jenkins, GitHub & AWS.
+
+### Answer
+
+In my project, we use GitHub as the source-code repository and Jenkins for CI/CD automation. When a developer pushes code to the configured branch, a GitHub webhook triggers the Jenkins pipeline.
+
+The pipeline generally follows:
+
+```text
+Developer
+   ↓
+GitHub
+   ↓
+Webhook
+   ↓
+Jenkins
+   ↓
+Checkout
+   ↓
+Build
+   ↓
+Unit Tests
+   ↓
+SonarQube
+   ↓
+Docker Build
+   ↓
+Trivy Scan
+   ↓
+Push Image to Amazon ECR
+   ↓
+Deploy to EKS
+   ↓
+Health Check
+   ↓
+Monitoring
+```
+
+For Java applications, Maven is used for compilation and packaging. SonarQube performs code-quality analysis, Trivy is used for container vulnerability scanning, and the Docker image is pushed to Amazon ECR.
+
+The Kubernetes deployment is then performed using Kubernetes manifests, Helm, or Argo CD depending on the project architecture.
+
+### Interview Answer
+
+> I implemented a Jenkins-based CI/CD pipeline integrated with GitHub and AWS. GitHub webhook triggers Jenkins, which checks out the code, builds and tests it, performs SonarQube analysis and security scanning, builds the Docker image, pushes it to ECR, and then deploys the application to EKS. After deployment, we perform health validation and monitor the application through CloudWatch and Prometheus/Grafana.
+
+---
+
+## 2. How do you troubleshoot a failed Jenkins pipeline or GitHub Actions workflow?
+
+### Answer
+
+I troubleshoot it stage by stage instead of assuming the entire pipeline is broken.
+
+First, I check the Jenkins console output and identify the exact stage and command that failed.
+
+For example:
+
+```text
+Checkout
+Build
+Test
+SonarQube
+Docker Build
+Security Scan
+Push
+Deploy
+```
+
+Then I investigate based on the failed stage.
+
+### If Checkout fails
+
+I check:
+
+- Git credentials
+- Repository URL
+- Branch
+- Network connectivity
+- Webhook configuration
+
+### If Maven build fails
+
+I check:
+
+```bash
+mvn clean package
+```
+
+and investigate:
+
+- `pom.xml`
+- Java version
+- Dependency failures
+- Repository availability
+
+### If Docker build fails
+
+I check:
+
+- Dockerfile
+- Build context
+- Docker daemon
+- Permissions
+- Required files
+
+### If ECR push fails
+
+I check:
+
+- AWS credentials
+- IAM permissions
+- ECR repository
+- AWS Region
+- Docker authentication
+
+### If Kubernetes deployment fails
+
+I check:
+
+```bash
+kubectl get pods
+kubectl describe pod <pod>
+kubectl get events
+kubectl rollout status deployment <deployment>
+```
+
+### Interview Answer
+
+> I first identify the exact failed stage from the Jenkins console log. Then I reproduce the failing command manually where possible and verify credentials, environment variables, dependencies, permissions, and connectivity. I avoid rerunning the complete pipeline blindly because the root cause could be a specific stage such as Maven, Docker, ECR, or Kubernetes.
+
+---
+
+## 3. What is the difference between ALB and NLB? When would you use each?
+
+### Answer
+
+**ALB — Application Load Balancer**
+
+Works at Layer 7 and understands HTTP/HTTPS traffic.
+
+It supports:
+
+- Host-based routing
+- Path-based routing
+- HTTP headers
+- TLS termination
+- WebSocket
+- Integration with Kubernetes Ingress
+
+Example:
+
+```text
+example.com/users  → User Service
+example.com/orders → Order Service
+```
+
+**NLB — Network Load Balancer**
+
+Works primarily at Layer 4 and handles TCP/UDP/TLS traffic.
+
+It provides:
+
+- Very high throughput
+- Low latency
+- Static IP support
+- TCP/UDP workloads
+
+### When I choose ALB
+
+For:
+
+- Web applications
+- REST APIs
+- Microservices
+- HTTP/HTTPS routing
+- EKS Ingress
+
+### When I choose NLB
+
+For:
+
+- TCP applications
+- UDP workloads
+- Extremely high throughput
+- Static IP requirements
+- Non-HTTP protocols
+
+### Interview Answer
+
+> I prefer ALB when I need Layer 7 HTTP/HTTPS routing such as host-based or path-based routing. I choose NLB when I need Layer 4 TCP/UDP traffic handling, very high throughput, low latency, or static IP requirements.
+
+---
+
+## 4. What is the difference between Launch Templates and Launch Configurations?
+
+### Answer
+
+Both are used with EC2 Auto Scaling Groups, but Launch Templates are the newer and recommended option.
+
+### Launch Configuration
+
+It is an older EC2 configuration mechanism.
+
+Limitations include:
+
+- Less flexibility
+- Cannot be modified after creation
+- Older feature set
+
+### Launch Template
+
+Supports:
+
+- Multiple versions
+- Instance types
+- Spot Instances
+- Network interfaces
+- EBS configuration
+- Metadata options
+- More modern EC2 features
+
+Example:
+
+```text
+Launch Template
+      ↓
+ASG
+      ↓
+EC2 Instances
+```
+
+### Interview Answer
+
+> Launch Templates are the modern replacement for Launch Configurations. They support versioning and newer EC2 capabilities, so I would use Launch Templates for new production Auto Scaling architectures.
+
+---
+
+## 5. What happens when an EC2 instance in an ASG becomes unhealthy?
+
+### Answer
+
+The Auto Scaling Group continuously monitors the health of its instances using EC2 or ELB health checks.
+
+If an instance becomes unhealthy:
+
+```text
+Unhealthy EC2
+      ↓
+ASG detects failure
+      ↓
+Terminates instance
+      ↓
+Launches replacement
+      ↓
+New instance joins target group
+```
+
+For example, if the desired capacity is:
+
+```text
+Desired = 3
+```
+
+and one instance becomes unhealthy, ASG replaces it to maintain:
+
+```text
+3 healthy instances
+```
+
+### Interview Answer
+
+> When an EC2 instance in an ASG becomes unhealthy according to the configured health check, the ASG terminates it and launches a replacement to maintain the desired capacity. If the ASG is behind an ALB, I also verify the target-group health checks because an instance can be running but still be unhealthy from the application's perspective.
+
+---
+
+## 6. How do you deploy applications on EKS? What is the difference between EKS and ECS?
+
+### Answer
+
+For EKS, I typically follow:
+
+```text
+Dockerfile
+   ↓
+Docker Build
+   ↓
+ECR
+   ↓
+Kubernetes Deployment
+   ↓
+Service / Ingress
+   ↓
+EKS
+```
+
+Example:
+
+```bash
+docker build -t myapp:v1 .
+docker push <ecr-repository>/myapp:v1
+```
+
+Then deploy:
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+### EKS
+
+Amazon Elastic Kubernetes Service is a managed Kubernetes service.
+
+It provides:
+
+- Kubernetes orchestration
+- Deployments
+- Services
+- StatefulSets
+- ConfigMaps
+- Secrets
+- HPA
+- Ingress
+
+### ECS
+
+Amazon Elastic Container Service is AWS's native container orchestration service.
+
+### Interview Answer
+
+> I choose EKS when the organization requires Kubernetes capabilities, portability, complex scheduling, Helm, operators, or a Kubernetes-based platform. ECS is simpler when the workload is primarily AWS-focused and doesn't require Kubernetes functionality.
+
+---
+
+## 7. Explain Blue-Green vs Canary deployment with a real-world use case.
+
+### Answer
+
+### Blue-Green
+
+Two environments are maintained:
+
+```text
+Blue  → Current Production
+
+Green → New Version
+```
+
+After testing Green, traffic is switched:
+
+```text
+Users
+  ↓
+Green
+```
+
+Rollback is quick:
+
+```text
+Users
+  ↓
+Blue
+```
+
+### Canary
+
+The new version initially receives a small percentage of traffic.
+
+```text
+Old Version → 90%
+
+New Version → 10%
+```
+
+If metrics are healthy:
+
+```text
+90/10
+ ↓
+70/30
+ ↓
+50/50
+ ↓
+0/100
+```
+
+### When I use Canary
+
+For high-risk production releases where I want real-user validation.
+
+### When I use Blue-Green
+
+When fast rollback and environment isolation are more important.
+
+### Interview Answer
+
+> Canary gradually exposes users to a new release, reducing deployment risk, while Blue-Green maintains two environments and switches traffic between them. For a critical application, I would generally prefer Canary when gradual validation is important and Blue-Green when instant rollback is the priority.
+
+---
+
+## 8. What is your rollback strategy for a failed Kubernetes deployment?
+
+### Answer
+
+First, I monitor:
+
+- Pod readiness
+- Error rate
+- HTTP status codes
+- CPU/memory
+- Application logs
+- Health checks
+
+If the new Deployment is unhealthy:
+
+```bash
+kubectl rollout status deployment myapp
+```
+
+I inspect:
+
+```bash
+kubectl get pods
+kubectl describe pod <pod>
+kubectl logs <pod>
+```
+
+If rollback is required:
+
+```bash
+kubectl rollout undo deployment myapp
+```
+
+Then:
+
+```bash
+kubectl rollout status deployment myapp
+```
+
+For Helm:
+
+```bash
+helm history myapp
+helm rollback myapp <revision>
+```
+
+For GitOps, I would revert the Git commit and allow Argo CD to reconcile the previous desired state.
+
+### Interview Answer
+
+> My rollback mechanism depends on the deployment strategy. With Kubernetes Deployments I use `kubectl rollout undo`, with Helm I use `helm rollback`, and with GitOps I revert the Git commit. I also prefer automated rollback based on health checks, error rates, and readiness rather than waiting for users to report failures.
+
+---
+
+## 9. How do you manage secrets securely in AWS?
+
+### Answer
+
+I avoid storing credentials directly in:
+
+```text
+GitHub
+Jenkinsfile
+Dockerfile
+Terraform code
+Kubernetes YAML
+```
+
+For AWS workloads, I prefer:
+
+- AWS Secrets Manager
+- AWS Systems Manager Parameter Store
+- IAM Roles
+- EKS Pod Identity / IRSA where applicable
+
+For example:
+
+```text
+Application
+     ↓
+IAM Role
+     ↓
+Secrets Manager
+     ↓
+Secret
+```
+
+### Important Practices
+
+- Least-privilege IAM
+- Encryption at rest
+- Encryption in transit
+- Credential rotation
+- No hardcoded credentials
+- Audit access using CloudTrail
+
+### Interview Answer
+
+> I prefer IAM roles for workload authentication instead of static access keys. For application secrets such as database passwords and API keys, I use Secrets Manager or another approved secret-management solution and restrict access through least-privilege IAM policies.
+
+---
+
+## 10. Explain IAM Roles, Policies and Cross-Account Access.
+
+### Answer
+
+### IAM Policy
+
+Defines what actions are allowed or denied.
+
+Example:
+
+```text
+s3:GetObject
+s3:PutObject
+```
+
+### IAM Role
+
+An identity that can be assumed by an AWS service, user, or another account.
+
+Example:
+
+```text
+EC2
+ ↓
+IAM Role
+ ↓
+S3
+```
+
+Instead of storing AWS credentials on EC2, the instance assumes a role.
+
+### Cross-Account Access
+
+For example:
+
+```text
+Account A
+Developer
+
+       ↓ AssumeRole
+
+Account B
+Production Role
+```
+
+The target role trusts the source account, and the role's permissions define what the user can do.
+
+### Interview Answer
+
+> Policies define permissions, while roles provide an identity that can be assumed by AWS services, users, or other accounts. For cross-account access, I use IAM roles with trust policies and least-privilege permissions rather than sharing long-lived credentials.
+
+---
+
+## 11. How do you configure CloudWatch metrics, logs and alerts?
+
+### Answer
+
+I use CloudWatch for AWS infrastructure monitoring.
+
+For EC2 I monitor:
+
+- CPU utilization
+- Network traffic
+- Disk-related metrics
+- Status checks
+
+For ALB:
+
+- Request count
+- Target response time
+- HTTP 4xx
+- HTTP 5xx
+- Unhealthy targets
+
+For RDS:
+
+- CPU
+- Connections
+- Free storage
+- Read/write latency
+
+Logs can be collected using CloudWatch Agent or AWS service integrations.
+
+Alarms can trigger:
+
+```text
+Metric
+ ↓
+CloudWatch Alarm
+ ↓
+SNS
+ ↓
+Notification
+```
+
+For Kubernetes, I also use Prometheus and Grafana for cluster and application-level monitoring.
+
+### Interview Answer
+
+> I configure CloudWatch metrics and logs for AWS resources and create alarms for important production indicators such as high CPU, unhealthy targets, high latency, HTTP 5xx errors, and RDS connection limits. For EKS, I complement CloudWatch with Prometheus and Grafana to monitor Kubernetes and application metrics.
+
+---
+
+# Quick Revision
+
+| Topic | Key Point |
+|---|---|
+| Jenkins + GitHub | Webhook → Jenkins → Build → Scan → ECR → EKS |
+| ALB | Layer 7, HTTP/HTTPS, path/host routing |
+| NLB | Layer 4, TCP/UDP, low latency |
+| Launch Template | Modern, versioned EC2 configuration |
+| ASG | Replaces unhealthy instances |
+| EKS | Managed Kubernetes |
+| ECS | AWS-native container orchestration |
+| Blue-Green | Two environments, fast rollback |
+| Canary | Gradual traffic shifting |
+| AWS Secrets | Secrets Manager / Parameter Store |
+| IAM Role | Temporary assumed identity |
+| IAM Policy | Defines permissions |
+| CloudWatch | AWS metrics, logs and alarms |
+| Prometheus | Metrics collection |
+| Grafana | Metrics visualization |
+| ECR | Container image registry |
+| Trivy | Container vulnerability scanning |
+
+
+---
+
+## 12. How do you monitor and optimize AWS infrastructure costs?
+
+### Answer
+
+I start by identifying which AWS services and resources are contributing most to the cost.
+
+I use:
+
+- AWS Cost Explorer
+- AWS Budgets
+- Cost and Usage Reports
+- CloudWatch
+- AWS Trusted Advisor
+
+I categorize costs by:
+
+- Service
+- Environment
+- Application
+- Team
+- Region
+
+For EC2, I look for:
+
+- Underutilized instances
+- Over-provisioned instances
+- Unused EBS volumes
+- Unattached Elastic IPs
+- Old snapshots
+
+For EKS, I check:
+
+- Node utilization
+- Over-provisioned workloads
+- HPA configuration
+- Cluster Autoscaler/Karpenter
+- Idle node groups
+
+For S3:
+
+- Unused objects
+- Storage classes
+- Lifecycle policies
+- Incomplete multipart uploads
+
+For RDS:
+
+- Instance sizing
+- Storage utilization
+- Read replicas
+- Reserved capacity where appropriate
+
+### Interview Answer
+
+> I use Cost Explorer and CloudWatch to identify the major cost contributors and then optimize based on actual utilization. I look for idle or oversized EC2 instances, unused EBS resources, inefficient EKS node utilization, unnecessary S3 storage, and oversized RDS instances. I also use tagging and budgets to track costs by environment and application.
+
+---
+
+## 13. How do you implement Terraform modules and remote state management?
+
+### Answer
+
+I use Terraform modules to create reusable infrastructure components.
+
+For example:
+
+```text
+terraform/
+│
+├── modules/
+│   ├── vpc/
+│   ├── ec2/
+│   ├── eks/
+│   └── rds/
+│
+├── environments/
+│   ├── dev/
+│   ├── qa/
+│   ├── uat/
+│   └── prod/
+```
+
+A module can contain:
+
+```text
+main.tf
+variables.tf
+outputs.tf
+```
+
+For team environments, I use remote state instead of keeping `terraform.tfstate` locally.
+
+A common AWS setup is:
+
+```text
+Terraform
+    ↓
+S3 Backend
+    +
+State Locking
+```
+
+The state is stored centrally so multiple engineers and CI/CD systems can work with the same infrastructure state.
+
+### Interview Answer
+
+> I use Terraform modules for reusable infrastructure components such as VPC, EKS, EC2, and RDS. For team environments, I store Terraform state remotely and enable state locking so multiple engineers cannot modify the same infrastructure concurrently.
+
+---
+
+## 14. How do you manage Terraform state in a team environment?
+
+### Answer
+
+I don't keep the production Terraform state file on an engineer's local machine.
+
+I use a remote backend.
+
+For AWS environments, I commonly use:
+
+```text
+Terraform
+    ↓
+S3
+    ↓
+Remote State
+```
+
+State access is restricted using IAM.
+
+Important practices include:
+
+- Remote state
+- State locking
+- Encryption
+- Versioning
+- Restricted IAM access
+- State backups
+- Separate state per environment
+
+For example:
+
+```text
+dev.tfstate
+qa.tfstate
+uat.tfstate
+prod.tfstate
+```
+
+### Interview Answer
+
+> In a team environment, I use a remote backend for Terraform state, with encryption, versioning, controlled IAM access, and state locking. I also separate state between environments to reduce the blast radius of an accidental change.
+
+---
+
+## 15. How do you scan Docker images for vulnerabilities?
+
+### Answer
+
+I integrate vulnerability scanning into the CI/CD pipeline.
+
+For example:
+
+```text
+Code
+ ↓
+Build
+ ↓
+Docker Image
+ ↓
+Trivy Scan
+ ↓
+Security Gate
+ ↓
+Push to ECR
+```
+
+I use Trivy to identify:
+
+- OS vulnerabilities
+- Package vulnerabilities
+- Dependency vulnerabilities
+- Misconfigurations
+- Secrets in some scanning modes
+
+Example:
+
+```bash
+trivy image myapp:v1
+```
+
+The pipeline can fail if vulnerabilities exceed an approved severity threshold.
+
+For example:
+
+```text
+CRITICAL → Fail
+HIGH     → Fail/Review
+MEDIUM   → Review
+LOW      → Accept
+```
+
+The exact policy depends on organizational security requirements.
+
+### Interview Answer
+
+> I integrate Trivy into the CI pipeline after building the Docker image. It scans the image for known vulnerabilities and the pipeline can block the image from being pushed or deployed if it violates the defined security policy.
+
+---
+
+## 16. How do you secure an S3 bucket?
+
+### Answer
+
+I follow the principle of least privilege.
+
+Important controls include:
+
+- Block Public Access
+- IAM policies
+- Bucket policies
+- Encryption
+- Versioning
+- Logging/auditing
+- Lifecycle policies
+
+I avoid:
+
+```text
+Public Read
+Public Write
+```
+
+unless there is a very specific approved use case.
+
+For sensitive data, I use encryption such as:
+
+```text
+SSE-S3
+```
+
+or:
+
+```text
+SSE-KMS
+```
+
+I also restrict access to only the required IAM roles or services.
+
+### Interview Answer
+
+> I secure S3 by blocking public access, using least-privilege IAM and bucket policies, enabling encryption, versioning where required, and monitoring access. For sensitive data, I prefer KMS-based encryption and ensure only authorized roles can access the objects.
+
+---
+
+## 17. How do you troubleshoot a Kubernetes Pod in CrashLoopBackOff?
+
+### Answer
+
+I first check the Pod status:
+
+```bash
+kubectl get pods
+```
+
+Then:
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+I check logs:
+
+```bash
+kubectl logs <pod-name>
+```
+
+If the container has restarted, I also check the previous container logs:
+
+```bash
+kubectl logs <pod-name> --previous
+```
+
+Then I investigate:
+
+- Application errors
+- Environment variables
+- ConfigMaps
+- Secrets
+- Image
+- Resource limits
+- Liveness probe
+- Readiness probe
+- Dependencies
+- Database connectivity
+
+I also check:
+
+```bash
+kubectl get events
+```
+
+For example, if:
+
+```text
+Reason: OOMKilled
+```
+
+I investigate memory usage and resource limits.
+
+### Interview Answer
+
+> CrashLoopBackOff means the container is repeatedly starting and failing. I check the current and previous logs, Pod events, exit codes, probes, configuration, Secrets, dependencies, and resource limits. I use `kubectl describe pod`, `kubectl logs --previous`, and `kubectl get events` to identify the root cause.
+
+---
+
+## 18. How would you dynamically scale a Kubernetes deployment?
+
+### Answer
+
+I generally use the Horizontal Pod Autoscaler.
+
+For example:
+
+```text
+Normal Traffic
+     ↓
+2 Pods
+
+High Traffic
+     ↓
+4 Pods
+
+More Traffic
+     ↓
+8 Pods
+```
+
+Example:
+
+```bash
+kubectl autoscale deployment myapp \
+  --cpu-percent=70 \
+  --min=2 \
+  --max=10
+```
+
+HPA requires resource metrics, typically provided through Metrics Server or another metrics pipeline.
+
+For example:
+
+```yaml
+resources:
+  requests:
+    cpu: 250m
+    memory: 256Mi
+```
+
+I can also use custom metrics when CPU alone doesn't represent application load.
+
+For cluster-level capacity, I combine HPA with Cluster Autoscaler or Karpenter.
+
+### Interview Answer
+
+> I use HPA to dynamically increase or decrease Pod replicas based on CPU, memory, or custom application metrics. If the cluster doesn't have enough nodes to accommodate the additional Pods, I combine HPA with Cluster Autoscaler or Karpenter.
+
+---
+
+## 19. How do you know whether Kubernetes nodes are Ready?
+
+### Answer
+
+I use:
+
+```bash
+kubectl get nodes
+```
+
+Example:
+
+```text
+NAME       STATUS   ROLES
+node-01    Ready    <none>
+node-02    Ready    <none>
+node-03    NotReady <none>
+```
+
+For detailed information:
+
+```bash
+kubectl describe node node-01
+```
+
+I check conditions such as:
+
+```text
+Ready
+MemoryPressure
+DiskPressure
+PIDPressure
+NetworkUnavailable
+```
+
+I also check kubelet and node-level metrics.
+
+### Interview Answer
+
+> I use `kubectl get nodes` to check whether nodes are Ready and `kubectl describe node` to investigate conditions such as MemoryPressure, DiskPressure, PIDPressure, and NetworkUnavailable. I also check kubelet health and node monitoring metrics when troubleshooting a NotReady node.
+
+---
+
+## 20. How do you handle high CPU usage in your Kubernetes cluster?
+
+### Answer
+
+First, I determine whether the CPU usage is coming from:
+
+- Application Pods
+- Kubernetes system components
+- Nodes
+- A sudden traffic spike
+
+I check:
+
+```bash
+kubectl top nodes
+kubectl top pods -A
+```
+
+Then I identify the highest consumers.
+
+I investigate:
+
+- Traffic increase
+- CPU requests/limits
+- Application behavior
+- Infinite loops
+- Expensive operations
+- Incorrect resource configuration
+
+If the workload needs additional replicas, I use HPA.
+
+If the cluster lacks node capacity, I use Cluster Autoscaler or Karpenter.
+
+### Interview Answer
+
+> I first identify whether the CPU increase is node-level or Pod-level using `kubectl top`. Then I correlate it with traffic, application metrics, and recent deployments. Depending on the cause, I may tune resource requests, scale Pods using HPA, optimize the application, or increase cluster capacity using autoscaling.
+
+---
+
+## 21. How will you plan a disaster recovery?
+
+### Answer
+
+I start by defining:
+
+- RTO — Recovery Time Objective
+- RPO — Recovery Point Objective
+
+For example:
+
+```text
+RTO = 30 minutes
+RPO = 5 minutes
+```
+
+Then I identify critical components:
+
+```text
+Application
+Database
+Storage
+Networking
+DNS
+Secrets
+Infrastructure
+```
+
+For AWS, depending on requirements, I can use:
+
+- Multi-AZ architecture
+- Cross-region replication
+- RDS backups
+- S3 replication
+- ECR image replication
+- Terraform
+- Route 53
+- AWS Backup
+
+Infrastructure should be reproducible through IaC.
+
+I also conduct regular DR testing instead of assuming backups work.
+
+### Interview Answer
+
+> I design DR based on business-defined RTO and RPO. I ensure application infrastructure can be recreated through Terraform, databases and storage have appropriate backups or replication, container images are available in the recovery region, and DNS can redirect traffic. Most importantly, I regularly test the recovery process.
+
+---
+
+## 22. How will you design a microservice architecture application in Kubernetes?
+
+### Answer
+
+I would separate each microservice into its own Deployment and Service.
+
+Example:
+
+```text
+                    Internet
+                       ↓
+                  Load Balancer
+                       ↓
+                  Ingress
+                       ↓
+       ┌───────────────┼────────────────┐
+       ↓               ↓                ↓
+   User Service    Order Service    Payment Service
+       ↓               ↓                ↓
+     Pods             Pods             Pods
+```
+
+Each service gets a stable Kubernetes Service.
+
+I would use:
+
+- Deployment
+- Service
+- ConfigMap
+- Secret
+- HPA
+- Ingress
+- NetworkPolicy
+- Resource requests/limits
+- Readiness probes
+- Liveness probes
+
+For observability:
+
+```text
+Prometheus
+Grafana
+Loki/ELK
+```
+
+For deployment:
+
+```text
+GitHub
+ ↓
+Jenkins
+ ↓
+ECR
+ ↓
+Argo CD
+ ↓
+EKS
+```
+
+### Interview Answer
+
+> I would containerize each microservice independently and deploy it using Kubernetes Deployments with ClusterIP Services for internal communication. External traffic would enter through an Ingress or cloud load balancer. I would add HPA, probes, resource limits, NetworkPolicies, centralized logging, monitoring, and secure secret management.
+
+---
+
+## 23. What is Liveness probe and Readiness probe in Kubernetes?
+
+### Answer
+
+### Liveness Probe
+
+Determines whether the application is still alive.
+
+If it fails repeatedly, Kubernetes restarts the container.
+
+Example:
+
+```text
+Application stuck
+      ↓
+Liveness fails
+      ↓
+Container restarted
+```
+
+### Readiness Probe
+
+Determines whether the application is ready to receive traffic.
+
+If it fails:
+
+```text
+Pod remains running
+       ↓
+Removed from Service endpoints
+```
+
+The container is not necessarily restarted.
+
+### Example
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+```
+
+### Interview Answer
+
+> Liveness determines whether a container needs to be restarted, while readiness determines whether the Pod should receive traffic. For example, if an application is temporarily unable to connect to its dependency during startup, the readiness probe can keep it out of service without unnecessarily restarting the container.
+
+---
+
+## 24. What is node affinity, node selector?
+
+### Answer
+
+Both are Kubernetes scheduling mechanisms used to influence where Pods run.
+
+### NodeSelector
+
+The simpler mechanism.
+
+Example:
+
+```yaml
+nodeSelector:
+  workload: backend
+```
+
+The Pod can only run on nodes having:
+
+```text
+workload=backend
+```
+
+### Node Affinity
+
+Provides more flexible rules.
+
+It supports:
+
+- Required rules
+- Preferred rules
+- Multiple conditions
+
+Example:
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: workload
+          operator: In
+          values:
+          - backend
+```
+
+### Interview Answer
+
+> NodeSelector provides simple label-based placement, while Node Affinity provides more advanced scheduling rules including required and preferred conditions. In production, I use affinity when workload placement requires more flexibility.
+
+---
+
+## 25. Explain ELK cluster flow. How did you set up the cluster from scratch?
+
+### Answer
+
+ELK stands for:
+
+```text
+Elasticsearch
+Logstash
+Kibana
+```
+
+A typical architecture is:
+
+```text
+Application
+     ↓
+Container Logs
+     ↓
+Fluent Bit / Filebeat
+     ↓
+Logstash
+     ↓
+Elasticsearch
+     ↓
+Kibana
+```
+
+### Elasticsearch
+
+Stores and indexes logs.
+
+### Logstash
+
+Processes and transforms logs.
+
+### Kibana
+
+Provides visualization and search.
+
+For Kubernetes, I can deploy log collectors as DaemonSets so each node collects container logs.
+
+Example:
+
+```text
+Node 1 → Fluent Bit
+Node 2 → Fluent Bit
+Node 3 → Fluent Bit
+          ↓
+      Elasticsearch
+          ↓
+        Kibana
+```
+
+I configure:
+
+- Log collection
+- Parsing
+- Indexing
+- Retention
+- Access control
+- Dashboards
+- Alerts
+
+### Interview Answer
+
+> In a Kubernetes environment, I use a node-level log collector such as Fluent Bit or Filebeat to collect container logs. Logs are forwarded to Logstash when additional parsing or transformation is required, then stored and indexed in Elasticsearch and visualized through Kibana.
+
+---
+
+## 26. Scenario -- In K8s cluster, pods are restarting multiple times and application are going down, How do you troubleshoot it?
+
+### Answer
+
+I start by checking the Pod status:
+
+```bash
+kubectl get pods -A
+```
+
+Then identify restart counts:
+
+```bash
+kubectl get pods
+```
+
+Next:
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+and:
+
+```bash
+kubectl logs <pod-name> --previous
+```
+
+I investigate:
+
+- OOMKilled
+- Liveness probe failures
+- Application crashes
+- Configuration errors
+- Secret problems
+- Dependency failures
+- Image issues
+- Node resource pressure
+
+Then check:
+
+```bash
+kubectl get events --sort-by=.lastTimestamp
+```
+
+I also check:
+
+```bash
+kubectl top pods
+kubectl top nodes
+```
+
+If the issue started after a deployment, I compare it with the previous version and consider rollback.
+
+### Interview Answer
+
+> I first identify whether the restarts are application-driven, resource-driven, probe-driven, or node-driven. I use Pod events, previous container logs, exit codes, resource metrics, and node conditions. If the issue correlates with a recent release, I roll back to the last stable version while continuing the root cause analysis.
+
+---
+
+## 27. How would you troubleshoot the out of memory issue in K8s cluster?
+
+### Answer
+
+I first identify whether the problem is:
+
+```text
+Pod-level OOM
+```
+
+or:
+
+```text
+Node-level memory pressure
+```
+
+I check:
+
+```bash
+kubectl top pods
+kubectl top nodes
+```
+
+Then:
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+If I see:
+
+```text
+Reason: OOMKilled
+```
+
+I investigate:
+
+- Memory limits
+- Memory requests
+- Application memory usage
+- Memory leaks
+- Traffic patterns
+
+If the node is under memory pressure, I check:
+
+```bash
+kubectl describe node <node>
+```
+
+Then I may:
+
+- Scale the node group
+- Add larger nodes
+- Fix Pod resource configuration
+- Enable autoscaling
+- Optimize the application
+
+### Interview Answer
+
+> I first distinguish between a Pod OOMKilled condition and node-level memory pressure. I check Pod and node metrics, resource requests and limits, and application memory behavior. If the workload genuinely requires more capacity, I scale the workload or nodes, but I don't simply increase limits without understanding the underlying memory consumption.
+
+---
+
+## 28. Scenario -- Say your doing the deployment, but it is stuck in pending state, How will you troubleshoot?
+
+### Answer
+
+I first check:
+
+```bash
+kubectl get pods
+```
+
+Then:
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+The Events section is usually very useful.
+
+I investigate:
+
+### Insufficient CPU/Memory
+
+```text
+Insufficient cpu
+Insufficient memory
+```
+
+Check:
+
+```bash
+kubectl top nodes
+```
+
+### Taints
+
+```bash
+kubectl describe node <node>
+```
+
+Check whether the Pod has the required toleration.
+
+### Node Affinity
+
+Verify whether the Pod's affinity rules match available nodes.
+
+### Persistent Volume
+
+Check:
+
+```bash
+kubectl get pvc
+kubectl describe pvc <pvc>
+```
+
+### Node Availability
+
+```bash
+kubectl get nodes
+```
+
+### Production Interview Answer
+
+> I use `kubectl describe pod` first because Kubernetes Events normally tell me why scheduling failed. I check resource availability, taints and tolerations, node affinity, PVC binding, node readiness, and topology constraints before making changes.
+
+---
+
+## 29. Scenario -- Now Kubernetes cluster is running fine, but pods are not able communicate with services ? How do you troubleshoot this issue ?
+
+### Answer
+
+I start by checking the Service:
+
+```bash
+kubectl get svc
+```
+
+Then verify its selector:
+
+```bash
+kubectl describe svc <service-name>
+```
+
+Next check endpoints:
+
+```bash
+kubectl get endpoints <service-name>
+```
+
+If there are no endpoints, I check whether the Service selector matches the Pod labels.
+
+Example:
+
+```yaml
+selector:
+  app: backend
+```
+
+Pod:
+
+```yaml
+labels:
+  app: backend
+```
+
+Then I test DNS from inside the cluster:
+
+```bash
+nslookup backend-service
+```
+
+I also investigate:
+
+- NetworkPolicies
+- kube-proxy
+- CoreDNS
+- CNI
+- Service port
+- targetPort
+- Pod readiness
+
+### Interview Answer
+
+> I first verify that the Service selector matches the Pod labels and that healthy endpoints exist. Then I test Kubernetes DNS and connectivity from another Pod and check Service ports, targetPorts, NetworkPolicies, CoreDNS, kube-proxy, and the CNI before assuming there is a networking-plugin problem.
+
+---
+
+## 30. Your are upgrading the k8s cluster, after upgrade some applications are failing, how will you solve this issue ?
+
+### Answer
+
+I first identify whether the failure is caused by:
+
+- Kubernetes API changes
+- Deprecated APIs
+- Incompatible workloads
+- Ingress Controller compatibility
+- CNI issues
+- CSI driver issues
+- Admission controllers
+- Helm chart compatibility
+
+I check:
+
+```bash
+kubectl get pods -A
+kubectl get events -A
+```
+
+Then review:
+
+```bash
+kubectl describe pod <pod>
+kubectl logs <pod>
+```
+
+I compare the Kubernetes version and application dependencies.
+
+For deprecated APIs, I validate manifests before the upgrade.
+
+I also check:
+
+- Helm chart versions
+- AWS Load Balancer Controller
+- EBS CSI driver
+- Metrics Server
+- Custom Operators
+
+If necessary, I restore the previous node group or use the cloud provider's supported rollback/recovery approach.
+
+### Interview Answer
+
+> After an upgrade, I first determine whether the failures are related to API deprecations, workload compatibility, networking, storage, ingress, or add-ons. I inspect events and logs, validate deprecated APIs, verify add-on compatibility, and restore the previous known-good configuration if the upgrade introduces a critical production issue.
+
+---
+
+## 31. How do you implement multi-branch CI/CD pipelines in GitLab or Jenkins?
+
+### Answer
+
+I use a multibranch pipeline where each Git branch can automatically create its own pipeline.
+
+For example:
+
+```text
+main
+ └── Production
+
+develop
+ └── Development
+
+feature/*
+ └── Build + Test
+
+release/*
+ └── UAT
+```
+
+Jenkins Multibranch Pipeline automatically discovers branches containing a Jenkinsfile.
+
+The pipeline can define different behavior based on the branch.
+
+Example:
+
+```groovy
+if (env.BRANCH_NAME == 'main') {
+    // Production deployment
+}
+```
+
+For feature branches:
+
+```text
+Checkout
+ ↓
+Build
+ ↓
+Uni
+
+
+
 # Infosys DevOps Interview Experience – Round 1 (Detailed Answers)
 
 ---
