@@ -1,0 +1,39 @@
+Log Parsing – Turning Raw Logs into Useful Insights 📜
+
+🔹 What is Log Parsing?
+Log parsing is the process of extracting meaningful information from raw log data. It converts unstructured logs into a structured format, making them easier to search, filter, and analyze.
+
+👉 Instead of reading thousands of log lines manually, parsed logs help you find exactly what you need.
+
+🔍 Filters
+Filters allow you to search logs based on specific fields or values.
+Examples:
+Show only ERROR logs
+Filter logs from the payment-service
+View logs generated in the last 30 minutes
+Benefits:
+✔ Faster troubleshooting
+ ✔ Reduced log noise
+ ✔ Quick root cause analysis
+
+🔄 Transformations
+Transformations modify log data into a more useful format.
+Common transformations include:
+✔ Extracting timestamps
+ ✔ Parsing JSON fields
+ ✔ Renaming fields
+ ✔ Converting data into structured records
+This makes logs easier to visualize and analyze.
+
+💡 Real-world Example
+An application generates 50,000 logs every hour.
+Instead of checking every log manually, engineers:
+🔍 Filter only ERROR logs
+🔄 Parse fields like timestamp, service name, and error message
+Within seconds, they identify the failing service and resolve the issue.
+
+🧠 Key Takeaways
+✔ Log parsing organizes raw logs 📜
+ ✔ Filters help find relevant logs quickly 🔍
+ ✔ Transformations improve log readability 🔄
+ ✔ Faster analysis = Faster incident resolution 🚀
