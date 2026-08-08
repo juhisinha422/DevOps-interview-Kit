@@ -1,3 +1,38 @@
+## Terraform Interview Question: What is the difference between "count", "for_each", and "for"?
+
+These three constructs are often confused, but each serves a different purpose.
+```
+
+✅ "count"
+
+- Creates multiple copies of the same resource using a numeric index.
+- Best when resources are nearly identical.
+- Access resources with "count.index".
+- Limitation: Removing an item from the middle can change indexes and recreate resources.
+
+✅ "for_each"
+
+- Creates resources from a map or set.
+- Each resource gets a unique key instead of a numeric index.
+- Best when resources have unique names or configurations.
+- Preferred over "count" for most production deployments because resource identities remain stable.
+
+✅ "for" Expression
+
+- Does not create resources.
+- Used to transform or filter lists, maps, or objects.
+- Commonly used in variables, outputs, locals, and dynamic configurations.
+
+Production Best Practices
+✔ Use "count" for identical resources (e.g., 3 EC2 instances with the same configuration).
+✔ Use "for_each" when resources have different names, tags, or settings (recommended for production).
+✔ Use "for" expressions to manipulate data before passing it to resources or modules.
+✔ Avoid switching between "count" and "for_each" after deployment unless you also migrate the Terraform state, as it can lead to resource recreation.
+
+Choosing the right construct makes your Terraform code more readable, maintainable, and less prone to unintended infrastructure changes.
+
+```
+
 # Terraform Interview Questions & Answers (4 Years Experience)
 
 This README contains practical Terraform interview answers suitable for a DevOps/Cloud Engineer with around **4 years of hands-on experience**.
