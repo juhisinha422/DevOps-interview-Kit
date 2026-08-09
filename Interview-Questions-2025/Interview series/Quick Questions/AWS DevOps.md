@@ -1,3 +1,122 @@
+# How Do You Handle a P1 Production Incident?
+
+One of the most common questions asked in AWS Cloud / DevOps / SRE interviews is:
+
+👉 **“How will you handle a P1 incident?”**
+
+A P1 incident means a critical production issue with major business impact, such as an application being completely down or a large number of users being affected.
+
+Here is the approach I follow:
+
+---
+
+## 🔹 1. Detect & Acknowledge
+
+Immediately acknowledge the alert and start assessing the incident.
+
+---
+
+## 🔹 2. Understand the Impact
+
+Identify:
+
+• What is failing?  
+• How many users are affected?  
+• Which application/service is impacted?  
+• Is the entire production environment affected?
+
+---
+
+## 🔹 3. Communicate & Escalate
+
+Create/update the incident ticket and immediately involve the required teams — Application, Database, Network, Security, AWS Support, etc., based on the issue.
+
+---
+
+## 🔹 4. Start Troubleshooting
+
+Use monitoring and troubleshooting tools such as:
+
+• AWS CloudWatch  
+• Dynatrace  
+• Grafana  
+• Application logs  
+• EC2 / EKS health  
+• ALB/NLB health  
+• CPU & Memory  
+• Disk utilization  
+• Network connectivity  
+• Database health
+
+---
+
+## 🔹 5. Check Recent Changes
+
+One of the first things I check is whether there was a recent deployment, configuration change, infrastructure change, or security change.
+
+If a recent change is confirmed as the cause, I consider rollback to restore the service quickly.
+
+---
+
+## 🔹 6. Restore the Service First
+
+During a P1, the priority is:
+
+**Restore service → Minimize business impact → Then perform detailed RCA**
+
+We should not spend too much time trying to find the perfect root cause while the production service is still down.
+
+---
+
+## 🔹 7. Validate & Monitor
+
+After restoration, verify the application from the user/business perspective and continuously monitor the environment to ensure the issue does not return.
+
+---
+
+## 🔹 8. Perform RCA
+
+Once the incident is stable, perform a detailed Root Cause Analysis (RCA).
+
+Document:
+
+✅ Incident timeline  
+✅ Root cause  
+✅ Impact  
+✅ Actions taken  
+✅ Resolution  
+✅ Preventive actions
+
+---
+
+## 🔹 9. Prevent Recurrence
+
+Implement permanent corrective actions such as:
+
+• Monitoring improvements  
+• Additional alerts  
+• Automation  
+• Capacity changes  
+• Configuration fixes  
+• Deployment improvements  
+• High-availability/DR improvements
+
+---
+
+## 💡 Easy way to remember:
+
+**Detect → Acknowledge → Assess → Communicate → Troubleshoot → Restore → Verify → RCA → Prevent**
+
+---
+
+## 🎯 Interview Tip:
+
+A strong answer is:
+
+> **“During a P1 incident, my first priority is to minimize business impact and restore the service within the agreed SLA. Once the service is stable, I perform a detailed RCA and implement permanent corrective actions to prevent recurrence.”**
+
+
+
 # DevOps Interview Questions & Answers (4 Years Experience)
 
 ## 1. Walk me through how you'd containerize a legacy monolith application.
