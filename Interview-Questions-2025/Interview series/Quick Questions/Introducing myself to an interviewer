@@ -24,6 +24,38 @@ A highlight of my introduction is that I start with AWS and conclude with deploy
 After this introduction, I anticipate that your first question will be about the AWS services I have used so far. This approach helps guide the conversation toward my areas of expertise. 
 
 
+==============
+
+ DEVOPS INTERVIEW TIP: KEEP YOUR INTRODUCTION CRISP 
+
+introduction make it crisp and clear never give hints speaking much and make interviewer take questions and blast you without getting into actual interview.
+
+
+Hi Juhi Sinha here, i have been working in IT since 5 years, my relevant experience is in AWS devops as i got good opportunities to work on most of the devops tools.
+
+my primary cloud is Aws, when it comes to my project we are using docker for contenarization and for its archestration we are using kubernetes, for configuration mangement using ansible, for source code management using git and github, for infrastructure provisioning we are using terrafrom, for CI CD we have jenkins, when it comes to log aggregation we are usink ELK and for monitoring we use prometheus and grafana.
+
+day to day activities:
+i work on jira tickets on priority basis, when it comes to pod issues, nod issues and any dns resolution, i am part of it and when need to onboard services on AWS and new jobs need to be onboarded on jenkins will work on it.
+
+
+let me tell your version, i am so and so, containerization we use docker and development we use jenkins, we use kubernetes and deploy new things using helm, as we have github triggers to jenkins with pipelines and i have done steup, we use cloudwatch for alerting and events and prometheus and grafana for logs and metrics.
+
+As i took more than 42 interviews in 3 years in big MNC's
+
+my questions based on your answer:
+you said development in jenkins how its differ from deployment?
+you said helm and deploy, let me know how kubernates know there is helm.
+As you said you have done pipleline setup, how pipleline knew there is kubernetes, docker and terrafrom.
+you said cloudwatch for alerting, let me know what alerting seup its there in project as i know its for metrics.
+if cloudwatch do alerting and monitor events, then what about cloudtrail do in AWS.
+are you sure prometheus and grafana do log aggregation
+
+when i post something its all from rejections and learning,but few people will comment it shoud have that and this but dont write and show how it should be.
+
+they dont help others and not leave others to help and someone put jokes in comments, but next time it will be taken care in naati style.
+
+keep learning, keep helping and lets be reason for good growth by learning from each other skills 😊
 
 ----
 explain me your current project and let me know your day to day activities***
