@@ -1,3 +1,116 @@
+# Kubernetes Interview 
+
+## Can you explain the differences between ClusterIP, NodePort, LoadBalancer, and Ingress? When would you use each in a production environment?
+
+
+🎯 What the interviewer is evaluating
+
+✅ Kubernetes networking fundamentals
+
+✅ Production architecture design
+
+✅ Choosing the right Service type
+
+✅ Security and scalability considerations
+
+---
+
+## 1️⃣ ClusterIP (Default)
+
+Purpose: Internal communication within the Kubernetes cluster.
+
+Use cases:
+
+- Backend APIs
+- Internal microservices
+- Database connectivity
+- Service-to-service communication
+
+Example:
+
+Frontend → User Service → Database
+
+💡 Best Practice: Keep backend services private using ClusterIP.
+
+---
+
+## 2️⃣ NodePort
+
+Purpose: Exposes an application on a static port on every worker node.
+
+Use cases:
+
+- Development environments
+- Testing
+- Small on-premises clusters
+- Temporary access
+
+⚠️ Not recommended for enterprise production due to manual port management and limited scalability.
+
+---
+
+## 3️⃣ LoadBalancer
+
+Purpose: Exposes an application externally using a cloud provider's load balancer.
+
+Use cases:
+
+- Public APIs
+- Customer-facing applications
+- Production workloads
+
+Benefits:
+
+- High availability
+- Automatic traffic distribution
+- Cloud-managed infrastructure
+
+⚠️ Consideration: Creating many LoadBalancer Services can increase cloud costs.
+
+---
+
+## 4️⃣ Ingress
+
+Purpose: Provides a single entry point for HTTP/HTTPS traffic and routes requests to multiple services.
+
+Features:
+
+- Path-based routing
+- Host-based routing
+- SSL/TLS termination
+- Centralized traffic management
+
+Example:
+
+"example.com/api" → User Service
+
+"example.com/orders" → Order Service
+
+"example.com/payments" → Payment Service
+
+💡 This is the preferred approach for microservices running in production.
+
+---
+
+## 🚨 Common Interview Mistake
+
+Many candidates say:
+
+«"Ingress replaces LoadBalancer."»
+
+Not exactly.
+
+In most cloud environments:
+
+Internet → Cloud Load Balancer → Ingress Controller → ClusterIP Services → Pods
+
+The LoadBalancer exposes the Ingress Controller, while the Ingress Controller intelligently routes traffic to the correct backend services.
+
+Understanding this relationship demonstrates strong Kubernetes networking knowledge.
+
+
+
+
 # Amazon EKS Scenario-Based Interview Questions (4 Years DevOps Experience)
 
 ---
