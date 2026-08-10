@@ -1,0 +1,22 @@
+🚀 Top 20 Ansible Interview Questions I Faced (4 Years DevOps Experience)
+Recently, I attended a few DevOps interviews, and these were some of the Ansible questions I was asked. Most of them were scenario-based and focused on real-world automation rather than theory.
+1️⃣ Explain idempotency in Ansible. Why is it important, and how does Ansible achieve it?
+2️⃣ How do you organize large Ansible projects using Roles, Collections, and reusable playbooks?
+3️⃣ How do you securely manage passwords, API keys, and other sensitive data in Ansible? Have you used Ansible Vault?
+4️⃣ How do you manage different configurations for Development, QA, and Production environments?
+5️⃣ Static Inventory vs Dynamic Inventory—what's the difference, and which have you used in AWS?
+6️⃣ How do you integrate Ansible with AWS for provisioning and configuration management?
+7️⃣ Walk me through an application deployment using Ansible from start to finish.
+8️⃣ How would you perform a rolling deployment across multiple servers with minimal or zero downtime?
+9️⃣ A playbook fails halfway through a deployment. How would you troubleshoot and recover?
+🔟 How do you debug Ansible playbooks? Which commands or options do you use most often?
+1️⃣1️⃣ Explain the purpose of handlers. When should they be used?
+1️⃣2️⃣ What is the difference between the command, shell, copy, template, and lineinfile modules? When would you use each?
+1️⃣3️⃣ How do you use Jinja2 templates to generate dynamic configuration files?
+1️⃣4️⃣ How do you integrate Ansible into a CI/CD pipeline using Jenkins, GitHub Actions, or GitLab CI?
+1️⃣5️⃣ What are Ansible Facts, and how have you used them in your automation?
+1️⃣6️⃣ How do you automate Linux patching across multiple servers using Ansible?
+1️⃣7️⃣ Have you worked with Ansible Tower (AWX)? What advantages does it provide over Ansible Core?
+1️⃣8️⃣ How do you implement error handling, retries, and conditional execution in production playbooks?
+1️⃣9️⃣ How do you ensure your Ansible playbooks are reusable, maintainable, and version-controlled?
+2️⃣0️⃣ Describe a real-world automation project where Ansible significantly reduced deployment time or manual effort.
