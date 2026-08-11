@@ -1,3 +1,93 @@
+# 🚀 EXL Services – DevOps Engineer Round 2
+
+## Interview Answers – 4 Years Experience
+
+### 1. Tell me about yourself. Specifically explain your day-to-day responsibilities.
+
+I have around 4 years of experience as a DevOps Engineer, mainly working with AWS, Kubernetes, Terraform, Docker, Jenkins, Helm, Git, and Linux. In my current role, my responsibilities include infrastructure provisioning, CI/CD pipeline management, application deployment, Kubernetes administration, monitoring, and production issue troubleshooting. Usually, when I start my day, I first check emails, Teams or Slack messages, monitoring dashboards, and any production alerts. I also check the status of scheduled Jenkins pipelines and ongoing deployments. During the daily stand-up, I discuss my previous work, current tasks, and any blockers. During the day, I work on Terraform for infrastructure changes, Jenkins for CI/CD automation, Docker for containerization, and Kubernetes and Helm for application deployments. If there is a production issue, I start troubleshooting from the load balancer or ingress layer and move towards Kubernetes, application logs, databases, and external dependencies. Before logging off, I make sure that deployments are successful, monitoring is healthy, and any production issues are either resolved or properly handed over with the required details.
+
+---
+
+### 2. What is Terraform drift? How do you identify and resolve it?
+
+Terraform drift occurs when the actual infrastructure is different from what is defined in Terraform configuration or what Terraform expects based on its state. For example, suppose Terraform created an EC2 instance with a `t3.medium` instance type, but later someone manually changed it to `t3.large` from the AWS console. Terraform configuration still says `t3.medium`, while the actual infrastructure is `t3.large`, so this is considered drift. I usually identify drift by running `terraform plan`, because Terraform compares the configuration, state, and actual infrastructure and shows the differences. Once I identify the drift, I first determine which configuration is supposed to be correct. If the Terraform code is correct, I run `terraform apply` to bring the infrastructure back to the desired state. If the manual change was intentional, I update the Terraform code accordingly and then run `terraform plan` and `terraform apply`. In a production environment, I prefer infrastructure changes to go through Git and CI/CD instead of making manual changes from the AWS console because that helps prevent drift.
+
+---
+
+### 3. Terraform apply fails midway. Some infrastructure is created and some fails. How do you recover?
+
+Terraform apply is not an all-or-nothing transaction, so if some resources are successfully created and another resource fails, the successfully created resources normally remain in the infrastructure and are recorded in Terraform state. My first step is to carefully check the Terraform error and identify why the resource failed. It could be an IAM permission issue, AWS quota limitation, invalid configuration, dependency problem, networking issue, or a resource already existing. I then run `terraform state list` to understand which resources Terraform already knows about, followed by `terraform plan` to see the current expected changes. After fixing the actual root cause, I run `terraform apply` again. Terraform understands the resources already present in state and normally continues with the remaining resources instead of recreating everything. If a resource already exists in AWS but is not present in Terraform state, I may need to use `terraform import` and then run `terraform plan` to make sure the state and configuration are aligned. I would not immediately destroy everything because that could cause unnecessary downtime or data loss; first I understand what was created, what failed, and whether any resource needs to be imported or recreated.
+
+---
+
+### 4. How do you use Terraform in your organization? Explain your workflow, modules and remote state.
+
+In my organization, we use Terraform mainly through Git and CI/CD rather than allowing engineers to directly apply production infrastructure from their laptops. The usual workflow starts when a developer or DevOps engineer creates a Terraform change in a Git branch and raises a pull request. After code review, the CI pipeline runs `terraform fmt`, `terraform validate`, and `terraform plan`. The plan is reviewed, and after the required approval, the pipeline runs `terraform apply`. We maintain reusable Terraform modules for components such as VPC, IAM, EKS, security groups, and load balancers, while environment-specific directories such as development, staging, and production consume those modules with different variables. For remote state in AWS, we commonly use an S3 backend, with state locking configured according to the organization's Terraform/backend setup. Remote state allows multiple engineers and CI/CD jobs to work with a centralized state instead of maintaining separate local state files. This workflow gives us code review, controlled deployments, state management, and better auditability.
+
+---
+
+### 5. `kubectl logs <pod-name>` is not showing any logs. What could be the reason?
+
+If `kubectl logs` is not showing logs, I first check the pod status using `kubectl get pods` and then use `kubectl describe pod` to look at the container status and events. One common reason is that the pod has multiple containers, so I check the container names and use `kubectl logs <pod> -c <container>`. If the container has restarted or crashed, I also check `kubectl logs <pod> --previous` because the useful logs may belong to the previous container instance. I also verify that I am checking the correct namespace. Another possibility is that the application is not writing logs to standard output or standard error. Kubernetes normally captures stdout and stderr, so if the application writes logs directly to a file inside the container, `kubectl logs` may not display them. In that situation, I may use `kubectl exec` to check the application log file or verify the logging agent configuration. I also check whether the container has actually started and whether there are any startup, image, or scheduling issues.
+
+---
+
+### 6. Suppose your Kubernetes cluster has exhausted its IP addresses. How do you troubleshoot and resolve it?
+
+First, I determine whether the issue is related to node IPs, pod IPs, or the underlying AWS subnet IP capacity. I start by checking the nodes and pods using `kubectl get nodes` and `kubectl get pods -A -o wide`. Since I have worked with AWS EKS, I also check the available IP addresses in the VPC subnets because the AWS VPC CNI uses VPC IP addresses for pod networking. I check the subnet's `AvailableIpAddressCount` and review the `aws-node` pods in the `kube-system` namespace for any CNI-related errors. If the subnet has insufficient IP addresses, possible solutions include adding additional subnets, expanding the network design where possible, using additional CIDR ranges, increasing pod IP capacity, or configuring appropriate EKS networking features such as prefix delegation where applicable. I also check whether there is unusually high pod density or unnecessary workloads consuming IPs. I would not simply add more worker nodes without checking subnet capacity because if the subnet itself is exhausted, adding nodes may not solve the underlying problem.
+
+---
+
+### 7. What are the most critical Kubernetes production issues you have solved?
+
+One example I can explain is a production application where pods started going into `CrashLoopBackOff`, which caused application availability issues. My first step was to check the affected pods using `kubectl get pods`. After identifying the failing pod, I used `kubectl describe pod` to check container status and events, and then checked the application logs using `kubectl logs` and `kubectl logs --previous`. Suppose the logs showed that the application could not connect to its database. I would then verify the ConfigMap and Secret values, environment variables, DNS resolution, network connectivity, security groups, and database availability. After identifying that the application was using an incorrect database endpoint, I would correct the configuration through Git or Helm, deploy the change, and verify that the pods became healthy. I would then check the service, endpoints, ingress, and application functionality from the user side. My general production troubleshooting approach is to first understand the impact, then check pods and nodes, review events and logs, validate networking and dependencies, identify the root cause, apply the fix, verify the application, and finally document the incident and preventive action.
+
+---
+
+### 8. Explain your production architecture and request flow. Explain using SNS and SQS.
+
+In a typical AWS production architecture, users access the application through a domain managed by Route 53. The request reaches an AWS Application Load Balancer, which forwards the request to the Kubernetes ingress and then to the appropriate Kubernetes service and application pods running on EKS. The application processes the request and may communicate with a database such as Amazon RDS for persistent data. For asynchronous operations, we can use SNS and SQS. For example, when an order is created, the application can publish an event to an SNS topic. SNS can then distribute that event to multiple SQS queues, where different consumer applications process the message independently. One queue could be consumed by an email service, while another could be consumed by an analytics or notification service. This architecture provides loose coupling between services and allows consumers to process messages asynchronously. SQS also provides features such as message retention and retry handling, which helps improve application reliability.
+
+---
+
+### 9. Explain your complete CI/CD pipeline from start to finish.
+
+In my current environment, the CI/CD pipeline starts when a developer pushes code to Git and raises a pull request. Once the code is merged into the appropriate branch, a webhook triggers Jenkins. We generally prefer webhooks because Git notifies Jenkins immediately when a change occurs, whereas Poll SCM requires Jenkins to periodically check the repository. Jenkins first checks out the source code and then runs the build and unit tests. Depending on the application, we may use Maven, Gradle, or npm for the build. After that, we run code-quality checks such as SonarQube and perform security scanning where required. Then we build a Docker image, tag it with the build number or Git commit, scan the image, and push it to Amazon ECR. For deployment, we use Helm to deploy the image to Kubernetes or EKS. The pipeline runs commands such as `helm upgrade --install` and then verifies the deployment using `kubectl rollout status`, pod health checks, and smoke tests. If everything is successful, the deployment is considered complete. For production, we can also have a manual approval stage before the deployment. The overall flow is Git, Jenkins, build, test, code quality, Docker build, security scan, ECR, Helm deployment, Kubernetes verification, and monitoring.
+
+---
+
+### 10. How are you using Helm in Kubernetes? Explain deployment, upgrades and rollback.
+
+We use Helm to package and manage Kubernetes application deployments. A typical Helm chart contains a `Chart.yaml`, a `values.yaml`, and templates for resources such as Deployment, Service, ConfigMap, and Ingress. The `values.yaml` file contains environment-specific values such as the Docker image repository, image tag, replica count, service port, and resource configuration. During deployment, we use a command such as `helm upgrade --install` and pass the required environment-specific values. For example, when a new Docker image is available, the pipeline can execute a Helm upgrade with the new image tag. Helm maintains release history, so if a new version causes a production issue, I first run `helm history <release> -n <namespace>` to identify the last stable revision. I then use `helm rollback <release> <revision> -n <namespace>`. After rollback, I verify the Helm status, Kubernetes pods, deployment rollout, services, and application health. I also check logs and metrics to make sure the application has actually recovered.
+
+---
+
+### 11. Have you heard of AWS SageMaker? Have you implemented any AI solutions?
+
+Yes, I have heard of AWS SageMaker. SageMaker is an AWS managed service used for building, training, deploying, and monitoring machine-learning models. From a DevOps perspective, I understand that SageMaker can integrate with services such as S3, IAM, CloudWatch, and CI/CD pipelines. A typical workflow could involve storing training data in S3, training a model using SageMaker, creating a model endpoint, and then allowing an application to consume that endpoint. If I have not personally implemented a complete SageMaker solution in production, I would be transparent about that in the interview. I would explain that my experience is more focused on the DevOps side, such as infrastructure provisioning with Terraform, IAM, networking, CI/CD, containers, deployment automation, and monitoring, while I understand the overall SageMaker workflow and can support the infrastructure and deployment requirements for an AI/ML solution.
+
+---
+
+### 12. Users are experiencing latency after a recent deployment. How do you troubleshoot from the load balancer to the root cause?
+
+If users report latency immediately after a deployment, I start from the outside and move inward. First, I check the Application Load Balancer metrics in CloudWatch, particularly target response time, request count, HTTP 4xx and 5xx errors, and healthy and unhealthy target counts. If the ALB is healthy but target response time has increased, I move to Kubernetes and check the pods, services, ingress, CPU, memory, restarts, and replica count. I use commands such as `kubectl get pods`, `kubectl describe pod`, and `kubectl top pods`. Next, I check application logs and metrics for slow database queries, connection pool exhaustion, thread pool issues, external API delays, or application exceptions. I also check the database for high CPU, connection exhaustion, locks, IOPS, or slow queries. Since the issue started after a recent deployment, I compare the new release with the previous version and check whether any code, configuration, database query, or resource setting changed. If I confirm that the new release is the root cause and the issue is impacting users, I can roll back the Helm release to the previous stable revision and then verify whether latency returns to normal.
+
+---
+
+### 13. Users complain that page load time has increased. Explain your complete troubleshooting process.
+
+For an increased page load time, I follow a layered approach starting from the client side and moving toward the backend infrastructure. First, I determine whether the issue affects all users or only specific users, locations, or APIs. I then check DNS and load balancer metrics. For an AWS ALB, I check target response time, request count, healthy target count, and HTTP error metrics. If the load balancer is forwarding traffic normally, I check Kubernetes pods and nodes for CPU, memory, restarts, pending pods, and resource pressure. After that, I check application logs and metrics to identify slow API calls, database queries, thread pool exhaustion, connection pool problems, or external service latency. I then investigate the database for high CPU, connection limits, locks, IOPS, and slow queries. I also check any third-party APIs or AWS services that the application depends on. Finally, I compare the current behavior with the previous deployment or baseline. If the problem started after a specific deployment and the evidence points to that release, I can roll back the deployment, verify the recovery, and then perform a proper root-cause analysis so that the issue does not happen again.
+
+---
+
+### 14. Application deployed through Helm but is not working correctly. How do you troubleshoot and rollback?
+
+When a Helm deployment completes but the application is not working, I first check the Helm release using `helm list` and `helm status` to confirm the release state. Then I check `helm history` to understand which revision was deployed and whether there was a previous stable version. After that, I move to Kubernetes and check the pods, services, ingress, deployments, and replicas. If pods are failing, I use `kubectl describe pod` and `kubectl logs` to identify the problem. I also check Kubernetes events using `kubectl get events` because events can reveal scheduling, image-pull, volume, networking, or configuration issues. If the pods are healthy but the application is still not accessible, I check the Kubernetes service and endpoints to make sure the service selector is matching the correct pods. I then check the ingress and ALB configuration, including the backend service, ports, health checks, and target health. I also check the values actually used by Helm with `helm get values` and inspect the generated Kubernetes manifests with `helm get manifest`. If I find that the latest Helm release introduced the problem and the previous revision was working correctly, I use `helm history` to identify the stable revision and execute `helm rollback <release> <revision> -n <namespace>`. After rollback, I verify the pods, deployment rollout, service, ingress, application logs, and user-facing functionality. Finally, I document the root cause and make sure the same issue is fixed before attempting another deployment.
+
+---
+
+
+
 # How Do You Handle a P1 Production Incident?
 
 One of the most common questions asked in AWS Cloud / DevOps / SRE interviews is:
