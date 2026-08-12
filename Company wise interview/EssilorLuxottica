@@ -1,0 +1,18 @@
+𝐒𝐞𝐧𝐢𝐨𝐫 𝐂𝐥𝐨𝐮𝐝 𝐈𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 & 𝐑𝐞𝐥𝐢𝐚𝐛𝐢𝐥𝐢𝐭𝐲 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 role at 𝐄𝐬𝐬𝐢𝐥𝐨𝐫𝐋𝐮𝐱𝐨𝐭𝐭𝐢𝐜𝐚.
+
+The discussion revolved around 
+1. Describe the most critical production outage you've resolved. How did you identify the root cause and prevent recurrence?
+2. Walk us through the AWS production architecture you currently support. What were the key design decisions and operational challenges?
+3. Describe a cloud migration or infrastructure modernization project. How did you minimize risk and business impact?
+4. Tell us about a CI/CD deployment that succeeded technically but failed in production. How did you investigate and recover?
+5. Describe a challenging performance issue where infrastructure metrics looked healthy. How did you identify the real bottleneck?
+6. Have you handled a production issue caused by Terraform or Infrastructure as Code? What was the root cause and long-term fix?
+7. A production application is intermittently slow, but all infrastructure metrics are healthy. How would you approach troubleshooting?
+8. Describe an incident where monitoring failed to detect the real issue. How did you discover it, and what improvements followed?
+9. Share a challenging production database issue involving latency, locking, replication lag, or slow queries. How did you resolve it?
+10. Describe the most complex AWS infrastructure issue you've handled involving VPC, ALB, Route 53, IAM, Security Groups, NAT Gateway, or networking.
+11. Tell us about a Sev-1 incident where you coordinated multiple teams. How did you drive the incident to resolution?
+12. Describe a failed production release. What rollback strategy did you follow, and what process improvements were introduced?
+13. Describe a situation where business urgency conflicted with technical risks. How did you influence the final decision?
+14. Application latency doubled after an infrastructure change, but CloudWatch showed healthy metrics. How would you investigate?
+15. What has been the most technically challenging production issue you've resolved? Walk us through your investigation and final solution.
