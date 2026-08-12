@@ -1280,7 +1280,10 @@ Can we make the system more reliable?
                 HAPPY USERS 🚀
 ```
 
+
 > **DevOps is not only about deploying applications. It is about owning the reliability, automation, observability, security and continuous improvement of the platform and delivery process.**
+
+--------------------------------------
 
 ## which type of docs we should write and maintain as a DevOps engineer.
 ```
@@ -1289,3 +1292,19 @@ Can we make the system more reliable?
 3. Deployment check list
 4. DR strategies 
 5. Iso audit checklist
+```
+
+## Suppose a single person is handling DevOps in a company,
+- IaC
+
+- ci/cd
+
+- observability 
+
+- monitoring
+
+Then which type of docs he should maintain ?
+
+*You have to create their architecture and configuration steps process with version based. All the tools*
+
+
