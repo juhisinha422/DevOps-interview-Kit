@@ -1,3 +1,50 @@
+# AWS IAM Interview Scenario: Credentials Are Correct, But Access Is Denied
+
+One of the common AWS DevOps interview questions:
+
+> **"The application has the correct credentials, but it cannot access S3. How will you troubleshoot?"**
+
+I would not immediately add AdministratorAccess. I troubleshoot layer by layer:
+
+## 1️⃣ Confirm the AWS identity
+
+```bash
+aws sts get-caller-identity
+```
+
+## 2️⃣ Check IAM permissions
+
+Does the role actually allow the required S3 action?
+
+## 3️⃣ Check the S3 bucket policy
+
+An explicit Deny can override an Allow.
+
+## 4️⃣ Check other permission boundaries
+
+• SCP  
+• Permission Boundary  
+• VPC Endpoint Policy  
+• KMS Policy  
+
+## 5️⃣ Check CloudTrail
+
+I look for the failed API call and the reason for AccessDenied.
+
+## 6️⃣ Apply the minimum required permission
+
+## 7️⃣ Retest the application
+
+My rule is simple:
+
+> **Don't fix IAM problems by blindly increasing permissions.**
+
+> **Find the exact authorization layer causing the denial.**
+
+That is how I approach production troubleshooting
+
+
+
 # 🚨𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼: EC2 Instance Experiencing High CPU Usage
 
 # 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:Your EC2 instance is experiencing consistently high CPU usage. How would you troubleshoot and resolve it?
