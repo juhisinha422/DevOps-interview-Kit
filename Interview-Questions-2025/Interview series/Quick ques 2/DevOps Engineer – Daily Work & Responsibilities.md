@@ -1281,3 +1281,11 @@ Can we make the system more reliable?
 ```
 
 > **DevOps is not only about deploying applications. It is about owning the reliability, automation, observability, security and continuous improvement of the platform and delivery process.**
+
+## which type of docs we should write and maintain as a DevOps engineer.
+```
+1. Architecture flows
+2. Poc
+3. Deployment check list
+4. DR strategies 
+5. Iso audit checklist
