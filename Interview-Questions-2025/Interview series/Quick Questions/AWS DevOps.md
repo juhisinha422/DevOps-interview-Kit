@@ -1,3 +1,125 @@
+# Senior Cloud Infrastructure & Reliability Engineer — Interview Questions & Answers
+
+## 1. Describe the most critical production outage you've resolved. How did you identify the root cause and prevent recurrence?
+
+### Answer
+
+One of the critical production issues I handled involved an application running on Kubernetes where multiple Pods started restarting and users experienced application failures. I first acknowledged the incident and assessed the business impact before checking the Kubernetes Pod status, restart counts, events, application logs, and node health. I used commands such as `kubectl get pods`, `kubectl describe pod`, and `kubectl logs --previous` to identify the reason for the restarts. I also checked CPU and memory utilization, resource requests and limits, liveness and readiness probes, recent deployments, and dependencies such as databases and external services. After identifying the immediate cause, I restored the service by rolling back the affected deployment to the last known stable version and monitored the application closely. After stabilization, I performed an RCA and documented the timeline, root cause, impact, resolution, and preventive actions. To prevent recurrence, I improved resource configuration, monitoring and alerting, deployment validation, health probes, and rollback procedures.
+
+---
+
+## 2. Walk us through the AWS production architecture you currently support. What were the key design decisions and operational challenges?
+
+### Answer
+
+The production architecture I work with is primarily based on AWS and Kubernetes. At the networking layer, I use a VPC with public and private subnets distributed across multiple Availability Zones. Internet-facing traffic can come through Route 53 and a load balancer, while application workloads run in private subnets on EKS. Kubernetes Services and Ingress are used for service communication and application routing. Container images are stored in Amazon ECR, while infrastructure is provisioned using Terraform. CI/CD is handled through Jenkins, where code is built, tested, scanned, containerized, and pushed to ECR, followed by Kubernetes deployment. Monitoring is handled using CloudWatch and Prometheus/Grafana depending on the workload. Key design decisions include high availability across Availability Zones, least-privilege IAM, private workloads where possible, infrastructure as code, automated deployments, centralized monitoring, and secure secret management. Operational challenges include capacity management, failed deployments, networking issues, Pod failures, resource utilization, security vulnerabilities, and troubleshooting production incidents.
+
+---
+
+## 3. Describe a cloud migration or infrastructure modernization project. How did you minimize risk and business impact?
+
+### Answer
+
+For a cloud migration or modernization project, I would first understand the existing application architecture, dependencies, traffic patterns, security requirements, and business-critical components. I would divide the migration into smaller phases rather than moving everything at once. Infrastructure would be provisioned using Terraform so that the environment is reproducible and consistent. I would validate networking, IAM, security groups, monitoring, logging, backups, and connectivity before moving production workloads. To minimize business impact, I would use a phased migration approach, starting with development and testing environments, followed by UAT and then production. Where applicable, I would use blue-green or canary deployment strategies to gradually move traffic. I would also define rollback procedures before the migration and continuously monitor application health, latency, errors, and resource utilization during each phase. This approach reduces risk because problems can be identified in a controlled environment before affecting production.
+
+---
+
+## 4. Tell us about a CI/CD deployment that succeeded technically but failed in production. How did you investigate and recover?
+
+### Answer
+
+A deployment can technically succeed from the CI/CD perspective while still failing from the application or business perspective. In such a situation, I would first check whether the new Pods are running and Ready, and then validate the application through the actual user traffic path. I would check Kubernetes deployment status, Pod logs, events, readiness and liveness probes, Service endpoints, Ingress or load balancer health, application metrics, and database connectivity. I would compare the new version with the previous working version and check configuration or environment-specific differences. If the issue is causing significant production impact and the previous version is known to be stable, I would immediately initiate a rollback rather than spending excessive time troubleshooting while users remain affected. After service restoration, I would perform RCA and determine whether the problem was caused by application code, configuration, dependency compatibility, database changes, infrastructure, or an incomplete deployment. As a preventive measure, I would strengthen automated integration testing, smoke tests, health checks, deployment verification, and automated rollback mechanisms.
+
+---
+
+## 5. Describe a challenging performance issue where infrastructure metrics looked healthy. How did you identify the real bottleneck?
+
+### Answer
+
+When infrastructure metrics such as CPU, memory, disk, and network utilization appear healthy but users experience performance problems, I would avoid assuming that the infrastructure is healthy overall. I would investigate the complete request path from the client through DNS, load balancer, Ingress, application Pods, APIs, and database or external dependencies. I would compare application latency, request rate, error rate, database response time, connection pools, thread pools, and dependency latency. Distributed tracing can be particularly useful because it shows where time is actually being spent within a request. I would also check recent application or configuration changes and compare the behavior with the previous stable period. For example, the infrastructure could show normal CPU usage while a database query becomes slow or an external API starts responding slowly. Once the bottleneck is identified, I would resolve it at the appropriate layer and add monitoring around that component so that the same issue can be detected earlier.
+
+---
+
+## 6. Have you handled a production issue caused by Terraform or Infrastructure as Code? What was the root cause and long-term fix?
+
+### Answer
+
+When Terraform causes a production issue, I first stop further changes and understand exactly what Terraform attempted to modify. I review the Terraform plan, state, recent commits, module changes, provider versions, and CI/CD execution logs. I also compare the Terraform state with the actual AWS resources to determine whether there is state drift. If the infrastructure is still partially functional, I avoid manually making additional changes unless necessary because that can create further drift. Depending on the situation, I may restore the previous configuration, correct the Terraform code, or use Terraform state operations carefully to bring the state and infrastructure back into alignment. For the long-term fix, I would introduce mandatory `terraform plan` reviews, remote state with locking, module versioning, CI validation, policy checks, and controlled production approvals. The goal is to make infrastructure changes predictable and prevent an individual change from directly impacting production without validation.
+
+---
+
+## 7. A production application is intermittently slow, but all infrastructure metrics are healthy. How would you approach troubleshooting?
+
+### Answer
+
+I would first determine whether the latency affects all users or only a specific region, endpoint, or operation. I would examine application-level metrics such as request latency, throughput, error rate, thread or connection pool utilization, and dependency response times. I would then trace slow requests through the complete architecture using distributed tracing or correlation IDs. I would investigate databases for slow queries, locks, connection saturation, replication lag, and query-plan changes. I would also check external APIs, DNS resolution, load balancer behavior, and network latency. Since the infrastructure metrics are healthy, I would focus more on application and dependency-level telemetry rather than simply increasing compute capacity. I would compare the issue against recent releases or configuration changes and use logs, metrics, and traces together to isolate the bottleneck. After identifying the cause, I would apply the smallest safe change and monitor the application to confirm that latency has returned to normal.
+
+---
+
+## 8. Describe an incident where monitoring failed to detect the real issue. How did you discover it, and what improvements followed?
+
+### Answer
+
+In a situation where monitoring fails to detect the actual problem, I would first understand why the existing monitoring system considered the environment healthy while users were experiencing failures. Infrastructure metrics such as CPU and memory may remain normal even when an application endpoint is unavailable or slow. I would compare infrastructure-level monitoring with user-facing metrics such as HTTP availability, latency, error rates, and successful transaction rates. Logs and traces can then be correlated with the affected requests to identify the actual failure. After the incident, I would improve observability by adding service-level indicators and alerts based on user impact rather than relying only on infrastructure thresholds. I would also review alert thresholds, dashboard accuracy, alert routing, and monitoring coverage. Synthetic health checks and application-level SLO monitoring can help detect problems that traditional infrastructure monitoring may miss.
+
+---
+
+## 9. Share a challenging production database issue involving latency, locking, replication lag, or slow queries. How did you resolve it?
+
+### Answer
+
+For a production database performance issue, I would first determine whether the problem is related to connections, CPU, memory, storage, locking, replication, or inefficient queries. I would check database metrics, active connections, slow-query logs, query execution plans, locks, transactions, and replication status. If a particular query is consuming excessive resources, I would work with the development or database team to optimize it using appropriate indexing, query changes, or batching. If the issue is connection saturation, I would investigate application connection-pool configuration and database connection limits rather than immediately increasing the database size. For replication lag, I would check the replication mechanism, write volume, replica health, and resource utilization. During a P1 situation, the priority would be to restore service safely, potentially using scaling or traffic management if appropriate, followed by detailed RCA and permanent optimization.
+
+---
+
+## 10. Describe the most complex AWS infrastructure issue you've handled involving VPC, ALB, Route 53, IAM, Security Groups, NAT Gateway, or networking.
+
+### Answer
+
+For a complex AWS networking issue, I troubleshoot layer by layer rather than changing multiple components simultaneously. I first verify DNS resolution through Route 53 and then check whether traffic reaches the expected load balancer. For an ALB, I check listener rules, target groups, target health, security groups, and access logs. For private workloads, I verify subnet routing, route tables, NAT Gateway connectivity, and Network ACLs. I also check whether the workload has the correct IAM permissions when AWS API access is involved. For EKS, I additionally verify Kubernetes Services, Ingress resources, security groups, network policies, and the AWS Load Balancer Controller where applicable. I use CloudWatch logs and metrics together with AWS flow logs and application-level testing to identify where traffic is being dropped or delayed. Once the issue is isolated, I make the smallest controlled change possible and validate connectivity from the user's perspective.
+
+---
+
+## 11. Tell us about a Sev-1 incident where you coordinated multiple teams. How did you drive the incident to resolution?
+
+### Answer
+
+During a Sev-1 incident, my first priority is to establish clear ownership and restore service while maintaining effective communication. I would acknowledge the incident, assess the impact, create or update the incident ticket, and involve the required application, database, network, security, and cloud teams. I would establish a clear communication channel and ensure that one person coordinates the incident while technical engineers investigate different areas in parallel. I would focus troubleshooting on recent changes, application health, Kubernetes or infrastructure health, load balancers, databases, networking, and monitoring data. If a recent deployment is identified as the likely cause, I would prioritize rollback to restore service. Throughout the incident, I would communicate the current impact, actions being taken, and expected next steps rather than allowing multiple teams to work without coordination. After recovery, I would conduct an RCA, identify preventive actions, assign owners, and track those actions until completion.
+
+---
+
+## 12. Describe a failed production release. What rollback strategy did you follow, and what process improvements were introduced?
+
+### Answer
+
+For a failed production release, I first determine whether the release is causing actual user impact by checking application health, error rates, latency, Pod readiness, logs, and load balancer or Ingress metrics. If the new version is confirmed as the cause, I prefer a fast rollback to the last known stable version. With Kubernetes Deployments, I can use the Deployment rollout history and rollback mechanism, provided the previous image and configuration are still available. For blue-green deployments, traffic can be redirected to the previously stable environment, while canary deployments allow traffic to be reduced or stopped from the new version. After restoring service, I investigate why automated tests and deployment validation did not detect the issue. Improvements can include stronger integration testing, automated smoke tests, progressive delivery, better readiness checks, deployment health gates, immutable image tagging, and automated rollback based on application-level metrics.
+
+---
+
+## 13. Describe a situation where business urgency conflicted with technical risks. How did you influence the final decision?
+
+### Answer
+
+When business urgency conflicts with technical risk, I first make the risk measurable instead of simply saying that the change is unsafe. I explain the potential impact, affected systems, probability of failure, rollback options, and required safeguards to the stakeholders. If the change is business-critical and cannot be postponed, I propose a safer implementation such as a canary deployment, limited user rollout, feature flag, maintenance window, or blue-green deployment. I also ensure that backups, monitoring, rollback procedures, and responsible technical owners are available before proceeding. My approach is not to block business requirements but to reduce the associated operational risk. If the risk remains unacceptable, I clearly communicate the technical reasons and recommend an alternative approach that achieves the business objective with lower risk.
+
+---
+
+## 14. Application latency doubled after an infrastructure change, but CloudWatch showed healthy metrics. How would you investigate?
+
+### Answer
+
+I would first correlate the exact time of the latency increase with the infrastructure change and compare application performance before and after the change. Healthy CloudWatch CPU and memory metrics do not necessarily mean that the infrastructure change had no effect. I would examine ALB latency metrics, target response time, connection behavior, DNS resolution, network paths, security groups, NAT Gateway behavior, and database response times. If the application runs on EKS, I would also check Pod placement, node types, Service and Ingress behavior, resource throttling, and application-level metrics. Distributed tracing would help identify whether the additional latency is occurring at the load balancer, application, database, or an external dependency. I would also compare configuration and infrastructure differences between the old and new environments. If the change is strongly correlated with the latency increase and rollback is safe, I would consider reverting it while continuing the RCA. Once the root cause is confirmed, I would implement the permanent fix and add monitoring for the affected metric.
+
+---
+
+## 15. What has been the most technically challenging production issue you've resolved? Walk us through your investigation and final solution.
+
+### Answer
+
+One of the most technically challenging production issues I would describe is a Kubernetes application failure where the infrastructure itself appeared healthy, but the application experienced repeated Pod restarts and user-facing errors. I approached the issue systematically by first identifying the scope and impact, then checking the Deployment, ReplicaSet, Pods, Services, Ingress, nodes, and application dependencies. I reviewed Pod events, current and previous logs, exit codes, resource utilization, readiness and liveness probes, and recent configuration or deployment changes. I correlated the Kubernetes information with monitoring data to determine whether the problem was related to application behavior, resource exhaustion, networking, or an unhealthy dependency. Once the immediate root cause was identified, I restored the application using the safest available recovery mechanism, such as rolling back to the previous stable version or correcting the affected configuration. After recovery, I performed an RCA and introduced preventive measures such as better resource requests and limits, stronger health checks, improved monitoring and alerting, deployment validation, and a documented rollback procedure. The main lesson I take from complex production incidents is that troubleshooting should be systematic and evidence-driven, while service restoration should remain the immediate priority during a high-severity incident.
+
+
+
 # 🚀 EXL Services – DevOps Engineer Round 2
 
 ## Interview Answers – 4 Years Experience
