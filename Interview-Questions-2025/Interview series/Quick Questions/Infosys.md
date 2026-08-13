@@ -1,3 +1,208 @@
+# Infosys DevOps Interview Experience – Round 1
+
+I’ve been receiving many messages asking about the questions from my Infosys DevOps interview, so sharing the complete list here. Hope this helps everyone preparing for similar roles. 🙌
+
+---
+
+## 1. Tell me about your current role and DevOps experience.
+
+### Answer
+
+I am currently working as a DevOps Engineer with around 3.5+ years of experience, primarily working on AWS, Docker, Kubernetes, Jenkins, Terraform, Git, Maven, and Linux. My responsibilities include managing CI/CD pipelines, containerizing applications using Docker, deploying and managing workloads on Kubernetes/EKS, provisioning infrastructure using Terraform, troubleshooting production issues, monitoring applications and infrastructure, and implementing automation using Shell and Python. I work closely with development and other infrastructure teams to improve deployment reliability, reduce manual effort, and resolve application and infrastructure issues. I have also worked with tools such as SonarQube and container security scanning as part of the DevSecOps process.
+
+---
+
+## 2. Is your DevOps experience primarily on AWS or other cloud platforms?
+
+### Answer
+
+My primary cloud experience is with AWS. I have worked with services such as EC2, VPC, EKS, EBS, EFS, S3, IAM, RDS, CloudWatch, and load balancing services. Most of my container orchestration experience is around Kubernetes and Amazon EKS, where I have worked on deployments, Services, Ingress, scaling, troubleshooting, and application connectivity. I also use Terraform to provision and manage AWS infrastructure. My focus has mainly been on AWS-based DevOps rather than working across multiple cloud platforms.
+
+---
+
+## 3. Have you worked with on-premises infrastructure / VMware vSphere?
+
+### Answer
+
+My primary hands-on experience is with AWS cloud infrastructure rather than VMware vSphere. I understand the basic concepts of on-premises infrastructure, virtualization, and VMware, but most of my production responsibilities have been around AWS. In AWS, I have worked with EC2, VPC networking, IAM, storage, EKS, load balancers, monitoring, and infrastructure provisioning through Terraform. If I encounter an on-premises or VMware-based environment, I would approach it by understanding the existing architecture, networking, compute, storage, virtualization layer, and automation requirements before making changes.
+
+---
+
+## 4. Did you create CI/CD pipelines from scratch or work on existing pipelines?
+
+### Answer
+
+I have experience working with both existing pipelines and creating or modifying CI/CD pipelines based on application requirements. A typical pipeline starts when developers push code to Git, which triggers Jenkins through a webhook. Jenkins checks out the code, performs the build using Maven, runs code-quality checks such as SonarQube, builds the Docker image, scans it for vulnerabilities, and pushes the image to Amazon ECR. The deployment stage then updates the Kubernetes workload using the required deployment mechanism. When troubleshooting an existing pipeline, I first understand each stage, its inputs and outputs, credentials, environment variables, agents, tools, and dependencies before modifying anything.
+
+---
+
+## 5. Explain the CI/CD pipeline you created for CSV validation and S3 upload.
+
+### Answer
+
+For a CSV validation and S3 upload pipeline, the process can start when a CSV file is provided or committed to the configured repository or source location. Jenkins triggers the pipeline and first validates the file format, required columns, naming conventions, data types, and any application-specific validation rules. If the validation succeeds, the pipeline authenticates securely with AWS using an IAM role or securely managed credentials and uploads the validated file to the appropriate S3 bucket and path. If validation fails, the pipeline stops and reports the reason instead of uploading invalid data. I would also maintain separate configuration for different environments and ensure that the pipeline does not expose AWS credentials or sensitive information in the Jenkins logs.
+
+---
+
+## 6. If an L3 team created the pipeline, how do you understand and troubleshoot it?
+
+### Answer
+
+If an L3 team created the pipeline, I would first understand the Jenkinsfile or pipeline configuration and identify every stage and its purpose. I would check the source repository, build tools, environment variables, credentials, agents, plugins, scripts, artifacts, and deployment steps. When a failure occurs, I would identify the exact stage where it failed and inspect the console output and relevant application or infrastructure logs. I would compare the current execution with a previously successful build to identify changes in code, dependencies, credentials, configuration, or infrastructure. I would avoid making random changes and instead isolate the failing component, reproduce the issue where possible, apply the smallest required fix, and document the root cause.
+
+---
+
+## 7. Have you written a Dockerfile?
+
+### Answer
+
+Yes, I have written Dockerfiles for containerizing applications. A typical Dockerfile starts with an appropriate base image, sets the working directory, copies the required application files, installs dependencies, builds the application if required, exposes the required port, and defines the application startup command. I prefer using multi-stage builds where applicable so that build-time dependencies are not included in the final production image. I also use `.dockerignore` to prevent unnecessary files such as `.git`, logs, local dependencies, and temporary files from being copied into the image. This helps reduce image size, build time, and the overall attack surface.
+
+---
+
+## 8. What is the difference between CMD and ENTRYPOINT in Docker?
+
+### Answer
+
+`ENTRYPOINT` defines the main executable or command that the container is intended to run, while `CMD` generally provides default arguments or a default command that can be overridden when the container starts. For example, if I use `ENTRYPOINT ["java", "-jar"]` and `CMD ["app.jar"]`, the container starts the Java application using the JAR specified by CMD. ENTRYPOINT is useful when I want the container to behave like a specific executable, while CMD is useful for providing defaults that can easily be overridden. In production Dockerfiles, I choose between them based on whether the startup executable should remain fixed or be easily replaceable.
+
+---
+
+## 9. What Kubernetes operations have you performed apart from deployments?
+
+### Answer
+
+Apart from deployments, I have worked with Pods, ReplicaSets, Services, ConfigMaps, Secrets, Ingress, StatefulSets, Persistent Volumes, Persistent Volume Claims, probes, resource requests and limits, scaling, and troubleshooting. I have also worked with Kubernetes scheduling concepts such as node selectors, node affinity, taints and tolerations. On EKS, I have worked with cluster and node-group-related operations, application connectivity, load balancer integration, and troubleshooting issues such as Pending Pods, CrashLoopBackOff, ImagePullBackOff, Service connectivity problems, and unhealthy workloads. I also use Kubernetes monitoring and logs to investigate production issues.
+
+---
+
+## 10. Have you troubleshooted CrashLoopBackOff? How?
+
+### Answer
+
+Yes. When a Pod enters `CrashLoopBackOff`, I first check the Pod status and restart count using `kubectl get pods`. Then I use `kubectl describe pod` to inspect events, container state, exit codes, probes, mounts, and scheduling information. I check the current and previous container logs using `kubectl logs` and `kubectl logs --previous` because the container may have already restarted. I also verify environment variables, ConfigMaps, Secrets, image versions, resource limits, liveness and readiness probes, application dependencies, and database connectivity. If the container is being OOMKilled, I investigate memory usage and resource limits. If the issue started after a deployment, I compare the new version with the previous stable version and roll back if necessary. My goal is to identify the actual reason for the restart instead of treating CrashLoopBackOff itself as the root cause.
+
+---
+
+## 11. Explain CrashLoopBackOff in simple terms.
+
+### Answer
+
+CrashLoopBackOff means that a container starts, crashes, and Kubernetes repeatedly tries to restart it, but because it keeps failing, Kubernetes gradually increases the delay between restart attempts. The `BackOff` portion indicates that Kubernetes is backing off before trying again. The actual root cause can be anything from an application startup failure, incorrect configuration, missing environment variables, failed dependency connection, incorrect command, failed health probe, insufficient resources, or permission issues. Therefore, CrashLoopBackOff is an indication of repeated container failure rather than a specific application error. I normally use `kubectl describe pod` and `kubectl logs --previous` to determine the underlying reason.
+
+---
+
+## 12. Explain PV and PVC in Kubernetes.
+
+### Answer
+
+A Persistent Volume, or PV, represents storage available to the Kubernetes cluster, while a Persistent Volume Claim, or PVC, is a request from an application for storage with specific requirements such as capacity and access mode. The application normally uses the PVC rather than directly interacting with the PV. Kubernetes then binds the PVC to a suitable PV. In a cloud environment such as AWS EKS, persistent storage can be provided through services such as EBS or EFS depending on the access requirements. PVs and PVCs are important for workloads where data must survive Pod restarts or Pod recreation, such as databases and stateful applications.
+
+---
+
+## 13. How do you handle autoscaling in Kubernetes?
+
+### Answer
+
+For application-level scaling, I commonly use the Horizontal Pod Autoscaler, or HPA, which adjusts the number of Pod replicas based on metrics such as CPU or memory utilization and, where configured, custom or external metrics. For example, if traffic increases and the application consumes more CPU, HPA can increase the number of Pods. If the cluster does not have enough capacity to schedule those Pods, the Cluster Autoscaler or an equivalent node autoscaling mechanism can add worker nodes. Therefore, in a production EKS environment, I generally consider both Pod-level and node-level scaling. I also configure appropriate resource requests and limits because HPA decisions depend on resource metrics and poorly configured resources can result in incorrect scaling behavior.
+
+---
+
+## 14. How do you achieve URL/path-based routing in Kubernetes?
+
+### Answer
+
+URL or path-based routing can be implemented using Kubernetes Ingress together with an Ingress Controller. The Ingress resource defines rules that map hostnames or URL paths to Kubernetes Services. For example, `/users` can route to the user service, `/orders` can route to the order service, and `/payments` can route to the payment service. In AWS EKS, an AWS Load Balancer Controller can be used to integrate Kubernetes Ingress resources with AWS load-balancing infrastructure. This provides a centralized entry point, reduces the need for a separate external load balancer for every microservice, and allows features such as TLS termination and host-based or path-based routing.
+
+---
+
+## 15. Are you familiar with middleware technologies like Tomcat, WebLogic, or WebSphere?
+
+### Answer
+
+I have an understanding of middleware technologies and their role in hosting enterprise applications. Tomcat, for example, is commonly used as a Java servlet container for Java web applications, while WebLogic and WebSphere are enterprise application servers with additional capabilities for large-scale Java applications. From a DevOps perspective, I focus on how these applications are built, packaged, configured, deployed, monitored, and troubleshooted. In a containerized environment, applications traditionally hosted on middleware servers can also be packaged into Docker images and deployed on Kubernetes, depending on application architecture and compatibility.
+
+---
+
+## 16. How comfortable are you with Linux? What activities do you perform?
+
+### Answer
+
+I am comfortable working with Linux as part of my day-to-day DevOps activities. I use Linux for application troubleshooting, log analysis, process management, file and directory operations, permissions, networking, package management, service management, and shell scripting. Common commands I use include `ps`, `top`, `df`, `du`, `free`, `netstat` or `ss`, `curl`, `grep`, `awk`, `sed`, `find`, `tail`, `journalctl`, `chmod`, and `chown`. I also troubleshoot CPU, memory, disk, process, and connectivity issues on Linux-based servers and use Shell scripting to automate repetitive operational tasks.
+
+---
+
+## 17. Have you worked on incident management / production incidents?
+
+### Answer
+
+Yes, production incident management is an important part of DevOps operations. During an incident, I first acknowledge the issue, understand the business impact, and identify the affected application or infrastructure component. I then check monitoring dashboards, logs, recent deployments, infrastructure health, Kubernetes resources, networking, databases, and other dependencies depending on the problem. For a high-severity incident, I focus first on restoring service and minimizing business impact rather than spending too much time finding the perfect root cause while the application remains unavailable. Once service is restored, I perform an RCA, document the incident timeline and root cause, and implement preventive actions such as improved monitoring, automation, configuration changes, capacity improvements, or deployment safeguards.
+
+---
+
+## 18. Which scripting languages have you worked with?
+
+### Answer
+
+I have worked primarily with Shell scripting and Python for automation and operational tasks. Shell scripting is useful for Linux administration, file processing, log analysis, deployment automation, health checks, and repetitive command execution. Python can be used for more structured automation, API integrations, AWS operations, data processing, and custom tooling. In DevOps, I use scripting to reduce repetitive manual work and make operational processes consistent and repeatable. I also integrate scripts into Jenkins pipelines or other automation workflows where required.
+
+---
+
+## 19. What repetitive tasks have you automated using Bash/Shell scripting?
+
+### Answer
+
+I have used Shell scripting to automate repetitive operational activities such as checking server health, monitoring disk and memory utilization, processing logs, validating application status, performing file operations, and executing deployment-related tasks. For example, instead of manually checking multiple servers for disk usage, a Shell script can connect to the required systems, collect disk utilization, compare it against a threshold, and generate an alert when the threshold is exceeded. I can also integrate such scripts into Jenkins pipelines so that validation or operational checks happen automatically before or after deployment. Automation reduces manual errors and saves time, especially when the same activity needs to be performed frequently.
+
+---
+
+## 20. Give a real-time example of automation you implemented.
+
+### Answer
+
+One real-time example of automation is integrating application deployment into a Jenkins CI/CD pipeline. Previously, several steps involved manual execution, but I automated the flow so that a code push triggers Jenkins through a webhook. Jenkins checks out the code, builds the application using Maven, performs quality checks, creates the Docker image, scans the image where required, pushes the image to Amazon ECR, and deploys the application to Kubernetes. This reduces manual intervention and makes deployments more consistent. I also use Shell scripting within automation workflows for validation, environment checks, and operational tasks. The main benefit is faster and more reliable deployment with a repeatable process.
+
+---
+
+## 21. What is Terraform state management?
+
+### Answer
+
+Terraform state management is the process of maintaining the `terraform.tfstate` file, which records Terraform's understanding of the infrastructure it manages. Terraform uses the state to map resources defined in the Terraform configuration to actual resources in the cloud and to determine what needs to be created, updated, or destroyed during a plan or apply. In a production team environment, I would not keep the state file only on a developer's local machine. I would use a remote backend such as an S3 bucket for centralized state storage and enable state locking using the appropriate supported locking mechanism. The state should also be protected with encryption, access control, versioning, and restricted permissions because it can contain sensitive infrastructure information.
+
+---
+
+## 22. How do you manage Terraform state in a team environment?
+
+### Answer
+
+In a team environment, I use remote Terraform state so that all engineers and CI/CD systems work with a centralized source of truth. For AWS environments, an S3 backend can be used to store the state securely, with appropriate encryption, versioning, and access control. State locking is also important because it prevents multiple Terraform operations from modifying the same state simultaneously. I separate state by environment or infrastructure boundary rather than allowing every environment to share one large state file. Access to the state is restricted using IAM, and Terraform changes are normally executed through a controlled CI/CD process with plan reviews and approvals for production. This makes infrastructure changes safer and reduces the risk of state corruption or conflicting updates.
+
+---
+
+## 23. What are Terraform modules and why do we use them?
+
+### Answer
+
+Terraform modules are reusable collections of Terraform resources and configuration that allow us to standardize infrastructure provisioning. Instead of repeatedly writing the same VPC, EKS, security group, or other infrastructure configuration for every environment, I can create a reusable module with input variables and outputs. Different environments can then call the same module with environment-specific values. Modules improve code reusability, consistency, maintainability, and standardization. For example, I could have a reusable VPC module and use it for development, QA, UAT, and production while passing different CIDR ranges and configuration values for each environment.
+
+---
+
+## 24. What are Terraform workspaces?
+
+### Answer
+
+Terraform workspaces allow multiple state files to be associated with the same Terraform configuration. They can be useful when the infrastructure configuration is essentially the same but needs separate state for different environments or instances. For example, separate workspaces could represent development and testing environments. However, for larger production environments, I prefer clear environment separation using separate configurations, directories, or state backends when that provides better isolation and control. Workspaces are useful, but they should not be treated as a complete environment isolation or security mechanism because all workspaces still use the same Terraform configuration and provider setup.
+
+---
+
+## 25. Do you have any questions for the interviewer?
+
+### Answer
+
+Yes. I would ask questions that help me understand the team's engineering practices, production responsibilities, and expectations for the role. For example, I would ask, "What does the current DevOps and cloud architecture look like, and what are the major challenges the team is trying to solve?" I would also ask, "How is the CI/CD process structured, and how much of the infrastructure and deployment process is automated?" Another useful question would be, "What would you expect someone i
+
+
 # Infosys AWS DevOps Interview Questions & Answers
 
 ---
