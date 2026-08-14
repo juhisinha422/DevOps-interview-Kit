@@ -1,3 +1,94 @@
+# DevOps Interview Questions & Answers
+
+## 1. What happens when a Kubernetes pod keeps restarting?
+
+When a Kubernetes Pod keeps restarting, Kubernetes continuously tries to maintain the desired state defined by the workload, such as a Deployment. If the container exits, the kubelet restarts it according to the container's restart policy, which commonly results in `CrashLoopBackOff` when the container repeatedly fails. I would first check the Pod status using `kubectl get pods`, then inspect the logs using `kubectl logs <pod-name> --previous` because the previous container instance may contain the actual error. I would also check `kubectl describe pod <pod-name>` for events, probe failures, OOMKilled status, configuration issues, image problems, and exit codes. I would verify ConfigMaps, Secrets, environment variables, resource limits, and volume mounts. Based on the root cause, I would fix the configuration or application issue and monitor the Pod to confirm that it becomes stable.
+
+---
+
+## 2. How would you troubleshoot a `CrashLoopBackOff`?
+
+I would troubleshoot `CrashLoopBackOff` systematically rather than immediately changing the application. First, I would run `kubectl get pods` and `kubectl describe pod <pod-name>` to understand the current state and recent events. Then I would check both current and previous container logs using `kubectl logs <pod-name>` and `kubectl logs <pod-name> --previous`. I would check the container exit code and termination reason to identify whether it was an application failure, `OOMKilled`, failed probe, missing configuration, permission issue, or dependency failure. I would then validate ConfigMaps, Secrets, mounted volumes, image versions, environment variables, resource requests/limits, and liveness probes. If the container is being killed because of memory limits, I would analyze its memory usage before changing the limit. After applying the appropriate fix, I would monitor the rollout and verify that the application is healthy through readiness checks and application-level testing.
+
+---
+
+## 3. What actually happens during `terraform apply`?
+
+When I run `terraform apply`, Terraform first evaluates the configuration, loads the current state, and compares the desired infrastructure defined in the `.tf` files with the existing infrastructure represented in the state. It creates an execution plan showing which resources need to be created, modified, or destroyed. After approval, Terraform builds a dependency graph and executes the required operations in the correct dependency order rather than simply following the order of resources in the files. Terraform communicates with the relevant provider, such as AWS, to make the actual infrastructure changes. After successful operations, Terraform updates the state file with the new resource IDs, attributes, and relationships so that future plans can accurately determine the difference between the desired and actual infrastructure. In a team environment, I also make sure remote state and state locking are configured before applying changes.
+
+---
+
+## 4. How does Terraform state locking work?
+
+Terraform state locking prevents multiple engineers or CI/CD pipelines from modifying the same Terraform state simultaneously. When Terraform starts an operation such as `terraform apply`, it acquires a lock on the remote state before making changes. If another engineer tries to run an operation against the same state while it is locked, Terraform normally waits or fails instead of allowing concurrent state modifications. This prevents race conditions, conflicting infrastructure changes, and state corruption. In a production environment, I would use a remote backend with locking and make sure engineers run Terraform through a controlled CI/CD process. If a lock remains because of an interrupted operation, I would first verify that no Terraform process is actually running and only then remove the stale lock using the appropriate Terraform mechanism rather than forcefully deleting it.
+
+---
+
+## 5. What happens when a Linux server runs out of memory?
+
+When a Linux server runs out of available memory, the system starts using swap if it is configured and available. If memory pressure continues and the system cannot satisfy memory allocations, the Linux Out-Of-Memory (OOM) killer may terminate one or more processes to recover memory. Applications may become slow, fail to allocate memory, or crash. I would troubleshoot this by checking commands such as `free -h`, `top`, `htop`, `vmstat`, and `ps` to identify memory consumption. I would also check system logs using `dmesg` or the appropriate system journal for OOM-killer messages. I would identify whether the problem is caused by a memory leak, an unexpectedly high workload, insufficient server capacity, or an incorrectly configured application. After identifying the root cause, I would optimize the application, adjust resource allocation, configure appropriate swap where suitable, or scale the infrastructure.
+
+---
+
+## 6. How would you troubleshoot high CPU usage?
+
+I would first confirm whether the CPU increase is sustained or a short-term spike by checking monitoring data such as CloudWatch, Prometheus, or Grafana. On the server, I would use `top`, `htop`, `ps`, `uptime`, and `vmstat` to identify which processes or applications are consuming CPU. I would then correlate the CPU spike with application logs, traffic levels, deployments, scheduled jobs, database activity, and recent configuration changes. In Kubernetes, I would check Pod-level CPU usage using `kubectl top pods` and node-level usage using `kubectl top nodes`, and compare the usage against CPU requests and limits. If traffic has increased, I would consider Horizontal Pod Autoscaling or additional nodes through cluster autoscaling. If a particular application is responsible, I would investigate the application or query causing the CPU consumption. The goal is to identify the root cause rather than simply increasing CPU capacity.
+
+---
+
+## 7. How does DNS resolution work?
+
+DNS resolution converts a domain name such as `example.com` into an IP address that a client can use to establish a network connection. When a client needs to resolve a domain, it first checks local sources such as its DNS cache and hosts file. If the answer is not available, the request is sent to a configured DNS resolver. The resolver may query authoritative DNS servers through the DNS hierarchy, including root, TLD, and authoritative name servers, and then return the result to the client. The response is cached according to its TTL. In AWS, Route 53 can provide public DNS resolution, while VPC DNS services handle DNS resolution inside AWS VPCs. In Kubernetes, CoreDNS normally provides cluster DNS, allowing Pods to resolve Kubernetes Services using service DNS names.
+
+---
+
+## 8. What happens when a Kubernetes node goes down?
+
+When a Kubernetes worker node goes down, the control plane detects that the node is no longer responding through the kubelet/node health mechanism. The node eventually becomes `NotReady`, and Kubernetes identifies the Pods that were running on that node. For Pods managed by controllers such as Deployments or ReplicaSets, Kubernetes can create replacement Pods on healthy nodes, provided sufficient resources and scheduling requirements are available. If the workload uses persistent storage, Kubernetes also needs to handle volume attachment and reattachment according to the storage system and workload configuration. I would check `kubectl get nodes`, `kubectl describe node`, Pod status, cluster events, and workload controller status. In an EKS environment, I would additionally check the underlying EC2 instance, Auto Scaling Group, node group, networking, and cluster autoscaling behavior. For critical applications, I would design workloads across multiple nodes and Availability Zones to avoid a single-node failure causing an outage.
+
+---
+
+## 9. How would you debug a failed CI/CD pipeline?
+
+I would start by identifying the exact stage and command where the pipeline failed rather than assuming the entire pipeline is broken. I would review the Jenkins or CI/CD console logs and compare the failure with the last successful build. I would check source-code changes, dependency changes, credentials, environment variables, agent availability, tool versions, Docker build issues, registry connectivity, and deployment permissions. If the failure is during testing, I would validate the test output and application dependencies. If it occurs during Docker image creation, I would reproduce the build outside the pipeline where possible. If it occurs during deployment, I would check Kubernetes events, manifests, image availability, credentials, and target-cluster connectivity. I would also verify whether the failure is environment-specific or branch-specific. After identifying the root cause, I would fix it, rerun the pipeline, and add appropriate validation or automation so that the same failure is less likely to happen again.
+
+---
+
+## 10. What’s the difference between blue-green and canary deployments?
+
+Blue-green deployment maintains two environments: the current production environment, usually called Blue, and a new version, called Green. The new version is deployed and validated separately, and traffic is switched from Blue to Green when the release is considered ready. This provides a fast rollback because traffic can be switched back to the previous environment, although maintaining two environments can increase infrastructure cost. Canary deployment releases the new version to a small percentage of users or traffic first, while the majority continues using the stable version. Metrics such as error rate, latency, CPU usage, and business KPIs are monitored before gradually increasing traffic to the new version. I would generally prefer canary for large or high-risk applications where gradual exposure is important, while blue-green is useful when fast switching and rollback are more important.
+
+---
+
+## 11. How do you manage secrets in production?
+
+I avoid storing production secrets directly in source code, Dockerfiles, Git repositories, or plain Kubernetes Deployment manifests. In AWS environments, I would use services such as AWS Secrets Manager or Systems Manager Parameter Store depending on the requirement, and in Kubernetes environments I can integrate external secret-management systems such as HashiCorp Vault or an External Secrets solution. Kubernetes Secrets can be used, but I would ensure appropriate RBAC and encryption at rest are configured because Base64 encoding by itself is not encryption. Access should follow the principle of least privilege, with applications receiving only the secrets they actually require. I would also implement secret rotation, auditing, access monitoring, and ensure that secrets are never printed in CI/CD logs. For Terraform, sensitive values should also be protected in the state backend because marking a variable as sensitive prevents display in output but does not automatically remove the value from state.
+
+---
+
+## 12. How would you design a highly available application?
+
+I would remove single points of failure across the application stack. In AWS, I would typically deploy resources across multiple Availability Zones and use services such as an Application Load Balancer to distribute traffic across healthy application instances or Kubernetes Pods. For Kubernetes workloads, I would use multiple replicas, readiness and liveness probes, appropriate Pod disruption budgets, and topology spread or anti-affinity rules to distribute Pods across nodes and Availability Zones. The database layer should also provide high availability, such as Multi-AZ deployment where appropriate, with suitable backup and recovery mechanisms. I would use Route 53 for DNS and health-based routing when required, CloudWatch/Prometheus/Grafana for monitoring, and automated scaling for changing workloads. I would also define disaster-recovery procedures, RTO/RPO requirements, regular backups, and recovery testing because high availability and disaster recovery address different failure scenarios.
+
+---
+
+## 13. What happens when a load balancer starts returning 5xx errors?
+
+I would first determine which 5xx response is being generated and whether it is coming from the load balancer, reverse proxy, ingress controller, or backend application. I would check ALB/NLB metrics and logs, target health, listener rules, security groups, target ports, and backend connectivity. For an ALB, I would review metrics such as `HTTPCode_ELB_5XX_Count` and `HTTPCode_Target_5XX_Count` to distinguish load-balancer-side errors from backend-generated errors. In Kubernetes, I would check the Ingress Controller, Service endpoints, Pod readiness, application logs, and recent deployments. I would also verify whether Pods are overloaded, restarting, or failing health checks. If the issue started immediately after a release, I would compare the new version with the previous version and consider rollback if that is the safest way to restore service. Once service is restored, I would perform RCA and implement preventive measures.
+
+---
+
+## 14. How do you investigate a sudden production latency spike?
+
+I would first determine the scope and timing of the latency increase: whether all users, specific APIs, regions, or services are affected. I would compare application latency with infrastructure metrics such as CPU, memory, network, disk I/O, load-balancer metrics, database connections, and query latency. I would check distributed traces and application logs to identify where time is being spent across the request path. I would also investigate recent deployments, configuration changes, infrastructure changes, traffic increases, DNS changes, external dependencies, and database performance. In a microservices environment, I would trace the request from the load balancer through the ingress layer and services to the database or external dependency. If the latency is release-related, I would consider rollback while continuing investigation. After identifying the bottleneck, I would apply the appropriate fix and establish monitoring or alerts to detect the condition earlier.
+
+---
+
+## 15. Production is down at 2 AM. What’s your first move?
+
+My first move is to acknowledge the incident and quickly assess the business impact rather than immediately making random infrastructure changes. I would confirm whether the outage is genuine, identify which services and users are affected, and check monitoring dashboards, alerts, application logs, load-balancer health, Kubernetes/EKS health, database status, and recent changes. I would communicate through the established incident-management process and involve the appropriate application, database, network, security, or cloud teams if required. If there is a known recent deployment or configuration change that clearly caused the outage, I would prioritize a safe rollback to restore service. During a P1 incident, my priority is **restore service → minimize business impact → verify stability → perform RCA**. Once the application is stable, I would document the timeline, root cause, corrective actions, and preventive improvements.
+
+
 # DevOps Interview Questions & Answers (4 Years Experience)
 
 ## 🔧 TERRAFORM
