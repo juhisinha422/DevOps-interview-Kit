@@ -1,0 +1,15 @@
+Which practice helps reduce log noise while keeping logs useful for production troubleshooting? 
+
+
+
+
+
+A. Log every event
+
+B. Remove all errors
+
+C. Log meaningful events
+
+D. Disable application logs
+
+ANS C
