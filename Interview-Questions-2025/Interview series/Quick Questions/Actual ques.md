@@ -1,3 +1,124 @@
+# DevOps Engineer – 2nd Round Interview
+
+These 20 questions separate good DevOps engineers from great ones.
+
+## 1. Your production Docker containers keep getting OOM-killed but the app "works fine" locally. How do you debug it?
+
+I would first confirm the `OOMKilled` status using `kubectl describe pod` or container runtime logs and compare the container's memory usage in production with its configured memory limit. I would check metrics from Prometheus, Grafana, or CloudWatch to identify whether memory usage increases gradually, spikes during specific requests, or remains consistently close to the limit. I would also compare the production environment with local conditions because production may have higher traffic, different configuration, larger datasets, or different JVM/application settings. I would inspect application logs, heap usage where applicable, thread counts, and dependency behavior to identify a possible memory leak or inefficient workload. I would verify Kubernetes memory requests and limits and check whether the Pod is being throttled or evicted. I would not simply increase the memory limit without understanding the cause. If the application genuinely requires more memory, I would right-size the limit and scale replicas appropriately while continuing to investigate the underlying memory behavior.
+
+---
+
+## 2. Design a blue-green deployment strategy for a monolith that still has a stateful DB. What's your rollback plan?
+
+For a monolith with a stateful database, I would create two application environments, Blue and Green, while keeping the database shared or carefully managed depending on the application's compatibility requirements. The critical point is database backward and forward compatibility because simply switching application versions does not roll back database schema changes safely. I would use an expand-and-contract migration strategy, where new database fields or structures are introduced without immediately removing the old ones. I would deploy and validate the Green application against the compatible schema, test it thoroughly, and then switch traffic using the load balancer. For rollback, I would immediately redirect traffic back to Blue if the application version has issues. Database rollback would only be performed if it is safe and necessary; otherwise, I would use backward-compatible schema changes and restore the application version while preserving the database state. This prevents an application rollback from accidentally causing database corruption or incompatibility.
+
+---
+
+## 3. Your Jenkins pipeline is green but the deployment silently failed on 2 out of 10 nodes. How do you catch this?
+
+I would make deployment validation an explicit stage rather than considering the deployment successful simply because the deployment command returned exit code zero. After deployment, Jenkins should validate all ten target nodes and confirm that the expected application version is actually running on each one. I would use health checks, service status checks, version verification, API smoke tests, and appropriate deployment tooling to verify the result. If Kubernetes is involved, I would check rollout status, Pod readiness, ReplicaSet status, and events. For traditional servers, I would execute remote health checks and verify application processes and versions. The pipeline should fail if even one required node does not reach the expected state. I would also implement clear logging and notifications showing which nodes succeeded or failed, making partial deployments visible rather than allowing a false-green pipeline.
+
+---
+
+## 4. How would you design IAM roles for a team of 15 engineers with least-privilege access across dev/staging/prod?
+
+I would avoid giving individual engineers broad IAM permissions directly. I would create role-based access according to responsibilities and environments. Developers could have broader access in development but read-only or restricted access in staging and production. Production write access would be limited to authorized DevOps or platform engineers and preferably protected through approval workflows and temporary access. I would use IAM roles, groups, permission policies, and AWS Organizations/SCPs where applicable to enforce account-level restrictions. Applications should use IAM roles rather than long-lived access keys. I would also enable CloudTrail and regularly review permissions using IAM Access Analyzer and access activity. The objective is that each engineer gets only the permissions required for their responsibilities and environment.
+
+---
+
+## 5. Your EKS pods are stuck in "Pending" state despite available node capacity. Walk me through your debugging steps.
+
+I would first run `kubectl get pods -o wide` and `kubectl describe pod <pod-name>` because the Events section usually provides the scheduler's reason for the Pod remaining Pending. I would check whether the available capacity actually satisfies the Pod's CPU and memory requests rather than looking only at total node capacity. Then I would investigate taints and tolerations, node selectors, node affinity, topology constraints, Pod anti-affinity, and namespace resource quotas. I would also check whether the Pod requires a PersistentVolume that has not been successfully provisioned or attached. In EKS, I would verify node-group health, IAM permissions, networking, autoscaling behavior, and whether the required instance type or availability zone is available. Finally, I would inspect scheduler events and cluster conditions to determine the exact scheduling constraint and fix that constraint rather than simply adding more nodes.
+
+---
+
+## 6. Design a disaster recovery strategy for an application with a 15-minute RTO and 5-minute RPO.
+
+A 15-minute RTO means the service should be restored within approximately 15 minutes, while a 5-minute RPO means we can tolerate losing at most about five minutes of data. I would first identify the critical components and dependencies and then design the DR architecture around those requirements. For databases, I would use continuous replication or frequent backups depending on the database technology and business requirements. Infrastructure would be defined using Terraform so that the DR environment can be recreated consistently. Application artifacts and container images would be stored in highly available or replicated repositories. Configuration and secrets would be replicated securely. Depending on the required recovery model, I could use a warm standby or pilot-light architecture in another Availability Zone or AWS Region. DNS or traffic management would be configured for controlled failover. I would regularly test restoration and measure the actual recovery time to ensure that the 15-minute RTO and 5-minute RPO are achievable rather than assuming the architecture will meet them.
+
+---
+
+## 7. Your Terraform apply is about to destroy and recreate an RDS instance in production. What went wrong, and how do you prevent it?
+
+I would stop the apply immediately and inspect the `terraform plan` output to understand why Terraform believes the RDS resource must be replaced. Possible causes include changing an immutable attribute, modifying an identifier, changing configuration that requires replacement, importing the resource incorrectly, state drift, or using a different resource definition than what currently exists. I would compare the Terraform configuration, state, and actual AWS resource before making any changes. For a critical production database, I would use safeguards such as `lifecycle { prevent_destroy = true }` where appropriate, require plan review and approval, enable database backups and snapshots, and use separate production deployment controls. I would also investigate whether the state accurately represents the existing RDS resource. I would never approve a destructive production plan without understanding exactly why Terraform wants to replace the database and confirming that the replacement is intentional and safe.
+
+---
+
+## 8. How do you handle secrets rotation for a Kubernetes cluster without causing downtime?
+
+I would use a centralized secret-management solution such as AWS Secrets Manager, HashiCorp Vault, or an External Secrets solution rather than manually updating secrets inside application manifests. The new secret should be created and validated before the old credential is revoked whenever the application supports overlapping credentials. I would update the Kubernetes workload so that new Pods receive the new secret and verify that the application can authenticate successfully. Depending on how the secret is consumed, I could perform a controlled rolling restart because environment variables are generally loaded when the container starts. I would ensure the Deployment has multiple replicas, appropriate readiness probes, and a rolling-update strategy so that existing healthy Pods continue serving traffic while new Pods start with the rotated credential. After successful validation, I would revoke the old credential and monitor the application for authentication failures.
+
+---
+
+## 9. Your monitoring shows CPU and memory are healthy, but users report slow response times. What's your next step?
+
+I would not assume that healthy CPU and memory mean the application is healthy. I would investigate latency at the request and dependency level using application metrics, distributed tracing, logs, load-balancer metrics, and database monitoring. I would determine whether the latency affects all endpoints or only specific APIs and whether it started after a deployment or configuration change. I would check database query latency, connection pools, external APIs, DNS resolution, network latency, thread pools, locks, queue depth, and application-level saturation. Distributed tracing is especially useful because it can show where time is being spent across multiple microservices. I would correlate the latency spike with recent changes and user traffic patterns. The goal is to locate the actual bottleneck rather than simply increasing CPU or memory.
+
+---
+
+## 10. Design an autoscaling strategy for a workload with unpredictable traffic spikes every few weeks.
+
+I would combine application-level and infrastructure-level scaling. At the Kubernetes level, I would use HPA based on CPU, memory, or preferably a business-relevant/custom metric such as requests per second or queue depth when appropriate. I would configure sensible minimum and maximum replicas and define appropriate resource requests so the scheduler can make correct decisions. At the infrastructure level, I would use Cluster Autoscaler or Karpenter to provide additional node capacity when Pods cannot be scheduled. For known events, scheduled or predictive scaling can be used to increase capacity before expected traffic arrives. I would also configure cooldown/stabilization behavior to avoid excessive scale-up and scale-down cycles. Monitoring, load testing, and capacity testing should be used to validate that scaling happens quickly enough for the expected traffic spikes.
+
+---
+
+## 11. How would you set up cost monitoring and alerting to catch a runaway cloud bill before it happens?
+
+I would start by enabling AWS cost allocation tags and organizing resources by application, team, environment, and business unit. I would use AWS Cost Explorer and AWS Budgets to establish expected spending thresholds and configure alerts when actual or forecasted costs exceed those thresholds. I would also monitor major cost drivers such as EC2, EKS, NAT Gateways, S3, RDS, and data transfer. For deeper analysis, I would use AWS Cost and Usage Reports and appropriate dashboards. I would regularly identify unused resources, oversized instances, unattached volumes, excessive snapshots, idle load balancers, unnecessary NAT traffic, and inefficient Kubernetes workloads. For production environments, I would establish ownership for cost anomalies and create an automated response process where appropriate. The objective is to detect abnormal spending early rather than waiting for the monthly bill.
+
+---
+
+## 12. Your CI pipeline builds fine but the Docker image size has grown to 2GB. How do you reduce it?
+
+I would first inspect the Docker image using tools such as `docker history` and image-analysis tools to identify which layers are consuming the most space. I would check whether build tools, caches, source files, package managers, logs, or unnecessary dependencies are being copied into the final image. I would use a smaller appropriate base image and a multi-stage Docker build so that compilers, Maven/Node build dependencies, and other temporary files remain in the builder stage and only the required runtime artifacts are copied into the final image. I would also optimize the Dockerfile layer structure, use `.dockerignore`, remove package caches, and avoid installing unnecessary packages. After optimization, I would scan the smaller image for vulnerabilities and verify that application functionality has not changed.
+
+---
+
+## 13. Design a networking architecture for microservices that need to talk across three separate VPCs.
+
+I would first identify whether the VPCs belong to the same AWS Organization/account or different accounts and determine the required communication patterns. For a simple number of VPCs, VPC peering could work, but for scalable multi-VPC connectivity I would generally consider AWS Transit Gateway. Each VPC would have appropriate private subnets, route tables, security groups, and network ACLs. Routes would be configured so that only the required CIDR ranges can communicate. I would avoid exposing internal services directly to the public internet. For service-to-service communication, I would use private endpoints or internal load balancers where appropriate. DNS resolution across VPCs can be handled using Route 53 private hosted zones and Resolver configurations. Security groups would implement least-privilege access between services, and flow logs and monitoring would help troubleshoot connectivity.
+
+---
+
+## 14. A teammate accidentally pushed AWS credentials to a public GitHub repo. Walk me through your incident response.
+
+I would treat the credentials as compromised immediately and not wait to see whether someone has used them. First, I would revoke or deactivate the exposed access keys and replace them with securely managed credentials if the application still requires access. I would identify the IAM principal and review CloudTrail logs for suspicious API activity during the period in which the credentials were exposed. I would assess the potential impact, including what resources the credentials could access. I would remove the secret from the repository history and ensure the repository is no longer exposing the credential, while understanding that removing it from Git history does not make an already exposed credential safe. I would rotate related credentials if necessary and verify that no other secrets were exposed. Finally, I would document the incident and implement preventive controls such as GitHub secret scanning/push protection, pre-commit scanning, least-privilege IAM, short-lived credentials, and developer awareness training.
+
+---
+
+## 15. How do you implement canary deployments for a service with strict SLA requirements?
+
+I would deploy the new application version alongside the stable version and initially route only a small percentage of traffic to the new version. The canary percentage could start at something like 1–5% and gradually increase based on predefined success criteria. I would monitor error rate, latency, HTTP status codes, resource utilization, application health, and important business metrics. The canary should have readiness and health checks, and automated analysis should stop or roll back the rollout if predefined thresholds are exceeded. In Kubernetes, this can be implemented using tools such as Argo Rollouts with appropriate traffic-management integration. For a strict SLA, I would define the rollback criteria before deployment and ensure the stable version remains available throughout the rollout. This provides controlled exposure and reduces the blast radius of a faulty release.
+
+---
+
+## 16. Your Ansible playbook works on 8 servers but fails silently on 2. How do you make failures visible?
+
+I would first make sure the playbook is not suppressing errors using options such as `ignore_errors`, and I would inspect the Ansible output for changed, failed, skipped, and unreachable hosts. I would use Ansible's `--check` mode where appropriate and run with increased verbosity such as `-vvv` when troubleshooting. I would add explicit validation tasks and use `failed_when` or `changed_when` conditions where the default Ansible behavior does not accurately represent success. I would also add post-deployment health checks to verify that the expected service is running and responding correctly. In CI/CD, the playbook should return a non-zero exit code if any required host fails so that Jenkins or another pipeline marks the deployment as failed. I would also produce clear host-level reporting so the two failed servers are immediately visible.
+
+---
+
+## 17. Design a backup and restore strategy for a self-managed PostgreSQL database running on EC2.
+
+I would first define the business RPO and RTO because those determine the backup architecture. I would use regular full backups combined with PostgreSQL WAL archiving for point-in-time recovery when the required RPO is small. Backups should be stored outside the EC2 instance, such as in Amazon S3, rather than relying only on the local disk. I would encrypt backups, restrict access using IAM, enable versioning where appropriate, and maintain retention policies. I would also monitor backup success and failure and alert when backups are missing. For infrastructure recovery, I would use Terraform or another IaC approach to recreate the EC2 environment consistently. Most importantly, I would regularly perform restore tests because a backup is useful only if it can actually be restored successfully. I would document the recovery procedure and measure the actual restoration time against the required RTO.
+
+---
+
+## 18. How would you migrate 50+ microservices from a single AWS account to a multi-account setup with zero downtime?
+
+I would first inventory the existing services, dependencies, IAM permissions, networking, databases, CI/CD pipelines, DNS, and external integrations. I would design the target AWS Organizations structure based on environments, teams, security requirements, or business domains. I would establish networking and account-level security controls before migrating workloads. For each microservice, I would create the target infrastructure using Terraform and ensure the deployment pipeline can deploy to the new account. I would run the new environment in parallel with the existing environment and validate functionality, performance, security, and observability. Traffic can then be shifted gradually using Route 53, load-balancer routing, or another suitable mechanism. For stateful services, I would use appropriate database replication or migration mechanisms and carefully plan data consistency. I would migrate services incrementally rather than moving all 50+ at once, allowing rollback to the original environment if a problem occurs.
+
+---
+
+## 19. Your load balancer health checks pass, but real users are hitting 502 errors. How do you investigate?
+
+I would first identify where the 502 is being generated and inspect load-balancer access logs and metrics. A health check may only validate a simple endpoint such as `/health`, while actual user requests may exercise a different application path or dependency. I would check target response times, connection resets, listener rules, target ports, security groups, backend application logs, and load-balancer timeout settings. I would also test the application directly from inside the relevant network path using tools such as curl to determine whether the issue is between the load balancer and backend or inside the application itself. In Kubernetes, I would verify the Ingress Controller, Service endpoints, Pod readiness, and application logs. I would investigate recent releases, traffic patterns, connection limits, and backend resource saturation. Once the root cause is identified, I would apply the fix or roll back a faulty release and then monitor the error rate.
+
+# 20. Design an observability stack from scratch for a startup with no existing monitoring.
+
+I would design observability around the three primary signals: metrics, logs, and traces, while also including alerting and dashboards. For infrastructure and Kubernetes metrics, I could use Prometheus with Grafana for visualization and alerting. Application logs would be collected centrally using a logging pipeline such as Fluent Bit and stored in an appropriate log platform such as OpenSearch or another managed logging solution. For distributed tracing, I would use OpenTelemetry and a compatible backend to trace requests across microservices. I would define service-level indicators such as availability, request latency, error rate, throughput, saturation, and resource utilization. Alerts should focus on actionable symptoms and SLO impact rather than creating excessive noise. I would establish dashboards for infrastructure, Kubernetes, applications, databases, and business-critical services. Finally, I would test alerts, document incident-response procedures, define retention and cost controls, and continuously improve observability based on real incidents.
+
+
 # DevOps Interview Questions & Answers
 
 ## 1. What happens when a Kubernetes pod keeps restarting?
