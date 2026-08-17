@@ -1,0 +1,58 @@
+Top 50 DevOps interview questions from Tech Mahindra with real time scenarios 
+
+1) Linux
+How do you check CPU, memory, and disk utilization on a Linux server?
+What is the difference between top, ps, and htop?
+How do you find which process is listening on a particular port?
+How would you troubleshoot a Linux server with 100% CPU utilization?
+What is the difference between a hard link and a symbolic link?
+How do you schedule a cron job to run every 15 minutes?
+
+2) Git
+What is the difference between git fetch, git pull, and git clone?
+How do you resolve a Git merge conflict?
+What is git stash, and when would you use it?
+What is the difference between git merge and git rebase?
+What happens if someone accidentally commits a password to Git?
+How would you revert a bad production commit?
+
+3) Docker
+What is the difference between a Docker image and a container?
+What is the difference between CMD and ENTRYPOINT?
+What is the purpose of a Dockerfile?
+How do you persist container data after a container is deleted?
+How do you check the logs of a running container?
+A Docker container keeps restarting. How would you troubleshoot it?
+
+4) Jenkins / CI-CD
+Explain a CI/CD pipeline you have worked on.
+What is a Jenkinsfile?
+What is the difference between declarative and scripted Jenkins pipelines?
+How do you securely store passwords/tokens in Jenkins?
+A Jenkins deployment failed halfway through. What would you do?
+How would you implement rollback in a CI/CD pipeline?
+
+5) AWS
+What is the difference between EC2, ECS, EKS, and Lambda?
+What is the difference between S3, EBS, and EFS?
+What is the difference between a Security Group and a NACL?
+What is the difference between an IAM user, role, and policy?
+An EC2 instance is running but SSH isn't working. How would you troubleshoot it?
+How would you design a highly available application across multiple Availability Zones?
+
+6) Kubernetes
+What is the difference between a Pod, Deployment, and Service?
+What is the difference between Deployment and StatefulSet?
+What is a DaemonSet, and where would you use one?
+What are ConfigMaps and Secrets?
+Explain Kubernetes liveness and readiness probes.
+What are taints and tolerations?
+A pod shows CrashLoopBackOff. How would you troubleshoot it?
+A pod is Pending for 20 minutes. What would you check?
+
+7) Scenario questions — very important
+Your application was working yesterday but suddenly users are getting 503 errors. Walk me through your troubleshooting process.
+CPU usage on one production server reaches 95%. What do you check first?
+A deployment succeeds in Jenkins but the new version isn't accessible. How would you troubleshoot it?
+Your Kubernetes application works internally but cannot be accessed from the internet. What would you check?
+Developers say, "It works on my machine, but fails in Docker." How would you investigate? 
