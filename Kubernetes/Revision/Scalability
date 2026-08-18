@@ -1,0 +1,9 @@
+Scalability, explained simply.
+
+Your app's load is going up, and you've got two ways to handle it.
+
+Vertical scaling means giving your existing server more CPU or RAM. Same machine, just bigger. 
+
+Horizontal scaling means adding more servers and spreading the load across them.
+
+Easy way to remember it: vertical is a bigger machine, horizontal is more machines.
