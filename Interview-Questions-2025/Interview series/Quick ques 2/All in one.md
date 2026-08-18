@@ -1,3 +1,165 @@
+# Senior DevOps / SRE Interview Questions & Answers
+
+## 𝗟𝗜𝗡𝗨𝗫 & 𝗦𝗬𝗦𝗧𝗘𝗠𝗦
+
+### 1. How do you prove Linux OOM-killed a process?
+
+I would first check the kernel logs because an OOM kill is recorded by the Linux kernel. Commands such as `dmesg -T | grep -i -E "oom|out of memory|killed process"` or `journalctl -k | grep -i oom` can show whether the kernel invoked the Out-Of-Memory killer and which process was terminated. I would also check memory usage using `free -h`, `vmstat`, `top`, or `ps` and compare it with historical monitoring data. In a containerized environment, I would additionally check whether the container or Pod was terminated with an `OOMKilled` reason. I would then identify whether the issue was caused by insufficient host memory, an application memory leak, excessive workload growth, or an incorrectly configured container memory limit.
+
+---
+
+### 2. Load avg 20 but CPU 25% — what’s the bottleneck?
+
+A high load average with relatively low CPU utilization usually indicates that processes are waiting for something other than CPU, commonly disk I/O, network I/O, or other uninterruptible waits. I would check `top`, `vmstat`, `iostat`, and process states to determine whether many processes are in the `D` state. I would also examine disk latency, IOPS, filesystem performance, network connectivity, NFS/EBS performance, and database dependencies. A load average of 20 does not automatically mean the CPU is overloaded; it represents the number of runnable or uninterruptible tasks. Therefore, I would correlate load average with CPU utilization, I/O wait, memory pressure, and application behavior before identifying the actual bottleneck.
+
+---
+
+### 3. Memory leak vs cache/workload growth — how do you identify it?
+
+I would monitor memory usage over time rather than looking at a single point in time. A memory leak generally shows continuously increasing memory consumption that does not decrease even when workload decreases or memory is released. Cache growth, on the other hand, may increase memory usage but should stabilize or be reclaimable when memory pressure occurs. I would compare application memory metrics with workload volume, request rates, cache size, garbage collection metrics, and process-level RSS usage. Tools such as `top`, `ps`, `/proc/<pid>/status`, application profilers, and APM tools can help identify the process responsible. I would also perform controlled testing by reducing traffic and observing whether memory is released. If memory continues increasing independently of workload, I would investigate a potential application memory leak.
+
+---
+
+### 4. What happens when file-descriptor limits are reached?
+
+When a process reaches its file-descriptor limit, it cannot open additional files, sockets, pipes, or other file-descriptor-based resources. Applications may start producing errors such as `Too many open files`, and network connections may fail because sockets also consume file descriptors. I would verify the current limits using `ulimit -n` and inspect process usage through `/proc/<pid>/fd` or commands such as `lsof`. I would determine whether the issue is caused by an application leak, too many concurrent connections, or an unnecessarily low operating-system limit. The correct solution is not simply increasing the limit; I would first fix the underlying resource leak and then increase the appropriate system and service limits if the workload legitimately requires more descriptors.
+
+---
+
+### 5. IOPS normal but latency high — what do you check?
+
+I would not assume that normal IOPS means the storage system is healthy because latency can increase even when the number of operations is within expected limits. I would check storage latency metrics, throughput, queue depth, burst credits where applicable, filesystem behavior, and individual request sizes. I would also investigate whether the application is performing synchronous or random I/O and whether there are downstream dependencies causing apparent storage latency. For AWS workloads, I would examine EBS volume metrics and instance-level limits, along with CloudWatch metrics. I would compare the affected resource against a healthy resource and correlate latency spikes with deployments, traffic patterns, database activity, or backup jobs.
+
+---
+
+# 𝗡𝗘𝗧𝗪𝗢𝗥𝗞𝗜𝗡𝗚
+
+### 6. Service works in one AZ but fails in another — how do you isolate it?
+
+I would compare the complete network path between the working and failing Availability Zones. I would check subnet route tables, security groups, Network ACLs, NAT gateways, VPC endpoints, load balancer targets, DNS resolution, and application configuration. I would test connectivity from resources in both AZs using tools such as `curl`, `nc`, `ping` where supported, `traceroute`, and DNS utilities. I would also compare VPC Flow Logs and application logs to identify whether packets are being rejected or whether the request reaches the application but fails later. If the issue is specific to one AZ, I would inspect AZ-specific resources such as NAT gateways, routes, targets, or infrastructure capacity rather than treating it as a global networking issue.
+
+---
+
+### 7. TCP connects but HTTP hangs — what can fail after the handshake?
+
+A successful TCP connection only proves that the TCP connection was established; it does not prove that the HTTP application is functioning correctly. After the handshake, the server may fail to process the request because of application thread exhaustion, connection-pool exhaustion, TLS issues, proxy behavior, slow downstream services, database latency, or application-level deadlocks. I would use `curl -v`, application logs, reverse-proxy logs, packet captures where appropriate, and monitoring metrics to determine where the request stops progressing. I would also check whether the client is waiting for response headers, response data, or a downstream dependency.
+
+---
+
+### 8. How do you locate intermittent packet loss?
+
+I would first establish whether packet loss occurs consistently between specific endpoints or only intermittently. I would use tools such as `ping`, `mtr`, `traceroute`, and application-level health checks from multiple locations. I would correlate packet loss with timestamps and inspect VPC Flow Logs, network-device metrics, load balancer metrics, and interface-level statistics. I would compare multiple AZs, subnets, instances, and network paths to determine whether the issue is endpoint-specific, AZ-specific, or network-path-specific. If packet loss occurs only for a particular application, I would also investigate security groups, Network ACLs, MTU mismatches, connection tracking, and application behavior.
+
+---
+
+### 9. Connection vs read timeout? How can retries cause a storm?
+
+A connection timeout occurs when a client cannot establish a connection to the destination within the configured time. A read timeout occurs after the connection has been established but the client does not receive the expected response within the configured period. If many clients experience timeouts and automatically retry, the retries can increase traffic against an already unhealthy service. This creates a retry storm, which can consume threads, connections, CPU, database connections, and network resources and make the original problem worse. I would use appropriate timeout values, exponential backoff, jitter, retry limits, and circuit breakers to prevent uncontrolled retries.
+
+---
+
+### 10. DNS works in one region but fails in another — how do you debug?
+
+I would first compare DNS resolution from both regions using tools such as `dig` and `nslookup`. I would check whether the records are different because of Route 53 routing policies such as latency-based, weighted, failover, or geolocation routing. I would verify Route 53 health checks, hosted-zone configuration, TTLs, resolver behavior, and regional endpoints. In private environments, I would also check Route 53 Resolver endpoints, forwarding rules, VPC DNS settings, and connectivity between the VPC and DNS infrastructure. I would compare the exact DNS response, nameserver response, and resolved IP address from both regions before investigating the application itself.
+
+---
+
+# 𝗞𝗨𝗕𝗘𝗥𝗡𝗘𝗧𝗘𝗦
+
+### 11. Pods are Ready, but users see failures — where do you start?
+
+I would start from the user-facing layer and work inward. First, I would check the load balancer, Ingress, Service, and endpoint configuration. I would verify whether the Service selector correctly matches the intended Pods and whether the Service has healthy endpoints. Then I would test the Service directly from inside the cluster and compare it with direct Pod connectivity. I would inspect HTTP status codes, application logs, Ingress/load-balancer logs, latency, and downstream dependencies. A Pod being Ready only means that its readiness condition passed; it does not guarantee that the complete user request path is functioning correctly.
+
+---
+
+### 12. Traffic increases 5× but HPA reacts late — why and how do you improve it?
+
+HPA may react late because it depends on metrics collection and evaluation intervals, and CPU-based scaling may not immediately reflect request traffic. There can also be application startup time, image-pull time, scheduling delays, or insufficient cluster capacity. I would check the HPA configuration, target metrics, metrics-server availability, stabilization windows, scaling policies, Pod startup time, and Cluster Autoscaler behavior. For request-driven workloads, I could use custom or external metrics such as requests per second, queue depth, or active connections instead of relying only on CPU. I would also maintain an appropriate minimum replica count and configure scale-up policies to respond faster to large traffic increases.
+
+---
+
+### 13. What happens when a Kubernetes node fails?
+
+When a node fails, the Kubernetes control plane detects that the node is no longer healthy and eventually marks it `NotReady`. Pods running on that node become unavailable. For workloads managed by Deployments, ReplicaSets, or StatefulSets, Kubernetes attempts to create replacement Pods on healthy nodes according to scheduling constraints. A Service stops routing traffic to endpoints that are no longer healthy. The exact recovery behavior depends on Pod disruption handling, workload controllers, storage, scheduling constraints, and cluster capacity. I would check node health, replacement Pod scheduling, persistent volumes, application availability, and whether sufficient capacity exists on the remaining nodes.
+
+---
+
+### 14. How can readiness-probe failures cause a partial outage?
+
+A readiness probe determines whether a Pod should receive traffic. If the probe starts failing, Kubernetes removes that Pod from the Service endpoints even though the container may still be running. If enough Pods fail readiness simultaneously, the Service may have too few healthy endpoints or potentially no endpoints at all, resulting in partial or complete application failure. I would investigate the readiness endpoint, probe timeout, failure threshold, application startup behavior, dependencies, and resource pressure. I would ensure the readiness probe accurately represents the application's ability to serve traffic and avoid overly aggressive probe settings that can unnecessarily remove healthy Pods.
+
+---
+
+### 15. How do you reduce blast radius in a large multi-team cluster?
+
+I would use strong workload isolation and controlled access. Namespaces can separate teams and environments, while RBAC ensures teams can access only the resources they own. ResourceQuotas and LimitRanges prevent one team from consuming excessive cluster resources. NetworkPolicies restrict unnecessary communication between workloads. Taints, tolerations, node affinity, and topology spread constraints can isolate critical workloads. PodDisruptionBudgets help protect availability during voluntary disruptions. I would also use separate node groups for workloads with different reliability or security requirements and apply admission policies to enforce standards. For highly sensitive or critical workloads, separate clusters may be preferable.
+
+---
+
+# 𝗖𝗜/𝗖𝗗 & 𝗥𝗘𝗟𝗘𝗔𝗦𝗘𝗦
+
+### 16. Pipeline succeeds but users get 500s — how?
+
+A successful pipeline only confirms that the defined CI/CD stages completed; it does not necessarily prove that the application is functioning correctly in production. I would first check whether the correct application version was deployed and whether the Kubernetes Deployment, Pods, Service, Ingress, and load balancer are healthy. I would inspect application logs and HTTP 5xx metrics and compare the failure timestamp with the deployment. I would also verify environment variables, ConfigMaps, Secrets, database connectivity, downstream APIs, and application dependencies. If the issue started immediately after deployment, I would compare the new version with the previous version and consider rolling back. I would then add post-deployment smoke tests and health checks so similar failures are detected automatically before the pipeline is marked successful.
+
+---
+
+### 17. Release fails during peak traffic — rollback, roll-forward, flag, or hotfix?
+
+The decision depends on the failure type, business impact, and rollback safety. If the new release is clearly causing severe production impact and the previous version is known to be healthy, I would normally prioritize rollback. If the database schema or infrastructure changes are not backward compatible, rollback may not be safe and a roll-forward or hotfix may be required. Feature flags are useful when the problematic functionality can be disabled without reverting the entire release. During peak traffic, I would prioritize restoring service and minimizing user impact while communicating clearly with stakeholders. After stabilization, I would perform RCA and improve the deployment strategy.
+
+---
+
+### 18. CI fails 1/20 runs — how do you find the cause?
+
+I would first identify whether the failures correlate with a particular runner, node, branch, dependency, time period, or stage. I would collect logs from successful and failed executions and compare them. I would investigate flaky tests, network dependencies, external services, resource exhaustion, race conditions, cache corruption, package repository availability, and runner health. If the same commit succeeds repeatedly but occasionally fails, that strongly suggests nondeterministic behavior rather than a code defect alone. I would reproduce the failure, isolate the unreliable component, and fix the underlying cause instead of simply adding automatic retries. Retries can be used carefully as a temporary mitigation for genuinely transient failures.
+
+---
+
+### 19. How would you design multi-region CI/CD with minimal impact?
+
+I would keep the build process consistent while allowing deployment to each region independently. Application artifacts should be immutable and stored in a reliable artifact repository or replicated registry. The pipeline would deploy first to a lower-risk region or a small percentage of traffic, perform automated validation, and then progressively deploy to other regions. Infrastructure would be managed through Terraform or another IaC solution with separate state and environment boundaries. The deployment strategy should support rollback at the regional level so a failed deployment does not affect all regions. Health checks, observability, DNS or global load-balancing controls, and automated rollback would be integrated into the pipeline.
+
+---
+
+### 20. How would you validate an untested rollback?
+
+I would never rely on a rollback procedure that has never been tested in an environment where it can be safely validated. I would reproduce the production architecture in a lower environment and intentionally deploy a known-bad version. Then I would execute the rollback procedure and verify application functionality, database compatibility, traffic routing, configuration, and monitoring. For Kubernetes, I would validate Deployment or Helm rollback behavior and ensure the previous image remains available. I would also test database rollback compatibility because application rollback can fail if schema changes are irreversible. Afterward, I would document the procedure and periodically test it through controlled production exercises or disaster-recovery drills.
+
+---
+
+# 𝗧𝗘𝗥𝗥𝗔𝗙𝗢𝗥𝗠 / 𝗜𝗮𝗖
+
+### 21. How can Terraform plan succeed but apply cause an outage?
+
+`terraform plan` is based on the configuration, current state, and information available during planning, but the real infrastructure can change between plan and apply. External changes, provider behavior, unknown values, race conditions, dependencies, or changes made by other systems can cause the actual apply to behave differently. A plan can also show a technically valid change that is operationally risky, such as replacing a production resource. I would use a reviewed and saved plan for production, protect critical resources, validate dependencies, and use appropriate lifecycle rules. I would also perform changes in stages and monitor the infrastructure during the apply.
+
+---
+
+### 22. How do you safely recover corrupted Terraform state?
+
+I would first stop all Terraform operations to prevent further state changes. Then I would identify whether the state is actually corrupted or simply out of sync with the infrastructure. If using a remote backend, I would check state versioning and backups and restore the most recent known-good state. I would inspect the restored state and compare it with the real infrastructure before running another apply. If necessary, resources can be re-imported into Terraform state. I would avoid manually editing state unless absolutely necessary and would use Terraform state commands carefully. After recovery, I would investigate why the corruption occurred and improve backend access controls, locking, backup, and versioning.
+
+---
+
+### 23. How do you handle Terraform drift?
+
+Terraform drift occurs when infrastructure changes outside Terraform and the real infrastructure no longer matches the Terraform state/configuration. I would detect drift through `terraform plan`, refresh-related operations, monitoring, or scheduled drift detection. I would then determine whether the manual change was intentional or unauthorized. If Terraform should remain the source of truth, I would update the Terraform configuration to represent the desired state and apply it. If the external change should be preserved, I may update the Terraform configuration or import the resource state as appropriate. For production environments, I would reduce manual changes through access controls, IaC policies, and automated drift detection.
+
+---
+
+### 24. How do you safely break-change a shared Terraform module?
+
+I would avoid directly changing the module in a way that unexpectedly breaks existing consumers. First, I would identify all module consumers and understand the impact of the proposed change. I would introduce a new module version with clear versioning and document the breaking changes. Existing environments would continue using the current version while environments are migrated gradually. I would test the new version in development and staging before production. I would also use automated Terraform validation, plan reviews, and CI checks. Once all consumers are migrated successfully, the old version can eventually be deprecated.
+
+---
+
+### 25. How do you prevent accidental destruction of critical resources?
+
+I would use multiple layers of protection. Terraform lifecycle rules such as `prevent_destroy = true` can protect especially critical resources. Production plans should require peer review and approval before apply. Remote state should have locking, versioning, and access controls. I would separate production state from lower environments and restrict who can execute production changes. Before applying destructive
+
+
+
 # 🔍𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗘𝘅𝗽𝗹𝗮𝗶𝗻𝗲𝗱 — 𝗢𝗻𝗲 𝗮𝘁 𝗮 𝗧𝗶𝗺𝗲!
 
 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼 : 𝗔 𝘁𝗲𝗮𝗺𝗺𝗮𝘁𝗲 𝗮𝗰𝗰𝗶𝗱𝗲𝗻𝘁𝗮𝗹𝗹𝘆 𝗽𝘂𝘀𝗵𝗲𝗱 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝘀𝗲𝗰𝗿𝗲𝘁𝘀 𝘁𝗼 𝗚𝗶𝘁 ? 𝗛𝗼𝘄 𝘄𝗶𝗹𝗹 𝘆𝗼𝘂 𝘁𝗮𝗰𝗸𝗹𝗲 𝘁𝗵𝗶𝘀 𝗶𝘀𝘀𝘂𝗲 ?
