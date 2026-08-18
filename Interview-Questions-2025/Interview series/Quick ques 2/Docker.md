@@ -65,7 +65,7 @@ A smaller Docker image means:
 Don't treat the Docker image like a storage box. Only put what the application actually needs to run.
 
 
-
+--------
 
 # Advanced Docker Interview Questions and Answers (4+ Years DevOps Engineer)
 
