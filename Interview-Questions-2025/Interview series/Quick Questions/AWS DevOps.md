@@ -1,3 +1,1328 @@
+# DevOps Interview Preparation – 4 Years Experience
+
+This README contains practical **Docker, Kubernetes, and Ansible interview questions with production-oriented answers** suitable for a DevOps Engineer with around **4 years of experience**.
+
+---
+
+# 1. Docker
+
+## Q1. Write a Dockerfile to containerize and run a Node.js application.
+
+### Answer
+
+For a Node.js application, I would prefer a **multi-stage Dockerfile** or a lightweight Alpine-based image to reduce image size.
+
+### Dockerfile
+
+```dockerfile
+# Stage 1: Build
+FROM node:20-alpine AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files first for better Docker layer caching
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy application source
+COPY . .
+
+# Build application if required
+RUN npm run build
+
+
+# Stage 2: Production
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Set production environment
+ENV NODE_ENV=production
+
+# Copy package files
+COPY package*.json ./
+
+# Install only production dependencies
+RUN npm ci --omit=dev && npm cache clean --force
+
+# Copy application from builder
+COPY --from=builder /app/dist ./dist
+
+# Expose application port
+EXPOSE 3000
+
+# Start application
+CMD ["node", "dist/index.js"]
+```
+
+### If it is a simple Node.js application
+
+If there is no build process, I can use:
+
+```dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci --omit=dev
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+```
+
+### Build and run
+
+```bash
+docker build -t node-app:1.0 .
+```
+
+```bash
+docker run -d \
+  --name node-app \
+  -p 3000:3000 \
+  node-app:1.0
+```
+
+Check the container:
+
+```bash
+docker ps
+```
+
+Check logs:
+
+```bash
+docker logs node-app
+```
+
+### Interview points
+
+I would mention:
+
+* Use a lightweight base image such as `node:alpine`.
+* Use **multi-stage builds** when a build step is required.
+* Copy `package.json` and `package-lock.json` before application code to improve layer caching.
+* Use `npm ci` for reproducible installations.
+* Use `npm ci --omit=dev` in production.
+* Do not put secrets inside the Dockerfile.
+* Add a `.dockerignore`.
+* Run the application as a non-root user where practical.
+* Use a specific image tag instead of relying on `latest`.
+
+### Example `.dockerignore`
+
+```text
+node_modules
+npm-debug.log
+.git
+.gitignore
+Dockerfile
+.dockerignore
+.env
+coverage
+dist
+```
+
+---
+
+# 2. Docker Image Optimization
+
+## Q2. If a Docker image is very large, how would you reduce its size?
+
+### Answer
+
+First, I would identify **which layers are consuming the most space** and then optimize the Dockerfile.
+
+I would follow these steps.
+
+### 1. Check image size
+
+```bash
+docker images
+```
+
+For more detailed information:
+
+```bash
+docker history <image-name>
+```
+
+Example:
+
+```bash
+docker history node-app:1.0
+```
+
+This helps identify which Dockerfile layer is consuming significant space.
+
+---
+
+### 2. Use a smaller base image
+
+Instead of:
+
+```dockerfile
+FROM node:20
+```
+
+I can use:
+
+```dockerfile
+FROM node:20-alpine
+```
+
+Similarly, for Python:
+
+```dockerfile
+FROM python:3.12-slim
+```
+
+instead of a full Python image.
+
+---
+
+### 3. Use multi-stage builds
+
+For example:
+
+```dockerfile
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+COPY --from=builder /app/dist ./dist
+
+CMD ["node", "dist/index.js"]
+```
+
+The final image contains only the files required to run the application.
+
+---
+
+### 4. Don't install unnecessary packages
+
+Avoid commands such as:
+
+```dockerfile
+RUN apt-get install -y vim wget curl git
+```
+
+unless they are actually required at runtime.
+
+---
+
+### 5. Clean package manager cache
+
+For Alpine:
+
+```dockerfile
+RUN apk add --no-cache curl
+```
+
+For Debian/Ubuntu-based images:
+
+```dockerfile
+RUN apt-get update \
+    && apt-get install -y curl \
+    && rm -rf /var/lib/apt/lists/*
+```
+
+For Node.js:
+
+```dockerfile
+RUN npm cache clean --force
+```
+
+---
+
+### 6. Use `.dockerignore`
+
+```text
+node_modules
+.git
+.env
+coverage
+logs
+*.log
+README.md
+```
+
+This prevents unnecessary files from being sent to the Docker build context.
+
+---
+
+### 7. Install only production dependencies
+
+Instead of:
+
+```bash
+npm install
+```
+
+for the final production image:
+
+```bash
+npm ci --omit=dev
+```
+
+---
+
+### 8. Avoid unnecessary layers
+
+Instead of:
+
+```dockerfile
+RUN apt-get update
+RUN apt-get install -y curl
+RUN rm -rf /var/lib/apt/lists/*
+```
+
+combine related commands:
+
+```dockerfile
+RUN apt-get update \
+    && apt-get install -y curl \
+    && rm -rf /var/lib/apt/lists/*
+```
+
+---
+
+### Strong interview answer
+
+> "If a Docker image is very large, I would first use `docker history` to identify large layers. Then I would use a smaller base image, preferably Alpine or slim where appropriate, implement multi-stage builds, install only production dependencies, remove package manager caches, use `.dockerignore`, and avoid copying unnecessary files into the image. I would also make sure build tools are present only in the builder stage and not in the final runtime image."
+
+---
+
+# 3. Kubernetes
+
+# Q3. The application pod is running fine from our end, but the customer is getting a 502 error. How would you troubleshoot it?
+
+### Answer
+
+A **502 Bad Gateway** generally means that the component acting as a gateway or proxy was unable to get a valid response from the backend.
+
+In Kubernetes, the traffic flow may look like:
+
+```text
+Customer
+   |
+   v
+Load Balancer
+   |
+   v
+Ingress
+   |
+   v
+Kubernetes Service
+   |
+   v
+Pod
+   |
+   v
+Application
+```
+
+Even if the Pod is `Running`, the request can still fail somewhere between these components.
+
+---
+
+## Step 1: Check the Pods
+
+```bash
+kubectl get pods -n <namespace>
+```
+
+Check detailed information:
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Check whether the application container is actually ready:
+
+```bash
+kubectl get pods -n <namespace>
+```
+
+Look at:
+
+```text
+READY
+STATUS
+RESTARTS
+AGE
+```
+
+A Pod being `Running` does not necessarily mean the application is ready to receive traffic.
+
+---
+
+## Step 2: Check application logs
+
+```bash
+kubectl logs <pod-name> -n <namespace>
+```
+
+If there are multiple containers:
+
+```bash
+kubectl logs <pod-name> -c <container-name> -n <namespace>
+```
+
+Look for:
+
+* Connection refused
+* Application exceptions
+* Port binding errors
+* Database connection failures
+* Timeout errors
+* HTTP 500 errors
+
+---
+
+## Step 3: Check the Service
+
+```bash
+kubectl get svc -n <namespace>
+```
+
+Then:
+
+```bash
+kubectl describe svc <service-name> -n <namespace>
+```
+
+I would verify:
+
+```text
+Service Port
+Target Port
+Selector
+Endpoints
+```
+
+The most important thing is whether the Service has endpoints.
+
+```bash
+kubectl get endpoints <service-name> -n <namespace>
+```
+
+Or:
+
+```bash
+kubectl get endpointslice -n <namespace>
+```
+
+If there are no endpoints, the Service is not finding the Pods.
+
+---
+
+## Step 4: Verify Service selectors
+
+For example:
+
+```yaml
+selector:
+  app: myapp
+```
+
+Check Pod labels:
+
+```bash
+kubectl get pods --show-labels -n <namespace>
+```
+
+If the Service selector does not match the Pod labels, traffic will not reach the Pod.
+
+---
+
+## Step 5: Verify application port
+
+Suppose the application listens on:
+
+```text
+8080
+```
+
+The Service should correctly route to:
+
+```yaml
+ports:
+  - port: 80
+    targetPort: 8080
+```
+
+I would verify that the application's actual listening port matches `targetPort`.
+
+Inside the Pod:
+
+```bash
+kubectl exec -it <pod-name> -n <namespace> -- sh
+```
+
+Then:
+
+```bash
+netstat -tulpn
+```
+
+or:
+
+```bash
+ss -lntp
+```
+
+---
+
+## Step 6: Test the Service from inside the cluster
+
+I would test the Service directly to determine whether the issue is inside Kubernetes or at the external layer.
+
+For example:
+
+```bash
+kubectl run test-pod \
+  --image=curlimages/curl \
+  -it --rm \
+  -- sh
+```
+
+Then:
+
+```bash
+curl http://<service-name>:<port>
+```
+
+If the Service works internally but the customer gets 502, I would focus on:
+
+```text
+Ingress
+Load Balancer
+API Gateway
+WAF
+DNS
+TLS
+```
+
+---
+
+## Step 7: Check Ingress
+
+```bash
+kubectl get ingress -n <namespace>
+```
+
+```bash
+kubectl describe ingress <ingress-name> -n <namespace>
+```
+
+I would verify:
+
+* Hostname
+* Path
+* Backend service
+* Backend port
+* TLS configuration
+* Ingress annotations
+* Ingress controller status
+
+For NGINX Ingress:
+
+```bash
+kubectl logs -n ingress-nginx \
+  <ingress-controller-pod>
+```
+
+I would search for:
+
+```text
+502
+upstream
+connection refused
+timeout
+no live upstreams
+```
+
+---
+
+## Step 8: Check Load Balancer
+
+If an AWS Load Balancer is involved, I would verify:
+
+* Target group health
+* Security groups
+* Listener configuration
+* Target port
+* Health check path
+* Health check status
+* Subnets
+* Network ACLs
+
+For example, if the application's health endpoint is:
+
+```text
+/health
+```
+
+but the Load Balancer checks:
+
+```text
+/
+```
+
+the target may become unhealthy.
+
+---
+
+## Step 9: Check NetworkPolicy
+
+If Kubernetes NetworkPolicies are configured:
+
+```bash
+kubectl get networkpolicy -A
+```
+
+Verify that traffic is allowed between:
+
+```text
+Ingress Controller → Service → Pod
+```
+
+---
+
+## Step 10: Check DNS
+
+Verify that the customer hostname resolves to the expected Load Balancer:
+
+```bash
+nslookup application.example.com
+```
+
+or:
+
+```bash
+dig application.example.com
+```
+
+---
+
+## Practical troubleshooting flow
+
+```text
+502 from Customer
+       |
+       v
+Check DNS
+       |
+       v
+Check Load Balancer
+       |
+       v
+Check Ingress
+       |
+       v
+Check Service
+       |
+       v
+Check Endpoints
+       |
+       v
+Check Pod
+       |
+       v
+Check Application
+       |
+       v
+Check Network / Security
+```
+
+### Strong interview answer
+
+> "I would not assume that the Pod being Running means the application is healthy. I would trace the complete request path from the customer to the application. I would check DNS, Load Balancer health, Ingress configuration and logs, Service selectors and endpoints, Pod readiness, application ports and logs, NetworkPolicies, security groups and health checks. I would also test the Service from inside the cluster using curl. This helps me isolate whether the 502 is coming from the Load Balancer/Ingress layer or from the application itself."
+
+---
+
+# 4. Kubernetes Pod Continuously Restarting
+
+# Q4. The application Pod is continuously restarting. What steps would you take to analyze and troubleshoot the issue?
+
+### Answer
+
+First, I would check the Pod status and restart count.
+
+```bash
+kubectl get pods -n <namespace>
+```
+
+Example:
+
+```text
+NAME                    READY   STATUS             RESTARTS
+myapp-7c9d8f6d7-x2abc   0/1     CrashLoopBackOff   15
+```
+
+`CrashLoopBackOff` means Kubernetes is repeatedly starting the container, but the container is exiting or failing.
+
+---
+
+## Step 1: Describe the Pod
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+At the bottom, I would check:
+
+```text
+Events
+```
+
+Look for:
+
+```text
+Back-off restarting failed container
+Failed
+Unhealthy
+OOMKilled
+Liveness probe failed
+Readiness probe failed
+```
+
+---
+
+## Step 2: Check current logs
+
+```bash
+kubectl logs <pod-name> -n <namespace>
+```
+
+---
+
+## Step 3: Check logs from the previous container
+
+This is extremely important when the container has restarted.
+
+```bash
+kubectl logs <pod-name> \
+  -n <namespace> \
+  --previous
+```
+
+This can show the error that caused the previous container to terminate.
+
+---
+
+## Step 4: Check the container's exit reason
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Look for:
+
+```text
+Last State:
+  Terminated:
+    Reason:
+    Exit Code:
+```
+
+Common examples:
+
+```text
+Reason: OOMKilled
+Exit Code: 137
+```
+
+or:
+
+```text
+Exit Code: 1
+```
+
+---
+
+# Common Causes
+
+## 1. Application crash
+
+For example:
+
+```text
+Connection refused
+Database unavailable
+Configuration missing
+Application exception
+```
+
+Check:
+
+```bash
+kubectl logs <pod-name> --previous -n <namespace>
+```
+
+---
+
+## 2. OOMKilled
+
+Check:
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+If you see:
+
+```text
+Reason: OOMKilled
+```
+
+I would check memory usage and container limits.
+
+```bash
+kubectl top pod <pod-name> -n <namespace>
+```
+
+Check resources:
+
+```bash
+kubectl get pod <pod-name> -n <namespace> -o yaml
+```
+
+Example:
+
+```yaml
+resources:
+  requests:
+    memory: "256Mi"
+  limits:
+    memory: "512Mi"
+```
+
+If the application legitimately requires more memory, I would tune the memory limit after validating actual consumption.
+
+---
+
+## 3. Liveness probe failure
+
+Example:
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+```
+
+If the application takes longer to start, Kubernetes may kill it before it becomes healthy.
+
+I would check:
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+If appropriate, I would configure:
+
+```yaml
+startupProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  failureThreshold: 30
+  periodSeconds: 10
+```
+
+A `startupProbe` is useful for applications that require significant startup time.
+
+---
+
+## 4. Incorrect command or entrypoint
+
+For example:
+
+```yaml
+command:
+  - /bin/bash
+  - start.sh
+```
+
+If `start.sh` does not exist or is not executable, the container can immediately exit.
+
+I would verify:
+
+```bash
+kubectl get pod <pod-name> -o yaml
+```
+
+and inspect:
+
+```text
+command
+args
+```
+
+---
+
+## 5. Configuration or Secret issue
+
+Check:
+
+```bash
+kubectl get configmap -n <namespace>
+```
+
+```bash
+kubectl get secrets -n <namespace>
+```
+
+Verify environment variables:
+
+```bash
+kubectl exec -it <pod-name> -n <namespace> -- env
+```
+
+I would never expose sensitive secret values while troubleshooting.
+
+---
+
+## 6. Image issue
+
+Check:
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Look for:
+
+```text
+ImagePullBackOff
+ErrImagePull
+```
+
+Verify the image:
+
+```bash
+kubectl get deployment <deployment-name> -o yaml
+```
+
+---
+
+## 7. Dependency failure
+
+The application may depend on:
+
+```text
+Database
+Redis
+Kafka
+External API
+Another microservice
+```
+
+I would verify connectivity from the Pod.
+
+Example:
+
+```bash
+kubectl exec -it <pod-name> -n <namespace> -- sh
+```
+
+Then test the dependency:
+
+```bash
+curl http://service-name:8080/health
+```
+
+For DNS:
+
+```bash
+nslookup service-name
+```
+
+---
+
+# Practical troubleshooting flow
+
+```text
+Pod Restarting
+      |
+      v
+kubectl get pods
+      |
+      v
+kubectl describe pod
+      |
+      v
+Check Events
+      |
+      v
+kubectl logs
+      |
+      v
+kubectl logs --previous
+      |
+      v
+Check Exit Code / Reason
+      |
+      +--------------------+
+      |                    |
+      v                    v
+   OOMKilled          Application Error
+      |                    |
+      v                    v
+Check Memory        Check Logs/Config
+      |
+      v
+Check Limits
+```
+
+### Strong interview answer
+
+> "First, I would check the Pod status and restart count using `kubectl get pods`. Then I would use `kubectl describe pod` to check events, container state, exit code and probe failures. I would check both current logs and `kubectl logs --previous`, because the previous container logs are often the key to finding the crash reason. Then I would determine whether it is an application crash, OOMKilled, liveness/startup probe failure, incorrect command, missing configuration or secret, image issue, or dependency failure. Finally, I would validate the fix and monitor the Pod to ensure the restart count remains stable."
+
+---
+
+# 5. Ansible
+
+# Q5. Write an Ansible playbook to install and start Nginx.
+
+### Answer
+
+A simple Ansible playbook would be:
+
+```yaml
+---
+- name: Install and start Nginx
+  hosts: webservers
+  become: true
+
+  tasks:
+
+    - name: Install Nginx
+      ansible.builtin.package:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+```
+
+---
+
+## Inventory
+
+For example:
+
+```ini
+[webservers]
+web01 ansible_host=192.168.1.10
+web02 ansible_host=192.168.1.11
+```
+
+---
+
+## Run the playbook
+
+```bash
+ansible-playbook -i inventory.ini nginx.yml
+```
+
+---
+
+## Verify connectivity first
+
+```bash
+ansible all -i inventory.ini -m ping
+```
+
+Expected output:
+
+```text
+web01 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
+
+---
+
+# Ubuntu-specific version
+
+If the interviewer specifically asks for Ubuntu:
+
+```yaml
+---
+- name: Install and configure Nginx on Ubuntu
+  hosts: webservers
+  become: true
+
+  tasks:
+
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+```
+
+---
+
+# RHEL / Amazon Linux version
+
+```yaml
+---
+- name: Install and start Nginx
+  hosts: webservers
+  become: true
+
+  tasks:
+
+    - name: Install Nginx
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+```
+
+For modern Ansible, I can also use the generic `package` module so the playbook is less OS-specific.
+
+---
+
+# 6. How I Would Explain These Topics in an Interview
+
+## Docker
+
+I would say:
+
+> "I have worked with Docker for containerizing applications and integrating containers into CI/CD pipelines. When creating Docker images, I focus on small and secure images using lightweight base images, multi-stage builds, `.dockerignore`, production-only dependencies and proper layer caching."
+
+---
+
+## Kubernetes
+
+I would say:
+
+> "For Kubernetes troubleshooting, I start from the outside and trace the complete request path. For HTTP errors such as 502, I check the Load Balancer, Ingress, Service, endpoints, Pods and application logs. For restarting Pods, I check Pod events, current and previous logs, exit codes, OOMKilled status, probes, configuration, secrets and application dependencies."
+
+---
+
+## Ansible
+
+I would say:
+
+> "I use Ansible for configuration management and server automation. I define hosts in inventory, use modules such as package, service, copy and template, use `become` for privileged operations, and make playbooks idempotent so running them multiple times doesn't cause unnecessary changes."
+
+---
+
+# 7. Important Commands to Remember
+
+## Docker
+
+```bash
+docker build -t app:1.0 .
+docker images
+docker ps
+docker ps -a
+docker logs <container>
+docker exec -it <container> sh
+docker inspect <container>
+docker history <image>
+docker stats
+docker stop <container>
+docker rm <container>
+```
+
+---
+
+## Kubernetes
+
+```bash
+kubectl get pods -n <namespace>
+kubectl describe pod <pod> -n <namespace>
+kubectl logs <pod> -n <namespace>
+kubectl logs <pod> --previous -n <namespace>
+kubectl get svc -n <namespace>
+kubectl describe svc <service> -n <namespace>
+kubectl get endpoints -n <namespace>
+kubectl get ingress -n <namespace>
+kubectl describe ingress <ingress> -n <namespace>
+kubectl get events -n <namespace> --sort-by=.lastTimestamp
+kubectl top pod -n <namespace>
+kubectl top nodes
+kubectl exec -it <pod> -n <namespace> -- sh
+```
+
+---
+
+## Ansible
+
+```bash
+ansible --version
+ansible all -i inventory.ini -m ping
+ansible-inventory -i inventory.ini --list
+ansible-playbook -i inventory.ini playbook.yml
+ansible-playbook -i inventory.ini playbook.yml --check
+ansible-playbook -i inventory.ini playbook.yml -vv
+```
+
+---
+
+# 8. Quick Scenario-Based Revision
+
+### Scenario 1: Pod is Running but customer receives 502
+
+```text
+Check DNS
+   ↓
+Load Balancer
+   ↓
+Ingress
+   ↓
+Ingress logs
+   ↓
+Service
+   ↓
+Endpoints
+   ↓
+Pod readiness
+   ↓
+Application port
+   ↓
+Application logs
+   ↓
+Network/Security
+```
+
+---
+
+### Scenario 2: Pod is CrashLoopBackOff
+
+```text
+kubectl get pods
+       ↓
+kubectl describe pod
+       ↓
+Check Events
+       ↓
+kubectl logs
+       ↓
+kubectl logs --previous
+       ↓
+Check Exit Code
+       ↓
+OOMKilled?
+       ↓
+Probe failure?
+       ↓
+Application/config issue?
+       ↓
+Dependency issue?
+```
+
+---
+
+### Scenario 3: Docker image is 2 GB
+
+```text
+docker history
+      ↓
+Find large layers
+      ↓
+Smaller base image
+      ↓
+Multi-stage build
+      ↓
+Production dependencies only
+      ↓
+Remove cache
+      ↓
+.dockerignore
+      ↓
+Rebuild and compare size
+```
+
+---
+
+# 9. What a 4-Year DevOps Engineer Should Demonstrate
+
+For a 4-year DevOps interview, don't just provide commands. Explain **why** you are running each command.
+
+The interviewer generally expects you to demonstrate:
+
+* Linux troubleshooting
+* Git and Git workflows
+* Docker containerization
+* Kubernetes troubleshooting
+* CI/CD concepts
+* AWS fundamentals
+* Infrastructure as Code
+* Terraform basics
+* Ansible automation
+* Monitoring and logging
+* Production incident troubleshooting
+* Networking fundamentals
+* Security awareness
+
+The key is to answer scenarios using a structured approach:
+
+```text
+1. Understand the symptom
+2. Identify the request/data flow
+3. Check the highest-probability failure points
+4. Collect evidence using commands/logs/metrics
+5. Isolate the root cause
+6. Apply the fix
+7. Validate the fix
+8. Monitor to ensure the issue does not recur
+9. Document the RCA if it is a production incident
+```
+
+This approach is much stronger in an interview than simply listing commands.
+
+
+
 # Senior Cloud Infrastructure & Reliability Engineer — Interview Questions & Answers
 
 ## 1. Describe the most critical production outage you've resolved. How did you identify the root cause and prevent recurrence?
