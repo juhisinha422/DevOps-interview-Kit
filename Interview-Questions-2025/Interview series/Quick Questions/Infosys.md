@@ -1,3 +1,99 @@
+# Infosys DevOps Interview Questions & Answers – 4 Years Experience
+
+## 🐳 Docker
+
+### 1. A Docker container keeps restarting. How would you troubleshoot the issue?
+
+If a Docker container keeps restarting, I would first check the container status and restart count using `docker ps -a`. Then I would check the container logs using `docker logs <container-id>` to identify application errors, configuration issues, missing environment variables, or dependency failures. I would also inspect the container using `docker inspect <container-id>` to verify the entrypoint, command, environment variables, mounts, networking, and restart policy. If the application exits immediately, I would check whether the CMD or ENTRYPOINT is correct and whether the application process is running in the foreground. I would also check resource-related issues such as memory limits using `docker stats`. If the container is part of Docker Compose, I would check the dependent services and configuration in `docker-compose.yml`. Based on the root cause, I would fix the configuration or application issue, rebuild the image, and redeploy it.
+
+### 2. What is the difference between `CMD` and `ENTRYPOINT`? When would you use each?
+
+Both `CMD` and `ENTRYPOINT` define what runs when a Docker container starts, but they behave differently. `CMD` provides the default command or default arguments and can easily be overridden when running the container. `ENTRYPOINT` defines the main executable of the container and is generally used when the container should always execute a specific application. For example, for a Python application I can use `ENTRYPOINT ["python"]` and `CMD ["app.py"]`, where the ENTRYPOINT remains fixed and CMD provides the default argument. In real projects, I prefer ENTRYPOINT when the container represents a specific executable and CMD when I want to provide configurable default arguments.
+
+### 3. Your Docker image is 2GB and takes a long time to build and deploy. How would you reduce its size?
+
+I would first inspect the image layers using `docker history` and identify which layers are consuming most of the space. Then I would use a smaller base image such as Alpine or Slim where it is compatible with the application. I would remove unnecessary packages, cache files, temporary files, and development dependencies from the final image. I would also use a multi-stage Docker build where compilation or dependency installation happens in a builder image and only the required application artifacts are copied into the final lightweight image. I would optimize the Dockerfile ordering so that frequently changing application code is copied later, which improves Docker layer caching. I would also create an appropriate `.dockerignore` file to prevent files such as `.git`, logs, node_modules, test files, and local configuration from being copied into the build context. This reduces image size, build time, deployment time, and storage consumption.
+
+---
+
+# ☸️ Kubernetes
+
+### 4. A pod is stuck in `CrashLoopBackOff`. What steps would you take to identify the root cause?
+
+When a pod is in `CrashLoopBackOff`, Kubernetes is repeatedly starting the container and the container is exiting or failing. I would first run `kubectl get pods -n <namespace>` and then `kubectl describe pod <pod-name> -n <namespace>` to check events, restart counts, probes, scheduling, and container state. Next, I would check the application logs using `kubectl logs <pod-name> -n <namespace>` and, if the container has restarted, I would use `kubectl logs <pod-name> -n <namespace> --previous` to see logs from the previous failed instance. I would verify environment variables, ConfigMaps, Secrets, mounted volumes, image versions, and application configuration. I would also check whether liveness or readiness probes are incorrectly configured. If the container is being killed because of memory exhaustion, I would check resource limits and Kubernetes events for OOMKilled. After identifying the root cause, I would fix the application or Kubernetes configuration, deploy the corrected version, and monitor the pod until it becomes stable.
+
+### 5. What happens when a Kubernetes pod is OOMKilled?
+
+`OOMKilled` means the container exceeded the memory limit assigned to it and the Linux kernel or Kubernetes runtime terminated the container because of memory exhaustion. I would confirm this using `kubectl describe pod <pod-name>` and check the container's last state and reason. I would then compare the application's actual memory consumption with the configured requests and limits. If the application genuinely requires more memory, I would increase the memory limit and request appropriately. However, I would not simply keep increasing memory without investigation. I would check for memory leaks, inefficient application behavior, excessive concurrency, or large workloads. I would also review historical memory metrics in Prometheus, Grafana, or CloudWatch to understand whether the issue is a sudden spike or a continuous increase. After making the required change, I would monitor the pod and ensure it remains stable.
+
+### 6. How would you troubleshoot a service that is reachable inside the cluster but not from outside?
+
+I would troubleshoot this layer by layer. First, I would verify that the pods are healthy using `kubectl get pods` and confirm that the Kubernetes Service has the correct selector and endpoints using `kubectl get svc` and `kubectl get endpoints`. Then I would test connectivity from another pod inside the cluster using `curl` or `wget` to confirm that the application is actually responding. If internal connectivity works, I would check the Service type such as `ClusterIP`, `NodePort`, or `LoadBalancer`. For external access through an Ingress, I would check the Ingress resource, Ingress Controller, listener configuration, hostname, TLS configuration, and routing rules. On AWS EKS, I would also check the AWS Load Balancer, target health, security groups, subnet configuration, and network ACLs. I would review DNS resolution and verify that the application port exposed by the Service matches the target container port. This helps identify whether the problem is with Kubernetes routing, the Ingress/load balancer, DNS, or AWS networking.
+
+### 7. What is the difference between Deployment, StatefulSet, and DaemonSet? Give a real-world use case for each.
+
+A Deployment is mainly used for stateless applications where pods are interchangeable. It provides replica management, rolling updates, and rollback capabilities, so I would use it for applications such as REST APIs, frontend applications, or microservices. A StatefulSet is used when applications require stable identities, persistent storage, and ordered deployment or termination. A common example is databases such as PostgreSQL, MySQL, or distributed systems such as Kafka, depending on the architecture. A DaemonSet ensures that a pod runs on every eligible node or on a selected set of nodes. I would use a DaemonSet for node-level agents such as Fluent Bit for log collection, Prometheus Node Exporter for monitoring, or security agents. In short, Deployment is generally for stateless workloads, StatefulSet for stateful workloads, and DaemonSet for node-level services.
+
+---
+
+# ☁️ AWS
+
+### 8. An EC2 instance is showing high CPU utilization in production. How would you investigate it?
+
+I would first check CloudWatch metrics to determine when the CPU increase started and whether it is a continuous spike or a temporary event. Then I would connect to the EC2 instance and use commands such as `top`, `htop`, `ps aux --sort=-%cpu`, and `uptime` to identify which process is consuming CPU. I would also check memory, disk I/O, and load average because high CPU may sometimes be related to another resource bottleneck. I would review application logs and recent deployments to determine whether there was a code change or unusual workload. I would also check traffic metrics from the ALB or application layer to see whether the instance is receiving abnormal traffic. If the CPU increase is caused by legitimate traffic, I would consider scaling horizontally using an Auto Scaling Group or vertically by moving to a larger instance type. If it is caused by a runaway process or application issue, I would address the root cause and avoid simply restarting the server without investigation.
+
+### 9. How would you design a highly available application across multiple AWS Availability Zones?
+
+I would design the application using multiple Availability Zones so that failure of one AZ does not make the application unavailable. I would place application instances or containers across multiple private subnets in different AZs and use an Application Load Balancer to distribute traffic across healthy targets. I would use an Auto Scaling Group to automatically maintain the required number of instances and replace unhealthy instances. For the database layer, I would use a highly available solution such as Amazon RDS Multi-AZ, depending on the application requirements. Static assets can be stored in S3 and distributed using CloudFront. I would also design redundant networking components, configure appropriate security groups and route tables, and ensure health checks are properly configured. Monitoring and alerting through CloudWatch would help detect failures quickly. This architecture ensures that the application can continue serving traffic even if one Availability Zone becomes unavailable.
+
+### 10. An application suddenly starts receiving 10x normal traffic. How would you handle it in AWS?
+
+First, I would determine whether the traffic is legitimate or potentially malicious by checking ALB, CloudFront, WAF, and application metrics. I would verify CPU, memory, request count, latency, error rate, and backend capacity. If the traffic is legitimate, I would rely on horizontal scaling through an Auto Scaling Group or Kubernetes HPA if the application runs on EKS. I would use an Application Load Balancer to distribute traffic and CloudFront caching where applicable to reduce load on backend services. AWS WAF can help block malicious or abnormal traffic using rules and rate-based controls. I would also check database connection limits and scaling because increasing application instances can sometimes overload the database. During the incident, I would closely monitor the system and communicate the impact to stakeholders. After stabilization, I would review the incident and improve autoscaling policies, caching, capacity planning, and alerting.
+
+---
+
+# 🔄 CI/CD
+
+### 11. Your production deployment succeeded, but the application is returning 500 errors. What would you check first?
+
+I would first confirm whether the deployment itself is healthy or whether the application is failing after deployment. I would check the load balancer target health, Kubernetes pod status if running on EKS, and application logs. I would compare the deployed version with the previous working version and check whether there were any configuration, environment variable, Secret, ConfigMap, database migration, or dependency changes. I would also verify connectivity to dependent services such as databases, APIs, queues, and caches. If the issue started immediately after the deployment and the previous version was working, I would consider rolling back to the last known good version to restore service quickly. After service restoration, I would investigate the exact root cause using logs, metrics, traces, and deployment changes before redeploying the corrected version.
+
+### 12. How would you implement a zero-downtime deployment?
+
+I would implement zero-downtime deployment using strategies such as rolling deployment, blue-green deployment, or canary deployment depending on the application requirements. In Kubernetes, I would use a Deployment with multiple replicas and configure appropriate readiness and liveness probes. During a rolling update, Kubernetes gradually starts new pods and terminates old pods while ensuring that the required number of healthy replicas remain available. I would also configure `maxUnavailable` and `maxSurge` appropriately. For critical applications, I could use blue-green deployment where the new version is deployed separately and traffic is switched only after validation. Canary deployment can be used to expose the new version to a small percentage of users before gradually increasing traffic. Proper health checks, monitoring, rollback mechanisms, and backward-compatible database changes are important for achieving reliable zero-downtime deployments.
+
+### 13. How do you manage secrets and credentials in a CI/CD pipeline?
+
+I never hardcode passwords, API keys, database credentials, or cloud access keys directly into source code or pipeline YAML files. I prefer using a dedicated secret-management solution such as AWS Secrets Manager, AWS Systems Manager Parameter Store, HashiCorp Vault, or the secret-management feature provided by the CI/CD platform. The pipeline should retrieve secrets only when required and pass them securely to the application or deployment process. Access should follow the principle of least privilege using IAM roles or service accounts rather than long-lived credentials wherever possible. Secrets should also be masked in pipeline logs and should never be printed for debugging. I would rotate credentials periodically and audit who or what is accessing them. For Kubernetes deployments, I would integrate a secret-management solution with Kubernetes rather than storing sensitive values directly in Git repositories.
+
+---
+
+# 🐧 Linux & Troubleshooting
+
+### 14. What is the difference between CPU utilization and load average?
+
+CPU utilization shows how much of the available CPU capacity is currently being used, whereas load average represents the average number of tasks that are either running or waiting for CPU or uninterruptible I/O over a specific period. In Linux, load average is commonly shown for 1, 5, and 15 minutes using the `uptime` or `top` command. For example, a server with 4 CPU cores and a load average around 4 indicates that the system is approximately fully utilized from a scheduling perspective. A load average significantly higher than the number of CPU cores may indicate CPU contention or tasks waiting on I/O. Therefore, I would not look at CPU percentage alone; I would compare CPU utilization, load average, memory, disk I/O, and process-level metrics to understand the actual bottleneck.
+
+### 15. A Linux server has sufficient CPU and memory, but the application is slow. How would you troubleshoot it?
+
+If CPU and memory are normal but the application is slow, I would investigate other possible bottlenecks such as disk I/O, network latency, database performance, connection pools, locks, DNS resolution, or downstream services. I would first check `top`, `iostat`, `vmstat`, `sar`, `ss`, and application logs. I would check disk latency and utilization to determine whether the application is waiting on storage. Then I would verify network connectivity and latency using commands such as `ping`, `curl`, `traceroute`, or `ss` where appropriate. If the application depends on a database, I would check database CPU, slow queries, connection counts, locks, and query latency. I would also check recent application deployments and configuration changes. For a production application, I would correlate logs, metrics, and distributed traces to identify exactly where the request is spending time.
+
+### 16. Disk usage suddenly reaches 100% on a production server. What commands would you use to identify the problem?
+
+I would first run `df -h` to identify which filesystem is full. Then I would use `du -sh` on relevant directories to find which directory is consuming the most space. Commands such as `du -ah /var | sort -rh | head` can help identify large files and directories. I would check `/var/log`, application logs, temporary files, Docker storage, and old backup files. If deleted files are still being held open by a process, I would use `lsof +L1` to identify them. I would also check inode exhaustion using `df -i`, because a filesystem can show available disk space but still fail due to exhausted inodes. In a production environment, I would first identify the cause before deleting files and would follow the organization's log-retention and cleanup policies. After freeing space safely, I would implement preventive measures such as log rotation, monitoring, and appropriate disk-sizing or automated cleanup.
+
+---
+
+# 🚨 DevOps / Production Scenario
+
+### 17. A production issue occurs at 2 AM and multiple services are affected. How would you approach troubleshooting, communication, rollback, and root-cause analysis?
+
+During a major production incident, my first priority would be restoring service rather than immediately trying to find the complete root cause. I would acknowledge the incident, identify the impacted services and users, and check monitoring dashboards, alerts, application logs, Kubernetes events, load balancer metrics, infrastructure metrics, and recent deployments. I would establish whether the issue is related to an application release, infrastructure, database, networking, external dependency, or traffic spike. If a recent deployment is strongly correlated with the incident and rollback is safe, I would roll back to the last known good version to reduce customer impact. At the same time, I would communicate the incident status, impact, actions being taken, and expected next update to the relevant stakeholders.
+
+Once the service is stabilized, I would continue the investigation to identify the root cause using logs, metrics, traces, deployment history, configuration changes, and infrastructure events. I would document the timeline from detection through mitigation and recovery. Finally, I would prepare an RCA containing the root cause, customer impact, timeline, immediate resolution, contributing factors, and preventive actions. Preventive measures could include better monitoring and alerting, improved health checks, automated rollback, stronger deployment validation, capacity planning, testing, and changes to the CI/CD process. My approach would be **stabilize first, communicate clearly, investigate systematically, then prevent recurrence**.
+
+
+
 # Infosys DevOps Interview Experience – Round 1
 
 I’ve been receiving many messages asking about the questions from my Infosys DevOps interview, so sharing the complete list here. Hope this helps everyone preparing for similar roles. 🙌
