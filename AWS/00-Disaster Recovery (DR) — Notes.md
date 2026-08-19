@@ -27,6 +27,15 @@
 
 **DR example:** Primary Region fails entirely (❌) → DR process kicks in → traffic/workload moves to a Secondary Region (✅). This is a full failover, not just rerouting within a pool.
 
+**Summary Table: HA vs DR**
+
+| Aspect | High Availability | Disaster Recovery |
+|---|---|---|
+| Failure scope | Small/infrastructure component failures | Major outages including region failure |
+| Application state | Continues running | Application becomes unavailable temporarily |
+| Response goal | No downtime | Minimize downtime and data loss |
+| Example | One EC2 instance down but load balanced | Entire AWS region down, need failover |
+
 ---
 
 ## RPO — Recovery Point Objective
@@ -76,14 +85,23 @@ Since the last snapshot was at 10:00 AM and the disaster happened at 10:20 AM, o
 - **Failover** = Primary → DR (switching operations to the disaster recovery environment when the primary fails)
 - **Failback** = DR → Primary (switching operations back to the primary environment once it's restored/healthy again)
 
+### Core DR Terms — Quick Reference
+
+| Term | Definition | Business Impact |
+|---|---|---|
+| **RPO (Recovery Point Objective)** | Maximum acceptable age of data loss, measured in time before the disaster. | If backups happen every 30 min, max 30 min of data loss is acceptable. |
+| **RTO (Recovery Time Objective)** | Maximum acceptable downtime / time to restore the application after a disaster. | If RTO is 1 hour, the application must be back up within 1 hour. |
+| **Failover** | Switching operations from the primary environment to the DR environment after a disaster. | Switch from primary region (Mumbai) to DR region (Hyderabad). |
+| **Failback** | Reverting operations from the DR environment back to the primary environment post-recovery. | Switch back from DR region (Hyderabad) to primary (Mumbai) after the issue is resolved. |
+
 ---
 
 ## Practical / Hands-On Scenarios Covered
 
-Three production-style failure scenarios were practiced:
+Three realistic scenarios were walked through end-to-end in AWS, moving from a small-scope failure to a full regional disaster:
 
-1. **EC2 Instance Failure / Server Crash**
-2. **EBS Volume Failure / Data Recovery**
+1. **EC2 Instance Failure / Server Crash Recovery**
+2. **EBS Data Volume Failure / Corruption Recovery**
 3. **AWS Regional Disaster / Cross-Region Failover**
 
 ### Demo Setup — Application Architecture
@@ -94,9 +112,72 @@ Three production-style failure scenarios were practiced:
   - **Root EBS (20 GB):** Ubuntu OS, Nginx, HTML/JS app, application config
   - **Data EBS (10 GB):** `orders.txt`, `customers.txt`, `application-data`
 
-### Demo 1: Server (EC2) Crashed Scenario
+### Demo 1: EC2 Instance Failure / Server Crash Recovery
 
-Simulated an EC2 crash and walked through detecting the failure, restoring the instance/volumes, reconfiguring the app, validating it, and switching traffic back — this is the scenario the RTO/RPO timeline above (10:20 AM disaster → 10:50 AM recovery) is based on.
+Simulates a full EC2 server crash while keeping application data safe, by separating app data onto its own EBS volume and using an AMI to rebuild the server.
+
+**Setup:**
+- EC2 instance with a **root EBS volume** (OS + application server) and a separate **10 GB data EBS volume** (application data, e.g. order records)
+- **Nginx** serving a custom `index.html` that displays data pulled from the attached data volume
+- **Security Group** configured for SSH and HTTP access
+- An **AMI snapshot** taken of the EC2 server (captures OS config + installed software)
+- A **snapshot** taken of the data volume as a backup
+
+**Recovery steps:**
+1. EC2 instance is **terminated** to simulate the failure.
+2. A **new EC2 instance is launched from the saved AMI**, restoring the server environment (OS, Nginx, app code, config).
+3. The application **data volume is untouched** (it was detached, not deleted), so no data is lost.
+4. The data volume is **re-attached and mounted** on the new instance.
+5. The application comes back up showing **all current data immediately** — this is the scenario the RTO/RPO timeline above (10:20 AM disaster → 10:50 AM recovery) is based on.
+
+**Key takeaway:** Keeping app data on a *separate* EBS volume from the OS/root volume means the data survives even if the EC2 instance itself is destroyed. AMIs let you rebuild the server quickly; reattaching the data volume completes the recovery.
+
+### Demo 2: EBS Data Volume Failure / Corruption Recovery
+
+Simulates corruption or accidental deletion of application data on the EBS volume, while the EC2 instance itself keeps running fine.
+
+**Steps:**
+1. The application data file (`orders.txt`) on the mounted volume is **deleted** to simulate corruption/data loss.
+2. The corrupted volume is **detached and deleted**.
+3. A **new EBS volume is created from the latest snapshot** (the backup taken earlier).
+4. The restored volume is **attached and mounted** to the running instance.
+5. Refreshing the application shows **only the data present at snapshot time** — anything added after the snapshot was taken is gone.
+
+**Key takeaway:** Snapshots are restore points for EBS volumes. Recovering from data corruption means restoring a volume from the most recent snapshot and reattaching it. Data created *after* that snapshot is permanently lost, which is exactly why **snapshot frequency should be aligned to your RPO target** (see RPO section above).
+
+### Demo 3: Complete AWS Regional Failure / Cross-Region Failover
+
+The full enterprise-style scenario: the entire primary AWS region goes down, and the workload has to fail over to a secondary region.
+
+**Process:**
+1. Primary region (**Mumbai**, `ap-south-1`) becomes unavailable.
+2. AMIs and EBS snapshots had already been **proactively copied to the secondary region** (**Hyderabad**, `ap-south-2`) ahead of the disaster.
+3. The copied AMI is used to **launch a new EC2 instance** in Hyderabad.
+4. The copied EBS snapshot is used to **create a new data volume** in Hyderabad.
+5. The new data volume is **attached and mounted** to the new instance.
+6. The application comes up in the DR region, serving the expected backed-up data.
+
+**Automation note:** In this demo the copying was done manually for clarity. In real production environments, copying snapshots/AMIs to the DR region — and the whole failover — is **automated and scheduled** (e.g., via scripts or CI/CD pipelines) rather than performed by hand.
+
+**Summary Table: Cross-Region DR Workflow**
+
+| Step | Description | AWS Resource |
+|---|---|---|
+| Backup creation | Create snapshots of volumes and AMIs in the primary region | EBS snapshots, AMIs |
+| Cross-region copy | Copy snapshots and AMIs to the secondary DR region | Snapshot copy, AMI copy |
+| DR region deployment | Launch EC2 from the copied AMI, create a volume from the copied snapshot | EC2 instance, EBS volume |
+| Volume attachment & mounting | Attach the application data volume and mount it on the EC2 instance | Volume attach, mount command |
+| Application verification | Confirm the application is up and serving the DR data | Web application |
+
+---
+
+## Additional Best Practices
+
+- **Split root volume and application data volume** — this is critical to protect data independently from server failure (this is the pattern all three demos rely on).
+- **AMIs and snapshots are your recovery points** — AMIs recover the server/infrastructure, snapshots recover the data.
+- **Keep resources region-aligned** — volumes and instances being restored must be in the same region/subnet as each other.
+- **Automate in production** — snapshotting, cross-region copying, and failover steps should be automated via scripts/CI-CD pipelines for reliability and speed at scale; doing it manually (as in the demos) doesn't scale and is error-prone.
+- **Clean up after testing** — remove EC2 instances, snapshots, and AMIs created during DR drills/demos to avoid unnecessary ongoing costs.
 
 ---
 
