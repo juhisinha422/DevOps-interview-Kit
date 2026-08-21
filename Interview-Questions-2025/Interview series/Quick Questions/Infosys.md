@@ -1,3 +1,1414 @@
+# CI/CD, Jenkins, Docker & HR Interview Preparation
+
+### Interview Answers for a DevOps Engineer with 4 Years of Experience
+
+---
+
+## 1. CI/CD & Jenkins
+
+### Q1. Explain your current organisation’s Jenkins setup.
+
+**Answer:**
+
+In my current organisation, Jenkins is primarily used as the CI/CD automation platform. We use it to automate activities such as source-code checkout, compilation, unit testing, static-code analysis, Docker image creation, security scanning, and deployment.
+
+Our typical flow looks like this:
+
+```text
+Developer
+   |
+   v
+Git Repository
+   |
+   v
+Jenkins Webhook
+   |
+   v
+Jenkins Pipeline
+   |
+   +----> Checkout Code
+   |
+   +----> Build
+   |
+   +----> Unit Tests
+   |
+   +----> SonarQube / Code Quality
+   |
+   +----> Docker Build
+   |
+   +----> Security Scan
+   |
+   +----> Push Image to Registry
+   |
+   +----> Deploy
+   |
+   v
+Dev / QA / Production
+```
+
+We generally use **Jenkins Pipeline as Code**, where the pipeline is maintained in a `Jenkinsfile` inside the source-code repository.
+
+For example:
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "myapp"
+        REGISTRY = "registry.example.com"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh './build.sh'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh './run-tests.sh'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh "docker build -t ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER} ."
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'docker-registry',
+                        usernameVariable: 'USERNAME',
+                        passwordVariable: 'PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "$PASSWORD" | docker login \
+                        -u "$USERNAME" \
+                        --password-stdin $REGISTRY
+
+                        docker push $REGISTRY/$IMAGE_NAME:$BUILD_NUMBER
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh './deploy.sh'
+            }
+        }
+    }
+}
+```
+
+### Jenkins architecture
+
+A typical enterprise Jenkins setup can contain:
+
+* Jenkins Controller
+* Jenkins Agents
+* Git/GitHub/GitLab/Bitbucket
+* Docker
+* Docker Registry
+* SonarQube
+* Kubernetes
+* Cloud infrastructure
+* Monitoring and notification systems
+
+I prefer not to run heavy builds directly on the Jenkins controller. Instead, builds are executed on **dedicated agents**.
+
+For example:
+
+```text
+                 Jenkins Controller
+                        |
+          +-------------+-------------+
+          |             |             |
+          v             v             v
+      Linux Agent   Docker Agent   Kubernetes Agent
+          |             |             |
+       Build/Test    Docker Build   Deployment
+```
+
+### Jenkins job strategy
+
+For multiple applications, I prefer using:
+
+* Multibranch Pipelines
+* Pipeline as Code
+* Shared Libraries
+* Separate credentials by environment
+* Role-based access control
+* Dedicated build agents
+* Webhooks instead of continuous polling
+* Manual approval before production deployment
+
+This makes Jenkins easier to maintain and reduces duplication.
+
+---
+
+# Q2. How do you actually secure a Jenkins pipeline?
+
+**Answer:**
+
+I consider Jenkins security at multiple levels: authentication, authorization, secrets management, agent security, pipeline security, network security, and auditability.
+
+### 1. Authentication
+
+Jenkins should integrate with an enterprise identity provider such as:
+
+* Active Directory
+* LDAP
+* SSO
+* OAuth/OIDC
+
+We avoid sharing Jenkins accounts.
+
+Every user should have an individual identity.
+
+---
+
+### 2. Authorization / RBAC
+
+I follow the principle of **least privilege**.
+
+For example:
+
+```text
+Jenkins Admin
+    |
+    +-- Full administration
+
+DevOps
+    |
+    +-- Create/modify pipelines
+    +-- Manage builds
+
+Developer
+    |
+    +-- Trigger builds
+    +-- View logs
+
+Read Only
+    |
+    +-- View jobs/builds only
+```
+
+Production deployment permissions should be restricted.
+
+---
+
+### 3. Secrets management
+
+I never hardcode passwords, API keys, tokens, or cloud credentials in a `Jenkinsfile`.
+
+Bad:
+
+```groovy
+environment {
+    PASSWORD = "MyPassword123"
+}
+```
+
+Instead, I store credentials in Jenkins Credentials Store or integrate Jenkins with an external secrets manager.
+
+Example:
+
+```groovy
+withCredentials([
+    usernamePassword(
+        credentialsId: 'docker-creds',
+        usernameVariable: 'USER',
+        passwordVariable: 'PASS'
+    )
+]) {
+    sh '''
+        echo "$PASS" | docker login \
+        -u "$USER" \
+        --password-stdin
+    '''
+}
+```
+
+For sensitive environments, I prefer solutions such as:
+
+* HashiCorp Vault
+* AWS Secrets Manager
+* Azure Key Vault
+* Cloud-native workload identities
+
+---
+
+### 4. Secure the Jenkins agent
+
+I avoid giving every build unrestricted access to the Jenkins controller.
+
+Agents should be isolated where possible.
+
+For example:
+
+```text
+Jenkins Controller
+        |
+        +------ Build Agent
+                  |
+                  +-- Docker
+                  +-- Build Tools
+                  +-- Limited Permissions
+```
+
+Ephemeral agents are even better because the environment can be destroyed after the build.
+
+---
+
+### 5. Plugin security
+
+I install only required plugins and keep them updated.
+
+I also regularly review:
+
+* Plugin versions
+* Security advisories
+* Unused plugins
+* Plugin dependencies
+
+Unused plugins should be removed because every plugin increases the attack surface.
+
+---
+
+### 6. Pipeline security
+
+I use:
+
+* Protected branches
+* Pull-request reviews
+* Jenkinsfile stored in Git
+* Approval gates
+* Restricted production deployment
+* Input validation
+* Secret masking
+* Dependency/image scanning
+
+For production:
+
+```text
+Build
+  |
+  v
+Test
+  |
+  v
+Security Scan
+  |
+  v
+Approval
+  |
+  v
+Production Deployment
+```
+
+---
+
+### 7. Network security
+
+Jenkins should not be directly exposed to the public internet.
+
+Typically:
+
+```text
+Internet
+   |
+Load Balancer / Reverse Proxy
+   |
+Firewall / Security Group
+   |
+Jenkins
+```
+
+I also use HTTPS/TLS and restrict network access to trusted users and systems.
+
+---
+
+# Q3. How do you manage credentials, plugins and RBAC?
+
+## Credentials Management
+
+I use Jenkins Credentials Store for credentials that Jenkins needs.
+
+Credentials can include:
+
+* Username/password
+* SSH keys
+* API tokens
+* Secret text
+* Certificates
+* Cloud credentials
+
+Each credential gets a meaningful ID.
+
+Example:
+
+```groovy
+withCredentials([
+    string(
+        credentialsId: 'github-token',
+        variable: 'GITHUB_TOKEN'
+    )
+]) {
+    sh 'git clone https://$GITHUB_TOKEN@github.com/company/repo.git'
+}
+```
+
+I make sure credentials are:
+
+* Never committed to Git
+* Never printed in logs
+* Restricted to required jobs
+* Rotated periodically
+* Scoped appropriately
+
+For larger environments, I prefer integrating Jenkins with an external secrets-management solution.
+
+---
+
+## Plugin Management
+
+I follow a controlled plugin-management process.
+
+### My approach:
+
+1. Install only required plugins.
+2. Check plugin compatibility.
+3. Review Jenkins security advisories.
+4. Test plugin upgrades.
+5. Upgrade plugins during maintenance windows.
+6. Remove unused plugins.
+7. Keep Jenkins core and plugins reasonably current.
+
+Examples of commonly required plugin categories include:
+
+* Git integration
+* Pipeline
+* Credentials
+* Docker
+* Kubernetes
+* Configuration as Code
+* Authentication/RBAC
+
+I avoid installing plugins just because they provide a convenient feature. Every plugin should have a business or technical reason.
+
+---
+
+## RBAC
+
+I use role-based access control to give users only the permissions they require.
+
+Example:
+
+| Role          | Typical Permissions         |
+| ------------- | --------------------------- |
+| Jenkins Admin | Full administration         |
+| DevOps        | Manage pipelines and agents |
+| Developer     | Build and view jobs         |
+| QA            | Trigger/view test jobs      |
+| Read Only     | View jobs and logs          |
+
+For production jobs, I would restrict who can:
+
+* Modify the pipeline
+* Deploy
+* Approve deployment
+* Manage credentials
+* Manage Jenkins configuration
+
+The key principle is **least privilege**.
+
+---
+
+# Q4. Scripted vs Declarative Pipeline — when and why would you choose each?
+
+Both are Jenkins Pipeline approaches, but they differ mainly in structure and flexibility.
+
+## Declarative Pipeline
+
+Declarative Pipeline has a predefined structure.
+
+Example:
+
+```groovy
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Build') {
+            steps {
+                sh './build.sh'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh './test.sh'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh './deploy.sh'
+            }
+        }
+    }
+}
+```
+
+### Advantages
+
+* Easy to understand
+* Standard structure
+* Easier for teams to maintain
+* Built-in validation
+* Easier error handling
+* Supports `post`, `when`, `environment`, `parameters`, etc.
+
+For most application CI/CD pipelines, **I prefer Declarative Pipeline**.
+
+---
+
+## Scripted Pipeline
+
+Scripted Pipeline is Groovy-based and provides more programming flexibility.
+
+Example:
+
+```groovy
+node {
+
+    def environments = ['dev', 'qa', 'prod']
+
+    for (environment in environments) {
+
+        stage("Deploy ${environment}") {
+
+            if (environment == 'prod') {
+                input "Deploy to production?"
+            }
+
+            sh "./deploy.sh ${environment}"
+        }
+    }
+}
+```
+
+### Advantages
+
+* More programming flexibility
+* Complex loops and conditions
+* Dynamic pipeline generation
+* Useful for complicated workflows
+
+### Disadvantages
+
+* More difficult to maintain
+* More Groovy knowledge required
+* Easier to create complicated pipelines
+* Less standardized
+
+### My choice
+
+I use:
+
+```text
+Simple/standard CI/CD
+        |
+        v
+Declarative Pipeline
+```
+
+For highly dynamic or complex logic:
+
+```text
+Complex dynamic workflow
+        |
+        v
+Scripted Pipeline
+```
+
+I generally prefer **Declarative Pipeline + Shared Libraries** rather than putting large amounts of Groovy logic directly into the Jenkinsfile.
+
+---
+
+# 2. Docker & Containerisation
+
+# Q5. How do you create and structure a custom Dockerfile?
+
+**Answer:**
+
+A Dockerfile contains the instructions required to create a Docker image.
+
+A basic structure is:
+
+```dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci --only=production
+
+COPY . .
+
+EXPOSE 3000
+
+USER node
+
+CMD ["npm", "start"]
+```
+
+### Explanation
+
+#### FROM
+
+Defines the base image.
+
+```dockerfile
+FROM node:20-alpine
+```
+
+I prefer minimal trusted base images where practical.
+
+---
+
+#### WORKDIR
+
+Sets the working directory.
+
+```dockerfile
+WORKDIR /app
+```
+
+---
+
+#### COPY
+
+Copies files into the image.
+
+```dockerfile
+COPY package*.json ./
+COPY . .
+```
+
+---
+
+#### RUN
+
+Executes commands while building the image.
+
+```dockerfile
+RUN npm ci --only=production
+```
+
+The result becomes part of the image layer.
+
+---
+
+#### EXPOSE
+
+Documents the port used by the application.
+
+```dockerfile
+EXPOSE 3000
+```
+
+It does not itself publish the port to the host.
+
+---
+
+#### USER
+
+I prefer running applications as a non-root user.
+
+```dockerfile
+USER node
+```
+
+This reduces the impact of a container compromise.
+
+---
+
+#### CMD
+
+Defines the default command.
+
+```dockerfile
+CMD ["npm", "start"]
+```
+
+---
+
+## Multi-stage Dockerfile
+
+For compiled applications, I prefer multi-stage builds.
+
+Example:
+
+```dockerfile
+FROM golang:1.23-alpine AS builder
+
+WORKDIR /src
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+
+RUN go build -o app .
+
+FROM alpine:3.20
+
+WORKDIR /app
+
+COPY --from=builder /src/app .
+
+RUN adduser -D appuser
+USER appuser
+
+EXPOSE 8080
+
+ENTRYPOINT ["./app"]
+```
+
+### Why multi-stage builds?
+
+The build environment contains compilers and development dependencies.
+
+The final image doesn't need them.
+
+Therefore:
+
+```text
+Builder Image
+  |
+  | compile
+  v
+Application Binary
+  |
+  v
+Small Runtime Image
+```
+
+Benefits:
+
+* Smaller image
+* Faster deployment
+* Reduced attack surface
+* Fewer unnecessary packages
+
+---
+
+## Dockerfile best practices
+
+I follow these practices:
+
+* Use small trusted base images.
+* Pin important image versions.
+* Use multi-stage builds.
+* Run as non-root.
+* Avoid storing secrets in images.
+* Add `.dockerignore`.
+* Minimize layers where appropriate.
+* Scan images for vulnerabilities.
+* Don't install unnecessary packages.
+* Keep application and runtime dependencies separate.
+
+Example `.dockerignore`:
+
+```text
+.git
+.gitignore
+node_modules
+.env
+Dockerfile
+README.md
+*.log
+```
+
+---
+
+# Q6. What is the exact difference between CMD and ENTRYPOINT?
+
+This is a common Docker interview question.
+
+## CMD
+
+`CMD` defines the **default command or default arguments** for a container.
+
+Example:
+
+```dockerfile
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+If I run:
+
+```bash
+docker run myimage
+```
+
+Docker uses the CMD.
+
+But if I run:
+
+```bash
+docker run myimage bash
+```
+
+the `bash` command replaces the CMD.
+
+---
+
+## ENTRYPOINT
+
+`ENTRYPOINT` defines the main executable of the container.
+
+Example:
+
+```dockerfile
+ENTRYPOINT ["python"]
+```
+
+If I run:
+
+```bash
+docker run myimage app.py
+```
+
+Docker effectively runs:
+
+```bash
+python app.py
+```
+
+The argument is appended to the entrypoint.
+
+---
+
+## CMD + ENTRYPOINT together
+
+This is often the most useful pattern.
+
+```dockerfile
+ENTRYPOINT ["python"]
+
+CMD ["app.py"]
+```
+
+Running:
+
+```bash
+docker run myimage
+```
+
+results in:
+
+```bash
+python app.py
+```
+
+Running:
+
+```bash
+docker run myimage test.py
+```
+
+results in:
+
+```bash
+python test.py
+```
+
+So:
+
+```text
+ENTRYPOINT = main executable
+CMD        = default arguments
+```
+
+### Interview-friendly answer
+
+> I use ENTRYPOINT when I want the container to behave like a specific executable, and CMD when I want to provide defaults that can easily be overridden. When used together, ENTRYPOINT provides the executable and CMD provides its default arguments.
+
+---
+
+# Q7. A Docker container is completely stuck. Walk me through your debugging process step by step.
+
+**Answer:**
+
+I would troubleshoot systematically rather than immediately restarting or deleting the container.
+
+---
+
+## Step 1 — Check container status
+
+```bash
+docker ps
+```
+
+If I don't see it:
+
+```bash
+docker ps -a
+```
+
+I check:
+
+* Status
+* Exit code
+* Container name
+* Image
+* Port mappings
+
+Example:
+
+```text
+CONTAINER ID   IMAGE       STATUS
+123abc         myapp       Up 10 minutes
+```
+
+---
+
+## Step 2 — Check logs
+
+My first step for an application issue is usually:
+
+```bash
+docker logs <container>
+```
+
+For recent logs:
+
+```bash
+docker logs --tail 100 <container>
+```
+
+Follow logs:
+
+```bash
+docker logs -f <container>
+```
+
+I look for:
+
+* Application exceptions
+* Connection failures
+* Authentication failures
+* Configuration errors
+* Out-of-memory errors
+* Dependency failures
+
+---
+
+## Step 3 — Inspect the container
+
+```bash
+docker inspect <container>
+```
+
+I check:
+
+* Environment variables
+* Mounts
+* Network configuration
+* Entrypoint
+* CMD
+* Restart policy
+* Health status
+* Resource configuration
+
+For example:
+
+```bash
+docker inspect <container> | grep -i health
+```
+
+---
+
+## Step 4 — Check whether the container is actually running
+
+```bash
+docker exec -it <container> sh
+```
+
+If Bash exists:
+
+```bash
+docker exec -it <container> bash
+```
+
+Then I inspect:
+
+```bash
+ps
+```
+
+or:
+
+```bash
+ps aux
+```
+
+I check whether the expected application process exists.
+
+---
+
+## Step 5 — Check CPU and memory
+
+```bash
+docker stats
+```
+
+I look for:
+
+```text
+CPU %
+MEM USAGE
+MEM %
+NET I/O
+BLOCK I/O
+```
+
+If CPU is extremely high, the application may be stuck in a loop.
+
+If memory is exhausted, it could be an OOM issue.
+
+---
+
+## Step 6 — Check container health
+
+If the image has a health check:
+
+```bash
+docker inspect --format='{{json .State.Health}}' <container>
+```
+
+I check whether the container is:
+
+```text
+healthy
+unhealthy
+starting
+```
+
+An unhealthy container does not necessarily mean the main process has crashed. It can mean the health-check command is failing.
+
+---
+
+## Step 7 — Check networking
+
+I inspect:
+
+```bash
+docker network ls
+```
+
+Then:
+
+```bash
+docker network inspect <network>
+```
+
+From inside the container, I test connectivity:
+
+```bash
+ping <host>
+```
+
+If available:
+
+```bash
+curl http://service:8080
+```
+
+I also check DNS:
+
+```bash
+nslookup service
+```
+
+or:
+
+```bash
+getent hosts service
+```
+
+Typical issues include:
+
+* Wrong network
+* Incorrect service name
+* DNS failure
+* Firewall
+* Incorrect port
+* Application listening only on localhost
+
+---
+
+## Step 8 — Check port mappings
+
+```bash
+docker port <container>
+```
+
+For example:
+
+```text
+8080/tcp -> 0.0.0.0:8080
+```
+
+I verify that the application is actually listening:
+
+```bash
+ss -lntp
+```
+
+Inside the container, I check whether the application is listening on the expected port.
+
+---
+
+## Step 9 — Check environment/configuration
+
+I inspect:
+
+```bash
+docker inspect <container>
+```
+
+and compare configuration with the expected values.
+
+Common problems:
+
+```text
+Wrong environment variable
+Wrong database URL
+Wrong API endpoint
+Missing secret
+Wrong configuration file
+```
+
+I never expose sensitive credentials while debugging or paste them into logs.
+
+---
+
+## Step 10 — Check filesystem and mounts
+
+```bash
+docker inspect <container>
+```
+
+I check mounted volumes.
+
+Then:
+
+```bash
+df -h
+```
+
+and:
+
+```bash
+df -i
+```
+
+A full filesystem or inode exhaustion can cause unexpected application behavior.
+
+---
+
+## Step 11 — Check Docker daemon/system logs
+
+On Linux:
+
+```bash
+journalctl -u docker
+```
+
+I check for:
+
+* Docker daemon errors
+* Storage problems
+* Network problems
+* Container runtime issues
+
+---
+
+## Step 12 — Check whether the process is unresponsive
+
+If the application is completely hung, I determine whether it is:
+
+* CPU-bound
+* Memory-bound
+* Waiting on I/O
+* Waiting on a network connection
+* Deadlocked
+* Blocked by an external dependency
+
+I don't immediately restart it because restarting can remove useful evidence.
+
+---
+
+## Step 13 — Check image/configuration changes
+
+I compare the currently running image with the previous working version.
+
+For example:
+
+```bash
+docker image ls
+```
+
+I check:
+
+* Image tag
+* Image digest
+* Dockerfile changes
+* Application version
+* Configuration changes
+
+If the issue started immediately after a deployment, I compare the current release with the last known-good release.
+
+---
+
+## Step 14 — Restart only after collecting evidence
+
+If I have enough information:
+
+```bash
+docker restart <container>
+```
+
+If necessary:
+
+```bash
+docker stop <container>
+docker start <container>
+```
+
+For production systems, I follow the established incident/change-management process rather than manually restarting containers without understanding the impact.
+
+---
+
+## My overall Docker debugging flow
+
+```text
+Container Issue
+      |
+      v
+docker ps -a
+      |
+      v
+docker logs
+      |
+      v
+docker inspect
+      |
+      +------> Health Check
+      |
+      +------> CPU / Memory
+      |
+      +------> Network
+      |
+      +------> Ports
+      |
+      +------> Environment
+      |
+      +------> Volumes / Filesystem
+      |
+      +------> Docker Daemon
+      |
+      v
+Identify Root Cause
+      |
+      v
+Fix
+      |
+      v
+Validate
+      |
+      v
+Monitor
+```
+
+### Strong interview closing statement
+
+> My approach is to first collect evidence using `docker ps`, `docker logs`, and `docker inspect`. Then I check resources, health checks, networking, ports, environment variables, volumes, and Docker daemon logs. Once I identify the root cause, I fix and validate it rather than simply restarting the container.
+
+---
+
+# 3. HR & Cultural Fit
+
+# Q8. Why are you looking for a job change?
+
+### Recommended answer
+
+> I have gained good experience in my current organisation, especially in DevOps, CI/CD automation, Jenkins, Docker, cloud infrastructure and deployment processes. After around four years of experience, I am looking for an opportunity where I can take on more challenging responsibilities, work on larger-scale infrastructure and automation, and continue improving my technical skills.
+>
+> I am not looking to move because of any negative reason. My main motivation is career growth, learning, and getting exposure to more complex DevOps and cloud environments.
+>
+> I believe this opportunity aligns well with the direction I want to take in my career.
+
+### Short version
+
+> I am looking for a change primarily for career growth and better technical exposure. I have built a strong foundation in DevOps and CI/CD over the last few years, and now I want to work on larger-scale systems, automation, cloud technologies and more challenging projects.
+
+### Avoid saying
+
+Don't say:
+
+* "My manager is bad."
+* "I hate my company."
+* "I want more money" as the only reason.
+* "There is too much workload."
+* "I don't like my team."
+
+Even if compensation is part of your motivation, position the change primarily around **growth, responsibility, learning and technical exposure**.
+
+---
+
+# Q9. Are you comfortable with the location and working from office (WFO)?
+
+### If you are comfortable
+
+> Yes, I am comfortable with the location and working from office. I understand that collaboration is important, especially for DevOps and infrastructure teams, where we may need to coordinate closely with developers, QA, security and operations teams. I am comfortable following the organisation's working model and office requirements.
+
+### If you need some flexibility
+
+> Yes, I am comfortable with the location and I am open to working from office. I understand the importance of collaboration and team interaction. If there is flexibility around hybrid working, I would appreciate it, but I am comfortable with the organisation's WFO requirements.
+
+### If relocation is required
+
+> Yes, I am open to relocation and comfortable with working from office. I would just like to understand the expected joining timeline and office location so that I can plan the relocation accordingly.
+
+---
+
+# 4. Quick Interview Revision
+
+## Jenkins
+
+### What is Jenkins?
+
+> Jenkins is an automation server primarily used to implement CI/CD pipelines. It can automate building, testing, security scanning, packaging and deployment.
+
+### Why Jenkinsfile?
+
+> Jenkinsfile provides Pipeline as Code. It keeps the CI/CD definition in source control, allowing versioning, code review and reproducibility.
+
+### Why use agents?
+
+> Agents execute builds and keep heavy workloads away from the Jenkins controller.
+
+### How do you secure Jenkins?
+
+> I use SSO/LDAP, RBAC, least privilege, credentials management, HTTPS, restricted agents, plugin security, protected repositories, secret masking and controlled production access.
+
+---
+
+# Docker
+
+### What is an image?
+
+> A Docker image is an immutable package containing the application, runtime, libraries and required filesystem content.
+
+### What is a container?
+
+> A container is a running instance of an image with isolated processes, networking and filesystem layers.
+
+### CMD vs ENTRYPOINT
+
+```text
+ENTRYPOINT → Main executable
+CMD        → Default command/arguments
+```
+
+### Why multi-stage builds?
+
+> To separate the build environment from the runtime environment and produce smaller, cleaner and more secure production images.
+
+### Why non-root containers?
+
+> Running as a non-root user reduces the potential impact if the application or container is compromised.
+
+---
+
+# 5. Sample End-to-End CI/CD Answer
+
+If the interviewer asks:
+
+### "Explain your complete CI/CD process."
+
+A strong 4-year-experience answer would be:
+
+> In my current setup, developers push code to Git, and a webhook triggers Jenkins. Jenkins checks out the code and starts the pipeline defined in the Jenkinsfile.
+>
+> First, we compile or build the application and execute unit tests. Then we perform code-quality checks and security scanning. Once the application passes the required checks, we build a Docker image and tag it using a version or build number.
+>
+> The image is then scanned for vulnerabilities and pushed to our container registry. After that, Jenkins deploys the image to the appropriate environment, such as development or QA.
+>
+> For production, we generally have additional controls such as approval gates and restricted deployment permissions.
+>
+> Jenkins credentials are stored securely rather than hardcoded in the pipeline. Access is controlled through RBAC, and production credentials are restricted to the jobs and users that require them.
+>
+> After deployment, we validate the application using health checks, logs and monitoring. If there is a deployment issue, we investigate the logs, container status, resource usage, networking and application configuration, and if required we roll back to the last known-good version.
+
+---
+
+# 6. Senior-Level Points to Add During the Interview
+
+For a **4-year DevOps profile**, don't stop at definitions. Try to explain **why** you use a particular approach.
+
+Good phrases to use naturally:
+
+* "I follow the principle of least privilege."
+* "We maintain pipelines as code."
+* "I prefer immutable artifacts."
+* "I avoid hardcoding secrets."
+* "I use multi-stage Docker builds."
+* "I prefer running containers as non-root."
+* "Production deployments have additional approval controls."
+* "I investigate the root cause before restarting a production workload."
+* "We try to keep the Jenkins controller dedicated to orchestration rather than heavy build workloads."
+* "I prefer reusable Jenkins Shared Libraries for common pipeline logic."
+* "I use vulnerability scanning as part of the CI/CD process."
+* "I prefer ephemeral build agents where practical."
+* "I separate build, test, security validation and deployment stages."
+
+---
+
+# 7. One-Minute Introduction Connecting All These Topics
+
+> I have around four years of experience in DevOps and CI/CD, with hands-on experience in Jenkins, Docker, Git-based workflows and deployment automation.
+>
+> My experience includes creating and maintaining Jenkins pipelines, implementing Pipeline as Code using Jenkinsfiles, managing credentials and access controls, and automating application build and deployment processes.
+>
+> On the containerisation side, I have worked with Dockerfiles, Docker image creation, multi-stage builds, container troubleshooting, networking, logs and resource analysis.
+>
+> From a security perspective, I follow practices such as least-privilege access, secure credential management, avoiding secrets in source code, controlled production deployments and vulnerability scanning.
+>
+> At this stage of my career, I am looking for an opportunity where I can work on more challenging DevOps and cloud environments, improve my automation skills and contribute to building reliable and secure CI/CD platforms.
+
+
 # Infosys DevOps Interview Questions & Answers – 4 Years Experience
 
 ## 🐳 Docker
