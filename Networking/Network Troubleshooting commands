@@ -1,0 +1,7 @@
+Network Troubleshooting commands:
+💠 ping : checks connectivity to remote server.
+💠 netstat : display active network connections,listening ports and routing information.
+💠 curl : fetches a webpage content.
+💠 traceroute: show network path to a host.
+💠 telnet: test wheather a specific server and port are rechable.
+💠 dig: checks DNS records and verifies domain name resolution.
