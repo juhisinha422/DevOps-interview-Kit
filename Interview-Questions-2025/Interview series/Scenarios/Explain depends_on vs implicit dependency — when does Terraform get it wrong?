@@ -1,0 +1,33 @@
+ Explain depends_on vs implicit dependency — when does Terraform get it wrong?
+
+1. Implicit Dependency (Automatic): Terraform parses our configuration, detects references (e.g., vpc_id = aws_vpc.main.id), builds a dependency graph, and creates the VPC before the resource that needs it. 
+
+A. Automatically detected when one resource references an attribute of another.
+
+B. No extra configuration required.
+
+C. Reduces code complexity and keeps configurations clean.
+
+Implicit Dependency Example  
+
+resource "aws_security_group" "web_sg" {  
+name = "web-sg" 
+} 
+
+resource "aws_instance" "web" { 
+ami = "ami-123456" 
+instance_type = "t2.micro" 
+vpc_security_group_ids = [https://lnkd.in/d9wa7Mpj] # Implicit 
+dependency 
+} 
+Here, the EC2 instance depends on the security group automatically because it references its ID. No depends_on needed.
+
+2.Explicit Dependency (depends_on): explicitly tell Terraform to wait. For example, depends_on = [aws_iam_role_policy_attachment.example] ensures a permission is applied before an application attempts to use it, even though the application resource doesn't reference that policy attachment directly.
+
+A. Defined using the depends_on meta-argument.
+
+B.Forces Terraform to create/destroy resources in a specific order, even if no direct attribute references exist.
+
+Explicit Dependency Example  
+resource "aws_s3_bucket" "logs" {  
+bucket = "my-logs-bucket" } 
