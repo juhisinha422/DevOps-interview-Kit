@@ -1,0 +1,78 @@
+30 Days of Ansible – Day 7/30
+
+YAML Basics for Ansible – The Language Behind Every Playbook
+
+If you've started learning Ansible, you've probably noticed that every playbook is written in YAML.
+
+But why YAML?
+
+Because it's simple, human-readable, and easy to maintain. Even if you're not a programmer, you can quickly understand and write YAML.
+
+What is YAML?
+
+YAML (YAML Ain't Markup Language) is a data serialization language used to define Ansible playbooks, variables, and configurations.
+
+YAML relies on indentation (spaces), not braces "{}" or semicolons ";".
+
+«Tip: Always use spaces for indentation. Avoid using tabs, as they can cause syntax errors.»
+
+Basic YAML Syntax
+
+Key-Value Pair
+
+name: nginx
+state: present
+
+List
+
+packages:
+  - git
+  - nginx
+  - docker
+
+Dictionary
+
+user:
+  name: ubuntu
+  shell: /bin/bash
+  home: /home/ubuntu
+
+Your First Ansible Playbook
+
+---
+- name: Install Nginx
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Install Nginx package
+      package:
+        name: nginx
+        state: present
+
+What does this playbook do?
+
+- Targets the webservers group.
+- Uses sudo privileges with "become: yes".
+- Installs the Nginx package if it's not already installed.
+- Since Ansible is idempotent, running the playbook multiple times won't reinstall Nginx if it's already present.
+
+Real-World Example
+
+Imagine you're setting up 100 new web servers.
+
+Instead of manually installing Nginx on each server, you write a YAML playbook once and execute it across all servers. The result is faster deployment, consistent configuration, and fewer manual errors.
+
+Common YAML Mistakes
+
+❌ Using tabs instead of spaces
+
+❌ Incorrect indentation
+
+❌ Missing "-" for list items
+
+❌ Mixing tabs and spaces
+
+Key Takeaway
+
+YAML is the foundation of Ansible automation. Once you understand its syntax, writing playbooks becomes straightforward and you'll be able to automate complex infrastructure with confidence.
