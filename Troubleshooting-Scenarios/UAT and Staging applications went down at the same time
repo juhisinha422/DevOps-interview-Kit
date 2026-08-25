@@ -1,0 +1,22 @@
+What would you do if both UAT and Staging applications went down at the same time?
+This is one of those situations where it's easy to panic and immediately restart everything.
+But as a DevOps Engineer, the first step isn't to fix. It's to understand why it happened.
+Here's how I'd approach it:
+🔍 First, I'd confirm that the application is actually down by checking monitoring dashboards, alerts, and the overall health of the environment.
+Then I'd start narrowing down the possible causes.
+• Are the servers, ECS services, or Kubernetes pods healthy?
+• Is the Load Balancer routing traffic correctly?
+• Has the database become unreachable?
+• Are there any recent deployments that could have introduced the issue?
+• Did someone update environment variables, Secrets, or ConfigMaps?
+• Are application logs showing any errors?
+• Is there a cloud service or network issue affecting both environments?
+The interesting part is that both UAT and Staging are down together.
+Whenever multiple environments fail at the same time, I stop thinking about the application first and start looking for what they have in common.
+Maybe they're using:
+✅ The same Kubernetes cluster
+✅ The same database
+✅ The same Load Balancer
+✅ The same CI/CD pipeline
+✅ The same shared infrastructure
+Finding that common dependency usually helps identify the root cause much faster.
