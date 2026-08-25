@@ -1,0 +1,73 @@
+Day 12 of my DevOps Troubleshooting Journey
+
+🔴 Real-Time Scenario: Kubernetes Pods Restarting Frequently
+
+Imagine users report that the application is intermittently unavailable. You check Kubernetes and find that some application pods are restarting again and again.
+
+As a DevOps Engineer, what would you check?
+
+🔍 My Troubleshooting Approach:
+
+1️⃣ Check Pod Status
+
+```bash
+kubectl get pods -n <namespace>
+```
+
+Look for:
+• CrashLoopBackOff
+• Error status
+• High restart count
+• OOMKilled
+
+2️⃣ Describe the Pod
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Check the Events section for failed probes, container failures, OOMKilled, and other errors.
+
+3️⃣ Check Application Logs
+
+```bash
+kubectl logs <pod-name> -n <namespace>
+kubectl logs <pod-name> -n <namespace> --previous
+```
+
+The `--previous` option is especially useful when the container has already restarted.
+
+4️⃣ Check Resource Usage
+
+```bash
+kubectl top pod -n <namespace>
+kubectl top nodes
+```
+
+This helps identify CPU or memory-related issues.
+
+5️⃣ Check Deployment Configuration
+
+Verify:
+✅ CPU & memory requests/limits
+✅ Liveness & readiness probes
+✅ Environment variables
+✅ ConfigMaps & Secrets
+✅ Application configuration
+
+🛠️ Possible Root Causes:
+
+• Application crash or configuration issue
+• Memory limit exceeded
+• Incorrect environment variables
+• Database/external service connection failure
+• Failed health probes
+• Insufficient node resources
+
+💡 Key Learning:
+
+Don't just restart the pods and consider the issue resolved.
+
+First identify WHY the container is restarting, fix the root cause, and then monitor the application to make sure the pods remain healthy.
+
+This is the kind of systematic troubleshooting approach I am building as part of my DevOps learning journey.
