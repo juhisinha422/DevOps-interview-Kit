@@ -1,0 +1,147 @@
+🚀 Day 6 of My DevOps Troubleshooting Series
+
+🔥 Real-Time Kubernetes Scenario: Pods Are Running, But Application Returns 503
+
+Imagine this situation:
+
+Your application is deployed on Kubernetes.
+
+Suddenly, users report:
+
+❌ 503 Service Unavailable
+
+You check Kubernetes and see:
+
+✅ Pods are `Running`
+
+So, what could be wrong?
+
+One important lesson in Kubernetes is:
+
+Running ≠ Ready
+
+A Pod can be running while still being unable to serve application traffic.
+
+🔍 How would I troubleshoot it?
+
+**1️⃣ Check Pod status**
+
+```bash
+kubectl get pods -n <namespace>
+```
+
+I would check:
+
+• READY status
+• Pod restarts
+• Pod status
+
+If the Pod shows `0/1`, I would investigate the readiness probe.
+
+2️⃣ Check Pod events
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Look for:
+
+• Readiness probe failures
+• Connection refused
+• Timeout errors
+• HTTP 503 responses
+
+3️⃣ Check application logs
+
+```bash
+kubectl logs <pod-name> -n <namespace>
+```
+
+I would look for:
+
+• Database connection issues
+• Application exceptions
+• Configuration problems
+• Missing environment variables
+• Dependency failures
+
+4️⃣ Check the Kubernetes Service
+```bash
+kubectl get svc -n <namespace>
+kubectl describe svc <service-name> -n <namespace>
+```
+
+Then check the endpoints:
+
+```bash
+kubectl get endpoints <service-name> -n <namespace>
+```
+
+If there are no endpoints, the Service has no healthy Pods to send traffic to.
+
+5️⃣ Verify Service selectors
+
+For example:
+
+```yaml
+selector:
+ app: backend
+```
+
+The Pod labels should match:
+
+```yaml
+labels:
+ app: backend
+```
+
+A selector mismatch can prevent the Service from routing traffic correctly.
+
+6️⃣ Test connectivity from inside the cluster
+
+```bash
+kubectl exec -it <pod-name> -n <namespace> -- \
+curl http://<service-name>:<port>
+```
+
+This helps determine whether the issue is with the application, Service, or external traffic path.
+
+7️⃣ Check Ingress / Load Balancer
+
+If Pods and Services look healthy, I would check:
+
+• Ingress configuration
+• Backend Service and ports
+• DNS
+• Load Balancer health
+• Network/security rules
+
+ 🎯 Possible Root Cause
+
+For example:
+
+```text
+Pods → Running
+Pods Ready → 0/1
+Service → Exists
+Endpoints → None
+```
+
+And the readiness probe shows:
+
+```text
+Readiness probe failed
+HTTP probe returned 503
+`
+
+In this case, the application process is running, but Kubernetes does not consider the Pod healthy enough to receive traffic.
+
+I would then investigate the application's health endpoint and logs to identify the actual root cause.
+
+🧠 Key Takeaway
+
+When troubleshooting Kubernetes, don't just check whether Pods are Running
+
+Follow the traffic path:
+
+User → Load Balancer → Ingress → Service → Endpoints → Pod → Application → Dependencies
