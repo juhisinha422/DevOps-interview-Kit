@@ -1,0 +1,117 @@
+Day 10 of my DevOps Troubleshooting Journey
+
+🔥 Real-Time Scenario: Kubernetes Pods Are Running, But Users Are Getting 503 Errors
+
+Imagine this situation:
+
+The application suddenly becomes unavailable and users start reporting:
+
+❌ 503 Service Unavailable
+
+You check Kubernetes:
+
+`kubectl get pods`
+
+And surprisingly, all pods are:
+
+✅ Running
+
+So, what could be wrong?
+
+Here’s how I would troubleshoot it as a DevOps Engineer 👇
+
+🔍 Step 1: Check the Service
+
+`kubectl get svc`
+
+`kubectl describe svc <service-name>`
+
+Verify:
+• Service exists
+• Correct targetPort
+• Correct selector
+• Endpoints are available
+
+🔍 Step 2: Check Service Endpoints
+
+`kubectl get endpoints <service-name>`
+
+If you see:
+
+`ENDPOINTS: <none>`
+
+The Service is not finding the required pods.
+
+I would then compare the Service selector with the pod labels:
+
+`kubectl get pods --show-labels`
+
+🔍 Step 3: Test the Application Inside the Pod
+
+`kubectl exec -it <pod-name> -- curl localhost:<port>`
+
+If the application responds successfully, the issue may be with the Service or networking layer.
+
+🔍 Step 4: Check Readiness Probes
+
+`kubectl describe pod <pod-name>`
+
+I would look for:
+
+`Readiness probe failed`
+
+A pod can be in:
+
+🟢 Running state
+
+but still be:
+
+🔴 Not Ready
+
+When a readiness probe fails, Kubernetes can remove that pod from the Service endpoints.
+
+🔍 Step 5: Check Ingress
+
+If the application is exposed through an Ingress:
+
+`kubectl get ingress`
+
+`kubectl describe ingress <ingress-name>`
+
+I would verify:
+• Correct backend Service
+• Correct Service port
+• Hostname configuration
+• Ingress Controller health
+
+🧠 Key Learning:
+
+A Kubernetes pod being "Running" does NOT always mean the application is available to users.
+
+For a 503 issue, I follow the request flow:
+
+👤 User
+⬇️
+🌐 Load Balancer / Ingress
+⬇️
+⚙️ Service
+⬇️
+🔗 Endpoints
+⬇️
+📦 Pod
+⬇️
+🖥️ Application
+
+The important thing is to troubleshoot each layer systematically rather than immediately restarting pods.
+
+💡 Interview Tip:
+
+If asked:
+
+"Pods are Running, but users are getting 503. What will you check?"
+
+My answer:
+
+"I would first check the Service and its endpoints, verify that the Service selector matches the pod labels, check readiness probes, and then verify the Ingress or Load Balancer configuration. Finally, I would test connectivity directly to the pod."
+
+Every production issue is an opportunity to learn something new. 🚀
