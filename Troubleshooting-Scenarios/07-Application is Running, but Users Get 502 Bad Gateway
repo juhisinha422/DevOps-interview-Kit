@@ -1,0 +1,87 @@
+ Day 7 of My DevOps Troubleshooting Series
+
+🔥 Real-Time Scenario: Application is Running, but Users Get 502 Bad Gateway
+
+Imagine you're working as a DevOps Engineer and suddenly users report:
+
+❌ 502 Bad Gateway
+
+You check Kubernetes and find that the application pods are showing Running.
+
+So, what's wrong?
+
+This is where systematic troubleshooting becomes important.
+
+🔍 My Troubleshooting Approach:
+
+1️⃣ Check the application endpoint
+
+First, confirm whether the issue is consistently returning a 502 response.
+
+2️⃣ Check the Kubernetes Pods
+
+```bash
+kubectl get pods -n <namespace>
+kubectl logs <pod-name> -n <namespace>
+```
+
+Check the pod status, restarts, readiness, and application logs.
+
+3️⃣ Check the Kubernetes Service
+
+```bash
+kubectl get svc -n <namespace>
+kubectl describe svc <service-name> -n <namespace>
+kubectl get endpoints <service-name> -n <namespace>
+```
+
+If there are no endpoints, the Service selector may not be matching the pod labels.
+
+4️⃣ Check the Ingress
+
+```bash
+kubectl get ingress -n <namespace>
+kubectl describe ingress <ingress-name> -n <namespace>
+```
+
+Verify the backend service, port, hostname, and Ingress Controller.
+
+5️⃣ Test the Service internally
+From inside the cluster, test whether the Service is actually reachable.
+
+```bash
+curl http://<service-name>:<port>
+```
+
+If it works internally but fails externally, I would focus on the Ingress or Load Balancer layer
+
+6️⃣ Verify Port Configuration
+
+One common cause of 502 errors is a port mismatch.
+
+For example:
+
+Application → `8080`
+Container Port → `8080`
+Service TargetPort → `9090` ❌
+
+If the application is listening on `8080` but the Service forwards traffic to `9090`, requests will fail.
+
+7️⃣ Check Recent Changes
+
+Finally, I would check:
+
+✅ Recent deployments
+✅ Ingress changes
+✅ Service configuration
+✅ Application configuration
+✅ Security/network changes
+✅ DNS changes
+
+💡 Key Takeaway
+
+A pod being "Running" doesn't necessarily mean the application is accessible.
+
+I always troubleshoot the complete request flow:
+
+User → Load Balancer → Ingress → Service → Endpoint → Pod → Application
