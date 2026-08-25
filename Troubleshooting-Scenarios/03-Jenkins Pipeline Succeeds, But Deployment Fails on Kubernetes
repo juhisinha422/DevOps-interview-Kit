@@ -1,0 +1,46 @@
+ Day 3/30 - Jenkins Pipeline Succeeds, But Deployment Fails on Kubernetes
+A developer messages you:
+"The Jenkins pipeline completed successfully, but the latest version isn't running in the Kubernetes cluster."
+As a DevOps Engineer, what would you check first?
+My Troubleshooting Approach:
+✅ 1. Verify Jenkins Pipeline Logs
+Did the Docker image build successfully?
+Was the image pushed to the container registry (Docker Hub/ECR)?
+Was the deployment stage executed without errors?
+✅ 2. Check the Kubernetes Deployment
+kubectl get deployments
+kubectl describe deployment <deployment-name>
+Look for:
+Image pull errors
+Incorrect image tag
+Replica issues
+✅ 3. Check Pod Status
+kubectl get pods
+kubectl describe pod <pod-name>
+Common issues:
+ImagePullBackOff
+CrashLoopBackOff
+ErrImagePull
+✅ 4. Review Container Logs
+kubectl logs <pod-name>
+This helps determine whether the application is crashing due to configuration errors, missing environment variables, or runtime exceptions.
+✅ 5. Verify the Image Version
+Sometimes Jenkins pushes a new image, but Kubernetes still references an older tag.
+Check:
+kubectl describe deployment <deployment-name>
+Confirm that the deployed image matches the latest build.
+✅ 6. Validate the Rollout
+kubectl rollout status deployment/<deployment-name>
+kubectl rollout history deployment/<deployment-name>
+If needed:
+kubectl rollout undo deployment/<deployment-name>
+Root Cause (Example)
+The Jenkins pipeline built and pushed the Docker image successfully.
+However, the Kubernetes manifest still referenced an older image tag, so the cluster continued running the previous version.
+Resolution
+✔ Updated the deployment manifest with the correct image tag.
+✔ Applied the latest configuration:
+kubectl apply -f deployment.yaml
+✔ Verified that the new pods were created successfully and the application became healthy.
+💡 Interview Tip:
+A successful CI pipeline doesn't always mean a successful deployment. Always validate the deployment status, pod health, image version, and application logs before concluding that the release was successful. This structured troubleshooting approach is exactly what interviewers look for in real-world DevOps scenarios.
