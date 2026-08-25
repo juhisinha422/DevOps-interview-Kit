@@ -1,0 +1,32 @@
+Day 16 of my DevOps Troubleshooting Series
+🔴 Real-Time Jenkins Scenario: Docker Permission Denied
+Imagine a Jenkins pipeline is working perfectly until it reaches the Docker build stage.
+The pipeline suddenly fails with:
+❌ permission denied while trying to connect to the Docker daemon socket
+As a DevOps Engineer, what would you check?
+🔍 My Troubleshooting Approach:
+1️⃣ Check if Docker is running
+systemctl status docker
+If Docker is stopped:
+sudo systemctl start docker
+2️⃣ Check Docker socket permissions
+ls -l /var/run/docker.sock
+3️⃣ Check Jenkins user permissions
+id jenkins
+If Jenkins is not part of the Docker group:
+sudo usermod -aG docker jenkins
+4️⃣ Test Docker access using the Jenkins user
+sudo -u jenkins docker ps
+5️⃣ Check the Jenkins agent
+If the pipeline is running on a Jenkins agent, make sure these checks are performed on the agent where the job is actually running, not just on the Jenkins controller.
+🛠️ Possible Fix:
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+Then verify:
+sudo -u jenkins docker ps
+Once Docker access is confirmed, rerun the pipeline.
+💡 Key Learning:
+When Jenkins cannot access Docker, don't immediately modify the pipeline.
+First check:
+Docker Service → Docker Socket → Jenkins User → Permissions → Jenkins Agent
+This kind of troubleshooting helps identify whether the issue is with the application, pipeline, agent, or underlying infrastructure
