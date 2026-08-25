@@ -1,0 +1,38 @@
+Day 4 of My DevOps Real-Time Scenario Series
+Scenario: Jenkins Pipeline Succeeds, But the Application Isn't Updated
+
+A developer confirms that the latest code has been merged into the `main` branch.
+
+The Jenkins pipeline completes successfully:
+✅ Code cloned
+✅ Maven build passed
+✅ Docker image built
+✅ Image pushed to the registry
+✅ Deployment completed
+
+But the QA team still sees the old version of the application.
+
+As a DevOps Engineer, what would you check first?
+
+Here's the troubleshooting approach I would follow:
+
+🔹 Verify Jenkins built the latest Git commit.
+🔹 Confirm the new Docker image exists in the registry.
+🔹 Check whether Kubernetes/ECS deployed the latest image.
+🔹 Verify the image running inside the pod or container.
+🔹 Review the `imagePullPolicy` configuration.
+🔹 Restart the deployment if required.
+🔹 Validate the application version inside the running container.
+🔹 Check for browser or CDN caching issues.
+🔹 Ensure the Load Balancer is routing traffic to the updated instances.
+
+💡 One common root cause:
+
+Using the `latest` image tag with `imagePullPolicy: IfNotPresent`.
+
+In this case, Kubernetes may continue using the cached image instead of pulling the newly built one.
+
+Best Practice:
+✔️ Use unique image tags (such as the Git commit SHA or build number).
+✔️ Avoid relying on the `latest` tag in production.
+✔️ Verify the deployed version after every release.
