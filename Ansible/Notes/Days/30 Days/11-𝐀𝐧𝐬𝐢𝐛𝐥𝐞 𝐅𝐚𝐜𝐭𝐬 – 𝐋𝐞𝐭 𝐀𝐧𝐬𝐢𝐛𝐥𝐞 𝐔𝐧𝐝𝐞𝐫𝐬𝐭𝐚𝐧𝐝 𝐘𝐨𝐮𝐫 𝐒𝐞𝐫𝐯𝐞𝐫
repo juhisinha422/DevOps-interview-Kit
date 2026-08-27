@@ -1,0 +1,58 @@
+ 𝟑𝟎 𝐃𝐚𝐲𝐬 𝐨𝐟 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 – 𝐃𝐚𝐲 𝟏𝟏/𝟑𝟎
+
+🔍 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐅𝐚𝐜𝐭𝐬 – 𝐋𝐞𝐭 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐔𝐧𝐝𝐞𝐫𝐬𝐭𝐚𝐧𝐝 𝐘𝐨𝐮𝐫 𝐒𝐞𝐫𝐯𝐞𝐫
+
+How does Ansible know whether a server is running Ubuntu or RHEL, how much memory it has, or which IP address it uses?
+
+The answer is 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐅𝐚𝐜𝐭𝐬. 🔍
+
+Facts are system information automatically gathered from managed hosts.
+
+🔎 𝐖𝐡𝐚𝐭 𝐜𝐚𝐧 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐜𝐨𝐥𝐥𝐞𝐜𝐭?
+
+✅ OS & hostname
+✅ IP addresses
+✅ CPU & memory
+✅ Kernel version
+✅ Network interfaces
+✅ Filesystems
+✅ Python version
+
+🛠️ 𝐆𝐚𝐭𝐡𝐞𝐫 𝐅𝐚𝐜𝐭𝐬
+
+𝐚𝐧𝐬𝐢𝐛𝐥𝐞 𝐚𝐥𝐥 -𝐦 𝐬𝐞𝐭𝐮𝐩
+
+Filter specific facts:
+
+𝐚𝐧𝐬𝐢𝐛𝐥𝐞 𝐚𝐥𝐥 -𝐦 𝐬𝐞𝐭𝐮𝐩 -𝐚 "𝐟𝐢𝐥𝐭𝐞𝐫=𝐚𝐧𝐬𝐢𝐛𝐥𝐞_𝐝𝐢𝐬𝐭𝐫𝐢𝐛𝐮𝐭𝐢𝐨𝐧*"
+
+💡 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞
+
+Imagine managing both Ubuntu and RHEL servers.
+
+Instead of creating separate playbooks, facts can help Ansible choose the correct task:
+
+𝐚𝐩𝐭 → Debian/Ubuntu
+𝐝𝐧𝐟 → RHEL-based systems
+
+You can use conditions such as:
+
+𝐰𝐡𝐞𝐧: 𝐚𝐧𝐬𝐢𝐛𝐥𝐞_𝐨𝐬_𝐟𝐚𝐦𝐢𝐥𝐲 == "𝐃𝐞𝐛𝐢𝐚𝐧"
+
+or
+
+𝐰𝐡𝐞𝐧: 𝐚𝐧𝐬𝐢𝐛𝐥𝐞_𝐨𝐬_𝐟𝐚𝐦𝐢𝐥𝐲 == "𝐑𝐞𝐝𝐇𝐚𝐭"
+
+⚠️ 𝐏𝐫𝐨𝐝𝐮𝐜𝐭𝐢𝐨𝐧 𝐓𝐢𝐩
+
+Fact gathering is enabled by default.
+
+If you don't need facts, you can disable it:
+
+𝐠𝐚𝐭𝐡𝐞𝐫_𝐟𝐚𝐜𝐭𝐬: 𝐧𝐨
+
+This can help reduce execution time when managing many servers.
+
+🎯 𝐊𝐞𝐲 𝐓𝐚𝐤𝐞𝐚𝐰𝐚𝐲
+
+𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐅𝐚𝐜𝐭𝐬 𝐭𝐮𝐫𝐧 𝐬𝐭𝐚𝐭𝐢𝐜 𝐚𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧 𝐢𝐧𝐭𝐨 𝐢𝐧𝐭𝐞𝐥𝐥𝐢𝐠𝐞𝐧𝐭 𝐚𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧. 🚀
