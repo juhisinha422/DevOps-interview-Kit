@@ -1,0 +1,71 @@
+𝟑𝟎 𝐃𝐚𝐲𝐬 𝐨𝐟 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 – 𝐃𝐚𝐲 𝟏𝟑/𝟑𝟎
+
+🔥 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐂𝐨𝐧𝐝𝐢𝐭𝐢𝐨𝐧𝐬 – 𝐌𝐚𝐤𝐞 𝐘𝐨𝐮𝐫 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧 𝐒𝐦𝐚𝐫𝐭𝐞𝐫 𝐰𝐢𝐭𝐡 "𝐰𝐡𝐞𝐧"
+
+Not every task should run on every server.
+
+What if you want to install a package only on Ubuntu? Or restart a service only under specific conditions?
+
+That's where 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐂𝐨𝐧𝐝𝐢𝐭𝐢𝐨𝐧𝐚𝐥𝐬 come in. 🔥
+
+🔹 𝐁𝐚𝐬𝐢𝐜 "𝐰𝐡𝐞𝐧" 𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+𝐰𝐡𝐞𝐧: 𝐚𝐧𝐬𝐢𝐛𝐥𝐞_𝐝𝐢𝐬𝐭𝐫𝐢𝐛𝐮𝐭𝐢𝐨𝐧 == "𝐔𝐛𝐮𝐧𝐭𝐮"
+
+Ubuntu → ✅ Task runs
+RHEL → ⏭️ Task is skipped
+
+🔹 𝐌𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐂𝐨𝐧𝐝𝐢𝐭𝐢𝐨𝐧𝐬
+
+You can combine conditions:
+
+𝐰𝐡𝐞𝐧:
+
+- 𝐚𝐧𝐬𝐢𝐛𝐥𝐞_𝐝𝐢𝐬𝐭𝐫𝐢𝐛𝐮𝐭𝐢𝐨𝐧 == "𝐔𝐛𝐮𝐧𝐭𝐮"
+- 𝐚𝐧𝐬𝐢𝐛𝐥𝐞_𝐦𝐞𝐦𝐨𝐫𝐲_𝐦𝐛.𝐫𝐞𝐚𝐥.𝐭𝐨𝐭𝐚𝐥 > 𝟐𝟎𝟒𝟖
+
+Both conditions must be true for the task to run.
+
+🔹 𝐔𝐬𝐢𝐧𝐠 𝐕𝐚𝐫𝐢𝐚𝐛𝐥𝐞𝐬
+
+Conditions can also work with variables:
+
+𝐰𝐡𝐞𝐧: 𝐢𝐧𝐬𝐭𝐚𝐥𝐥_𝐧𝐠𝐢𝐧𝐱
+
+This makes playbooks more flexible and reusable.
+
+🌍 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+Imagine managing 100 servers:
+
+Ubuntu → Use 𝐚𝐩𝐭
+RHEL → Use 𝐝𝐧𝐟
+
+Instead of maintaining separate playbooks, use conditions to select the appropriate task.
+
+𝐎𝐧𝐞 𝐩𝐥𝐚𝐲𝐛𝐨𝐨𝐤. 𝐌𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐎𝐒𝐬. 🚀
+
+🔥 𝐂𝐨𝐦𝐦𝐨𝐧 𝐂𝐨𝐧𝐝𝐢𝐭𝐢𝐨𝐧𝐚𝐥 𝐎𝐩𝐞𝐫𝐚𝐭𝐨𝐫𝐬
+
+𝐚 == 𝐛 → Equal
+𝐚 != 𝐛 → Not equal
+𝐚 > 𝐛 → Greater than
+𝐚 < 𝐛 → Less than
+𝐚 >= 𝐛 → Greater than or equal
+𝐚 <= 𝐛 → Less than or equal
+
+⚠️ 𝐂𝐨𝐦𝐦𝐨𝐧 𝐌𝐢𝐬𝐭𝐚𝐤𝐞
+
+Don't use "{{ }}" inside a "when" condition.
+
+❌ Incorrect:
+𝐰𝐡𝐞𝐧: "{{ ansible_os_family }} == 'Debian'"
+
+✅ Correct:
+𝐰𝐡𝐞𝐧: 𝐚𝐧𝐬𝐢𝐛𝐥𝐞_𝐨𝐬_𝐟𝐚𝐦𝐢𝐥𝐲 == "𝐃𝐞𝐛𝐢𝐚𝐧"
+
+🎯 𝐊𝐞𝐲 𝐓𝐚𝐤𝐞𝐚𝐰𝐚𝐲
+
+𝐓𝐡𝐞 "𝐰𝐡𝐞𝐧" 𝐜𝐨𝐧𝐝𝐢𝐭𝐢𝐨𝐧 𝐦𝐚𝐤𝐞𝐬 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐚𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧 𝐬𝐦𝐚𝐫𝐭𝐞𝐫.
+
+Instead of blindly executing every task, Ansible can inspect the environment and decide what should run and where it should run.
