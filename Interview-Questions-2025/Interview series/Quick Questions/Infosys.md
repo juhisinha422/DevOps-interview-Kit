@@ -1,3 +1,965 @@
+# 🚀 Infosys AWS Engineer Interview — Questions & Answers
+
+## AWS, Kubernetes & Terraform Interview Preparation
+
+This README contains **20 AWS Engineer interview questions with practical answers**, tailored for a **4 years experienced AWS/DevOps Engineer**.
+
+The answers are designed around real-world experience with:
+
+* ☁️ AWS
+* ☸️ Kubernetes / Amazon EKS
+* 🏗️ Terraform
+* 🐳 Docker
+* 🔄 CI/CD
+* 📊 Monitoring & Observability
+* 🔐 Cloud Security
+
+---
+
+# 1. Introduce Yourself
+
+### Answer
+
+I have around **4 years of experience in Cloud and DevOps**, primarily working with AWS, Kubernetes, Terraform, Docker, and CI/CD tools.
+
+In my current role, I work on automating infrastructure provisioning, application deployments, and cloud operations. I have hands-on experience with AWS services such as **EC2, VPC, IAM, S3, ALB, Auto Scaling, CloudWatch, and EKS**.
+
+On the DevOps side, I have worked with **Docker, Kubernetes, Terraform, Jenkins, Git, and GitHub**. I have also worked on monitoring and observability using tools such as **Prometheus and Grafana**.
+
+My responsibilities include infrastructure automation using Terraform, managing Kubernetes workloads, troubleshooting production issues, implementing CI/CD pipelines, and improving the reliability and scalability of applications.
+
+---
+
+# 2. What Projects Have You Worked On?
+
+### Answer
+
+I have worked on cloud and DevOps projects involving **AWS infrastructure, Kubernetes, CI/CD automation, and Infrastructure as Code**.
+
+One of my major responsibilities was managing application infrastructure on AWS and deploying containerized applications on Kubernetes.
+
+The project involved:
+
+* AWS infrastructure provisioning using Terraform
+* EC2 and EKS management
+* VPC, subnets, route tables and security groups
+* Docker image creation
+* Kubernetes deployments and services
+* CI/CD pipelines using Jenkins
+* Git-based source code management
+* Monitoring using Prometheus and Grafana
+* Application and infrastructure troubleshooting
+
+The main objective was to make deployments more **automated, scalable, reliable, and repeatable**.
+
+---
+
+# 3. What AWS Services Have You Worked With?
+
+### Answer
+
+I have worked with several AWS services, mainly:
+
+### Compute
+
+* EC2
+* Auto Scaling Groups
+* EKS
+* Lambda — depending on application requirements
+
+### Networking
+
+* VPC
+* Public and Private Subnets
+* Internet Gateway
+* NAT Gateway
+* Route Tables
+* Security Groups
+* Application Load Balancer
+
+### Storage
+
+* S3
+* EBS
+
+### Security
+
+* IAM
+* IAM Roles
+* Policies
+* KMS
+* Secrets management
+
+### Monitoring
+
+* CloudWatch
+* CloudWatch Logs
+* CloudWatch Alarms
+
+I have primarily used these services for deploying, securing, monitoring, and scaling production workloads.
+
+---
+
+# 4. Describe the Recent Project/Work You Were Involved In
+
+### Answer
+
+In my recent project, I was involved in building and maintaining a **containerized application platform on AWS**.
+
+The infrastructure was provisioned using **Terraform**, and applications were containerized using Docker and deployed on **Amazon EKS**.
+
+The high-level flow was:
+
+```text
+Developer
+    ↓
+Git Repository
+    ↓
+Jenkins CI/CD Pipeline
+    ↓
+Build & Test
+    ↓
+Docker Image
+    ↓
+Container Registry
+    ↓
+Amazon EKS
+    ↓
+Application
+    ↓
+Load Balancer
+```
+
+My responsibilities included:
+
+* Creating AWS infrastructure using Terraform
+* Managing VPC and networking components
+* Managing EKS workloads
+* Creating Kubernetes Deployments and Services
+* Managing application configuration and secrets
+* Troubleshooting failed deployments
+* Implementing CI/CD pipelines
+* Monitoring applications and infrastructure
+* Handling production incidents
+
+---
+
+# 5. What Challenges Did You Encounter in Your Recent Project, and How Did You Resolve Them?
+
+### Answer
+
+One common challenge was **application deployment failures in Kubernetes**.
+
+For example, sometimes a Pod would enter states such as:
+
+```text
+ImagePullBackOff
+CrashLoopBackOff
+Pending
+```
+
+I followed a systematic troubleshooting approach.
+
+First, I checked the Pod:
+
+```bash
+kubectl get pods -n <namespace>
+```
+
+Then:
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+I checked the events and container logs:
+
+```bash
+kubectl logs <pod-name> -n <namespace>
+```
+
+If it was an image issue, I verified:
+
+* Image name
+* Image tag
+* Registry availability
+* Registry credentials
+* `imagePullSecrets`
+
+For resource-related issues, I checked:
+
+* CPU/memory requests
+* CPU/memory limits
+* Node capacity
+* Resource quotas
+
+The important part is that I don't immediately restart the Pod. I first identify the **root cause**, fix it, and then validate the deployment.
+
+---
+
+# 6. What Challenges Do You Typically Encounter During a Kubernetes Upgrade?
+
+### Answer
+
+During a Kubernetes upgrade, I normally consider both the **control plane and worker nodes**, along with application compatibility.
+
+Some common challenges are:
+
+### 1. API Deprecation
+
+Older Kubernetes APIs may no longer be supported.
+
+For example:
+
+```text
+Old API → New API
+```
+
+So I check whether our manifests use deprecated APIs.
+
+### 2. Application Compatibility
+
+I verify whether workloads, Helm charts, controllers, and operators support the target Kubernetes version.
+
+### 3. Node Upgrade Issues
+
+Worker nodes need to be upgraded carefully to avoid application downtime.
+
+### 4. CNI and CSI Compatibility
+
+I verify compatibility of:
+
+* CNI plugin
+* CSI drivers
+* Ingress controllers
+* Load balancer controllers
+
+### 5. Pod Disruption
+
+During node upgrades, Pods may be evicted or rescheduled.
+
+I verify:
+
+* PodDisruptionBudgets
+* Replica counts
+* Readiness probes
+* Pod scheduling
+
+### 6. Helm/Controller Compatibility
+
+I also verify whether installed Helm charts and Kubernetes operators support the target version.
+
+My approach is:
+
+```text
+Backup / Review
+      ↓
+Check Compatibility
+      ↓
+Upgrade Control Plane
+      ↓
+Upgrade Add-ons
+      ↓
+Upgrade Worker Nodes
+      ↓
+Validate Workloads
+      ↓
+Monitor
+```
+
+---
+
+# 7. What Checks Do You Perform After a Kubernetes Upgrade?
+
+### Answer
+
+After the upgrade, I perform checks at multiple levels.
+
+### Cluster Version
+
+```bash
+kubectl version
+kubectl get nodes
+```
+
+I verify that nodes are in:
+
+```text
+Ready
+```
+
+### System Pods
+
+```bash
+kubectl get pods -A
+```
+
+I check whether system components are healthy.
+
+### Nodes
+
+```bash
+kubectl get nodes -o wide
+```
+
+I verify:
+
+* Node status
+* Kubernetes version
+* Roles
+* Conditions
+
+### Workloads
+
+```bash
+kubectl get deployments -A
+kubectl get pods -A
+kubectl get daemonsets -A
+kubectl get statefulsets -A
+```
+
+### Services
+
+```bash
+kubectl get svc -A
+```
+
+I verify that LoadBalancers, ClusterIP and NodePort services are working correctly.
+
+### Application Validation
+
+Finally, I test:
+
+* Application connectivity
+* Ingress
+* DNS
+* Load Balancer
+* API endpoints
+* Database connectivity
+
+I also monitor the cluster for some time after the upgrade to identify unexpected issues.
+
+---
+
+# 8. What Was the Kubernetes Version Before the Upgrade, and Which Version Did You Upgrade To?
+
+### Answer
+
+A good way to answer this question is to provide a **real version from your project**.
+
+For example:
+
+> In one of our EKS environments, we upgraded Kubernetes from **1.28 to 1.29**. Before the upgrade, we checked API deprecations, application compatibility, Helm charts, CNI/CSI components, and workload disruption requirements. After upgrading, we validated nodes, system Pods, applications, services, ingress, and monitoring.
+
+### Interview Tip
+
+Don't simply say:
+
+> "We upgraded Kubernetes."
+
+Mention:
+
+```text
+Old Version
+     ↓
+Compatibility Check
+     ↓
+Upgrade
+     ↓
+Validation
+     ↓
+Monitoring
+```
+
+Only mention a version you can confidently explain if the interviewer asks follow-up questions.
+
+---
+
+# 9. What Checks Do You Perform After the Upgrade to Ensure Everything Is Working Correctly?
+
+### Answer
+
+I divide the validation into several layers.
+
+### Cluster
+
+```bash
+kubectl get nodes
+kubectl cluster-info
+```
+
+### System Components
+
+```bash
+kubectl get pods -n kube-system
+```
+
+### Workloads
+
+```bash
+kubectl get pods -A
+kubectl get deployments -A
+kubectl get daemonsets -A
+```
+
+### Events
+
+```bash
+kubectl get events -A --sort-by=.lastTimestamp
+```
+
+### Networking
+
+I verify:
+
+* Services
+* Ingress
+* Load Balancers
+* DNS
+* Pod-to-Pod connectivity
+
+### Application
+
+I perform smoke testing on critical applications.
+
+### Monitoring
+
+I check:
+
+* CPU
+* Memory
+* Pod restarts
+* Error rates
+* Application logs
+* Prometheus metrics
+* Grafana dashboards
+
+The goal is not only to confirm that the cluster is `Ready`, but also to verify that **applications are actually functioning correctly**.
+
+---
+
+# 10. What Is the Difference Between Managed and Self-Managed Nodes?
+
+### Answer
+
+In Amazon EKS, worker nodes can be managed in different ways.
+
+## Managed Nodes
+
+AWS manages much of the node lifecycle through **EKS Managed Node Groups**.
+
+AWS helps with:
+
+* AMI updates
+* Node provisioning
+* Node lifecycle
+* Rolling updates
+
+However, we are still responsible for:
+
+* Instance configuration
+* Kubernetes workloads
+* Scaling configuration
+* Security configuration
+
+## Self-Managed Nodes
+
+With self-managed nodes, we have more control over the EC2 instances and are responsible for:
+
+* Provisioning
+* AMI updates
+* Kubernetes configuration
+* Node upgrades
+* Scaling
+* Patching
+* Lifecycle management
+
+### Simple Comparison
+
+| Feature        | Managed Nodes | Self-Managed Nodes |
+| -------------- | ------------- | ------------------ |
+| Node lifecycle | AWS-assisted  | Customer managed   |
+| Updates        | Easier        | Manual/custom      |
+| Control        | Moderate      | High               |
+| Maintenance    | Lower         | Higher             |
+| Customization  | Moderate      | High               |
+
+For most standard workloads, I prefer **managed node groups** because they reduce operational overhead.
+
+---
+
+# 11. What Is the CIDR Range of Your Subnet?
+
+### Answer
+
+CIDR defines the IP address range available in a network.
+
+For example:
+
+```text
+VPC:
+10.0.0.0/16
+
+Private Subnet:
+10.0.1.0/24
+```
+
+A `/24` subnet provides **256 total IPv4 addresses**, although AWS reserves 5 addresses in each subnet.
+
+To check subnet information, I can use:
+
+```bash
+aws ec2 describe-subnets
+```
+
+Or check it directly from the AWS VPC console.
+
+In an EKS environment, I generally use multiple subnets across different Availability Zones for high availability.
+
+---
+
+# 12. How Many Route Tables Can a Subnet Be Associated With?
+
+### Answer
+
+A subnet can be associated with **only one route table at a time**.
+
+However, a single route table can be associated with **multiple subnets**.
+
+For example:
+
+```text
+Route Table
+     |
+     ├── Subnet A
+     ├── Subnet B
+     └── Subnet C
+```
+
+Each subnet has one effective route table association.
+
+If no explicit association exists, the subnet uses the VPC's **main route table**.
+
+---
+
+# 13. If You Need to Make Changes to a Route Table, Would You Modify the Existing One or Create a New One? Why?
+
+### Answer
+
+It depends on the requirement.
+
+If the route change is required by all subnets associated with that route table, I can modify the existing route table.
+
+But if only one group of subnets needs a different routing behavior, I prefer creating a **new route table** and associating it with those specific subnets.
+
+For example:
+
+```text
+Existing Route Table
+        |
+   Multiple Subnets
+```
+
+If one subnet requires different routing:
+
+```text
+New Route Table
+        |
+   Specific Subnet
+```
+
+This provides better isolation and reduces the risk of unintentionally affecting other workloads.
+
+Before making the change, I also check:
+
+* Current routes
+* Dependencies
+* NAT Gateway
+* Internet Gateway
+* VPN/Transit Gateway
+* Application connectivity
+
+---
+
+# 14. What Would You Do If the Existing Route Table Does Not Allow the Required Modification?
+
+### Answer
+
+First, I would identify **why the required modification cannot be made**.
+
+I would check:
+
+* Existing routes
+* Route conflicts
+* Subnet associations
+* Gateway dependencies
+* Network architecture
+* Whether the change could affect other subnets
+
+If the required routing behavior is different from the existing design, I would create a **new route table**, add the required routes, and associate it with the relevant subnet.
+
+For example:
+
+```text
+Existing Route Table
+       ↓
+Used by Multiple Subnets
+       ↓
+Cannot safely change
+       ↓
+Create New Route Table
+       ↓
+Add Required Routes
+       ↓
+Associate Specific Subnet
+       ↓
+Test Connectivity
+```
+
+For production changes, I would follow the organization's change-management process and test connectivity before considering the change complete.
+
+---
+
+# 15. Have You Ever Created a Kubernetes Cluster? What Steps Would You Consider?
+
+### Answer
+
+Yes. I have worked with Kubernetes clusters, including Amazon EKS.
+
+For an EKS cluster, I would consider the following:
+
+### 1. Networking
+
+First, I design:
+
+* VPC
+* CIDR
+* Public subnets
+* Private subnets
+* Availability Zones
+* Route tables
+* NAT Gateway
+
+### 2. IAM
+
+I configure appropriate IAM roles and policies for:
+
+* EKS
+* Nodes
+* Controllers
+* Applications
+
+### 3. Create EKS Cluster
+
+I create the EKS control plane and configure cluster access.
+
+### 4. Worker Nodes
+
+I configure:
+
+* Managed node groups or self-managed nodes
+* Instance types
+* Scaling
+* Labels
+* Taints
+
+### 5. Add-ons
+
+I configure required components such as:
+
+* VPC CNI
+* CoreDNS
+* kube-proxy
+* EBS CSI driver
+
+### 6. Security
+
+I configure:
+
+* Security groups
+* IAM
+* Network policies where required
+* Secrets management
+
+### 7. Monitoring
+
+I configure monitoring and logging using tools such as:
+
+* CloudWatch
+* Prometheus
+* Grafana
+
+### 8. Validation
+
+Finally:
+
+```bash
+kubectl get nodes
+kubectl get pods -A
+kubectl get svc -A
+```
+
+Then I deploy a test application and verify networking and connectivity.
+
+---
+
+# 16. How Would You Configure Autoscaling Policies for a Kubernetes Cluster?
+
+### Answer
+
+Kubernetes autoscaling can happen at different levels.
+
+## Horizontal Pod Autoscaler — HPA
+
+HPA increases or decreases the number of Pod replicas based on metrics such as CPU or memory.
+
+Example:
+
+```text
+CPU increases
+     ↓
+HPA detects threshold
+     ↓
+More Pod replicas
+     ↓
+Load distributed
+```
+
+Example:
+
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-app
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-app
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+```
+
+## Cluster Autoscaler
+
+Cluster Autoscaler adjusts the number of worker nodes based on pending Pods and available capacity.
+
+## Vertical Pod Autoscaler — VPA
+
+VPA can adjust CPU and memory requests based on workload behavior.
+
+In an EKS environment, I would choose the autoscaling approach based on workload requirements and also configure proper **resource requests and limits**.
+
+---
+
+# 17. What Are the Different Ways You Can Create a Kubernetes Cluster?
+
+### Answer
+
+There are several approaches.
+
+### 1. Managed Kubernetes
+
+For AWS:
+
+```text
+Amazon EKS
+```
+
+This is generally preferred for production AWS environments because AWS manages the Kubernetes control plane.
+
+### 2. kubeadm
+
+We can create a Kubernetes cluster manually using:
+
+```bash
+kubeadm init
+```
+
+and configure worker nodes using:
+
+```bash
+kubeadm join
+```
+
+### 3. Local Development Clusters
+
+For development and testing:
+
+* Minikube
+* Kind
+* Docker Desktop Kubernetes
+
+### 4. Infrastructure Automation
+
+We can also automate cluster creation using:
+
+* Terraform
+* eksctl
+* CloudFormation
+
+For production AWS environments, I would typically consider **EKS + Terraform** because it provides managed control-plane operations and Infrastructure as Code.
+
+---
+
+# 18. How Many Kubernetes Clusters Are You Currently Managing?
+
+### Answer
+
+A good practical answer is:
+
+> I have worked with multiple Kubernetes environments, typically separated into **development, staging, and production**. Depending on the project, these may be separate EKS clusters. My responsibilities include workload deployments, node management, upgrades, troubleshooting, monitoring, and access management.
+
+If the interviewer asks for an exact number, give the **actual number from your experience** rather than exaggerating.
+
+For example:
+
+> Currently, I manage three EKS clusters — development, staging, and production.
+
+---
+
+# 19. How Do You Handle Conflicts When Multiple People Are Trying to Modify Infrastructure Using Terraform?
+
+### Answer
+
+Terraform uses a **state file** to track infrastructure.
+
+If multiple engineers run Terraform against the same infrastructure without state locking, they can overwrite each other's changes.
+
+To prevent this, I use a **remote backend with state locking**.
+
+For AWS, a common architecture is:
+
+```text
+Developer A ──┐
+              │
+Developer B ──┼──> Terraform
+              │
+Developer C ──┘
+                  ↓
+            Remote State
+                  ↓
+              State Lock
+```
+
+Historically, Terraform on AWS commonly used **S3 for remote state and DynamoDB for locking**. With newer Terraform versions, S3 backends also support native locking, so the exact configuration depends on the Terraform version and project setup.
+
+I also follow a Git-based workflow:
+
+```text
+Developer
+    ↓
+Git Branch
+    ↓
+Pull Request
+    ↓
+Terraform Plan
+    ↓
+Code Review
+    ↓
+Approval
+    ↓
+Terraform Apply
+```
+
+This prevents multiple people from making uncontrolled changes directly against production infrastructure.
+
+---
+
+# 20. How Do You Secure a Terraform State File?
+
+### Answer
+
+Terraform state can contain sensitive information, so I never store it in a public Git repository.
+
+For AWS, I prefer a secure remote backend, such as an **S3 bucket**, with appropriate access controls.
+
+### Security Measures
+
+#### 1. Encryption
+
+Enable encryption for the state stored in S3.
+
+```text
+Terraform
+    ↓
+Encrypted S3 State
+```
+
+#### 2. IAM
+
+Only authorized users and CI/CD roles should have access to the state bucket.
+
+Use least-privilege IAM policies.
+
+#### 3. State Locking
+
+Use state locking to prevent concurrent modifications.
+
+#### 4. Versioning
+
+Enable S3 versioning so previous versions of the state can be recovered if required.
+
+#### 5. Block Public Access
+
+The S3 bucket should have public access blocked.
+
+#### 6. Secrets
+
+I avoid putting sensitive credentials directly into Terraform code or variables committed to Git.
+
+Instead, I use services such as:
+
+* AWS Secrets Manager
+* AWS Systems Manager Parameter Store
+* CI/CD secret stores
+
+### Example Architecture
+
+```text
+Terraform
+    |
+    ↓
+AWS S3
+    |
+    ├── Encryption
+    ├── Versioning
+    ├── IAM Access Control
+    └── Public Access Block
+```
+
+The overall goal is to protect **confidentiality, integrity, and availability** of the Terraform state.
+
+---
+
+# 🎯 Quick Revision — 20 Questions
+
+| #  | Topic                    | Key Concept                           |
+| -- | ------------------------ | ------------------------------------- |
+| 1  | Introduction             | 4 years AWS/DevOps experience         |
+| 2  | Projects                 | AWS + Kubernetes + Terraform          |
+| 3  | AWS Services             | EC2, VPC, IAM, EKS, S3, ALB           |
+| 4  | Recent Project           | Containerized application on EKS      |
+| 5  | Challenges               | Systematic troubleshooting            |
+| 6  | Kubernetes Upgrade       | Compatibility + workloads + add-ons   |
+| 7  | Post Upgrade             | Nodes, Pods, services, applications   |
+| 8  | Kubernetes Version       | Explain actual upgrade experience     |
+| 9  | Validation               | Cluster + application health          |
+| 10 | Managed Nodes            | AWS-assisted lifecycle                |
+| 11 | CIDR                     | IP address range                      |
+| 12 | Route Tables             | One effective route table per subnet  |
+|
+
+
+
 # CI/CD, Jenkins, Docker & HR Interview Preparation
 
 ### Interview Answers for a DevOps Engineer with 4 Years of Experience
