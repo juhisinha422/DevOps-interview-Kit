@@ -1,3 +1,109 @@
+# 🚀 20 DevOps Interview Questions & Answers
+
+## Kubernetes & Containers
+
+### 1. Pod is Running but returning 503 — how do you debug at network, service, and ingress level?
+
+If a Pod is in the `Running` state but the application is returning `503`, I first verify whether the application inside the Pod is actually healthy. I check the Pod logs using `kubectl logs` and test the application endpoint from inside the Pod using `curl`. Then I verify the Service configuration using `kubectl get svc` and `kubectl describe svc` and check whether the Service has healthy endpoints using `kubectl get endpoints` or `kubectl get endpointslices`. I make sure the Service selector matches the Pod labels and that the target port matches the container port. If the Service is working, I then check the Ingress configuration, ingress controller logs, backend service mapping, DNS, TLS configuration, and network policies. A 503 can occur when the ingress controller cannot reach a healthy backend, so I troubleshoot layer by layer: **Pod → Service → Endpoint → Ingress → Load Balancer → Client**.
+
+### 2. How does Kubernetes scheduling work internally, and what are common causes of scheduling failures?
+
+Kubernetes scheduling is mainly handled by the `kube-scheduler`. When a Pod is created, the API Server stores its desired state, and if the Pod does not have a node assigned, the scheduler evaluates available nodes. It first filters nodes that cannot run the Pod based on requirements such as CPU, memory, taints, affinity rules, and resource availability, and then scores the remaining nodes to select the most suitable one. Common scheduling failures include insufficient CPU or memory, node taints without matching tolerations, node selectors that do not match node labels, affinity or anti-affinity rules, unavailable persistent volumes, and resource quotas. I normally troubleshoot with `kubectl describe pod`, because the scheduler events usually explain why the Pod could not be scheduled.
+
+### 3. How do you design zero-downtime deployments for stateful applications in Kubernetes?
+
+For stateful applications, zero-downtime deployment requires more planning than a normal stateless Deployment because data consistency and application state must be protected. I generally use StatefulSets when appropriate, multiple replicas where the application supports replication, persistent volumes for durable data, readiness probes to prevent traffic from reaching an unready instance, and PodDisruptionBudgets to maintain availability during planned disruptions. For databases, I don't simply increase replicas because the database must support replication and consistency. I also use rolling or controlled upgrades, backup and restore procedures, proper storage configuration, and application-level health checks. Before production changes, I validate the upgrade in a lower environment and make sure that one healthy instance remains available while another instance is being updated.
+
+### 4. Explain how CNI plugins work and how cross-node Pod communication happens.
+
+A Kubernetes CNI plugin is responsible for providing network connectivity to Pods. When a Pod is created, the kubelet asks the container runtime to create the Pod sandbox, and the CNI plugin configures the Pod's network interface, IP address, routes, and connectivity according to the networking implementation. For communication between Pods on the same node, traffic can generally travel through the node's local networking components. For cross-node communication, the CNI provides the required routing or encapsulation mechanism so that traffic can move between nodes. In Amazon EKS, for example, the AWS VPC CNI assigns Pod IP addresses from the VPC networking model. When troubleshooting networking, I check Pod IPs, node routes, CNI Pods and logs, security groups, network policies, and connectivity using tools such as `kubectl exec` and `curl`.
+
+### 5. How do you debug intermittent Pod restarts with no clear logs?
+
+When a Pod restarts intermittently, I first check the restart count and Pod events using `kubectl get pods` and `kubectl describe pod`. I then check the previous container instance logs using `kubectl logs --previous`, because the current logs may not contain the information from the crashed container. I also check the container's termination reason and exit code to determine whether it was an application crash, `OOMKilled`, probe failure, or node-related issue. I review CPU and memory usage, resource limits, liveness and readiness probes, node conditions, and kubelet events. If the problem is still unclear, I correlate the restart time with application logs, infrastructure metrics, and monitoring data. This helps determine whether the root cause is application-level, resource-related, health-check-related, or infrastructure-related.
+
+---
+
+# CI/CD & Performance
+
+### 6. CI pipeline builds 50 images and takes 20 minutes — how do you reduce it to less than 5 minutes?
+
+If a CI pipeline builds 50 Docker images and takes around 20 minutes, I would first identify where the time is being spent rather than immediately changing the pipeline. I would enable parallel builds so independent images can be built simultaneously instead of sequentially. I would optimize Dockerfiles using multi-stage builds, smaller build contexts, proper layer ordering, and BuildKit caching. I would also reuse dependencies and Docker build cache between pipeline executions where possible. If the images are independent, I can split them into parallel jobs and only rebuild images whose source code has changed. I would also use appropriate CI runners with sufficient CPU and memory. With parallelization, caching, incremental builds, and optimized Dockerfiles, a significant reduction from 20 minutes toward the target can usually be achieved.
+
+### 7. How do you design a secure CI/CD pipeline with integrated DevSecOps practices?
+
+I design a secure CI/CD pipeline by adding security checks throughout the software delivery lifecycle rather than performing security only at the end. The pipeline starts with secure source-code practices and branch protection, followed by dependency and SAST scanning during the build. Docker images are scanned for vulnerabilities before being pushed to the registry, and infrastructure code such as Terraform is scanned for security misconfigurations. Secrets should never be hardcoded in Git or pipeline files; instead, I use a secure secrets-management solution and short-lived credentials wherever possible. Before deployment, I perform appropriate security and policy checks, and production deployment should require proper approvals. After deployment, I continue monitoring the application, infrastructure, and security events. The overall approach is **shift-left security combined with runtime security and continuous monitoring**.
+
+### 8. Pipeline works in staging but fails in production — how do you systematically debug?
+
+When a pipeline succeeds in staging but fails in production, I first compare the two environments instead of assuming the application code is the problem. I check the exact Git commit, Docker image, configuration, environment variables, secrets, IAM permissions, network connectivity, Kubernetes resources, and infrastructure differences. I verify that the same artifact tested in staging is being promoted to production rather than rebuilding it differently. I then check pipeline logs, Kubernetes events, application logs, and deployment status to identify the exact failure point. If the issue is configuration-related, I compare the relevant configuration values without exposing secrets. I also check production-specific dependencies such as databases, DNS, load balancers, security groups, and IAM permissions. Once the root cause is identified, I fix the configuration or infrastructure issue and improve the pipeline so that the same problem can be detected earlier.
+
+---
+
+# Cloud & Infrastructure
+
+### 9. Design a multi-region, highly available architecture with failover and data consistency.
+
+For a multi-region highly available architecture, I would deploy the application across at least two AWS regions and distribute traffic using a global DNS or traffic-management solution. Each region would have multiple Availability Zones, private subnets, load balancers, auto-scaling, and containerized or compute workloads. For data, the design depends on the application's consistency requirements. For example, a database can use an appropriate cross-region replication strategy, while object storage can use cross-region replication. DNS health checks or global traffic routing can redirect users from an unhealthy region to a healthy region. I would also define RPO and RTO requirements because there is always a trade-off between availability, consistency, complexity, and cost. The architecture should include automated backups, monitoring, disaster-recovery testing, and documented failover procedures rather than relying only on infrastructure redundancy.
+
+### 10. Your AWS bill increased 3x overnight — how do you identify the root cause?
+
+If the AWS bill suddenly increases three times overnight, I first determine which service, account, region, or resource caused the increase using AWS Cost Explorer and billing reports. I compare the current usage with the previous day's and look for unusual changes in services such as EC2, EKS, NAT Gateway, data transfer, S3, RDS, or load balancers. I then identify the specific resources responsible for the increased usage and check recent deployments, Terraform changes, autoscaling activity, and application traffic. For example, an incorrect auto-scaling configuration or large increase in NAT Gateway data processing could create unexpected costs. I also check CloudTrail and infrastructure changes to determine who or what introduced the change. After identifying the cause, I stop unnecessary resources if safe, correct the configuration, and introduce AWS Budgets, cost alerts, tagging, and monitoring to prevent similar incidents.
+
+### 11. How do you handle infrastructure drift in Terraform across multiple teams?
+
+I handle Terraform drift by making Terraform the source of truth for infrastructure and controlling how changes are made. I use remote state, state locking, Git-based workflows, pull requests, and CI/CD pipelines so that infrastructure changes are reviewed before being applied. I periodically run `terraform plan` to detect differences between the Terraform configuration, state, and actual infrastructure. If someone manually changes an AWS resource, Terraform should detect the difference during the next plan. Depending on the situation, I either revert the manual change through Terraform or intentionally update the Terraform configuration to represent the desired state. For multiple teams, I also separate ownership using modules, environments, and state files so that one team does not accidentally modify infrastructure owned by another team.
+
+### 12. Terraform apply failed midway — how do you recover without corrupting state?
+
+If `terraform apply` fails midway, I don't manually modify the state file or immediately run destructive commands. First, I identify which resources were successfully created or modified and inspect the Terraform state using `terraform state list` and `terraform show`. Terraform normally updates state as resources are successfully processed, so the state should represent the resources it knows about. I then run `terraform plan` to understand what Terraform currently thinks is different from the desired configuration. If a resource exists in AWS but is missing from state, I may need to import it using `terraform import` depending on the situation. I also verify the remote backend and locking status before retrying. After resolving the actual failure, I run `terraform plan` again and only then perform another `terraform apply`. I avoid manually editing the state file because that can introduce serious inconsistencies.
+
+---
+
+# Security & Secrets
+
+### 13. How do you design secure secrets management across 100+ microservices?
+
+For hundreds of microservices, I avoid storing secrets directly in source code, Docker images, Git repositories, or plain-text Kubernetes manifests. I would centralize secrets using a dedicated secrets-management solution such as AWS Secrets Manager or another enterprise-approved solution. Access should follow the principle of least privilege, where each workload receives only the secrets it actually requires. In Kubernetes, secrets can be integrated into workloads using appropriate mechanisms such as CSI-based secret integrations or Kubernetes Secrets with strong access controls and encryption. I also use IAM roles for workloads instead of embedding AWS access keys inside containers. Secrets should be rotated regularly, access should be audited, and production and non-production secrets should be separated. The objective is to make secrets secure, centrally managed, auditable, and automatically rotatable.
+
+### 14. Your system passed all scans but got compromised — what security layers were missing?
+
+If a system passes vulnerability scans but still gets compromised, I would assume that vulnerability scanning covered only part of the security model. Security requires multiple layers, including identity security, network controls, secrets protection, runtime security, access management, configuration security, monitoring, and incident response. The missing layer could be an overly permissive IAM policy, leaked credentials, an exposed service, weak authentication, compromised dependency, misconfigured cloud resource, or an attack that was not detectable through static vulnerability scanning. I would investigate logs, CloudTrail, application access logs, network activity, container activity, and authentication events to identify the attack path. After containment, I would rotate compromised credentials, patch the vulnerability if applicable, tighten IAM and network controls, improve runtime detection, and perform a post-incident review. The key lesson is that **passing a vulnerability scan does not mean the entire system is secure**.
+
+---
+
+# Observability & Reliability
+
+### 15. How do you design observability — logs, metrics, and traces — for a distributed system?
+
+For a distributed system, I design observability around three major signals: **logs, metrics, and traces**. Metrics provide numerical information about system health, such as CPU, memory, request rate, latency, and error rate. Logs provide detailed information about what happened inside an application or infrastructure component. Distributed tracing helps follow a request across multiple microservices and identify where latency or failures occur. In Kubernetes environments, I can use Prometheus for metrics, Grafana for dashboards, a centralized logging solution for logs, and OpenTelemetry-compatible tooling for traces. I also ensure that services have consistent labels, correlation IDs, structured logs, and meaningful dashboards. The objective is not simply to collect data but to quickly answer: **What is broken, where is it broken, why is it broken, and which users are affected?**
+
+### 16. How do you implement SLO-based alerting without alert fatigue?
+
+I start by defining meaningful Service Level Objectives based on user experience, such as availability, latency, or successful request percentage. Instead of creating alerts for every infrastructure metric, I focus alerts on conditions that indicate a real impact to the service or a high risk of violating the SLO. I use error budgets to determine how much unreliability is acceptable and prioritize alerts based on severity. For example, a temporary increase in CPU may not require an immediate page if the application is healthy, whereas a rapidly increasing error rate or SLO burn rate should trigger an alert. I also use appropriate warning and critical thresholds, deduplicate alerts, route them to the correct team, and regularly review noisy alerts. This approach keeps alerting focused on **actionable user-impacting problems rather than every metric fluctuation**.
+
+### 17. Service latency spikes every 60 seconds — how do you debug the root cause?
+
+If latency spikes exactly every 60 seconds, the regular interval itself is an important clue. I would first correlate the spike with application logs, metrics, traces, infrastructure metrics, and scheduled jobs. I would investigate whether a cron job, health check, database connection pool, cache refresh, garbage collection, DNS lookup, token refresh, or external API call is occurring every minute. I would also check CPU and memory usage during the spike and examine network and load-balancer metrics. Distributed tracing can help identify which downstream dependency becomes slow at that exact time. I would compare the timestamps across application and infrastructure logs to establish a clear correlation. Once the responsible component is identified, I would fix the underlying issue rather than simply increasing resources.
+
+---
+
+# Production & Incident Handling
+
+### 18. Production is down — what are your first 5 steps under pressure?
+
+When production is down, my first priority is to restore service safely while simultaneously identifying the root cause. First, I confirm the incident and determine the scope, such as whether all users or only a specific service are affected. Second, I check monitoring dashboards, alerts, load balancer health, Kubernetes status, and recent deployments to quickly identify obvious failures. Third, I communicate with the incident-response team and establish a clear owner and communication channel. Fourth, if a recent deployment is strongly correlated with the outage and rollback is safe, I consider rolling back to the last known good version. Fifth, I continue investigating logs, metrics, events, infrastructure, and dependencies while monitoring recovery. After service restoration, I perform a detailed root-cause analysis and document preventive actions so the same incident is less likely to happen again.
+
+### 19. How do you design systems for graceful degradation during failures?
+
+Graceful degradation means that when one component fails, the entire application should not necessarily become unavailable. I design systems with redundancy, timeouts, retries with backoff, circuit breakers, caching, queue-based processing, health checks, and appropriate fallback behavior. For example, if a recommendation service becomes unavailable, the main application can still display the core product information instead of returning an error to the user. In Kubernetes, I use multiple replicas, proper readiness and liveness probes, PodDisruptionBudgets, and appropriate autoscaling. For external dependencies, I use reasonable timeout values and avoid uncontrolled retries that can create cascading failures. The objective is to maintain the most important functionality even when non-critical components are degraded.
+
+### 20. How do you ensure zero-downtime cluster upgrades in Kubernetes?
+
+For zero-downtime Kubernetes upgrades, I first review the upgrade path and confirm compatibility of applications, APIs, Helm charts, controllers, CNI, CSI drivers, and other add-ons. I make sure applications have multiple replicas, correct readiness probes, appropriate PodDisruptionBudgets, and sufficient capacity to tolerate node replacement. I upgrade the control plane according to the platform's supported procedure and then upgrade worker nodes gradually rather than all at once. During node upgrades, Pods are safely drained and rescheduled onto healthy nodes. I continuously monitor node status, Pod health, application error rates, latency, and traffic. After the upgrade, I validate system components, workloads, services, ingress, networking, storage, and monitoring. The key principle is to maintain enough healthy capacity throughout the process so that application traffic continues without interruption
+
+
+
 # Senior DevOps / SRE Interview Questions & Answers
 
 ## 𝗟𝗜𝗡𝗨𝗫 & 𝗦𝗬𝗦𝗧𝗘𝗠𝗦
