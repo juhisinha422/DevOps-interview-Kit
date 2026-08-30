@@ -1,0 +1,125 @@
+🚀 Day 17 of My DevOps Scenario-Based Learning Series
+
+🔴 Real-Time Kubernetes Troubleshooting Scenario
+
+Imagine this situation 👇
+
+Your application is deployed on a Kubernetes cluster.
+
+You check the pods:
+
+```bash
+kubectl get pods
+```
+
+And everything looks healthy:
+
+```text
+NAME                  READY   STATUS    RESTARTS
+payment-app-7d8f9c    1/1     Running   0
+```
+
+But users are getting:
+
+❌ Connection Refused
+
+The application was working fine earlier.
+
+🤔 As a DevOps Engineer with 1 year of experience, how would you troubleshoot this issue?
+
+Here’s the approach I would follow:
+
+🔹 1. Check the Kubernetes Service
+
+```bash
+kubectl get svc
+```
+
+Verify that the Service exists and that the `port` and `targetPort` are configured correctly.
+
+🔹 2. Check Service Endpoints
+
+```bash
+kubectl get endpoints
+```
+
+If the Service has no endpoints, it may not be routing traffic to the application pods.
+
+🔹 3. Verify Service Selectors
+
+Check the pod labels:
+
+```bash
+kubectl get pods --show-labels
+```
+
+Make sure the Service selector matches the pod labels.
+
+For example:
+
+```text
+Service selector: app=payment
+Pod label:        app=payments
+```
+
+Even a small mismatch can prevent traffic from reaching the pod.
+
+🔹 4. Verify the Application Port
+
+Check whether the application is actually listening on the expected port inside the container.
+
+🔹 5. Check Service Port Mapping
+
+For example:
+
+```yaml
+ports:
+  - port: 80
+    targetPort: 8080
+```
+
+Make sure the application is actually listening on port `8080`.
+
+🔹 6. Check Network Policies
+
+```bash
+kubectl get networkpolicy
+```
+
+A NetworkPolicy could be blocking the required traffic.
+
+🔹 7. Test Connectivity From Inside the Cluster
+
+Use a temporary pod and test the Service:
+
+```bash
+curl http://payment-service:80
+```
+
+This helps identify whether the issue is inside the Kubernetes cluster or with external access.
+
+💡 Possible Root Cause:
+
+The pod was healthy, but the Service selector was incorrect.
+
+```text
+Service:
+app=payments
+
+Pod:
+app=payment
+```
+
+Because the labels didn't match, the Service had no endpoints.
+
+After correcting the selector, traffic started reaching the application successfully. ✅
+
+🎯 Key Takeaway:
+
+A pod being Running doesn't always mean the application is accessible.
+
+When troubleshooting Kubernetes connectivity issues, check:
+
+Pod → Service → Endpoints → Selectors → Ports → Network Policies
+
+Understanding this flow makes troubleshooting much easier.
