@@ -1,3 +1,655 @@
+# ☁️ AWS & Terraform – Cloud Infrastructure Interview Scenarios
+
+A collection of **real-world Cloud/DevOps interview scenarios** focused on AWS infrastructure, cost optimization, high availability, troubleshooting, and Terraform.
+
+---
+
+## 1. Your cloud infrastructure is becoming very expensive. How would you identify the cause?
+
+### Answer
+
+I would first identify **where the cost is coming from** instead of immediately reducing resources.
+
+My approach would be:
+
+1. Use **AWS Cost Explorer** to analyze costs by:
+
+   * AWS Service
+   * Region
+   * Account
+   * Environment
+   * Usage Type
+2. Use **Cost Allocation Tags** to identify which application or team is generating the cost.
+3. Check common cost drivers:
+
+   * Over-provisioned EC2 instances
+   * Unused EBS volumes and snapshots
+   * NAT Gateway data-processing charges
+   * Excessive data transfer
+   * Idle Load Balancers
+   * Oversized RDS instances
+   * Unused Elastic IPs
+   * Excessive CloudWatch logs
+4. Use **AWS Trusted Advisor** to identify idle or underutilized resources.
+5. Review **CloudWatch metrics** such as CPU, memory, network, and request utilization.
+6. After identifying the root cause, optimize using:
+
+   * Right-sizing
+   * Auto Scaling
+   * Savings Plans / Reserved Instances where appropriate
+   * Spot Instances for suitable workloads
+   * Storage lifecycle policies
+   * Removing unused resources
+
+### Example
+
+If EC2 costs have increased significantly, I would check whether instances are actually being utilized.
+
+For example:
+
+```text
+EC2 Instance: m5.2xlarge
+CPU Utilization: 5–10%
+```
+
+This could indicate that the instance is oversized and can potentially be moved to a smaller instance type.
+
+### Key Point
+
+> **First identify the cost source, then optimize it based on actual utilization.**
+
+---
+
+## 2. An AWS service you need is not available in your selected Region. What would you do?
+
+### Answer
+
+I would first verify the service's **regional availability** and determine whether the application has a strict regional dependency.
+
+My approach would be:
+
+1. Check whether the service is available in another AWS Region.
+2. Evaluate whether we can deploy the service in another Region.
+3. Check:
+
+   * Data residency requirements
+   * Compliance requirements
+   * Latency
+   * Data transfer costs
+   * Service dependencies
+4. If necessary, use a **multi-Region architecture**.
+5. If the service must remain in the selected Region, evaluate an alternative AWS service or architecture.
+
+### Example
+
+Suppose an AWS service is unavailable in `ap-south-1`, but available in `us-east-1`.
+
+I could:
+
+```text
+Application
+    |
+    +---- ap-south-1
+    |
+    +---- us-east-1
+             |
+             +---- Required AWS Service
+```
+
+I would then evaluate latency, compliance, and cross-region data-transfer costs before choosing this architecture.
+
+### Key Point
+
+> **I would not blindly change the Region. I would evaluate availability, compliance, latency, dependencies, and cost first.**
+
+---
+
+## 3. Your application has high latency for users in another country. What AWS infrastructure factors would you investigate?
+
+### Answer
+
+I would investigate the complete request path from the user to the application.
+
+I would check:
+
+1. **User location vs application Region**
+
+   * Is the application deployed far away from the users?
+
+2. **Amazon CloudFront**
+
+   * Is CDN being used?
+   * Are static assets cached at edge locations?
+
+3. **Route 53**
+
+   * Check DNS routing strategy.
+   * Consider latency-based or geolocation routing if appropriate.
+
+4. **Load Balancer**
+
+   * Check ALB/NLB configuration and target health.
+
+5. **Network latency**
+
+   * Check VPC routing, NAT Gateway, Transit Gateway, VPN, etc.
+
+6. **Backend services**
+
+   * RDS latency
+   * ElastiCache
+   * External APIs
+   * Cross-region calls
+
+7. **Application architecture**
+
+   * Check whether requests are making unnecessary cross-region calls.
+
+### Example
+
+If users in Europe are accessing an application hosted only in India:
+
+```text
+Europe User
+     |
+     | High network latency
+     ↓
+CloudFront
+     |
+     ↓
+AWS Region: India
+     |
+     ↓
+Application
+```
+
+I would consider **CloudFront** for static content and, depending on the application requirements, a multi-Region deployment.
+
+### Key Point
+
+> **I would identify where the latency occurs instead of assuming that the AWS Region alone is the problem.**
+
+---
+
+## 4. Your application is available in one AZ, but fails when that AZ becomes unavailable. What architectural problem does this indicate?
+
+### Answer
+
+This indicates a **single point of failure** and lack of **high availability**.
+
+The application is dependent on only one Availability Zone.
+
+A highly available architecture should distribute critical resources across multiple AZs.
+
+### Current Architecture
+
+```text
+                Load Balancer
+                     |
+                     ↓
+                  AZ-1
+                     |
+                Application
+```
+
+If AZ-1 fails, the application becomes unavailable.
+
+### Improved Architecture
+
+```text
+                  ALB
+                 /   \
+                /     \
+              AZ-1    AZ-2
+               |        |
+              EC2      EC2
+```
+
+I would use:
+
+* Multi-AZ deployment
+* Application Load Balancer
+* Auto Scaling Group
+* Multi-AZ RDS where applicable
+* Replicated storage/services where required
+
+### Key Point
+
+> **The root problem is lack of redundancy across Availability Zones.**
+
+---
+
+## 5. Users report intermittent application failures. How would you determine whether the issue is infrastructure-related or application-related?
+
+### Answer
+
+I would troubleshoot systematically by checking the entire request path.
+
+### Step 1 – Check Application Health
+
+I would check:
+
+```bash
+kubectl get pods
+kubectl get events
+kubectl logs <pod-name>
+```
+
+For EC2-based applications, I would check application logs and service status.
+
+### Step 2 – Check Infrastructure
+
+I would investigate:
+
+* EC2 health
+* CPU and memory
+* Disk utilization
+* Network metrics
+* Load Balancer health checks
+* Target health
+* Security Groups
+* NACLs
+* DNS
+* Database connectivity
+
+### Step 3 – Check AWS Monitoring
+
+I would use:
+
+* CloudWatch Metrics
+* CloudWatch Logs
+* CloudTrail
+* ALB access logs
+* VPC Flow Logs
+
+### Step 4 – Correlate the Time
+
+For example:
+
+```text
+10:00 AM → Application errors increase
+10:00 AM → EC2 CPU = 95%
+10:01 AM → ALB target failures increase
+```
+
+This strongly indicates an infrastructure/resource issue.
+
+Alternatively:
+
+```text
+EC2 CPU = normal
+Network = normal
+ALB = healthy
+Application logs = NullPointerException
+```
+
+This points more toward an application issue.
+
+### Key Point
+
+> **I would correlate application logs, infrastructure metrics, and timestamps before deciding where the problem exists.**
+
+---
+
+## 6. Your organization migrated to AWS, but infrastructure costs are higher than expected. What would you investigate?
+
+### Answer
+
+I would compare the **actual AWS architecture and usage** against the original migration estimates.
+
+I would investigate:
+
+### Compute
+
+* EC2 instance sizing
+* Idle instances
+* Auto Scaling configuration
+* On-demand vs Savings Plans
+* Spot opportunities
+
+### Storage
+
+* Unused EBS volumes
+* Old snapshots
+* S3 storage classes
+* Data retention policies
+
+### Networking
+
+This is an important area because unexpected costs can come from:
+
+* NAT Gateways
+* Cross-AZ traffic
+* Cross-Region traffic
+* Internet data transfer
+* Transit Gateway
+
+### Databases
+
+I would check:
+
+* RDS instance size
+* Multi-AZ requirements
+* Storage
+* Read replicas
+* Backup retention
+
+### Monitoring
+
+I would also check:
+
+* CloudWatch Logs
+* Metrics
+* Log retention
+* High-volume application logs
+
+### Governance
+
+I would implement:
+
+* Cost Allocation Tags
+* AWS Budgets
+* Cost alerts
+* Resource tagging standards
+* Regular cost reviews
+
+### Key Point
+
+> **Migration to AWS does not automatically guarantee lower cost. The architecture and consumption model determine the actual cost.**
+
+---
+
+## 7. A developer says, “Cloud computing is always cheaper than on-premises infrastructure.” How would you evaluate this claim?
+
+### Answer
+
+I would explain that this statement is **not always true**.
+
+Cloud provides benefits such as:
+
+* Pay-as-you-go pricing
+* Elastic scaling
+* Reduced hardware management
+* Faster provisioning
+* Global infrastructure
+* Managed services
+
+However, cloud can become expensive if resources are poorly managed.
+
+For example:
+
+```text
+On-Premises
+    |
+Fixed infrastructure cost
+    |
+Predictable workloads
+```
+
+versus:
+
+```text
+Cloud
+    |
+Pay for usage
+    |
+Can scale up/down
+```
+
+For a workload that runs continuously at high utilization for many years, properly optimized on-premises infrastructure could potentially be cheaper.
+
+For highly variable workloads, cloud can provide significant economic benefits because we can scale resources according to demand.
+
+### I would evaluate:
+
+* Workload utilization
+* Traffic patterns
+* Infrastructure lifecycle
+* Licensing
+* Data transfer
+* Storage
+* Operational costs
+* Staff requirements
+* Availability requirements
+* Long-term commitment
+
+### Key Point
+
+> **Cloud is not automatically cheaper; it provides flexibility and operational benefits, and cost depends on workload and architecture.**
+
+---
+
+# Terraform Interview Scenarios
+
+## 8. What is the difference between `count` and `for_each` in Terraform?
+
+### Answer
+
+Both `count` and `for_each` are used to create multiple instances of a resource.
+
+### `count`
+
+`count` uses an integer value.
+
+Example:
+
+```hcl
+resource "aws_instance" "web" {
+  count = 3
+
+  ami           = var.ami_id
+  instance_type = "t3.micro"
+}
+```
+
+Terraform creates:
+
+```text
+aws_instance.web[0]
+aws_instance.web[1]
+aws_instance.web[2]
+```
+
+It is useful when resources are essentially identical and can be managed by numeric indexes.
+
+---
+
+### `for_each`
+
+`for_each` works with a map or set.
+
+Example:
+
+```hcl
+variable "instances" {
+  type = map(string)
+
+  default = {
+    dev  = "t3.micro"
+    test = "t3.small"
+    prod = "t3.medium"
+  }
+}
+
+resource "aws_instance" "web" {
+  for_each = var.instances
+
+  ami           = var.ami_id
+  instance_type = each.value
+
+  tags = {
+    Name = each.key
+  }
+}
+```
+
+Terraform creates:
+
+```text
+aws_instance.web["dev"]
+aws_instance.web["test"]
+aws_instance.web["prod"]
+```
+
+### Main Difference
+
+| Feature             | `count`           | `for_each`               |
+| ------------------- | ----------------- | ------------------------ |
+| Input               | Number            | Map / Set                |
+| Resource addressing | Index             | Key                      |
+| Example             | `[0]`, `[1]`      | `["dev"]`, `["prod"]`    |
+| Best for            | Similar resources | Distinct named resources |
+| Stability           | Index-based       | Key-based                |
+
+### Interview Tip
+
+I generally prefer **`for_each` when resources have meaningful identities**, because adding or removing an item doesn't cause the same index-shifting problems that can occur with `count`.
+
+---
+
+## 9. You have 100 instances in your network. How would you install or update software on all of them using Terraform/AWS automation?
+
+### Answer
+
+I would **not use Terraform to directly manage software installation on 100 running servers**.
+
+Terraform is primarily an **Infrastructure as Code** tool.
+
+For operating-system-level software management, I would use **AWS Systems Manager (SSM)**.
+
+### Recommended Architecture
+
+```text
+                 Terraform
+                     |
+                     ↓
+          AWS Infrastructure
+                     |
+                     ↓
+            EC2 Instances
+                     |
+                     ↓
+             AWS Systems Manager
+                     |
+          ┌──────────┴──────────┐
+          ↓                     ↓
+     Run Command           State Manager
+          ↓                     ↓
+    Install Software       Maintain State
+```
+
+### Option 1 – AWS Systems Manager Run Command
+
+I can execute commands across multiple EC2 instances.
+
+Example:
+
+```bash
+sudo yum update -y
+sudo yum install nginx -y
+```
+
+I can target instances using:
+
+* Instance IDs
+* Tags
+* Resource groups
+
+For example:
+
+```text
+Environment = Production
+```
+
+Then SSM can target all instances with that tag.
+
+---
+
+### Option 2 – SSM State Manager
+
+If I need the software to **remain installed and continuously managed**, I would use SSM State Manager.
+
+For example:
+
+```text
+Desired State:
+nginx = installed
+nginx = running
+```
+
+SSM can periodically ensure that the instances remain in the desired state.
+
+---
+
+### Option 3 – Terraform + SSM
+
+Terraform can provision the infrastructure and configure SSM-related resources.
+
+For example:
+
+```hcl
+resource "aws_ssm_document" "install_nginx" {
+  name          = "InstallNginx"
+  document_type = "Command"
+
+  content = <<DOC
+{
+  "schemaVersion": "2.2",
+  "description": "Install Nginx",
+  "mainSteps": [
+    {
+      "action": "aws:runShellScript",
+      "name": "installNginx",
+      "inputs": {
+        "runCommand": [
+          "sudo yum install -y nginx",
+          "sudo systemctl enable nginx",
+          "sudo systemctl start nginx"
+        ]
+      }
+    }
+  ]
+}
+DOC
+}
+```
+
+Then I can execute the SSM document against the required instances.
+
+### Important Consideration
+
+All EC2 instances should have:
+
+* SSM Agent installed
+* IAM permissions through an instance profile
+* Network connectivity to SSM endpoints
+
+### Production Approach
+
+For a large fleet, I would preferably use:
+
+```text
+Terraform
+   ↓
+Infrastructure
+   ↓
+Launch Templates / AMIs
+   ↓
+Auto Scaling Group
+   ↓
+AWS Systems Manager
+   ↓
+Software Configuration / Patching
+```
+
+For immutable infrastructure, I would also consider building a **golden AMI** with tools such as **EC2 Image Builder** or Packer and then rolling out the new AMI through an Auto Scaling Group.
+
+### Key Point
+
+> **Terraform should manage infrastructure; AWS Systems Manager, AMIs, or configuration-management tools should manage software on the instances.**
+
+
+
 # 🚀 20 DevOps Interview Questions & Answers
 
 ## Kubernetes & Containers
