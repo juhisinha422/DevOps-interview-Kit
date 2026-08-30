@@ -1,0 +1,97 @@
+𝟑𝟎 𝐃𝐚𝐲𝐬 𝐨𝐟 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 – 𝐃𝐚𝐲 𝟏𝟒/𝟑𝟎
+
+🏷️ 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐓𝐚𝐠𝐬 – 𝐑𝐮𝐧 𝐎𝐧𝐥𝐲 𝐭𝐡𝐞 𝐓𝐚𝐬𝐤𝐬 𝐘𝐨𝐮 𝐍𝐞𝐞𝐝
+
+Imagine you have an Ansible playbook with 30 tasks, but you only want to update the Nginx configuration.
+
+Would you run all 30 tasks? ❌
+
+No. This is where 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐓𝐚𝐠𝐬 become useful. 🔥
+
+Tags allow you to selectively execute specific tasks without running the entire playbook.
+
+🔹 𝐁𝐚𝐬𝐢𝐜 𝐓𝐚𝐠 𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+- name: Install Nginx
+  package:
+    name: nginx
+    state: present
+  tags:
+    - install
+
+- name: Copy Nginx Configuration
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+  tags:
+    - config
+
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
+  tags:
+    - restart
+
+Now you can run only the task you need.
+
+🔹 𝐑𝐮𝐧 𝐚 𝐒𝐩𝐞𝐜𝐢𝐟𝐢𝐜 𝐓𝐚𝐠
+
+Install:
+
+ansible-playbook site.yml --tags install
+
+Update configuration:
+
+ansible-playbook site.yml --tags config
+
+Restart service:
+
+ansible-playbook site.yml --tags restart
+
+🔹 𝐑𝐮𝐧 𝐌𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐓𝐚𝐠𝐬
+
+ansible-playbook site.yml --tags "install,config"
+
+🔹 𝐒𝐤𝐢𝐩 𝐒𝐩𝐞𝐜𝐢𝐟𝐢𝐜 𝐓𝐚𝐬𝐤𝐬
+
+ansible-playbook site.yml --skip-tags restart
+
+This runs everything except tasks tagged restart.
+
+🔍 𝐂𝐡𝐞𝐜𝐤 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐓𝐚𝐠𝐬
+
+ansible-playbook site.yml --list-tags
+
+You can also preview the tasks:
+
+ansible-playbook site.yml --list-tasks
+
+🌍 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐔𝐬𝐞
+
+In production, a playbook might contain:
+
+✅ Package installation
+✅ User creation
+✅ Application deployment
+✅ Configuration updates
+✅ Service restarts
+✅ Monitoring configuration
+
+If you only need a configuration change, you can target it directly:
+
+ansible-playbook production.yml --tags config
+
+This makes changes faster, more controlled, and easier to troubleshoot.
+
+⚠️ 𝐏𝐫𝐨𝐝𝐮𝐜𝐭𝐢𝐨𝐧 𝐓𝐢𝐩
+
+Tags work best when combined with:
+
+𝐑𝐨𝐥𝐞𝐬 + 𝐕𝐚𝐫𝐢𝐚𝐛𝐥𝐞𝐬 + 𝐓𝐚𝐠𝐬 + 𝐈𝐝𝐞𝐦𝐩𝐨𝐭𝐞𝐧𝐭 𝐓𝐚𝐬𝐤𝐬
+
+🎯 𝐊𝐞𝐲 𝐓𝐚𝐤𝐞𝐚𝐰𝐚𝐲
+
+𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐓𝐚𝐠𝐬 𝐠𝐢𝐯𝐞 𝐲𝐨𝐮 𝐜𝐨𝐧𝐭𝐫𝐨𝐥 𝐨𝐯𝐞𝐫 𝐰𝐡𝐚𝐭 𝐫𝐮𝐧𝐬.
+
+Instead of executing an entire playbook every time, you can target exactly the tasks you need.
