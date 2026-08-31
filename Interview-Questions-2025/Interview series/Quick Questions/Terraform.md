@@ -1,3 +1,63 @@
+# 6 Terraform Questions That Expose Script Runners vs. Systems Thinkers
+
+Most candidates know the commands. Few understand why Terraform works this way.
+
+---
+
+## Q1: plan vs apply?
+
+🔴 **"Plan shows changes, apply makes them."**
+
+🟢 **Plan reconciles config against state - your defense against silent drift before it hits infra.**
+
+---
+
+## Q2: Why does the state file matter?
+
+🔴 **"It tracks resources."**
+
+🟢 **It's Terraform's only memory of reality. Lose it, you're flying blind. That's why remote state (S3+DynamoDB) isn't optional on a team.**
+
+---
+
+## Q3: Why state locking?
+
+🔴 **"Stops two applies at once."**
+
+🟢 **Concurrent writes corrupt state. DynamoDB = distributed lock, first writer wins. Bonus: know when force-unlock is dangerous.**
+
+---
+
+## Q4: count vs for_each?
+
+🔴 **"Both make multiple resources."**
+
+🟢 **count indexes by number - reorder the list, risk cascading destroy/recreate. for_each indexes by key - safer refactors. This is a blast-radius decision, not syntax preference.**
+
+---
+
+## Q5: Why modules over copy-paste?
+
+🔴 **"Reusable code."**
+
+🟢 **Modules are a contract (inputs/outputs) that keeps dev/staging/prod structurally identical - same principle as Helm charts.**
+
+---
+
+## Q6: How does Terraform handle dependencies?
+
+🔴 **"depends_on."**
+
+🟢 **It builds an implicit DAG from resource references. Explicit depends_on usually means you're hiding a dependency Terraform couldn't infer.**
+
+---
+
+## The takeaway
+
+**Terraform is a state reconciliation engine with graph execution - not a scripting tool. That distinction is what separates candidates who stall on scenarios from those who don't.**
+
+
+
 # Advanced Terraform Interview Questions & Answers
 
 ## 1. What happens when two engineers run `terraform apply` simultaneously?
