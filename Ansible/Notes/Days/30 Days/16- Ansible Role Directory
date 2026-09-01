@@ -1,0 +1,78 @@
+🚀 𝟑𝟎 𝐃𝐚𝐲𝐬 𝐨𝐟 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 – 𝐃𝐚𝐲 𝟏𝟔/𝟑𝟎
+
+🗂️ 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐑𝐨𝐥𝐞 𝐃𝐢𝐫𝐞𝐜𝐭𝐨𝐫𝐲 𝐒𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 – 𝐊𝐧𝐨𝐰 𝐖𝐡𝐞𝐫𝐞 𝐄𝐯𝐞𝐫𝐲𝐭𝐡𝐢𝐧𝐠 𝐁𝐞𝐥𝐨𝐧𝐠𝐬
+
+Yesterday, we learned what Ansible Roles are.
+
+Today, let's understand one important question:
+
+👉 Where should tasks, variables, templates, and files actually go?
+
+A well-structured role makes automation easier to understand, maintain, test, and reuse. 🔥
+
+🔹 𝐓𝐲𝐩𝐢𝐜𝐚𝐥 𝐑𝐨𝐥𝐞 𝐒𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞
+
+𝐫𝐨𝐥𝐞𝐬/
+└── 𝐧𝐠𝐢𝐧𝐱/
+  ├── 𝐭𝐚𝐬𝐤𝐬/
+  ├── 𝐡𝐚𝐧𝐝𝐥𝐞𝐫𝐬/
+  ├── 𝐭𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬/
+  ├── 𝐟𝐢𝐥𝐞𝐬/
+  ├── 𝐝𝐞𝐟𝐚𝐮𝐥𝐭𝐬/
+  ├── 𝐯𝐚𝐫𝐬/
+  └── 𝐦𝐞𝐭𝐚/
+
+Let's break it down. 👇
+
+📁 𝐭𝐚𝐬𝐤𝐬/ → Contains the main automation tasks.
+
+📁 𝐡𝐚𝐧𝐝𝐥𝐞𝐫𝐬/ → Contains handlers triggered when tasks make changes.
+
+📁 𝐭𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬/ → Jinja2 templates for dynamic configuration files.
+
+📁 𝐟𝐢𝐥𝐞𝐬/ → Static files that need to be copied to servers.
+
+📁 𝐝𝐞𝐟𝐚𝐮𝐥𝐭𝐬/ → Default variables that are easy to override.
+
+📁 𝐯𝐚𝐫𝐬/ → Role-specific variables with higher precedence.
+
+📁 𝐦𝐞𝐭𝐚/ → Role metadata and dependencies.
+
+🔹 𝐔𝐬𝐢𝐧𝐠 𝐭𝐡𝐞 𝐑𝐨𝐥𝐞
+
+Your main playbook can stay simple:
+
+𝐫𝐨𝐥𝐞𝐬:
+ - 𝐧𝐠𝐢𝐧𝐱
+
+The role handles the implementation behind the scenes.
+
+🌍 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+Imagine your team manages 50 application servers.
+
+You create one Nginx role containing:
+
+✅ Installation tasks
+✅ Configuration templates
+✅ Service handlers
+✅ Default variables
+✅ Static files
+
+The same role can then be reused across Development, QA, and Production.
+
+No need to copy and modify the same automation repeatedly.
+
+🎯 𝐊𝐞𝐲 𝐓𝐚𝐤𝐞𝐚𝐰𝐚𝐲
+
+Think of an Ansible Role as a well-organized package of automation.
+
+𝐭𝐚𝐬𝐤𝐬 → What to do
+𝐡𝐚𝐧𝐝𝐥𝐞𝐫𝐬 → What to trigger after changes
+𝐭𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬 → Dynamic configuration
+𝐟𝐢𝐥𝐞𝐬 → Static files
+𝐝𝐞𝐟𝐚𝐮𝐥𝐭𝐬 → Default values
+𝐯𝐚𝐫𝐬 → Role-specific variables
+𝐦𝐞𝐭𝐚 → Dependencies & metadata
+
+𝐆𝐨𝐨𝐝 𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 = 𝐌𝐚𝐢𝐧𝐭𝐚𝐢𝐧𝐚𝐛𝐥𝐞 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧 🚀
