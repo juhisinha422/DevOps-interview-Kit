@@ -1,0 +1,17 @@
+DNS: The internets phone book 
+
+When you type google.com, you aren't connecting to "google.com".
+
+You're ultimately connecting to an IP address. DNS is the system that makes that translation possible. DNS isn't just about A records.
+
+You should understand:
+A → IPv4
+AAAA → IPv6
+CNAME → Alias
+MX → Mail server
+TXT → Verification/metadata
+
+For DevOps engineers, DNS knowledge becomes especially important when debugging:
+"The application is down."
+"The domain isn't resolving."
+"The new service isn't reachable."
