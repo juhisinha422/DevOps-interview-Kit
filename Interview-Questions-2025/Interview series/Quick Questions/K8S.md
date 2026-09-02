@@ -1,3 +1,262 @@
+# 🐳 Kubernetes Troubleshooting: CrashLoopBackOff
+
+## Kubernetes Troubleshooting Question
+
+**Asked to me in an interview:**
+
+> Pods are going into `CrashLoopBackOff`. Here's the Deployment manifest:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+        - name: stress
+          image: polinux/stress
+          args:
+            - "--vm"
+            - "1"
+            - "--vm-bytes"
+            - "256M"
+            - "--vm-hang"
+            - "1"
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+```
+
+---
+
+## 🔍 What is causing the `CrashLoopBackOff`?
+
+The main issue is a **memory limit mismatch**.
+
+The container is configured to consume:
+
+```text
+--vm-bytes 256M
+```
+
+But Kubernetes has configured a memory limit of only:
+
+```yaml
+limits:
+  memory: "128Mi"
+```
+
+So the container attempts to use approximately **256 MB of memory**, while Kubernetes allows it to use only **128 MiB**.
+
+This causes the container to be killed when it exceeds its memory limit.
+
+```text
+Stress Process
+      ↓
+Requests ~256 MB Memory
+      ↓
+Kubernetes Limit = 128 MiB
+      ↓
+Memory Limit Exceeded
+      ↓
+OOMKilled
+      ↓
+Container Restarted
+      ↓
+Fails Again
+      ↓
+CrashLoopBackOff
+```
+
+---
+
+## 🛠️ How would I troubleshoot it?
+
+### 1️⃣ Check the Pod status
+
+```bash
+kubectl get pods
+```
+
+You may see:
+
+```text
+NAME                    READY   STATUS             RESTARTS
+demo-xxxxxxxxxx-xxxxx   0/1     CrashLoopBackOff   5
+```
+
+---
+
+### 2️⃣ Describe the Pod
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+Look at the **Last State** section.
+
+You would expect something similar to:
+
+```text
+Last State:
+  Terminated
+  Reason: OOMKilled
+```
+
+This is the strongest indication that the container exceeded its memory limit.
+
+---
+
+### 3️⃣ Check the previous container logs
+
+Because the container is restarting, I would also check:
+
+```bash
+kubectl logs <pod-name> --previous
+```
+
+This helps determine what happened immediately before the previous container termination.
+
+---
+
+### 4️⃣ Check resource usage
+
+If metrics-server is available:
+
+```bash
+kubectl top pod <pod-name>
+```
+
+I would also check:
+
+```bash
+kubectl top nodes
+```
+
+This helps determine whether the issue is isolated to the container or related to overall node memory pressure.
+
+---
+
+# 🎯 Root Cause
+
+The root cause is:
+
+```text
+Application Memory Requirement = 256M
+Kubernetes Memory Limit       = 128Mi
+```
+
+Therefore:
+
+```text
+256M > 128Mi
+```
+
+The container exceeds its memory limit and gets terminated with:
+
+```text
+OOMKilled
+```
+
+The repeated restarts eventually result in:
+
+```text
+CrashLoopBackOff
+```
+
+---
+
+# ✅ Safe Fix
+
+There are two possible approaches.
+
+### Option 1: Reduce the application's memory usage
+
+If the application doesn't actually need 256 MB, reduce:
+
+```yaml
+- "--vm-bytes"
+- "256M"
+```
+
+to a value within the configured memory limit.
+
+---
+
+### Option 2: Increase the memory limit
+
+If the application genuinely requires around 256 MB, increase the container's memory limit appropriately.
+
+For example:
+
+```yaml
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "200m"
+```
+
+The exact value should be determined based on actual application requirements and observed usage rather than simply increasing the limit blindly.
+
+---
+
+# 🛡️ Prevention
+
+To prevent similar issues in production:
+
+* Set appropriate memory requests and limits.
+* Monitor Pod memory usage.
+* Configure alerts for high memory utilization.
+* Use `kubectl top` and monitoring tools such as Prometheus/Grafana.
+* Perform load and stress testing before production deployment.
+* Investigate memory leaks at the application level.
+* Configure HPA where appropriate.
+* Avoid setting resource limits without understanding the application's actual resource requirements.
+
+---
+
+# 💡 Interview-Ready Answer
+
+> **I would first check `kubectl describe pod` and `kubectl logs --previous`. I would expect to see the container terminated with `Reason: OOMKilled`. The root cause is that the stress container is configured with `--vm-bytes 256M`, while its Kubernetes memory limit is only `128Mi`. When the process exceeds that limit, Kubernetes kills the container and restarts it repeatedly, eventually resulting in `CrashLoopBackOff`.**
+>
+> **The safe fix would be either to reduce the application's memory requirement below the configured limit or increase the memory limit based on actual workload requirements. I would also review memory metrics and application behavior rather than simply increasing the limit blindly.**
+
+---
+
+## ⭐ Key Takeaway
+
+```text
+256M Memory Usage
+       >
+128Mi Memory Limit
+       ↓
+   OOMKilled
+       ↓
+Container Restart
+       ↓
+CrashLoopBackOff
+```
+
+> **When you see `CrashLoopBackOff`, don't assume the root cause is CrashLoopBackOff itself. Check the Pod's termination reason, events, and previous logs to find the actual failure.**
+
+
+
 # Kubernetes Interview 
 
 ## Can you explain the differences between ClusterIP, NodePort, LoadBalancer, and Ingress? When would you use each in a production environment?
