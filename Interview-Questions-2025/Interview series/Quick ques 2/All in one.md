@@ -1,3 +1,173 @@
+# DevOps Interview – 20 Production Scenario Questions & Answers
+
+## DevOps Interview Preparation – 4 Years Experience
+
+These scenario-based questions focus on real-world troubleshooting across **AWS, Kubernetes, Terraform, Docker, CI/CD, Linux, networking, IAM, and monitoring**.
+
+---
+
+## 1. A production application becomes slow. How would you troubleshoot it?
+
+**Answer:**
+First, I would try to identify whether the issue is related to the application, infrastructure, database, or network. I would check monitoring dashboards for CPU, memory, disk, network, request latency, error rate, and traffic patterns. On the application side, I would check application logs and recent deployments to see whether the issue started after a code or configuration change. I would also check database connections, slow queries, connection pool usage, and load balancer metrics. On AWS, I would use CloudWatch and service-specific metrics, while in Kubernetes I would check pod resource usage, events, logs, and replica health. I would compare the current metrics with normal baseline behavior, identify the bottleneck, fix or mitigate it, and then monitor the application to confirm recovery.
+
+---
+
+## 2. EC2 is running, but the application is not accessible. What would you check?
+
+**Answer:**
+I would first verify whether the application process is actually running on the EC2 instance by checking the service status and listening ports using commands such as `systemctl status`, `ps`, and `ss -lntp`. Then I would check the EC2 security group to make sure the required application port is allowed from the expected source. I would also verify the subnet route table, Network ACLs, and whether the instance has the correct public IP or is behind a load balancer. On the server, I would check the OS firewall such as `iptables` or `ufw`, application logs, and whether the application is listening on `0.0.0.0` instead of only `localhost`. If the application is behind an ALB, I would additionally verify the target group health and listener configuration.
+
+---
+
+## 3. A Kubernetes Pod is in CrashLoopBackOff. How would you debug it?
+
+**Answer:**
+I would start by checking the pod status and events using `kubectl get pods` and `kubectl describe pod`. Then I would check the current and previous container logs using `kubectl logs <pod-name>` and `kubectl logs <pod-name> --previous`, because the container may be restarting before I can capture the current logs. I would look for issues such as application startup failures, incorrect environment variables, missing ConfigMaps or Secrets, incorrect commands or arguments, failed health probes, permission problems, or dependency failures. I would also verify the container image and configuration in the Deployment. If the pod is being killed because of resource limits, I would check memory and CPU usage. Once I identify the root cause, I would correct the configuration or application issue and verify that the pod becomes stable.
+
+---
+
+## 4. A Pod is getting OOMKilled repeatedly. What could be wrong?
+
+**Answer:**
+`OOMKilled` usually means the container exceeded the memory limit configured for it. I would first check the pod's resource requests and limits using `kubectl describe pod` and review its actual memory consumption through metrics such as `kubectl top pod`. I would then check application logs and memory usage patterns to determine whether the application has a memory leak or simply requires more memory during peak traffic. I would also verify whether multiple containers are sharing the pod and consuming memory. If the application legitimately requires more memory, I would increase the limit appropriately after capacity analysis. If there is a memory leak, increasing the limit would only hide the problem temporarily, so I would investigate the application behavior and fix the underlying issue.
+
+---
+
+## 5. Terraform state is locked while another engineer is deploying. What would you do?
+
+**Answer:**
+I would not immediately force-unlock the state because another deployment may currently be modifying the infrastructure. First, I would verify whether another Terraform operation is actually running and communicate with the engineer who owns the deployment. If the operation has completed but the lock remains due to an interrupted process, I would verify the lock information and then use `terraform force-unlock <LOCK_ID>` only after confirming that no active Terraform operation is using the state. In a production environment, I would prefer using a remote backend such as S3 with a proper locking mechanism so that multiple engineers can safely collaborate without corrupting the state.
+
+---
+
+## 6. Someone manually deleted an EC2 created by Terraform. What happens on the next `terraform apply`?
+
+**Answer:**
+Terraform compares the desired infrastructure defined in the configuration with the actual infrastructure and its state. If the EC2 instance was deleted manually, Terraform can detect that the resource represented in the state no longer exists during refresh. When I run `terraform plan`, Terraform will normally show that the instance needs to be created again because it is defined in the configuration but missing from the infrastructure. During `terraform apply`, Terraform will recreate the EC2 instance. Before applying, I would always review the plan carefully, especially if the deleted resource has dependencies or attached resources such as EBS volumes, Elastic IPs, or security groups.
+
+---
+
+## 7. `terraform apply` failed halfway. How would you recover safely?
+
+**Answer:**
+I would first avoid making manual infrastructure changes until I understand what Terraform successfully created and what failed. I would review the Terraform output and run `terraform plan` again to understand the current state versus the desired state. Terraform normally records successfully created resources in the state, so the next plan should identify the remaining changes. I would investigate the actual failure, such as IAM permissions, dependency issues, quota limits, invalid configuration, or a provider error, fix the root cause, and then run `terraform plan` again before applying. I would never blindly delete resources or manually modify the state unless there is a specific reason and I understand the consequences.
+
+---
+
+## 8. A Docker container exits immediately after starting. How would you troubleshoot it?
+
+**Answer:**
+I would first check the container status using `docker ps -a` and then inspect the logs using `docker logs <container>`. Since a container normally runs as long as its main process is running, I would check the Dockerfile's `CMD` and `ENTRYPOINT` to verify that the correct application command is being executed. I would also inspect the container exit code using `docker inspect` because it can provide useful information about why the process stopped. If necessary, I would start the image interactively with a shell to inspect the filesystem, environment variables, installed dependencies, and configuration. I would also verify that the application is not immediately terminating because of a configuration or dependency problem.
+
+---
+
+## 9. Your Docker image is 2 GB. How would you reduce its size?
+
+**Answer:**
+I would first identify what is consuming space using the Docker image history and inspect each layer with `docker history`. Then I would use a smaller base image where appropriate, such as Alpine or a slim distribution, while ensuring application compatibility. I would use a multi-stage Docker build so that compilers, build tools, and development dependencies remain in the builder stage and only the required runtime files are copied into the final image. I would also remove unnecessary packages, cache files, temporary files, and development dependencies. I would create a proper `.dockerignore` file to prevent unnecessary files such as `.git`, logs, local dependencies, and build artifacts from being copied into the image. Finally, I would rebuild and scan the image to verify both size and security improvements.
+
+---
+
+## 10. Two containers need to communicate. How would you configure Docker networking?
+
+**Answer:**
+I would create a user-defined Docker bridge network and attach both containers to that network. Containers connected to the same user-defined network can communicate with each other using their container or service names instead of relying on IP addresses. For example, in Docker Compose I would place both services on the same network and configure the application to connect to the database using the database service name. I would expose ports to the host only when external access is required. For internal communication between containers, publishing the port to the host is generally not necessary.
+
+---
+
+## 11. Your CI/CD pipeline suddenly fails after working for weeks. Where would you start?
+
+**Answer:**
+I would first identify exactly which stage of the pipeline is failing and compare the current failure with the last successful build. I would check whether there were recent changes in the source code, dependencies, Docker image, build agent, credentials, plugins, environment variables, or external services. I would review the pipeline logs carefully to identify the first actual error instead of focusing only on the final failure message. I would also check whether a dependency or tool version changed automatically. If the issue is related to infrastructure or credentials, I would verify those separately. After identifying the root cause, I would fix it, rerun the pipeline, and consider pinning dependency or tool versions if an unexpected version change caused the failure.
+
+---
+
+## 12. CI passed, but deployment failed in production. What would you investigate?
+
+**Answer:**
+I would treat CI and deployment as separate stages and first identify exactly where the deployment failed. I would check deployment logs, Kubernetes events, Helm output, cloud infrastructure logs, and application configuration. I would verify that the image generated by CI exists in the container registry and that production can pull it successfully. I would also check environment-specific ConfigMaps, Secrets, IAM permissions, network connectivity, resource limits, health probes, and deployment strategy. If the deployment reached Kubernetes but pods failed to become ready, I would inspect pod events and logs. I would compare the production configuration with the last successful deployment to determine what changed.
+
+---
+
+## 13. A bad version was deployed to production. How would you roll back?
+
+**Answer:**
+My first priority would be to reduce the impact on users. I would confirm that the deployed version is actually causing the issue and then roll back using the deployment mechanism used by the team. In Kubernetes, if the deployment history is available, I can use `kubectl rollout history` to identify the previous revision and `kubectl rollout undo deployment/<deployment-name>` to restore it. If Helm is being used, I would identify the previous successful release and perform a Helm rollback. In a CI/CD environment, I would also ensure that the previous known-good artifact is available. After rollback, I would monitor application health, logs, error rates, and user traffic before investigating the failed release in detail.
+
+---
+
+## 14. A Linux server shows 95% CPU usage. How would you find the root cause?
+
+**Answer:**
+I would first identify which process is consuming the CPU using commands such as `top`, `htop`, or `ps`. Then I would determine whether the high CPU is caused by the application, a system process, a scheduled job, or some unexpected process. I would check CPU usage over time using monitoring tools because a short spike may be different from sustained high utilization. I would also check application logs and recent deployments for changes that could explain the increase. If the process is legitimate but overloaded, I would investigate traffic, concurrency, and application performance. Depending on the root cause, I might optimize the application, stop an unnecessary process, scale the server, or scale the application horizontally.
+
+---
+
+## 15. The server disk is 100% full. What would you check?
+
+**Answer:**
+I would first identify which filesystem is full using `df -h`. Then I would determine which directories are consuming the most space using commands such as `du -sh` and investigate large log files, temporary files, application data, Docker images and containers, package caches, and old backups. I would also check whether deleted files are still being held open by running processes using tools such as `lsof`. I would avoid simply deleting files without understanding their purpose, especially in production. After safely cleaning unnecessary data, I would implement log rotation, retention policies, monitoring alerts, and appropriate storage expansion to prevent the issue from happening again.
+
+---
+
+## 16. Users cannot access the application through the Load Balancer, but backend instances are healthy. What would you verify?
+
+**Answer:**
+I would first verify the load balancer listener and listener rules to make sure the correct port and protocol are configured. Then I would check the target group and confirm that the backend instances are registered and passing health checks. I would verify that the security group attached to the load balancer allows incoming traffic and that the backend security group allows traffic from the load balancer security group on the application port. I would also check Network ACLs, route tables, DNS configuration, TLS certificates, and whether the listener is forwarding traffic to the correct target group. If health checks are passing but users still cannot connect, I would investigate DNS resolution, application-level errors, and load balancer access logs.
+
+---
+
+## 17. EC2 cannot connect to RDS. How would you troubleshoot it?
+
+**Answer:**
+I would first verify basic network connectivity and confirm that the EC2 instance and RDS instance are in the expected VPC and that the routing configuration is correct. Then I would check the RDS security group and make sure it allows the database port, such as 3306 for MySQL or 5432 for PostgreSQL, from the EC2 security group rather than unnecessarily opening it to the internet. I would verify the database endpoint, port, credentials, and whether the RDS instance is available. I would also check Network ACLs and DNS resolution from the EC2 instance. Finally, I would test connectivity using tools such as `nc` or the appropriate database client and review RDS and application logs for authentication or connection errors.
+
+---
+
+## 18. Your application needs S3 access. IAM role or access keys? Why?
+
+**Answer:**
+For an application running on AWS infrastructure such as EC2 or EKS, I would prefer using an IAM role rather than hard-coded access keys. IAM roles provide temporary credentials and remove the need to store long-lived credentials inside the application, Docker image, configuration files, or Git repository. I would follow the principle of least privilege and give the role only the S3 permissions required by the application, such as access to a specific bucket or prefix. For workloads running in EKS, I would use an appropriate pod-level IAM mechanism so that permissions can be scoped to the workload. This approach improves security and makes credential rotation much easier.
+
+---
+
+## 19. A secret was accidentally committed to GitHub. What would you do immediately?
+
+**Answer:**
+I would treat the secret as compromised immediately, even if the repository is private. My first action would be to revoke or rotate the exposed credential, because simply deleting the secret from the latest commit does not make the original credential safe. Then I would check audit logs to determine whether the credential was used and assess the potential impact. I would remove the secret from Git history where appropriate and ensure that future commits cannot expose similar secrets by using secret scanning and proper `.gitignore` rules. I would move application secrets to a secure secret-management solution such as AWS Secrets Manager or another approved secrets platform, and I would review the incident with the team to prevent recurrence.
+
+---
+
+## 20. Monitoring shows application failures, but infrastructure metrics look normal. How would you investigate?
+
+**Answer:**
+If CPU, memory, disk, and network metrics look normal, I would shift my investigation toward the application and its dependencies. I would check application logs, error rates, response codes, latency, traces, and recent application deployments or configuration changes. I would investigate dependencies such as databases, APIs, queues, caches, DNS, and authentication services because infrastructure health does not necessarily mean application health. I would also check whether failures are limited to a particular API, user flow, region, or dependency. In a Kubernetes environment, I would review pod logs, events, readiness probes, and service endpoints. I would correlate application failures with deployment and monitoring timelines to identify the actual root cause rather than assuming the infrastructure is responsible.
+
+---
+
+# Key Approach I Follow in Production Troubleshooting
+
+As a DevOps Engineer with around 4 years of experience, my troubleshooting approach is generally **Identify → Isolate → Investigate → Fix → Verify → Prevent**.
+
+First, I identify the exact impact and scope of the issue. Then I isolate whether the problem is related to the application, infrastructure, network, database, deployment, or configuration. I collect evidence from logs, metrics, events, and monitoring instead of making assumptions. Once the root cause is identified, I apply the safest fix or mitigation, verify that the application has recovered, and monitor it closely. Finally, I look for preventive actions such as better monitoring, alerting, automation, resource tuning, documentation, or process improvements so that the same issue is less likely to happen again.
+
+# Technologies Covered
+
+* AWS – EC2, RDS, S3, IAM, ALB
+* Kubernetes – Pods, Deployments, Services, ConfigMaps, Secrets
+* Docker – Images, Containers, Networking, Multi-stage Builds
+* Terraform – State, Locking, Plan, Apply, Recovery
+* CI/CD – Jenkins / GitHub Actions
+* Linux – CPU, Memory, Disk, Processes
+* Monitoring & Troubleshooting – Logs, Metrics, Events, Alerts
+* Security – IAM Roles, Secrets Management, Least Privilege
+
+# Interview Tip
+
+For a 4-year experience interview, I would avoid giving only commands as the answer. Explain **what you would check, why you would check it, what evidence you expect to find, and what action you would take based on that evidence**. This demonstrates troubleshooting experience rather than just command knowledge.
+
+
 
 # 🚀 DevOps Interview Series – 20 Production Scenarios
 
