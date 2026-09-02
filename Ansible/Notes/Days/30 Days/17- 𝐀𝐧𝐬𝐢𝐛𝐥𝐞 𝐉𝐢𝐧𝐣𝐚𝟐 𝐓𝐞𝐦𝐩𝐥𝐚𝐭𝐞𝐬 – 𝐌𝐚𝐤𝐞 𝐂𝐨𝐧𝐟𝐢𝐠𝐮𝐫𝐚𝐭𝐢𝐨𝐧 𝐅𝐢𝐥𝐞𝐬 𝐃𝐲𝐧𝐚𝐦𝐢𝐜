@@ -1,0 +1,88 @@
+🚀 𝟑𝟎 𝐃𝐚𝐲𝐬 𝐨𝐟 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 – 𝐃𝐚𝐲 𝟏𝟕/𝟑𝟎
+
+🧩 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐉𝐢𝐧𝐣𝐚𝟐 𝐓𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬 – 𝐌𝐚𝐤𝐞 𝐂𝐨𝐧𝐟𝐢𝐠𝐮𝐫𝐚𝐭𝐢𝐨𝐧 𝐅𝐢𝐥𝐞𝐬 𝐃𝐲𝐧𝐚𝐦𝐢𝐜
+
+What if the same application needs different configuration values in Development, QA, and Production?
+
+Maintaining separate configuration files for every environment can quickly become difficult.
+
+This is where 𝐉𝐢𝐧𝐣𝐚𝟐 𝐓𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬 become powerful. 🔥
+
+🔹 𝐖𝐡𝐚𝐭 𝐢𝐬 𝐚 𝐉𝐢𝐧𝐣𝐚𝟐 𝐓𝐞𝐦𝐩𝐥𝐚𝐭𝐞?
+
+A Jinja2 template combines normal configuration with variables and expressions.
+
+Templates usually use the .j2 extension.
+
+Example:
+
+templates/
+└── nginx.conf.j2
+
+Inside the template:
+
+server {
+    listen {{ nginx_port }};
+    server_name {{ server_name }};
+    root {{ document_root }};
+}
+
+The values inside {{ }} are replaced by Ansible during execution.
+
+🔹 𝐔𝐬𝐢𝐧𝐠 𝐭𝐡𝐞 𝐭𝐞𝐦𝐩𝐥𝐚𝐭𝐞 𝐌𝐨𝐝𝐮𝐥𝐞
+
+- name: Deploy Nginx configuration
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify: Restart Nginx
+
+Ansible processes the template and creates the final configuration on the target server.
+
+🔹 𝐄𝐱𝐚𝐦𝐩𝐥𝐞 𝐕𝐚𝐫𝐢𝐚𝐛𝐥𝐞𝐬
+
+nginx_port: 8080
+server_name: example.com
+document_root: /var/www/html
+
+One template can now be reused across multiple environments. 🚀
+
+🌍 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+Development → app.example-dev.com
+QA → app.example-qa.com
+Production → app.example.com
+
+Instead of maintaining three different configuration files, you can maintain one Jinja2 template + different variables.
+
+🔥 𝐉𝐢𝐧𝐣𝐚𝟐 𝐂𝐚𝐧 𝐃𝐨 𝐌𝐨𝐫𝐞
+
+You can use conditions:
+
+{% if environment == "production" %}
+server_tokens off;
+{% endif %}
+
+And loops:
+
+{% for server in backend_servers %}
+server {{ server }};
+{% endfor %}
+
+⚠️ 𝐂𝐨𝐦𝐦𝐨𝐧 𝐌𝐢𝐬𝐭𝐚𝐤𝐞𝐬
+
+❌ Incorrect variable names
+❌ Wrong YAML indentation
+❌ Forgetting the .j2 extension
+❌ Using copy when dynamic templating is required
+
+Remember:
+
+𝐜𝐨𝐩𝐲 → 𝐒𝐭𝐚𝐭𝐢𝐜 𝐟𝐢𝐥𝐞𝐬
+𝐭𝐞𝐦𝐩𝐥𝐚𝐭𝐞 → 𝐃𝐲𝐧𝐚𝐦𝐢𝐜 𝐟𝐢𝐥𝐞𝐬
+
+🎯 𝐊𝐞𝐲 𝐓𝐚𝐤𝐞𝐚𝐰𝐚𝐲
+
+𝐎𝐧𝐞 𝐭𝐞𝐦𝐩𝐥𝐚𝐭𝐞 + 𝐝𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐭 𝐯𝐚𝐫𝐢𝐚𝐛𝐥𝐞𝐬 = 𝐫𝐞𝐮𝐬𝐚𝐛𝐥𝐞 𝐚𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧. 🚀
+
+Jinja2 helps separate configuration logic from environment-specific values and makes Infrastructure as Code much more flexible.
