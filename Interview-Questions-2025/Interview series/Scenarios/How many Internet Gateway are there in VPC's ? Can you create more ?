@@ -1,0 +1,13 @@
+How many Internet Gateway are there in VPC's ? Can you create more ?
+
+1. A VPC can also have zero Internet Gateways if it is designed to be completely private 
+
+2. It is a strict 1:1 relationship  an Internet Gateway cannot be attached to multiple VPCs simultaneously.
+
+3. we cannot attach more than one IGW to a single VPC.
+
+4. A single Internet Gateway is already highly available, redundant, and scales horizontally automatically.
+
+5. Exactly one Internet Gateway connects to a single VPC. An Internet Gateway also connects to only one VPC at a time.
+
+6. The total number of Internet Gateways per region matches your VPC limit (default is 5 per region, but we can request an increase). we cannot attach two of them to the same VPC.
