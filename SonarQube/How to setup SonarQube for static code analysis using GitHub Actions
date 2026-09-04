@@ -1,0 +1,71 @@
+How to setup SonarQube for static code analysis using GitHub Actions
+
+🔍 About SonarQube
+
+* SonarQube  is a code quality management tool
+* It analyses the quality of the source code and then it will generate a report
+* SonarQube is an open-source platform for continuous inspection of code quality. It helps developers identify bugs, code smells, vulnerabilities, and security issues in their code base
+* SonarQube supports multiple programming languages and integrates with CI/CD pipelines to ensure high-quality code
+* It supports multiple databases, browsers, languages and platforms
+* It shows bugs, vulnerabilities, code smells etc.,
+* Install AWS PostgreSQL or MySQL in production servers for persistent 
+* Default Port number is 9000
+
+🔍 Make SonarQube as system service
+
+* Once installed SonarQube, make it as system service so that we can use systemctl commands for status, start, stop, restart, enable.
+      systemctl status sonarqube
+      systemctl start sonarqube
+      systemctl restart sonarqube
+      systemctl enable sonarqube
+      systemctl stop sonarqube
+
+🔍 Access SonarQube using DNS
+
+* Access sonarqube using DNS name and enable https
+* Launch EC2 instances in private subnet where sonarqube is installed
+* For this create Target Group, Load Balancer, ACM certicate for HTTPS and use Route53 for DNS name
+
+🔍 In SonarQube UI
+
+* Create a project in sonarqube
+* Generate sonar token
+* Create Quality gate and attach to the project
+
+🔍 In AWS
+
+* Add sonar url and token in AWS secret manager
+* Setup OIDC provider and access sonar url and sonar token
+
+🔍 GitHub Actions workflow
+
+* Configure selg hosted runner and install runner
+* Make the runner service as system service so that systemctl commands can be used
+* Use paths for filtering
+  paths:
+     - 'ecommerce-app/**'
+     - '.github/workflows/java-sonar.yml'
+* Write concurrency
+concurrency:
+ group: java-sonar-pr-${{ github.event.pull_request.number }}
+ cancel-in-progress: true
+* Use quality gate - if quality gate is failed make the merge button disabled so that the code is valid
+
+🔍 pom.xml
+
+* Write below properties in <properties>
+    <sonar.projectKey>ecommerce-app</sonar.projectKey>
+      <sonar.projectName>Ecommerce App</sonar.projectName>
+* Configure below plugins
+     <plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>5.7.0.6970</version>
+        </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.4.2</version>
+
+Like this we can configure SonarQube for Static Analysis using GitHub actions. 
