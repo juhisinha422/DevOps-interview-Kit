@@ -1,0 +1,62 @@
+ 𝗗𝗮𝘆 𝟮𝟬/𝟯𝟬 – 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗖𝗵𝗮𝗻𝗴𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 & 𝗜𝗱𝗲𝗺𝗽𝗼𝘁𝗲𝗻𝗰𝗲
+
+Continuing my hashtag#30DaysOfAnsible journey! 🔥
+
+Today I focused on one of the most important concepts for writing reliable and production-ready Ansible playbooks — Idempotency.
+
+🎯 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗜𝗱𝗲𝗺𝗽𝗼𝘁𝗲𝗻𝗰𝘆?
+
+In simple terms:
+
+👉 Run the same playbook once or multiple times — the final system state should remain the same.
+
+Ansible checks the current state before making changes.
+
+For example:
+
+- name: Install Nginx
+ ansible.builtin.apt:
+ name: nginx
+ state: present
+
+First run: ✅ Nginx gets installed
+🔄 Task shows changed
+
+Second run: ✅ Nginx is already installed
+⏭️ No unnecessary change
+
+This is what makes Ansible safe to run repeatedly.
+
+🔍 𝗖𝗵𝗮𝗻𝗴𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁
+
+Ansible reports whether a task:
+
+🟢 ok → No change required
+🟡 changed → Something was modified
+🔴 failed → Task failed
+⏭️ skipped → Condition wasn't met
+
+You can preview what Ansible would change using:
+
+ansible-playbook site.yml --check
+
+And see the differences with:
+
+ansible-playbook site.yml --check --diff
+
+💡 𝗪𝗵𝘆 𝗜𝗱𝗲𝗺𝗽𝗼𝘁𝗲𝗻𝗰𝘆 𝗠𝗮𝘁𝘁𝗲𝗿𝘀 𝗶𝗻 𝗗𝗲𝘃𝗢𝗽𝘀
+
+✔️ Safer automation
+✔️ Repeatable deployments
+✔️ Reduced configuration drift
+✔️ Predictable infrastructure
+✔️ Easier CI/CD automation
+✔️ Fewer unnecessary changes
+
+𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗶𝘀 𝗻𝗼𝘁 𝗷𝘂𝘀𝘁 𝗮𝗯𝗼𝘂𝘁 𝗿𝘂𝗻𝗻𝗶𝗻𝗴 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀.
+
+It's about declaring the desired state and allowing Ansible to make only the changes required to reach that state.
+
+That's the mindset that makes automation production-ready. 🚀
