@@ -1,0 +1,69 @@
+ADVANCE DOCKER COMMANDS CHEAT SHEET
+
+🔴BASIC COMMANDS
+
+→ docker --version = Show Docker version
+→ docker info = Show system-wide information
+→ docker help = Get help on Docker commands
+→ docker = Show Docker CLI usage
+
+🔵CONTAINERS MANAGEMENT
+
+→ docker run image = Run a container
+→ docker run -d image = Run in detached mode
+→ docker run -it image = Run interactively with terminal
+→ docker start container_id = Start stopped container
+→ docker stop container_id = Stop running container
+→ docker restart container_id = Restart container
+→ docker pause container_id = Pause container
+→ docker unpause container_id = Unpause container
+→ docker rm container_id = Remove container
+→ docker exec -it container_id bash = Open bash in container
+→ docker exec -it container_id sh = Run shell inside container
+
+🟤INSPECTING & VIEWING
+
+→ docker ps = List running containers
+→ docker ps -a = List all containers
+→ docker logs container_id = View logs
+→ docker inspect container_id = Inspect configuration
+→ docker stats = Live resource usage
+→ docker top container_id = Running processes
+
+🟠IMAGES MANAGEMENT
+
+→ docker images = List images
+→ docker pull image = Download image
+→ docker build -t tag . = Build image from Dockerfile
+→ docker tag image new_tag = Tag image
+→ docker rmi image = Remove image
+→ docker image prune = Remove dangling images
+→ docker system prune = Remove unused data
+
+🟣VOLUMES & NETWORKS
+
+→ docker volume ls = List volumes
+→ docker volume create = Create volume
+→ docker volume rm volume_id = Remove volume
+→ docker network ls = List networks
+→ docker network create = Create network
+→ docker network connect network container_id = Connect container
+→ docker network disconnect network container_id = Disconnect container
+
+⚫CLEANING UP
+
+→ docker system prune = Remove unused containers, images, networks
+→ docker volume prune = Remove unused volumes
+→ docker container prune = Remove stopped containers
+→ docker image prune = Remove dangling images
+→ docker network prune = Remove unused networks
+
+🟢OTHER USEFUL COMMANDS
+
+→ docker-compose up = Start services from compose file
+→ docker-compose down = Stop and remove services
+→ docker commit container_id new_image = Create image from container
+→ docker save image > file.tar = Save image
+→ docker load < file.tar = Load image
+→ docker login = Login to registry
+→ docker logout = Logout from registry
