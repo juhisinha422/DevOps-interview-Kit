@@ -1,3 +1,39 @@
+# 🚀 DevOps Interview: Production Troubleshooting Scenario
+
+## Question
+
+**Your application became unavailable after a deployment. What would you do?**
+
+## Answer – 4 Years Experience
+
+If an application becomes unavailable immediately after a deployment, I would first focus on understanding the **impact and timeline** rather than immediately restarting the application. I would check whether the issue is affecting all users or only a specific set of requests, APIs, regions, or instances. I would also verify whether the application is completely down or returning specific errors such as **4xx, 5xx, 502, 503, or 504**. This helps me understand the scope and severity of the incident.
+
+Next, I would establish **what changed during the deployment**. I would review the deployment history and compare the current release with the previous working version. I would check changes in application code, environment variables, configuration files, secrets, database changes, dependencies, container images, infrastructure, and Kubernetes manifests. If the issue started immediately after a specific deployment, that deployment becomes an important point of investigation.
+
+After that, I would gather evidence from different layers of the system. I would check the **application logs, container or Pod status, Kubernetes events, health checks, readiness and liveness probes, load balancer target health, and monitoring metrics** such as CPU, memory, request rate, latency, and error rate. I would also check whether the application is successfully connecting to external dependencies such as databases, caches, APIs, or message queues.
+
+I would then correlate the evidence with the actual failure. For example, if the logs show a **database authentication failure**, I would investigate the database credentials, Kubernetes Secrets, environment variables, IAM permissions, or recent configuration changes. If the application is showing **connection timeouts**, I would investigate network connectivity, security groups, NetworkPolicies, DNS resolution, service endpoints, or whether the dependent service is healthy. If the Pods are running but the load balancer reports them as unhealthy, I would investigate the readiness probe, application port, target group configuration, or health-check path.
+
+I would avoid restarting the application without understanding the reason. A restart can temporarily hide the symptom without fixing the underlying problem. If the application is failing because of a bad configuration or incompatible dependency, restarting the same version will simply reproduce the failure. Instead, I would use the evidence to decide whether the appropriate action is to fix the configuration, correct the deployment, scale the application, restore a dependency, or roll back the release.
+
+If the deployment is confirmed to be the cause and the application is significantly impacting users, I would consider a **rollback to the last known good version**, provided the rollback is safe. Before rolling back, I would consider whether the deployment included database schema changes or other backward-incompatible changes. For example, if a new application version has already modified the database schema, blindly rolling back only the application could create another issue. In a Kubernetes environment, I could use the deployment revision history to identify the previous version and roll back when appropriate.
+
+Once the application is recovered, I would verify the recovery rather than assuming that the incident is resolved. I would check Pod health, load balancer target health, application logs, error rates, latency, and monitoring dashboards. I would also perform an end-to-end test of the affected user journey or API to confirm that the application is actually working from the user's perspective.
+
+Finally, I would document the **root cause, impact, recovery steps, and preventive actions**. Depending on the root cause, preventive measures could include better health checks, automated rollback, deployment validation, improved monitoring and alerting, configuration validation, canary or blue-green deployments, and stronger CI/CD checks.
+
+### Interview Summary
+
+My approach would be:
+
+**Impact → Timeline → Changes → Evidence → Root Cause → Recovery → Verification → Prevention**
+
+The important part is that I would not simply say **"check logs and restart the application."** I would explain **what I am looking for in the logs, how that evidence changes my next decision, why I would choose rollback or another recovery action, and how I would verify that the issue is actually resolved.**
+
+This demonstrates a production-oriented troubleshooting approach expected from a DevOps Engineer with around **4 years of experience**.
+
+
+
 # Advanced AWS Interview Questions
 
 ## 1. ALB returns intermittent 502s. EC2 is healthy and CPU is 35%. How would you isolate ALB, target, timeout, DNS, and downstream issues?
