@@ -1,0 +1,85 @@
+Day 19 | DevOps Scenario-Based Interview Question
+
+❓ Scenario
+
+Your application is running perfectly on your local machine inside a Docker container.
+
+But after deploying the same Docker image to the server, the container starts successfully and then keeps restarting.
+
+As a DevOps Engineer, how would you troubleshoot this issue?
+
+🔍 What would you check?
+
+1️⃣ Check container status
+
+```bash
+docker ps -a
+```
+
+Look for containers with `Restarting` or `Exited` status.
+
+2️⃣ Check container logs
+
+```bash
+docker logs <container_id>
+```
+
+Look for application errors, missing files, configuration issues, or connection failures.
+
+3️⃣ Check the container exit code
+
+```bash
+docker inspect <container_id>
+```
+
+The exit code can help identify why the application stopped.
+
+4️⃣ Check environment variables
+
+Compare local and server configurations:
+
+```bash
+docker exec -it <container_id> env
+```
+
+Make sure required variables such as database URLs, credentials, ports, and API endpoints are configured correctly.
+
+5️⃣ Check volume mounts
+
+Verify that required configuration files or directories are correctly mounted:
+
+```bash
+docker inspect <container_id>
+```
+
+6️⃣ Check resource limitations
+
+The container may be getting killed because of insufficient memory or CPU.
+
+```bash
+docker stats
+```
+
+7️⃣ Run the image interactively
+
+Try starting the image manually:
+
+```bash
+docker run -it <image_name> /bin/sh
+```
+
+This helps verify whether the application and required files are actually available inside the image.
+
+✅ Possible Root Cause
+
+The Docker image itself may be working correctly, but the **server environment is missing a required environment variable or configuration**, causing the application to exit immediately.
+
+💡 Key Takeaway
+
+When a Docker container keeps restarting, don't immediately rebuild the image.
+
+First check:
+
+Container Status → Logs → Exit Code → Environment Variables → Volumes → Resources
+
+This systematic approach helps identify the actual root cause faster.
