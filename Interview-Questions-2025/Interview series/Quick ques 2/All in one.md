@@ -1,3 +1,262 @@
+# 🚀 DevOps Production Troubleshooting Scenarios
+
+## Introduction
+
+For a DevOps Engineer with around 4 years of experience, production troubleshooting is not only about knowing commands. The interviewer wants to understand how I approach an incident, how I collect evidence, how I identify the most likely root cause, and how I choose a safe recovery action.
+
+My general approach is:
+
+**Understand the impact → Establish what changed → Gather evidence → Form a hypothesis → Take the safest action → Verify the result → Prevent recurrence**
+
+---
+
+# 1️⃣ Deployment Succeeded, But Traffic Is Still Going to the Old Version
+
+### Question
+
+> A deployment succeeded, but traffic is still going to the old version. Explain exactly where you start debugging.
+
+### Answer
+
+I would first confirm whether the deployment actually created and is serving the new application version. I would check the Deployment, ReplicaSets, Pods, container image and application version exposed by the application. In Kubernetes, I would start with commands such as `kubectl rollout status deployment/<name>`, `kubectl get pods`, and `kubectl describe deployment <name>`. I would verify that the new ReplicaSet has the expected number of ready Pods and that those Pods are running the new image.
+
+If the new Pods are healthy, I would move one layer up and check the Kubernetes Service. I would verify the Service selector and compare it with the labels on the Pods. A very common issue is that the Service is still selecting old Pods because of incorrect or unchanged labels. I would also inspect the Service endpoints or EndpointSlices to confirm which Pod IPs are actually receiving traffic.
+
+After that, I would check the Ingress or load balancer configuration. I would verify whether traffic is being routed to the correct Service, target group, port, or backend. If the environment uses blue-green or canary deployment, I would specifically check whether the routing rule, weight, or selector has actually been switched to the new version.
+
+Finally, I would test the application directly against both the old and new Pods and compare the response version. I would also consider caching at the CDN, reverse proxy, or application layer if only some users are seeing the old version. My goal would be to identify exactly where the traffic path is still pointing to the old version rather than simply restarting the Pods.
+
+---
+
+# 2️⃣ Kubernetes Pods Are Healthy, But Users Receive 504 Errors
+
+### Question
+
+> A Kubernetes application is healthy according to `kubectl get pods`, but users report 504 errors. Walk me through your troubleshooting flow.
+
+### Answer
+
+I would first understand where the 504 is being generated. A 504 usually indicates that a proxy or gateway did not receive a response from its upstream within the expected time. Therefore, `kubectl get pods` showing `Running` and `Ready` does not prove that the complete request path is healthy.
+
+I would start from the user-facing layer and move inward: **Load Balancer → Ingress → Service → Endpoints → Pod → Application → Dependencies**. I would check the load balancer or Ingress logs to identify whether the timeout is happening between the proxy and the backend. Then I would verify the Ingress configuration, Service ports, target ports and endpoints.
+
+Next, I would test the Service from inside the cluster using `curl` or a temporary debugging Pod. If the Service responds quickly internally but users still receive 504s, I would focus on the Ingress, load balancer, network path, timeout configuration, or TLS layer. If the Service itself is slow, I would investigate the application.
+
+I would then check application logs and metrics for increased response time, thread exhaustion, connection-pool exhaustion, CPU throttling, memory pressure, or slow database/API calls. I would also compare successful and failed requests. For example, if application requests are taking 60 seconds while the proxy timeout is 30 seconds, increasing the timeout might hide the symptom, but the real issue could be a slow database query.
+
+So I would not assume that healthy Pods mean a healthy application. I would trace the request through every layer and use the evidence to identify where the timeout is occurring.
+
+---
+
+# 3️⃣ AWS Bill Spiked 3x Overnight
+
+### Question
+
+> Your AWS bill spiked 3x overnight. No deployments happened. What’s your step-by-step response?
+
+### Answer
+
+I would first treat this as both a **cost and potential security incident**. I would start with AWS Cost Explorer and compare the current spend with the previous day and previous period. I would identify which AWS service, account, region, and usage type caused the increase instead of assuming that EC2 is responsible.
+
+Once I identify the service, I would investigate the corresponding resources and usage. For example, if EC2 cost increased, I would check whether new instances were launched, whether an Auto Scaling Group scaled unexpectedly, or whether expensive instance types were running. For EBS, I would check newly created volumes and snapshots. For data transfer, I would investigate unusual cross-region or internet traffic. For NAT Gateway costs, I would look for unexpected data processing.
+
+Because there were no deployments, I would also investigate operational and security possibilities. I would review CloudTrail for unexpected resource creation or configuration changes and check IAM activity for suspicious access. I would look for resources created in unexpected regions or accounts and investigate whether credentials were compromised.
+
+I would avoid deleting resources blindly because some resources may be legitimate and production-critical. I would first identify the exact source of the cost increase, contain any suspicious activity if required, and then take the safest corrective action. After resolving it, I would add cost alerts, budgets, anomaly detection and appropriate resource controls so that a similar increase is detected much earlier.
+
+---
+
+# 4️⃣ CI/CD Pipeline Takes 40+ Minutes
+
+### Question
+
+> CI/CD pipeline is taking 40+ minutes. Your CTO wants it under 10 minutes without adding hardware. What will you optimize?
+
+### Answer
+
+I would first measure where the 40 minutes are actually being spent rather than optimizing randomly. I would break the pipeline into stages such as source checkout, dependency installation, build, unit tests, static analysis, security scanning, Docker build, image push and deployment. I would identify the slowest stages using pipeline timing.
+
+Then I would look for opportunities to run independent tasks in parallel. For example, unit tests, linting and some security checks may be able to run concurrently. I would also introduce caching for package dependencies, Docker build layers and other reusable artifacts where appropriate.
+
+If dependency installation is taking several minutes, I would check whether dependencies are being downloaded from scratch on every build. For Docker builds, I would optimize the Dockerfile, use multi-stage builds and improve layer caching. I would also check whether the pipeline is rebuilding components unnecessarily.
+
+For tests, I would identify slow or redundant tests and consider parallel execution or test splitting. For security and quality tools, I would determine whether every scan truly needs to run synchronously on every pipeline.
+
+I would also look at deployment waits, unnecessary polling and repeated Git operations. My goal would not simply be to make one command faster; I would remove unnecessary work, parallelize independent work, cache reusable work and optimize the critical path.
+
+---
+
+# 5️⃣ Everything Is GREEN, But the System Is Slow
+
+### Question
+
+> An SRE says infrastructure is stable, the development team says the system is slow, and monitoring shows everything is GREEN. Who do you believe — and what do you check first?
+
+### Answer
+
+I would not immediately choose one team over another. I would trust the **user impact and the evidence**. If users are experiencing slowness, then something is wrong even if the current dashboards are green. Green monitoring only tells me that the monitored metrics are within their configured thresholds; it does not prove that the entire user experience is healthy.
+
+I would first define what "slow" means. I would identify which API, endpoint, transaction or user journey is affected and compare current latency with the historical baseline. I would check metrics such as p50, p95 and p99 latency rather than looking only at average latency because averages can hide slow requests.
+
+Then I would trace the request through the application and its dependencies. I would check application logs, distributed traces if available, database latency, external API calls, cache performance, connection pools, CPU throttling and network latency.
+
+I would also verify whether monitoring is missing an important signal. For example, CPU may be normal while database queries are taking longer, or average latency may be green while p99 latency has significantly increased.
+
+So I would not ask **"Who is right?"**. I would ask **"What does the evidence show?"** and work with both teams to isolate the bottleneck.
+
+---
+
+# 6️⃣ Terraform Apply Fails Because of Drift
+
+### Question
+
+> Terraform apply is failing due to drift, but the infrastructure is currently live and critical. How do you fix it without causing downtime?
+
+### Answer
+
+I would first avoid making changes directly to production until I understand the drift. I would run `terraform plan` and carefully compare the Terraform state, configuration and actual infrastructure. I would identify exactly which resource has drifted and determine whether the change was intentional or accidental.
+
+If someone manually changed the infrastructure, I would determine whether the current live configuration is the desired state. If the live configuration is correct, I may update the Terraform configuration to match it and refresh or reconcile the state as appropriate. If the manual change is incorrect, I would plan how to bring the resource back under Terraform management safely.
+
+For an important production resource, I would not blindly run `terraform apply` just to make the plan green. I would review the plan for destructive changes, replacements, dependency changes and changes to networking or security settings.
+
+I would test the correction in a lower environment whenever possible and use a controlled change window for production. If necessary, I would use Terraform import or state-management operations to reconcile resources without recreating them. The key principle is to make Terraform understand the existing infrastructure rather than accidentally destroying and recreating a live resource.
+
+After reconciliation, I would run another plan and verify that there are no unexpected changes before applying anything.
+
+---
+
+# 7️⃣ Rollback Script Fails During a Production Outage
+
+### Question
+
+> Your rollback script fails during a production outage. You have 5 minutes before SLA breach. Walk me through your decision.
+
+### Answer
+
+During an active outage with only five minutes before an SLA breach, I would prioritize **service restoration and risk control** over finding the perfect long-term fix. I would quickly determine why the rollback script failed and whether the failure is preventing a known safe recovery path.
+
+If the previous application version is known to be healthy, I would use an approved alternative rollback mechanism rather than repeatedly running a broken script. For example, in Kubernetes I could use the deployment revision history and perform a controlled rollback if that is safe and consistent with the deployment process.
+
+However, I would first consider whether the rollback has database or configuration dependencies. If the failed deployment included a backward-incompatible database migration, blindly rolling back the application could make the outage worse.
+
+I would communicate the incident status and recovery action while executing the safest available option. After traffic is restored, I would verify application health, error rates, user transactions and dependency connectivity.
+
+Once the immediate incident is resolved, I would investigate why the rollback mechanism failed and improve it through testing, automation and failure simulations. A rollback mechanism should itself be tested as part of the deployment strategy rather than only during an emergency.
+
+---
+
+# 8️⃣ Secret Accidentally Committed to GitHub
+
+### Question
+
+> A secret was accidentally committed to GitHub. It has already been cloned. What are your next exact steps?
+
+### Answer
+
+I would assume that the secret is **compromised** as soon as it has been committed and cloned. My first priority would be to revoke or rotate the exposed credential immediately rather than relying only on removing the file from Git.
+
+For example, if it is an AWS access key, I would disable or delete the exposed access key and create a replacement with the minimum required permissions. I would also review CloudTrail and other relevant logs to determine whether the credential was used. If it is a database password, API token or another secret, I would rotate it at the source and update the application securely.
+
+After containment, I would remove the secret from the repository and its history using an appropriate Git history-cleaning process, then force-update the repository if required according to the team's procedures. However, removing it from Git history is not considered remediation by itself because someone may already have cloned or copied it.
+
+I would also search for the secret across repositories, CI/CD systems, artifacts and configuration files. Finally, I would introduce secret scanning, pre-commit checks and proper secret management using services such as AWS Secrets Manager or another approved secret-management solution.
+
+The important point is: **rotate first, clean the repository second**.
+
+---
+
+# 9️⃣ Kubernetes Upgrade Breaks CoreDNS in Production
+
+### Question
+
+> A Kubernetes cluster upgrade works in staging but corrupts CoreDNS in production. How do you approach patching and restoring service?
+
+### Answer
+
+I would first focus on restoring DNS because CoreDNS is a critical cluster dependency. I would determine whether the issue affects all workloads or only specific namespaces or nodes. I would check the CoreDNS Pods, logs, events, ConfigMap, Service and EndpointSlices, and verify whether the `kube-dns` Service is pointing to healthy CoreDNS Pods.
+
+I would test DNS resolution from inside the cluster using a temporary debugging Pod. For example, I would test service-name resolution and external DNS resolution separately. This helps determine whether the problem is CoreDNS itself, the Kubernetes Service, networking, or upstream DNS.
+
+Since staging worked, I would compare the staging and production environments carefully. I would look for differences in Kubernetes versions, CoreDNS versions, configuration, CNI plugin versions, node configuration, network policies and cluster-specific settings.
+
+If the upgrade introduced the problem and a known safe recovery path exists, I would follow the organization's rollback or recovery procedure rather than experimenting directly in production. Depending on the exact failure, that might involve restoring a compatible CoreDNS configuration/version or correcting the affected component.
+
+After DNS is restored, I would verify service discovery, external DNS resolution and critical application flows. Before attempting the upgrade again, I would reproduce the production-specific condition in a test environment and validate the upgrade sequence, compatibility and rollback procedure.
+
+The key lesson is that **"it worked in staging" does not prove production compatibility**. I would identify the environmental difference that allowed the production failure.
+
+---
+
+# 🔟 Tell Me About a Failure You Introduced
+
+### Question
+
+> Tell me a real scenario where YOU introduced a failure in infrastructure. What happened, what did you learn, and what changed after?
+
+### Answer
+
+One example I would discuss is a configuration change I made during an infrastructure update where a change to a security or networking configuration unintentionally affected application connectivity. The change itself appeared straightforward, but after deployment, the application started experiencing connectivity issues with a dependent service. I first verified the impact and compared the timing of the issue with the infrastructure change. I then checked application logs, network connectivity, security-group rules and the affected resource configuration and identified that the new rule did not allow the required communication path.
+
+My immediate priority was to restore service safely. I reverted the problematic change and verified that connectivity and application functionality had recovered. After the incident, I reviewed why the change was not caught before production. The main lesson for me was that infrastructure changes should not be evaluated only from a syntax or Terraform-plan perspective; I also need to validate the actual communication flow and application dependency.
+
+After that incident, I became more disciplined about testing infrastructure changes in a lower environment, reviewing Terraform plans carefully, using smaller changes, validating security-group and network dependencies, and having appropriate peer review before production changes. Where possible, I also added automated validation to the deployment process.
+
+I would not present the failure as something that never happened. The important part is that I understood the root cause, took ownership, restored the service, and changed the engineering process so the same class of failure was less likely to happen again.
+
+---
+
+# 🎯 Interview Framework
+
+For production troubleshooting questions, I would structure my answer around these steps:
+
+| Step                | What I Focus On                                 |
+| ------------------- | ----------------------------------------------- |
+| **1. Impact**       | Who is affected and how severe is it?           |
+| **2. Timeline**     | When did the problem start?                     |
+| **3. Changes**      | What changed before the issue?                  |
+| **4. Evidence**     | Logs, metrics, events, traces and configuration |
+| **5. Hypothesis**   | What does the evidence suggest?                 |
+| **6. Action**       | What is the safest corrective action?           |
+| **7. Verification** | How do I know the issue is resolved?            |
+| **8. Prevention**   | How do we prevent it from happening again?      |
+
+## 🔥 What Interviewers Are Looking For
+
+At around 4 years of experience, I should avoid answers that only sound like:
+
+> "I will check the logs."
+
+Instead, I should explain:
+
+> **What am I looking for in the logs? What hypothesis does that create? What will I check next? What action will I take based on the evidence? How will I verify the fix?**
+
+That difference demonstrates **real troubleshooting experience rather than command memorization**.
+
+---
+
+## Quick Rule to Remember
+
+### **Don't troubleshoot from the tool. Troubleshoot from the symptom.**
+
+For example:
+
+**504 Error**
+
+→ Where is the 504 generated?
+→ Is the backend reachable?
+→ Are Service endpoints correct?
+→ Is the application responding slowly?
+→ Is a dependency slow?
+→ What changed?
+→ What evidence confirms the root cause?
+→ What is the safest recovery?
+→ How do I verify the user journey?
+
+That is the mindset expected from a production-focused DevOps Engineer.
+
+
+
 # 🚀 DevOps Interview Questions & Answers — 4 Years Experience
 
 This README contains real-world, scenario-based DevOps interview questions with practical answers suitable for a **4 years experienced DevOps Engineer**. The focus is on troubleshooting, AWS, Kubernetes, CI/CD, monitoring, scalability, security, and production problem-solving.
