@@ -1,0 +1,18 @@
+Terraform apply is failing due to drift, but the infra is currently live and critical. How do you fix it without causing downtime?”
+
+1. When terraform apply fails due to drift on live we must never run a destructive command (-refresh-only with automated approvals or forcing an apply)
+
+2. First, pull the current plan and state to see exactly what has drifted. Save the plan file so Terraform cannot execute unexpected changes.
+
+terraform plan -out=drift_check.plan
+terraform show drift_check.plan
+
+3.If someone modified the live infrastructure manually (e.g., increased an AWS EC2 instance size or modified a security group rule during an incident) and that change needs to stay, update our Terraform configuration. 
+
+A. Manually update our .tf files to match the exact properties currently live in production.
+
+B. Run terraform plan again to verify that the plan now shows "No changes our infrastructure matches the configuration."
+
+4.Re-import the live resource back into the state file 
+
+terraform import <resource_type>.<resource_name> <actual-live-resource-id>
