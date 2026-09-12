@@ -1,0 +1,30 @@
+Ascendion DevOps Interview Experience
+
+1. Recently did you created any deployment and service why did you created any purpose ?
+2. can you explain what is deployment ?
+3. If pod is down how do you debug ? 
+4. You have Python, Node.js and Java applications. How would you design a common CI/CD reusable workflow?
+5. diff btw scripted pipeline and declarative pipelines 
+6. what is the groovy syntax ?
+7. MVN clean install vs MVN clean package ?
+8. what type of tests do you perform in pipelines ?
+9. how do you setup reusable workflows for 10 microservices ? how pipelines triggers for diff microservices ?
+10. what metrics and SLA do you define to get a pipelines health ?
+11. did you work on any migrations ?
+12. anything about security, identity and secret management ? 
+13. can you explain how AWS IAM roles, permission boundaries and SCP work to be together in federal traders environment or SSO environment ?
+14. can you walk me through your trouble shooting steps to perform a security incident response when a pod in EKS compromised ?
+15. which monitoring tools did you used ? did you used Aws cloud watch ?
+16. you need to setup log collection for 6 micro services running on EKS and logs should got to cloud watch ? 
+17. can you walk me through the steps how will you configure ?
+18. can you tell me how will you design a multi-tenant EKS cluster to solve several products being network, service, RBAC and cost isolation ?
+19. do you know what is the trade-off between AWS target profile and self managed node groups ?
+20. have you ever work on control plane upgrade process of EKS ?
+21. have you ever implement blue green deployment strategies ?
+22. can you tell me how you implement blue green strategy using terraform and Jenkins ? 
+23. can you explain the architecture of Kubernetes and how components work ?
+24. can you tell me diff btw deployment and stateful sets ?
+25. what do you understand by affinity and taints ? where you have implemented give me a real scenario ?
+26. do you have any exposure in python scripting ? 
+27. can you write terraform script for EKS cluster ? 
+28. How do you restrict an EKS pod so it can only talk to the database and nothing else on the network? Show us the Network Policy you'd write ?
