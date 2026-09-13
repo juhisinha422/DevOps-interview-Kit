@@ -1,3 +1,132 @@
+# Production-Level DevOps Interview Questions & Answers
+
+## AWS | Jenkins | Docker | Kubernetes | Terraform | CI/CD
+
+### 1. Explain your production architecture end-to-end. Which AWS services do you use and why?
+
+In my project, we follow a typical AWS-based application architecture where the application is deployed across multiple layers. The infrastructure is hosted in AWS, with services such as VPC, EC2, ALB, S3, IAM, CloudWatch, RDS and EKS depending on the application requirement. The VPC provides network isolation with public and private subnets, route tables, security groups and NAT/Internet Gateway. For containerized workloads, we use Docker images and deploy them on Kubernetes through EKS. The ALB acts as the entry point for HTTP/HTTPS traffic and distributes requests to the application workloads. S3 is used for object storage such as application artifacts, logs or static files, while RDS is used for relational database requirements. IAM controls access to AWS resources, and CloudWatch is used for monitoring, logs and alarms. From the DevOps side, the code goes through Git, Jenkins CI/CD, Maven build, security/quality checks, Docker image creation and deployment to the target environment. The overall architecture is designed around availability, security, scalability and controlled deployments.
+
+---
+
+### 2. Where do you use EC2? Why EC2 instead of ECS, EKS or Lambda?
+
+I use EC2 mainly when I need more direct control over the operating system, compute resources, networking and installed dependencies. For example, EC2 can be used for Jenkins servers, application workloads or supporting infrastructure where we need OS-level access. I would choose EC2 when the workload requires persistent server-level configuration or when migrating an existing application that is not yet containerized. For containerized microservices, I would prefer EKS because Kubernetes provides orchestration, scaling, service discovery and deployment management. ECS can also be a good choice when we want AWS-managed container orchestration with less Kubernetes complexity. Lambda is more suitable for event-driven, short-running serverless workloads where we don't need to manage servers. So my choice depends on the workload rather than using EC2 everywhere.
+
+---
+
+### 3. Where do you use S3? What data is stored there and how is it secured?
+
+In my projects, S3 can be used for storing application artifacts, static content, backups, logs or other object-based data. For example, Terraform remote state can also be stored in an S3 bucket, with appropriate state-locking mechanisms depending on the Terraform setup. From a security perspective, I keep the bucket private and avoid public access unless there is a specific business requirement. I use IAM policies and bucket policies to control access and follow the principle of least privilege. I also enable encryption at rest, preferably using SSE-S3 or SSE-KMS depending on the security requirement. For sensitive or critical data, I would also enable versioning, access logging where required, lifecycle policies and monitoring. I make sure applications access S3 through IAM roles rather than hardcoded AWS access keys.
+
+---
+
+### 4. An EC2 application becomes slow. How do you troubleshoot CPU, memory, disk and network?
+
+I start by identifying whether the issue is limited to one instance or affecting multiple instances. I check CloudWatch metrics for CPU utilization, network traffic, disk-related metrics and application-level indicators. On the server, I use Linux commands such as `top`, `free`, `df`, `du`, `iostat` and `vmstat` to understand CPU, memory and disk usage. I check whether the disk is full, whether there is excessive I/O wait, whether a process is consuming abnormal resources and whether there is memory pressure or swapping. For networking, I check packet flow, network utilization, security groups, connectivity to dependent services and application response times. I also review application and system logs around the time the issue started. Once I identify the bottleneck, I take the appropriate action, such as restarting a faulty process, cleaning disk space, scaling the instance, fixing an application issue or increasing capacity. I then monitor the metrics again to confirm that performance has recovered.
+
+---
+
+### 5. Users are getting 502 errors through an ALB. How do you troubleshoot?
+
+For an ALB 502 error, I first determine whether the problem is between the client and ALB or between the ALB and backend target. I check the ALB target group and verify the health status of the registered targets. Then I verify the listener configuration, target group port, protocol and health-check configuration. If the backend is running on EC2 or Kubernetes, I verify that the application is actually listening on the expected port and is reachable from the ALB. I check security groups and network connectivity as well. I also review ALB access logs and application logs to identify whether requests are reaching the backend. If it is an EKS workload, I additionally check the Kubernetes Service, Ingress configuration, endpoints and Pods. I would also check whether the application is closing connections unexpectedly or returning invalid responses. After fixing the root cause, I validate the target health and test the application through the ALB URL before considering the incident resolved.
+
+---
+
+### 6. How is IAM managed in your project? How do applications access AWS without storing access keys?
+
+We follow least-privilege access wherever possible. Users and teams are given only the permissions required for their responsibilities, and applications should not have long-lived AWS access keys stored in source code or configuration files. For EC2, applications can use an IAM instance profile or role. In EKS, workloads can use IAM roles for service accounts or the newer EKS Pod Identity approach, depending on the setup. This allows the application to obtain temporary credentials automatically. For CI/CD tools such as Jenkins, I use an IAM role where possible or securely managed credentials when role-based access is not available. I also regularly review permissions and avoid using administrator-level access for normal application operations. The main objective is to eliminate hardcoded credentials and provide controlled, auditable access to AWS resources.
+
+---
+
+### 7. Explain your CI/CD flow from Git commit to production.
+
+My CI/CD flow starts when a developer pushes code to the Git repository. A webhook triggers Jenkins, which starts the pipeline. The pipeline first checks out the required branch and performs the build using Maven for Java applications. We then run unit tests and quality checks such as SonarQube, and security scanning can be integrated using tools such as Trivy or other DevSecOps scanners. After a successful build, the application artifact can be published to Nexus where required. For containerized applications, the Docker image is built and tagged with an appropriate version or commit-based tag and pushed to the container registry. The deployment stage then updates the Kubernetes workload or the target environment. After deployment, I verify Pod status, application health, logs and endpoint availability. In production, I prefer controlled deployments with approvals where required, followed by monitoring through CloudWatch and Kubernetes/application metrics. This provides traceability from the original Git commit to the production deployment.
+
+---
+
+### 8. A Jenkins pipeline suddenly fails without a code change. What do you check?
+
+If Jenkins fails without a code change, I first compare the current failed build with the last successful build. I check the exact stage and error message rather than immediately rerunning the pipeline. Then I verify Jenkins agent availability, disk space, CPU and memory because resource issues can cause unexpected failures. I check whether any plugin, JDK, Maven, Docker version or environment variable changed. I also verify external dependencies such as Git, Nexus, Docker registry, AWS or Kubernetes connectivity. If the failure is related to credentials, I verify whether the credential expired or its permissions changed. I check recent Jenkins configuration or plugin changes as well. If there is no obvious infrastructure issue, I reproduce the failing stage manually on the Jenkins agent. Once the root cause is identified, I fix the environment or dependency and rerun the build, making sure the pipeline itself remains reproducible.
+
+---
+
+### 9. Where do you securely store CI/CD passwords, tokens and API keys?
+
+I never store passwords, API keys or tokens directly in the Jenkinsfile or Git repository. In Jenkins, I use the Jenkins Credentials store and reference credentials securely from the pipeline. Depending on the organization, secrets can also be managed using AWS Secrets Manager, HashiCorp Vault or another approved enterprise secrets-management solution. Access to the secrets is restricted according to the principle of least privilege. Sensitive values should also be masked in Jenkins console output so they are not exposed in logs. I also avoid passing secrets unnecessarily between pipeline stages and rotate credentials periodically. The important point is that credentials should be centrally managed, access-controlled, auditable and never hardcoded into application or pipeline code.
+
+---
+
+### 10. How do you build, tag, store and promote Docker images to production?
+
+After a successful application build and quality checks, I create the Docker image using the application's Dockerfile. I avoid relying only on the `latest` tag because it doesn't provide reliable version traceability. Instead, I prefer immutable tags such as the Git commit ID, build number or application version. The image is scanned for vulnerabilities before being pushed to a container registry such as Amazon ECR or another approved registry. The same tested image should ideally be promoted across environments rather than rebuilding different images for each environment. For production, I deploy the exact image version that passed testing and validation. This provides traceability and makes rollback easier because I can identify and redeploy a previously validated image.
+
+---
+
+### 11. A container is Running, but the application isn't accessible. How do you troubleshoot?
+
+A `Running` container only tells me that the container process hasn't stopped; it doesn't necessarily mean that the application is healthy or reachable. I first check the container logs to see whether the application started successfully. Then I verify which port the application is actually listening on inside the container and compare it with the Docker port mapping or Kubernetes Service configuration. I check whether the application is bound to the correct interface, because binding only to localhost can prevent external access. I also verify environment variables, configuration files and dependencies such as databases. If Kubernetes is involved, I check the Pod, Service, endpoints, readiness probe and network policies. I then test connectivity from inside the network or from another Pod. This helps me determine whether the problem is with the application itself, container networking or the external routing layer.
+
+---
+
+### 12. Where and why is Kubernetes used in your project?
+
+Kubernetes is used for running and managing containerized applications, particularly when we have multiple services that need consistent deployment, scaling and service management. In AWS, EKS provides the managed Kubernetes control plane while we manage the workloads and required configurations. We use Kubernetes Deployments to manage application replicas, Services for internal connectivity and ConfigMaps/Secrets for configuration. Kubernetes also provides self-healing by recreating failed Pods and supports rolling deployments and scaling. For production workloads, this is useful because application availability and deployment consistency become easier to manage. Instead of manually managing individual containers on servers, Kubernetes gives us an orchestration layer for the complete application lifecycle.
+
+---
+
+### 13. A production Pod enters CrashLoopBackOff. What do you check?
+
+When a Pod enters `CrashLoopBackOff`, I first check the Pod details and events using `kubectl describe pod` and review the container logs. I look for application startup errors, incorrect environment variables, missing configuration, dependency failures or invalid command/arguments. I also check the previous container logs because the current container may have already restarted. Then I verify ConfigMaps, Secrets, mounted volumes and service connectivity. I check whether the container is being killed due to an incorrect health probe or resource limits. If I see an OOMKilled status, I investigate memory consumption and resource limits. I also check whether the image version or deployment configuration changed in the latest release. Once I identify the cause, I fix the configuration or application issue, redeploy and monitor the Pod until it remains stable.
+
+---
+
+### 14. A Deployment needs 5 replicas, but only 3 are Ready. What do you investigate?
+
+I first check the Deployment and ReplicaSet status to understand whether Kubernetes successfully created all five Pods. Then I check the status of each Pod and use events to identify scheduling, image-pull, resource or configuration problems. If two Pods are Pending, I investigate node capacity, CPU/memory requests, taints, affinity and scheduling constraints. If they are Running but not Ready, I check readiness probes and application health. I also check whether there is a problem pulling the container image or accessing Secrets and ConfigMaps. On the node side, I verify available resources and node health. Once the cause is identified, I correct the underlying issue rather than simply restarting Pods. Finally, I verify that all five replicas become Ready and that the application is receiving traffic correctly.
+
+---
+
+### 15. How do Kubernetes applications receive configuration and secrets?
+
+For non-sensitive configuration, I use Kubernetes ConfigMaps. Examples include environment-specific application settings, URLs or feature configurations that are not confidential. For sensitive information such as passwords, tokens and credentials, I use Kubernetes Secrets or an external secrets-management solution such as AWS Secrets Manager depending on the architecture and security requirements. Applications can consume them through environment variables or mounted volumes. I make sure secrets are not committed to Git repositories in plain text. Access is controlled through Kubernetes RBAC and AWS IAM where applicable. In production, I also consider encryption and external secret-management solutions so that sensitive information is not unnecessarily stored or exposed within the application deployment process.
+
+---
+
+### 16. Where is Terraform used in your project? What infrastructure does it manage?
+
+I use Terraform as Infrastructure as Code to provision and manage AWS infrastructure consistently. Depending on the project, Terraform can manage resources such as VPCs, subnets, route tables, security groups, EC2 instances, IAM roles, S3 buckets, RDS resources and EKS-related infrastructure. Instead of manually creating infrastructure through the AWS Console, we define the desired infrastructure in Terraform configuration files. Changes are reviewed through Git before being applied. I use variables and reusable modules where appropriate so that the same infrastructure patterns can be maintained across environments. Terraform also provides a clear history of infrastructure changes and helps reduce configuration inconsistencies between environments.
+
+---
+
+### 17. How does your team handle Terraform remote state, locking and concurrent changes?
+
+For team-based Terraform usage, we store the Terraform state remotely rather than keeping it only on an engineer's local machine. In AWS environments, S3 is commonly used as the remote backend for state storage, with encryption and versioning enabled. State locking prevents multiple engineers or CI/CD jobs from modifying the same infrastructure simultaneously. Depending on the Terraform version and backend configuration, locking can be implemented using the supported locking mechanism for the chosen backend. We also use Git-based workflows so infrastructure changes are reviewed before applying them. In production, I prefer running Terraform through a controlled CI/CD process so that concurrent manual changes are minimized and there is a clear audit trail.
+
+---
+
+### 18. Someone manually changes Terraform-managed AWS infrastructure. How do you detect and handle the drift?
+
+Terraform detects infrastructure drift during the planning phase by comparing the actual infrastructure with the desired configuration and the Terraform state. I would run `terraform plan` and review the proposed changes. If someone manually changed a Terraform-managed resource, Terraform will generally identify the difference and show what would need to change to bring the infrastructure back to the declared configuration. Before applying anything, I verify whether the manual change was intentional. If it was an approved change, I update the Terraform code so the configuration becomes the source of truth. If it was unauthorized, I revert it through Terraform after confirming the impact. I avoid blindly running `terraform apply` in production because I first need to understand why the drift happened and whether restoring the declared configuration could cause an outage.
+
+---
+
+### 19. A new production release causes errors. How do you safely roll back and verify recovery?
+
+If a new release causes production errors, my first priority is to reduce customer impact. I check application health, error rates, logs and the deployment history to confirm that the problem correlates with the new release. If the previous version is known to be stable, I roll back to the last known-good version using the deployment mechanism. With Kubernetes, for example, we can use the Deployment rollout history and rollback capabilities or redeploy the previously validated image tag. After rollback, I verify that Pods become Ready and that traffic is successfully reaching the application. I then test critical application functionality and monitor metrics, logs and error rates to confirm recovery. After stabilization, I perform root-cause analysis and document the issue before attempting another release.
+
+---
+
+### 20. Production is down, but EC2 instances and Pods look healthy. What do you check next?
+
+If the compute layer looks healthy but users cannot access the application, I move up the stack instead of assuming the infrastructure is fine. I check the ALB or load balancer health, listeners, target groups and routing configuration. Then I verify DNS resolution and whether the domain is pointing to the correct endpoint. For Kubernetes, I check Services, Ingress resources, endpoints and network policies. I also check security groups, NACLs and any recent networking changes. After that, I investigate dependent services such as databases, APIs, DNS, authentication services or external integrations. I review CloudWatch, ALB access logs and application logs to identify where the request is failing. The objective is to trace the request path from the user through DNS, load balancer, Kubernetes networking and application dependencies until I find the actual failure point.
+
+---
+
+### 21. Explain one production issue you handled: root cause → fix → verification → prevention.
+
+One production issue I worked on was related to an OpenSearch cluster where the cluster entered a yellow state and a significant number of replica shards remained unassigned. The cluster had two data nodes, and resource utilization, particularly CPU, became very high as the workload increased. I first checked the clu
+
+
 # 🚀 DevOps Production Troubleshooting Scenarios
 
 ## Introduction
