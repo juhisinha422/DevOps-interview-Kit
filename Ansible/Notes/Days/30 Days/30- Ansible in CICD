@@ -1,0 +1,75 @@
+𝗗𝗮𝘆 𝟮𝟵/𝟯𝟬 – 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗶𝗻 𝗖𝗜/𝗖𝗗 & 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗗𝗲𝘃𝗢𝗽𝘀
+
+Continuing my #30DaysOfAnsible journey! 🔥
+
+Today I focused on one of the most practical use cases of Ansible — integrating it with CI/CD pipelines.
+
+In real-world DevOps environments, Ansible is rarely used manually. It is often triggered automatically by CI/CD tools after code is tested and approved.
+
+🔄 𝗛𝗼𝘄 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗙𝗶𝘁𝘀 𝗶𝗻𝘁𝗼 𝗖𝗜/𝗖𝗗
+
+A typical flow looks like:
+
+Developer
+   ↓
+Git Push
+   ↓
+CI Pipeline
+   ↓
+Build & Test
+   ↓
+Ansible Playbook
+   ↓
+Deploy
+   ↓
+Verify
+
+⚙️ 𝗘𝘅𝗮𝗺𝗽𝗹𝗲
+
+A CI pipeline can execute:
+
+ansible-playbook -i inventory.ini deploy.yml
+
+The playbook could then deploy an application:
+
+- name: Deploy Application
+  hosts: app_servers
+  become: true
+
+  tasks:
+    - name: Pull latest application code
+      ansible.builtin.git:
+        repo: https://lnkd.in/gZRaTuDd
+        dest: /opt/app
+        version: main
+
+    - name: Restart application
+      ansible.builtin.service:
+        name: myapp
+        state: restarted
+
+🚀 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗨𝘀𝗲 𝗖𝗮𝘀𝗲𝘀
+
+Ansible can be used in CI/CD for:
+
+✅ Application deployments
+✅ Server configuration
+✅ Rolling deployments
+✅ Environment provisioning
+✅ Configuration updates
+✅ Post-deployment validation
+✅ Automated rollback workflows
+
+🔐 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗠𝗮𝘁𝘁𝗲𝗿𝘀
+
+Never hardcode passwords, API keys, or other secrets inside playbooks.
+
+Use Ansible Vault or integrate Ansible with your organization's secret-management solution.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Ansible becomes much more powerful when it moves from manual execution → automated CI/CD workflows.
+
+The goal isn't just to automate deployment.
+
+It's to make deployments repeatable, consistent, and reliable. 🚀
