@@ -1,0 +1,17 @@
+𝟏𝟓 𝐀𝐝𝐯𝐚𝐧𝐜𝐞𝐝 𝐀𝐳𝐮𝐫𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬
+
+1. An Azure VM is running, but the application is unreachable. How would you troubleshoot NSGs, route tables, OS firewalls, and application issues?
+2. Your application stops connecting to Azure Storage after enabling a private endpoint. How would you troubleshoot DNS and network connectivity?
+3. VNet A is peered with B, and B is peered with C. Can A communicate with C automatically? How would you design the connectivity?
+4. How do you choose between Azure Load Balancer, Application Gateway, and Azure Front Door for a production application?
+5. What happens if an entire availability zone fails? How would you design your application and database to stay available?
+6. Your Azure bill suddenly doubles without increased traffic. How would you identify the cause and reduce costs safely?
+7. An application uses a managed identity but cannot access Azure Key Vault. How would you troubleshoot permissions and connectivity?
+8. How do you safely manage Azure subscriptions, RBAC, and Azure Policy across multiple teams and environments?
+9. AKS pods are stuck in Pending even though cluster autoscaling is enabled. What would you investigate?
+10. Your AKS application returns intermittent 502 errors through Application Gateway. How would you identify and fix the issue?
+11. How do you securely authenticate Azure DevOps pipelines to Azure without storing long-lived client secrets?
+12. How do you deploy application and database changes with minimal downtime—and roll back safely if something fails?
+13. Your application is slow, but VM CPU and memory look normal. How would you investigate using Azure Monitor and Application Insights?
+14. How do you design cross-region disaster recovery, define RTO and RPO, and test failover without disrupting production?
+15. Describe a real production incident involving Azure infrastructure. How did you identify the root cause, restore service, and prevent recurrence?
