@@ -1,0 +1,21 @@
+Kubernetes Probes vs Load Balancer Health Checks
+
+A service can appear healthy inside Kubernetes but still be unavailable to users through the load balancer.
+
+That’s because Kubernetes probes and load balancer health checks serve different purposes:
+- Liveness Probe
+Checks whether a container should be restarted when it becomes unhealthy.
+- Readiness Probe
+Determines whether a pod is ready to receive traffic from a Kubernetes Service.
+- Startup Probe
+Gives slow-starting applications time to initialize before liveness and readiness checks begin.
+- Load Balancer Health Check
+Checks whether a backend endpoint is reachable and capable of serving external traffic.
+
+Common Production Issue
+Your readiness probe may return 200 OK, but the load balancer could still fail because of:
+- Incorrect health-check paths or ports
+- Firewall or security-group restrictions
+- Misconfigured target groups
+- Network policies blocking traffic
+- Health checks reaching the wrong endpoint
