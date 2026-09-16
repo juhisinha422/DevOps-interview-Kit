@@ -1,0 +1,28 @@
+1) What is docker?
+2) container runtime 
+3) Advantages of using volumes in docker( are they ephemeral?)
+4) Difference between Docker compose file and Docker file
+5) Basic syntax of Docker file( difference between RUN, CMD, ENTRYPOINT)
+6) What is Multistage build?
+7) Distroless Docker Image
+8) what to do if we have to change variables inside a running docker container without stopping it.
+
+1) what is IaC?
+2) Basic commands:- terraform apply, terraform plan, terraform init, terraform destroy.
+3) difference between terraform validate and terraform fmt.
+4) significance of state file in terraform 
+
+1) Dns troubleshooting
+2) Difference between services and processes in linux
+3) basic commands:- rename files, Check logs, check ram, check cpu, change permissions 
+4) what happens when we open a website?
+5) How to configure wordpress?
+6) what is shebang?
+7) viewing the permission of a file - sticky files, SUID and different ways to change permissions 
+8) how to make a service work even after restarting 
+9) troubleshooting ssh issues
+
+1) Difference between GitHub Actions and Jenkins, when to choose which and why?
+2) Explain the stages of CI/CD
+3) What is Kubernetes? Basic working
+4) What is ArgoCD? What is App of App concept?
