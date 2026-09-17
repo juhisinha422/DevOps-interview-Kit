@@ -1,0 +1,11 @@
+Explain what a Helm release is, and how it is different from a chart.
+
+In Helm a release is a running, deployed instance of a Helm chart inside a Kubernetes cluster
+
+1.Helm release it consists of actual running Kubernetes resources (Pods, Services, etc.). Helm chart is a compressed file (.tgz), or a repository.
+
+2.we can deploy the same chart multiple times to create separate releases (e.g., frontend-dev and frontend-prod). we only need one chart for an application.
+
+3. Helm stores release information dynamically as Kubernetes Secrets within the cluster itself. It doesn't need an external database to track what is currently running.
+
+4. Every time we update a release (e.g., changing an environment variable or upgrading the image version via helm upgrade), Helm increments the revision number (Revision 1, Revision 2, etc.). If an upgrade fails, we can instantly rollback the specific release to a previous stable revision using helm rollback.
