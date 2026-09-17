@@ -1,3 +1,189 @@
+# 🐳 Docker Interview Questions & Answers
+
+## Production-Level Scenarios — 4 Years DevOps Experience
+
+---
+
+# 🐳 Docker Fundamentals & Troubleshooting
+
+## 1️⃣ A container is running, but the application isn't accessible from the browser. How would you troubleshoot it?
+
+If the container is running but the application is not accessible from the browser, I would troubleshoot it layer by layer. First, I would verify that the container is actually running and check its logs for application errors. Then I would check which port the application is listening on inside the container and verify whether the application is bound to `0.0.0.0` instead of only `localhost`. Next, I would check the Docker port mapping. For example, if the application listens on port 80 inside the container, I need an appropriate host mapping such as `8080:80` to access it through port 8080 on the host. I would also verify Docker networking, host firewall or security-group rules if the application is running on AWS. If the container is behind a reverse proxy or load balancer, I would additionally check its target health and routing configuration. I would use container logs, `docker inspect`, port information and network details to identify exactly where the request is failing.
+
+---
+
+## 2️⃣ What is the difference between CMD and ENTRYPOINT? When would you use each?
+
+`CMD` and `ENTRYPOINT` both define what runs when a container starts, but they are intended for slightly different purposes. I generally use `ENTRYPOINT` when the container represents a specific executable or application that should always run, while `CMD` is useful for providing default arguments or a default command that can easily be overridden. For example, I might use an entrypoint for a Python application and use CMD to provide default arguments. Another important point is that when both are defined, `CMD` can provide default parameters to the `ENTRYPOINT`. In production Dockerfiles, I prefer the exec form because it handles signals properly and makes the application process the container's main process. The choice depends on whether I want the main executable to be fixed or easily replaceable at runtime.
+
+---
+
+## 3️⃣ Your Docker image is 2 GB. How would you reduce its size?
+
+I would first inspect the image layers to identify where most of the size is coming from. Then I would select a smaller base image where it is compatible with the application and remove unnecessary packages and dependencies. I would use a multi-stage Docker build so that build tools such as Maven, compilers and development dependencies remain in the builder image and only the final runtime artifact is copied into the production image. I would also optimize the Dockerfile layer structure, use a proper `.dockerignore`, remove package-manager caches and avoid copying unnecessary files such as `.git`, logs and local build artifacts. For example, for a Java application, I can build the JAR in a Maven builder stage and copy only the final JAR into a lightweight Java runtime image. I would then compare the image size before and after the optimization and verify that application functionality has not changed.
+
+---
+
+## 4️⃣ What is a multi-stage Docker build, and why is it useful in production?
+
+A multi-stage Docker build allows me to use multiple stages in a single Dockerfile. Typically, I use one stage as the builder where I install all required development tools and compile the application, and another stage as the final runtime image. Only the required application artifact is copied from the builder stage into the final image. This significantly reduces the production image size because tools such as compilers, Maven, source code and build dependencies are not included in the final container. It also reduces the attack surface and makes deployments faster. For example, in a Java application, Maven can build the JAR in the first stage, while the final stage contains only the JRE or runtime required to execute that JAR. This is particularly useful in production because smaller images are easier and faster to transfer, scan and deploy.
+
+---
+
+## 5️⃣ A container stops immediately after starting. How would you identify the root cause?
+
+I would first check the container status and inspect the container logs because the application may have exited with an error during startup. I would also inspect the container's exit code and configuration to understand why the main process terminated. Since a Docker container continues running only while its main process is running, if that process finishes or crashes, the container stops. I would check whether the `CMD` or `ENTRYPOINT` is correct, whether required environment variables are available, whether configuration files exist and whether the application has permission to access required resources. If necessary, I can start the container interactively and inspect the environment or override the command for debugging. I would also verify dependencies such as databases or external services. The important point is to find why the main application process exits rather than simply restarting the container repeatedly.
+
+---
+
+# 💾 Storage & Persistence
+
+## 6️⃣ What happens to container data when the container is deleted?
+
+Data written to a container's writable layer is generally lost when the container is deleted. Containers are designed to be ephemeral, so I don't depend on the container filesystem for persistent application data. If data needs to survive container restarts, replacement or deletion, I store it outside the container using Docker volumes, bind mounts or an external persistent storage service. For example, I would use a Docker volume for persistent database data in a Docker-based environment. In AWS or Kubernetes production environments, I would typically use appropriate persistent storage such as EBS/EFS or a managed database depending on the workload. The principle is to keep application containers replaceable while keeping important data persistent.
+
+---
+
+## 7️⃣ Explain Docker volumes vs. bind mounts. When would you use each?
+
+A Docker volume is managed by Docker and stored in Docker's storage area, whereas a bind mount maps a specific directory or file from the host filesystem directly into the container. I prefer volumes for persistent application data because Docker manages them and they are less dependent on the host's directory structure. For example, a database container can store its database files in a named Docker volume. Bind mounts are useful when I specifically need to share host files with a container, especially during local development. For example, I might bind-mount my source-code directory into a development container so changes are immediately visible. In production, I generally prefer managed volumes or external persistent storage rather than tightly coupling the container to a particular host filesystem.
+
+---
+
+# 🌐 Networking
+
+## 8️⃣ Two containers need to communicate with each other. How would you configure Docker networking?
+
+I would place both containers on the same user-defined Docker network. Once they are connected to the same custom network, Docker provides internal DNS-based service discovery, allowing one container to communicate with another using the container or service name rather than relying on changing IP addresses. For example, if I have an application container and a MySQL container, the application can connect to the database using the MySQL service name as the hostname. I would also make sure that the application connects to the correct internal container port rather than unnecessarily publishing the database port to the host. This keeps the communication internal to the Docker network and reduces unnecessary exposure.
+
+---
+
+## 9️⃣ Why would you use a custom bridge network instead of Docker's default bridge network?
+
+A custom bridge network provides better isolation and service discovery compared with relying on Docker's default bridge network. Containers connected to a user-defined bridge network can communicate with each other using container names through Docker's embedded DNS. It also allows me to logically separate different application stacks. For example, I can create an application network containing the Flask application and MySQL database while keeping unrelated containers outside that network. This improves organization, isolation and troubleshooting. In production-like Docker Compose environments, custom networks are generally the preferred approach.
+
+---
+
+## 🔟 Explain the difference between `EXPOSE 80` and `-p 8080:80`.
+
+`EXPOSE 80` is mainly metadata in the Docker image indicating that the application expects to listen on port 80 inside the container. It does not actually make the application accessible from the host or Internet. The `-p 8080:80` option creates an actual port mapping from port 8080 on the Docker host to port 80 inside the container. So if my application listens on port 80 inside the container and I run it with `-p 8080:80`, I can access it through port 8080 on the host. In simple terms, **EXPOSE documents the container port, while `-p` publishes and maps the port**.
+
+---
+
+# 🔍 Real-World Debugging
+
+## 1️⃣1️⃣ Your application container cannot connect to a MySQL container. What would you check first?
+
+I would first verify that both containers are running and connected to the same Docker network. Then I would check the MySQL container logs to confirm that the database started successfully and is ready to accept connections. I would verify that the application is using the MySQL container or service name as the hostname rather than `localhost`. Inside the application container, `localhost` refers to the application container itself, not the MySQL container. I would also verify the MySQL port, database name, username and password and make sure the credentials match the MySQL configuration. If authentication is correct, I would check network connectivity and firewall rules if the setup involves external networking. In Docker Compose, I would also use a MySQL health check so that the application doesn't assume the database is ready immediately after the database container starts.
+
+---
+
+## 1️⃣2️⃣ What's the difference between `docker stop` vs `docker kill` vs `docker rm`?
+
+`docker stop` gracefully stops a running container by sending a termination signal and allowing the application some time to shut down cleanly. I would normally use this for normal operational shutdowns because the application gets an opportunity to close connections and flush data. `docker kill` forcefully terminates the container, so I would use it when the application is unresponsive or does not stop gracefully. `docker rm` removes the stopped container itself; it does not simply stop a running application. In production, I prefer graceful termination first and use forceful actions only when necessary because abrupt termination can lead to incomplete requests or other operational issues.
+
+---
+
+## 1️⃣3️⃣ A container is consuming extremely high CPU or memory. How would you investigate it?
+
+I would first identify the affected container and check its CPU and memory consumption using Docker resource monitoring. Then I would inspect the application logs and determine whether there is an unusual workload, memory leak, infinite loop or sudden increase in traffic. I would compare the current resource usage with historical behavior if monitoring is available. For memory issues, I would check whether the container was OOM-killed and inspect the application's memory behavior. For CPU issues, I would investigate application threads, request volume and potentially inefficient processing. I would also check whether the container has appropriate resource limits. If necessary, I would temporarily scale the workload or increase resources to stabilize the service, but I would continue investigating the underlying application issue rather than treating resource increases as the permanent solution.
+
+---
+
+## 1️⃣4️⃣ How can you limit CPU and memory resources for a Docker container?
+
+Docker allows me to define resource limits when starting a container. I can specify a maximum memory allocation and CPU constraints so that one container cannot consume all resources on the host. This is particularly important when multiple containers share the same machine. For example, I might assign a defined memory limit to an application and restrict its CPU usage based on the workload. I would choose these values based on application profiling and monitoring rather than arbitrary numbers. In production, I would also monitor whether the container is regularly reaching its limits because a limit that is too low can cause performance issues or OOM kills, while an excessively high limit can allow one workload to starve others.
+
+---
+
+## 1️⃣5️⃣ What happens when the main PID (PID 1) inside a container stops?
+
+The main process inside a Docker container runs as PID 1. When that process exits, Docker considers the container's main process finished and the container stops. This is why the application process must remain running for the lifetime of the container. PID 1 also has special responsibilities around signal handling and child-process management. If the application does not handle termination signals correctly, graceful shutdown can become difficult. For production containers, I prefer running the actual application as the main process using the exec form of `ENTRYPOINT` or `CMD`, and I make sure the application handles signals properly so it can shut down cleanly.
+
+---
+
+# 🔐 Docker Security
+
+## 1️⃣6️⃣ Why is running containers as the root user considered a security risk?
+
+Running an application as root inside a container increases the potential impact of a container compromise. Containers provide isolation, but they are not the same as a complete virtual machine boundary. If an attacker exploits a vulnerability and gains elevated privileges inside the container, running as root can provide unnecessary privileges and potentially increase the impact of an escape or host-level misconfiguration. I therefore prefer creating a dedicated non-root user in the Dockerfile and running the application with that user whenever possible. I also use minimal base images, regularly scan images for vulnerabilities, avoid unnecessary Linux capabilities and follow the principle of least privilege. Container security should be considered across the image, runtime, network and access-control layers.
+
+---
+
+## 1️⃣7️⃣ How would you securely pass passwords, API keys, and database credentials to containers?
+
+I would never hardcode sensitive credentials in the Dockerfile or commit them to Git. I would inject secrets at runtime using an appropriate secret-management mechanism. In local Docker environments, Docker secrets or environment-based mechanisms can be used depending on the setup, but for production I prefer a dedicated secret manager such as AWS Secrets Manager or another organization-approved solution. In Kubernetes environments, I can integrate the workload with a secret-management solution and control access using IAM or Kubernetes RBAC. I would also make sure secrets are not printed in application logs or CI/CD output and implement credential rotation. The important principle is that the container image should remain reusable without containing environment-specific credentials.
+
+---
+
+# 📦 Images & CI/CD
+
+## 1️⃣8️⃣ What's the difference between Docker image layers and a container's writable layer?
+
+A Docker image is made up of multiple read-only layers. Each instruction in the Dockerfile can create a layer, and these layers can be reused when building or running multiple containers from the same image. When I start a container, Docker adds a writable layer on top of those read-only image layers. Any changes made inside the running container are written to that writable layer unless they are stored through a mounted volume or another external storage mechanism. The writable layer belongs to that particular container and is removed when the container is deleted. Understanding this helps with image optimization because efficient layer reuse can improve build and deployment performance, while persistent application data should not depend on the container's writable layer.
+
+---
+
+## 1️⃣9️⃣ Your Docker image works perfectly on your laptop but fails in CI/CD or production. How would you troubleshoot the difference?
+
+I would first compare the exact image digest or image version being used in all environments to make sure CI/CD and production are actually running the same image. Then I would compare environment variables, mounted files, configuration, network connectivity, credentials and runtime versions. I would inspect the container logs and exit codes in the failing environment. I would also check whether the application is depending on something that exists only on my laptop, such as a local file, localhost service, installed package or specific architecture. Another common issue is building the image differently in different environments, so I prefer reproducible builds and immutable versioned image tags. I would also check CPU architecture differences, permissions and external dependencies. My objective would be to identify the environmental difference rather than modifying production blindly.
+
+---
+
+# 🚀 Docker Compose & Production
+
+## 2️⃣0️⃣ You have a Flask + MySQL application. How would you design the Docker Compose setup with Services, Networking, Environment Variables, Volumes, Health Checks and Dependencies?
+
+For a Flask and MySQL application, I would define at least two services in Docker Compose: an `app` service for Flask and a `db` service for MySQL. Both services would communicate over a dedicated Compose network, and the Flask application would connect to MySQL using the database service name rather than `localhost`. I would keep environment-specific configuration outside the Docker image and provide database connection details through environment variables or a secure secret mechanism. For MySQL, I would use a named Docker volume so that database data persists even if the MySQL container is recreated. I would configure a health check for MySQL to verify that the database is actually ready to accept connections. The Flask service can depend on the database service, but I would not rely only on `depends_on` because container startup order does not necessarily mean the database is ready. The application itself should also handle temporary dependency failures gracefully. I would expose only the ports that actually need to be accessed from outside the Compose network, while keeping the database internal when external access is unnecessary.
+
+A typical production-oriented structure would conceptually look like this:
+
+```yaml
+services:
+
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: application_db
+      DB_USER: app_user
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: application_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
+```
+
+For an actual production environment, I would additionally consider using a dedicated secret-management solution instead of storing sensitive credentials in a plain `.env` file, use a production-grade database service where appropriate, add application health checks, configure restart policies, logging and monitoring, and avoid exposing the MySQL port publicly unless there is a specific requirement.
+
+---
+
+# ⚡ Bonus: Production Scenario Questions
+
+## ❓ What happens when a container crashes?
+
+When a container's main 
+
 # 🐳 Docker Production Interview Questions & Answers
 
 **Target Role:** DevOps / Cloud Engineer
