@@ -1,3 +1,334 @@
+# 🚀 DevOps Engineer Interview Questions & Answers
+
+## 4 Years Experience | Linux | Shell Scripting | Docker | Kubernetes | CI/CD | Cloud | Terraform
+
+---
+
+# 🐧 LINUX + SHELL SCRIPTING
+
+## 01) How would you troubleshoot high CPU usage on a production Linux server?
+
+**Answer:**
+
+If I see high CPU usage on a production Linux server, I first identify whether the CPU is being consumed by user processes, system processes, I/O wait, or something like a runaway process. I usually start with `top` or `htop` and then use commands such as `ps -eo pid,ppid,cmd,%cpu --sort=-%cpu` to identify the processes consuming the most CPU. I check CPU load using `uptime` and `vmstat`, and if required, I investigate the specific process further using logs, thread information, or application metrics. I also check whether the issue is temporary or continuously increasing. After identifying the root cause, I take the safest corrective action, such as restarting an unhealthy application, optimizing the workload, or scaling the server, while making sure the production impact is minimized.
+
+---
+
+## 02) How would you identify memory leaks and OOM kills?
+
+**Answer:**
+
+I would first check the server's memory utilization using `free -m`, `top`, `vmstat`, and `ps` to identify processes consuming excessive memory. I would look at memory usage over time because a continuously increasing memory footprint can indicate a memory leak. For OOM situations, I would check `dmesg`, `journalctl`, and system logs for messages containing `Out of memory` or `Killed process`. In a containerized environment, I would also check Kubernetes events and container memory limits because a container can be OOMKilled even when the node still has available memory. Once I identify the application responsible, I would review application logs, heap or process metrics, and memory limits and then fix the application or tune the resource configuration.
+
+---
+
+## 03) How would you debug intermittent network connectivity from Linux?
+
+**Answer:**
+
+For intermittent network connectivity, I would first determine whether the issue is with the local server, DNS, network path, firewall, or remote application. I would use `ping` for basic connectivity, `ip addr` and `ip route` to verify interfaces and routing, and `ss` or `netstat` to inspect connections. I would use `traceroute` or `tracepath` to understand where packets are failing and `curl` or `nc` to test connectivity to a specific application port. I would also check packet loss, interface errors, firewall rules, security groups, and system logs. If the issue happens only periodically, I would correlate the failures with application logs, network metrics, load balancer metrics, and infrastructure events to identify the pattern.
+
+---
+
+## 04) Write a Bash approach to monitor disk usage and alert on thresholds.
+
+**Answer:**
+
+I would create a Bash script that checks disk utilization using `df -h` or `df -P`, extracts the percentage for the required filesystem, compares it with a defined threshold such as 80 or 90 percent, and sends an alert if the threshold is crossed. In production, I would avoid hardcoding everything and make the threshold, filesystem, and notification destination configurable. I would also include logging and proper error handling so that the monitoring script itself can be diagnosed if it fails. For example, the basic logic would be: check disk usage, compare usage with the threshold, identify the filesystem, and send an email, Slack, or monitoring-system alert when the threshold is exceeded.
+
+---
+
+## 05) How would you safely manage processes, signals and graceful shutdowns?
+
+**Answer:**
+
+I first identify the process using `ps`, `pgrep`, or `pidof` and understand what the process is doing before terminating it. I prefer sending `SIGTERM` using `kill -15` because it gives the application an opportunity to close connections, flush data, and shut down cleanly. I use `SIGKILL` only as a last resort when the process is not responding. In production applications, I also make sure the service supports graceful shutdown and that systemd, Docker, or Kubernetes has an appropriate termination grace period. In Kubernetes, I would use lifecycle hooks when necessary and make sure readiness is removed before termination so traffic is not sent to a shutting-down application.
+
+---
+
+## 06) How would you troubleshoot DNS, ports and connection failures?
+
+**Answer:**
+
+I troubleshoot these issues layer by layer. For DNS, I use `nslookup`, `dig`, or `getent hosts` to verify name resolution. For ports, I use `ss -lntp` or `nc` to determine whether the required service is listening and reachable. I then test the actual application using `curl` or another appropriate client. If DNS resolves correctly but the port is unreachable, I check routing, firewall rules, security groups, network ACLs, load balancers, and service configuration. In Kubernetes, I additionally check Services, Endpoints or EndpointSlices, CoreDNS, NetworkPolicies, and the Pod's listening port.
+
+---
+
+## 07) How would you automate log analysis using Bash and standard Unix tools?
+
+**Answer:**
+
+I would use standard Unix tools such as `grep`, `awk`, `sed`, `cut`, `sort`, `uniq`, `head`, and `tail` to extract useful information from application and system logs. For example, I can filter errors using `grep`, extract timestamps or status codes using `awk`, and count repeated errors using `sort | uniq -c | sort -nr`. For continuous monitoring, I can use `tail -F` and combine it with a script that detects specific error patterns and triggers alerts. For production environments, I would generally integrate this approach with centralized logging such as CloudWatch, OpenSearch, ELK, or another observability platform rather than relying only on local scripts.
+
+---
+
+# 🐳 DOCKER + CONTAINERS
+
+## 08) How would you reduce Docker image size and build time?
+
+**Answer:**
+
+I would first inspect the image layers to identify where unnecessary size is coming from. I normally use a minimal base image where practical, remove unnecessary packages and temporary files, and use multi-stage Docker builds so build dependencies are not included in the final runtime image. I also optimize the Dockerfile by ordering layers properly and using `.dockerignore` to avoid sending unnecessary files to the build context. For build speed, I take advantage of Docker layer caching and avoid invalidating frequently used layers unnecessarily. I would also pin appropriate base image versions and regularly scan and update them.
+
+---
+
+## 09) How would you troubleshoot a container that repeatedly restarts?
+
+**Answer:**
+
+I would first check the container status and inspect its logs to understand why the application is exiting. In Docker, I would use `docker ps`, `docker logs`, and `docker inspect`. I would check the container's exit code, command, environment variables, mounted volumes, network configuration, and resource limits. If the application starts and immediately exits, I would verify whether the entrypoint or command is correct. If the container is being killed because of resource constraints, I would check CPU and memory usage. In Kubernetes, I would additionally check `kubectl describe pod`, container logs including previous logs, events, probes, and OOMKilled status.
+
+---
+
+## 10) Explain container networking and DNS troubleshooting.
+
+**Answer:**
+
+Docker containers communicate through Docker networks, and containers on the same user-defined network can communicate using container or service names. When troubleshooting networking, I first check the network configuration and container IP using `docker inspect`. I verify whether both containers are connected to the expected network and test connectivity from inside the container. For DNS issues, I check `/etc/resolv.conf` and test name resolution from the container. In Kubernetes, I check the Service DNS name, CoreDNS Pods and logs, Service selectors, EndpointSlices, and NetworkPolicies. I also verify that the application is listening on the expected interface and port.
+
+---
+
+## 11) How would you securely manage secrets in containerized workloads?
+
+**Answer:**
+
+I would never hardcode passwords, API keys, or tokens inside Dockerfiles, source code, or Git repositories. In a CI/CD environment, I would store secrets in a secure secret-management system such as AWS Secrets Manager, AWS Systems Manager Parameter Store, HashiCorp Vault, or the CI/CD platform's protected secret store. In Kubernetes, I can use Kubernetes Secrets, preferably integrated with an external secret manager when stronger centralized management is required. I would also follow least-privilege access, encrypt secrets at rest and in transit, rotate credentials regularly, and make sure secrets are not exposed in logs or build output.
+
+---
+
+## 12) How would you investigate container CPU and memory throttling?
+
+**Answer:**
+
+I would compare the container's CPU and memory usage against its configured requests and limits. In Kubernetes, I would check `kubectl top pod`, Pod specifications, events, and metrics from the monitoring system. CPU throttling can occur when a container reaches its CPU limit, while memory pressure can result in OOMKilled if the container exceeds its memory limit. I would determine whether the configured resources accurately represent the application's workload. Based on historical metrics and application behavior, I would tune requests and limits and use HPA or node scaling where appropriate.
+
+---
+
+## 13) How would you scan images and prevent vulnerable builds?
+
+**Answer:**
+
+I would integrate container image scanning into the CI/CD pipeline using tools such as Trivy or another approved vulnerability scanner. The pipeline should scan the image after building it and before pushing or deploying it. I would configure severity-based quality gates so critical or high vulnerabilities can fail the pipeline according to the organization's security policy. I would also use trusted and minimal base images, keep dependencies updated, avoid running containers as root where possible, and periodically rescan images because new vulnerabilities can be discovered after the image was originally built.
+
+---
+
+# ☸️ KUBERNETES
+
+## 14) How would you troubleshoot a Pod stuck in CrashLoopBackOff?
+
+**Answer:**
+
+CrashLoopBackOff means the container is repeatedly starting and failing, and Kubernetes is progressively increasing the restart delay. I first check `kubectl get pods` and then use `kubectl describe pod` to inspect events. I check the current and previous container logs using `kubectl logs` and `kubectl logs --previous`. I investigate application configuration, environment variables, Secrets, ConfigMaps, dependencies, startup commands, probes, and resource limits. If the container is being OOMKilled, I investigate memory usage and limits. I also verify whether the application is failing because a required database, API, or other dependency is unavailable.
+
+---
+
+## 15) How would you debug Pending Pods caused by scheduling constraints?
+
+**Answer:**
+
+I start with `kubectl describe pod` because Kubernetes usually provides scheduling events explaining why the Pod cannot be scheduled. I check whether there are enough CPU or memory resources available and then investigate node selectors, affinity and anti-affinity rules, taints and tolerations, topology constraints, and PVC availability. I also check whether the cluster has enough nodes to satisfy the requirements. If the workload cannot fit on existing nodes, I may need to adjust resource requests or scale the node group, depending on the actual requirement.
+
+---
+
+## 16) How would you troubleshoot Service-to-Pod connectivity?
+
+**Answer:**
+
+I first verify that the Service exists and that its selector matches the expected Pod labels. I then check the Service endpoints or EndpointSlices to confirm that healthy Pods are registered. Next, I verify the Service port and targetPort and make sure the application is actually listening on the target port. I test connectivity from another Pod using tools such as `curl` or `nc`. If the Service configuration looks correct, I investigate NetworkPolicies, DNS resolution, kube-proxy or the cluster networking layer, and cloud-level networking depending on the environment.
+
+---
+
+## 17) How would you diagnose failing readiness and liveness probes?
+
+**Answer:**
+
+I first check Pod events using `kubectl describe pod` and inspect the container logs. I verify the probe type, path, port, protocol, initial delay, timeout, period, and failure threshold. A readiness probe failure means the Pod is not considered ready to receive traffic, whereas a liveness probe failure can cause Kubernetes to restart the container. I make sure the application is actually listening on the configured port and that the health endpoint returns the expected response. For slow-starting applications, I may use a startup probe or tune the probe timings rather than simply increasing all thresholds.
+
+---
+
+## 18) How would you perform a zero-downtime rolling deployment?
+
+**Answer:**
+
+I would use a Kubernetes Deployment with an appropriate rolling update strategy. I configure multiple replicas, a suitable `maxUnavailable` and `maxSurge`, and a proper readiness probe. During deployment, Kubernetes creates new Pods and waits for them to become ready before removing old Pods. I also ensure the application handles graceful termination and that the Service only routes traffic to ready Pods. Before production deployment, I validate the new image and configuration, monitor application health during rollout, and keep a rollback mechanism available using the Deployment revision history.
+
+---
+
+## 19) When would you use blue-green versus canary deployment?
+
+**Answer:**
+
+I would use blue-green deployment when I want two separate environments, such as the current production version and the new version, and I want the ability to switch traffic between them quickly. Canary deployment is useful when I want to release the new version gradually to a small percentage of users before increasing traffic. Canary reduces the initial blast radius and allows us to monitor metrics such as errors, latency, and resource utilization before full rollout. The choice depends on application architecture, traffic management capabilities, rollback requirements, and how much risk we want to expose during the release.
+
+---
+
+## 20) How would you manage Helm releases across environments?
+
+**Answer:**
+
+I would maintain a reusable Helm chart with environment-specific configuration managed through separate values files such as `values-dev.yaml`, `values-qa.yaml`, and `values-prod.yaml`. Common Kubernetes templates remain reusable while environment-specific values control replicas, resources, image tags, ingress, and other configuration. I would version the Helm chart and use CI/CD to validate and deploy releases. For production, I would use controlled promotion and maintain Helm release history so that a previous stable revision can be rolled back if required.
+
+---
+
+## 21) How would you troubleshoot node pressure and evictions?
+
+**Answer:**
+
+I would first check node status and conditions using `kubectl describe node` and look for conditions such as MemoryPressure, DiskPressure, or PIDPressure. I would inspect node resource utilization and identify Pods consuming excessive CPU, memory, or ephemeral storage. I would also check Kubernetes events to understand which Pods were evicted and why. Depending on the cause, I could clean up unused resources, tune Pod requests and limits, increase node capacity, configure appropriate autoscaling, or investigate workloads that are generating excessive logs or temporary files.
+
+---
+
+## 22) How would you design HA Kubernetes workloads across zones?
+
+**Answer:**
+
+For high availability, I would run multiple replicas and distribute them across different availability zones rather than placing all replicas on a single node or zone. I would use topology spread constraints or pod anti-affinity to control distribution. The workload would run behind a Kubernetes Service and an appropriate load balancer, with readiness probes ensuring traffic is only sent to healthy Pods. At the infrastructure level, I would use multiple worker nodes across AZs and configure autoscaling. For stateful workloads, I would also make sure the storage solution supports the required availability and recovery model.
+
+---
+
+# 🔄 CI/CD
+
+## 23) How would you debug a failing Jenkins pipeline?
+
+**Answer:**
+
+I start by identifying the exact stage where the pipeline failed and then inspect the Jenkins console logs. I determine whether the issue is related to source checkout, credentials, dependency installation, Maven build, Docker build, security scanning, artifact upload, or deployment. I verify environment variables, credentials, agent availability, tool versions, network connectivity, and permissions. If the failure is intermittent, I correlate it with infrastructure or external dependency issues. After fixing the root cause, I rerun the pipeline from the appropriate stage where possible and make sure the fix does not hide the actual failure.
+
+---
+
+## 24) How would you design GitHub Actions workflows for multiple environments?
+
+**Answer:**
+
+I would design the workflow so that build, test, security scanning, artifact creation, and deployment are separated into logical stages. Environment-specific configuration would be managed through GitHub Environments, protected variables, and secrets. Development deployments can happen automatically after successful validation, while production deployment can require manual approval. I would build the artifact once and promote the same immutable artifact through environments rather than rebuilding different versions for each environment. I would also use branch protection, reusable workflows, least-privilege permissions, and environment approval rules.
+
+---
+
+## 25) How would you handle failed GitLab CI deployments and rollbacks?
+
+**Answer:**
+
+I would first identify whether the failure happened during build, artifact creation, infrastructure provisioning, or application deployment. I would inspect the GitLab job logs, deployment events, application health, and infrastructure metrics. If the new version is unhealthy after deployment, I would stop further promotion and roll back to the last known-good version. In Kubernetes, this could mean rolling back the Deployment or Helm release. I would then investigate the root cause separately and fix the pipeline or application before attempting another deployment.
+
+---
+
+## 26) How would you secure CI/CD credentials and secrets?
+
+**Answer:**
+
+I would never store credentials directly in source code or pipeline files. I would use Jenkins Credentials, GitHub Actions Secrets, GitLab protected variables, or an external secret manager such as AWS Secrets Manager or Vault. Access should follow least privilege, and credentials should be scoped to only the resources required by the pipeline. For AWS, I prefer short-lived roles and workload identity mechanisms over long-lived access keys wherever possible. I also make sure secrets are masked in logs and rotated regularly.
+
+---
+
+## 27) How would you add automated security and quality gates?
+
+**Answer:**
+
+I would introduce security and quality checks at different stages of the pipeline. For code quality, I can use SonarQube, while dependency and container vulnerabilities can be checked using tools such as Trivy. Infrastructure code can be scanned using tools such as Checkov, and secrets can be detected using tools such as Gitleaks. The pipeline should have clearly defined quality gates, for example failing the build for critical vulnerabilities or unacceptable code-quality conditions. This ensures that security and quality are part of the delivery process rather than being checked only after deployment.
+
+---
+
+## 28) How would you design approval, promotion and rollback strategies?
+
+**Answer:**
+
+I would separate continuous delivery from production promotion. After code passes build, testing, and security gates, it can automatically deploy to lower environments. Production promotion should use an approval mechanism based on organizational requirements. I prefer promoting the same tested artifact rather than rebuilding it for production. For rollback, I would keep the previous stable application version available and define an automated or well-documented rollback mechanism. Kubernetes Deployment rollback, Helm rollback, blue-green switching, or infrastructure versioning can be used depending on the architecture.
+
+---
+
+# ☁️ CLOUD + INFRASTRUCTURE
+
+## 29) How would you troubleshoot an AWS/Azure/GCP production outage?
+
+**Answer:**
+
+I would first establish the scope and impact of the outage: which application, region, environment, or users are affected. Then I would check the application health, load balancer status, compute resources, networking, databases, DNS, and recent deployments or infrastructure changes. I would use the cloud provider's monitoring and logging services along with application metrics to identify where the failure started. I would prioritize restoring service while simultaneously investigating the root cause. After recovery, I would perform a proper root-cause analysis and introduce preventive measures such as better monitoring, automation, capacity planning, or architectural changes.
+
+---
+
+## 30) How would you design HA load balancing across availability zones?
+
+**Answer:**
+
+I would deploy the load balancer across multiple availability zones and register healthy application instances or Kubernetes workloads across those zones. Health checks should ensure traffic is only routed to healthy targets. I would configure the application tier with multiple replicas or instances and use autoscaling to maintain capacity. For AWS, for example, I could use an Application Load Balancer for HTTP/HTTPS applications and distribute traffic across targets in multiple AZs. I would also ensure that the backend dependencies, such as databases and caches, have an appropriate HA design.
+
+---
+
+## 31) How would you configure auto scaling for unpredictable traffic?
+
+**Answer:**
+
+I would first identify the appropriate scaling metric, such as CPU utilization, request count, latency, queue depth, or another application-specific metric. For EC2-based workloads, I could use an Auto Scaling Group with target tracking or step scaling. For Kubernetes, I could use HPA for Pod-level scaling and cluster autoscaling or Karpenter for node capacity. I would configure minimum, desired, and maximum capacity carefully and validate scaling behavior under load. I would also monitor scale-up and scale-down times because an autoscaling policy must respond quickly enough to traffic changes without creating unnecessary cost.
+
+---
+
+## 32) How would you troubleshoot EKS, AKS or GKE networking?
+
+**Answer:**
+
+I would troubleshoot the networking path layer by layer. First, I check Pod IPs, node status, Services, Endpoints, and DNS. Then I verify the CNI configuration, routing, security groups or firewall rules, network policies, and load balancer configuration. I test connectivity from inside the cluster to determine whether the issue is between Pods, between Pods and Services, or between the cluster and external systems. I also check cloud networking components such as VPC/VNet routes, subnets, NAT gateways, and load balancers. The exact tools differ by cloud provider, but the troubleshooting methodology remains similar.
+
+---
+
+## 33) How would you design disaster recovery with defined RPO/RTO?
+
+**Answer:**
+
+I would first clarify the business requirements. RPO defines how much data loss is acceptable, while RTO defines how quickly the service must be restored. Based on those requirements, I would choose the appropriate backup, replication, and recovery architecture. For example, critical databases may require cross-region replication, while less critical workloads may rely on scheduled backups. Infrastructure should ideally be reproducible using Terraform or another IaC solution. I would also document the recovery process, automate it where possible, and regularly perform disaster recovery tests to verify that the defined RPO and RTO can actually be achieved.
+
+---
+
+## 34) How would you investigate sudden cloud cost increases?
+
+**Answer:**
+
+I would first identify which account, service, region, environment, or resource caused the increase. In AWS, I would use Cost Explorer, billing reports, and cost allocation tags to break down the spending. I would compare the current period with historical usage and investigate services such as EC2, EKS, NAT Gateway, S3, RDS, data transfer, and unused resources. I would also check whether a recent deployment or autoscaling event caused unexpected resource growth. Once the cause is identified, I would optimize resource sizing, remove unused resources, improve autoscaling policies, use appropriate storage classes or pricing models, and introduce budgets and cost alerts to prevent recurrence.
+
+---
+
+# 🏗️ TERRAFORM + IaC
+
+## 35) How would you resolve Terraform state locking issues?
+
+**Answer:**
+
+First, I would determine whether another Terraform operation is genuinely running before taking any action. If the state is locked because another deployment is active, I would wait for that operation to complete. If the lock is stale because a previous process failed or the execution environment terminated unexpectedly, I would carefully verify that no Terraform process is currently modifying the state. Only after confirming that, I would remove the stale lock using the appropriate Terraform mechanism. I would avoid forcefully removing locks without verification because concurrent state modifications can corrupt infrastructure state.
+
+---
+
+## 36) How would you safely manage remote state across teams?
+
+**Answer:**
+
+I would use a centralized remote backend so that the state is not stored on individual developer machines. In AWS, a common approach is storing Terraform state in an S3 bucket with versioning and encryption enabled and using a locking mechanism supported by the chosen Terraform/backend setup. Access should be controlled using IAM and least privilege. I would separate state by environment or workload to reduce blast radius and prevent multiple teams from modifying unrelated infrastructure through the same state file. State should also be backed up and protected because it is critical infrastructure metadata.
+
+---
+
+## 37) How would you handle Terraform drift in production?
+
+**Answer:**
+
+Terraform drift occurs when the real infrastructure differs from what is defined in Terraform configuration and state. I would first run `terraform plan` to identify the differences and determine whether the change was intentional or made outside Terraform. If the manual change should be retained, I would update the Terraform configuration accordingly. If Terraform should remain the source of truth, I would carefully apply the configuration to bring the infrastructure back to the desired state. For important environments, I would also investigate why manual changes were possible and strengthen access controls and processes to prevent recurring drift.
+
+---
+
+## 38) How would you structure reusable Terraform modules and environments?
+
+**Answer:**
+
+I would create reusable modules for common infrastructure components such as VPCs, security groups, EC2, EKS, IAM, or databases. The module would expose variables for configurable values while keeping common resource definitions reusable. Environment-specific configurations would be maintained separately, such as development, QA, and production. I would use variables, outputs, appropriate naming conventions, remote state, versioned modules, and consistent tagging. For production, I would integrate Terraform with CI/CD so that plans can be reviewed before apply and infrastructure changes are traceable through Git.
+
+---
+
+## 39) When would you use Terraform versus Ansible?
+
+**Answer:**
+
+I would use Terraform primarily for provisioning and managing infrastructure because it follows a declarative infrastructure-as-code approach and maintains state to understand the desired and actual infrastructure. For example, I would use Terraform to create AWS VPCs, subnets, IAM roles, EC2 instances, EKS clusters, load balancers, and other cloud resources. I would use Ansible mainly for configuration management and application-level setup, such as installing packages, modifying configuration files, managing services, or configuring existing servers. In some environments, both can work together: Terraform provisions the infrastructure and Ansible configures the operating system or application after the resources are created.
+
+---
+
+
 # DevOps Engineer – 2nd Round Interview
 
 These 20 questions separate good DevOps engineers from great ones.
