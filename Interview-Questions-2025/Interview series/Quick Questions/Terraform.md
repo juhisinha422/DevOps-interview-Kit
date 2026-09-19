@@ -1,3 +1,88 @@
+# Terraform Interview Scenario — `create_before_destroy`
+
+## 𝗧𝗵𝗲 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝗲𝗿 𝗔𝘀𝗸𝘀
+
+> “𝗖𝗿𝗲𝗮𝘁𝗲 𝘁𝗵𝗲 𝗻𝗲𝘄 𝗶𝗻𝘀𝘁𝗮𝗻𝗰𝗲 𝗯𝗲𝗳𝗼𝗿𝗲 𝗱𝗲𝗹𝗲𝘁𝗶𝗻𝗴 𝘁𝗵𝗲 𝗼𝗹𝗱 𝗼𝗻𝗲.”
+
+Then comes the follow-up:
+
+> “Does that guarantee zero downtime?”
+
+Here’s a Terraform interview scenario worth understanding:
+
+> “How would you create a replacement instance before destroying the old one?”
+
+---
+
+## • Start with the lifecycle rule
+
+Add this inside your resource block:
+
+```hcl
+lifecycle {
+  create_before_destroy = true
+}
+```
+
+For a change that requires replacement, Terraform creates the replacement before destroying the existing resource.
+
+**Old instance running → New instance created → Old instance destroyed**
+
+Both exist temporarily.
+
+This behavior is documented in HashiCorp’s lifecycle reference.
+
+---
+
+## • 𝗨𝗻𝗱𝗲𝗿𝘀𝘁𝗮𝗻𝗱 𝘁𝗵𝗲 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗴𝗮𝗽
+
+The new instance may exist while:
+
+* → Your startup script is still installing packages.
+* → The application is still starting.
+* → Database connectivity is failing.
+* → The load balancer marks the target unhealthy.
+
+**This lifecycle rule alone does not guarantee zero downtime.**
+
+---
+
+## • 𝗗𝗲𝘀𝗶𝗴𝗻 𝘁𝗵𝗲 𝘁𝗿𝗮𝗳𝗳𝗶𝗰 𝘁𝗿𝗮𝗻𝘀𝗶𝘁𝗶𝗼𝗻
+
+For an application behind a load balancer, your deployment process needs to:
+
+* → Start the application on the new instance.
+* → Verify application health and required dependencies.
+* → Register the new target and confirm it is healthy.
+* → Shift traffic and drain existing connections.
+* → Retire the old instance after those checks pass.
+
+You must explicitly coordinate this sequence.
+
+Adding the lifecycle block does not implement it automatically.
+
+---
+
+## • 𝗖𝗵𝗲𝗰𝗸 𝗯𝗲𝗳𝗼𝗿𝗲 𝗮𝗽𝗽𝗹𝘆𝗶𝗻𝗴
+
+* → **Capacity:** Can your account and subnet support both instances?
+* → **Cost:** Have you allowed for temporary overlap?
+* → **Constraints:** Can both resources coexist without unique-name conflicts?
+* → **Data:** Does the application depend on files stored only on the old instance?
+
+---
+
+## • 𝗚𝗶𝘃𝗲 𝗮 𝘀𝘁𝗿𝗼𝗻𝗴𝗲𝗿 𝗶𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗮𝗻𝘀𝘄𝗲𝗿
+
+> “I would use create_before_destroy to change the replacement order. Then I would explain how we check application readiness, switch traffic and drain connections before removing the old instance.”
+
+That answer connects Terraform configuration to what users experience during deployment.
+
+
+----------------------
+
+
+
 # 15 Advanced Terraform Interview Questions & Answers
 
 ## 1. How does Terraform handle state locking, and what happens if the lock is lost mid-apply?
