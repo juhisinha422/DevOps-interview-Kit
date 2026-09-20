@@ -1,3 +1,73 @@
+# Git Interview Scenarios
+
+𝗬𝗼𝘂𝗿 𝗰𝗼𝗱𝗲 𝗶𝘀 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝗺𝗲𝗿𝗴𝗲𝗱 𝗶𝗻𝘁𝗼 𝗺𝗮𝗶𝗻. 𝗛𝗼𝘄 𝘄𝗼𝘂𝗹𝗱 𝘆𝗼𝘂 𝘂𝗻𝗱𝗼 𝗶𝘁 𝘀𝗮𝗳𝗲𝗹𝘆?”
+
+Knowing git push won’t answer that interview question.
+
+You need to explain which command to use, what it changes, and how you’ll verify the result.
+
+I’ve put together 40 Git commands in the attached PDF to help you practise these decisions.
+
+Here are five interview scenarios to start with:
+
+---
+
+## 1. “You staged the wrong file. How do you unstage it without losing your work?”
+
+→ `git restore --staged`
+
+This removes the file’s changes from staging while keeping your local edits.
+
+Before committing, use `git diff --staged` to check exactly what you’re about to save.
+
+---
+
+## 2. “You need to check a teammate’s updates before merging them.”
+
+→ `git fetch origin`
+
+Fetch downloads remote updates without merging them into your current branch.
+
+You can then inspect the changes before deciding how to integrate them.
+
+---
+
+## 3. “An urgent fix arrives, but your current work is incomplete.”
+
+→ `git stash push -u`
+
+Save your changes, including untracked files, before switching tasks.
+
+→ `git stash apply`
+
+Bring the changes back while keeping the stash saved. Check the result before deleting the stash.
+
+---
+
+## 4. “A bad commit is already on a shared branch.”
+
+→ `git show`
+
+→ `git revert`
+
+Inspect the commit first. For an ordinary commit, revert creates a new commit that reverses its changes without rewriting existing history.
+
+Then review, test and deploy through your team’s process.
+
+Reverting code alone does not roll back a running application.
+
+---
+
+## 5. “The release branch needs one specific fix from another branch.”
+
+→ `git cherry-pick`
+
+Apply that commit to your current branch.
+
+Check whether it depends on other changes. A successful cherry-pick does not guarantee a working application—run the relevant tests.
+
+
+
 # Advanced DevOps Interview Questions & Answers
 
 ## 1. How does Kubernetes decide which node to schedule a Pod on?
