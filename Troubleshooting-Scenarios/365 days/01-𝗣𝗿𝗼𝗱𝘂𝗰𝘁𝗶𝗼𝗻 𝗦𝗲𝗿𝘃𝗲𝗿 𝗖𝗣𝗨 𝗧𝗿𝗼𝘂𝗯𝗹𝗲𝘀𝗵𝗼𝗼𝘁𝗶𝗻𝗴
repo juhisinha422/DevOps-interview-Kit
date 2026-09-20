@@ -1,0 +1,63 @@
+𝗗𝗮𝘆 𝟭/𝟯𝟲𝟱 — 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗦𝗲𝗿𝘃𝗲𝗿 𝗖𝗣𝗨 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“Your production server is running at 100% CPU. What will you do?”
+
+I would not immediately restart the server.
+
+First, I want to understand what is actually consuming the CPU.
+
+I would start with:
+
+top
+
+or
+
+htop
+
+Then identify the high-CPU processes:
+
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head
+
+Once I find the process, I would investigate:
+
+• Is it an application process?
+• Did CPU usage suddenly increase?
+• Is there a traffic spike?
+• Was there a recent deployment?
+• Is a process stuck or running continuously?
+• Are there errors in the application logs?
+
+I would also check overall server health:
+
+uptime
+free -m
+df -h
+vmstat 1
+
+Then I would check application and system logs around the time the CPU increased.
+
+If an application service is responsible, I would coordinate with the relevant team and follow the approved recovery procedure.
+
+If restarting the affected service is the approved solution, I would restart the service rather than the entire server.
+
+After recovery, I would monitor CPU usage and verify that the application is healthy.
+
+Then comes the important part:
+
+🎯 𝗥𝗼𝗼𝘁 𝗖𝗮𝘂𝘀𝗲 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀
+
+Issue → Investigation → Root Cause → Resolution → Preventive Action
+
+Because fixing the incident is only part of production support.
+
+The bigger question is:
+
+Why did it happen, and how can we prevent it from happening again?
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+Knowing top is not enough.
+
+Good troubleshooting means knowing what to check, why you're checking it, and what action to take based on the results.
