@@ -1,0 +1,71 @@
+🚀 𝗗𝗮𝘆 𝟮/𝟯𝟲𝟱 — 𝗗𝗡𝗦 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“DNS is not working on your production server. How will you troubleshoot it?”
+
+I would not immediately restart the server or change the DNS configuration.
+
+First, I want to understand where the problem is.
+
+I would start by checking whether the server can resolve a domain:
+
+nslookup google.com
+
+or:
+
+dig google.com
+
+Then I would check the server's DNS configuration:
+
+cat /etc/resolv.conf
+
+I would verify whether the configured DNS server is reachable.
+
+For example:
+
+ping <dns-server-ip>
+
+If ICMP is blocked, I would use appropriate DNS/network checks instead of assuming the server is unreachable.
+
+Next, I would test whether the problem is DNS resolution or general network connectivity.
+
+ping 8.8.8.8
+
+If I can reach the IP but cannot resolve google.com, that strongly points toward a DNS resolution problem.
+
+I would then check:
+
+• Is /etc/resolv.conf configured correctly?
+• Is the DNS server reachable?
+• Is port 53 accessible?
+• Is there a recent DNS/configuration change?
+• Is the issue affecting one server or multiple servers?
+• Are there errors in DNS-related logs?
+
+I would also check the DNS lookup path:
+
+dig google.com
+
+This helps me understand which DNS server responded and whether the query is timing out or returning an error.
+
+If the issue is caused by an incorrect DNS configuration, I would fix it according to the organization's change/recovery procedure.
+
+After making the change, I would test again:
+
+nslookup google.com
+dig google.com
+
+Then I would verify that the affected application is working normally.
+
+Finally, I would document the incident:
+
+Issue → Investigation → Root Cause → Resolution → Preventive Action
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+DNS troubleshooting is not just about knowing nslookup or dig.
+
+You need to understand:
+
+DNS Configuration → Network Connectivity → DNS Server → Resolution → Application Impact
