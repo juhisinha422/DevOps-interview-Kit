@@ -1,3 +1,866 @@
+# Kubernetes Production Troubleshooting
+
+𝗬𝗼𝘂𝗿 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗽𝗼𝗱𝘀 𝗮𝗿𝗲 “𝗥𝘂𝗻𝗻𝗶𝗻𝗴.”
+𝗬𝗼𝘂𝗿 𝗰𝘂𝘀𝘁𝗼𝗺𝗲𝗿𝘀 𝘀𝘁𝗶𝗹𝗹 𝗰𝗮𝗻’𝘁 𝗮𝗰𝗰𝗲𝘀𝘀 𝘁𝗵𝗲 𝗮𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻.
+
+If your only troubleshooting step is “restart the pod,” your next production incident could last much longer than it should.
+
+A Running pod does not guarantee a healthy application.
+
+Here are 10 Kubernetes production issues every DevOps engineer should practise troubleshooting 👇
+
+1️⃣ CrashLoopBackOff
+Check previous container logs, exit reasons and probes. Find out WHY the container keeps restarting.
+
+2️⃣ ImagePullBackOff
+Verify the image name, tag, registry credentials and connectivity. Pod events help explain the failure.
+
+3️⃣ Pod Pending
+Check scheduling events, resource requests, taints, affinity rules and storage claims.
+
+4️⃣ Service unreachable
+Compare Service selectors with pod labels. Verify targetPort, readiness and EndpointSlices.
+
+5️⃣ Ingress 502 / 503
+Check controller logs, backend Service ports and ready backends. The status code alone does not identify the cause.
+
+6️⃣ OOMKilled
+Inspect memory usage, limits and node conditions. Increasing memory without investigating can hide a leak.
+
+7️⃣ Node NotReady
+Inspect node conditions, kubelet logs, container runtime and networking.
+
+8️⃣ PVC Pending
+Check StorageClass, provisioning events and available storage. Some claims wait for a consuming pod before binding.
+
+9️⃣ DNS failure
+Test name resolution inside a pod. Check CoreDNS, DNS configuration and network policies.
+
+🔟 High CPU / Memory
+Check usage trends, CPU throttling, traffic and application behaviour before deciding to scale.
+
+Here’s how to turn this checklist into practical learning:
+Suppose your Service is unreachable.
+
+→ Do its selectors match the intended pods?
+→ Do EndpointSlices contain the expected ready backends?
+→ Does targetPort match the port your application listens on?
+→ Can you reach the application directly from inside the cluster?
+→ Does a NetworkPolicy block the connection?
+
+Each answer narrows the next check.
+
+After fixing the cause, test the original failing request again. A green dashboard alone is not enough.
+
+In your next DevOps interview, explain:
+
+What did you observe?
+What evidence did you collect?
+Why did you choose that fix?
+How did you confirm recovery?
+
+---
+
+# Answers / Practical Troubleshooting
+
+## 1️⃣ CrashLoopBackOff
+
+### What does it mean?
+
+`CrashLoopBackOff` means the container starts, exits or crashes, and Kubernetes repeatedly tries to restart it with an increasing backoff delay.
+
+### What I would check
+
+```bash
+kubectl get pods -n <namespace>
+
+kubectl describe pod <pod-name> -n <namespace>
+
+kubectl logs <pod-name> -n <namespace>
+
+kubectl logs <pod-name> -n <namespace> --previous
+```
+
+The `--previous` option is very important because the current container may have already restarted.
+
+Check the container state:
+
+```bash
+kubectl get pod <pod-name> -n <namespace> \
+-o jsonpath='{.status.containerStatuses[*].state}'
+```
+
+Check the last termination reason:
+
+```bash
+kubectl get pod <pod-name> -n <namespace> \
+-o jsonpath='{.status.containerStatuses[*].lastState.terminated.reason}'
+```
+
+### Common causes
+
+* Application startup failure
+* Incorrect environment variables
+* Missing Secret or ConfigMap
+* Incorrect database connection
+* Wrong command or entrypoint
+* Failed liveness probe
+* Missing configuration file
+* Permission issue
+* OOMKilled
+* Application dependency unavailable
+
+### Interview answer
+
+> First I check the pod status and events using `kubectl describe pod`. Then I check the current and previous container logs, especially `kubectl logs --previous`, because the container may have already restarted. I verify the exit code, termination reason, environment variables, ConfigMaps, Secrets and health probes. If the application is crashing because of configuration or dependency issues, I fix the root cause rather than simply restarting the pod. Finally, I verify that the pod remains stable and the application request succeeds.
+
+---
+
+# 2️⃣ ImagePullBackOff
+
+### What does it mean?
+
+`ImagePullBackOff` means Kubernetes was unable to pull the container image and is retrying with an increasing delay.
+
+### What I would check
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Look under:
+
+```text
+Events:
+```
+
+Typical errors include:
+
+```text
+pull access denied
+repository does not exist
+manifest unknown
+unauthorized
+connection timeout
+```
+
+Check the image configured in the pod:
+
+```bash
+kubectl get pod <pod-name> -n <namespace> \
+-o jsonpath='{.spec.containers[*].image}'
+```
+
+Check image pull secrets:
+
+```bash
+kubectl get pod <pod-name> -n <namespace> -o yaml
+```
+
+Check:
+
+```yaml
+imagePullSecrets:
+```
+
+### Common causes
+
+* Incorrect image name
+* Incorrect tag
+* Image does not exist
+* Private registry authentication failure
+* Incorrect `imagePullSecret`
+* Registry connectivity issue
+* ECR authorization issue
+* Network/DNS issue
+
+### Interview answer
+
+> I start with `kubectl describe pod` and check the Events section because Kubernetes normally gives the exact image-pull error. Then I verify the image repository and tag, registry accessibility and credentials. For private registries I check whether the correct image pull secret is attached. In EKS, if the image is from ECR, I also verify the node or workload IAM permissions. After fixing the issue, I confirm that the image is successfully pulled and the container reaches Running and Ready state.
+
+---
+
+# 3️⃣ Pod Pending
+
+### What does it mean?
+
+A `Pending` pod has not been successfully scheduled or cannot complete the required initialization such as volume provisioning.
+
+### First check
+
+```bash
+kubectl get pods -n <namespace>
+
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Check:
+
+```text
+Events:
+```
+
+### Check nodes
+
+```bash
+kubectl get nodes
+
+kubectl describe nodes
+```
+
+### Check resource requests
+
+```bash
+kubectl get pod <pod-name> -n <namespace> -o yaml
+```
+
+Look for:
+
+```yaml
+resources:
+  requests:
+    cpu:
+    memory:
+```
+
+### Common causes
+
+* Insufficient CPU
+* Insufficient memory
+* Node taints
+* Node affinity mismatch
+* Pod affinity/anti-affinity
+* Node selector mismatch
+* No suitable node
+* PVC not available
+* ResourceQuota
+* Namespace limit range
+
+### Interview answer
+
+> For a Pending pod, I don't restart it because the container may not have started at all. I first run `kubectl describe pod` and inspect the scheduler events. Then I check node capacity, resource requests, taints, tolerations, node selectors, affinity rules and PVC status. Once I identify the scheduling constraint, I correct the appropriate resource or scheduling configuration and verify that the scheduler places the pod on a suitable node.
+
+---
+
+# 4️⃣ Service Unreachable
+
+### What does it mean?
+
+The pods can be Running but the Service may still have no usable backend endpoints or may route traffic to the wrong port.
+
+### Check the Service
+
+```bash
+kubectl get svc -n <namespace>
+
+kubectl describe svc <service-name> -n <namespace>
+```
+
+Check the selector:
+
+```bash
+kubectl get svc <service-name> -n <namespace> -o yaml
+```
+
+Then compare it with pod labels:
+
+```bash
+kubectl get pods -n <namespace> --show-labels
+```
+
+### Check EndpointSlices
+
+```bash
+kubectl get endpoints <service-name> -n <namespace>
+
+kubectl get endpointslices -n <namespace>
+```
+
+If the Service has no endpoints, check:
+
+* Service selector
+* Pod labels
+* Pod readiness
+* Readiness probe
+* Pod IPs
+
+### Check ports
+
+For example:
+
+```yaml
+ports:
+  - port: 80
+    targetPort: 8080
+```
+
+The application must actually listen on the expected target port.
+
+### Test from inside the cluster
+
+```bash
+kubectl run test-pod --rm -it \
+--image=curlimages/curl -- sh
+```
+
+Then:
+
+```bash
+curl http://<service-name>:80
+```
+
+### Common causes
+
+* Wrong Service selector
+* Incorrect pod labels
+* Wrong `targetPort`
+* Pods not Ready
+* Application not listening on expected port
+* NetworkPolicy
+* Service configuration issue
+
+### Interview answer
+
+> If a Service is unreachable while the pods are Running, I first verify that the Service selector matches the pod labels. Then I check EndpointSlices to confirm that ready pod IPs are registered. I verify that the Service `targetPort` matches the port on which the application is actually listening. I also test the application directly from inside the cluster and check NetworkPolicies. Once the backend connectivity is confirmed, I test the original Service request again.
+
+---
+
+# 5️⃣ Ingress 502 / 503
+
+### What does it mean?
+
+A `502` or `503` from an Ingress does not automatically mean the application pod is down.
+
+The issue can exist between:
+
+```text
+Client
+   ↓
+Load Balancer
+   ↓
+Ingress Controller
+   ↓
+Service
+   ↓
+EndpointSlice
+   ↓
+Pod
+   ↓
+Application
+```
+
+### What I would check
+
+```bash
+kubectl get ingress -n <namespace>
+
+kubectl describe ingress <ingress-name> -n <namespace>
+```
+
+Check the Service:
+
+```bash
+kubectl get svc -n <namespace>
+
+kubectl describe svc <service-name> -n <namespace>
+```
+
+Check endpoints:
+
+```bash
+kubectl get endpoints <service-name> -n <namespace>
+
+kubectl get endpointslices -n <namespace>
+```
+
+Check ingress controller:
+
+```bash
+kubectl logs -n <ingress-namespace> \
+<ingress-controller-pod>
+```
+
+### Verify
+
+* Ingress host/path
+* Backend Service name
+* Service port
+* Target port
+* Ready endpoints
+* Application listening port
+* Health checks
+* Ingress controller logs
+* NetworkPolicy
+
+### Interview answer
+
+> For an Ingress 502 or 503, I trace the request path from the Ingress to the Service and then to the pod. I check the Ingress configuration, backend Service, EndpointSlices and ingress controller logs. If there are no ready endpoints, I investigate pod readiness. If endpoints exist, I test the Service directly from inside the cluster. This helps determine whether the problem is at the Ingress, Service, network or application layer.
+
+---
+
+# 6️⃣ OOMKilled
+
+### What does it mean?
+
+`OOMKilled` means the container was terminated because it exceeded its memory limit or the node experienced memory pressure.
+
+### Check pod status
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Look for:
+
+```text
+Reason: OOMKilled
+```
+
+Check container resources:
+
+```bash
+kubectl get pod <pod-name> -n <namespace> -o yaml
+```
+
+Look for:
+
+```yaml
+resources:
+  requests:
+    memory: 512Mi
+  limits:
+    memory: 1Gi
+```
+
+Check current usage:
+
+```bash
+kubectl top pod <pod-name> -n <namespace>
+```
+
+Check node memory:
+
+```bash
+kubectl top nodes
+```
+
+### Common causes
+
+* Application memory leak
+* Incorrect memory limit
+* Large traffic increase
+* Large JVM heap
+* Large batch processing
+* Memory-intensive application
+* Node memory pressure
+
+### Interview answer
+
+> For OOMKilled, I first confirm the termination reason using `kubectl describe pod`. Then I compare actual memory usage with the configured memory request and limit. I check whether memory usage is continuously increasing, which could indicate a memory leak, and also check node memory pressure. I don't immediately increase the memory limit because that could hide an application problem. If the application legitimately needs more memory, I adjust the resources based on observed usage and validate the application after deployment.
+
+---
+
+# 7️⃣ Node NotReady
+
+### What does it mean?
+
+A Kubernetes node becomes `NotReady` when the control plane is no longer receiving healthy status from the kubelet or the node fails required health conditions.
+
+### Check nodes
+
+```bash
+kubectl get nodes
+
+kubectl describe node <node-name>
+```
+
+Look at:
+
+```text
+Conditions:
+```
+
+Important conditions include:
+
+```text
+Ready
+MemoryPressure
+DiskPressure
+PIDPressure
+NetworkUnavailable
+```
+
+### Check workloads
+
+```bash
+kubectl get pods -A -o wide | grep <node-name>
+```
+
+### On the node
+
+Check kubelet:
+
+```bash
+systemctl status kubelet
+
+journalctl -u kubelet --since "30 min ago"
+```
+
+Check container runtime:
+
+```bash
+systemctl status containerd
+```
+
+Check disk:
+
+```bash
+df -h
+```
+
+Check memory:
+
+```bash
+free -m
+```
+
+### Common causes
+
+* Kubelet failure
+* Container runtime failure
+* Disk full
+* Memory pressure
+* Network problem
+* Node connectivity issue
+* CNI problem
+* Instance/system failure
+
+### Interview answer
+
+> When a node becomes NotReady, I first check `kubectl describe node` and look at the node conditions. Then I check kubelet and container runtime health, disk space, memory, networking and CNI components. I also identify which workloads were running on that node and whether they were rescheduled. If the node is recoverable, I fix the underlying issue. If necessary, I cordon and drain the node and replace or recover it according to the production procedure.
+
+---
+
+# 8️⃣ PVC Pending
+
+### What does it mean?
+
+A PVC remains `Pending` when Kubernetes cannot successfully bind it to a PersistentVolume or dynamically provision the required volume.
+
+### Check PVC
+
+```bash
+kubectl get pvc -n <namespace>
+
+kubectl describe pvc <pvc-name> -n <namespace>
+```
+
+Check StorageClasses:
+
+```bash
+kubectl get storageclass
+```
+
+Check PVs:
+
+```bash
+kubectl get pv
+```
+
+### Check events
+
+```bash
+kubectl describe pvc <pvc-name> -n <namespace>
+```
+
+Look at:
+
+```text
+Events:
+```
+
+### Common causes
+
+* Incorrect StorageClass
+* StorageClass does not exist
+* Dynamic provisioning failure
+* CSI driver issue
+* Insufficient storage
+* Availability Zone constraints
+* Incorrect access mode
+* Cloud-provider permissions
+* Volume provisioning failure
+
+### Interview answer
+
+> For a Pending PVC, I check the PVC events first because they usually show why provisioning or binding failed. Then I verify the requested storage size, access mode and StorageClass. I check whether the CSI driver is healthy and whether a matching PV exists or dynamic provisioning is working. In a cloud environment such as EKS, I also verify the storage driver's permissions and availability-zone constraints. After fixing the provisioning issue, I confirm that the PVC becomes Bound and the application can mount it.
+
+---
+
+# 9️⃣ DNS Failure
+
+### What does it mean?
+
+A DNS failure means the application cannot resolve a Kubernetes Service name or another required hostname.
+
+### Test DNS from inside a pod
+
+```bash
+kubectl run dns-test --rm -it \
+--image=busybox -- sh
+```
+
+Then:
+
+```bash
+nslookup kubernetes.default
+```
+
+Test a Service:
+
+```bash
+nslookup <service-name>.<namespace>.svc.cluster.local
+```
+
+### Check CoreDNS
+
+```bash
+kubectl get pods -n kube-system -l k8s-app=kube-dns
+
+kubectl get svc -n kube-system kube-dns
+
+kubectl logs -n kube-system \
+-l k8s-app=kube-dns
+```
+
+### Check DNS configuration
+
+```bash
+cat /etc/resolv.conf
+```
+
+Inside the test pod.
+
+### Common causes
+
+* CoreDNS pods unhealthy
+* CoreDNS configuration issue
+* Network connectivity issue
+* Incorrect DNS configuration
+* CNI issue
+* NetworkPolicy blocking DNS
+* Upstream DNS issue
+
+### Interview answer
+
+> For a DNS issue, I reproduce the problem from inside the cluster instead of testing only from my laptop. I use a temporary pod and run `nslookup` against the Kubernetes Service name. Then I check CoreDNS pod status, logs and the kube-dns Service. I also inspect `/etc/resolv.conf` and verify that NetworkPolicies are not blocking DNS traffic, typically UDP/TCP port 53. Once DNS resolution works from inside the cluster, I retest the application request.
+
+---
+
+# 🔟 High CPU / Memory
+
+### What does it mean?
+
+High CPU or memory usage does not automatically mean that Kubernetes needs more replicas.
+
+First identify what is causing the resource increase.
+
+### Check pod usage
+
+```bash
+kubectl top pods -A
+```
+
+Specific namespace:
+
+```bash
+kubectl top pods -n <namespace>
+```
+
+Check nodes:
+
+```bash
+kubectl top nodes
+```
+
+### Check resource configuration
+
+```bash
+kubectl get pod <pod-name> -n <namespace> -o yaml
+```
+
+Look for:
+
+```yaml
+resources:
+  requests:
+    cpu:
+    memory:
+  limits:
+    cpu:
+    memory:
+```
+
+### Check CPU throttling
+
+If monitoring is available, check:
+
+* CPU usage
+* CPU throttling
+* Memory usage
+* Request rate
+* Response time
+* Error rate
+* Pod restart count
+
+### Common causes
+
+* Increased traffic
+* Inefficient application code
+* CPU throttling
+* Memory leak
+* Large batch processing
+* Incorrect resource limits
+* Traffic spike
+* Excessive logging
+* Dependency latency
+* Insufficient replicas
+
+### Interview answer
+
+> When CPU or memory is high, I first determine whether the increase is caused by traffic, application behaviour, resource limits or an infrastructure issue. I compare current usage with historical trends and check CPU throttling, memory usage, restarts and application metrics. If the workload is genuinely under-provisioned, I can scale horizontally using HPA or adjust resources based on evidence. If the issue is caused by a memory leak or inefficient application behaviour, scaling alone would only hide the root cause.
+
+---
+
+# 🔥 Practical Production Troubleshooting Flow
+
+For most Kubernetes incidents, I follow a structured approach instead of immediately restarting pods.
+
+```text
+1. Observe the symptom
+        ↓
+2. Identify the affected workload
+        ↓
+3. Check Pod status
+        ↓
+4. Check Events
+        ↓
+5. Check Logs
+        ↓
+6. Check Service / EndpointSlices
+        ↓
+7. Check Ingress / Load Balancer
+        ↓
+8. Check NetworkPolicy / DNS
+        ↓
+9. Check Node / Resource health
+        ↓
+10. Identify root cause
+        ↓
+11. Apply the smallest safe fix
+        ↓
+12. Retest the original failing request
+        ↓
+13. Monitor for recurrence
+```
+
+---
+
+# 🎯 Interview RCA Format
+
+When an interviewer gives me a Kubernetes production issue, I structure my answer around four questions:
+
+### 1. What did you observe?
+
+Example:
+
+> Users were receiving HTTP 503 errors even though the application pods were showing Running.
+
+### 2. What evidence did you collect?
+
+```bash
+kubectl get pods -n <namespace>
+kubectl describe pod <pod-name> -n <namespace>
+kubectl get svc -n <namespace>
+kubectl get endpointslices -n <namespace>
+kubectl describe ingress <ingress-name> -n <namespace>
+kubectl logs <ingress-controller-pod>
+```
+
+### 3. Why did you choose that fix?
+
+> The Service had no ready endpoints because the readiness probe was failing. The pods were Running, but Kubernetes was correctly preventing the Service from sending traffic to unhealthy backends. I investigated the readiness failure instead of restarting the pods.
+
+### 4. How did you confirm recovery?
+
+I would verify:
+
+```bash
+kubectl get pods -n <namespace>
+
+kubectl get endpointslices -n <namespace>
+
+kubectl get ingress -n <namespace>
+```
+
+Then I would send the original failing request again:
+
+```bash
+curl -I https://<application-url>
+```
+
+I would also check application logs and monitoring dashboards to confirm that:
+
+* Error rate returned to normal
+* Response time recovered
+* Pods remained Ready
+* No unexpected restarts occurred
+* Traffic was reaching the expected backend
+
+---
+
+# 🧠 Important Kubernetes Troubleshooting Principle
+
+```text
+Running ≠ Ready
+Ready ≠ Application Healthy
+Application Healthy ≠ User Request Successful
+```
+
+A production troubleshooting process should therefore follow the complete request path:
+
+```text
+User
+ ↓
+DNS
+ ↓
+Load Balancer
+ ↓
+Ingress
+ ↓
+Service
+ ↓
+EndpointSlice
+ ↓
+Pod
+ ↓
+Container
+ ↓
+Application
+ ↓
+Database / External Dependency
+```
+
+The goal is not simply to make the pod show `Running`.
+
+The goal is to identify **why the original request failed, fix the actual cause, and prove that the customer-facing request works again.**
+
+
+<img width="800" height="999" alt="Image" src="https://github.com/user-attachments/assets/b9db0728-7abf-4f3b-bdc9-53008262cbc9" />
+
+---------------------------------------------------------
+
+
 # 🐳 Kubernetes Troubleshooting: CrashLoopBackOff
 
 ## Kubernetes Troubleshooting Question
