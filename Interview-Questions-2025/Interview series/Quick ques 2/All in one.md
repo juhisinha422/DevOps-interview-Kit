@@ -1,3 +1,159 @@
+# 🚀 DevOps Interview – Internal Working Questions & Answers
+
+## 1. How does Kubernetes decide which node to schedule a pod on?
+
+When I create a Pod, the Kubernetes API Server stores the Pod object in etcd, but initially the Pod does not have a node assigned. The Kubernetes Scheduler watches for unscheduled Pods and evaluates the available nodes. First, it filters nodes based on requirements such as CPU and memory requests, node selectors, node affinity, taints and tolerations, topology constraints, and resource availability. After filtering, it scores the remaining nodes based on factors such as resource balance, affinity preferences, and topology. The scheduler then selects the highest-scoring suitable node and performs a binding operation through the API Server. The kubelet running on that node notices the Pod assignment, pulls the required container image, creates the containers through the container runtime, configures networking through the CNI plugin, mounts volumes, and starts the Pod. In production, I usually troubleshoot scheduling issues using `kubectl describe pod`, especially looking at scheduler events such as `Insufficient cpu`, `node(s) had taint`, or affinity-related failures.
+
+---
+
+## 2. What happens internally when you run `kubectl apply`?
+
+When I run `kubectl apply -f deployment.yaml`, kubectl first reads and parses the manifest and identifies the Kubernetes API resource and its desired configuration. It authenticates with the API Server using the configured kubeconfig credentials and sends the request to the Kubernetes API Server. The API Server performs authentication, authorization, admission control, validation, and defaulting before persisting the object into etcd. Kubernetes then compares the desired state with the current state. Controllers such as the Deployment Controller detect the change and create or update ReplicaSets, which in turn create Pods. The Scheduler assigns those Pods to suitable nodes, and kubelets create the containers. So `kubectl apply` itself does not directly create containers; it submits the desired state to the control plane, and Kubernetes controllers continuously work to make the actual state match that desired state.
+
+---
+
+## 3. How does Kubernetes Service Discovery work?
+
+Kubernetes Service Discovery allows applications to communicate with other workloads without knowing the individual Pod IP addresses. A Service provides a stable virtual IP and DNS name in front of a group of Pods selected using labels. When a Service is created, Kubernetes maintains EndpointSlice objects containing the backend Pod IPs and ports. CoreDNS watches Kubernetes resources and creates DNS records for Services. For example, a Pod can communicate with `payment-service.default.svc.cluster.local` instead of directly using a Pod IP. DNS resolves the Service name to the Service ClusterIP, and traffic is then forwarded to one of the healthy backend endpoints through kube-proxy or the relevant Kubernetes networking implementation. This is important because Pods are temporary and their IP addresses can change, while the Service provides a stable discovery mechanism.
+
+---
+
+## 4. What is the difference between readiness and liveness probes internally?
+
+Readiness and liveness probes serve different purposes. A readiness probe determines whether a container is ready to receive application traffic. If the readiness check fails, Kubernetes removes the Pod from the Service's ready endpoints, so traffic is no longer routed to that Pod, but the container continues running. A liveness probe determines whether the container is still functioning correctly. If the liveness probe repeatedly fails, the kubelet considers the container unhealthy and restarts it according to the container restart policy. For example, during application startup, I may use a readiness probe so that traffic is not sent to the application until it is ready, while a liveness probe can detect an application that has become stuck. I also use startup probes for slow-starting applications so that liveness checks do not restart the application prematurely.
+
+---
+
+## 5. How does Horizontal Pod Autoscaler (HPA) make scaling decisions?
+
+HPA continuously compares the current workload metrics with the configured target. For example, if I configure CPU utilization with a target of 70%, HPA obtains the current CPU metrics through the Kubernetes metrics pipeline and calculates the desired replica count. Conceptually, the calculation is based on the ratio between current utilization and target utilization multiplied by the current number of replicas. If the workload consistently exceeds the target, HPA increases replicas; if utilization falls sufficiently below the target, HPA can reduce replicas. HPA also considers configured minimum and maximum replicas and scaling behavior policies to avoid aggressive or unstable scaling. The HPA updates the workload's replica count, after which the Deployment Controller creates or removes Pods. In production, I verify HPA using `kubectl get hpa`, `kubectl describe hpa`, and metrics such as CPU, memory, or custom application metrics.
+
+---
+
+## 6. What happens internally when you run `docker run`?
+
+When I execute `docker run`, Docker first checks whether the requested image exists locally. If it is unavailable, Docker contacts the configured registry and pulls the image and its layers. Docker then creates a container from the image by adding a writable container layer on top of the read-only image layers. It configures the container's namespaces and cgroups to provide process isolation and resource control. Docker also configures networking, mounts volumes if specified, applies environment variables and other runtime settings, and configures the container filesystem. Finally, the container runtime creates and starts the main process defined by the image's `ENTRYPOINT` and `CMD`. The Docker daemon then monitors the container lifecycle. If the main process exits, the container stops unless a restart policy is configured.
+
+---
+
+## 7. How does Docker layer caching work?
+
+Docker images are built using multiple filesystem layers. Each Dockerfile instruction such as `FROM`, `COPY`, or `RUN` can create a layer, depending on the build operation. During a new build, Docker checks whether an existing layer can be reused based on the build instruction and relevant input files. If the previous layers have not changed, Docker can reuse them instead of executing the commands again. Once a particular layer becomes invalid, subsequent layers generally need to be rebuilt. This is why Dockerfile instruction ordering is important. For example, I normally copy dependency files such as `package.json` or `pom.xml` before copying the complete source code, install dependencies, and then copy application source. As a result, source-code changes do not unnecessarily invalidate the dependency-installation layer, which significantly improves CI/CD build time.
+
+---
+
+## 8. How does Terraform dependency graph (DAG) work internally?
+
+Terraform builds a Directed Acyclic Graph, or DAG, from the resources and their dependencies defined in the configuration. Explicit dependencies can be created using `depends_on`, while Terraform can also automatically detect implicit dependencies through resource references. For example, if an EC2 instance references a security group's ID, Terraform understands that the security group must exist before the instance. Terraform uses this graph to determine which resources can be created, updated, or destroyed and which operations can safely run in parallel. Independent resources can be processed concurrently, while dependent resources wait for their prerequisites. During `terraform plan`, Terraform evaluates the desired configuration against the current state and builds the proposed changes. During `terraform apply`, Terraform walks the dependency graph and executes operations while respecting those relationships. This DAG-based execution is one reason Terraform can provision large infrastructures efficiently.
+
+---
+
+## 9. How does Terraform handle state locking and consistency?
+
+Terraform uses the state file to track the relationship between the Terraform configuration and real infrastructure. In a team environment, I normally use a remote backend so that everyone works against the same state. State locking prevents multiple Terraform operations from modifying the same state simultaneously. For example, with an appropriate locking-capable backend, when one engineer runs `terraform apply`, Terraform acquires a lock before modifying the state. Another engineer attempting a conflicting operation will either wait or receive a lock error depending on the backend and configuration. Terraform updates the state after successfully completing infrastructure changes. If the operation fails, Terraform attempts to maintain an accurate state based on what it knows about the infrastructure, and I can use `terraform refresh` or subsequent plan operations to reconcile state and real resources where appropriate. In production, I avoid manually editing state and use commands such as `terraform state list`, `terraform state show`, and controlled state operations when required.
+
+---
+
+## 10. What happens internally in a CI/CD pipeline from commit → deploy?
+
+A typical CI/CD pipeline starts when a developer pushes a commit or creates a pull request. The Git platform generates a webhook or event that triggers the CI/CD system. The pipeline checks out the specific commit and then performs stages such as dependency installation, compilation, unit testing, static code analysis, security scanning, and artifact or container-image creation. For containerized applications, the pipeline builds a Docker image, scans it using tools such as Trivy, and pushes the image to a registry such as ECR or another artifact repository. The deployment stage then updates the Kubernetes manifest, Helm values, or GitOps repository with the new image version. Kubernetes receives the desired state, creates new Pods, performs health checks, and gradually replaces the old Pods during a rolling deployment. In a production environment, I also include approval gates, secrets management, monitoring, deployment validation, and rollback mechanisms.
+
+---
+
+## 11. How does a pipeline handle parallel jobs and dependencies?
+
+A CI/CD pipeline usually represents jobs as a dependency graph. Jobs that are independent can run simultaneously, while jobs that depend on previous stages wait until their dependencies complete successfully. For example, unit tests, linting, SAST scanning, and dependency scanning may run in parallel after the source checkout. The Docker build may depend on successful tests, and deployment may depend on successful build, security, and approval stages. Parallel execution reduces the total pipeline execution time because the pipeline is not unnecessarily waiting for unrelated tasks. Most CI/CD platforms provide mechanisms such as stages, `needs`, dependencies, matrices, or workflow conditions to control this behavior. In production pipelines, I use parallelization carefully so that failures are detected early without allowing deployment to proceed when a required security or test job fails.
+
+---
+
+## 12. How does AWS Load Balancer route traffic?
+
+AWS Load Balancer routing depends on the type of load balancer being used. With an Application Load Balancer, the client connects to the load balancer's DNS name, and the ALB evaluates listeners, listener rules, host headers, paths, query conditions, and other configured conditions. It then selects an appropriate target from the target group. ALB continuously performs health checks against registered targets and avoids routing traffic to unhealthy targets. For example, `/api/*` can be routed to one target group while `/frontend/*` is routed to another. In Kubernetes on AWS, an AWS Load Balancer Controller can translate Kubernetes Ingress or Service resources into AWS load-balancing infrastructure. The load balancer therefore provides an external entry point while Kubernetes Services and Pods handle the internal application routing.
+
+---
+
+## 13. What happens internally when you hit a CloudFront URL?
+
+When I access a CloudFront URL, the client first performs DNS resolution for the CloudFront hostname. The request reaches a nearby CloudFront edge location based on AWS's global network routing. CloudFront checks whether the requested object is already available in the edge cache. If there is a cache hit, CloudFront can return the cached response directly without contacting the origin. If there is a cache miss, CloudFront forwards the request to the configured origin, such as an S3 bucket, ALB, EC2 application, or another HTTP endpoint. The origin generates the response, CloudFront can cache it according to the configured cache policy and response headers, and the response is returned to the client. CloudFront can also apply TLS termination, compression, cache policies, origin request policies, and AWS WAF protections depending on the architecture.
+
+---
+
+## 14. How does DNS resolution work step by step?
+
+When a user enters a domain such as `api.example.com`, the client first checks its local DNS cache and operating-system resolver information. If there is no cached answer, the request is sent to the configured recursive DNS resolver. The recursive resolver checks its own cache and, if necessary, starts the DNS resolution process. It may query a root DNS server to determine which nameserver is responsible for the top-level domain, such as `.com`. It then contacts the appropriate TLD nameserver to find the authoritative nameserver for `example.com`. Finally, the recursive resolver queries the authoritative nameserver for the actual record, such as an A, AAAA, CNAME, or other DNS record. The answer is returned to the client and cached according to its TTL. In AWS environments, Route 53 can provide authoritative DNS, private hosted zones, health checks, routing policies, and alias records.
+
+---
+
+## 15. How does Git merge and rebase differ internally?
+
+Git merge and rebase both integrate changes but modify the commit history differently. During a merge, Git finds the common ancestor of the branches and creates a new merge commit when necessary, preserving the existing history of both branches. During a rebase, Git identifies the commits that exist on the current branch but not on the target branch, temporarily removes those commits, moves the branch pointer to the latest target commit, and then reapplies those changes as new commits. Because the commits are recreated, their commit hashes change. Merge therefore preserves the original branch topology, while rebase creates a more linear history. In production repositories, I generally avoid rebasing commits that have already been shared widely because rewriting public history can create problems for other developers.
+
+---
+
+## 16. How does Kubernetes handle pod failures and self-healing?
+
+Kubernetes continuously compares the desired state with the actual state through its controllers. If a Pod managed by a Deployment crashes or is deleted, the ReplicaSet controller detects that the actual number of replicas is lower than the desired number and creates a replacement Pod. If the container itself crashes, the kubelet can restart the container according to the Pod's restart policy. Health probes also help Kubernetes detect application-level failures. Readiness failures remove a Pod from Service endpoints, while liveness failures can cause the container to restart. If a node fails, Kubernetes can eventually detect the node condition and reschedule workloads managed by controllers onto healthy nodes, subject to workload configuration and scheduling constraints. This controller-based reconciliation is the core mechanism behind Kubernetes self-healing.
+
+---
+
+## 17. What happens during a rolling deployment in Kubernetes?
+
+During a rolling deployment, Kubernetes gradually replaces old Pods with new Pods rather than terminating all old Pods simultaneously. When I update a Deployment image from one version to another, the Deployment Controller creates a new ReplicaSet for the new version. New Pods are created and scheduled, while the old ReplicaSet is gradually scaled down according to settings such as `maxSurge` and `maxUnavailable`. Kubernetes uses readiness checks to determine whether new Pods are ready to serve traffic. Only healthy and ready Pods become Service endpoints. Once enough new Pods are available, old Pods are terminated progressively. If the new version fails to become healthy, the rollout can become stuck, and I can investigate using `kubectl rollout status`, `kubectl describe deployment`, Pod events, logs, and `kubectl rollout history`. If necessary, I can roll back to the previous revision.
+
+---
+
+## 18. How do logs, metrics, and traces work together in observability?
+
+Logs, metrics, and traces provide different views of the same system. Metrics are numerical measurements such as CPU utilization, request rate, latency, error rate, and memory usage, which are useful for identifying trends and triggering alerts. Logs provide detailed event-level information such as application errors, request IDs, stack traces, and authentication failures. Traces follow a request across multiple services and show where time was spent, which is especially useful in microservices architectures. For example, if a dashboard shows increased API latency through metrics, I can use the trace to identify which microservice is causing the delay and then use the corresponding logs to understand the exact error or exception. In a production environment, I may use Prometheus and Grafana for metrics, CloudWatch or ELK/Loki for logs, and an OpenTelemetry-compatible tracing platform for distributed traces.
+
+---
+
+## 19. What happens when your system goes down - how do you approach it?
+
+When a production system goes down, I first focus on restoring service safely rather than immediately making large changes. I start by confirming the scope and impact: whether the issue affects all users, one API, one service, one namespace, one node, or an entire environment. I check monitoring dashboards, alerts, recent deployments, application logs, Kubernetes events, Pod status, node health, load balancer health, DNS, networking, databases, and external dependencies. I compare the timeline with recent changes because deployments, configuration changes, certificates, secrets, infrastructure changes, and dependency failures are common causes. If a recent deployment is clearly responsible and rollback is safe, I roll back and validate recovery. For infrastructure or Kubernetes problems, I check events and resource conditions rather than restarting everything blindly. After service restoration, I verify key APIs and business transactions, monitor the system for stability, communicate the incident status, and then perform RCA with corrective and preventive actions.
+
+---
+
+## 20. What are the most common production mistakes in DevOps setups?
+
+Some common production mistakes I have seen in DevOps environments are insufficient monitoring, missing alerts, incorrect Kubernetes resource requests and limits, weak health probes, improper secret management, manually changing production infrastructure, unreviewed Terraform changes, missing state locking, overly broad IAM permissions, insecure security groups, lack of backups, untested disaster recovery procedures, and deploying without proper rollback mechanisms. Another common issue is using mutable image tags such as `latest`, which makes deployments difficult to reproduce. CI/CD pipelines can also become risky when tests or security checks are optional or deployment credentials have excessive permissions. From an operational perspective, I prefer immutable versioned artifacts, least-privilege IAM, Terraform-managed infrastructure, centralized logging and monitoring, automated security scanning, proper readiness/liveness/startup probes, controlled deployments, and tested backup and recovery procedures. The goal is not just automation but making production changes predictable, observable, repeatable, and recoverable.
+
+---
+
+# 🔥 Quick Interview Summary
+
+For a **4-year DevOps Engineer**, I would explain these concepts from an **internal-working + real-production troubleshooting** perspective rather than only giving definitions.
+
+The common pattern across these technologies is **desired state, reconciliation, automation, dependency management, observability, and safe recovery**. Kubernetes continuously reconciles the desired workload state, Terraform reconciles infrastructure against configuration and state, CI/CD automates the software delivery lifecycle, AWS services handle scalable traffic delivery, and observability helps identify and troubleshoot failures. In production, my approach is to understand the system flow end-to-end, identify where the failure occurs, use metrics/logs/events/traces to isolate the root cause, restore service safely, and then implement preventive actions so the same issue does not repeat.
+
+# 🧠 One-Line Interview Revision
+
+| Topic                   | Key Internal Concept                                      |
+| ----------------------- | --------------------------------------------------------- |
+| Kubernetes Scheduling   | Filter → Score → Bind Pod to Node                         |
+| `kubectl apply`         | Manifest → API Server → etcd → Controllers → Pod          |
+| Service Discovery       | Service → EndpointSlice → DNS → Pod                       |
+| Readiness               | Controls traffic                                          |
+| Liveness                | Controls container restart                                |
+| HPA                     | Metrics → Desired replicas → Scale                        |
+| `docker run`            | Image → Container → Namespace/Cgroup → Process            |
+| Docker Cache            | Reuse unchanged image layers                              |
+| Terraform DAG           | Dependencies → Parallel execution                         |
+| Terraform State         | State + Lock → Consistent infrastructure changes          |
+| CI/CD                   | Commit → Build → Test → Scan → Artifact → Deploy          |
+| Parallel Pipeline       | Independent jobs execute concurrently                     |
+| AWS ALB                 | Listener Rules → Target Group → Healthy Target            |
+| CloudFront              | Edge → Cache → Origin on miss                             |
+| DNS                     | Resolver → Root → TLD → Authoritative DNS                 |
+| Git Merge               | Preserves history + merge commit                          |
+| Git Rebase              | Replays commits + rewrites hashes                         |
+| Kubernetes Self-Healing | Controllers reconcile desired state                       |
+| Rolling Deployment      | New ReplicaSet → Ready Pods → Old Pods removed            |
+| Observability           | Metrics + Logs + Traces                                   |
+| Production Incident     | Detect → Isolate → Recover → Validate → RCA               |
+| Production Mistakes     | Security + Monitoring + Reliability + Change-control gaps |
+
+
 # 🚀 DevOps Engineer Interview Questions & Answers
 
 ### Production-Oriented Interview Preparation | ~4 Years Experience
