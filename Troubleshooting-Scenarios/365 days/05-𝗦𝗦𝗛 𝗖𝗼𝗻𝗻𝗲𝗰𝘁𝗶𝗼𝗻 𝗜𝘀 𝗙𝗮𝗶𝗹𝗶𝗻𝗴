@@ -1,0 +1,75 @@
+𝗗𝗮𝘆 𝟱/𝟯𝟲𝟱 — 𝗦𝗦𝗛 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗶𝗼𝗻 𝗜𝘀 𝗙𝗮𝗶𝗹𝗶𝗻𝗴
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“You cannot SSH into a production server. How will you troubleshoot it?”
+
+I would not immediately assume that the server is down.
+
+First, I want to identify where the SSH connection is failing.
+
+I would start with:
+
+ssh user@server-ip
+
+If it fails, I would check whether the server is reachable:
+
+ping <server-ip>
+
+If ping is blocked, I wouldn't use that alone to conclude the server is unreachable.
+
+Next, I would check whether SSH port 22 is accessible:
+
+nc -vz <server-ip> 22
+
+or:
+
+telnet <server-ip> 22
+
+Then I would verify the SSH service on the server, if I have console or alternate access:
+
+systemctl status sshd
+
+I would also check whether SSH is actually listening:
+
+ss -lntp | grep :22
+
+Then I would investigate:
+
+• Is the server reachable?
+• Is port 22 open?
+• Is sshd running?
+• Is the firewall blocking the connection?
+• Is the security group/network ACL allowing SSH?
+• Is the username correct?
+• Is the SSH key/permission correct?
+• Was there a recent configuration change?
+
+For detailed client-side troubleshooting, I can use:
+
+ssh -vvv user@server-ip
+
+This gives me verbose SSH connection details and helps identify where the connection is failing.
+
+If authentication is the problem, I would verify the key and permissions rather than changing random settings.
+
+For example:
+
+chmod 600 ~/.ssh/id_rsa
+
+Once the issue is identified and corrected, I would test the connection again and verify normal server access.
+
+Finally, I would document:
+
+Issue → Investigation → Root Cause → Resolution → Preventive Action
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+When SSH fails, don't simply say “SSH is not working.”
+
+Break the problem down:
+
+𝗥𝗲𝗮𝗰𝗵𝗮𝗯𝗶𝗹𝗶𝘁𝘆 → 𝗣𝗼𝗿𝘁 → 𝗦𝗦𝗛 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 → 𝗙𝗶𝗿𝗲𝘄𝗮𝗹𝗹 → 𝗔𝘂𝘁𝗵𝗲𝗻𝘁𝗶𝗰𝗮𝘁𝗶𝗼𝗻 → 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻𝘀
+
+That's how you approach a production troubleshooting problem systematically. 🚀
+
