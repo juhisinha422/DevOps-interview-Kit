@@ -1,0 +1,29 @@
+#Accenture DevOps / SRE Interview Questions.
+
+1. Explain Kubernetes architecture.
+2. You mentioned maintaining separate CI and CD pipelines in Jenkins. How did you separate them and what triggers were configured at each stage?
+3. Have you worked with Terraform state locking and drift handling? Explain your approach.
+4. In Docker, if you have to create a multi-stage Dockerfile for a Maven application, what actions do you perform?
+5. Can you write a multi-stage Dockerfile?
+6. Explain the logic behind a multi-stage Docker build.
+7. Have you used Prometheus for monitoring? How was it integrated with Grafana?
+8. Have you configured alerts in Prometheus and Grafana? Explain the setup.
+9. Have you worked with GitHub or GitLab?
+10. How do you undo a bad commit that has already been pushed to the main branch?
+11. Have you worked in a production environment?
+12. Suppose your EKS cluster is experiencing pod CrashLoopBackOff issues. Walk me through your debugging process.
+13. If a Jenkins pipeline is failing but the application works locally, how would you troubleshoot it?
+14. How do you maintain security or cybersecurity practices in your environment?
+15. Suppose a production deployment fails and Jenkins catches it. How do you perform rollback and what responsibilities did you handle?
+16. Have you worked with Kubernetes orchestration?
+17. What does the "kubectl describe" command do?
+18. How do you scale pods while maintaining minimum replicas?
+19. Have you created Grafana dashboards for metrics, logs, and traces for RCA activities?
+20. Which domain have you worked in? Banking, insurance, or something else?
+21. Explain a rolling deployment strategy in Kubernetes. How do you define "maxSurge" and "maxUnavailable"?
+22. What is the difference between "COPY" and "ADD" in Docker? What was your usage?
+23. Give a real-time example of "COPY" and "ADD".
+24. What exactly were you doing with AWS CloudWatch and CloudTrail?
+25. How do you achieve high availability targets like 99% uptime using monitoring and alerting?
+26. How do you balance faster deployments with application stability when the business pushes for rapid releases?
+27. How do you manage secrets inside Docker containers?
