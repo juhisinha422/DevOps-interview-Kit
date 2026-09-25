@@ -1,0 +1,77 @@
+𝗗𝗮𝘆 𝟲/𝟯𝟲𝟱 — 𝗦𝗲𝗿𝘃𝗲𝗿 𝗠𝗲𝗺𝗼𝗿𝘆 𝗜𝘀 𝗙𝘂𝗹𝗹
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“Your production server is running out of memory. How will you troubleshoot it?”
+
+I would not immediately restart the server.
+
+First, I want to understand how memory is being consumed.
+
+I would start with:
+
+free -m
+
+This gives me an overview of total, used, free, available memory and swap.
+
+Then I would identify processes consuming the most memory:
+
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
+
+I can also use:
+
+top
+
+and press M to sort processes by memory usage.
+
+Next, I would check whether the system is using swap:
+
+swapon --show
+
+I would also check:
+
+vmstat 1
+
+This helps me understand whether the system is under memory pressure and actively swapping.
+
+Then I would investigate the application.
+
+I would check:
+
+• Is one process continuously increasing memory usage?
+• Did memory usage suddenly increase?
+• Was there a recent deployment?
+• Is there a memory leak?
+• Is traffic higher than normal?
+• Are there errors in application logs?
+• Is the server configured with enough memory for the workload?
+
+If one application process is consuming excessive memory, I would not immediately kill it.
+
+First, I would understand the impact and follow the approved incident/recovery procedure.
+
+If restarting the affected service is the approved recovery action, I would restart that service rather than rebooting the entire server.
+
+After recovery, I would monitor:
+
+free -m
+top
+vmstat 1
+
+and verify that the application is functioning normally.
+
+Then I would perform Root Cause Analysis.
+
+Issue → Investigation → Root Cause → Resolution → Preventive Action
+
+For prevention, I might consider memory monitoring, alerting, application tuning, capacity planning, or fixing a memory leak.
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+When memory is high, don't just look at the “free” value.
+
+Understand:
+
+𝗠𝗲𝗺𝗼𝗿𝘆 𝗨𝘀𝗮𝗴𝗲 → 𝗣𝗿𝗼𝗰𝗲𝘀𝘀𝗲𝘀 → 𝗦𝘄𝗮𝗽 → 𝗠𝗲𝗺𝗼𝗿𝘆 𝗣𝗿𝗲𝘀𝘀𝘂𝗿𝗲 → 𝗥𝗼𝗼𝘁 𝗖𝗮𝘂𝘀𝗲
+
+That's the difference between knowing Linux commands and troubleshooting production systems. 🚀
