@@ -1,0 +1,29 @@
+Interview Experience: DevOps Engineer 4 years @ Think Future Technologies
+
+
+Terraform & Infrastructure
+How would you trigger an Ansible playbook automatically when running terraform destroy?
+How do you retrieve logs from an EC2 instance's user data script after it has run?
+How do you verify whether a user data script executed successfully or failed?
+Terraform state file is lost — what happens to your infrastructure, and how do you recover?
+Resources were created manually in AWS (outside Terraform) — how do you bring them under Terraform management? Any approach beyond terraform import?
+
+Docker — Hands-on Scenario
+6. A Node.js app is dockerized but the container won't stay in a running state, and the app isn't accessible. Troubleshoot and fix it.
+Live scenario "Salta" (Medium, 15 min): A dockerized Node.js app in /home/admin/app needs to serve on port 8888. curl localhost:8888 isn't returning the expected response — something else may already be bound to that port. Fix it so exactly one running container serves Hello World! on port 8888. (Base image node:15.7-alpine is available locally; no root access; nginx isn't required.)
+
+Configuration Management & Security
+7. Have you used Ansible in your projects? For what purpose?
+8. An Nginx-hosted instance is receiving malicious traffic from a specific IP. How do you block it — without using NACLs or WAF?
+
+Kubernetes & Troubleshooting
+9. A pod is failing with an OOMKilled error — how do you troubleshoot it?
+10. An application is returning 5XX errors — how do you troubleshoot?
+11. An application is facing database-related issues — how do you fix or optimize it?
+12. What are the Kubernetes Service types? Explain the differences and use cases for ClusterIP, NodePort, and LoadBalancer.
+13. If you use a NodePort service and point a Route 53 record to the instance's IP, will traffic reach the application?
+
+Monitoring & Upgrades
+14. How do you create a custom Node Exporter for Prometheus?
+15. Walk through the steps to upgrade an EKS cluster from 1.34 to 1.35 with zero downtime.
+
