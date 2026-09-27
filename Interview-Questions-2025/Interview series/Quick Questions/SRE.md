@@ -1,3 +1,1913 @@
+# DevOps Interview Questions & Answers
+
+## AWS / Networking
+
+### 1. How do you troubleshoot a VPC?
+
+When I troubleshoot a VPC, I follow the network path from the source to the destination instead of checking resources randomly. I first identify the source and destination, for example EC2 to RDS, EKS Pod to RDS, EC2 to the internet, or one VPC to another.
+
+I check the **VPC, subnet, route table, security groups, Network ACLs, NAT Gateway, Internet Gateway, DNS, and VPC endpoints** depending on the traffic path.
+
+For example, if an EC2 instance in a private subnet cannot access the internet, I verify that the private subnet route table has a default route such as `0.0.0.0/0` pointing to a NAT Gateway, the NAT Gateway is deployed in a public subnet, and that public subnet has a route to an Internet Gateway.
+
+For application-to-database connectivity, I check the destination RDS security group, source security group, port, subnet routing, DNS resolution, and whether the database is actually listening on the expected port.
+
+Useful commands include:
+
+```bash
+ip addr
+ip route
+nslookup database.example.com
+dig database.example.com
+curl -v http://service:8080
+nc -vz <host> <port>
+traceroute <host>
+```
+
+On AWS, I also use **VPC Flow Logs**, Reachability Analyzer, CloudWatch, and security-group/NACL configuration to identify whether traffic is being accepted or rejected.
+
+My troubleshooting approach is:
+
+```text
+Source
+  ↓
+ENI
+  ↓
+Subnet
+  ↓
+Route Table
+  ↓
+NACL
+  ↓
+Internet/NAT/Peering/Transit Gateway
+  ↓
+Destination Security Group
+  ↓
+Destination
+```
+
+The important point is that I troubleshoot the **actual network path** rather than assuming that because the EC2 instance is running, networking is healthy.
+
+---
+
+### 2. How does VPC Peering work?
+
+VPC Peering provides private network connectivity between two VPCs using private IP addresses. Traffic between the VPCs travels through the AWS network rather than through the public internet.
+
+For example:
+
+```text
+VPC-A
+10.0.0.0/16
+     |
+     | VPC Peering
+     |
+VPC-B
+10.1.0.0/16
+```
+
+I create a peering connection between the VPCs and then update the route tables on both sides.
+
+For example:
+
+```text
+VPC-A route table:
+10.1.0.0/16 → pcx-xxxx
+
+VPC-B route table:
+10.0.0.0/16 → pcx-xxxx
+```
+
+Then I make sure the security groups and NACLs allow the required traffic.
+
+A common troubleshooting mistake is creating the peering connection but forgetting to add routes on both sides.
+
+I also ensure that the VPC CIDR ranges do not overlap. VPC Peering is generally **non-transitive**, so if VPC-A peers with VPC-B and VPC-B peers with VPC-C, that does not automatically provide A-to-C connectivity. For larger networks, I would consider Transit Gateway instead.
+
+---
+
+### 3. How do you set up a Multi-AZ architecture?
+
+For high availability, I distribute application resources across multiple Availability Zones within the same AWS Region.
+
+A typical architecture is:
+
+```text
+                    Route 53
+                       |
+                    ALB
+                 /         \
+              AZ-1         AZ-2
+               |             |
+             EKS/EC2       EKS/EC2
+               |             |
+              App           App
+                 \         /
+                    RDS
+               Multi-AZ
+```
+
+For the network layer, I create a VPC with multiple subnets:
+
+```text
+VPC
+├── Public Subnet AZ-1
+├── Public Subnet AZ-2
+├── Private App Subnet AZ-1
+├── Private App Subnet AZ-2
+├── Private DB Subnet AZ-1
+└── Private DB Subnet AZ-2
+```
+
+For the application layer, I deploy multiple instances or Kubernetes nodes across AZs. An ALB distributes traffic across healthy targets.
+
+For the database layer, I use RDS Multi-AZ where appropriate. The objective is that failure of one Availability Zone should not take down the complete application.
+
+I also verify that autoscaling, load balancing, database failover, DNS, monitoring, and deployment mechanisms are all designed for the multi-AZ topology.
+
+---
+
+### 4. What is AWS RDS?
+
+Amazon RDS is a managed relational database service. AWS handles many infrastructure-level tasks such as provisioning, backups, patching options, monitoring integration, and high-availability capabilities depending on the engine and configuration.
+
+RDS supports engines such as:
+
+* PostgreSQL
+* MySQL
+* MariaDB
+* Oracle
+* SQL Server
+* Aurora
+
+Important RDS concepts include:
+
+```text
+DB Instance
+DB Subnet Group
+Security Group
+Parameter Group
+Option Group
+Automated Backups
+Snapshots
+Multi-AZ
+Read Replicas
+Monitoring
+```
+
+For production, I normally place the database in private subnets and restrict database access through security groups rather than exposing the database publicly.
+
+For example:
+
+```text
+EKS/EC2
+   |
+   | TCP 3306
+   ↓
+RDS MySQL
+Private Subnet
+```
+
+The RDS security group should allow port `3306` only from the required application security group.
+
+---
+
+### 5. How do you upgrade a major RDS version with minimal downtime?
+
+For a major database-version upgrade, I don't directly upgrade production without first validating compatibility.
+
+My process would be:
+
+```text
+Check current version
+       ↓
+Review compatibility
+       ↓
+Test upgrade in lower environment
+       ↓
+Take snapshot / verify backups
+       ↓
+Test application compatibility
+       ↓
+Choose upgrade strategy
+       ↓
+Production upgrade
+       ↓
+Validate application
+       ↓
+Monitor
+```
+
+For a relatively simple database where the expected downtime is acceptable, I can use the native RDS major-version upgrade process after testing.
+
+For applications requiring very low downtime, I would consider a migration approach such as **Blue/Green deployments where supported, replication, or a logical migration strategy**.
+
+For example:
+
+```text
+Production DB
+     |
+     | replication/migration
+     ↓
+New DB Version
+     |
+Application validation
+     |
+Controlled cutover
+```
+
+Before the change, I verify:
+
+* Automated backup/PITR
+* Manual snapshot where appropriate
+* Database compatibility
+* Extensions
+* Parameter settings
+* Application driver compatibility
+* Connection pooling
+* Query behavior
+* Rollback strategy
+
+After the upgrade, I validate:
+
+```text
+DB connectivity
+Application health
+Error rate
+Latency
+Database connections
+CPU
+Memory
+IOPS
+Storage
+Slow queries
+```
+
+The important point is that **a backup alone is not a rollback strategy**. I need a tested recovery/cutover plan.
+
+---
+
+### 6. How do you monitor application logs?
+
+I centralize application logs rather than depending only on logs available on individual servers.
+
+A typical AWS architecture could be:
+
+```text
+Application
+    |
+    ↓
+Container / EC2
+    |
+    ↓
+CloudWatch Agent / Fluent Bit
+    |
+    ↓
+CloudWatch Logs
+    |
+    ├── Metrics
+    ├── Dashboards
+    └── Alerts
+```
+
+For Kubernetes, I commonly use Fluent Bit or another log collector to collect container stdout/stderr and forward logs to a centralized logging platform.
+
+I monitor:
+
+* HTTP 4xx/5xx
+* Exceptions
+* Timeout errors
+* Authentication failures
+* Database errors
+* Dependency failures
+* Application startup failures
+* Request latency
+* Correlation/request IDs
+
+For production troubleshooting, I don't look only at logs. I correlate:
+
+```text
+Metrics + Logs + Traces + Events
+```
+
+For example, if latency increases, I check application logs along with CPU, memory, database latency, downstream API latency, and request traces.
+
+---
+
+# Terraform / Infrastructure as Code
+
+## 7. What is Terraform Drift?
+
+Terraform drift occurs when infrastructure is changed outside Terraform and the real infrastructure no longer matches what Terraform expects from its configuration/state.
+
+For example, suppose Terraform creates:
+
+```hcl
+instance_type = "t3.medium"
+```
+
+Then someone manually changes the EC2 instance to `t3.large` through the AWS Console.
+
+When I run:
+
+```bash
+terraform plan
+```
+
+Terraform can detect the difference between the desired configuration, state, and remote infrastructure.
+
+The important point is that Terraform doesn't automatically update my `.tf` code just because someone changed AWS manually.
+
+I decide whether to:
+
+1. Revert the manual change through Terraform.
+2. Update Terraform configuration intentionally.
+3. Import/manage a resource if it was previously unmanaged.
+
+I treat unexpected drift as something that should be investigated because it can indicate manual changes, operational mistakes, or an incomplete IaC process.
+
+---
+
+## 8. When is the Terraform state file created?
+
+Terraform state is created or updated when Terraform successfully performs operations that create or manage resources and Terraform needs to record the mapping between the configuration and real infrastructure.
+
+For example:
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+`terraform init` initializes the working directory and backend but does not normally create the infrastructure state simply because initialization occurred.
+
+After resource creation through `terraform apply`, Terraform records information in the state.
+
+For example:
+
+```text
+Terraform configuration
+        |
+        ↓
+AWS Resource
+        |
+        ↓
+terraform.tfstate
+```
+
+In production, I prefer a remote backend rather than keeping state only on a developer's laptop.
+
+For AWS, a typical design can use an S3 backend with appropriate locking/state-concurrency protection supported by the chosen Terraform version/backend configuration.
+
+State should also be protected because it can contain sensitive infrastructure information.
+
+---
+
+## 9. What is Terraform Refresh?
+
+Terraform refresh means reconciling Terraform's knowledge of managed resources with their current real-world values.
+
+Conceptually:
+
+```text
+Terraform State
+      |
+      | Read infrastructure
+      ↓
+AWS Resources
+      |
+      ↓
+Updated state information
+```
+
+In modern Terraform workflows, refresh is normally performed as part of planning/applying rather than relying on the old standalone `terraform refresh` workflow.
+
+For example:
+
+```bash
+terraform plan
+```
+
+Terraform reads the remote infrastructure and compares it with the desired configuration and state.
+
+If somebody manually changes an AWS resource, Terraform can identify the difference during planning.
+
+---
+
+## 10. If an S3 bucket is created using Terraform, how would you destroy it?
+
+First I check whether the bucket contains objects.
+
+Terraform generally cannot simply delete a non-empty S3 bucket.
+
+I would first determine whether deleting the data is actually intended.
+
+For a disposable development bucket, I can configure:
+
+```hcl
+resource "aws_s3_bucket" "example" {
+  bucket = "my-example-bucket"
+
+  force_destroy = true
+}
+```
+
+Then:
+
+```bash
+terraform plan
+terraform destroy
+```
+
+`force_destroy = true` allows Terraform to delete objects before deleting the bucket.
+
+For production data, I would **not blindly use `force_destroy`**. I would verify retention requirements, backups, versioning, compliance, and ownership before deleting anything.
+
+A safer production workflow is:
+
+```text
+Confirm ownership
+      ↓
+Check versioning
+      ↓
+Check object count/data
+      ↓
+Verify backup/retention
+      ↓
+Obtain approval
+      ↓
+Destroy intentionally
+```
+
+---
+
+## 11. If two developers run "terraform apply" simultaneously and the state becomes corrupted, how would you recover it?
+
+First, I would stop additional Terraform operations to prevent further damage.
+
+The root cause should normally be prevented through **remote state and state locking/concurrency control**.
+
+My recovery approach is:
+
+```text
+Stop Terraform runs
+       ↓
+Identify backend/state version
+       ↓
+Check lock/concurrency situation
+       ↓
+Backup current state
+       ↓
+Inspect Terraform state
+       ↓
+Recover known-good state if required
+       ↓
+Run terraform plan
+       ↓
+Validate against AWS
+       ↓
+Apply carefully
+```
+
+If the backend supports state versioning, I can recover a previous known-good state version.
+
+I would also inspect:
+
+```bash
+terraform state list
+terraform state show <resource>
+terraform plan
+```
+
+If the infrastructure exists but the state has lost the resource mapping, I can use Terraform import functionality to restore management of the existing resource.
+
+I would **not manually edit the state JSON as my first approach**, because incorrect manual changes can make the situation worse.
+
+The long-term solution is:
+
+* Remote backend
+* State locking/concurrency protection
+* One controlled deployment pipeline
+* Separate environments/workspaces/states
+* CI/CD permissions
+* Avoiding direct production Terraform runs from developer laptops
+
+---
+
+## 12. How do you set up a Multi-AZ architecture using Terraform?
+
+I would create the networking and compute/database resources across multiple Availability Zones.
+
+For example:
+
+```hcl
+variable "azs" {
+  default = ["ap-south-1a", "ap-south-1b"]
+}
+
+resource "aws_subnet" "private" {
+  for_each = {
+    az1 = "ap-south-1a"
+    az2 = "ap-south-1b"
+  }
+
+  vpc_id            = aws_vpc.main.id
+  availability_zone = each.value
+}
+```
+
+Then I create:
+
+```text
+VPC
+├── Public Subnet AZ-1
+├── Public Subnet AZ-2
+├── Private Subnet AZ-1
+├── Private Subnet AZ-2
+└── DB Subnets
+```
+
+For application compute, I configure an Auto Scaling Group or EKS node groups across multiple AZs.
+
+For the database, I configure an RDS subnet group spanning the required AZs and enable an appropriate Multi-AZ configuration.
+
+The Terraform structure could be:
+
+```text
+terraform/
+├── modules/
+│   ├── vpc/
+│   ├── alb/
+│   ├── compute/
+│   └── rds/
+│
+├── environments/
+│   ├── dev/
+│   ├── staging/
+│   └── prod/
+│
+└── main.tf
+```
+
+This gives me repeatability and allows the architecture to be recreated consistently.
+
+---
+
+## 13. What is the difference between "for_each" and "count"?
+
+Both `count` and `for_each` allow Terraform to create multiple instances of a resource.
+
+With `count`:
+
+```hcl
+resource "aws_instance" "app" {
+  count         = 3
+  instance_type = "t3.medium"
+}
+```
+
+Terraform addresses them as:
+
+```text
+aws_instance.app[0]
+aws_instance.app[1]
+aws_instance.app[2]
+```
+
+With `for_each`:
+
+```hcl
+resource "aws_instance" "app" {
+  for_each = {
+    web = "t3.medium"
+    api = "t3.large"
+  }
+
+  instance_type = each.value
+}
+```
+
+Terraform addresses them using keys:
+
+```text
+aws_instance.app["web"]
+aws_instance.app["api"]
+```
+
+I prefer `for_each` when each resource has a meaningful identity or different configuration.
+
+I use `count` when I simply need a number of nearly identical resources.
+
+A key interview point is that changing list positions with `count` can cause resource addressing changes, whereas meaningful stable keys with `for_each` can make resource identity clearer.
+
+---
+
+## 14. How do you integrate Terraform with Jenkins?
+
+I normally integrate Terraform into a Jenkins pipeline so that infrastructure changes go through a controlled CI/CD process.
+
+A typical pipeline is:
+
+```text
+Git Push
+   ↓
+Jenkins
+   ↓
+Checkout
+   ↓
+terraform fmt
+   ↓
+terraform validate
+   ↓
+terraform init
+   ↓
+terraform plan
+   ↓
+Approval
+   ↓
+terraform apply
+```
+
+Example:
+
+```groovy
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+
+        stage('Validate') {
+            steps {
+                sh 'terraform fmt -check'
+                sh 'terraform validate'
+            }
+        }
+
+        stage('Plan') {
+            steps {
+                sh 'terraform plan -out=tfplan'
+            }
+        }
+
+        stage('Approval') {
+            steps {
+                input message: 'Apply Terraform changes?'
+            }
+        }
+
+        stage('Apply') {
+            steps {
+                sh 'terraform apply tfplan'
+            }
+        }
+    }
+}
+```
+
+For production, I also add:
+
+```text
+Security scanning
+Policy checks
+Approval
+Remote state
+Credential management
+Audit logging
+Plan artifact
+```
+
+AWS credentials should come through Jenkins credentials/integrated identity mechanisms rather than being hardcoded in the Jenkinsfile.
+
+---
+
+# Jenkins / CI/CD
+
+## 15. What is Jenkins Pipeline syntax?
+
+Jenkins Pipeline allows CI/CD workflows to be defined as code.
+
+There are two major styles:
+
+```text
+Declarative Pipeline
+Scripted Pipeline
+```
+
+I generally prefer Declarative Pipeline for standard CI/CD because the structure is easier to maintain.
+
+Example:
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        APP_NAME = 'my-app'
+    }
+
+    stages {
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t my-app:${BUILD_NUMBER} .'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f k8s/'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment successful'
+        }
+
+        failure {
+            echo 'Pipeline failed'
+        }
+    }
+}
+```
+
+The main components are:
+
+```text
+pipeline
+agent
+environment
+stages
+stage
+steps
+post
+when
+parameters
+```
+
+---
+
+## 16. How do you change the Jenkins port?
+
+If Jenkins is running as a system service, the port is normally configured through its service configuration/environment depending on the installation method.
+
+For a Linux package installation, I would check:
+
+```bash
+sudo systemctl status jenkins
+```
+
+and inspect the service configuration:
+
+```bash
+sudo systemctl cat jenkins
+```
+
+The exact configuration location depends on the Jenkins installation/package.
+
+For example, if `JENKINS_PORT` is configured through the service environment:
+
+```text
+JENKINS_PORT=8081
+```
+
+After changing it:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart jenkins
+```
+
+Then verify:
+
+```bash
+sudo ss -lntp | grep 8081
+```
+
+If Jenkins is running in Docker, I can instead map the container port:
+
+```bash
+docker run -p 8081:8080 jenkins/jenkins
+```
+
+The important thing is to identify **how Jenkins is installed** before changing its port.
+
+---
+
+## 17. How do you generate credentials/passwords from a CI/CD pipeline?
+
+I avoid generating or exposing production passwords directly inside the Jenkinsfile.
+
+For temporary credentials, I can generate random values using a secure random generator.
+
+For example:
+
+```bash
+openssl rand -base64 32
+```
+
+or:
+
+```bash
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+But the generated secret should then be stored in a proper secret-management system.
+
+For example:
+
+```text
+Jenkins
+   |
+   ↓
+Secret Manager / Vault
+   |
+   ↓
+Pipeline
+   |
+   ↓
+Application
+```
+
+For AWS workloads, I can use AWS Secrets Manager or another approved secret-management solution.
+
+The key principle is:
+
+> Generate once, store securely, retrieve only when needed, and never commit the secret into Git.
+
+---
+
+## 18. How do you securely manage and prevent credentials from being exposed in CI/CD?
+
+I follow several controls.
+
+First, I never hardcode credentials in:
+
+```text
+Jenkinsfile
+Git repository
+Dockerfile
+Terraform code
+Shell scripts
+Application configuration
+```
+
+Instead I use:
+
+```text
+Jenkins Credentials
+AWS IAM Roles
+AWS Secrets Manager
+HashiCorp Vault
+OIDC / workload identity
+Kubernetes Secrets
+```
+
+For Jenkins:
+
+```groovy
+withCredentials([
+    usernamePassword(
+        credentialsId: 'docker-creds',
+        usernameVariable: 'USERNAME',
+        passwordVariable: 'PASSWORD'
+    )
+]) {
+    sh '''
+        docker login -u "$USERNAME" -p "$PASSWORD"
+    '''
+}
+```
+
+I also avoid commands that unnecessarily print secrets.
+
+Additional controls include:
+
+* Secret masking
+* Least-privilege IAM
+* Short-lived credentials
+* OIDC instead of long-lived cloud keys where supported
+* Restricted Jenkins permissions
+* Secret rotation
+* Audit logs
+* Branch protection
+* Secret scanning
+* Preventing secrets from appearing in artifacts
+
+If a credential is accidentally exposed, I treat it as compromised and **rotate/revoke it immediately** rather than only deleting it from the console or Git history.
+
+---
+
+# Kubernetes
+
+## 19. Explain the Kubernetes architecture/structure.
+
+Kubernetes has a control plane and worker nodes.
+
+A simplified architecture is:
+
+```text
+                    Kubernetes Cluster
+                           |
+              +------------+------------+
+              |                         |
+        Control Plane               Worker Nodes
+              |                         |
+       +------+-------+            +----+----+
+       |      |       |            |         |
+    API Server etcd Scheduler    Kubelet  Runtime
+       |
+ Controllers
+```
+
+The major control-plane components are:
+
+### kube-apiserver
+
+The API server is the main entry point into Kubernetes.
+
+Commands such as:
+
+```bash
+kubectl get pods
+kubectl apply -f deployment.yaml
+```
+
+communicate with the API server.
+
+### etcd
+
+`etcd` stores Kubernetes cluster state.
+
+### Scheduler
+
+The scheduler decides which node should run a newly created Pod based on resource availability, constraints, affinity, taints/tolerations, and other scheduling rules.
+
+### Controller Manager
+
+Controllers continuously compare desired state with actual state and take corrective actions.
+
+On worker nodes:
+
+### kubelet
+
+Kubelet communicates with the API server and ensures the Pods assigned to the node are running.
+
+### Container Runtime
+
+The runtime runs containers through the Kubernetes CRI.
+
+### kube-proxy / networking implementation
+
+Provides service networking functionality depending on the cluster networking implementation.
+
+---
+
+## 20. Which Kubernetes resources do you commonly use while deploying an application?
+
+For a typical production application, I commonly use:
+
+```text
+Namespace
+ConfigMap
+Secret
+Deployment
+Service
+Ingress
+HorizontalPodAutoscaler
+ServiceAccount
+Role
+RoleBinding
+PersistentVolumeClaim
+NetworkPolicy
+PodDisruptionBudget
+```
+
+A common application flow is:
+
+```text
+Ingress
+   ↓
+Service
+   ↓
+Deployment
+   ↓
+Pods
+   ↓
+Container
+```
+
+For configuration:
+
+```text
+ConfigMap → non-sensitive configuration
+Secret    → sensitive configuration
+```
+
+For persistent applications:
+
+```text
+PVC → PV → StorageClass
+```
+
+For scaling:
+
+```text
+HPA → Deployment
+```
+
+In production, I also consider resource requests/limits, probes, security context, RBAC, PodDisruptionBudget, and network policies.
+
+---
+
+## 21. What is the difference between a container and a DaemonSet?
+
+A **container** is an isolated application process packaged with its dependencies.
+
+A **DaemonSet** is a Kubernetes workload/controller that ensures a Pod runs on selected nodes, commonly one Pod per eligible node.
+
+For example:
+
+```text
+Node-1 → Fluent Bit Pod
+Node-2 → Fluent Bit Pod
+Node-3 → Fluent Bit Pod
+```
+
+A Fluent Bit container may run inside each DaemonSet-managed Pod.
+
+So they are not equivalent concepts:
+
+```text
+Container
+    ↓
+Runs application/process
+
+DaemonSet
+    ↓
+Kubernetes controller
+    ↓
+Ensures Pods run on nodes
+```
+
+Common DaemonSet use cases include:
+
+* Log collectors
+* Node monitoring agents
+* Security agents
+* Storage/network agents
+
+---
+
+## 22. What is a Kubernetes workload?
+
+A workload is an application or service running on Kubernetes.
+
+Kubernetes provides workload resources/controllers to manage Pods.
+
+Common workload resources include:
+
+```text
+Deployment
+StatefulSet
+DaemonSet
+Job
+CronJob
+```
+
+For example:
+
+```text
+Deployment
+   ↓
+ReplicaSet
+   ↓
+Pods
+```
+
+A Deployment is generally used for stateless applications.
+
+A StatefulSet is useful when Pods need stable identities and persistent storage associations.
+
+A DaemonSet is useful when a Pod needs to run on every eligible node.
+
+A Job handles finite work, while a CronJob schedules Jobs periodically.
+
+---
+
+## 23. How would you deploy WordPress on Kubernetes?
+
+I would separate WordPress into application and database components.
+
+A simplified architecture is:
+
+```text
+Internet
+   |
+Ingress / Load Balancer
+   |
+WordPress Service
+   |
+WordPress Pods
+   |
+MySQL Service
+   |
+MySQL Pod/Stateful workload
+   |
+Persistent Storage
+```
+
+I would create:
+
+```text
+Namespace
+ConfigMap
+Secrets
+MySQL workload
+MySQL Service
+PersistentVolumeClaim
+WordPress Deployment
+WordPress Service
+Ingress
+```
+
+The database password would be stored as a Secret rather than inside the Deployment YAML.
+
+For persistent data, I would use a suitable persistent storage solution.
+
+For production, I would generally prefer a managed database such as Amazon RDS rather than running MySQL myself unless there is a specific requirement to run the database inside Kubernetes.
+
+Then the architecture becomes:
+
+```text
+Ingress
+   ↓
+WordPress Deployment
+   ↓
+RDS MySQL
+```
+
+I would also configure:
+
+```text
+Readiness Probe
+Liveness Probe
+Resource Requests/Limits
+HPA where appropriate
+Persistent storage for uploads
+Backups
+TLS
+Monitoring
+Logging
+```
+
+---
+
+## 24. How do you debug a Kubernetes application?
+
+I follow a structured troubleshooting flow.
+
+First:
+
+```bash
+kubectl get pods -n <namespace>
+```
+
+Then:
+
+```bash
+kubectl describe pod <pod> -n <namespace>
+```
+
+Then logs:
+
+```bash
+kubectl logs <pod> -n <namespace>
+```
+
+For a restarted container:
+
+```bash
+kubectl logs <pod> -n <namespace> --previous
+```
+
+Then I check:
+
+```bash
+kubectl get deployment -n <namespace>
+kubectl get rs -n <namespace>
+kubectl get svc -n <namespace>
+kubectl get ingress -n <namespace>
+kubectl get events -n <namespace> --sort-by=.lastTimestamp
+```
+
+I check whether the problem is:
+
+```text
+Pod
+ ↓
+Container
+ ↓
+Deployment
+ ↓
+Service
+ ↓
+Ingress
+ ↓
+Load Balancer
+ ↓
+External dependency
+```
+
+For a 503, for example, I verify:
+
+```text
+Ingress/Load Balancer
+        ↓
+Service
+        ↓
+Endpoints / EndpointSlices
+        ↓
+Ready Pods
+        ↓
+Application port
+```
+
+I don't assume that a `Running` Pod means the application is healthy.
+
+---
+
+## 25. How do you deploy a Pod in Kubernetes?
+
+For a simple test, I can use:
+
+```bash
+kubectl run nginx --image=nginx
+```
+
+Then:
+
+```bash
+kubectl get pods
+```
+
+For production deployments, I normally use a Deployment rather than creating an individual Pod.
+
+Example:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+```
+
+Deploy:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+Verify:
+
+```bash
+kubectl get deployment
+kubectl get pods -o wide
+```
+
+I prefer Deployment because it provides ReplicaSet-based reconciliation, rolling updates, scaling, and rollback capabilities.
+
+---
+
+## 26. If a container fails, how do you troubleshoot it and ensure it restarts automatically?
+
+First I determine why the container failed.
+
+I check:
+
+```bash
+kubectl get pods
+kubectl describe pod <pod>
+kubectl logs <pod>
+kubectl logs <pod> --previous
+```
+
+I inspect the container state and exit code.
+
+For example:
+
+```text
+OOMKilled
+Exit Code 137
+```
+
+can indicate the container exceeded its memory limit.
+
+Other possibilities include:
+
+```text
+Application exception
+Bad command/entrypoint
+Missing ConfigMap
+Missing Secret
+Image problem
+Dependency unavailable
+Permission issue
+Probe failure
+```
+
+If the Pod is managed by a Deployment, Kubernetes maintains the desired replica count and recreates failed Pods.
+
+For example:
+
+```text
+Deployment
+   ↓
+ReplicaSet
+   ↓
+Pod
+   ↓
+Container fails
+   ↓
+Pod/container recovery
+```
+
+Kubernetes also has a Pod-level restart policy, with common behavior such as:
+
+```yaml
+restartPolicy: Always
+```
+
+for workloads such as Deployments.
+
+However, automatic restart is not a substitute for troubleshooting. If the application continuously fails, Kubernetes can put the container into:
+
+```text
+CrashLoopBackOff
+```
+
+In that situation, I investigate the underlying failure instead of repeatedly restarting it manually.
+
+---
+
+## 27. What are Kubernetes probes and their types?
+
+Kubernetes probes allow Kubernetes to determine application health.
+
+There are three main probe types:
+
+```text
+Liveness Probe
+Readiness Probe
+Startup Probe
+```
+
+### Liveness Probe
+
+Determines whether the container should be considered alive.
+
+If the liveness check repeatedly fails, Kubernetes can restart the container.
+
+Example:
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+```
+
+### Readiness Probe
+
+Determines whether the Pod should receive traffic.
+
+If readiness fails, the Pod can remain running but is removed from Service endpoints.
+
+This is extremely important during deployments.
+
+### Startup Probe
+
+Useful for slow-starting applications.
+
+It allows Kubernetes to give the application enough time to start before liveness/readiness checks become relevant.
+
+Example:
+
+```yaml
+startupProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  failureThreshold: 30
+  periodSeconds: 10
+```
+
+The probes themselves can use mechanisms such as:
+
+```text
+HTTP
+TCP
+Exec
+gRPC
+```
+
+A common production mistake is configuring an aggressive liveness probe that kills a slow application during normal startup.
+
+---
+
+## 28. Have you performed Kubernetes rollout and rollback?
+
+Yes. For a Deployment, I use rolling updates so that a new version can be introduced gradually while maintaining application availability.
+
+For example:
+
+```bash
+kubectl set image deployment/myapp \
+myapp=myrepo/myapp:v2
+```
+
+Then:
+
+```bash
+kubectl rollout status deployment/myapp
+```
+
+I check:
+
+```bash
+kubectl get pods
+kubectl describe deployment myapp
+kubectl get rs
+```
+
+If the new version has an issue, I can rollback:
+
+```bash
+kubectl rollout undo deployment/myapp
+```
+
+Then:
+
+```bash
+kubectl rollout status deployment/myapp
+```
+
+I also validate application-level health rather than only checking whether Pods are `Running`.
+
+For example:
+
+```text
+Deployment successful
+       ↓
+Pods Ready
+       ↓
+Service endpoints healthy
+       ↓
+Ingress/LB healthy
+       ↓
+HTTP health check
+       ↓
+Error rate normal
+       ↓
+Latency normal
+```
+
+For production, I also prefer having a clear rollback decision and monitoring window rather than waiting for customers to report problems.
+
+---
+
+## 29. What is Ingress?
+
+Ingress is a Kubernetes API resource used to define HTTP/HTTPS routing from outside the cluster to Kubernetes Services.
+
+For example:
+
+```text
+Internet
+   |
+   ↓
+Load Balancer
+   |
+   ↓
+Ingress Controller
+   |
+   +------ /api ------> api-service
+   |
+   +------ /web ------> web-service
+```
+
+An Ingress resource defines routing rules, while the **Ingress Controller** is the component that actually implements those rules.
+
+Depending on the environment, the controller could be based on:
+
+```text
+AWS Load Balancer Controller
+NGINX Ingress Controller
+Traefik
+HAProxy
+```
+
+For example:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+spec:
+  rules:
+    - host: app.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app-service
+                port:
+                  number: 80
+```
+
+For HTTPS, I configure TLS according to the controller and environment.
+
+A key interview point is:
+
+> Ingress is the routing API object; the Ingress Controller is the implementation that processes those rules.
+
+---
+
+## 30. How do you monitor application logs in Kubernetes?
+
+I normally use centralized logging instead of depending only on `kubectl logs`.
+
+For troubleshooting an individual Pod:
+
+```bash
+kubectl logs <pod> -n <namespace>
+```
+
+For live logs:
+
+```bash
+kubectl logs -f <pod> -n <namespace>
+```
+
+For a specific container:
+
+```bash
+kubectl logs -f <pod> -c <container> -n <namespace>
+```
+
+For a previously terminated container:
+
+```bash
+kubectl logs <pod> --previous -n <namespace>
+```
+
+For production, I use a log collection architecture such as:
+
+```text
+Application Container
+        |
+        ↓
+stdout / stderr
+        |
+        ↓
+Fluent Bit / Log Collector
+        |
+        ↓
+Central Logging Platform
+        |
+        ├── Search
+        ├── Dashboards
+        ├── Alerts
+        └── Retention
+```
+
+Depending on the environment, the destination could be CloudWatch Logs, Elasticsearch/OpenSearch, Loki, or another centralized logging platform.
+
+I structure logs around fields such as:
+
+```text
+timestamp
+service
+namespace
+pod
+container
+level
+request_id
+trace_id
+status_code
+message
+```
+
+This makes production troubleshooting much easier.
+
+For example, if an API suddenly starts returning 500 errors, I can search centrally for:
+
+```text
+service=payment
+status=500
+trace_id=...
+```
+
+and correlate the logs with metrics and traces.
+
+---
+
+# Production Troubleshooting Cheat Sheet
+
+## CrashLoopBackOff
+
+```bash
+kubectl get pods -n <ns>
+kubectl describe pod <pod> -n <ns>
+kubectl logs <pod> -n <ns>
+kubectl logs <pod> --previous -n <ns>
+```
+
+Check:
+
+```text
+Exit code
+OOMKilled
+Application exception
+Environment variables
+Secrets
+ConfigMaps
+Probes
+Dependencies
+Command/entrypoint
+```
+
+---
+
+## Pod Pending
+
+```bash
+kubectl describe pod <pod> -n <ns>
+```
+
+Look at scheduler events.
+
+Common reasons:
+
+```text
+Insufficient CPU
+Insufficient memory
+Taints
+Missing tolerations
+Node affinity
+Pod anti-affinity
+PVC issues
+No suitable nodes
+Node capacity
+Subnet/IP exhaustion in cloud environments
+```
+
+---
+
+## Pod Running but Application Not Working
+
+Don't stop at:
+
+```bash
+kubectl get pods
+```
+
+Check:
+
+```text
+Pod readiness
+Service
+Endpoints / EndpointSlices
+Application port
+Ingress
+Load Balancer
+Security groups/firewall
+DNS
+Application logs
+Downstream dependencies
+```
+
+---
+
+## Node NotReady
+
+```bash
+kubectl get nodes
+kubectl describe node <node>
+```
+
+Check:
+
+```text
+kubelet
+Container runtime
+CPU/memory pressure
+DiskPressure
+PIDPressure
+CNI/networking
+DNS
+Certificates
+Kernel
+Node connectivity
+Cloud provider issues
+```
+
+---
+
+## High CPU
+
+```bash
+kubectl top pods -A
+kubectl top nodes
+```
+
+Then determine whether the issue is:
+
+```text
+Application workload
+CPU throttling
+Insufficient requests/limits
+Traffic increase
+Bad query
+Infinite loop
+Unexpected workload
+Missing autoscaling
+```
+
+---
+
+## High Memory
+
+Check:
+
+```bash
+kubectl top pod
+kubectl describe pod <pod>
+```
+
+Look for:
+
+```text
+OOMKilled
+Exit Code 137
+Memory limit
+Memory request
+Application memory leak
+JVM/runtime behavior
+Traffic increase
+```
+
+---
+
+# Senior DevOps / SRE Interview Answer Pattern
+
+For production troubleshooting questions, I structure my answer like this:
+
+```text
+1. Understand customer impact
+        ↓
+2. Confirm the issue
+        ↓
+3. Check metrics
+        ↓
+4. Check logs
+        ↓
+5. Check events
+        ↓
+6. Trace dependencies
+        ↓
+7. Form a hypothesis
+        ↓
+8. Mitigate safely
+        ↓
+9. Validate recovery
+        ↓
+10. Perform RCA
+        ↓
+11. Add preventive controls
+```
+
+For example, if an interviewer asks:
+
+**"Production application is returning 503. What will you do?"**
+
+I would answer:
+
+> First, I would determine where the 503 is being generated because it could come from the load balancer, ingress/controller, service layer, or application. I would check the load balancer target health, ingress/controller logs, Kubernetes Service and EndpointSlices, Pod readiness, application logs, and recent deployment changes. If the Pods are running but not Ready, I would investigate readiness probes and application dependencies. If endpoints are healthy, I would continue down the network and application path and check whether the backend is actually accepting connections on the expected port. I would correlate the incident with metrics such as request rate, error rate, latency, CPU, memory, database connections, and downstream dependency latency. Once I identify the failure, I would mitigate it through rollback, scaling, configuration correction, or dependency recovery as appropriate, then validate that traffic is healthy before documenting the RCA and preventive action.
+
+That style demonstrates **troubleshooting methodology**, rather than simply listing Kubernetes commands.
+
+# High-Priority Topics to Prepare
+
+For a 4+ years DevOps/SRE interview, I would be particularly comfortable explaining these areas in depth:
+
+```text
+AWS
+├── VPC
+├── Subnets
+├── Route Tables
+├── Security Groups
+├── NACL
+├── NAT Gateway
+├── VPC Peering
+├── ALB
+├── RDS
+└── Multi-AZ
+
+Terraform
+├── State
+├── State Locking
+├── Drift
+├── Refresh
+├── count
+├── for_each
+├── Modules
+├── Remote Backend
+└── Jenkins Integration
+
+Jenkins
+├── Declarative Pipeline
+├── Credentials
+├── Secrets
+├── Agents
+├── Parameters
+├── Artifacts
+└── Deployment/Rollback
+
+Kubernetes
+├── Architecture
+├── Deployment
+├── StatefulSet
+├── DaemonSet
+├── Service
+├── Ingress
+├── ConfigMap
+├── Secret
+├── Probes
+├── HPA
+├── Rollout/Rollback
+├── Scheduling
+└── Troubleshooting
+
+SRE
+├── Monitoring
+├── Logging
+├── Alerting
+├── Incident Response
+├── RCA
+├── SLI/SLO/SLA
+├── MTTR/MTTD
+├── Capacity
+└── Reliability
+```
+
+The strongest interview answers should connect **AWS + Kubernetes + Terraform + CI/CD + observability + incident response**, rather than treating each technology as an isolated topic.
+
+
 # AWS + Kubernetes + SRE — In-Depth DevOps Interview Preparation
 
 ## Introduction
