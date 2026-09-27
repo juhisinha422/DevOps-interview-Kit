@@ -1,0 +1,69 @@
+𝗗𝗮𝘆 𝟴/𝟯𝟲𝟱 — 𝗛𝗶𝗴𝗵 𝗟𝗼𝗮𝗱 𝗔𝘃𝗲𝗿𝗮𝗴𝗲 𝗼𝗻 𝗟𝗶𝗻𝘂𝘅
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“Your Linux server has a very high load average. How will you troubleshoot it?”
+
+I would not immediately assume that high load means high CPU.
+
+First, I would check:
+
+uptime
+
+or:
+
+top
+
+I would look at the 1, 5, and 15-minute load averages and compare them with the number of CPU cores.
+
+Then I would check CPU usage:
+
+top
+
+and:
+
+mpstat -P ALL 1
+
+I would also check processes consuming CPU:
+
+ps -eo pid,cmd,%cpu,%mem --sort=-%cpu | head
+
+But high load can also happen because processes are waiting for disk I/O.
+
+So I would check:
+
+iostat -xz 1
+
+and:
+
+vmstat 1
+
+I would look for high I/O wait, blocked processes, or unusually high disk activity.
+
+Then I would investigate:
+
+• Is CPU overloaded?
+• Are processes waiting for disk I/O?
+• Is there heavy disk activity?
+• Is memory pressure causing swapping?
+• Did traffic suddenly increase?
+• Was there a recent deployment or batch job?
+• Is a particular process consuming resources?
+
+I would then identify the root cause before taking corrective action.
+
+If a specific application or batch process is responsible, I would follow the approved production procedure rather than randomly killing processes.
+
+After recovery, I would monitor the system and verify that the application is healthy.
+
+Finally, I would document:
+
+Issue → Investigation → Root Cause → Resolution → Preventive Action
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+High load average does not automatically mean high CPU usage.
+
+A good DevOps Engineer checks whether the system is limited by:
+
+𝗖𝗣𝗨 → 𝗗𝗶𝘀𝗸 𝗜/𝗢 → 𝗠𝗲𝗺𝗼𝗿𝘆 → 𝗣𝗿𝗼𝗰𝗲𝘀𝘀 𝗖𝗼𝗻𝘁𝗲𝗻𝘁𝗶𝗼𝗻
