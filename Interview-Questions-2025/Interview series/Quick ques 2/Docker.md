@@ -1,3 +1,171 @@
+# 🚀 DevOps Production Interview Questions – 20 Practical Scenarios
+
+> **Experience Level:** 4 Years DevOps Engineer
+> **Focus:** Linux, Networking, Git, CI/CD, Docker, Kubernetes, AWS & Terraform
+
+---
+
+## 🐧 Linux & Networking
+
+### 1. A server is slow, but CPU usage is low. What would you check?
+
+If the server is slow but CPU usage is low, I would not assume that the CPU is the problem. I would first check **memory and swap usage**, because high memory consumption or swapping can make the server very slow. Then I would check **disk I/O and disk latency** using tools like `iostat`, `vmstat`, and `iotop`, because a process waiting for disk I/O can cause performance issues even when CPU utilization is low. I would also check **disk space and inode usage**, network latency, packet drops, and the application logs. I would identify which process is consuming resources and compare the current metrics with normal baseline values. Based on the evidence, I would isolate whether the issue is memory, disk I/O, network, or application-related before taking any corrective action.
+
+---
+
+### 2. Disk usage stays at 100% after deleting a large log file. Why?
+
+A common reason is that a running process still has the deleted file open. Linux removes the directory entry, but the actual disk space is not released until the process closes the file descriptor. I would first check the filesystem usage using `df -h`, and then use `lsof | grep deleted` to identify processes holding deleted files. If I find a process such as an application, Java process, or logging service holding the file, I would restart or reload the service carefully according to the production procedure. I would then run `df -h` again and verify that the disk space has been released. I would also check whether log rotation is configured correctly so the issue does not happen repeatedly.
+
+---
+
+### 3. An app works through its IP but fails through its domain. How would you investigate?
+
+If the application works through the IP address but not through the domain, I would first suspect a **DNS or hostname-related issue**. I would verify DNS resolution using `nslookup` or `dig` and check whether the domain resolves to the correct IP address. Then I would check the load balancer, reverse proxy, or web server configuration to make sure the correct hostname or server block is configured. I would also verify the application's listener configuration and, for HTTPS, check the TLS certificate and SNI configuration. Finally, I would test using `curl -v` with the domain and compare the response with the IP-based request. This helps me determine whether the problem is DNS, routing, proxy configuration, TLS, or the application itself.
+
+---
+
+### 4. What do connection timeout, connection refused and HTTP 502 suggest?
+
+A **connection timeout** generally means the client cannot establish a connection within the expected time, so I would investigate network connectivity, security groups, NACLs, firewalls, routing, or whether the destination is reachable. **Connection refused** usually means the host is reachable but nothing is listening on that port, or a firewall is actively rejecting the connection, so I would check the service status and listening ports using tools such as `ss -lntp`. An **HTTP 502 Bad Gateway** generally indicates that a proxy or load balancer received an invalid response or could not communicate properly with its upstream application. I would therefore check the load balancer or reverse proxy logs, backend health, target status, application logs, and connectivity between the proxy and backend.
+
+---
+
+# 🔀 Git & CI/CD
+
+### 5. How do git fetch and git pull differ? When would you use each?
+
+`git fetch` downloads the latest changes and references from the remote repository without changing my current working branch. I prefer using fetch when I want to inspect what changed before integrating it, especially when working on an important branch. `git pull` essentially performs a fetch followed by an integration operation such as merge or rebase, depending on the configuration. In a production-related workflow, I generally prefer fetching first, reviewing the changes, and then deciding whether I want to merge or rebase. This gives me more control and reduces the chance of accidentally integrating unwanted changes.
+
+---
+
+### 6. A faulty commit reaches a shared production branch. How would you reverse it safely?
+
+For a shared production branch, I would normally use `git revert` instead of rewriting history. I would first identify the faulty commit and understand its impact. Then I would create a revert commit that reverses the changes introduced by the faulty commit, test the result, and raise it through the normal pull request and CI/CD process. After validation and required approval, I would merge the revert and deploy it. I avoid commands such as `git reset --hard` followed by force-pushing on a shared production branch because that rewrites history and can affect other developers or automation using the branch.
+
+---
+
+### 7. A build passes locally but fails in Jenkins. What would you compare?
+
+I would compare the local environment with the Jenkins build environment. First, I would check the **Java, Maven, Node.js, Python, Docker, or other tool versions** depending on the application. Then I would compare environment variables, credentials, PATH configuration, dependency versions, repository access, workspace contents, and build commands. I would also check whether the Jenkins agent has the required permissions and network access. I would review the Jenkins console logs to identify the exact failure instead of assuming it is an application issue. If the build depends on a specific environment, I would standardize it using a Docker-based Jenkins agent or pinned tool versions so that local and CI environments remain consistent.
+
+---
+
+### 8. How would you build once and promote the same artifact across environments?
+
+I would follow an **immutable artifact** approach. The application would be built once in the CI pipeline, tested and scanned, and then the exact artifact would be stored in an artifact repository such as Nexus, an image registry such as Amazon ECR, or another approved repository. For example, with Docker, I would build an image once, tag it using a unique version or Git commit SHA, scan it, and push it to the registry. Dev, QA, staging, and production would then deploy that exact same image rather than rebuilding it. Only environment-specific configuration, such as URLs, credentials, or replica counts, should change between environments. This improves consistency, traceability, and rollback capability.
+
+---
+
+# 🐳 Docker
+
+### 9. Port 8080:80 is published, but the app is unreachable. What would you check?
+
+First, I would verify that the container is actually running using `docker ps` and confirm that the port mapping is `8080:80`. Then I would check whether the application inside the container is listening on port 80 using tools such as `ss` or by inspecting the container processes. One important check is whether the application is bound to `0.0.0.0` rather than only `127.0.0.1`, because binding only to localhost can prevent access through the Docker network interface. I would also check the container logs using `docker logs`, inspect the Docker network, and test the application from inside the container using `curl`. Finally, I would check host-level firewall rules, security groups, and any load balancer configuration if the container is running on AWS.
+
+---
+
+### 10. A container exits with code 137. How would you confirm whether it was OOM-killed?
+
+Exit code **137** means the process was terminated by signal 9, and one common reason is an **Out Of Memory kill**. I would first run `docker inspect <container>` and check the container's state and exit information. Then I would check whether Docker reports an OOM kill and review host memory and swap usage using commands such as `free -m`, `vmstat`, and `dmesg` where permitted. I would also check Docker resource limits and container metrics. If the host kernel logs show an OOM-kill event for the container process, that confirms the cause. After confirmation, I would investigate the application's memory behavior and determine whether the container limit needs adjustment or whether the application itself has a memory issue.
+
+---
+
+### 11. An app container cannot connect to its database container. How would you troubleshoot?
+
+I would first verify that both containers are running and connected to the same Docker network. Then I would inspect the network using `docker network inspect` and verify that the application is using the **database container/service name** as the hostname rather than relying on a changing container IP. I would check that MySQL or the database is listening on the expected port and that the database is ready to accept connections. From inside the application container, I would test DNS resolution and network connectivity to the database. I would also verify database credentials, environment variables, user permissions, and whether the database is configured to accept connections from the application network. Finally, I would review both application and database logs to identify authentication, DNS, connection, or startup issues.
+
+---
+
+### 12. How would you preserve MySQL data when replacing its container?
+
+I would never rely on the writable layer of the MySQL container for persistent production data. I would use a **Docker volume or an external persistent storage solution** and mount it to MySQL's data directory, typically `/var/lib/mysql`. When replacing the container, I would create the new container using the same persistent volume, so the database files remain available to the new container. I would also maintain regular database backups because volumes alone are not a complete backup strategy. Before replacing the container, I would verify the backup and volume configuration and ensure the new MySQL version is compatible with the existing data. After startup, I would verify that the expected databases and tables are available and perform application-level connectivity testing.
+
+---
+
+# ☸️ Kubernetes
+
+### 13. A Pod is in CrashLoopBackOff. What evidence would you collect first?
+
+I would first check the pod status and recent events using `kubectl get pod` and `kubectl describe pod`. Then I would check the application logs using `kubectl logs`, and if the container has restarted, I would use `kubectl logs --previous` to see the logs from the previous failed container instance. I would check the container's exit code, restart count, command and arguments, environment variables, mounted volumes, ConfigMaps and Secrets. I would also review readiness and liveness probes because an incorrect probe can cause repeated restarts. Finally, I would check resource limits and events for issues such as OOMKilled, failed mounts, image problems, or permission errors. I would use the collected evidence to identify the actual root cause before changing the deployment.
+
+---
+
+### 14. A Service has no ready endpoints. What would you inspect?
+
+I would first check the Service using `kubectl get svc` and `kubectl describe svc` and then inspect its endpoints or EndpointSlices. If there are no ready endpoints, I would compare the Service selector with the labels on the Pods. A selector mismatch is a common cause. Next, I would check whether the Pods are actually running and **Ready**, because a Pod can be running but excluded from Service traffic if its readiness probe is failing. I would inspect `kubectl get pods --show-labels`, pod conditions, readiness probe configuration, and recent events. I would also verify the Service port and targetPort configuration. Once the labels and readiness state are correct, I would confirm that the Service gets healthy endpoints and test connectivity from another Pod.
+
+---
+
+### 15. How do readiness and liveness probes affect traffic and restarts?
+
+A **readiness probe** determines whether a Pod is ready to receive traffic. If the readiness probe fails, Kubernetes removes that Pod from the Service's ready endpoints, but it does not necessarily restart the container. A **liveness probe** determines whether the container is still considered healthy. If the liveness probe repeatedly fails according to its configured thresholds, Kubernetes can restart the container. I use readiness probes for application availability and dependency readiness, while liveness probes are intended to detect situations where the application is stuck and needs to be restarted. Incorrect probe configuration can cause unnecessary traffic removal or restart loops, so I would always validate the probe path, port, timeout, initial delay, and thresholds.
+
+---
+
+### 16. A deployment causes errors. How would you investigate and decide whether to roll back?
+
+First, I would confirm that the errors started after the deployment and identify the affected version using deployment and rollout history. I would check Pod status, events, application logs, container exit codes, readiness and liveness probes, resource usage, Service endpoints, and ingress or load balancer errors. I would compare the new version with the previous working version and identify whether the issue is code, configuration, secrets, dependencies, infrastructure, or capacity-related. If the new release is confirmed as the cause and the impact is significant, I would follow the production rollback procedure, for example using `kubectl rollout undo deployment/<deployment-name>`. After rollback, I would verify that Pods become ready, traffic is restored, and application error rates return to normal. I would then investigate the root cause before attempting another deployment.
+
+---
+
+# ☁️ AWS & Terraform
+
+### 17. EC2 cannot access S3. How would you distinguish IAM and network issues?
+
+I would troubleshoot this in two separate areas: **identity permissions and network connectivity**. First, I would verify the IAM role attached to the EC2 instance and check whether it has the required S3 permissions such as `s3:GetObject` or `s3:ListBucket`, depending on the operation. I would also check bucket policies, explicit denies, and any organization-level restrictions. To test the network side, I would check whether the instance has internet/NAT access or an appropriate **S3 VPC endpoint** if the architecture uses private connectivity. I would test S3 access from the instance using AWS CLI and examine the exact error message. An `AccessDenied` response generally points toward permissions, while network errors, timeouts, or inability to reach the endpoint suggest connectivity or routing problems. I would also verify the correct AWS region and bucket name.
+
+---
+
+### 18. An app on EC2 cannot connect to private RDS. What would you check?
+
+I would first confirm that the EC2 instance and RDS instance are in the correct VPC and that their subnets have the expected routing. Then I would check the **RDS security group** and verify that it allows inbound traffic on the database port, such as 3306 for MySQL, from the EC2 security group rather than unnecessarily allowing the entire internet. I would also verify the EC2 security group's outbound rules, network ACLs, route tables, and DNS resolution. From the EC2 instance, I would test DNS resolution of the RDS endpoint and then test TCP connectivity to the database port. I would also check that RDS is available and listening on the expected port and verify database credentials separately. This helps distinguish a network/security issue from a database authentication or application configuration problem.
+
+---
+
+### 19. Someone manually deletes a Terraform-managed EC2 instance. What would the next plan show?
+
+Terraform maintains the desired infrastructure state in its state file. If someone manually deletes an EC2 instance that Terraform manages, the actual infrastructure will no longer match the Terraform state. During the next `terraform plan`, Terraform refreshes the resource information and detects that the instance defined in the configuration is missing. Terraform will normally show that the EC2 instance needs to be **created again** to bring the infrastructure back to the desired state. I would review the plan carefully and, after the appropriate approval, run `terraform apply` to recreate the instance. I would also investigate why the manual deletion occurred because production infrastructure should ideally be changed through the approved Infrastructure-as-Code workflow.
+
+---
+
+### 20. Why do teams use remote Terraform state and locking?
+
+Teams use **remote Terraform state** so that the state is stored centrally and can be accessed by authorized team members and CI/CD pipelines instead of being kept only on an individual developer's machine. For example, AWS teams commonly use an S3 backend for state storage with appropriate security and versioning controls. **State locking** prevents multiple Terraform operations from modifying the same state simultaneously, which helps avoid state corruption and conflicting changes. In a team environment, remote state also improves collaboration, backup, access control, and recovery. I would secure the backend using appropriate IAM permissions and encryption and ensure that the team follows a controlled workflow for Terraform changes.
+
+---
+
+# 🎯 Interview Approach
+
+For production-level DevOps questions, I normally structure my answer around:
+
+1. **Identify the symptom**
+2. **Collect evidence**
+3. **Check logs, metrics and events**
+4. **Validate configuration and connectivity**
+5. **Identify the root cause**
+6. **Apply the safest corrective action**
+7. **Verify the fix**
+8. **Prevent the issue from happening again**
+
+The important point is that I would not restart a service or container immediately just because it is unreachable. I would first collect enough evidence to understand **why** it is unreachable, because restarting can sometimes hide the actual root cause and make troubleshooting more difficult.
+
+---
+
+## 💡 Example: Docker Container Is Running but Application Is Unreachable
+
+If an interviewer gives me the scenario:
+
+> **"Your Docker container is running, but the application is unreachable. What would you check before restarting it?"**
+
+I would answer:
+
+**"I would first verify that the container is actually running and check the port mapping using `docker ps`. Then I would check the container logs to see whether the application started successfully. I would verify that the application is listening on the expected internal port and is bound to `0.0.0.0` rather than only localhost. Then I would test connectivity from inside the container and check the Docker network, host firewall, security group, load balancer, and DNS depending on the architecture. I would also check application health and resource utilization. Once I identify the root cause, I would fix it and verify the application is reachable. I would restart the container only if the evidence indicates that a restart is the appropriate corrective action."**
+
+This demonstrates **troubleshooting, reasoning, verification, and production awareness**, rather than simply saying *"I will restart the container."*
+
+
+
 # 🐳 Docker Interview Questions & Answers
 
 ## Production-Level Scenarios — 4 Years DevOps Experience
