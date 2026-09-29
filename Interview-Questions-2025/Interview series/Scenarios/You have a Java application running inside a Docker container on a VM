@@ -1,0 +1,14 @@
+You have a Java application running inside a Docker container on a VM. If the process has one PID inside the container and another PID on the host, which PiD is greater and why?
+
+
+
+1.The host PID is always greater than the container PID 
+
+2.Inside the container, the namespace creates a isolated environment where our Java application thinks it is the only major process running, assigning it PID 1 (or a very low number).
+
+3.On the host, the process is viewed as part of the entire system's global process tree. Since the host has been running many system processes, daemons, and services.
+
+4.The host tracks every process across the entire virtual machine consecutively, the global counter will almost always be much higher than the isolated, freshly initialized counter inside the container.
+
+
+
