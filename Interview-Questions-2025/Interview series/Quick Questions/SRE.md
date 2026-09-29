@@ -1,3 +1,202 @@
+# 🚀 SRE / DevOps Production Interview Questions & Answers
+
+> **Experience Level:** 4 Years DevOps / SRE
+> **Focus:** Reliability, SLOs, Observability, Linux, Kubernetes, Incident Response, Recovery & Automation
+
+---
+
+# 🎯 Reliability and SLOs
+
+## 1. How would you define SLIs and SLOs for a payment API?
+
+For a payment API, I would first identify the most important user-facing reliability indicators. My SLIs would typically include **availability, latency, successful transaction rate, and possibly correctness of payment responses**. For example, availability could measure the percentage of valid requests that receive successful responses, while latency could measure the percentage of requests completed within a defined threshold. I would then define SLOs based on business requirements, such as 99.9% successful availability and a specific latency target for a defined percentile. I would also define the measurement window and exclude cases that are outside our system's control where appropriate. The important part is that the SLO should represent what the customer actually experiences rather than only measuring infrastructure health.
+
+---
+
+## 2. Availability meets its SLO, but users report slow responses. What would you measure?
+
+If availability is meeting its SLO but users are reporting slowness, I would look beyond availability and investigate **latency and performance**. I would check P50, P95, P99, and possibly P99.9 latency instead of relying only on average latency. Then I would break the latency down by endpoint, region, service, status code, and dependency. I would also check database query latency, external API latency, CPU, memory, disk I/O, network latency, connection pool usage, and request queueing. I would use distributed tracing to identify where time is actually being spent in the request path. This helps determine whether the issue is application processing, database performance, network latency, or a downstream dependency.
+
+---
+
+## 3. Your error budget is exhausted. Should the next release proceed?
+
+If the error budget is exhausted, I would not automatically proceed with a normal release. I would first understand why the budget was consumed and whether the release introduces additional reliability risk. I would review recent incidents, error-budget burn, current system health, and whether the release contains reliability improvements or unrelated feature changes. Depending on the team's release policy, we may pause or restrict non-essential releases until reliability is restored. If a release is required to fix a critical production issue, I would handle it through the appropriate emergency-change process with additional validation and rollback planning. The decision should be based on the organization's documented SLO and release policy rather than simply making an assumption.
+
+---
+
+## 4. How would you use error-budget burn rate for alerting?
+
+I would use burn rate to identify how quickly the service is consuming its allowed error budget. Instead of alerting only when the SLO is already violated, I would configure alerts for **fast and slow burn scenarios**. A fast-burn alert can detect a severe incident that could consume a large portion of the error budget quickly, while a slower-burn alert can identify sustained degradation over a longer period. I would use multiple time windows to reduce false positives and make the alert actionable. For example, a severe short-window burn can trigger immediate paging, while a slower sustained burn could create a ticket or lower-severity alert. The goal is to alert based on customer-impacting reliability rather than every small infrastructure fluctuation.
+
+---
+
+# 📊 Monitoring and Observability
+
+## 5. Average latency is normal, but P99 is rising. What would you investigate?
+
+I would investigate why a small percentage of requests are becoming significantly slower even though the average remains normal. I would first break P99 latency down by endpoint, instance or Pod, availability zone, region, status code, and request type. Then I would use distributed traces to identify slow requests and determine whether the delay is coming from the application, database, network, or a downstream service. I would also check for overloaded nodes, GC pauses, thread or connection pool exhaustion, slow database queries, lock contention, network packet loss, and resource throttling. I would compare the affected instances with healthy ones to identify whether the problem is isolated or systemic.
+
+---
+
+## 6. Users report failures, but dashboards are green. What could monitoring be missing?
+
+If users are experiencing failures while dashboards are green, I would first question whether our monitoring is measuring the correct things. We may be monitoring infrastructure availability but not the actual user journey or business transaction. For example, servers and Pods could be healthy while a payment API is returning incorrect responses. I would check application-level metrics, synthetic monitoring, real-user monitoring if available, HTTP status codes, dependency failures, regional failures, and business metrics. I would also check whether dashboards have aggregation that hides errors, such as averaging across healthy and unhealthy instances. This situation usually indicates a gap between infrastructure monitoring and user-centric observability.
+
+---
+
+## 7. How would you use metrics, logs, and traces to investigate slow checkout requests?
+
+I would start with **metrics** to establish when the latency increased, how widespread it is, and which endpoints or services are affected. Then I would use **distributed traces** to follow an individual checkout request across services and identify where the majority of the time is being spent. Once I identify the problematic service or operation, I would use **logs** to understand the exact error, query, timeout, or application event associated with those requests. For example, if the trace shows that most of the checkout latency is coming from the payment service, I would correlate the timestamp and request or trace ID with payment-service logs and metrics. This combination gives me the overall trend from metrics, the request path from traces, and the detailed event information from logs.
+
+---
+
+## 8. Your team receives hundreds of alerts daily. How would you reduce alert fatigue?
+
+I would first analyze the alerts to identify duplicates, noisy alerts, non-actionable alerts, and alerts that do not represent customer impact. I would prioritize alerts based on **severity, SLO impact, and whether immediate human action is required**. I would consolidate related alerts and use dependency-aware alerting where possible so that one root cause does not generate hundreds of notifications. I would also tune thresholds and use appropriate evaluation windows to reduce transient alerts. Alerts that do not require immediate action could create tickets instead of pages. Finally, I would regularly review alert effectiveness and remove alerts that repeatedly fire without resulting in useful action.
+
+---
+
+# 🐧 Linux and Kubernetes
+
+## 9. A Linux server is slow, but CPU usage is low. Which commands would you run?
+
+I would first check memory and swap using `free -m` and `vmstat` because memory pressure can cause significant slowness even with low CPU utilization. I would then check disk I/O and latency using `iostat` and identify processes causing high I/O with tools such as `iotop` where available. I would check disk and inode usage using `df -h` and `df -i`. I would also check load average using `uptime` or `top`, because load can be high due to processes waiting for I/O rather than consuming CPU. For networking issues, I would check tools such as `ss`, `sar`, or relevant network metrics. I would correlate these findings with application logs and monitoring data before deciding on the corrective action.
+
+---
+
+## 10. Deleting large logs does not release disk space. What would you check?
+
+I would check whether a running process still has the deleted log file open. I would use `lsof | grep deleted` to identify open deleted files. Linux removes the file from the directory structure when it is deleted, but the disk blocks can remain allocated until the process closes the file descriptor. I would identify the process holding the file and determine whether the service can safely be reloaded or restarted. After the process releases the file, I would verify the filesystem usage using `df -h`. I would also review log rotation configuration to prevent the same problem from recurring.
+
+---
+
+## 11. A container is OOMKilled despite free memory on its node. Why?
+
+A container can be OOMKilled even when the Kubernetes node still has free memory because the **container or Pod may have its own memory limit**. If the process exceeds that configured memory limit, Kubernetes or the container runtime can terminate it even though the overall node has available memory. I would check the Pod's resource requests and limits using `kubectl describe pod` or inspect the Deployment manifest. I would also check the container's termination reason and previous logs to confirm whether it was actually OOMKilled. Then I would compare actual memory usage with the configured limit and investigate whether the application has a memory leak or whether the limit is incorrectly sized. I would avoid simply increasing the limit without understanding the application's memory behavior.
+
+---
+
+## 12. A Pod is Running, but the application is unreachable. How would you troubleshoot?
+
+A `Running` status only tells me that the container has started; it does not guarantee that the application is reachable. I would first check whether the container is **Ready** and inspect its readiness probe. Then I would check the application logs and verify that the application is listening on the expected port. I would inspect the Service and confirm that its selector matches the Pod labels and that the Pod appears as a ready endpoint. I would also verify the Service `port` and `targetPort`, NetworkPolicies, Ingress configuration, and load balancer if one is involved. Finally, I would test connectivity from another Pod inside the cluster and compare that with external connectivity to determine whether the problem is inside the application, Service networking, or the external access layer.
+
+---
+
+## 13. HPA adds replicas, but latency keeps increasing. What could be the bottleneck?
+
+If HPA is adding Pods but latency continues to increase, scaling the application Pods may not be addressing the actual bottleneck. I would check CPU and memory usage of the new Pods, but I would also investigate **database connections, database CPU, slow queries, connection pools, downstream APIs, message queues, network limits, and external dependencies**. It is possible that all application replicas are waiting on the same database or downstream service. I would use metrics and distributed traces to identify where request time is being spent. I would also verify whether the HPA is scaling based on the right metric and whether there are cluster capacity constraints preventing new Pods from running efficiently. The goal is to identify the limiting dependency rather than simply adding more replicas.
+
+---
+
+## 14. A rolling deployment causes intermittent 502 errors. What would you inspect?
+
+I would first determine whether the 502 errors started exactly with the deployment. Then I would check the load balancer or Ingress logs and correlate the errors with specific Pods or instances. I would inspect Pod readiness, readiness-probe configuration, startup time, termination behavior, and Service endpoints during the rollout. I would also verify whether the application needs more graceful shutdown time and whether `terminationGracePeriodSeconds`, `preStop`, and connection draining are configured correctly. I would check whether new Pods are receiving traffic before the application is actually ready or whether old Pods are being terminated before connections finish. If necessary, I would pause or roll back the deployment while investigating the root cause.
+
+---
+
+# 🚨 Incident Response and Resilience
+
+## 15. Errors spike after a deployment. What are your first five minutes of action?
+
+My first priority would be to understand the customer impact and stabilize the system. I would confirm whether the error increase correlates with the deployment and check application error rates, latency, Pod health, logs, and deployment status. If the evidence strongly indicates that the new release caused the issue, I would follow the established rollback procedure rather than spending too much time debugging while customers are impacted. I would communicate the incident status to the relevant team and keep a clear timeline of actions. After stabilization, I would compare the failed version with the last known-good version and investigate the root cause. The immediate goal is **restore service first, then perform detailed root-cause analysis**.
+
+---
+
+## 16. A downstream service becomes slow. How would you prevent cascading failures?
+
+I would use resilience mechanisms such as **timeouts, bounded retries, circuit breakers, rate limiting, bulkheads, and graceful degradation**. The first important step is to ensure that requests do not wait indefinitely for the downstream service. I would configure sensible timeouts and avoid unlimited retries. If retries are required, I would use exponential backoff with jitter and an appropriate retry limit. A circuit breaker can temporarily stop requests to an unhealthy dependency and allow the system to recover. I would also isolate resources so one slow dependency does not consume all application threads or connections. Where possible, I would degrade non-critical functionality rather than allowing the entire request to fail.
+
+---
+
+## 17. Retries make an outage worse. How would you redesign them?
+
+I would first identify whether retries are happening at multiple layers, because application, SDK, proxy, and load-balancer retries can multiply traffic during an outage. I would use **bounded retries with exponential backoff and jitter** rather than immediate repeated requests. I would retry only operations that are safe to retry, especially considering whether the operation is idempotent. For payment or other critical operations, I would use idempotency mechanisms to prevent duplicate transactions. I would also configure timeouts and circuit breakers so that a failing dependency does not cause unlimited retry traffic. Finally, I would monitor retry volume separately because a high retry rate can be an early signal of dependency degradation.
+
+---
+
+## 18. Several services fail together. How would you find a shared dependency?
+
+I would first build a timeline and identify whether all services started failing at approximately the same time. Then I would look for common dependencies such as a database, cache, DNS, service mesh, API gateway, authentication service, message broker, network component, or cloud service. I would use distributed traces and service dependency maps if available to identify common paths. I would compare service-specific metrics and logs and look for common error messages or timeout patterns. I would also check infrastructure events and recent changes around the same timestamp. If several otherwise independent services fail simultaneously, I would prioritize investigating components shared by those services rather than debugging each service independently.
+
+---
+
+# 🔄 Recovery and Automation
+
+## 19. Backups succeed daily. How would you verify recovery meets RTO and RPO?
+
+A successful backup job only proves that the backup process completed; it does not prove that recovery will work. I would perform **regular restore tests** in an isolated environment and measure the actual time required to restore the service. I would compare the recovery time with the defined **RTO**, which represents the maximum acceptable time to restore service. I would also verify that the restored data meets the required **RPO**, meaning the acceptable amount of data loss measured in time. I would validate database integrity, application functionality, configuration, dependencies, and access after restoration. I would document the restore duration and any issues found and periodically conduct disaster-recovery exercises so the recovery process is tested rather than assumed.
+
+---
+
+## 20. Which operational task would you automate first, and what safeguards would you add?
+
+I would automate a repetitive, high-volume operational task that is well understood and has clear success criteria, such as log cleanup, health checks, deployment validation, routine infrastructure checks, or restarting a known failed workload under controlled conditions. Before automating it, I would understand the failure scenarios and define clear conditions under which the automation is allowed to act. I would add safeguards such as **dry-run capability, validation checks, approval gates for high-risk actions, rate limits, audit logs, monitoring, alerting, and rollback mechanisms**. For production, I would also test the automation in lower environments first. My goal would not be to automate simply for the sake of automation, but to reduce repetitive manual work while ensuring that the automation cannot make uncontrolled changes.
+
+---
+
+# 🧠 My Production Troubleshooting Approach
+
+For most SRE/DevOps production incidents, I follow this approach:
+
+### 1. Identify the impact
+
+Understand what is failing, who is affected, and when the issue started.
+
+### 2. Check recent changes
+
+Look for recent deployments, configuration changes, infrastructure changes, or dependency changes.
+
+### 3. Check the four golden signals
+
+* **Latency**
+* **Traffic**
+* **Errors**
+* **Saturation**
+
+### 4. Collect evidence
+
+Use metrics, logs, traces, Kubernetes events, Linux commands, cloud monitoring, and application-level telemetry.
+
+### 5. Isolate the dependency
+
+Determine whether the problem is in the application, database, network, Kubernetes, cloud infrastructure, or an external dependency.
+
+### 6. Stabilize first
+
+If customers are impacted, use the safest available mitigation such as rollback, traffic shifting, scaling, or disabling a problematic feature.
+
+### 7. Verify the recovery
+
+Confirm that error rate, latency, availability, and application functionality have returned to normal.
+
+### 8. Prevent recurrence
+
+Perform root-cause analysis and implement monitoring, automation, configuration, architecture, or code changes where required.
+
+---
+
+# 🎤 Strong Interview Closing Answer
+
+> **"In production, I don't directly jump to restarting services or scaling resources. I first try to understand the symptom, collect evidence from metrics, logs and traces, check recent changes and dependencies, and identify the root cause. If there is customer impact, I prioritize safe mitigation and service restoration. After the issue is stabilized, I verify the recovery and then work on the permanent fix and prevention. This approach helps me troubleshoot systematically instead of making changes based only on assumptions."**
+
+---
+
+## 🔑 Key SRE Concepts to Remember
+
+| Concept             | What I Focus On                          |
+| ------------------- | ---------------------------------------- |
+| **SLI**             | What I measure                           |
+| **SLO**             | Target reliability level                 |
+| **SLA**             | External/business commitment             |
+| **Error Budget**    | Acceptable unreliability                 |
+| **Burn Rate**       | Speed of consuming error budget          |
+| **P50**             | Typical request latency                  |
+| **P95**             | High-end user latency                    |
+| **P99**             | Tail latency                             |
+| **Metrics**         | What is happening                        |
+| **Logs**            | What happened                      
+
 # DevOps Interview Questions & Answers
 
 ## AWS / Networking
