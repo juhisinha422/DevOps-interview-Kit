@@ -1,3 +1,10 @@
+## Why do we get 502 Bad Gateway and 504 Gateway Timeout errors in production (ALB + ECS)?
+
+Most people just say “server issue” or “timeout,” but in real systems the meaning is more specific: a 504 Gateway Timeout happens when the Application Load Balancer doesn’t get a response from the target in time—usually due to slow database queries, downstream service latency, or blocked application threads.
+
+While a 502 Bad Gateway means the load balancer received an invalid response, often caused by container crashes, wrong port mapping, or application misconfiguration; the correct way to debug is not guessing but following a structured path—first check ALB metrics (TargetResponseTime, 5XX), then verify target group health, then inspect ECS container logs in CloudWatch, and finally trace dependencies like DB or other services—because in most real-world cases, 504 points to performance bottlenecks and 502 points to application/config issues, not the load balancer itself. 
+
+
 ## Production DevOps Troubleshooting — 4 Years Experience
 
 ## 1. Your pod is Running, but users get intermittent 502 errors. CPU and memory are normal. How do you troubleshoot it?
