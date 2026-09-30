@@ -1,0 +1,73 @@
+🚀 𝗗𝗮𝘆 𝟭𝟭/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗶𝗻 𝗣𝗲𝗻𝗱𝗶𝗻𝗴 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “You deployed an application to Kubernetes, but the pod is stuck in Pending. What will you check?”
+
+I wouldn't immediately restart the pod.
+
+First, I want to understand why Kubernetes cannot schedule it.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check the pod status
+
+kubectl get pods -n <namespace>
+
+2️⃣ Describe the pod
+
+kubectl describe pod <pod-name> -n <namespace>
+
+The Events section is one of the first places I would check.
+
+Look for messages related to:
+
+🔹 Insufficient CPU/Memory
+🔹 Node selector/affinity
+🔹 Taints and tolerations
+🔹 Volume/PVC issues
+🔹 Scheduling constraints
+
+3️⃣ Check available nodes
+
+kubectl get nodes
+
+Then:
+
+kubectl describe nodes
+
+I would check whether nodes are Ready and whether they have enough allocatable resources.
+
+4️⃣ Check resource requests
+
+A pod can remain Pending when its resource requests cannot be satisfied by any available node.
+
+I would review:
+
+kubectl describe pod <pod-name> -n <namespace>
+
+and check the CPU/memory requests defined in the workload.
+
+5️⃣ Check PVC status
+
+If the application uses persistent storage:
+
+kubectl get pvc -n <namespace>
+
+A PVC stuck in Pending can prevent the workload from starting correctly.
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Pod → Events → Nodes → Resources → Scheduling Rules → PVC → Root Cause
+
+Once the actual cause is identified, I would apply the appropriate fix and verify:
+
+kubectl get pods -n <namespace> -w
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Pending doesn't mean the application is broken.
+
+It often means Kubernetes hasn't been able to schedule the pod yet.
