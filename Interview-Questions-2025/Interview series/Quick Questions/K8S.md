@@ -1,3 +1,265 @@
+# ☸️ Kubernetes Production Troubleshooting – 20 Interview Questions & Answers
+
+> **Experience Level:** 4 Years DevOps Engineer
+> **Focus:** Kubernetes, Pods, Services, Networking, Deployments, Resources, Scaling, Storage & RBAC
+
+---
+
+# 🔧 Pods & Troubleshooting
+
+## 1. A Pod is Running, but the app is unreachable. What would you check?
+
+I would not restart the Pod immediately because `Running` only means that the container has started; it does not guarantee that the application is ready to serve traffic. First, I would check the Pod's **Ready** status using `kubectl get pods` and inspect it using `kubectl describe pod`. Then I would check the application logs and verify whether the application is actually listening on the expected port. I would check the readiness probe, container port, Service selector, Service port and targetPort, and confirm that the Pod is present in the Service's ready endpoints. I would also test connectivity from another Pod inside the cluster. If the application works internally but is not reachable externally, I would investigate the Ingress, load balancer, NetworkPolicy, DNS, or external networking. Only after identifying the cause would I consider restarting the Pod.
+
+---
+
+## 2. A Pod is stuck in Pending. How would you find what prevents scheduling?
+
+I would first run `kubectl describe pod <pod-name>` and check the **Events** section because Kubernetes usually provides the reason why the scheduler could not place the Pod. I would look for insufficient CPU or memory, node selectors, affinity or anti-affinity rules, taints and tolerations, unavailable nodes, or PersistentVolume-related problems. I would also check the available nodes using `kubectl get nodes` and review their allocatable resources. If the Pod has resource requests that cannot be satisfied by any node, it will remain Pending. I would also check whether a required PVC is still unbound. Based on the scheduler event, I would correct the specific scheduling constraint rather than simply restarting the Pod.
+
+---
+
+## 3. A container keeps entering CrashLoopBackOff. Which logs and events would you inspect?
+
+I would first check the Pod status and restart count using `kubectl get pod`. Then I would run `kubectl describe pod <pod-name>` and inspect the Events section for failed probes, OOMKilled events, mount failures, permission problems, or container startup errors. I would check the current application logs using `kubectl logs <pod-name>` and, because the container is restarting, I would also use `kubectl logs <pod-name> --previous` to inspect the logs from the previous failed container. I would check the container exit code, command and arguments, environment variables, ConfigMaps, Secrets, mounted volumes, and resource limits. I would also verify whether a liveness probe is incorrectly restarting an application that simply needs more startup time. Based on this evidence, I would determine whether the issue is application failure, configuration, dependency failure, resource exhaustion, or an incorrect probe.
+
+---
+
+## 4. A Pod shows ImagePullBackOff. How would you investigate?
+
+I would start with `kubectl describe pod <pod-name>` and check the Events section because it normally contains the image-pull failure reason. I would verify the image name, repository, registry and tag. If it is a private registry, I would check whether the Pod has the correct `imagePullSecrets` or the appropriate node/workload permissions. I would verify that the image tag actually exists and that the node can reach the container registry. For AWS ECR, I would also check the IAM permissions required to pull the image. I would distinguish between errors such as image not found, authentication failure, DNS failure, registry connectivity problems, or rate limiting. After fixing the specific issue, I would verify that the image is successfully pulled and the container starts.
+
+---
+
+# 🌐 Services & Networking
+
+## 5. A Service has no ready endpoints. What would you inspect?
+
+I would first inspect the Service and its endpoints using `kubectl describe svc <service-name>` and check the EndpointSlices. Then I would compare the Service's **selector** with the labels assigned to the Pods. A selector mismatch is one of the common reasons for a Service having no endpoints. I would also check whether the Pods are actually **Ready**, because a Pod can be Running while its readiness probe is failing. I would inspect the readiness probe configuration, Pod conditions, Service port and targetPort, and recent events. Once the labels and readiness state are correct, I would verify that the Service has ready endpoints and test connectivity from another Pod.
+
+---
+
+## 6. An app works through its Pod IP but fails through its Service. What would you compare?
+
+If the application works directly through the Pod IP but fails through the Service, I would focus on the Service configuration and Kubernetes networking. First, I would check whether the Service selector correctly matches the Pod labels and whether the Service has the expected endpoints. Then I would compare the Service `port` and `targetPort` with the port on which the application is actually listening. I would test the Service ClusterIP and DNS name from another Pod. I would also check whether the Service type is appropriate and investigate NetworkPolicies or CNI-related issues if required. Since direct Pod-IP access works, this comparison helps isolate the problem to the Service or networking layer rather than the application itself.
+
+---
+
+## 7. A Pod cannot reach another Service by name. How would you investigate DNS?
+
+I would first determine whether the problem is DNS resolution or network connectivity. From the source Pod, I would use tools such as `nslookup`, `dig`, or `getent hosts` to resolve the Service name. I would verify that the Service exists in the expected namespace and that the application is using the correct DNS name. For cross-namespace communication, I would verify the appropriate Kubernetes DNS format such as `<service>.<namespace>.svc.cluster.local`. Then I would check the CoreDNS Pods, CoreDNS Service, and CoreDNS logs for errors. I would also check whether a NetworkPolicy is blocking DNS traffic. Finally, I would test connectivity to the resolved Service IP to distinguish a DNS problem from a Service or network connectivity problem.
+
+---
+
+## 8. Ingress returns HTTP 502. How would you trace the request to the backend?
+
+I would trace the request layer by layer: **client → DNS → Load Balancer → Ingress → Service → endpoints → Pod → application**. First, I would check the Ingress configuration and Ingress controller logs to understand why it is returning 502. Then I would verify that the backend Service exists and has healthy endpoints. I would check the Service `port` and `targetPort` and confirm that the application is listening on the expected port. I would test the backend Service directly from inside the cluster to determine whether the application is reachable without the Ingress. I would also inspect readiness probes, NetworkPolicies, TLS configuration if applicable, and application logs. This helps identify whether the 502 originates from the Ingress-to-Service path or from the backend application.
+
+---
+
+# 🚀 Deployments & Releases
+
+## 9. A deployment causes errors. What evidence would help you decide whether to roll back?
+
+I would first establish a timeline and confirm whether the error rate increased immediately after the deployment. I would check the Deployment rollout status and history, Pod health, application logs, HTTP error rates, latency, readiness and liveness probe failures, resource usage, and Service endpoints. I would compare the new version with the previous known-good version and check for changes to application configuration, Secrets, database dependencies, or external services. If the evidence shows that the new release is causing customer impact and the previous version was healthy, I would follow the production rollback procedure, such as `kubectl rollout undo deployment/<deployment-name>`. After the rollback, I would verify that the Pods become Ready and that error rates and latency return to normal.
+
+---
+
+## 10. How would you configure a rolling update to maintain availability?
+
+I would use the `RollingUpdate` deployment strategy and configure `maxUnavailable` and `maxSurge` according to the application's capacity and availability requirements. I would ensure that the Deployment has enough replicas and that a correct **readiness probe** is configured so that a new Pod receives traffic only after the application is ready. I would also configure graceful termination using an appropriate termination period and, where necessary, a `preStop` hook so existing requests can complete. During the rollout, I would monitor Pod readiness, application latency, error rates, and load balancer health. This allows new Pods to be validated before old healthy Pods are removed.
+
+---
+
+## 11. How do readiness and liveness probes affect traffic and restarts?
+
+A **readiness probe** determines whether a Pod should receive traffic. When the readiness probe fails, Kubernetes removes the Pod from the Service's ready endpoints, but it does not necessarily restart the container. A **liveness probe** determines whether the container is still functioning correctly. If the liveness probe repeatedly fails according to its configured thresholds, Kubernetes can restart the container. I use readiness probes for application availability and startup/dependency readiness, while liveness probes are useful for detecting a stuck application that needs a restart. I would carefully configure the probe path, port, timeout, initial delay, and failure thresholds because incorrect probes can cause unnecessary traffic removal or restart loops.
+
+---
+
+## 12. You delete a Pod, but it reappears. Which controller might be recreating it?
+
+If I delete a Pod and it comes back, it is normally being managed by a higher-level Kubernetes controller. In a typical application deployment, a **Deployment** manages a ReplicaSet, and the ReplicaSet maintains the desired number of Pods. Depending on the workload, it could also be managed by a StatefulSet, DaemonSet, Job, or another controller. I would run `kubectl describe pod <pod-name>` or inspect the Pod YAML and check its `ownerReferences` to identify the controller. I would then make changes to the controller rather than manually modifying individual Pods because the controller continuously reconciles the desired state.
+
+---
+
+# 📈 Resources & Scaling
+
+## 13. A container is OOMKilled. What would you inspect before increasing its memory limit?
+
+I would first confirm the termination reason using `kubectl describe pod` and verify that the container was actually OOMKilled. Then I would check the configured memory request and limit and compare them with the application's actual memory usage and historical metrics. I would look for sudden memory spikes, memory leaks, large workloads, inefficient queries, caching behavior, or unusual traffic. I would also check whether multiple containers are running in the same Pod and understand their individual resource limits. If the application consistently reaches the configured limit with legitimate workload, I may need to adjust the limit. However, I would not simply increase memory without checking for a memory leak or incorrect application behavior.
+
+---
+
+## 14. An app responds slowly under load. How would you check for CPU throttling?
+
+I would first check the container's CPU request and limit and compare them with actual CPU usage. I would use Kubernetes metrics and monitoring data to check whether the container is consistently reaching its CPU limit and whether CPU throttling is occurring. Depending on the monitoring system, I would inspect container CPU throttling metrics and correlate them with application latency. I would also check whether the application is CPU-bound or waiting on another dependency such as a database. If the container is consistently hitting its CPU limit and throttling increases during traffic spikes, I would evaluate whether to adjust the CPU limit, optimize the application, or scale horizontally using HPA.
+
+---
+
+## 15. HPA is configured, but replicas are not increasing. What would you check?
+
+I would first check the HPA using `kubectl get hpa` and `kubectl describe hpa <hpa-name>` and review its current metrics and Events. I would verify that the Metrics Server or configured custom metrics provider is working correctly. If HPA is based on CPU or memory utilization, I would make sure the target Pods have appropriate resource requests configured because utilization calculations depend on them. I would compare the current metric against the HPA target and check `minReplicas` and `maxReplicas`. I would also verify that the HPA points to the correct Deployment and check whether cluster capacity or scheduling constraints are preventing new replicas from being created. Finally, I would verify whether stabilization or scaling policies are delaying the increase.
+
+---
+
+## 16. A worker node becomes NotReady. How would you investigate the impact on workloads?
+
+I would first identify the affected node and check its conditions and events using `kubectl describe node <node-name>`. I would investigate kubelet health, container runtime status, disk pressure, memory pressure, network connectivity, and node availability. Then I would list the workloads running on that node and determine whether critical Pods have been affected. I would check whether sufficient replicas are running on healthy nodes and whether Kubernetes has rescheduled workloads. If appropriate, I would cordon the node to prevent new workloads from being scheduled there and carefully drain it if the workload architecture allows it. After the immediate impact is handled, I would investigate the node's underlying issue and verify that application availability has been restored.
+
+---
+
+# 💾 Storage & Configuration
+
+## 17. A PVC stays Pending. What would you inspect?
+
+I would first run `kubectl describe pvc <pvc-name>` and check the Events section to understand why the claim has not been fulfilled. I would verify whether the required StorageClass exists and whether dynamic provisioning is configured correctly. If using a pre-created PersistentVolume, I would check whether a compatible PV exists and whether its capacity, access mode, storage class, and other attributes match the PVC. For dynamic provisioning, I would inspect the CSI driver and its logs. I would also check availability-zone restrictions, storage capacity, and any volume topology requirements. Once the underlying storage requirement is satisfied, I would verify that the PVC changes from `Pending` to `Bound`.
+
+---
+
+## 18. A database Pod is replaced. What determines whether its data survives?
+
+The main factor is whether the database data is stored on **persistent storage or only inside the container's ephemeral filesystem**. If MySQL or another database stores data only inside the container's writable layer, replacing the Pod can result in data loss. If the database uses a PVC backed by a PersistentVolume, the storage exists independently of the Pod and can be attached to the replacement Pod. I would check the workload's volume mounts, PVC, PersistentVolume, StorageClass, and reclaim policy. For production databases, I would also verify that backups and restore testing are in place because persistent storage alone does not protect against every type of failure.
+
+---
+
+## 19. You update a ConfigMap, but the app uses old values. What would you check?
+
+I would first check how the ConfigMap is consumed by the application. If it is injected as an **environment variable**, updating the ConfigMap does not automatically change the environment variables of existing containers, so the Pods generally need to be recreated or the Deployment rolled out. If it is mounted as a volume, Kubernetes can update the mounted files after a propagation delay, but the application may still need to reload the configuration. I would verify the current ConfigMap contents, inspect how the Pod consumes it, and check whether the application caches the configuration internally. In production, I would normally perform a controlled rollout so that the configuration change is applied consistently and can be tracked.
+
+---
+
+## 20. An app receives “Forbidden” from the Kubernetes API. How would you investigate its permissions?
+
+A `Forbidden` response generally indicates a Kubernetes **RBAC authorization problem**. I would first identify which identity the application is using, normally its ServiceAccount. Then I would inspect the associated Role or ClusterRole and the RoleBinding or ClusterRoleBinding. I would verify whether the required **resource, verb, and namespace** are permitted. For example, the application may have permission to `get` Pods but not to `list` or `watch` them. I would use `kubectl auth can-i` to verify the effective permissions for the application's identity. I would then grant only the minimum required permissions rather than using broad permissions such as `cluster-admin`, and finally retest the API call from the application.
+
+---
+
+# 🧠 Kubernetes Troubleshooting Flow
+
+When an application is unreachable, I follow a structured troubleshooting path:
+
+```text
+                    USER REQUEST
+                         |
+                         v
+                  DNS / Route 53
+                         |
+                         v
+              Load Balancer / Ingress
+                         |
+                         v
+                 Ingress Controller
+                         |
+                         v
+                    SERVICE
+                         |
+                         v
+              ENDPOINTS / ENDPOINTSLICES
+                         |
+                         v
+                     POD READY?
+                         |
+                         v
+                CONTAINER PORT
+                         |
+                         v
+                APPLICATION PROCESS
+                         |
+                         v
+              DATABASE / DEPENDENCIES
+```
+
+At every layer, I collect evidence before making a change.
+
+---
+
+# 🔥 Useful Kubernetes Commands
+
+## Pods
+
+```bash
+kubectl get pods -o wide
+kubectl get pods --show-labels
+kubectl describe pod <pod-name>
+kubectl get pod <pod-name> -o yaml
+```
+
+## Logs
+
+```bash
+kubectl logs <pod-name>
+kubectl logs <pod-name> --previous
+kubectl logs <pod-name> -c <container-name>
+```
+
+## Services & Endpoints
+
+```bash
+kubectl get svc
+kubectl describe svc <service-name>
+kubectl get endpoints
+kubectl get endpointslices
+```
+
+## Deployments
+
+```bash
+kubectl get deployment
+kubectl describe deployment <deployment-name>
+kubectl rollout status deployment/<deployment-name>
+kubectl rollout history deployment/<deployment-name>
+kubectl rollout undo deployment/<deployment-name>
+```
+
+## Nodes
+
+```bash
+kubectl get nodes
+kubectl describe node <node-name>
+kubectl top nodes
+kubectl top pods
+```
+
+## HPA
+
+```bash
+kubectl get hpa
+kubectl describe hpa <hpa-name>
+```
+
+## Storage
+
+```bash
+kubectl get pvc
+kubectl describe pvc <pvc-name>
+kubectl get pv
+kubectl get storageclass
+```
+
+## RBAC
+
+```bash
+kubectl get role
+kubectl get rolebinding
+kubectl get clusterrole
+kubectl get clusterrolebinding
+kubectl auth can-i get pods
+```
+
+---
+
+# 🎤 Main Interview Scenario
+
+### Interviewer:
+
+**"Your Pod is Running. Your Service exists. But your application is unreachable. What would you check before restarting the Pod?"**
+
+### My Answer:
+
+> **"I would not restart the Pod immediately because Running only tells me that the container has started; it doesn't guarantee that the application is ready to serve traffic. First, I would check the Pod's Ready status and inspect the Pod events and application logs. Then I would verify the readiness probe and confirm that the application is listening on the expected container port. Next, I w
+
+
 # Kubernetes Production Troubleshooting
 
 𝗬𝗼𝘂𝗿 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗽𝗼𝗱𝘀 𝗮𝗿𝗲 “𝗥𝘂𝗻𝗻𝗶𝗻𝗴.”
