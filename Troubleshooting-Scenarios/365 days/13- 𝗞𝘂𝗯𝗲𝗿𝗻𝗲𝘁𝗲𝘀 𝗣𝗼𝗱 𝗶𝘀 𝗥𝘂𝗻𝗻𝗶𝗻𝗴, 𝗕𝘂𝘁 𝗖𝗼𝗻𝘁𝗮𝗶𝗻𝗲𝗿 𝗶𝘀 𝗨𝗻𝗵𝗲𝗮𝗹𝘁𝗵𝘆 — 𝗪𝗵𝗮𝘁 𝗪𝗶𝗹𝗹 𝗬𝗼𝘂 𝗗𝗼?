@@ -1,0 +1,76 @@
+𝗗𝗮𝘆 𝟭𝟯/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗥𝘂𝗻𝗻𝗶𝗻𝗴, 𝗕𝘂𝘁 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗶𝘀 𝗨𝗻𝗵𝗲𝗮𝗹𝘁𝗵𝘆 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗗𝗼?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes pod is in Running state, but the application is not receiving traffic. How will you troubleshoot it?”
+
+A pod showing Running doesn't necessarily mean the application is ready to receive traffic.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check pod status
+
+kubectl get pods -n <namespace>
+
+Look at the READY column.
+
+For example:
+
+NAME        READY   STATUS
+app-pod     0/1     Running
+
+The container is running, but it isn't ready.
+
+2️⃣ Check pod details
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Check the Events section for errors.
+
+3️⃣ Check readiness probe
+
+I would verify whether the readinessProbe is failing.
+
+Common causes:
+
+🔹 Wrong endpoint
+🔹 Wrong port
+🔹 Application hasn't started completely
+🔹 Dependency/database unavailable
+🔹 Incorrect probe configuration
+
+4️⃣ Check application logs
+
+kubectl logs <pod-name> -n <namespace>
+
+Look for startup errors, connection failures, exceptions, or dependency issues.
+
+5️⃣ Check Service endpoints
+
+kubectl get endpoints <service-name> -n <namespace>
+
+If the pod isn't ready, it may not appear as a usable endpoint for the Service.
+
+6️⃣ Test the application directly
+
+If appropriate, test from inside the cluster or through port-forwarding:
+
+kubectl port-forward pod/<pod-name> 8080:8080
+
+Then:
+
+curl http://localhost:8080/health
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Pod Running → READY status → Readiness Probe → Logs → Service Endpoints → Application Health
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Running ≠ Ready ≠ Healthy
+
+This is an important distinction in Kubernetes troubleshooting.
+
+Before making changes, identify where the request path is breaking and then fix the actual root cause. 
