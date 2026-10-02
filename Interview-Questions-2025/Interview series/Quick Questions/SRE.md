@@ -1,3 +1,284 @@
+## Traffic spikes 10x in 2 minutes, your nodes aren't scaling fast enough, and requests are dropping. What failed?
+
+### Answer:
+
+I would first check whether HPA detected the traffic increase and whether the number of replicas increased. Then I would check if the new Pods are stuck in Pending because the existing nodes don't have enough CPU or memory.
+
+Next, I would check Cluster Autoscaler or Karpenter logs to understand why new nodes are not being provisioned quickly enough. I would also check load balancer request rate, latency, 5xx errors, backend health, and connection limits.
+
+If the application is scaling faster than the infrastructure can provide capacity, requests can start dropping before new nodes are ready. For immediate mitigation, I would use available capacity and increase minimum replicas if possible.
+
+For prevention, I would tune HPA scale-up behavior, keep some buffer capacity using overprovisioning or warm nodes, and reduce node provisioning time.
+
+---
+
+## Pods are crashing with OOMKilled, but memory limits look high enough. Why?
+
+### Answer:
+
+I would first confirm the OOMKilled reason and compare the container limit with the application's actual memory consumption.
+
+For a JVM application, heap is only one part of total memory. Native memory, threads, metaspace, direct buffers, and other runtime overhead can also consume memory.
+
+I would also investigate page cache, memory fragmentation, memory leaks, and whether another container in the same Pod is consuming memory.
+
+I would check:
+
+```bash
+kubectl describe pod <pod>
+kubectl top pod <pod> --containers
+kubectl get pod <pod> -o yaml
+```
+
+For JVM workloads, I would review `-Xms` and `-Xmx` and verify that the runtime correctly understands the container's cgroup memory limit.
+
+I would not simply increase the memory limit. I would identify what is actually consuming the memory and then tune the application, runtime, or resource limits accordingly.
+
+---
+
+## Ingress is healthy, but 5% of requests hit intermittent connection timeouts. How do you isolate it?
+
+### Answer:
+
+Because only a percentage of requests are failing, I would compare successful and failed requests and identify whether the failures are concentrated on a particular Pod, node, AZ, or network path.
+
+I would check load balancer and Ingress metrics, backend health, TCP connection states, conntrack usage, NAT/SNAT capacity, and timeout settings.
+
+I would check:
+
+```bash
+ss -s
+conntrack -S
+```
+
+I would investigate TCP keepalive and idle-timeout mismatches between the client, load balancer, Ingress, and backend.
+
+I would also check for conntrack table exhaustion or SNAT port exhaustion, especially if the application creates a large number of outbound connections.
+
+My goal would be to isolate whether the timeout is coming from the application, network path, connection tracking, NAT capacity, or a specific backend.
+
+---
+
+## A microservice CPU spikes to 100% right after scaling up pods. What happened?
+
+### Answer:
+
+I would check what changed immediately after the new Pods started.
+
+One possibility is a cache stampede or thundering herd. New Pods may have empty caches, causing multiple Pods to request the same expensive data simultaneously.
+
+Another possibility is unpooled or excessive database connections. If every new Pod creates too many connections, scaling the application can actually increase database pressure.
+
+Aggressive cold starts can also cause CPU spikes because new Pods may perform initialization, cache warming, configuration processing, or other expensive startup operations.
+
+I would correlate CPU usage with request rate, database connection count, cache hit ratio, startup logs, and downstream latency.
+
+Then I would fix the actual bottleneck using connection pooling, cache warming, request coalescing, or controlled scaling.
+
+---
+
+## How do you roll back a broken schema migration with zero customer data loss?
+
+### Answer:
+
+I would avoid directly rolling back a destructive database migration because that could cause permanent data loss.
+
+I prefer the expand-and-contract pattern. For example, instead of immediately removing or renaming a column, I would introduce the new column while keeping the old one.
+
+The application can temporarily support both versions. If required, it can write to both fields while existing data is migrated and validated.
+
+Feature flags can control when the new schema behavior becomes active.
+
+After the new version is completely verified and old application versions are removed, the old schema can be removed in a separate migration.
+
+For production, I would also have tested backups and point-in-time recovery available.
+
+This allows application rollback without requiring a destructive database rollback.
+
+---
+
+## Prometheus is consuming 80% of cluster resources and dropping metrics. How do you recover?
+
+### Answer:
+
+I would first stabilize Prometheus and identify what is causing the resource consumption.
+
+My first investigation would be high-cardinality metrics. Labels containing user IDs, request IDs, dynamically generated URLs, or other unbounded values can create a huge number of unique time series.
+
+I would check Prometheus CPU and memory, active series, scrape targets, scrape intervals, expensive queries, and retention.
+
+Then I would remove unnecessary metrics or high-cardinality labels using metric relabeling where appropriate.
+
+I would also review:
+
+* Remote-write configuration
+* Retention period
+* Recording rules
+* Scrape intervals
+* Number of exporters
+* Query patterns
+* Prometheus resource limits
+
+The immediate goal is to restore reliable metric collection. Then I would identify the application or exporter generating excessive cardinality and fix it at the source.
+
+---
+
+## How do you prevent secret sprawl when developers need local debugging access?
+
+### Answer:
+
+I would avoid giving developers permanent production credentials or storing secrets in `.env` files, Git repositories, Slack, or shared documents.
+
+For local debugging, I would prefer ephemeral, short-lived credentials with limited permissions and automatic expiration.
+
+For production access, I would use identity-based access and controlled zero-trust access through a bastion or Teleport where appropriate.
+
+I would implement:
+
+* Short-lived credentials
+* Centralized secret management
+* Automatic rotation
+* RBAC
+* Least privilege
+* Audit logging
+* Environment separation
+* Secret scanning in CI/CD
+
+The developer should receive only the access required for the debugging task.
+
+The principle is to provide temporary access to the resource instead of giving someone a permanent copy of the production secret.
+
+---
+
+## Your Kubernetes cluster autoscaler takes 4 minutes to launch nodes during an incident. How do you fix it?
+
+### Answer:
+
+First, I would identify where the four-minute delay is occurring. I would inspect Cluster Autoscaler or Karpenter logs and determine whether the delay is caused by detecting Pending Pods, cloud API calls, instance provisioning, node bootstrap, networking, or scheduling.
+
+For sudden traffic spikes, relying completely on node autoscaling is risky because node provisioning takes time.
+
+I would use overprovisioning with low-priority pause Pods so that some capacity is already reserved. When real workloads arrive, the lower-priority Pods can be evicted and the workload can schedule immediately.
+
+For critical workloads, warm node pools can also provide immediately available capacity.
+
+I would also review node bootstrap time, AMI startup, CNI initialization, instance availability, scheduling constraints, resource requests, and autoscaler configuration.
+
+The goal is to have enough capacity available before the traffic spike becomes customer impact.
+
+---
+
+## DNS lookups suddenly fail under high load inside the cluster. Where is the bottleneck?
+
+### Answer:
+
+I would first confirm whether the issue is actually DNS resolution.
+
+From an affected Pod, I would test:
+
+```bash
+nslookup <service>
+dig <service>
+getent hosts <service>
+```
+
+Then I would check CoreDNS Pods, CPU, memory, logs, errors, and query volume:
+
+```bash
+kubectl get pods -n kube-system
+kubectl top pods -n kube-system
+kubectl logs -n kube-system -l k8s-app=kube-dns
+```
+
+I would check whether CoreDNS has enough replicas and whether it is overloaded.
+
+I would also investigate `ndots:5`, because certain lookup patterns can generate multiple DNS queries and amplify DNS traffic under high load.
+
+NodeLocal DNSCache can reduce the traffic reaching CoreDNS by caching DNS responses locally on each node.
+
+My troubleshooting path would be:
+
+**Application → `/etc/resolv.conf` → NodeLocal DNSCache → CoreDNS → upstream DNS**
+
+This helps identify the exact layer causing the DNS bottleneck.
+
+---
+
+## How do you secure east-west traffic between microservices without massive proxy overhead?
+
+### Answer:
+
+For east-west traffic, I would look at encryption, authentication, authorization, and the performance overhead of the networking solution.
+
+An eBPF-based solution such as Cilium can provide network visibility and policy enforcement, while WireGuard can provide encrypted traffic where required.
+
+For service-to-service identity and mTLS, I could use a service mesh. Depending on the architecture, an ambient or sidecarless approach can reduce some of the resource overhead associated with running a proxy alongside every workload.
+
+I would evaluate:
+
+* mTLS requirements
+* Service identity
+* Network policies
+* Encryption requirements
+* Latency
+* CPU and memory overhead
+* Operational complexity
+* Compliance requirements
+
+I would use Kubernetes NetworkPolicies or CiliumNetworkPolicies for traffic authorization and segmentation, and mTLS/encryption where confidentiality and workload identity require it.
+
+The objective is to secure service-to-service communication while keeping additional latency and resource consumption under control.
+
+---
+
+## A deployment passed staging, but production canary fails after 15 minutes. What is your automation doing?
+
+### Answer:
+
+My deployment automation should not consider the deployment successful simply because the Pods became Ready.
+
+I would use automated canary analysis where a small percentage of production traffic is sent to the new version while its behavior is continuously compared with the stable version.
+
+I would monitor:
+
+* Error rate
+* HTTP 5xx
+* P95/P99 latency
+* CPU and memory
+* Pod restarts
+* Database errors
+* Dependency failures
+* Important business metrics
+
+The 15-minute delay is important because some production issues only appear after sustained traffic, such as memory leaks, connection exhaustion, cache problems, or scheduled processing.
+
+The automation should have predefined thresholds.
+
+For example:
+
+**Deploy → 5% traffic → Monitor → Compare metrics → 15-minute bake period → Increase traffic → Continue monitoring**
+
+If the canary crosses the defined error or latency threshold, the rollout should automatically pause or roll back.
+
+Tools such as **Kayenta** or **Flagger** can be used for automated canary analysis depending on the deployment architecture. Traffic mirroring can also be used to test production traffic patterns without sending responses from the new version directly to customers.
+
+The key point is:
+
+**Deployment automation should validate application behavior, not just whether the deployment technically succeeded.**
+
+---
+
+# Production Troubleshooting Framework
+
+For all these scenarios, I would follow:
+
+**Detect → Measure → Correlate → Isolate → Mitigate → Fix → Verify → Prevent**
+
+I would first understand the customer impact, then use **metrics, logs, traces, Kubernetes events, and recent-change information** to isolate the failing layer.
+
+I would avoid blindly restarting Pods, increasing resources, or rolling back without evidence. My focus would be to **mitigate the immediate impact first, identify the root cause, verify recovery, and then add automation or monitoring to prevent recurrence.**
+
+
 # 🚀 SRE / DevOps Production Interview Questions & Answers
 
 > **Experience Level:** 4 Years DevOps / SRE
