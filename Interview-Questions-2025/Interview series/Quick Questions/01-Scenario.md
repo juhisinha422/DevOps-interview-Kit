@@ -1,3 +1,237 @@
+# DevOps Interview Questions & Answers — 4+ Years Experience
+
+## 1. Tell me about yourself and your day-to-day activities.
+
+I have around **4 years of experience as a DevOps Engineer**, mainly working with **AWS, Kubernetes, Docker, Jenkins, GitHub Actions, Terraform, Helm, Prometheus, Grafana, and CloudWatch**. In my current project, I work on a production Kubernetes environment running multiple microservices on **AWS EKS**. My day-to-day activities include monitoring application and infrastructure health, handling production alerts and incidents, troubleshooting Kubernetes pods and nodes, supporting CI/CD pipelines, managing AWS infrastructure using Terraform, and performing application deployments and rollbacks. I also work with developers during application onboarding, configure Kubernetes deployments and services using Helm, troubleshoot issues such as CrashLoopBackOff, OOMKilled, ImagePullBackOff, readiness probe failures, high CPU or memory utilization, and 5xx errors. For observability, I use **Prometheus, Grafana, CloudWatch and centralized logging** to identify issues and perform root-cause analysis. I also participate in Jira-based incident and change management, prioritize issues based on severity and business impact, and coordinate with development and infrastructure teams during production incidents.
+
+---
+
+## 2. Walk me through an architecture you've designed or worked on.
+
+One of the architectures I have worked on is a production microservices platform running on **AWS EKS**. At a high level, the request flow is **Route 53 → AWS ALB → Target Group → Kubernetes Ingress → Kubernetes Service → Pods → backend services such as RDS or S3**. Route 53 handles DNS, and the ALB provides external traffic distribution and TLS termination using an ACM certificate. The traffic is then routed to the Kubernetes ingress layer, which routes requests to the appropriate Kubernetes services and pods. The applications are deployed as multiple microservices using Docker images and Helm charts. We use Kubernetes deployments, Services, ConfigMaps and Secrets for application management, while Terraform is used to provision and manage AWS resources. For CI/CD, Jenkins is used to build applications, create Docker images, run quality/security checks, and deploy them to Kubernetes. For monitoring, we use Prometheus and Grafana along with CloudWatch for AWS and application-level monitoring, while centralized logs are used for troubleshooting. The architecture is designed for high availability using multiple Availability Zones, Kubernetes replicas, health probes, rolling deployments, and load balancing. During deployments, we use rolling or controlled deployment strategies so that application availability is maintained while new versions are introduced.
+
+---
+
+# Kubernetes — Scaling
+
+## 3. How do you scale container workloads beyond HPA and VPA? Describe a custom scaler.
+
+HPA and VPA are useful for resource-based scaling, but there are situations where CPU and memory are not good indicators of application demand. For example, for a **Kafka-based application**, CPU may remain low while the Kafka consumer lag is continuously increasing. In such a situation, I would use an event-driven or custom scaler such as **KEDA**. KEDA can monitor external metrics such as Kafka consumer lag and change the number of Kubernetes pod replicas based on that metric. For example, if consumer lag crosses a defined threshold, KEDA can increase the number of consumer pods, and when the lag decreases, it can scale them back down. Another example could be scaling a worker application based on the number of messages waiting in an SQS queue. The important point is that the scaling metric should represent the actual business workload rather than simply infrastructure utilization.
+
+### Example
+
+```text
+Kafka Consumer Lag
+        |
+        v
+      KEDA
+        |
+        v
+Kubernetes Deployment
+        |
+        v
+Increase/Decrease Pods
+```
+
+For custom scaling, I would first identify the business metric that represents workload pressure, expose or consume that metric, define scaling thresholds, configure stabilization/cooldown behavior, and test the scaler under realistic load before using it in production.
+
+---
+
+## 4. When would you use HPA vs VPA? Give business use cases.
+
+I use **HPA when the application needs more or fewer replicas based on workload**, while VPA is more appropriate when individual pods need different CPU or memory allocations. For example, for a customer-facing API where traffic changes throughout the day, HPA is useful because it can increase replicas when CPU, memory, or another supported metric increases and reduce replicas when demand falls. This helps maintain application availability during traffic spikes. VPA is useful for applications where workload characteristics are relatively stable but the correct resource requests are difficult to determine. For example, a backend batch-processing application may consistently require more memory than initially configured. VPA can analyze historical usage and recommend or adjust CPU and memory requests. I would be careful with VPA in production because changing pod resource requests can result in pod recreation, which can affect availability. For stateless web applications, I generally prefer HPA, while VPA can be useful for right-sizing workloads where horizontal scaling is not the primary solution.
+
+### Simple comparison
+
+| Requirement                   | HPA           | VPA               |
+| ----------------------------- | ------------- | ----------------- |
+| Scale number of pods          | Yes           | No                |
+| Adjust CPU/Memory requests    | No            | Yes               |
+| Traffic-based API scaling     | Good fit      | Usually not       |
+| Right-sizing workloads        | Limited       | Good fit          |
+| Stateless web application     | Common choice | Usually secondary |
+| Batch/resource-heavy workload | Possible      | Useful            |
+
+---
+
+# Networking
+
+## 5. Layer 4 vs Layer 7 load balancers: what's the difference, and where have you used each? What do you use apart from EC2-based ALB?
+
+A **Layer 4 load balancer** works at the transport layer and primarily distributes traffic based on IP addresses and TCP or UDP ports. It does not need to understand HTTP-specific information such as URL paths or HTTP headers. A **Layer 7 load balancer** operates at the application layer and can make routing decisions based on HTTP/HTTPS hostnames, paths, headers, cookies, and other application-level information. In AWS, **Network Load Balancer (NLB)** is a common Layer 4 option, while **Application Load Balancer (ALB)** is Layer 7. In Kubernetes environments, I have mainly worked with ALB-based HTTP/HTTPS routing because it allows host-based and path-based routing for microservices. Apart from EC2-based load balancing, I would also use Kubernetes-native ingress/load-balancing solutions such as the **AWS Load Balancer Controller**, which integrates Kubernetes Ingress resources with AWS load balancers. Depending on the requirement, CloudFront can also be placed in front of the application for CDN and edge delivery, while NLB can be used where high-performance TCP/UDP or static-IP-oriented traffic handling is required.
+
+---
+
+## 6. If TLS terminates at the ALB, how do you secure the ALB → backend connection?
+
+If TLS terminates at the ALB, the connection from the client to the ALB is encrypted, but I would not automatically assume that the internal connection should be HTTP. For sensitive production applications, I can configure **HTTPS from the ALB to the backend target**, providing encryption in transit across the internal network as well. The backend service would listen on an HTTPS port, and the ALB target group would be configured accordingly. I would also use security groups to restrict which resources can communicate with the backend. For example, the backend security group can allow traffic only from the ALB security group rather than allowing broad access from the VPC. For stronger security requirements, certificate validation and appropriate internal certificates can be configured. This gives us encryption across both legs of the connection:
+
+```text
+Client
+   |
+ HTTPS
+   |
+   v
+ ALB
+   |
+ HTTPS
+   |
+   v
+Backend / Ingress
+   |
+   v
+Application Pods
+```
+
+For non-sensitive internal traffic, HTTP between ALB and backend may sometimes be acceptable depending on organizational security requirements, but I would make that an explicit security decision rather than assuming internal traffic is automatically trusted.
+
+---
+
+# Observability and Troubleshooting
+
+## 7. Logs vs metrics vs traces. Share a real use case.
+
+I consider **metrics, logs, and traces complementary rather than competing observability tools**. Metrics tell me that something is wrong and are useful for monitoring trends and triggering alerts. Logs help me understand what actually happened inside the application or infrastructure. Traces help me follow a single request across multiple services and identify where latency or failure is occurring. For example, suppose users report that an API is slow. I would first check Grafana or CloudWatch metrics to determine whether CPU, memory, request rate, latency, or error rate has changed. If the metrics show increased latency, I would check application logs in CloudWatch or the centralized logging system and correlate them using timestamps, request IDs, or correlation IDs. If the application is distributed across multiple microservices, distributed tracing can then show whether the delay is occurring in the API gateway, a downstream service, database call, or another dependency. In production, I have used **CloudWatch metrics and logs with alarms** to monitor application and infrastructure behavior. For example, an alarm can trigger when CPU, memory, disk, error rate, or another important metric crosses a defined threshold, allowing the team to investigate before the issue becomes a larger outage.
+
+### Simple approach
+
+```text
+Metrics  → What is wrong?
+Logs     → What happened?
+Traces   → Where did it happen?
+```
+
+---
+
+## 8. The app is slow, CPU is fine, but DB latency is high. How do you troubleshoot?
+
+If CPU is normal but database latency is high, I would not immediately scale the application because the bottleneck may be downstream. First, I would establish whether the latency is application-side, network-side, or database-side. I would check application metrics for request latency and database connection-pool usage, then check database metrics such as CPU, memory, connections, IOPS, storage latency, locks, slow queries, and connection saturation. I would also inspect application logs and traces to identify which database calls are taking longer. If slow queries are involved, I would examine the query execution plan and check whether appropriate indexes are being used. For example, if an API frequently executes a query using a column in the `WHERE` clause without an appropriate index, the database may perform a full table scan and cause increased latency. I would also check for connection pool exhaustion, long-running transactions, database locks, sudden traffic increases, and network connectivity between the application and database. If the issue is query-related, I would work with the development/DB team to optimize the query or add an appropriate index. If the database is resource-constrained, scaling or tuning the RDS instance may be required. I would validate the change with metrics rather than assuming the first change solved the problem.
+
+### Troubleshooting flow
+
+```text
+High API Latency
+       |
+       v
+Check Application Metrics
+       |
+       v
+Check DB Connection Pool
+       |
+       v
+Check DB Metrics
+       |
+       v
+Check Slow Queries / Locks
+       |
+       v
+Execution Plan / Indexes
+       |
+       v
+Fix + Monitor
+```
+
+---
+
+## 9. Your app or server hits OOM. How do you find the cause?
+
+When an application hits OOM, I first determine whether the OOM occurred at the **Kubernetes container level, node level, or application/runtime level**. In Kubernetes, I check the pod status and events using commands such as `kubectl describe pod` and look for `OOMKilled`, restart counts, memory limits, requests, and recent events. I then check historical memory usage in Prometheus, Grafana, or CloudWatch to understand whether memory gradually increased, suddenly spiked, or consistently stayed near the configured limit. I would also inspect application logs and, for Java applications, investigate heap usage, garbage collection behavior, thread usage, and possible memory leaks. I check whether the container memory limit is too low or whether the application itself is consuming unexpectedly high memory. At the node level, I check whether multiple pods are consuming memory and causing node memory pressure. If it is a genuine application memory leak, simply increasing the container limit may only delay the problem, so I would collect the required runtime diagnostics and work with developers to fix the leak. If the application is healthy but under-provisioned, I would right-size the resource requests and limits based on observed usage.
+
+### Kubernetes commands
+
+```bash
+kubectl get pods -n <namespace>
+kubectl describe pod <pod-name> -n <namespace>
+kubectl logs <pod-name> -n <namespace> --previous
+kubectl top pod -n <namespace>
+kubectl top node
+kubectl get events -n <namespace>
+```
+
+---
+
+# IaC and Reliability
+
+## 10. 40 engineers across teams need to run Terraform at the same time. How do you design the repo and state?
+
+I would avoid having 40 engineers modify and apply one large Terraform state because it creates unnecessary contention and increases the blast radius. I would structure Terraform into reusable modules and separate environments and workloads into independent state files. For example, I might have separate states for networking, EKS, databases, shared services, and application-specific infrastructure, depending on ownership and dependency boundaries. The Terraform state would be stored remotely, for example in **Amazon S3**, with **state locking** enabled using the supported locking mechanism. Access to state would be controlled through IAM and role-based access. Engineers would work through pull requests, where Terraform formatting, validation, security scanning, and `terraform plan` are automated in CI. Production applies would be controlled through an approval process rather than allowing every engineer to directly run `terraform apply` against production.
+
+A simplified structure could look like:
+
+```text
+terraform/
+├── modules/
+│   ├── vpc/
+│   ├── eks/
+│   ├── rds/
+│   └── iam/
+│
+├── environments/
+│   ├── dev/
+│   ├── staging/
+│   └── prod/
+│
+└── workloads/
+    ├── networking/
+    ├── eks/
+    ├── database/
+    └── applications/
+```
+
+The main principles are **remote state, locking, smaller state boundaries, reusable modules, CI/CD-based plans and controlled production access**.
+
+---
+
+## 11. The SLO error budget is already exhausted this month, and developers want an urgent production deploy. How do you decide?
+
+I would not make the decision based purely on whether the development team wants the deployment or whether the error budget is exhausted. I would first understand **why the error budget was consumed and what risk the deployment introduces**. I would review recent incidents, current service health, deployment scope, rollback readiness, business urgency, and whether the change is related to the incidents that consumed the budget. If the deployment is a critical security fix or a production issue resolution, delaying it may create more risk than deploying it. In that case, I would use additional safeguards such as a small deployment window, canary or controlled rollout, enhanced monitoring, clear rollback criteria, and on-call coverage. If the deployment is a non-critical feature and the service is already unstable, I would recommend stabilizing the system first and scheduling the feature after reliability is restored. The important point is to make the decision using **SLO data, customer impact, business criticality, change risk, and rollback capability**, rather than using the error budget as an automatic "no deployment" rule.
+
+---
+
+## 12. Which deployment models have you used: blue-green or canary? Describe the setup.
+
+I have primarily worked with **rolling and controlled deployments**, and the same Kubernetes environment can also support blue-green or canary deployment patterns when the application requires stronger release control. In a blue-green deployment, I would maintain two versions of the application, for example Blue representing the current production version and Green representing the new version. The Green environment is deployed and validated independently, and once health checks, smoke tests, and business validations pass, traffic is switched from Blue to Green. If a problem occurs, traffic can be switched back to Blue quickly. The main advantage is a relatively simple rollback, but the drawback is that running two environments can increase infrastructure cost.
+
+For a canary deployment, I would initially send only a small percentage of traffic to the new version, for example 5%, while the majority continues to use the stable version. I would monitor metrics such as error rate, latency, CPU, memory, and application-specific business metrics. If the canary behaves correctly, traffic can gradually increase to 25%, 50%, and eventually 100%. If errors or latency increase beyond predefined thresholds, I would stop the rollout and route traffic back to the stable version. Canary deployments are useful when I want to reduce release risk and validate a new version with real production traffic before exposing it to all users.
+
+### Blue-Green
+
+```text
+             ALB
+              |
+        +-----+-----+
+        |           |
+      BLUE         GREEN
+     v1.0          v2.0
+        |           |
+    100% traffic   0%
+                     |
+              Validation
+                     |
+              Switch Traffic
+```
+
+### Canary
+
+```text
+                 ALB
+                  |
+          +-------+-------+
+          |               |
+       Stable           Canary
+        v1.0             v2.0
+         95%               5%
+                           |
+                      Monitor
+                           |
+                    Increase Gradually
+                    5% → 25% → 50% → 100%
+```
+
+The deployment strategy depends on **application criticality, infrastructure cost, rollback requirements, traffic characteristics, observability maturity, and the acceptable release risk**. For a critical production service, I prefer a strategy where I can detect problems quickly and roll back with minimal customer impact.
+
+
+
 ## Why do we get 502 Bad Gateway and 504 Gateway Timeout errors in production (ALB + ECS)?
 
 Most people just say “server issue” or “timeout,” but in real systems the meaning is more specific: a 504 Gateway Timeout happens when the Application Load Balancer doesn’t get a response from the target in time—usually due to slow database queries, downstream service latency, or blocked application threads.
