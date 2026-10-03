@@ -1,3 +1,132 @@
+# 🚀 Production-Level DevOps Interview Questions & Answers
+
+## 🐧 LINUX + SHELL SCRIPTING
+
+### • 01) How would you troubleshoot high CPU, memory and disk I/O usage on a production Linux server?
+
+I would first identify which resource is under pressure using commands such as `top`, `htop`, `free -m`, `vmstat`, `iostat`, and `df -h`. For high CPU, I would check which process is consuming CPU and then inspect the process using `ps` and application logs. For memory, I would check RAM, swap usage, and processes with high memory consumption. For disk I/O, I would use `iostat` and `iotop` to identify processes generating heavy read/write activity and check disk space and inode usage with `df -h` and `df -i`. I would then correlate the findings with application and system logs, identify the root cause, and take the least disruptive corrective action. In production, I would avoid immediately killing processes unless there is a clear reason and would monitor the server after the change.
+
+### • 02) How do you identify and resolve zombie processes and file descriptor exhaustion?
+
+I identify zombie processes using commands such as `ps aux | grep 'Z'` or by checking the process state with `ps`. A zombie process has already finished execution but its parent process has not collected its exit status. I would identify the parent PID and investigate why the parent is not handling child processes correctly. Restarting the parent application may remove existing zombies, but the permanent fix should be made in the application or process-management logic. For file descriptor exhaustion, I would check limits using `ulimit -n`, inspect the number of open files using `lsof`, and check `/proc/<pid>/fd`. I would identify whether the application is leaking file descriptors and fix the application or adjust limits carefully if justified.
+
+### • 03) Explain Linux networking commands used to debug DNS, routing and connectivity issues.
+
+For DNS troubleshooting, I commonly use `nslookup`, `dig`, and `resolvectl` to verify name resolution and DNS server responses. For routing, I use `ip route` and `ip addr` to check interfaces, IP addresses, and routing tables. For connectivity, I use `ping`, `curl`, `nc`, and `telnet` where appropriate to verify whether a host and port are reachable. I also use `traceroute` or `tracepath` to understand where packets may be failing. I would start from the application and work through DNS, local networking, routing, firewall/security rules, and the destination service instead of assuming that every connectivity issue is a DNS problem.
+
+### • 04) How would you write a Bash script with error handling, logging and retry logic?
+
+I would write the script with strict error handling such as `set -euo pipefail`, validate required variables and inputs, and create a logging function that writes timestamps and messages to a log file. For commands that can temporarily fail, I would implement retry logic with a limited number of attempts and a delay between attempts. I would also use meaningful exit codes and trap functions for cleanup when required. The script should fail safely, provide enough logs for troubleshooting, and avoid infinite retries. Before using it in production, I would test both successful and failure scenarios.
+
+### • 05) How do you troubleshoot a process consuming excessive memory?
+
+I would first identify the process using `top`, `htop`, `ps aux --sort=-%mem`, or similar commands. Then I would check its memory usage over time to determine whether it is continuously increasing, which could indicate a memory leak. I would inspect application logs and process-specific information under `/proc/<pid>/`, and check whether the system is using excessive swap. If the process is managed by a service manager, I would also check its service configuration and restart history. In production, I would first protect service availability and then investigate the application-level root cause rather than simply restarting the process repeatedly.
+
+### • 06) Explain Linux permissions, SUID, SGID and privilege escalation risks.
+
+Linux permissions are based on read, write, and execute permissions for the owner, group, and others. SUID allows an executable to run with the privileges of its owner, while SGID can allow an executable to run with the group's privileges and can also be used on directories to maintain group ownership for newly created files. These mechanisms are useful but can become security risks when incorrectly configured, especially if a privileged executable has vulnerabilities. I would regularly audit permissions, identify unnecessary SUID and SGID files, follow least privilege, avoid running applications as root unnecessarily, and restrict access to sensitive files and directories.
+
+### • 07) How would you automate log rotation and cleanup without impacting production?
+
+I would use tools such as `logrotate` to rotate logs based on size or time and configure retention according to operational requirements. I would make sure the application can reopen log files after rotation, using the appropriate reload or signal mechanism if required. For cleanup, I would use controlled retention policies instead of deleting files blindly, and I would test the configuration before applying it to production. I would also monitor disk usage and make sure logs required for troubleshooting, auditing, or compliance are retained for the required period. The goal is to control disk usage without interrupting the application.
+
+---
+
+# 🔹 DOCKER + CONTAINERS
+
+### • 08) How do Docker namespaces and cgroups provide container isolation?
+
+Docker uses Linux namespaces to isolate what a container can see, such as processes, networking, mount points, hostnames, and users. This makes the container appear to have its own isolated environment even though it shares the host kernel. Cgroups, or control groups, control and limit resources such as CPU and memory available to containers. Together, namespaces provide isolation while cgroups provide resource control. I would also use additional security mechanisms such as capabilities, seccomp, read-only filesystems, and non-root users to strengthen container security.
+
+### • 09) How would you reduce Docker image size using multi-stage builds?
+
+I would use a multi-stage Dockerfile where the first stage contains the compiler, build tools, and dependencies required to build the application, while the final stage contains only the runtime dependencies and application artifacts. For example, I could build a Java application using Maven in the builder stage and copy only the generated JAR into a lightweight runtime image. I would also use a suitable minimal base image, avoid unnecessary packages, clean package caches, use `.dockerignore`, and order Dockerfile layers efficiently. This reduces image size, build time, attack surface, and deployment time.
+
+### • 10) How do you troubleshoot containers restarting repeatedly?
+
+I would first check the container status and restart count using `docker ps -a`, then inspect logs using `docker logs <container>`. I would check the container's exit code and inspect its configuration with `docker inspect`. I would verify whether the application is crashing, whether environment variables or secrets are missing, whether the startup command is incorrect, or whether the container is failing a health check. I would also check CPU and memory limits because an OOM condition can cause repeated restarts. After identifying the root cause, I would fix the configuration or application issue and redeploy rather than continuously restarting the container.
+
+### • 11) Explain Docker networking modes and container-to-container communication.
+
+Docker provides networking modes such as bridge, host, none, and overlay, depending on the environment and use case. The default bridge network allows containers to communicate with each other when they are attached to the same user-defined network. Containers on a user-defined network can communicate using container or service names through Docker's internal DNS. Host networking removes much of the network isolation and allows the container to use the host network stack. Overlay networking is commonly used for communication across Docker hosts in distributed environments. I would generally prefer user-defined networks because they provide predictable service discovery and network isolation.
+
+### • 12) How do you secure container images against vulnerabilities and privilege escalation?
+
+I would start with trusted and minimal base images and keep them updated. I would scan images using tools such as Trivy and integrate vulnerability scanning into the CI/CD pipeline. I would avoid running containers as root, remove unnecessary Linux capabilities, use read-only filesystems where possible, and avoid embedding secrets inside images. I would also use `.dockerignore`, sign or verify images where required, restrict registry access, and regularly rebuild images to receive security updates. Security should be applied throughout the image build, registry, deployment, and runtime stages.
+
+### • 13) How would you troubleshoot container performance and resource limits?
+
+I would start with `docker stats` to check CPU, memory, network, and block I/O usage. Then I would inspect the container configuration to understand CPU and memory limits and check whether the application is being throttled or killed because of memory limits. I would also inspect application logs and host-level metrics to determine whether the problem is inside the container or on the host. If the container is consistently reaching its limits, I would determine whether the application needs optimization or whether the resource limits need adjustment. Any resource increase should be based on observed usage rather than arbitrary values.
+
+---
+
+# ☸️ KUBERNETES
+
+### • 14) How do you troubleshoot CrashLoopBackOff and ImagePullBackOff?
+
+For `CrashLoopBackOff`, I first check `kubectl get pods` and then use `kubectl describe pod` and `kubectl logs` to identify why the application is starting and then exiting. I check configuration, environment variables, secrets, dependencies, probes, permissions, and resource limits. For `ImagePullBackOff`, I check the events in `kubectl describe pod` because they usually indicate issues such as an incorrect image name or tag, authentication failure, registry connectivity, or image availability. I also verify image pull secrets and registry access. The important point is that `CrashLoopBackOff` generally means the container starts but repeatedly fails, while `ImagePullBackOff` means Kubernetes cannot successfully pull the required image.
+
+### • 15) What causes a Pod to remain in Pending state?
+
+A Pod can remain Pending when Kubernetes cannot find a suitable node to schedule it. I would use `kubectl describe pod` and check the Events section first. Common reasons include insufficient CPU or memory, node selectors, affinity or anti-affinity rules, taints and missing tolerations, unavailable PersistentVolumes, or scheduling constraints. I would also check node status and available resources using `kubectl get nodes` and `kubectl describe node`. If the cluster itself does not have enough capacity, I would evaluate whether scaling the node group or adjusting resource requirements is appropriate.
+
+### • 16) How do readiness, liveness and startup probes differ?
+
+A readiness probe determines whether a container is ready to receive traffic. If it fails, Kubernetes removes the Pod from the Service endpoints without necessarily restarting the container. A liveness probe determines whether the application is still healthy; repeated failures can cause Kubernetes to restart the container. A startup probe is useful for slow-starting applications because it gives the application time to initialize before liveness and readiness checks become effective. I would configure these probes based on actual application behavior rather than using arbitrary timings.
+
+### • 17) How would you debug intermittent 502/503 errors in an Ingress?
+
+I would trace the request path from the client to the Ingress, Service, and backend Pods. First I would check Ingress configuration and controller logs, then verify the Service endpoints using `kubectl get endpoints` or EndpointSlices. I would confirm that the Pods are Ready and that the Service target port matches the container port. I would also check readiness probes, application logs, resource pressure, connection timeouts, and load balancer health checks. If the error is intermittent, I would compare which backend Pods are receiving traffic because one unhealthy or overloaded Pod can cause only some requests to fail.
+
+### • 18) Explain HPA, VPA and Cluster Autoscaler use cases.
+
+HPA, or Horizontal Pod Autoscaler, changes the number of Pod replicas based on metrics such as CPU, memory, or custom metrics and is useful when application traffic changes. VPA, or Vertical Pod Autoscaler, adjusts the CPU and memory requests and limits of Pods based on observed resource usage and is useful when workloads need better resource sizing. Cluster Autoscaler operates at the node level and adds or removes nodes when Pods cannot be scheduled or when nodes are underutilized. In production, these mechanisms can work together: HPA handles application replicas, VPA handles resource sizing where appropriate, and Cluster Autoscaler provides additional node capacity.
+
+### • 19) How do you troubleshoot DNS resolution failures between Pods?
+
+I would first verify whether the problem affects one Pod, one namespace, or the entire cluster. I would test DNS from inside the affected Pod using tools such as `nslookup` or `dig` if available. Then I would check the CoreDNS Pods, their logs, and the `kube-dns` Service and EndpointSlices. I would verify the Pod's `/etc/resolv.conf`, NetworkPolicies, node connectivity, and whether the requested Service actually exists. I would also test both Service-name resolution and direct connectivity to determine whether the issue is DNS resolution or network communication.
+
+### • 20) How do StatefulSets, Deployments and DaemonSets differ in production?
+
+Deployments are generally used for stateless applications where Pods are interchangeable and can be scaled or replaced easily. StatefulSets are designed for stateful workloads that require stable identities, ordered deployment or termination, and commonly persistent storage, such as databases or distributed systems. DaemonSets ensure that a Pod runs on every eligible node or on a selected group of nodes, which is useful for logging agents, monitoring agents, and node-level security components. The choice depends on whether the workload requires stable identity, persistent state, or node-level coverage.
+
+### • 21) How would you perform zero-downtime deployments using Helm?
+
+I would use Helm to manage versioned Kubernetes releases and configure the Deployment with an appropriate rolling update strategy. I would ensure that readiness probes are correctly configured so traffic is sent only to healthy new Pods. I would also use settings such as `maxUnavailable` and `maxSurge` to control how old and new Pods are replaced. Before deployment, I would validate the Helm chart and use commands such as `helm upgrade` with appropriate values. After deployment, I would monitor the rollout using Kubernetes rollout status and application metrics. If the release introduces an issue, I would use Helm's release history and rollback capability to return to a known working version.
+
+### • 22) How do you investigate Kubernetes node NotReady conditions?
+
+I would start with `kubectl get nodes` and `kubectl describe node <node>` to identify the condition and recent events. I would check whether the kubelet is running, whether the container runtime is healthy, and whether the node has CPU, memory, disk, or inode pressure. I would also check networking, CNI components, certificates, and system logs on the node. If the node is unhealthy, I would protect workloads by following the appropriate drain or recovery procedure and investigate the underlying infrastructure issue. In a production cluster, I would avoid taking disruptive actions without understanding workload availability and capacity.
+
+---
+
+# 🔄 CI/CD
+
+### • 23) How would you troubleshoot a Jenkins pipeline failing only in production?
+
+I would compare the production environment with the environments where the pipeline succeeds. I would check Jenkins console logs, credentials, environment variables, agent configuration, network access, permissions, artifact versions, deployment parameters, and external dependencies. I would also verify whether production uses different infrastructure, security rules, secrets, or configuration files. I would reproduce the failing step as safely as possible and identify the first meaningful error rather than focusing only on the final pipeline failure. Once the difference is identified, I would correct the configuration and add validation to prevent the same environment-specific issue from recurring.
+
+### • 24) Explain reusable workflows and secrets management in GitHub Actions.
+
+Reusable workflows allow common CI/CD logic to be defined once and called from multiple workflows, which reduces duplication and makes pipeline maintenance easier. In GitHub Actions, sensitive values should be stored using GitHub Secrets or an appropriate external secrets-management system instead of hardcoding them in workflow files or source code. I would follow least privilege, use environment-specific secrets where required, restrict who can access production environments, and avoid printing secrets in logs. For cloud deployments, I would prefer short-lived authentication such as OIDC with cloud IAM roles rather than long-lived static credentials whenever supported.
+
+### • 25) How do you implement blue-green and canary deployments?
+
+In a blue-green deployment, I maintain two application environments: the current production environment and the new version. I deploy and validate the new version separately, then switch traffic to it when it is ready. If required, traffic can be switched back to the previous environment quickly. In a canary deployment, I release the new version to a small percentage of users or traffic first and monitor metrics such as error rate, latency, and application health. If the metrics remain healthy, I gradually increase traffic. Both approaches require strong monitoring, health checks, and a tested rollback process.
+
+### • 26) How would you secure GitLab CI/CD pipelines against secret leakage?
+
+I would store sensitive information in GitLab CI/CD variables or an external secrets manager rather than committing secrets to the repository. I would mask and protect sensitive variables and restrict production variables to protected branches or environments. I would prevent secrets from being printed in pipeline logs and scan repositories for accidentally committed credentials using tools such as secret scanners. I would also use short-lived credentials where possible, restrict runner permissions, review third-party CI components, and follow least privilege for deployment identities.
+
+### • 27) How do you implement rollback strategies for failed deployments?
+
+I would maintain versioned application artifacts and infrastructure configurations so that every deployment can be traced to a known version. For Kubernetes deployments managed through Helm, I can use Helm release history and rollback to a previous stable release. For CI/CD, I would ensure the previous artifact remains available and that deployment systems can redeploy it quickly. I would also define automated rollback conditions based on health checks, error rates, latency, or failed smoke tests. Before production deployment, I would verify that rollback itself works rather than assuming it will work during an incident.
+
+### • 28) How would you optimize pipeline execution time and parallel jobs?
+
+I woul
+
+
 # 🚀 Infosys AWS Engineer Interview — Questions & Answers
 
 ## AWS, Kubernetes & Terraform Interview Preparation
