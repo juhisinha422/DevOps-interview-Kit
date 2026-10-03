@@ -1,0 +1,86 @@
+𝗗𝗮𝘆 𝟭𝟰/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗦𝘂𝗱𝗱𝗲𝗻𝗹𝘆 𝗦𝗹𝗼𝘄 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your application was working normally, but suddenly response time increased. The pods are still Running. What will you check?”
+
+I wouldn't immediately restart the pods.
+
+First, I would identify where the latency is coming from.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check pod resource usage
+
+kubectl top pods -n <namespace>
+
+Look for unusual CPU or memory consumption.
+
+2️⃣ Check pod health
+
+kubectl get pods -n <namespace>
+
+Verify:
+
+READY status
+
+Restarts
+
+Pod age
+
+Number of replicas
+
+
+3️⃣ Check application logs
+
+kubectl logs <pod-name> -n <namespace>
+
+Look for:
+
+🔹 Slow requests
+🔹 Timeouts
+🔹 Exceptions
+🔹 Database connection issues
+🔹 External API failures
+
+4️⃣ Check Kubernetes events
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Look for resource pressure, probe failures, or other recent events.
+
+5️⃣ Check dependencies
+
+If CPU and memory look normal, I would investigate:
+
+👉 Database latency
+👉 External APIs
+👉 Cache
+👉 Network connectivity
+👉 Service-to-service communication
+
+6️⃣ Check recent changes
+
+I would also check for:
+
+🔹 Recent deployment
+🔹 Configuration changes
+🔹 Traffic increase
+🔹 Database changes
+🔹 Infrastructure changes
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+User → Ingress/LB → Service → Pod → Application → Database/External Services
+
+The goal is not just to see that the pod is Running.
+
+The goal is to find where the latency starts.
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Running ≠ Performing Well.
+
+A healthy-looking Kubernetes status doesn't always mean the application is healthy from the user's perspective.
