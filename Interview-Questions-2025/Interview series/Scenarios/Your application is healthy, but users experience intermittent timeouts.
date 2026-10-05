@@ -1,0 +1,11 @@
+Your application is healthy, but users experience intermittent timeouts.
+
+How would you identify whether the issue is in the application, network, infrastructure, or load balancer?
+
+we need to check load balancer metrics and logs to see how it handles traffic
+1.If loadbalancer showing 504 error means the load balancer timed out waiting for a response from our application. If our app takes 70 seconds to reply but our load balancer timeout is set to 60 seconds, the load balancer cuts the connection.
+2.If loadbalancer is it showing 502 error means a bad gateway, often caused by a keep-alive mismatch where our backend closes an idle connection before the load b
+alancer expects it to
+3.Need to check locked database tables, or memory pressure that temporarily stops the app from responding to new requests.
+4. specific queries or slow database calls cause rare spikes that exceed timeout limits, even though average response times look fine.
+5.we need to check VPC flow logs or network interfaces for high TCP retransmissions or packet drops.
