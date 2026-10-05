@@ -1,0 +1,32 @@
+GIT & GITOPS (Real-World & Interview Scenarios)
+
+These scenarios focus on production incidents, team collaboration issues, and Git-driven operations.
+
+⸻
+
+🌱 Git & GitOps – Real-World DevOps Scenarios
+	1.	A developer force-pushed to the main branch and broke production. How do you recover?
+	2.	A merge conflict appears during a hotfix release. How do you resolve it safely?
+	3.	Someone pushed secrets into a Git repository. What immediate and long-term actions do you take?
+	4.	Your pipeline triggered from Git fails intermittently. How do you debug it?
+	5.	How do you design a branching strategy for multiple teams and environments?
+	6.	A rollback is needed, but multiple commits were merged. How do you handle it?
+	7.	How do you enforce code reviews and approvals before merging?
+	8.	Git history is messy and hard to track. How do you clean and manage it?
+	9.	How do you manage infrastructure changes using GitOps?
+	10.	A GitOps deployment did not reflect the latest commit. How do you troubleshoot?
+	11.	How do you handle hotfixes in a GitOps-based production system?
+	12.	A CI/CD pipeline is triggered too often due to frequent commits. How do you optimize it?
+	13.	How do you restrict access to production repositories?
+	14.	Git tags are inconsistent across releases. How do you standardize them?
+	15.	How do you audit who changed what and when in production?
+
+⸻
+
+🧠 What Interviewers Are Evaluating
+
+✔ Git fundamentals under pressure
+✔ Production safety & recovery
+✔ GitOps mindset
+✔ Collaboration & governance
+✔ CI/CD integration

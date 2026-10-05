@@ -1,0 +1,63 @@
+#GCP Cloud Engineer (2–5 Years Experience) — Interview Questions
+
+🚀 For GCP Cloud Engineers with 2–5 years of experience, these 30 questions are essential👇
+
+Explain GCP project structure.
+
+Difference between IAM roles: Primitive vs Predefined vs Custom.
+
+What is a VPC in GCP?
+
+Difference between VPC Peering and Shared VPC.
+
+Explain Compute Engine vs App Engine.
+
+What is Google Kubernetes Engine (GKE)?
+
+How does Cloud Load Balancing work?
+
+Difference between Regional and Zonal resources.
+
+What is Cloud NAT?
+
+Explain Cloud Storage classes.
+
+Difference between Persistent Disk and Filestore.
+
+What is Cloud Logging?
+
+Explain Cloud Monitoring.
+
+How does IAM policy inheritance work?
+
+What is Cloud Armor?
+
+How do you secure service accounts?
+
+What is Cloud SQL vs BigQuery?
+
+Explain Deployment Manager.
+
+What is Terraform’s role in GCP?
+
+How do you handle secrets in GCP?
+
+What is VPC Service Controls?
+
+Explain GKE networking basics.
+
+What is Cloud Run?
+
+Difference between Pub/Sub and Kafka.
+
+How does autoscaling work in GCP?
+
+What is Cloud DNS?
+
+Explain GCP pricing model.
+
+How do you monitor application performance in GCP?
+
+What is Identity-Aware Proxy (IAP)?
+
+How do you design high availability in GCP?

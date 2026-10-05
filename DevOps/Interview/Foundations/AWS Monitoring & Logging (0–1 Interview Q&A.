@@ -1,0 +1,31 @@
+AWS Monitoring & Logging (0–1 Interview Q&A.
+
+Production without monitoring = blindfolded driving.
+These questions are asked in almost every AWS interview 👇
+
+1. What is Amazon CloudWatch?
+2. What are CloudWatch metrics?
+3. What are CloudWatch alarms?
+4. What is CloudWatch Logs?
+5. What is a CloudWatch dashboard?
+6. What is AWS CloudTrail?
+7. Difference between CloudWatch and CloudTrail?
+8. What is AWS Config?
+9. What is VPC Flow Log?
+10. What is centralized logging?
+11. What is log retention?
+12. What is a metric namespace?
+13. What is a custom metric?
+14. What happens when a CloudWatch alarm is triggered?
+15. What is SNS in monitoring?
+16. How do you get notified when EC2 goes down?
+17. What is AWS X-Ray?
+18. What is distributed tracing?
+19. What is a health check?
+20. What is AWS Service Health Dashboard?
+21. How do you monitor disk usage of EC2?
+22. How do you monitor RDS?
+23. What is log-based metric?
+24. How do you detect unauthorized API
+calls?
+25. Why is monitoring important in cloud?

@@ -1,0 +1,42 @@
+Azure Cloud Engineer (2 to 5 Years) – Interview Questions
+
+If you are preparing for Azure roles, here are some real-world questions asked in interviews.
+
+✨ Top Azure Cloud Interview Questions (2–5 Yrs)
+
+🔹 What are the different types of storage in Azure?
+🔹 How do you implement Auto Scaling in Azure?
+🔹 What is the difference between Azure App Service and Azure Function?
+🔹 How do you secure secrets using Azure Key Vault?
+🔹 What is the use of Azure VNet and Subnet?
+🔹 What is NSG? How do you configure it?
+🔹 How do you design a Highly Available architecture in Azure?
+🔹 Explain Azure Load Balancer vs Application Gateway.
+🔹 How do you monitor applications using Azure Monitor & Log Analytics?
+🔹 What is the difference between ARM Templates and Bicep?
+🔹 How do you handle disaster recovery in Azure?
+🔹 What is Azure DevOps? How do you use pipelines?
+🔹 What are Availability Zones vs Availability Sets?
+🔹 Explain how you configure RBAC in Azure.
+🔹 What is the difference between Managed Identity and Service Principal?
+
+ 🔹 How do you configure Private Endpoints in Azure?
+🔹 What is the difference between Public IP and Private IP in Azure?
+🔹 Explain how Azure Traffic Manager works.
+🔹 What is the purpose of Application Insights?
+🔹 How do you create CI/CD pipelines in Azure DevOps?
+🔹 What is the difference between Build Pipeline and Release Pipeline?
+🔹 Explain Azure Service Bus use case.
+🔹 How do you handle secrets in Azure DevOps pipelines?
+🔹 What is the purpose of Managed Disk in Azure?
+🔹 Describe Azure Blob Storage tiers.
+🔹 What is Azure Firewall and when to use it?
+🔹 Explain Cross-Region Replication.
+🔹 How do you backup and restore Azure VM?
+🔹 What are Resource Groups? Why do we need them?
+🔹 Difference between Standard and Premium Load Balancer?
+🔹 How will you troubleshoot 500 error in App Service?
+🔹 What is Azure Policy? Give an example.
+🔹 How do you enforce security best practices in Azure?
+🔹 What is ACR and how do you use it?
+🔹 How do you integrate ACR with AKS?

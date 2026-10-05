@@ -1,0 +1,23 @@
+Post 17: GCP Cloud Interview 
+Senior Level (6–8 Years)
+
+Now you’re operating at scale — not just building systems, but ensuring they stay reliable, secure, and cost‑efficient. 🧩 
+At 6–8 years in GCP, interviewers look for **leadership thinking** — how you drive automation, reliability, and team enablement through platform design. 
+
+Let’s see how you’d approach these real‑world challenges 👇 
+
+💡 Common GCP Interview Questions for 6–8 Years Experience:
+1️⃣ How do you define and track **SLIs, SLOs, and SLAs** in production systems on GCP? 
+2️⃣ Explain your approach to automated incident detection and response using **Cloud Monitoring** and **Alerting Policies**. 
+3️⃣ How do you design scalable **GKE clusters** with multi‑zone and regional availability? 
+4️⃣ What’s your strategy for handling secrets, IAM roles, and permission scoping across teams? 
+5️⃣ How do you set up centralized **logging and observability** across dozens of microservices? 
+6️⃣ Describe how **Anthos** enables hybrid and multi‑cloud Kubernetes management. 
+7️⃣ How do you automate infrastructure rollbacks in GCP CI/CD pipelines? 
+8️⃣ What processes do you follow for **disaster recovery** and **chaos engineering** validation? 
+9️⃣ Explain how you perform **capacity planning** and cost control for large environments. 
+🔟 What’s your approach to building a blameless **post‑incident culture** in an SRE context? 
+
+🎯 Pro Tip: 
+At this level, you’re evaluated on **how you think under pressure** and **how you lead by process design**. 
+Use examples that show accountability, collaboration, and measurable impact — *not just uptime, but resilience maturity*. 

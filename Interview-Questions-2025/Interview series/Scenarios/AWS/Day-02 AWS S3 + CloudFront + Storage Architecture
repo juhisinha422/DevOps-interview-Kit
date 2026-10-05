@@ -1,0 +1,35 @@
+ Day 2 — AWS S3 + CloudFront + Storage Architecture
+
+STAR approach interview questions….
+
+1️⃣ You need to store large media files with cost optimization and automatic tiering. How will you use S3 storage classes + lifecycle rules?
+
+2️⃣ A customer-facing website delivers images slowly to users across the globe. How will you design S3 + CloudFront for optimal performance?
+
+3️⃣ An S3 bucket with sensitive data was accidentally made public. What immediate and long-term remediation steps will you take?
+
+4️⃣ Your application requires versioning + replication across regions for DR. How will you design S3 Cross-Region Replication (CRR) securely?
+
+5️⃣ You need to restrict access to S3 objects only to CloudFront and block all direct access. How will you configure OAC/OAI?
+
+6️⃣ A data processing job must read millions of small objects from S3. How will you optimize performance and cost?
+
+7️⃣ You need to audit exactly who accessed S3 objects and when. Which AWS logging services will you enable?
+
+8️⃣ A partner must upload files to your bucket, but should not view or modify existing files. How will you design IAM + Bucket Policies?
+
+9️⃣ S3 upload latency is high for large files. What optimizations (multipart upload, transfer acceleration) will you use?
+
+🔟 You need a data lake design with ETL pipelines and structured query support. Which AWS services will you integrate with S3?
+
+1️⃣1️⃣ Encryption must be enforced using customer-managed KMS keys (CMEK). How will you configure bucket policies + key policies?
+
+1️⃣2️⃣ S3 replication is failing. What will you troubleshoot (IAM roles, KMS keys, object metadata, bucket versioning)?
+
+1️⃣3️⃣ A bucket storing logs is rapidly growing. How will you optimize cost using prefixes, lifecycle tiers, and intelligent-tiering?
+
+1️⃣4️⃣ You need to deliver private downloadable files securely to authenticated users with URL expiration. How will you use CloudFront signed URLs?
+
+1️⃣5️⃣ You must build a serverless image-processing workflow triggered on S3 object uploads. Which AWS services will you combine?
+
+⸻

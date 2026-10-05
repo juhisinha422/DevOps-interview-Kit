@@ -1,0 +1,54 @@
+DevOps Interview Preparation | Advanced Kubernetes Architecture
+2–4 Years Experience | 
+
+ Security – Interview Questions
+
+🔹 Kubernetes Architecture (Advanced)
+
+• Explain Kubernetes control plane components in detail
+• How does kube-apiserver handle authentication & authorization?
+• Role of etcd in Kubernetes — why is it critical?
+• What happens internally when you run kubectl apply?
+• Scheduler decision process — how pods are scheduled?
+• kube-controller-manager responsibilities
+• How Kubernetes ensures high availability?
+
+🔹 Cluster Design & Scalability
+
+• Single vs multi-master cluster — differences
+• Horizontal Pod Autoscaler vs Vertical Pod Autoscaler
+• Cluster Autoscaler — how it works?
+• Node pools — use cases
+• When should you use multiple clusters?
+
+🔹 Kubernetes Security (Interview Favorite)
+• Kubernetes authentication mechanisms
+• RBAC — roles vs cluster roles
+• RoleBinding vs ClusterRoleBinding
+• ServiceAccount — how it works?
+• Pod Security Standards (Baseline, Restricted, Privileged)
+• Network policies — why are they important?
+
+🔹 Secrets & Configuration Security
+
+• Secrets vs ConfigMaps
+• Why Kubernetes Secrets are not truly encrypted by default?
+• How to secure Secrets in production?
+• External secrets — why & how?
+• Mounting secrets as env vs volumes — which is safer?
+🔹 Container Runtime & Node Security
+
+• Docker vs containerd — differences
+• Securing worker nodes
+• Node compromise — detection & response
+• kubelet security best practices
+
+🔹 Production Incident Scenarios
+
+• etcd failure — impact & recovery
+• API server down — what happens to workloads?
+• Unauthorized access to cluster — immediate actions?
+• NetworkPolicy misconfiguration — troubleshooting steps
+• Pod running as root — how to prevent?
+Interview Tip:
+If you explain architecture + security together, interviewers know you understand real production Kubernetes.

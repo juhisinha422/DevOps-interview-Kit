@@ -1,0 +1,55 @@
+Top Networking Questions for DevOps Engineer Interviews
+
+1️⃣ What is the difference between a public IP and a private IP? When do you use each in cloud?
+
+2️⃣ What is a subnet? Why do we divide networks into subnets?
+
+3️⃣ Explain CIDR notation with examples (e.g., /24, /16).
+
+4️⃣ What is NAT and why is it used in cloud VPC/VNet?
+
+5️⃣ Difference between NAT Gateway and Internet Gateway (AWS) / Cloud NAT (GCP).
+
+6️⃣ What is DNS? How does DNS resolution work step-by-step?
+
+7️⃣ Difference between A record, CNAME, MX, NS, PTR?
+
+8️⃣ Explain TCP vs UDP with real DevOps use cases.
+
+(e.g., DNS → UDP, SSH → TCP)
+
+9️⃣ What is a Load Balancer? Layer 4 vs Layer 7?
+
+🔟 What is MTU? What happens when packets exceed MTU size?
+
+1️⃣1️⃣ What is a Security Group vs Firewall vs NACL?
+
+1️⃣2️⃣ What is VPC Peering? When is it used?
+
+1️⃣3️⃣ What is a VPN? Difference between site-to-site and client VPN?
+
+1️⃣4️⃣ What is a reverse proxy? NGINX as reverse proxy use case?
+
+1️⃣5️⃣ How does HTTPS work? Explain TLS handshake.
+
+1️⃣6️⃣ What is a port? Why do services use specific port numbers?
+
+1️⃣7️⃣ What is ARP? How does ARP resolve an IP to MAC address?
+
+1️⃣8️⃣ Why do we need routing tables in cloud VPCs?
+
+1️⃣9️⃣ What is latency vs throughput vs bandwidth?
+
+2️⃣0️⃣ Explain the 3-way TCP handshake.
+
+2️⃣1️⃣ What is SSH? How does key-based authentication work?
+
+2️⃣2️⃣ What is DHCP? How does it assign IP addresses automatically?
+
+2️⃣3️⃣ How do you troubleshoot networking issues in a Kubernetes cluster?
+
+(pods, CNI, DNS, service connectivity)
+
+2️⃣4️⃣ Difference between Ingress and Load Balancer at networking level?
+
+2️⃣5️⃣ Why does “curl” work but browser doesn’t? How to debug at network layer?

@@ -1,0 +1,26 @@
+DevOps Interview Q&A Series — Veracode (DevSecOps)
+📌 Security-first | Shift-left approach
+
+⸻
+
+🔹 Veracode
+
+1️⃣ What is Veracode, and how does it support a DevSecOps culture?
+
+2️⃣ What is the difference between SAST, DAST, and SCA in Veracode?
+
+3️⃣ How do you integrate Veracode scans into CI/CD pipelines?
+
+4️⃣ How do you handle pipeline failures caused by security policy violations?
+
+5️⃣ How do you prioritize vulnerabilities based on severity and business risk?
+
+6️⃣ How does Veracode help in shifting security left in software development?
+
+7️⃣ How do you manage false positives in Veracode scan reports?
+
+8️⃣ How does Veracode integrate with tools like Jenkins, GitHub Actions, or GitLab?
+
+9️⃣ What is a security policy in Veracode, and how is it enforced?
+
+🔟 How do you balance delivery speed and application security in DevOps?

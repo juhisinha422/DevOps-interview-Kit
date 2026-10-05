@@ -1,0 +1,14 @@
+Top Most Tricky Docker Interview Questions 
+ If you're preparing for high-scale system design or DevOps roles, these Docker questions will truly test your fundamentals and real-world debugging skills.
+ Here are some of the toughest questions engineers face in High-level interviews 👇
+1️⃣ How does Docker handle layered file systems internally, and what happens when two layers modify the same file?
+ 2️⃣ What is the exact difference between Docker pause vs stop vs kill, and when does each one matter in production?
+ 3️⃣ How does Docker isolate network namespaces, and how do packets actually flow from a container to the host?
+ 4️⃣ What happens inside Docker when you run a container without specifying a PID namespace?
+ 5️⃣ Can a running container switch its storage driver (overlay2 → devicemapper) without recreation? Explain the internals.
+ 6️⃣ How does Docker handle image corruption? What if one of the layers is missing on the host?
+ 7️⃣ Why does a container sometimes use more memory than the cgroup limit you set?
+ 8️⃣ How does Docker caching actually work during multi-stage builds?
+ 9️⃣ What happens behind the scenes when you map a host directory (-v /data:/app/data) and then delete files inside the container?
+ 🔟 How does Docker handle DNS resolution, and what happens when the host DNS changes while containers are running?
+These questions go beyond basics—they check your understanding of container internals, Linux namespaces, cgroups, and real production behavior. Perfect for senior DevOps/SRE interviews.

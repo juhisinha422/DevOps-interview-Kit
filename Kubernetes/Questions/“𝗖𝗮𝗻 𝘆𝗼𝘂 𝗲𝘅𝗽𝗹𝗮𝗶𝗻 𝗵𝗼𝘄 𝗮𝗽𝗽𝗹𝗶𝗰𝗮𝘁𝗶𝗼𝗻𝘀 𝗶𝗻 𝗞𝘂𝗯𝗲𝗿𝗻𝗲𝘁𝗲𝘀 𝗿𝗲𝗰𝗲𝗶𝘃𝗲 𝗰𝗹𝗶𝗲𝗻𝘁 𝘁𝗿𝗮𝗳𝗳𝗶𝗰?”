@@ -1,0 +1,78 @@
+“𝗖𝗮𝗻 𝘆𝗼𝘂 𝗲𝘅𝗽𝗹𝗮𝗶𝗻 𝗵𝗼𝘄 𝗮𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗿𝗲𝗰𝗲𝗶𝘃𝗲 𝗰𝗹𝗶𝗲𝗻𝘁 𝘁𝗿𝗮𝗳𝗳𝗶𝗰?”
+
+Most people say:
+👉 “Through a Service.”
+
+That answer works…
+until you’re asked the follow-up:
+
+“What actually happens when a client hits a load balancer pointing to your Kubernetes nodes?”
+
+Here’s the real traffic path, step by step — 
+⸻
+
+What actually happens when a request hits Kubernetes
+
+1️⃣ Client → External Load Balancer
+This LB only knows about node IPs, not pods.
+
+⸻
+
+2️⃣ Load Balancer → NodePort
+The LB forwards traffic to a NodePort opened by a Kubernetes Service.
+Any healthy node can receive the request — even if no pod is running there.
+
+⸻
+
+3️⃣ Node → kube-proxy (iptables/IPVS)
+kube-proxy rewrites the destination using iptables or IPVS rules.
+It selects one of the Service’s backend pod IPs.
+
+This is where:
+	•	Session affinity
+	•	Load balancing
+	•	NAT decisions
+actually happen.
+
+⸻
+
+4️⃣ Node → Pod (Cross-node routing)
+If the chosen pod is on another node, traffic crosses the CNI network
+(Calico / Cilium / Flannel / etc.).
+
+If it’s local, it stays on the same node.
+
+⸻
+
+5️⃣ Pod → Container → Application
+The packet finally reaches the container port.
+Only now does your application see the request.
+
+⸻
+
+Why this matters in real systems
+
+🔹 NodePort range misconfigured → traffic never reaches kube-proxy
+🔹 kube-proxy failure → Service exists, traffic silently drops
+🔹 CNI misrouting → random timeouts under load
+🔹 ExternalTrafficPolicy=Local → dropped traffic if pod isn’t on that node
+🔹 Health checks hitting nodes without pods → false negatives
+🔹 Source IP lost → debugging and rate limiting break
+
+If you don’t understand the path, you can’t debug the failure.
+
+⸻
+
+The mental model that actually works
+
+Client → LB → NodePort → kube-proxy → Pod IP → Container
+
+Not:
+❌ Client → Service → Pod
+
+Kubernetes abstracts it — but production exposes it.
+
+⸻
+
+Knowing this isn’t “nice to have.”
+It’s the difference between deploying Kubernetes and operating it.

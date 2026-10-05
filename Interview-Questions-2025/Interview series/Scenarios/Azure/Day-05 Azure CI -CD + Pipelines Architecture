@@ -1,0 +1,33 @@
+ Day 5 — Azure DevOps CI/CD + Pipelines Architecture
+
+STAR-based DevOps Interview Questions
+
+1️⃣ Your team needs end-to-end CI/CD for a microservices application. How will you design Azure DevOps Pipelines for build, test, and deployment?
+
+2️⃣ A pipeline must deploy to Dev → QA → Prod with manual approval gates. How will you implement this in Azure DevOps?
+
+3️⃣ Your build pipeline is slow due to repeated dependency downloads. How will you optimize pipeline performance?
+
+4️⃣ Secrets are hardcoded in pipeline YAML files. How will you redesign secret management securely?
+
+5️⃣ A deployment to production failed due to a bad release. How will you design rollback and safe release strategies?
+
+6️⃣ Multiple teams are working on the same repo but need different pipelines. How will you manage pipeline isolation and permissions?
+
+7️⃣ You need infrastructure provisioning as part of CI/CD. How will you integrate Terraform or ARM/Bicep with Azure DevOps?
+
+8️⃣ A pipeline must deploy containers to AKS. How will you design authentication and authorization securely?
+
+9️⃣ You want GitOps-style deployments instead of push-based CD. How will you implement this on Azure?
+
+🔟 Your pipeline should run only when specific folders change. How will you configure triggers and conditions?
+
+1️⃣1️⃣ You need quality gates like code coverage and static analysis before merge. How will you integrate this into Azure DevOps?
+
+1️⃣2️⃣ A self-hosted agent is required due to network restrictions. How will you design and manage it securely?
+
+1️⃣3️⃣ You must enforce environment-specific configurations without duplicating pipeline code. How will you design reusable templates?
+
+1️⃣4️⃣ Audit and traceability are required for every deployment. How will you design logging and approvals in pipelines?
+
+1️⃣5️⃣ CI/CD must support multi-region deployments for DR readiness. How will you design the pipeline strategy?

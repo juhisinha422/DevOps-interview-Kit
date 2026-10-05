@@ -1,0 +1,22 @@
+Post 3: DevSecOps Engineer Interview  
+Fresher Level (0–1 Year)
+
+Security meets automation — welcome to **DevSecOps**, where DevOps and Security join forces! 💥  
+For freshers, interviewers look for awareness of security practices in modern DevOps workflows.  
+Let’s see how many of these you can confidently answer 👇  
+
+💡 Common DevSecOps Interview Questions for Freshers:
+1️⃣ What is **DevSecOps**, and how does it differ from traditional DevOps?  
+2️⃣ Why is early integration of security important in the CI/CD process?  
+3️⃣ Explain what **Shift‑Left Security** means.  
+4️⃣ What are some popular tools used for security scanning in pipelines (e.g., Trivy, SonarQube, Snyk)?  
+5️⃣ How do you manage secrets safely across development environments?  
+6️⃣ What is the purpose of **Static Application Security Testing (SAST)** and **Dynamic Application Security Testing (DAST)**?  
+7️⃣ How can container images become a security risk if not properly managed?  
+8️⃣ What are some best practices for securing CI/CD pipelines?  
+9️⃣ Explain how version control (Git) can help enforce secure coding practices.  
+🔟 What’s the role of cloud identity and IAM policies in securing infrastructure?  
+
+🎯 Pro Tip:  
+Start small — integrate a **security scan** or secret check into your personal project pipeline.  
+Showing that you understand how security fits into the DevOps lifecycle makes you stand out, even as a fresher. 🔐  

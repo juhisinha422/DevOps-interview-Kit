@@ -1,0 +1,40 @@
+AWS for DevOps – Disaster Recovery & High Availability
+
+If you design or operate production systems, these should be second nature 👇
+
+🔹 High Availability Basics
+	•	What is the difference between High Availability and Fault Tolerance?
+	•	How does Multi-AZ architecture improve availability?
+	•	What are common single points of failure in AWS designs?
+
+🔹 Disaster Recovery Strategies
+	•	Difference between Backup & Restore, Pilot Light, Warm Standby, and Active-Active?
+	•	When would you choose each DR strategy?
+	•	How do cost and complexity vary across DR models?
+
+🔹 RPO & RTO
+	•	What is RPO and why does it matter?
+	•	What is RTO and how do you define acceptable values?
+	•	How do business requirements influence RPO/RTO?
+
+🔹 Compute Recovery
+	•	How do you recover EC2 instances after a region failure?
+	•	How does Auto Scaling help in DR scenarios?
+	•	How do AMIs and launch templates support recovery?
+
+🔹 Data Recovery
+	•	How do you replicate data across regions?
+	•	Difference between cross-region snapshots and replication?
+	•	How do you ensure data consistency during failover?
+
+🔹 Traffic Management
+	•	How does Route 53 help in disaster recovery?
+	•	Difference between failover, latency-based, and weighted routing?
+	•	How do health checks influence DNS failover?
+
+🔹 Testing & Validation
+	•	Why is DR testing critical?
+	•	How do you test DR without impacting production?
+	•	What are common mistakes teams make with DR planning?
+
+💡 Disaster recovery isn’t about if — it’s about how fast.

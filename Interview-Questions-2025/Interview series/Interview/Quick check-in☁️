@@ -1,0 +1,23 @@
+Quick check-in☁️
+
+Everyone uses tools.
+What really matters is how we use them in day-to-day production environments.
+
+👇 Share your real experience in comments:
+
+1️⃣ CI/CD Approach
+👉 Which CI/CD tool(s) are you using today and why?
+(Jenkins, GitLab CI, GitHub Actions, Azure DevOps, etc.)
+
+2️⃣ Cloud Platform
+👉 Which cloud are you working on currently?
+(AWS / GCP / Azure / Hybrid / On-prem)
+
+3️⃣ DevSecOps Approach 🔐
+👉 How are you embedding security into your pipelines?
+(Code scanning, image scanning, secrets management, policy enforcement, shift-left security?)
+
+4️⃣ Cost Optimization 💰
+👉 How are you controlling and optimizing cloud costs?
+(Auto-scaling, right-sizing, spot/preemptible instances, storage lifecycle, monitoring, budgets?)
+

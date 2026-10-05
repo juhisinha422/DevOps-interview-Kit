@@ -1,0 +1,25 @@
+Kubernetes 
+1. Diff between demon set and stateful set with example use case 
+2. How to connect a specific container from a web browser (network)
+3. How to secure connection between pods
+4. What is a pod evicted and how to troubleshoot.
+5. What deployment strategy used and how to achieve zero down time
+6. That is the kubectl cardon command do??
+7. Volumes 
+Docker:
+1. How to attach volumes in docker 
+2. How to attach ssl certificate in 100 of docker container 
+Ansible 
+1. What is ansible and sample playbook 
+Gitlab/Jenkins 
+1. What is executor and runner in gitlab 
+2. Gitlab ai executor 
+3. What are stages in Jenkins ci/cd
+Aws 
+1. How to secure db. Tell me some secured architecture 
+2. VPC peering 
+3. Cross account connection 
+4. Access S3 from outside network and another aws account 
+
+
+Any AI experience??

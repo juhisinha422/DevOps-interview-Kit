@@ -1,0 +1,46 @@
+AWS DevOps Engineer – Interview Questions (4–6 Years Experience)
+
+If you’re preparing for an AWS DevOps Engineer role, these are the real questions interviewers ask 👇
+
+🔹 AWS Architecture & Design
+ How do you design a highly available and fault-tolerant system on AWS?
+ When would you choose ALB vs NLB vs CLB?
+ How do you implement multi-AZ and multi-region architectures?
+ How do you design zero-downtime deployments on AWS?
+ How do you handle disaster recovery in AWS?
+CI/CD on AWS
+ How do you design a CI/CD pipeline using AWS services?
+ CodePipeline vs Jenkins — when would you choose each?
+ How do you implement rollback strategies in AWS deployments?
+ How do you manage secrets in CI/CD pipelines on AWS?
+ How do you secure CI/CD pipelines in AWS?
+
+🔹 Containers & Kubernetes (ECS/EKS)
+ ECS vs EKS — when to use what?
+ How do you deploy and scale containers on ECS?
+ How do you troubleshoot pod failures in EKS?
+ How do you handle EKS cluster upgrades?
+ How do you secure container workloads on AWS?
+
+🔹 Infrastructure as Code
+ Terraform vs CloudFormation — pros & cons?
+ How do you manage Terraform state remotely on AWS?
+ How do you prevent infrastructure drift?
+ How do you design reusable IaC modules?
+ How do you handle secrets in IaC?
+
+🔹 Monitoring, Logging & Reliability
+ Which CloudWatch metrics are critical for production?
+ How do you design effective alerts without noise?
+ How do you centralize logs across AWS accounts?
+ How do you reduce MTTR during AWS incidents?
+ How do you implement SLIs, SLOs, and SLAs on AWS?
+
+🔹 Security & Cost Optimization
+ How do you implement IAM best practices?
+ How do you secure S3, EC2, and RDS?
+ How do you control and optimize AWS costs?
+ How do you implement least privilege across services?
+ How do you handle security incidents in AWS?
+
+💡 AWS DevOps interviews test architecture thinking, automation, and ownership — not just service names.

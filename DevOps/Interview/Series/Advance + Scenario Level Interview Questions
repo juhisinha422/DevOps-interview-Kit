@@ -1,0 +1,47 @@
+Advance + Scenario Level Interview Questions (#DevOps, #Cloud, #CICD)
+
+If you are preparing for AWS | Jenkins | Docker | Kubernetes | Terraform, these questions are asked in real interviews 🔥
+
+🔥 Kubernetes & Containers
+ Your pod is in CrashLoopBackOff, how will you troubleshoot?
+ What will you do if container CPU spikes suddenly in production?
+ Difference between Deployment, DaemonSet and StatefulSet?
+ What is Ingress and how will you expose a service securely?
+ How do you handle pod-to-pod communication in private cluster?
+ Zero downtime deployment – how will you implement?
+
+🔧 Jenkins & CI/CD
+ Explain your complete CI/CD pipeline architecture?
+ How do you optimize slow pipelines?
+ How do you roll back if deployment failed?
+ What are multi-branch pipelines and when to use?
+ How do you manage credentials in Jenkins securely?
+ How do you trigger pipeline automatically for specific branches?
+
+🛠️ Terraform / IaC
+ How do you manage multiple environments (dev/qa/prod)?
+ What is Terraform state and what problems can happen with state?
+What steps will you take when terraform apply fails?
+ Remote backend vs local backend – why remote?
+ How do you handle drift in infrastructure?
+ What are best practices for modules?
+
+🌩️ AWS Cloud & Production
+How do you reduce AWS cost without impacting performance?
+ What is the difference between ALB, NLB and CLB?
+ How will you design VPC for secure production traffic?
+ What steps will you take when high latency is seen across regions?
+ How do you secure S3 buckets from public access?
+ What is Auto Scaling and how will you set policies?
+
+🚨 Troubleshooting & Scenarios
+ Application is working locally but failing in Kubernetes – why?
+ Deployment stuck in “ImagePullBackOff” – what to check?
+ Disk space is full on a node – how to fix?
+ DNS failed inside cluster – where to check?
+ Pipeline is failing only in production – how to debug?
+ User reports intermittent errors – how will you trace root cause?
+
+ Tip:
+Most interviews today are real-world troubleshooting.
+Focus less on definitions and more on:

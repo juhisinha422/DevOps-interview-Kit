@@ -1,0 +1,50 @@
+DevOps Engineer Interview Questions (4–6 Years Experience)
+
+If you have 4–6 years in DevOps, interviews are less about tools and more about design, reliability, and decision-making.
+
+Here are real questions you should confidently answer 👇
+
+🔹 Architecture & Design
+1. How would you design a highly available CI/CD pipeline?
+2. How do you handle multi-environment deployments (dev, stage, prod)?
+3. Blue-Green vs Canary vs Rolling — when would you use each?
+4. How do you design for zero-downtime deployments?
+5. How do you manage secrets securely across environments?
+
+🔹 CI/CD & Automation
+6. How do you optimize pipeline execution time?
+7. How do you handle pipeline failures in production releases?
+8. How do you manage versioning and rollback strategies?
+9. How do you implement approvals and governance in CI/CD?
+10. How do you design pipelines for microservices?
+
+🔹 Containers & Kubernetes
+11. How do you troubleshoot CrashLoopBackOff in Kubernetes?
+
+12. How do you manage resource limits and requests in production?
+13. How do you secure Kubernetes clusters?
+14. How do you handle Kubernetes upgrades safely?
+15. When would you use HPA vs VPA?
+
+🔹 Cloud & Infrastructure
+16. How do you design fault-tolerant infrastructure on AWS/Azure?
+17. How do you manage infrastructure drift?
+18. Terraform state — how do you manage it safely?
+19. How do you implement cost optimization in cloud environments?
+20. How do you handle disaster recovery and backups?
+
+🔹 Monitoring, Security & Reliability
+21. What metrics matter most for production systems?
+22. How do you reduce MTTR during incidents?
+23. How do you implement alerting without alert fatigue?
+24. How do you integrate security into CI/CD pipelines?
+25. How do you conduct post-incident reviews?
+
+🔹 Leadership & Ownership
+26. How do you mentor junior DevOps engineers?
+27. How do you handle on-call escalations?
+28. How do you influence developers to follow DevOps best practices?
+29. How do you balance speed vs stability?
+30. Describe a production outage you handled end-to-end.
+
+💡 At 4–6 years, companies expect you to think like an owner, not an operator.

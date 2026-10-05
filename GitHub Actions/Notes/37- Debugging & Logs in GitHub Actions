@@ -1,0 +1,29 @@
+Debugging & Logs in GitHub Actions
+
+Today I learned how logs and debugging tools help identify and fix workflow failures quickly.
+
+🔹 Workflow Logs
+Workflow logs show:
+Job execution details
+Step-by-step output
+Errors and warnings
+Logs are the first place to troubleshoot issues.
+
+🔹 Debug Mode
+Debug mode:
+Provides detailed execution info
+Shows expanded logs
+Helps trace environment values
+It simplifies root cause analysis.
+
+🔹 Common Failures
+Common causes include:
+Incorrect secrets
+YAML syntax errors
+Permission issues
+Understanding failures reduces downtime.
+
+🔥 3-Line Takeaway
+Logs reveal issues.
+ Debugging adds clarity.
+ Failures improve learning.

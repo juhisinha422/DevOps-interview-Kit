@@ -1,0 +1,34 @@
+DevOps Engineer (6–9 Years Experience) Lead / Principal / Staff Level
+
+At this stage, interviews focus less on tools and more on architecture, decisions, ownership, and scale 👇
+
+
+• How do you design cloud-native platforms for scale and resilience?
+• How do you choose the right deployment model (VMs vs containers vs serverless)?
+• How do you design multi-region and DR architecture?
+• How do you standardize DevOps practices across teams?
+• How do you build internal developer platforms (IDP)?
+• How do you reduce cognitive load for developers?
+• How do you define golden paths and reusable templates?
+• How do you design CI/CD for hundreds of microservices?
+• How do you enforce security, quality, and compliance in pipelines?
+• How do you manage release strategies across teams?
+• How do you run Kubernetes reliably at scale?
+• How do you handle cluster upgrades with zero downtime?
+• How do you manage networking, ingress, and service meshes?
+• How do you manage large Terraform mono/multi-repo setups?
+• How do you enforce policies using OPA / Sentinel?
+• How do you manage state, drift, and environment parity?
+• How do you define SLOs and error budgets?
+• How do you design observability for platforms?
+• How do you optimize cloud cost without impacting reliability?
+🔹 Security & Risk Management
+• How do you embed DevSecOps across SDLC?
+• How do you manage IAM, secrets, and least privilege at scale?
+• How do you handle audits and compliance requirements?
+• How do you mentor senior and junior engineers?
+• How do you handle production outages as a lead?
+• How do you influence architecture without authority?
+• How do you communicate trade-offs to leadership?
+
+👉 If you’re stuck in your current role or planning a switch to your dream company, let’s work together to crack it.

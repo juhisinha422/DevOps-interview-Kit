@@ -1,0 +1,13 @@
+10 AWS interview questions advanced levels:
+
+ Advanced Level
+1 What is the difference between horizontal and vertical scaling in AWS?
+2. How does AWS Lambda handle cold starts?
+3. What is a VPC peering connection and how does it work?
+4. Explain the use of AWS Transit Gateway.
+5. What is Amazon EKS?
+6. How do you manage multi-account AWS environments?
+7. Explain the concept of serverless architecture in AWS.
+8. What are AWS Organizations?
+9. How do you optimize costs in AWS?
+10. What are the best practices for securing an AWS environment?

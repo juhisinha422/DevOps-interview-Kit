@@ -1,0 +1,67 @@
+ DevOps Interview Preparation hashtag#GithubAction | 4–6 Years Experience | Tool 9
+
+🔹 Interview Questions (GitHub Actions)
+
+What is GitHub Actions and where does it fit in CI/CD?
+
+Explain GitHub Actions architecture
+
+Workflow vs Job vs Step — differences
+
+Events that trigger GitHub Actions workflows
+
+How does GitHub Actions authenticate with cloud providers?
+
+Secrets vs Variables — when to use what?
+
+How are secrets encrypted and accessed at runtime?
+
+Hosted runners vs self-hosted runners
+
+When would you prefer self-hosted runners?
+
+How do you secure self-hosted runners?
+
+What are reusable workflows and why are they important?
+
+Composite actions vs reusable workflows
+
+Matrix builds — real-world use cases
+
+How do you control permissions using permissions: block?
+
+How does GitHub Actions handle parallel execution?
+
+How do you cache dependencies in GitHub Actions?
+
+Difference between cache and artifacts
+
+How do you reduce GitHub Actions execution time?
+
+Workflow works on main but fails on PR — why?
+
+Secrets not accessible in PR from fork — reason?
+
+How do you implement approvals in GitHub Actions?
+
+Environment protection rules — how do they work?
+
+How do you manage multi-environment deployments?
+
+How do you rollback a failed deployment using Actions?
+
+How do you implement blue-green or canary deployments?
+
+Pipeline exposed secrets in logs — immediate actions?
+
+GitHub Actions consuming too many
+minutes — optimization strategy?
+
+Workflow suddenly stopped triggering — what will you check?
+
+How do you audit GitHub Actions usage and security?
+
+GitHub Actions vs Jenkins — when would you choose Actions?
+
+💡 Interview Tip (4–6 yrs):
+If you explain permissions, runner security, reusable workflows, and deployment strategies, interviewers know you’ve used GitHub Actions in real production systems.

@@ -1,0 +1,55 @@
+These are the classic DevOps interview questions they generally ask.
+
+But remember:
+👉 The depth of your answer decides the offer.
+
+Linux & System Internals
+
+A service gets killed without logs. How do you confirm if it’s the OOM killer?
+
+Load average is high but CPU usage is low. How do you explain and debug this?
+
+How do you trace a memory leak in a long-running service?
+
+What happens internally when a process
+exceeds its file descriptor limit?
+
+How do you debug disk latency when IOPS metrics look normal?
+
+Networking
+
+A service works in one AZ but not another. How do you isolate the issue?
+
+TCP connection is established but requests hang. What could be wrong?
+
+How do you debug intermittent packet loss in production?
+
+Difference between connection timeout and read timeout — impact on retries?
+
+How do you debug DNS issues that behave differently across regions?
+
+Kubernetes
+
+Pods are Running but traffic intermittently fails. Where do you start?
+
+Why does HPA scale too late during traffic spikes, and how do you fix it?
+
+What happens step-by-step when a Kubernetes node fails?
+
+How do readiness probes cause partial outages?
+
+How do you reduce blast radius in a large Kubernetes cluster?
+
+
+CI/CD & Release Engineering
+
+Deployment succeeds but users see errors. What went wrong?
+
+How do you decide rollback vs hotfix during peak traffic?
+
+What causes flaky pipelines and how do you eliminate them permanently?
+
+How do you design CI/CD pipelines for multi-region deployments?
+
+How do you test rollback paths before production incidents?
+

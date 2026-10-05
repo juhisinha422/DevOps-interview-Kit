@@ -1,0 +1,38 @@
+MLOps Interview Preparation Series 🚀
+#MLOps #MachineLearning #AI #DevOps #SRE 
+
+Topic: Top Real-World MLOps Interview Questions for DevOps & SRE Engineers
+
+As the tech landscape shifts toward AI-driven automation, MLOps has become one of the most in-demand skillsets in cloud and DevOps roles.
+ If you’re preparing for an interview or transitioning from DevOps/SRE into MLOps, these scenario-based questions will help you sharpen your fundamentals 👇
+
+Top MLOps Interview Questions
+What is MLOps and how does it extend traditional DevOps principles?
+How does the MLOps lifecycle differ from the software development lifecycle (SDLC)?
+What are the key components of an MLOps pipeline?
+Explain the CI/CD/CD concept in MLOps (Continuous Integration / Continuous Delivery / Continuous Deployment).
+What tools are commonly used in MLOps workflows?
+How do you automate model training and deployment?
+What’s the role of version control in MLOps for datasets and models?
+How do you manage model drift in production?
+What is feature store in MLOps, and why is it important?
+How can you monitor model performance after deployment?
+What’s the difference between model retraining and model fine-tuning?
+How do you deploy ML models using Docker and Kubernetes?
+What’s the difference between online and batch inference?
+How do you integrate model serving frameworks like TensorFlow Serving or TorchServe?
+What is the purpose of MLflow, and how does it help in MLOps pipelines?
+How do you ensure data quality and integrity in the MLOps pipeline?
+Explain the concept of data versioning. Which tools are used for it?
+What are some challenges in scaling MLOps in a multi-cloud or hybrid environment?
+How do you handle model governance, compliance, and auditability?
+What are the key differences between Kubeflow, MLflow, and SageMaker?
+How can you use Airflow for orchestrating ML workflows?
+How do you implement security and access control in MLOps pipelines?
+What are the common metrics to evaluate ML model performance in production?
+How do you handle rollback or redeployment if a new model version performs poorly?
+What are the best practices for building production-ready MLOps pipelines?
+
+Pro Tip:
+ MLOps is not just about models — it’s about reliability, automation, and scalability of ML systems.
+ If you already know DevOps, SRE, and Cloud, you’re 70% ready for MLOps. The rest is mastering data, model training, and deployment automation.

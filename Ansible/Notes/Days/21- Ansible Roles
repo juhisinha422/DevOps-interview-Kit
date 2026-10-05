@@ -1,0 +1,37 @@
+Ansible Roles
+
+Today I learned about Ansible Roles, which help organize Playbooks into reusable and modular components 📦
+Instead of writing one large Playbook, Roles allow us to structure automation in a clean and scalable way.
+ Think of Roles as reusable building blocks for automation 🧱
+
+🔹 📁 Role Structure
+An Ansible Role follows a predefined directory structure:
+• tasks/
+ • handlers/
+ • vars/
+ • defaults/
+ • files/
+ • templates/
+This structure makes automation organized, readable, and production-ready 🚀
+
+🔹 ⚙️ tasks, handlers & vars
+📌 tasks/ → Contains the main list of tasks to execute
+ 📌 handlers/ → Contains handlers triggered by notify
+ 📌 vars/ → Stores role-specific variables
+These components work together to automate configurations in a structured way.
+
+🔹 🧩 defaults
+The defaults/ directory stores default variable values for the role.
+These variables have the lowest precedence and can be easily overridden.
+ It helps in making roles flexible and customizable 🔄
+
+🔹 📂 files & templates
+📌 files/ → Used to store static files (configs, scripts, etc.)
+ 📌 templates/ → Used for dynamic files with variables (Jinja2 templates)
+Templates allow dynamic configuration based on environment and variables 🌍
+This makes Roles highly reusable across different servers and environments.
+
+🔥 3-Line Takeaway
+Roles make Playbooks modular and reusable.
+ Structured folders improve automation management.
+ Reusable roles = scalable DevOps automation.

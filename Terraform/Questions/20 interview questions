@@ -1,0 +1,67 @@
+Top 20 Terraform Interview Questions & Answers — crisp, interview-ready, and DevOps-focused
+
+1️⃣ What is Terraform?
+Answer:
+ Terraform is an Infrastructure as Code (IaC) tool by HashiCorp used to provision and manage infrastructure across cloud providers using declarative configuration files.
+2️⃣ What language does Terraform use?
+Answer:
+ Terraform uses HCL (HashiCorp Configuration Language), which is simple, human-readable, and declarative.
+3️⃣ What is Infrastructure as Code (IaC)?
+Answer:
+ IaC allows you to manage infrastructure using code instead of manual processes, ensuring consistency, automation, and version control.
+4️⃣ What are Terraform providers?
+Answer:
+ Providers are plugins that allow Terraform to interact with cloud platforms like AWS, Azure, GCP, and services like GitHub or Kubernetes.
+5️⃣ What is a Terraform resource?
+Answer:
+ A resource defines a piece of infrastructure such as an EC2 instance, VPC, or S3 bucket.
+6️⃣ What is Terraform state?
+Answer:
+ The state file (terraform.tfstate) tracks real infrastructure and maps it to Terraform configurations.
+7️⃣ Why is remote state important?
+Answer:
+ Remote state enables team collaboration, state locking, and security using backends like S3 with DynamoDB.
+8️⃣ What is terraform init?
+Answer:
+ Initializes the working directory, downloads providers, and configures backend.
+9️⃣ What is terraform plan?
+Answer:
+ Shows an execution plan of what Terraform will create, update, or delete before applying changes.
+🔟 What is terraform apply?
+Answer:
+ Applies the planned changes to real infrastructure.
+1️⃣1️⃣ What is terraform destroy?
+Answer:
+ Destroys all resources managed by the Terraform configuration.
+1️⃣2️⃣ What are variables in Terraform?
+Answer:
+ Variables allow dynamic values and reuse of configurations using variables.tf.
+1️⃣3️⃣ What are outputs in Terraform?
+Answer:
+ Outputs display useful information like IP addresses, URLs, or IDs after resource creation.
+1️⃣4️⃣ What is a Terraform module?
+Answer:
+ A module is a reusable set of Terraform configurations that helps reduce duplication.
+1️⃣5️⃣ Difference between count and for_each?
+Answer:
+count → uses index-based creation
+for_each → uses key-value mapping (preferred)
+1️⃣6️⃣ What is terraform refresh?
+Answer:
+ Updates the state file to match real infrastructure without making changes.
+1️⃣7️⃣ How does Terraform handle dependencies?
+Answer:
+ Terraform automatically builds a dependency graph based on resource references.
+1️⃣8️⃣ What is a backend in Terraform?
+Answer:
+ A backend defines where Terraform stores the state file (local, S3, Azure Blob, etc.).
+1️⃣9️⃣ How do you secure sensitive data in Terraform?
+Answer:
+ Use environment variables, encrypted backends, and sensitive = true attributes.
+2️⃣0️⃣ Terraform vs Ansible?
+Answer:
+Terraform → Infrastructure provisioning
+Ansible → Configuration management
+
+
+3

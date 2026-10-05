@@ -1,0 +1,65 @@
+Docker Security – DevOps Interview Questions
+
+Containers are lightweight—but insecure images can be dangerous ⚠️
+
+📌 Questions:
+
+What are common Docker security risks?
+
+Why should containers not run as root?
+
+What is a Docker image vulnerability?
+
+How do you scan Docker images?
+
+What is image hardening?
+
+Difference between trusted and untrusted images?
+
+Why should you avoid latest tag?
+
+What is Docker Content Trust?
+
+How do you secure Dockerfile?
+
+What is multi-stage build and how does itimprove security?
+
+How do you reduce image size for security?
+
+What is Docker secrets?
+
+How do you manage environment variables securely?
+
+What is container isolation?
+
+What Linux namespaces are used by Docker?
+
+What is seccomp in Docker?
+
+What is AppArmor / SELinux?
+
+How do you restrict container capabilities?
+
+How do you secure Docker daemon?
+
+Why should Docker socket not be exposed?
+
+How do you prevent container breakout?
+
+What is runtime security?
+
+How do you monitor containers for threats?
+
+What is read-only filesystem?
+
+How do you handle secrets inside containers?
+
+How do you scan running containers?
+
+What is CVE in container security?
+
+What tools are used for Docker security?
+
+What are best practices for Docker in production?
+
+Common Docker security mistakes?

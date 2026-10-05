@@ -1,0 +1,11 @@
+interview questions from 'TSYS' experience:
+🚀 Real DevOps Interview Questions: 
+
+ 🔹 How do you use Terraform in your environment?
+ 🔹 How will you utilize Terraform modules and version upgrade in your environment?
+ 🔹 What security, autoscaling, and scalability approaches are you using in your environment?
+ 🔹 Can you give some instances of using Ansible?
+ 🔹 What are you doing for monitoring your resources?
+ 🔹 Suppose you want to host one application job on any cloud. How will you approach it?
+ 🔹 What will be your approach for creating a security group for the instance?
+ 🔹 How will you troubleshoot if a pod is in crash-loopbackoff condition?

@@ -1,0 +1,61 @@
+Interview Preparation – 1 to 2 Years Experience (DevOps / Cloud)
+
+If you have 1–2 years of experience, interviewers mostly test fundamentals + real understanding, not fancy tools.
+
+Here are must-prepare interview questions 👇
+
+• What is DevOps and why do companies use it?
+• Difference between CI and CD?
+• What happens in a typical CI/CD pipeline?
+• Git vs GitHub – what’s the difference?
+• How do you resolve a Git merge conflict?
+• What is a Git branch and why do we use it?
+• What is Docker and why is it used?
+Difference between Docker image and container?
+• What is a Dockerfile?
+• What is Docker Compose?
+• Why do we use Kubernetes?
+• What is a Pod in Kubernetes?
+• Difference between Deployment and Service?
+• What is a Namespace in Kubernetes?
+• What is AWS EC2 and why do we use it?
+• Difference between EC2 and Lambda?
+• What is Auto Scaling in AWS?
+• What is IAM and why is it important?
+• Difference between IAM Role and IAM User?
+• What is S3 and common use cases?
+• Difference between public and private S3 buckets?
+. What is monitoring and why is it important?
+• Difference between logs and metrics?
+• What is Linux? Name some basic Linux commands
+• How do you check disk usage in Linux?
+• What is Infrastructure as Code (IaC)?
+• What is Terraform and why is it used?
+• Difference between Terraform plan and apply?
+• What is state file in Terraform?
+• What is Jenkins and why is it used?
+• What is a Jenkins pipeline?
+• Difference between freestyle job and pipeline?
+• What is a build artifact?
+• What is Blue-Green deployment?
+What is Rolling deployment?
+• What is Load Balancer?
+• Difference between ALB and NLB?
+• What is VPC in AWS?
+• Difference between public and private subnet?
+• What is Security Group?
+• Difference between Security Group and NACL?
+• What is DNS and why do we use it?
+• What is Route 53?
+• What is CloudWatch?
+• What is an AMI?
+• What is a cron job?
+• What is bash scripting?
+• What is a package manager in Linux?
+• What is systemd?
+What challenges have you faced in your current project?
+
+💡 Tip for 1–2 years experience candidates:
+Clear explanation of your project + tools + problems you solved matters more than buzzwords.
+
+🤝 If you want help to crack interviews, or you’re stuck in your current role and not able to switch companies — let’s work together to help you land your dream job.

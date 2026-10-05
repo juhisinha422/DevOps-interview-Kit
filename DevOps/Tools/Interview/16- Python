@@ -1,0 +1,60 @@
+DevOps Interview Preparation #Python 4–6 Years Exp | Tool 16
+
+Why is Python widely used in DevOps?
+
+Python vs Bash for automation — when do you choose Python?
+
+Explain Python execution flow
+
+Virtual environments — why are they important?
+
+How do you manage dependencies in Python projects?
+
+Writing reusable Python scripts for DevOps automation
+
+Error handling in Python — try/except best practices
+Logging vs print statements — why logging matters?
+
+Writing clean and maintainable Python code
+
+Python script running slow — how do you optimize it?
+
+Working with files and directories in Python
+
+Reading environment variables securely
+
+Executing shell commands using Python
+
+Handling exit codes and failures
+
+Scheduling Python scripts — cron vs schedulers
+
+Python for API automation — requests library usage
+
+Handling authentication tokens in Python
+
+Pagination and retries in API calls
+
+Writing idempotent automation scripts
+Python script failing in CI but works locally — why?
+
+Python for cloud automation (AWS boto3 / Azure SDK / GCP SDK)
+
+Managing secrets in Python applications
+
+Python for infrastructure automation — real use cases
+
+Writing Python utilities for Kubernetes
+
+Packaging Python scripts for production use
+
+Python script leaked secrets — immediate actions
+
+Handling concurrency — threading vs multiprocessing
+
+Writing unit tests for Python automation scripts
+
+How do you debug Python in production?
+
+When should Python NOT be used in
+DevOps automation?

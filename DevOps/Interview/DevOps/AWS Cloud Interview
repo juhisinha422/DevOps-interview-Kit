@@ -1,0 +1,20 @@
+Post #1 == AWS Cloud Interview 
+Senior Level (6–8 Years)
+
+You’ve built, deployed, scaled — now it’s time to **strategize and optimize**. 
+At 6–8 years of experience, interviewers expect you to think like a **solution architect or DevOps lead** — making decisions around scalability, governance, cost, and reliability across teams and environments. 
+
+💡 Common AWS Interview Questions for 6–8 Years Experience:
+1️⃣ How would you design a multi-region, highly available architecture for a global application? 
+2️⃣ Explain your approach to implementing cross-account roles and secure IAM federation. 
+3️⃣ How can you enforce governance and compliance across multiple AWS accounts using AWS Organizations or Control Tower? 
+4️⃣ Describe a scenario where you used Infrastructure as Code (IaC) pipelines for multi-environment deployments. 
+5️⃣ What’s your approach to designing a cost-efficient CI/CD pipeline in AWS? 
+6️⃣ How do you ensure observability across microservices deployed on ECS/EKS? 
+7️⃣ What is your strategy for managing secrets and rotation in distributed systems? 
+8️⃣ How can you implement blue-green or canary deployments using Elastic Beanstalk or CodeDeploy? 
+9️⃣ What are some common security misconfigurations you’ve observed in AWS, and how did you handle them? 
+🔟 How do you evaluate and implement new AWS services while keeping system reliability intact? 
+
+🎯 Pro Tip: 
+At this level, your responses should blend **technical mastery with leadership perspective** — how you improved uptime, reduced cost, or automated across teams.

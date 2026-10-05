@@ -1,0 +1,46 @@
+COMCAST INTERVIEW QUESTIONS ###
+
+
+1. How will you resolve EC2 instance timeout errors?
+2. What are the common reasons for SSH timeout to an EC2 instance?
+3. How do Security Groups and NACLs affect EC2 connectivity?
+4. How do you troubleshoot EC2 timeout issues step by step?
+5. What checks do you perform when EC2 is running but not reachable?
+6. How do ALB/NLB timeouts differ from EC2-level timeouts?
+
+2️⃣ Blocking CIDR in AWS (Security)
+1. How will you block a particular CIDR block in AWS permanently?
+2. What is the difference between blocking CIDR using Security Groups vs NACL?
+3. When would you use AWS WAF instead of Security Groups?
+4. Can CIDR blocking be enforced at subnet level?
+5. Why is OS-level firewall blocking not preferred in AWS?
+
+3️⃣ S3 Regional Outage Scenario
+1. If an S3 bucket in us-east-1 is down, how will you restore it?
+2. Can you restore an S3 bucket if an entire AWS region is down?
+3. What is the correct approach to handle S3 regional outages?
+4. Is S3 globally available or region-specific?
+5. What is the difference between restore and failover in S3?
+
+4️⃣ S3 Without Versioning (Data Loss Scenario)
+1. Without S3 versioning, what are the possible options to restore data?
+2. Can deleted objects be recovered without versioning?
+3. Does Cross-Region Replication work without versioning?
+4. What happens if there is no backup and no replication?
+5. Why is versioning mandatory for production S3 buckets?
+
+5️⃣ Disaster Recovery (DR) Strategy Design
+1. How will you set up a DR strategy for S3 regional outages?
+2. What RPO and RTO would you define for S3 DR?
+3. How does Cross-Region Replication help in DR?
+4. What is S3 Multi-Region Access Point and why is it used?
+5. How does Route 53 help in S3 DR?
+6. Why is AWS Backup required even if CRR is enabled?
+7. How do you test DR readiness in AWS?
+
+6️⃣ Architecture & Best Practices
+1. Why is single-region S3 not recommended for production?
+2. How do you enforce DR policies using Terraform?
+3. What preventive controls avoid data loss incidents?
+4. How do you design defense-in-depth for S3?
+5. What lessons learned would you document after this incident?

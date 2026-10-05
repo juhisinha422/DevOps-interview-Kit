@@ -1,0 +1,38 @@
+Tool 2 — Git (Intermediate Level)
+(DevOps Interview Questions Series)
+
+Now let’s move from basic usage to real-world Git workflows that companies actually use 
+
+Git – Intermediate Interview Questions
+
+1. What is the difference between git fetch and git pull?
+2. What happens internally when you run git commit?
+3. What is a detached HEAD state?
+4. How do you undo a commit?
+5. What is git revert vs git reset?
+6. Difference between soft, mixed, and
+hard reset?
+7. What is git stash?
+8. When should you use git stash pop vs git stash apply?
+9. What is git rebase?
+10. Difference between merge and rebase?
+11. What is fast-forward merge?
+12. What is git cherry-pick?
+13. What is git blame?
+14. What is git reflog?
+15. How do you recover a deleted branch?
+16. What is git clean?
+17. How do you resolve a merge conflict?
+18. What is git tag used for in releases?
+19. What is a hotfix branch?
+20. What is trunk-based development?
+21. What is GitFlow?
+22. What is a pull request workflow?
+23. What is code review in Git?
+24. How do you compare two branches?
+25. What is git diff branch1 branch2?
+26. What is a fork vs branch?
+27. What is a shallow clone?
+28. What is git archive?
+29. How do you remove a file from Git but keep it locally?
+30. What is git submodule?

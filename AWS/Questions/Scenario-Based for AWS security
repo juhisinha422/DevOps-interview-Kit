@@ -1,0 +1,55 @@
+Scenario-Based for AWS security
+
+1. Someone exposed AWS keys on GitHub—what do you do?
+
+Disable the keys immediately
+
+Rotate credentials
+
+Check CloudTrail for misuse
+
+Enable GuardDuty
+
+Educate team + prevent recurrence
+
+2. How do you handle DDoS attacks?
+
+AWS Shield
+
+WAF
+
+CloudFront
+
+Auto Scaling
+
+Rate limiting
+
+3. How do you enforce compliance?
+
+AWS Config rules
+
+SCPs (Service Control Policies)
+
+Security Hub standards (CIS, PCI)
+
+Continuous audits
+
+4. How do you isolate environments (Dev/Test/Prod)?
+
+Separate AWS accounts
+
+SCPs via AWS Organizations
+
+Network isolation (VPCs)
+
+Different IAM roles
+
+5. How do you log and audit AWS activity?
+
+CloudTrail (all regions)
+
+Centralized logging account
+
+Immutable S3 bucket
+
+CloudWatch alarms on suspicious activity

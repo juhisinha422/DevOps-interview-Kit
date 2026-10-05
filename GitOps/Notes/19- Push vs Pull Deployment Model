@@ -1,0 +1,35 @@
+Push vs Pull Deployment Model
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring an important concept in deployment strategies: Push vs Pull Deployment Models. 🚀
+
+Understanding these models helps explain why GitOps prefers the pull-based approach for secure and reliable deployments.
+
+🔹 Push Model (CI/CD Approach)
+ In the push model, the CI/CD pipeline directly pushes changes to the infrastructure or Kubernetes cluster.
+Workflow example:
+ Developer → Git → CI/CD Pipeline → Deployment to Cluster
+Characteristics:
+CI/CD tools perform the deployment
+Pipeline needs direct access to the cluster
+Credentials and permissions must be stored in the CI system
+While effective, this model can introduce security risks if credentials are exposed.
+
+🔹 Pull Model (GitOps Approach)
+ In the pull model, the cluster itself pulls the configuration from the Git repository.
+Workflow example:
+ Developer → Git → GitOps Tool → Cluster pulls updates
+Characteristics:
+GitOps controller runs inside the cluster
+It continuously checks Git for changes
+The cluster updates itself automatically
+This reduces the need for external systems to access the cluster directly.
+
+🔹 Why Pull Model is More Secure
+ The pull model improves security because:
+CI tools do not require direct cluster credentials
+The GitOps controller manages deployments internally
+Access control and audit trails are easier to maintain
+
+💡 Key Insight:
+ GitOps uses the pull model to improve security, reliability, and infrastructure consistency.

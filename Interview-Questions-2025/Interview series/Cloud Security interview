@@ -1,0 +1,41 @@
+once asked this in a Cloud Security interview....!
+
+Q: You detect unusual outbound traffic from a production VM. What’s your first action?
+
+A: I’d isolate the VM by restricting network access, then analyze logs and traffic to determine if it’s a compromise.
+
+Q: An IAM user suddenly gains admin-level access. How do you investigate?
+
+A: I’d review IAM audit logs to identify how the permission was granted and revoke excess access immediately.
+
+Q: A public cloud storage bucket is found exposing sensitive data. What do you do?
+
+A: I’d make the bucket private immediately, rotate exposed credentials, and audit access logs to assess impact.
+
+Q: Security alerts are firing, but no breach is confirmed. How do you proceed?
+
+A: I’d validate alerts, correlate them with logs and metrics, and tune detection rules to reduce false positives.
+
+Q: A secret is accidentally committed to a repository. What’s your response?
+
+A: I’d revoke and rotate the secret instantly, remove it from history if possible, and enforce secret scanning.
+
+Q: A production API is being abused with high request rates. How do you mitigate it?
+
+A: I’d apply rate limiting, enable WAF rules, and block malicious IPs while monitoring legitimate traffic.
+
+Q: A cloud service is failing due to permission errors after a deployment. Why?
+
+A: IAM policies may have changed. I’d review recent updates and ensure least-privilege permissions are intact.
+
+Q: You suspect data exfiltration from a cloud workload. What steps do you take?
+
+A: I’d lock down network access, preserve logs for forensics, and coordinate incident response actions.
+
+Q: A compliance scan fails unexpectedly. How do you handle it?
+
+A: I’d review the failed controls, verify configurations, and remediate gaps without weakening security.
+
+Q: Management asks for incident status during a security event. What do you report?
+
+A: I’d provide confirmed facts, scope, impact, containment steps, and next actions, without assumptions.

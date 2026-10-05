@@ -1,0 +1,41 @@
+Terraform Interview Questions – 2 to 4 Years Experience
+
+If you have 2–4 years of experience, interviewers expect you to know how Terraform works internally, not just basic commands.
+
+Here are must-prepare Terraform interview questions 👇
+
+• What is Infrastructure as Code (IaC) and why is it important?
+• Why did you choose Terraform over CloudFormation/ARM?
+• How does Terraform work internally?
+• What are providers in Terraform?
+• What are resources and data sources?
+Difference between terraform init, plan, and apply?
+• What is the Terraform state file?
+• Why is remote state important?
+• How do you store state securely?
+• Difference between local state and remote state?
+• What is state locking and why is it needed?
+• What are Terraform modules?
+• How do you structure Terraform code for large projects?
+• Difference between count and for_each?
+• What are variables and outputs?
+• What are locals in Terraform?
+• What is terraform.tfvars?
+• What is dependency graph in Terraform?
+• What is depends_on and when do you use it?
+What are workspaces and their use cases?
+• How do you manage multiple environments (dev, stage, prod)?
+• What is terraform refresh?
+• What is drift detection in Terraform?
+• How do you import existing resources into Terraform?
+• What is terraform taint and when is it used?
+• How do you handle secrets in Terraform?
+• How do you manage Terraform code in CI/CD pipelines?
+• What happens if the state file is deleted or corrupted?
+• How do you troubleshoot a failed terraform apply?
+• What Terraform challenges have you faced in your project?
+
+Interview Tip (2–4 yrs):
+Be ready to explain your Terraform folder structure, state backend, and how you handled changes safely in production.
+
+🤝 If you want help to crack Terraform interviews or you’re stuck in your current role and not able to switch companies — let’s work together to help you land your dream job.

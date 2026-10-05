@@ -1,0 +1,42 @@
+DevOps Interview Series | GitHub Actions – Scenario Based Questions
+
+A workflow triggers multiple times for a single commit. How do you stop it?
+
+Secrets appear in workflow logs. What immediate and long-term actions will you take?
+
+Workflow execution is slow due to dependency installation. How do you optimize it?
+
+Self-hosted runners go offline frequently. How do you troubleshoot and stabilize them?
+
+You need manual approval before deploying to production. How do you implement it?
+
+One job needs output from another job. How do you pass data between jobs?
+
+A workflow works on main but fails on feature branches. How do you debug it?
+
+You need different deployments for dev, stage, and prod. How do you design the workflow?
+
+GitHub-hosted runners are insufficient for your workload. When and how do you move to self-hosted runners?
+
+A third-party action introduces a breaking change. How do you protect your pipelines?
+
+You need to deploy applications to Kubernetes using GitHub Actions. How will you design it?
+
+Workflow fails only on pull requests. What steps will you take to troubleshoot?
+
+You want workflows to run only on trusted branches. How do you enforce this?
+
+Multiple repositories require the same
+CI/CD logic. How do you avoid duplication?
+
+Security team asks for workflow execution audit logs. How will you provide them?
+
+You need rollback support for failed deployments triggered by GitHub Actions. How will you design it?
+
+Workflow consumes excessive CPU and time. How do you control resource usage?
+
+Secrets differ per environment. How do you manage them cleanly?
+
+You need multi-cloud deployments from a single workflow. How do you architect it?
+
+You are asked to replace GitHub Actions. What limitations would you highlight?

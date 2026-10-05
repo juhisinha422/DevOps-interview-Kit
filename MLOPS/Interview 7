@@ -1,0 +1,105 @@
+MLOPS Interview series : part 7
+-------------------
+
+
+# Kubeflow vs Airflow 
+
+## Purpose
+
+### Kubeflow
+
+* Built specially for machine learning on Kubernetes
+* Runs:
+
+  * Model training
+  * Hyperparameter tuning
+  * Validation
+  * Deployment
+* Supports GPU, distributed training, large ML systems
+
+👉 Kubeflow runs the ML workflow itself
+
+---
+
+### Airflow
+
+* A general workflow scheduler
+* Mainly used for:
+
+  * ETL / data pipelines
+  * Batch processing
+  * Job scheduling
+* Can trigger ML training, but does not execute distributed ML training
+
+👉 Airflow manages and schedules tasks, not ML execution
+
+---
+
+# Key Differences (Quick View)
+
+* Kubeflow → ML-specific platform
+* Airflow → General orchestration tool
+*Kubeflow requires Kubernetes; *Airflow can run anywhere
+* Kubeflow handles GPU/distributed training; Airflow does not
+* Airflow strong in data pipelines; *Kubeflow strong in ML lifecycle**
+
+---
+
+# Real-Time Use Cases
+
+## When Kubeflow is used
+
+**1️⃣ Recommendation system training (Netflix-style)
+
+* Large dataset
+* GPU training
+* Continuous retraining pipeline
+  ➡️ Kubeflow manages full ML lifecycle on Kubernetes.
+
+**2️⃣ Fraud detection model in banking
+
+* Multiple training experiments
+* Automated validation & deployment
+  ➡️ Kubeflow pipelines + model serving.
+
+**3️⃣ Computer vision training with GPUs
+
+* Distributed deep learning training
+  ➡️ Kubeflow handles scaling across GPU nodes.
+
+---
+
+## When Airflow is used
+
+**1️⃣ Daily ETL pipeline for analytics
+
+* Pull data from DB → clean → load to warehouse
+  ➡️ Airflow schedules and monitors jobs.
+
+**2️⃣ Data preparation before ML training
+
+* Feature extraction
+* Data validation
+  ➡️ Airflow prepares data, then triggers ML pipeline.
+
+**3️⃣ Batch prediction job every night
+
+* Run model on new data
+* Store results in database
+  ➡️ Airflow schedules batch inference.
+
+---
+
+## Real production architecture (very common)
+
+Airflow → prepares data & schedules workflow
+Kubeflow → trains, tunes, and deploys ML models
+
+👉 Many companies use both together
+
+---
+
+# One-line memory trick
+
+**Airflow decides when tasks run.
+**Kubeflow provides where and how ML runs at scale.

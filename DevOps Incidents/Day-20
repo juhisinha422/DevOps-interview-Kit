@@ -1,0 +1,23 @@
+Day 20: Deployment Rolled Back Automatically Within Minutes
+
+
+Incident:
+Production deployment rolled back automatically within 3 minutes.
+
+
+What Happened Next:
+Kubernetes halted rollout after new pods failed readiness checks; rollback is triggered to protect live traffic.
+
+
+Root Cause:
+ 1.Readiness Timeout Too Low: Timeout set to 1s, but startup needed 4–5s.
+ 2.Traffic Sent Too Early: Pods received traffic before stabilizing.
+
+
+Fix:
+ 1.Increased readiness timeout to 5s and initialDelay to 10s.
+ 2.Added minReadySeconds: 30 to enforce stability.
+
+
+Takeaway:
+Readiness probes directly control rollout safety.

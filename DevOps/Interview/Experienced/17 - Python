@@ -1,0 +1,31 @@
+DevOps Interview hashtag#Python hashtag#Questions 5–8 Years Experience | Tool 17
+
+How do you design Python scripts for large-scale infrastructure automation?
+
+A Python automation script works locally but fails in CI/CD — how do you debug?
+
+How do you manage secrets securely in Python-based DevOps tools?
+
+When do you replace bash with Python in real projects?
+
+How do you design Python code to be idempotent for automation?
+
+How do you handle API rate limits and retries in Python automation?
+
+How do you package and version Python tools used by multiple teams?
+
+How do you optimize Python scripts used in pipelines for performance?
+
+How do you write unit and integration tests for automation code?
+
+How do you manage Python dependencies in CI/CD pipelines?
+
+How do you integrate Python with Kubernetes, cloud SDKs, and APIs?
+
+How do you implement logging and observability in Python tools?
+
+How do you secure Python scripts from injection and misuse?
+
+How do you migrate legacy scripts to modern Python tooling?
+
+What Python practices clearly show senior DevOps expertise?

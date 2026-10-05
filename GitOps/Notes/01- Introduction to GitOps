@@ -1,0 +1,22 @@
+Introduction to GitOps
+
+✨ Hello DevOps Enthusiasts!
+After successfully completing my Ansible series, I’m excited to kickstart my GitOps journey as part of my continuous DevOps learning! 💻☁️
+
+Let’s dive in:
+
+What is GitOps?
+ GitOps is a modern DevOps practice where Git is used as the single source of truth for declarative infrastructure and applications. It allows automated deployment, monitoring, and management of your infrastructure using Git repositories.
+
+History of GitOps:
+Coined by Weaveworks in 2017
+Designed to simplify Kubernetes operations
+Built on the principles of Git + CI/CD + Kubernetes automation
+
+Why GitOps is trending in DevOps:
+Automates deployments and reduces manual errors ⚡
+Provides version control and rollback capabilities using Git
+Ensures continuous reconciliation of infrastructure and apps
+Enhances collaboration across teams
+
+💡 Fun Fact: GitOps isn’t just for Kubernetes! Any system that supports declarative configuration can leverage GitOps principles.

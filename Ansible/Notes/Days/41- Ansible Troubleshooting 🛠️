@@ -1,0 +1,49 @@
+Ansible Troubleshooting 🛠️
+
+Today I learned about Ansible Troubleshooting, which is essential when Playbooks don’t behave as expected ⚠️
+In real DevOps environments, failures are normal.
+ Knowing how to debug them quickly is a superpower 💪
+
+🔹 🔎 Verbose Mode
+Ansible provides verbose output for debugging.
+Use:
+ -v → Basic details
+ -vv → More details
+ -vvv → Deep debugging
+ -vvvv → Maximum verbosity
+
+Example:
+ansible-playbook playbook.yml -vvv
+
+Verbose mode helps identify exactly where and why a task failed.
+
+🔹 ❌ Common Errors
+Some frequently seen issues:
+• Module not found
+ • Permission denied
+ • Variable undefined
+ • Inventory misconfiguration
+Reading the error message carefully usually gives the solution 🎯
+
+🔹 🔐 SSH Issues
+Ansible uses SSH to connect to managed nodes.
+Common SSH problems:
+ • Wrong SSH key
+ • Incorrect username
+ • Port blocked
+ • Host unreachable
+Always verify manual SSH login first before debugging Playbooks.
+
+🔹 📄 YAML Mistakes
+YAML errors are very common and can break Playbooks instantly.
+Typical mistakes:
+ • Wrong indentation
+ • Using tabs instead of spaces
+ • Missing colon
+ • Improper list formatting
+Small formatting mistakes can cause big failures ⚠️
+
+🔥 3-Line Takeaway
+Verbose mode reveals hidden issues.
+ Most errors come from SSH or YAML mistakes.
+ Careful debugging saves deployment time.

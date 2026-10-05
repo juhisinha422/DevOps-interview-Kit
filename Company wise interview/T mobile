@@ -1,0 +1,7 @@
+1st round at T mobile here are the questions:
+
+Maintenance tasks like log rotation and cleanup using Python/Bash/shell — what factors ensure reliability and minimal disruption?
+How would you design secure remote access to an internal application using a proxy, while complying with firewall and WAF policies?
+How would you design multi-tenancy on a shared Kubernetes cluster for strong isolation, resource governance, and tenant-specific access control?
+How would you handle conflicting verbal instructions from two senior managers on a sensitive task?
+Can you write a Python script to regularly check Kubernetes pod events across all namespaces?

@@ -1,0 +1,57 @@
+These 25 questions cover the essentials and some intermediate concepts that frequently come up in interviews and real-world scenarios.
+
+🐳 Basic Docker Interview Questions (1–12)🐳 
+
+1)What is Docker and why is it used?
+ 💡 Hint: Containerization, portability, consistency.
+2)What is a Docker Image?
+ 💡 Hint: Immutable blueprint for containers.
+3)What is a Docker Container?
+ 💡 Hint: Running instance of an image.
+4)Dockerfile - why do we use it?
+ 💡 Hint: Automated image creation.
+5)What is the difference between CMD and ENTRYPOINT?
+ 💡 Hint: Default command vs forced command.
+6)What is the difference between COPY and ADD?
+ 💡 Hint: COPY = simple; ADD = supports URL/archive.
+7)What is Docker Hub?
+ 💡 Hint: Public registry for images.
+8)What is a Docker Volume?
+ 💡 Hint: Persistent storage beyond container lifecycle.
+9)What is Bind Mount vs Volume?
+ 💡 Hint: Host path vs Docker-managed path.
+10)What is a Docker Network?
+ 💡 Hint: Bridge, Host, Overlay (basic connectivity).
+11)How do you inspect logs of a running container?
+ 💡 Hint: docker logs <container>
+12)What is multi-stage Docker build?
+ 💡 Hint: Reduce image size by splitting build + runtime.
+
+🐳 Medium-Level Docker Interview Questions (13–25)🐳 
+
+13)Difference between Docker Image and Layer?
+ 💡 Hint: Image = stack of layers; layers = cached.
+14)How do you check container resource usage?
+ 💡 Hint: docker stats
+15)What is the purpose of .dockerignore?
+ 💡 Hint: Skip unnecessary files for smaller builds.
+16)How do you pass environment variables?
+ 💡 Hint: --env, .env, or Docker Compose.
+17)What is the difference between ARG and ENV?
+ 💡 Hint: ARG = build time; ENV = runtime.
+18)How do you expose ports in Docker?
+ 💡 Hint: EXPOSE vs -p host:container
+19)What is Docker Compose?
+ 💡 Hint: Multi-container orchestration using YAML.
+20)What is the difference between Docker and VM?
+ 💡 Hint: Containers share OS kernel; VM has full OS.
+21)How do you optimize Docker image size?
+ 💡 Hint: Alpine, multi-stage, fewer layers, .dockerignore.
+22)How do you remove unused images/containers?
+ 💡 Hint: docker system prune -a
+23)How does Docker ensure isolation?
+ 💡 Hint: Namespaces + Cgroups.
+24)What is an entrypoint script and why use it?
+ 💡 Hint: Initialize configs before main app starts.
+25)How to troubleshoot a failing container?
+ 💡 Hint: Check logs, inspect, run shell inside, rebuild.

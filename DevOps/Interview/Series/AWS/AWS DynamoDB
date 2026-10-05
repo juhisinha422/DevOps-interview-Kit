@@ -1,0 +1,61 @@
+#AWS Interview Questions hashtag#DynamoDB
+
+What is Amazon DynamoDB?
+
+What type of database is DynamoDB?
+
+DynamoDB vs RDS?
+
+What is a table in DynamoDB?
+
+What is a primary key?
+
+Partition key vs sort key?
+
+What is secondary index?
+
+GSI vs LSI?
+
+What is provisioned capacity?
+
+What is on-demand capacity?
+
+Read vs write capacity unit?
+
+What is auto scaling in DynamoDB?
+
+What is eventual consistency?
+
+Strongly consistent read?
+
+What is DynamoDB stream?
+
+Use case of DynamoDB streams?
+
+What is TTL in DynamoDB?
+
+What is DynamoDB accelerator (DAX)?
+
+How do you secure DynamoDB?
+
+How is data encrypted in DynamoDB?
+
+What is global table?
+
+Use case of global table?
+
+DynamoDB backup options?
+
+Point-in-time recovery?
+
+What is item size limit?
+
+How do you optimize DynamoDB cost?
+
+DynamoDB vs MongoDB?
+
+DynamoDB vs Aurora?
+
+Common DynamoDB issues?
+
+Real-time DynamoDB use case?

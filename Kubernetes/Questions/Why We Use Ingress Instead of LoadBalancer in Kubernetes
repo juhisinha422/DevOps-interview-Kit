@@ -1,0 +1,92 @@
+Why We Use Ingress Instead of LoadBalancer in Kubernetes
+
+ (And How Ingress Actually Creates a Load Balancer in AWS)
+
+As Kubernetes adoption grows, one common interview and real-world architecture question is:
+
+Why do we use Ingress instead of Service type LoadBalancer?**
+How does Ingress create a Load Balancer in cloud environments like AWS?**
+
+Let’s break this down in a practical, architecture-focused way.
+
+
+1️⃣ The Problem with Using LoadBalancer for Every Service
+
+In Kubernetes, we can expose applications externally using 
+Service type: LoadBalancer.
+This works well for simple setups, but in real production microservices environments it creates challenges.
+
+If we expose each service using a LoadBalancer:
+
+* Every service creates its own external cloud load balancer
+* Infrastructure cost increases significantly
+* Hard to manage routing rules
+* No centralized traffic control
+* SSL management becomes complex
+
+Example:
+If you have 10 microservices → you may end up with 10 cloud load balancers.
+This is expensive and difficult to manage at scale.
+
+2️⃣ What is Ingress?
+
+ngress is an API object in Kubernetes that manages external access to services.
+It acts as a **single entry point** for all applications in the cluster.
+
+Instead of creating multiple load balancers, we create **one Ingress** and route traffic internally to different services.
+
+Key Benefits of Ingress
+
+* Single external Load Balancer
+* Path-based routing (`/api`, `/app`)
+* Host-based routing (`app.example.com`)
+* SSL termination
+* Centralized traffic management
+* Cost optimization
+* Better security control
+
+This makes Ingress the preferred approach for microservices architectures.
+
+3️⃣ Important Concept: Ingress vs Ingress Controller
+
+A common confusion in interviews is this:
+
+👉 Ingress does NOT create a Load Balancer by itself.**
+👉 It needs an **Ingress Controller**.
+
+ngress Resource** = Configuration (rules)
+ngress Controller** = Component that implements those rules
+
+The controller watches Kubernetes for Ingress resources and then configures the actual load balancer.
+
+ 4️⃣ How Ingress Creates Load Balancer in AWS (EKS Example)
+
+In AWS EKS, we typically install the **AWS Load Balancer Controller
+
+Here’s what happens step-by-step:
+
+1. We deploy applications and services in Kubernetes
+2. We install AWS Load Balancer Controller
+3. We create an Ingress YAML
+4. Controller reads the Ingress rules
+5. Controller communicates with AWS APIs
+6. AWS Application Load Balancer (ALB) is created automatically
+7. ALB routes traffic to Kubernetes services → pods
+So the flow is:
+
+User → ALB → Ingress → Service → Pod**
+
+
+
+ 5️⃣ Real-World Example
+
+In one of our projects:
+
+* Multiple microservices running on AWS EKS
+* Instead of creating separate LoadBalancers
+* We used a single ALB via Ingress
+* Implemented path-based routing
+* Enabled SSL termination
+* Reduced cloud cost and simplified management
+
+This design improved scalability and operational efficiency.

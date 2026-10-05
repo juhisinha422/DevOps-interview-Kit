@@ -1,0 +1,35 @@
+Day 4 — AWS IAM + Security + Access Management
+
+STAR-approach DevOps Interview Questions 
+
+1️⃣ Your organization has multiple AWS accounts. How will you design IAM roles, groups, and permission boundaries to enforce least privilege?
+
+2️⃣ A developer accidentally pushed an IAM access key to GitHub. What immediate and long-term actions will you take?
+
+3️⃣ You need to implement SSO across AWS accounts using an external Identity Provider. How will you design this?
+
+4️⃣ Your CI/CD pipeline requires temporary credentials to deploy resources. How will you implement secure role assumption?
+
+5️⃣ An application needs cross-account access to an S3 bucket. How will you design secure cross-account IAM trust?
+
+6️⃣ Your security team mandates MFA for all privileged operations. How will you enforce MFA and handle exceptions?
+
+7️⃣ An IAM user has admin privileges but does not need full access. How will you audit and reduce permissions safely?
+
+8️⃣ You need to restrict developers from creating IAM users or modifying IAM policies. Which IAM features will you apply?
+
+9️⃣ A Lambda function needs permission to access DynamoDB, S3, and SQS. How will you design least-privilege IAM roles?
+
+🔟 You need to control access to AWS resources based on tags (environment, cost center). How will you use IAM + ABAC?
+
+1️⃣1️⃣ A workload in Account A must read secrets stored in Account B’s Secrets Manager. How will you design this securely?
+
+1️⃣2️⃣ You must rotate IAM access keys for 200 users automatically. How will you implement this?
+
+1️⃣3️⃣ You need to prevent deletion or modification of critical IAM roles. Which IAM guardrails or SCPs will you apply?
+
+1️⃣4️⃣ You must audit all privileged IAM activities (role creation, policy updates, key usage). Which AWS logging services will you enable?
+
+1️⃣5️⃣ Your organization requires a temporary “break-glass” admin role with strict monitoring. How will you implement and control access to it?
+
+⸻

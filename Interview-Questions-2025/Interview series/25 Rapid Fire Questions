@@ -1,0 +1,71 @@
+25 Rapid-Fire DevOps Interview Questions
+
+⸻
+
+🟦 Terraform
+
+1️⃣ What is Terraform state and why is it important?
+
+2️⃣ Difference between terraform plan and terraform apply?
+
+3️⃣ What is remote backend and why use it?
+
+4️⃣ How do you prevent accidental resource deletion in Terraform?
+
+5️⃣ What is the difference between count and for_each?
+
+6️⃣ How do you manage multiple environments in Terraform?
+
+7️⃣ What happens if state file is corrupted?
+
+⸻
+
+🟦 Kubernetes
+
+8️⃣ Difference between Deployment and StatefulSet?
+
+9️⃣ What is HPA and how does it work?
+
+🔟 What is the difference between ClusterIP, NodePort, and LoadBalancer?
+
+1️⃣1️⃣ What causes CrashLoopBackOff?
+
+1️⃣2️⃣ What are liveness and readiness probes?
+
+1️⃣3️⃣ What happens when a node fails?
+
+1️⃣4️⃣ How does Kubernetes scheduler decide pod placement?
+
+1️⃣5️⃣ What is the difference between ConfigMap and Secret?
+
+⸻
+
+🟦 AWS / Cloud (EKS-focused)
+
+1️⃣6️⃣ What is the difference between Auto Scaling Group and HPA?
+
+1️⃣7️⃣ What happens if an EC2 instance in an Auto Scaling Group fails?
+
+1️⃣8️⃣ How do you make an application highly available in AWS?
+
+1️⃣9️⃣ What is the difference between ALB and NLB?
+
+2️⃣0️⃣ How do you secure S3 bucket?
+
+⸻
+
+🟦 CI/CD
+
+2️⃣1️⃣ What is Blue-Green deployment?
+
+2️⃣2️⃣ What is Canary deployment?
+
+2️⃣3️⃣ How do you rollback a failed deployment?
+
+2️⃣4️⃣ How do you secure CI/CD pipeline?
+
+⸻
+
+🟦 Monitoring & Troubleshooting
+
+2️⃣5️⃣ Production is slow — what is your troubleshooting approach?

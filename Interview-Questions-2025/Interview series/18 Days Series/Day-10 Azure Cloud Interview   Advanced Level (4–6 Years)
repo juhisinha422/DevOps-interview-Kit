@@ -1,0 +1,23 @@
+Post 10: Azure Cloud Interview  
+Advanced Level (4–6 Years)
+
+You’ve delivered real projects, scaled workloads, and optimized pipelines — now it’s time to show your **architectural thinking**! 🧩  
+
+At 4–6 years of experience, Azure DevOps professionals are expected to design resilient, secure, and compliant systems that can scale across teams and environments.  
+Let’s see how you handle these real-world challenges 👇  
+
+💡 Common Azure Interview Questions for 4–6 Years Experience:
+1️⃣ How would you design a multi‑region Azure architecture for high availability?  
+2️⃣ What’s your approach to implementing network segmentation using VNets and NSGs?  
+3️⃣ How do you enforce governance using Azure Policies and Blueprints?  
+4️⃣ What’s the difference between role-based access (RBAC) and attribute-based access (ABAC)?  
+5️⃣ How do you manage secrets and certificates in Azure Key Vault across multiple environments?  
+6️⃣ How do you troubleshoot identity or access issues integrated with Azure AD?  
+7️⃣ Explain your strategy for implementing zero‑downtime deployments using Azure DevOps pipelines.  
+8️⃣ How do you secure AKS clusters and container images within Azure?  
+9️⃣ What are your go‑to methods for monitoring distributed systems and alerting in Azure?  
+🔟 How do you design a disaster recovery plan for mission‑critical workloads in Azure?  
+
+🎯 Pro Tip:  
+This is the phase where **design choices matter** — justify *why* you picked a service or pattern, not just *how* you used it.  
+Leaders look for clarity in decision‑making and the ability to weigh trade‑offs in scalability, cost, and security.  

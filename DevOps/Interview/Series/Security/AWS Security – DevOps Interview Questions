@@ -1,0 +1,65 @@
+AWS Security – DevOps Interview Questions
+
+Cloud security issues are mostly due to misconfiguration, not AWS itself 🚨
+
+📌 Questions:
+
+What is the AWS Shared Responsibility Model?
+
+What are common AWS security misconfigurations?
+
+Difference between IAM User, Role, and Policy?
+
+Why should IAM users not have admin access?
+
+What is least privilege in AWS IAM?
+
+How do you secure AWS root account?
+
+What is MFA and where should it beenabled?
+
+How do you secure S3 buckets?
+
+Why are public S3 buckets risky?
+
+How do you encrypt data at rest in AWS?
+
+What is encryption in transit in AWS?
+
+How do you manage secrets in AWS?
+
+Difference between AWS Secrets Manager and Parameter Store?
+
+What is KMS and how does it work?
+
+How do you rotate secrets automatically?
+
+What is Security Group vs NACL?
+
+How do you restrict SSH access to EC2?
+
+What is AWS CloudTrail and why is it important?
+
+What is AWS Config used for?
+
+How do you detect unauthorized AWS access?
+
+What is GuardDuty?
+
+How do you secure IAM access keys?
+
+What is VPC security best practice?
+
+How do you secure RDS databases?
+
+How do you handle AWS credential leakage?
+
+What is AWS WAF?
+
+What is Shield and when is it used?
+
+How do you log and monitor security events?
+
+What is cross-account access security?
+
+What are common AWS security mistakes by DevOps engineers?

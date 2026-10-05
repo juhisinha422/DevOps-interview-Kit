@@ -1,0 +1,64 @@
+DevOps Interview Preparation hashtag#Ansible 4–6 Years Experience | Tool 14
+
+Explain Ansible architecture and how it works internally
+
+Control node vs managed node — responsibilities
+
+Why is Ansible agentless and what are its limitations?
+
+Inventory — static vs dynamic, when to use which?
+
+How does Ansible authenticate to remote hosts?
+
+Playbook vs role vs task — differences
+
+How do roles improve maintainability at
+scale?
+
+Role dependency management — how do you handle it?
+
+Variables precedence in Ansible
+
+Group vars vs host vars — real-world usage
+
+Ansible modules vs plugins — differences
+
+Idempotency — how does Ansible achieve it?
+
+Handlers — when and why do you use them?
+
+Tags — how do they help in large playbooks?
+
+Conditionals and loops — common pitfalls
+
+Templates vs files — when to use Jinja2?
+
+How do you manage secrets in Ansible?
+
+Ansible Vault — encryption and best
+practices
+
+Vault password rotation strategy
+
+Preventing secrets leakage in logs
+
+Error handling in Ansible playbooks
+
+Failed task handling using ignore_errors, block, rescue, always
+
+Serial, strategy, and forks — controlling execution
+
+How do you run Ansible safely in production?
+
+Performance tuning for large inventories
+
+Ansible with CI/CD pipelines — best practices
+
+Using Ansible with cloud providers (AWS/Azure/GCP)
+
+Ansible Tower / AWX — why and when?
+
+Drift detection and configuration
+compliance
+
+When should Ansible NOT be used?

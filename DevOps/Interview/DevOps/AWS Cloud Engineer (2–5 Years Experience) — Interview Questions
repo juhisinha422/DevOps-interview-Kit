@@ -1,0 +1,64 @@
+#AWS Cloud Engineer (2–5 Years Experience) — Interview Questions
+
+🚀 Preparing for AWS Cloud Engineer roles with 2–5 years of experience?
+Here are 30 must-know interview questions👇
+
+Explain the difference between ALB and NLB.
+
+How does Auto Scaling work internally in AWS?
+
+What happens when an EC2 instance is stopped vs terminated?
+
+Explain IAM policy evaluation logic.
+
+Difference between Security Groups and NACLs.
+
+How do you secure S3 buckets in production?
+
+Explain VPC peering vs Transit Gateway.
+
+What is AWS WAF and where is it used?
+
+How does CloudWatch differ from CloudTrail?
+
+Explain AWS shared responsibility model in detail.
+
+What is the use of AWS KMS?
+
+Difference between EBS and EFS.
+
+How does Route 53 routing policy work?
+
+What is AWS Systems Manager used for?
+
+How do you handle secrets in AWS?
+
+Explain blue-green deployment in AWS.
+
+What is AWS Backup?
+
+How do you optimize AWS cost?
+
+What is Spot Instance and when do you use it?
+
+Explain S3 lifecycle rules.
+
+Difference between Lambda and ECS.
+
+How do you monitor application logs in AWS?
+
+What is CloudFormation and why use it?
+
+Explain Multi-AZ vs Multi-Region architecture.
+
+How does AWS Shield work?
+
+What is an AMI?
+
+How do you troubleshoot high latency in AWS?
+
+What is Elastic IP?
+
+Explain AWS Organizations.
+
+How do you secure an EC2 instance?

@@ -1,0 +1,33 @@
+Day 2 — Azure Networking (VNet + NSG + Load Balancer + Application Gateway)
+
+STAR-based DevOps Interview Questions
+
+1️⃣ Your Azure application must be accessible globally with low latency and high availability. How will you design VNets, regions, and traffic routing?
+
+2️⃣ A VM in a private subnet cannot access the internet for updates. How will you troubleshoot and fix the networking configuration?
+
+3️⃣ You need strict network isolation between frontend, backend, and database tiers. How will you design subnets, NSGs, and routing?
+
+4️⃣ Multiple Azure VNets across subscriptions must communicate securely. How will you implement VNet peering or hub-and-spoke architecture?
+
+5️⃣ When will you choose Azure Load Balancer over Application Gateway, and why?
+
+6️⃣ You need SSL termination, path-based routing, and WAF protection for a web app. How will you design this using Azure services?
+
+7️⃣ An on-premises data center must connect securely to Azure with low latency. How will you decide between Site-to-Site VPN and ExpressRoute?
+
+8️⃣ A service should be accessible only from specific IP ranges and countries. How will you enforce this at the network and application layer?
+
+9️⃣ Azure Load Balancer health probes are failing even though the app is running. What troubleshooting steps will you follow?
+
+🔟 You need private access to Azure PaaS services like Storage and SQL. How will you design this using Private Endpoints and Private DNS?
+
+1️⃣1️⃣ Your organization wants centralized outbound internet access and inspection. How will you design routing using Azure Firewall or NVA?
+
+1️⃣2️⃣ An application requires internal load balancing only, not public exposure. How will you configure this securely?
+
+1️⃣3️⃣ Network traffic costs are increasing due to cross-region communication. How will you optimize architecture and routing?
+
+1️⃣4️⃣ You need DDoS protection for a production workload. How will you design and enable Azure DDoS Protection?
+
+1️⃣5️⃣ A DevOps team wants to enforce network rules consistently across environments. How will you implement this using IaC (ARM/Bicep/Terraform)?

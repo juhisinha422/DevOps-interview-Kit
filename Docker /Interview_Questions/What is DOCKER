@@ -1,0 +1,32 @@
+What is Docker? 🤔 
+Docker is a containerization platform that helps you build, package, and run applications in a lightweight and consistent way.
+
+👉 In simple words:
+Docker packages your application + all its dependencies into a container, so it runs the same on your laptop, server, or cloud.
+
+Why Docker?
+📦 Lightweight – Uses containers, not full virtual machines
+⚙️ Consistent – “Works on my machine” problem is gone
+🚀 Fast deployment – Start applications in seconds
+🔁 Portable – Run anywhere (Linux, cloud, on-prem)
+
+🔹 Key Docker Components
+Docker Image – Blueprint of the application
+Docker Container – Running instance of an image
+Dockerfile – Instructions to build the image
+Docker Engine – Runs and manages containers
+
+🔹 Install Docker on Linux
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+
+🔹 Dockerfile for Nginx Web App
+FROM nginx:latest
+COPY index.html /usr/share/nginx/html/
+EXPOSE 80
+
+🔹 Build Image & Run Container
+docker build -t nginx-web .
+docker run -d -p 80:80 nginx-web

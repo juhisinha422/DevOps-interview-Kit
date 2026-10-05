@@ -1,0 +1,20 @@
+Prometheus Monitoring: Complete Setup & Best Practices
+
+❇️ Prometheus has become the de facto standard for monitoring cloud-native applications and infrastructure, offering metrics collection, querying, and integration with visualization tools.
+
+❇️ What is Prometheus?
+Prometheus is an open-source monitoring and alerting toolkit originally developed at SoundCloud in 2012 and now a Cloud Native Computing Foundation (CNCF) graduated project. It’s specifically designed for reliability and scalability in dynamic cloud environments, making it the go-to solution for monitoring microservices, containers, and Kubernetes clusters.
+
+❇️ Key Features
+   
+   ▪️ Time-Series Database: Prometheus stores all data as time-series, identified by metric names and key-value pairs (labels), enabling flexible and powerful querying capabilities.
+
+    ▪️ Pull-Based Model: Unlike traditional push-based systems, Prometheus actively scrapes metrics from configured targets at specified intervals, making it more reliable and easier to configure.
+
+    ▪️ PromQL Query Language: A powerful functional query language allows you to slice and dice your metrics data in real-time, performing aggregations, transformations, and complex calculations.
+
+    ▪️ Service Discovery: Automatic discovery of monitoring targets through various mechanisms including Kubernetes, Consul, EC2, and static configurations.
+   
+     ▪️ No External Dependencies: Prometheus operates as a single binary with no required external dependencies, simplifying deployment and reducing operational complexity.
+
+    ▪️ Built-in Alerting: AlertManager handles alerts from Prometheus, providing deduplication, grouping, and routing to notification channels like email, PagerDuty, or Slack.

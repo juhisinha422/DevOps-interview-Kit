@@ -1,0 +1,12 @@
+DevOps Interview Q&A Series — Rapid-Fire Edition
+📌 Practical • Tool-focused • Interview-ready
+
+⸻
+
+🔹 GitHub Actions
+
+1️⃣ How do GitHub Actions workflows differ from Jenkins pipelines in CI/CD design?
+2️⃣ How do you manage secrets securely in GitHub Actions across environments?
+3️⃣ How would you implement a matrix build strategy in GitHub Actions?
+4️⃣ How do self-hosted runners help in enterprise CI/CD pipelines?
+5️⃣ How do you trigger workflows conditionally for PRs, tags, and branches?

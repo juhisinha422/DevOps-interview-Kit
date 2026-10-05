@@ -1,0 +1,28 @@
+Caching Dependencies in GitHub Actions
+
+Today I learned how caching dependencies helps speed up workflows by avoiding repeated downloads.
+
+🔹 Cache Action
+GitHub provides a cache action to store:
+Dependencies
+Build outputs
+Package files
+Caches are reused across workflow runs.
+
+🔹 Speeding Up Workflows
+Caching helps:
+Reduce pipeline execution time
+Save compute resources
+Improve developer productivity
+Especially useful for large projects.
+
+🔹 Cache Keys & Paths
+Cache keys identify stored data
+Paths define what to cache
+Proper keys prevent cache conflicts
+Good cache design improves efficiency.
+
+🔥 3-Line Takeaway
+Caching saves time.
+ Keys control reuse.
+ Efficient pipelines scale.

@@ -1,0 +1,29 @@
+Environments & Approvals in GitHub Actions
+
+Today I learned how environments and approvals add control and safety to deployment workflows.
+
+🔹 Environments
+Environments represent deployment stages like:
+Dev
+Staging
+Production
+They help manage environment-specific rules and secrets.
+
+🔹 Manual Approvals
+Manual approvals:
+Require human confirmation
+Prevent accidental deployments
+Add checkpoints for critical stages
+Useful for production releases.
+
+🔹 Deployment Protection
+Deployment protection includes:
+Approval rules
+Environment-specific secrets
+Access restrictions
+This ensures safe and controlled deployments.
+
+🔥 3-Line Takeaway
+Environments add control.
+ Approvals prevent mistakes.
+ Protection secures releases.

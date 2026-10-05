@@ -1,0 +1,15 @@
+Interview Experience at Global Logic – AWS DevOps Role!! 🚀💼
+Hey everyone 👋
+Recently, I had the opportunity to interview for an AWS DevOps Engineer role at Global Logic and I’d love to share my experience and some of the questions I was asked! 💬✨
+ 
+1. Difference between Spot instance, On-demand Instance and Reserved Instance.
+2. What are different types of s3 bucket and s3 life cycle.
+3. How we can do VPC peering if one VPC is there in one region and another VPC is there in another region.
+4. Difference between roles and policies in VPC.
+5. Difference between AWS system manager and AWS secret manager.
+6. How you can provisioned our infrastructure with the help of CI-CD pipeline.
+7. What is RBAC in Jenkins.
+8. How one service is able to communicate to another service in docker.
+9. How we can run one path based container without giving it full access.
+10. What is stateful set and stateless set in k8s.
+11. How we can isolate our services in Jenkins so that no one can able to access it.

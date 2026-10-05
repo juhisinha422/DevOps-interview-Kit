@@ -1,0 +1,42 @@
+Ansible Vault
+
+Today I learned about Ansible Vault, which is used to secure sensitive data like passwords, API keys, and secrets 🔐
+Instead of storing secrets in plain text inside Playbooks, Ansible Vault allows us to encrypt them safely.
+ Secure automation = Professional automation 🛡️
+
+🔹 🔒 Encrypt Secrets
+Ansible Vault helps encrypt:
+ • Passwords
+ • API keys
+ • Database credentials
+ • SSH secrets
+This prevents sensitive information from being exposed in Playbooks or repositories.
+
+🔹 🧾 vault create / edit / view
+Common Vault commands:
+ansible-vault create secrets.yml → Create an encrypted file
+ ansible-vault edit secrets.yml → Edit encrypted file securely
+ ansible-vault view secrets.yml → View encrypted content
+These commands ensure secrets remain protected while still being usable in automation.
+
+🔹 📌 Best Practices
+✔ Never store secrets in plain text
+ ✔ Use separate vault files for sensitive data
+ ✔ Restrict access to vault passwords
+ ✔ Use strong encryption passwords
+Following best practices improves security in real DevOps environments 🚀
+
+🔹 🛡️ Security Handling
+Vault files are encrypted using a password and can be safely committed to version control.
+During Playbook execution, Ansible decrypts the data securely using the vault password.
+
+ This ensures:
+ • Confidential data protection
+ • Secure deployments
+ • Compliance with security standards
+Vault is essential for production-grade automation environments.
+
+🔥 3-Line Takeaway
+Ansible Vault protects sensitive data.
+ Encrypt secrets instead of hardcoding them.
+ Secure automation is a must in production.

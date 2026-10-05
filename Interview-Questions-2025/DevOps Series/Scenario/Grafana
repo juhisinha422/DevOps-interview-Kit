@@ -1,0 +1,13 @@
+Grafana 
+Scenarios/questions;
+
+1.	Grafana dashboards and panels.
+2.	Data sources like Prometheus.
+3.	Alerting rules setup.
+4.	Variables for dynamic dashboards.
+5.	Annotations and templating.
+6.	Plugins for extended viz.
+7.	SSO and user management.
+8.	High availability config.
+9.	Troubleshooting data issues.
+10.	Integration with Loki for logs.

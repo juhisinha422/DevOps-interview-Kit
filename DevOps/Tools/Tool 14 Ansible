@@ -1,0 +1,49 @@
+DevOps Interview Preparation – Tool 14
+
+Ansible (Basics + Advanced) | 0–2 Years Experience
+
+Ansible is one of the most popular configuration management and automation tools.
+Interviewers use Ansible questions to check whether you understand automation at scale.
+
+ Focus: Ansible Interview Questions (Basics + Advanced)
+
+• What is Ansible and why is it used?
+• Ansible vs Chef vs Puppet (high-level)
+• What is configuration management?
+• Ansible architecture (control node, managed node)
+• Agentless architecture – why is it important?
+• What is an inventory file?
+• Static vs dynamic inventory
+• What is a playbook?
+• Structure of a playbook
+• What is a task in Ansible?
+• What is a module?
+• Commonly used Ansible modules
+• What is YAML and why is it used in Ansible?
+• What is idempotency?
+• Why idempotency is important?
+• What are roles in Ansible?
+• Why are roles used?
+• Directory structure of Ansible roles
+• What are handlers?
+• When do handlers run?
+• What is Ansible Galaxy?
+• What are templates in Ansible?
+• Jinja2 templating basics
+• What are variables in Ansible?
+• Variable precedence
+• What are facts in Ansible?
+• Custom facts
+• What is ansible-vault?
+• How do you secure secrets in Ansible?
+• What is dynamic inventory?
+• How does Ansible work with cloud (AWS/GCP/Azure)?
+• How do you run Ansible in CI/CD pipeline?
+• How do you troubleshoot Ansible playbook failures?
+• Common Ansible mistakes beginners make
+• Real-world Ansible automation use case
+
+Interview Tip:
+If you explain:
+👉 “Provision infra → Configure using Ansible → Deploy application”
+you already sound like a real DevOps automation engineer, even with 0–2 years of experience.

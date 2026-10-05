@@ -1,0 +1,78 @@
+Common DevOps Pipeline Errors & How I Fixed Them (Real-Time Scenarios)🚀
+
+Today I wanted to share a few common DevOps CI/CD pipeline issues I’ve faced in real projects—and the exact resolutions that helped me fix them quickly.
+
+Hope this helps someone debugging their pipeline today! 
+
+1. “Git Checkout Failed / Invalid Credentials”
+Cause: Wrong Git credentials, expired PAT token, or incorrect repo permissions.
+Fix:
+
+Regenerated a new Git Personal Access Token (PAT)
+
+Updated credentials in Jenkins/AWS CodePipeline/GitHub Actions
+
+Ensured repo-level read permissions
+
+2. “Maven Build Failure – Dependencies Not Found”
+Cause: Missing dependencies in pom.xml or repository not reachable.
+Fix:
+
+Cleaned workspace → mvn clean install
+
+Checked Nexus/Artifactory availability
+
+Fixed incorrect version in pom.xml
+
+3. “Docker Build Fails – No Space Left on Device”
+Cause: Old images/containers taking up disk.
+Fix:
+
+docker system prune -a
+docker volume prune
+Increased disk size on the build agent
+
+ 4. “Helm Deployment Error – Kubernetes API Timeout”
+Cause: Cluster connectivity issue or kubeconfig mismatch.
+ Fix:
+
+Re-authenticated cluster
+
+Cleared old kubeconfig context
+
+Verified API server availability
+
+Checked if Ingress, Services, and Pods are up
+
+5.“Pipeline Fails Due to Hardcoded Paths / Missing Files”
+ Cause: Developers using absolute paths like /home/user/...
+Fix:
+
+Updated pipeline to use relative paths
+
+Added validations for missing files
+
+Standardized build directory structure
+
+6. “Jenkins Not Triggering Automatically”
+ Cause: Misconfigured Git Webhook.
+Fix:
+
+Re-configured webhook with correct Jenkins URL
+
+Opened firewall/NAT inbound port for webhook
+
+Enabled Push, Pull Request events
+
+7. “Resource Quota Exceeded in Kubernetes”
+Cause: Pods requesting more CPU/memory than allowed.
+Fix:
+
+Optimized resource requests/limits
+
+Cleaned unused deployments & pods
+
+Increased namespace quota when required
+
+Key Learning
+DevOps pipelines fail all the time — what matters is how quickly and confidently you can identify the root cause, apply the right fix, and prevent it from happening again.

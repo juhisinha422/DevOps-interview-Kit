@@ -1,0 +1,44 @@
+Platform Engineer Interview Questions – Quick Prep Guide
+If you're preparing for a Platform Engineer role, here are some key questions to focus on:
+
+☁️ Cloud Infrastructure (AWS / GCP / Azure)
+How do you design a scalable and highly available cloud architecture?
+What’s the difference between EC2, Lambda, and Fargate?
+How do you manage IAM roles and policies securely?
+What are the best practices for multi-region deployments?
+
+🧱 Infrastructure as Code (Terraform / CloudFormation / ARM)
+How do you manage Terraform state files securely?
+What’s the difference between Terraform modules and workspaces?
+How do you handle drift detection in IaC?
+How do you integrate Terraform with CI/CD pipelines?
+
+🛠️ Configuration Management (Ansible / Puppet / Chef)
+How do you ensure idempotency in Ansible playbooks?
+What’s the difference between push and pull configuration models?
+How do you manage secrets in configuration tools?
+
+🐧 Linux System Administration
+How do you troubleshoot high CPU usage on a Linux server?
+What’s the difference between top, htop, and iotop?
+How do you secure a Linux server?
+
+🔁 CI/CD & DevOps Tools (Jenkins / Git / Maven)
+How do you design a CI/CD pipeline for microservices?
+What are the best practices for Jenkins pipelines?
+How do you handle rollback in CI/CD deployments?
+
+🗃️ Databases (PostgreSQL / Cassandra)
+How do you optimize PostgreSQL queries?
+What are the differences between Cassandra and PostgreSQL?
+How do you handle schema migrations?
+
+🐍 Scripting & Automation (Python / Bash / Java / Scala)
+Write a Python script to monitor disk usage and send alerts.
+How do you handle error logging and retries in Bash?
+What are the advantages of using Scala in distributed systems?
+
+📡 Messaging & Event-Driven Architecture (SNS / SQS / Kafka)
+How do you design a decoupled system using SQS and SNS?
+What are the differences between SQS and Kafka?
+How do you ensure message durability and ordering?

@@ -1,0 +1,23 @@
+Here are some other asked with techgreek client 
+
+Impact of using infra keymap while transferring a CSV file
+How do you troubleshoot a CrashLoopBackOff in Kubernetes?
+What is the difference between Persistent Volume and Persistent Volume Claim?
+What is the role of Kubernetes and how does it differ from Docker?
+Write a PySpark code to read a CSV file and remove duplicates
+Can you give an example of a Python automation script (CSV or resource checking)?
+Write Python code to calculate the average of a list
+Is this Python average code correct?
+How do you ensure persistence and integrity for stateful apps like databases or Kafka in Kubernetes?
+How do you ensure infrastructure changes (K8s upgrades / image updates) don’t break the data platform?
+Which monitoring tools do you use?
+Have you handled similar scenarios in your current role?
+Have you had similar responsibilities in your previous or current roles?
+How would you troubleshoot a sudden drop in throughput for a Spark job running on Kubernetes?
+Which collection class forbids duplicates?
+In Spark, how do you remove or avoid duplicates?
+How do you typecast values to int?
+What caused the rollover issue in Modak Analytics?
+Airflow UI is up but tasks are not getting scheduled — how do you troubleshoot?
+How do you safely upgrade a Kubernetes cluster without breaking the data platform?
+How do you typecast a float value to an int?

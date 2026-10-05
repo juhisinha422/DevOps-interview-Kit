@@ -1,0 +1,29 @@
+GitHub Actions Interview Questions
+
+Today I revised interview-focused GitHub Actions concepts commonly asked in DevOps roles.
+
+🔹 DevOps Scenarios
+Interviewers may ask about:
+Automating builds and deployments
+Managing secrets securely
+Handling multi-environment pipelines
+Focus on real use cases.
+
+🔹 CI/CD Use Cases
+Common questions include:
+When to use GitHub Actions
+Integrating with cloud platforms
+Designing efficient pipelines
+Explain with practical examples.
+
+🔹 Troubleshooting Questions
+Be ready to discuss:
+Debugging failed workflows
+Fixing permission issues
+Optimizing slow pipelines
+Problem-solving skills matter.
+
+🔥 3-Line Takeaway
+Scenarios test understanding.
+ CI/CD shows expertise.
+ Troubleshooting proves skill.

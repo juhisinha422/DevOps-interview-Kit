@@ -1,0 +1,32 @@
+ DevOps Interview hashtag#Questions hashtag#AWS
+5–8 Years Experience | Tool 5
+
+How do you design a highly available and fault-tolerant architecture in AWS for mission-critical applications?
+
+A production application is slow only in one AZ — how do you troubleshoot?
+
+How do you implement multi-region disaster recovery and decide RTO/RPO?
+
+AWS bill suddenly increased by 35% — how do you investigate and control it?
+
+How do you design IAM roles and policies for large DevOps teams?
+
+When do you choose ALB vs NLB vs API
+Gateway?
+
+How do you secure CI/CD pipelines running on AWS?
+
+Explain blue-green vs canary deployments using AWS services.
+
+How do you manage secrets securely across ECS/EKS/Lambda?
+
+VPC networking issue caused outage — what checks do you perform first?
+
+How do you design logging and monitoring using CloudWatch and OpenTelemetry?
+
+What are common AWS architectural mistakes you’ve seen in production?
+
+How do you handle AWS service limits in large-scale environments?
+
+How do you design AWS accounts using Control Tower or landing zones?
+What AWS decisions clearly show senior-level DevOps maturity?

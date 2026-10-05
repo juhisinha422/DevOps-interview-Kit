@@ -1,0 +1,50 @@
+AWS for DevOps – Performance Optimization & Scalability
+
+Scaling fast is easy. Scaling right is the real challenge 👇
+
+🔹 Performance Fundamentals
+	•	How do you define performance for an application?
+	•	Which metrics indicate real user impact?
+	•	How do you differentiate performance issues from availability issues?
+
+🔹 Compute Optimization
+	•	How do you choose the right EC2 instance type?
+	•	When do you scale vertically vs horizontally?
+	•	How do you benchmark application performance on EC2?
+
+🔹 Auto Scaling
+	•	What metrics should trigger auto scaling?
+	•	How do you prevent scale-in from impacting availability?
+	•	What are common auto scaling misconfigurations?
+
+🔹 Load Balancing
+	•	How do you identify load balancer bottlenecks?
+	•	How do health checks affect performance?
+	•	When would sticky sessions hurt scalability?
+
+🔹 Storage & I/O
+	•	How does storage choice affect application latency?
+	•	Difference between EBS gp3, io1, and io2?
+	•	How do you tune disk and network I/O?
+
+🔹 Database Performance
+	•	How do you identify slow database queries?
+	•	When do read replicas improve performance?
+	•	How do you prevent connection pool exhaustion?
+
+🔹 Caching
+	•	When should you introduce caching?
+	•	What data should never be cached?
+	•	How do you handle cache invalidation?
+
+🔹 Serverless & Containers
+	•	How do cold starts affect performance?
+	•	How do you optimize container startup time?
+	•	When does serverless stop scaling efficiently?
+
+🔹 Testing & Validation
+	•	How do you conduct load and stress testing?
+	•	How do you validate performance changes safely?
+	•	How do you avoid performance regressions?
+
+💡 Performance problems rarely appear at low traffic — prepare early.

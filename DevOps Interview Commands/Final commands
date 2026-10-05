@@ -1,0 +1,156 @@
+🚀 Final Interview Revision Snippets for Cloud, DevOps & SRE Roles
+
+These are short, high-impact snippets that interviewers expect you to recognize instantly — not memorize, but understand and explain.
+
+👉 Bookmark this.
+👉 Revise it before interviews.
+👉 Practice explaining why and when you use them.
+
+🐧 Linux
+
+ps aux | grep nginx
+df -h && du -sh /var/log/*
+
+
+🌐 Networking
+
+ss -tulnp
+traceroute google.com
+
+
+🔁 Git
+
+git rebase main
+git cherry-pick <commit-id>
+
+
+🔧 Jenkins
+
+pipeline { agent any; stages { stage('Build'){ steps{ sh 'mvn clean install' }}}}
+
+post { failure { mail to:'team@org.com', subject:'Build Failed' } }
+
+🦊 GitLab CI
+
+stages: [build, deploy]
+script: mvn clean package
+
+only:
+  - main
+
+⚙️ GitHub Actions
+
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+uses: actions/checkout@v4
+
+🚀 Argo CD
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+argocd app sync my-app
+
+
+☁️ AWS
+
+aws ec2 describe-instances
+aws s3 sync . s3://my-bucket
+
+☁️ Azure
+
+az vm list
+az aks get-credentials
+
+☁️ GCP
+
+gcloud compute instances list
+gcloud container clusters get-credentials
+
+
+📦 Maven
+
+<dependency>
+  <groupId>org.springframework</groupId>
+</dependency>
+
+mvn clean install -DskipTests
+
+🔍 SonarQube
+
+sonar-scanner
+
+sonar.projectKey=my-app
+
+🗄️ Nexus
+
+<distributionManagement>
+
+mvn deploy
+
+🐳 Docker
+
+FROM openjdk:17
+COPY target/app.jar app.jar
+
+docker run -d -p 8080:8080 app
+
+🌍 Terraform
+
+resource "aws_instance" "vm" {}
+
+terraform init && terraform apply
+
+🤖 Ansible
+
+- hosts: all
+  tasks:
+    - name: install nginx
+
+ansible-playbook site.yml
+
+☸️ Kubernetes
+
+apiVersion: apps/v1
+kind: Deployment
+
+kubectl describe pod <pod>
+
+
+📈 Prometheus
+
+scrape_configs:
+
+rate(http_requests_total[5m])
+
+
+📊 Grafana
+
+SELECT count(*) FROM metrics
+
+"datasource": "Prometheus"
+
+
+🤖 AI (Basics for DevOps)
+
+from sklearn.model_selection import train_test_split
+
+model.fit(X_train, y_train)
+
+
+🧠 ML (Basics)
+
+from sklearn.linear_model import LinearRegression
+
+model.predict(X_test)
+
+
+🎯 Final Interview Tip
+
+If you can clearly explain:
+	•	What this snippet does
+	•	Where you used it
+	•	What problem it solved

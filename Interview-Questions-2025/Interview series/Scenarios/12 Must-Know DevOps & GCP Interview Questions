@@ -1,0 +1,18 @@
+12 Must-Know DevOps & GCP Interview Questions!
+A colleague recently faced "Mercedez-Benz" interview, and they’re super practical for real-world cloud-native environments. 
+
+How many can you answer? 👇
+1️⃣ What is ClusterIP and NodePort in Kubernetes?
+ 2️⃣ How do you define and use Artifact ID in GitLab CI/CD?
+ 3️⃣ How do you configure Maven in GitLab to build code?
+ 4️⃣ How do you reduce Docker image size?
+ 5️⃣ Can you explain Kubernetes Services in detail?
+
+✅ Additional Random Questions:
+6️⃣ What is the difference between Deployment and StatefulSet in Kubernetes?
+ 7️⃣ How do you implement Blue-Green Deployment using GCP Cloud Deploy or GitLab CI/CD?
+ 8️⃣ What is the role of IAM Service Accounts in GCP CI/CD pipelines?
+ 9️⃣ How do you configure Horizontal Pod Autoscaler (HPA) in GKE?
+ 🔟 What is the difference between Cloud Build triggers and GitLab CI pipelines?
+ 1️⃣1️⃣ How do you secure Secrets in Kubernetes and integrate with GCP Secret Manager?
+ 1️⃣2️⃣ Explain the concept of Infrastructure as Code (IaC) using Terraform in GCP.

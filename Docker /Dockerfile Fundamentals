@@ -1,0 +1,32 @@
+Dockerfile fundamentals 
+
+After working on containerizing a few services recently, I realized how often teams overlook the basics that actually make or break a reliable image.
+
+ Here’s how I think about the key Dockerfile instructions — and where they matter in real projects.
+ 
+FROM — defines the base environment. In production you might pick python:3.12-slim or node:20-alpine to start small, or ubuntu when you need package flexibility.
+RUN — used for installing packages and setting up dependencies during build.
+ Example: installing system tools or Python libraries your app needs before deployment.
+COPY — moves your local source code and configs into the image.
+ Example: copying Flask or Node app files into /app before starting the server.
+ADD — similar to COPY but can extract archives or fetch URLs.
+ Rare in CI/CD pipelines unless you’re unpacking release bundles.
+ENV — sets environment variables that apps use at runtime.
+ Example: ENV PORT=8080 or ENV APP_ENV=production so the same image runs across dev, staging, and prod.
+WORKDIR — defines the default working directory for subsequent commands.
+ Used to keep code and commands organized (/app is a common choice).
+EXPOSE — documents which port your container listens on.
+ Example: EXPOSE 8000 for a web API — helps Compose or Kubernetes map traffic correctly.
+USER — drops root privileges and runs the app safely as a normal user.
+ Used in security-hardened builds or in production workloads.
+CMD — sets the default command when the container starts.
+ Example: CMD ["python", "app.py"] — the process that runs when the container launches.
+ENTRYPOINT — defines the main executable that always runs, even if arguments are passed.
+ Example: useful for CLI tools or scripts where you want a fixed entry command.
+ 
+Real-world habits that help:
+Always add a .dockerignore to avoid copying unnecessary files (git history, logs, venvs).
+Use multi-stage builds to keep final images small and secure.
+Pin versions and prefer slim or alpine variants to reduce CVEs.
+Drop root access with USER whenever possible.
+These fundamentals form the base of every production Dockerfile — from simple Python APIs to multi-stage Go and Node builds deployed through CI/CD pipelines.

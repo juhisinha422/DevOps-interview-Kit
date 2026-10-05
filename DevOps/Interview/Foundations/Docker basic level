@@ -1,0 +1,40 @@
+DevOps Interview Series | Docker Basic Level
+
+What is Docker and why is it used?
+
+Difference between Docker and virtual machines
+
+What is a Docker image?
+
+What is a Docker container?
+Difference between image and container
+
+What is Docker Engine?
+
+What is Dockerfile?
+
+Common Dockerfile instructions (FROM, RUN, CMD, ENTRYPOINT)
+
+What is a Docker registry?
+
+Difference between Docker Hub and private registry
+
+What is docker pull and docker push?
+
+What is docker run and docker start?
+
+Difference between docker stop and docker kill
+
+What is port mapping in Docker?
+
+What are Docker volumes?
+
+Difference between volume and bind mount 
+
+What is container networking?
+
+How do containers communicate with each other?
+
+What happens when a container restarts?
+
+Common Docker use cases in real projects

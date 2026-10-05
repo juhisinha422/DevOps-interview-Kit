@@ -1,0 +1,45 @@
+AWS for DevOps – Incident Management & On-Call
+
+Systems will fail. Your response defines reliability. 👇
+
+🔹 Incident Fundamentals
+	•	What qualifies as an incident?
+	•	How do you classify incident severity?
+	•	Who decides when an incident is closed?
+
+🔹 Detection & Alerting
+	•	How do you ensure incidents are detected early?
+	•	What makes an alert actionable?
+	•	How do you reduce alert fatigue?
+
+🔹 On-Call Practices
+	•	How do you design a healthy on-call rotation?
+	•	What information should an on-call engineer have?
+	•	How do you handle incidents during off-hours?
+
+🔹 Incident Response
+	•	What is your first action after receiving a critical alert?
+	•	How do you balance speed vs safety during incidents?
+	•	Who communicates updates during an outage?
+
+🔹 AWS During Incidents
+	•	Which AWS tools help during active incidents?
+	•	How do you diagnose network vs application issues?
+	•	How do you use CloudWatch during outages?
+
+🔹 Communication
+	•	How often should stakeholders be updated?
+	•	What should be communicated during an incident?
+	•	How do you handle customer-facing outages?
+
+🔹 Post-Incident Review
+	•	What is a blameless postmortem?
+	•	What data should be included in a postmortem?
+	•	How do you ensure lessons are actually implemented?
+
+🔹 Reliability Culture
+	•	How do you prevent repeat incidents?
+	•	How do SLOs influence incident response?
+	•	How do you measure incident response effectiveness?
+
+💡 Uptime is built in design — trust is built during incidents.

@@ -1,0 +1,69 @@
+AWS Config** is an AWS service that helps you **track, audit, and evaluate the configuration** of your AWS resources over time.
+
+### 🔍 What does AWS Config do?
+
+Think of AWS Config as a **CCTV + audit log for your infrastructure settings**.
+
+It continuously:
+
+* 📸 **Records resource configurations** (EC2, S3, VPC, IAM, etc.)
+* 🕒 **Keeps a history** of configuration changes
+* ✅ **Checks compliance** against rules you define
+* 🚨 **Alerts you** when something becomes non-compliant
+
+---
+
+### 🧩 Key components
+
+* **Configuration Recorder**
+  Captures details of supported AWS resources.
+
+* **Configuration History & Timeline**
+  Shows *what changed, when it changed, and who changed it*.
+
+* **Config Rules**
+  Rules (AWS-managed or custom) to check compliance.
+  Example: *“Are S3 buckets public?”*
+
+* **Compliance Dashboard**
+  One view to see compliant vs non-compliant resources.
+
+---
+
+### 💡 Example
+
+You create a rule:
+
+> ❌ **S3 buckets must not be public**
+
+If someone makes a bucket public:
+
+* AWS Config detects the change
+* Marks the resource **NON-COMPLIANT**
+* Can trigger an SNS notification or remediation
+
+---
+
+### 🆚 AWS Config vs CloudTrail (quick clarity)
+
+| Service    | Purpose                      |
+| ---------- | ---------------------------- |
+| AWS Config | *What* configuration changed |
+| CloudTrail | *Who* did the action         |
+
+(They work best **together**.)
+
+---
+
+### 🏆 Why AWS Config is important
+
+* 🔐 Security & compliance (ISO, SOC, PCI)
+* 🕵️ Troubleshooting & audits
+* 📜 Governance and policy enforcement
+* 📊 Change management
+
+---
+
+### 🧠 One-line definition (interview-ready)
+
+> **AWS Config is a service that continuously monitors, records, and evaluates AWS resource configurations for compliance and auditing.**

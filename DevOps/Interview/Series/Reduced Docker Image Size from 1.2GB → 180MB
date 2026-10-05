@@ -1,0 +1,95 @@
+Reduced Docker Image Size from 1.2GB → 180MB (Real Optimization Story)
+
+---
+
+🐳 Our Docker image was 1.2GB and deployments were taking too long.
+Build time slow.
+Push/Pull slow.
+Startup slow.
+
+This was costing us time AND money.
+
+Here’s exactly how I optimized it 👇
+
+---
+
+Root Cause
+
+We were using a single-stage Dockerfile:
+
+```
+FROM openjdk:11
+COPY . .
+RUN mvn clean install
+CMD ["java", "-jar", "app.jar"]
+```
+
+Big base image + all build dependencies + final jar = HUGE image.
+
+---
+
+🧠 Solution — Multi-Stage Build
+
+✔ Stage 1: Build the app
+
+```
+FROM maven:3.8 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean install
+```
+
+ ✔ Stage 2: Final runtime
+
+```
+FROM openjdk:11-jre
+WORKDIR /app
+COPY --from=build /app/target/app.jar app.jar
+CMD ["java", "-jar", "app.jar"]
+```
+
+---
+
+🚀 Result
+
+✔ Image size reduced from 1.2GB → 180MB
+✔ Faster build & deploy
+✔ Faster pod startup
+✔ Less traffic on registry
+✔ Lower storage cost
+
+---
+
+💡 Why It Works
+
+Multi-stage build only copies:
+
+* final artifact (JAR)
+* not build tools
+* not source code
+* not temporary files
+
+So final image is lean & production-ready.
+
+---
+
+🔧 Bonus Tip
+
+Use Alpine base image when possible:
+
+```
+FROM eclipse-temurin:17-jre-alpine
+```
+
+Image size becomes even smaller.
+But test first — Alpine may break native libs.
+
+🌟 Key Takeaways
+
+* Don’t push huge images to production
+* Multi-stage builds are MUST for DevOps
+* Your CI/CD pipeline becomes faster
+* Kubernetes startup becomes faster
+* You save cost automatically
+
+Small optimization → huge impact.

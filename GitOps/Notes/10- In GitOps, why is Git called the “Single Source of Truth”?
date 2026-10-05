@@ -1,0 +1,9 @@
+Question: In GitOps, why is Git called the “Single Source of Truth”?
+
+Question: In GitOps, why is Git called the “Single Source of Truth”?
+A) Stores all system configs
+B) Runs application servers
+C) Executes deployment scripts
+D) Compiles application code
+
+Ans A

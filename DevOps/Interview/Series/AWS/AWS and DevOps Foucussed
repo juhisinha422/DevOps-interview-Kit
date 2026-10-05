@@ -1,0 +1,61 @@
+#AWS Interview Questions – hashtag#DevOps (AWS-Focused)
+
+What is DevOps?
+
+What is CI/CD?
+
+AWS services used for CI/CD?
+
+What is AWS CodeCommit?
+
+CodeBuild vs Jenkins?
+
+What is CodePipeline?
+
+What is Infrastructure as Code?
+
+CloudFormation vs Terraform?
+
+What is blue-green deployment?
+
+What is canary deployment?
+
+How do you automate AWS infrastructure?
+
+How do you manage secrets in AWS?
+
+What is AWS Secrets Manager?
+
+What is Parameter Store?
+
+What is immutable infrastructure?
+
+What is rollback strategy?
+
+How do you monitor CI/CD pipelines?
+
+How do you handle failures in pipeline?
+
+What is artifact management?
+
+What is GitOps?
+
+How do you secure CI/CD?
+
+What is IAM role in DevOps?
+
+What is cost optimization in DevOps?
+
+What is logging strategy in AWS?
+
+What is observability?
+
+What is SRE vs DevOps?
+
+How do you handle scaling?
+
+What is DR strategy in AWS?
+
+Real-time DevOps challenges?
+
+End-to-end DevOps AWS use case?

@@ -1,0 +1,63 @@
+Cloud & DevOps Interview Questions – Must-Know List 🚀
+
+Preparing for Cloud / DevOps interviews or revising core fundamentals?
+Here’s a power-packed checklist covering the most frequently asked questions across AWS, Docker, Kubernetes, and Terraform 👇
+
+AWS
+• Security Groups vs NACLs
+• Designing highly available architectures
+• S3 vs EFS vs EBS – when to use what
+• Auto Scaling vs Load Balancing
+• IAM Users vs Roles
+• Spot, On-Demand & Reserved Instances
+• VPC networking fundamentals
+How does ALB differ from NLB? When would you use each?
+• How do you secure an S3 bucket from public access?
+• Explain cross-account access in AWS.
+• How does IAM policy evaluation work? (explicit deny vs allow)
+• What happens when an EC2 instance is stopped vs terminated?
+• How do you design DR in AWS? (RTO vs RPO)
+• Difference between AWS Backup and snapshots?
+
+ Docker
+• Image vs Container
+• Reducing Docker image size
+• Multi-stage builds & why they matter
+• Data persistence in containers
+• Docker networking basics
+• Why avoiding latest tag in production is critical
+Why containers are preferred over VMs?
+• What causes a container to exit?
+• Difference between CMD and ENTRYPOINT?
+• How do you debug a crashing container?
+• What is Docker layer caching?
+• How do you scan Docker images for vulnerabilities?
+
+Kubernetes
+• Deployment vs StatefulSet vs DaemonSet
+• ClusterIP vs NodePort vs LoadBalancer
+• Role of etcd
+• Pod scheduling process
+• ConfigMap vs Secret
+• Liveness & Readiness probes
+• Metrics Server usage
+What happens when you run kubectl apply?
+• How does Kubernetes self-healing work?
+• Difference between Horizontal Pod Autoscaler and Cluster Autoscaler?
+• How does rolling update work internally?
+• What is a Kubernetes namespace and why use it?
+• How do you handle secrets securely in Kubernetes?
+• What is pod affinity & anti-affinity?
+• How do taints and tolerations work?
+
+Terraform
+• Module vs Resource
+• Terraform State & why it matters
+• Managing secrets securely
+• Terraform plan vs apply
+What is the Terraform workflow?
+• How do you manage Terraform state in a team?
+• What are remote backends and why are they needed?
+• How do you import existing infrastructure into Terraform?
+• Difference between count and for_each?
+• How do you handle environment separation (dev/stage/prod)?

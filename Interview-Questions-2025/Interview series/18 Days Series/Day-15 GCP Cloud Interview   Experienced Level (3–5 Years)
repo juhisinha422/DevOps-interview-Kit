@@ -1,0 +1,23 @@
+Post 15: GCP Cloud Interview  
+Experienced Level (3–5 Years)
+
+Now it’s about **designing and operating real-world systems on GCP** — not just knowing services by name. 💡  
+At 3–5 years, interviewers expect strong skills in **GKE, networking, CI/CD, and multi-project setups** for production workloads.  
+
+Let’s see how you’d tackle these 👇  
+
+💡 Common GCP Interview Questions for 3–5 Years Experience:
+1️⃣ How do you design a multi-project structure in GCP using folders, projects, and IAM boundaries?  
+2️⃣ What’s your approach to running production workloads on **GKE** (node pools, autoscaling, upgrades)?  
+3️⃣ How do you secure communication between services using **VPC, subnetting, and firewall rules**?  
+4️⃣ Explain how you’d build an end-to-end CI/CD pipeline using **Cloud Build**, **Artifact Registry**, and **GKE/Cloud Run**.  
+5️⃣ How do you handle centralized logging and monitoring for multiple services and projects in GCP?  
+6️⃣ What’s the difference between **Cloud NAT** and **Cloud VPN**, and when would you use each?  
+7️⃣ How would you design a highly available architecture across multiple **regions and zones** in GCP?  
+8️⃣ How do you use **Service Accounts** and IAM roles to implement least-privilege access?  
+9️⃣ Describe how you would implement blue-green or canary deployments on **GKE**.  
+🔟 How do you optimize GCP costs for Compute Engine, GKE, and Cloud Storage in an active environment?  
+
+🎯 Pro Tip:  
+At this stage, focus on **real implementation stories** — migrations, reliability improvements, autoscaling wins, or cost optimization.  
+Interviewers look for engineers who understand both **platform capabilities and practical trade-offs** in design decisions.  

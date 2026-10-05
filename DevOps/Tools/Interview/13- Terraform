@@ -1,0 +1,33 @@
+DevOps Interview preparation | hashtag#Terraform | 4–6 Years Experience | Tool 13
+
+What is Terraform and how does it work internally?
+Terraform workflow — init, plan, apply explained
+Provider vs resource vs data source
+Terraform state — why is it critical?
+Local state vs remote state
+State locking — how does it work?
+What happens if Terraform state is deleted?
+Terraform variables and variable precedence
+Output values — real use cases
+Terraform dependency graph explained
+Count vs for_each — when to use which?
+Modules — why and how do you design them?
+How do you version Terraform modules?
+Terraform workspaces — real-world usage
+Environment separation strategy in Terraform
+Terraform drift — what is it and how do you detect it?
+How do you handle secrets in Terraform?
+Sensitive variables — how are they protected?
+Terraform destroy accidentally run — recovery plan
+How do you refactor Terraform code
+safely?
+Terraform with CI/CD — best practices
+Terraform plan approval strategy
+Managing multi-cloud using Terraform
+Terraform performance optimization
+Terraform vs CloudFormation vs ARM
+Terraform upgrade broke infrastructure — what next?
+Importing existing resources into Terraform
+Handling partial failures in Terraform apply
+Terraform security best practices
+When should Terraform NOT be used?

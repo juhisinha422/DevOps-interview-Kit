@@ -1,0 +1,31 @@
+Here are the Terraform interview questions that separate users from engineers 👇
+
+1️⃣ Two engineers ran terraform apply simultaneously. What happened?
+💡 Race condition on state = corruption. Real answer: remote backend + DynamoDB locking.
+
+2️⃣ A resource was manually deleted in AWS. What does Terraform do next?
+💡 It wants to recreate it. terraform import brings it back without destroying anything.
+
+3️⃣ How do you structure Terraform for 5 teams across 3 environments?
+💡 Modules + separate state per env. Workspaces sound right — they're a trap at scale.
+
+4️⃣ terraform plan shows 0 changes but infrastructure is drifting. How?
+💡 State is out of sync. Tags and metadata changes don't always register.
+
+5️⃣ Rename a resource without destroying it. How?
+💡 moved block (v1.1+). Saying terraform state mv without a backup first is risky.
+
+6️⃣ How do you handle secrets without exposing them in state?
+💡 sensitive = true only hides CLI output — secrets still live in state. Use Vault.
+
+7️⃣ terraform destroy wiped production RDS. What should have stopped it?
+💡 prevent_destroy = true + deletion protection + separate state for stateful resources.
+
+8️⃣ Difference between terraform taint and -replace?
+💡 taint is deprecated since v0.15.2. Still saying taint = you haven't kept up.
+
+9️⃣ How do you test Terraform modules before production?
+💡 Terratest + tflint + Checkov. Most candidates skip testing entirely.
+
+🔟 State is locked after a failed apply. How do you safely unlock?
+💡 terraform force-unlock <ID> — only after confirming no active apply is running.

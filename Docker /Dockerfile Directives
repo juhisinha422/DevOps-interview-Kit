@@ -1,0 +1,85 @@
+Dockerfile Directives 
+
+1. FROM – I use FROM to choose the base image.
+👉 Example: FROM ubuntu:22.04
+I start my Dockerfile with a base image.
+
+
+2. LABEL – I use LABEL to add metadata about the image.
+👉 Example: LABEL maintainer="venkat@example.com"
+I mention who maintains this image.
+
+
+3. ENV – I use ENV to set environment variables inside the container.
+👉 Example: ENV APP_HOME=/usr/src/app
+We set paths or configuration values.
+
+
+4. RUN – I use RUN to execute commands while building the image.
+👉 Example: RUN apt-get update && apt-get install -y python3
+We install packages or dependencies.
+
+
+5. COPY – I use COPY to copy files from my computer to the container.
+👉 Example: COPY . /app
+I copy my project files inside the image.
+
+
+6. ADD – I use ADD to add files or download URLs, or extract archives.
+👉 Example: ADD app.tar.gz /app
+I can also use it to unpack tar files.
+
+
+7. WORKDIR – I use WORKDIR to set the working directory in the container.
+👉 Example: WORKDIR /app
+We don’t need to use cd again.
+
+
+8. EXPOSE – I use EXPOSE to inform Docker which port the app will use.
+👉 Example: EXPOSE 8080
+I expose the port my application runs on.
+
+
+9. USER – I use USER to set the user who runs the container.
+👉 Example: USER node
+We avoid running as root for security.
+
+
+10. CMD – I use CMD to set the default command when the container starts.
+👉 Example: CMD ["python3", "app.py"]
+I define the main process for the container.
+
+
+11. ENTRYPOINT – I use ENTRYPOINT to force a specific command to run.
+👉 Example: ENTRYPOINT ["python3", "app.py"]
+We can still add extra arguments at runtime.
+
+
+12. VOLUME – I use VOLUME to store data outside the container.
+👉 Example: VOLUME /data
+We keep data safe even if the container stops.
+
+
+13. ARG – I use ARG to set build-time variables.
+👉 Example: ARG VERSION=1.0
+I can pass custom values during build.
+
+
+14. HEALTHCHECK – I use HEALTHCHECK to check if the app is healthy.
+👉 Example: HEALTHCHECK CMD curl -f http://localhost:8080 || exit 1
+We monitor the container’s health.
+
+
+15. SHELL – I use SHELL to change the default shell for RUN commands.
+👉 Example: SHELL ["/bin/bash", "-c"]
+We use bash instead of sh if needed.
+
+
+16. ONBUILD – I use ONBUILD to add triggers for child images.
+👉 Example: ONBUILD COPY . /app
+We use this for base images that others will extend.
+
+
+17. STOPSIGNAL – I use STOPSIGNAL to define how the container stops.
+👉 Example: STOPSIGNAL SIGTERM
+I tell Docker what signal to send when stopping.

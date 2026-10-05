@@ -1,0 +1,83 @@
+Linux Booting Procedure
+
+1. What is the Linux booting process?
+=>The Linux booting process is the sequence of steps that starts when the system is powered on and ends when the login prompt appears.
+
+2. What are the main stages of the Linux boot process?
+=> BIOS / UEFI
+Bootloader (GRUB)
+Kernel
+Initramfs / Initrd
+Init system (systemd / init)
+Target or Runlevel
+
+3. What is the role of BIOS or UEFI?
+=>BIOS/UEFI initializes hardware and searches for a bootable device, then loads the bootloader into memory.
+
+4. What is GRUB?
+=>GRUB is the bootloader that loads the Linux kernel into memory and allows users to select OS or kernel options.
+
+5. Where is GRUB configuration file located?
+=>RHEL/CentOS: /etc/default/grub
+Generated config: /boot/grub2/grub.cfg
+
+6. What happens after GRUB loads the kernel?
+=>The kernel initializes hardware, mounts the root filesystem, and starts the init system.
+
+7. What is initramfs?
+=>Initramfs is a temporary root filesystem loaded into memory that helps the kernel load drivers and mount the actual root filesystem.
+
+8. What is systemd?
+=>Systemd is the init system that manages services, targets, and system startup processes.
+
+9. What is the default target in systemd?
+=>multi-user.target → Text mode
+graphical.target → GUI mode
+
+10. How do you check the current runlevel/target?
+=>systemctl get-default
+
+11. What are kernel parameters?
+=>Kernel parameters are options passed to the Linux kernel at boot time to control system behavior.
+
+12. How do you view current kernel parameters?
+=>cat /proc/cmdline
+
+13. How do you pass kernel parameters temporarily?
+=>Edit GRUB at boot time by pressing e, add parameters to the linux line, and boot.
+
+14. How do you add kernel parameters permanently?
+=>/etc/default/grub
+Then run
+grub2-mkconfig -o /boot/grub2/grub.cfg
+
+15. What is the quiet parameter?
+=>It hides boot messages to provide a clean boot screen.
+
+16. What is the ro parameter?
+=>It mounts the root filesystem as read-only during boot for filesystem checks.
+
+17. What is the rhgb parameter?
+=>Red Hat Graphical Boot – shows a graphical boot screen instead of text.
+
+18. What is init=/bin/bash used for?
+=>It boots the system directly into a root shell, mainly used for password recovery.
+
+19. What is selinux=0 and enforcing=0?
+=>selinux=0 → Disables SELinux completely
+enforcing=0 → SELinux in permissive mode
+
+20. What is the single or 1 kernel parameter?
+=>It boots the system into single-user mode for troubleshooting.
+
+21. What is nomodeset?
+=>Disables kernel mode setting, useful for fixing display or graphics driver issues.
+
+22. What is crashkernel parameter?
+=>It reserves memory for capturing kernel crash dumps (kdump).
+
+23. What is /proc in relation to kernel parameters?
+=> /proc is a virtual filesystem that provides runtime kernel and system information.
+
+24. Can kernel parameters be changed without reboot?
+=> Some parameters can be changed via sysctl, but boot parameters require a reboot.

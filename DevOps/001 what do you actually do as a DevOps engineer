@@ -1,0 +1,70 @@
+So… what do you actually do as a DevOps engineer?
+
+I get this question a lot.
+From friends. From family. Even from recruiters.
+
+Let me explain it in a way that actually makes sense.
+
+I don’t “just push code.”
+I don’t “just manage servers.”
+And no… I’m not the IT support guy who resets passwords.
+
+As a DevOps engineer, I build the bridge between developers and production.
+
+When a developer writes code, it doesn’t magically appear on your phone as an update.
+
+There’s a process.
+
+🔹 We automate how code is tested.
+🔹 We automate how it’s packaged.
+🔹 We automate how it’s deployed.
+🔹 We monitor it to make sure it doesn’t break
+🔹 And when it does break… we already built the systems that fix or scale it automatically.
+
+⸻
+
+Think about apps like Netflix, Uber, or Amazon.
+
+Millions of users.
+Millions of requests.
+Zero patience for downtime.
+
+Behind that smooth experience is infrastructure, automation, pipelines, containers, monitoring, cloud architecture…
+
+That’s the world we live in.
+
+⸻
+
+A typical day?
+
+• Writing CI/CD pipelines
+• Managing cloud infrastructure
+• Working with Docker & Kubernetes
+• Improving deployment speed
+• Reducing failure rates
+• Fixing bottlenecks before users ever notice
+
+It’s engineering for reliability.
+Engineering for speed.
+Engineering for scale.
+
+⸻
+
+DevOps is not only about tools. It’s about ownership.
+
+If it runs in production, we care about it.
+If it fails, we fix it.
+If it’s slow, we optimize it.
+If it can be automated, we automate it.
+
+We don’t just ship software.
+We build the system that ships software.
+
+And when it’s done right?
+
+Nobody notices.
+
+And that’s the job.
+
+⸻
+

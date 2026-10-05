@@ -1,0 +1,33 @@
+Ansible Interview Questions – 3 Years Experience
+
+Preparing for DevOps interviews? Here are some commonly asked Ansible interview questions you should be comfortable with 👇
+
+What is Ansible and how have you used it in real projects?
+
+Why is Ansible called agentless?
+
+How does Ansible achieve idempotency?
+
+What is an Ansible playbook?
+
+What is inventory and what types of inventory are available?
+
+What is dynamic inventory and when do you use it?
+
+What are Ansible modules? 
+.
+What are handlers and why are they used?
+
+How do you manage variables in Ansible?
+
+What is Ansible Vault and why is it used?
+
+How do you secure sensitive data in Ansible?
+
+What is Jinja2 and how is it used?
+
+What are Ansible facts?
+
+How do you debug Ansible playbooks?
+
+How do you integrate Ansible with CI/CD pipelines?

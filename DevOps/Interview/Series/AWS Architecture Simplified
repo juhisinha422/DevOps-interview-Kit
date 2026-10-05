@@ -1,0 +1,100 @@
+AWS Architecture Simplified.
+#vpc #aws
+
+AWS VPC Explained in the Simplest Way Possible — For Every New DevOps Engineer
+
+When I started with AWS, VPC was the most confusing topic.
+Too many components, too many diagrams — but the concept is actually VERY simple.
+
+Here’s VPC in a way anyone can understand 👇
+
+---
+
+What is a VPC?
+
+Think of VPC as your own private network inside AWS.
+Just like your home has rooms, locks, WiFi, and rules —
+A VPC has subnets, route tables, gateways, and security rules.
+
+---
+
+Components (Explained Like a Home Setup)
+
+1. Subnets = Rooms in your house
+
+* Public Subnet → Living Room (anyone can visit)
+* Private Subnet → Bedroom (restricted access)
+
+---
+
+2. Internet Gateway (IGW) = Main Door
+
+If you want public internet access → you need a door.
+IGW is that door.
+
+---
+
+3. NAT Gateway = Security Guard
+
+Instances in private subnet cannot go out directly.
+NAT Gateway lets them access the internet *securely*
+→ but still keeps them private.
+
+---
+
+4. Route Table = Google Maps
+
+Decides where traffic should go.
+Public subnet routes to IGW.
+Private subnet routes to NAT.
+
+---
+
+5. Security Groups = Rules inside the house.
+
+They control:
+
+* Who can enter
+* Who can leave
+* Which service can talk to which
+
+SG = Door Security
+NACL = Compound Wall Security
+
+---
+
+🧠 Simple Example Setup
+
+Public Subnet:
+
+* ALB
+* Bastion Host
+* NAT Gateway
+
+Private Subnet:
+
+* EC2 instances
+* EKS nodes
+* RDS
+* Microservices
+
+Why separate?
+Because **public = exposed, private = protected.
+
+---
+
+🚀 Golden Rule for DevOps Engineers**
+
+90% of AWS issues come from wrong VPC design, misconfigured routes, or incorrect security group rules.**
+
+If your app is not reachable, 3 things to check first:
+
+1. SG rules
+2. Subnet type (public/private)
+3. Route table entries
+
+
+Final Takeaway
+
+AWS VPC is not complicated.
+It’s just networking — made cloud friendly.

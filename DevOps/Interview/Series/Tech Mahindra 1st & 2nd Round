@@ -1,0 +1,121 @@
+Tech Mahindra Interview Cleared!
+
+The interview was very technical – they asked deep, practical questions on:
+
+✔️ AWS
+✔️ Jenkins CICD
+✔️ Docker & Kubernetes
+✔️ Terraform
+
+Here are some questions they asked 👇
+
+ AWS
+ What is Auto Scaling and how do you configure scaling policies?
+ How to optimize cost for EC2, RDS and S3?
+ What is VPC and difference between Public/Private subnet?
+ How do you secure S3 buckets?
+ How does Load Balancer work in multi AZ setup?
+
+ Jenkins
+ Explain pipeline as code?
+ What stages you use in CI/CD?
+ How do you trigger pipeline automatically?
+ How do you store and use credentials in Jenkins?
+ What is Blue-Green deployment?
+
+ Docker & Kubernetes
+ Difference between Docker image and container?
+ What is multi-stage build in Docker?
+ Explain pod, deployment, service?
+ How to troubleshoot pod CrashLoopBackOff?
+ What is Ingress and how it works?
+
+ Terraform
+ What is IaC and why Terraform?
+ Explain Terraform state file?
+ How do you manage multiple environments (dev/qa/prod)?
+ What is the use of variables and outputs?
+ How to handle Terraform remote backend?
+
+ Takeaway:
+Companies want real hands-on experience. Be ready to explain how you deploy, automate, monitor and fix issues in production.
+
+
+2nd Technical Round for the Tech Mahindra hiring process.
+
+
+Here are some of the tough & practical questions that were covered 👇
+
+Key Technical Questions from the
+
+Explain how you design a zero-downtime deployment strategy in Kubernetes.
+
+How does Kubernetes handle certificate rotation internally?
+
+What is the difference between readiness vs liveness vs startup probes with real examples?
+
+How do you debug a CrashLoopBackOff issue step-by-step?
+
+Scenario: Pod is running but service is not reachable — what will you check?
+
+How do you secure Kubernetes secrets in a production-grade cluster?
+
+Explain the internal workflow of Helm during helm upgrade.
+
+What is a Helm hook and where do you use it?
+
+How do you handle versioning of Helm charts in large environments?
+
+Explain how Terraform handles resource drift and how to fix it.
+
+What is Terraform refresh and why is it removed in 1.x?
+
+Scenario: Someone manually modified a cloud resource — how do you bring it back to IaC?
+
+Explain remote backend locking and race conditions in Terraform.
+
+How do you design a scalable GitHub Actions workflow for monorepos?
+
+What are the best practices for managing secrets in CI/CD?
+
+Explain artifact caching and restore mechanism in GitHub Actions.
+
+Scenario: Your Jenkins agent keeps disconnecting — how do you troubleshoot?
+
+How do you design auto-scaling for a microservice with unpredictable traffic?
+
+Explain difference between ALB, NLB, and API Gateway with use cases.
+
+How do you troubleshoot intermittent packet loss in a VPC?
+
+Explain the internal flow of a DNS lookup with each layer involved.
+
+How do you optimize Docker image size for production workloads?
+
+Scenario: Container is consuming too much memory — how do you debug?
+
+Explain how you handle pod-to-pod communication failures in production.
+
+What happens internally when you run kubectl apply?
+
+How do you roll back a bad deployment without downtime?
+
+Scenario: One node is constantly going to NotReady state — how will you troubleshoot?
+
+How do you secure CI/CD pipelines in production?
+
+Explain how you’d build a multi-stage Docker pipeline for a microservices app.
+
+Scenario: Your pipeline is stuck during artifact upload — what steps will you take?
+
+How do you manage Terraform state in a team environment?
+
+Scenario: Your Terraform apply is stuck due to a lock — how will you fix it?
+
+What strategies do you use for cost optimization in cloud workloads?
+
+How do you debug a high CPU process in Linux?
+
+Scenario: Application is not reachable from outside but works inside the pod. Steps?
+
+

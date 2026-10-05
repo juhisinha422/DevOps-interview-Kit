@@ -1,0 +1,30 @@
+Kubernetes Interview Question ***********************
+
+Are you preparing for Kubernetes interviews or just want to brush up your skills? Here’s a question for you!
+
+1.     How to fix OOMKilled issue?
+2.     How would you troubleshoot if the pods stuck in CrashLoopBackOff?
+3.     How do you resolve ImagePullBackOff error?
+4.     Your Application is slow, pods getting evicted and new one failed to schedule, how will you troubleshoot?
+5.     Kubernetes Node is in ‘Not Ready’ state, how to fix it?
+6.     Kubelet is restarting on a particular node, How will you resolve it?
+7.     How Kubernetes scheduler decide where to place pods?
+8.     Deployment vs StatefulSet?
+9.     When should you use statefulSet instead of deployments?
+10. What is DaemonSet, Pod Disruption Budget, Custom Resource definition, Network Policies?
+11. What is Liveness Probe and Readiness Probe?
+12. You have deployed an application in AKS and if fails health check randomly, How do you debug?
+13. Which components is responsible for providing IP to pods?
+14. How service communicate with pods?
+15. Difference between Container Runtime Instance, Container Network interface and Container Storage interface?
+16. What is Taints and Tolerations?
+17. What is Node Affinity and Anti-Affinity?
+18. My AKS is deployed in private, How will you expose your application to public if AKS is in private?
+19. Pods is running but the application is not accessible, What will be the issue?
+20. How DNS resolutions works inside a K8s pods?
+21. What happens in the background when we run kubectl apply commands?
+22. A pods is running but user facing 502 error?
+23. When user hit app.com how this app.com will reach to pods in my Kubernetes cluster, Explain the flow?
+24. How to update Kubernetes cluster?
+25. How will you manage expired keys?
+26. What deployment strategies are available in k8s?

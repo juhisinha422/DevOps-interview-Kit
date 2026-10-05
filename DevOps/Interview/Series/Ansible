@@ -1,0 +1,43 @@
+🚀 AWS DevOps Interview Preparation Series 🚀
+
+Topic: Ansible — Configuration Management & Automation Simplified
+Ansible is one of the most powerful and simple automation tools used in DevOps for configuration management, provisioning, and orchestration.
+
+It helps achieve consistent environments, zero-downtime deployments, and infrastructure as code — all without installing agents!
+
+Here are top real-world Ansible interview questions every DevOps engineer should know 👇
+
+What is Ansible, and how does it differ from other configuration management tools like Chef or Puppet?
+ Explain the architecture of Ansible — what are control nodes and managed nodes?
+ What is an inventory file in Ansible, and how is it structured?
+ What are Playbooks in Ansible?
+ What is the difference between a play and a task in Ansible?
+ What are Ansible modules? Give examples of commonly used ones.
+ What is an Ansible role, and how is it structured?
+ How do you reuse and organize Playbooks efficiently?
+ What is the use of ansible.cfg?
+ How do you secure sensitive data in Ansible?
+ What are Ansible Vaults and how do you use them?
+ How can you handle dynamic inventories in Ansible?
+ What’s the difference between command, shell, and script modules?
+ What is register in Ansible, and how do you use its output?
+ What are Ansible facts, and how can you use them in Playbooks?
+ How do you implement conditional statements (when) in Ansible?
+ How can you use loops (with_items, loop) in Ansible tasks?
+ What is idempotency in Ansible?
+ How do handlers and notify work in Ansible?
+ How do you debug Playbooks when something fails?
+ What are Ansible tags, and how do they help in execution control?
+ How can you use Ansible for AWS provisioning?
+ How can Ansible integrate with Jenkins for CI/CD automation?
+ What are some ways to optimize Ansible Playbook performance?
+ How do you test Ansible Playbooks before production deployment?
+ How do you perform rolling updates with Ansible?
+ What is the difference between Ansible Galaxy and Ansible Tower?
+ What are Ansible Collections?
+ How do you use Ansible Tower (AWX) for enterprise automation?
+ Explain a real-world use case where you automated infrastructure or application deployment using Ansible.
+
+💡 Pro Tip:
+ 👉 In production, Ansible + Jenkins + Terraform is a powerful combo — Terraform for provisioning, Ansible for configuration, and Jenkins for orchestration.
+ Focus on roles, vaults, and dynamic inventories — these are always asked in senior DevOps interviews.

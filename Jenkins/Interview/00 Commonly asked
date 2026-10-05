@@ -1,0 +1,41 @@
+once asked this in a Jenkins interview....!
+
+Q: A Jenkins pipeline succeeds, but the deployment doesn’t reflect in production. Why?
+
+A: The wrong artifact may have been deployed. I’d verify artifact versioning, environment configs, and confirm the deploy stage actually ran.
+
+Q: A Jenkins job suddenly starts failing without any code changes. What’s going on?
+
+A: It’s usually due to expired credentials, plugin updates, or changes in external dependencies. I’d check recent Jenkins and plugin changes.
+
+Q: Jenkins pipelines are running slower than usual. How do you troubleshoot?
+
+A: I’d check executor availability, node resource usage, and identify bottlenecks in build or test stages.
+
+Q: Secrets are visible in Jenkins console logs. What’s your response?
+
+A: I’d rotate the secrets immediately, use Jenkins credentials store, and mask sensitive values in logs.
+
+Q: A Jenkins agent goes offline during a critical build. What do you do?
+
+A: I’d re-route the job to healthy agents, investigate agent connectivity, and check resource or network issues.
+
+Q: A pipeline fails only in one environment. Why does that happen?
+
+A: Environment-specific variables or permissions may differ. I’d compare configs and ensure consistency across environments.
+
+Q: A Jenkinsfile change breaks multiple pipelines. How do you recover?
+
+A: I’d roll back the Jenkinsfile, restore a known-good version, and add validation checks before merging changes.
+
+Q: Jenkins builds trigger repeatedly in a loop. What’s the cause?
+
+A: Webhook or SCM polling misconfiguration can cause retriggers. I’d review trigger settings and repository hooks.
+
+Q: Jenkins runs jobs with outdated code even after a commit. Why?
+
+A: Workspace caching or checkout issues. I’d clean the workspace and verify the SCM checkout stage.
+
+Q: Jenkins is running, but jobs aren’t starting. What do you check?
+
+A: I’d check executor availability, queue length, and whether the Jenkins master or agents are overloaded.

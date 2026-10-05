@@ -1,0 +1,73 @@
+MLOps 2025: The Most Common Vector Databases You Actually  Need to Know
+
+RAG, semantic search, embeddings, GenAI pipelines — everything runs on vector databases now.
+But with so many options, which ones are really used in the industry?
+
+Here’s the definitive list (2025 edition) 👇
+
+---
+
+## 🔥 Top Vector Databases Used in MLOps
+
+### 🟩 1. Milvus (Apache 2.0)
+
+The undisputed leader.
+Built for billions of embeddings, ANN search, GPU acceleration & K8s-first deployments.
+
+### 🟦 2. Pinecone (SaaS)
+
+Zero infra. Zero ops.
+If you just want vector search *that works*, Pinecone is the go-to.
+
+### 🟪 3. Qdrant (Apache 2.0)
+
+Blazing fast + powerful filtering.
+Perfect for real-time RAG pipelines.
+
+### 🟨 4. Weaviate (Apache 2.0 core)
+
+Hybrid search → BM25 + vectors.
+Highly developer friendly with amazing modules.
+
+### 🟧 5. ChromaDB (Apache 2.0, fully open-source)
+
+Simple. Local. Lightweight.
+Most popular for LLM prototyping & quick RAG setups.
+
+### 🟥 6. FAISS (MIT)
+
+Not a database, but the fastest vector indexing library ever built.
+Perfect for custom/offline workflows.
+
+### 🟫 7. Redis Vector (RSAL)
+
+Sub-millisecond retrieval.
+Great for real-time inference, ranking & recommender systems.
+
+### 🔵 8. OpenSearch Vector (Apache 2.0)
+
+Enterprise hybrid search.
+Great fit for AWS-heavy environments.
+
+### ⚫ 9. Elasticsearch (AGPLv3 added in 2024)
+
+Still widely used for hybrid search, but AGPL can be restrictive.
+Used mainly in teams already on ELK.
+
+---
+
+# 🧠 When to Use What? (Super Simple Guide)
+
+* Production RAG @ scale: Milvus / Qdrant / Pinecone
+* AWS-native: OpenSearch
+* Prototyping: ChromaDB
+* Hybrid keyword + vector: Weaviate / OpenSearch
+* Real-time apps:Redis Vector
+* Custom indexing: FAISS
+
+---
+
+# 🔥 Final Thought
+
+You don’t need to learn every vector DB.
+Just master 2–3 based on your stack and you’re MLOps-ready for 2025

@@ -1,0 +1,14 @@
+1️⃣ From scratch, how will you create infrastructure?
+
+"When I create infrastructure from scratch, I start with networking first.
+I design the VPC with CIDR planning, then create public and private subnets across multiple AZs.
+
+After that, I configure Internet Gateway, NAT Gateway, and route tables.
+
+Next, I set up security — security groups, NACLs, IAM roles and policies.
+
+Once the base network is ready, I provision compute like EC2 or EKS, then storage like S3 and RDS.
+
+Finally, I configure monitoring, logging, and CI/CD access.
+
+I automate everything using Terraform so the infra is repeatable and version-controlled"

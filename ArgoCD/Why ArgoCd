@@ -1,0 +1,55 @@
+Why Argo CD? Why not only CI tools like Jenkins or GitLab CI?
+This is one of the most common Interview questions I see in DevOps interviews and real projects.
+👉 “If we already have Jenkins or GitLab CI, why do we need Argo CD?”
+Here’s the simple, real-world explanation 👇
+🔹 What CI tools are best at
+CI tools like Jenkins, GitLab CI, GitHub Actions are excellent for:
+✅ Building applications
+ ✅ Running tests
+ ✅ Creating Docker images
+ ✅ Pushing images to registries (ECR / Docker Hub)
+ ✅ Updating Kubernetes manifests in Git
+👉 CI = Build & Test
+🔹 The limitation of CI-only deployments
+When CI tools deploy directly to Kubernetes:
+❌ Cluster credentials must be shared
+ ❌ Deployments become push-based
+ ❌ Rollbacks are manual
+ ❌ Hard to track configuration changes
+ ❌ Risk of configuration drift
+This is where Argo CD becomes critical 👇
+🔹 What exactly is Argo CD?
+Argo CD is a GitOps-based Continuous Delivery (CD) tool for Kubernetes.
+🔹 Git is the single source of truth
+ 🔹 Argo CD continuously watches Git
+ 🔹 It ensures actual cluster state = desired Git state
+👉 Argo CD = Deploy & Maintain
+🔹 How CI + Argo CD work together (Production Flow)
+1️⃣ Developer pushes code to Git
+ 2️⃣ CI pipeline:
+Builds the application
+Runs tests
+Builds Docker image
+Pushes image to registry
+Updates Kubernetes YAML in Git
+3️⃣ Argo CD detects Git changes
+ 4️⃣ Argo CD syncs changes to Kubernetes
+ 5️⃣ If someone modifies the cluster manually → Argo CD detects drift and fixes it
+✅ Secure
+ ✅ Auditable
+ ✅ Automated
+ ✅ Production-ready
+🔹 Why teams prefer Argo CD
+✔ Pull-based (more secure)
+ ✔ Automatic drift detection
+ ✔ Easy rollback (just revert Git commit)
+ ✔ Clear UI visibility
+ ✔ Kubernetes-native CD
+ ✔ Perfect for multi-env (dev / stage / prod)
+🎯 Interview-Winning One-Liner
+“CI tools build and test applications, while Argo CD deploys and continuously maintains Kubernetes workloads using GitOps.”
+🔥 This single line creates impact.
+💡 Final Thought
+CI tools and Argo CD are not alternatives — they complement each other.
+👉 CI builds the software
+ 👉 Argo CD runs and maintains it

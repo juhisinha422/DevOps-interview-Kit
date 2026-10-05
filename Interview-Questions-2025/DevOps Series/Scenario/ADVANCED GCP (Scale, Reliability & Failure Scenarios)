@@ -1,0 +1,32 @@
+ADVANCED GCP (Scale, Reliability & Failure Scenarios)
+
+These scenarios test architecture decisions, incident handling, and cost–reliability trade-offs in Google Cloud.
+
+⸻
+
+☁️ Advanced GCP – Real-World DevOps Scenarios
+ 1. A production service is down in one zone. How do you restore traffic quickly?
+ 2. Traffic suddenly spikes 8–10×. How do you scale your GCP infrastructure safely?
+ 3. How would you design a multi-region highly available application in GCP?
+ 4. Cloud Load Balancer is healthy, but users report intermittent failures. How do you debug?
+ 5. GKE cluster nodes are under pressure, but pods are not scaling. How do you fix it?
+ 6. Cloud SQL performance degrades during peak hours. How do you troubleshoot?
+ 7. How do you implement zero-downtime deployments for GKE workloads?
+ 8. A Cloud Run service hits concurrency limits. How do you tune and scale it?
+ 9. IAM roles are too permissive across projects. How do you audit and fix them?
+ 10. Storage latency increased for a critical workload. How do you investigate?
+ 11. How do you protect GCP workloads from DDoS attacks?
+ 12. A region-wide outage occurs. What is your disaster recovery strategy?
+ 13. How do you implement centralized logging and monitoring at scale in GCP?
+ 14. How do you manage secrets across multiple GCP projects and environments?
+ 15. Cloud costs are rising due to over-provisioning. How do you optimize safely?
+
+⸻
+
+🧠 What Interviewers Are Evaluating
+
+✔ GCP system design
+✔ Reliability & resiliency planning
+✔ Kubernetes & managed services depth
+✔ Security governance
+✔ Cost optimization mindset

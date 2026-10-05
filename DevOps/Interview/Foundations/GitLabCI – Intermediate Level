@@ -1,0 +1,39 @@
+DevOps Interview Series | hashtag#GitLabCI – Intermediate Level
+
+Explain the full lifecycle of a GitLab CI pipeline
+
+How does GitLab CI decide which jobs to run?
+Difference between stages and needs
+
+How do you share data between jobs in GitLab CI?
+
+What are artifacts and when should you use them?
+
+How does caching work in GitLab CI?
+
+How do you define multi-environment pipelines (dev/stage/prod)?
+
+How do you restrict jobs to specific branches?
+
+What is rules and how is it different from only/except?
+
+How do you trigger pipelines manually?
+
+What are GitLab CI variables and variable precedence?
+
+How do you use protected variables?
+
+How do you use Docker images in GitLab CI jobs?
+How do you integrate GitLab CI with Docker registry?
+
+How do you run jobs in parallel in GitLab CI?
+
+What are environments in GitLab CI?
+
+How do you implement manual approvals in GitLab CI?
+
+How do you retry or allow failure of jobs?
+
+How do you debug failing GitLab CI pipelines?
+
+Common GitLab CI mistakes made by teams

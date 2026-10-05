@@ -1,0 +1,68 @@
+Date: 25th November 2025
+Company Name: Capgemini
+Client Name: CISCO
+Level Round: L1 
+Real Time Interview Questions Asked by today
+
+
+✅ 1️⃣ LINUX / SHELL / OS
+
+1. Tell me about yourself (DevOps Engineer)
+2. x = 10 and export x = 10 difference
+3. One shell I close and open another — how to add variables permanently
+4. Meaning of nano ~/.bashrc
+5. Hard link and soft link difference
+6. How to identify whether it is a hard link or soft link
+
+---
+✅ 2️⃣ PYTHON
+
+7. Python user input — how to take
+8. A = input, B = input → print(A + B) (example 10 and 5)
+9. Dynamic typing meaning in Python
+---
+
+✅ 3️⃣ AWS CLOUD
+
+10. AWS services used in your project
+11. EBS volume meaning
+12. Maximum size of EBS volume
+13. Can multiple EBS volumes be attached to one EC2 instance?
+14. Types of Load Balancers
+15. Types of Auto Scaling
+16. Difference between horizontal and vertical scaling
+17. When should we use vertical scaling?
+18. How to create S3 bucket
+19. What are methods/operations in S3
+20. S3 bucket region — how it works / how we use
+
+---
+✅ 4️⃣ DOCKER
+
+21. Dockerfile contents
+22. CMD and ENTRYPOINT difference
+23. Docker container login commands
+24. Dockerfile having multiple wrong statements / errors
+---
+
+✅ 5️⃣ TERRAFORM
+
+25. Terraform meaning
+26. Can we use Terraform for Google provider?
+27. State file vs Remote state
+28. Want to manage old infra now using Terraform — how?
+29. Terraform provisioning
+---
+
+✅ 6️⃣ ANSIBLE
+
+30. Ansible meaning
+31. How Ansible works
+32. Playbook has 5 tasks — if second task fails, will it stop or continue?
+33. YAML meaning & idempotent meaning
+
+---
+✅ 7️⃣ JIRA / ITSM
+
+34. Which tool manages tickets — Jira or ServiceNow?
+35. Tickets in Jira — how to assign and how DevOps uses it

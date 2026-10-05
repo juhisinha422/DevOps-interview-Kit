@@ -1,0 +1,11 @@
+explain how the communication between the services (app to db happens ? ) ? (in  case of microservice one service to other service happens )
+
+thorugh api endpoints  or host server endpoints ?
+
+we can enable the communication between app and DB, one microservice and another microservice, using cluster IP service with matchLabels in k8s. 
+
+when we r containarizing front end , back end and db where we are exactly configuring in the front end docker image that this is the backend url u need to send request for something like that
+
+When u say backend , if that is also is running as a statefulset object having a service object on top of it and using the service fqdn u can access from anywhere inside same kuberenetes cluster. Then Mentioning it in any config or code or as env variables preferably when the docker image is built for the app so that it can be changed easily later too, just changing within dockerfile or passing as command line argument in build
+
+Store your environment variable in parameter store and add those link in K8s or task denifination  file.

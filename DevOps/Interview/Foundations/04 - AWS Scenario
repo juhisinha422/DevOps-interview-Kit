@@ -1,0 +1,36 @@
+Tool 4 — AWS (Scenario-Based DevOps Interview Series Real-Time Production Scenarios)
+
+These scenarios are directly taken from real AWS production incidents and interviews.
+
+AWS – Scenario Based Interview Questions
+
+1. Your EC2 instance is running but application is not accessible. How will you troubleshoot?
+2. A sudden spike in traffic caused application downtime. How do you handle it in AWS?
+3. Your EC2 instance CPU is constantly at 100%. What steps will you take?
+4. An Auto Scaling group is not launching new instances. How will you debug?
+5. Users cannot access S3 objects publicly. What could be wrong?
+6. Sensitive data was accidentally made public in S3. What immediate actions will you take?
+7. Your RDS database is slow. How do you troubleshoot?
+8. A Multi-AZ RDS failed over. What happens next?
+9. Application works in one AZ but not in another. How will you debug?
+10. Load balancer is healthy but traffic is not reaching EC2. Why?
+11. How do you implement zero-downtime deployment in AWS?
+12. How do you design blue-green deployment using AWS services?
+13. How do you secure EC2 instances without storing credentials?
+14. How do you provide cross-account access securely?
+15. How do you restrict developers from deleting production resources?
+16. How do you monitor and alert for AWS infrastructure failures?
+17. CloudWatch alarm didn’t trigger. How will you troubleshoot?
+18. AWS bill suddenly increased. How do you investigate?
+19. How do you design disaster recovery for a critical application?
+20. How do you decide between multi-AZ and multi-region?
+21. How do you prevent DDoS attacks in AWS?
+22. How do you detect compromised IAM credentials?
+23. How do you audit user actions across AWS accounts?
+24. How do you encrypt data at rest and in transit in AWS?
+25. How do you secure VPC communication?
+26. How do you expose a private application securely to the internet?
+27. How do you migrate on-prem workloads to AWS?
+28. How do you perform rollback after a failed deployment?
+29. How do you handle region-wide AWS outages?
+30. How do you design AWS architecture for high availability and cost optimization?

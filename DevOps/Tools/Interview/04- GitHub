@@ -1,0 +1,61 @@
+DevOps Interview Preparation 4–6 Years Experience | Tool 4 | Github
+
+Difference between Git and GitHub
+
+Repository visibility types and use cases
+
+Fork vs clone — when to use what?
+
+What is a pull request lifecycle?
+
+How does access control work in repositories?
+What are branch protection rules?
+
+How do you prevent direct pushes to main?
+
+Required reviews vs required status checks
+
+How do you enforce commit message standards?
+
+Why is the CODEOWNERS file important?
+
+Architecture of automation workflows
+
+Workflow vs job vs step — differences
+
+What events can trigger automation pipelines?
+Secrets vs variables — differences
+
+Hosted runners vs self-hosted runners
+
+How do you manage secrets securely?
+
+What is advanced security scanning?
+
+How does dependency scanning work?
+
+How do you detect leaked credentials?
+
+How do you audit repository activity?
+
+How do you manage multiple teams in an organization?
+Mono-repo vs multi-repo strategy — when to use what?
+
+Issues vs Projects — real use cases
+
+Release management strategy
+
+How do you manage large pull requests effectively?
+
+PR approved but merge blocked — possible reasons?
+
+Automation works in one repo but fails in another — why?
+
+Secret updated but pipeline still failing — why?
+
+Automation consuming too many minutes — optimization approach?
+
+Repository compromised — immediate actions?
+
+💡 Interview Tip (4–6 yrs):
+If you explain governance, security, and automation decisions, interviewers immediately know you’ve worked with enterprise-scale systems.

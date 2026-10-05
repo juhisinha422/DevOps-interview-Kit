@@ -1,0 +1,32 @@
+These are some real-world Kubernetes questions that quickly show how well someone understands how clusters behave under pressure.
+
+1. Pod stuck in ContainerCreating. What’s a common cause?
+A: Because the image cannot be pulled (auth issues, wrong tag, private repo).
+Checking events will usually show image pull errors.
+
+2. Pod has no memory limit but still gets OOMKilled - why?
+A: Because the pod becomes BestEffort QoS. If the node runs out of memory, kubelet OOMKills BestEffort pods first to free memory.
+
+3. HPA is configured, but replicas stay at 1 - even under load. What could be wrong?
+A: Most common reason ➜ Metrics Server isn’t reporting usage.
+ No metrics = HPA has no data ➜ no scaling.
+
+4. Service works inside cluster but not across namespaces. Why?
+A: Because the app may be using the short DNS name, not the full format: service.namespace.svc.cluster.local
+
+5. Deployment applied, but no pods are created. What to check first?
+A: Check admission webhooks. A failing validation/mutating webhook can reject pod creation silently until you inspect events. 
+
+6. NodePort service created, but unreachable from outside. Why?
+A: The node firewall / security group / NACL is likely blocking the port. Kubernetes exposes it, but the OS or cloud layer may still drop traffic.
+
+7. Image updated in the registry, but pods pull the old one. Why?
+A: Because imagePullPolicy is IfNotPresent, or Deployment uses an immutable digest. Nodes simply reuse the cached image.
+
+8. Using emptyDir, but data disappears after pod restart. Why?
+A: Because emptyDir is deleted whenever a pod stops. It’s only for temporary, non-persistent data.
+
+9.  Liveness probe keeps killing the pod. What should you look at first?
+A: Check whether the probe path/port is correct or if the startup time is too slow. A slow container + aggressive probe = unnecessary restarts.
+
+All of these are real, everyday Kubernetes issues - not exam questions.

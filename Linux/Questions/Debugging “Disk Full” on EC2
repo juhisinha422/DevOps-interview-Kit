@@ -1,0 +1,11 @@
+Debugging “Disk Full” on EC2 (quick workflow)
+
+✅ Confirm what’s full: df -h (space) vs df -i (inodes)
+🔎 Find the biggest consumers: du -xh / --max-depth=2 | sort -h
+🗂️ Check common hotspots:
+/var/log (unrotated logs)
+/tmp and /var/tmp (temp spill)
+Docker storage (/var/lib/docker)
+Old backups/artifacts
+🧹 Cleanup safely: rotate/truncate logs, remove unused images/containers, delete stale temp files
+💾 Fix permanently: resize/add EBS, split root vs data volume, centralize logs, set disk alerts at 70/80/90%

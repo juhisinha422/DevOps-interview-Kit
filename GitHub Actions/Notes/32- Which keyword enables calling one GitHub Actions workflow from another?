@@ -1,0 +1,11 @@
+Q. Which keyword enables calling one GitHub Actions workflow from another?
+The author can see how you vote. Learn more
+Q. Which keyword enables calling one GitHub Actions workflow from another?
+A. workflow_run
+40%
+B. workflow_call
+60%
+C. workflow_share
+0%
+D. workflow_use
+0%

@@ -1,0 +1,11 @@
+Q. In GitHub Actions, which scope applies env variables to all steps in a job?
+The author can see how you vote. Learn more
+Q. In GitHub Actions, which scope applies env variables to all steps in a job?
+A. Step-level env
+0%
+B. Job-level env
+80%
+C. Runner-level env
+0%
+D. Action-level env
+20%

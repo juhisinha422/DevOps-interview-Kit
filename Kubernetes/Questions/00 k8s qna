@@ -1,0 +1,27 @@
+Kubernetes Interview Questions I Faced
+During interviews, I noticed most questions focus on real-world understanding, not definitions. Here are some commonly asked ones I faced or prepared for:
+
+1)What happens when a Pod crashes?
+ Kubernetes restarts the container based on the restart policy. If it keeps failing, it enters CrashLoopBackOff.
+2) Difference between Deployment, ReplicaSet, and StatefulSet?
+Deployment → stateless apps, rolling updates
+ReplicaSet → maintains pod count
+StatefulSet → stable identity & storage (DBs)
+3) How does Kubernetes perform load balancing?
+ Using Services (ClusterIP/NodePort/LoadBalancer) with kube-proxy routing traffic to healthy pod endpoints.
+4) Liveness vs Readiness vs Startup Probes?
+Liveness → restart container
+Readiness → control traffic
+Startup → handle slow-starting apps
+5) Why Pods are ephemeral? How do you handle data?
+ Pods can be recreated anytime. Persistent data is handled using PV & PVC.
+6) How do you expose applications externally?
+ Using Ingress with an Ingress Controller for HTTP/HTTPS traffic.
+7) How do you troubleshoot a failing Pod?
+ kubectl get pods → describe → logs → check configs, probes, resources.
+8) What causes ImagePullBackOff?
+ Wrong image name/tag, private registry auth issues, or network problems.
+9)How do you secure applications in Kubernetes?
+ RBAC, Namespaces, Secrets, Network Policies, and TLS via Ingress.
+10) How do you ensure zero-downtime deployments?
+ Rolling updates, readiness probes, proper resource limits, and Pod disruption strategies.

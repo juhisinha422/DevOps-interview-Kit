@@ -1,0 +1,33 @@
+GitHub Actions Workflow Syntax (YAML Basics)
+
+Today I focused on understanding how GitHub Actions workflows are written using YAML, which is the backbone of CI/CD automation.
+
+🔹 Workflow Structure
+A workflow is defined in a YAML file inside: .github/workflows/
+It contains:
+Workflow name
+Trigger events
+Jobs to execute
+
+🔹 Key YAML Keywords
+name → Human-readable workflow name
+on → Events that trigger workflow
+jobs → Tasks executed by runners
+These define what runs and when.
+
+🔹 Indentation Rules
+YAML is indentation-sensitive
+Spaces are used (not tabs)
+Wrong indentation = workflow failure
+Proper structure is critical.
+
+🔹 YAML Best Practices
+Keep workflows readable
+Use meaningful names
+Avoid deep nesting
+Comment complex steps
+
+🔥 3-Line Takeaway
+YAML defines automation.
+ Structure controls execution.
+ Clean syntax prevents failures.

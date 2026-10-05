@@ -1,0 +1,64 @@
+Recently interviewed with a tech company for a AWS DevOps role and got a solid set of AWS fundamentals questions.
+Sharing them here along with concise answers — useful for anyone 
+1. You lost the private key of a running EC2 instance. How will you regain access?
+You cannot recover the private key from AWS.
+Solution options:
+If SSM Session Manager is enabled → connect directly without SSH
+Otherwise:
+Stop the instance (EBS-backed)
+Detach root volume
+Attach it to a helper EC2
+Update ~/.ssh/authorized_keys
+Reattach and start the instance
+2. You restarted an EC2 instance and your application IP changed. Why?
+Because public IPs are dynamic.
+Restart / Stop–Start → Public IP changes
+Private IP remains same
+Terminate → both IPs are lost
+Fix:
+Attach an Elastic IP (EIP) to keep the same public IP permanently.
+3. Two applications are in different VPCs and need private communication. How do you design this?
+Options depend on scale:
+VPC Peering → simple, one-to-one communication
+Transit Gateway → multiple VPCs, scalable hub-and-spoke
+Site-to-Site VPN → hybrid connectivity
+PrivateLink → expose only a service, not the whole VPC
+Update route tables + security groups accordingly.
+4. Your EC2 in Account A needs access to an S3 bucket in Account B. How will you do it securely?
+Use cross-account access.
+Best practice:
+Attach an IAM role to EC2 in Account A
+Add a bucket policy in Account B allowing that role ARN
+Avoid sharing access keys.
+5. What problem does VPC Peering solve?
+It enables private network communication between two VPCs using AWS backbone.
+Important limitations:
+No transitive peering
+CIDR blocks must not overlap
+Manual route table updates required
+6. Your Kubernetes pods need AWS access, but security team forbids access keys. What do you use?
+IRSA (IAM Roles for Service Accounts).
+How it works:
+EKS uses OIDC federation
+IAM role mapped to Kubernetes service account
+Pods assume roles dynamically
+This provides least privilege at pod level.
+7. EC2 access is lost, SSM is not enabled, and production is down. What is your fastest recovery?
+Detach root volume
+Attach to helper instance
+Fix SSH access or config
+Reattach and restart
+If downtime is unacceptable:
+Launch a new instance from AMI
+Attach existing data volumes
+Switch traffic via Load Balancer / DNS
+8. Your EC2 instance must not be accessible from the internet, but still needs to pull updates. How do you design it?
+Place EC2 in private subnet
+Use NAT Gateway for outbound access
+No public IP attached
+Restrict security groups
+9. Your S3 bucket should be accessible only from a specific VPC. How do you enforce this?
+Create an S3 Gateway VPC Endpoint
+Add bucket policy with aws:SourceVpce
+Block public access completely
+This ensures traffic stays within AWS network.

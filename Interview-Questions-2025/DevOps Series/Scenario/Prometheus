@@ -1,0 +1,13 @@
+Prometheus
+Questions/Scenarios;
+
+1. Prometheus architecture and scraping.
+2. Metrics types: counters, gauges.[devopstraininginstitute]
+3. Alertmanager integration.
+4. Service discovery methods.
+5. Federation for scaling.
+6. Recording rules usage.
+7. Troubleshooting high cardinality.
+8. Retention and storage.
+9. Exporters for common services.
+10. Querying with PromQL examples.

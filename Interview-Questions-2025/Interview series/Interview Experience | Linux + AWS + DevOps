@@ -1,0 +1,37 @@
+Interview Experience | Linux + AWS + DevOps
+I attended a few interviews recently and wanted to share the key technical questions I faced. Posting this to help anyone preparing for Linux, Cloud, or DevOps roles.
+ Hope this helps with your prep.
+Here are the 28 questions I was asked:
+Linux & Shell Scripting
+Why is it incorrect to introduce yourself with “Myself…” in an interview?
+How do you print the current date and time in a shell script?
+How do you view the contents of a ZIP file without extracting it?
+What does Linux permission 755 mean?
+Which command is used to change file or directory permissions?
+Which command is used to create a new Linux user?
+How do you check all active network ports on a Linux system?
+Linux is a CLI-based OS — what type of shell does it use?
+Where should environment variables be stored?
+Networking & Protocols
+What is SMTP? What are its uses and types?
+DNS uses which protocols — TCP, UDP, or HTTPS?
+What are the common HTTPS API methods?
+Logging, Monitoring & Kubernetes
+What are the main components of the ELK stack?
+What is the use of Helm in Kubernetes?
+What is Docker?
+AWS Cloud
+Difference between ALB and NLB?
+What is Route 53 and why do we use it?
+What is a Target Group in AWS?
+Difference between GP2 and GP3 volumes?
+What are T-Series EC2 instances and why are they used?
+What is EFS? How do you connect to it and why is it used?
+What is an Internet Gateway (IGW) and why is it needed?
+How do you restrict access from a specific IP or region?
+Difference between a Security Group and a NACL?
+CI/CD, DevOps & Terraform
+What are the main stages in a CI/CD pipeline?
+What is Terraform and how do you use it?
+How do you recover an EC2 instance if the key pair is lost?
+What is Jenkins? How does it work? What are the key steps in a Jenkins pipeline?

@@ -1,0 +1,51 @@
+What is Prometheus?
+
+Prometheus is an open-source monitoring and alerting system designed for modern cloud and container environments.
+It collects metrics from your servers, applications, and Kubernetes clusters in real time.
+Think of Prometheus as the heart of your monitoring stack 
+
+📊 What are Metrics?
+Metrics are numbers that tell you how your system behaves.
+Examples:
+• CPU usage
+• Memory consumption
+• Disk usage
+• HTTP request count
+• Error rate
+• API response time
+
+Prometheus continuously collects these numbers every few seconds.
+
+⚙️ How Prometheus Works (Simple Flow)
+1️⃣ Prometheus scrapes metrics from targets
+(servers, apps, containers)
+2️⃣ Stores them as time-series data
+3️⃣ Lets you query the data using PromQL
+4️⃣ Sends alerts when something goes wrong 🚨
+
+🔍 What makes Prometheus powerful?
+✨ Pull-based monitoring (scraping)
+✨ Powerful query language → PromQL
+✨ Built-in alerting system
+✨ Perfect for Kubernetes & microservices
+✨ Service discovery (auto detect targets)
+
+This is why Prometheus became the standard monitoring tool in cloud-native world.
+
+🚨 Real DevOps Example
+Your application suddenly becomes slow.
+Prometheus can show:
+• Request latency increased
+• Error rate spiked
+• Pod CPU usage at 95%
+• Memory nearing limit
+Instead of guessing → you get data-driven troubleshooting.
+
+🤝 Prometheus + Grafana = Perfect Combo
+Prometheus → Collects & stores metrics
+Grafana → Visualizes those metrics
+Together they create a complete observability stack 🔥
+
+💡 Final Thought
+Without monitoring, failures become surprises.
+With Prometheus, failures become alerts.

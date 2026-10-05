@@ -1,0 +1,33 @@
+asked this in a Terraform / IaC interview...
+
+Q: Your Terraform apply fails with “Error acquiring the state lock”. How do you troubleshoot?
+
+A: I’d check if another Terraform process is running or if a previous run crashed. For remote state, I’d verify the backend (like S3 + DynamoDB) and manually release the lock if needed.
+
+Q: Terraform keeps recreating a resource even though nothing changed. What’s going on?
+
+A: It’s usually caused by drift, computed fields, or improper lifecycle settings. I’d run terraform plan, inspect diffs, and use lifecycle { ignore_changes = [] } if required.
+
+Q: Your Terraform apply fails due to dependency issues between resources. Why might that happen?
+
+A: Terraform may not infer dependencies automatically. I’d explicitly define them using depends_on to ensure correct resource creation order.
+
+Q: Terraform state doesn’t match the real infrastructure. How do you fix it?
+
+A: I’d use terraform refresh or terraform import to sync existing resources into state instead of recreating them.
+
+Q: You changed a variable value, but Terraform isn’t picking it up. What’s wrong?
+
+A: The variable might be overridden by a .tfvars file, environment variable, or default value. I’d check variable precedence and confirm the correct values are being passed.
+
+Q: A Terraform module works locally but fails in CI/CD. Why?
+
+A: The CI environment might be missing provider credentials, backend configuration, or required environment variables. I’d compare local and pipeline configs.
+
+Q: Terraform apply is slow when managing large infrastructure. How do you optimize it?
+
+A: I’d split the configuration into smaller modules, use targeted applies carefully, and store state remotely to improve performance and collaboration.
+
+Q: Someone manually modified a resource created by Terraform. How do you handle it?
+
+A: I’d detect the drift using terraform plan, decide whether to keep or revert the change, and either update the code or let Terraform reapply the desired state.

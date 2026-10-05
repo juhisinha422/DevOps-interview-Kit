@@ -1,0 +1,57 @@
+**AWS CloudTrail** is a service that **records everything happening in your AWS account** — basically an **activity log for AWS**.
+
+### In simple words
+
+👉 CloudTrail tells you **who did what, when, and from where** in AWS.
+
+---
+
+### What CloudTrail tracks
+
+It logs events like:
+
+* Creating or deleting an EC2 instance
+* Logging in to the AWS console
+* Attaching a policy to an IAM user or role
+* Making API calls using AWS CLI or SDK
+
+Each log includes:
+
+* **Who** made the request (IAM user / role)
+* **What** action was performed
+* **When** it happened
+* **Which service/resource** was used
+* **Source IP address**
+
+---
+
+### Why CloudTrail is important
+
+* 🔐 **Security & auditing** – detect unauthorized access
+* 📋 **Compliance** – required for many regulations
+* 🛠 **Troubleshooting** – find out what caused an issue
+* 🕵️ **Forensics** – investigate security incidents
+
+---
+
+### Where logs are stored
+
+* CloudTrail events can be:
+
+ * Viewed in the **AWS Console**
+ * Stored in an **S3 bucket**
+ * Sent to **CloudWatch Logs** for alerts
+
+---
+
+### Example
+
+If someone deletes an S3 bucket:
+👉 CloudTrail will show **who deleted it, at what time, and from which IP**.
+
+---
+
+### CloudTrail vs CloudWatch (quick difference)
+
+* **CloudTrail** → *Who did what* (API & user activity)
+* **CloudWatch** → *How resources are performing* (CPU, memory, alarms)

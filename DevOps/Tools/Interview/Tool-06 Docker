@@ -1,0 +1,52 @@
+DevOps Interview Preparation Docker
+2–4 Years Experience | Tool 6 
+
+Production-Level Containerization
+
+For 2–4 years experience, interviewers expect you to optimize images, secure containers, and troubleshoot production issues, not just run containers.
+
+🔹 Docker Interview Questions (2–4 yrs)
+
+• What is Docker and why is it used in production?
+• Docker architecture (Client, Daemon, Registry)
+• Image vs container — real-world difference
+• What happens when you run docker run?
+• CMD vs ENTRYPOINT
+• COPY vs ADD
+• What are Docker layers and why do they matter?
+• How do you reduce Docker image size?
+• What is a multi-stage Docker build?
+• Dockerfile best practices
+• How do you handle environment variables in Docker?
+• How do you manage secrets in Docker?
+• Docker networking types
+• Docker volumes vs bind mounts
+• How do you persist data in containers?
+• Docker logging drivers
+• How do you monitor Docker containers?
+• Docker security best practices
+• Docker vs Podman
+🔹 Real-World Docker Scenarios
+
+• Docker image size is very large — how will you optimize it?
+• Container keeps restarting — how will you debug?
+• Application works locally but fails in container — why?
+• How do you scan Docker images for vulnerabilities?
+• Secrets accidentally baked into image — what will you do?
+• Docker container consuming high memory — how to fix?
+• How do you implement rollback with Docker images?
+
+🔹 Best Practices (2–4 yrs Level)
+
+• Use multi-stage builds
+• Use minimal base images (alpine, distroless)
+• Never run containers as root
+• Use .dockerignore
+• Tag images properly
+• Scan images before pushing
+• Push images to private registry
+
+Interview Tip:
+If you say:
+👉 “We use multi-stage builds, minimal base images, and image scanning in our pipelines”
+you already sound like a strong 2–4 years DevOps engineer.

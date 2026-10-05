@@ -1,0 +1,34 @@
+DevOps Interview Questions Series | Tool 5 Azure DevOps (Basic Level) 
+
+
+What is Microsoft Azure?
+What are the main components of Azure architecture?
+What is Azure Resource Manager (ARM)?
+What is a Resource Group in Azure?
+Difference between Azure Portal, Azure
+CLI, and Azure PowerShell
+What is an Azure Subscription?
+What are Azure Regions and Availability Zones?
+What is Azure Virtual Machine (VM)?
+Difference between Azure VM and Azure App Service
+What is Azure VNet?
+What is a subnet in Azure?
+What is Azure Load Balancer?
+Difference between Azure Load Balancer and Application Gateway
+What is Azure Storage Account?
+Types of Azure Storage (Blob, File, Queue, Table)
+What is Azure Blob Storage used for?
+What is Azure Managed Disk?
+What is Azure NSG (Network Security Group)?
+Difference between NSG and Azure Firewall
+What is Azure IAM?
+What is Azure Active Directory (Azure AD)
+Difference between Azure AD and traditional Active Directory
+What is a Service Principal in Azure?
+What is RBAC in Azure?
+What is Azure Monitor?
+What is Azure Log Analytics?
+What is Azure Backup?
+What is Azure Site Recovery?
+What is Azure Cost Management?
+How do you secure resources in Azure at a basic level?

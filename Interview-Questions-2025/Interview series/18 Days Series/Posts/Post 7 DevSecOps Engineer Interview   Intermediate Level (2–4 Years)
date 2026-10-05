@@ -1,0 +1,23 @@
+Post 7: DevSecOps Engineer Interview  
+Intermediate Level (2–4 Years)
+
+Security isn't an afterthought — it's **baked into every pipeline** at this level! 🛡️  
+At 2–4 years, DevSecOps engineers implement security automation, threat modeling, and compliance in fast-moving DevOps workflows.  
+
+Let's test your security automation skills 👇  
+
+💡 Common DevSecOps Interview Questions for 2–4 Years Experience:
+1️⃣ How do you integrate **SAST, DAST, and SCA** tools into existing CI/CD pipelines?  
+2️⃣ Explain **Infrastructure as Code (IaC) security scanning** using tools like Checkov or Terrascan.  
+3️⃣ How do you implement **secret scanning** and rotation in production environments?  
+4️⃣ What's your approach to **container security** (image scanning, runtime protection, sigstore)?  
+5️⃣ How do you perform **threat modeling** for microservices architectures?  
+6️⃣ Describe **SBOM (Software Bill of Materials)** generation and vulnerability management.  
+7️⃣ How do you secure **Kubernetes clusters** (RBAC, Network Policies, Pod Security Standards)?  
+8️⃣ What's your strategy for **compliance as code** (SOC2, PCI-DSS, HIPAA automation)?  
+9️⃣ How do you handle **vulnerability prioritization** using CVSS scores and exploitability?  
+🔟 Explain **zero trust** implementation in cloud-native DevOps pipelines.  
+
+🎯 Pro Tip:  
+Security leaders at this level **automate policy enforcement** — show how you reduced manual security reviews by 80% through pipeline gates.  
+Balance security with velocity: *"We caught 95% of vulns pre-merge without slowing deployments."* ⚡  

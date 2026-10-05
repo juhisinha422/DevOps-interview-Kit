@@ -1,0 +1,47 @@
+DevOps Interview Preparation Series — System Design for DevOps & SRE Engineers 🚀
+
+Let’s dive deep into how DevOps/SRE professionals should approach System Design 👇
+
+System Design Interviews Questions for DevOps/SRE.
+
+ How would you design a highly available architecture on AWS or GCP?
+ What factors would you consider while choosing between EC2, ECS, or EKS?
+ How do you ensure disaster recovery and backup for critical systems?
+ How would you design multi-region or active-active architectures?
+CI/CD Pipeline Design
+ How do you design a CI/CD pipeline that supports multiple environments ?
+ How do you ensure security (DevSecOps) in the pipeline?
+ What tools and strategies would you use for zero-downtime deployment? (Blue/Green, Canary)
+ How do you handle rollbacks and version control of deployments?
+Monitoring & Observability
+ How do you design a complete monitoring stack (Prometheus, Grafana, CloudWatch)?
+ How do you design alerting thresholds and reduce alert fatigue?
+ What’s your strategy to achieve 99.9% uptime via observability?
+ How do you centralize logs and correlate across microservices?
+Scaling & Performance
+ How do you scale a microservice-based application?
+ How would you handle a sudden traffic spike (10x user load)?
+ How do you implement caching (Redis, CloudFront) and rate limiting?
+ How do you design an auto-scaling mechanism with health checks?
+Reliability & Fault Tolerance
+ How do you implement circuit breakers, retries, and graceful degradation?
+ What’s your strategy to handle instance or node failure in production?
+ How do you design an incident response workflow and postmortem process?
+ How do you define and measure SLOs, SLIs, and SLAs for reliability?
+Security & Compliance
+ How do you integrate vulnerability scanning in your CI/CD pipeline?
+ How would you design IAM and least privilege access across cloud accounts?
+ How do you ensure data encryption (in-transit & at-rest) across services?
+ How would you handle secret management at scale (Vault, Secrets Manager)?
+Automation & Infrastructure as Code (IaC)
+ How would you design an IaC-based infrastructure using Terraform or CloudFormation?
+ How do you handle drift detection and versioning of IaC?
+ How do you design a GitOps-based deployment flow using ArgoCD or Flux?
+ How do you integrate automated testing and policy enforcement (OPA, Conftest)?
+Cost Optimization & Governance
+ How would you design a cost-efficient environment that scales dynamically?
+ How do you implement governance using tagging and budget alerts?
+ How do you track idle resources and optimize cloud spend automatically?
+Design a system to automatically deploy microservices to Kubernetes.
+Design a multi-region web app with failover and data replication.
+Design a CI/CD system with security scanning and rollback capabilities.

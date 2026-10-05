@@ -1,0 +1,32 @@
+CONTAINER SECURITY & DEVSECOPS
+
+These scenarios are based on real vulnerabilities, compliance issues, and production security incidents.
+
+⸻
+
+🛡️ Container Security & DevSecOps – Real-World Scenarios
+	1.	A container image has critical vulnerabilities. What steps do you take before deploying it?
+	2.	How do you prevent developers from using latest or untrusted images?
+	3.	Secrets are baked into a Docker image. How do you fix this securely?
+	4.	A container is running as root. Why is this risky and how do you fix it?
+	5.	How do you scan container images automatically in CI/CD pipelines?
+	6.	How do you manage image signing and trust?
+	7.	A Kubernetes pod was compromised. How do you investigate and respond?
+	8.	How do you implement runtime security for containers?
+	9.	How do you restrict container-to-container communication?
+	10.	How do you enforce security policies across all clusters?
+	11.	How do you handle security exceptions without slowing delivery?
+	12.	How do you audit who deployed what and when?
+	13.	A security scan fails in production. Do you block deployment?
+	14.	How do you secure container registries?
+	15.	How do you educate teams on container security best practices?
+
+⸻
+
+🧠 What Interviewers Are Looking For
+
+✔ Shift-left security mindset
+✔ Practical risk assessment
+✔ CI/CD security integration
+✔ Kubernetes security basics
+✔ Incident response maturity

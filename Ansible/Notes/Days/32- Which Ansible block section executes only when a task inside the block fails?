@@ -1,0 +1,9 @@
+Which Ansible block section executes only when a task inside the block fails?
+The author can see how you vote. Learn more
+Which Ansible block section executes only when a task inside the block fails?
+A) always
+B) block
+C) rescue
+D) handlers
+
+Ans: rescue

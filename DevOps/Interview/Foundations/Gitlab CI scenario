@@ -1,0 +1,42 @@
+DevOps Interview Series | #GitLab CI Scenario Based Questions
+
+A pipeline runs on every commit but should run only on merge requests. How do you fix it?
+
+Secrets were accidentally exposed in job logs. What steps will you take immediately?
+
+Pipeline execution is slow due to repeated dependency downloads. How do you optimize it?
+
+Self-hosted runners frequently go offline. How do you troubleshoot and stabilize them?
+
+You need manual approval before deploying to production. How will you implement it?
+
+One job depends on output from another job. How do you share that data?
+
+A pipeline works on main but fails on feature branches. How do you debug it?
+
+You need different deployments for dev, stage, and prod. How do you design the pipeline?
+
+Shared runners are overloaded. When
+and how do you move to specific runners?
+
+A third-party CI template breaks your pipeline. How do you protect against this?
+
+You need to deploy to Kubernetes using GitLab CI. How will you design the pipeline?
+
+A job fails only when triggered manually. How do you troubleshoot?
+
+You want to restrict deployment jobs to protected branches only. How do you enforce it?
+
+Multiple repositories require the same CI logic. How do you avoid duplication?
+
+Security team asks for pipeline execution audit logs. How will you provide them?
+
+You need rollback support for failed deployments. How will you implement it?
+
+Pipeline jobs consume excessive CPU/memory. How do you control resource usage?
+
+Secrets differ per environment. How do you manage them securely?
+
+You need multi-cloud deployments from a single GitLab CI pipeline. How will you design it?
+
+You are asked to replace GitLab CI. What limitations would you highlight?

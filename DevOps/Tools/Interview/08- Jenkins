@@ -1,0 +1,73 @@
+DevOps Interview Preparation #Jenkins 4–6 Years Experience | Tool 8
+
+🔹 Pipeline Architecture & Design
+
+How do you design a scalable Jenkins architecture?
+
+Master–agent vs controller–agent architecture
+
+Jenkins controller goes down — what happens?
+
+How do you design Jenkins for HA?
+
+When should you use multiple Jenkins instances?
+Pipeline as Code
+
+Declarative vs Scripted pipeline — real use cases
+
+How does Jenkinsfile get executed internally?
+
+What are shared libraries and why are they important?
+
+How do you version Jenkins shared libraries?
+
+How do you reuse pipeline logic across teams?
+
+🔹 Security & Access Control
+
+How do you secure Jenkins in production?
+
+Jenkins credentials — how are they
+stored?
+
+Role-based access control in Jenkins
+
+How do you secure Jenkins agents?
+
+How do you prevent secrets from leaking in logs?
+
+🔹 Plugins & Performance
+
+How do you manage plugins safely?
+
+Jenkins becomes slow over time — why?
+
+How do you monitor Jenkins performance?
+
+Plugin conflict issue — how to troubleshoot?
+
+Jenkins disk usage growing — how to manage?
+CI/CD & Integrations
+
+Jenkins with Docker — best practices
+
+Jenkins with Kubernetes — how does it work?
+
+Jenkins pipeline for multi-branch projects
+
+How do you implement approval gates?
+
+Blue-green / canary deployment using Jenkins
+
+🔹 Failure & Production Scenarios
+
+Pipeline works locally but fails in Jenkins — why?
+
+Jenkins job stuck in queue — possible reasons?
+
+Jenkins agent disconnected — troubleshooting steps Failed deployment already pushed to prod — rollback strategy?
+
+Jenkins upgrade caused failures — how do you recover?
+
+💡 Interview Tip (4–6 yrs):
+If you explain architecture decisions, security controls, and failure handling, interviewers instantly know you’ve run Jenkins in real production, not just tutorials.

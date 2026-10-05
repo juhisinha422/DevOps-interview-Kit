@@ -1,0 +1,30 @@
+12 DevOps Questions About #Ansible Every Engineer Should Know
+1️⃣ What’s the main role of Ansible?
+ Automating technical tasks like server setup, app deployment, updates, and workflow management between systems.
+2️⃣ Why do we use Ansible?
+ Because it’s simple, agentless, scalable, works on multiple systems, saves time, reduces errors, and keeps configurations consistent.
+3️⃣ What does YAML mean in Ansible?
+ It stands for “YAML Ain’t Markup Language.”
+ A human-friendly format used to write Playbooks that define automation tasks.
+4️⃣ What’s a Playbook in Ansible?
+ A YAML file that lists tasks and configurations to run on managed systems.
+ For example, you can install software or update settings across all servers at once.
+5️⃣ What’s an Inventory file?
+ A file that lists all the servers Ansible manages.
+ You can group them by type, like web servers and database servers, for easier management.
+6️⃣ What are Modules in Ansible?
+Reusable units that perform specific tasks such as installing packages, copying files, or managing users.
+7️⃣ What’s an Ad-hoc command?
+A quick command you run directly from the terminal without creating a Playbook.
+ Perfect for simple checks like making sure all servers are up.
+8️⃣ Does Ansible need an Agent?
+ No. It’s completely agentless and connects via SSH (or WinRM for Windows).
+9️⃣ How is Ansible different from Kubernetes?
+ Ansible focuses on automating infrastructure, while Kubernetes manages containers.
+1️⃣0️⃣ How is Ansible different from Terraform?
+ Terraform builds the infrastructure.
+ Ansible configures and manages it afterward.
+1️⃣1️⃣ Can Ansible and Kubernetes work together?
+ Yes. You can use Ansible to deploy Kubernetes or manage applications inside it.
+1️⃣2️⃣ Can Ansible and Terraform work together?
+ Yes. Terraform creates the infrastructure, and Ansible handles the setup and app configuration after that.

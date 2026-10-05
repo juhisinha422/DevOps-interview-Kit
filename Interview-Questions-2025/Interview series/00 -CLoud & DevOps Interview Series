@@ -1,0 +1,22 @@
+CLoud & DevOps Interview Series – Common Azure / AWS Deployment Questions (with Quick Answers)
+Here are some commonly asked cloud deployment questions for Frontend & Backend developers involving Docker, Kubernetes, and CI/CD pipelines:
+🔹 What is Docker and why is it used in deployment?
+Docker packages an application with all its dependencies into a container, ensuring it runs the same across development, testing, and production environments.
+🔹 What is Kubernetes used for?
+Kubernetes is a container orchestration platform that manages container deployment, scaling, networking, and self-healing of applications.
+🔹 How would you deploy a Node.js or React application using Docker?
+Create a Dockerfile, build the image (docker build), push it to a container registry (Azure Container Registry / AWS ECR), and run it using Kubernetes or a container service.
+🔹 What is a CI/CD pipeline?
+A Continuous Integration / Continuous Deployment pipeline automates building, testing, and deploying code whenever changes are pushed to the repository.
+🔹 How does a Jenkins pipeline work?
+Jenkins pulls code from Git, runs build steps, executes tests, builds Docker images, pushes them to a registry, and deploys them to environments like Kubernetes clusters.
+🔹 What Azure services are commonly used for deployment?
+Common services include Azure DevOps, Azure Kubernetes Service (AKS), Azure Container Registry (ACR), App Service, and Azure Storage.
+🔹 What AWS services are commonly used for deployment?
+Common services include EC2, Elastic Container Service (ECS), Elastic Kubernetes Service (EKS), S3 for static hosting, and CodePipeline for CI/CD.
+🔹 How do you scale applications in Kubernetes?
+Scaling is done using Horizontal Pod Autoscaler (HPA) which increases or decreases pods based on CPU, memory, or custom metrics.
+🔹 How do you manage environment variables in cloud deployments?
+Use Kubernetes ConfigMaps and Secrets or cloud services like Azure Key Vault / AWS Secrets Manager to securely manage configuration.
+🔹 What is the role of a load balancer in deployment?
+A load balancer distributes incoming traffic across multiple instances or containers to ensure high availability and better performance.

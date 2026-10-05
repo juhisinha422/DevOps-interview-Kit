@@ -1,0 +1,33 @@
+DevOps Interview hashtag#Questions hashtag#Jenkins 5–8 Years Experience | Tool 8
+
+How do you design a highly available Jenkins architecture for enterprise CI/CD?
+
+Jenkins master is down — how do you ensure zero impact on deployments?
+
+How do you manage Jenkins at scale with 100+ pipelines and teams?
+
+What problems did Jenkins pipelines solve compared to freestyle jobs?
+
+How do you implement role-based access control in Jenkins?
+
+Jenkins jobs are slow — how do you
+identify pipeline bottlenecks?
+
+How do you manage secrets securely in Jenkins pipelines?
+
+Explain Jenkins shared libraries — how do you use them at org level?
+
+How do you design Jenkins agents for Kubernetes-based workloads?
+
+A plugin upgrade broke pipelines — how do you prevent this in future?
+
+How do you version and review Jenkinsfiles across repositories?
+
+How do you secure Jenkins from supply chain attacks?
+
+Jenkins vs GitHub Actions vs GitLab CI — when do you still choose Jenkins?
+
+How do you audit Jenkins activity for compliance requirements?
+
+What Jenkins practices clearly show
+senior DevOps ownership?

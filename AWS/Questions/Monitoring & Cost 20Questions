@@ -1,0 +1,20 @@
+##hashtag#Security, Monitoring & hashtag#Cost 20Questions 
+1. How do you enable GuardDuty for threat detection? 
+2. How do you configure AWS WAF rules for web protection?
+3. How do you encrypt data at rest using KMS? 
+4. How do you enable CloudTrail for auditing API activity? 
+5. How do you restrict access to specific AWS regions? 
+6. How do you identify unused IAM roles and policies? 
+7. How do you automate security compliance reports?
+8. How do you detect public S3 buckets across accounts? 
+9. How do you use Config rules to enforce compliance? 
+10. How do you create automated remediation with AWS Systems Manager? 11. How do you visualize cost trends in AWS Cost Explorer? 
+12. How do you identify idle resources across accounts?
+13. How do you automate EC2 stop/start schedules for savings?
+14. How do you configure budgets and cost alerts for teams? 
+15. How do you integrate Security Hub with GuardDuty findings? 
+16. How do you perform IAM policy security audit?
+17. How do you investigate failed login attempts in CloudTrail? 
+18. How do you detect and remove unused access keys? 
+19. How do you enable encryption in transit across AWS services? 
+20. How do you implement AWS Security Best Practices checklist?

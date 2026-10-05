@@ -1,0 +1,30 @@
+ 7 ROLES IN DEVOPS + KEY TECHNOLOGIES :
+----------------------------------------------------
+
+🔹 DevOps Engineer – Automation Backbone
+
+Technologies: GitHub/GitLab, Jenkins, Docker, Kubernetes, Terraform, Ansible, Slack (alerts).
+
+🔹 Platform Engineer – Developer Productivity Builder
+
+Technologies: Kubernetes, Helm, CI/CD templates, AWS (EC2, ALB, Auto Scaling), CloudWatch, S3.
+
+🔹 Cloud Engineer – Infrastructure Architect
+
+Technologies: AWS (VPC, EC2, ALB, IAM), Azure, GCP, Auto Scaling, CloudWatch, S3, networking tools.
+
+🔹 Release Engineer – Deployment Strategist
+
+Technologies: Git (release tags), Blue‑Green & Canary deployments, Jenkins, ArgoCD, Spinnaker, monitoring tools (Prometheus, Grafana).
+
+🔹 DevSecOps Engineer – Security Automation Expert
+
+Technologies: SAST/DAST scanners (SonarQube, OWASP ZAP), CVE detection tools, HashiCorp Vault, Aqua Security, Trivy, CloudWatch alerts.
+
+🔹 Site Reliability Engineer (SRE) – Uptime Guardian
+
+Technologies: Kubernetes (auto‑scaling), Prometheus, Grafana, ELK stack, PagerDuty, incident management tools, SLA/SLO tracking.
+
+🔹 Automation Engineer – Release Enabler
+
+Technologies: Jenkins, GitHub Actions, Ansible, Terraform, CI/CD pipelines, container orchestration (Docker, Kubernetes).

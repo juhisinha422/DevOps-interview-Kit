@@ -1,0 +1,32 @@
+DevOps Interview hashtag#Questions hashtag#GCP
+5–8 Years Experience | Tool 7
+
+How do you design multi-project architecture in GCP for large organizations?
+
+A GKE cluster is healthy but traffic is dropping — how do you troubleshoot end to end?
+
+How do you structure IAM roles across GCP projects and folders?
+
+How do you implement shared VPCs and why are they important?
+
+GCP billing suddenly increases — how do you analyze and control costs?
+
+How do you design disaster recovery using GCP regions and zones?
+
+When do you choose GKE Autopilot vs Standard mode?
+
+How do you secure CI/CD pipelines running on GCP?
+
+How do you manage secrets across GKE, Cloud Run, and pipelines?
+
+Explain logging and monitoring using Cloud Operations suite.
+
+How do you debug GCP networking issues across projects?
+
+What are common GCP architecture mistakes seen in production?
+
+How do you handle service quotas and API limits at scale?
+
+How do you design landing zones in GCP?
+
+What GCP decisions clearly reflect senior DevOps maturity?

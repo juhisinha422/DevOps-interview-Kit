@@ -1,0 +1,38 @@
+DevOps Interview Command Series — Jira & Confluence (Day 5) 📘
+
+Jira and Confluence are core tools for DevOps collaboration.
+From Agile planning, incident tracking, change management, to documentation & runbooks — DevOps teams rely on them daily.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Jira & Confluence commands / operations you must know:
+
+# Jira (via REST API / practical usage)
+curl -u user:api_token \
+ -X GET https://jira_url/rest/api/2/project
+
+curl -u user:api_token \
+ -X GET https://jira_url/rest/api/2/issue/ISSUE-KEY
+
+curl -u user:api_token \
+ -X POST https://jira_url/rest/api/2/issue \
+ -H "Content-Type: application/json"
+
+# Common Jira JQL
+project = DEVOPS AND status = "In Progress"
+assignee = currentUser()
+status CHANGED DURING (-1d, now())
+priority = High ORDER BY created DESC
+
+# Confluence (REST API)
+curl -u user:api_token \
+ -X GET https://confluence_url/rest/api/content
+
+curl -u user:api_token \
+ -X POST https://confluence_url/rest/api/content
+
+
+🎯 Interview Focus
+• Agile workflow understanding (Scrum / Kanban)
+• Incident, bug & change tracking
+• Writing RCA & postmortems
+• Maintaining runbooks & SOPs
+• Integration with CI/CD pipelines

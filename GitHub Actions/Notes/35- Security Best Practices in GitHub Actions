@@ -1,0 +1,29 @@
+Security Best Practices in GitHub Actions
+
+Today I focused on security practices that help protect CI/CD pipelines from misconfigurations and leaks.
+
+🔹 Least Privilege
+Grant workflows:
+Only required permissions
+Minimal access to resources
+Restricted scopes
+This reduces blast radius.
+
+🔹 Secret Masking
+Secret masking:
+Hides sensitive values in logs
+Prevents accidental exposure
+Automatically applied to secrets
+Logs stay safe and clean.
+
+🔹 Action Pinning
+Action pinning:
+Locks actions to versions or SHAs
+Prevents unexpected changes
+Improves workflow stability
+This protects against supply-chain risks.
+
+🔥 3-Line Takeaway
+Limit permissions.
+ Hide secrets.
+ Pin dependencies.

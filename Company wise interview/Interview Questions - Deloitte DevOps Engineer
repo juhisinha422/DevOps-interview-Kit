@@ -1,0 +1,48 @@
+Interview Questions - Deloitte DevOps Engineer 🛄
+
+1. How would you architect a secure, auditable CI/CD pipeline in Azure DevOps for multi-environment (Dev/Test/Prod) deployments?
+
+2. Differentiate between classic pipelines and YAML pipelines in Azure DevOps. Which one is better for Infrastructure-as-Code and why?
+
+3. What rollback strategies have you implemented in mission-critical environments? Can you detail a real-world example?
+
+4. Explain the use of Jenkins Shared Libraries or Azure DevOps Templates for enterprise-level DRY (Don't Repeat Yourself) pipelines.
+
+5. How do you handle multi-repo CI/CD pipelines when deploying a microservices-based application with interdependencies?
+
+6. Describe techniques to cache Docker layers or NuGet/NPM packages in pipelines for speed optimization.
+
+7. How do you integrate Azure Key Vault with DevOps pipelines securely, especially with rotating secrets or certificates?
+
+8. What is the purpose of manual intervention gates, and how would you enforce them before production release?
+
+9. Explain how you implement compliance as code (security scanning, code coverage, policy checks) in Azure 
+DevOps pipelines.
+
+10. How do you enforce pipeline security – from source control (Git) to deployment? Tools? Policies?
+
+11. What strategies do you use for managing Terraform state in a team? How do you handle state locking and backups in Azure?
+
+12. Explain the differences between terraform plan, terraform refresh, and terraform apply. When should each be used?
+
+13. How do you modularize Terraform for large-scale projects? Give examples.
+
+14. How do you detect and resolve drift in Terraform-managed resources?
+
+15. Explain how to set up remote Terraform backends in Azure (Blob Storage) and enable state locking with Azure CosmosDB or similar.
+
+16. Show a use-case for for_each vs count in a real Terraform deployment. When should dynamic blocks be preferred?
+
+17. Explain the purpose and real-world use of lifecycle blocks (prevent_destroy, create_before_destroy) in Terraform.
+
+18. Write a Dockerfile for a secure Python/Node.js API with multistage builds and best practices.
+
+19. How do multistage Docker builds improve security and reduce image size?
+
+20. Differentiate between Docker volumes and bind mounts. When do you use each in a Kubernetes environment?
+
+21. How do you implement blue-green or canary deployments in AKS using Helm or service mesh (e.g., Istio)?
+
+22. What are liveness and readiness probes? Give a practical example of how incorrect config can lead to downtime.
+
+23. How do you securely manage secrets and certificates in AKS using Azure Key Vault and CSI drivers?

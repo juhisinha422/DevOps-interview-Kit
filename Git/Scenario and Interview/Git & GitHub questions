@@ -1,0 +1,14 @@
+Git & GitHub Questions 
+1. A developer pushed broken code to main branch. How did you handle it?                              2. How do you prevent direct commits to production branches?
+3. How do you resolve merge conflicts in a team?
+4. What branching strategy did you follow and why?
+5. How do you roll back code changes?
+6. How do pull requests improve code quality?
+7. How do you manage multiple environments in Git?
+8. What happens if two developers change the same file? 9. How do you secure repositories?
+10. How do you handle hotfixes in production?
+11. How does Git trigger CI/CD pipelines?
+12. What happens if a commit breaks the pipeline?
+13. How do you track who changed what and when?
+14. How do you manage large repositories?
+15. Why Git instead of manual code copies?

@@ -1,0 +1,32 @@
+SKALI-INC – DevOps / Cloud Interview Questions (Real Experience)
+
+One of the candidates recently faced these questions at SKALI-INC.
+If you’re preparing for DevOps / Cloud Engineer roles, don’t skip these 👇
+
+🧠 Interview Questions Asked:
+
+1️⃣ How do you optimize EC2 cost in AWS?
+2️⃣ Explain a Terraform folder structure you have used in projects
+3️⃣ How will you create 5 EC2 instances with different IAM roles and instance types using Terraform?
+4️⃣ How do you handle Terraform versioning in a project?
+5️⃣ You want to delete only an EC2 instance from Terraform — which argument/command will you use?
+6️⃣ Which branching strategy have you used in your project and why?
+7️⃣ Which deployment strategies have you implemented? (Rolling, Blue-Green, Canary, etc.)
+8️⃣ What is a Terraform module and why do we use it?
+9️⃣ Explain end-to-end request flow:
+👉 Internet → AWS → Application
+🔟 What are the types of Load Balancers in AWS and how do they work?
+1️⃣1️⃣ What is HPA (Horizontal Pod Autoscaler)?
+1️⃣2️⃣ Explain the Docker commands used inside a Dockerfile
+1️⃣3️⃣ What is the difference between data block and resource block in Kubernetes/Terraform?
+1️⃣4️⃣ Difference between Security Group vs NACL
+1️⃣5️⃣ Which CI/CD pipeline have you used (Declarative / Scripted) and why?
+1️⃣6️⃣ You created an S3 bucket using Terraform, now you want to manage it manually from AWS Console.
+👉 How will you remove it from Terraform without deleting the actual resource?
+⚠️ Expected answer: Remove it from the Terraform state file first
+
+💡 Interview Tip:
+They are not checking definitions —
+They are checking real project exposure, decision-making, and Terraform maturity.
+
+If you can explain WHY + HOW, you’re already ahead 🚀

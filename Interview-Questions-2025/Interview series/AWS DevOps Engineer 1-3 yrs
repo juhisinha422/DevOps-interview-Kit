@@ -1,0 +1,58 @@
+AWS DevOps Engineer | 1–3 Years Experience — Interview Questions
+
+Breaking down some of the most commonly asked questions for AWS DevOps roles. 
+If you're preparing, make sure you can answer these confidently in real scenarios 💯
+
+🧩 Top Interview Questions:
+
+🔹 What is CI/CD and how do you implement it using AWS services?
+🔹 Explain the difference between EC2, Lambda, and ECS.
+🔹 What is Auto Scaling? How do you configure policies for scaling?
+🔹 How do you manage secrets and environment variables in AWS?
+🔹 What is IAM? Explain roles, policies, and permissions.
+🔹 What is CloudFormation and how have you used it?
+🔹 How do you monitor infrastructure using CloudWatch?
+🔹 What is VPC? Explain subnets, route tables, NAT, and IGW.
+🔹 Explain how you built a CI/CD pipeline using CodePipeline or Jenkins.
+🔹 What is S3 versioning, lifecycle rules, and replication?
+🔹 How do you deploy a Docker container on ECS/EKS?
+🔹 What are Blue-Green and Rolling deployments?
+🔹 Explain how you troubleshoot failing deployments in AWS.
+🔹 What is Route53 and how do you configure DNS records?
+🔹 Explain CloudTrail vs CloudWatch.
+🔹 What is ASG and how do you optimize cost with it?
+🔹 How do you implement Infrastructure as Code?
+🔹 What is an ALB vs NLB? When to use which?
+🔹 How do you ensure high availability and disaster recovery?
+🔹 Explain real-time scenario where your pipeline failed. What did you do?
+ 🔹 What is a Security Group vs NACL?
+🔹 How do you implement HTTPS using ACM?
+🔹 Explain the working of Load Balancer health checks.
+🔹 What is Multi-AZ vs Multi-Region deployment?
+🔹 What is EFS vs EBS vs S3?
+🔹 How do you configure alerts in CloudWatch?
+🔹 How do you manage logs in CloudWatch Logs?
+🔹 What is AWS Systems Manager?
+🔹 What is the difference between CodeBuild and CodeDeploy?
+
+🔹 How do you automate deployments using CodePipeline?
+🔹 What is IAM policy evaluation logic?
+🔹 What are Spot Instances? When will you use them?
+🔹 How do you optimize cost in AWS?
+🔹 Explain Elastic Beanstalk architecture.
+🔹 How do you roll back a failed deployment?
+🔹 What is a Bastion Host? When to use it?
+🔹 How do you secure S3 buckets?
+🔹 Explain ECS Task & Service.
+🔹 What is EKS node group?
+🔹 What is AWS Fargate?
+🔹 Difference between Public and Private Subnet.
+🔹 How do you connect private instances to the internet?
+🔹 What is NAT Gateway vs NAT Instance?
+🔹 How do you implement Blue-Green deployment using CodeDeploy?
+🔹 Explain how to use CloudFormation to create EC2 infrastructure.
+🔹 What is a Launch Template vs Launch Configuration?
+🔹 What is AWS Trusted Advisor?
+🔹 How do you configure Route53 failover routing?
+🔹 What is ALB target group and how it works?
+🔹 Difference between S3 Standard, IA, and Glacier.

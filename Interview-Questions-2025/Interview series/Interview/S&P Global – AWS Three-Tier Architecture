@@ -1,0 +1,14 @@
+Interview Insight: S&P Global – AWS Three-Tier Architecture
+
+In my recent interview with S&P Global, I was asked to deep dive into deploying a three-tier application using native AWS services. Here are the key questions that tested my cloud architecture and DevOps skills:
+
+How would you design and deploy a three-tier application architecture on AWS using native services?
+Which AWS services would you use to host the frontend, and how would you ensure global low-latency delivery?
+What compute options are available for the backend tier, and how would you choose between EC2, ECS, EKS, Lambda, and Elastic Beanstalk?
+How would you expose backend APIs securely to the frontend?
+What database and caching services would you use for the data tier, and why?
+How would you design the VPC, subnets, and security groups to isolate and secure each tier?
+What tools would you use for monitoring, logging, and distributed tracing across the application?
+How would you implement CI/CD for this architecture using AWS-native services?
+What Infrastructure as Code (IaC) tools would you use to automate and manage deployments?
+How would you ensure security, compliance, and protection against common web threats?

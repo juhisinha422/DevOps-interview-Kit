@@ -1,0 +1,32 @@
+What if the Load Balancer Itself Goes Down? 🚨
+
+We design highly available systems on AWS — multiple EC2 instances, Auto Scaling, RDS Multi-AZ, S3 durability, health checks, monitoring dashboards…
+But here’s the uncomfortable question:
+
+👉 What if the Load Balancer itself goes down?
+
+It’s the single entry point to your application.
+If it fails (misconfiguration, DNS issue, AZ outage, security group mistake), your entire application becomes unreachable.
+
+Suddenly:
+EC2 instances are healthy… but no traffic 🚫
+RDS is running… but no connections 🚫
+Auto Scaling is scaling… but no users 🚫
+
+CloudWatch alarms are screaming 🔔
+And users?
+
+They only see: “Site can’t be reached.”
+
+💡 Key reminders for architects & DevOps teams:
+Deploy ALB/NLB across multiple AZs
+Configure proper health checks
+Use Route 53 health checks + failover routing
+Avoid hidden single points of failure
+Test chaos scenarios (GameDays are gold!)
+Consider multi-region for business-critical apps
+
+High availability isn’t just about scaling 
+compute.
+
+It’s about protecting the front door of your application.

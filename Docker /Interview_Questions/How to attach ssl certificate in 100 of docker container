@@ -1,0 +1,7 @@
+How to attach ssl certificate in 100 of docker container 
+
+Attach lb for all dockers. Then easily y attach ssl
+
+1. Upload cert in AWS ACM
+2.  Attach cert to ALB Listener (443)
+3. Forward traffic to container targets

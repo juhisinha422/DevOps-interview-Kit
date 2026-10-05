@@ -1,0 +1,46 @@
+Top 10 Kubernetes / DevOps Interview Q&A (Interview Ready)
+
+1. What is Kubernetes?
+Answer:
+Kubernetes is an open-source platform used to deploy, scale, and manage containerized applications automatically.
+
+2. Docker vs Kubernetes?
+Answer:
+Docker creates containers. Kubernetes manages and orchestrates those containers in production.
+
+3. What is a Pod?
+Answer:
+A Pod is the smallest deployable unit in Kubernetes that runs one or more containers.
+
+4. What is Deployment?
+Answer:
+Deployment manages Pods and ensures the desired number of replicas are always running.
+
+5. How do you scale an application?
+Answer:
+Using this command:
+kubectl scale deployment myapp --replicas=3
+
+6. What is CI/CD?
+Answer:
+CI/CD automates code build, testing, and deployment to reduce manual work and errors.
+
+7. What is a Service?
+Answer:
+Service exposes Pods and provides stable network access.
+
+8. How do you troubleshoot a failing Pod?
+Answer:
+First I check:
+kubectl get pods
+Then logs:
+kubectl logs pod-name
+
+9. What is Helm?
+Answer:
+Helm is a package manager for Kubernetes that simplifies application deployment.
+
+10. ConfigMap vs Secret?
+Answer:
+ConfigMap stores normal config data.
+Secrets store sensitive data like passwords.

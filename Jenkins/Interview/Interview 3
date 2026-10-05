@@ -1,0 +1,15 @@
+Jenkins Interview Questions That Test Real CI/CD Experience (Not Just Syntax)
+If you’re preparing for DevOps/SRE roles, these Jenkins questions go beyond basics and focus on real-world pipelines and production issues:
+
+✅ How do you design Jenkins for high availability and disaster recovery?
+✅ Declarative vs Scripted Pipeline — when would you choose one over the other?
+✅ How do you manage secrets securely in Jenkins without hardcoding?
+✅ How do you handle pipeline failures in long-running CI/CD workflows?
+✅ How do you scale Jenkins with dynamic agents (Kubernetes, EC2, etc.)?
+✅ How do you optimize slow pipelines and identify bottlenecks?
+✅ How do you version and review Jenkinsfiles like application code?
+✅ How do you implement approvals and manual gates for production releases?
+✅ How do you integrate Jenkins with SonarQube, security scans, and quality gates?
+✅ How do you migrate from freestyle jobs to pipeline-as-code safely?
+
+💡 Pro tip: Interviewers look for engineers who treat CI/CD as critical production infrastructure, not just a build server.

@@ -1,0 +1,59 @@
+A CI/CD question that surprises many candidates:
+
+“The pipeline succeeded… but the deployment failed in production. What could be wrong?”
+
+At first, this sounds confusing.
+
+If the pipeline is green, everything should work… right?
+
+Not always.
+
+A successful pipeline only means the build and deployment steps completed.
+
+It does not guarantee the application is healthy.
+
+Here’s how experienced engineers investigate 
+
+---
+
+When deployment succeeds but the app fails:
+
+✔ Environment variables missing or incorrect
+✔ Secrets not available in runtime environment
+✔ Database migrations not executed
+✔ Config maps not updated
+✔ Image tag mismatch between build & deploy
+✔ Health checks failing after startup
+✔ Incompatible dependency versions
+
+Sometimes the deployment is perfect…
+
+…but the app crashes due to missing config.
+…or connects to the wrong database.
+…or fails health checks and gets restarted.
+
+---
+
+Quick checks:
+
+• verify runtime environment variables
+• confirm secrets & config maps
+• check pod logs after startup
+• validate image version deployed
+• ensure migrations ran successfully
+
+---
+
+Interview insight
+
+If you say “pipeline passed so deployment is fine,”
+it shows limited understanding.
+
+If you investigate runtime configuration and environment differences,
+it shows real-world DevOps thinking.
+
+That’s what interviewers want.
+
+---
+
+A green pipeline doesn’t guarantee a healthy application.

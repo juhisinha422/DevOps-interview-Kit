@@ -1,0 +1,34 @@
+#Docker & #Kubernetes Interview Preparation – 1 to 2 Years
+
+Containers are mandatory skills for modern DevOps roles.
+
+Here are Docker & Kubernetes interview questions 👇
+
+Docker
+
+• What is Docker and why do we use it?
+• Difference between Docker image and container?
+• What is a Dockerfile?
+• What is Docker Compose?
+Difference between CMD and ENTRYPOINT?
+• What is a Docker volume?
+• What is Docker networking?
+• What is a multi-stage Docker build?
+
+Kubernetes
+
+• Why do we use Kubernetes?
+• What is a Pod?
+• Difference between Pod and Container?
+• What is a Deployment?
+• What is a Service in Kubernetes?
+• Types of Kubernetes services?
+• What is a Namespace?
+• What is ConfigMap?
+• What is a Secret?
+• What is ReplicaSet?
+• What is rolling update?
+• What is liveness and readiness probe?
+• What is kubectl?
+• How do you troubleshoot a failing pod?
+• What Kubernetes issues have you faced in your project?

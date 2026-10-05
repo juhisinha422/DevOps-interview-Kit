@@ -1,0 +1,33 @@
+DevOps Error: Terraform Apply Failed
+
+While provisioning infrastructure using Terraform, the deployment failed during terraform apply.
+
+🔴 Error:
+
+Error: AccessDenied: User is not authorized to perform this action
+
+💡 Root Cause:
+
+The IAM user did not have the required permissions to create resources in Amazon Web Services.
+
+🛠 Solution:
+
+1️⃣ Checked the IAM policy attached to the user.
+
+2️⃣ Added the required permissions for the service being created (like EC2, VPC, etc).
+
+3️⃣ Ran the commands again:
+
+terraform init
+terraform plan
+terraform apply
+
+✅ Infrastructure was created successfully.
+
+📌 Lesson Learned:
+
+* When working with Terraform, most failures happen due to incorrect IAM permissions.
+
+DevOps tip: 
+
+* Always verify IAM roles and policies before running infrastructure deployments.

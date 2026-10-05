@@ -1,0 +1,26 @@
+#Linux Commands Every DevOps Engineer MUST Know
+
+If you work in Cloud or DevOps, Linux is non-negotiable.
+Most production servers still run on Linux.
+
+Here are must-know Linux commands 👇
+
+🔹 File & Directory Management
+ls | cd | pwd | cp | mv | rm
+
+🔹 File Viewing & Editing
+cat | less | head | tail -f | vi
+
+🔹 Search & Filters (Very Important!)
+grep | awk | sed | find
+
+🔹 Permissions & Ownership
+chmod | chown | umask
+
+🔹 Process & System Monitoring
+ps | top | htop | free | df -h
+
+🔹 Networking & Troubleshooting
+curl | wget | netstat | ss | ping
+
+💡 In interviews, Linux questions separate real DevOps engineers from tool-based learners.

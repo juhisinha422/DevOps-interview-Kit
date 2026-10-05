@@ -1,0 +1,40 @@
+1) What is the difference between a working directory, staging area, and repository?
+2) What is a HEAD in Git?
+3) What is the difference between tracked and untracked files?
+4) What does git init do internally?
+5) What is the default branch in Git and how can it be changed?
+6) What is the purpose of the .git directory?
+7) How do you check the current branch?
+8) What happens if you run git add .?
+9) What is a bare repository?
+10) What is the difference between git pull and git clone?
+
+11) What is the difference between fast-forward merge and three-way merge?
+12) What is git cherry-pick and when would you use it?
+13) What is git revert and how is it different from git reset?
+14) Explain different types of git reset:
+--soft
+--mixed
+--hard
+15) What is the difference between origin, upstream, and local branches?
+16) What is a detached HEAD state?
+17) How do you rename a branch (local and remote)?
+18) How do you squash commits?
+19) How do you undo the last commit without losing changes?
+20) What is the difference between git diff, git diff --staged, and git diff HEAD?
+
+21) What is git reflog and why is it important?
+22) How can you recover a deleted branch?
+23) What is git bisect and how does it help in debugging?
+24) What is git blame used for?
+25) How do you resolve conflicts during rebase?
+26) What is an annotated tag vs a lightweight tag?
+27) How do you sign commits and tags?
+28) What is git worktree?
+29) What is git submodule and when should you avoid it?
+30) What is git subtree?
+31) How do you clean untracked files safely?
+32) What is git archive used for?
+33) How does Git store data internally (blobs, trees, commits)?
+34) What compression and hashing algorithm does Git use?
+35) What is git filter-branch and why is it discouraged?

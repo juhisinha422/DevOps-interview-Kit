@@ -1,0 +1,11 @@
+Q. How do jobs run by default in GitHub Actions workflows?
+The author can see how you vote. Learn more
+Q. How do jobs run by default in GitHub Actions workflows?
+A. Sequentially
+46%
+B. Based on steps
+31%
+C. In parallel
+15%
+D. Manually only
+8%

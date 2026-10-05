@@ -1,0 +1,41 @@
+once asked this in a Cloud Networking interview...!
+
+Q: A service is healthy, but users can’t reach it from the internet. How do you troubleshoot?
+
+A: I’d check security groups/firewall rules, routing tables, and ensure the service is bound to the correct public endpoint.
+
+Q: Instances in the same subnet can’t communicate with each other. Why?
+
+A: Network ACLs, firewall rules, or host-level firewalls may be blocking traffic. I’d verify both subnet and instance-level rules.
+
+Q: Traffic between two VPCs suddenly stops working. What’s the cause?
+
+A: Peering or routing may be misconfigured or deleted. I’d check route tables, peering status, and overlapping CIDR ranges.
+
+Q: Your load balancer is reachable, but backend targets are unhealthy. What do you check?
+
+A: I’d verify health check paths, ports, security rules, and confirm the backend service is listening correctly.
+
+Q: VPN connectivity is established, but traffic isn’t flowing. Why?
+
+A: Phase-2 selectors, routing, or firewall rules might be incorrect. I’d check tunnel configuration and route propagation.
+
+Q: DNS resolves correctly, but connections still fail. What’s wrong?
+
+A: DNS only resolves names; the issue could be networking or TLS. I’d test connectivity using IP and check certificates and ports.
+
+Q: Latency is high only for users in one region. How do you respond?
+
+A: I’d check regional routing, CDN configuration, and any cross-region dependencies causing delays.
+
+Q: After adding a new subnet, instances can’t access the internet. Why?
+
+A: The subnet may be missing a route to an internet gateway or NAT gateway. I’d verify route table associations.
+
+Q: Intermittent packet loss is reported in production. How do you debug it?
+
+A: I’d inspect network metrics, MTU mismatches, and check for overloaded network appliances or rate limits.
+
+Q: A recent network change caused a widespread outage. What’s your immediate action?
+
+A: I’d roll back the change, restore known-good routing, and validate connectivity before reapplying changes safely.

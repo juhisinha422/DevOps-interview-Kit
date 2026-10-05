@@ -1,0 +1,16 @@
+Attended UST devops engineer interview. Sharing some questions which I remember
+1. How does GitHub manage authentication internally?
+2. What is SAML SSO in GitHub Enterprise?
+3. How does GitHub implement RBAC?
+4. What is GitHub Enterprise Cloud vs Server?
+5. How do you integrate GitHub with corporate LDAP?
+6. How do you audit user activity in GitHub?
+7. What is GitHub Advanced Security?
+8. How does secret scanning work?
+9. How does code scanning work?
+10. What is dependency graph?
+11. How do you prevent bad configs from reaching production in a CI/CD pipeline?
+How would you ensure zero-downtime deployment during a critical update?
+Helm deployment fails due to insufficient cluster resources — what’s your approach?
+How do you share Helm charts internally?
+What is Helm chart testing and how is it done?

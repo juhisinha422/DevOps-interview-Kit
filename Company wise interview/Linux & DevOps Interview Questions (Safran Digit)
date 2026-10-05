@@ -1,0 +1,15 @@
+Linux & DevOps Interview Questions (Safran Digit)
+	1.	What is UMASK in Linux and how does it affect file and directory permissions?
+	2.	A Linux server shows 100% disk usage. How would you troubleshoot and resolve it step by step?
+	3.	How do cron schedules work in Linux? How would you schedule a daily backup at 4 AM?
+	4.	What are disk quotas in Linux and why are they used?
+	5.	How do you optimize kernel performance for high-traffic production servers?
+	6.	How do you search for a specific string across multiple files in Linux?
+	7.	What is the difference between sh and bash shells?
+	8.	In LVM, how can you reduce the size of a logical volume safely?
+	9.	How do you troubleshoot DNS resolution issues on a Linux server?
+	10.	What happens after a user enters a URL in the browser until the request reaches an ECS service?
+	11.	How do you handle Terraform drift when someone makes manual changes in the cloud console?
+	12.	Can you explain the structure of a Dockerfile and write a simple one?
+
+⸻

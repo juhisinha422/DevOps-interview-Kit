@@ -1,0 +1,22 @@
+🔍 SonarQube in DevOps – Why It Matters
+
+Code quality is not optional anymore — it’s a DevOps responsibility.
+
+🚀 SonarQube helps teams maintain clean, secure, and reliable code by continuously analyzing code during CI/CD pipelines.
+
+💡 What SonarQube does:
+🐞 Detects bugs before production
+🔐 Identifies security vulnerabilities
+📊 Tracks code smells & technical debt
+✅ Enforces quality gates automatically
+🔁 In CI/CD Pipelines:
+
+Integrated with Azure DevOps / GitHub / Jenkins
+Fails the build if quality standards are not met
+Ensures only high-quality code reaches production
+
+🎯 Outcome:
+✔ Faster releases
+✔ Better security
+✔ Reduced rework
+✔ Scalable & maintainable applications

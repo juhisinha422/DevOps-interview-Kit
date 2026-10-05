@@ -1,0 +1,27 @@
+12 Kubernetes commands you should master for troubleshooting:
+
+1. kubectl get pods - Shows all running containers in your cluster so you can see which ones are healthy or crashed
+
+2. kubectl describe pod [name] - Gives detailed information about a specific pod including why it failed to start
+
+3. kubectl logs [pod-name] - Displays the output messages from your application to see errors and what went wrong
+
+4. kubectl logs [pod-name] --previous - Shows logs from a crashed container that restarted so you can see what caused the crash
+
+5. kubectl exec -it [pod-name] -- bash - Opens a terminal inside your container to investigate files and run commands directly
+
+6. kubectl get events --sort-by=.metadata.creationTimestamp - Lists recent cluster activities in order to trace what happened during an incident
+
+7. kubectl top pods - Shows how much CPU and memory each pod is using to identify resource problems
+
+8. kubectl get pods -o wide - Displays pods with extra details like which physical server they are running on
+
+9. kubectl port-forward [pod-name] 8080:80 - Creates a tunnel to access your application directly from your laptop for testing
+
+10. kubectl get pods --all-namespaces - Shows containers across all sections of your cluster not just the default view
+
+11. kubectl describe node [name] - Reveals information about the physical or virtual servers running your containers
+
+12. kubectl get pods --field-selector=status.phase=Failed - Filters to show only the pods that have crashed or failed
+
+Master these twelve commands and you will debug Kubernetes issues faster than most engineers with years of experience

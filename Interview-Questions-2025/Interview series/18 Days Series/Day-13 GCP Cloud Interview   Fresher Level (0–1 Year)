@@ -1,0 +1,23 @@
+Post 13: GCP Cloud Interview  
+Fresher Level (0–1 Year)
+
+Welcome to the **final cloud chapter** — **Google Cloud Platform (GCP)!** 🎉  
+Perfect for freshers targeting GCP-focused DevOps roles or multi-cloud careers.  
+
+GCP interviews test your understanding of Google’s unique approach to cloud — serverless-first, container-native, and data-driven. Let’s start strong 👇  
+
+💡 Common GCP Interview Questions for Freshers:
+1️⃣ What is Google Cloud Platform, and how does it differ from AWS and Azure?  
+2️⃣ Explain the difference between Compute Engine, App Engine, and Cloud Run.  
+3️⃣ What is a GCP Project, and why is it different from AWS Accounts or Azure Subscriptions?  
+4️⃣ How does GCP handle Identity and Access Management (IAM)?  
+5️⃣ What are the different storage options in GCP (Cloud Storage, Persistent Disk, Filestore)?  
+6️⃣ What is Google Kubernetes Engine (GKE), and why is GCP container-native?  
+7️⃣ Explain VPC networking in GCP vs. AWS VPC.  
+8️⃣ What is Cloud Monitoring, and how does it work with Cloud Logging?  
+9️⃣ How do you manage quotas and billing alerts in GCP?  
+🔟 What’s the difference between preemptible VMs and standard Compute Engine instances?  
+
+🎯 Pro Tip:  
+GCP loves **simplicity and automation** — focus on how Google makes complex things easy (like GKE autoscaling or Cloud Run serverless).  
+Start with GCP’s **$300 free credit** to build hands-on confidence before interviews!  

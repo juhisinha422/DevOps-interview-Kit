@@ -1,0 +1,33 @@
+Interview Experience – Valiant Communication Ltd. (DevOps Role)
+
+Recently appeared for an interview with Valiant Communication Ltd.
+The discussion was heavily focused on DevOps fundamentals and real-time hands-on experience, especially around Docker and CI/CD pipelines.
+
+🔹 Topics & Questions Covered:
+
+1️⃣ Self-introduction
+	•	Walkthrough of my day-to-day responsibilities in a DevOps role
+
+2️⃣ Docker Deep Dive
+	•	Explanation of Dockerfile stages (Multi-stage builds)
+	•	Difference between ADD vs COPY
+	•	How Docker layers work and why they matter
+	•	How containers communicate with each other
+
+3️⃣ CI/CD Pipeline
+	•	Description of a fully automated CI/CD pipeline I’ve worked on
+	•	Tools used and how automation was achieved end-to-end
+
+4️⃣ Automation & Scripting
+	•	Scripting languages and tools I use for automation
+(Shell / Python / CI tools, etc.)
+
+⸻
+
+💡 Key Interview Insight:
+The interviewer focused less on definitions and more on:
+	•	Why we use certain approaches
+	•	How things work internally
+	•	Real-world implementation over theory
+
+Strong fundamentals + hands-on clarity = 🔑

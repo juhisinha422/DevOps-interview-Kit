@@ -1,0 +1,44 @@
+DevOps Interview Command Series — Terraform (Day 11) 🌍
+
+Terraform is the backbone of Infrastructure as Code (IaC).
+It enables DevOps teams to provision, version, and manage cloud infrastructure safely and repeatedly.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Terraform commands you must know:
+
+terraform --version
+terraform init
+terraform init -upgrade
+
+terraform validate
+terraform fmt
+terraform fmt -recursive
+
+terraform plan
+terraform plan -out=tfplan
+
+terraform apply
+terraform apply tfplan
+terraform apply -auto-approve
+
+terraform destroy
+terraform destroy -auto-approve
+
+terraform show
+terraform state list
+terraform state show resource_name
+
+terraform output
+terraform refresh
+
+terraform workspace list
+terraform workspace new dev
+terraform workspace select prod
+
+🎯 Interview Focus
+• What is IaC and why Terraform?
+• terraform init vs plan vs apply
+• State file importance & locking
+• Remote backend & state security
+• Workspaces vs environments
+• Handling drift & rollback scenarios
+• Terraform vs Cloud-native templates

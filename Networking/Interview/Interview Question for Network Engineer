@@ -1,0 +1,50 @@
+Interview Question for Network Engineer******
+
+1. 🌐Interviewer: You can ping devices on your local network, but internet access is failing. What would you check first?
+
+✅ Candidate: I’d verify the default gateway configuration first. If that’s correct, I’d check DNS settings, since routing might be fine but DNS issues can prevent internet access.
+─────────────────────────
+
+2. 🌐Interviewer: Devices on two different VLANs can’t communicate. What’s the likely cause?
+
+✅ Candidate: Inter-VLAN routing is probably not configured. I’d check if a router or Layer 3 switch handles traffic between VLANs and ensure trunk ports carry the required VLANs.
+─────────────────────────
+
+3. 🌐 Interviewer: Users report slow network performance. How would you troubleshoot?
+
+✅ Candidate: I’d start with ping and traceroute to check for packet loss or delays. Then, I’d verify duplex/speed mismatches on switches, check for high traffic, inspect cables, and review QoS policies.
+─────────────────────────
+
+4. 🌐 Interviewer: You can ping an IP, but cannot reach a website by hostname. What’s the issue?
+
+✅ Candidate: That indicates a DNS problem. I’d use nslookup to verify the DNS server is responding and resolving names correctly.
+─────────────────────────
+
+5. 🌐 Interviewer: There’s a network loop causing broadcast storms. How would you handle it?
+
+✅ Candidate: I’d isolate the loop by disconnecting suspected cables or ports. Then, ensure Spanning Tree Protocol (STP) is enabled and properly configured.
+─────────────────────────
+
+6. 🌐 Interviewer: A router interface shows administratively down. How would you fix it?
+
+✅ Candidate: I’d use the no shutdown command and check physical connectivity and interface status.
+─────────────────────────
+
+7. 🌐 Interviewer: Two OSPF neighbors aren’t forming a relationship. What steps would you take?
+
+✅ Candidate: Verify network statements, area IDs, hello/dead timers, and authentication settings to ensure the routers can form a neighbor adjacency.
+─────────────────────────
+
+8. 🌐 Interviewer: Users cannot access a server after ACLs are applied. How would you troubleshoot?
+
+✅ Candidate: I’d review ACL rules, verify the correct order, and confirm that legitimate traffic is not blocked.
+─────────────────────────
+
+9. 🌐 Interviewer: A network link shows high latency and packet loss. How would you troubleshoot?
+
+✅ Candidate: Check interface errors, duplex/speed mismatches, congestion, cabling, and possible routing issues.
+─────────────────────────
+
+10. 🌐 Interviewer: A VPN tunnel to a branch office is down. How would you approach it?
+
+✅ Candidate: Verify IP connectivity, check VPN configuration and authentication, and ensure firewalls allow the necessary traffic.

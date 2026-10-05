@@ -1,0 +1,612 @@
+1. What is Docker, and how does it differ from a traditional virtual machine?
+   - Docker is an open source platform that allows us to package application along with it's dependencies like code, runtime, libraries, and configuration files into a lightweight portable 
+     containers.
+   - A virtual machine (VM) is a software based computer that runs inside a physical computer. It's behave like a actual computer, with its own CPU, memory, storage, operating system but 
+     it's actually created and managed by a software called a hypervisor.  
+
+   * Docker vs VM's:	
+ 
+      - Docker containers don’t need their own operating system. They share the host machine’s OS and just isolate the application and its dependencies. This makes containers much smaller,
+        start instantly, and you can run many more containers on the same machine compared to VMs.    
+      
+      - Virtual Machines (VMs) use a software called a hypervisor to create and run multiple virtual machines on one physical machine. Each VM has its own full operating system, plus the 
+        application and all its files. Because of this, VMs are large in size, take longer to start, and use more system resources.   
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+2. Explain the architecture of Docker?
+   - Docker follows a client server architecture which mainly consists of 4 components Docker Client, Daemon, Registry, Objects.
+
+   1. Docker Client: 
+           - The Docker client is the way where we can interact with docker.
+           - When we run runs a commands like docker ps, docker pull, docker rm these commands sends to docker daemon using the Rest API's.
+           - The client can communicate with a daemon running on the same host or even a remote one.
+
+   2. Docker Daemon: 
+           - The Daemon is the core component of Docker that handles the all major operations.
+           - Daemon continuously listens requests from clients and its responsible for building, running and managing containers, images, network, volumes.
+           - The daemon executes and manages all tasks requested by the client to ensure containerized applications run smoothly.
+
+   3. Docker Registry: 
+           - The Docker Registry is the central repository where Docker images are stored, managed, and distributed.
+           - The most commonly used registry is Docker Hub, but organizations often use private registries such as AWS Elastic Container Registry (ECR) or GitHub Container Registry for
+             better control and security.
+           - When we execute a command like docker pull ubuntu, Docker downloads the image from the registry, and when we run docker push, it uploads your image to the registry for sharing
+             or deployment.
+
+   4. Docker Objects: Docker Objects are the fundamental components that Docker uses to build, run, and manage containerized applications.
+
+          * Images: Images are read-only templates that contain the instructions for creating containers. They define the application code, runtime, libraries, and dependencies needed to
+                    run an app.
+
+          * Containers: Containers are the running instances created from images. They are lightweight, portable, and isolated environments where the actual application runs.
+
+          * Networks: Docker networks enable communication between containers, allowing multiple containers to interact securely and efficiently.
+
+          * Volumes: Volumes are used to store data persistently outside of containers, ensuring that important data remains intact even if the container is stopped or removed.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+3. What is a Dockerfile and why is it used?
+   - A Dockerfile is a text file that contains a set of instructions used to build a Docker image automatically.
+   - Each instruction in the Dockerfile defines a specific step in the image creation process such as which base image to use, what software to install, what files to copy, and which
+     command to run when the container starts.
+   - In short, a Dockerfile acts as a blueprint for creating Docker images in a consistent and repeatable way. 
+
+   Why It’s Used:
+
+   - It automates the image creation process instead of manually configure environments.
+   - It ensures consistency every developer or deployment environment builds the same image from the same file.
+   - It simplifies version control since the Dockerfile can be stored with the source code.
+   - It makes deployment faster and more reliable especially in CI/CD pipelines.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. What are Dockerfile Instructions and Their Purpose?
+   - A Dockerfile is made up of a set of instructions that tell Docker how to build an image step-by-step.
+   - Each instruction performs a specific action, such as selecting a base image, installing packages, copying files, setting environment variables, or defining what command to run when
+     the container starts.
+   
+   1. FROM:
+       - This defines which base image Docker should use to build the new image.
+       - Every Dockerfile starts with a FROM instruction.
+       - For example, FROM python:3.9 it tells Docker to start from the python:3.9 base image. 
+
+   2.  WORKDIR: 
+       - The WORKDIR instruction sets the working directory inside the container where the next commands will be executed.
+       - It helps organize your files and makes command paths shorter.
+       Example:
+        - WORKDIR /app this means all the following commands in the Dockerfile will run inside the /app folder.
+
+   3. RUN:
+       - The RUN instruction is used to run commands inside the image while it’s being built.
+       - It’s mainly used to install software, packages, or dependencies that the application needs.
+       Example:
+         - RUN apt-get update && apt-get install -y python3 this installs Python inside the image.
+
+   4. COPY: 
+       - The COPY instruction is used to copy files or folders from your local system into the Docker image.
+       - It’s commonly used to add application code or configuration files to the image.
+         Example:
+          - COPY . /app — this copies all files from your current directory on your computer to the /app directory inside the image.
+
+   5. CMD: 
+       - The CMD instruction in a Dockerfile is used to define the default command that runs automatically when a container starts.
+       - It tells Docker what process should start inside the container once it’s launched.
+       - This command can be overridden if a different command is given when running the container.
+           - For example, if we define the CMD instruction in the Dockerfile like CMD ["python3", "app.py"], it will automatically run this command when the container starts.
+             However, if we run a different command while starting the container, like docker run myimage echo "Hello World", Docker will ignore the CMD and run the new command (echo
+             "Hello World") instead.
+         
+       Example:
+          - CMD ["python3", "app.py"] this means when the container starts, it will automatically run the Python application called app.py.
+
+   6. ENTRYPOINT: 
+       - The ENTRYPOINT instruction in a Dockerfile specifies the main command that will always run when a container starts.
+       - It’s used to define the containers default executable which cannot be easily overridden like CMD.
+         Example: ENTRYPOINT ["python3", "app.py"] This means every time the container starts, it will always run python3 app.py.
+
+
+   CMD vs ENTRYPOINT 
+   * CMD can be overridden easily by adding another command when starting the container.
+   * ENTRYPOINT makes sure the specified command always runs, even if you add something extra that extra part becomes an argument to ENTRYPOINT.
+
+   7. EXPOSE: 
+       - The EXPOSE instruction in a Dockerfile is used to specify which port the container will use internally while running.
+       - For example: EXPOSE 8080 This means the application inside the container works on port 8080.
+       - But to expose it outside the container, we use the -p option while running the container.
+
+       Example: EXPOSE 8080
+                docker run -p 8080:9080 myimage This makes the container’s port 8080 accessible outside the container.
+                * -p port mapping
+
+
+   8. ENV: 
+       - The ENV instruction in a Dockerfile is used to set environment variables inside the container.
+       - These variables can store configuration values that your application can use while running.
+
+         Example: ENV APP_ENV=production
+         * This sets an environment variable called APP_ENV with the value production.
+         * You can then access it inside the container using commands like echo $APP_ENV.
+
+   9. VOLUME:
+       - The VOLUME instruction in a Dockerfile is used to create a mount point inside the container for storing persistent data.
+       - It tells Docker to store the data at that path outside the container’s writable layer, so it’s not lost when the container stops or is removed.
+
+         Example: VOLUME /data This creates a folder /data inside the container that automatically gets connected to a Docker-managed volume for data persistence.
+
+   10. USER:
+        - The USER instruction specifies which user the container should run as, instead of the root user — this improves security.
+          Example: USER appuser
+            
+
+   11. LABEL:
+         - The LABEL instruction adds metadata to the image, such as version, description, or maintainer info.
+           Example: LABEL maintainer="John Doe <john@example.com>"
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+5. What’s the difference between CMD, ENTRYPOINT, and RUN in Dockerfile?
+
+   RUN: Executes commands while building the image (e.g., install software).
+   CMD and ENTRYPOINT: Both CMD and ENTRYPOINT run after the container starts
+
+   * ENTRYPOINT → Always runs as the main command of the container.
+
+   * CMD → Provides default arguments or a fallback command for the ENTRYPOINT (or can be overridden).
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. when do you use build command and How do you build and tag a Docker image?
+   - The docker build command is used when you want to create a Docker image from a Dockerfile.
+   - You use it after writing your Dockerfile and setting up your application files.
+
+   * To build and tag a Docker image, we use the docker build command with the -t option. The -t flag is used to give the image a name and version tag.
+    
+     Example: docker build -t myapp:1.0 .
+              - This command builds a Docker image from the current directory and tags it as myapp version 1.0
+              - The dot (.) at the end means Docker should use the Dockerfile in the current directory
+
+   * You cannot use docker build or docker tag inside a Dockerfile, because the Dockerfile itself is what defines how the image is built.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7. What is the purpose of .dockerignore file?
+   - The .dockerignore file is used to tell Docker which files and folders to ignore while building an image.
+   - It helps to reduce the image size, speed up the build process, and keep sensitive or unnecessary files like .git, node_modules, or .env out of the image.
+   - It works similar to a .gitignore file in Git.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8. Explain Docker image layers and how caching works?
+   - A Docker image is built in layers and each layer represents an instruction in the Dockerfile such as FROM, RUN, or COPY.
+   - These layers are built on top of the previous one to form the final image.
+   - Docker stores these layers separately inside its default storage location usually /var/lib/docker/overlay2/ on Linux.
+
+   * caching: 
+     - Caching means that Docker remembers and reuses previously built layers to speed up image builds.
+     - When you build a new image with the same configuration, Docker checks which layers have not changed and reuses them from the cache.
+     - If something changes like a CMD or COPY instruction, Docker only rebuilds that specific layer and the remining keeps same.
+     - This makes the build process faster and more efficient because Docker doesn’t rebuild everything from scratch every time.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+9. What’s the difference between docker run, docker exec, and docker start?
+   * docker run is used to create and start a new container from an image.
+     - If the image doesn’t exist locally, Docker downloads it.
+     - It runs the container with the default or specified command.
+       
+       Example: docker run -d nginx ➜ Creates a new Nginx container and starts it.
+
+  * docker start is used to start an existing stopped container. it doesn’t create a new one.
+
+  * docker exec runs a new command inside a running container.
+     - Commonly used to access the containers shell or run additional commands.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+10. How do you inspect logs and resource usage of a container?
+    - To check logs of a container, I use the command docker logs <container_name>, which shows the output and error logs generated by the application inside the container.
+    - But if I want to see real time logs like old logs and live logs I use the command docker logs -f <container>
+
+    - To monitor resource usage like CPU, memory, and network, I use docker stats, which shows a live dashboard of running containers and their performance.
+    - And if I need detailed information about a container, like its IP address, mounts, or environment variables, I use docker inspect <container_name>.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+11. How do you persist data in Docker using volumes and bind mounts?
+    - In Docker data inside a container is ephemeral if the container is removed, the data is lost.
+    - To persist data, we use volumes or bind mounts.
+
+    * Volumes are managed by Docker and stored under /var/lib/docker/volumes/.
+       - They are the best option for long-term data storage because they’re portable, backed up easily, and independent of the containers lifecycle.
+
+        Example: docker run -v mydata:/app/data nginx (This command creates a Docker-managed volume called mydata. Even if the container is deleted, the data inside that volume remains)
+
+    * Bind mounts are map a specific directory on the host machine to a directory inside the container.
+
+         Example: docker run -v /home/user/app:/app nginx (This directly connects your local folder /home/user/app to the container’s /app folder — useful for development, since changes on
+                                                           your host reflect immediately inside the container)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+12. What is volumes and what are the types of volumes in Docker?
+    
+   * In Docker volumes are used to store and persist data outside the containers.
+      - Normally, when a container is deleted all its data is lost but by using volumes, data remains safe and can be reused by other containers.
+      - Volumes are also helpful for sharing data between containers and for persistent storage in production environments.
+
+   Types:
+
+   * Docker Volumes (Named / Anonymous)
+        - Stored in: /var/lib/docker/volumes/
+        - Managed by: Docker
+        - If you delete the container the data in the volume remains safe.
+        - You can attach the same volume to a new container and access the old data again.
+        - But if you delete the Docker server itself (for example, uninstall Docker or delete /var/lib/docker) then all volumes and data inside them will be lost because they live inside 
+          Dockers storage path.
+
+   * Bind Mounts:
+        - Stored in: Your local host file system (outside Docker)
+        - Managed by: us not Docker
+        - If the container is deleted, the data remains because it’s stored on your host machines folder.
+        - Even if Docker is uninstalled or restarted, your data will still exist in that folder.
+        - But if the server or host machine itself is deleted or crashes, then the data will be lost (because it lives on that host).
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+13. What are multi-stage Docker builds and why are they used?
+    - In normal single-stage builds all build tools, dependencies and temporary files are included in the final image making it large and less secure.
+    - Multi-stage builds in Docker are used to optimize image size and separate build and runtime environments.
+    - In this method a single Dockerfile contains multiple FROM statements where each stage builds on the previous one.
+    - With multi-stage builds we can use one stage to build the application and another lightweight stage to run it. Only the final build output like a JAR, binary, or compiled code is 
+      copied to the runtime image.
+
+    * Reduce image size
+    * Improve security by removing unnecessary files
+    * Speed up deployments
+    * Simplify maintenance and keep the final image clean
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+14. How do you reduce the size of a Docker image?
+    -I reduce Docker image size by using lightweight base images, multi-stage builds, removing unnecessary files, and using .dockerignore to avoid copying unwanted data, Combine RUN 
+     commands to reduce the number of layers in the image.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+15. Explain the concept of Docker networking bridge, host, none, and overlay?
+    - Docker networking allows containers to communicate with each other, the host, or external networks.
+    - There are different types of Docker networks like bridge, host, none, and overlay.
+
+     1. Bridge network:
+         - This is the default network type. Containers on the same bridge network can talk to each other using their container names. It’s mostly used for standalone (individual 
+            containers) containers on a single host.
+
+         Types: 
+             * The default bridge is used when no custom network is specified, but containers can’t communicate by name.
+
+             * The user-defined bridge like my docker_net allows containers to communicate by name and provides better isolation and control which is ideal for microservice communication
+               on a single host.
+
+     2. Host network:
+         - In the host network the container shares the host’s network directly.
+         - It uses the same IP address and ports as the host.
+         - This gives better performance but no network isolation.
+         - Commonly used for network-heavy applications.
+
+     3. None network:
+         - The container has no network interface. It’s completely isolated used for security or testing purposes.
+
+     4. Overlay Network:
+         - The overlay network connects containers across multiple Docker hosts.
+         - It’s mainly used in Docker Swarm or Kubernetes environments.
+         - It allows containers on different machines to communicate securely as if they’re on the same network.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+16. How can containers in different Docker networks communicate securely?
+    - By default Docker networks are isolated containers in different networks cant talk to each other.
+    - If we need secure communication between different networks we have options like 
+
+    1.Connect a container to multiple networks:
+        - For example I have 3 containers like Frontend, Backend and DB so those are in different networks like Network1, Network2.
+        - Here containers are in Network1 = Frontend + Backend and Network2 = Backend + DB, so here my Backend services needs to communicate with Frontend service and Backend service with
+          the DB service.
+  
+      Process to connect:
+        - We have 2 Networks like Network1 and Network2
+        - Here add the Backend service in the Network1 with the Frontend service and add DB service in the Network2 with the Backend service.
+        - After successful running containers we need connect them using docker network connect backend_net app (run this command in Network1)
+
+     * This allows the app to talk to both sides securely 
+     * so the frontend can reach the DB , and the DB can reach the database, but the frontend cannot reach the database directly
+
+
+    2. Reverse proxy:
+        - we can use Nginx as a reverse proxy between your frontend and backend containers, you can secure communication with SSL/TLS certificates.
+        - Use Nginx as a reverse proxy container. It sits in front of your backend API and forwards requests from the frontend. So, the frontend never talks directly to the backend only 
+          through Nginx.
+
+        * Get SSL certificates we can use Certbot (from Let’s Encrypt) to generate free SSL/TLS certificates.
+          Example: sudo certbot certonly --nginx -d yourdomain.com
+
+          - This creates certificate files like:
+
+              /etc/letsencrypt/live/yourdomain.com/fullchain.pem
+             /etc/letsencrypt/live/yourdomain.com/privkey.pem
+
+        * Configure Nginx In the Nginx config (usually /etc/nginx/conf.d/default.conf or a custom file), you set up SSL and proxy rules:
+
+          server {
+               listen 443 ssl;
+               server_name yourdomain.com;
+
+               ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
+               ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
+
+               location /api/ {
+               proxy_pass http://backend:8080;  # backend container name + port
+               proxy_set_header Host $host;
+               proxy_set_header X-Real-IP $remote_addr;
+             }
+          }
+
+
+     3. Use an encrypted overlay network in multi-host setups:
+          - When containers run on different servers an overlay network with encryption ensures that all communication between containers is secure over the network.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+17. How do you create a custom Docker network and connect containers to it?
+    - By default Docker creates a bridge network but we can also create our own custom network to let containers communicate easily using names instead of IPs.
+     
+    Command: docker network create my_network
+
+   - Then run a container in the custom network
+ 
+    Command: docker run -d --name my_container1 --network my_network nginx
+             docker run -d --name my_container2 --network my_network nginx
+
+  - Now both containers are in the same custom network and can communicate securely using their container names for example, ping app1 from inside app2. 
+  - Custom networks are useful because they provide automatic DNS resolution, isolation, and clean communication between containers.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+18. What’s the difference between Docker image and Docker container?
+
+   - A Docker image is a blueprint or read-only template that contains everything needed to run an application like the code, runtime, and dependencies.
+   - A Docker container is a running instance of that image.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+19. How do you scan Docker images for vulnerabilities?
+    - I scan Docker images for vulnerabilities using dedicated scanners for example Trivy or cloud registry scanners like ECR image scanning.
+    - we can Integrate vulnerability scanner integrated into our CI/CD pipeline.
+    - Whenever a new Docker image is built Trivy automatically scans it for known vulnerabilities (CVEs) in the OS packages and application dependencies.
+    - If any High or Critical issues are found, the pipeline either fails or alerts the DevOps/security team for review.
+    - This ensures that only secure and compliant images are pushed to the container registry.
+    - We also make sure to regularly update base images and rerun scans to reduce vulnerabilities over time.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+20. What is Docker Compose and how does it simplify multi-container applications?
+    - Docker compose is a tool that helps us to define and manage multi-container applications using a single YAML file called docker-compose.yml.
+    - Instead of running multiple docker run commands for each container we can define all our services like Frontend, database, and backend in one file with their configurations, 
+      networks, and volumes.
+   - Docker Compose can build images (if you define a build context and have a Dockerfile) and run containers from existing images.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+21. How can you manage and write a Docker Compose file for a large application with many services and databases (e.g., 100+ services)?
+    - When we have a large microservices based application with many services instead of configuring everything in a single big docker-compose.yml file, we split it into multiple smaller 
+      Compose files
+    - Each team or module can have its own Compose file, and we can combine them when needed using docker-compose -f commands.
+    - This keeps the setup modular easier to maintain and improves performance when bringing services up or down.
+    
+    * Use multiple smaller Compose files instead of one huge file.
+    * Define a shared network so all services can communicate.
+    * Use environment files (.env) to manage credentials
+    * Use naming conventions for easy identification (e.g., auth-service, order-service).
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+22. What are the different Docker Compose file types, their uses, and how does the override file work?
+    - Docker Compose mainly uses YAML files to define and manage multi-container applications.
+    - There are a few key file types each with a specific purpose and they can be combined or overridden depending on the environment.
+
+    1. docker-compose.yml (Main file)
+          - This is the primary configuration file. It defines services, networks, and volumes for your application.
+          - Used by default when you run: docker-compose up -d
+
+
+    2. docker-compose.override.yml (Override file)
+          - Used to override or extend the main file configuration commonly for development.
+          - We use the docker-compose.override.yml file to make environment-specific changes without modifying the main docker-compose.yml file.
+          - The main file usually contains the base configuration things that are common for all environments like service names, ports, or images.
+          - The override file is used to customize settings for local development or testing, such as:
+              * mounting local source code
+              * changing exposed ports
+              * enabling debug mode or using different environment variables.
+          - Docker Compose automatically merges both files at runtime and the override file takes priority making it safe flexible and ideal for different environments like development and
+            production. 
+
+
+    3. .env file: 
+          - This is not a Compose file itself but is used with Compose.
+          - It stores environment variables that your Compose file can read automatically.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+23. How do you scale containers using Docker Compose?
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+24. How do you handle environment variables securely in Docker?
+    - We handle environment variables securely in Docker by avoiding hardcoding them in Dockerfiles or Compose files.
+    - Instead we use .env files to store variables separately and load them at runtime.
+       * Docker secrets for sensitive data like passwords or API keys especially in production or Swarm mode.
+       * Environment variable injection using CI/CD tools like Jenkins, GitHub Actions, or AWS Secrets Manager so secrets aren’t stored in plain text.
+       * This ensures that sensitive information is kept outside the image and not exposed in version control or logs.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+25. How do you push and pull images from Docker Hub or AWS ECR?
+    - I tag my image with the repository name, authenticate to the registry, and then use docker push to upload or docker pull to download.
+
+    Tag the image: docker tag myapp:latest username/myapp:latest
+
+    Push the image: docker push username/myapp:latest
+
+    Pull the image (on another system): docker pull username/myapp:latest
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+26. What’s the difference between COPY and ADD commands in Dockerfile?
+    - Both COPY and ADD are used to copy files into a Docker image, but ADD has extra features, while COPY is simpler and preferred for most cases.
+    - COPY only copies local files into the image it’s simple and preferred.
+    - ADD can also fetch files from URLs or automatically extract compressed archives.    
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+27. How do you debug a failing container in production?
+    - To debug a failing container I first check 
+      
+      * Check container status and logs (This helps me see startup errors, exceptions or missing dependencies)
+          - docker ps -a
+          - docker logs <container_name>
+          - docker logs -f <container_name> 
+
+      * Inspect container details
+          - docker inspect <container_name>
+          - This shows configuration details like environment variables, volumes, network, and restart policies useful if it’s misconfigured. 
+
+     * Access the container shell
+         - docker exec -it <container_name> /bin/bash
+         - I go inside the container to check logs, config files, or application health directly.
+
+    * Check resource usage
+         - docker stats
+         - To see if the container is failing due to CPU, memory, or disk limits.
+
+   * Review service dependencies
+         -  Verify whether databases, APIs, or network connections the container depends on are reachable.
+
+   * If needed, recreate or run interactively
+        - docker run -it <image_name> /bin/bash
+        - Helps me reproduce and debug the issue interactively before deploying again
+
+  - Once I find the root cause I fix the issue in the image or configuration and redeploy.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+28. What is the use of HEALTHCHECK instruction in Dockerfile?
+    - The HEALTHCHECK instruction in a Dockerfile is used to monitor the running state of a container and lets Docker automatically test whether a container is working correctly.
+    - It runs a periodic command inside the container, and if it fails repeatedly, Docker marks the container as unhealthy, helping with monitoring and automatic recovery.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+29. How do you manage secrets inside Docker containers?
+    - I manage secrets securely by using Docker Secrets, .env files, external secret managers, or CI/CD environment injections. instead of hardcoding them inside images or Compose files.
+    - Docker Secrets is not a separate service but a built-in Swarm feature that securely manages sensitive information by encrypting it and making it accessible only to specific
+      containers.
+    - In non-Swarm environments we rely on external secret managers or CI/CD-based environment injection.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+30. How do you integrate Docker into a Jenkins CI/CD pipeline?
+    - I integrate Docker with Jenkins to automate the process of building, testing, and deploying containerized applications.
+    - The goal is to make Jenkins automatically build a Docker image from code, test it, and push it to a registry like Docker Hub or AWS ECR.
+
+    Process: 
+
+    * Install Docker on Jenkins Server:
+       - Install Docker Engine on the Jenkins server or agent.
+
+            sudo apt install docker.io -y
+            sudo usermod -aG docker Jenkins (to communicate docker with Jenkins)
+
+       - This allows Jenkins to run Docker commands such as docker build, docker run, and docker push.
+
+
+   * Step 2: Install Docker Plugin (Optional but Useful)
+       - Go to Jenkins → Manage Jenkins → Plugins → Available → Search “Docker” → Install.
+       - This helps Jenkins use Docker agents or manage containers directly.
+
+   * Step3: Configure Docker Credentials
+      - Add Docker Hub or AWS ECR credentials in Jenkins → Manage Credentials.
+      - Jenkins uses these credentials to log in and push images securely.
+
+   * Write a Jenkinsfile to Build, Test, Run, Push
+  
+   * Trigger Pipeline via webhook.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+31. How the Communication is happening between docker and Jenkins.?
+    - Jenkins communicates with Docker through the Docker daemon running on the same host.
+    - Once we install Docker on the Jenkins server and give Jenkins user permission to access /var/run/docker.sock,
+    - Jenkins can run Docker CLI commands directly during the pipeline.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+32. How do you clean up unused images, containers, and networks to save space?
+   - I clean up Docker space using prune commands like "docker system prune -a" or specific ones such as "docker image prune" and docker container prune.
+   - Before cleaning I always check disk usage with "docker system df". This shows how much space is used by images, containers, volumes, and build cache before cleaning.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+33. What are the best practices for writing a production-ready Dockerfile?
+    - When creating a Dockerfile for production, I follow several best practices to make it secure, efficient, and maintainable.
+      * Use small and official base images
+      * Use Multi-stage builds Helps reduce image size by separating build and runtime stages, Only keeps the final artifact in the production image.
+      * Minimize layers Combine related commands into a single RUN to reduce image layers
+         Eg: RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+      * Use .dockerignore Exclude unnecessary files (like logs, node_modules, .git) from the build context.
+      * Keep container stateless , Don’t store data inside the container use volumes for persistent data.
+      * Regularly scan and update images
+      * Use ENTRYPOINT and CMD correctly, ENTRYPOINT defines the main process; CMD defines default arguments.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+34. How can you ensure security and compliance in containerized environments?
+    - To ensure security and compliance in containerized environments, I focus on four key areas like image security, runtime security, network security, and access control.
+
+    1. Image Security:
+        - Always use official and verified base images from trusted registries.
+        - Regularly scan images for vulnerabilities using tools like Trivy.
+        - Use multi-stage builds to remove unnecessary tools from final images.
+
+    2. Runtime Security:
+        - Run containers as non-root users (USER appuser).
+        - Apply read-only file systems and limit container privileges.
+
+    3. Network & Communication Security:
+        - Use private Docker networks for inter-container communication.
+        - Use TLS/SSL encryption for all communication between services.
+        - Restrict external access using firewalls, security groups, or ingress rules.
+
+    4. Access Control & Secrets Management:
+        - Integrate with IAM (Identity and Access Management) give least privilege access.
+        - Never store passwords or API keys inside images.
+        - Use Docker secrets, AWS Secrets Manager, or Vault for managing sensitive data securely.
+        - Restrict who can build, push, or deploy images.
+
+    5. Compliance & Monitoring:
+        - Implement image scanning in CI/CD pipelines for early detection.
+        - Maintain audit logs for all container and image activities.

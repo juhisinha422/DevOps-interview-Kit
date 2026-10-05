@@ -1,0 +1,103 @@
+🐧 Linux Interview – 100 Questions
+
+
+What is Linux?
+What are the main components of Linux?
+Difference between Linux and Unix?
+What is a Linux distribution?
+Name popular Linux distributions.
+What is the Linux kernel?
+What is a shell?
+Types of shells in Linux?
+What is CLI?
+What is GUI?
+What is the root user?
+What is the home directory?
+What is the purpose of /etc directory?
+What is the use of /var directory?
+What is /bin and /sbin?
+What is /usr directory?
+What is /tmp directory?
+What is inode?
+What is a filesystem?
+Types of Linux filesystems?
+What are file permissions in Linux?
+What is chmod?
+What is chown?
+What is umask?
+What is the difference between soft link and hard link?
+What is ACL?
+What is sticky bit?
+What is SUID?
+What is SGID?
+What is the default permission of a file?
+What is a process?
+What is PID?
+What is PPID?
+What is a daemon process?
+What is the difference between process and thread?
+What is top command?
+What is ps command?
+What is kill command?
+What is nice and renice?
+What is zombie process?
+What is init system?
+What is systemd?
+What are runlevels?
+What is crontab?
+Difference between cron and at?
+What is a service?
+How do you start and stop a service?
+What is uptime?
+What is load average?
+What is swap memory?
+What is LVM?
+What is a partition?
+Difference between primary and logical partition?
+What is mount?
+What is fstab?
+What is df command?
+What is du command?
+What is RAID?
+Types of RAID?
+What is iostat?
+What is IP address?
+Difference between public and private IP?
+What is DNS?
+What is hostname?
+What is ping?
+What is netstat?
+What is ss command?
+What is SSH?
+What is SCP?
+Difference between SCP and RSYNC?
+What is a package manager?
+Difference between yum and apt?
+What is rpm?
+What is dpkg?
+What is repository?
+What is grep?
+What is awk?
+What is sed?
+What is vi/vim editor?
+Difference between vi and nano?
+What is environment variable?
+What is PATH variable?
+What is bashrc?
+What is bash_profile?
+What is alias?
+What is export command?
+What is tar?
+Difference between tar and zip?
+What is gzip?
+What is wget?
+What is curl?
+What is firewall in Linux?
+What is iptables?
+What is SELinux?
+What is AppArmor?
+What is journald?
+What is logrotate?
+What is dmesg?
+What is strace?
+What is troubleshooting in Linux?

@@ -1,0 +1,32 @@
+KUBERNETES (Production & Interview Scenarios)
+
+These scenarios reflect real cluster incidents, on-call issues, and senior-level interview questions.
+
+⸻
+
+☸️ Kubernetes – Real-World DevOps Scenarios
+ 1. A pod is stuck in CrashLoopBackOff. How do you troubleshoot it step by step?
+ 2. Pods are in Pending state. What are the possible reasons?
+ 3. A deployment rollout failed. How do you identify the issue and roll back safely?
+ 4. A service is running, but traffic is not reaching the pods. How do you debug?
+ 5. One node shows NotReady. How do you investigate and fix it?
+ 6. How do you perform zero-downtime deployments in Kubernetes?
+ 7. A pod is getting OOMKilled. How do you analyze and resolve it?
+ 8. How do you securely manage secrets and config in Kubernetes?
+ 9. Cluster CPU usage is high, but applications seem normal. How do you troubleshoot?
+ 10. How do you handle node maintenance without impacting applications?
+ 11. Logs are missing for a crashing pod. How do you retrieve them?
+ 12. How do you design high availability for applications in Kubernetes?
+ 13. A namespace was accidentally deleted. What’s the impact and recovery plan?
+ 14. How do you restrict access for developers across namespaces?
+ 15. How do you monitor and alert on Kubernetes application health?
+
+⸻
+
+🧠 What Interviewers Really Look For
+
+✔ Pod ↔ Node ↔ Cluster understanding
+✔ Safe troubleshooting in production
+✔ HA, scaling & resiliency
+✔ Security & RBAC
+✔ Monitoring mindset

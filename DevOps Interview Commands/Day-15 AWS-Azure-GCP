@@ -1,0 +1,73 @@
+ DevOps Interview Command Series — Cloud (AWS / Azure / GCP) (Day 15) ☁️
+
+Cloud is where DevOps actually runs.
+Interviewers expect you to know CLI-level operations to provision, debug, and operate infrastructure across clouds.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the must-know cloud CLI commands 👇
+
+# AWS CLI
+aws --version
+aws configure
+aws sts get-caller-identity
+
+aws ec2 describe-instances
+aws ec2 start-instances --instance-ids i-xxxx
+aws ec2 stop-instances --instance-ids i-xxxx
+
+aws s3 ls
+aws s3 cp file s3://bucket/
+aws s3 sync . s3://bucket/
+
+aws eks list-clusters
+aws eks update-kubeconfig --name cluster-name
+
+aws logs describe-log-groups
+aws logs tail /aws/lambda/log-group --follow
+
+
+# Azure CLI
+az --version
+az login
+az account show
+
+az vm list
+az vm start --name vm --resource-group rg
+az vm stop --name vm --resource-group rg
+
+az storage account list
+az storage blob upload --container-name cont --file file
+
+az aks list
+az aks get-credentials --name cluster --resource-group rg
+
+az monitor metrics list
+az monitor log-analytics query
+
+
+# GCP gcloud CLI
+gcloud version
+gcloud auth list
+gcloud config list
+
+gcloud compute instances list
+gcloud compute instances start vm
+gcloud compute instances stop vm
+
+gsutil ls
+gsutil cp file gs://bucket/
+gsutil rsync -r dir gs://bucket/
+
+gcloud container clusters list
+gcloud container clusters get-credentials cluster
+
+gcloud logging read
+gcloud monitoring metrics list
+
+
+🎯 Interview Focus
+• Cloud authentication & IAM basics
+• VM lifecycle management
+• Object storage operations
+• Kubernetes cluster access
+• Logs & monitoring via CLI
+• Multi-cloud operational awareness

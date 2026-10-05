@@ -1,0 +1,62 @@
+Senior Kubernetes Engineer Interview? Focus On THIS.
+
+At senior level, nobody asks:
+👉 “What is a Pod?”
+
+They ask:
+
+👉 “Why did your production cluster go down at 2AM — and how did you fix it?”
+That’s the difference.
+
+Here are the most important questions — with professional answers 👇
+
+1️⃣ How do you troubleshoot a CrashLoopBackOff in production?
+Answer:
+First, I check pod logs and describe output to identify application vs configuration issues.
+Then I validate resource limits, environment variables, Secrets, and dependency connectivity.
+If needed, I replicate the issue in staging and implement a rollback or patch via rolling update to avoid downtime.
+
+2️⃣ How would you secure a Kubernetes cluster end-to-end?
+Answer:
+I implement RBAC with least-privilege access, enable Network Policies, secure etcd with encryption, use Pod Security Standards, rotate secrets, and integrate OIDC/IAM for authentication.
+I also ensure image scanning and runtime security monitoring.
+
+3️⃣ How does HPA work internally?
+Answer:
+HPA uses Metrics Server to fetch CPU/memory metrics and compares them with defined thresholds.
+Based on desired vs current metrics, it adjusts replica count via the Kubernetes control loop mechanism.
+
+4️⃣ How do you design a highly available production cluster?
+Answer:
+I deploy multi-master control plane across availability zones, configure etcd clustering, use load balancers for API server, implement autoscaling node groups, and enable backup strategy for disaster recovery.
+
+5️⃣ How do you handle node memory pressure?
+Answer:
+I check resource requests/limits, identify memory-heavy pods, analyze eviction events, tune QoS classes, and optimize workloads.
+If required, I scale node groups or implement Vertical Pod Autoscaler.
+
+6️⃣ Rolling Update vs Blue-Green vs Canary — when to use what?
+Answer:
+Rolling Update → Standard gradual update, minimal risk
+Blue-Green → Zero downtime with instant rollback
+Canary → Risk-controlled release with partial traffic testing
+Choice depends on business criticality and traffic sensitivity.
+
+7️⃣ How do you implement GitOps in production?
+Answer:
+I use declarative configuration stored in Git, integrated with tools like ArgoCD or Flux.
+Git becomes the single source of truth, ensuring version control, auditability, and automated reconciliation.
+
+🔥 Core Skills Senior Engineers Must Master
+✔ Control plane internals
+✔ Kubernetes networking
+✔ Cluster security & compliance
+✔ Observability & monitoring
+✔ CI/CD integration
+✔ Cost optimization
+✔ Disaster recovery
+✔ Cloud-managed Kubernetes (EKS / AKS / GKE)
+
+💡 Senior Kubernetes engineers are hired for decision-making under pressure, not just kubectl commands.
+If you can design, debug, scale, and secure clusters in production —
+You are operating at senior level.

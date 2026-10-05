@@ -1,0 +1,17 @@
+Basic CI/CD Pipelines Interview Questions*****
+
+ What is the role of a CI/CD pipeline in software delivery?
+ Explain the differences between Jenkins, GitHub Actions, and GitLab CI/CD.
+ How do you handle a failed CI/CD build?
+ What is Blue-Green Deployment?
+ What are Canary Deployments, and how are they implemented?
+ How do you ensure secure deployments in CI/CD pipelines?  
+ What is a pipeline as code?
+ What challenges might you face while automating pipelines for microservices?
+ How do you optimize CI/CD pipelines for speed?
+ What role does Git play in a CI/CD workflow?
+ Explain artifact repositories and their importance?
+ How do you handle rollbacks during continuous delivery?
+ What is the difference between a pull-based and push-based pipeline?
+ How do you test infrastructure changes in a CI/CD pipeline?
+ What metrics would you monitor in a CI/CD pipeline?

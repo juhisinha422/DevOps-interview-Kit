@@ -1,0 +1,16 @@
+##ELB & ###Auto Scaling 15 Questions... 
+1. How do you troubleshoot unhealthy targets in ALB? 
+2. How do you configure ALB listener rules for multiple apps? 
+3. How do you distribute traffic across multiple AZs using ALB? 
+4. How do you integrate ALB logs with CloudWatch? 
+5. How do you configure HTTPS on ALB using ACM certificates? 
+6. How do you handle cross-zone load balancing in ALB? 
+7. How do you scale EC2 instances automatically based on CPU metrics? 
+8. How do you define scaling policies in Auto Scaling Groups? 
+9. How do you replace failed EC2 instances automatically in ASG? 
+10. How do you test ALB health checks locally? 
+11. How do you set up target groups for different microservices? 
+12. How do you debug Auto Scaling launch configuration issues? 
+13. How do you analyze ALB logs for traffic patterns? 
+14. How do you integrate ALB with WAF for protection? 
+15. How do you redirect HTTP to HTTPS in ALB? 

@@ -1,0 +1,41 @@
+DevOps Interview hashtag#Questions Series hashtag#Prometheus Basic Level
+
+What is Prometheus and why is it used?
+
+Prometheus vs traditional monitoring tools
+
+What are metrics in Prometheus?
+
+What is time-series data?
+
+Push vs pull model — why does Prometheus use pull?
+
+What is Prometheus architecture?
+
+What is a target in Prometheus?
+
+What is a scrape interval?
+
+What are exporters in Prometheus?
+
+Commonly used exporters (Node, Blackbox, cAdvisor)
+
+What is PromQL?
+
+Difference between counter and gauge metrics
+
+What is histogram and summary metric?
+
+What is an alert in Prometheus?
+
+What is Alertmanager?
+
+How does Prometheus store data?
+
+What is service discovery in Prometheus?
+
+Prometheus use cases in Kubernetes
+
+What are labels in Prometheus?
+
+Limitations of Prometheus

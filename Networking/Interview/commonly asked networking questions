@@ -1,0 +1,77 @@
+compiled a list of commonly asked networking questions that cover basics to advanced concepts, including:
+
+✅ IP addressing & CIDR
+ ✅ Subnets, NAT, DNS
+ ✅ Load Balancers (L4 vs L7)
+ ✅ Security Groups, NACLs, Firewalls
+ ✅ VPC Peering & VPN
+ ✅ TCP vs UDP, HTTPS & TLS
+ ✅ SSH, DHCP, ARP
+ ✅ Kubernetes networking (Ingress, Services, CNI)
+ ✅ Real-world troubleshooting scenarios
+
+These questions are extremely helpful for:
+
+DevOps Engineer interviews
+Cloud Engineer roles
+SRE interview preparation
+
+If you’re preparing for interviews or revising networking fundamentals, this list might help you too.
+
+📌 Feel free to save or share this post.
+ 💬 If you have additional questions or suggestions, drop them in comments!
+
+🌐 Networking Basics
+
+What is the difference between a public IP and a private IP?
+When do you use each in cloud?
+What is a subnet?
+Why do we divide networks into subnets?
+Explain CIDR notation with examples (e.g., /24, /16).
+What is NAT and why is it used in cloud VPC / VNet?
+Difference between NAT Gateway and Internet Gateway
+(AWS) / Cloud NAT (GCP).
+What is DNS?
+How does DNS resolution work step-by-step?
+Difference between A record, CNAME, MX, NS, PTR?
+Explain TCP vs UDP with real DevOps use cases
+(e.g., DNS → UDP, SSH → TCP).
+What is a Load Balancer?
+Difference between Layer 4 and Layer 7?
+What is MTU?
+What happens when packets exceed MTU size?
+
+🔐 Cloud & Security Networking
+
+What is a Security Group vs Firewall vs NACL?
+What is VPC Peering?
+When is it used?
+What is a VPN?
+Difference between Site-to-Site VPN and Client VPN?
+What is a reverse proxy?
+NGINX as reverse proxy use case?
+How does HTTPS work?
+Explain the TLS handshake.
+What is a port?
+Why do services use specific port numbers?
+What is ARP?
+How does ARP resolve an IP to a MAC address?
+Why do we need routing tables in cloud VPCs?
+
+⚙️ Protocols & Performance
+
+What is latency vs throughput vs bandwidth?
+Explain the 3-way TCP handshake.
+What is SSH?
+How does key-based authentication work?
+What is DHCP?
+ How does it assign IP addresses automatically?
+
+☸️ Kubernetes Networking
+
+How do you troubleshoot networking issues in a Kubernetes cluster?
+(Pods, CNI, DNS, Service connectivity)
+Difference between Ingress and Load Balancer at the networking level?
+Why does curl work but browser doesn’t?
+How do you debug this at the network layer?
+

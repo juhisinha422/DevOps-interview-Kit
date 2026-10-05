@@ -1,0 +1,63 @@
+ DevOps Interview Preparation hashtag#Gitlab
+4–6 Years Experience | Tool 10
+
+Explain GitLab CI/CD architecture
+
+How does .gitlab-ci.yml get executed internally?
+
+Stages vs Jobs vs Pipelines — differences
+
+How does GitLab Runner work?
+
+Shared runners vs specific runners
+
+Docker executor vs shell executor vs Kubernetes executor
+
+When should you use Kubernetes executor?
+
+How do you secure GitLab runners in
+production?
+
+How are secrets managed in GitLab CI?
+
+Variables precedence in GitLab CI
+
+Rules vs only/except — differences
+
+How does GitLab CI handle parallel jobs?
+
+How do you implement matrix-like builds in GitLab CI?
+
+How do you reuse CI logic across projects?
+
+Includes vs templates — when to use?
+
+Cache vs artifacts — differences
+
+How do you optimize GitLab CI pipeline execution time?
+
+How do you control pipeline costs?
+
+Pipeline triggered multiple times — how to prevent it?
+
+Job stuck in pending state — troubleshooting steps How do you implement approvals in GitLab CI?
+
+Protected branches vs protected environments
+
+How do you manage multi-environment deployments?
+
+How do you implement rollback in GitLab CI?
+
+GitLab CI vs Jenkins vs GitHub Actions — comparison
+
+Secrets exposed in job logs — immediate actions
+
+Runner compromised — response strategy
+
+Pipeline succeeds but deployment failed — debugging approach
+
+GitLab upgrade broke pipelines — recovery plan
+When should GitLab CI NOT be used?
+
+💡 Interview Tip (4–6 yrs):
+If you explain runner security, YAML reuse, rules logic, and production rollback, interviewers know you’ve run GitLab CI at scale, not just basic pipelines.

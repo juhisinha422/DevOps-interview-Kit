@@ -1,0 +1,75 @@
+DevOps Engineer (2–4 Years) Interview Questions.
+
+Here are some real-time, practical, and scenario-based questions that help you understand where you stand in your DevOps journey:
+
+How do you debug a CI/CD pipeline that suddenly started failing without any code changes?
+
+Explain how you secure secrets in a CI/CD pipeline.
+
+In Kubernetes, how do you handle a situation where the pod is running but the application is not reachable?
+
+What is the difference between a Rolling Update and Blue-Green Deployment?
+
+How do you handle Terraform state file management in a team environment?
+
+What steps will you take if your EC2 CPU usage spikes to 90% for a long time?
+
+How do you optimize Docker image size in real-time?
+
+What happens internally when you run kubectl apply -f deployment.yaml?
+
+How would you configure auto-scaling for a microservice-based application?
+
+How do you monitor and alert for failed deployments in production?
+
+Explain how you design a Git branching strategy for a fast-moving DevOps team.
+
+How do you handle a situation where Terraform and actual cloud infra go out of sync?
+
+What is the difference between Load Balancer, Ingress Controller, and API Gateway?
+
+How do you debug a container that works locally but fails inside Kubernetes?
+
+What metrics do you track in a production monitoring dashboard?
+
+How do you reduce deployment time in a CI/CD pipeline?
+
+How do you manage environment-specific configurations in a multi-stage environment?
+
+What is the best way to perform zero-downtime deployments in Kubernetes?
+
+How do you perform disaster recovery testing in AWS/GCP/Azure?
+
+Explain a production issue you solved using logs and monitoring tools.
+
+How do you design a CI/CD pipeline that supports multiple microservices?
+
+What steps do you take when a Kubernetes node becomes NotReady?
+
+How do you perform root-cause analysis for a failed production deployment?
+
+Explain how you manage versioning for Docker images in real-time projects.
+
+How do you detect configuration drifts in Terraform-managed infrastructure?
+
+What is your approach when your Helm release goes into a failed state?
+
+How do you implement canary deployment using Kubernetes + Istio/NGINX?
+
+What is the difference between StatefulSet and Deployment in Kubernetes?
+
+How do you secure Jenkins agents in a distributed pipeline?
+
+Explain how you scale a Kubernetes cluster automatically.
+
+How do you troubleshoot high latency issues in a microservice?
+
+What’s your strategy to clean up unused Docker images, volumes, and networks?
+
+How do you monitor ETL jobs, cronjobs, or scheduled workloads in Kubernetes?
+
+What is the concept of drift detection in GitOps tools like ArgoCD?
+
+How do you avoid downtime when updating database schema in production?
+
+Explain a time when you optimized cloud cost without impacting performance.

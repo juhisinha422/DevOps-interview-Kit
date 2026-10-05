@@ -1,0 +1,24 @@
+🔹 What is GitHub Actions?
+GitHub Actions is a built-in CI/CD service in GitHub that allows you to automate workflows like:
+Build
+Test
+Scan
+Deploy
+ based on repository events.
+
+🔹 Why CI/CD with GitHub Actions?
+No separate CI tool required
+Native GitHub integration
+Faster automation setup
+Ideal for cloud & DevOps pipelines
+
+🔹 GitHub Actions vs Jenkins
+GitHub Actions uses YAML workflows
+Jenkins requires server setup & plugins
+Actions is GitHub-native
+Jenkins is tool-agnostic
+
+🔥 3-Line Takeaway
+Automation starts with commits.
+ CI/CD removes manual effort.
+ GitHub Actions simplifies DevOps.

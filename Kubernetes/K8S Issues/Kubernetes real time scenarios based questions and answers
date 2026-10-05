@@ -1,0 +1,94 @@
+Kubernetes real time scenarios based questions and answers
+
+🚨 Scenario 1: Pod is in CrashLoopBackOff
+Q: A pod keeps restarting and shows CrashLoopBackOff. What will you do?
+Check pod status
+kubectl get pods
+Describe the pod (events are gold)
+kubectl describe pod <pod-name>
+Check container logs
+
+kubectl logs <pod-name>
+kubectl logs <pod-name> -c <container-name>
+If app exits immediately, check:
+Wrong command/args
+Missing env variables
+ConfigMap/Secret issues
+If needed, increase restart delay for debugging:
+restartPolicy: Never
+
+🚨 Scenario 2: Pod stuck in Pending
+Q: A pod is not starting and stuck in Pending. Why?
+A:Common causes:
+No nodes with enough CPU/memory
+Node selector / taints & tolerations mismatch
+PVC not bound
+Debug steps:
+
+kubectl describe pod <pod-name>
+Typical messages:
+0/5 nodes available: insufficient memory
+pod has unbound immediate PersistentVolumeClaims
+Fix:Increase cluster capacity
+Fix resource requests
+Create PV or use correct StorageClass
+
+🚨 Scenario 3: Service is not accessible
+
+Q: Pods are running but Service is not reachable.
+A:Checklist:
+Service selector matches pod labels?
+
+kubectl get svc
+kubectl describe svc <service-name>
+Pod labels:
+
+kubectl get pods --show-labels
+Check endpoints:
+
+kubectl get endpoints <service-name>
+No endpoints = selector mismatch
+Real-world issue:
+Typo in label app: web vs app: web-app
+
+🚨 Scenario 4: Application works inside pod but not from outside
+
+Q: App responds inside pod but not externally.
+
+Check Service type:
+ClusterIP → internal only
+NodePort / LoadBalancer → external
+If using Ingress:
+Ingress Controller running?
+Correct host/path?
+
+kubectl get ingress
+kubectl describe ingress <ingress-name>
+Very common miss: DNS / host file not updated for Ingress hostname.
+
+🚨 Scenario 5: High CPU / Memory usage
+
+Q: Pods are getting OOMKilled.
+A:Check limits:
+
+kubectl describe pod <pod-name>
+Look for:
+Last State: Terminated
+Reason: OOMKilled
+
+🚨 Scenario 6: Rolling update causes downtime
+
+Q: During deployment update, users see downtime.
+A:Check deployment strategy:
+strategy:
+ type: RollingUpdate
+ rollingUpdate:
+ maxUnavailable: 0
+ maxSurge: 1
+
+🚨 Scenario 7: ConfigMap change not reflected in pods
+Q: You updated a ConfigMap but app still uses old config.
+A:ConfigMaps are not hot-reloaded unless:
+App supports reload
+Or pod is restarted
+Fix: kubectl rollout restart deployment <deployment-name>

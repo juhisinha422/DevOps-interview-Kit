@@ -1,0 +1,26 @@
+CI/CD Interview Experience | Real Conversation
+
+Today in an interview, the discussion moved straight into CI/CD. Sharing a small part of how it went 👇
+
+Interviewer: What is CI/CD in simple words?
+
+Sanjit: CI/CD is about automation. Continuous Integration means every code change is automatically built and tested. Continuous Deployment means that validated code is released to environments automatically, reducing manual work and errors. ⚙️
+
+Interviewer: How did you implement CI/CD in your projects?
+
+Sanjit: I used Azure DevOps YAML pipelines. CI handled build, unit testing, and Docker image creation. CD handled deployment to AKS using Helm charts with proper environment separation. 🚢
+
+Interviewer: What if the build fails?
+
+Sanjit: The pipeline stops immediately and the team gets notified. Fixing issues early is the main goal of CI. 🛑
+
+Interviewer: How do you handle secrets?
+
+Sanjit: Secrets are stored securely in Azure Key Vault and accessed through service connections. No secrets are hardcoded. 🔐
+
+Interviewer: How do you ensure zero downtime?
+
+Sanjit: Using rolling deployments in Kubernetes along with readiness and liveness probes, users never face downtime. 📈
+
+💡 My key takeaway
+CI/CD is not just about tools, it is about building trust in every deployment.

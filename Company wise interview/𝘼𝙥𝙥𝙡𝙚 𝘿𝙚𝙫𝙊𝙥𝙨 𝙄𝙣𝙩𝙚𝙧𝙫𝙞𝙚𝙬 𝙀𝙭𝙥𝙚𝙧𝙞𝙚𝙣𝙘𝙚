@@ -1,0 +1,60 @@
+𝘼𝙥𝙥𝙡𝙚 𝘿𝙚𝙫𝙊𝙥𝙨 𝙄𝙣𝙩𝙚𝙧𝙫𝙞𝙚𝙬 𝙀𝙭𝙥𝙚𝙧𝙞𝙚𝙣𝙘𝙚 – 𝙌𝙪𝙚𝙨𝙩𝙞𝙤𝙣𝙨 𝙏𝙝𝙖𝙩 𝙈𝙞𝙜𝙝𝙩 𝙃𝙚𝙡𝙥 𝙔𝙤𝙪
+
+Interviewing with Apple was one of the most challenging and eye-opening technical experiences I’ve had.
+
+I recently went through 𝐭𝐰𝐨 𝐭𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥 𝐢𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐫𝐨𝐮𝐧𝐝𝐬 𝐰𝐢𝐭𝐡 𝐀𝐩𝐩𝐥𝐞 for a 𝐃𝐞𝐯𝐎𝐩𝐬 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 role. The quality and depth of questions really pushed me to think deeply about production systems, observability, and decision-making.
+Sharing the actual topics/questions that were asked — hoping this helps others preparing for similar roles.
+
+🔹 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 & 𝐎𝐛𝐬𝐞𝐫𝐯𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+Difference between liveness vs readiness probes
+ClusterIP vs NodePort vs LoadBalancer
+How a ClusterIP service can still be accessed
+Where Kubernetes logs are generated and stored
+How Kubernetes knows where logs are located
+How to fetch older logs (1 month+)
+Types of Kubernetes Network Policies
+Rolling updates and rollbacks
+How to check deployment or pod versions
+How applications are exposed outside a K8s cluster
+
+🔹 𝐏𝐫𝐨𝐦𝐞𝐭𝐡𝐞𝐮𝐬 & 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠
+How Prometheus works with Kubernetes
+How Prometheus knows what to scrape
+Who exposes metrics for Prometheus
+Configuring Prometheus in Kubernetes
+Prometheus vs CloudWatch – when and why
+Moving logs/metrics to ELK / Splunk
+What metrics are shared with a monitoring team
+
+🔹 𝐀𝐖𝐒 & 𝐂𝐥𝐨𝐮𝐝
+AWS services worked on (EC2, RDS, EBS, EFS, etc.)
+Difference between RDS and traditional databases
+Database upgrades in AWS without downtime
+EC2 standalone vs clustered setups
+Enabling Prometheus metrics for EC2
+CloudWatch use cases
+EBS vs EFS
+Setting up Kubernetes on EKS
+
+🔹 𝐂𝐈/𝐂𝐃 & 𝐃𝐞𝐯𝐎𝐩𝐬
+Explain a CI/CD pipeline end-to-end
+Helm charts and their usage
+Handling failures and rollbacks
+How monitoring integrates with TomEE servers
+
+🔹 𝐋𝐢𝐧𝐮𝐱 & 𝐓𝐫𝐨𝐮𝐛𝐥𝐞𝐬𝐡𝐨𝐨𝐭𝐢𝐧𝐠
+Daily Linux usage in production
+User unable to write files despite free disk space — how to troubleshoot
+Logs, permissions, filesystem, and inode-related issues
+
+🔹 𝐁𝐞𝐡𝐚𝐯𝐢𝐨𝐫𝐚𝐥 & 𝐋𝐞𝐚𝐝𝐞𝐫𝐬𝐡𝐢𝐩
+Handling difficult production situations
+Owning up to mistakes
+Helping teammates who lack clarity
+Managing multiple tasks simultaneously
+Handling outages as a lead
+Making changes that are future-proof
+Why SSL certificates are important
+
+The experience itself was incredibly valuable and reinforced how important strong fundamentals and real-world thinking are at companies like Apple.
+Sharing this purely to help the community — hope it adds value to someone preparing for high-bar DevOps interviews.

@@ -1,0 +1,49 @@
+DevOps Interview Command Series — Docker (Day 9) 🐳
+
+Docker is the foundation of containerization.
+From local development to CI/CD pipelines and Kubernetes — containers power modern DevOps.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Docker commands you must know:
+
+docker --version
+docker info
+
+docker pull image
+docker images
+docker rmi image
+
+docker run image
+docker run -d -p 8080:80 image
+docker run --name container image
+docker ps
+docker ps -a
+
+docker exec -it container /bin/bash
+docker logs container
+docker inspect container
+
+docker stop container
+docker start container
+docker restart container
+docker rm container
+
+docker build -t image:tag .
+docker tag image:tag repo/image:tag
+docker push repo/image:tag
+docker login
+
+docker volume ls
+docker volume inspect volume
+docker network ls
+
+docker-compose up -d
+docker-compose down
+docker-compose logs
+
+🎯 Interview Focus
+• Image vs Container difference
+• Dockerfile instructions (FROM, COPY, CMD, ENTRYPOINT)
+• Exposing ports & networking
+• Debugging container failures
+• Image optimization & security best practices
+• Docker vs VM comparison

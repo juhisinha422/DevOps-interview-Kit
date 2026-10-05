@@ -1,0 +1,27 @@
+Linux Interview Questions for DevOps Engineers as per my experiences….
+
+ 1. What happens in Linux when you execute a command?
+ 2. What is the difference between a process and a thread?
+ 3. How does Linux handle Out-of-Memory (OOM) situations?
+ 4. How do you check which process is consuming high CPU or memory?
+ 5. How do you find which process is listening on a particular port?
+ 6. What is load average? How do you interpret it?
+ 7. How do you check disk usage and identify which directory is consuming the most space?
+ 8. What is the difference between a soft link and a hard link?
+ 9. How do you analyze logs in Linux for troubleshooting?
+ 10. What is the difference between cron and systemd timers?
+ 11. How do you debug why a service failed to start?
+ 12. What’s the difference between /etc/profile, .bashrc, .bash_profile?
+ 13. How do you check the current run level of a system?
+ 14. What is SELinux/AppArmor and how do you check their status?
+ 15. How do you check network connectivity and DNS issues?
+ 16. What is the purpose of nice and renice?
+ 17. What are file permissions? Explain chmod, chown, and chgrp.
+ 18. What is the /proc filesystem used for?
+ 19. How do you list all open files in Linux?
+ 20. What is the inode? How can you check inode usage?
+ 21. How do you create a user and add them to a group?
+ 22. How do you check scheduled cron jobs for all users?
+ 23. What is the difference between kill, pkill, and killall?
+ 24. How do you check system boot logs?
+ 25. What is the difference between top, htop, and atop?

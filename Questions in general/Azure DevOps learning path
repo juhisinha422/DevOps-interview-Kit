@@ -1,0 +1,89 @@
+Azure DevOps from scratch (and do it properly)… I wouldn’t chase every tool. I’d focus on Azure-native DevOps skills that real teams actually use. Here’s the roadmap I’d follow 
+
+Phase 1 (Weeks 1–4): Core Foundations
+Get solid before touching pipelines.
+∟ Linux basics (processes, services, logs)
+∟ Git fundamentals (branching, PRs, rebasing)
+∟ Networking basics (DNS, ports, HTTP/S)
+∟ Bash or Python for automation
+∟ How applications run (not just “deploy button”)
+
+Phase 2 (Weeks 5–8): Azure Fundamentals (Hands-on)
+Not theory. Real Azure usage.
+∟ Azure subscriptions, resource groups & regions
+∟ Azure AD basics (users, service principals, RBAC)
+∟ VMs vs App Services (when to use what)
+∟ Storage Accounts (Blob, File, Queue — real use cases)
+∟ Virtual Networks, subnets & NSGs
+∟ Azure CLI (muscle memory)
+
+Phase 3 (Weeks 9–12): Containers the Right Way
+Containers before Kubernetes.
+∟ Docker basics (images, layers, containers)
+∟ Writing clean Dockerfiles
+∟ Multi-stage builds
+∟ Azure Container Registry (ACR)
+∟ Run and debug containers locally
+∟ Containerizing a real app (not hello-world)
+
+Phase 4 (Weeks 13–16): Azure DevOps CI/CD
+This is where DevOps actually starts.
+∟ Azure Repos vs GitHub
+∟ Azure DevOps Pipelines concepts
+∟ YAML pipelines (build, test, artifacts)
+∟ Pipeline triggers & environments
+∟ Build & push Docker images to ACR
+∟ Deploy to Azure App Service / VM from pipeline
+
+Phase 5 (Weeks 17–20): Infrastructure as Code on Azure
+Clicking in the portal doesn’t scale.
+∟ Terraform fundamentals
+∟ AzureRM provider
+∟ Create VNets, VMs, App Services
+∟ Remote state with Azure Storage
+∟ Variables, outputs & modules
+∟ Run Terraform via Azure DevOps pipeline
+
+Phase 6 (Weeks 21–26): Kubernetes Fundamentals
+Before AKS, understand Kubernetes itself.
+∟ Pods, Deployments, ReplicaSets
+∟ Services (ClusterIP, LoadBalancer)
+∟ ConfigMaps & Secrets
+∟ Resource requests & limits
+∟ kubectl debugging
+∟ Basic failure scenarios
+
+Phase 7 (Weeks 27–32): Azure Kubernetes Service (AKS)
+Now connect Kubernetes to Azure.
+∟ AKS architecture
+∟ Node pools & scaling
+∟ Integrating AKS with ACR
+∟ Azure Load Balancer & Ingress
+∟ Namespaces & RBAC
+∟ Rolling updates & rollbacks
+
+Phase 8 (Weeks 33–36): Observability & Reliability
+DevOps = owning production.
+∟ Azure Monitor & Log Analytics
+∟ Application Insights
+∟ Container & AKS logs
+∟ Alerts (CPU, memory, failures)
+∟ Basic SLI / SLO understanding
+
+Phase 9 (Weeks 37–40): Azure DevOps Security
+Security is not optional.
+∟ Azure RBAC & least privilege
+∟ Secure service connections
+∟ Secrets with Key Vault
+∟ Image vulnerability scanning
+∟ AKS security basics
+∟ Avoid common production mistakes
+
+Phase 10 (Weeks 41–52): Real Azure DevOps Projects
+This is what separates learners from engineers.
+∟ End-to-end Azure infra with Terraform
+∟ CI/CD for containerized apps
+∟ AKS-based microservices
+∟ Monitoring + alerts
+∟ Break things → fix them → document
+∟ Clear READMEs & architecture diagrams

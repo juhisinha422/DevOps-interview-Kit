@@ -1,0 +1,54 @@
+Mastering GitHub Actions 
+
+GitHub Actions has become the default CI/CD engine for many teams. As a DevOps / SRE engineer, you’re expected to understand not just how to write workflows, but how to secure and optimize them in production.
+
+Below are concise answers to four questions that often come up in interviews.
+
+- Explain GitHub Actions architecture
+GitHub Actions is built around a few core concepts:
+
+
+Workflows – YAML files under .github/workflows/ that define automation for your repo, like CI, CD, or security scans.
+Events – Triggers such as push, pull_request, schedule, or workflow_dispatch that start a workflow run.
+Jobs – Logical units of work inside a workflow. Jobs run on runners and are parallel by default unless you chain them with needs.
+Steps – Sequential commands in a job, either shell commands (run) or reusable actions (uses).
+Runners – The actual VM or container (for example ubuntu-latest) where your jobs execute.
+When an event occurs, GitHub evaluates matching workflows, spins up runners, executes jobs (often in parallel), and each job executes its steps in order.
+
+- How do you handle secrets?
+In GitHub Actions, secrets are never hard‑coded in workflows or code. Instead:
+
+
+Store them in GitHub Secrets at repository, organization, or environment level (for example DOCKER_PASSWORD, AWS_ACCESS_KEY_ID).
+Reference them in workflows via ${{ secrets.MY_SECRET }} so they stay masked in logs and never appear in plaintext.
+For production, use environments (like staging, production) with:
+The rule is simple: secrets live in GitHub’s encrypted storage or a dedicated secret manager, never in Git history, Dockerfiles, or console output.
+
+- How do you optimize workflow performance?
+There are several levers to make GitHub Actions fast and cost‑efficient:
+
+
+Cache dependencies with actions/cache (for example ~/.npm, ~/.cache/pip) so repeat builds avoid reinstalling everything.
+Run jobs in parallel when they don’t depend on each other (for example lint, test, security-scan as separate jobs).
+Use matrix strategy to fan out tests across OS / language versions from a single job definition, instead of duplicating YAML.
+Enable Docker layer caching or push pre‑built base images so Docker builds reuse layers efficiently.
+Use paths filters to only run heavy workflows when relevant files change (for example skip backend tests on pure frontend change).
+For very heavy pipelines, consider self-hosted runners or larger runner sizes to speed builds and reduce queue time.
+The idea is to fail fast, avoid repeated work, and only run what’s necessary for the change set.
+
+- What’s the difference between artifacts and cache?
+Both artifacts and cache move data around, but they serve different purposes:
+
+Artifacts
+
+
+Outputs you want to persist or share between jobs in the same workflow run.
+Examples: test reports, coverage files, build bundles, screenshots, SARIF security reports.
+They are uploaded with actions/upload-artifact and can be downloaded by later jobs or humans after the run.
+Cache
+
+
+Data that speeds up future workflow runs by reusing dependencies or build outputs keyed by a hash.
+Examples: node_modules, Maven/Gradle caches, ~/.cache/pip, large downloaded toolchains.
+Implemented with actions/cache, keyed by things like OS + lockfile hash.
+A useful way to phrase it: artifacts are reliable deliverables for this run; cache is best‑effort acceleration for future runs.

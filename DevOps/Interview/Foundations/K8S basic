@@ -1,0 +1,41 @@
+DevOps Interview #Questions Series | #Kubernetes Basic Level
+
+What is Kubernetes and why is it used?
+
+Problems Kubernetes solves compared to Docker alone
+
+What is a Kubernetes cluster?
+
+Master node vs worker node
+
+What is a Pod?
+
+Why are Pods ephemeral?
+
+What is a Deployment?
+
+Difference between Deployment and ReplicaSet
+
+What is a Service in Kubernetes?
+
+Types of Services (ClusterIP, NodePort, LoadBalancer)
+
+What is kube-apiserver?
+
+What is etcd and why is it important?
+
+What is kube-scheduler?
+
+What is kubelet?
+
+What is a Namespace?
+
+What is a ConfigMap?
+
+What is a Secret?
+
+How does Kubernetes handle container restarts?
+
+What is kubectl and common commands?
+
+Real-world use cases of Kubernetes

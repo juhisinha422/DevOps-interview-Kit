@@ -1,0 +1,41 @@
+ DevOps Interview hashtag#Questions Series hashtag#Prometheus Advanced Level
+
+How does Prometheus TSDB work internally?
+
+How does Prometheus handle high-cardinality metrics?
+
+What happens when Prometheus runs out of disk space?
+
+How do you design Prometheus for high availability?
+
+Difference between Federation and Thanos/Cortex/Mimir
+
+How do you scale Prometheus in large enterprises?
+
+How does remote write and remote read work?
+
+How do you implement long-term storage for metrics?
+
+How do you tune Prometheus performance?
+
+How do you reduce memory usage in Prometheus?
+
+How do you design SLO-based alerting?
+
+How do you avoid alert fatigue in large systems?
+
+How do you monitor multi-cluster Kubernetes environments?
+
+How do you secure Prometheus in production?
+
+How do you integrate Prometheus with service meshes?
+
+What are common PromQL performance issues?
+
+How do you debug slow PromQL queries?
+
+How do you handle metric duplication issues?
+
+When should Prometheus NOT be used?
+
+Prometheus vs enterprise monitoring tools — tradeoffs

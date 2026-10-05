@@ -1,0 +1,26 @@
+ DevOps Interview Experience – Societe Generale
+
+Interview for the Specialist Software Engineer role at Societe Generale. It was a interesting discussion focused on DevOps scenarios, CI/CD pipelines, and troubleshooting situations.
+
+Below are some of the topics and questions discussed:
+
+🔹 Git concepts – Git pull vs Git fetch vs Git merge
+🔹 Configuring Maven in Jenkins
+🔹 Configuring SonarQube in Jenkins pipelines
+🔹 Writing Jenkins pipeline stages (Build, Test, Deploy)
+🔹 Jenkins parameters and credentials management
+🔹 Handling pipeline failures due to SonarQube quality gates (code coverage < 80%)
+🔹 WAR file generation and where artifacts are stored
+🔹 Jenkins upgrade process
+🔹 Custom Quality Gates in SonarQube
+🔹 Deployment stage challenges in CI/CD pipelines
+🔹 Write multi-stage Docker files
+🔹 Building Docker images and pushing them to registries
+🔹 Troubleshooting stopped containers
+🔹 Changing Docker container port mappings
+🔹 Kubernetes services – LoadBalancer vs Ingress
+🔹 Terraform state locking configuration
+🔹 Converting shell scripts to Ansible playbooks
+🔹 Monitoring Kubernetes clusters
+🔹 Shell scripting task – find files larger than 200 MB
+🔹 Checking Jenkins system logs

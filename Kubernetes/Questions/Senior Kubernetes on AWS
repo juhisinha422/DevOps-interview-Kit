@@ -1,0 +1,37 @@
+Senior Kubernetes on AWS – Interview Questions That Separate Engineers from Architects
+Hiring managers don’t look for kubectl users at senior level — they look for system thinkers.
+
+1️⃣ How do you design a highly available EKS cluster on AWS?
+Answer:
+I deploy EKS across multiple AZs, use managed node groups, enable cluster autoscaler, and place ALB/NLB via AWS Load Balancer Controller. Control plane HA is handled by AWS, while workloads are spread using pod anti-affinity.
+
+2️⃣ How do you handle Kubernetes networking in AWS?
+Answer:
+I use AWS VPC CNI for native VPC networking, assign security groups to pods when required, and manage ingress via ALB Ingress Controller. For scale, I tune IP limits using prefix delegation.
+
+3️⃣ How do you secure EKS at production scale?
+Answer:
+I integrate IAM Roles for Service Accounts (IRSA), enforce RBAC, enable network policies, use Secrets Manager / SSM, and scan images via ECR + security tools. Security is enforced at cluster, node, and pod level.
+
+4️⃣ How do you manage Kubernetes upgrades on AWS?
+Answer:
+I follow AWS-recommended version skew, upgrade control plane first, then node groups, and drain nodes using Pod Disruption Budgets to ensure zero downtime.
+
+5️⃣ How do you implement autoscaling in EKS?
+Answer:
+I combine HPA for pods, Cluster Autoscaler for nodes, and Karpenter for fast, cost-optimized scaling based on real workload demand.
+
+6️⃣ How do you implement CI/CD for Kubernetes on AWS?
+Answer:
+I use GitOps (Argo CD / Flux), build images with CI pipelines, store them in ECR, and deploy via Helm or Kustomize. Git remains the single source of truth.
+
+7️⃣ How do you monitor and troubleshoot EKS clusters?
+Answer:
+I use CloudWatch Container Insights, Prometheus + Grafana, and centralized logging with Fluent Bit. Troubleshooting starts from events → logs → metrics, not guesswork.
+
+8️⃣ How do you optimize EKS cost?
+Answer:
+I mix On-Demand + Spot nodes, right-size resources, use Karpenter, and continuously monitor via AWS Cost Explorer + metrics-based scaling.
+
+💡 Senior-level Kubernetes is not about commands — it’s about architecture, security, scalability, and cost awareness.
+If you’re preparing for Staff / Senior / Lead DevOps or SRE interviews, these are the conversations you must master.

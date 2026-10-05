@@ -1,0 +1,29 @@
+GitHub Actions with Kubernetes
+
+Today I learned how GitHub Actions automates Kubernetes deployments for modern cloud-native applications.
+
+🔹 Kubeconfig Usage
+Workflows use kubeconfig to:
+Authenticate with clusters
+Select namespaces
+Apply configurations
+Access is handled securely.
+
+🔹 Deploy Manifests
+GitHub Actions can:
+Apply Kubernetes YAML manifests
+Deploy services and workloads
+Automate release processes
+This ensures consistent deployments.
+
+🔹 Rolling Updates
+Rolling updates help:
+Update pods gradually
+Avoid downtime
+Enable safer releases
+Automation improves reliability.
+
+🔥 3-Line Takeaway
+CI/CD reaches clusters.
+ Manifests define state.
+ Rolling updates ensure uptime.

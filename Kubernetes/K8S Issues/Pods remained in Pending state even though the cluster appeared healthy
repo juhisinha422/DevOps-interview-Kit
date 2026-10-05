@@ -1,0 +1,40 @@
+ Real-Time Kubernetes Issue & Resolution.
+
+Issue: Pods remained in Pending state even though the cluster appeared healthy.
+
+ ✔ Nodes were Ready
+ ✔ No CPU or memory pressure
+ ❌ Pods were not getting scheduled
+
+🔍 Root Cause: A nodeSelector label mismatch between the pod specification and cluster nodes.
+
+nodeSelector:
+ env: production
+But node labels were:
+
+env=prod
+This silent mismatch blocked pod scheduling.
+
+ ✅ Solution:
+ 1️⃣ Verified node labels
+
+kubectl get nodes --show-labels
+
+2️⃣ Corrected the label mismatch
+
+kubectl label node node-1 env=production
+
+3️⃣ Pods scheduled successfully 🚀
+
+🧠 Key Takeaway:
+
+ Kubernetes doesn’t always surface clear errors for label mismatches.
+ Even a small configuration difference can stop deployments entirely.
+
+Always validate:
+
+* nodeSelector
+* node labels
+* affinity rules
+
+💡 Practical issues like these highlight why attention to detail matters in DevOps.

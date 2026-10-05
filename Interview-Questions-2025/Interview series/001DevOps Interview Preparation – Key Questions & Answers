@@ -1,0 +1,59 @@
+DevOps Interview Preparation – Key Questions & Answers (EKS | AWS | Terraform | CI/CD)
+
+Recently, while preparing for DevOps interviews, I compiled a set of real-world interview questions based on my hands-on experience. Sharing this in case it helps others preparing for Senior / 6+ years DevOps roles.
+
+✅ How do you upgrade an EKS cluster?
+Upgrade in phases:
+Control plane first
+Cluster add-ons (CNI, CoreDNS, kube-proxy)
+Worker nodes using rolling or blue/green node groups
+Ensures zero downtime and easy rollback.
+
+✅ Why not in-place node upgrades?
+Rolling upgrades with new node groups are safer and rollback-friendly.
+🔹 Terraform & Infrastructure as Code
+
+✅ Have you used Terraform modules?
+Yes, created reusable modules and used for_each to provision tenant-specific resources dynamically.
+
+✅ How do you handle rollback in Terraform?
+Rollback is done by reverting the Git commit and re-running the pipeline. Terraform restores the previous desired state.
+
+✅ GitHub Actions / Azure Pipelines
+Used pipelines for:
+Infrastructure provisioning
+Application deployments
+Scheduled automation (start/stop resources)
+Choice depends on use case:
+Lambda → event-based automation
+Pipeline → controlled, auditable changes
+
+✅ What is Warm Standby?
+DR services run at minimal capacity and scale up quickly during a disaster.
+
+✅ How is DB promoted during DR?
+Read replicas are promoted to primary via automation or controlled pipelines after health checks.
+
+✅ Why TLS inside Kubernetes?
+Secures service-to-service communication, prevents MITM attacks, and meets compliance requirements.
+
+✅ How do annotations work if they are read-only?
+Annotations are metadata read by controllers (e.g., Prometheus) to take action like enabling metrics scraping.
+
+🔹 Cost Optimization
+✅ Implemented:
+Instance scheduling
+Right-sizing
+Spot instances
+Autoscaling
+Lambda-based automation
+
+🔹 Shell Scripting
+✅ Used shell scripts for:
+Server automation
+Health checks
+CI/CD pipeline tasks
+Scheduled jobs
+
+📌 Key takeaway:
+Automation with safety, upgrades with rollback, and infrastructure designed for failure.

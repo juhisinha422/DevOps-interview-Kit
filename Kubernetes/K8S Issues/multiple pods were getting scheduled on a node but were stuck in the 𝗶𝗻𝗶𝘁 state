@@ -1,0 +1,24 @@
+A Kubernetes issue I faced recently: too many pods on one node
+
+Recently, we noticed that multiple pods were getting scheduled on a node but were stuck in the 𝗶𝗻𝗶𝘁 state and not moving to running.
+
+At first, it looked confusing because the pods were already assigned to nodes, yet they were not starting properly.
+
+On digging deeper, we found that some nodes were getting a very high number of pods (50+). While this looked acceptable on paper, in practice the node did not have enough resources to reliably run that many pods along with system components and background workloads.
+
+As a result, pods were scheduled but the node struggled to initialize and run them properly.
+
+𝗪𝗵𝗮𝘁 𝘄𝗲 𝗱𝗶𝗱 𝗮𝘀 𝗮𝗻 𝗶𝗺𝗺𝗲𝗱𝗶𝗮𝘁𝗲 𝗳𝗶𝘅:
+
+ • Reduced the maximum number of pods allowed per node
+
+ • Set a safer pod limit so that a single node doesn’t get overloaded
+
+ • Since we use autoscaling, new nodes were automatically launched to handle the remaining pods
+
+After this change, pod initialization stabilized and workloads started behaving as expected.
+
+This incident reinforced an important lesson for me:
+pod density matters just as much as CPU and memory requests.
+
+We’re now evaluating better long-term approaches to handle scaling without overloading individual nodes.

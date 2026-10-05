@@ -1,0 +1,60 @@
+#AWS Interview Questions – Amazon hashtag#S3
+
+What is Amazon S3?
+
+What is an S3 bucket?
+
+What is an object in S3?
+
+Maximum size of an S3 object?
+
+What is S3 global uniqueness?
+
+Difference between S3 and EBS?
+
+What are S3 storage classes?
+
+Use cases for each S3 storage class?
+
+What is S3 versioning?
+
+What is S3 lifecycle policy?
+
+What is S3 replication?
+
+Difference between SRR and CRR?
+
+What is S3 encryption?
+
+Types of encryption in S3?
+
+What is a bucket policy?
+Difference between bucket policy and IAM policy?
+
+What is S3 access logging?
+
+What is S3 event notification?
+
+What is multipart upload?
+
+What is S3 consistency model?
+
+What is S3 Object Lock?
+
+What is S3 Glacier?
+
+Difference between Glacier Instant and Deep Archive?
+
+What is S3 Transfer Acceleration?
+
+What is pre-signed URL?
+
+How do you secure S3 buckets?
+
+What is S3 static website hosting?
+
+What is S3 Intelligent-Tiering?
+
+What is S3 requester pays?
+
+How do you optimize S3 cost?

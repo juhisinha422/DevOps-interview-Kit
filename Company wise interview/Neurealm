@@ -1,4 +1,4 @@
-AWS DevOps Interview Experience — Neurealm (Senior DevOps Engineer Role) 🚀
+AWS DevOps Interview Experience — Neurealm (Senior DevOps Engineer Role) 🚀 1st round 
 
 Today, I had an amazing and truly real-world, scenario-based interview with Neurealm for the position of Senior DevOps Engineer.
  Unlike typical theory-heavy rounds, this interview focused purely on practical knowledge, problem-solving, and real DevOps challenges 💪
@@ -54,3 +54,44 @@ Building real-world CI/CD pipelines
 Troubleshooting in Kubernetes
 Managing Terraform state safely
 Implementing security at every stage of DevOps
+
+
+
+---------
+2nd Round Interview Experience for Senior DevOps Engineer Neurealm 🚀
+
+Here’s a quick summary of the topics and questions discussed 👇
+
+Kubernetes (K8s)
+How do various Kubernetes components interact when you run kubectl apply (for a Pod)? Explain the full flow in detail.
+You want to run workloads across multiple Kubernetes clusters for high availability — how would you design this?
+You are seeing frequent API rate-limit errors from the K8s API server. How would you troubleshoot and resolve this?
+How do you secure secrets in Kubernetes, both at rest and in transit?
+A Pod is stuck in Terminating state for a long time — what’s happening and how to fix it?
+How do you validate a Helm chart before deploying?
+How do you rollback a Helm release in case of deployment failure?
+
+Jenkins
+How do you handle failed builds due to dependency issues?
+How do you manage Jenkins plugin updates safely in production?
+Please write a Jenkins Declarative Pipeline — from Git checkout to deployment, and perform cleanup at the end.
+How do you implement dynamic agent provisioning in Jenkins?
+
+Docker
+You want to implement automatic failover for a containerized service — how would you approach it?
+How would you monitor container logs and metrics across multiple hosts?
+Please write a Docker Compose file for a multi-container setup.
+How do you handle image cleanup and disk space management effectively?
+
+Terraform
+How do you manage sensitive data in Terraform?
+How do you securely manage Terraform state (especially in a team setup)?
+How do you detect and handle Terraform drift in production?
+How do you enforce cost control using Terraform?
+How do you test Terraform code before pushing to production?
+What are the best practices you follow in your current project?
+
+Takeaway:
+ This round was designed to evaluate not just tool knowledge but also architectural thinking, troubleshooting ability, and DevOps best practices in real-world production scenarios.
+I truly enjoyed this round — it tested depth over breadth and encouraged clear, structured thinking.
+

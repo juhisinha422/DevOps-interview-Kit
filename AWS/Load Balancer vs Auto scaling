@@ -1,0 +1,30 @@
+Many people think Load Balancer and Auto Scaling are the same — but they solve different problems in cloud architecture.
+
+==> Load Balancer (Traffic Manager)
+
+A Load Balancer distributes incoming user requests across multiple running servers.
+What it does:
+Routes traffic evenly to healthy instances
+Prevents any single server from getting overloaded
+Improves availability & reliability
+Example:
+1000 users hit your application → Load Balancer shares traffic across 3 servers
+It does NOT create or delete servers.
+
+
+
+==> Auto Scaling (Capacity Manager)
+Auto Scaling automatically adjusts the number of servers based on demand.
+What it does:
+Adds servers when traffic increases
+Removes servers when traffic decreases
+Optimizes cost & performance
+Example:
+Traffic spikes at night → Auto Scaling adds 2 more servers automatically
+It does NOT distribute traffic
+
+ How They Work Together (Real-World Scenario)
+ *Auto Scaling adds/removes instances
+* Load Balancer routes traffic to those instances
+
+Load Balancer manages traffic

@@ -1,0 +1,113 @@
+AWS CloudFormation** is a service that helps you **create, manage, and update AWS infrastructure automatically using code** instead of clicking around in the AWS console.
+
+Think of it as **“infrastructure written in a file.”**
+
+---
+
+## 🔹 Simple definition
+
+**CloudFormation lets you define AWS resources (EC2, S3, VPC, RDS, etc.) in a template file (YAML/JSON), and AWS creates everything for you automatically.**
+
+---
+
+## 🔹 Why CloudFormation is used
+
+Without CloudFormation:
+
+* You manually create resources
+* High chance of mistakes
+* Hard to repeat setup
+
+With CloudFormation:
+
+* ✅ Automation
+* ✅ Consistency
+* ✅ Easy rollback
+* ✅ Version control
+
+---
+
+## 🔹 Key components of CloudFormation
+
+### 1️⃣ Template
+
+A **YAML or JSON file** that defines:
+
+* Resources (EC2, S3, IAM, VPC…)
+* Parameters
+* Outputs
+
+Example:
+
+```yaml
+Resources:
+  MyBucket:
+    Type: AWS::S3::Bucket
+```
+
+---
+
+### 2️⃣ Stack
+
+A **stack** is a **running instance of a template**.
+
+👉 Template = blueprint
+👉 Stack = actual AWS resources created from that blueprint
+
+---
+
+### 3️⃣ Resources
+
+AWS services you create:
+
+* EC2
+* S3
+* VPC
+* RDS
+* IAM Roles
+
+---
+
+## 🔹 How CloudFormation works (flow)
+
+1. You write a template (YAML/JSON)
+2. Upload it to CloudFormation
+3. Create a stack
+4. AWS creates resources in the correct order
+5. If something fails → **automatic rollback**
+
+---
+
+## 🔹 Real-time example
+
+You want:
+
+* 1 EC2
+* 1 Security Group
+* 1 S3 bucket
+
+👉 Write **one template**
+👉 Launch **one stack**
+👉 AWS builds everything for you 🚀
+
+---
+
+## 🔹 Benefits (interview-friendly)
+
+* Infrastructure as Code (IaC)
+* Faster deployments
+* Easy rollback on failure
+* Repeatable environments (dev/test/prod)
+* No extra cost (you only pay for resources)
+
+---
+
+## 🔹 CloudFormation vs Terraform (quick note)
+
+| CloudFormation     | Terraform        |
+| ------------------ | ---------------- |
+| AWS-only           | Multi-cloud      |
+| Native AWS service | Third-party tool |
+| YAML/JSON          | HCL              |
+
+---

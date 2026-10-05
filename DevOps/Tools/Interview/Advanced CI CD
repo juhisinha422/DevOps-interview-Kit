@@ -1,0 +1,60 @@
+ DevOps Interview Preparation
+2–4 Years Experience | Advanced CI/CD – Interview Questions
+
+🔹 CI/CD Fundamentals (Advanced Level)
+
+• What makes a CI/CD pipeline production-ready?
+• How do you design pipelines for scalability?
+• CI vs CD vs Continuous Deployment
+• Pipeline as code — why is it important?
+• How do you handle secrets in CI/CD?
+
+🔹 Jenkins – Advanced Questions
+
+• Jenkins master vs agent architecture
+• Declarative vs scripted pipeline — when to use what?
+• How do you secure Jenkins?
+• Jenkins shared libraries — use cases
+• How do you handle parallel stages?
+• Jenkins pipeline failed intermittently — how to debug?
+• How do you manage Jenkins credentials securely?
+
+🔹 GitHub Actions – Advanced Questions
+
+• GitHub Actions workflow architecture
+• Hosted runners vs self-hosted runners
+• How do you secure GitHub Actions secrets?
+• Reusable workflows — benefits?
+• Matrix builds — when to use them?
+• How do you control workflow permissions?
+• GitHub Actions failing only on PRs — why?
+
+🔹 GitLab CI – Advanced Questions
+
+• GitLab CI architecture
+• GitLab runners — shared vs specific
+• How do you secure GitLab CI pipelines?
+• Caching vs artifacts — differences
+• Parent-child pipelines — use cases
+• GitLab pipeline optimization techniques
+• GitLab pipeline stuck in pending — reasons?
+
+🔹 Pipeline Optimization & Reliability
+
+• How do you reduce pipeline execution time?
+• How do you handle flaky tests?
+• Pipeline fails after deployment — rollback strategy?
+• How do you implement approval gates?
+• Canary & blue-green deployment via pipelines
+
+🔹 Real-World CI/CD Scenarios
+
+• Pipeline works locally but fails in CI — why?
+• Secrets accidentally exposed in logs — immediate action?
+• Pipeline triggered multiple times unexpectedly — fix?
+• Rollback needed during peak traffic —
+pipeline approach?
+• Multiple teams using same pipeline — how to manage?
+
+ Interview Tip:
+If you explain design decisions + failure handling, interviewers know you’ve worked with real CI/CD systems.

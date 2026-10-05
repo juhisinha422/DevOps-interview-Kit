@@ -1,0 +1,29 @@
+AWS Real-World Scenarios & Troubleshooting #Interview #Questions (0–1 Year )
+
+This is what actually gets you hired — not theory 👇
+
+1. An EC2 instance is unreachable — how do you troubleshoot?
+2. A website is down — how do you check AWS side?
+3. S3 access denied error — how do you fix it?
+4. RDS is slow — what do you check first?
+5. How do you find the root cause using CloudWatch?
+6. How do you check security group issues?
+7. What if Auto Scaling is not launching new instances?
+8. How do you recover from accidental EC2 deletion?
+9. How do you restore deleted data from S3?
+10. How do you troubleshoot a failed Lambda?
+11. How do you fix a failed deployment?
+12. How do you debug CodePipeline failures?
+13. How do you identify high AWS billing?
+14. How do you secure a hacked AWS account?
+15. How do you rotate IAM keys?
+16. How do you block suspicious IPs?
+17. How do you take backup before maintenance?
+18. How do you handle an AWS outage?
+19. How do you migrate an on-prem app to AWS?
+20. How do you monitor production environment?
+21. How do you implement disaster recovery?
+22. How do you set up alerts for failures?
+23. How do you ensure high availability?
+24. How do you reduce AWS cost in production?
+25. How do you design a secure AWS architecture?

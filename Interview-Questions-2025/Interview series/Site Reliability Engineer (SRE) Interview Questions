@@ -1,0 +1,49 @@
+ Site Reliability Engineer (SRE) Interview Questions – Quick Prep Guide 🔥 
+
+If you're gearing up for an SRE role, here’s a focused collection of questions that test how well you blend reliability, scalability, and automation into production systems. 
+
+⚙️ Reliability & Resilience 
+- How do you define Service Level Indicators (SLI), SLOs, and SLAs? 
+- What’s your approach to setting realistic SLOs for mission-critical systems? 
+- How do you design systems for fault tolerance and resiliency? 
+- Can you describe how you’ve handled a major production incident and performed postmortem analysis? 
+
+📦 Kubernetes & Container Orchestration 
+- How do you handle cluster autoscaling and node failures in Kubernetes? 
+- What’s your approach to resource limits and requests in large clusters? 
+- How do you debug pod restarts or performance issues in production? 
+- What are the best practices for managing secrets and configmaps securely? 
+
+☁️ Cloud & Infrastructure Management (AWS / GCP / Azure) 
+- How do you ensure high availability and DR at a global scale? 
+- How do you approach infrastructure cost optimization? 
+- What’s your experience with managed services like GKE, EKS, or AKS? 
+- How do you secure and monitor multi-cloud deployments? 
+
+🧱 Infrastructure as Code & Automation (Terraform / Ansible) 
+- How do you maintain consistency between environments using IaC? 
+- What’s your strategy for managing Terraform state in collaborative teams? 
+- How do you verify infrastructure changes before deployment? 
+- Have you automated infrastructure drift detection and remediation? 
+
+🔁 Monitoring, Alerting & Observability 
+- How do you design an observability stack for microservices? 
+- What’s your process for setting effective alert thresholds? 
+- How do you perform root cause analysis using metrics, logs, and traces? 
+- Which tools do you prefer for synthetic monitoring and why? 
+
+🚀 CI/CD & Automation 
+- How do you ensure safe deployments and fast rollbacks? 
+- What’s your opinion on canary, blue-green, and rolling deployments? 
+- How do you handle infrastructure testing in CI/CD pipelines? 
+- What’s your experience with GitOps tools like ArgoCD or Flux? 
+
+🐧 Linux & Troubleshooting 
+- How do you analyze memory leaks or high IO on production servers? 
+- What are your go-to Linux tools for debugging network issues? 
+- How do you automate system monitoring with minimal overhead? 
+
+🧠 System Design & Scalability 
+- How do you design systems to handle unpredictable traffic spikes? 
+- What’s your approach to capacity planning and load testing? 
+- How do you ensure zero-downtime deployments during scaling operations? 

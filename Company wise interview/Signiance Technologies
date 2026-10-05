@@ -1,0 +1,20 @@
+1. Tell me top 5-10 basic linux  commands which we can use on daily basis 
+2. What is the command for checking and hidden file in the particular directory 
+3. Command to check disc usage in Linux
+4. What command will you use to check memory of any instance 
+5. Difference between top and htop 
+6. Command to check live logs of any application running on EC2 instance 
+7. Tell me about which cloud platform you're comfortable with
+8. Tell about the services you used in AWS 
+9. Have you implement state locking in dynamo Db how it's done explain the procedure 
+10. In cloudwatch what are the metric you have set up
+11. In cloud what is a load balancer and what are its types
+12. Difference between application and network load balancer
+13. If I want to deploy a static frontend application which AWS service will I use
+14. If I want to list down all the docker containers which are running what is the command for that
+15. How much would you rate yourself in kubernetes 
+16. What is CI/CD pipeline why do we use it
+17. What is sonar qube why do we use it
+18. If we want to deploy frontend , backend and database what will you use and how will you do It
+19. What is horizontal and vertical scaling 
+20. And they asked me to explain any one project from my resume

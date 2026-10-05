@@ -1,0 +1,67 @@
+🔵 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗟𝟮 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 (𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 / 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼-𝗕𝗮𝘀𝗲𝗱)
+
+✨ 𝙈𝙪𝙡𝙩𝙞-𝙀𝙣𝙫𝙞𝙧𝙤𝙣𝙢𝙚𝙣𝙩 𝙋𝙞𝙥𝙚𝙡𝙞𝙣𝙚𝙨 :
+
+How do you design Jenkins pipelines for Dev, QA, Pre-Prod, and Prod?
+If dev commits to dev branch, how will Dev pipeline trigger?
+If dev commits to qa branch, how will QA pipeline trigger?
+Can you trigger QA pipeline directly without Dev pipeline?
+How do you control pipeline execution per environment?
+How do you reuse pipeline logic across environments?
+
+✨ 𝙋𝙞𝙥𝙚𝙡𝙞𝙣𝙚 𝘿𝙚𝙨𝙞𝙜𝙣 & 𝙎𝙘𝙖𝙡𝙞𝙣𝙜 :
+
+How do you avoid writing separate pipelines for thousands of microservices?
+How do you use shared libraries in Jenkins?
+How do you parameterize Jenkins pipelines?
+How do you manage environment-specific configuration?
+How do you design a generic Jenkins pipeline?
+
+✨ 𝙁𝙖𝙞𝙡𝙪𝙧𝙚 𝙃𝙖𝙣𝙙𝙡𝙞𝙣𝙜 & 𝙍𝙤𝙡𝙡𝙗𝙖𝙘𝙠 :
+
+How do you handle pipeline failure?
+How do you rollback a deployment if Jenkins pipeline fails?
+How do you implement approval before Prod deployment?
+How do you retry a failed stage?
+How do you notify teams on pipeline failure?
+
+✨ 𝙅𝙚𝙣𝙠𝙞𝙣𝙨 + 𝘼𝙒𝙎 / 𝙆𝙪𝙗𝙚𝙧𝙣𝙚𝙩𝙚𝙨 :
+
+How does Jenkins interact with AWS services?
+How does Jenkins authenticate with AWS?
+How do you configure Jenkins to deploy to Kubernetes?
+How do you integrate Jenkins with EKS?
+How does Jenkins push Docker images to ECR?
+How does Jenkins trigger ArgoCD?
+
+✨ 𝙅𝙚𝙣𝙠𝙞𝙣𝙨 𝘽𝙖𝙘𝙠𝙪𝙥 & 𝙍𝙚𝙨𝙩𝙤𝙧𝙚 :
+
+How do you take backup of Jenkins?
+Which Jenkins directory do you backup?
+What is stored inside /var/lib/jenkins?
+How do you restore Jenkins from backup?
+How do you migrate Jenkins from one EC2 to another EC2?
+
+✨ 𝙎𝙚𝙘𝙪𝙧𝙞𝙩𝙮 (𝙇𝟐) :
+
+How do you secure Jenkins?
+How do you restrict user access in Jenkins?
+What is Role-Based Access Control (RBAC) in Jenkins?
+How do you prevent secrets leakage in pipeline logs?
+What are the drawbacks of exposing secrets in Jenkins logs?
+
+✨ 𝙋𝙚𝙧𝙛𝙤𝙧𝙢𝙖𝙣𝙘𝙚 & 𝙏𝙧𝙤𝙪𝙗𝙡𝙚𝙨𝙝𝙤𝙤𝙩𝙞𝙣𝙜 :
+
+Jenkins is slow — how will you troubleshoot?
+Jenkins job stuck in queue — how will you fix it?
+Jenkins agent is offline — how will you troubleshoot?
+Jenkins pipeline fails at checkout stage — how will you debug?
+How do you clean up old builds and artifacts?
+
+✨ 𝘼𝙙𝙫𝙖𝙣𝙘𝙚𝙙 𝘾𝙤𝙣𝙘𝙚𝙥𝙩𝙨 :
+
+What is Jenkins Shared Library?
+What is Blue-Green deployment in Jenkins?
+What is Canary deployment using Jenkins?
+How do you integrate SonarQube with Jenkins?
+How do you integrate Nexus/Artifactory with Jenkins?

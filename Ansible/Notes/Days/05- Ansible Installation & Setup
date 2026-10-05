@@ -1,0 +1,42 @@
+Ansible Installation & Setup
+
+Today I set up the Ansible environment, which is the first hands-on step toward real automation.
+
+A correct setup is critical—most Ansible issues come from SSH or environment misconfiguration.
+
+🔹 Install Ansible on Linux
+Ansible is installed only on the control node.
+
+Common steps include:
+Update system packages
+Install Ansible using package manager
+Verify installation
+Ansible runs best on Linux-based systems.
+
+🔹 SSH Key-Based Authentication
+Ansible uses SSH to connect to managed nodes.
+
+Key-based authentication:
+Removes password prompts
+Is more secure than passwords
+Enables automation without manual input
+This is mandatory for smooth Ansible execution.
+
+🔹 Verify Connectivity
+Before running playbooks, connectivity must be checked:
+Ensure SSH access works
+Test communication with hosts
+Confirm permissions
+This avoids failures during automation runs.
+
+🔹 ansible --version
+This command helps to:
+Confirm Ansible installation
+Check Ansible version
+Verify Python dependency
+It’s the first command to run after setup.
+
+🔥 3-Line Takeaway
+Setup enables automation.
+ SSH builds trust.
+ Verification avoids failure.

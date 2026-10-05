@@ -1,0 +1,27 @@
+Advanced Kubernetes Interview Questions (25) | For Senior DevOps Engineers ☸️
+
+How does Kubernetes control plane ensure consistency across etcd, API Server, and controllers?
+Explain Kubernetes scheduler workflow step-by-step.
+How does kube-proxy work internally in iptables vs IPVS mode?
+How does Kubernetes implement self-healing at pod and node level?
+What happens internally when a pod is deleted?
+How does HPA calculate metrics and make scaling decisions?
+Difference between HPA, VPA, and Cluster Autoscaler — when to use each?
+How does Kubernetes networking work across nodes (CNI flow)?
+Explain Pod networking vs Service networking.
+How does Ingress differ from Service LoadBalancer internally?
+What is etcd quorum and how does it impact cluster availability?
+How does Kubernetes handle leader election?
+How do rolling updates work internally in Deployments?
+What are PodDisruptionBudgets and real-world use cases?
+How does Kubernetes handle node failures and rescheduling?
+What are admission controllers and why are they critical for security?
+How does RBAC evaluation happen during API requests?
+What is the difference between Secrets encryption at rest vs in transit?
+How do taints & tolerations differ from node affinity?
+How does Kubernetes DNS work internally?
+How does kubelet communicate with the container runtime (CRI)?
+What are static pods and when are they used?
+How does Kubernetes garbage collection work?
+What happens when a container exceeds memory limits?
+How do you design a highly available Kubernetes control plane?

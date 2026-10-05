@@ -1,0 +1,66 @@
+Common Security Issues in DevOps – Interview Questions.
+
+Security is no longer optional in DevOps.
+If you’re working as a DevOps / Cloud Engineer, these are must-know security areas 👇
+
+💡 Top Security-Focused DevOps Interview Questions:
+
+What is DevSecOps and how is it different from DevOps?
+
+Why is “shift-left security” important in CI/CD pipelines?
+
+What are the most common security risks in CI/CD pipelines?
+
+How do you securely manage secrets in DevOps?
+
+Why should secrets never be stored in Git repositories?
+
+What is a secret manager and why is it needed?
+
+How does IAM misconfiguration cause security breaches?
+
+What is the principle of least privilege?
+
+How do you secure Jenkins pipelines?
+
+What are common Docker security issues?
+
+Why should containers not run as root?
+
+How do you scan Docker images for vulnerabilities?
+
+What is image hardening in Docker?
+
+What are common Kubernetes security risks?
+
+What is RBAC in Kubernetes and why is it important?
+
+What are Network Policies in Kubernetes?
+
+How do you secure Kubernetes secrets?
+
+Why should etcd be encrypted?
+
+What is TLS and where is it used in DevOps tools?
+
+What are common cloud security misconfigurations?
+
+Why is public S3 bucket access a security risk?
+
+How do you secure Terraform state files?
+
+What is Infrastructure as Code (IaC) security?
+
+How do you prevent hard-coded credentials in code?
+
+What is vulnerability scanning in CI/CD?
+
+What is dependency scanning and why is it important?
+
+How do you monitor security incidents in production?
+
+What is log monitoring from a security perspective?
+
+How do you handle security patching in DevOps?
+
+What are common mistakes DevOps engineers make regarding security?

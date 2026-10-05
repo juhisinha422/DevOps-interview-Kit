@@ -1,0 +1,33 @@
+DevOps Interview hashtag#Questions hashtag#Git
+5–8 Years Experience | Tool 3
+
+How do you design a Git branching strategy for 50+ teams working on microservices?
+
+A bad commit is merged to main and deployed — how do you recover safely?
+
+How do you handle long-running feature branches without frequent conflicts?
+
+Explain rebase vs merge — when does rebase become dangerous in production?
+
+How do you investigate who introduced a breaking change using Git history?
+
+Repository size is growing fast — how do
+you optimize Git performance?
+
+How do you manage Git workflows for monorepo vs multirepo architectures?
+
+A developer force-pushed to a shared branch — impact and prevention strategy?
+
+How do you enforce commit quality and standards across teams?
+
+Explain Git tags vs branches in release management.
+
+How do you handle hotfixes directly in production branches?
+
+What Git practices help in audit and compliance requirements?
+
+How do you resolve complex merge conflicts at scale?
+
+How do you design Git access control for different teams?
+
+What Git practices differentiate a senior DevOps engineer from others?

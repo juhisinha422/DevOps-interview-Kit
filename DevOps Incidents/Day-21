@@ -1,0 +1,22 @@
+Day 21: Pods Stuck in Pending Due to Resource Requests
+
+Incident:
+New pods remained in Pending state for 45 minutes.
+
+
+What Happened Next:
+The scheduler could not place pods because nodes lacked sufficient free resources.
+
+
+Root Cause:
+1.CPU Request Too High: Pod requested 2 CPUs, nodes had only 1.5 CPUs free.
+2. No Auto-Scaling: Cluster had no additional nodes to accommodate demand.
+
+
+Fix:
+1.Reduced CPU request to 1 CPU based on observed usage.
+2.Added node auto-scaling for peak periods.
+
+
+Takeaway:
+Pods schedule based on available capacity, not total node size.

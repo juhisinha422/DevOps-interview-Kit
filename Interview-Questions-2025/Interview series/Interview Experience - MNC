@@ -1,0 +1,17 @@
+Interview Experience – MNC(production support/Devops Consultant
+
+1️⃣ How do you decide which production issue needs immediate action and which can wait?
+2️⃣ What tells you that a system is “about to fail” even when it’s still running?
+3️⃣ How do you verify that monitoring is actually monitoring the right things?
+4️⃣ How do you handle a production issue when you don’t have direct access?
+5️⃣ What makes a metric misleading in real systems?
+6️⃣ How do you decide alert thresholds without causing noise?
+7️⃣ How do you detect performance regressions before users report them?
+8️⃣ What signals help you understand real user impact?
+9️⃣ How do you reason about risk before pushing a critical change?
+🔟 How do you decide whether to pause a deployment mid-way?
+1️⃣1️⃣ How do you handle production fixes that bypass normal CI/CD flow?
+1️⃣2️⃣ What tells you that automation is doing more harm than good?
+1️⃣3️⃣ How do you ensure reliability while moving fast?
+1️⃣4️⃣ How do you decide what not to automate?
+1️⃣5️⃣ What does ownership mean during a production incident?

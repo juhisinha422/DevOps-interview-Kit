@@ -1,0 +1,16 @@
+DevOps interviews often test real‑world problem solving. Here are some practical questions I’ve faced in recent interview 
+
+
+1.  Write a pipeline code to automate Jenkins 
+2. Explain the server less services in AWS
+3. How you will manage secreters in your organisation 
+4. How you will store environmental variables 
+5. Explain SLA SLI SLO
+6. How you will design monitoring for your organisation 
+7. How you will create network in Kubernetes 
+8. How you will create load balancer through AWS console 
+9. Write a code to create an ec2 instance and attach load balancer and auto scaling groups
+10. How you will troubleshoot the pod is in struck / not reachable
+11. how will you plan disaster recovery
+12. How you will reduce the cost for organisation 
+13. How many subnets can be created in VPC.

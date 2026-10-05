@@ -1,0 +1,33 @@
+Once asked this in a Git interview....!
+
+Q: You pulled the latest code, but your local branch is broken. What happened?
+
+A: A conflicting or incomplete merge may have occurred. I’d check git status, inspect recent commits, and resolve conflicts or reset to a stable commit if needed.
+
+Q: You accidentally pushed sensitive data to a remote repository. What do you do immediately?
+
+A: I’d revoke the exposed credentials first, then rewrite Git history using a clean commit and force-push if allowed, followed by notifying the team.
+
+Q: Your branch shows “ahead and behind” the remote at the same time. Why?
+
+A: Both local and remote branches have diverged. I’d review the commit differences and either rebase or merge to synchronize safely.
+
+Q: A merge introduces bugs even though all commits were tested. How does that happen?
+
+A: Conflicts may have been resolved incorrectly or logic changed during the merge. I’d review conflict resolutions and test the combined code path.
+
+Q: You ran git pull and now have unexpected merge commits. Why?
+
+A: Git defaulted to merge instead of rebase. I’d configure pull.rebase=true if a linear history is preferred.
+
+Q: A teammate force-pushed and your local branch broke. How do you recover?
+
+A: I’d fetch the latest changes, inspect the reflog, and reset or rebase my branch onto the updated remote safely.
+
+Q: Your commit history is messy and hard to review before PR. What do you do?
+
+A: I’d use interactive rebase to squash, reorder, or clean commits before pushing for review.
+
+Q: Production deployed the wrong code version. How do you trace it in Git?
+
+A: I’d identify the deployed commit hash, compare it with main branch history, and track which merge or tag introduced the issue.

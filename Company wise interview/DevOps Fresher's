@@ -1,0 +1,78 @@
+DevOps Freshers – Be Interview Ready!
+
+In the last few weeks, I have seen many freshers struggling to crack DevOps interviews.
+
+Not because they don’t know the answer but because they don’t know what type of questions will be asked.
+
+So here is a solid list of DevOps questions that most recruiters ask in Fresher & 1 Year experience interviews.
+
+💡 If you are preparing, start with these 
+
+🔥 DevOps Fresher-Level Interview Questions
+
+ What is DevOps and why is it needed?
+ Difference between DevOps & traditional SDLC?
+ What is Continuous Integration & Continuous Deployment?
+ What tools are used for CI/CD?
+ What is Jenkins and how does it work?
+ What is a Pipeline?
+ What is Git and why do we use it?
+ Explain Git pull vs Git fetch vs Git clone
+ What is a Branch? why do we use Branching?
+ Basic Git commands you used in your project
+ What is Docker? Why containers?
+ Docker vs Virtual Machines
+ Write the steps to create a Docker image
+ What is Dockerfile? Show sample
+ What is Kubernetes?
+ Difference between Pod, Deployment, Service
+ What is a Node? What is a Cluster?
+ What is YAML in Kubernetes?
+ What is AWS?
+ What is EC2?
+ What is S3 used for?
+ What is IAM and why it is important?
+ What is Linux? Most common commands?
+ How to check logs in Linux?
+ How to check CPU & memory usage in Linux?
+ What is monitoring?
+ What is DevOps pipeline?
+ What was your role in the project?
+ Tell me about your learning journey
+ Are you comfortable working in shift? 
+What is kubectl
+What is kube proxy
+What is configmap
+What is secret
+What is namespace in Kubernetes
+What is deployment
+What is replica set
+What is helm
+What is helm chart
+What is ingress
+What is ingress controller
+What is service discovery
+What is rolling update
+What is load balancer in cloud
+What is aws region and availability zone
+What is s3 lifecycle rule
+What is cloudfront
+What is route53
+What is elastic ip
+What is autoscaling group
+What is launch template
+What is cloudwatch dashboard
+What is cloudtrail
+What is docker compose
+What is docker hub
+What is container registry
+What is image tagging
+What is docker volume
+What is docker network
+What is CI CD pipeline stages
+What is build stage and deploy stage
+What is artifact
+What is rollback strategy
+What is monitoring and logging
+What is alerting
+What is incident management

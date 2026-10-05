@@ -1,0 +1,41 @@
+DevOps Interview hashtag#Questions Series hashtag#Terraform Advanced Level
+
+How does Terraform internally manage state consistency?
+
+What happens if the Terraform state file is corrupted?
+
+How do you design Terraform for multi-account / multi-project setups?
+
+Terraform workspaces vs separate state files — which is better and why?
+
+How do you implement Terraform at scale in enterprises?
+
+How do you prevent accidental resource deletion?
+
+What is lifecycle block and real-world use cases?
+
+How do you manage secrets securely with Terraform in production?
+
+How do you rotate credentials without downtime?
+
+How do you handle partial failures during terraform apply?
+
+What are the limitations of Terraform?
+
+How do you enforce Terraform best practices across teams?
+
+How do you design reusable Terraform modules?
+
+Terraform vs Pulumi — when would you choose one over the other?
+
+How do you manage Terraform drift in long-running environments?
+
+How do you test Terraform code?
+
+How do you upgrade Terraform versions safely?
+
+How do you handle provider breaking changes?
+
+How do you implement policy as code (Sentinel / OPA)?
+
+When should Terraform NOT be used?

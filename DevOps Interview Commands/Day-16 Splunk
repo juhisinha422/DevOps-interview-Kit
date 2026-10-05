@@ -1,0 +1,40 @@
+DevOps Interview Command Series — Splunk (Day 16) 🔎
+
+Splunk is a log analytics & observability powerhouse.
+From incident investigation to security monitoring and RCA, Splunk is heavily used by DevOps, SRE, and Ops teams.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Splunk commands & searches you must know:
+
+splunk --version
+
+systemctl start splunk
+systemctl status splunk
+systemctl restart splunk
+
+/opt/splunk/bin/splunk status
+/opt/splunk/bin/splunk start
+/opt/splunk/bin/splunk stop
+
+index=_internal
+index=_internal | head 10
+index=main | stats count
+index=main | sort - _time
+
+index=main error
+index=main | search error OR failed
+index=main | stats count by host
+index=main | timechart count
+
+index=main | rex "errorCode=(?<code>\d+)"
+index=main | stats count by code
+
+index=main | top source
+index=main | rare source
+
+🎯 Interview Focus
+• Logs vs metrics vs traces
+• Indexes, sourcetypes & events
+• Searching & filtering logs efficiently
+• Dashboards & alerts basics
+• Troubleshooting production issues using logs
+• Splunk vs ELK comparison

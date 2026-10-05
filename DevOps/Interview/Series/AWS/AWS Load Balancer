@@ -1,0 +1,61 @@
+#AWS Interview Questions – hashtag#ALB / hashtag#ELB
+
+What is Elastic Load Balancer (ELB)?
+
+Types of load balancers in AWS?
+
+Difference between ALB and NLB?
+
+When should you use Classic Load Balancer?
+
+What is Application Load Balancer (ALB)?
+
+What OSI layer does ALB work on?
+
+What is a target group?
+
+Supported targets for ALB?
+
+What is health check in ALB?
+
+What happens if a target fails health check?
+
+What is path-based routing?
+
+What is host-based routing?
+
+What is listener and listener rule?
+
+What protocols does ALB support?
+
+What is sticky session?
+
+How does ALB handle SSL?
+
+What is SSL termination?
+
+Difference between ALB and reverse proxy?
+
+What is cross-zone load balancing?
+
+Is ALB regional or global?
+
+Can ALB work with Auto Scaling?
+
+How do you secure ALB?
+
+What is idle timeout in ALB?
+
+What is deregistration delay?
+
+Can ALB route traffic to Lambda?
+
+What is access log in ALB?
+
+Difference between ALB and API Gateway?
+
+How do you monitor ALB?
+
+Common ALB issues?
+
+Real-time ALB use case?

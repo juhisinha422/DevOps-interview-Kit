@@ -1,0 +1,37 @@
+ Tool 4 — AWS (Advanced Level)
+(DevOps Interview Series Questions)
+
+This level checks whether you can design, secure, scale, and operate AWS in production.
+
+AWS – Advanced Interview Questions
+
+1. How does AWS IAM evaluate policies?
+2. What is policy evaluation logic order?
+3. Difference between identity-based and resource-based policies?
+4. How does AWS STS work internally?
+5. How do you implement cross-account access securely?
+6. What is AWS Organizations and SCP?
+7. How do Service Control Policies work?
+8. How do you enforce security guardrails in AWS?
+9. What is VPC endpoint (Interface vs Gateway)?
+10. How does PrivateLink work?
+11. What is hybrid connectivity in AWS?
+12. Difference between Direct Connect and VPN?
+13. How does ALB handle millions of requests?
+14. What is connection draining (deregistration delay)?
+15. How do you design zero-downtime deployments in AWS?
+16. What is blue-green deployment in AWS?
+17. What is canary deployment?
+18. How do you secure S3 buckets at scale?
+19. How do you prevent data exfiltration from S3?
+20. What is AWS Shield vs WAF?
+21. How does AWS WAF protect applications?
+22. What is AWS Config and why is it used?
+23. What is AWS GuardDuty?
+24. How do you detect compromised IAM credentials?
+25. How do you implement DR in AWS?
+26. What is RTO and RPO?
+27. How do you design multi-region architecture?
+28. How do you control AWS costs at scale?
+29. What is AWS Well-Architected Framework?
+30. How do you operate AWS for enterprise workloads?
