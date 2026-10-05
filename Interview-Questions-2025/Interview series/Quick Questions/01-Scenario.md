@@ -1,3 +1,15 @@
+## 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗘𝗖𝟮 𝘂𝗻𝗿𝗲𝗮𝗰𝗵𝗮𝗯𝗹𝗲? 𝗪𝗼𝘂𝗹𝗱 𝘆𝗼𝘂 𝗿𝗲𝘀𝘁𝗮𝗿𝘁 𝗶𝘁?
+
+No, I would not restart it immediately. First, I would identify the type of failure, such as timeout, connection refused, or permission denied. Then I would check the EC2 instance state, system and instance status checks, EBS health, Security Group, NACL, routing, and whether the instance is public or private.
+
+If I can access the host, I would check CPU, memory, disk, inode usage, listening ports, SSH status, application processes, and logs.
+
+If SSH works but the application is not accessible, I would check the application process and logs, listening address and port, ALB target health, DNS, and TLS.
+
+If SSH access is unavailable, I would use SSM or Serial Console if available. I would fix the root cause based on evidence and only consider restarting the instance when there is a valid reason.
+
+The goal is to fix the root cause, not simply restart the server.
+
 # DevOps Interview Questions & Answers — 4+ Years Experience
 
 ## 1. Tell me about yourself and your day-to-day activities.
