@@ -1,0 +1,41 @@
+DevOps Interview hashtag#Questions Series hashtag#Prometheus Intermediate Level
+
+How does Prometheus service discovery work in Kubernetes?
+
+How do you monitor Kubernetes nodes and pods using Prometheus?
+
+Explain PromQL with a real example
+
+How do you calculate CPU and memory usage using PromQL?
+
+Difference between rate() and irate()
+
+How do you monitor application-level metrics?
+
+What is recording rule and why is it used?
+
+What are alerting rules and best practices?
+
+How does Alertmanager route alerts?
+
+How do you reduce alert noise?
+
+What is label cardinality and why is it dangerous?
+
+How do you scale Prometheus?
+
+What is federation in Prometheus?
+
+How do you store metrics long-term?
+
+Prometheus vs Grafana — responsibilities
+
+How do you secure Prometheus endpoints?
+
+How do you monitor external services?
+
+How do you handle missing metrics?
+
+How do you troubleshoot Prometheus scraping issues?
+
+Common Prometheus mistakes in production

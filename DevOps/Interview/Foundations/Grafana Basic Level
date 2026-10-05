@@ -1,0 +1,41 @@
+DevOps Interview hashtag#Questions Series hashtag#Grafana Basic Level
+
+What is Grafana and why is it used?
+
+Grafana vs Prometheus — what’s the difference?
+
+What is a data source in Grafana?
+
+Which data sources does Grafana support?
+
+How does Grafana connect to Prometheus?
+
+What is a dashboard in Grafana?
+
+What are panels in Grafana?
+
+What are variables in Grafana dashboards?
+
+What is templating in Grafana?
+
+What is a time range selector?
+
+How do you create alerts in Grafana?
+
+Grafana Alerting vs Prometheus Alertmanager
+
+What are annotations in Grafana?
+
+What are transformations in Grafana?
+
+How do you share dashboards?
+
+How do you export and import dashboards?
+
+How do you secure Grafana?
+
+What are user roles in Grafana?
+
+How is Grafana used in Kubernetes monitoring?
+
+Common use cases of Grafana in DevOps

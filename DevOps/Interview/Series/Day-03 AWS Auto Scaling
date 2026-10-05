@@ -1,0 +1,44 @@
+AWS DevOps Interview Preparation Series — AWS Auto Scaling 🚀
+
+Topic: AWS Auto Scaling
+
+As part of my AWS DevOps Interview Preparation Series, today we’ll explore one of the most important services for ensuring high availability, performance, and cost efficiency — AWS Auto Scaling.
+
+In real-world DevOps environments, Auto Scaling helps dynamically adjust your compute capacity to handle changing workloads automatically.
+ Here are 30 real-world Auto Scaling interview questions to strengthen your cloud and DevOps fundamentals. 👇
+
+🔹 Auto Scaling — Top Interview Questions for DevOps Engineers
+
+What is AWS Auto Scaling and why is it used in DevOps?
+ What are the different types of Auto Scaling in AWS?
+ What is the difference between EC2 Auto Scaling and AWS Auto Scaling?
+ How does Auto Scaling ensure high availability and fault tolerance?
+ What are the main components of an Auto Scaling Group (ASG)?
+ What is a launch configuration in Auto Scaling?
+ What is a launch template, and how is it different from a launch configuration?
+ How do you define scaling policies in Auto Scaling?
+ What are dynamic scaling policies?
+ What is the difference between target tracking and step scaling policies?
+ What is predictive scaling in AWS?
+ How does Auto Scaling integrate with CloudWatch alarms?
+ What are cooldown periods in Auto Scaling and why are they important?
+ How do you attach an Auto Scaling Group to an Elastic Load Balancer?
+ What happens when an instance in an Auto Scaling Group becomes unhealthy?
+ What is the minimum, maximum, and desired capacity in Auto Scaling?
+ How can you scale instances based on CPU utilization?
+ What are scheduled scaling actions in Auto Scaling?
+ How do you configure lifecycle hooks in Auto Scaling?
+ What is the purpose of a termination policy in Auto Scaling?
+ What happens if all instances in an ASG are terminated manually?
+ How do you perform rolling updates using Auto Scaling?
+ What is the difference between horizontal and vertical scaling?
+ How do you secure instances launched by Auto Scaling?
+ What are instance refresh and instance warm-up in Auto Scaling?
+ Can Auto Scaling work across multiple Availability Zones?
+ How can Auto Scaling help reduce AWS costs?
+ How do you use Auto Scaling with Terraform or CloudFormation?
+ How can you monitor and troubleshoot Auto Scaling activities?
+ What are best practices for designing an Auto Scaling strategy in production?
+
+💡 Pro Tip:
+ Combine Auto Scaling, Load Balancing, and CloudWatch to achieve a fully automated, self-healing infrastructure — a key concept for every DevOps or SRE interview.

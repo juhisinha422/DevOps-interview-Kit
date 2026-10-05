@@ -1,0 +1,47 @@
+🚀 Linux Quick Guide in 1 Day – Master the Basics! 🐧
+
+Want to get started with Linux but short on time? Here’s a 1-day crash course to build strong fundamentals 👇
+
+🔹 Morning (3–4 Hours) – Basics & Navigation
+
+Understand Linux distributions (Ubuntu, CentOS, RHEL, Fedora).
+
+Learn the file system hierarchy.
+
+Master navigation commands: ls, cd, pwd, tree.
+
+File operations: cat, less, touch, cp, mv, rm.
+
+
+🔹 Afternoon (3–4 Hours) – User & System Management
+
+File permissions: chmod, chown, umask.
+
+Users & groups: useradd, usermod, passwd, groups.
+
+Process management: ps, top, kill, jobs, bg, fg.
+
+Package management → apt (Debian/Ubuntu), dnf (RHEL/Fedora).
+
+
+🔹 Evening (2–3 Hours) – Practical Power Skills
+
+Search & filters: grep, find, locate.
+
+Archiving & compression: tar, gzip, zip.
+
+Networking basics: ping, ip a, ss, curl, scp.
+
+Shell scripting basics: loops, variables, conditionals.
+
+
+✅ By the end of the day, you’ll:
+
+Feel comfortable navigating Linux.
+
+Manage files, processes, and users.
+
+Run basic scripts and networking commands.
+
+
+💡 Pro Tip: Practice in a virtual machine or WSL (Windows Subsystem for Linux) for hands-on experience.

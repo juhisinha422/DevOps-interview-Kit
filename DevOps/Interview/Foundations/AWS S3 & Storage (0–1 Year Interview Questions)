@@ -1,0 +1,29 @@
+AWS S3 & Storage (0–1 Year Interview Questions)
+
+If you can’t handle storage, you can’t survive in cloud interviews 👇
+
+1. What is Amazon S3?
+2. What is an S3 bucket?
+3. What is an S3 object?
+4. What is the maximum size of an S3 object?
+5. What is S3 versioning?
+6. What is S3 lifecycle policy?
+7. What is S3 storage class?
+8. What is the difference between Standard and Glacier?
+9. What is S3 replication?
+10. What is S3 cross-region replication?
+11. What is S3 bucket policy?
+12. What is IAM policy vs bucket policy?
+13. What is S3 encryption?
+14. What is server-side encryption?
+15. What is client-side encryption?
+16. What is S3 access logging?
+17. What is S3 Transfer Acceleration?
+18. What is pre-signed URL?
+19. What is static website hosting in S3?
+20. What happens when you delete an object in versioned bucket?
+21. What is EBS?
+22. What is EFS?
+23. Difference between EBS and EFS?
+24. When would you use S3 instead of EBS?
+25. What is AWS Backup?

@@ -1,0 +1,57 @@
+Question :-   What are various "𝗮𝘀 𝗮 𝗰𝗼𝗱𝗲" in Cloud ?
+
+The “as a Code” concept is central to modern cloud computing and DevOps practices. It refers to representing and managing traditionally manual or configuration-heavy IT processes through code, which can be version-controlled, automated, and reproduced consistently.
+
+Here’s a breakdown of the most common types of “as a Code” in cloud environments:-
+
+𝟭. 𝗜𝗻𝗳𝗿𝗮𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲 𝗮𝘀 𝗖𝗼𝗱𝗲 (𝗜𝗮𝗖)
+Purpose: Automate infrastructure provisioning and management.
+Tools: Terraform, AWS CloudFormation, Azure Resource Manager (ARM), Google Deployment Manager.
+
+𝟮. 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻 𝗮𝘀 𝗖𝗼𝗱𝗲 (𝗖𝗮𝗖)
+Purpose: Manage and automate system configuration and application setup.
+Tools: Ansible, Chef, Puppet
+Example:
+Installing and configuring NGINX, setting up users, or applying security baselines on servers.
+
+𝟯. 𝗣𝗶𝗽𝗲𝗹𝗶𝗻𝗲 𝗮𝘀 𝗖𝗼𝗱𝗲 (𝗣𝗮𝗖)
+Purpose: Define CI/CD pipelines declaratively in code.
+Tools: Jenkinsfile (Jenkins), GitHub Actions, GitLab CI/CD, Azure Pipelines, CircleCI.
+Example:
+Writing a YAML file that automates build, test, and deployment steps.
+
+𝟰. 𝗣𝗼𝗹𝗶𝗰𝘆 𝗮𝘀 𝗖𝗼𝗱𝗲 (𝗣𝗼𝗖)
+Purpose: Enforce governance, compliance, and security rules programmatically.
+Tools:  HashiCorp Sentinel, AWS Config Rules, Azure Policy.
+Example:
+Preventing deployment of untagged resources or enforcing encryption at rest.
+
+𝟱. 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗮𝘀 𝗖𝗼𝗱𝗲 (𝗦𝗮𝗖)
+Purpose: Integrate security practices into the development lifecycle via code.
+Tools: Snyk, AWS Security Hub, HashiCorp Vault.
+Example:
+Scanning IaC templates for vulnerabilities before deployment.
+
+𝟲. 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 / 𝗢𝗯𝘀𝗲𝗿𝘃𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗮𝘀 𝗖𝗼𝗱𝗲
+Purpose: Define dashboards, alerts, and metrics collection in code.
+Tools: Grafana dashboards, Prometheus rules, Datadog monitors as code.
+Example:
+Creating automated alert rules when CPU utilization exceeds thresholds.
+
+𝟳. 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗮𝘀 𝗖𝗼𝗱𝗲
+Purpose: Manage and automate network infrastructure programmatically.
+Tools: Cisco NSO, AWS CDK, Terraform networking modules.
+Example:
+Creating subnets, load balancers, and security groups automatically.
+
+𝟴. 𝗖𝗼𝗺𝗽𝗹𝗶𝗮𝗻𝗰𝗲 𝗮𝘀 𝗖𝗼𝗱𝗲
+Purpose: Ensure regulatory and organizational compliance automatically.
+Tools: Chef InSpec, AWS Config.
+Example:
+Automating HIPAA or PCI DSS compliance checks.
+
+𝟵. 𝗕𝗮𝗰𝗸𝘂𝗽/𝗥𝗲𝗰𝗼𝘃𝗲𝗿𝘆 𝗮𝘀 𝗖𝗼𝗱𝗲
+Purpose: Automate backup creation and recovery workflows.
+Tools: AWS Backup as Code (CloudFormation/Terraform integration), Velero for K8s.
+Example:
+Defining policies to automatically back up EC2 or EBS volumes daily.

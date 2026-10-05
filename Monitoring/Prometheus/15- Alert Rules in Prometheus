@@ -1,0 +1,63 @@
+ Alert Rules in Prometheus
+
+🔹 What are Alert Rules? 🚨
+ Alert rules define when Prometheus should trigger an alert based on metric conditions.
+They help systems automatically detect problems instead of waiting for someone to notice them manually.
+👉 “If this condition happens, send an alert.”
+
+🔹 Why are Alert Rules Important? 🏗️
+In production, engineers cannot watch dashboards 24/7 👀
+Alert rules help by:
+✔ Detecting issues automatically
+ ✔ Sending notifications quickly 📩
+ ✔ Reducing downtime ⏱️
+ ✔ Improving system reliability 🚀
+
+🔹 How Alerts are Defined: ⚡
+An alert rule usually contains:
+✔ Alert Name → Identifier
+ ✔ Expression (expr) → Condition logic
+ ✔ Duration (for) → How long condition must remain true
+
+🔹 Basic Alert Rule Example: 📊
+alert: HighCPUUsage
+expr: cpu_usage > 90
+for: 5m
+
+What this means:
+👉 If CPU usage stays above 90% for 5 minutes
+ → Trigger alert 🚨
+
+🔹 Common Alert Conditions: 🔍
+✔ High CPU usage
+ ✔ Low memory available
+ ✔ High API latency
+ ✔ Increased error rate
+ ✔ Server downtime
+
+🔹 Real-world Examples: 💡
+👉 CPU Alert
+cpu_usage > 85
+Trigger if server CPU becomes too high.
+
+👉 Error Rate Alert
+rate(http_errors_total[5m]) > 10
+Trigger when application errors suddenly increase.
+
+👉 Instance Down Alert
+up == 0
+Trigger when service becomes unavailable.
+
+🔹 Real-world Scenario: 🌍
+Your application receives heavy traffic 📈
+CPU rises to 95% for several minutes.
+👉 Alert rule detects threshold breach
+ 👉 Prometheus triggers alert
+ 👉 Notification sent to engineers 🚨
+Result → Faster response and reduced outage.
+
+🔹 Key Concepts to Remember: 🧠
+✔ Alert rules = Automated monitoring 🚨
+ ✔ Based on conditions & thresholds 📊
+ ✔ Use expressions (expr) 🔍
+ ✔ Help detect failures quickly ⚡

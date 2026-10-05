@@ -1,0 +1,26 @@
+𝗚𝗶𝘁 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼-𝗕𝗮𝘀𝗲𝗱 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲𝘀 
+ Not the usual git add . && git commit stuff. These are real-world puzzles every DevOps / Developer faces 👇
+
+🔹 𝟭. 𝗕𝗿𝗮𝗻𝗰𝗵𝗶𝗻𝗴 & 𝗪𝗼𝗿𝗸𝗳𝗹𝗼𝘄
+ 1️⃣ You started coding directly on main instead of a feature branch — how do you fix it without losing work?
+ 2️⃣ You’re asked to create a release branch with only selected commits from develop. How would you do that?
+
+🔹 𝟮. 𝗖𝗼𝗻𝗳𝗹𝗶𝗰𝘁 𝗛𝗮𝗻𝗱𝗹𝗶𝗻𝗴
+ 1️⃣ You hit the same merge conflict every time you merge two branches. How can you stop this loop?
+ 2️⃣ You’re in the middle of a messy rebase — how do you abort safely and roll back?
+
+🔹 𝟯. 𝗖𝗼𝗺𝗺𝗶𝘁 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁
+ 1️⃣ You want to split one commit into two smaller ones. Which commands will you use?
+ 2️⃣ You pushed a commit with the wrong message to a shared branch. How do you fix it without breaking history?
+
+🔹 𝟰. 𝗖𝗼𝗹𝗹𝗮𝗯𝗼𝗿𝗮𝘁𝗶𝗼𝗻 & 𝗧𝗲𝗮𝗺 𝗪𝗼𝗿𝗸𝗳𝗹𝗼𝘄𝘀
+ 1️⃣ A teammate’s commit broke develop. How do you quickly revert only that commit?
+ 2️⃣ You need to test a teammate’s branch locally without merging it. What’s the best approach?
+
+🔹 𝟱. 𝗚𝗶𝘁 𝗶𝗻 𝗖𝗜/𝗖𝗗
+ 1️⃣ Your pipeline only allows fast-forward merges. How do you prepare your branch?
+ 2️⃣ You tagged the wrong commit for release 🚨 — how do you move the tag safely?
+
+🔹 𝟲. 𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 / 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱
+ 1️⃣ You suspect a performance regression introduced last month. How do you trace the commit?
+ 2️⃣ Your repo uses submodules, but one is out of sync. How do you update just that submodule?

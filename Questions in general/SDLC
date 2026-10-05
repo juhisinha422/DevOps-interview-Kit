@@ -1,0 +1,18 @@
+part-1 - SDLC
+----------------
+Requirements gathering
+Analysis
+Design the system
+Development
+Testing
+Deployment
+Maintenance and Monitoring.
+
+SDLC-Models
+------------
+Waterfall - proceeds after each step completes
+Agile - proceeds as per stories and takes feedback in sprints
+DevOps - continuous testing and feedback after each commit and coordination between teams, hence reduces errors and improves quality.
+
+DevOps is the process of building, testing and deploying applications continuosly. 
+Basically if we can deploy and test the code on the same day we can get maximum feedback cycles to improve our product. In this process, we use multiple tools to make this process smooth. Continuous development, integration, deployment, delivery, testing, monitoring, application security etc part of devops.

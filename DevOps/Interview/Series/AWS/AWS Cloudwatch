@@ -1,0 +1,61 @@
+#AWS Interview Questions hashtag#CloudWatch 
+
+What is Amazon CloudWatch?
+
+What types of monitoring does CloudWatch provide?
+
+What are CloudWatch metrics?
+
+Default metrics vs custom metrics?
+
+What is CloudWatch alarm?
+
+What actions can alarms trigger?
+
+What is CloudWatch log group?
+
+What is log stream?
+
+What is CloudWatch Logs Insights?
+
+What is CloudWatch dashboard?
+
+Difference between CloudWatch and CloudTrail?
+
+What is CloudWatch agent?
+
+How do you monitor EC2 using CloudWatch?
+
+How do you monitor Lambda?
+
+What is retention period in logs?
+
+What is anomaly detection?
+
+What is composite alarm?
+
+What is high-resolution metric?
+
+What is CloudWatch Events?
+
+Difference between Events and EventBridge?
+
+What is metric namespace?
+
+What is log filtering?
+
+How do you troubleshoot using CloudWatch?
+
+What is CloudWatch pricing?
+
+Can CloudWatch monitor on-prem servers?
+
+How do you create alerts?
+
+What is cross-account monitoring?
+
+CloudWatch vs Prometheus?
+
+Common CloudWatch issues?
+
+Real-time CloudWatch use case?

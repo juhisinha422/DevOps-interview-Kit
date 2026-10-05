@@ -1,0 +1,23 @@
+How would you design and manage a highly available, secure, and scalable cloud platform supporting thousands of applications and millions of users globally? 
+ 
+Designing and managing a global, enterprise-grade cloud platform requires a multi-layered architectural approach and it relies on automation, strict isolation boundaries, and decoupled system 
+
+1.we can distribute applications across at least three geographically distinct cloud regions. 
+
+2.we can use Latency-Based Routing (LBR) and Failover routing via Global Server Load Balancers (GSLB). 
+
+3.Use synchronous replication within regions and asynchronous replication across regions for database clusters. 
+
+4.Isolate workloads using Virtual Private Clouds (VPCs), strict security groups, and service meshes (e.g., Istio). 
+
+5. Encrypt all data at rest (AES-256) and in transit (TLS 1.3) using customer-managed keys.
+  
+6.Deploy Web Application Firewalls (WAF) and continuous DDoS mitigation layers at the cloud perimeter. 
+
+7.Use Kubernetes (EKS/GKE) with Horizontal Pod Autoscalers (HPA) and Cluster Autoscalers to handle traffic spikes. 
+
+8.Cache static and dynamic API assets at edge locations using a Content Delivery Network (CDN). 
+
+9.Decouple microservices using event-driven architectures with message brokers like Apache Kafka 
+
+10.Manage application state through Git repositories using automated reconciliation tools like ArgoCD. 

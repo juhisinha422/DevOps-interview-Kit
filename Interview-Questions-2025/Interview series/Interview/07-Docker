@@ -1,0 +1,16 @@
+DevOps Q&A Series: Topic 7 — Docker
+
+🚀 Continuing the festive knowledge-sharing journey, here are Docker interview questions designed to test your understanding of container lifecycle, orchestration, and CI/CD integration 🔥
+
+1️⃣ What are the key differences between Docker containers and virtual machines, and when would you choose one over the other?
+ 2️⃣ How do you optimize Docker images for faster builds and smaller sizes in production pipelines?
+ 3️⃣ Explain the role of Dockerfile instructions like ENTRYPOINT, CMD, COPY, and RUN. How do they affect container behavior?
+ 4️⃣ How do you manage secrets and environment variables securely in Docker containers?
+ 5️⃣ Describe how Docker Compose simplifies multi-container application deployment. What are common pitfalls?
+ 6️⃣ How do you implement health checks in Docker containers, and why are they important in orchestration platforms like Kubernetes?
+ 7️⃣ What strategies do you use to handle container logging and monitoring in production environments?
+ 8️⃣ How do you integrate Docker with CI/CD tools like GitLab CI, Jenkins, or GitHub Actions for automated deployments?
+ 9️⃣ What is the difference between docker run, docker exec, and docker start? When do you use each?
+ 🔟 How do you troubleshoot container networking issues, such as port conflicts or DNS resolution failures?
+ 1️⃣1️⃣ Explain the concept of Docker volumes and bind mounts. How do they differ in terms of persistence and portability?
+ 1️⃣2️⃣ What steps do you take to scan Docker images for vulnerabilities and ensure compliance in secure environments?

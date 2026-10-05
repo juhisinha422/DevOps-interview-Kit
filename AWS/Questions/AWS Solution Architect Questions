@@ -1,0 +1,137 @@
+Here are real-time AWS Solutions Architect interview questions and answers.
+
+1.Your EC2 application is slow during traffic spikes. How do you fix it?
+
+Put the instances behind an Application Load Balancer (ALB)
+
+Use Auto Scaling based on CPU or request count
+
+Store sessions in ElastiCache (Redis) instead of on EC2
+
+Serve static content from CloudFront + S3
+
+Horizontal scaling + caching removes bottlenecks.
+
+2. How do you design a highly available architecture in AWS?
+
+Deploy across multiple Availability Zones
+
+Use ALB/NLB for load balancing
+
+Use RDS Multi-AZ or Aurora for databases
+
+Add Route 53 health checks for failover
+
+3. A Lambda function times out. What do you do?
+
+Check timeout limit (max 15 minutes)
+
+Increase memory (also increases CPU)
+
+Move long tasks to SQS + ECS/Fargate
+
+Use Step Functions for orchestration
+
+4. How do you secure secrets like passwords and API keys?
+
+Use AWS Secrets Manager
+
+Encrypt with KMS (customer-managed key)
+
+Grant access via IAM roles
+
+Enable CloudTrail for auditing
+
+5. How do you reduce AWS cost without impacting performance?
+
+Use Auto Scaling
+
+Buy Savings Plans / Reserved Instances
+
+Use Spot Instances for batch jobs
+
+Enable S3 lifecycle policies
+
+Monitor with Cost Explorer + Budgets
+
+6. How do you migrate 500 TB of on-prem data quickly?
+
+Use AWS Snowball Edge
+
+Parallelize data loading
+
+Verify with checksums
+
+Internet transfer is too slow.
+
+7. How do you design DR with RTO = 5 min and RPO = 1 min?
+
+Pilot Light or Warm Standby
+
+RDS cross-Region read replica
+
+Route 53 failover routing
+
+8. How do you isolate multiple teams in AWS?
+
+Use AWS Organizations
+
+Separate accounts per team
+
+Apply Service Control Policies (SCPs)
+
+Centralized logging and billing
+
+9. How do you handle millions of events per second?
+
+Answer:
+
+Amazon Kinesis Data Streams
+
+Process with Lambda / Flink
+
+Store in S3 or Redshift
+
+10. How do you allow private access between VPCs with overlapping CIDRs?
+
+Use AWS PrivateLink
+
+NLB + Interface VPC Endpoint
+
+11. EC2 → S3 uploads are slow globally. How do you fix it?
+
+Enable S3 Transfer Acceleration
+
+Use Multipart Upload
+
+12. How do you monitor and detect security threats?
+
+GuardDuty – threat detection
+
+VPC Flow Logs – traffic analysis
+
+Security Hub – central visibility
+
+Detective – root cause analysis
+
+13. How do you run long-running parallel jobs cheaply?
+
+AWS Batch + Spot Instances
+
+No server management
+
+Automatic retries
+
+14. What’s the difference between ALB and NLB?
+
+ALB → HTTP/HTTPS, Layer 7
+
+NLB → TCP/UDP, ultra-low latency
+
+15. How do you implement zero-downtime deployments?
+
+Blue-Green or Canary deployments
+
+Use ALB target groups
+
+Automate with CodeDeploy

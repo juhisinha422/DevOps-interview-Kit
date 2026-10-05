@@ -1,0 +1,42 @@
+AWS for DevOps – Databases & Data Services
+
+If you support production workloads, you’re expected to understand data reliability, performance, and scaling 👇
+
+🔹 RDS
+	•	When would you choose RDS over DynamoDB?
+	•	Difference between Multi-AZ and Read Replicas?
+	•	How do you handle RDS failover in production?
+	•	How do you manage RDS backups and point-in-time recovery?
+
+🔹 Aurora
+	•	Why is Aurora considered more scalable than traditional RDS?
+	•	How does Aurora storage auto-scaling work?
+	•	Difference between Aurora Reader Endpoint and Writer Endpoint?
+
+🔹 DynamoDB
+	•	When is DynamoDB a better choice than relational databases?
+	•	Difference between provisioned and on-demand capacity?
+	•	How do you handle hot partitions?
+	•	What is DynamoDB TTL and where is it used?
+
+🔹 ElastiCache
+	•	When do you use Redis vs Memcached?
+	•	How does caching reduce database load?
+	•	How do you design cache eviction strategies?
+
+🔹 Data Backup & Recovery
+	•	How do you design backup strategies for databases?
+	•	Difference between snapshots and continuous backups?
+	•	How do you test database restore procedures?
+
+🔹 Scaling & Performance
+	•	How do you scale databases without downtime?
+	•	What metrics indicate database performance issues?
+	•	How do you prevent database connection exhaustion?
+
+🔹 Security
+	•	How do you encrypt data at rest and in transit?
+	•	How do you restrict database access using IAM and security groups?
+	•	How do you rotate database credentials safely?
+
+💡 Applications can be stateless — databases never are.

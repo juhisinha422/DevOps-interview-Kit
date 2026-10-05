@@ -1,0 +1,28 @@
+CI vs CD – Most Engineers Get This Wrong
+
+Many people say:
+👉 “We have CI/CD”
+
+But when you ask questions, the confusion starts.
+
+Let’s simplify it 👇
+
+🔹 Continuous Integration (CI)
+Developers frequently merge code to a  shared repo
+Automated build & test runs on every commit
+ Goal: catch bugs early
+
+🔹 Continuous Delivery (CD)
+Code is always in a deployable state
+ Deployment needs manual approval
+ Used when control & compliance are important
+
+🔹 Continuous Deployment (CD)
+ Every successful change goes to  production automatically
+ No manual intervention
+ Used by mature DevOps teams
+
+💡 CI is mandatory. CD depends on business, risk, and maturity.
+
+In interviews, they don’t test definition
+they test when and why you choose CI/CD.

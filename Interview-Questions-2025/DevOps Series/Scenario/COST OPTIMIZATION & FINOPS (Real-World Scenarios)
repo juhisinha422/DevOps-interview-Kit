@@ -1,0 +1,32 @@
+COST OPTIMIZATION & FINOPS (Real-World Scenarios)
+
+These scenarios focus on cloud cost explosions, accountability, and smart optimization decisions.
+
+⸻
+
+💰 Cost Optimization & FinOps – Real-World DevOps Scenarios
+ 1. Your cloud bill suddenly increased by 40%. How do you investigate the root cause?
+ 2. Multiple resources are running but not being used. How do you identify and clean them up safely?
+ 3. How do you implement cost visibility across teams and environments?
+ 4. Developers keep spinning up large instances. How do you control this?
+ 5. How do you optimize compute costs without impacting performance?
+ 6. Storage costs are growing rapidly. How do you analyze and reduce them?
+ 7. How do you implement budgets and alerts in cloud platforms?
+ 8. Reserved Instances or Savings Plans are underutilized. How do you fix this?
+ 9. How do you balance cost vs reliability in production systems?
+ 10. How do you design cost-efficient architectures across AWS, Azure, and GCP?
+ 11. How do you enforce cost governance using IaC?
+ 12. A team refuses to downscale unused resources. How do you handle it?
+ 13. How do you optimize Kubernetes costs?
+ 14. How do you implement chargeback or showback models?
+ 15. How do you measure and report cost optimization success?
+
+⸻
+
+🧠 What Interviewers Evaluate
+
+✔ Cloud cost awareness
+✔ Ownership & accountability
+✔ Architecture trade-offs
+✔ Governance & controls
+✔ FinOps mindset

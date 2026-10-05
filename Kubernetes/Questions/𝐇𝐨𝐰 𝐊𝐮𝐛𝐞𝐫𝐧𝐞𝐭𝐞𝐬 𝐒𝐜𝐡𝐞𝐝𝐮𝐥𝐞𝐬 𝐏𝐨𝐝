@@ -1,0 +1,26 @@
+ 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐔𝐧𝐩𝐚𝐜𝐤𝐞𝐝 #𝟑 — 𝐇𝐨𝐰 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐒𝐜𝐡𝐞𝐝𝐮𝐥𝐞𝐬 𝐏𝐨𝐝𝐬: 𝐓𝐡𝐞 𝐇𝐢𝐝𝐝𝐞𝐧 𝐌𝐚𝐠𝐢𝐜 𝐁𝐞𝐡𝐢𝐧𝐝 𝐭𝐡𝐞 𝐒𝐜𝐞𝐧𝐞𝐬
+Ever wondered how Kubernetes decides which node should run your Pod?
+ It feels like magic… but it’s actually one of the most intelligent systems inside Kubernetes.
+Let’s break it down in a way that finally makes sense. 👇
+🔮 1️⃣ 𝑺𝒕𝒆𝒑 1: 𝑭𝒊𝒍𝒕𝒆𝒓𝒊𝒏𝒈 — “Who CAN run this Pod?”
+The scheduler scans every node in the cluster and filters out the ones that don’t qualify.
+It checks for things like:
+Does the node have enough CPU & RAM?
+Does the Pod require a specific node label?
+Are there taints on the node that prevent scheduling?
+Is the node even healthy?
+After this step, Kubernetes creates a shortlist of nodes that can run the pod.
+🧠 2️⃣ 𝑺𝒕𝒆𝒑 2: 𝑺𝒄𝒐𝒓𝒊𝒏𝒈 — “Who is the BEST match?”
+Now the scheduler scores each of the remaining nodes based on rules like:
+Least loaded node (resource utilization)
+Topology spread (avoid putting all pods in one zone)
+Affinity/Anti-affinity rules
+Data locality
+Each node gets a score.
+ The highest-scoring node wins.
+🏆 3️⃣ 𝑺𝒕𝒆𝒑 3: 𝑩𝒊𝒏𝒅𝒊𝒏𝒈 — “Run it here!”
+Kubernetes now commits the Pod to the chosen node.
+The scheduler sends a binding decision to the API server, and the kubelet takes over to actually start the container.
+🔥 The Entire Scheduling Process in One Line:
+Filter → Score → Bind → Run
+That's the hidden magic happening every time you apply a YAML.

@@ -1,0 +1,49 @@
+Capgemini | DevOps Interview Questions – 3–5 Years Experience 🚨
+
+Recently asked DevOps interview questions that can help you prepare for your next Capgemini interview 👇
+
+🔹 1. Kubernetes
+👉 Explain Kubernetes Architecture.
+👉 Explain the role of Control Plane, Worker Nodes, API Server, Scheduler, Controller Manager and etcd.
+
+🔹 2. Kubernetes Deployment
+👉 What is a Deployment in Kubernetes?
+👉 What are the different deployment strategies?
+👉 Write a Kubernetes Deployment YAML for an application.
+
+🔹 3. Git – Rebase vs Merge
+👉 What is the difference between git rebase and git merge?
+👉 When would you prefer rebase over merge?
+
+🔹 4. Git – Fetch vs Pull
+👉 What is the difference between:
+"git fetch" vs "git pull"
+👉 What happens internally when you execute "git pull"?
+
+🔹 5. Docker
+👉 How can you create/save a Docker image from a running container?
+💡 Example:
+"docker commit <container_id> <image_name>:<tag>"
+
+🔹 6. Ingress
+👉 What is Ingress in Kubernetes?
+👉 What is an Ingress Controller?
+👉 How is Kubernetes Ingress different from a traditional ingress/load-balancing concept?
+
+🔹 7. Jenkins
+👉 What is a Jenkinsfile?
+👉 How do you write a declarative Jenkins pipeline?
+👉 Explain stages, agents, environment variables, parameters and post actions.
+
+🔹 8. Docker Networking
+👉 Explain Docker networking.
+👉 What are the different Docker network drivers?
+👉 How do containers communicate with each other?
+
+🔹 9. Dockerfile – RUN vs CMD vs ENTRYPOINT
+👉 What is the difference between:
+• "RUN"
+• "CMD"
+• "ENTRYPOINT"
+
+👉 Which one executes during image build and which one executes when the container starts?

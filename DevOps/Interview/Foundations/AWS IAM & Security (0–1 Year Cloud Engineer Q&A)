@@ -1,0 +1,29 @@
+AWS IAM & Security (0–1 Year Cloud Engineer Q&A)
+
+Security is the #1 thing interviewers check in AWS roles 👇
+
+1. What is IAM?
+2. What is an IAM user?
+3. What is an IAM group?
+4. What is an IAM role?
+5. What is an IAM policy?
+6. Difference between IAM user and IAM role?
+7. What is the root account?
+8. What is MFA in AWS?
+9. What is least privilege access?
+10. What is AWS KMS?
+11. What is encryption at rest?
+12. What is encryption in transit?
+13. What is AWS Shield?
+14. What is AWS WAF?
+15. What is AWS Secrets Manager?
+16. What is AWS Certificate Manager?
+17. What is CloudTrail?
+18. What is GuardDuty?
+19. What is Inspector?
+20. What is Security Hub?
+21. What is a resource-based policy?
+22. What is identity-based policy?
+23. What is cross-account access?
+24. What is temporary security credentials?
+25. What is AWS Organizations?

@@ -1,0 +1,27 @@
+Most Asked DevOps Interview Question at MNCs
+ 
+Q: Why do we use two COPY commands in a Dockerfile instead of one?
+ 
+❌ Bad approach:
+COPY . .
+RUN pip install -r requirements.txt
+ 
+✅ Good approach:
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+ 
+The answer: Docker Layer Caching.
+ 
+Every line in a Dockerfile creates a layer.
+If a layer hasn't changed, Docker reuses it from cache.
+ 
+With single COPY → you change one line in app.py → pip install runs again (2-3 minutes wasted every build).
+ 
+With two COPYs → requirements.txt didn't change → pip install is cached → only app code rebuilds.
+ 
+Build time drops from minutes to seconds.
+ 
+Rule of thumb: Things that change LEAST go at the TOP. Things that change MOST go at the BOTTOM.
+ 
+This is one of the most commonly asked questions in DevOps interviews across MNCs and product companies. 

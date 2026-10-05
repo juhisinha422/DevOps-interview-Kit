@@ -1,0 +1,11 @@
+1. Explain the next step after you receive the maven artifact from the repository ?
+2. How are you taking the backup of the jobs which is running on the Jenkins server ?
+3. How other teams use your terraform modules and how to version it ?
+4. How do you manage the clusters in each environments ? 
+5. How you switch between clusters tell me the command ? 
+6. You have a business critical application which cannot go down. But there is an infrastructure update which is required for the application and you have updated your .tf files to reflect those infra updates in code, how will you make sure there is no down time while applying those changes?
+7. How do you establish a connection with databases in your deployments ?
+8. What is the difference between firewall and nsg ?
+9. How do you connect Terraform with AWS?
+10.Why is it that master nodes are 3,5,7 in number - why odd numbers only ?
+11. If One master node is taken down for upgrade - how can 2 master nodes manage the cluster

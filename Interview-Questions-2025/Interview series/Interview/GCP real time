@@ -1,0 +1,73 @@
+Lets focus on some GCP real-time interview q/a based on my experiences....
+
+1. How do you optimize Docker images for production use?
+Answer:
+ I use multi-stage builds to separate build-time dependencies from runtime, reducing image size. I also minimize layers by combining commands, use .dockerignore to exclude unnecessary files, and prefer slim base images like alpine. For security, I scan images using tools like Trivy and manage them via private registries with access control.
+
+2. What are the key differences between GKE Autopilot and Standard mode? When would you choose one over the other?
+Answer:
+ Autopilot abstracts node management and is ideal for teams wanting reduced operational overhead. Standard mode offers full control over nodes, useful for custom workloads, node-level tuning, or special hardware. I choose Autopilot for quick deployments and Standard for complex, performance-sensitive applications.
+
+3. How do you design a highly available GKE cluster across regions?
+Answer:
+ I use regional clusters with multi-zone node pools, configure PodDisruptionBudgets, and deploy replica workloads across zones. For multi-region HA, I use global load balancers, Cloud DNS, and CI/CD pipelines that deploy to multiple clusters. I also ensure stateful workloads use regional persistent disks or Cloud SQL with failover.
+
+4. How do you implement secure CI/CD pipelines for GKE?
+Answer:
+ I use Cloud Build with IAM roles, Binary Authorization, and artifact signing. Pipelines include linting, unit tests, image scanning, and deployment gates. For deployment, I use Argo CD or GitLab CI with canary or blue/green strategies. Secrets are managed via Secret Manager or Kubernetes Secrets with KMS encryption.
+
+5. How do you manage infrastructure as code for GKE clusters?
+Answer:
+ I use Terraform with modules for reusable components. I version control all configs, use remote state backends, and enforce changes via code reviews. For GCP resources, I integrate Config Connector to manage them declaratively within Kubernetes. I also use pre-commit hooks and CI checks for validation.
+
+5. How do you manage infrastructure as code for GKE clusters?
+Answer:
+ I use Terraform with modules for reusable components. I version control all configs, use remote state backends, and enforce changes via code reviews. For GCP resources, I integrate Config Connector to manage them declaratively within Kubernetes. I also use pre-commit hooks and CI checks for validation.
+
+6. How do you troubleshoot container runtime issues in GKE?
+Answer:
+ I inspect logs using kubectl logs, check node status with kubectl describe node, and use crictl for containerd-level debugging. I also review event logs, container metrics, and use Cloud Logging for deeper insights. If needed, I SSH into nodes (Standard mode) and inspect /var/log and runtime configurations.
+
+7. What strategies do you use for cost optimization in GKE?
+Answer:
+ I use autoscaling, spot/preemptible nodes, and resource requests/limits to avoid overprovisioning. I monitor usage with Cloud Monitoring, analyze billing reports, and apply committed use discounts. I also consolidate workloads and use Autopilot for predictable pricing when appropriate.
+
+8. How do you secure workloads in GKE?
+Answer:
+ I use Workload Identity for secure GCP access, RBAC for access control, and Network Policies to restrict traffic. I enable Binary Authorization, scan images, and use Secrets encryption with KMS. I also enforce least privilege IAM roles and monitor with Cloud Audit Logs.
+
+9. How do you handle microservices communication and observability in GKE?
+Answer:
+ I use Istio or Anthos Service Mesh for secure service-to-service communication, traffic management, and telemetry. For observability, I integrate Cloud Monitoring, Cloud Logging, and Cloud Trace. I also use Prometheus + Grafana for custom metrics and OpenTelemetry for distributed tracing.
+
+10. How do you migrate legacy workloads to GKE?
+Answer:
+ I assess workloads for containerization readiness, refactor monoliths into microservices if needed, and containerize using Docker. I use Cloud Build for image creation, Terraform for infra provisioning, and CI/CD pipelines for deployment. For stateful apps, I migrate databases using Cloud SQL, Dataflow, or custom scripts, ensuring minimal downtime.
+
+11. How do you implement canary deployments in GKE using Cloud Build and Argo CD?
+Answer:
+ I configure Cloud Build to push new container images to Artifact Registry, then update a GitOps repo watched by Argo CD. In Kubernetes, I use progressive rollout strategies via Argo Rollouts or native Deployment strategies with maxSurge and maxUnavailable. Canary steps are defined using analysis templates (e.g., Prometheus metrics or webhooks) to validate before full rollout.
+
+12. What is Workload Identity in GKE and how does it improve security?
+Answer:
+Workload Identity allows Kubernetes service accounts to impersonate GCP IAM service accounts securely, eliminating the need to manage long-lived service account keys. It improves security by:
+Enabling fine-grained IAM permissions.
+Avoiding hardcoded credentials in containers.
+Supporting auditing and revocation via IAM policies.
+
+13. How do you manage secrets in GKE securely?
+Answer:
+ I use Secret Manager for storing sensitive data and access it via Workload Identity. For Kubernetes-native secrets, I enable encryption at rest with CMEK and restrict access using RBAC and Network Policies. I also integrate HashiCorp Vault in some cases for dynamic secrets and rotation.
+
+14. How do you monitor and troubleshoot performance issues in GKE?
+Answer:
+ I use Cloud Monitoring for metrics (CPU, memory, latency), Cloud Logging for logs, and Cloud Trace for distributed tracing. I set up dashboards and alerts for key SLOs. For troubleshooting:
+Use kubectl top, describe, and logs.
+Check HPA/VPA metrics.
+Analyze pod evictions, OOM kills, and network latency.
+Use Prometheus + Grafana for custom metrics.
+
+15. How do you handle stateful workloads in GKE?
+Answer:
+I use StatefulSets with PersistentVolumeClaims backed by GCE Persistent Disks or Filestore. For HA, I use regional disks and ensure anti-affinity rules to spread pods. I also configure PodDisruptionBudgets and graceful termination to avoid data corruption. For databases, I often use Cloud SQL or operator-based deployments like MySQL Operator.
+

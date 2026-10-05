@@ -1,0 +1,46 @@
+Tricky Interview Question of DevOps:
+
+90% engineers misunderstand this Kubernetes concept ⚠️
+
+What is Requests and limits in kubernetes? 
+
+Answer:
+
+In simple words:
+
+💡 Requests = Minimum guaranteed resources
+💡 Limits = Maximum allowed resources
+
+
+🧠 Think like this:
+
+• Request → “I NEED at least this much to run”
+• Limit → “I CANNOT go beyond this”
+🚨 What actually happens?
+
+
+If the CPU exceeds the limit →
+
+👉 Kubernetes throttles your container
+👉 App becomes slow 🐢
+
+If Memory exceeds limit →
+
+👉 Container is KILLED(OOMKilled) 💀
+👉 Pod restarts
+
+
+🔥 Real Example:
+
+inside a container YAML file: 
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+✔ Guaranteed: 200m CPU, 256Mi RAM
+❌ Cannot exceed: 500m CPU, 512Mi RAM

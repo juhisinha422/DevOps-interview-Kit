@@ -1,0 +1,65 @@
+ DevOps Security Interview Questions (2–5 Years Experience)
+
+At this stage, companies expect secure pipelines & cloud setups, not just deployments 🚀
+
+📌 Questions:
+
+How do you implement DevSecOps in CI/CD?
+
+What are common CI/CD security risks?
+
+How do you manage secrets securely?
+
+What tools are used for secret management?
+
+How do you secure Jenkins pipelines?
+
+What are Docker security best practices?
+
+Why should containers not run as root?
+
+How do you scan Docker images?
+
+What is Kubernetes RBAC?
+
+What are Kubernetes Network Policies?
+
+How do you secure Kubernetes secrets?
+
+What is IAM role vs IAM user?
+
+How do you prevent cloud misconfigurations?
+
+What is SAST and DAST?
+
+What is dependency vulnerability scanning?
+
+How do you secure Terraform state files?
+
+What is IaC security?
+
+How do you avoid hard-coded credentials?
+
+What is log monitoring for security?
+
+What is audit logging?
+
+What is encryption at rest and in transit?
+
+What is Zero Trust security?
+
+How do you secure APIs?
+
+What is token-based authentication?
+
+What is secrets rotation?
+
+How do you handle security patches?
+
+What is cloud security posture management?
+
+What is least privilege in IAM policies?
+
+How do you detect unauthorized access?
+
+What real security incident have you handled?

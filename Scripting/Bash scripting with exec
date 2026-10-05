@@ -1,0 +1,48 @@
+Bash Magic with exec
+Most people use '>' or '>>' for redirection, but did you know that 'exec' gives you superpowers over file descriptors? 
+
+Here’s a neat example that shows how you can:
+ ✅ Save and restore stdout
+ ✅ Read from files using custom file descriptors
+ ✅ Mirror logs to both screen and file
+
+# First, create a sample input file
+echo -e "AWS\nTerraform\nLinux" > input.txt
+
+# Redirect file descriptors
+exec 3>&1                # Save stdout
+exec 1>output.log        # Redirect stdout to file
+echo "This goes to the file"
+exec 1>&3                # Restore stdout
+exec 3>&-                # Close fd 3
+
+# Open file for reading
+exec 3<input.txt
+while read -u 3 line; do
+    echo "Line: $line"
+done
+exec 3<&-                # Close fd 3
+
+# Logging script example
+LOG_FILE="/tmp/script.log"
+exec 1> >(tee -a "$LOG_FILE")
+exec 2>&1
+
+echo "This appears everywhere!"  # → screen + /tmp/script.log
+
+✨ What happens?
+output.log → contains only "This goes to the file"
+Screen shows:
+Line: AWS
+Line: Terraform
+Line: Linux
+This appears everywhere!
+/tmp/script.log → also contains "This appears everywhere!"
+
+💡 Why this matters:
+Gain precise control over input/output streams
+Build professional-grade logging into your scripts
+Handle stdout/stderr like a pro
+
+👉 Quick refresher:
+ 0=stdin, 1=stdout, 2=stderr, and the rest are yours to use.

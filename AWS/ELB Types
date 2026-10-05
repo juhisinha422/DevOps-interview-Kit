@@ -1,0 +1,12 @@
+AWS Tip of the Day – ELB Types
+
+Amazon Web Services provides 4 types of Load Balancers:
+
+* ALB (Application Load Balancer) – Layer 7, for HTTP/HTTPS web apps
+* NLB (Network Load Balancer) – Layer 4, for high-speed TCP/UDP traffic
+* GWLB (Gateway Load Balancer) – Used for firewalls and security appliances
+* CLB (Classic Load Balancer) – Older generation, mainly for legacy apps
+
+Quick Tip
+
+ALB = Web Apps | NLB = Performance | GWLB = Security | CLB = Legacy

@@ -1,0 +1,12 @@
+1) How do you identify and resolve the high CPU and memory usage in a Linux server?
+2) Write a shell script to monitor a process to restart if it is not running.?
+3) can you please explain me a situation where you handled Git merge conflict during a hotfix in a live production branch?
+4) how do you enforce branch protection and code reviews in a GitHub CI/CD pipelines?
+5)what are the strategies you have used to reduce a Docker image size and speed up the build time? 6)how do you handle the persistent data in a Docker containers with real time?
+7) how do you ArgoCD fit to GitOps for flow in CI/CD pipelines?
+8) how do you configure high availability and application on AWS using easy, ALB, Auto Scaling? 9) how do you monitor the infrastructure, set up alerts in downtime?
+9) VPC peering.
+10) Where do you guys are maintaining state file?
+11)How do you use the Terraform provisioning VPC with public and private subnets?
+12) Can you explain me the difference between Terraform taint, refresh, plan?
+13) How do you integrate SonarCube code quality checks and Nexus Artifactor with Jenkins pipeline? 14) How do you handle situation where Kubernetes production was going to crash loop backup state? 15) What is your approach zero downtime deployments in Kubernetes?

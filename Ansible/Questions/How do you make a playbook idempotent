@@ -1,0 +1,31 @@
+The Ansible interview question that I have seen fail more senior candidates than any other:
+
+"How do you make a playbook idempotent?"
+Most candidates say: "Ansible modules are idempotent by default."
+
+This is the trap.
+
+Modules are idempotent. Playbooks are not - unless you write them that way.
+
+Three common patterns that break idempotency:
+1. Using shell or command modules without creates/removes arguments 
+ * shell: "echo hello >> /tmp/log" runs every time
+ * Fix: add creates: /tmp/log
+
+2. Using register to capture output and conditionally run tasks
+ * If the condition depends on runtime state, the playbook is not idempotent
+ * Fix: use proper facts and check_mode
+
+3. Using loops over lists that change between runs
+ * If the list comes from an API, the playbook runs differently each time
+ * Fix: sort the list, or use a deterministic source
+
+What separates senior engineers:
+
+They do not just make playbooks idempotent. They test idempotency by running the playbook twice in a row and checking that the second run shows "changed=0".
+
+If any task shows changed=1 on the second run, the playbook is not idempotent.
+
+Full Ansible interview guide - idempotency patterns, role structure, dynamic inventory, secrets management, and the performance optimisation questions senior roles ask.
+
+Full guide here → https://lnkd.in/g5erJ8dk

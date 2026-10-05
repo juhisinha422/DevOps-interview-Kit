@@ -1,0 +1,55 @@
+DevOps Interview Preparation
+2–4 Years Experience | Tool 12 | GCP
+
+DevOps & Advanced Cloud Concepts (Production Ready)
+
+At 2–4 years, interviewers expect you to understand GCP services deeply, design scalable systems, and integrate CI/CD & automation.
+
+🔹 Core GCP Interview Questions (2–4 yrs)
+
+• Why choose GCP over other cloud providers?
+• GCP global infrastructure (Regions, Zones)
+• Project vs Folder vs Organization
+• IAM in GCP — roles & service accounts
+• What is a service account and why is it used?
+• Compute Engine vs GKE vs Cloud Run
+• Managed Instance Groups (MIG)
+• Load Balancing in GCP (L7 vs L4)
+• Cloud Storage classes
+• Persistent Disk vs Filestore
+• VPC — global vs regional concept
+
+🔹 DevOps & CI/CD on GCP
+
+• Cloud Build — how it works?
+• Cloud Deploy — use cases
+• Artifact Registry
+• GCP with Jenkins / GitHub Actions
+• GCP secrets management (Secret Manager)
+• Infrastructure as Code in GCP (Terraform)
+• GCP logging & monitoring (Cloud Logging, Cloud Monitoring)
+
+🔹 Advanced GCP Concepts (Interview Favorite)
+
+• GKE architecture (Control Plane vs Node Pools)
+• Autopilot vs Standard GKE
+• Node auto-provisioning
+• Workload Identity — why it’s important?
+• VPC Service Controls
+• Private GKE clusters
+• Multi-region deployments in GCP
+• Blue-Green & Canary deployments on GKE
+• Cost optimization in GCP
+
+🔹 Real-World GCP Scenarios
+
+• GKE pods not scaling — troubleshooting steps
+• Permission denied error using service account — how to fix?
+• Application not accessible through Load Balancer — checks?
+• Sudden GCP cost spike — investigation approach
+• CI/CD pipeline failing in Cloud Build — what will you check?
+
+💡 Interview Tip:
+If you say:
+👉 “We use GKE with Workload Identity, private clusters, and Cloud Monitoring”
+you already sound like a strong multi-cloud DevOps engineer.

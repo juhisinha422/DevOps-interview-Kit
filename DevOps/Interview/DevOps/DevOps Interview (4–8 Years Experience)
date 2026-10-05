@@ -1,0 +1,60 @@
+ hashtag#DevOps Interview Preparation Questions (4–8 Years Experience)
+
+If you’re preparing for interviews with 4–8 years of experience, expect questions that go beyond basics and test real-world problem-solving, design decisions, and ownership.
+
+Here are some must-prepare interview questions 👇
+
+🔧 Technical & Hands-On
+
+How do you design a highly available and scalable system on AWS?
+
+Explain a CI/CD pipeline you built end-to-end. What challenges did you face?
+
+How do you manage Infrastructure as Code and handle state files?
+
+What’s your approach to zero-downtime deployments?
+
+How do you monitor applications and infrastructure in production?
+
+How do you troubleshoot a production outage under pressure?
+
+Explain Docker vs Kubernetes and when to use each.
+
+How do you handle secrets management in cloud environments?
+
+☁️ Cloud & Architecture
+
+How do you secure AWS resources using IAM best practices?
+
+How do you design for cost optimization in AWS?
+Difference between ALB, NLB, and ELB with use cases
+
+How do you manage multi-region or multi-account AWS setups?
+
+Explain auto-scaling strategies you have implemented
+
+🧠 DevOps & Process
+
+How do you collaborate with developers to improve deployment efficiency?
+
+Describe a time you automated a manual process—what was the impact?
+
+How do you handle rollbacks when deployments fail?
+
+What DevOps metrics do you track? (DORA metrics, SLIs/SLOs)
+
+How do you ensure security and compliance in CI/CD pipelines?
+
+🎯 Scenario-Based (Very Important)
+
+Production is down—what are your step-by-step actions?
+
+How would you migrate an on-prem application to AWS?
+
+How do you handle legacy systems in a modern DevOps setup?
+
+How do you mentor junior engineers on your team?
+
+⭐ Pro Tip
+
+Interviewers at this level look for ownership, decision-making, and impact, not just tools.

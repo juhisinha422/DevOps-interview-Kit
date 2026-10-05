@@ -1,0 +1,36 @@
+Tool 4 — AWS (Intermediate Level DevOps Interview Questions)
+
+At this level, interviewers expect you to know how AWS services work together in real systems.
+
+AWS – Intermediate Interview Questions
+
+1. What is the shared responsibility model in AWS?
+2. Difference between IAM user, group, and role?
+3. How does IAM assume role work?
+4. What is STS?
+5. What is least privilege access?
+6. What is VPC peering?
+7. What is Transit Gateway?
+8. Difference between public, private, and isolated subnets?
+9. What is NAT Gateway and why is it needed?
+10. Difference between NAT Gateway and NAT instance?
+11. What is ALB vs NLB?
+12. What is target group?
+13. What is Auto Scaling Group lifecycle hook?
+14. What is Launch Template?
+15. What is Route 53?
+16. Routing policy types in Route 53?
+17. What is CloudWatch metric vs alarm?
+18. What is CloudWatch Logs?
+19. What is CloudTrail?
+20. Difference between CloudTrail and CloudWatch?
+21. What is AWS KMS?
+22. What is encryption at rest and in transit?
+23. What is S3 versioning?
+24. What is S3 lifecycle policy?
+25. What is S3 replication?
+26. What is RDS?
+27. Difference between RDS and DynamoDB?
+28. What is Multi-AZ deployment?
+29. What is Read Replica?
+30. How do you design a highly available AWS architecture?

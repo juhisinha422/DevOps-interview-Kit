@@ -1,0 +1,45 @@
+AWS DevOps Interview Preparation Series — AWS ECR🚀
+
+Topic: Amazon ECR (Elastic Container Registry) — Secure, Scalable, and Fully Managed Container Image Registry.
+
+As part of my AWS DevOps Interview Preparation Series, today’s focus is on Amazon ECR, one of the most essential services for container-based DevOps pipelines.
+
+If you’re using Docker, ECS, EKS, or CI/CD pipelines, then mastering ECR is crucial — it’s the backbone of image management in AWS!
+
+Let’s dive into the Top Amazon ECR Interview Questions to sharpen your AWS DevOps skills. 👇
+
+What is Amazon ECR and how is it different from Docker Hub or JFrog Artifactory?
+What are the main components of ECR (Repositories, Images, Tags, Lifecycle Policies)?
+How do you push a Docker image to ECR from your local system?
+How do you authenticate Docker with ECR?
+What command is used to get ECR login credentials?
+What is an image tag, and how is it used in version control?
+How can you automate image pushes from Jenkins or GitHub Actions to ECR?
+How does ECR integrate with ECS and EKS?
+What is the ECR image URI format?
+What are ECR lifecycle policies and why are they important?
+How does Amazon ECR handle authentication and authorization?
+How do you control access to specific repositories in ECR?
+What are the best practices for securing private ECR repositories?
+How do you enable image scanning in ECR?
+What types of vulnerabilities can ECR detect?
+How do you enforce image scanning on every image push?
+How do you restrict public access to ECR repositories?
+What is AWS KMS encryption in ECR?
+How can you integrate ECR image scanning with security tools like Trivy or Clair?
+How do you manage IAM roles for CI/CD pipelines using ECR?
+How can you integrate ECR with Jenkins for Docker image build and push?
+How do you automate image versioning using Git commit or build number?
+How can you automatically clean up old images using lifecycle policies?
+How do you integrate ECR with ECS or EKS deployment stages in Jenkins pipelines?
+What is the best way to store multi-architecture images in ECR?
+How can you set up automated image promotion between Dev, QA, and Prod repositories?
+How do you replicate ECR repositories across multiple AWS regions?
+How can you monitor image push/pull activity in ECR?
+How do you integrate ECR with CloudWatch and CloudTrail for auditing?
+How can you troubleshoot image pull errors like ImagePullBackOff from ECR?
+
+💡 Pro Tips for DevOps Engineers:
+Always enable image scanning in ECR to identify vulnerabilities early.
+Use lifecycle policies to automatically clean up unused or older image tags.
+Integrate ECR authentication securely into Jenkins, GitHub Actions, or GitLab CI.

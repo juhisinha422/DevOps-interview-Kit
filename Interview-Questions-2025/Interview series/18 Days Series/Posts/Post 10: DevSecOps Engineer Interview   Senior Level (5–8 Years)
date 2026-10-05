@@ -1,0 +1,23 @@
+Post 10: DevSecOps Engineer Interview  
+Senior Level (5–8 Years)
+
+Security leadership at scale — where **DevSecOps becomes organizational strategy**! 🛡️  
+At 5–8 years, you're architecting security platforms, driving compliance automation, and embedding zero-trust across engineering culture.  
+
+Test your enterprise security expertise 👇  
+
+💡 Common DevSecOps Interview Questions for 5–8 Years Experience:
+1️⃣ How do you design a **security platform** that scales across 100+ teams and services?  
+2️⃣ Explain your **zero-trust implementation** strategy for cloud-native environments.  
+3️⃣ What's your approach to **automated compliance** (SOC2, PCI, GDPR) using policy-as-code?  
+4️⃣ How do you build **threat detection pipelines** integrated with SIEM and SOAR platforms?  
+5️⃣ Describe your **supply chain security** strategy (SBOM, sigstore, dependency scanning).  
+6️⃣ How do you implement **runtime security** for Kubernetes (Falco, eBPF, service mesh security)?  
+7️⃣ What's your framework for **vulnerability management** at enterprise scale?  
+8️⃣ How do you measure **security posture** with quantitative metrics and dashboards?  
+9️⃣ Explain **security chaos engineering** — safely testing defenses in production.  
+🔟 How do you foster **security culture** across development and operations teams?  
+
+🎯 Pro Tip:  
+Senior DevSecOps leaders **quantify risk reduction** — *"Our automated scanning caught 98% of critical vulns pre-merge, reducing breach risk by 85%."*  
+Balance security with velocity: security that slows teams gets bypassed.

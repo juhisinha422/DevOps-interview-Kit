@@ -1,0 +1,43 @@
+One of the most commonly asked Kubernetes questions in interviews is:
+
+𝗤. 𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗿𝗲𝗰𝗲𝗻𝘁 𝗶𝘀𝘀𝘂𝗲 𝘆𝗼𝘂 𝗳𝗮𝗰𝗲𝗱 𝗮𝗻𝗱 𝗵𝗼𝘄 𝗱𝗶𝗱 𝘆𝗼𝘂 𝗳𝗶𝘅 𝗶𝘁?
+
+𝐈𝐬𝐬𝐮𝐞:
+A production microservice running on EKS suddenly started failing to access S3 and Secrets Manager.
+The application logs showed:
+AccessDenied: Not authorized to perform sts:AssumeRoleWithWebIdentity
+
+🔍 𝐑𝐨𝐨𝐭 𝐂𝐚𝐮𝐬𝐞 𝐀𝐧𝐚𝐥𝐲𝐬𝐢𝐬
+After investigation, I found,
+The pod was using the default service account instead of the intended one
+The IAM Role trust policy had a mismatch in:
+namespace
+service account name
+
+The OIDC provider URL was incorrectly configured in the IAM role trust policy
+
+🛠️ 𝐅𝐢𝐱 𝐀𝐩𝐩𝐥𝐢𝐞𝐝 (𝐒𝐭𝐞𝐩-𝐛𝐲-𝐒𝐭𝐞𝐩)
+
+1️⃣ Verified Service Account
+𝘬𝘶𝘣𝘦𝘤𝘵𝘭 𝙜𝘦𝘵 𝘱𝘰𝘥 <𝘱𝘰𝘥-𝘯𝘢𝘮𝘦> -𝘰 𝘺𝘢𝘮𝘭 | 𝙜𝘳𝘦𝘱 𝘴𝘦𝘳𝘷𝘪𝘤𝘦𝘈𝘤𝘤𝘰𝘶𝘯𝘵𝘕𝘢𝘮𝘦
+
+➡️ It was using default instead of app-sa
+
+2️⃣ 𝐅𝐢𝐱𝐞𝐝 𝐃𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭
+serviceAccountName: app-sa
+
+3️⃣ 𝐅𝐢𝐱𝐞𝐝 𝐈𝐀𝐌 𝐓𝐫𝐮𝐬𝐭 𝐏𝐨𝐥𝐢𝐜𝐲
+Corrected this in the IAM role:
+
+"Condition": {
+  "StringEquals": {
+    "oidc.eks.<region>.amazonaws.com/id/<OIDC_ID>:sub":
+    "system:serviceaccount:prod:app-sa"
+  }
+}
+
+4️⃣ 𝐑𝐞𝐬𝐭𝐚𝐫𝐭𝐞𝐝 𝐏𝐨𝐝𝐬
+kubectl rollout restart deployment app-deployment
+
+Boom 💥
+Service recovered. No secrets. No access keys.

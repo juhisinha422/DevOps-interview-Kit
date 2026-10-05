@@ -1,0 +1,90 @@
+Elastic Container Service (ECS) 🪣
+
+👉The Elastic Container Service (ECS) on AWS is a great way to get up and running with containers. 
+👉ECS offers a no added cost control plane with EC2 and Fargate serverless compute options. 
+👉With ECS you can build highly scalable services and pay for what you use. 
+👉You can store your container images using the Elastic Container Registry (ECR) and you can setup load balancers for traffic management.
+
+👉With ECS you can use multiple strategies to determine when to scale up or down the number of container instances. 
+👉This series of articles from Utkarsh Rastogi provides great insights into getting started with ECS.
+
+👉One good option for running containers on AWS is with the Elastic Container Service (ECS). 
+👉When debugging applications you likely will want to be able to access the container where it's running. 
+👉With Fargate compute on ECS you can do this using the ECS exec setup.
+
+👉The Elastic Container Service (ECS) is one of the main solutions on AWS to run your container workloads with. 
+👉It supports using EC2 worker nodes that you have to manage or Fargate compute that is managed by AWS.
+
+-----
+
+
+ECS vs EKS in AWS 🚀
+
+✳️ECS (Elastic Container Service) :
+
+1. AWS-native: Built by AWS, tightly integrated.
+2. Easy to start: Less setup, opinionated by AWS.
+3. Launch types: EC2 (your servers) or Fargate (serverless).
+4. Good for: Teams that want AWS to handle orchestration without needing Kubernetes knowledge.
+
+☸️EKS (Elastic Kubernetes Service) :
+
+1. Kubernetes on AWS: Fully managed control plane for Kubernetes.
+2. More flexible: You get Kubernetes’ ecosystem, tools, and portability.
+3. More complex: Steeper learning curve than ECS.
+4. Good for: Teams already using Kubernetes or wanting multi-cloud/hybrid setups.
+
+----
+
+Mastering Containers with Amazon ECS: Your Launchpad into Cloud-Native Applications 🐳
+Topic: Scaling Containerized Applications Effortlessly with Amazon ECS
+
+Amazon Elastic Container Service (ECS) – the backbone of containerized application management on AWS!
+
+🔍 What is Amazon ECS?
+Amazon ECS (Elastic Container Service) is a fully managed container orchestration service that helps you run, stop, and manage Docker containers on a cluster.
+
+✅ Supports both Fargate (serverless compute) and EC2 (self-managed compute)
+✅ Deep integration with ECR, ALB, IAM, CloudWatch
+✅ No need to install or operate your own container orchestration software
+
+🏗 ECS Architecture Overview:
+ECR (Elastic Container Registry) – Store your Docker images 📦
+
+Task Definitions – Blueprint for running containers 📝
+
+Services – Maintain desired number of running tasks ⚙️
+
+Clusters – Logical grouping of resources 📊
+
+ALB (Application Load Balancer) – Distribute traffic to containers 🌐
+
+CloudWatch – Monitor logs and metrics 📈
+
+🛠 Why use ECS?
+Fully integrated with AWS ecosystem 🔗
+
+Easy scaling and updating of containers ⏫
+
+Highly secure and controlled with IAM policies 🔐
+
+Fargate removes server management hassles (serverless containers!) 🛰️
+
+💬 ECS Key Concepts:
+
+Concept Description
+Cluster Logical group of tasks/services
+Task Definition Instructions for running containers
+Service Maintains number of task instances
+Launch Type Fargate (serverless) or EC2 (managed)
+🧠 Real-World Use Cases:
+Deploy microservices architectures
+
+Host backend APIs or full-stack apps
+
+Run scheduled jobs with ECS tasks
+
+Power CI/CD Pipelines with AWS CodePipeline + ECS
+
+🔥 Pro Tip:
+Use Fargate Launch Type for simple container deployments without provisioning EC2 instances!

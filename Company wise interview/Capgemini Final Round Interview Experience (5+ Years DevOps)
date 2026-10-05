@@ -1,0 +1,52 @@
+Capgemini Final Round Interview Experience (5+ Years DevOps)
+
+
+This round was clearly designed for 5+ years experienced DevOps Engineers 👇
+
+AWS – Advanced Scenario-Based Questions
+Design a multi-region, highly available & fault-tolerant architecture.
+How will you handle a complete AZ failure in production?
+Debugging latency issues in ALB + EC2 + RDS architecture.
+Implement secure IAM strategy with least privilege across teams.
+How will you design a cost-optimized architecture for high traffic system?
+
+Kubernetes – Production-Level Depth
+Write a complete Deployment YAML with:
+Probes (Liveness & Readiness)
+Resource limits
+HPA configuration
+Debug a CrashLoopBackOff / OOMKilled pod in production.
+Design a multi-tenant Kubernetes cluster.
+How will you handle zero-downtime deployments (Rolling, Blue-Green, Canary)?
+Troubleshoot networking issues between services (CNI, DNS).
+
+Docker – Real-World Optimization
+Write an optimized multi-stage Dockerfile for production.
+How to reduce image size & vulnerabilities?
+Debug a container working locally but failing in server.
+Implement secure container practices (non-root user, minimalistic base image).
+
+Terraform – Enterprise-Level Questions
+Write Terraform code for:
+Complete infrastructure (VPC, ALB, Auto Scaling, RDS)
+How will you manage:
+Multiple environments (dev/stage/prod)
+Remote backend (S3 + DynamoDB locking)
+Handle state drift & conflicts in team environment.
+Design modular & reusable Terraform architecture.
+
+Jenkins – Advanced Pipeline Design
+Write a full CI/CD pipeline:
+Build → Test → Security Scan → Docker → Deploy to Kubernetes
+How will you implement:
+Parallel stages
+Rollback strategy
+Troubleshoot pipeline failures in production.
+Secure Jenkins (credentials, secrets management).
+
+ Python – DevOps Automation
+Write scripts for:
+Infrastructure automation (boto3)
+Log parsing & alerting system
+Handle exceptions, retries & logging properly.
+Build a real-time monitoring/automation script.

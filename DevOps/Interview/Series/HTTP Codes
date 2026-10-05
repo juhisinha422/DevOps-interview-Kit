@@ -1,0 +1,56 @@
+DevOps Interview Preparation Series — Understanding HTTP Status Code Families (1xx–5xx) 🚀 
+
+Every DevOps or SRE engineer should know how to interpret HTTP response codes, especially when troubleshooting APIs, load balancers, or microservices in production.
+
+Today, let’s decode one of the most common interview topics —
+ HTTP Status Code Families — and understand their meanings, causes, and real-world solutions 👇
+
+1xx — Informational Responses
+These codes mean the server has received the request and the process is continuing.
+Common Codes:
+100 Continue → The client can continue sending the request body.
+101 Switching Protocols → The server is switching protocols (like HTTP to WebSocket).
+Use Case:
+ Seen in APIs or streaming connections where headers are sent before the full request body.
+
+2xx — Success Responses
+These indicate the request was successfully received, understood, and processed.
+Common Codes:
+200 OK → Request successful (GET/POST completed).
+201 Created → Resource successfully created (POST requests).
+202 Accepted → Request accepted but not yet processed.
+204 No Content → Success but no response body returned.
+
+3xx — Redirection Responses
+These codes tell the client that additional actions are needed to complete the request.
+Common Codes:
+301 Moved Permanently → Resource permanently moved to a new URL.
+302 Found → Temporary redirection.
+304 Not Modified → Cached resource; no need to download again.
+
+
+4xx — Client Errors
+Indicates the client made an error (bad request, unauthorized access, or missing resources).
+Common Codes & Fixes:
+400 Bad Request → Invalid syntax or malformed request.
+Fix: Validate input data before sending.
+401 Unauthorized → Missing or invalid authentication.
+Fix: Add or refresh access tokens/credentials.
+403 Forbidden → Authenticated but no permission.
+Fix: Check IAM, ACL, or API gateway access policies.
+404 Not Found → Resource not found.
+Fix: Verify API endpoint or DNS configuration.
+429 Too Many Requests → Rate limit exceeded.
+Fix: Add retry logic or increase rate limits.
+
+5xx — Server Errors
+These codes mean the server failed to process the request, often due to misconfigurations or internal crashes.
+Common Codes & Fixes:
+500 Internal Server Error → General backend failure.
+Fix: Check logs, code errors, or backend dependency failures.
+502 Bad Gateway → Invalid response from upstream server.
+Fix: Check load balancer target health or backend timeout.
+503 Service Unavailable → Server overloaded or under maintenance.
+Fix: Scale up instances, check auto-scaling, or increase timeouts.
+504 Gateway Timeout → Upstream server didn’t respond in time.
+Fix: Tune backend performance or adjust timeout settings.

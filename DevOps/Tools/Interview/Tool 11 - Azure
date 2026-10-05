@@ -1,0 +1,61 @@
+DevOps Interview Preparation Azure
+2–4 Years Experience | Tool 11
+Production-Level Cloud for DevOps Engineers
+
+For 2–4 years experience, interviewers expect you to design secure Azure architectures, integrate CI/CD, and troubleshoot production issues, not just create resources from the portal.
+
+🔹 Core Azure Interview Questions (2–4 yrs)
+
+• Why choose Azure in enterprise environments?
+• Azure global infrastructure (Regions,
+Availability Zones)
+• Azure Resource Manager (ARM) — why is it important?
+• Resource Group — real-world usage
+• Azure VM vs Azure App Service
+• VM Scale Sets — use cases
+• Azure Load Balancer vs Application Gateway
+• Azure Storage account types
+• Blob vs File vs Disk storage
+• Managed Disks — benefits
+• Azure Monitor — metrics & logs
+
+🔹 Azure Networking & Security
+
+• Azure Virtual Network (VNet)
+• Subnet design best practices
+• Network Security Group (NSG) vs Azure
+Firewall
+• Public IP vs Private IP
+• VPN Gateway vs ExpressRoute
+• Azure DNS basics
+• Azure Active Directory (Azure AD)
+• Azure AD users vs service principals
+• Role-Based Access Control (RBAC)
+• Managed Identity — why it’s important?
+• Azure Key Vault — secrets, keys, certificates
+
+🔹 Azure DevOps & CI/CD
+
+• What is Azure DevOps?
+• Azure Repos vs GitHub
+• Azure Pipelines — YAML vs Classic
+• Azure Artifacts
+• Azure Boards (basic understanding)
+• Azure Pipelines with Docker
+• Azure Pipelines with Kubernetes (AKS)
+• Azure Container Registry (ACR)
+• How do you manage secrets in Azure pipelines?
+
+🔹 Real-World Azure Scenarios
+
+• Azure VM not accessible — troubleshooting steps
+• Application slow on Azure — how do you debug?
+• Deployment failed in Azure pipeline — what will you check?
+• RBAC permission issue — how do you fix it?
+• Sudden Azure cost spike — investigation approach
+• How do you design high availability in Azure?
+
+💡 Interview Tip:
+If you say:
+👉 “We use Azure DevOps pipelines, Key Vault, RBAC, and Azure Monitor in production”
+you already sound like a strong 2–4 years DevOps engineer.

@@ -1,0 +1,21 @@
+Unexpected DevOps Issue I Faced 🚨
+Everything was working fine until a new node joined the Kubernetes cluster 🖥️
+
+ Suddenly, a few pods started failing randomly ❌
+
+🔍 Root Cause:
+
+Nodes had different time zones / clock drift ⏱️
+Application tokens were time-sensitive
+Requests were getting rejected due to time mismatch
+
+🛠️ How it was fixed:
+
+ ✅ Synced time using NTP (chrony) on all nodes
+ ✅ Restarted affected pods
+ ✅ Verified time consistency across the cluster
+
+📌 Lesson learned:
+
+ In distributed systems, even time can break your application.
+ Consistency matters more than we think ⏳

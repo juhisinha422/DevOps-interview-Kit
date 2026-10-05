@@ -1,0 +1,58 @@
+Linux Commands Every Production Engineer Must Know
+System Monitoring
+1️⃣ uptime – Check system load instantly
+ 2️⃣ top – Live processes & resource usage
+ 3️⃣ htop – Enhanced top, easy visualization
+ 4️⃣ pidstat 1 – Track CPU usage by process
+ 5️⃣ free -h – Memory usage summary
+ 6️⃣ vmstat 2 5 – System performance snapshot
+ 7️⃣ iostat -x 2 5 – Disk I/O monitoring
+ 8️⃣ sar -u 1 3 – CPU usage history
+ 9️⃣ dmesg – Kernel & hardware messages
+ 🔟 mpstat -P ALL – Per-CPU stats
+Disk & Storage
+1️⃣1️⃣ df -hT – Disk usage & filesystem type
+ 1️⃣2️⃣ du -sh * | sort -h – Identify folder hogs
+ 1️⃣3️⃣ ls -lh – File sizes at a glance
+ 1️⃣4️⃣ lsof +L1 – Deleted files still using space
+ 1️⃣5️⃣ ncdu – Disk usage with interactive interface
+ 1️⃣6️⃣ find /var/log -type f -mtime +30 – Old logs
+ 1️⃣7️⃣ truncate -s 0 <file> – Clean logs safely
+Process & Service Management
+1️⃣8️⃣ ps -ef – List all processes
+ 1️⃣9️⃣ systemctl status <service> – Service health
+ 2️⃣0️⃣ systemctl restart <service> – Restart safely
+ 2️⃣1️⃣ kill -9 <pid> – Terminate rogue process
+ 2️⃣2️⃣ jobs – Background processes
+ 2️⃣3️⃣ fg %<job> – Bring job to foreground
+ 2️⃣4️⃣ nice -n 10 <cmd> – Run process with lower priority
+ 2️⃣5️⃣ renice -n -5 -p <pid> – Adjust priority of running process
+Networking
+2️⃣6️⃣ ss -tuln – Listening ports
+ 2️⃣7️⃣ netstat -tulnp – Legacy command for ports
+ 2️⃣8️⃣ ping <host> – Connectivity check
+ 2️⃣9️⃣ traceroute <host> – Network hops
+ 3️⃣0️⃣ curl -I <url> – HTTP service check
+ 3️⃣1️⃣ wget <url> – Download files via CLI
+ 3️⃣2️⃣ iptables -L -n – Firewall rules
+Logs & Troubleshooting
+3️⃣3️⃣ journalctl -xe – Detailed logs
+ 3️⃣4️⃣ tail -f /var/log/<file> – Real-time log view
+ 3️⃣5️⃣ grep "ERROR" /var/log/* – Filter errors
+ 3️⃣6️⃣ awk '{print $5}' file – Parse log fields
+ 3️⃣7️⃣ sed -i 's/old/new/g' file – Edit file inline
+ 3️⃣8️⃣ wc -l file – Count lines in logs
+ 3️⃣9️⃣ cut -d' ' -f1 file – Extract column data
+Users & Permissions
+4️⃣0️⃣ who – Current logged-in users
+ 4️⃣1️⃣ w – Who’s logged in + what they’re doing
+ 4️⃣2️⃣ id <user> – User ID & groups
+ 4️⃣3️⃣ chmod 755 file – Change permissions
+ 4️⃣4️⃣ chown user:group file – Change ownership
+ 4️⃣5️⃣ groups <user> – User groups
+Package Management
+4️⃣6️⃣ yum check-update / apt update – Package updates
+ 4️⃣7️⃣ yum install <pkg> / apt install <pkg> – Install packages
+ 4️⃣8️⃣ rpm -qa | grep <pkg> – Verify package
+ 4️⃣9️⃣ dpkg -l | grep <pkg> – Debian package check
+ 5️⃣0️⃣ yum history / apt history – Track changes

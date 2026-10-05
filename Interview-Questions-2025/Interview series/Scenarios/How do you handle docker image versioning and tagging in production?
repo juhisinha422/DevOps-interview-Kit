@@ -1,0 +1,11 @@
+How do you handle docker image versioning and tagging in production? 
+
+If we don't maintain docker image versioning and tagging in production properly it  can lead to broken rollbacks, untraceable bugs, and accidental environment overwrites 
+
+1.Never use the latest tag for production deployments or orchestration manifests (like Kubernetes or ECS). 
+
+2.A production-ready pipeline applies multiple tags to the exact same image ID at build time. 
+
+3.Every image must be tagged with the short Git commit hash that triggered the build. This ensures absolute traceability from the running container directly back to the source code example : my-app:sha-7a1b2c3 
+
+4.For actual releases, tag the image using Semantic Versioning (MAJOR.MINOR.PATCH) linked to your Git release tags. example: my-app:1.2.4

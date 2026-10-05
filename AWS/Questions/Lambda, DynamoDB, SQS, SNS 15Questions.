@@ -1,0 +1,16 @@
+ ###hashtag#Lambda, DynamoDB, SQS, SNS 15Questions.. 
+1. How do you troubleshoot a failed Lambda execution? 
+2. How do you optimize Lambda cold start performance? 
+3. How do you configure Lambda environment variables securely? 
+4. How do you trigger Lambda using S3 or API Gateway? 
+5. How do you analyze Lambda logs in CloudWatch? 
+6. How do you manage DynamoDB read/write capacity automatically? 
+7. How do you configure DynamoDB TTL for data expiration? 
+8. How do you enable DynamoDB streams for event-driven apps? 
+9. How do you process messages reliably using SQS and Lambda? 
+10. How do you troubleshoot message delivery delays in SQS? 
+11. How do you send alerts using SNS from CloudWatch? 
+12. How do you fan-out notifications to multiple subscribers in SNS? 
+13. How do you monitor Lambda concurrency and throttling? 
+14. How do you optimize DynamoDB indexes for performance? 
+15. How do you design fault-tolerant serverless architecture?

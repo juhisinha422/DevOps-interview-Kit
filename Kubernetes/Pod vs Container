@@ -1,0 +1,22 @@
+Pod vs Container in Kubernetes
+
+- Containers are great, but Kubernetes doesn’t run containers directly — it runs Pods.
+
+* Key Differences:
+#Container:
+- The standard unit of software in Docker.
+- Runs a single application process.
+- Example: A Node.js app or MySQL database.
+
+#Pod
+- The smallest deployable unit in Kubernetes.
+- Can contain one or more containers.
+- Recommended: one main container + optional sidecars (e.g., logging, metrics).
+- Example of sidecar: a container that collects logs and pushes them to ELK.
+
+Lifecycle Flow:
+Docker: Image → Container → Running App
+Kubernetes: Image → Pod → Running App
+
+💡 Tip:
+ Even though Pods can have multiple containers, it’s usually best to keep one main container per Pod and use sidecars only for auxiliary tasks like logging, monitoring, or proxies.

@@ -1,0 +1,43 @@
+AWS DevOps Interview Series ALB ⚙️
+
+🌐 Topic: AWS Load Balancer – Interview FAQs for DevOps Engineers
+Load Balancing is the heart of high availability and scalability in AWS.
+ Whether you’re deploying microservices or auto scaling EC2 instances, understanding how AWS Load Balancers distribute traffic is key for every DevOps engineer.
+
+Let’s explore the most asked AWS Load Balancer interview questions 👇
+
+💡 AWS Load Balancer Interview FAQs
+
+What is a Load Balancer and why is it used in AWS?
+ What are the different types of AWS Load Balancers?
+ Explain the difference between Application Load Balancer (ALB), Network Load Balancer (NLB), and Gateway Load Balancer (GLB).
+ How does an Application Load Balancer work at Layer 7?
+ When would you prefer a Network Load Balancer over an ALB?
+ What is a Target Group in AWS Load Balancing?
+ How does health check work in a Load Balancer?
+ What is sticky session (session affinity) and how can it be enabled in ALB?
+ Can you attach an ALB to multiple target groups?
+ How does SSL/TLS termination work with Load Balancers?
+ What is a Listener Rule and how is it used to route traffic?
+ How do you integrate a Load Balancer with Auto Scaling Groups?
+ Can you expose both HTTP and HTTPS on the same ALB?
+ What is cross-zone load balancing and when should you enable it?
+ How can you monitor and troubleshoot Load Balancer issues using CloudWatch metrics?
+ What is the difference between Classic Load Balancer (CLB) and ALB/NLB?
+ How do you restrict Load Balancer access to specific IPs or networks?
+ Can you use a Load Balancer with ECS or EKS? How does it work?
+ What happens when all registered targets in a target group fail health checks?
+ How do you achieve zero downtime deployment using Load Balancers?
+How do you handle WebSocket connections with an Application Load Balancer?
+ What’s the difference between ALB path-based and host-based routing?
+ How can you implement blue-green deployment using ALB?
+ What’s the purpose of connection draining (deregistration delay) in a Load Balancer?
+ Can an ALB route traffic to Lambda functions? If yes, how?
+ How do you enable WAF (Web Application Firewall) with your Load Balancer?
+ What are Idle Timeouts in Load Balancers and how do you configure them?
+ How does IP-based target registration work in NLB?
+ What’s the difference between internal and internet-facing Load Balancers?
+ How do you achieve multi-region load balancing in AWS?
+
+⚙️ Pro Tip for DevOps Engineers
+Always enable health checks, use HTTPS listeners, and combine Load Balancers with Auto Scaling for fault-tolerant and self-healing architectures.

@@ -1,0 +1,59 @@
+1-Real-Time Project Based DevOps Interview Questions & Answers
+Q: In one of your projects, how did you design a CI/CD pipeline for a microservices-based application?
+A: Used GitHub Actions/Jenkins as CI/CD.
+Each microservice had its own pipeline:
+Build → Compile & run unit tests.
+Dockerize → Build container images and push to ECR/ACR.
+Deploy → Used Helm charts to deploy on Kubernetes (EKS/AKS/GKE).
+Implemented canary deployments with Istio for zero downtime.
+Added SonarQube & Trivy for code quality and security scans.
+Used ArgoCD for GitOps-based continuous deployment.
+
+Q: Can you explain a real-time scenario where you automated infrastructure provisioning using Terraform?
+ A:
+Worked on multi-account AWS setup for dev, staging, and prod.
+Wrote reusable Terraform modules for VPC, subnets, IAM roles, EC2, RDS, EKS.
+Used Terraform Cloud for remote state management & policies.
+Implemented workspaces for environment separation.
+Automated infra rollout in pipeline → infra changes tested in staging before prod.
+
+Q: How did you ensure high availability and disaster recovery in a production cloud setup?
+ A:
+Designed infra in multi-AZ (AWS) with auto-scaling groups.
+Used RDS with multi-AZ failover and read replicas for scaling.
+S3 + CloudFront for static content delivery.
+Setup Route53 health checks with failover routing.
+Automated daily backups & enabled cross-region replication for DR.
+
+Q: How did you handle Kubernetes scaling and deployments in production?
+ A:
+Used HPA (Horizontal Pod Autoscaler) based on CPU & custom metrics (latency).
+For deployments:
+Rolling updates for minor releases.
+Blue-Green/Canary for risky changes.
+Managed secrets with HashiCorp Vault/K8s Secrets + KMS.
+Implemented Pod Security Policies & NetworkPolicies for security.
+
+Q: How did you implement DevSecOps practices in your project?
+ A:
+Integrated SAST/DAST tools in CI/CD (SonarQube, OWASP ZAP).
+Container scanning using Trivy/Anchore before pushing images.
+Used HashiCorp Vault & AWS KMS for secrets.
+IAM least-privilege policies.
+Automated compliance checks with Terraform Sentinel/OPA.
+
+Q: Which branching strategy did you follow in your project and why?
+ A:
+Used Gitflow in large teams → feature branches, develop branch, release branches.
+For smaller agile teams → Trunk-based development (short-lived feature branches, frequent merges).
+Implemented PR checks with automated builds, tests, and code review approvals before merging.
+
+Q: Tell me about a major production issue you faced and how you resolved it.
+ A:
+Example: Outage due to memory leaks in one microservice.
+Steps:
+Detected via Grafana alerts (pod restarts + latency spikes).
+Rolled back deployment via ArgoCD.
+Debugged with kubectl logs + heap dump.
+Applied memory limits in K8s & optimized code.
+Created postmortem RCA and added chaos testing to simulate failures.

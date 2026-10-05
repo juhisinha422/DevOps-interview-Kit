@@ -1,0 +1,45 @@
+ AWS for DevOps – Multi-Account Strategy & Landing Zone
+
+If you manage AWS at scale, these questions separate engineers from operators 👇
+
+🔹 Multi-Account Basics
+ • Why is a multi-account strategy recommended over a single AWS account?
+ • What risks exist when everything runs in one account?
+ • How do accounts help with blast-radius reduction?
+
+🔹 AWS Organizations
+ • How does AWS Organizations help manage multiple accounts?
+ • What are Organizational Units (OUs) used for?
+ • How do Service Control Policies (SCPs) differ from IAM policies?
+
+🔹 Account Structure
+ • How do you separate prod, non-prod, and shared services accounts?
+ • Where should networking and security tooling live?
+ • How do you design account structures for large teams?
+
+🔹 Landing Zone
+ • What is an AWS Landing Zone?
+ • Which components are mandatory in a landing zone?
+ • How does a landing zone enforce best practices from day one?
+
+🔹 Identity & Access
+ • How do users access multiple AWS accounts securely?
+ • Why is IAM Identity Center (SSO) preferred in enterprises?
+ • How do you handle cross-account role assumptions?
+
+🔹 Networking at Scale
+ • How do you connect multiple accounts using Transit Gateway?
+ • Where should shared VPCs be used?
+ • How do you control traffic between accounts?
+
+🔹 Logging & Security
+ • Why should logs be centralized in a separate account?
+ • How do you enforce security guardrails across all accounts?
+ • How do you detect misconfigurations early?
+
+🔹 Cost & Governance
+ • How do you track cost per account or OU?
+ • How do SCPs help control unwanted spending?
+ • Who owns cost responsibility in a multi-account setup?
+
+💡 Scaling AWS isn’t about more resources — it’s about better boundaries.

@@ -1,0 +1,19 @@
+Python Operators:
+🚀 Python Basics – Operators Simplified
+In Python, operators are special symbols that perform operations on variables and values. They are the building blocks of any program.
+🔹 Types of Operators in Python:
+ 1️⃣ Arithmetic → +, -, *, /, %, //, **
+ 2️⃣ Comparison → ==, !=, >, <, >=, <=
+ 3️⃣ Assignment → =, +=, -=, *=, /=, etc.
+ 4️⃣ Logical → and, or, not
+ 5️⃣ Bitwise → &, |, ^, ~, <<, >>
+ 6️⃣ Membership → in, not in
+ 7️⃣ Identity → is, is not
+✅ Total: 39 operators grouped into 7 categories
+📌 Example:
+
+a, b = 10, 20
+print(a + b)   # Arithmetic
+print(a > b)   # Comparison
+print(a and b) # Logical
+💡 Key takeaway: Operators are simple but powerful — mastering them is the first step toward writing clean, efficient Python code.

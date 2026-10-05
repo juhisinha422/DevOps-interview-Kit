@@ -1,0 +1,59 @@
+Sharing few questions for a position of DevOps/Site Reliability Engineering:
+
+1. What are the different storage bucket classes in GCP?
+
+2. What is Cloud Build in GCP?
+
+3. What is a VPC in GCP?
+
+4. What do you mean by Subnets in GCP?
+
+5. What is GCP Monitoring and Logging?
+
+6. Explain GCP architecture.
+
+7. What are Cloud Build metrics?
+
+8. What are GCP Alerts?
+
+Kubernetes Questions
+
+9. What is the difference between Deployment and StatefulSet?
+
+10. Do you know how to cordon a node?
+
+11. What are autoscaling methods in Kubernetes?
+
+12. How do you identify a crash loop in Kubernetes?
+
+13. If nodes are in NotReady state - what are possible reasons?
+
+14. How to check route entries in Kubernetes or node level?
+
+15. How to check disk utilization?
+
+16. Explain Kubernetes architecture.
+
+17. What are Kubernetes Services?
+
+18. How to check which pod is running on a particular node?
+
+19. What is the command to check resource utilization of a pod?
+
+20. How to set up password-less authentication in Linux?
+
+21. How to check server utilization in Linux?
+
+22. If pods are in Pending state - what are the reasons?
+
+23. What are the common commands used in Kubernetes?
+
+24. How to check live logs of a pod?
+
+25. How to check node status in Kubernetes?
+
+HTTP Error Codes
+
+26. What is the difference between 404 and 403 errors?
+
+27. What is the difference between 504 and 505 errors?

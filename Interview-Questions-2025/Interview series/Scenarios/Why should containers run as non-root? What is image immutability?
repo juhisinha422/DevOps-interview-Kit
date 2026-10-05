@@ -1,0 +1,16 @@
+Why should containers run as non-root? What is image immutability?
+ 
+1.If a container running as root is compromised, the attacker may gain root-level access to the host machine, leading to a full system compromise. 
+
+2.Non-root containers restrict the actions an attacker can perform, such as installing malicious packages or modifying system files, reducing the overall risk. 
+
+3.Even if an application vulnerability is exploited, the limited privileges of a non-root user prevent the attacker from performing administrative tasks or accessing sensitive host resources.
+ 
+4.orchestration platforms like OpenShift and Kubernetes strongly recommend or enforce running applications as non-root 
+
+5.Using a custom non-root user with a specific user ID (UID) helps avoid file permission conflicts when mounting volumes between the container and the host. 
+
+Image immutability 
+
+Image immutability is a software engineering principle where a container image, once built, remains completely unchangeable. If any part of the image needs an update—such as a security patch or a code change—the existing image is not modified; instead, a brand-new image is built to replace the old one
+ 

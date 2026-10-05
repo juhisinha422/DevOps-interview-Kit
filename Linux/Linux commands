@@ -1,0 +1,88 @@
+Linux commands– for any DevOps
+      interview !🐧
+
+Here is a complete list of essential Linux commands that every DevOps Engineer should know and practice.
+
+File and Directory Management
+pwd – Show the current working directory
+ls – List files and directories
+ls -l – List files with detailed information
+ls -a – Show hidden files
+cd <dir> – Change directory
+mkdir <dir> – Create a new directory
+rmdir <dir> – Remove an empty directory
+rm -rf <dir> – Remove a directory with all its contents
+cp file1 file2 – Copy files
+mv file1 file2 – Move or rename a file
+
+File Viewing and Editing
+cat file – Display file contents
+less file – View file page by page
+head -n 10 file – Show the first 10 lines of a file
+tail -n 10 file – Show the last 10 lines of a file
+tail -f file – Monitor a file in real time (useful for logs)
+nano file / vim file – Edit a file
+
+File Permissions
+ls -l – View file permissions
+chmod 755 file – Change file permissions
+chown user:group file – Change file ownership
+
+Process Management
+ps aux – List all running processes
+top – Monitor system processes
+htop – Interactive process viewer
+kill -9 <pid> – Terminate a process by its ID
+systemctl status service – Check service status
+systemctl start/stop/restart service – Manage services
+
+Disk and Memory Management
+df -h – Show disk space usage
+du -sh <dir> – Show the size of a directory
+free -h – Show memory usage
+uptime – Show system load and uptime
+
+Networking
+ifconfig / ip addr – Display network interfaces and IP addresses
+ping <host> – Test network connectivity
+curl <url> – Fetch data from a URL
+wget <url> – Download a file from a URL
+netstat -tulnp / ss -tulnp – Display listening ports
+scp file user@host:/path – Securely copy a file to a remote server
+ssh user@host – Connect to a remote server
+
+User Management
+whoami – Show the current user
+id – Show user and group IDs
+adduser <username> – Add a new user
+passwd <username> – Change a user’s password
+su - <user> – Switch to another user
+groups – Display groups of the current user
+
+Package Management
+
+Debian / Ubuntu
+apt update – Update package list
+apt install <pkg> – Install a package
+apt remove <pkg> – Remove a package
+
+RHEL / CentOS
+yum install <pkg> – Install a package
+yum remove <pkg> – Remove a package
+
+Logs Management
+cd /var/log – Go to the log directory
+tail -f /var/log/syslog – View system logs (Debian/Ubuntu)
+tail -f /var/log/messages – View system logs (RHEL/CentOS)
+
+Archiving and Compression
+tar -cvf archive.tar files/ – Create a tar archive
+tar -xvf archive.tar – Extract a tar archive
+gzip file – Compress a file
+gunzip file.gz – Decompress a file
+
+Search and Find
+find /path -name filename – Find files by name
+grep "text" file – Search for text in a file
+grep -r "text" /dir/ – Search text recursively in a directory
+history – Display command history

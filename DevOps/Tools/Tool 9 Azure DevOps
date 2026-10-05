@@ -1,0 +1,44 @@
+DevOps Interview Preparation – Tool 9
+
+Azure Cloud + Azure DevOps (0–2 Years Experience)
+
+Many enterprises use Microsoft Azure and Azure DevOps extensively.
+Interviewers expect you to understand cloud basics + CI/CD workflow on Azure.
+
+📌 Focus: Azure Interview Questions (Mixed – Cloud + DevOps)
+
+• What is Microsoft Azure?
+• Azure global infrastructure (Regions & Availability Zones)
+• Azure Resource Group – why is it important?
+• What is Azure Virtual Machine?
+• Difference between Azure VM and AWS EC2
+• Azure Storage types (Blob, File, Queue, Table)
+• What is Azure Blob Storage used for?
+• What is Azure Active Directory (AAD)?
+• Difference between AAD and IAM
+• What is a Service Principal?
+• Azure networking basics (VNet, Subnet)
+• What is Network Security Group (NSG)?
+• Difference between NSG and Security Group (AWS)
+• What is Azure Load Balancer?
+• Azure Monitor vs Log Analytics
+• What is Azure DevOps?
+• Components of Azure DevOps
+• What are Azure Repos?
+• Azure Repos vs GitHub
+• What is Azure Pipeline?
+• YAML pipeline vs Classic pipeline
+• What is an agent in Azure DevOps?
+• Microsoft-hosted vs self-hosted agent
+• What are variables in Azure Pipelines?
+• How do you store secrets in Azure DevOps?
+• What are Azure Artifacts?
+• What is a release pipeline?
+• How do you deploy to multiple environments using Azure DevOps?
+• Common Azure DevOps mistakes beginners make
+• Real-world Azure DevOps CI/CD use case
+
+ Interview Tip:
+If you explain a simple flow like:
+👉 Code → Azure Repo → Pipeline → Build → Release → Deploy
+you already sound like a job-ready DevOps engineer, even as a fresher.

@@ -1,0 +1,89 @@
+What is GitOps?
+
+GitOps is a deployment methodology where Git is the single source of truth for your Kubernetes cluster.
+
+Instead of an engineer manually running commands like:
+
+kubectl apply -f deployment.yaml
+
+a GitOps tool continuously monitors your Git repository and automatically makes the Kubernetes cluster match whatever is stored in Git.
+
+Think of Git as the desired state.
+
+Example:
+
+Git Repository
+
+replicas: 5
+image: payment:v2
+
+Cluster
+
+replicas: 3
+image: payment:v1
+
+The GitOps tool notices the difference and automatically updates the cluster until it becomes:
+
+replicas: 5
+image: payment:v2
+
+No engineer has to SSH into servers or run kubectl manually.
+
+Popular GitOps Tools
+
+The two major GitOps tools are:
+	•	Argo CD (Most popular in Kubernetes)
+	•	Flux CD
+
+Nowadays most organizations prefer Argo CD.
+
+Production Architecture -
+
+Developer
+      |
+      |
+Push Code
+      |
+Git Repository
+      |
+      |
+Azure DevOps Pipeline / Jenkins
+      |
+Build Docker Image
+      |
+Push Image to ACR
+      |
+Update Kubernetes Manifest
+(image:v2)
+      |
+Commit to Git
+      |
+------------------------------
+ArgoCD
+------------------------------
+      |
+Continuously watches Git
+      |
+Detects new commit
+      |
+Compares Git vs Cluster
+      |
+Applies deployment
+      |
+Kubernetes Cluster
+
+Notice something important.
+
+The CI pipeline never talks directly to Kubernetes.
+
+Instead
+
+Pipeline → Git
+
+Git → ArgoCD
+
+ArgoCD → Kubernetes
+
+This is exactly how many production environments work.
+
+In production, developers push code to Git, which triggers an Azure DevOps CI pipeline. The pipeline builds the application, runs tests, performs SonarQube analysis, builds a Docker image, and pushes it to Azure Container Registry. It then updates the Kubernetes manifest repository with the new image tag and commits the change to Git. ArgoCD continuously watches that repository, detects the updated manifest, compares it with the live cluster state, and automatically syncs the changes to Kubernetes using a rolling update. If someone manually changes resources in the cluster, ArgoCD detects the drift and either flags the application as OutOfSync or reconciles it back to the Git-defined state, ensuring Git remains the single source of truth.

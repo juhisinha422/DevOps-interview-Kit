@@ -1,0 +1,61 @@
+#AWS Interview Questions – hashtag#IAM
+
+What is AWS IAM?
+
+What are IAM users?
+
+What are IAM groups?
+
+What are IAM roles?
+
+Difference between IAM user and role?
+
+What is IAM policy?
+
+Types of IAM policies?
+
+Difference between managed and inline policies?
+
+What is policy JSON structure?
+
+What is least privilege principle?
+
+What is IAM trust policy?
+
+What is role assumption?
+
+What is STS?
+
+What is temporary security credential?
+
+What is MFA in IAM?
+
+How do you enable MFA?
+
+What is an access key?
+
+How do you rotate access keys?
+
+What is IAM permission boundary?
+
+What is AWS Organizations SCP?
+
+Difference between IAM policy and SCP?
+
+What is cross-account access?
+
+How do services access AWS resources securely?
+
+What is IAM identity-based policy?
+
+What is resource-based policy?
+
+What is AWS managed policy?
+
+What is customer managed policy?
+
+How do you audit IAM?
+
+What is IAM Access Analyzer?
+
+How do you secure IAM?

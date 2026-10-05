@@ -1,0 +1,27 @@
+what really happens when a Pod restarts in Kubernetes.
+
+Last week, one of our micro services kept restarting every 40 seconds. No errors in logs. No probe failures. Just stuck in that painful state 𝐂𝐫𝐚𝐬𝐡𝐋𝐨𝐨𝐩𝐁𝐚𝐜𝐤𝐎𝐟𝐟. We redeployed it but we are facing the same issue.
+
+Here’s what was really happening 👇
+🔹 A single environment variable was missing because of a typo in the Secret name.The app failed on startup, the container crashed, and Kubernetes did what it’s designed to do kept restarting it again and again, each time with a small delay.That delay is the BackOff part of 𝐂𝐫𝐚𝐬𝐡𝐋𝐨𝐨𝐩𝐁𝐚𝐜𝐤𝐎𝐟𝐟.
+
+Kubernetes follows your Pod’s restartPolicy (Always, OnFailure, or Never).
+By default, it just keeps trying to bring your container back to life until you fix the root cause.
+
+Here are some common culprits:
+⚠️ Missing or wrong environment variables
+⏳ Dependent service not ready (like DB or API)
+🚦 Misconfigured liveness/readiness probes
+🔥 Container OOMKilled due to resource limits
+
+Next time this happens, don’t rush to redeploy. Run the below commands:
+1️⃣ kubectl describe pod <pod> → check “Last State” and “Reason”
+2️⃣ kubectl logs <pod> --previous → see why it crashed last time
+
+
+One trick that’s helped me when the pod crashes too fast to debug
+
+My go-to hack, Add a quick sleep 60 or more  at the start of the container entrypoint in the deployment manifest. That short pause lets me exec in and debug env vars, secrets, or configs before the CrashLoop kicks in.
+
+Quick and dirty, but super handy for manual debugging.
+

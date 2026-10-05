@@ -1,0 +1,34 @@
+BNP Paribas interview questions:
+
+First Round interview Questions:
+
+1. What would be your day-to-day role when it comes to Kafka?
+2. Can you tell me the core components of Kafka and what each component does?
+3. Do you have working experience on the ELK Stack?
+4. What sort of improvements did you make in your real-time ELK Stack project?
+5. How good are you in development?
+6. What kind of automation have you done?
+7. Can you explain analyzers, tokenizers, and token filters in Elasticsearch?
+8. How does Kafka handle data durability?
+9. When should an application consider using Kafka?
+10. What is the purpose of the replication factor in Kafka?
+11. What is Terraform?
+12. Why do we use Terraform?
+13. Explain the Terraform workflow.
+14. What is a Terraform state file?
+15. What is remote state?
+16. Why do we use an S3 bucket and DynamoDB for Terraform state?
+17. What is state locking in Terraform?
+18. What is a Terraform provider?
+19. What is a Terraform resource?
+20. What are variables and outputs in Terraform?
+21. What are Terraform modules?
+22. What is the difference between terraform plan and terraform apply?
+23. What is terraform init?
+24. What is Terraform drift?
+25. How do you import an existing AWS resource into Terraform?
+26. Explain the structure of an Ansible playbook.
+27. What is the ansible.cfg file?
+28. How do you integrate Ansible with the ELK Stack?
+29. What are the components of the ELK Stack?
+30. What is the difference between Grafana and the ELK Stack?

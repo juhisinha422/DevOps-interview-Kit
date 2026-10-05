@@ -1,0 +1,60 @@
+Top 5 Kubernetes Interview Questions I Revised Today
+
+Here are 5 important questions that made me think deeper:
+
+
+🔹 1️⃣ What happens internally when you run kubectl apply?
+
+It sends the manifest to the API Server → validation happens → desired state is stored in etcd → Controller Manager ensures the desired state matches the current state → Scheduler assigns pods to nodes → Kubelet creates containers via container runtime.
+
+Understanding this flow shows you know Kubernetes architecture — not just commands.
+
+
+🔹 2️⃣ What is the difference between Deployment and StatefulSet?
+
+Deployment → Used for stateless applications. Pods are interchangeable.
+StatefulSet → Used for stateful apps (like databases). Stable network identity + persistent storage.
+
+Interviewers check if you understand real production use cases here.
+
+
+🔹 3️⃣ How does Kubernetes handle pod failures?
+
+If a pod crashes:
+
+Kubelet detects failure
+
+Controller recreates the pod
+
+ReplicaSet ensures desired replica count
+
+If node fails → pods rescheduled to healthy node
+
+
+Self-healing is one of Kubernetes’ strongest features.
+
+
+🔹 4️⃣ How does Service work internally?
+
+Service provides stable IP + DNS.
+It uses kube-proxy (iptables/ipvs) to route traffic to backend pods.
+
+ClusterIP → Internal
+NodePort → Exposes via node
+LoadBalancer → Cloud-managed external access
+
+
+🔹 5️⃣ How do you troubleshoot a pod stuck in Pending state?
+
+First things I check:
+
+kubectl describe pod
+
+Node resources (CPU/Memory)
+
+Taints & tolerations
+
+PVC binding issues
+
+Image pull errors
+

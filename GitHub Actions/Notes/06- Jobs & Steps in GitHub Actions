@@ -1,0 +1,27 @@
+Jobs & Steps in GitHub Actions
+
+Today I learned how jobs and steps control execution flow inside a GitHub Actions workflow.
+
+🔹 Job Dependencies
+Jobs can depend on other jobs using dependencies.
+ This ensures:
+Correct execution order
+Controlled pipeline flow
+Useful for multi-stage CI/CD.
+
+🔹 Sequential vs Parallel Jobs
+Jobs run in parallel by default
+Dependencies make jobs run sequentially
+Parallel jobs reduce pipeline time
+Choosing wisely improves performance.
+
+🔹 Step Execution Flow
+Steps run sequentially inside a job.
+ Each step:
+Executes commands or actions
+Shares the same runner environment
+
+🔥 3-Line Takeaway
+Jobs define pipeline stages.
+ Steps execute tasks.
+ Dependencies control flow.

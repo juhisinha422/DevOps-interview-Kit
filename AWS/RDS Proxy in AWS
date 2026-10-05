@@ -1,0 +1,12 @@
+Understanding RDS Proxy in AWS
+
+Amazon RDS Proxy is a fully managed proxy service that improves database scalability and performance.
+
+Here’s what it does:
+- Maintains a pool of open database connections
+- Reuses existing connections instead of creating new ones
+- Reduces connection overhead
+- Improves application performance
+- Protects the database during traffic spikes
+
+ In simple terms, RDS Proxy acts like a smart connection manager between your application and your database.

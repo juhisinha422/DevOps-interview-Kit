@@ -1,0 +1,31 @@
+Why your Terraform state file must never stay local
+
+Think of the state file as your project’s ledger. If it only lives on your laptop:
+
+→ Sensitive data is exposed
+→ One delete/crash = lost infra truth
+→ Team collaboration breaks instantly
+
+✅ Remote backend = safety + scale
+
+Store state in a central, secure location:
+
+→ AWS S3 (most common)
+→ Azure Blob Storage
+→ GCP Cloud Storage
+
+Every terraform plan or apply fetches state remotely, compares infra, and writes updates back — no fragile local folders.
+
+💡 Local = single point of failure
+Remote = shared truth for the team
+
+🔧 Example: S3 backend config
+
+terraform {
+  backend "s3" {
+    bucket  = "my-tf-state"
+    key     = "prod/terraform.tfstate"
+    region  = "us-east-1"
+    encrypt = true
+  }
+}

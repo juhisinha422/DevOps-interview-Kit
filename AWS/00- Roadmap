@@ -1,0 +1,36 @@
+AWS Roadmap → Beginner to Job-Ready
+
+1️⃣ Start Here
+EC2 • S3 • IAM • VPC • CloudWatch
+(These 5 are 80% of real AWS work)
+
+2️⃣ Hands-On Basics
+• Launch EC2
+• Create S3 buckets
+• Set IAM Roles
+• Build a basic VPC
+
+3️⃣ Serverless Skills
+• Lambda functions
+• API Gateway
+• DynamoDB
+(Perfect for real-world mini projects)
+
+4️⃣ Deployment Skills
+• CloudFormation
+• Terraform
+• Auto-scaling groups
+
+5️⃣ Security + Monitoring
+• GuardDuty
+• CloudTrail
+• Encryption + Least privilege
+
+6️⃣ Portfolio Projects
+• Multi-tier architecture
+• Serverless backend
+• CI/CD pipeline
+• Static website hosting
+
+🚀 By Step 6 → You’re not just “learning AWS” 
+You’re building cloud systems like a real Solution Architect.

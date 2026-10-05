@@ -1,0 +1,21 @@
+Ansible Interview Questions
+
+1️⃣ What is Ansible and how is it different from tools like Puppet or Chef?
+
+2️⃣ What are the main components of Ansible (Inventory, Playbook, Modules)?
+
+3️⃣ What is an Ansible Playbook and how is it structured?
+
+4️⃣ What are Ansible roles and why are they important?
+
+5️⃣ What is the difference between ad-hoc commands and playbooks?
+
+6️⃣ How does Ansible communicate with remote systems?
+
+7️⃣ What are Ansible variables and how do you manage them?
+
+8️⃣ What is idempotency in Ansible?
+
+9️⃣ How do you secure sensitive data in Ansible (Ansible Vault)?
+
+🔟 How would you integrate Ansible with a CI/CD pipeline?

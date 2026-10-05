@@ -1,0 +1,12 @@
+Jenkins Shared Libraries: DRY for Pipelines
+
+In Jenkins, Shared Libraries let you store common pipeline code once and reuse it everywhere.
+Think of them as your “central toolkit” for CI/CD.
+
+What they do:
+- Keep pipelines DRY (Don’t Repeat Yourself)
+- Centralize shared functions, steps, and utilities
+- Make updates easy: fix one place, apply everywhere
+- Improve consistency and maintenance across teams
+
+Shared Libraries turn Jenkins into a scalable, maintainable automation platform.

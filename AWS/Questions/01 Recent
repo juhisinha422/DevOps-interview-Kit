@@ -1,0 +1,74 @@
+AWS Interview Questions 𝐀𝐬𝐤𝐞𝐝 𝐢𝐧 𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐑𝐨𝐮𝐧𝐝𝐬.
+
+✨ 𝐂𝐨𝐫𝐞 𝐀𝐖𝐒 𝐁𝐚𝐬𝐢𝐜𝐬:
+
+What is AWS?
+What are the different AWS services you have worked on?
+What is a Region?
+What is an Availability Zone?
+What is an AWS account?
+What is IAM?
+Difference between IAM User and IAM Role?
+What is an IAM policy?
+What is authorization in IAM?
+
+✨ 𝐄𝐂𝟐:
+
+What is EC2?
+What are instance types?
+What input parameters do you consider while creating an EC2 instance?
+What is key pair in EC2?
+What is Security Group?
+Difference between Security Group and NACL?
+How do you login to an EC2 instance?
+I am unable to login into an EC2 instance — how will you troubleshoot?
+How do you check who logged in to your EC2 instance?
+How do you check logs of an EC2 instance without CloudWatch?
+What is a private EC2 instance?
+How do you access an EC2 instance in a private subnet?
+
+✨ 𝐕𝐏𝐂 & 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐢𝐧𝐠:
+
+What is VPC?
+What is a subnet?
+Difference between public and private subnet?
+Does a private subnet have Internet Gateway access?
+What is Internet Gateway?
+What is NAT Gateway?
+Why do we need NAT Gateway?
+What is a route table?
+What is VPC peering?
+Two VPCs are peered but one EC2 cannot connect to another — how will you fix it?
+What is VPC Endpoint?
+What is AWS PrivateLink?
+Difference between VPC Endpoint and PrivateLink?
+
+✨ 𝐋𝐨𝐚𝐝 𝐁𝐚𝐥𝐚𝐧𝐜𝐢𝐧𝐠 & 𝐃𝐍𝐒:
+
+What is a Load Balancer?
+What are the types of Load Balancers in AWS?
+Difference between ALB and NLB?
+When do you use ALB vs NLB?
+What is Gateway Load Balancer?
+How do you map a domain name to a Load Balancer?
+What is Route 53?
+What are the routing policy types in Route 53?
+What is a health check in Route 53?
+
+✨ 𝐒𝐭𝐨𝐫𝐚𝐠𝐞:
+
+What is EBS?
+What are EBS volume types?
+What is gp3?
+What is S3?
+What are S3 storage classes?
+What is S3 lifecycle policy?
+What is S3 versioning?
+
+✨ 𝐑𝐃𝐒 & 𝐃𝐚𝐭𝐚𝐛𝐚𝐬𝐞𝐬:
+
+What is RDS?
+How do you securely connect to a database?
+What parameters do you consider for DB security?
+How do you create a user in RDS?
+Can EC2 in one account access RDS in another account?

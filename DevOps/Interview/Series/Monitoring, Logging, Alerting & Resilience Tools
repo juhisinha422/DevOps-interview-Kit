@@ -1,0 +1,46 @@
+🚀 AWS DevOps Interview Preparation Series — SRE🚀
+
+Topic: Monitoring, Logging, Alerting & Resilience Tools in DevOps
+
+In the world of SRE/Devops, it’s not just about deploying applications — it’s about ensuring they run smoothly, reliably, and resiliently.
+
+ Here’s a quick overview of the tools every SRE & DevOps Engineer should master 👇
+
+Monitoring & Metrics
+Keep an eye on system health and performance.
+ 🔹 Prometheus – Open-source metrics monitoring and alerting.
+ 🔹 Grafana – Beautiful dashboards for visualization.
+ 🔹 CloudWatch – AWS native monitoring and logs.
+ 🔹 Datadog – Full-stack monitoring for cloud applications.
+
+Logging
+Track and analyze logs for troubleshooting and insights.
+ 🔹 ELK Stack (Elasticsearch, Logstash, Kibana) – Centralized log management.
+ 🔹 Loki – Lightweight log aggregation from Grafana Labs.
+ 🔹 Splunk – Enterprise-level log analysis and visualization.
+
+Alerting
+Get notified before users notice an issue.
+ 🔹 Alertmanager – Handles alerts from Prometheus.
+ 🔹 PagerDuty – Incident response and on-call management.
+ 🔹 Opsgenie – Alerting and escalation management by Atlassian.
+
+Automation
+Automate infrastructure, deployments, and scaling.
+ 🔹 Terraform – Infrastructure as Code (IaC).
+ 🔹 Ansible – Configuration management and provisioning.
+ 🔹 Kubernetes – Container orchestration.
+ 🔹 CI/CD Pipelines – Continuous Integration and Delivery.
+
+Chaos & Resilience
+Test how your system behaves under failure.
+ 🔹 Chaos Monkey – Randomly shuts down instances to test resilience.
+ 🔹 LitmusChaos – Kubernetes-native chaos engineering.
+ 🔹 Gremlin – Safe, controlled chaos experiments.
+
+Incident Management
+Track, prioritize, and resolve incidents efficiently.
+ 🔹 Jira – Issue and incident tracking.
+ 🔹 ServiceNow – ITSM and incident workflow automation.
+
+✅ These tools together help you build a reliable, observable, and self-healing system — which is the core of modern SRE & DevOps.

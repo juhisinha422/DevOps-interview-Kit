@@ -1,0 +1,82 @@
+Day 5 | DevOps Real-Time Troubleshooting Scenario 🚨
+
+Scenario:
+
+The application is running, but users are experiencing very slow response times.
+
+As a DevOps Engineer, what would you check?
+
+I would not immediately restart the application or increase the server size.
+
+I would troubleshoot step by step.
+
+🔹 1. Check Application Health
+
+* Is the application responding?
+* Are there increased HTTP 5xx/4xx errors?
+* Check application and server logs for exceptions.
+
+🔹 2. Check CPU & Memory
+
+* Is CPU utilization unusually high?
+* Is memory close to the limit?
+* Are there signs of memory leaks or excessive processes?
+
+Tools like Prometheus, Grafana, and CloudWatch can help identify resource spikes and performance trends.
+
+🔹 3. Check Disk Usage
+
+* Is the disk almost full?
+* Are logs consuming too much space?
+* Is disk I/O unusually high?
+
+🔹 4. Check Network
+
+* Is there increased network latency?
+* Are requests reaching the application?
+* Are there issues with Load Balancer, DNS, Security Groups, or connectivity?
+
+🔹 5. Check Database
+
+* Is the database responding slowly?
+* Are there too many connections?
+* Are queries taking longer than normal?
+
+🔹 6. Check Recent Changes
+I would ask:
+
+👉 Was there a recent deployment?
+👉 Was any infrastructure configuration changed?
+👉 Were environment variables or dependencies modified?
+
+A recent deployment or configuration change is often an important clue.
+
+🔹7. Check Logs
+Logs can help identify:
+
+* Timeout errors
+* Connection failures
+* API failures
+* Database errors
+* Application exceptions
+
+For containerized applications, Kubernetes also recommends checking pod failures, services, container termination messages, and application behavior when debugging.
+
+My Troubleshooting Approach:
+
+User Request → Load Balancer → Application → Database/External Services → Infrastructure
+
+I would identify the slowest layer instead of randomly restarting services.
+
+Key Takeaway 💡
+
+Don't troubleshoot by guessing. Troubleshoot using data.
+
+Check:
+
+📊 Metrics
+📝 Logs
+🌐 Network
+💾 Resources
+🗄️ Database
+🚀 Recent deployments

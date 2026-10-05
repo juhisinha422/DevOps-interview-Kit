@@ -1,0 +1,43 @@
+Creating First GitOps Application
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m creating my first GitOps application using Argo CD 🚀
+This is where GitOps becomes real — deploying applications directly from Git to Kubernetes.
+
+🔹 Step 1 — Git Repo + YAML Deployment
+ First, we create a Git repository that contains:
+Kubernetes YAML manifests
+Deployment configuration files
+Service definitions
+
+Example:
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 2
+
+This repository defines the desired state of the application.
+
+🔹 Step 2 — Create Application in ArgoCD
+ Using ArgoCD UI or CLI:
+Connect your Git repository
+Specify the Kubernetes cluster and namespace
+Define the path to YAML files
+ArgoCD now understands what to deploy and where.
+
+🔹 Step 3 — Sync Application
+Click Sync in UI or use CLI
+ArgoCD compares Git (desired state) with cluster (actual state)
+It applies changes to match the desired configuration
+
+🔹 Step 4 — Auto Deployment
+ Once configured, ArgoCD can:
+Automatically detect Git changes
+Deploy updates without manual steps
+Keep the system continuously in sync
+
+💡 Key Insight:
+ GitOps allows you to deploy applications just by updating Git, making deployments automated, reliable, and version-controlled.

@@ -1,0 +1,33 @@
+Day 7 — GCP Kubernetes (GKE) Production + Security + Scaling
+
+Scenario-Based DevOps Interview Questions
+
+1️⃣ Your GKE cluster is running multiple microservices. One service is consuming more CPU causing noisy-neighbour issues. How will you control and stabilize resources?
+
+2️⃣ A workload requires zero downtime upgrades even during peak traffic. How will you design deployment strategy (Rolling, Blue-Green, Canary)?
+
+3️⃣ You need auto-healing + auto-scaling + PDB (Pod Disruption Budget) protection for a production service. How will you configure all three together?
+
+4️⃣ Your cluster nodes are over-provisioned leading to high cost. How will you optimize with Node Autoscaling + Cluster Autoscaler + Pod requests/limits tuning?
+
+5️⃣ Secrets are currently stored as plain K8s secrets. How will you secure them using KMS + Workload Identity + Secret Manager integration?
+
+6️⃣ A pod is stuck in Pending state. How will you troubleshoot (nodes, taints/tolerations, quotas, CNI, storage, limits)?
+
+7️⃣ Developers need namespace-level access only with RBAC control. How will you design roles, rolebindings, service accounts, and policies?
+
+8️⃣ A service must store logs for 30 days and expose metrics to Prometheus with dashboards in Grafana. How will you integrate logging + monitoring stack?
+
+9️⃣ You have heavy periodic jobs running on GKE. How will you optimize using Spot nodes with graceful eviction strategy?
+
+🔟 A service needs high and bursty throughput. Will you choose Horizontal Pod Autoscaler, Vertical Pod Autoscaler or both? Justify your design.
+
+1️⃣1️⃣ Application rollout failed and new pods are crashing. How will you quickly rollback and debug?
+
+1️⃣2️⃣ You need end-to-end mTLS inside cluster between microservices. How will you implement this using Istio/Anthos Service Mesh?
+
+1️⃣3️⃣ Traffic should be routed based on specific header values. Which Ingress + Gateway API configuration will you use?
+
+1️⃣4️⃣ You need cross-cluster deployment spanning multi-region for DR. How will you architect this using Fleet/Anthos/GCLB?
+
+1️⃣5️⃣ Pods need access to Cloud SQL without exposing credentials. How will you integrate Cloud SQL Auth Proxy + Workload Identity?

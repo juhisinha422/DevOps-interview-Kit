@@ -1,0 +1,21 @@
+first-round interview for a DevOps Engineer role at Tek System!
+The discussion was technical and focused on real-world scenarios involving Terraform, GitHub, and Jenkins.
+ Here are some of the questions I was asked 
+
+Terraform
+How do you connect Terraform with AWS?
+How do you design a CI/CD pipeline for Terraform code?
+What is the difference between count and for_each in Terraform?
+What types of conditional expressions have you used in Terraform?
+If you’ve created a VPC and subnets manually in AWS, how can you create an EC2 instance inside those existing resources using Terraform?
+How do you securely pass secrets or sensitive data to Terraform?
+
+ GitHub
+What branching strategy do you follow in your GitHub repositories?
+How do you integrate GitHub with Jenkins for automated builds?
+What’s the difference between Webhook and Poll SCM in Jenkins integration?
+
+Jenkins
+How do you integrate SonarQube with Jenkins for code quality analysis?
+How do you manage credentials securely in Jenkins, and how do you reference them in pipelines?
+What are parallel stages in Jenkins pipelines, and when do you use them?

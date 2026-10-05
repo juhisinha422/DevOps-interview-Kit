@@ -1,0 +1,49 @@
+AWS DevOps Interview Preparation Series — ECS🚀
+
+Topic: Amazon ECS (Elastic Container Service) — Container Orchestration Simplified for DevOps Engineers! 
+Amazon ECS (Elastic Container Service) — one of the most powerful and production-ready container orchestration platforms on AWS.
+
+Whether you’re deploying microservices, running CI/CD pipelines, or managing container workloads in the cloud — ECS is a must-know service for any DevOps or SRE professional.
+
+Here are the Top ECS Interview Questions you should master before your next AWS DevOps interview. 👇
+
+🔹 Amazon ECS — Top Interview Questions for DevOps Engineers
+
+What is Amazon ECS and how does it differ from EKS and Kubernetes?
+What are the main components of ECS? (Cluster, Task Definition, Service, Task)
+What is the difference between ECS EC2 launch type and Fargate launch type?
+What is an ECS Task Definition and what parameters does it include?
+How do ECS Services ensure desired count and self-healing?
+How does ECS integrate with Load Balancers (ALB, NLB)?
+What is the purpose of ECS Container Agent?
+How can you monitor ECS task and service health?
+How do you deploy multi-container applications on ECS?
+How does ECS manage container networking?
+How can you deploy an application on ECS using Jenkins or GitHub Actions?
+What are rolling updates and blue/green deployments in ECS?
+How do you automate ECS deployments using Terraform or CloudFormation?
+How do you manage environment variables and secrets in ECS tasks?
+How do you integrate ECS with AWS CodePipeline?
+How do you perform canary deployments in ECS?
+How do you handle zero downtime deployments in ECS?
+What is ECS Service Auto Scaling and how is it configured?
+How can you update a running ECS service with a new image version automatically?
+How do you roll back an ECS service deployment?
+How does ECS integrate with IAM for task-level permissions?
+How do you secure ECS containers and tasks within a VPC?
+What are ECS capacity providers?
+How do you troubleshoot ECS tasks stuck in PENDING or STOPPED state?
+How can you enable CloudWatch logging for ECS containers?
+How do you use AWS X-Ray for distributed tracing in ECS?
+How can you monitor ECS metrics and logs efficiently?
+What is ECS Exec and how can you use it for container debugging?
+How does ECS handle storage with EFS or EBS volumes?
+How do you optimize ECS cost in a large-scale environment?
+
+💡 Pro Tip for DevOps Engineers:
+ Amazon ECS is all about automation, scalability, and cost efficiency.
+ To stand out in interviews:
+Learn how to automate ECS deployments using Terraform/Jenkins
+Practice ECS with Fargate for serverless containers.
+Focus on ECS Auto Scaling, Service Discovery, and ALB Integration
+

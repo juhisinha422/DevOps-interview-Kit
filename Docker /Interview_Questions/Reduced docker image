@@ -1,0 +1,32 @@
+Reduced our Docker image size from 588 MB to 47.7 MB. (−91.89%)
+
+Original build:
+- Full Python 3.9 base image
+- Multiple RUN instructions creating excess layers
+- No .dockerignore file
+- Single stage build with all dependencies
+
+Optimizations applied:
+1. Lightweight base image
+- Switched to Python 3.9-alpine
+- 95% smaller and faster to pull
+
+2. Layer optimization
+- Combined related commands
+- Reduced redundant RUN instructions
+
+3. .dockerignore file
+- Excluded venv, cache, and temp files
+- Reduced build context
+
+4. Multi stage builds
+- Build stage with dependencies
+- Production stage with only required runtime files
+
+Results:
+- Image size: 47.7 MB (down from 588 MB)
+- Size reduction: −91.89%
+- Faster container startup
+- Reduced deployment time and storage usage
+
+Small optimizations compound. Every MB saved accelerates every build.

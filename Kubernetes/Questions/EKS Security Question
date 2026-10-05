@@ -1,0 +1,16 @@
+EKS Security Question for You 🚨
+
+Did you know that by default, Kubernetes pods inherit the IAM permissions of the worker node?
+
+That means 👇
+One vulnerable pod = access to everything the node can access 😬
+
+This is where IRSA (IAM Roles for Service Accounts) becomes critical.
+
+🔹 IRSA allows each pod to assume its own IAM role
+🔹 Permissions are scoped at application level, not node level
+🔹 Blast radius is dramatically reduced
+
+👉 In real production EKS clusters, IRSA is not an option — it’s a requirement.
+
+

@@ -1,0 +1,50 @@
+DevOps Interview Questions – 2 to 3 Years Experience
+
+If you’re preparing for interviews, these are the real questions asked for 2–3 years experience 👇
+
+ Core DevOps & CI/CD
+
+Explain your CI/CD pipeline end-to-end.
+
+How do you handle rollback in deployment?
+
+Difference between continuous integration & continuous delivery?
+
+What is blue-green deployment?
+
+What are the challenges you faced in a pipeline?
+
+Docker
+6. What is the use of Dockerfile?
+7. What is multi-stage build and why do we use it?
+8. How do you reduce Docker image size?
+9. Difference between Docker Image & Container?
+10. How do you clean unused containers/images?
+
+ Kubernetes
+11. What happens inside when you run kubectl apply?
+12. Explain Pod vs Deployment vs ReplicaSet.
+13. How do you troubleshoot a CrashLoopBackOff?
+14. What is readiness & liveness probe?
+15. How can you expose a service externally?
+
+ Linux
+16. How to find high CPU process?
+17. How to check disk usage?
+18. Explain top, df -h, netstat usage.
+19. What is load average?
+20. How do you handle log rotation?
+
+AWS
+21. What is Auto Scaling?
+22. Difference between ALB, NLB & CLB?
+23. How do you secure S3 buckets?
+24. What are IAM Roles & Policies?
+25. Explain VPC, Subnets & Security Groups.
+
+ Terraform / IAC
+26. What is Terraform state file?
+27. How do you manage secrets?
+28. Difference between plan, apply, destroy?
+29. What are modules?
+30. What is drift & how do you fix it?

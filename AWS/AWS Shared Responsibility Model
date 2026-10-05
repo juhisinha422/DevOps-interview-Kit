@@ -1,0 +1,44 @@
+AWS Shared Responsibility Model: What AWS Manages vs. What You Manage
+
+One of the most fundamental concepts in AWS security and compliance is the Shared Responsibility Model.
+It clearly defines the line between what AWS secures for you, and what you must secure yourself.
+
+🔹 AWS Responsibility (“Security of the Cloud”)
+
+Physical infrastructure (data centers, networking, hardware)
+
+Global infrastructure (Regions, Availability Zones, Edge Locations)
+
+Managed services infrastructure (compute, storage, networking)
+
+
+🔹 Customer Responsibility (“Security in the Cloud”)
+
+Identity & Access Management (IAM users, roles, policies)
+
+Application security (patching OS, securing code, configs)
+
+Data protection (encryption, backups, key management)
+
+Network configuration (security groups, firewalls, VPC settings)
+
+
+👉 Why this matters for you?
+
+Interviewers often test this concept to check if you understand where your accountability lies.
+
+In real-world usage, misunderstanding this boundary can lead to security gaps.
+
+
+📘 Helpful AWS Documentation (must-read):
+
+https://lnkd.in/g6rNUyer
+
+https://lnkd.in/grymsZxC
+
+https://lnkd.in/g_M4X6Fm
+
+https://lnkd.in/gP-CrJ_m
+
+
+💡 Pro Tip: Always remember – AWS secures the foundation, but you must secure what you build on it (data, apps, IAM, configs).

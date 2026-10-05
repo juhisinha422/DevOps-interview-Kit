@@ -1,0 +1,39 @@
+Log Analysis – Finding & Fixing Production Issues 🔍📜
+
+🔹 What is Log Analysis?
+Log analysis is the process of searching, filtering, and examining logs to understand application behavior and identify problems.
+👉 Logs tell us what happened inside the system.
+
+🔍 Searching Logs
+Instead of checking thousands of log entries manually, engineers search for specific information:
+✔ ERROR
+ ✔ WARN
+ ✔ Service name
+ ✔ Request ID
+ ✔ Timestamp
+ ✔ User/request details
+This makes troubleshooting much faster ⚡
+
+🐞 Debugging with Logs
+When an application fails, logs can help identify the root cause.
+Typical process:
+📊 Metrics → Detect the problem
+ 🔍 Search logs → Find relevant events
+ 📜 Analyze errors → Identify the cause
+ 🛠️ Fix issue → Restore service
+
+💡 Real-world Example
+An API suddenly starts returning 500 errors 🚨
+Engineers search logs for:
+ERROR + payment-service
+They find:
+ERROR: Database connection timeout
+
+👉 Root cause identified.
+The database connection issue is fixed and the API recovers. ✅
+
+🧠 Key Takeaways
+✔ Search logs instead of reading everything 🔍
+ ✔ Filter by level, service, and time 📊
+ ✔ Use logs for root-cause analysis 🐞
+ ✔ Faster log analysis = Faster incident resolution 🚀

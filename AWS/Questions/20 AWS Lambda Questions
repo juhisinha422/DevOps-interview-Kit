@@ -1,0 +1,21 @@
+20 AWS Lambda Scenario-Based Questions🚀
+	1.	How do you trigger a Lambda function whenever a new file is uploaded to S3?
+	2.	Your Lambda must access an RDS database in a private subnet. How do you configure networking and permissions?
+	3.	A Lambda function takes too long to process large files and hits the timeout limit. How do you handle this?
+	4.	How can you minimize cold start issues in Lambda?
+	5.	Your Lambda needs to run every 5 minutes. How do you configure scheduling?
+	6.	Lambda execution fails because of insufficient memory. How do you optimize it?
+	7.	How do you expose a Lambda function as a REST API endpoint?
+	8.	Your Lambda must access sensitive credentials (DB passwords, API keys). How do you store them securely?
+	9.	You need to process DynamoDB Streams in real time using Lambda. How do you design this?
+	10.	Your Lambda fails sometimes, and you want retries or error capture. How do you handle this?
+	11.	How do you enable Lambda to write logs to CloudWatch automatically?
+	12.	Your Lambda requires external libraries like NumPy or Pandas. How do you package and deploy it?
+	13.	How do you restrict a Lambda’s permissions so it only accesses specific resources?
+	14.	Lambda is hitting concurrency limits during peak traffic. How do you resolve this?
+	15.	Your Lambda in a private subnet needs outbound internet access. How do you set this up?
+	16.	You want Lambda to trigger only when objects are uploaded with a specific S3 prefix. How do you achieve this?
+	17.	How do you optimize Lambda costs when handling millions of requests per day?
+	18.	Your Lambda works sometimes but fails without clear error logs. How do you troubleshoot?
+	19.	How do you safely version and roll back Lambda functions?
+	20.	How do you integrate Lambda with SNS, SQS, and Step Functions for event-driven workflows?

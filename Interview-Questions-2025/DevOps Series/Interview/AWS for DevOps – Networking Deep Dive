@@ -1,0 +1,45 @@
+AWS for DevOps – Networking Deep Dive
+
+If networking feels “optional”, production will prove otherwise 👇
+
+🔹 VPC Fundamentals
+	•	Why is a VPC required even for managed services?
+	•	How do CIDR ranges impact long-term scalability?
+	•	What happens if two VPCs have overlapping CIDRs?
+
+🔹 Subnets & Routing
+	•	Difference between public and private subnets?
+	•	How does a route table decide traffic flow?
+	•	Can a private subnet access the internet? How?
+
+🔹 Internet Gateway & NAT
+	•	Why is an Internet Gateway stateless?
+	•	Difference between NAT Gateway and NAT Instance?
+	•	What happens if the NAT Gateway fails?
+
+🔹 Security Groups vs NACLs
+	•	Why are Security Groups stateful?
+	•	When would you use NACLs instead of Security Groups?
+	•	How do you debug blocked network traffic?
+
+🔹 Load Balancing
+	•	Difference between ALB, NLB, and Gateway Load Balancer?
+	•	How does health check failure affect routing?
+	•	Can a single ALB handle multiple applications?
+
+🔹 VPC Peering & Transit Gateway
+	•	Difference between VPC Peering and Transit Gateway?
+	•	Why doesn’t VPC Peering support transitive routing?
+	•	When is Transit Gateway the better design?
+
+🔹 Private Connectivity
+	•	What is AWS PrivateLink and why is it used?
+	•	How do you expose services privately across accounts?
+	•	Difference between PrivateLink and VPC Peering?
+
+🔹 DNS & Route 53
+	•	How does Route 53 resolve traffic during failures?
+	•	Difference between latency-based and failover routing?
+	•	How do health checks impact DNS decisions?
+
+💡 Most “application issues” are actually networking issues.

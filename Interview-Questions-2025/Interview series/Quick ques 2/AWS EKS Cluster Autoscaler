@@ -1,0 +1,138 @@
+AWS EKS Cluster Autoscaler explained in 10 steps 
+ 
+Your EKS cluster is already up and running.
+You deploy an application, but the cluster does not have enough capacity to run all the pods.
+ 
+Your pods stay Pending…
+So what behind the scenes?
+ 
+🔴Let’s break it down step by step 👇
+
+1 -  Start with a running EKS cluster
+Your EKS control plane is healthy, your worker nodes are connected, and the Cluster Autoscaler is already installed in the cluster.
+ 
+2 -  You deploy your application
+You run kubectl apply to create a Deployment, StatefulSet, or another workload.
+ 
+3 -  The API Server receives the request
+The Kubernetes API Server stores the desired state and makes it available to the other control plane components.
+ 
+4 -  The Scheduler tries to place the pods
+The scheduler checks whether the existing nodes have enough CPU, memory, and matching conditions to host the new pods.
+ 
+5 -  Some pods stay Pending
+If no current node can host them, Kubernetes marks those pods as unschedulable and leaves them in the Pending state.
+ 
+6 -  Cluster Autoscaler detects unschedulable pods
+The Cluster Autoscaler watches the cluster state through the API Server and notices that some pods cannot be scheduled.
+ 
+7 -  It simulates where those pods could run
+It does not scale blindly.
+It checks things like:
+  -CPU and memory requests
+  -node selectors
+  -taints and tolerations
+  -affinity rules
+ 
+ 8 -  It selects the right node group
+Based on that simulation, it identifies which EKS node group is able to host those Pending pods.
+ 
+9 -  It calls AWS to increase capacity
+Using IAM permissions through IRSA, the Cluster Autoscaler calls AWS APIs and increases the desired capacity of the Auto Scaling Group behind that node group.
+ 
+10 - New EC2 instances launch and join the cluster
+AWS creates new EC2 instances, they bootstrap and register as Kubernetes nodes, and then the scheduler places the Pending pods on them.
+
+🔴Bonus:
+Cluster Autoscaler also works in the other direction.
+If nodes are underutilized, it can scale them down safely without disrupting the application.
+
+Cluster Autoscaler won’t work in AWS EKS without OIDC ☠️
+ 
+Here’s why 🧐
+ 
+1 - What is OIDC?
+
+OIDC (OpenID Connect) links your EKS cluster to AWS IAM.
+It gives Kubernetes service accounts an identity.
+ 
+2 - Why do we need it?
+
+Cluster Autoscaler runs as a pod.
+To scale nodes, it must call AWS APIs.
+OIDC enables IRSA 
+so the pod can assume an IAM role securely.
+ 
+No OIDC = no AWS access = no scaling
+ 
+3 - How do you enable it?
+
+Create an IAM OIDC provider using your cluster’s issuer URL:
+ 
+read OIDC issuer from EKS
+get TLS thumbprint
+create aws_iam_openid_connect_provider
+
+4 steps to install Cluster Autoscaler in AWS EKS ☁️
+ 
+1- Enable OIDC on your EKS cluster:
+
+    -Cluster Autoscaler needs to call AWS APIs securely.
+    -Enable OIDC so Kubernetes service accounts can assume IAM roles.
+👉 This is the foundation of IRSA
+ 
+2- Create IRSA (IAM Role for Service Account):
+
+◾Create an IAM role that:
+   -trusts your EKS OIDC provider
+   -is scoped to: kube-system/cluster-autoscaler-sa
+ 
+◾Attach permissions:
+   -autoscaling:Describe*
+   -autoscaling:SetDesiredCapacity
+   -autoscaling:TerminateInstanceInAutoScalingGroup
+   -ec2:Describe*
+👉 This gives autoscaler permission to scale nodes
+ 
+3- Tag your Node Groups / ASG:
+
+Cluster Autoscaler discovers node groups using tags.
+Add:
+  -https://lnkd.in/dw64VN3s = true
+  -k8s.io/cluster-autoscaler/<cluster-name> = owned
+👉 Without these tags, autoscaler won’t detect your nodes
+ 
+4- Deploy Cluster Autoscaler (Helm):
+
+◾Update Helm values:
+  -cloudProvider = aws/gcp/azure
+  -autoDiscovery.clusterName = <cluster-name>
+  -awsRegion = <region>
+ 
+◾Service account:
+  -rbac.serviceAccount.create = true
+  -rbac.serviceAccount.name = cluster-autoscaler-sa
+ 
+◾Attach IAM role:
+  -eks.amazonaws.com/role-arn = <role-arn>
+
+
+
+How to Run EKS Cluster Autoscaler ☁️
+
+When OIDC is enabled, the next step is to create the IAM role and policy that allow the AWS EKS service account to talk to AWS and scale worker nodes.
+
+In simple terms, Cluster Autoscaler runs inside Kubernetes as a pod, but to do its job it must call AWS APIs to:
+
+   - discover Auto Scaling Groups
+   - increase desired capacity
+   - terminate instances during scale-down
+   - read EC2 launch template and instance type details
+
+🔴To make that possible, we create:
+
+1 - An IAM role This role is trusted by the OIDC provider and can only be assumed by the Cluster Autoscaler service account.
+
+2 - An IAM policy This policy gives the permissions needed to describe, create capacity, and terminate EC2 instances through the Auto Scaling Group.
+
+3 - A role-policy attachment This links the policy to the role.

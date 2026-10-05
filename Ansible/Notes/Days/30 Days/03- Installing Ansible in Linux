@@ -1,0 +1,61 @@
+30 Days of Ansible – Day 3/30
+
+Installing Ansible on Linux: Your First Step Towards Automation
+
+Every automation journey begins with a proper setup. Before writing playbooks and managing servers, you need to install Ansible on your control node.
+
+The good news? Installing Ansible takes just a few minutes.
+
+What is a Control Node?
+
+A Control Node is the machine where Ansible is installed. From this machine, Ansible connects to remote servers over SSH and executes automation tasks.
+
+«Note: Only the Control Node needs Ansible installed. Target servers do not require any Ansible agent.»
+
+Installing Ansible
+
+On Ubuntu/Debian
+
+sudo apt update
+sudo apt install ansible -y
+
+On RHEL/CentOS/Rocky Linux
+
+sudo dnf install epel-release -y
+sudo dnf install ansible -y
+
+Verify the Installation
+
+Run the following command:
+
+ansible --version
+
+If the installation is successful, you'll see the installed Ansible version along with Python details and the configuration file location.
+
+Real-World Scenario
+
+Imagine you're joining a new DevOps team.
+
+Instead of manually logging into dozens of servers, you:
+
+✅ Install Ansible on your laptop or management server.
+
+✅ Configure SSH access.
+
+✅ Create an inventory file.
+
+✅ Start managing your entire infrastructure from one place.
+
+That's how most production environments use Ansible.
+
+Why Verify the Version?
+
+Knowing your Ansible version helps because:
+
+- Features vary between versions.
+- Some modules may behave differently.
+- It's the first thing teams check while troubleshooting.
+
+Key Takeaway
+
+Installing Ansible is the foundation of infrastructure automation. Once your Control Node is ready, you're prepared to automate hundreds of servers with just a few commands.

@@ -1,0 +1,19 @@
+How do you structure Terraform code for a team managing 100+ accounts across multiple environments like dev, staging, and production? 
+
+Managing over 100 accounts across multiple environments (Dev, Staging, Production) requires a strictly structured, modular, and automated Terraform approach to avoid configuration drift and accidental destruction. 
+
+1.The best practice for this scale is a component-based module structure paired with Terragrunt, allowing you to keep configurations DRY (Don't Repeat Yourself) while keeping environment state strictly separated.  
+
+2.A popular approach for large-scale environments is a mono-repo that separates modules (reusable code) from live infrastructure (specific configuration) 
+
+3.we need to use Terragrunt to automatically configure a unique S3 backend key for every component in every region of every account 
+Structure: bucket / env / account / region / component / terraform.tfstate
+
+4.Instead of creating a single "application" module, break infrastructure into small, manageable units 
+Networking Component: VPC, Subnets, Route Tables. 
+Data Component: RDS, DynamoDB, Elasticache. 
+App Component: EKS, ECS, Lambda. 
+
+5.When a PR is created, Atlantis runs terragrunt plan on the specific changed directory, providing visibility and requiring approval before apply. 
+
+6.we need to use Terragrunt to automatically generate the provider "aws" block for each account, assuming appropriate IAM roles

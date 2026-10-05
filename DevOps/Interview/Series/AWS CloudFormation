@@ -1,0 +1,41 @@
+🚀 AWS DevOps Interview Preparation Series 🚀 
+
+Topic: AWS CloudFormation — Infrastructure as Code (IaC) Simplified! 
+
+Today’s focus is AWS CloudFormation, a powerful Infrastructure as Code (IaC) tool that automates AWS resource provisioning using YAML/JSON templates.
+
+ If you're preparing for DevOps, Cloud, or SRE interviews — CloudFormation is a must-know skill for automating infrastructure deployment.
+
+🔹 AWS CloudFormation — Top 30 Interview Questions for DevOps Engineers
+
+
+What is AWS CloudFormation, and how does it work?
+What are the key components of a CloudFormation template?
+What are Resources, Parameters, Outputs, and Mappings in CloudFormation?
+What is a Stack in CloudFormation?
+What are Nested Stacks, and when would you use them?
+How does Change Set work in CloudFormation?
+What are StackSets, and how are they useful for multi-account or multi-region setups?
+What are Intrinsic Functions in CloudFormation?
+How do you reference one resource from another within a template?
+What are Conditions in CloudFormation, and how are they used?
+How do you deploy a CloudFormation stack using the AWS CLI?
+What happens when a stack creation fails?
+How do you handle stack rollbacks?
+How do you update a CloudFormation stack safely without downtime?
+How can you preview the changes before deployment?
+What’s the difference between Change Set and Drift Detection?
+How do you perform Drift Detection in CloudFormation?
+How can you automate CloudFormation deployments in a CI/CD pipeline?
+How do you handle stack dependencies or cross-stack references?
+How do you delete stacks while retaining specific resources?
+How can you use CloudFormation with AWS CodePipeline or Jenkins?
+What are Custom Resources, and when do you need them?
+How do you use CloudFormation macros or transform functions (like AWS::Include or AWS::Serverless)?
+How do you secure sensitive data (like passwords) in CloudFormation templates?
+How do you integrate CloudFormation with Terraform or Ansible workflows?
+What are the best practices for writing reusable CloudFormation templates?
+How do you version control CloudFormation templates?
+How do you modularize large CloudFormation templates?
+What’s the difference between SAM (Serverless Application Model) and CloudFormation?
+What are the limitations of CloudFormation compared to Terraform?

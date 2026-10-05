@@ -1,0 +1,11 @@
+Which Ansible keyword allows a Playbook to continue even if a task fails?
+The author can see how you vote. Learn more
+Which Ansible keyword allows a Playbook to continue even if a task fails?
+A) failed_when
+17%
+B) ignore_errors
+83%
+C) changed_when
+0%
+D) debug
+0%

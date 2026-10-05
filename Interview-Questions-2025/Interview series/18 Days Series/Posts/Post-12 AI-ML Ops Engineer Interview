@@ -1,0 +1,24 @@
+Post 12: AI/ML Ops Engineer Interview
+Senior Level (5–8 Years)
+
+Scaling machine learning in production — where models meet reliability, automation, and traceability! 🤖 
+
+At this level, you’re engineering MLOps platforms, automating model lifecycles, and ensuring experiment-to-production pipelines are auditable, secure, and fast.
+
+Test your applied AI Infrastructure & MLOps mastery 👇
+
+💡 Common AI/ML Ops Interview Questions (5–8 Years Experience): 
+1️⃣ How do you design a feature store for cross-team collaboration and reuse? 
+2️⃣ Explain your CI/CD for ML models — from data ingestion to model deployment. 
+3️⃣ What’s your approach to model versioning and lineage tracking (e.g., MLflow, Vertex AI, DVC)? 
+4️⃣ How do you orchestrate training and inference pipelines using Kubeflow, Airflow, or Vertex Pipelines? 
+5️⃣ What’s your monitoring strategy for drift detection and model performance in production? 
+6️⃣ Explain data governance and security controls for sensitive ML datasets. 
+7️⃣ How do you implement infrastructure scaling for distributed training (GPUs, TPUs, spot instances)? 
+8️⃣ Describe your use of automated testing in the ML lifecycle (unit, data, model validation). 
+9️⃣ How do you optimize cost and performance trade-offs in training and inference environments? 
+🔟 What’s your strategy for cross-functional collaboration between data scientists, ML engineers, and DevOps teams?
+🎯 Pro Tip: 
+Senior MLOps engineers treat data as code & models as artifacts — “Our pipeline reduced model retraining from 48 hours to 4 hours while improving AUC by 6%.” 
+Balance innovation and reproducibility — fast ML must still be trustworthy ML.
+

@@ -1,0 +1,29 @@
+Docker with GitHub Actions
+
+Today I learned how GitHub Actions integrates with Docker to automate container build and delivery.
+
+🔹 Build Docker Images
+Workflows can:
+Build Docker images automatically
+Use Dockerfiles in repositories
+Ensure consistent builds
+This enables containerized CI/CD.
+
+🔹 Tag Images
+Image tagging helps:
+Track versions
+Identify builds
+Support rollbacks
+Tags are critical for deployments.
+
+🔹 Push to Registry
+Built images can be pushed to:
+Docker Hub
+Amazon ECR
+Other container registries
+Secure authentication is required.
+
+🔥 3-Line Takeaway
+Automation builds images.
+ Tags manage versions.
+ Registries deliver containers.

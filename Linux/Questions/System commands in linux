@@ -1,0 +1,35 @@
+SYSTEM COMMANDS in Linux :
+👇
+➡️uname : used to get type of OS
+
+➡️uname -r : used to get kernel version of our OS
+
+➡️uname -a : used to get full info about OS
+
+➡️clear: this command is used to clear the clear (or) you can use ctrl + l as a short cut
+
+➡️uptime : used to get since how long our system is in running state
+
+➡️uptime -p : this will give only time
+
+➡️hostname: used to get private dns name of our system
+
+➡️hostname -i : used to get private ip of our system
+
+➡️hostnamectl set-hostname “swiggy” : used to change hostname
+
+➡️ip addr : used to get private IP
+
+➡️ip route : used to get private IP
+
+➡️ifconfig : used to get private IP
+
+➡️date : to get todays date
+
+➡️timedatectl : used to get timezones
+
+➡️timedatectl set-timezone Asia/Kolkata : used to change Timezone to IST
+
+➡️who : used to see how many users have been loggin into your system
+
+➡️whoami : used to see the current user.

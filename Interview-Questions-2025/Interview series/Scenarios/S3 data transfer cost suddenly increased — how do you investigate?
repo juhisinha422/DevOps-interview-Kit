@@ -1,0 +1,15 @@
+ S3 data transfer cost suddenly increased — how do you investigate? 
+
+1. A sudden spike in S3 data transfer costs is usually caused by increased internet egress, cross-region replication, or misconfigured application access patterns. 
+
+2.we can enable and use S3 Storage Lens to identify which specific buckets are generating the high egress traffic 
+
+3.we can enable S3 Server Access Logging or use CloudTrail to determine who is accessing the data 
+
+4.If a bucket was accidentally made public, leading to external bandwidth consumption 
+
+5.Ensure our EC2 instances or other compute services are in the same region as our S3 buckets. Inter-region transfers are expensive. 
+
+6.If our EC2 instances are accessing S3 over the internet rather than through a VPC Endpoint, we are paying unnecessary internet egress fees. 
+
+7.Need to verify if a data migration or backup job is running more frequently or transferring more data than expected. 

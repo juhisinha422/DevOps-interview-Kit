@@ -1,0 +1,60 @@
+DevOps Interview Preparation - Final 
+Scenario-Based Questions + Production Issues + Final Interview Readiness
+
+These last days are what actually decide interview selection.
+Interviewers want to see how you think, troubleshoot, and explain, not just tools.
+
+Final Scenario-Based DevOps Interview Questions
+
+• Application is slow — how will you troubleshoot?
+• Server CPU usage is 90% — what steps will you take?
+• Disk is full on a Linux server — how will you fix it?
+• CI pipeline suddenly fails — what is your approach?
+• Build is successful but deployment failed — how will you debug?
+• Docker container keeps restarting — what will you check?
+• Kubernetes pod is in CrashLoopBackOff — what steps will you follow?
+• Application is not accessible via Load Balancer — what could be wrong?
+• Secrets got exposed in GitHub — what will you do immediately?
+• How do you rollback a bad deployment?
+• How do you handle downtime during deployment?
+• What monitoring alerts are critical in production?
+• How do you reduce cloud cost in AWS/Azure/GCP?
+• What is your approach during a production incident?
+• Jenkins pipeline stuck or slow
+GitHub Actions job timing out
+• Docker image size too large
+• Kubernetes pods not scaling
+• HPA not working
+• Services not discovering each other
+• Ingress not routing traffic
+• Terraform apply failed — state locked
+• Ansible playbook failed on one host
+• Prometheus not scraping targets
+• Grafana dashboard showing no data
+• Cloud VM unreachable
+• SSL certificate expired
+• Application crash after deployment
+• Memory leak in containerized app
+• How do you explain your DevOps projects?
+• How do you describe CI/CD pipeline end-to-end?
+• What tools did you use and why?
+• What challenges did you face in your project?
+• How do you explain cloud architecture simply?
+• How do you justify DevOps for a fresher role?
+• How do you answer “No production experience”?
+• What should be on a DevOps fresher resume?
+• How many projects are enough for 0–2 years?
+• How do you handle HR questions confidently?
+• Why should we hire you as a DevOps Engineer?
+• Where do most candidates fail interviews?
+
+💡 Golden Tip:
+If you can clearly explain one solid project + troubleshooting approach,
+you can clear most DevOps fresher & junior interviews.
+
+ Interview Prep & DevOps Career Transition Support
+I am providing complete interview preparation training for:
+
+ Freshers & early professionals (0–2 yrs)
+ DevOps interview preparation (tool + scenario-based)
+ Professionals looking to transition into a DevOps Engineer role from Support, QA, SysAdmin, NOC, Networking, or Development

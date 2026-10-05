@@ -1,0 +1,70 @@
+DevOps Engineer Interview Experience – Wipro (3–4 Years Experience)
+Just gave a DevOps interview at Wipro. Sharing the questions as I remember them, along with simple explanations 👇
+
+👨💻 🔹 Started with basics
+• Asked me to introduce myself
+ 👉 Just spoke about my experience with AWS, Kubernetes, CI/CD, and some real projects
+• Then he gave a scenario like:
+ “You launched an application on AWS, what will you do next?”
+ 👉 I explained setup like installing app, configuring server, security groups, domain, monitoring
+ 💡 Basically making it production-ready
+• Another one was:
+ “Your app is running on one server, how will you make it highly available?”
+ 👉 Load balancer + auto scaling + multi-AZ
+ 💡 If one server fails, users don’t even notice
+• One tricky scenario:
+ “My EC2 is in private subnet and I can’t access Google”
+ 👉 NAT Gateway + route table fix
+ 💡 Private server needs a path to internet
+• Then he asked:
+ “Okay NAT is done, still not working, what else?”
+ 👉 Check Security Groups / NACL
+ 💡 Sometimes issue is just blocked ports
+
+☸️ 🔹 Kubernetes round
+• “Explain Kubernetes architecture”
+ 👉 Control plane manages, worker nodes run apps
+• “What is a sidecar container?”
+ 👉 Helper container inside same pod
+ 💡 Example: logging container with main app
+• “DaemonSet kya hota hai?”
+ 👉 Runs one pod on every node
+ 💡 Example: monitoring agent everywhere
+• “Where do you store DB passwords?”
+ 👉 Kubernetes Secrets
+ 💡 Don’t hardcode sensitive data
+• “What are probes?”
+ 👉 Liveness = app alive
+ 👉 Readiness = ready for traffic
+• “Taints and tolerations?”
+ 👉 Control pod placement
+ 💡 Only allowed pods can run on specific nodes
+
+📦 🔹 Helm questions
+• “What is Helm?”
+ 👉 Package manager for Kubernetes
+ 💡 Like reusable templates
+• “Staging and prod ka difference kaise manage karoge?”
+ 👉 Different values.yaml
+ 💡 Same chart, different configs
+• “Helm upgrade fail ho gaya toh?”
+ 👉 Rollback to previous version
+
+🏗️ 🔹 Terraform
+• “Loops in Terraform?”
+ 👉 count and for_each
+• Scenario type:
+ “I have DB + app + web created using Terraform. Need to create daily and destroy in evening.”
+ 👉 Terraform uses state file
+ 💡 It knows what to create or destroy automatically
+
+🔀 🔹 Git scenario
+• He explained a situation:
+ “You’re working on feature branch, main branch has new changes, now you want to push only your work”
+ 👉 Rebase / cherry-pick
+ 💡 Clean and controlled commits
+
+🐧 🔹 Linux
+• “How to transfer a file >15GB?”
+ 👉 rsync / scp / split
+ 💡 Efficient large file transfer

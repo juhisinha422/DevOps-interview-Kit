@@ -1,0 +1,47 @@
+Azure DevOps Engineer – Interview Questions (4–6 Years Experience)
+
+If you’re preparing for an Azure DevOps Engineer role, these are the real interview questions you should be comfortable answering 👇
+
+🔹 Azure Architecture & Design
+How do you design a highly available application on Azure?
+When would you choose Azure Load Balancer vs Application Gateway?
+How do you design multi-region deployments in Azure?
+How do you implement zero-downtime deployments in Azure?
+How do you plan disaster recovery and backups in Azure?
+
+🔹 CI/CD with Azure DevOps
+How do you design CI/CD pipelines using Azure DevOps?
+YAML pipelines vs Classic pipelines — when do you prefer each?
+How do you handle approvals and gates in Azure DevOps?
+How do you implement rollback strategies in Azure deployments?
+How do you secure Azure DevOps pipelines?
+
+🔹 Containers & Kubernetes (AKS)
+AKS vs ACI vs App Service — when would you use each?
+How do you deploy and scale applications on AKS?
+How do you troubleshoot pod failures in AKS?
+How do you handle AKS upgrades with minimal downtime?
+How do you secure workloads running on AKS?
+
+🔹 Infrastructure as Code
+Terraform vs ARM vs Bicep — what do you choose and why?
+How do you manage Terraform state securely in Azure?
+How do you prevent configuration drift in Azure infrastructure?
+How do you design reusable IaC modules?
+How do you manage secrets in IaC?
+
+🔹 Monitoring, Logging & Reliability
+Which Azure Monitor and Log Analytics metrics matter most?
+How do you design alerts without alert fatigue?
+How do you centralize logs across subscriptions?
+How do you reduce MTTR during Azure incidents?
+How do you implement SLIs and SLOs in Azure?
+
+🔹 Security & Cost Management
+How do you implement least-privilege access using Azure AD?
+How do you secure Azure Storage, VMs, and SQL databases?
+How do you manage secrets using Azure Key Vault?
+How do you optimize Azure costs in production?
+How do you handle security incidents in Azure?
+
+💡 Azure DevOps interviews focus on design decisions, automation, and reliability — not just services.

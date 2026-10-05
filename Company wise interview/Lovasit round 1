@@ -1,0 +1,8 @@
+Interview Questions Asked – Lovasit (Round 1)
+
+	1.	How do you manage and optimize costing in AWS?
+	2.	What kind of automation have you implemented using Shell scripting or Python?
+	3.	What is your experience in managing Amazon ECS infrastructure using Terraform?
+	4.	How do you manage and secure Terraform state files?
+	5.	How do you manage resources like S3, Load Balancers, and Lambda functions across multiple environments using Terraform?
+	6.	What is the biggest production outage you have handled so far?

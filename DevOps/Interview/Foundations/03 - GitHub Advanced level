@@ -1,0 +1,37 @@
+Tool 3 — GitHub (Advanced Level)
+(DevOps Interview Questions Series)
+
+This is what senior DevOps & platform teams actually use inside GitHub.
+
+GitHub – Advanced Interview Questions
+
+1. How does GitHub manage authentication internally?
+2. What is SAML SSO in GitHub Enterprise?
+3. How does GitHub implement RBAC?
+4. What is GitHub Enterprise Cloud vs Server?
+5. How do you integrate GitHub with corporate LDAP?
+6. How do you audit user activity in GitHub?
+7. What is GitHub Advanced Security?
+8. How does secret scanning work?
+9. How does code scanning work?
+10. What is dependency graph?
+11. How do you enforce security policies on PRs?
+12. How do you prevent leaking secrets in GitHub?
+13. What is GitHub OIDC?
+14. How do you connect GitHub Actions with AWS securely?
+15. What is GitHub environment protection?
+16. How do you manage multi-repo CI pipelines?
+17. How do you control who can deploy to production?
+18. How do you implement approval gates?
+19. What is GitHub branch ruleset?
+20. How do you enforce commit signing?
+21. How do you monitor GitHub activity?
+22. What is GitHub audit streaming?
+23. How do you back up GitHub repos?
+24. What is GitHub enterprise billing model?
+25. How do you integrate GitHub with Jira?
+26. How do you implement monorepo in GitHub?
+27. How do you handle large-scale CI workloads?
+28. How do you limit GitHub Actions usage?
+29. How do you isolate runners?
+30. How do you design GitHub for multi-cloud CI/CD?

@@ -1,0 +1,26 @@
+Day 2: Variables & Data Types in Python
+🧮 1. What Is a Variable?
+A variable is a name that refers to a value stored in memory. Think of it like a labeled container.
+x = 10 # integer name = "Divya" # string
+📌 Rules for Naming Variables:
+Must start with a letter or underscore (_)
+Cannot start with a number
+No spaces or special characters
+Case-sensitive (Name ≠ name)
+🔢 2. Python Data Types Overview
+Python is dynamically typed—meaning you don’t need to declare the type explicitly.
+ intfloatcomplexx = 5pi = 3.14z = 2 + 3j strname = "Divya" listtuplerangecolors = ["red", "blue"] dictstudent = {"name": "Divya", "age": 21} setfrozensetnums = {1, 2, 3} boolis_ready = True bytesbytearraymemoryview NoneTypex = None  
+🧪 3. Type Checking & Conversion
+Use type() to check a variable’s type:
+x = 10 print(type(x)) #  
+Convert between types:
+x = "25" y = int(x) # Converts string to integer
+🧑🔬 4. Practice Examples
+✅ Age Calculator
+birth_year = int(input("Enter your birth year: ")) age = 2025 - birth_year print("Your age is:", age)
+✅ Type Conversion Demo
+a = 5 b = float(a) print(b, type(b)) # Output: 5.0  
+✅ Boolean Logic
+is_mca_student = True print("MCA Student:", is_mca_student)
+📊 5. Visual Summary (Sketch This!)
++-------------------------+ | Python Data Types | +-------------------------+ | Numeric: int, float | | Text: str | | Sequence: list, tuple | | Mapping: dict | | Set: set | | Boolean: bool | | NoneType: None | +-------------------------+

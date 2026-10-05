@@ -1,0 +1,13 @@
+what happens to pvc when a statefulset pod crashes?
+ 
+When a StatefulSet pod crashes (e.g., due to a CrashLoopBackOff or node failure), the associated PersistentVolumeClaim (PVC) and its underlying PersistentVolume (PV) are preserved. 
+
+1.The PVC is not deleted when a pod crashes or is deleted 
+
+2. When the StatefulSet controller restarts the crashed pod (on the same or a new node), it will automatically re-attach the same PVC and PV to the new pod.
+ 
+3.Each replica in a StatefulSet has its own unique PVC (e.g.data-mysql-0``data-mysql-1), and this binding is maintained across restarts. 
+
+4.PVCs are removed only when the StatefulSet itself is deleted or scaled down, not when a single pod crashes 
+
+5.If the PVC itself is manually deleted, the StatefulSet pod will not be able to start correctly (it will likely get stuck in a Pending state) until the PVC is recreated. 

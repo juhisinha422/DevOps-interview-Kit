@@ -1,0 +1,58 @@
+Practical Implementation of Build Tool – Maven for Java Project ☕⚙️
+As part of my DevSecOps hands-on learning, I practically implemented Apache Maven to build, test, and package a Java application. Understanding build tools at a practical level is essential for CI/CD automation and secure software delivery.
+
+Here’s the complete step-by-step implementation I followed:
+🔹 Step 1: Install Java (JDK)
+Maven requires Java to be installed first.
+✔ Install Java (recommended: JDK 17 or above)
+✔ Set JAVA_HOME environment variable
+✔ Verify installation using:
+java -version
+javac -version
+This confirms that both Java runtime and compiler are properly configured.
+
+🔹 Step 2: Install Apache Maven
+✔ Download and install Apache Maven
+✔ Configure MAVEN_HOME
+✔ Add Maven bin directory to system PATH
+✔ Verify installation using:
+mvn -version
+If configured correctly, it displays Maven version along with Java version being used.
+
+🔹 Step 3: Clone the GitHub Repository
+git clone https://lnkd.in/gPHkDEjx
+cd <repo-name>
+Inside the project directory, the pom.xml file acts as the heart of Maven. It defines:
+• Project metadata
+• Dependencies
+• Plugins
+• Build lifecycle
+
+🔹 Step 4: Run Test Cases Using Maven
+mvn test
+This step:
+• Downloads required dependencies
+• Compiles source code
+• Executes test cases
+• Generates test reports
+Ensures code reliability before packaging.
+
+🔹 Step 5: Create the JAR File
+mvn package
+Maven executes lifecycle phases:
+Validate → Compile → Test → Package
+After successful execution, the .jar file will be available inside the target/ directory.
+
+🔹 Step 6: Run the Java Application
+java -jar target/<filename>.jar
+If everything is configured correctly, the application will start successfully.
+
+🔐 Why Maven Matters in DevSecOps
+✔ Automated dependency management
+✔ Standardized build lifecycle
+✔ Easy CI/CD integration (Jenkins, GitHub Actions, GitLab CI)
+✔ Security plugin support (OWASP Dependency Check, Snyk)
+✔ Reproducible builds
+
+💡 Key Learning:
+Practical implementation of Maven strengthens CI/CD automation skills and helps build secure, reliable Java applications in DevSecOps environments.

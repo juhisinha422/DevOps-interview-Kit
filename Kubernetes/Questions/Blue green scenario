@@ -1,0 +1,13 @@
+Whether you will deploy resources in the same Region or AZ for Blue-Green, how would your Application deployed in Blue switch to Green, How the Synchronisation would happen, Including Intricacies of Routing within the Switching Process ?!
+
+
+Blue-Green only works correctly when both environments run in the same Region/AZ.
+Doing Blue-Green across Regions is not practical — network latency, DB consistency, and routing updates will break the switch. So cross-region Blue-Green is generally NOT done.
+
+The switch from Blue → Green is simple:
+the Load Balancer/Ingress just changes the target from Blue to Green once Green is healthy.
+That’s the only “switching mechanism.” No special sync happens between Blue and Green.
+
+Both environments use the same database.
+As long as the schema is backward-compatible, the app can switch instantly without any data issues.
+That’s why the process works only when everything is in the same Region/AZ and sharing the same backend.

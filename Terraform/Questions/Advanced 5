@@ -1,0 +1,26 @@
+🌟 DevOps Interview Q&A Series — Advanced Terraform Edition 🌟
+
+Here are some you must be ready for 👇
+
+💡 Advanced & Scenario-Based Terraform Questions
+
+🔹 How do you manage Terraform state in a team environment, and what challenges can arise with remote backends?
+ 🔹 Explain a scenario where you would use workspaces. How do they differ from multiple state files?
+ 🔹 You have multiple AWS accounts (Dev, QA, Prod). How would you structure your Terraform code to handle cross-account deployments?
+ 🔹 How do you implement modularization in Terraform? Share an example where poor module design caused issues.
+ 🔹 Your team is facing state file corruption. How would you troubleshoot and recover safely?
+ 🔹 How would you implement Terraform in a CI/CD pipeline while ensuring security of sensitive variables?
+ 🔹 Scenario: You deployed infra with Terraform, but someone made manual changes in the cloud console. How do you detect and fix drift?
+ 🔹 In a large enterprise setup, how do you organize Terraform projects for 100+ microservices across multiple environments?
+ 🔹 How do you use lifecycle rules like prevent_destroy and create_before_destroy for safe production rollouts?
+ 🔹 How do you handle Terraform upgrades (e.g., 0.11 → 0.12 or 0.13 → 1.x) in production environments without downtime?
+ 🔹 Can you explain how to design a multi-region highly available infrastructure using Terraform?
+ 🔹 How do you manage provider versioning to avoid breaking changes in long-lived projects?
+ 🔹 What’s the difference between using depends_on and implicit dependency resolution in Terraform? Share a real-world scenario.
+ 🔹 How do you handle secret management in Terraform without exposing sensitive data in state files?
+ 🔹 How would you use data sources to reference existing infrastructure? Give a practical example.
+ 🔹 How do you implement blue-green or canary deployments using Terraform?
+ 🔹 You need to provision resources across multiple cloud providers (AWS, Azure, GCP). How would you structure your code?
+ 🔹 What’s the impact of terraform refresh and when should you avoid using it?
+ 🔹 How do you test Terraform code before applying changes in production? (unit tests, integration tests, policy checks, etc.)
+ 🔹 Share a scenario where combining Terraform with Ansible (or another config mgmt tool) was necessary.

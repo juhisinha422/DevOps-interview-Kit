@@ -1,0 +1,125 @@
+ Amazon RDS: Managed Relational Databases on AWS
+
+Managing databases manually (patching, backups, scaling, failover) is time-consuming and risky.
+Amazon RDS (Relational Database Service) removes that operational burden and lets you focus on applications instead of managing DB infrastructure.
+
+RDS is one of the most important database services in AWS — and commonly discussed in interviews.
+Here’s what you need to know 👇
+
+
+
+🔹 What is Amazon RDS?
+
+RDS is a fully managed relational database service that handles:
+
+Automated backups
+
+Patch management
+
+High availability
+
+Monitoring
+
+Multi-AZ failover
+
+Storage scaling
+
+
+You simply choose the engine, instance class, and storage — AWS manages everything else.
+
+
+
+🔹 Supported Database Engines
+
+RDS supports popular relational databases:
+
+Amazon Aurora
+
+MySQL
+
+PostgreSQL
+
+MariaDB
+
+Oracle
+
+SQL Server
+
+
+💡 Tip: If you need high performance + auto-scaling, look at Aurora.
+
+
+
+🔹 Key Features of RDS
+
+🛡️ 1. Multi-AZ Deployment
+
+Provides automatic failover to a standby instance in another AZ.
+Best for production-grade HA.
+
+🔄 2. Automated Backups & Snapshots
+
+Daily backups
+
+Point-in-time restore
+
+Manual snapshots retained until deleted
+
+
+📏 3. Read Replicas
+
+Used to offload read-heavy workloads and scale read performance.
+
+📈 4. Storage Auto Scaling
+
+Automatically increases storage when running out — avoids “database full” outages.
+
+🔍 5. Monitoring & Insights
+
+CloudWatch metrics
+
+Performance Insights
+
+Enhanced Monitoring
+
+
+Great for troubleshooting slow queries or CPU spikes.
+
+
+
+🔍 Common Interview Questions
+
+Difference between Multi-AZ vs Read Replicas?
+
+How does RDS automated backup work?
+
+What happens during Multi-AZ failover?
+
+Why choose RDS vs self-managed DB on EC2?
+
+What is the difference between RDS and Aurora?
+
+
+
+
+📘 Helpful AWS Documentation:
+
+https://lnkd.in/gfbWm6Jb
+
+https://lnkd.in/gaHkSF7Q
+
+https://lnkd.in/gxp6mgXN
+
+https://lnkd.in/gksJpedB
+
+https://lnkd.in/gEV4Qc4F
+
+
+
+💡 Pro Tips:
+
+✅ Use Multi-AZ for production workloads.
+✅ Enable Performance Insights to troubleshoot DB performance.
+✅ Use Read Replicas to scale reads — not for failover.
+✅ Prefer Aurora for modern, scalable, cloud-native apps.
+✅ Regularly rotate DB credentials using AWS Secrets Manager.

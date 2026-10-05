@@ -1,0 +1,30 @@
+Suppose AWS Config automatically deletes any IAM User that gets created. How would you handle a business exception where a specific IAM User is required? 
+
+1.The actual deletion is handled by an AWS Systems Manager (SSM) Automation document or an AWS Lambda function. 
+
+2.Modify the code or automation document that executes the deletion to check for this tag before terminating the user.  
+Tag Key: ConfigExemption 
+Tag Value: AllowIAMUser   
+ import boto3
+
+iam = boto3.client('iam')
+
+def lambda_handler(event, context):
+    # Extract username from the AWS Config evaluation event
+    username = event['detail']['requestParameters']['userName'] 
+    
+    # Fetch user tags
+    tags = iam.list_user_tags(UserName=username)['Tags']
+    
+    # Check for exemption
+    for tag in tags:
+        if tag['Key'] == 'ConfigExemption' and tag['Value'] == 'AllowIAMUser':
+            print(f"User {username} is exempt from auto-deletion.")
+            return
+            
+    # Delete user if not exempt
+    iam.delete_user(UserName=username)
+
+3. we need to configure Amazon EventBridge to detect when a user is created with the exemption tag. 
+
+4.Move the workload requiring the IAM User to a dedicated AWS account or Organizational Unit (OU) where this specific AWS Config rule is not deployed.

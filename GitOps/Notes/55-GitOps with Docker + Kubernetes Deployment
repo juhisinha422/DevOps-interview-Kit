@@ -1,0 +1,41 @@
+GitOps with Docker + Kubernetes Deployment
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m connecting Docker + Kubernetes with GitOps to build a complete end-to-end DevOps workflow 🚀
+This is how modern applications are deployed in real production environments.
+
+🔹 Container Deployment using Docker
+ Docker is used to package applications into containers.
+Application + dependencies bundled together
+Runs consistently across environments
+Easy to deploy and scale
+Once built, the Docker image is pushed to a container registry.
+
+🔹 Kubernetes Deployment
+ Kubernetes is used to:
+Deploy containers
+Manage scaling and availability
+Handle networking and load balancing
+Deployment is defined using YAML files (Deployment + Service).
+
+🔹 GitOps Integration
+ Here’s the complete GitOps workflow:
+1️⃣ Developer writes code
+ 2️⃣ CI tool builds Docker image
+ 3️⃣ Image pushed to registry
+ 4️⃣ Deployment YAML updated in Git
+ 5️⃣ GitOps tool detects change
+ 6️⃣ Kubernetes cluster gets updated automatically
+
+🔹 End-to-End DevOps Flow
+ Code → Build → Docker → Git → GitOps → Kubernetes
+Everything is automated and controlled through Git.
+
+🔹 Why This Matters
+Faster deployments
+Consistent environments
+Easy rollback using Git
+Fully automated pipeline
+
+💡 Key Insight:
+ GitOps combined with Docker and Kubernetes creates a powerful, automated, and production-ready deployment system.

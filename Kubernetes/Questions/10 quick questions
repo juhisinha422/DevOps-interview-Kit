@@ -1,0 +1,33 @@
+Kubernetes: 10 Quick questions and answers
+
+1. What is Kubernetes? 
+
+Open-source container orchestration platform for automating deployment, scaling, and management of containerized applications.
+
+2. What is a Pod?
+
+ Smallest deployable unit in K8s; contains one or more containers sharing network and storage.
+3. What's a Deployment?
+
+ Controller that manages stateless application replicas, handles updates and rollbacks.
+4. What is a Service?
+
+ Provides stable networking to access Pods (types: ClusterIP, NodePort, LoadBalancer).
+5. What's a Namespace? 
+
+Virtual cluster for resource isolation between teams or projects.
+
+6. What is kubectl?
+
+ CLI tool to interact with K8s clusters (get, apply, delete, logs commands).
+
+7. ConfigMap vs Secret?
+ ConfigMap stores non-sensitive config; Secret stores sensitive data like passwords.
+8. What's an Ingress? 
+
+Manages external HTTP/HTTPS access with routing, load balancing, and SSL termination.
+
+9. What is etcd? 
+Distributed key-value store holding all cluster state and configuration data.
+
+10. What are Probes? Health checks: Liveness (restart if fails), Readiness (traffic control), Startup (slow start handling).

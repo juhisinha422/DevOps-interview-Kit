@@ -1,0 +1,16 @@
+AWS DevOps Interview Questions I Faced Recently
+
+1. Did you create any significant infrastructure in cloud? what did you create?  
+2. What is VPC?
+3. Did you configure any ACLs, route tables?
+4. Lets say I have two instances in different subnets in the same VPC, i want to connect from Machine A to Machine B, but not from Machine B to Machine A. How would you do that?   
+5. What is the purpose of Route tables?
+6. What is the purpose of NAT Gateway?
+7. What are the types of instances aws provide?
+8. Have you heard of AWS Jobs? AWS Batch?
+9. How does Kubernetes Works? 
+10. What is a Pod? difference between Container and Pod?  
+11. How does Kubernetes Maintains the Load?
+12. Horizontal Scaling vs Vertical Scaling?
+13. Do you Know python?  
+14. Do you know git? Lets say I am in middle of something and someone checked in the code there, now I need that modified code into my branch without losing my ongoing work. how?  

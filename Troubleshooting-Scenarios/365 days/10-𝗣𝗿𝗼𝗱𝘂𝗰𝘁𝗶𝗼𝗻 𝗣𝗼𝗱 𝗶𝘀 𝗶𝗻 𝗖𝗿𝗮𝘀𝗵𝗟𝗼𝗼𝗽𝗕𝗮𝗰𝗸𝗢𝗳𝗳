@@ -1,0 +1,88 @@
+𝗗𝗮𝘆 𝟭𝟬/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗣𝗼𝗱 𝗶𝘀 𝗶𝗻 𝗖𝗿𝗮𝘀𝗵𝗟𝗼𝗼𝗽𝗕𝗮𝗰𝗸𝗢𝗳𝗳 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗗𝗼?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “One of your production Kubernetes pods is continuously restarting and showing CrashLoopBackOff. How will you troubleshoot it?”
+
+𝗜 𝘄𝗼𝘂𝗹𝗱𝗻'𝘁 𝗶𝗺𝗺𝗲𝗱𝗶𝗮𝘁𝗲𝗹𝘆 𝗿𝗲𝘀𝘁𝗮𝗿𝘁 𝘁𝗵𝗲 𝗽𝗼𝗱.
+
+First, I would understand why the container is crashing.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check pod status
+
+kubectl get pods -n <namespace>
+
+2️⃣ Check pod details and events
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Look for:
+
+OOMKilled
+
+FailedMount
+
+ImagePull errors
+
+Probe failures
+
+Permission issues
+
+Scheduling/events
+
+
+3️⃣ Check application logs
+
+kubectl logs <pod-name> -n <namespace>
+
+If the container already restarted:
+
+kubectl logs <pod-name> -n <namespace> --previous
+
+This is especially important because the current container may have already lost the logs from the previous crash.
+
+4️⃣ Check resource configuration
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Look for CPU/memory requests and limits and check whether the container was terminated because of memory pressure.
+
+5️⃣ Check probes
+
+Review:
+
+livenessProbe
+
+readinessProbe
+
+startupProbe
+
+
+A badly configured probe can cause a healthy application to be restarted repeatedly.
+
+6️⃣ Check recent changes
+
+I would investigate:
+
+👉 Recent deployment
+👉 Image change
+👉 ConfigMap/Secret change
+👉 Environment variables
+👉 Application configuration
+👉 Dependency/database connectivity
+
+🎯 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄:
+
+Pod Status → Events → Previous Logs → Resources → Probes → Configuration → Recent Changes → Root Cause
+
+After fixing the issue, I would verify the pod becomes stable and monitor the application.
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+CrashLoopBackOff is not the root cause. It is a symptom.
+
+The real job of a DevOps engineer is to find why the container keeps crashing.

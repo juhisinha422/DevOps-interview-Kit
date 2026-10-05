@@ -1,0 +1,38 @@
+Suppose your EKS cluster is experiencing pod CrashLoopBackOff issues. Walk me through your debugging process.
+
+
+
+When an Amazon EKS cluster experiences a CrashLoopBackOff issue, it means the container image was pulled successfully, but the application inside the container is starting, crashing, and restarting repeatedly
+
+
+
+1. we can describe pod and check initially
+
+kubectl describe pod <pod-name> -n <namespace>
+
+we can check events section and the container status
+
+A. If a liveness probe is misconfigured or too aggressive, it will kill a healthy application before it finishes booting up.
+
+B. Issues mounting AWS EBS volumes, EFS, or missing ConfigMaps/Secrets keys. 
+
+
+
+
+
+2.If the platform infrastructure looks healthy, the bug is almost certainly inside the application
+
+
+
+kubectl logs <pod-name> -n <namespace> --previous
+
+
+
+Missing database connection strings, unhandled exceptions, database migration failures, or filesystem permission errors.
+
+
+
+3.If the app crashes because it cannot connect to an Amazon RDS database, I verify that the EKS cluster security group is allowed on the RDS instance security group 
+
+
+

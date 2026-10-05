@@ -1,0 +1,28 @@
+Why do so many candidates struggle with AWS VPC questions in interviews?  
+
+I’ve noticed even experienced engineers freeze when asked something as basic as:  
+- What’s the difference between a public and private subnet?  
+- How would you troubleshoot connectivity between subnets?  
+- Why can’t your EC2 instance reach the internet?  
+
+The reason: VPC looks “easy” on paper but it’s a foundation that requires clear mental models. Without that, the details blur.  
+
+Let’s break it down.  
+
+Public Subnet:  
+A subnet with a route to an Internet Gateway (IGW). EC2 instances here can talk to the internet (if they have public IPs).  
+
+Private Subnet:  
+No direct IGW route. To reach the internet, traffic must pass through a NAT Gateway/Instance sitting in a public subnet.  
+
+Troubleshooting Mindset:  
+- Start with the route table. Does the subnet point to IGW, NAT, or only VPC CIDR?  
+- Check security groups and NACLs. Are they blocking inbound/outbound?  
+- Confirm the instance has the right IPs assigned (private vs. public).  
+- Trace step by step: Instance → Subnet → Route Table → Gateway.  
+
+The trap in interviews is that people jump to “tool answers” (ping, telnet, traceroute) without explaining the flow of traffic. What interviewers really test is your ability to think in layers: networking, VPC components, and AWS design.  
+
+If you can visualize packets moving, you’ll never forget.  
+
+The lesson: Before diving into advanced AWS services, get your VPC basics solid. Because if you can’t explain public vs. private subnets confidently, how will you design secure multi-region architectures?  

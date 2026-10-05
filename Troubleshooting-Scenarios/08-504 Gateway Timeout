@@ -1,0 +1,69 @@
+Day 8 of my DevOps Troubleshooting Series
+
+🔥 Real-Time DevOps Scenario: 504 Gateway Timeout
+
+Imagine the application was working perfectly, but suddenly users started receiving:
+
+504 Gateway Timeout
+
+As a DevOps Engineer, the first thing I would avoid is blindly restarting the application. Instead, I would follow a systematic troubleshooting approach.
+
+🔍 What would I check?
+
+1️⃣ Application Health
+Check whether the application is running and responding properly.
+
+2️⃣ Application Logs
+Look for:
+• Database connection issues
+• Connection timeouts
+• Thread exhaustion
+• OutOfMemory errors
+• Slow API requests
+
+3️⃣ Server Resources
+Check CPU, memory, and disk utilization using tools like:
+`top`, `free -m`, `df -h`
+
+4️⃣ Load Balancer / Nginx
+Check the reverse proxy status and error logs to verify whether requests are reaching the backend.
+
+5️⃣ Backend Connectivity
+Use `curl` to verify whether the backend application is reachable and responding within an expected time.
+
+6️⃣ Database Connectivity
+Check for:
+• Slow queries
+• Connection pool exhaustion
+• High database connections
+• Database availability issues
+
+7️⃣ Timeout Configuration
+Review timeout settings across the Load Balancer, Nginx, application server, and database.
+
+🧩 Example Root Cause
+
+Suppose the application is healthy, but a database query suddenly takes much longer than usual.
+
+The request flow is:
+
+client → Load Balancer → Nginx → Application → Database
+
+The application waits for the database response. If the response doesn't arrive within the configured timeout, the gateway eventually returns a 504 Gateway Timeout.
+
+### 🛠️ Resolution
+
+✅ Identify and fix the slow database query
+✅ Check database connection pool utilization
+✅ Verify backend health
+✅ Review timeout configurations
+✅ Monitor the application after the fix
+✅ Document the root cause and preventive actions
+
+💡 Key takeaway:
+
+A 504 doesn't necessarily mean the application is down.
+
+It usually means the gateway or proxy didn't receive a timely response from the upstream service.
+
+As a DevOps Engineer, I would trace the complete request path and identify exactly **where the request is getting stuck** before taking corrective action.

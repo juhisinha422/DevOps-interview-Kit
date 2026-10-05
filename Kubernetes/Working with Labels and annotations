@@ -1,0 +1,50 @@
+Working with Labels and annotations
+-------------------------------------------
+Labels:
+Lables are arbitory key/value pairs we can attach to the kubernetes objects, these acts as identifiers through which we can access the objects over the cluster. For an kubernetes object we can attach any number of labels (key/value pairs), but these should be unique and should appear only once
+
+There are 2 ways we can attach labels to the kubernetes objects:
+  1. we can declare labels aspart of the kubernetes object spec files or manifest so that the objects would be created with those labels defined
+  2. we can attach or detach labels dynamically at runtime using kubectl cli commands
+  
+We can define labels for any of the kubernetes objects like
+  1. pod
+  2. replicaset
+  3. deploymentset
+  4. daemonset
+  5. ingress
+  6. service
+  etc
+  
+#1. How to declare labels while defining the manifest or spec for an object?
+Let us explore how to define labels for an pod object in pod spec file as below
+
+hangout-pod.yml
+----------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hangoutpod
+  labels:
+    appName: hangout
+    appVersion: 1.0
+    env: production
+spec:
+  containers:
+    - name: hangout
+      image: hangout:1.0
+      ports:
+        - name: hangoutport
+          containerPort: 8080
+          protocol: TCP
+          
+  
+1. How to see all the labels attached to the Pod?
+kubectl get pods --show-labels
+
+2. How to query the pods or search based on Labels?
+kubectl get pods -l env=production
+
+3. How to dynamically attach labels to the object in kubernetes?
+kubectl label pods podName key=value
+For eg.. kubectl label pods hangoutpod platform=java

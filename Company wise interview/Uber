@@ -1,0 +1,61 @@
+Senior DevOps / SRE Interview – Uber
+
+Many engineers prepare:
+
+Kubernetes
+Terraform
+CI/CD
+Cloud
+
+But interviews at this level test something very different.
+
+⸻
+
+Round 1 – System Behavior & Edge Cases (45 min)
+
+• Your service works fine at 1k RPS but starts failing at 5k RPS. What changes?
+• How do you handle connection exhaustion in a high-traffic microservices system?
+• Your cache hit rate drops suddenly after deployment. What could cause this?
+• How do you design rate limiting without impacting real users?
+• What happens when your message queue starts lagging during peak traffic?
+
+⸻
+
+Round 2 – Failure & Debugging (60 min)
+
+• CPU and memory look normal, but response time increases. Where do you check?
+• Traffic is unevenly distributed across pods. Why could this happen?
+• One dependency is slow, but not down. How does it affect your system?
+• You see intermittent failures only during peak hours. How do you debug?
+• Everything is working, but costs suddenly increased 2x. What do you investigate?
+
+⸻
+
+Round 3 – Engineering Judgment (30 min)
+
+• When do you choose consistency over availability?
+• How do you decide between vertical scaling vs horizontal scaling?
+• When should you NOT use Kubernetes for a system?
+
+⸻
+
+💡 Reality
+
+Senior interviews don’t test:
+
+• commands
+• tools
+• definitions
+
+They test:
+
+• how systems behave under load
+• how failures propagate
+• how you make decisions under uncertainty
+
+⸻
+
+That’s where most engineers struggle.
+
+Because they prepare tools…
+but not system behavior.

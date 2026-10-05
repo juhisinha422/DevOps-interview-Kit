@@ -1,0 +1,66 @@
+“How do you recover from a deleted Terraform state file?” is another common DevOps interview question.
+
+Here’s how to answer it correctly.
+
+What happens when state file is delete?
+
+Terraform loses track of all infrastructure it created.
+
+Running terraform plan will show it wants to create everything again, even though resources already exist.
+
+Running terraform apply will fail because resources already exist in the cloud.
+
+You’re basically stuck. Terraform can’t manage what it can’t track.
+
+How do you recover ?
+
+Option 1: Restore from backup( If at all possible)
+
+—> If you’re using remote state (S3, Terraform Cloud), check for versioning.
+S3 with versioning enabled keeps old versions of your state file.
+—> Go to S3, find the deleted state file, and restore the previous version.
+
+Option 2: Recreate state using terraform import
+
+—> If you have no backup, you need to manually import every resource back into Terraform.
+—> For each resource in your Terraform code, run:
+terraform import aws_instance.my_server i-1234567890abcdef0
+—> This tells Terraform “hey, this EC2 instance already exists, track it.”
+—> You’ll need to import every single resource. It’s time-consuming and error-prone.
+
+Option 3: Start fresh (last resort)
+
+—> Destroy everything manually in the cloud console.
+—> Run terraform apply to recreate from scratch.
+—> Only do this in non-production or if downtime is acceptable.
+
+Best practices to avoid this disaster:
+
+👉Use remote state with versioning
+- Store state in S3 with versioning enabled, or use Terraform Cloud.
+- Never store state files locally for production infrastructure.
+
+👉Enable state file backups
+- S3 versioning keeps multiple versions automatically.
+- Set up lifecycle policies to retain versions for 30+ days.
+
+👉 Use state locking
+- Prevents multiple people from modifying state simultaneously.
+- DynamoDB for S3 backend, or built-in for Terraform Cloud.
+
+👉Regular state backups
+- Even with remote state, periodically backup your state file separately.
+- Store encrypted backups in a different location.
+
+✅Best answer in an interview:
+
+If the state file is deleted, I’d first check if we have versioning enabled on our remote state backend like S3. 
+
+I’d restore the previous version immediately. If there’s no backup, I’d need to manually import each resource back into Terraform using `terraform import`, which is time-consuming. 
+
+To prevent this, I always use remote state with versioning enabled, enable state locking with DynamoDB, and never store state files locally or in Git. 
+
+The state file is critical infrastructure, so treating it like production data is essential.”
+That’s it. 
+
+It shows you understand the problem, know multiple recovery options, and follow best practices to prevent it.

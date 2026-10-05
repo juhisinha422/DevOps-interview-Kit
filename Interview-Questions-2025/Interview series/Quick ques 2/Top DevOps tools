@@ -1,0 +1,36 @@
+Top DevOps tools every engineer should actually understand 
+
+𝟭. 𝗗𝗼𝗰𝗸𝗲𝗿
+→ Packages an app with everything it needs to run, so it behaves the same everywhere
+→ Images are built in layers - understanding layers is how you reduce size and speed up builds
+→ Most production issues come from networking and volume misconfigurations, not the image itself
+
+𝟮. 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+→ Manages containers at scale - restarting, scheduling, and load balancing automatically
+→ The Control Plane decides, the Worker Nodes execute - knowing this split is the foundation of troubleshooting
+→ Most real-world issues aren't "Kubernetes is broken" - they're networking, resource limits, or probe misconfigurations
+
+𝟯. 𝗧𝗲𝗿𝗿𝗮𝗳𝗼𝗿𝗺
+→ Defines infrastructure as code so environments are reproducible, not manually clicked together
+→ The state file is the single source of truth - corrupting it is more dangerous than any resource it manages
+→ terraform plan tells you intent, not guarantee - drift outside Terraform can still surprise you
+
+𝟰. 𝗝𝗲𝗻𝗸𝗶𝗻𝘀
+→ Automates build, test, and deploy steps so releases aren't manual and error-prone
+→ Declarative pipelines are easier to maintain; Scripted gives more control but more complexity
+→ A pipeline that's green doesn't mean the deployment worked - verification steps matter as much as the build
+
+𝟱. 𝗔𝗪𝗦 (𝗼𝗿 𝗮𝗻𝘆 𝗰𝗹𝗼𝘂𝗱)
+→ Gives you on-demand infrastructure instead of buying and managing physical servers
+→ IAM is the most underestimated service - most security incidents trace back to permission misconfigurations
+→ Cost and architecture are connected - a "working" setup can still be a bad design if nobody's watching the bill
+
+𝟲. 𝗣𝗿𝗼𝗺𝗲𝘁𝗵𝗲𝘂𝘀 + 𝗚𝗿𝗮𝗳𝗮𝗻𝗮
+→ Collects and visualizes metrics so you know about problems before users complain
+→ Alerts are only useful if they're tied to something actionable - alert fatigue is a real failure mode
+→ A dashboard showing "green" doesn't always mean healthy - it means whatever you chose to measure looks fine
+
+𝟳. 𝗚𝗶𝘁
+→ Tracks every change so nothing is ever truly lost, even when it feels like it
+→ Branching strategy matters more than most people think - it decides how painful releases are
+→ Most "Git disasters" are recoverable - knowing reflog and reset can save you from what feels like a deleted history

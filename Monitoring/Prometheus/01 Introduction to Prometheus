@@ -1,0 +1,44 @@
+Introduction to Prometheus
+
+🔹 What is Prometheus? 📊
+ Prometheus is an open-source monitoring and alerting tool used to collect and store metrics as time-series data.
+ It helps you track system performance in real-time.
+👉 “What is happening in my system right now?”
+
+🔹 Why is it used? 🏗️
+Modern applications (especially microservices & Kubernetes) need powerful monitoring tools.
+👉 Prometheus is used because it:
+ ✔ Provides real-time monitoring
+ ✔ Works well with dynamic environments
+ ✔ Helps detect issues quickly 🚨
+🔹 Key Features: ⚡
+✔ Pull-based Model 🔄
+Prometheus collects metrics by pulling data from targets
+✔ Time-Series Database 📈
+Stores data with timestamps
+Helps track trends over time
+✔ Powerful Query Language (PromQL) 🧠
+Used to analyze metrics
+Create dashboards & alerts
+✔ Built-in Alerting Support 🚨
+Works with Alertmanager
+Sends alerts when conditions are met
+✔ Kubernetes Friendly ☸️
+Auto-discovers services
+Widely used in cloud-native systems
+
+🔹 Real-world Example: 💡
+Your application is running on servers
+👉 Prometheus collects:
+CPU usage
+Memory usage
+Request count
+👉 If CPU > 90% 🚨
+ → Alert triggered → Engineers take action
+
+🔹 Key Concepts to Remember: 🧠
+✔ Prometheus = Monitoring tool 📊
+ ✔ Collects metrics automatically 🔄
+ ✔ Stores time-series data 📈
+ ✔ Uses PromQL for queries 🧠
+ ✔ Helps in alerting 🚨

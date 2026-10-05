@@ -1,0 +1,29 @@
+DevOps Interview Question 💥 
+ 
+1. Tell me about Yourself 
+ 2. Write any pipeline script on Jenkinsm
+ 3. Explain about end to end pipeline script.
+ 4. Does Jenkins do Both CI and CD ?
+ 5. DO you know BOTO3
+ 6. What is the first step to start or create or execute the CD pipeline in Jenkins 
+ 7. Write end to end gitHubactions.yaml pipeline script 
+ 8. What is helm ?
+ 9. What is the first command to create Helm?
+10. You have integrated both Docker and Kubernetes. The docker image or container somewhere else in the system. How you configure the container to Kubernetes? How Kubernetes identify the docker container and what are the first step and rest of the things to do ?
+11. Have you worked on EKS Cluster?
+12. How to create EKS Cluster? Elaborate the steps.
+13. What is master node and slave node in Kubernetes?
+14. From your understanding, What is NGINX?
+15. Have you used ingress controller?
+16. How to use any load balancer in Ingress controller? How to configure? what are the steps ?
+17. Are you aware of Port numbers?
+18. What is the Port Number for SSH, HTTPS, HTTP, APACHE, NGINX, PROMETHEUS, GRAFANA, JENKINS ?
+19. How will you configure Terraform with any cloud platform? 
+20. You have two yaml files. One has Ingress controller and another one has No Ingress controller. What is the difference here? What did you Understand?
+21. What is CI and CD?
+22. Before CD, What CI will do ?
+23. How to generate Token in GitHub? ( most asked interview questions)
+24. What is the Format of Cloud Formation?
+25. What is Cluster IP?
+26. What is Node port ?
+27. After Creating Helm, what inside in the helm ? 😉

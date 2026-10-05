@@ -1,0 +1,11 @@
+✅ Status Check 2/2 in AWS
+In Amazon EC2,
+ “Status check: 2/2” = Everything is healthy ✅
+🔍 What are these 2 checks?
+AWS runs 2 types of health checks on every EC2 instance:
+1️⃣ System Status Check
+Checks AWS infrastructure
+Hardware, network, power, host machine
+2️⃣ Instance Status Check
+Checks your OS inside instance
+CPU, memory, OS boot, networking inside VM 

@@ -1,0 +1,7 @@
+In GitOps CI/CD flow, what does CI pipeline update? 
+A) Kubernetes cluster directly
+B) Git repository configs
+C) Monitoring dashboards
+D) Network configurations
+
+ANS B

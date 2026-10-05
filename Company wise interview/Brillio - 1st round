@@ -1,0 +1,25 @@
+DevOps Engineer Interview experience at Brillio (1st round)🚀
+
+
+ The process included 2 technical rounds:
+
+🔹 Round 1 (40 mins)
+ The interviewer covered AWS, Terraform, Jenkins/GitHub Actions, Docker, and Kubernetes. Below are the questions asked:
+
+1. Suppose you have two AWS accounts and need to transfer S3 data from one account to another with zero downtime. Explain all possible approaches.
+2. Best practices for Disaster Recovery (DR) in AWS & explain the architecture where you implemented DR in your project.
+3. List all the AWS services you have used and where you have applied them in your project.
+4. Write a Terraform code to create an RDS database and store credentials in AWS Secrets Manager.
+5. Write a CI/CD pipeline in Jenkins/GitHub Actions that you are currently using in your project.
+6. How do you manage secrets in Jenkins and GitHub Actions, and how are they accessed in pipelines?
+7. Write a multi-stage Dockerfile, explain each line, and commands used to build & run it.
+8. Write a Kubernetes manifest to create 10 Pods with a LoadBalancer service. Explain each line.
+9. How do you integrate Prometheus & Grafana for application monitoring? Explain in detail also walk me through grafana dashboard.
+10. If you have 200 Pods, 100 running successfully but the other 100 fail with insufficient IP addresses, how would you troubleshoot and resolve it?
+11. What are ConfigMaps and Secrets in Kubernetes? Explain their use cases.
+12. explain me where and in which condition you will use blue and green deployment strategy and where you will use canary and rolling updates.
+13. what was the last issue did you fix in production and also explain me how did you resolve that and how much critical it was.
+14. we want to create a 3 tier architecture explain me from scratch how you will design it and which aws services you will use.
+15. how you have integrated with all devops tools with each other and did you heard about OIDC if yes explain me what it is and where we can use and is there any other similar tools available like OIDC if yes tell me the name.
+
+✨ These questions tested hands-on knowledge across AWS, IaC, CI/CD, Docker, Kubernetes, and Monitoring.

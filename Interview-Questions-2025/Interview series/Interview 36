@@ -1,0 +1,57 @@
+interview with a top MNC
+Technical Round – Level 1 questions
+
+Interview Questions
+
+1. List the Git commands you use in your daily work, including the most important ones.
+
+
+2. What is a Git tag? Why do we use it?
+
+
+3. What are Jenkins Shared Libraries? Have you used them in your projects? How do they work?
+
+
+4. Describe the pipeline stages you currently use in your project. What are the stages and their flow?
+
+
+5. Explain Kubernetes objects or components.
+
+
+6. If you have one Kubernetes node running two pods (Pod-A and Pod-B), and you want your application to always run on Pod-B, how would you ensure that?
+
+
+7. Have you worked with an Ingress Controller? What does it do?
+
+Since both Ingress and Load Balancers seem to serve similar purposes, why do we need both? Can we rely on only one?
+
+
+
+8. Describe the toughest situation you faced while working with Kubernetes. How did you identify and resolve the issue?
+
+
+9. What is the difference between a hypervisor and the Docker daemon? Which do you think is more secure—VMs or containers?
+
+
+10. What is a Docker image? How do you create and use one?
+
+
+11. What is Docker Compose? Why do we use it? What is the difference between Docker and Docker Compose?
+
+
+12. How does Ansible work? What mechanism does it use? Have you written any playbooks?
+
+
+13. Where do you store server names and IPs in Ansible? How do you reference them? What is the directory structure of Ansible, and where do you store your files?
+
+
+14. What are your day-to-day SRE activities? You mentioned you are also working as a DevOps engineer on another project — what are your daily tasks there?
+
+
+15. You mentioned you work on vulnerability remediation with SLAs. If a critical vulnerability SLA is breached, what happens from a system or management perspective?
+
+
+16. What shell scripts have you developed in your organization, and how do they help your team?
+
+
+3

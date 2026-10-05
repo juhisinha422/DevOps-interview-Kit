@@ -1,0 +1,28 @@
+🚀 TCS Interview Experience – AWS Cloud Solution Architect (4 Years Experience)
+
+One of my students recently appeared for an AWS Cloud Solution Architect interview at TCS (4 years experience level).
+The discussion was highly focused on real-world AWS architecture, scalability, security, and troubleshooting scenarios.
+
+Below are some of the key questions asked during the interview 👇
+
+🔹 Interview Questions
+
+1️⃣ How do you design a highly available and fault-tolerant architecture in AWS?
+2️⃣ Difference between ALB, NLB, and Classic Load Balancer — real use cases
+3️⃣ How do you plan multi-AZ and multi-region architectures?
+4️⃣ Production EC2 is not reachable — how would you troubleshoot it?
+5️⃣ How do you secure a VPC architecture using Security Groups, NACLs, and IAM?
+6️⃣ IAM roles vs IAM users — which one do you prefer and why?
+7️⃣ How do you optimize AWS cost for a high-traffic application?
+8️⃣ Explain Auto Scaling with CloudWatch alarms
+9️⃣ How do you design Disaster Recovery in AWS? (RTO & RPO)
+🔟 Difference between S3 storage classes
+1️⃣1️⃣ How do you manage secrets and credentials securely in AWS?
+1️⃣2️⃣ VPC Peering vs Transit Gateway — when to use what?
+1️⃣3️⃣ How do you expose a private application securely to the internet?
+1️⃣4️⃣ Which AWS services do you use for monitoring, logging, and alerting?
+1️⃣5️⃣ How do you approach on-prem to AWS migration?
+
+💡 Key Takeaway:
+TCS interviews emphasize architecture mindset, AWS best practices, and scenario-based problem solving over theoretical questions.
+

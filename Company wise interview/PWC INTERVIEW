@@ -1,0 +1,31 @@
+PWC Interview Questions | 2nd Round | Recently Asked DevOps Interview Questions
+
+Recently, one of my Student attended the PWC 2nd Technical Interview for a DevOps role.
+
+Here are the questions that were asked:
+
+Can you summarize your entire career journey in 1–2 minutes?
+
+How many projects have you worked on? What has your experience been?
+
+What exactly was your role and responsibility in your project?
+
+What is Checkov? Why did you use Checkov for Terraform, Kubernetes, and Docker?
+
+What are the common Checkov errors you encounter while scanning Terraform, Kubernetes, and Docker configurations?
+
+After receiving a Checkov scan report, what steps do you follow before deployment?
+
+Explain one production issue you handled and how you resolved it.
+
+You mentioned rollback. How do you prepare a rollback strategy before deployment?
+
+What is the Hypercare period after deployment? How long do you monitor an application?
+
+Production Scenario: Users report that the application is running slowly. How would you troubleshoot the issue end-to-end?
+
+Which AWS Application Load Balancer (ALB) metrics do you monitor regularly?
+
+Apart from DevOps, what other technologies or domains have you worked on or learned?
+
+How do you monitor context switches in Linux? Which commands do you use?

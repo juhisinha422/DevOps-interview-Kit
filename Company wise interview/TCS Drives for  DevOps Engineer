@@ -1,0 +1,25 @@
+TCS Drives for  DevOps Engineer
+
+Ansible Requirement:
+1. Self intoducton
+2. Have you work on Linux, Windows, patching, and troubleshooting?
+3. what is Ansible and What work did you do in Ansible?
+4. Suppose Some RPM file is there, that I want to install on multiple servers. and for that I need to create a template, write a YAML script. how do I do that?
+5. do you also have hands on experience on Windows services, like how to start-stop services or install packages on Windows?
+6. Tell me I want to get the check all service status on Windows servers using Ansible. What module or what?
+7. have you worked on Windows ACS, like access control lists or group policies, user policies?
+8. basically, like checking service status or installing some parameters, And you have exposed to any AWS modules? Have you worked on AWS?
+9. Have you worked AWS SSM?
+
+Devops:
+
+1. Self intro
+2. do you have some experience on Amazon Connect or Lambda?
+3. suppose you have an EC2 instance via SSH, And instance is running, but it is not reachable. So, how are you gonna troubleshoot?
+4. what is the difference between security group and network ACL?
+5. One problem always comes when your AWS costs suddenly get increased, what would you wanna do to cross verify that?
+6. if the Terraform apply has been filled midway, and re apply would be the best option or a bad option?
+7.  if you have to structure Terraform for multiple environment, suppose if you have to restructure in Dev also, test also, prod also, then how you gonna do?
+8. We know drift happens when resources are changed outside Terraform, So how to detect, what command  can be used to detect the drift and how to prevent that?
+9. if the deployment rollout is stuck, what do you check in that situation?
+10. what is your future aspiration?

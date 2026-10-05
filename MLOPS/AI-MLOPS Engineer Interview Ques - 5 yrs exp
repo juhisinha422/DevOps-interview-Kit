@@ -1,0 +1,25 @@
+🚀 AI/MLOps Engineer Interview Questions | 5 Years Experience | Hartford
+
+Recently came across some strong system design and MLOps-focused interview questions for an AI/MLOps Engineer role at Hartford.
+
+Machine round
+
+Sharing them here for professionals preparing for AI Infrastructure, MLOps, Platform Engineering, and Production ML interviews 👇
+
+1️⃣ How will you design ML systems that balance model accuracy with inference latency and throughput requirements in a production environment?
+
+2️⃣ How would you establish a robust modeling, monitoring, and data quality assurance framework to detect and mitigate data drift and concept drift in production ML systems?
+
+3️⃣ Explain how you would design and automate the deployment of scalable ML infrastructure using Infrastructure as Code (IaC) and DevOps practices across cloud platforms.
+
+4️⃣ How would you implement a comprehensive observability strategy that correlates infrastructure metrics, data quality signals, and model performance to enable rapid root cause analysis in production ML systems?
+
+5️⃣ Describe how you would ensure data documentation, data quality practices, and performance evaluation are systematically integrated to maintain reliability and maintainability of ML systems over time.
+
+These questions are heavily focused on:
+✔️ MLOps Architecture
+✔️ Observability & Monitoring
+✔️ Data Drift Detection
+✔️ ML Infrastructure Automation
+✔️ Scalability & Reliability
+✔️ Production AI Systems

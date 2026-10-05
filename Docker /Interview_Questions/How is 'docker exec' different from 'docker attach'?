@@ -1,0 +1,7 @@
+How is 'docker exec' different from 'docker attach'?
+
+- The Docker commands exec and attach are often confused but they serve different purposes.
+
+- Docker exec starts a new process in the container, giving you a clean, isolated shell session.
+
+- Use exec for debugging and attach for real-time interaction with the main process

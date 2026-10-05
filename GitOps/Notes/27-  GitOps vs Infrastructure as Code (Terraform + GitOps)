@@ -1,0 +1,36 @@
+ GitOps vs Infrastructure as Code (Terraform + GitOps)
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring an important comparison: GitOps vs Infrastructure as Code (IaC) and how tools like Terraform and GitOps work together in modern DevOps environments. 🚀
+Many people confuse these concepts, but they actually complement each other.
+
+🔹 Infrastructure as Code (IaC)
+ Infrastructure as Code focuses on provisioning and managing infrastructure using code.
+For example, with Terraform we can define resources such as:
+Virtual machines
+Networks
+Load balancers
+Cloud services
+These configurations allow infrastructure to be automated, version-controlled, and reproducible.
+
+🔹 GitOps
+ GitOps focuses on deploying and managing applications and configurations using Git as the source of truth.
+GitOps tools monitor Git repositories and automatically apply changes to the running system, often within Kubernetes clusters.
+
+🔹 Key Differences
+Infrastructure as Code:
+Used to create and manage infrastructure resources
+GitOps:
+Used to deploy and manage applications and configurations
+
+🔹 How Terraform and GitOps Work Together
+A common modern workflow looks like this:
+Terraform → Creates cloud infrastructure
+ Kubernetes → Runs applications
+ GitOps Tool → Deploys and manages app configurations
+In this setup:
+Terraform provisions the infrastructure
+GitOps manages application deployment and configuration updates
+
+💡 Key Insight:
+ IaC builds the foundation infrastructure, while GitOps ensures applications are continuously deployed and synchronized with Git.

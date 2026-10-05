@@ -1,0 +1,7 @@
+In GitOps, what commonly triggers a deployment after review?
+A) Server reboot
+B) Container restart
+C) Pull request merge
+D) Local script execution
+
+ANS C

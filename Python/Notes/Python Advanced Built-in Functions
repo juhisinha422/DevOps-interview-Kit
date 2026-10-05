@@ -1,0 +1,50 @@
+Python Advanced Built-in Functions
+
+Write smarter, cleaner, and more Pythonic code
+
+If you already know print() and len(), these are the next-level built-ins you must master 👇
+
+⚙️ Functional Power
+map() → Apply a function to every item
+filter() → Select items based on condition
+lambda → Anonymous one-line functions
+
+👉 Used heavily in data processing & pipelines
+
+🧠 Iteration & Control
+enumerate() → Index + value (clean loops)
+zip() → Combine multiple iterables
+reversed() → Reverse iteration
+sorted(key=…) → Custom sorting logic
+
+✅ Logic & Validation
+any() → True if any condition matches
+all() → True if all conditions match
+isinstance() → Safe type checking
+
+👉 Cleaner than long if chains
+
+🔍 Introspection & Debugging
+dir() → Explore object attributes
+vars() → Object’s __dict__
+callable() → Check if object is callable
+help() → Built-in documentation
+
+🧩 Dynamic Execution (Use Carefully ⚠️)
+eval() → Evaluate expressions
+exec() → Execute dynamic code
+compile() → Compile source into bytecode
+
+👉 Powerful, but avoid in production unless necessary
+
+🚀 Performance & Memory
+iter() → Create iterators manually
+next() → Fetch next value
+slice() → Advanced slicing logic
+
+💡 Why These Matter?
+✔ Cleaner code
+ ✔ Fewer loops
+ ✔ More readable logic
+ ✔ Strong interview signal
+ ✔ Pythonic mindset

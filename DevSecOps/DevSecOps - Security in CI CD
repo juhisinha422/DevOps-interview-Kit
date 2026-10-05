@@ -1,0 +1,51 @@
+DevSecOps — Security in CI/CD
+
+🧠 What is DevSecOps?
+
+DevSecOps means
+👉 Integrating Security into DevOps
+👉 Security is added from Day One, not at the end
+
+🔄 Traditional vs DevSecOps
+
+❌ Traditional Way
+Security at the last stage
+More bugs & delays
+
+✅ DevSecOps Way
+
+Security in Code, Build, Test & Deploy
+Faster & safer releases
+
+🔐 Where Security is Added in CI/CD?
+
+🧩 Code Stage
+Secure coding
+Secrets scanning
+🏗️ Build Stage
+Dependency vulnerability scan
+🧪 Test Stage
+SAST & DAST
+🚀 Deploy Stage
+Container & cloud security checks
+
+🧰 DevSecOps Tools
+🛡️ 🔍 🧪 📦 ☁️
+(Use only icons / visuals — no text)
+
+🌍 Real-Life Example
+🚨 Vulnerability found during build
+
+➡️ Pipeline fails
+➡️ Issue fixed before production
+➡️ No security breach 😎
+
+✨ Why DevSecOps is IMPORTANT?
+
+⚡ Faster secure releases
+🛡️ Reduced security risks
+🤝 Better collaboration
+📉 Lower cost of fixing bugs
+
+🔑 Golden Line
+“Security is everyone’s responsibility.”

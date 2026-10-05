@@ -1,0 +1,36 @@
+What happens if a build fails in CI/CD?
+
+If a build fails in CI/CD, it's actually a good thing- because the pipeline is doing its job by catching
+problems early. Here's what typically happens when a build fails:
+
+1. The Pipeline Stops
+
+CI Stage: If the failure is during CI (e.g., code compilation, unit tests, code quality checks), the pipeline halts immediately.
+CD Stage: If the failure is during CD (e.g., deployment or end-to-end tests), the deployment is rolled back or blocked from continuing.
+
+2. Notifications Are Sent
+The team is alerted via email, Slack, Microsoft Teams, or other channels.
+Devs and QA get instant feedback on what failed, where, and why (e.g., test name, error logs, file diff).
+
+3. Debugging and Fixing
+The developer or QA checks:
+Test failure details or error logs
+Build logs (from Jenkins, GitLab, etc.)
+Screenshots or videos if available (especially for UI tests)
+Once the issue is fixed (code or test), a new build is triggered.
+
+4. Retesting
+A fixed commit triggers a new build automatically or manually.
+All tests run again to validate that the issue is resolved and nothing else is broken.
+
+5. Root Cause Analysis (Optional but Ideal) Teams often perform RCA if:
+The same build fails frequently (flaky test)
+It impacts a critical feature or production
+
+
+Pro Tip
+Many teams set rules like:
+
+X No merge allowed until Cl passes
+No deployment if automated tests fail
+QA must review failures before release continues

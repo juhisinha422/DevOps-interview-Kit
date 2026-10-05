@@ -1,0 +1,39 @@
+𝐂𝐥𝐨𝐮𝐝 𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬: 𝐑𝐞𝐚𝐥 𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬 𝐟𝐫𝐨𝐦 𝐭𝐡𝐞 𝐓𝐫𝐞𝐧𝐜𝐡𝐞𝐬
+
+🧠𝐃𝐞𝐯𝐎𝐩𝐬 𝐅𝐮𝐧𝐝𝐚𝐦𝐞𝐧𝐭𝐚𝐥𝐬 & 𝐂𝐈/𝐂𝐃
+• What are your daily responsibilities as a DevOps engineer?
+• Can you describe the CI/CD workflow in your project?
+• How do you handle the continuous delivery (CD) aspect in your projects?
+• How do containerization technologies like Docker and Kubernetes simplify application deployment and management?
+• How do you communicate with a Jenkins server and a Kubernetes cluster?
+
+📊 𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠, 𝐋𝐨𝐠𝐠𝐢𝐧𝐠 & 𝐎𝐛𝐬𝐞𝐫𝐯𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+• Have you worked with monitoring and logging tools like Prometheus, Grafana, or ELK Stack?
+• What is the typical latency for a load balancer, and if you encounter high latency, what monitoring steps would you take?
+
+🔐 𝐒𝐞𝐜𝐮𝐫𝐢𝐭𝐲 & 𝐕𝐮𝐥𝐧𝐞𝐫𝐚𝐛𝐢𝐥𝐢𝐭𝐲 𝐌𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭
+• What methods do you use to check code vulnerabilities?
+• How do you provide access to an S3 bucket, and what permissions need to be set on the bucket side?
+• How would you access data in an S3 bucket from Account A when your application is running on an EC2 instance in Account B?
+
+☁️ 𝐀𝐖𝐒 𝐒𝐞𝐫𝐯𝐢𝐜𝐞𝐬 & 𝐍𝐞𝐭𝐰𝐨𝐫𝐤𝐢𝐧𝐠
+• What AWS services are you proficient in?
+• How can Instance 2, with a static IP, communicate with Instance 1, which is in a private subnet and mapped to a multi-AZ load balancer?
+• For an EC2 instance in a private subnet, how can it verify and download required packages from the internet without using a NAT gateway or bastion host? Are there any other AWS services that can facilitate this?
+• Which services can be integrated with a CDN (Content Delivery Network)?
+
+⚙️𝐈𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞 𝐚𝐬 𝐂𝐨𝐝𝐞 (𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦)
+• How do you dynamically retrieve VPC details from AWS to create an EC2 instance using IaC, can you write the code?
+• How do you manage unmanaged AWS resources in Terraform?
+• How do you pass arguments to a VPC while using the terraform import command?
+• What are the prerequisites before importing a VPC in Terraform?
+• If an S3 bucket was created through Terraform but someone manually added a policy to it, how do you handle this situation using IaC?
+
+🧩 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 & 𝐀𝐩𝐩𝐥𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐃𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭
+• Have you upgraded any Kubernetes clusters?
+• How do you deploy an application in a Kubernetes cluster?
+• How do you troubleshoot if the kube-scheduler is down or not assigning pods to nodes?
+• How can you check memory and CPU usage of pods in a specific namespace?
+• What steps would you take to investigate a pod stuck in CrashLoopBackOff state?
+• How do you monitor node resource pressure (e.g., memory, disk, CPU) and prevent eviction of critical pods?
+

@@ -1,0 +1,26 @@
+What is a variable in shell?
+	•	A variable is like a box with a name where you can store some information.
+	•	You can later open the box using $ to see or use the information.
+
+
+
+🔹 How to create a variable
+
+NAME="Aayushi"
+AGE=25
+
+
+👉 No spaces before or after = (very important in shell)
+
+
+🔹 How to use a variable
+
+echo $NAME
+echo "My age is $AGE"
+
+Aayushi
+My age is 25
+
+💡 Rule:
+	•	When assigning → don’t use $ (just NAME=…)
+	•	When using → use $ (echo $NAME)

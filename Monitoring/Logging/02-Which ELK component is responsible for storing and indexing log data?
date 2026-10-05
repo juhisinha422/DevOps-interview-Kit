@@ -1,0 +1,8 @@
+Q: Which ELK component is responsible for storing and indexing log data?
+
+A. Kibana
+B. Logstash
+C. Elasticsearch
+D. Filebeat
+
+ANS C

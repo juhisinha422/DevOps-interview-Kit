@@ -1,0 +1,12 @@
+Zip & Unzip with Ansible
+File management is a common DevOps task.
+Ansible can easily handle archive operations.
+Example:
+Unzip file:
+name: Extract archive
+unarchive:
+src: app.zip
+dest: /var/www/html
+remote_src: yes
+This is very useful in deployments.
+Upload → Extract → Deploy

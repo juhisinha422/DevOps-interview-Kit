@@ -1,0 +1,42 @@
+DevOps Interview #Questions Series | #Kubernetes Scenario Based Questions
+
+Pods are in CrashLoopBackOff. How do you troubleshoot?
+
+A node goes NotReady. What steps will you take?
+
+Application traffic suddenly drops after deployment. How do you debug it?
+
+You need zero-downtime deployment in Kubernetes. How do you implement it?
+
+Pods are not scheduling due to insufficient resources. What do you do?
+
+A pod cannot reach another pod. How do you troubleshoot networking?
+
+You need to expose an internal service securely to the internet. How?
+
+Secrets are accidentally exposed in YAML files. How do you fix this?
+
+You need per-team isolation in the same cluster. How do you design it?
+
+Persistent data is lost after pod restart. What went wrong?
+
+CPU usage spikes suddenly across nodes. How do you investigate?
+
+HPA is not scaling pods as expected. How do you debug it?
+
+A rolling deployment breaks production traffic. How do you rollback?
+
+Cluster upgrade causes downtime. How do you avoid this next time?
+
+You need to restrict pod-to-pod communication. How do you implement it?
+
+Logs and metrics are missing from some pods. How do you fix it?
+
+A pod needs access to AWS/GCP/Azure resources securely. How do you do it?
+
+One namespace consumes most cluster
+resources. How do you control it?
+
+You are asked to design Kubernetes for high availability. What is your approach?
+
+When would you recommend not using Kubernetes

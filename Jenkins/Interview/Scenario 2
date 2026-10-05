@@ -1,0 +1,6 @@
+* In Jenkins CI/CD, if a secret stored in Secret Manager gets exposed in output, how would you fix it? What are the drawbacks?
+
+
+immediately rotate the exposed secret in Secret Manager and reconfigure Jenkins to use the new one. The drawback is that rotation can cause temporary service disruptions until all dependencies are updated, and masking only prevents future leaks.
+
+

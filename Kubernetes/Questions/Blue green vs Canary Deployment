@@ -1,0 +1,23 @@
+“𝘞𝘩𝘢𝘵’𝘴 𝘵𝘩𝘦 𝘥𝘪𝘧𝘧𝘦𝘳𝘦𝘯𝘤𝘦 𝘣𝘦𝘵𝘸𝘦𝘦𝘯 𝘉𝘭𝘶𝘦/𝘎𝘳𝘦𝘦𝘯 𝘋𝘦𝘱𝘭𝘰𝘺𝘮𝘦𝘯𝘵 𝘢𝘯𝘥 𝘊𝘢𝘯𝘢𝘳𝘺 𝘋𝘦𝘱𝘭𝘰𝘺𝘮𝘦𝘯𝘵, 𝘢𝘯𝘥 𝘸𝘩𝘪𝘤𝘩 𝘰𝘯𝘦 𝘪𝘴 𝘣𝘦𝘵𝘵𝘦𝘳?”
+
+At first glance, both are deployment strategies aimed at reducing downtime and risk — but the way they achieve it is quite different.
+
+🔹 𝗕𝗹𝘂𝗲/𝗚𝗿𝗲𝗲𝗻 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁
+ • You maintain two environments: 𝗕𝗹𝘂𝗲 (𝗰𝘂𝗿𝗿𝗲𝗻𝘁 𝗹𝗶𝘃𝗲) and 𝗚𝗿𝗲𝗲𝗻 (𝗻𝗲𝘄 𝗿𝗲𝗹𝗲𝗮𝘀𝗲).
+ • Once testing is done, traffic is switched entirely from Blue → Green in one go.
+ • ✅ Best when you need 𝗶𝗻𝘀𝘁𝗮𝗻𝘁 𝗿𝗼𝗹𝗹𝗯𝗮𝗰𝗸 and can afford the infra cost of duplicate environments.
+ • ⚠️ Risk: if a bug slips in, all users are impacted at once (until rollback).
+
+🔸 𝗖𝗮𝗻𝗮𝗿𝘆 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁
+ • You gradually release the new version to a 𝘀𝗺𝗮𝗹𝗹 𝘀𝘂𝗯𝘀𝗲𝘁 𝗼𝗳 𝘂𝘀𝗲𝗿𝘀 before rolling it out wider.
+ • Monitor performance, errors, and user feedback before expanding.
+ • ✅ Best when you want to 𝗺𝗶𝘁𝗶𝗴𝗮𝘁𝗲 𝗿𝗶𝘀𝗸 𝗴𝗿𝗮𝗱𝘂𝗮𝗹𝗹𝘆 and observe real-world behavior.
+ • ⚠️ Rollback isn’t as quick as Blue/Green, but issues impact only a fraction of users.
+
+🚀 𝗪𝗵𝗲𝗻 𝘁𝗼 𝗰𝗵𝗼𝗼𝘀𝗲 𝘄𝗵𝗮𝘁?
+ • Go 𝗕𝗹𝘂𝗲/𝗚𝗿𝗲𝗲𝗻 when downtime is unacceptable and you need a fast failover mechanism.
+ • Go 𝗖𝗮𝗻𝗮𝗿𝘆 when user behavior insights and risk mitigation are more important than speed.
+
+In practice, many teams use a 𝗵𝘆𝗯𝗿𝗶𝗱 𝗮𝗽𝗽𝗿𝗼𝗮𝗰𝗵 — Canary for early validation, then Blue/Green to flip traffic confidently.
+
+💡 My takeaway from that interview: there’s no absolute “better.” It’s all about context, system criticality, and business priorities.

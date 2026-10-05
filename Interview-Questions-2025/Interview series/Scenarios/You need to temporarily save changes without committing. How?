@@ -1,0 +1,15 @@
+You need to temporarily save changes without committing. How? 
+
+1.To temporarily save our work without committing, use the git stash command.
+
+2.git stash  takes our current changes (both staged and unstaged) and stores them on a internal stack, giving a clean working directory. 
+
+3.To add a descriptive note, we can use git stash push -m "our message" 
+
+4.By default, stash only tracks modified files. Use git stash -u to include untracked files. 
+
+5.git stash pop to apply the most recent changes and immediately delete them from the stash
+
+6.git stash apply if we want to restore the changes but keep the record in our stash for later use. 
+
+7.git stash list to see all our temporarily saved changes. 

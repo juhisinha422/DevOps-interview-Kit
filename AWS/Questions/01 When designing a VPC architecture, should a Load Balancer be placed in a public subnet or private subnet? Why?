@@ -1,0 +1,11 @@
+When designing a VPC architecture, should a Load Balancer be placed in a public subnet or private subnet? Why? 
+
+1.A public-facing Load Balancer (LB) should be placed in a public subnet, while internal load balancers can reside in private subnets. 
+
+2. Public subnets allow the LB to receive incoming traffic directly from the internet via an Internet Gateway and route it to backend servers located securely in private subnets. 
+
+3.Placing LBs in the public subnet creates a dedicated "DMZ" (demilitarized zone) layer, while the application servers and databases remain protected in private subnets without public IPs. 
+
+4.Only public-facing LBs require public subnets. Internal-only applications should use private subnets for improved security. 
+ 
+5.A public load balancer can handle SSL/TLS termination and provide an additional layer of security, such as integration with a Web Application Firewall (WAF), before traffic reaches your internal services. 

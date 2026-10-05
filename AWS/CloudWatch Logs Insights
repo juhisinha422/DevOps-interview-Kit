@@ -1,0 +1,83 @@
+CloudWatch Logs Insights: The AWS Cost Many Teams Don’t Understand (Until It’s Too Late) 🚨
+
+### 🔍 What is CloudWatch Logs Insights?
+
+CloudWatch Logs Insights lets you search and analyze logs using SQL-like queries.
+
+👉 Important:
+You are charged per GB of logs scanned, not per query execution.
+
+---
+
+### 💸 How the cost really works
+
+* Every time a query runs, AWS scans the entire log group
+* More logs = more GB scanned = higher cost
+* Queries triggered by automation (Terraform, cron, scripts) run even when no one is watching
+* Small daily scans look harmless… until they run every day for months
+
+📉 This is exactly how teams end up with six-figure bills without noticing.
+
+---
+
+### ⚠️ How it affects real systems
+
+* No outage
+* No performance issue
+* No visible warning
+* Terraform applies cleanly
+* Billing alarms often don’t trigger (no spike)
+
+Your system works perfectly.
+*Only your AWS bill is bleeding.*
+
+---
+
+### 🧠 Why this happens
+
+Most teams:
+
+* Focus on EC2 / EKS / RDS costs
+* Ignore log analytics costs
+* Assume logs are “cheap”
+* Don’t monitor GB scanned metrics
+
+But Logs Insights is usage-based, not resource-based.
+
+---
+
+### ✅ Best practices to avoid CloudWatch Logs cost leaks
+
+🔹 *1. Reduce log volume
+
+* Don’t log DEBUG in production
+* Filter logs before sending to CloudWatch
+
+🔹 *2. Limit query scope*
+
+* Query smaller time ranges
+* Avoid scanning full log groups
+
+🔹 *3. Control automation*
+
+* Never schedule Logs Insights queries without cost limits
+* Review Terraform configs that trigger log scans
+
+🔹 *4. Monitor the right metric*
+
+* Set alerts on Logs Insights GB scanned
+* Not just total AWS spend
+
+🔹 *5. Review Cost & Usage Reports*
+
+* Look for “CloudWatch Logs Insights”
+* Small daily costs are red flags
+
+---
+
+### 🎯 Key takeaway
+
+*CloudWatch Logs Insights is powerful — but dangerous when automated.*
+
+If you treat logs as “free,”
+AWS will eventually correct that assumption with an invoice.

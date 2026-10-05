@@ -1,0 +1,53 @@
+Monitoring vs Observability
+
+🔹 What is Monitoring? 📊
+ Monitoring is the process of collecting and tracking system metrics like CPU usage, memory, disk, and uptime.
+ It helps you answer: 👉 “Is my system healthy or not?”
+
+🔹 What is Observability? 🔍
+ Observability goes beyond monitoring. It helps you understand what’s happening inside the system by analyzing:
+ ✔ Metrics
+ ✔ Logs
+ ✔ Traces
+It answers: 👉 “Why is my system behaving like this?”
+
+🔹 Key Differences: ⚡
+
+✔ Monitoring
+Focus: Known issues
+Data: Metrics
+Output: Alerts & dashboards
+
+✔ Observability
+Focus: Unknown issues
+Data: Metrics + Logs + Traces
+Output: Root cause analysis
+
+👉 In short:
+ Monitoring tells you “Something is wrong”
+ Observability tells you “Why it is wrong”
+
+🔹 Why Both Are Needed in Real-World? 🏗️
+In production systems, failures are unpredictable.
+Monitoring helps you detect issues quickly 🚨
+Observability helps you fix issues faster ⚙️
+Without monitoring → You don’t know there’s a problem
+ Without observability → You can’t solve the problem efficiently
+👉 You need BOTH to build reliable systems.
+
+🔹 Real-World Example (CPU Spike Case) 💡
+Your application suddenly becomes slow 🐢
+👉 Monitoring shows:
+CPU usage = 95% 🚨
+👉 Observability helps you dig deeper:
+Logs show → Too many requests hitting API
+Traces show → One service is taking too long
+Root cause → Infinite loop or unoptimized code
+✅ Now you don’t just see the issue—you understand it and fix it.
+
+🔹 Key Concepts to Remember: 🧠
+✔ Monitoring = Detection 📊
+ ✔ Observability = Investigation 🔍
+ ✔ Metrics show trends
+ ✔ Logs show events
+ ✔ Traces show request flow

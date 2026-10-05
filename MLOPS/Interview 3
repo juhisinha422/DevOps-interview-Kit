@@ -1,0 +1,43 @@
+MLOps Interview Series Part 3
+
+1️⃣ What are the key components of an end-to-end MLOps pipeline?
+Data ingestion & preprocessing → Experiment tracking (MLflow/SageMaker Experiments) → Model training (batch/distributed) → Model registry → CI/CD/CT pipelines → Model deployment (REST endpoints) → Model monitoring (latency, drift, data quality) → Automated retraining → Governance/logging
+
+2️⃣ How do you detect data drift and model drift in production?
+Data Drift: Statistical tests (KS test, PSI, Jensen-Shannon divergence) 
+Model Drift: Monitor prediction distribution, accuracy drop, confidence score shifts 
+Tools: SageMaker Model Monitor, Evidently AI, Fiddler, WhyLabs, custom Airflow jobs
+3️⃣ How do you implement CI/CD for ML using GitHub Actions or CodePipeline?
+CI: Lint → Unit tests → Data validation → Model training on branch 
+CD: Register model → Deploy to staging → Smoke tests → Promote to prod GitHub Actions triggers training, Docker build, ECR/EKS deployment. CodePipeline integrates with Lambda/Step Functions for approvals.
+
+4️⃣ What's the difference between MLflow and Kubeflow?
+MLflow: Lightweight tool for experiment tracking, model registry, packaging, deployment 
+Kubeflow: Full ML platform on Kubernetes with training operators, pipelines, Katib (HPO) 
+
+5️⃣ How do SageMaker endpoints scale for inference?
+Auto-scaling based on CPU, RAM, or custom metrics Multi-model endpoints (many models on one container) Serverless inference for spiky traffic (scales 0-200 invocations)
+
+6️⃣ What is feature drift and how do you monitor it?
+Feature drift = input features change distribution over time 
+Monitor by: Store baseline feature stats → Compare live data with Evidently AI, SageMaker DataQuality Monitor → Trigger alerts via CloudWatch/Prometheus
+
+7️⃣ How would you deploy and monitor a FastAPI ML model on Kubernetes?
+Deploy: Containerize FastAPI → Push to ECR → Deploy via Helm with Deployment, Service, HPA, Ingress/ALB 
+Monitor: Prometheus/Grafana for metrics, OpenTelemetry traces, ELK/Loki logs
+
+8️⃣ Explain experiment tracking and why it's important.
+Records parameters, metrics, artifacts, code versions, environment dependencies 
+Tools: MLflow, SageMaker Experiments, Weights & Biases Enables reproducibility, model comparison, auditability, CI/CD integration.
+
+9️⃣ How do you automate retraining pipelines?
+Triggers: Data drift, model drift, scheduled retraining 
+Using: Airflow DAGs, Kubeflow Pipelines, SageMaker Pipelines
+ Steps: Fetch data → validate → train → evaluate → register → deploy
+
+🔟 What is the recommended architecture for MLOps on AWS?
+
+Data: S3 data lake, Glue/Athena/Lambda
+ preprocessing Training: SageMaker Training + HPO, Model Registry 
+Deploy: SageMaker Endpoints, ECR + EKS/ECS 
+Monitor: CloudWatch + Model Monitor Orchestration: Step Functions 

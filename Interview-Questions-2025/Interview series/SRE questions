@@ -1,0 +1,50 @@
+SRE (Site Reliability Engineering), one of the most critical roles bridging DevOps and reliability at scale.
+
+Here are some frequently asked SRE Interview Questions from basic to advanced level 👇
+
+🔹 What is Site Reliability Engineering (SRE), and how does it differ from 
+       traditional DevOps?
+ 🔹 Explain the concept of SLIs, SLOs, and SLAs with real-world examples.
+ 🔹 What is an error budget, and how do SRE teams use it to balance 
+        reliability and innovation?
+ 🔹 What are the “Golden Signals” of monitoring in SRE?
+ 🔹 How do you implement effective monitoring and alerting strategies?
+ 🔹 Explain the difference between proactive monitoring and reactive 
+        incident response.
+ 🔹 What are common sources of toil in SRE, and how do you eliminate 
+        them?
+ 🔹 How do you perform capacity planning and scaling in large distributed 
+       systems?
+ 🔹 How does chaos engineering help in improving system reliability?
+ 🔹 What’s the role of blameless postmortems, and how do they improve 
+       learning culture?
+ 🔹 How do you define and measure availability in a distributed application?
+ 🔹 What is mean time to detect (MTTD) and mean time to recover (MTTR),
+       and how do SREs improve them?
+ 🔹 How can you integrate SRE principles into CI/CD pipelines?
+ 🔹 What tools and practices do SREs commonly use for incident 
+       management and observability?
+ 🔹 How do SREs collaborate with development teams to prioritize 
+       reliability vs. feature delivery?
+ 🔹 Explain the concept of error budget policies with an example.
+ 🔹 How would you design a high-availability architecture for a mission-
+       critical application?
+ 🔹 What’s the difference between incident response, disaster recovery, and
+        business continuity in SRE?
+ 🔹 How do you handle on-call fatigue and ensure healthy rotations for SRE 
+        teams?
+ 🔹 Share a real-world example where automation reduced toil and 
+        improved reliability.
+ 🔹 Your application latency suddenly spikes, and customers are reporting  
+        slowness. How would you investigate and resolve this issue
+ 🔹 You’re on-call, and you receive multiple alerts at night. How do you 
+        prioritize and handle them?
+ 🔹 The service is breaching its error budget due to frequent outages. How  
+        would you decide whether to pause feature releases or continue 
+        deployments?
+ 🔹  How would you negotiate with product managers when reliability 
+        targets (SLOs) conflict with aggressive feature delivery goals?
+ 🔹  You notice that SREs spend a lot of time manually restarting failed 
+         pods in Kubernetes. How would you automate this?
+ 🔹  Backups are running daily, but verification is manual and error-prone. 
+         How would you improve reliability here?

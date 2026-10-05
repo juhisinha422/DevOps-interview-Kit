@@ -1,0 +1,43 @@
+ Top Docker, K8s & Helm Commands for DevOps Interview Preparation 🚀
+
+If you’re preparing for DevOps interviews, mastering these core commands will help you stand out in practical rounds. 💪
+
+🐳 Docker – Most Used Commands
+docker ps → List running containers
+docker images → Show all available images
+docker build -t myapp . → Build Docker image
+docker run -d -p 8080:80 myapp → Run container in background
+docker exec -it <container> bash → Access running container shell
+docker logs <container> → View container logs
+docker rm -f <container> → Remove container
+docker rmi <image> → Remove image
+docker-compose up -d → Start multiple services
+docker network ls / docker volume ls → Manage networks & volumes
+
+☸️ Kubernetes (kubectl) – Daily Used Commands
+kubectl get pods / kubectl get all → View resources
+kubectl describe pod <name> → Detailed info of pod
+kubectl logs <pod> → Check pod logs
+kubectl exec -it <pod> -- bash → Access container shell
+kubectl apply -f deployment.yaml → Apply changes
+kubectl delete -f deployment.yaml → Delete resources
+kubectl get nodes → List all cluster nodes
+kubectl rollout status deployment/<name> → Check rollout progress
+kubectl scale deployment <name> --replicas=3 → Scale apps
+kubectl port-forward pod/<name> 8080:80 → Access service locally
+
+🧭 Helm – Package Manager for Kubernetes
+helm repo add stable https://lnkd.in/g7irxF5n → Add chart repo
+helm repo update → Update repo
+helm search repo nginx → Search chart
+helm install my-nginx stable/nginx → Install chart
+helm list → List all releases
+helm upgrade my-nginx stable/nginx → Upgrade release
+helm rollback my-nginx 1 → Rollback to version
+helm uninstall my-nginx → Remove release
+helm get values my-nginx → View release values
+helm template my-nginx . → Render manifests locally
+
+🎯 Pro Tip
+👉 Practice these commands hands-on using Minikube / Kind (for K8s) and Docker Desktop.
+ 👉 Focus on real-time debugging, pod crashes, and deployment rollouts — common interview topics.

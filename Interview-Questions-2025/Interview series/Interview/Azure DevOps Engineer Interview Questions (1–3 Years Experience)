@@ -1,0 +1,56 @@
+ Azure DevOps Engineer Interview Questions (1–3 Years Experience)
+
+If you’re preparing for an interview, these questions are commonly asked in real interviews and help you brush up on fundamentals + scenarios.
+
+Focus Areas:
+
+🔹 Azure DevOps Pipelines
+🔹 CI/CD concepts
+🔹 Repos / Git branching
+🔹 Terraform / ARM
+🔹 YAML
+🔹 Containers & Kubernetes
+🔹 Monitoring & Security
+
+Here are some top questions you MUST prepare 👇
+
+
+Top Interview Questions
+What are the main components of Azure DevOps?
+How do you create a CI/CD pipeline in Azure DevOps?
+What is the difference between a build pipeline and release pipeline?
+Explain YAML pipelines vs Classic pipelines.
+How do you use Azure Repos?
+Why do we use Service Connections in pipelines?
+What is an Agent Pool?
+How do Hosted agents differ from Self-Hosted agents?
+What is a Stage, Job, and Task in YAML?
+How do you implement approvals in release pipeline?
+
+⚙️ Infrastructure & Deployment Questions
+How do you deploy an application to Azure App Service using pipeline?
+Have you used Terraform or ARM templates? Explain.
+How do you store secrets in Azure DevOps?
+What is Azure Key Vault? How to integrate with pipelines?
+How do you manage environment variables across Dev, QA, Prod?
+
+🐳 Container & Kubernetes
+How do you build and push Docker images in pipeline?
+How do you deploy to AKS using Azure DevOps?
+What is Helm and why do we use it?
+What are readiness and liveness probes in Kubernetes?
+How do you roll back a deployment in AKS?
+
+📊 Monitoring & Logging
+What is Azure Monitor?
+What is Application Insights?
+How do you troubleshoot a failed pipeline?
+How do you collect logs from Kubernetes and view them?
+
+🛡️ Security & Best Practices
+How do you enable RBAC in Azure DevOps?
+What is Policy in Repos?
+Why code review is important?
+How do you secure secrets in pipeline?
+Explain Zero Downtime Deployment.
+What are Blue-Green & Canary deployments?

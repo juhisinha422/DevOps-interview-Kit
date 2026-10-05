@@ -1,0 +1,10 @@
+Which concept ensures running a Playbook multiple times does not cause unnecessary changes?
+The author can see how you vote. Learn more
+Which concept ensures running a Playbook multiple times does not cause unnecessary changes?
+A) Forks
+B) Idempotency
+C) Tags
+D) Delegation
+
+
+ANS Idempotency

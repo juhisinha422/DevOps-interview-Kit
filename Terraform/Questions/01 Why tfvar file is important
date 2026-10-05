@@ -1,0 +1,17 @@
+✅Why tfvar file is important
+✅*tfvar files separate configuration from code in Terraform.*
+
+They're important for 3 main reasons:
+
+1. *Reuse the same code across environments*  
+   You write your `.tf` files once, then pass different `.tfvars` for dev, staging, prod. No copy-pasting modules just to change instance sizes or region.
+   terraform apply -var-file="prod.tfvars"
+2. *Keep secrets and env-specific values out of version control*  
+   Hardcoding passwords, API keys, or account IDs in `.tf` is messy and risky. Put them in `terraform.tfvars` or `secrets.tfvars` and add that file to `.gitignore`. Your code stays clean, your secrets stay private.
+
+3. *Make configs readable for non-devs*  
+   A `.tfvars` is just key-value pairs. Product managers or ops can tweak `instance_count = 5` without touching HCL logic or risking a syntax error.
+
+*Default behavior*: Terraform auto-loads `terraform.tfvars` and any `*.auto.tfvars` files. If you don't use them, you're stuck with `-var` flags on every apply, which gets ugly fast.
+
+Think of `.tf` as the blueprint and `.tfvars` as the settings you dial in per deployment. 

@@ -1,0 +1,11 @@
+Q. Why are manual approvals used in GitHub Actions environments?
+The author can see how you vote. Learn more
+Q. Why are manual approvals used in GitHub Actions environments?
+A. Speed up pipelines
+36%
+B. Prevent risky deployments
+55%
+C. Reduce YAML files
+0%
+D. Run jobs in parallel
+9%

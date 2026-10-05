@@ -1,0 +1,33 @@
+ Linux Commands Every Engineer Should Know (One-Liners & Quick Hacks)
+
+Why type 10 commands when 1 works?
+
+These powerful one-liners let engineers fix, debug, and automate on the fly 👇
+
+📌 Kill all processes of a program
+pkill -f program_name
+
+📌 Check top memory consumers
+ps aux --sort=-%mem | head -10
+
+📌 Find & delete old log files
+find /var/log -type f -mtime +30 -exec rm -f {} \;
+
+📌 Quick disk usage by folder
+du -sh * | sort -h
+
+📌 Monitor log in real-time with filtering
+tail -f /var/log/syslog | grep error
+
+📌 One-liner network check
+ping -c 3 google.com && echo "Online" || echo "Offline"
+
+📌 Backup a directory with timestamp
+tar -czvf backup_$(date +%F).tar.gz /path/to/dir
+
+📌 Count files by type
+find . -type f | wc -l
+
+💡 These one-liners = instant troubleshooting, automation, and DevOps efficiency.
+
+Linux mastery is about thinking in one-liners. 🐧

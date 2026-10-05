@@ -1,0 +1,80 @@
+Here’s a brief interview preparation guide with answers for all the VPC-related question. 
+
+Amazon VPC Interview Questions & Answers
+
+1. What is Amazon VPC?
+Amazon VPC (Virtual Private Cloud) is a logically isolated section of AWS where you can launch resources (like EC2, RDS) in a secure and customizable network.
+
+2. Difference between a default VPC and a custom VPC?
+
+Default VPC: Automatically created, comes with subnets, IGW, route tables, and allows immediate EC2 launch.
+
+Custom VPC: User-created, requires manual setup of subnets, gateways, and route tables.
+
+
+3. Maximum number of VPCs per AWS region?
+By default: 5 VPCs per region (can be increased via support request).
+
+4. What is a subnet in VPC?
+A subnet is a range of IP addresses within a VPC. Subnets can be public (internet accessible) or private (internal use only).
+
+5. Difference between a public and a private subnet?
+
+Public subnet: Has a route to an Internet Gateway (IGW).
+
+Private subnet: No direct route to the internet.
+
+
+6. What is a route table in VPC?
+A set of rules (routes) that determine where network traffic is directed (e.g., to IGW, NAT, other subnets).
+
+7. What is an Internet Gateway (IGW)?
+A gateway that connects the VPC to the internet, allowing communication between VPC resources and the internet.
+
+8. What is a NAT Gateway and how is it different from a NAT Instance?
+
+NAT Gateway: AWS-managed, scalable, and highly available service for private subnet internet access.
+
+NAT Instance: EC2-based, requires manual management, less scalable.
+
+
+9. Difference between Security Groups and NACLs?
+
+Security Group: Stateful, applies at instance level, allows inbound/outbound rules.
+
+NACL: Stateless, applies at subnet level, allows/denies inbound and outbound separately.
+
+
+10. What is a VPC Endpoint and its types?
+VPC Endpoints connect VPC resources to AWS services without using the internet.
+
+Gateway Endpoint: For S3 & DynamoDB.
+
+Interface Endpoint: Uses ENIs, works with most AWS services.
+
+
+11. Difference between Gateway Endpoint and Interface Endpoint?
+
+Gateway Endpoint: Route table-based, only for S3/DynamoDB.
+
+Interface Endpoint: Uses ENIs, works with more services, costs extra.
+
+
+12. What is VPC Peering?
+A networking connection between two VPCs to allow traffic using private IPs.
+
+13. Limitations of VPC Peering?
+No transitive peering.
+No overlapping CIDR blocks.
+Manual route updates needed.
+
+14. What is AWS Transit Gateway and how is it different from VPC Peering?
+
+Transit Gateway: Central hub to connect multiple VPCs and on-premises networks.
+Peering: Only point-to-point between 2 VPCs.
+
+15. What is a DHCP option set in VPC?
+It allows you to assign DNS servers, domain names, and NTP servers to instances in a VPC.
+
+16. What is an Elastic IP (EIP) in VPC?
+A static, public IPv4 address that you can attach to EC2 instances for consistent access.

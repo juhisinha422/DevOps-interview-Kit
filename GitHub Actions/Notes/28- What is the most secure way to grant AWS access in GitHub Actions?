@@ -1,0 +1,11 @@
+Q. What is the most secure way to grant AWS access in GitHub Actions?
+The author can see how you vote. Learn more
+Q. What is the most secure way to grant AWS access in GitHub Actions?
+A. IAM roles
+86%
+B. Public access keys
+14%
+C. Hardcoded secrets
+0%
+D. Root credentials
+0%

@@ -83,3 +83,80 @@ Use signed commits and validated runners.
 Mask secrets and use environment-specific variables.
 
 Enforce approval steps before production deployment.
+
+
+2-Real-Time Project Based DevOps Interview Questions & Answers
+
+Q: Have you worked on multi-cloud setups? How did you manage them?
+ A:
+Yes, in a project we used AWS (EKS, RDS) for core infra and Azure (AD, Storage) for compliance reasons.
+Used Terraform with cloud-agnostic modules for provisioning.
+Centralized monitoring & logging in Datadog.
+Managed identity with Azure AD + AWS IAM Federation.
+
+Q: Suppose your web app is receiving 10x traffic suddenly. What’s your action plan?
+ A:
+Enable auto-scaling (HPA for K8s, ASG for AWS EC2).
+Use CDN (CloudFront/Akamai) for caching static assets.
+Enable DB read replicas & connection pooling.
+Introduce rate limiting & circuit breakers.
+Monitor using APM tools (NewRelic, Datadog, Prometheus).
+
+Q: How did you set up secure VPC networking for your project?
+ A:
+Created VPC with private & public subnets.
+Services in private subnet, exposed via ALB/Ingress Controller.
+Used NAT Gateway for outbound internet.
+Security Groups + NACLs for fine-grained access.
+VPN/Direct Connect for on-prem connectivity.
+
+Q: How do you manage secrets in production?
+ A:
+Used HashiCorp Vault / AWS Secrets Manager / K8s Secrets + KMS.
+Integrated with CI/CD → apps fetch secrets at runtime.
+Rotated credentials automatically (DB passwords, API keys).
+Restricted access via IAM roles & audit logging.
+
+Q: Explain a real-time use case where you did a blue-green deployment.
+ A:
+For a payments service, downtime wasn’t acceptable.
+Deployed blue (new version) alongside green (current version).
+Used ALB weighted routing to switch traffic gradually.
+Verified with smoke tests → shifted 100% traffic → destroyed old infra.
+
+Q: What’s your DR strategy for a mission-critical app?
+ A:
+RPO = 15 min, RTO = 1 hr.
+Used cross-region replication for DBs.
+Automated backup validation with restore testing.
+Maintained pilot-light DR environment → scale up during failover.
+DR runbooks tested quarterly.
+
+Q: Tell me about a Sev-1 incident and how you handled it.
+ A:
+Example: API latency spike due to DB connection exhaustion.
+Actions:
+Used Grafana to identify DB connections maxed out.
+Applied connection pooling + increased RDS instance size.
+Hotfix → tested in staging → redeployed.
+Added DB connection metrics to monitoring to prevent recurrence.
+
+Q: Did you integrate performance testing in CI/CD?
+ A:
+Yes, used JMeter/K6 as part of pipeline.
+Load test triggered after staging deployment.
+Pipeline fails if latency/error rate exceeds SLA.
+
+Q: Have you implemented GitOps? How?
+ A:
+Yes, used ArgoCD for GitOps.
+All K8s manifests stored in Git.
+Any commit auto-syncs to cluster.
+Ensured rollback by reverting Git commits.
+
+Q: Have you done chaos testing?
+ A:
+Yes, with LitmusChaos in K8s.
+Injected pod failures, network latency.
+Validated system resilience (auto-recovery via HPA, retries).
+Helped identify missing alerts & misconfigured autoscaling.

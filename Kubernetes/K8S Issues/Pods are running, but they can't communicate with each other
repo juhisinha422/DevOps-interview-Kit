@@ -1,0 +1,56 @@
+"Pods are running, but they can't communicate with each other." 
+
+I encountered this issue recently on Kubernetes, and it looked daunting at first. It turned out to be a single broken CNI pod on one node. 🛠️
+
+Here's the exact 6-step debugging process I followed:
+
+━━━━━━━━━━━━━━━━━━━━━━━
+
+🔍 **Step 1 — Check Pod IPs**  
+Run the command:  
+`kubectl get pods -o wide`
+
+- If the IP is missing, it means the CNI isn't assigning addresses. You'll want to skip to Step 3. 🚫  
+- If the IP exists, proceed to Step 2. ✅
+
+🌐 **Step 2 — Test Raw Connectivity**  
+Run the command:  
+`kubectl exec -it <pod> -- curl <target-ip>:<port>`
+
+- If it fails, the network path is broken. ❌  
+- If it works, the issue lies with DNS or Services. Jump to Step 6. 🔄
+
+⚙️ **Step 3 — Verify Your CNI Plugin**  
+Run the command:  
+`kubectl get pods -n kube-system`
+
+- If you see a Calico, Flannel, or Cilium pod in CrashLoopBackOff, that node is isolated—this was my exact issue. 🚧
+
+🔐 **Step 4 — Check Network Policies**  
+Run the command:  
+`kubectl get networkpolicy -A`
+
+- A deny-all policy with no allow rules will silently drop traffic. This can be easy to overlook since there won't be any error messages—just silence. 🤫
+
+🧭 **Step 5 — Same Node vs. Different Node**
+
+- If connectivity works on the same node but fails across nodes, this indicates an overlay network issue (such as a VXLAN tunnel problem or MTU mismatch). 🌉
+
+🌍 **Step 6 — Service & DNS**  
+Run the command:  
+`kubectl exec -it <pod> -- nslookup <service-name>`
+
+- If DNS fails, check the CoreDNS pods in the kube-system namespace. 📡  
+- If DNS works but the service is unreachable, check the selector labels. 🔍
+
+━━━━━━━━━━━━━━━━━━━━━━━
+
+⚡ **What resolved the issue in my case:**
+
+One CNI pod was stuck in a broken state on a single node. I deleted it, and the DaemonSet recreated it, restoring networking within seconds. ⏱️
+
+🧠 **Key Takeaway:**
+
+Most Kubernetes "complex" issues often stem from a simple broken component. Follow the chain of debugging: IP → Connectivity → CNI → Policies → DNS.
+
+Don't rush to conclusions before checking the basics. ⚠️

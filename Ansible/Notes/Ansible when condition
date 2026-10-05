@@ -1,0 +1,34 @@
+⚙️ Ansible when Condition
+
+In automation, not every task should run every time.
+That is where the when condition is used.
+
+🔹 What when does
+
+ The when keyword tells Ansible to run a task only if a condition is true.
+If the condition is false, the task is skipped.
+
+🔹 Why when is important
+
+ It allows playbooks to make decisions.
+ It prevents unnecessary or incorrect changes.
+ It helps the same playbook work across different systems.
+
+🔹 Common use cases
+
+ • Run tasks based on OS type
+ • Execute actions only for specific environments
+ • Skip tasks if a variable has a certain value
+ • Apply configuration conditionally
+
+🔹 How when works conceptually
+
+ • Ansible evaluates the condition
+ • If true, the task runs
+ • If false, the task is skipped
+No errors. Just a clean skip.
+
+🔹 Simple mental model
+
+ Tasks describe actions.
+ when decides whether they apply.

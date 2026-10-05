@@ -1,0 +1,46 @@
+3 Tricky Interview Question of DevOps:
+
+How many ways we can implement probes into POD?
+
+Answer: 
+
+👉 Probes can be implemented in 3 ways: HTTP GET, TCP Socket, and Exec command. HTTP is for APIs, TCP checks port availability, and Exec runs custom logic inside the container.
+
+🔹 1. HTTP GET Probe:
+
+👉 Kubernetes sends an HTTP request to a specific endpoint.
+Works for web applications
+Checks response status (200–399 = success)
+
+📌 Example:
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 80
+
+🔹 2. TCP Socket Probe:
+
+👉 Kubernetes checks if a port is open.
+Useful for databases or services without HTTP
+Only verifies connection, not application logic.
+
+📌 Example:
+
+readinessProbe:
+  tcpSocket:
+    port: 3306
+
+🔹 3. Exec Command Probe:
+
+👉 Runs a command inside the container.
+Full control over health check
+Success = exit code 0
+
+📌 Example:
+
+livenessProbe:
+  exec:
+    command:
+      - cat
+      - /tmp/healthy

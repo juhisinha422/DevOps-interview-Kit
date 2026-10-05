@@ -1,0 +1,62 @@
+Kubernetes Tip: Stop Old ReplicaSets from Piling Up!
+
+Ever noticed your cluster cluttered with old ReplicaSets showing 0/0/0 pods? Here's what's happening and how to fix it. 🧵
+
+🤔 The Problem:
+After multiple deployments, you'll see this:
+NAME                  DESIRED   CURRENT   READY   AGE
+backend-5d4c8d9f7b    3         3         3       2d   ← Active
+backend-7f9c6b8d4e    0         0         0       5d   ← Old
+backend-8a3d7c9e5f    0         0         0       8d   ← Old
+backend-9b4e8d0f6a    0         0         0       12d  ← Old
+backend-3c2a1b7e4d    0         0         0       18d  ← Old
+
+Why does Kubernetes keep these?
+
+Quick rollback capability (kubectl rollout undo)
+Deployment audit trail
+
+Default: Keeps 10 old ReplicaSets per Deployment!
+
+✅ The Solution: revisionHistoryLimit
+
+Add this to your Deployment spec:
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  revisionHistoryLimit: 3  # Keep only 3 old versions
+  replicas: 2
+  template:
+    # ... your pod spec
+Configuration Options:
+revisionHistoryLimit: 0 → No history (immediate cleanup)
+revisionHistoryLimit: 3 → Keep 3 versions (recommended)
+revisionHistoryLimit: 10 → Default Kubernetes behavior
+
+🎯 Best Practices by Environment:
+
+📊 Production: 5 - Balance between rollback capability and cleanup 📊 Staging: 3 - Moderate history 📊 Development: 1-2 - Minimal clutter
+
+🔧 For Helm Charts:
+
+# values.yaml
+deployment:
+  revisionHistoryLimit: 3
+
+# templates/deployment.yaml
+spec:
+  revisionHistoryLimit: {{ .Values.deployment.revisionHistoryLimit }}
+
+⚡ Quick Fixes:
+
+Update existing deployment:
+kubectl patch deployment backend -p '{"spec":{"revisionHistoryLimit":3}}'
+Update all deployments:
+kubectl get deployments -o name | xargs -I {} \
+  kubectl patch {} -p '{"spec":{"revisionHistoryLimit":3}}'
+
+💡 Key Takeaway:
+Small configuration, big impact! This simple setting keeps your cluster clean, reduces etcd storage, and maintains enough history for safe rollbacks.

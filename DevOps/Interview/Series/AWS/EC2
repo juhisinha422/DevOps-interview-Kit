@@ -1,0 +1,62 @@
+🔹 hashtag#AWS Interview Questions – Amazon hashtag#EC2
+
+
+What is Amazon EC2?
+
+Why do we use EC2?
+
+What is an AMI?
+
+Types of EC2 instances?
+
+What is instance family?
+
+Difference between t2, t3, and t4g instances?
+
+What is an Elastic IP?
+
+Difference between public and private IP in EC2?
+
+What is a key pair?
+
+What is a security group?
+
+Difference between Security Group and NACL?
+
+What is Auto Scaling?
+
+What is a Launch Template?
+
+Difference between Launch Configuration and Launch Template?
+
+What is an Availability Zone?
+
+What is placement group?
+
+Types of placement groups?
+
+What is EC2 User Data?
+
+What is EC2 metadata?
+
+Difference between On-Demand, Reserved, and Spot instances?
+
+What is Spot interruption?
+
+How do you reduce EC2 cost?
+
+What is EC2 hibernation?
+
+What happens when EC2 is stopped vs terminated?
+
+What is ENI?
+
+Can you change instance type afterlaunch?
+
+What is EC2 root volume?
+
+What is Elastic Load Balancer’s role with EC2?
+
+How do you monitor EC2?
+
+How do you secure EC2?

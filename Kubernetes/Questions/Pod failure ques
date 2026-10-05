@@ -1,0 +1,19 @@
+What Really Happens When a Pod Fails in Kubernetes -
+Kubernetes is known for its self-healing nature, but what actually happens behind the scenes when a Pod fails?
+
+💥 1️⃣ Pod Failure → A Pod can fail due to a container crash, node failure, or eviction (OOM, disk pressure, etc.).
+⚙️ 2️⃣ Kubelet Reaction → The Kubelet restarts the failed container based on its restartPolicy (Always, OnFailure, or Never).
+Most Pods in Deployments use Always, so they restart automatically. 
+🧩 3️⃣ Controller Action
+If the Pod or node is lost —
+ReplicaSet or Deployment creates a new Pod to maintain replica count.
+StatefulSet recreates the same Pod with its PersistentVolume.
+DaemonSet ensures the Pod runs on all nodes.
+🧠 4️⃣ Node Failure Handling
+If a node goes down:
+Node Controller marks it NotReady.
+The Scheduler then assigns those Pods to available nodes and restore the cluster’s desired state.
+
+✅ Result: Self-Healing
+Your app keeps running — no manual recovery needed.
+That’s Kubernetes’ true power: desired state + reconciliation loop = resilience.

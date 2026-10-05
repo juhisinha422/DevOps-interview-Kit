@@ -1,0 +1,58 @@
+Tricky Linux WHY Questions
+
+Q1. Why do we need both /etc/passwd and /etc/shadow files?
+ 👉 /etc/passwd must be world-readable (UIDs, shells), but passwords must be secure → so /etc/shadow stores hashed passwords with root-only access.
+
+Q2. Why use sudo instead of logging in as root directly?
+ 👉 sudo gives temporary privilege escalation with audit logging; direct root login is insecure (no traceability).
+
+Q3. Why lock a user (usermod -L) instead of deleting them?
+ 👉 Lock keeps files and ownership intact → safer when user might return or data must be preserved.
+
+Q4. Why is chmod 777 considered bad practice?
+ 👉 It gives everyone full access → security risk (anyone can modify or run malicious code).
+
+Q5. Why does root sometimes still get “Permission denied”?
+ 👉 Because of SELinux/AppArmor or immutable attribute (chattr +i), not traditional Unix permissions.
+
+Q6. Why is the Sticky Bit important on /tmp?
+ 👉 Without it, any user could delete others’ files in /tmp. Sticky Bit ensures only owners can delete.
+
+Q7. Why do we need ACLs if we already have rwx permissions?
+ 👉 Standard rwx only covers owner, group, others; ACLs allow fine-grained per-user/group control.
+
+Q8. Why do we prefer systemctl over service?
+ 👉 systemctl is systemd-native, supports dependency management, logging (journalctl), and modern features.
+
+Q9. Why would a process show as running but still not respond?
+ 👉 Could be stuck in I/O wait, firewall blocking, port not bound, or process in zombie/hung state.
+
+Q10. Why not always use kill -9?
+ 👉 kill -9 force kills without cleanup → resources may stay locked. Always try normal kill (SIGTERM) first.
+
+Q11. Why use nice and renice?
+ 👉 To adjust process priority → prevents one process from hogging CPU.
+
+Q12. Why use journalctl if logs already exist in /var/log/?
+ 👉 journalctl (systemd) offers structured, searchable, persistent logs across boot sessions.
+
+Q13. Why rotate logs instead of just clearing them?
+ 👉 Rotation keeps history + prevents sudden data loss. Clearing just wipes logs, which is bad for audits.
+
+Q14. Why might tail -f not show live logs, but journalctl -f does?
+ 👉 Some services log directly to systemd journal, not plain text files.
+
+Q15. Why are auth logs separated from system logs?
+ 👉 For security monitoring – failed logins, sudo attempts need special attention.
+
+Q16. Why might a user with rw-rw-r-- still fail to edit a file?
+ 👉 Because they don’t belong to the file’s group, or directory permissions prevent writing.
+
+Q17. Why can’t we just keep increasing disk space when / is full?
+ 👉 It hides the real issue (logs, misconfigured apps, runaway processes). Better to find root cause.
+
+Q18. Why does Linux keep zombie processes?
+ 👉 To hold the exit status until the parent reads it (wait()), otherwise info is lost.
+
+Q19. Why does Linux separate /home, /var, /tmp, etc., into partitions sometimes?
+ 👉 Prevents one from filling disk and crashing system. Example: /var logs filling up shouldn’t kill /home.

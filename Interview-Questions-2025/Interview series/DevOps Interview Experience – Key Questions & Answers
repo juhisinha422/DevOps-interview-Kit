@@ -1,0 +1,75 @@
+DevOps Interview Experience – Key Questions & Answers
+
+Today I faced an interview for a DevOps role, and here are some important questions along with simple explanations 👇
+
+✅ 1. How do you take code from Git and deploy to Kubernetes using GitHub Actions?
+
+Code is stored in GitHub
+Create a workflow using GitHub Actions
+
+Steps:
+Trigger on push (CI/CD pipeline starts)
+Build Docker image
+Push image to registry (like Docker Hub / ECR)
+Use kubectl to deploy to Kubernetes
+Example tools used: Docker, kubectl, secrets for authentication
+
+✅ 2. Difference between Jenkins and GitHub Actions
+
+Jenkins
+Manual setup required
+High (plugins, servers)
+Highly customizable
+Works with many tools
+Needs infra
+
+GitHub Actions
+Built-in with GitHub
+Low (managed)
+Easy but slightly limited
+Best with GitHub repos
+Free tier available
+
+✅ 3. What is Kubernetes CrashLoopBackOff?
+
+A state where a pod keeps failing and restarting
+
+Common reasons:
+
+ Application crash
+ Wrong configuration
+ Missing environment variables
+Kubernetes waits before restarting again (backoff mechanism)
+
+✅ 4. Why is Kubernetes important?
+
+Automates deployment and scaling
+Handles container orchestration
+Provides high availability & self-healing
+Works across cloud providers
+
+✅ 5. Different types of scaling in Kubernetes
+
+Horizontal Pod Autoscaler (HPA) → Adds/removes pods
+Vertical Pod Autoscaler (VPA) → Adjusts CPU/memory
+Cluster Autoscaler → Adds/removes nodes
+
+✅ 6. What is the use of CloudWatch?
+
+Amazon CloudWatch is used for:
+Monitoring logs and metrics
+Setting alarms
+Troubleshooting applications
+Observability of AWS resources
+
+✅ 7. What is API in AWS?
+
+API = Application Programming Interface
+In AWS, Amazon API Gateway is used to:
+
+Create and manage APIs
+Connect frontend with backend services
+Secure and scale APIs
+
+💡 Key Takeaway:
+Focus on real-time scenarios, CI/CD pipelines, and Kubernetes troubleshooting for DevOps interviews.

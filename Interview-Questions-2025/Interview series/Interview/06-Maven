@@ -1,0 +1,15 @@
+DevOps Q&A Series: Topic 6 — Maven
+✨Continuing with the festive knowledge-sharing journey, here are Maven interview questions focused on build, test, and troubleshooting automation in DevOps pipelines 🔥
+
+1️⃣ What are the common causes of build failures in Maven during CI/CD pipelines, and how do you troubleshoot them?  
+2️⃣ How do you automate Maven builds and tests in Jenkins, GitLab CI, or GitHub Actions for multi-module projects?  
+3️⃣ Describe how to configure Maven settings for proxy and repository access in corporate networks.  
+4️⃣ How do you handle dependency conflicts and version clashes in Maven projects?  
+5️⃣ What strategies do you use to speed up Maven build times in large projects?  
+6️⃣ How can you integrate Maven test reports with CI/CD dashboards and monitoring tools?  
+7️⃣ Explain the difference between `clean install`, `package`, and `verify` goals in Maven.  
+8️⃣ How do you manage environment-specific configurations in Maven builds?  
+9️⃣ What is the purpose of the `maven-surefire-plugin`, and how do you troubleshoot test failures?  
+🔟 How do you enable parallel builds and tests in Maven to optimize pipeline performance?  
+1️⃣1️⃣ Describe how to implement and customize Maven profiles for different build scenarios.  
+1️⃣2️⃣ What steps do you take when Maven build plugins fail or behave unexpectedly during CI/CD?

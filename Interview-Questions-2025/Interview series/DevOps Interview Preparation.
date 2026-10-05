@@ -1,0 +1,17 @@
+DevOps Interview Preparation.
+
+ • CI pipeline passes, but AKS deployment fails intermittently – how do you troubleshoot?
+ • A bad commit causes a production outage – how do you improve pipeline gates?
+ • Build times are increasing – how do you optimize CI/CD performance?
+ • How would you implement blue-green or canary deployments in AKS?
+Container works locally but fails in AKS – where do you start debugging?
+ • Docker images are too large – how do you optimize them for production?
+ • Containers keep restarting – how do you differentiate app vs platform issues?
+ Traffic spikes but pods don’t scale fast enough – what’s your solution?
+ • One microservice is consuming excessive CPU – how do you isolate it?
+ • Pods are running but the app is not reachable – how do you troubleshoot networking?
+ • A node goes down unexpectedly – how do you ensure high availability?
+• Secrets leaked in Git – what are your immediate and long-term actions?
+ • How do you secure CI/CD pipelines using Azure RBAC, Key Vault, and Managed Identity?
+ • Users report slowness but no alerts fire – how do you investigate?
+ • How do you perform root cause analysis after a production incident?

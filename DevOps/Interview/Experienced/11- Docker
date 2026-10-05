@@ -1,0 +1,31 @@
+DevOps Interview hashtag#Questions hashtag#Docker 5–8 Years Experience | Tool 11
+
+How do you design Docker images for security, performance, and size?
+
+A container works locally but fails in production — how do you debug?
+
+How do you handle secrets in Docker without baking them into images?
+
+Explain multi-stage Docker builds — real production use cases?
+
+How do you manage base image vulnerabilities across teams?
+
+Docker container consumes high memory — how do you troubleshoot?
+
+How do you version and tag Docker images in enterprise pipelines?
+
+How do you prevent Docker image sprawl in registries?
+
+Docker networking issue causes service downtime — investigation steps?
+
+How do you handle backward compatibility of Docker images?
+
+Docker vs Podman — when and why would you switch?
+
+How do you optimize Docker builds for faster CI/CD?
+
+How do you scan Docker images for vulnerabilities?
+
+How do you manage Docker in air-gapped environments?
+
+What Docker practices clearly show senior DevOps expertise?

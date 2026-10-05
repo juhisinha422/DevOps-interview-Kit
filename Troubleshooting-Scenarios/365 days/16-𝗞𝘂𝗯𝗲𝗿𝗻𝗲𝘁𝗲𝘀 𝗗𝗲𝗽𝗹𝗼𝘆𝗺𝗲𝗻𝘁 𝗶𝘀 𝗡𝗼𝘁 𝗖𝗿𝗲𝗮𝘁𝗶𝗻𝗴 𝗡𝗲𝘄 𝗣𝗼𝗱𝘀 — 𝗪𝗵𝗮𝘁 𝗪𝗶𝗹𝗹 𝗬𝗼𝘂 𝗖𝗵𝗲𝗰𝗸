@@ -1,0 +1,78 @@
+𝗗𝗮𝘆 𝟭𝟲/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗶𝘀 𝗡𝗼𝘁 𝗖𝗿𝗲𝗮𝘁𝗶𝗻𝗴 𝗡𝗲𝘄 𝗣𝗼𝗱𝘀 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗖𝗵𝗲𝗰𝗸?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “You updated a Kubernetes Deployment, but the new pods are not being created. How will you troubleshoot it?”
+
+I wouldn't immediately delete the Deployment.
+
+First, I would understand whether the Deployment, ReplicaSet, and scheduler are behaving as expected.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check the Deployment
+
+kubectl get deployment -n <namespace>
+
+Then:
+
+kubectl describe deployment <deployment-name> -n <namespace>
+
+Check the desired, current, and available replicas.
+
+2️⃣ Check ReplicaSets
+
+kubectl get rs -n <namespace>
+
+A Deployment creates ReplicaSets to manage pod versions.
+
+I would check whether a new ReplicaSet was created after the update.
+
+3️⃣ Check Deployment rollout
+
+kubectl rollout status deployment/<deployment-name> -n <namespace>
+
+Also check rollout history:
+
+kubectl rollout history deployment/<deployment-name> -n <namespace>
+
+4️⃣ Check pod events
+
+kubectl get events -n <namespace> --sort-by=.lastTimestamp
+
+Look for:
+
+🔹 Insufficient resources
+🔹 ImagePull errors
+🔹 Scheduling failures
+🔹 Admission/policy failures
+🔹 Configuration issues
+
+5️⃣ Check the Deployment configuration
+
+I would verify:
+
+🔹 Image name/tag
+🔹 Replicas
+🔹 Resource requests/limits
+🔹 Node selectors/affinity
+🔹 Tolerations
+🔹 ConfigMaps/Secrets
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Deployment → ReplicaSet → Pod → Scheduler → Events → Root Cause
+
+If the new ReplicaSet exists but has 0 pods, I would investigate its events and scheduling conditions rather than randomly restarting components.
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A Deployment update doesn't guarantee that new pods will successfully start.
+
+Understand the relationship:
+
+Deployment → ReplicaSet → Pod
+
+That relationship makes Kubernetes troubleshooting much easier. 🚀

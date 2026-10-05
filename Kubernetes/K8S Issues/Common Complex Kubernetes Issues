@@ -1,0 +1,44 @@
+Common Complex Kubernetes Issues
+
+✔ Pods stuck in CrashLoopBackOff
+Usually caused by application crashes, wrong environment variables, or incorrect command/entrypoint configuration.
+
+✔ ImagePullBackOff errors
+Often due to incorrect image tags, missing imagePullSecrets, or registry authentication failures.
+
+✔ Pods in Pending state
+Caused by insufficient node resources, incorrect node selectors, taints, or affinity rules.
+
+✔ Service not reachable
+Even when pods are running, misconfigured Services, wrong target ports, or missing endpoints can block traffic.
+
+✔ Intermittent traffic issues
+Frequently related to readiness/liveness probes or misconfigured Ingress rules.
+
+🔹 My Troubleshooting Approach
+1️⃣ Start with Pod & Event inspection
+kubectl get pods
+kubectl describe pod <pod-name>
+2️⃣ Check application logs
+kubectl logs <pod-name>
+Previous crash logs when required
+3️⃣ Validate configuration
+Environment variables
+Resource limits & requests
+Probes configuration
+4️⃣ Check node-level issues
+Node pressure (CPU, memory, disk)
+Pod scheduling constraints
+5️⃣ Verify networking components
+Service endpoints
+Ingress controller logs
+Network policies
+
+🔹 Key Tools & Commands Used
+kubectl describe
+kubectl logs
+kubectl exec
+
+
+Kubernetes troubleshooting is not about memorizing YAML—
+it’s about understanding how the system behaves under failure.

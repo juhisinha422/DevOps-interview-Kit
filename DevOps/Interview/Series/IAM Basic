@@ -1,0 +1,58 @@
+AWS IAM Basics — Must-Know Questions & Answers for Interviews
+
+Here are some basic IAM questions & answers that every beginner should know. 👇
+
+🔸 Basic IAM Questions & Answers
+
+ 1. What is IAM in AWS?
+IAM (Identity and Access Management) helps you securely manage who can access AWS services and what actions they can perform.
+
+2. What is an IAM User?
+A user represents a person or application that needs long-term access to AWS.
+It can have:
+
+Console password
+
+Access keys (CLI/SDK)
+
+3. What is an IAM Group?
+A group is a collection of IAM users.
+Policies attached to the group automatically apply to all users in it.
+
+4. What is an IAM Policy?
+A JSON document that defines permissions:
+
+What actions are allowed or denied
+
+On which AWS resources
+
+Example: Allow S3 read access.
+
+5. What is MFA?
+Multi-Factor Authentication adds an extra security layer using:
+
+OTP
+
+Authenticator apps
+
+Security keys
+
+It protects accounts from unauthorized access.
+
+ 6. What are AWS Managed Policies?
+Prebuilt policies created and maintained by AWS (example: AmazonS3ReadOnlyAccess).
+
+7. What are Customer Managed Policies?
+Custom policies you create for fine-grained control.
+
+ 8. What is Root User?
+The account owner with full unlimited access.
+Best practice:
+ Never use root user for daily tasks
+Enable MFA and lock it down
+
+9. What is Least Privilege?
+Give users only the minimum permissions required to do their job.
+
+ 10. What is Access Key ID & Secret Access Key?
+Credentials used for CLI or SDK access, not for console login.

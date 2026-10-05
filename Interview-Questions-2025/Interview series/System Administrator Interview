@@ -1,0 +1,39 @@
+System Administrator Interview Experience! 🌟
+
+
+🖥️ Linux & System Administration
+How do you mount a drive/partition in Linux?
+How do you check disk usage and running processes?
+How do you add and manage users in Linux?
+How do you restart or check the status of a service?
+What’s the difference between hard links and soft links?
+
+🌐 Networking
+Explain some core networking commands like telnet, arp, netstat, and their uses.
+What’s the difference between public and private IP addresses?
+How does DNS work and why is it important?
+What is the purpose of a subnet mask?
+If a website is not loading, how would you troubleshoot step by step?
+
+☁️ Cloud (AWS / DevOps basics)
+Why do we use Amazon S3 for static content instead of EBS?
+What are Pods in Kubernetes?
+Difference between S3, EBS, and EFS in AWS.
+How would you set up monitoring for a server?
+What’s the difference between vertical and horizontal scaling?
+
+🔧 General Troubleshooting & Concepts
+How do you check system resource usage in real time?
+If a server is running slow, what steps would you take first?
+What are the common HTTP status codes you should know?
+How would you secure a Linux server as a beginner?
+Why is version control (like Git) important for system admins/DevOps?
+
+
+💡 Out of all these, I could confidently answer about 60–70%. The rest highlighted areas where I need to go deeper (especially Kubernetes and some networking concepts).
+
+🔑 Key takeaway:
+ Interviews are not just about getting selected — they’re a real-time test of your fundamentals and show you exactly where to grow next.
+
+👉 To my fellow freshers preparing for Sysadmin/DevOps roles:
+ Focus on Linux basics, networking commands, cloud fundamentals, and troubleshooting mindset. These form the backbone of most interviews.

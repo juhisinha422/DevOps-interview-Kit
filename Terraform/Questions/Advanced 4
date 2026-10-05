@@ -1,0 +1,86 @@
+Advanced #Terraform interview questions.
+
+Part-1
+
+---
+1. Difference between terraform import and terraform taint
+
+terraform import → Brings an existing resource (created outside Terraform) under Terraform management.
+Example: Import an AWS EC2 instance:
+
+terraform import aws_instance.my_ec2 i-1234567890abcdef
+
+terraform taint → Marks a resource for re-creation in the next apply.
+Example:
+
+terraform taint aws_instance.my_ec2
+terraform apply   # destroys and recreates the resource
+
+---
+
+2. How do you manage secrets in Terraform without hardcoding them?
+
+Use Terraform variables with environment variables:
+
+export TF_VAR_db_password="mypassword"
+
+Use Terraform Cloud/Workspace variables.
+
+Use secret managers:
+
+AWS Secrets Manager (data "aws_secretsmanager_secret_version")
+
+HashiCorp Vault provider
+
+GCP Secret Manager provider
+
+Never commit secrets in .tf or .tfstate.
+
+---
+
+3. Difference between count and for_each (with use case)
+
+count → Creates multiple instances based on a number.
+
+resource "aws_instance" "web" {
+  count = 3
+  ami   = "ami-123"
+  instance_type = "t2.micro"
+}
+
+for_each → Creates resources from a map/set, giving explicit control over each.
+
+resource "aws_instance" "web" {
+  for_each = { a="t2.micro", b="t2.small" }
+  ami   = "ami-123"
+  instance_type = each.value
+}
+
+👉 Use count when scaling identical things, for_each when unique identifiers are needed.
+
+---
+
+4. How do you handle drift detection in Terraform?
+
+Run:
+
+terraform plan -refresh-only
+
+→ Shows differences between real infra vs state file.
+
+Use CI/CD pipelines to schedule drift detection (e.g., daily).
+Terraform Cloud & Sentinel policies can also detect drift automatically.
+
+---
+
+5. What is a Terraform remote backend, and why is it important?
+
+Stores Terraform state remotely (S3, GCS, Terraform Cloud, Consul, etc.).
+
+Importance:
+
+Team collaboration (everyone shares same state).
+
+Locking (avoids two people applying at once, e.g., S3+DynamoDB for locking).
+Security (encrypted, not local files).
+Disaster recovery (backups).

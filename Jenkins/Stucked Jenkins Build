@@ -1,0 +1,27 @@
+#SRECaseStudy - Stuck Jenkins Builds Due to Disk Pressure
+
+🛠️ Incident
+Developers reported that Jenkins builds were stuck in the “Pending” state for over 30 minutes during a production deployment window. Build agents showed “Offline” and new jobs couldn’t start.
+
+🔍 Investigation
+- kubectl get nodes revealed one worker node in NotReady state with a DiskPressure taint.
+- kubectl describe node <node> confirmed that /var/lib/kubelet was at 95% disk usage.
+- Jenkins pod logs showed repeated No space left on device errors.
+
+⚙️ Root Cause
+- The node hosting Jenkins agents ran out of disk space because old Docker images and logs accumulated over time.
+- Kubernetes tainted the node with DiskPressure, preventing new pods from scheduling.
+
+🛠️ Resolution
+1️⃣ Cleaned unused Docker images & containers:
+
+docker system prune -af
+
+2️⃣ Increased node disk size in the cloud provider (AWS EBS volume).
+3️⃣ Implemented a log rotation policy and set up a cron job to run docker system prune weekly.
+4️⃣ Added node disk usage alerts in Prometheus/Grafana.
+
+📚 Lessons Learned
+✅ Regularly monitor node disk usage with alerts.
+✅ Implement automated cleanup for Docker artifacts.
+✅ Ensure critical services like Jenkins have persistent storage separate from system disks.

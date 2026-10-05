@@ -1,0 +1,132 @@
+Day 2 takeaway : Linux Basics 
+
+🔹 Services & Processes
+Q1. How do you check if a service is running?
+systemctl status sshd
+
+Q2. What’s the difference between service and systemctl?
+service → older SysV init command.
+
+systemctl → systemd command, modern systems.
+
+Example:
+service ssh status
+systemctl status ssh
+
+Q3. How do you enable a service to start at boot?
+sudo systemctl enable nginx
+
+Q4. How do you stop and restart a service?
+sudo systemctl stop nginx
+sudo systemctl restart nginx
+
+Q5. How do you find which process is using a specific port?
+sudo lsof -i :80
+sudo netstat -tulpn | grep 80
+
+Q6. Difference between kill, pkill, and killall?
+kill <PID> → kill by process ID.
+
+pkill <name> → kill by process name.
+
+killall <name> → kill all processes with that name.
+
+Q7. How do you monitor all running processes?
+ps aux
+top
+htop   # if installed
+
+🔹 Logs & Monitoring
+Q8. Where are Linux system logs stored by default?
+/var/log/ directory.
+
+Examples:
+
+/var/log/syslog or /var/log/messages → system logs.
+
+/var/log/auth.log → authentication logs.
+
+/var/log/dmesg → kernel logs.
+
+Q9. What’s the difference between /var/log/messages and /var/log/syslog?
+/var/log/syslog → Debian/Ubuntu general system logs.
+
+/var/log/messages → RedHat/CentOS equivalent.
+
+Q10. How do you view authentication logs?
+cat /var/log/auth.log     # Debian/Ubuntu
+cat /var/log/secure       # RedHat/CentOS
+
+Q11. How do you view logs in real-time?
+tail -f /var/log/syslog
+journalctl -f
+
+Q12. How do you check only the last 50 lines of a log file?
+tail -n 50 /var/log/syslog
+
+Q13. What is the difference between journalctl and text log files in /var/log/?
+journalctl → systemd journal (binary format, persistent).
+
+/var/log/ → plain text log files.
+
+Q14. How do you check kernel logs?
+dmesg | less
+journalctl -k
+
+Q15. How do you safely clear or rotate logs?
+To clear manually:
+sudo truncate -s 0 /var/log/syslog
+
+To rotate:
+sudo logrotate /etc/logrotate.conf
+
+🔹 Scenario-Based
+Q16. A user reports they cannot log in. How do you troubleshoot?
+Check account status:
+ passwd -S username
+
+Verify shell in /etc/passwd.
+
+Check logs:
+ tail -f /var/log/auth.log
+
+Ensure disk is not full:
+ df -h
+
+Q17. A service is running but not responding on its port. Steps?
+Check service status:
+ systemctl status nginx
+
+Verify port:
+ ss -tulpn | grep 80
+
+Check firewall:
+ sudo iptables -L -n
+sudo ufw status
+
+Review logs:
+ journalctl -u nginx
+
+Q18. “Permission denied” when accessing a directory. How to debug?
+Check permissions:
+ ls -ld directory
+
+Check ownership:
+ ls -l
+
+Check ACLs:
+ getfacl directory
+
+Q19. CPU usage is 100%. How do you find culprit?
+top
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head
+
+Q20. Disk usage is full. How to fix?
+df -h          # Check usage
+du -sh *       # Find big dirs
+
+Clear logs: /var/log/
+
+Remove old files/backups.
+
+Use ncdu (if installed) for an interactive check.

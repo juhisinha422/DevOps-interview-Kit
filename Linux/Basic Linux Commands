@@ -1,0 +1,81 @@
+Basic Linux commands every DevOps Engineer must know:
+File and Directory Management
+pwd → Show current working directory
+ls → List files and directories
+ls -l → Long listing with permissions
+ls -a → Show hidden files
+cd <dir> → Change directory
+mkdir <dir> → Create new directory
+rmdir <dir> → Remove empty directory
+rm -rf <dir> → Remove directory with all contents (:warning: careful!)
+cp file1 file2 → Copy files
+mv file1 file2 → Move or rename file
+
+small_blue_diamond: File Viewing & Editing
+cat file → Show file contents
+less file → View file page by page
+head -n 10 file → Show first 10 lines
+tail -n 10 file → Show last 10 lines
+tail -f file → Monitor file in real time (useful for logs)
+nano file / vim file → Edit file
+
+small_blue_diamond: File Permissions
+ls -l → View permissions
+chmod 755 file → Change permissions
+chown user:group file → Change ownership
+:small_blue_diamond: Process Management
+ps aux → List processes
+top → Monitor running processes
+htop → Better interactive process viewer (if installed)
+kill -9 <pid> → Kill process by ID
+systemctl status service → Check service status
+systemctl start/stop/restart service → Manage services
+
+small_blue_diamond: Disk & Memory
+df -h → Show disk space usage
+du -sh <dir> → Show directory size
+free -h → Show memory usage
+uptime → Show system load and uptime
+
+small_blue_diamond: Networking
+ifconfig / ip addr → Show network interfaces
+ping <host> → Test connectivity
+curl <url> → Fetch data from URL
+wget <url> → Download file
+netstat -tulnp → Show listening ports (or ss -tulnp)
+scp file user@host:/path → Securely copy file to remote server
+ssh user@host → Connect to remote server
+
+small_blue_diamond: User Management
+whoami → Show current user
+id → Show user ID and groups
+adduser <username> → Add new user
+passwd <username> → Change password
+su - <user> → Switch user
+groups → Show user groups
+
+small_blue_diamond: Package Management (depends on distro)
+Debian/Ubuntu:
+apt update → Update package list
+apt install <pkg> → Install package
+apt remove <pkg> → Remove package
+RHEL/CentOS:
+yum install <pkg> → Install package
+yum remove <pkg> → Remove package
+
+small_blue_diamond: Logs
+cd /var/log → Go to log directory
+tail -f /var/log/syslog → Live view logs (Debian/Ubuntu)
+tail -f /var/log/messages → Live view logs (RHEL/CentOS)
+
+small_blue_diamond: Archiving & Compression
+tar -cvf archive.tar files/ → Create tar archive
+tar -xvf archive.tar → Extract tar archive
+gzip file → Compress file
+gunzip file.gz → Decompress file
+
+small_blue_diamond: Search & Find
+find /path -name filename → Find files by name
+grep "text" file → Search text in file
+grep -r "text" /dir/ → Recursive search
+history → Show command history

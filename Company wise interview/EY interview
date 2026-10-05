@@ -1,0 +1,75 @@
+My #EY Interview Experience – DevOps Engineer
+Recently, I went through the interview process for a DevOps Engineer role. I wanted to share my experience, as it might help others preparing for similar opportunities.
+The entire process was smooth, well-structured, and professional. The HR team was supportive and transparent throughout.
+Here’s a round-wise breakdown:
+ 
+🟢 Round 1: Screening Round (15 Minutes)
+This was a technical screening round primarily focused on Kubernetes fundamentals and CI/CD basics.
+🔹 Kubernetes
+Taints and Tolerations
+Node Affinity
+Kubernetes Architecture Components
+Control Plane vs Worker Nodes
+🔹 CI/CD
+Stages in my pipeline
+Continuous Feedback
+Continuous Delivery concept
+🔹 Terraform
+Securing Terraform state files
+Remote backend configuration
+What is null_resource?
+🔹 Tools Discussion
+Tools I’ve worked with in real-time projects
+The discussion was interactive, and I was moved to the L1 round.
+ 
+🟢 Round 2: L1 Technical Round (30 Minutes – Internal Panel)
+Focus Areas: Kubernetes, Docker, Terraform, Ansible, Jenkins
+🔹 Kubernetes
+Deployment strategies (Rolling, Blue-Green, Canary)
+What is a DaemonSet?
+Taints & Tolerations (deeper discussion)
+Kubernetes Architecture
+🔹 Docker
+Docker networking concepts
+Multi-stage Dockerfile – why and how
+Writing optimized Dockerfiles
+Docker image security best practices
+🔹 CI/CD
+Tools used
+Pipeline stages
+Continuous Delivery implementation
+Rollback strategies in case of deployment failure
+🔹 AWS (Scenario-Based)
+VPC-related scenario
+S3 architecture discussion
+I also asked about project type, team structure, and tooling ecosystem. After this round, my profile was forwarded for the client discussion.
+ 
+🟢 Round 3: Client Round (30 Minutes – Scheduled at Night 10:30 PM)
+This round was more scenario-based and focused heavily on real-time project experience.
+🔹 Infrastructure & Architecture
+Complete infra architecture explanation
+Microservices vs Monolithic architecture
+Role of DevOps in the project lifecycle
+End-to-end deployment flow
+🔹 Security & Traffic Handling
+Handling high or malicious traffic from specific regions
+ (WAF, Security Groups, rate limiting, etc.)
+🔹 DNS & Networking
+Route 53 working
+End-to-end DNS resolution flow
+User request lifecycle
+🔹 Kubernetes (Practical)
+SSL certificate management
+Certificate expiration handling
+Common production issues and resolutions
+🔹 CI/CD Troubleshooting
+Handling failed pipeline stages
+Debugging approach and team collaboration
+This round focused more on practical exposure and problem-solving ability rather than just definitions.
+
+🎯 Key Takeaways
+✅ Strong Kubernetes fundamentals are essential
+✅ Be clear about real-time project architecture
+✅ Understand security and traffic-handling concepts
+✅ Practice explaining end-to-end flow confidently
+✅ Scenario-based preparation is extremely important

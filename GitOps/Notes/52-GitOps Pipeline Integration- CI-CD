@@ -1,0 +1,40 @@
+GitOps CI/CD Pipeline Integration (Jenkins + GitOps)
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m learning how to integrate CI/CD pipelines with GitOps workflows 🚀
+This is a real-world DevOps architecture used in many companies.
+
+🔹 CI Pipeline + GitOps Flow
+Traditional CI/CD flow:
+ Code → Build → Test → Deploy
+GitOps-enhanced flow:
+ Code → CI Pipeline → Update Git → GitOps Tool → Kubernetes
+Here’s how it works:
+Developer pushes code
+CI tool builds and tests the application
+CI updates deployment YAML (image version) in Git
+GitOps tool detects change and deploys automatically
+
+🔹 Role of Jenkins
+ Jenkins is commonly used as a CI tool.
+Builds application
+Runs tests
+Pushes updated configuration to Git
+
+🔹 Automation Pipeline Design
+A complete automated pipeline includes:
+Code commit trigger
+Build & test stage
+Docker image creation
+Push image to registry
+Update Git repo (YAML)
+GitOps deployment
+
+🔹 Why This Approach is Powerful
+Fully automated deployment process
+Clear separation of CI and CD
+Git remains the single source of truth
+Easy rollback and tracking
+
+💡 Key Insight:
+ CI tools like Jenkins handle building and testing, while GitOps ensures deployment happens automatically from Git, creating a powerful and scalable pipeline.

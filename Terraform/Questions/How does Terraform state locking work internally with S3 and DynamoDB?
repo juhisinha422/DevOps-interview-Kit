@@ -1,0 +1,13 @@
+ How does Terraform state locking work internally with S3 and DynamoDB?  
+
+Terraform uses Amazon S3 for durable remote state file storage and an Amazon DynamoDB table as a distributed lock manager to prevent concurrent modifications  
+
+1. Before any changes are made, Terraform sends a request to the configured Amazon DynamoDB table to acquire a lock. This request attempts to create a new item in the table with a unique LockID 
+
+2.The LockID is configured as the partition key in a DynamoDB primarily  for an efficient, scalable, and isolated distributed locking mechanism. 
+
+3.If the lock is already held Terraform receives an error and halts the operation, informing the user that the state is already locked by another process 
+
+4.Terraform sends a request to the DynamoDB table to delete the lock item using the LockID. This releases the lock, allowing other users or processes to acquire it for subsequent operations.  
+
+5.If the Terraform process crashes or is forcefully stopped mid-operation, the lock might not be released automatically. In such cases, a user with appropriate permissions must manually intervene using the terraform force-unlock <LOCK_ID> 

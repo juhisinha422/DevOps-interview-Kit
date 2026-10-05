@@ -1,0 +1,102 @@
+K8s Interview Series – Part 5: Kubelet – The Node Guardian
+
+Master the Kubelet with 15 essential interview questions! The Kubelet is the critical node agent that keeps your pods running.
+
+1️⃣ Where does the Kubelet run?
+On every worker node as the primary node agent managing pods and containers. It communicates with the API Server to receive pod specifications.
+
+2️⃣ What is the Kubelet?
+A system daemon that monitors pod lifecycle, typically managed as a systemd service. In managed K8s (EKS, GKE, AKS), cloud providers handle it.
+
+3️⃣ What's the Kubelet's main job?
+Ensures containers in PodSpecs are running and healthy. It receives instructions from API Server and delegates to CRI (Container Runtime Interface).
+
+4️⃣ How does Kubelet communicate?
+Only with API Server via REST API (HTTPS). It pulls Pod definitions, sends status updates, and authenticates with certificates/tokens.
+
+5️⃣ Does Kubelet talk to etcd or scheduler?
+❌ Never. Only communicates with API Server as the single hub.
+
+6️⃣ What happens when Kubelet fails?
+Node becomes "NotReady". Node Controller detects missed heartbeats. Existing containers may run but won't be monitored.
+
+7️⃣ How are pods replaced on failed nodes?
+Controllers (ReplicaSet, Deployment) create replacement pods. Scheduler places them on healthy nodes.
+
+8️⃣ How does Kubelet manage containers?
+Uses CRI for lifecycle management: start, stop, health checks. Runtimes: containerd, CRI-O.
+
+9️⃣ How does Kubelet handle networking?
+Uses CNI (Container Network Interface) to assign pod IPs and configure routes. Examples: Calico, Cilium, AWS VPC CNI.
+
+🔟 Where does Kubelet read PodSpecs?
+Two sources:
+API Server (standard)
+Static manifests from /etc/kubernetes/manifests/
+
+1️⃣1️⃣ What are the three K8s probes?
+Startup: Checks app start Liveness: Checks if alive (restarts if fails) Readiness: Checks if ready for traffic
+
+1️⃣2️⃣ How does Kubelet use probes?
+Performs periodic checks from PodSpec. Restarts unhealthy containers based on restartPolicy. Syncs desired vs actual state.
+
+1️⃣3️⃣ What are Static Pods?
+Pods created directly by Kubelet without scheduler. Used for control-plane components (kube-apiserver, etcd). Lives in /etc/kubernetes/manifests/.
+
+1️⃣4️⃣ What metrics does Kubelet report?
+Pod/container status (Running, Pending, Failed)
+Resource usage (CPU, memory, disk)
+Event logs & probe results
+
+1️⃣5️⃣ What are Kubelet restart policies?
+Always: Restart on any exit OnFailure: Restart only on error Never: No restart
+
+   🎯 Key Takeaway
+
+Kubelet is the node guardian ensuring containers run as specified. It's the bridge between control plane (API Server) and actual workload execution (CRI runtime).
+
+
+K8s Interview Series – Part 6: kube-proxy – The Network Traffic Controller
+
+1️⃣ What is kube-proxy?
+A network proxy running on every worker node that implements the Kubernetes Service abstraction. It maintains network rules to enable communication between Services and Pods.
+
+2️⃣ Where does kube-proxy run?
+On every worker node only (not control plane). Deployed as a DaemonSet ensuring one instance per node. 
+
+3️⃣ Is kube-proxy a process, service, or daemon?
+A system daemon deployed as either a DaemonSet pod (modern K8s) or systemd service (bare-metal/VM setups). Runs continuously to maintain network rules.
+
+4️⃣ What is kube-proxy's main function?
+Maintains network rules (iptables/IPVS) that route traffic from Service IPs (ClusterIP/NodePort) to actual Pod IPs. Provides load balancing across pod replicas automatically.
+
+5️⃣ How does kube-proxy communicate with control plane?
+Watches the API Server for changes to Services and Endpoints objects. It's a one-way communication (read-only)—kube-proxy never writes data back to API Server.
+
+6️⃣ Does kube-proxy handle pod-to-pod networking?
+❌ No! Pod-to-pod networking is handled by CNI plugins (Calico, Cilium, Flannel). kube-proxy only handles Service-to-Pod traffic routing.
+
+7️⃣ What are the three kube-proxy modes?
+userspace: Legacy, slow (traffic goes through userspace) iptables: Default mode, uses kernel netfilter rules IPVS: High-performance mode using Linux kernel load balancer
+
+8️⃣ How does iptables mode work?
+Creates iptables rules in the NAT table that intercept packets destined for Service IPs and rewrite them to backend Pod IPs. Uses random selection for load balancing.
+
+9️⃣ What is IPVS mode and why use it?
+IP Virtual Server - kernel-level load balancer offering better performance than iptables for clusters with 1000+ Services. Supports multiple algorithms (round-robin, least-connection, etc.).
+
+🔟 What happens when kube-proxy fails?
+Existing connections may continue temporarily, but new Service connections fail. Services become unreachable as network rules stop updating. Pods can still communicate using direct Pod IPs.
+
+1️⃣1️⃣ How does kube-proxy implement ClusterIP?
+Creates network rules mapping ClusterIP:ServicePort to PodIP:ContainerPort. Traffic is distributed across healthy backend pods using round-robin (iptables) or selected algorithm (IPVS).
+
+1️⃣2️⃣ How does NodePort work with kube-proxy?
+Opens a specific port (30000-32767 range) on all worker nodes. Traffic to any NodeIP:NodePort is forwarded to Service backend pods, enabling external cluster access.
+
+1️⃣3️⃣ Does kube-proxy manage LoadBalancer Services?
+Partially. Cloud controller provisions the external LB (AWS ELB, GCP LB). kube-proxy handles internal routing from node to pods after traffic enters the cluster.
+
+1️⃣4️⃣ Difference between kube-proxy and CNI?
+CNI: Assigns Pod IPs, handles pod-to-pod direct communication 
+kube-proxy: Implements Service abstraction, handles Service-to-Pod routing and load balancing.

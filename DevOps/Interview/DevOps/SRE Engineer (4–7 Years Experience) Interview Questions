@@ -1,0 +1,48 @@
+SRE Engineer (4–7 Years Experience) Interview Questions 
+
+If you’re targeting mid-senior to senior SRE roles, these are the areas interviewers expect you to own end-to-end 👇
+
+🔹 Reliability Fundamentals
+• What are SLIs, SLOs, and SLAs, and how do you define them in real systems?
+• How do you balance reliability vs feature velocity?
+• What is error budget and how do you enforce it?
+
+🔹 Monitoring & Observability
+• How do you design monitoring for distributed systems?
+• What’s the difference between metrics, logs, and traces?
+• How do you reduce alert fatigue?
+• How do you write effective alerts?
+
+🔹 Incident Management
+• How do you handle Sev-1 production incidents?
+• What is your incident response and escalation process?
+• How do you run blameless postmortems?
+• How do you prevent repeat incidents?
+
+🔹 Kubernetes & Infrastructure
+• How do you design highly available Kubernetes clusters?
+• How do you handle cluster upgrades with zero or minimal downtime?
+• How do you troubleshoot CrashLoopBackOff and high latency issues?
+• How do you manage autoscaling at pod and node level?
+
+🔹 Automation & Toil Reduction
+• What is toil and how do you measure it?
+• How do you automate repetitive operational tasks?
+• How do you decide what to automate first?
+
+🔹 Capacity Planning & Performance
+• How do you perform capacity planning?
+• How do you handle traffic spikes and sudden load?
+• How do you conduct load and stress testing?
+
+🔹 Security & Risk
+• How do you implement security in SRE workflows?
+• How do you manage secrets and access securely?
+• How do you assess and reduce operational risk?
+
+🔹 Collaboration & Ownership
+• How do you work with developers to improve reliability?
+• How do you push back on risky releases?
+• How do you mentor junior engineers?
+
+💡 SRE is not just ops — it’s engineering for reliability at scale.

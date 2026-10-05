@@ -1,0 +1,53 @@
+As a Devsecops Everyone needs to know the 
+Relationship and workflow between all these tools:
+
+1. Shell Scripting
+Role: Foundation for automation.
+Use: Write scripts to automate repetitive tasks (starting services, cleaning logs, provisioning servers).
+Relation: Acts as the glue between tools — you can trigger Ansible playbooks, Terraform commands, or Docker builds via scripts.
+
+2. Ansible
+• Role: Configuration management & automation.
+• Use: Install packages, configure servers, manage users.
+• Relation: Often triggered by shell scripts or CI/CD pipelines. Works well with Terraform (infra provisioning first, then Ansible config)
+
+3. Terraform
+• Role: Infrastructure as Code (IaC).
+• Use: Provision cloud resources (AWS EC2, VPCs, Kubernetes clusters).
+• Relation: Terraform sets up infra → Ansible configures it → Docker/Kubernetes deploy apps on it.
+
+4. Docker
+• Role: Containerization.
+• Use: Package apps with dependencies into portable containers.
+• Relation: Runs on infra provisioned by Terraform, configured by Ansible. Containers are later orchestrated by Kubernetes.
+
+5. Kubernetes
+• Role: Container orchestration.
+• Use: Manage scaling, networking, and deployment of Docker containers.
+• Relation: Terraform can provision the cluster, Ansible can configure nodes, Jenkins CI/CD can deploy apps into Kubernetes.
+
+6. Jenkins
+• Role: CI/CD automation.
+• Use: Build, test, and deploy pipelines.
+• Relation: Jenkins pipelines can:
+• Run Terraform to provision infra
+• Trigger Ansible for configuration
+• Build Docker images
+• Deploy to Kubernetes
+
+🔄 Putting It All Together (Workflow Example)
+1. Shell Script kicks off the pipeline.
+2. Jenkins runs the CI/CD pipeline.
+3. Terraform provisions cloud infra (servers, clusters).
+4. Ansible configures servers (install Docker, set up networking).
+5. Docker builds and packages the app.
+6. Kubernetes deploys and manages containers.
+7. Jenkins monitors and redeploys on changes
+
+📊 Visual Flow (Simplified)
+
+Shell Script → Jenkins Pipeline → Terraform (Infra) → Ansible (Config)
+ ↓
+ Docker (App Container) → Kubernetes (Orchestration)
+ ↓
+ CI/CD feedback loop via Jenkins

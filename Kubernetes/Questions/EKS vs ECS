@@ -1,0 +1,20 @@
+𝗘𝗞𝗦 𝘃𝘀 𝗘𝗖𝗦: 𝗪𝗵𝗮𝘁’𝘀 𝘁𝗵𝗲 𝗗𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲?
+
+Both 𝗔𝗺𝗮𝘇𝗼𝗻 𝗘𝗖𝗦 (𝗘𝗹𝗮𝘀𝘁𝗶𝗰 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗦𝗲𝗿𝘃𝗶𝗰𝗲) and 𝗔𝗺𝗮𝘇𝗼𝗻 𝗘𝗞𝗦 (𝗘𝗹𝗮𝘀𝘁𝗶𝗰 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲) are managed container orchestration services on AWS but they work in different ways:
+
+𝗔𝗺𝗮𝘇𝗼𝗻 𝗘𝗖𝗦
+- AWS’s own container orchestration platform.
+- Runs containers on EC2 instances or AWS Fargate (serverless).
+- Fully integrated with AWS services like IAM, CloudWatch, and ALB.
+- Focused on simplicity and AWS-native operations.
+
+𝗔𝗺𝗮𝘇𝗼𝗻 𝗘𝗞𝗦
+- A managed Kubernetes service on AWS.
+- Provides the Kubernetes control plane while you use Kubernetes APIs, manifests, and tooling.
+- Runs workloads on EC2 or Fargate.
+- Part of the wider Kubernetes ecosystem, making workloads portable across cloud and on-prem environments.
+
+Simply put:
+
+ECS = AWS’s native way of orchestrating containers.
+EKS = Kubernetes managed by AWS.

@@ -1,0 +1,7 @@
+What is the primary function of ArgoCD in GitOps?
+A) Build application code
+B) Monitor system logs
+C) Manage deployments via Git
+D) Sync cluster with Git repo
+
+ANS D

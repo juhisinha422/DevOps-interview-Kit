@@ -1,0 +1,48 @@
+Interview Experience – AWS | Docker | Kubernetes | Linux
+
+I recently appeared for a DevOps/Cloud interview where I was asked a range of practical and conceptual questions.
+Sharing them here for the community 👇
+
+🔹 AWS
+	•	What do you understand by Autoscaling in AWS?
+	•	What can you mention for VPC?
+      •     What is difference between Public and Private Subnet/IP? How can you identify?
+      •  What is difference NACLs and Security Group?
+	•	How can you attach/mount second disk to existing running instance?
+	•	What is IAM users, roles and policies?
+      •     What is difference between TCP and UDP?
+
+🔹 Docker
+	•	What are common instructions in Dockerfile?
+	•	What is the difference between CMD and ENTRYPOINT in Docker?
+	•	What is the difference between ADD and COPY in Docker?
+	•	Suppose in a simple Dockerfile, we write multiple CMDs like:
+CMD [sleep 10 s]
+CMD [sleep 100 s]
+CMD [sleep 200 s]
+What will happen?
+
+🔹 Kubernetes
+	•	What is Deployment in K8s?
+	•	What are differences between Statefulsets and Stateless?
+	•	Why do we use Deployment?
+	•	How is it different from ReplicaSets?
+	•	What are services in Kubernetes?
+	•	If you want to host 10 web apps out of 1000 running pods, how can you define policies?
+	•	What will happen in backend if you run:
+kubectl rollout restart deployment [name] ?
+
+🔹 Linux
+      •     What is usage of fstab in Linux?
+	•	What are the tasks you perform via Linux scripting?
+	•	Can you filter out only “200&400” numbers matching lines from a file?
+Ex:
+Hsjejeje 200 hhsjsjs
+100 Dannie sentence
+Djsjjs 400 10 20 50
+Dhhsjsha jsjsjssjsj
+
+	•	What is inode in Linux?
+      •     What are all file systems we can format in AWS?
+	•	What is the difference between soft and hard link?
+	•	Can you make the same hard link on two different disks?

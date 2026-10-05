@@ -1,0 +1,33 @@
+Hands-On SQL Practice: Database Creation & Queries
+This week, I worked on strengthening my SQL fundamentals by practicing end-to-end operations:
+🔹 Created a Database
+
+CREATE DATABASE CompanyDB;
+USE CompanyDB;
+🔹 Created a Table
+
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(50),
+    Salary INT
+);
+🔹 Inserted Records
+
+INSERT INTO Employees VALUES
+(1, 'Aarav Sharma', 'IT', 60000),
+(2, 'Priya Mehta', 'HR', 50000),
+(3, 'Rohit Singh', 'Finance', 65000),
+(4, 'Ananya Gupta', 'Marketing', 55000),
+(5, 'Karan Verma', 'IT', 70000);
+🔹 Basic Queries
+
+-- Retrieve all employees
+SELECT * FROM Employees;
+
+-- Retrieve IT department employees
+SELECT * FROM Employees WHERE Department = 'IT';
+
+-- Update salary
+UPDATE Employees SET Salary = 75000 WHERE EmpID = 1;
+💡 This exercise helped me brush up on data definition (DDL), data manipulation (DML), and querying techniques that are essential for database management and backend development.

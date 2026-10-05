@@ -1,0 +1,42 @@
+Company: Marcel
+
+. What is your last project?
+. Do you have experience with Jenkins?
+.Can you explain the continuous integration flow in your project?
+.Do you have experience in writing pipeline scripts for Azure DevOps?
+.Do you have experience with Terraform?
+.What kind of Terraform modules have you written so far to create infrastructure in Azure?
+.Why do we need to use Terraform when there are other automation tools like ARM templates? What is the difference?
+.What is the difference between modules and resources in Terraform?
+.Where are you storing your Terraform state file?
+.What do you do if Terraform apply fails? How do you resolve those issues?
+.If resources are already created manually in Azure, how can you track them via Terraform?
+.Can you write a small Terraform script for a module or resource you have worked on?
+.Do you have experience with Terraform on Azure?
+.Can you provide a Terraform script that creates a resource in Azure (or AWS if not Azure)?
+.Do you know about provisioners in Terraform?
+.Can you explain the structure of Terraform in your project, including how you write modules, folder structure, and resource creation?
+.Please explain the folder/repo/module structure in your project and the Terraform pipeline stages.
+.How are you calling your modules? Can you write a script to call a module?
+.If a module is in a different repo, how can you call it?
+.Do you know how to create multiple resources with Terraform?
+.What is the difference between 'count' and 'for_each' in Terraform?
+.Are you following the agile methodology or waterfall methodology currently?
+.How does your deployment pipeline look? Where are you deploying your applications?
+.What is the version of Kubernetes you are using?
+.Are you involved in AKS or Jenkins upgrades, or any other upgrades in your project?
+.How many Kubernetes clusters are you using currently?
+.How many environments are there in your current project?
+.How frequently do your releases happen?
+.How do you deploy your application and how do you check if your application is running in the cluster?
+.What are the commands used to troubleshoot a pod in Kubernetes?
+.If you have different nodes, how do you schedule a pod on a specific node?
+.How do you resolve conflicts in git?
+.If you have 100 commits on a feature branch and want to combine them into a single commit before merging and raising a PR, how do you handle that.
+.Which flavor of Linux do you have experience with?
+.What is the use case for a multi-stage Dockerfile?
+.Are you using Azure Pipelines to build and deploy?
+.Can you write an Azure Pipeline script on your screen?
+.How do you generally handle secrets in Azure DevOps pipelines?
+.How do you integrate Azure Key Vault with Azure DevOps pipelines?
+.What stages does your pipeline contain? Can you write your stages

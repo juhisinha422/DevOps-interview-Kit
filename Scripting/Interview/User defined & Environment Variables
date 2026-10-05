@@ -1,0 +1,72 @@
+Difference Between User-Defined Variables and Environment Variables in Shell
+
+🟢 1. User-Defined Variables
+
+These are the variables that you create inside your script or terminal session.
+They exist only within that shell (and not for other programs).
+
+#!/bin/bash
+
+name="Aayushi"
+echo "Hello, $name!"
+
+📌 Explanation:
+	•	name is created by you.
+	•	It exists only in this shell (temporary).
+	•	If you open a new terminal, $name won’t exist there.
+
+✅ Use Case:
+
+To store temporary values while running a script — like usernames, file paths, counters, etc.
+
+
+These are your own storage boxes inside the script.
+They exist only while your script is running.
+
+LOG_FILE="/tmp/aws_env_check.log"
+CURRENT_DATE=$(date +"%Y-%m-%d %H:%M:%S")
+
+Here:
+	•	LOG_FILE = where you’ll save results.
+	•	CURRENT_DATE = current date and time.
+
+➡️ These two are local. Once your script ends, they disappear.
+
+
+
+🔵 2. Environment Variables
+
+These are system-wide variables that affect the behavior of the shell and other programs.
+They are inherited by child processes (subshells)
+
+export PATH=/usr/local/bin:/usr/bin:/bin
+echo $PATH
+
+📌 Explanation:
+	•	PATH is an environment variable used by Linux to find executables.
+	•	When you export a variable, it becomes available to child shells (like when a script is run or another command is executed).
+
+These are global boxes that the system already knows about — like your name, home folder, or cloud setup.
+They are visible to every script and command.
+
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+AWS_DEFAULT_REGION
+
+🔍 3. What the script does
+	1.	It prints a message saying:
+👉 “Hey, I’m checking your AWS setup…”
+	2.	Then it looks at those environment variables.
+	•	If they’re empty → ❌ it says “Credentials not set!”
+	•	If they’re filled → ✅ it says “Credentials configured.”
+	3.	If your region is not set, it automatically adds one:
+
+
+export AWS_DEFAULT_REGION="us-east-1"
+
+This means:
+➡️ “If you didn’t tell me your region, I’ll use this default and share it with other tools.”
+
+	4.	Finally, it saves the output to a log file at:
+
+/tmp/aws_env_check.log

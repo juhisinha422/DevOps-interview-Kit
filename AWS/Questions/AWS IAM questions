@@ -1,0 +1,28 @@
+AWS IAM – Real-Time Scenario Based Questions (Most Important Topics)
+👉 If you’re preparing for AWS interviews or want to strengthen your IAM skills, these scenario-based questions will help sharpen your understanding.
+🔹 Access Management Basics
+How do you give a developer temporary access to S3 for 24 hours?
+How do you allow EC2 to securely access S3 without using access keys?
+A user can log in but still cannot access an S3 bucket. What would you check?
+What’s the difference between inline and managed IAM policies, and when would you use each?
+🔹 Security Best Practices
+How do you enforce MFA for console and CLI access?
+How do you restrict IAM users so they can log in only from your corporate IP range?
+How do you enforce that all IAM users rotate access keys every 90 days?
+How do you revoke IAM access immediately if a user leaves the company?
+🔹 Cross-Account & Federation
+How do you share access with another AWS account securely?
+How do you grant cross-account access to Lambda functions?
+How do you allow federated users from an Active Directory/SSO provider to log in?
+🔹 Policy & Permission Control
+What’s the best way to give read-only access to CloudWatch logs?
+How do you ensure that developers can only launch specific EC2 instance types?
+What are IAM permission boundaries, and when do you use them?
+How do you implement least privilege across multiple teams?
+🔹 Governance & Monitoring
+How do you troubleshoot when an IAM policy denies access unexpectedly?
+How do you prevent users from deleting important S3 objects?
+A new intern needs limited console access. How do you configure it?
+What’s the best way to assign permissions to hundreds of users at once?
+How do you monitor and detect unusual IAM activity?
+💡 IAM is one of the most critical topics in AWS interviews & real-world cloud security. Mastering these scenarios will set you apart.

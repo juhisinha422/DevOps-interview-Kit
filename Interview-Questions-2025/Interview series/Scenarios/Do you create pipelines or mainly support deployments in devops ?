@@ -1,0 +1,18 @@
+Do you create pipelines or mainly support deployments in devops ?
+
+Yes both pipeline creation and deployment support are fully handled.
+I can do both. I can write the actual configuration files to build our CI/CD pipelines from scratch, and I can troubleshoot or support existing deployments.
+
+1. I can generate complete, production-ready configuration files for platforms like GitHub Actions and Jenkins
+
+2.Continuous Integration (CI): I can write steps to automate linting, static code analysis (like SonarQube), running unit tests, and building Docker images.
+
+3.Continuous Delivery/Deployment (CD): I can configure multi-stage environments (Dev, Staging, Prod) with manual approval gates, rolling updates, or blue-green strategies.
+
+4.Infrastructure as Code (IaC): I can provision the infrastructure your pipelines deploy to by writing Terraform files
+
+5.Kubernetes crash loops (CrashLoopBackOff), or Docker build errors, and I will isolate the root cause and provide the fix.
+
+6.I can write Kubernetes manifests, Helm charts, or ArgoCD/Flux configurations to manage stateful deployments.
+
+7. I can help you optimize slow build times, fix caching strategies, or secure our pipeline by shifting to secret management tools like HashiCorp Vault.

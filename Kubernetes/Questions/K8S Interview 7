@@ -1,0 +1,91 @@
+K8s Interview Series – Part 7: Container Runtime – The Container Executor
+
+Master Container Runtime with 10 essential questions! Understand what actually runs your containers.
+
+---
+
+## 1️⃣ What is a Container Runtime?
+
+The software responsible for running containers. It pulls container images, creates containers, starts/stops them, and manages their lifecycle. Examples: containerd, CRI-O, Docker Engine.
+
+---
+
+## 2️⃣ Where does Container Runtime fit in K8s architecture?
+
+Runs on every worker node. The Kubelet communicates with the container runtime via CRI (Container Runtime Interface) to create and manage containers within pods.
+
+---
+
+## 3️⃣ What is CRI (Container Runtime Interface)?
+
+A plugin interface that allows Kubelet to communicate with different container runtimes without knowing their implementation details. It's a gRPC API that standardizes how K8s talks to runtimes.
+
+---
+
+## 4️⃣ What happened to Docker in Kubernetes?
+
+Docker Shim was removed in K8s 1.24 (2022). Docker Engine isn't CRI-compliant, so K8s needed a shim. Now, use containerd(Docker's underlying runtime) or CRI-O directly, which are CRI-native.
+
+---
+## 5️⃣ What's the difference between containerd and Docker?
+
+Docker: Full platform (CLI, image building, networking, runtime)
+containerd: Just the core runtime (what Docker uses internally)
+
+K8s only needs the runtime part, so containerd is lighter and faster.
+
+---
+## 6️⃣ What are the popular Container Runtimes for K8s?
+
+containerd (most popular, CNCF project)
+CRI-O(built specifically for K8s)
+Docker Engine (via cri-dockerd adapter, legacy)
+
+Most production clusters use containerd
+
+---
+
+## 7️⃣ What is the OCI (Open Container Initiative)?
+
+Industry standard for container formats and runtimes. Defines:
+-OCI Image Spec: How container images are structured
+- OCI Runtime Spec: How containers run (low-level)
+
+Tools like runc implement OCI runtime spec.
+
+---
+
+## 8️⃣ What is runc and how does it relate to containerd?
+
+runc is the low-level OCI runtime that actually creates and runs containers at the OS level (namespaces, cgroups). containerd is the high-level runtime that manages images and calls runc to start containers.
+
+Flow: Kubelet → containerd → runc → Container process
+
+---
+
+## 9️⃣ How does Kubelet interact with Container Runtime?
+
+Kubelet sends requests via CRI gRPC API to the runtime:
+- Create/delete containers
+- Pull images
+- Get container status
+- Execute commands in containers
+
+Runtime responds with status and handles the actual work.
+
+---
+
+## 🔟 Can you change Container Runtime in a running cluster?
+
+**Technically yes, but risky! Requires:
+- Drain node (evict all pods)
+- Stop kubelet
+- Install new runtime
+- Update kubelet config
+- Restart kubelet
+
+---
+
+## 🎯 Key Takeaway
+
+Container Runtime is the actual container executor that Kubelet delegates to. It handles image pulling, container creation, and lifecycle management using standardized interfaces (CRI)

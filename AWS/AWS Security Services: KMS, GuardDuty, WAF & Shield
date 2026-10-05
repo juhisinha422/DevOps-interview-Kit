@@ -1,0 +1,164 @@
+AWS Security Services: KMS, GuardDuty, WAF & Shield Explained
+
+Security is one of the most critical pillars of cloud architecture.
+AWS provides powerful, managed services that help you secure your applications, data, and infrastructure — without building everything from scratch.
+
+Today, let’s break down four key AWS security services that every engineer and interviewer expects you to know
+
+
+🔹 1️⃣ AWS KMS (Key Management Service)
+
+AWS KMS is a fully managed service for creating, managing, and controlling encryption keys.
+
+💡 What KMS Does:
+
+Encrypts data stored in S3, EBS, RDS, DynamoDB, Lambda, and more
+
+Provides Customer Managed Keys (CMK)
+
+Integrates with IAM for granular access control
+
+Supports automatic key rotation
+
+Logs all key usage via CloudTrail
+
+
+📍 Use Cases:
+
+Encrypting sensitive data
+
+Managing secure access to encryption keys
+
+Compliance requirements (HIPAA, PCI, GDPR)
+
+
+🔹 2️⃣ Amazon GuardDuty
+
+GuardDuty is AWS’s threat detection service powered by ML and threat intelligence.
+
+💡 What GuardDuty Detects:
+
+Unusual IAM activity
+
+Compromised EC2 instances
+
+Malicious IP/domain communication
+
+Suspicious S3 access
+
+Crypto mining attempts
+
+Reconnaissance activities
+
+
+📍 Use Cases:
+
+Continuous monitoring
+
+Early security threat detection
+
+Security operations (SOC) automation
+
+
+
+🔹 3️⃣ AWS WAF (Web Application Firewall)
+
+AWS WAF protects your applications from common web exploits like:
+
+SQL injection
+
+Cross-site scripting (XSS)
+
+Bad bots
+
+Layer 7 DDoS attacks
+
+
+💡 Features:
+
+Managed rule sets
+
+Custom rules (IP blocks, regex, geolocation)
+
+Integrates with CloudFront, ALB, API Gateway
+
+
+📍 Use Cases:
+
+Protect APIs & websites
+
+Block malicious traffic
+
+Rate limiting
+
+
+
+🔹 4️⃣ AWS Shield (DDoS Protection)
+
+🛡 Shield Standard:
+
+Free for all AWS customers
+
+Protects against common Layer 3 & 4 DDoS attacks
+
+
+🛡 Shield Advanced:
+
+Additional protection for mission-critical apps
+
+24×7 AWS DDoS response team (DRT)
+
+Cost protection against scaling spikes
+
+Global threat visibility
+
+
+📍 Use Cases:
+
+Large-scale applications
+
+High-availability architectures
+
+Financial / e-commerce platforms
+
+
+🔍 Quick Comparison (Interview Cheat Sheet)
+
+Service	Purpose
+
+KMS	Encryption key management
+GuardDuty	Threat detection & monitoring
+WAF	Protects web apps from Layer 7 attacks
+Shield	Protects apps from DDoS attacks
+
+
+
+💬 Common Interview Questions:
+
+Difference between WAF and Shield?
+
+What is the difference between CMK and AWS managed keys?
+
+How does GuardDuty detect threats?
+
+How does Shield Advanced protect against DDoS?
+
+What is key rotation in KMS?
+
+
+
+📘 Helpful AWS Documentation:
+
+https://lnkd.in/g-kE7MK3
+
+https://lnkd.in/ghd-xkU7
+
+https://lnkd.in/gdcvc7ig
+
+https://lnkd.in/gxe-S-8k
+
+https://lnkd.in/gTQYB_S8
+
+https://lnkd.in/gTsfikt2
+
+https://lnkd.in/geYcZd3U

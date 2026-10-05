@@ -1,0 +1,53 @@
+Loops & Handlers
+
+Today I learned about Loops & Handlers in Ansible, which help in writing efficient and event-driven automation ⚙️
+Instead of repeating the same task multiple times, we can use loops.
+ And instead of restarting services again and again, we use handlers smartly 🔁
+
+🔹 🔄 loop & with_items
+Loops allow us to run the same task for multiple items without duplication.
+Example:
+- name: Install multiple packages
+ apt:
+ name: "{{ item }}"
+ state: present
+ loop:
+ - nginx
+ - git
+ - curl
+Earlier with_items was used, but now loop is the modern and recommended approach.
+ It makes Playbooks cleaner and more scalable 🚀
+
+🔹 🔔 notify
+The notify keyword is used to trigger handlers only when a task makes a change.
+Example:
+- name: Update config file
+ copy:
+ src: app.conf
+ dest: /etc/app.conf
+ notify: Restart service
+This ensures actions are executed only when necessary, saving time and resources.
+
+🔹 🛠️ Handlers Usage
+Handlers are special tasks that run only when notified by other tasks.
+ They are defined under the handlers section in a Playbook.
+Example:
+handlers:
+ - name: Restart service
+ service:
+ name: nginx
+ state: restarted
+Handlers do not run unless triggered, making automation more efficient ⚡
+
+🔹 🔁 Restart Services (Real Use Case)
+In real-world automation:
+ • Update configuration file
+ • Notify handler
+ • Restart service only if changes occur
+This avoids unnecessary service restarts and improves system stability 🔐
+Handlers are widely used in production-grade Playbooks.
+
+🔥 3-Line Takeaway
+Loops reduce repetition in tasks.
+ Notify triggers handlers only on change.
+ Handlers ensure smart and efficient service restarts.

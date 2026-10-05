@@ -1,0 +1,58 @@
+Common Git & GitHub Errors Every DevOps Engineer Faces 🚀 
+
+Working in DevOps means you live and breathe Git & GitHub daily but even experts hit common pitfalls.
+
+ Here are some of the most frequent Git/GitHub issues and their real-world fixes 👇
+
+1. What causes the error "fatal: not a git repository"?
+ This happens when you run Git commands outside a Git-initialized directory.
+ Answer: Navigate to the correct folder or initialize a repository using git init.
+
+2. Why do we get "error: failed to push some refs to 'origin/main'"?
+ It usually occurs when someone else pushed new commits to the same branch.
+ Answer: Run git pull --rebase origin main before pushing again.
+
+3. What is a merge conflict and why does it happen?
+ Merge conflicts occur when two developers edit the same line in a file.
+ Answer: Open the conflicted file, resolve the differences manually, then use git add . and git commit.
+
+4. Why do we see "fatal: remote origin already exists"?
+ You tried to add a remote that already exists in your Git configuration.
+ Answer: Update it using git remote set-url origin <new-URL>.
+
+5. What is a detached HEAD state in Git?
+ It occurs when you check out a specific commit instead of a branch.
+ Answer: Create a new branch from it using git checkout -b new-branch.
+6. Why does Git show "permission denied"?
+ SSH key authentication failed with GitHub.
+ Answer: Generate a new SSH key using ssh-keygen and add it to your GitHub account.
+
+7. What does "rejected non-fast-forward" mean?
+ Your local branch is behind the remote branch.
+ Answer: Run git fetch origin and then git merge or git pull --rebase.
+
+8. Why does a large file push fail on GitHub?
+ GitHub does not allow files larger than 100MB.
+ Answer: Use Git LFS (Large File Storage) for large files.
+
+9. Why do we see "fatal: unable to access ‘https://github.com/...’
+ — SSL certificate problem"?
+ It’s caused by SSL or proxy configuration issues.
+ Answer: Check your proxy or temporarily disable SSL verification using
+ git config --global http.sslVerify false.
+
+10. What does "You have unstaged changes" or "Your branch is ahead/behind" mean?
+ It means your working directory is not in sync with the latest commit.
+ Answer: Run git status to check what needs to be committed or pulled.
+
+11. Why do we get "Your local changes to the following files would be overwritten by merge"?
+ You have uncommitted local changes while trying to pull new updates.
+ Answer: Commit or stash your changes using git stash before pulling.
+
+12. What causes "error: src refspec main does not match any"?
+ You are trying to push a branch that doesn’t exist or has no commits.
+ Answer: Make sure your branch has at least one commit and verify the branch name.
+
+13. Why does Git say "fatal: branch 'main' already exists"?
+ You tried to create a branch that already exists locally.
+ Answer: Switch to it using git checkout main or delete it if not needed.

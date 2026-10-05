@@ -1,0 +1,38 @@
+🔁 AWS for DevOps – Containers
+
+If you work with containers on AWS, you should be able to explain these clearly 👇
+
+🔹 ECS (Elastic Container Service)
+ • When would you choose ECS over EKS?
+ • Difference between ECS EC2 launch type and Fargate?
+ • How does task placement work in ECS?
+ • How do you handle auto scaling for ECS services?
+
+🔹 EKS (Elastic Kubernetes Service)
+ • What AWS components are managed vs customer-managed in EKS?
+ • How does EKS authentication work with IAM?
+ • How do you upgrade EKS clusters safely?
+ • How do you manage node groups and pod scaling?
+
+🔹 Fargate
+ • When is Fargate a better choice than EC2-based clusters?
+ • What are the cost trade-offs of Fargate?
+ • What limitations exist with Fargate?
+ • How do you troubleshoot performance issues in Fargate?
+
+🔹 Networking
+ • How does container networking work in ECS vs EKS?
+ • How do security groups apply to pods in EKS?
+ • How do you expose services internally vs publicly?
+
+🔹 Storage
+ • How do you handle persistent storage for containers?
+ • Difference between EFS, EBS, and ephemeral storage?
+ • When would you use EFS with containers?
+
+🔹 Observability
+ • How do you collect logs from containers in AWS?
+ • How do you monitor container-level metrics?
+ • What tools do you use for tracing in containerized workloads?
+
+💡 Containers are easy to run, hard to run correctly in production.

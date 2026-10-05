@@ -1,0 +1,79 @@
+Jenkins Scenario-Based Questions 
+
+1. Your Jenkins job is failing because the workspace is getting too large and builds are slowing down. How do you fix this?
+Answer:
+Use the Clean Workspace plugin or rm -rf * at the start of the job.
+Configure "Discard Old Builds" to limit history.
+Store artifacts in Nexus/Artifactory/S3 instead of the workspace.
+Use Pipeline cleanWs() step to automatically clean after every build.
+
+2. A Jenkins pipeline runs successfully, but deployment is not happening on the target server. What steps will you take?
+Answer:
+Check if credentials/SSH keys are properly configured.
+Verify post-build actions or deployment stages are triggered (when condition in pipeline may skip).
+Look at Jenkins logs (jenkins.log, consoleOutput).
+Ensure the target server is reachable (firewall/ports).
+Use sh 'scp file user@server:/path/' or Jenkins Publish Over SSH plugin.
+
+3. Jenkins master is overloaded with jobs. How do you scale it?
+Answer:
+Configure Jenkins agents/slaves and distribute jobs.
+Use labels to bind jobs to specific agents.
+Use Kubernetes plugin or Docker agents for dynamic scaling.
+Separate build, test, and deployment nodes.
+
+4. A Jenkins build is failing only on the agent node, but works fine on the master. What’s your approach?
+Answer:
+Check if tools (Java, Maven, Docker, etc.) are installed on the agent.
+Ensure PATH variables are configured.
+Verify file permissions on the agent workspace.
+Check if network access is same as master (e.g., repo access, artifact downloads).
+
+5. Your Jenkins job fails because of "Out of Memory" errors. What will you do?
+Answer:
+Increase Jenkins JVM heap size (-Xms512m -Xmx2048m).
+Clean old builds and workspaces.
+Run heavy builds on dedicated agents.
+Use parallel stages to distribute workload.
+
+6. Frequent Git Merge Conflicts in CI Pipeline
+You have multiple feature branches being merged into develop. Jenkins builds often fail due to merge conflicts, wasting developer time.
+Solution:
+Use a pre-merge pipeline (git merge --no-commit) in Jenkins to detect conflicts before merging.
+Enable GitHub/GitLab PR build validation so Jenkins runs tests before merging.
+Adopt trunk-based development with feature toggles to reduce long-lived branches.
+Use Gerrit or GitHub Protected Branches to enforce CI success before merge.
+
+7. Deployment Pipeline Succeeds but Application Fails in Production
+Jenkins pipeline executes successfully (build, test, deploy), but the app crashes after deployment.
+Solution:
+Add post-deployment validation stages (health checks, smoke tests, DB connectivity).
+Use ansible or kubectl rollout status in pipeline to confirm pods/services are healthy.
+Add rollback logic (kubectl rollout undo / revert Ansible playbook).
+Collect logs/metrics (ELK, Prometheus, Grafana) inside Jenkins job artifacts for debugging.
+
+8. Jenkins Build Slows Down Because of Large Docker Images
+A microservices project builds Docker images >2GB, slowing down push/pull in Jenkins.
+Solution:
+Optimize Dockerfiles: multi-stage builds, smaller base images (alpine/distroless).
+Use build cache (--cache-from) and layered builds.
+Push images to a local Nexus/Artifactory registry close to Jenkins.
+Clean old images and prune (docker system prune) on agents periodically.
+Use Kaniko or BuildKit for faster builds in Kubernetes-based Jenkins agents.
+
+9. Jenkins Pipelines Fail Randomly Due to Network/Dependency Issues
+Some jobs fail at dependency download stage (Maven, NPM, pip) because of unstable internet or repo outages.
+Solution:
+Use local mirrors/caching proxies (Nexus, Artifactory) for dependencies.
+Add retry logic in pipeline (retry(3) { sh 'mvn clean install' }).
+Run dependency vulnerability scans in a separate stage to avoid blocking builds.
+For cloud, host registry in same VPC/region to avoid external dependency failures.
+
+10. Jenkins Builds Queued Too Long During Peak Hours
+During release days, too many jobs run at once, causing slow execution.
+Solution:
+Use Jenkins Kubernetes/Docker plugin to spin up on-demand build agents in the cloud.
+Configure job throttling and priority plugins (e.g., critical pipelines run first).
+Split monolithic pipeline into smaller modular pipelines (build → test → deploy).
+Cache artifacts between builds to avoid recomputation.
+Horizontally scale Jenkins master with HA setup and distribute workloads.

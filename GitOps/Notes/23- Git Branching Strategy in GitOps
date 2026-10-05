@@ -1,0 +1,33 @@
+Git Branching Strategy in GitOps
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring Git Branching Strategies in GitOps. 🚀
+A well-defined branching strategy helps teams manage code changes, deployments, and environments efficiently while maintaining stability in production systems.
+
+🔹 GitFlow Strategy
+ One common approach is the GitFlow workflow, which organizes development using multiple branches such as:
+main / master → production-ready code
+develop → integration of new features
+feature branches → new feature development
+release branches → preparing for production release
+This structure helps teams maintain stable releases and organized development workflows.
+
+🔹 Environment-Based Branches
+ Another approach is using environment-specific branches.
+Examples:
+dev branch → development environment
+stage branch → staging environment
+prod branch → production environment
+Each branch contains configurations specific to that environment, ensuring controlled deployments across environments.
+
+🔹 PR-Based Deployments
+ In GitOps, deployments often happen through Pull Requests (PRs).
+Workflow example:
+Developer updates configuration files
+A pull request is created
+Team reviews and approves the change
+Once merged, the GitOps tool automatically deploys the updated configuration
+This ensures deployments are auditable, secure, and collaborative.
+
+💡 Key Insight:
+ Using a structured branching strategy ensures safe deployments, better collaboration, and improved control over infrastructure changes.

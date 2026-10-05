@@ -1,0 +1,32 @@
+ LINUX ADVANCED & PERFORMANCE TUNING
+
+These scenarios are straight from on-call rotations, outages, and system design interviews.
+
+⸻
+
+🐧 Linux Advanced – Real-World DevOps Scenarios
+	1.	Load average is very high, but CPU usage is low. How do you troubleshoot?
+	2.	System is slow even though CPU and memory look fine. Where do you investigate next?
+	3.	A server is experiencing frequent OOM kills. How do you identify and fix the root cause?
+	4.	Disk I/O wait is high. How do you diagnose storage performance issues?
+	5.	Network latency is high between two Linux servers. How do you troubleshoot it?
+	6.	A process intermittently spikes CPU and then disappears. How do you debug it?
+	7.	How do you tune Linux kernel parameters for high-traffic applications?
+	8.	A production system is running out of file descriptors. How do you fix and prevent it?
+	9.	How do you investigate context switching and scheduler issues?
+	10.	System time drift is causing application issues. How do you detect and fix it?
+	11.	How do you analyze performance issues using strace, lsof, vmstat, iostat?
+	12.	A server becomes unresponsive under load. How do you capture diagnostics safely?
+	13.	How do you tune Linux for containerized workloads?
+	14.	How do you analyze memory fragmentation and slab usage?
+	15.	How do you prepare Linux systems for high availability and resilience?
+
+⸻
+
+🧠 What Interviewers Are Testing
+
+✔ Deep OS understanding
+✔ Performance troubleshooting mindset
+✔ Safe production diagnostics
+✔ Kernel & resource tuning awareness
+✔ On-call maturity

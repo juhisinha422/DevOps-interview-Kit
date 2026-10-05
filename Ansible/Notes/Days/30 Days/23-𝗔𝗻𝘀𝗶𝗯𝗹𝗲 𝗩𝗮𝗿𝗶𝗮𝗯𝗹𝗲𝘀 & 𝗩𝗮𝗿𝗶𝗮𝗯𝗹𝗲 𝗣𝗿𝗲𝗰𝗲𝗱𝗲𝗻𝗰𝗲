@@ -1,0 +1,70 @@
+🚀 𝗗𝗮𝘆 𝟮𝟯/𝟯𝟬 – 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲𝘀 & 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲 𝗣𝗿𝗲𝗰𝗲𝗱𝗲𝗻𝗰𝗲
+
+Continuing my hashtag#30DaysOfAnsible journey! 🔥
+
+Today I focused on another fundamental Ansible concept — Variables.
+
+🎯 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲𝘀?
+
+Variables allow us to store values and reuse them across our playbooks.
+
+For example:
+
+vars:
+ app_name: nginx
+ app_port: 8080
+
+tasks:
+ - name: Install application
+ ansible.builtin.apt:
+ name: "{{ app_name }}"
+ state: present
+
+Instead of hardcoding values everywhere, we can define them once and reuse them.
+
+🔄 𝗪𝗵𝗲𝗿𝗲 𝗖𝗮𝗻 𝗪𝗲 𝗗𝗲𝗳𝗶𝗻𝗲 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲𝘀?
+
+Variables can come from different sources, including:
+
+📌 Playbook variables
+📌 Inventory variables
+📌 Group variables
+📌 Host variables
+📌 Role variables
+📌 Extra variables
+
+This is where Variable Precedence becomes important.
+
+🏆 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲 𝗣𝗿𝗲𝗰𝗲𝗱𝗲𝗻𝗰𝗲
+
+When the same variable is defined in multiple places, Ansible follows a precedence hierarchy to determine which value wins.
+
+One important example is:
+
+ansible-playbook site.yml -e "app_port=9090"
+
+-e / --extra-vars has very high precedence and can override lower-precedence variable definitions.
+
+💡 𝗪𝗵𝘆 𝗨𝘀𝗲 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲𝘀?
+
+✔️ Avoid hardcoding
+✔️ Make playbooks reusable
+✔️ Support different environments
+✔️ Simplify configuration management
+✔️ Make automation easier to maintain
+
+🌍 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗘𝘅𝗮𝗺𝗽𝗹𝗲
+
+The same playbook can be used for:
+
+🧪 Development → dev values
+🧪 Testing → test values
+🚀 Production → prod values
+
+Only the variables change — the automation logic can remain the same.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Good Ansible automation separates configuration from logic.
+
+Once you understand variables and precedence, your playbooks become much more flexible, reusable, and production-friendly.

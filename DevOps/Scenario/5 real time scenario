@@ -1,0 +1,18 @@
+5 Real-Time DevOps Interview Q&As (Scenario Based)  
+
+Most interviews today aren’t about definitions… they’re about how you solve problems when things break. Here are 5 real-world questions with practical answers 👇  
+
+Q1. Jenkins pipeline fails after a new dependency update. What’s your approach?  
+A: First check the pipeline logs to see which stage failed. If it’s a dependency issue, roll back to the last working version and lock dependency versions. Then reproduce locally, fix the issue, and update the pipeline to include dependency caching.  
+
+Q2. A Kubernetes pod is stuck in CrashLoopBackOff. How do you troubleshoot?  
+A: Run `kubectl logs <pod>` to check errors. If nothing obvious, use `kubectl describe pod` to look for OOMKilled or image pull errors. Fix might be increasing resources, correcting env variables, or rebuilding a broken image.  
+
+Q3. Production pod is running fine, but users report 502 errors through the load balancer. How do you debug?  
+A: First check if the Service in Kubernetes is correctly exposing the pod (kubectl get svc). Then inspect ingress or load balancer logs for health check failures. If health checks are failing, verify container ports, readiness probes, and network policies. Often the app is healthy but probes are misconfigured, causing the LB to reject traffic.  
+
+Q4. An application suddenly becomes slow after deployment in AWS. Where do you start?  
+A: Check CloudWatch metrics for spikes in CPU, memory, and DB latency. Use load balancer logs to see if traffic patterns changed. If DB is the bottleneck, consider adding read replicas or enabling performance insights. Always correlate metrics before scaling blindly.  
+
+Q5. Your CI/CD pipeline deployed a bad build to production. How do you roll back quickly?  
+A: Use blue/green or canary deployment strategy. Switch traffic back to the healthy version instantly while fixing the issue in the new build. Always keep rollback automation in place as part of pipeline design.  

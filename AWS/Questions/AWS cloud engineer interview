@@ -1,0 +1,33 @@
+AWS cloud engineer interview.
+
+Q: Your EKS pods are crashing with “out of memory” errors. How do you troubleshoot?
+
+A: I’d check the pod’s resource limits in the deployment spec. If they’re too low or missing, I’d adjust CPU/memory requests and limits to match the workload.
+
+Q: You launched an EC2 instance, but it’s stuck in the “pending” state. What’s going on?
+
+A: Could be an unavailable AMI or instance type in the AZ. I’d check if the AMI exists and if the AZ supports the instance type.
+
+Q: Your ALB is routing traffic unevenly across healthy targets. Why might that happen?
+
+A: The ALB’s load balancing algorithm might be session-based. I’d check if sticky sessions are enabled or if cross-zone load balancing is off, causing uneven distribution.
+
+Q: Your EKS cluster can’t scale new pods due to insufficient IPs. How do you resolve this?
+
+A: The VPC’s CIDR block might be too small. I’d enable VPC CNI’s custom networking or add a secondary CIDR to increase the IP pool.
+
+Q: You’re using AWS Secrets Manager, but your application can’t retrieve the secret. What’s wrong?
+
+A: The app’s IAM role might lack “secretsmanager:GetSecretValue” permission, or the secret’s ARN is misconfigured in the code. I’d verify both.
+
+Q: Your SQS queue is piling up messages, but your Lambda consumer isn’t processing them. Why?
+
+A: The Lambda might not have an event source mapping to the SQS queue, or its IAM role lacks permission to read from the queue. I’d check both.
+
+Q: You’re getting “ThrottlingException” errors from a DynamoDB table during peak traffic. How do you handle it?
+
+A: I’d enable auto-scaling for the table’s read/write capacity or switch to on-demand mode to handle bursts without throttling.
+
+Q: You enabled MFA for an IAM user, but they can still log in without it. Why?
+
+A: The MFA policy might not be enforced. I’d ensure a policy requiring MFA is attached to the user or group and that it’s applied to the console login action.

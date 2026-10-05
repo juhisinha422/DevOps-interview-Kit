@@ -1,0 +1,138 @@
+Basic Pod Commands
+-------------------------
+
+1. kubectl get pods
+
+
+2. kubectl get pod <pod-name>
+
+
+3. kubectl describe pod <pod-name>
+
+
+4. kubectl delete pod <pod-name>
+
+
+5. kubectl edit pod <pod-name>
+
+
+6. kubectl logs <pod-name>
+
+
+7. kubectl logs -f <pod-name>
+
+
+8. kubectl exec -it <pod-name> -- /bin/bash
+
+
+9. kubectl exec <pod-name> -- ls /
+
+
+10. kubectl apply -f pod.yaml
+
+
+11. kubectl create -f pod.yaml
+
+
+
+Pod Listing Option
+----------------------
+
+12. kubectl get pods -A
+
+
+13. kubectl get pods -n <namespace>
+
+
+14. kubectl get pods -o wide
+
+
+15. kubectl get pods -o yaml
+
+
+
+Pod Debugging
+------------------
+
+16. kubectl describe pod <pod-name>
+
+
+17. kubectl get pod <pod-name> -o json
+
+
+18. kubectl get events
+
+
+19. kubectl get events --sort-by=.metadata.creationTimestamp
+
+
+20. kubectl exec <pod-name> -- env
+
+
+
+Pod Creation Examples
+---------------------------
+
+21. kubectl run mypod --image=nginx
+
+
+22. kubectl run mypod --image=nginx --restart=Never
+
+
+23. kubectl run debug --image=busybox --restart=Never -- sleep 3600
+
+
+
+Pod Deletion Options
+-------------------------
+
+24. kubectl delete pod <pod-name>
+
+
+25. kubectl delete pod <pod-name> -n <namespace>
+
+
+26. kubectl delete pod --all
+
+
+
+Port Forwarding
+-------------------
+
+27. kubectl port-forward pod/<pod-name> 8080:80
+
+
+
+Pod Labels & Selectors
+---------------------------
+
+28. kubectl get pods --show-labels
+
+
+29. kubectl get pods -l app=myapp
+
+
+30. kubectl label pod <pod-name> env=dev
+
+
+31. kubectl label pod <pod-name> env- (remove label)
+
+
+
+Pod Annotations
+--------------------
+
+32. kubectl annotate pod <pod-name> owner=team1
+
+
+33. kubectl annotate pod <pod-name> owner-
+
+
+
+Pod Restart / Replace
+--------------------------
+
+34. kubectl replace -f pod.yaml
+
+
+35. kubectl delete -f pod.yaml && kubectl apply -f pod.yaml

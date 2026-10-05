@@ -1,0 +1,22 @@
+Interview Experience – Platform Engineer 💼
+
+interview for First-Level Interview an Platform Engineer role, and here’s a quick summary of the discussion:
+
+🔹 Topics Covered:
+
+● Self-introduction and overview of my experience
+● AWS Services I have handled and implemented
+● Jenkins Architecture in my project pipelines
+● Docker Optimization – strategies to reduce image size
+● Kubernetes Architecture – explanation and use in projects
+● Terraform – handling state files and avoiding locking issues when multiple people work on the same code
+● Jenkins Permissions & Authentication – managing users and roles
+● Project Strategy – how I approached my current project, explained end-to-end
+● Blue-Green & Canary Deployments – concepts and implementation in my projects
+● Discussion on both technologies used in the current project, team activities, suggestions, and possible improvements
+
+🔹 Feedback:
+
+The panel appreciated the clarity in explaining end-to-end implementations and real-time solutions.
+
+It was a great learning experience, and sharing it here for anyone preparing for similar DevOps / Automation interviews.

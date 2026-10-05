@@ -1,0 +1,49 @@
+ Ansible Variables: group_vars, host_vars, extra vars & precedence
+
+As your Ansible usage grows, you need better ways to organize variables.
+That’s where group_vars, host_vars, and extra vars come in.
+
+🔹 group_vars
+
+Variables defined for a group of servers.
+
+Use case:
+ When multiple servers share the same configuration.
+
+Example idea:
+All web servers use the same port or package name.
+Defined once, applied to all hosts in that group.
+
+🔹 host_vars
+
+Variables defined for a single specific server.
+
+Use case:
+When one host needs a different value than the rest of the group.
+These variables override group-level values for that host.
+
+🔹 extra vars
+
+Variables passed at runtime using the command line.
+
+Use case:
+Temporary overrides or environment-specific values.
+They are not stored in files and exist only for that execution.
+
+🔹 Variable precedence (most important concept)
+
+When the same variable is defined in multiple places, Ansible follows a priority order.
+
+Simplified rule to remember:
+
+More specific wins over less specific.
+
+General idea of precedence:
+group_vars → host_vars → extra vars
+Extra vars always have the highest priority.
+
+🔹 Simple mental model
+
+ group_vars apply broadly.
+ host_vars customize a single server.
+ extra vars override everything temporarily.

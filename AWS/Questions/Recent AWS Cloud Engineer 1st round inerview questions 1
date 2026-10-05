@@ -1,0 +1,229 @@
+## 1. What is "Provision Product" in AWS?
+
+Answer: "Provision Product" is a term used in AWS Service Catalog. It refers to the process of deploying and configuring resources defined in a product within the AWS Service Catalog. This product can be an application, service, or stack that has been pre-configured and made available for users to launch.
+
+## 2. How do you manage billing in AWS?
+
+Answer: AWS billing can be managed using the following services:
+
+AWS Cost Explorer: Allows you to visualize, understand, and manage AWS costs and usage.
+AWS Budgets: Helps set custom cost and usage budgets and alerts when thresholds are reached.
+AWS Cost and Usage Reports (CUR): Provides detailed information on your usage and costs for billing analysis.
+AWS Organizations: Allows you to consolidate billing and manage multiple accounts.
+AWS Billing and Cost Management Dashboard: Centralized hub for managing AWS billing and payments.
+
+## 3. If a group of users is building servers at a time, how will you control the billing part?
+
+Answer: Control billing by implementing:
+
+AWS Budgets: To set usage or cost thresholds and get alerts when limits are exceeded.
+Tagging: Tag resources by departments, users, or projects to allocate costs accurately.
+AWS Organizations: Use service control policies (SCPs) to restrict access or resources to prevent unauthorized provisioning.
+AWS Cost Allocation Tags: To allocate specific resources to individual users or departments.
+4. EC2 Deployment – Fundamental Building Blocks
+
+Answer: The fundamental building blocks for EC2 deployment are:
+
+Amazon Machine Image (AMI): A pre-configured template that defines the operating system, application stack, and configurations.
+Instance Type: Defines the hardware capacity (e.g., CPU, memory).
+Key Pair: Provides secure access to your EC2 instance.
+Security Groups: Acts as a virtual firewall controlling inbound and outbound traffic to the EC2 instance.
+Elastic IP (EIP): A static IPv4 address used for dynamic cloud computing.
+Volume (EBS): Block storage for EC2 instances.
+5. EC2 Not Able to Login – Step-by-Step Troubleshooting
+
+Answer:
+
+Check Security Group Rules: Ensure the correct inbound rules for SSH (port 22) or RDP (port 3389).
+Check Key Pair: Ensure you're using the correct key pair for login.
+Check Network ACLs: Make sure there are no restrictive ACLs blocking your access.
+Check Instance State: Ensure the instance is in a running state.
+Review Instance Logs: Check the EC2 instance system logs via the AWS Console for errors.
+6. How to Patch AWS Servers (Production Approach)
+
+Answer: To patch AWS servers:
+
+Patch Baseline: Use AWS Systems Manager Patch Manager to define patch baselines.
+Maintenance Window: Schedule a maintenance window to apply patches without affecting production.
+Automated Patching: Use Systems Manager to automatically apply patches.
+Test Before Production: Use staging environments to test patches before deploying to production.
+Monitoring: Monitor instances post-patching using CloudWatch for errors.
+7. How to Join an EC2 Instance to a Domain Controller (Backend Steps)
+
+Answer:
+
+Verify VPC: Ensure your EC2 instance is in the same VPC as the Domain Controller.
+DNS Configuration: Configure the EC2 instance to use the domain controller as its DNS server.
+Install Domain Tools: Ensure the EC2 instance has the necessary Active Directory tools.
+Join the Domain: Use the domainjoin command or the GUI to join the instance to the domain.
+8. What is "Catalog" in AWS Service Catalog?
+
+Answer: The "Catalog" in AWS Service Catalog is a collection of approved AWS resources and products that are made available to users. These resources can include EC2 instances, S3 buckets, and other AWS services. It allows administrators to centrally manage and deploy standardized solutions.
+
+9. For each loop in Terraform, please explain
+
+Answer: In Terraform, the for_each loop is used to create multiple instances of a resource or module. It iterates over a map or set and generates a new resource for each item in the collection.
+
+Example:
+
+resource "aws_instance" "example" {
+  for_each = var.instances
+  ami = each.value["ami"]
+  instance_type = each.value["type"]
+}
+10. What terraform plan does
+
+Answer: terraform plan shows a preview of the changes that Terraform will apply to the infrastructure. It compares the current state of the infrastructure with the desired state defined in the Terraform configuration files and generates an execution plan.
+
+11. What terraform init does
+
+Answer: terraform init initializes a working directory containing Terraform configuration files. It downloads necessary provider plugins and sets up the backend for state storage.
+
+12. Pipeline error formatting issue, which terraform command is using to check
+
+Answer: To check for syntax or formatting issues in Terraform files, use terraform validate. This command ensures that the configuration files are syntactically correct.
+
+13. How to pass the values in Terraform modules
+
+Answer: To pass values to a Terraform module, use input variables in the module block.
+Example:
+
+module "example" {
+  source = "./module_directory"
+  instance_type = "t2.micro"
+}
+14. When to create Terraform modules
+
+Answer: Create Terraform modules when:
+
+You need to reuse the same resources or configurations across multiple environments.
+You want to organize complex Terraform configurations into smaller, manageable pieces.
+You need to share Terraform configurations with others.
+15. In EKS upgrade, what are the two concepts available? How to rollback the EKS upgrade?
+
+Answer: The two concepts in EKS upgrades are:
+
+Managed Node Group: AWS automatically manages the worker nodes.
+Self-managed Node Group: The user manages the worker nodes.
+
+To rollback the EKS upgrade:
+
+Rollback Managed Node Group: Use eksctl or AWS Console to downgrade the node version.
+Rollback EKS Control Plane: Restore the cluster using a backup or perform an EKS version downgrade (if needed).
+16. What is taint in EKS? One node doesn’t want to schedule further pods, how to restrict?
+
+Answer: Taint is a Kubernetes concept used to prevent pods from being scheduled on nodes unless they tolerate the taint. To restrict a node from scheduling further pods:
+
+Apply a taint to the node:
+
+kubectl taint nodes <node-name> key=value:NoSchedule
+Pods must include a matching tolerance to be scheduled on that node.
+17. What are the S3 tiers, explain their usage?
+
+Answer:
+
+S3 Standard: General-purpose storage for frequently accessed data.
+S3 Intelligent-Tiering: Moves data between two access tiers (frequent and infrequent) based on access patterns.
+S3 Standard-IA: For infrequently accessed data with low retrieval cost.
+S3 One Zone-IA: Infrequent access data stored in a single availability zone.
+S3 Glacier: Low-cost archival storage for long-term data.
+S3 Glacier Deep Archive: Lowest-cost storage for archival data with retrieval times of 12 hours or more.
+18. How to Get Certain Values from All Servers / instances running on AWS cloud?
+
+Answer: You can use AWS Systems Manager to run a script across all EC2 instances or AWS CLI to describe instances.
+Example:
+
+aws ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId,Tags]' --output table
+19. Can Two S3 Buckets Have the Same Name?
+
+Answer: No, S3 bucket names must be globally unique across all AWS accounts.
+
+20. Patching is done, how to destroy the snapshot?
+
+Answer: To delete a snapshot:
+
+aws ec2 delete-snapshot --snapshot-id <snapshot-id>
+21. How to Recover an Entire EC2 Server Using Snapshot?
+
+Answer: To recover an EC2 instance from a snapshot:
+
+Create an EBS volume from the snapshot.
+Attach the volume to a new EC2 instance.
+Mount the volume and configure the instance as needed.
+22. How to Take a Snapshot of an EC2 Instance (Explained Clearly)?
+
+Answer:
+
+Open the EC2 console and select the instance.
+Click on Actions → Image → Create Image.
+Provide an image name and description.
+Click Create Image.
+
+
+23. How do you check if a Linux server is domain joined?
+
+Answer: To check if a Linux server is domain-joined, you can use the following commands:
+
+Check if realmd is installed:
+
+realm list
+
+Check /etc/sssd/sssd.conf file for domain information:
+
+cat /etc/sssd/sssd.conf
+
+Verify domain membership using domainname or hostname:
+
+hostname -d
+
+Check Active Directory join status using net ads (if Samba is installed):
+
+net ads testjoin
+
+If the server is domain-joined, the output will reflect the domain details.
+
+24. What are "Drifts" in AWS Control Tower?
+
+Answer: Drift in AWS Control Tower refers to the configuration changes that deviate from the established baseline or configuration in AWS Control Tower. Drifts occur when resources managed by AWS Control Tower are manually altered, causing a mismatch between the current configuration and the original governance model. You can detect drift using the AWS Control Tower dashboard or via AWS Config.
+
+25. What is Account Factory in AWS Control Tower?
+
+Answer: The Account Factory in AWS Control Tower is a service that allows you to automate the creation and configuration of new AWS accounts. It helps organizations maintain a standardized environment by setting up accounts according to predefined blueprints, ensuring compliance with security, networking, and other best practices defined in the Control Tower landing zone.
+
+26. What is AWS Organizations? Explain with a production use case
+
+Answer: AWS Organizations is a service that allows you to manage multiple AWS accounts within your organization. It provides central management for billing, security policies, and service control policies (SCPs). It allows for the management of accounts in organizational units (OUs), and enables consolidated billing to track costs across multiple accounts.
+
+Production use case: A production environment might have multiple AWS accounts for different departments (e.g., development, testing, production). AWS Organizations allows you to:
+
+Set up service control policies (SCPs) to restrict or allow access to certain AWS services.
+Consolidate billing for easy management of costs.
+Organize accounts into OUs to apply different policies and security measures.
+27. What are the guardrails available in AWS? Explain
+
+Answer: Guardrails in AWS are preventive or detective controls that help ensure compliance with organizational policies and best practices. AWS provides two types of guardrails:
+
+Preventive Guardrails: These enforce specific actions, such as preventing the creation of certain types of resources (e.g., disallowing the creation of non-compliant EC2 instances).
+Detective Guardrails: These monitor activities for non-compliant actions and alert administrators. They do not prevent actions but notify the relevant teams to take corrective measures.
+
+Guardrails can be configured through AWS Control Tower to ensure governance and compliance.
+
+28. What are Landing Zones Available in AWS? Explain
+
+Answer: Landing Zones in AWS are pre-configured environments that follow AWS best practices for multi-account architectures. They help organizations set up secure, scalable, and compliant environments. Landing Zones typically include:
+
+AWS Organizations for account management.
+AWS Control Tower for governance and policy enforcement.
+Shared services such as centralized logging and security management.
+VPC designs for network isolation and connectivity.
+
+AWS Control Tower is the most common landing zone solution, as it automates the creation of a multi-account environment following best practices. This setup helps in managing accounts, applying security guardrails, and controlling costs across a large AWS infrastructure.
+
+Additional Notes
+AWS Systems Manager:
+
+AWS Systems Manager provides a unified interface for managing AWS resources and automating tasks like patching, configuration management, and compliance reporting. It integrates with other AWS services and helps automate operational tasks.
+
+AWS CLI:
+
+The AWS Command Line Interface (CLI) is a tool that allows you to interact with AWS services using commands in your command-line shell. It is useful for automating and scripting tasks in AWS environments.

@@ -1,0 +1,2 @@
+Last week I had an interview with deloitte for GCP devops and they completely focused on Project Architecture, CI/CD pipeline stages, terraform- dynamic blocks, modules, terraform lifecycle, landing zone concept then shared libraries
+Path based and host based routing kubernetes concept, ingress concept, then if we are not using a service account json key in jenkins what are the alternatives, init and side car container, slo sla sli concept

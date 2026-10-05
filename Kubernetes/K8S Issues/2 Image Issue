@@ -1,0 +1,8 @@
+Image issues isnt just about image names it have lot of server factors 
+
+Error: ImagePullBackOff
+
+Problem: Pod cannot pull container image.
+Impact: Application fails to start.
+Root Cause: Wrong image name/tag, no registry access, missing credentials.
+Solution: Verify image path, check registry credentials, use `imagePullSecrets`.

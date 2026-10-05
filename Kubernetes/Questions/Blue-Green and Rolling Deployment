@@ -1,0 +1,32 @@
+One of the most common DevOps interview questions:
+
+“What is the difference between Blue-Green and Rolling Deployment?”
+
+Most people explain definitions.
+
+Strong engineers explain impact.
+
+Blue-Green Deployment means you have two environments.
+
+Blue is the current live version.
+Green is the new version.
+
+You deploy to Green, test it, and switch traffic when ready.
+
+If something goes wrong, you switch back instantly.
+
+Rolling Deployment means updating the application gradually.
+
+Old instances are replaced step by step with new ones.
+
+No downtime, but rollback takes time.
+
+Simple way to remember:
+
+Blue-Green → instant switch, easy rollback
+Rolling → gradual update, slower rollback
+
+When to use:
+
+Blue-Green when zero downtime and quick rollback are critical
+Rolling when resources are limited and gradual updates are acceptable

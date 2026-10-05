@@ -1,0 +1,41 @@
+Ansible/DevOps interview....!
+
+Q: An Ansible playbook ran successfully but caused a production outage. What’s your first action?
+
+A: I’d stop further automation immediately, identify affected hosts, and roll back changes using backups or previous configurations.
+
+Q: An Ansible playbook works locally but fails in CI/CD. How do you investigate?
+
+A: I’d compare environment variables, inventory paths, SSH access, and credentials between local and pipeline environments.
+
+Q: Only some servers were updated by Ansible while others were skipped. Why?
+
+A: Some hosts may be unreachable, failed conditions may be applied, or serial execution limits caused partial updates.
+
+Q: Sensitive credentials appear in Ansible logs. What do you do?
+
+A: I’d rotate the credentials immediately, move them to Ansible Vault or a secret manager, and use no_log: true.
+
+Q: Ansible playbooks take too long to run in large environments. How do you optimize?
+
+A: I’d increase forks, disable unnecessary fact gathering, split playbooks into roles, and parallelize tasks where possible.
+
+Q: Re-running the same playbook keeps making changes. Why is this a problem?
+
+A: The playbook is not idempotent. I’d replace shell commands with proper modules and enforce state-based tasks.
+
+Q: Ansible configured the wrong servers in production. What went wrong?
+
+A: The inventory or host grouping was incorrect. I’d validate inventory files and use dynamic inventory with environment tagging.
+
+Q: A rolling update failed midway, leaving systems inconsistent. How do you recover?
+
+A: I’d stop execution, stabilize affected services, and update the playbook to include health checks and rollback logic.
+
+Q: Ansible fails while provisioning cloud resources. What’s the likely cause?
+
+A: Cloud credentials, API limits, or region configuration issues. I’d verify access and module compatibility.
+
+Q: Tasks fail with permission errors even though become is enabled. Why?
+
+A: The user may lack sudo rights or requires a password. I’d verify sudoers configuration and privilege escalation settings.

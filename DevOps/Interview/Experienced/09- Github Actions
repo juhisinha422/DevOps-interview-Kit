@@ -1,0 +1,32 @@
+DevOps Interview hashtag#Questions hashtag#GithubAction 5–8 Years Experience | Tool 9
+
+How do you design GitHub Actions workflows for large organizations?
+
+How do you control and secure self-hosted runners at scale?
+
+A workflow passed but production failed — what went wrong in the pipeline design?
+
+How do you manage secrets across environments in GitHub Actions?
+
+How do you optimize workflow execution time and cost?
+
+Explain reusable workflows and
+composite actions — when do you use each?
+
+How do you implement environment-level approvals in GitHub Actions?
+
+A malicious PR triggered a workflow — how do you prevent this?
+
+How do you version and govern workflows across repositories?
+
+How do you integrate GitHub Actions with Kubernetes deployments?
+
+How do you handle GitHub Actions outages in critical releases?
+
+GitHub Actions vs Jenkins — migration strategy and pitfalls?
+
+How do you implement observability for CI/CD pipelines?
+
+How do you enforce quality gates in GitHub Actions?
+
+What GitHub Actions practices reflect senior DevOps maturity?

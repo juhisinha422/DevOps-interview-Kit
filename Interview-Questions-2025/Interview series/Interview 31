@@ -1,0 +1,30 @@
+AWS DevOps Interview Experience.
+
+AWS DevOps Engineer position 2 to 7 years experience at one of the best company
+1. What is a Static IP and a Public IP?
+2. What is the difference between a Security Group and a Network ACL (NACL)?
+3. What are policies in AWS, and what are the types of policies?
+4. How do you create S3 Cross-Region Replication (CRR)?
+5. If there are two S3 buckets Bucket A (source) and Bucket B (destination) and a file in Bucket A is accidentally deleted, what happens in Bucket B?
+6. Explain what happens in this case.
+7. What is Virtualization?
+8. What is Containerization?
+9. What is a Dockerfile?
+10. Could you please write a Dockerfile?
+11. What is a Docker network?
+12. What is the default Docker network?
+13. How do you create a Docker network?
+14. How do you create a Docker container?
+15. How do you run a Dockerfile? Please give the commands.
+16. What is a Deployment in Kubernetes?
+17. How would you explain a Kubernetes Pod in a way that a 5 year old children can understand?
+18. What are the types of Deployments in Kubernetes?
+19. What is a StatefulSet in Kubernetes?
+20. What is a DaemonSet, and how is it used?
+21. What is a Service in Kubernetes?
+22. What is a LoadBalancer and an Ingress Controller in Kubernetes?
+23. What is the difference between a LoadBalancer and an Ingress Controller?
+24. Can you create a Pod without a Deployment?
+25. Can you write a Terraform script? Please write a Terraform script for EC2 and S3.
+26. Briefly explain the Terraform script you wrote.
+27. How do you set up Kubernetes on AWS using EKS?

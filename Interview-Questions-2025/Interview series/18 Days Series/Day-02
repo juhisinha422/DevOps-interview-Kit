@@ -1,0 +1,23 @@
+Post 2: AWS Cloud Interview 
+Intermediate Level (1–2 Years)
+
+Stepped into the DevOps world recently? 🌩️ 
+After mastering the basics, interviewers now expect you to apply your AWS knowledge — focusing on automation, policies, and real-world problem-solving. 
+
+These questions help you demonstrate hands-on experience and practical thinking beyond theory. Let’s see how ready you are 👇 
+
+
+💡 Common AWS Interview Questions for 1–2 Years Experience:
+1️⃣ How do you manage and rotate access keys securely for IAM users? 
+2️⃣ What is the difference between Security Groups and NACLs? 
+3️⃣ How can you automate EC2 start/stop schedules to reduce cost? 
+4️⃣ What’s the difference between Elastic Load Balancer (ELB) and Auto Scaling Group (ASG)? 
+5️⃣ How do you use CloudFormation or Terraform for infrastructure provisioning in AWS? 
+6️⃣ Explain the concept of user data and metadata in EC2. 
+7️⃣ What are Elastic IPs and when should (or shouldn’t) you use them? 
+8️⃣ What’s your approach to monitoring EC2 instance performance using CloudWatch metrics? 
+9️⃣ How do you integrate S3 with CloudFront, and what advantages does that bring? 
+🔟 How would you troubleshoot a failing EC2 instance that’s not reachable via SSH? 
+
+🎯 Pro Tip: 
+At 1–2 years of experience, showcase your familiarity with automation and cost optimization. Hands-on projects or home labs demonstrating CloudFormation or Terraform skills give you a serious edge in interviews. 

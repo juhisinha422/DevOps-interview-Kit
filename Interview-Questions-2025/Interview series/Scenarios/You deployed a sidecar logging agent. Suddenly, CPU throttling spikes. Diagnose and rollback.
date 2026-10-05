@@ -1,0 +1,16 @@
+You deployed a sidecar logging agent. Suddenly, CPU throttling spikes. Diagnose and rollback. 
+
+1.CPU throttling happens when a container exceeds its configured CPU limit.
+ 
+2.A sudden increase in application logs forces the sidecar to use more processing power to parse, compress, and ship data. 
+
+3.Complex log parsing rules (like heavy regular expressions) consume massive CPU cycles under load 
+
+4.we can view container CPU metrics and look for nr_throttled or throttled_time kubectl top pods -n <namespace> --containers 
+
+5. we can monitor real-time resource usage of the sidecar container  
+kubectl top pod <pod-name> -n <namespace> --container=<logging-sidecar-name> 
+
+6.If production stability is at risk, execute a rollback or temporary patch immediately.
+
+kubectl rollout undo deployment/<deployment-name> -n <namespace>

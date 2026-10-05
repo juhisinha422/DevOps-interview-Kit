@@ -1,0 +1,36 @@
+ ELK Stack FAQs for DevOps Engineers (Interview Preparation) 🚀
+
+In most DevOps interviews, the ELK Stack (Elasticsearch, Logstash, Kibana) is one of the most discussed tools for monitoring, observability, and centralized logging.
+
+ Here are the most common and practical ELK questions with answers that every DevOps Engineer should know 👇
+
+What is the ELK Stack and why is it used in DevOps?
+What are the main components of the ELK Stack?
+What is the role of Elasticsearch in ELK?
+What does Logstash do in the ELK pipeline?
+What is Kibana and how is it used?
+What are Beats in the ELK ecosystem?
+What is the difference between Logstash and Beats?
+How do you collect logs from Kubernetes using ELK Stack?
+What is a Grok filter in Logstash and where is it used?
+How can you secure your ELK Stack setup?
+What are indices and shards in Elasticsearch?
+What is the difference between Elasticsearch and Splunk?
+How do you monitor the health of an Elasticsearch cluster?
+What is the difference between Logstash and Fluentd?
+What are some common performance tuning techniques for Elasticsearch?
+How do you integrate ELK Stack with CI/CD pipelines?
+How can you visualize system metrics in Kibana?
+What is the difference between ELK and EFK Stack?
+How do you handle log rotation and retention in Elasticsearch?
+What are the best practices for scaling ELK in production environments?
+How does Elasticsearch handle data replication and high availability?
+What is the difference between node types in Elasticsearch (Master, Data, Ingest, Coordinating)?
+How does Logstash handle backpressure and pipeline congestion?
+What are pipelines in Logstash and how do you optimize them?
+How can you back up and restore indices in Elasticsearch?
+What is an Elasticsearch template and when would you use it?
+How do you configure alerting in ELK Stack using Watcher or Kibana Alerts?
+What is the role of Ingest Node pipelines in Elasticsearch?
+How do you integrate ELK Stack with cloud-native services like AWS CloudWatch or Azure Monitor?
+What are common challenges in managing large-scale ELK clusters and how do you overcome them?

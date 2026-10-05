@@ -1,0 +1,78 @@
+Master Infrastructure as Code with These Terraform Commands! 🚀✨
+Terraform is the go-to tool for managing cloud infrastructure seamlessly through code. Here’s a quick reference of fundamental commands every DevOps engineer should know! 💡⚡
+
+📦 terraform --version – Check Terraform version
+
+🚀 terraform init – Initialize Terraform working directory
+
+🔍 terraform plan – Show execution plan
+
+⚙️ terraform apply -auto-approve – Apply configuration without manual approval
+
+🗑️ terraform destroy -auto-approve – Destroy infrastructure without manual approval
+
+📄 terraform show – Show Terraform state
+
+✅ terraform validate – Validate Terraform configuration
+
+🎨 terraform fmt – Format Terraform code
+
+🔌 terraform providers – List providers used
+
+🗂️ terraform state list – Show managed resources
+
+📋 terraform state show resource_name – Show specific resource details
+
+🗑️ terraform state rm resource_name – Remove resource from state
+
+🔧 terraform taint resource_name – Mark resource for recreation
+
+🧹 terraform untaint resource_name – Remove taint from resource
+
+📥 terraform import resource_type.name id – Import existing infrastructure
+
+♻️ terraform refresh – Refresh state file
+
+🌳 terraform graph – Generate dependency graph
+
+🏠 terraform workspace list – List available workspaces
+
+🔄 terraform workspace select workspace_name – Switch workspace
+
+✨ terraform workspace new workspace_name – Create new workspace
+
+🔄 terraform state mv old_resource new_resource – Rename resource
+
+🖥️ terraform output – Show Terraform outputs
+
+🛠️ terraform apply -target=resource_name – Apply specific resource
+
+💬 terraform console – Open interactive Terraform shell
+
+🐞 terraform debug – Enable debugging logs
+
+📋 terraform plan -var="instance_type=t2.micro" – Pass variable via CLI
+
+🗂️ terraform apply -var-file="vars.tfvars" – Apply using variable file
+
+🧹 terraform workspace delete workspace_name – Delete workspace
+
+🛑 terraform plan -detailed-exitcode – Get exit codes for changes
+
+🔓 terraform force-unlock LOCK_ID – Unlock Terraform state
+
+📤 terraform state push – Manually push state file
+
+📥 terraform state pull – Download current state file
+
+🌐 terraform output -json – Get output in JSON format
+
+🎨 terraform fmt -recursive – Format Terraform code recursively
+
+🗑️ terraform destroy -target=resource_name – Destroy specific resource
+
+🗂️ terraform show -json – Show JSON output
+
+✅ terraform validate -no-color – Validate without color output
+
+Terraform streamlines cloud infrastructure management—keep these commands handy for efficient provisioning and maintenance!

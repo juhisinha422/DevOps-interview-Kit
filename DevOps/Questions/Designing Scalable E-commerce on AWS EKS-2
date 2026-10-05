@@ -1,0 +1,74 @@
+Designing Scalable E-commerce on AWS EKS - Part 2
+
+Database Architecture & Auto-Scaling for MERN Stack
+
+CLIENT: "How do we connect EKS to MongoDB Atlas securely?"
+ARCHITECT: "VPC Peering - the standard approach:
+Setup: Atlas creates peering request → Accept in AWS Console → Update route tables → Whitelist VPC CIDR
+Connection: EKS Pods → VPC Peering → MongoDB Atlas (Private, no internet, free data transfer)"
+
+CLIENT: "What if MongoDB Atlas goes down?"
+ARCHITECT: "Multi-region cluster with automatic failover:
+Primary: us-east-1 (Read/Write)
+Secondary: us-west-2, eu-west-1 (Read replicas)
+Failover in <10 seconds. Read from secondary for catalogs, primary for orders/payments."
+
+CLIENT: "How does auto-scaling work?"
+ARCHITECT: "Three-layer approach:
+HPA (Horizontal Pod Autoscaler):
+Min: 3 pods, Max: 50 pods
+Trigger: 70% CPU → Scales to 5 pods in 60 seconds
+Scale down slowly after 5-min wait (prevents thrashing)
+Cluster Autoscaler:
+HPA requests 20 pods → Only 15 fit → 5 Pending
+Launches 2 new nodes in <2 minutes
+Mix 50% On-Demand + 50% Spot (70% cheaper)
+Pod Disruption Budget:
+Minimum 2 pods always running
+Prevents updates from killing all pods"
+
+CLIENT: "Walk me through Black Friday scaling."
+ARCHITECT: "Real timeline:
+11:59 PM: 100 req/sec, 3 pods
+12:00 AM: Traffic spikes to 10K req/sec
+30s: HPA scales to 15 pods
+2min: Cluster adds nodes
+5min: 50 pods, 18 nodes
+3:00 AM: Traffic drops
+Gradual scale down
+Final: 10 pods, 4 nodes
+30-second scaling vs 5-10 minutes with EC2!"
+
+CLIENT: "How do health checks work?"
+ARCHITECT: "Two probe types:
+Liveness Probe:
+Checks /health every 10s
+Fails 3 times → Pod restarted
+Detects: Deadlocks, hung processes
+Readiness Probe:
+Checks /ready every 5s
+Validates MongoDB, Redis connections
+Fails 2 times → Remove from traffic (pod keeps running)
+When fixed → Auto-added back
+Example: MongoDB drops temporarily → Pod removed from traffic → Reconnects → Pod added back (no restart needed!)"
+
+CLIENT: "How ensure high availability?"
+ARCHITECT: "Multi-AZ with anti-affinity:
+Nodes span 3 AZs (us-east-1a/b/c)
+No two pods on same node
+Node failure: 1 pod affected
+AZ failure: 33% affected
+Combined with PDB: Service stays up"
+
+CLIENT: "What about resource requests?"
+ARCHITECT: "Based on load testing:
+Backend: 200m CPU, 256Mi memory (handles 200 req/sec) Frontend: 100m CPU, 128Mi memory
+Monitor with kubectl top pods, adjust based on real usage."
+
+✅ KEY TAKEAWAYS
+VPC Peering: Secure MongoDB connection
+Multi-region: <10s automatic failover
+HPA + CA: 30-second scaling
+Liveness vs Readiness: Restart vs traffic removal
+Multi-AZ: True high availability
+Load testing: Right-sized resources

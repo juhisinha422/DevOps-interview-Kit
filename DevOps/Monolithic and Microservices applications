@@ -1,0 +1,28 @@
+1. Monolithic Application
+An Enterprise Large-scale business application consists of several modules/functional areas. All of these modules are built out of single sourcecode project, build and packaged into single-deployable artifact and run on an Server, is called “Monolithic Application”
+
+Advantages:-
+1. everyone in the team knows all the modules/functionalities of the whole system, thus anyone can work on any of the modules of the System.
+2. Easy to build, package and deploy the application
+3. Scalability can be achieved very easily by deploying one more instance of the application on another server/computer
+
+Dis-Advantages:-
+1. The Enterprise Large-scale application is huge in nature and comprises of several modules aspart of it, the developer find it very complex to understand the whole system and often find it very complex to work on it
+2. Integrated development environments (IDEs) becomes very slow in handling such a huge code, and it kills the developers productivity in working on the project
+3. overloaded server runtimes (tomcat/weblogic/websphere/glassfish) they take more time in deploying and starting the application and even shutdown as well. So developing and debugging the application takes more time
+4. Monolithic applications supports only horizontal scaling, which means the whole/entire system should be scaled on one more computer/node due to this there are several problems interms of scalability
+  4.1 Even the load on one module is high we need to scale the entire system due to which the cost of scalability is very high
+  4.2 We cannot customize the computer resources in scaling a specific module or area of the system since everything is built into one single deployable artifact.
+
+++++++
+
+2. Microservices Application
+-------------------------------------------------------------
+The Enterprise large-scale application that comprises of several modules/functionalities are broken down into smaller microservices applications based on few characteristics
+1. Loosely coupled
+2. independently deployable
+3. highly scalable
+4. highly available
+5. resilient
+6. collaborative services
+that can be developed by multiple independent parallel collaborating teams.

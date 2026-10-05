@@ -1,0 +1,54 @@
+💡 Docker Command Cheat Sheet
+
+🔴Core Workflow:
+→ docker version — Show Docker version information
+→ docker pull [image] — Download image from registry
+→ docker run [options] [image] — Create and start a container
+→ docker ps — List running containers
+→ docker ps -a — List all containers (including stopped)
+→ docker stop [container] — Stop a running container
+→ docker rm [container] — Remove a container
+
+🔴Images & Registries:
+→ docker images — List local images
+→ docker rmi [image] — Remove an image
+→ docker tag [image] [name:tag] — Tag an image for push
+→ docker push [name:tag] — Push tagged image to registry
+
+🔴Working with Containers:
+→ docker exec -it [container] [command] — Run a command in a running container
+→ docker logs [container] — Fetch logs from a container
+→ docker inspect [container] — View detailed information for a container
+→ docker cp [container]:[path] [local_path] — Copy files from container
+→ docker attach [container] — Attach to a running container
+
+🔴Volumes & Networking:
+→ docker volume create [name] — Create a volume
+→ docker volume ls — List volumes
+→ docker volume rm [name] — Remove volume
+→ docker network create [name] — Create network
+→ docker network ls — List networks
+→ docker network rm [name] — Remove network
+→ docker run –-network [network] … — Run container on specific network
+→ docker run -v [host_path]:[container_path] … — Mount volume
+
+🔴Clean Up & Maintenance:
+→ docker system prune — Remove all unused data (containers, networks, images)
+→ docker container prune — Remove all stopped containers
+→ docker image prune — Remove unused images
+→ docker volume prune — Remove unused volumes
+
+🔴Advanced Tools:
+→ docker-compose up — Start services defined in docker-compose.yml
+→ docker-compose down — Stop and remove services, networks, volumes
+→ docker build -t [name:tag] [path] — Build image from Dockerfile
+→ docker swarm init — Initialize Docker Swarm mode
+→ docker service create — Create a new service in swarm
+→ docker stack deploy -c [compose-file] [stack-name] — Deploy stack
+
+🔴Configuration & Info:
+→ docker info — Display system-wide information
+→ docker version — Show version of client & server
+→ docker inspect [resource] — Detailed info for container/image/volume
+→ docker logs [container] — Fetch logs
+→ docker stats — Display resource usage statistics

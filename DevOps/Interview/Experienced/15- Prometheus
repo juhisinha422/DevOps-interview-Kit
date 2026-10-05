@@ -1,0 +1,31 @@
+DevOps Interview hashtag#Grafana hashtag#Questions 5–8 Years Experience | Tool 15
+
+How do you design Prometheus architecture for large Kubernetes clusters?
+
+Prometheus is up but metrics are missing — how do you troubleshoot?
+
+How do you handle high-cardinality metrics in production?
+
+Explain pull vs push model — when do you use Pushgateway?
+
+How do you design recording rules for performance optimization?
+
+How do you manage Prometheus storage and retention at scale?
+
+A PromQL query is slow — how do you optimize it?
+
+How do you design alerting to avoid alert fatigue?
+
+How do you implement multi-cluster monitoring using Prometheus?
+
+How do you secure Prometheus endpoints and metrics?
+
+How do you integrate Prometheus with CI/CD health checks?
+
+What are common Prometheus anti-patterns in production?
+
+How do you manage Prometheus upgrades without losing data?
+
+Prometheus vs managed monitoring services — when do you choose which?
+
+What Prometheus practices clearly show senior DevOps expertise?

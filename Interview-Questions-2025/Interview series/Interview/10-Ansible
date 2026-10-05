@@ -1,0 +1,25 @@
+DevOps Q&A Series: Topic 10 — Ansible
+
+🚀 Advancing our DevOps knowledge trail, this edition focuses on Ansible, one of the most powerful open-source tools for configuration management, orchestration, and automation — helping teams achieve consistent, repeatable infrastructure at scale ⚙️
+
+1️⃣ What is Ansible, and how does it differ from tools like Puppet, Chef, or SaltStack?
+2️⃣ Explain the architecture of Ansible — including inventory, modules, plugins, and playbooks.
+3️⃣ What is an Ansible inventory file? How do static and dynamic inventories differ?
+4️⃣ How do you structure an Ansible playbook? Explain key components like hosts, tasks, handlers, and variables.
+5️⃣ What are Ansible modules? Can you name a few commonly used ones for cloud, networking, and system automation?
+6️⃣ How do Ansible roles help in organizing complex playbooks and reusing code?
+7️⃣ What are Ansible facts, and how can you use them in your playbooks?
+8️⃣ How do you handle sensitive information like passwords or API keys using Ansible Vault?
+9️⃣ What is the difference between register, set_fact, and vars in Ansible?
+🔟 How does Ansible ensure idempotency while running tasks repeatedly?
+1️⃣1️⃣ How do you use loops and conditionals in Ansible playbooks for dynamic automation?
+1️⃣2️⃣ What are Ansible Galaxy and Collections? How do they simplify automation workflows?
+
+1️⃣3️⃣ How do you integrate Ansible with Terraform, Jenkins, or GitLab CI/CD pipelines?
+1️⃣4️⃣ What’s the purpose of Ansible Tower / AWX, and how does it enhance enterprise-level automation?
+1️⃣5️⃣ How can you optimize Ansible performance for large-scale deployments?
+1️⃣6️⃣ How do you manage different environments (dev, test, prod) using inventory groups and variable precedence?
+1️⃣7️⃣ What is the use of delegate_to, serial, and run_once in Ansible task execution?
+1️⃣8️⃣ How do you test and validate Ansible playbooks before running them in production?
+1️⃣9️⃣ How do you troubleshoot common Ansible issues like SSH authentication failures or variable scoping problems?
+2️⃣0️⃣ What are some best practices for writing clean, maintainable, and reusable Ansible playbooks?

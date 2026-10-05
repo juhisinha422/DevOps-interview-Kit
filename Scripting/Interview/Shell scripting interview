@@ -1,0 +1,17 @@
+Shell Scripting questions;
+
+Explain how shell scripting fits into a DevOps workflow.
+Why use shell scripts over tools like Ansible or Terraform?
+Write a shell script to monitor CPU, memory, disk usage; alert if thresholds exceed.
+Shell script to find and kill all zombie processes.
+Find the 10 largest files in a filesystem, output the result to a file.
+Script to check if a service is running; restart if not.
+Write a program to find prime numbers between 1 to 1000?
+How to check sync status between two servers?
+How do you manage environment variables securely in shell scripts?
+Explain the usage of `set -e`, `set -x`, `set -u` and when to use each.
+Write a script to archive logs older than 7 days.
+How do you validate configuration files using a shell script?
+Difference between `$*` and `$@` in shell scripting.
+How can you monitor a log file for changes and trigger a response?
+Real-world example: Script to automate user account creation and SSH setup

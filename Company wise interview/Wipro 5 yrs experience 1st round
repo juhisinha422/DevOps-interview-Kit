@@ -1,0 +1,14 @@
+Questions asked recently for wipro for 5+ year experience 
+
+If my state files got deleted in terraform what will I do ?
+What are node affinity and pod affinity?
+Explain ur project in detail from scratch how it works?
+What if someone delete my pod which is running in production  has kind  deployment what will happen and what will u do ?
+Explain what u did to optimise the cost in ur current infrastructure?
+What security measures do u follow to maintain a ci/cd pipelines?
+Explain me the challenges situation u came across which u did not solved?
+If new feature is released will u be following deployment strategies?
+What is drift in k8s cluster ?
+My website went into 503 service unavailable state what u will do now ?
+Say ur collguue accidentally deleted the jenkinsfile while doing copy paste which was critical for production and u do not have backup and u r working since ur collguue shift ends and product manager came to u and scolder u what will u do and how will u handle such situation without blaming ur collgue.
+What is git fetch and git pull?

@@ -1,0 +1,23 @@
+Interview Questions 
+Sopra Steria
+
+🔹 JENKINS
+What is Jenkins, and why is it used?
+How do you integrate SonarQube with Jenkins?
+How do you store credentials or values securely in Jenkins?
+What are Jenkins credentials, and how do you manage them?
+How many types of jobs are available in Jenkins?
+How do you create and manage users in Jenkins?
+How do you assign permissions to Jenkins users?
+How do you secure a Jenkins project?
+What are Jenkins pipeline stages?
+What are the types of Jenkins pipelines?
+What is the difference between Declarative and Scripted pipelines?
+Which Jenkins plugins have you used?
+What components are used in Jenkins architecture?
+How do you take a backup of Jenkins?
+How do you integrate Git with Jenkins?
+How do Jenkins webhooks work?
+What is CI/CD?
+What is the difference between Continuous Delivery and Continuous Deployment?
+Which tools have you used for CD?

@@ -1,0 +1,28 @@
+DevOps Interview Q&A Series — Java (for DevOps & Cloud Engineers)
+Practical | CI/CD & Production focused
+
+⸻
+
+🔹 Java
+
+1️⃣ Why is Java still widely used in enterprise and cloud-native applications?
+
+2️⃣ How does JVM memory management (Heap, Stack, Metaspace) impact application performance?
+
+3️⃣ What is the difference between JDK, JRE, and JVM from a DevOps perspective?
+
+4️⃣ How do you troubleshoot high CPU or memory issues in Java applications?
+
+5️⃣ What are JVM GC algorithms, and how do you choose the right one?
+
+6️⃣ How do you externalize configuration in Java applications for different environments?
+
+7️⃣ How do you package Java applications for containerized deployments?
+
+8️⃣ How do you monitor Java applications using tools like AppDynamics or Prometheus?
+
+9️⃣ How do you handle Java application logs in distributed systems?
+
+🔟 How do you optimize Java application startup time in CI/CD and cloud environments?
+
+⸻

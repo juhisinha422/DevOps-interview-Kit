@@ -1,0 +1,35 @@
+🚀 Day 6 — AWS RDS + Databases + High Availability
+
+Scenario-Based DevOps Interview Questions
+
+1️⃣ Your production database needs high availability with automatic failover. How will you design this using RDS Multi-AZ?
+
+2️⃣ You must scale read-heavy workloads without impacting the primary database. How will you use RDS Read Replicas?
+
+3️⃣ A database migration from on-prem to AWS must be done with minimal downtime. Which AWS tools will you choose and how will you plan the cutover?
+
+4️⃣ Your RDS instance is experiencing high CPU usage. What metrics and configurations will you analyze first?
+
+5️⃣ You need to encrypt all data at rest and in transit for compliance. How will you enable and enforce encryption for RDS?
+
+6️⃣ A developer accidentally deleted data in RDS. How will you restore using automatic snapshots or PITR (Point-in-Time Recovery)?
+
+7️⃣ Your application requires connection pooling because opening DB connections is expensive. How will you implement Aurora Serverless or RDS Proxy?
+
+8️⃣ You need cross-region DR for your production database. How will you design this using RDS Cross-Region Read Replicas?
+
+9️⃣ Query performance has degraded recently. Which logs, metrics, and tools will you use for performance analysis?
+
+🔟 You need zero-downtime upgrades for your RDS engine version. How will you plan maintenance windows and updates?
+
+1️⃣1️⃣ Your workloads require fast performance for large-scale analytical queries. When will you choose Aurora, DynamoDB, or Redshift?
+
+1️⃣2️⃣ RDS storage is filling up rapidly. How will you analyze growth and implement storage autoscaling?
+
+1️⃣3️⃣ Compliance requires that only specific applications can connect to RDS. How will you enforce access using VPC, SGs, and IAM DB Auth?
+
+1️⃣4️⃣ Network latency between application servers and RDS has increased. What network-level factors will you review?
+
+1️⃣5️⃣ You need a blue-green deployment strategy for the database. How will you implement this using snapshots, clones, or Aurora Global Database?
+
+⸻

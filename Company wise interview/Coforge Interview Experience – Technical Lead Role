@@ -1,0 +1,68 @@
+Coforge Interview Experience – Technical Lead Role
+
+Sharing key questions asked for a Technical Lead position at Coforge, covering Unix, ITIL, IIS, and Leadership scenarios 👇
+This round focused heavily on real-time operations + people management.
+
+⸻
+
+🔹 UNIX / Linux Fundamentals
+
+1️⃣ Difference between ls and ls -ltr
+2️⃣ How do you check disk space usage?
+3️⃣ How do you open a file in Unix?
+4️⃣ How do you save a file in vi?
+5️⃣ How do you exit without saving a file?
+6️⃣ How do you read a file (commands used)?
+7️⃣ What is top and vmstat used for?
+8️⃣ How do you check running processes?
+9️⃣ How do you kill a process?
+🔟 How do you search a file in Unix?
+1️⃣1️⃣ How do you run a process in background?
+1️⃣2️⃣ What are the different modes of vi editor?
+
+⸻
+
+🔹 ITIL Concepts
+
+1️⃣ Explain Change Management
+2️⃣ Explain Problem Management
+👉 Difference between Incident vs Problem vs Change
+
+⸻
+
+🔹 IIS Server Management
+ • Basic understanding of IIS architecture
+ • Application Pool management
+ • Common troubleshooting scenarios
+ • Service restart & log analysis approach
+
+⸻
+
+🔹 Leadership & People Management
+
+🔸 Team Conflict Management
+ • How do you handle conflicts between team members?
+ • How do you ensure productivity without impacting morale?
+
+🔸 Production Incident Handling
+ • How do you handle 2 production issues at the same time during a shift?
+ • How do you prioritize, delegate, and communicate?
+
+⸻
+
+🎯 What Interviewers Were Looking For
+
+✅ Strong Unix fundamentals
+✅ ITIL-aligned operational thinking
+✅ Hands-on server knowledge
+✅ Calm decision-making under pressure
+✅ Leadership & ownership mindset
+
+⸻
+
+💡 Pro Tip for Technical Lead Roles:
+You’re evaluated not only on commands, but on:
+ • How you think
+ • How you prioritize
+ • How you lead during outages
+ • How you communicate with stakeholders

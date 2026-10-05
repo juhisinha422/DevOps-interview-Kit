@@ -1,0 +1,25 @@
+DevOps Interview Question...!
+🎯Q - What Service Mesh Actually Does ?
+
+Handling Failures (The Circuit Breaker)How do you prevent a single failing microservice from crashing your whole app?
+
+The Problem: During a flash sale, if the Inventory Service slows down, the Order Service will lock up waiting for it, causing a cascading failure that crashes the whole checkout site.The Mesh Solution: 
+
+The service mesh detects the failure and instantly trips a circuit breaker. It stops sending traffic to the broken Inventory service and immediately returns a graceful fallback response (Order received, processing shortly), keeping the site completely online.
+
+2. Zero-Trust Security (Automated mTLS)How do you secure sensitive data moving inside your internal network?
+
+The Problem: The Order Service needs to send credit card tokens to the Payment Service. Writing custom encryption and managing security certificates inside the code of every single service is a nightmare.The Mesh Solution: 
+
+The mesh automatically intercepts the traffic and wraps it in a Mutual TLS (mTLS) encrypted tunnel. It handles the encryption and identity verification entirely at the platform layer, meaning sensitive data is secured without developers writing a single line of security code.
+
+3. Safe Deployments (Canary Routing)How do you push a high-risk update to production without risking a major outage?
+The Problem: You just upgraded the Payment Gateway and want to test it with live users, but a full release could break the app for everyone if a hidden bug exists.
+
+The Mesh Solution: The mesh allows you to execute a canary deployment. You tell the mesh to route 95% of traffic to the stable version, and just 5% to the new version. If the 5% group triggers errors, you can instantly roll back all traffic with zero downtime.
+
+4. Debugging Latency (Distributed Tracing)If the Place Order button takes 8 seconds to load, how do you find the root cause?
+
+The Problem: In a massive web of microservices, pinpointing exactly which internal API hop or database call is causing a delay is like finding a needle in a haystack.
+
+The Mesh Solution: The mesh injects tracking headers into the network requests out of the box. It gives you an instant distributed tracing dashboard that maps the request lifecycle, showing you exactly where the delay is (e.g., Frontend took 10ms, but Payment took 7.8s

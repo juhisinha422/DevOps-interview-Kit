@@ -1,0 +1,49 @@
+DevOps Interview Command Series — Git (Day 3) 🌱
+
+Git is the heart of DevOps workflows.
+From CI/CD pipelines to Infrastructure as Code and team collaboration — everything starts with Git.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Git commands you must know:
+
+git --version
+git config --global user.name "name"
+git config --global user.email "email"
+
+git init
+git clone repo_url
+git status
+
+git add .
+git commit -m "message"
+git log --oneline
+git show
+
+git branch
+git branch feature-branch
+git checkout branch
+git checkout -b new-branch
+
+git pull
+git fetch
+git push origin branch
+
+git diff
+git reset --soft HEAD~1
+git reset --hard HEAD~1
+
+git stash
+git stash pop
+
+git merge branch
+git rebase branch
+
+git remote -v
+git tag
+
+
+🎯 Interview Focus
+• Resolve merge conflicts
+• Roll back faulty commits
+• Maintain clean branch strategy
+• Understand rebase vs merge
+• Handle CI failures due to Git mistakes

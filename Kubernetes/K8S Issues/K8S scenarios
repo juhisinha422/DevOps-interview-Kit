@@ -1,0 +1,49 @@
+1️⃣ Scenario:
+Deployment succeeded, pods are Running but users get 502.
+
+ Answer Key: Readiness Probe / Service Endpoints / Ingress Routing
+
+2️⃣ Scenario:
+HPA scales up but latency keeps increasing and never scales down.
+
+Answer Key: Wrong metric (CPU vs IO/DB/Network)
+
+3️⃣ Scenario:
+Pods stuck in Pending even though nodes look healthy.
+
+Answer Key: Scheduler (taints/tolerations / requests / selectors)
+
+4️⃣ Scenario:
+Pods restart with OOMKill, but memory graph looks normal.
+
+Answer Key: Limit vs runtime memory (JVM/Python/Golang)
+
+5️⃣ Scenario:
+Ingress works internally but fails on browser externally.
+
+Answer Key: LB / NodePort / Firewall / Exposure
+
+6️⃣ Scenario:
+ArgoCD shows Healthy, but prod still runs old behavior.
+
+Answer Key: Image tag reuse / Git branch mismatch / pull policy
+
+7️⃣ Scenario:
+ConfigMap updated but pods still use old config after sync.
+
+Answer Key: Requires restart/reload (Config ≠ auto reload)
+
+8️⃣ Scenario:
+Cluster cost doubled, but traffic didn’t increase.
+
+Answer Key: Resource requests → Autoscaler node increase
+
+9️⃣ Scenario:
+Pod reachable inside cluster, not from outside.
+
+Answer Key: Service Type vs Ingress vs LB
+
+🔟 Scenario:
+High CPU usage but no throttling, app works fine.
+
+Answer Key: Usage measured against requests not limits

@@ -1,0 +1,98 @@
+1. A user says they cannot access a directory even after you gave read permission. Why?
+
+Because for directories, execute permission is mandatory to access or enter the directory.
+Explanation
+Read (r) → allows listing files
+Execute (x) → allows entering/accessing the directory
+Without execute permission, the user cannot access files inside the directory.
+Example
+chmod r-- folder
+ls folder     # Permission denied
+Fix
+chmod rx folder
+Real-world context
+I’ve seen this issue during log access on Linux servers, where read permission was given but execute was missing.
+
+2. How do you give full access to a user but only read access to a group? 
+
+By assigning ownership to the user and setting group permissions accordingly.
+Example
+chown venkat:devops project
+chmod 740 project
+Meaning
+User (7) → read, write, execute
+Group (4) → read only
+Others (0) → no access
+We used this approach to protect deployment directories while allowing read-only access for support teams.
+
+3. What happens if you remove execute permission from a directory?
+Answer:
+Users cannot enter the directory or access files inside it, even if they have read permission.
+Example
+chmod -x logs
+cd logs       # Permission denied
+ls logs       # Permission denied
+Interview tip
+This is commonly used to restrict directory traversal for security.
+
+4. How do you identify top processes consuming CPU and memory?
+Answer:
+I use system monitoring commands like top, htop, ps, and free.
+Commands
+top
+Press P → sort by CPU
+Press M → sort by memory
+ps aux --sort=-%cpu | head
+ps aux --sort=-%mem | head
+In production, I use this during performance issues to quickly identify resource-hungry processes.
+
+5. Your application is running slow. How do you check if Linux resources are the issue?
+Answer:
+I follow a systematic resource-check approach.
+Step-by-step checks
+CPU
+top
+uptime
+Memory
+free -h
+vmstat 1
+Disk
+df -h
+iostat
+Network
+netstat -anp
+ss -s
+Example scenario
+Once, a Java application was slow due to high memory usage.
+Using free -h, I found swap usage was high, which caused latency. After tuning JVM memory, performance improved.
+
+6. A user cannot log in after being created. What will you check?
+Answer:
+I first verify user existence, password, shell, and account status.
+Checks
+id username
+grep username /etc/passwd
+grep username /etc/shadow
+Check shell:
+chsh -l
+Fix invalid shell:
+usermod -s /bin/bash username
+Check if account is locked:
+passwd -S username
+Unlock if needed:
+passwd -u username
+
+7. How do you find the largest 10 files on a server?
+Correct answer:
+find / -type f -exec du -h {} + 2>/dev/null | sort -hr | head -10
+Or faster:
+du -ah / | sort -hr | head -10
+I use this during disk-space incidents.
+
+8. A disk partition shows 80% used but no large files. What might be the reason?
+Answer:
+Most likely deleted files are still held open by running processes.
+Check:
+lsof | grep deleted
+Restart the process or service to release space.
+I’ve seen this with log files rotated but the application wasn’t restarted.

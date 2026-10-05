@@ -1,0 +1,13 @@
+
+just share my devops interview exp as a fresher at knnx
+1) self introduction 
+2) directory structure of the linux
+3) why you choose github actions as ci/cd in your project rather than jenkins 
+4) what are soft link and hard link(syntaxs)
+5) if i have a server and i created a user how can i give access to the server for that user
+6) what is docker compose and docker swarm(cmds also)
+7) what is ansible how do you use that in your project
+8) list any 10 most used linux commands
+9) what is the difference between sudo su and sudo su -
+10) how did you practiced linuc (i have given reply as using the wsl installed locally rather than ec2)
+11) what are the ports of http,https and jenkins,ssh

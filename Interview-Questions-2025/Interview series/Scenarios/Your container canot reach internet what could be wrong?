@@ -1,0 +1,13 @@
+Your container canot reach internet what could be wrong?  
+
+When a container cannot reach the internet, the issue usually  from misconfigured DNS, firewall and routing issues on the host machine, or proxy settings 
+
+1. we can check  /etc/resolv.conf inside the container. If it lists a local host address (e.g., nameserver 127.0.0.x), the container cannot resolve names we can resolve this by adding public DNS servers to our Docker configuration 
+
+2.we can check if IP forwarding is enabled on the host by running cat /proc/sys/net/ipv4/ip_forward. If it returns 0, we can enable it by running sysctl net.ipv4.ip_forward=1. 
+
+3.System updates or firewall tools (like ufw on Linux) often reset or override Docker's Network Address Translation (NAT) rules  
+
+4.If our machine is behind a corporate network, our container will lack internet access unless the proxy is explicitly passed to it we can pass the necessary HTTP_PROXY and HTTPS_PROXY environment variables when running our container  
+
+5.Containers attached to the default bridge network block certain incoming requests by default, and can sometimes exhibit communication issues  we use a custom network by running docker network create my-custom-net and attach our container to it using --network my-custom-net 

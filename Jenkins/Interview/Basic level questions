@@ -1,0 +1,40 @@
+DevOps Interview Questions Series Jenkins – Basic Level
+
+What is Jenkins and why is it used in DevOps?
+
+What problems does Jenkins solve in CI/CD?
+
+Difference between CI and CD
+
+What are Jenkins jobs?
+
+Freestyle job vs Pipeline job
+
+What is Jenkins Pipeline?
+
+Declarative pipeline vs Scripted pipeline
+
+What is a Jenkinsfile?
+
+Where do you store Jenkinsfile and why?
+
+What are Jenkins agents (slaves)?
+
+Master vs Agent architecture in Jenkins
+
+How does Jenkins trigger a build?
+
+What are webhooks in Jenkins?
+
+What is SCM polling?
+Common SCMs supported by Jenkins
+
+What are Jenkins plugins?
+
+Why are plugins important in Jenkins?
+
+How do you install plugins in Jenkins?
+
+What is a build workspace in Jenkins?
+
+Common Jenkins use cases in real projects

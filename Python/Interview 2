@@ -1,0 +1,50 @@
+Python Interview Questions for DevOps Engineers
+
+I recently faced some Python coding questions in my DevOps interview. These are not very common, but they test both logic building and real-world automation skills. Sharing them here so it helps others preparing 🚀
+
+---
+
+🔹 List & Number Manipulation
+
+1️⃣ a = [10,18,123,165,19,199]
+
+* Fetch all three-digit numbers from the list
+* Fetch the second largest number
+
+2️⃣ a = [167,12,"Sam",45,"Max",286,"Tom"]
+
+* Fetch only integers from this list
+* Fetch the second largest number
+
+3️⃣ Given List = [12,18,65,17,98,56], 
+find the largest number
+
+---
+
+🔹 AWS Automation with Python (boto3)
+
+4️⃣ Write a Python code to fetch running EC2 instances in a given region.
+5️⃣ Write a script to filter instances by running state.
+6️⃣ Print instance details → Instance ID, Type, and Public IP.
+
+---
+
+🔹 Strings & Algorithms
+
+7️⃣ Write a script to reverse a string without using built-in functions.
+8️⃣ a = "This is Jerry" → Find the concurrency (word frequency/count).
+
+---
+
+🔹 Extra Tricky Ones (commonly asked)
+
+9️⃣ Write a Python script to check if a given string is a palindrome.
+🔟 Write a script to find the first non-repeated character in a string.
+1️⃣1️⃣ Write a script to sort a dictionary by values.
+1️⃣2️⃣ Given a log file, write a script to count number of ERROR entries.
+
+---
+
+✨ Takeaway:
+
+These types of Python questions are not about being a developer—they test if a DevOps engineer can quickly script, automate, and solve problems in real-time. Hands-on practice is the key 💯

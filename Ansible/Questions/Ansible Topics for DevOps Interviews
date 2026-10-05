@@ -1,0 +1,34 @@
+Must-Prepare Ansible Topics for DevOps Interviews 👇
+🔹 What is Ansible and how does it work?
+✔️ Agentless configuration management tool
+✔️ Uses SSH for communication
+✔️ Written in YAML
+✔️ Follows push-based architecture
+🔹 How do you install and configure Ansible?
+✔️ Install Ansible on control node
+✔️ Configure inventory file (hosts)
+✔️ Set up SSH key-based authentication
+✔️ Test connectivity using ansible all -m ping
+🔹 What is an Inventory file?
+✔️ Defines managed nodes
+✔️ Can be static or dynamic
+✔️ Supports groups and variables
+🔹 What are Playbooks in Ansible?
+✔️ Written in YAML
+✔️ Contains plays and tasks
+✔️ Executes tasks sequentially
+✔️ Ensures idempotency
+🔹 Roles in Ansible
+✔️ Reusable and modular structure
+✔️ Improves readability
+✔️ Used for complex automation
+🔹 Variables in Ansible
+✔️ Group variables
+✔️ Host variables
+✔️ Vars files
+✔️ Extra vars
+🔹 How to secure Ansible?
+✔️ Use Ansible Vault for secrets
+✔️ SSH key-based authentication
+✔️ Restrict sudo access
+📌 These topics are commonly asked in DevOps interviews.

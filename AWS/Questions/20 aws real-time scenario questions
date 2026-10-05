@@ -1,0 +1,19 @@
+20 aws real-time scenario questions 
+
+1. Your EC2 instance is not reachable via SSH; what steps will you take to troubleshoot it?
+ 2. You launched an EC2 instance without internet access in a private subnet — how do you allow it to download updates securely? 
+3. How do you ensure zero downtime during an EC2 instance replacement? 4. Your Auto Scaling group is not launching new instances even when CPU utilization is high — what could be the reason?
+ 5. How do you handle user data updates on already running EC2 instances? 6. How do you move an EC2 instance from one VPC to another with minimal downtime? 
+7. Your application running behind an Application Load Balancer is giving intermittent 504 errors — how do you troubleshoot it?
+ 8. How do you ensure high availability across regions for your EC2-based application?
+ 9. What steps would you take if your EC2 instance keeps stopping due to health check failures? 
+10. How do you reduce EC2 cost without affecting performance in a production workload?
+ 11. Your S3 bucket uploads are failing with Access Denied — what would you check first?
+ 12. How do you host a static website securely on Amazon S3?
+ 13. How do you enforce encryption for all objects uploaded to an S3 bucket?
+ 14. Your application requires shared storage between multiple EC2 instances — what AWS storage service would you use and why?
+ 15. How do you migrate on-premises data to S3 with minimal downtime? 16. What is your strategy for data lifecycle management and cost optimization in S3?
+ 17. You accidentally deleted data from an S3 bucket — how do you recover it?
+ 18. How do you troubleshoot slow EBS volume performance on an EC2 instance?
+ 19. Your EFS mount targets are not accessible from EC2 instances — what do you check?
+ 20. How do you automate snapshot creation and deletion for EBS volumes?

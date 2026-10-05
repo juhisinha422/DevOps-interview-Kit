@@ -1,0 +1,57 @@
+Here are 10 trending, scenario-based questions you need to be ready for:
+
+
+🔥 Kubernetes (EKS) & Containerization
+1. "A pod in your EKS cluster is stuck in CrashLoopBackOff. You’ve checked the logs, but they are empty because the container crashes instantly. How do you debug this?"
+2. "We need to upgrade our EKS cluster version with zero downtime. Our apps are stateful. Walk me through your strategy."
+
+🛠️ Infrastructure as Code (Terraform/OpenTofu)
+
+3. "Someone manually modified an SG rule in the AWS Console to fix a prod issue. Now your Terraform state is drifting. How do you reconcile this without downtime?"
+4. "Your Terraform apply time has grown to 45 minutes. What strategies would you use to reduce this feedback loop?"
+
+🚀 CI/CD (AWS CodePipeline / GitHub Actions)
+
+5. "A developer pushed a commit that passed unit tests but failed after deployment because of a missing environment variable. How do you prevent this shifting left?"
+6. "Design a deployment strategy for a microservice that cannot tolerate any downtime during schema changes. Blue/Green or Canary? Justify your choice."
+
+☁️ AWS Networking & Security
+
+7. "We are seeing intermittent connection timeouts between an EC2 instance in a private subnet and an S3 bucket. A NAT Gateway is in place. How do you troubleshoot?"
+8. "How do you manage secrets (DB passwords, API keys) in a multi-region setup? Explain the integration between AWS Secrets Manager and your EKS pods."
+
+📊 Observability & System Design
+
+9. "Your CloudWatch bill just doubled overnight. How do you identify the root cause and which specific log group is the culprit?"
+10. "You need to migrate a legacy on-prem monolith to AWS. It requires a static IP and has hardcoded dependencies. What is your migration pattern: Rehost, Replatform, or Refactor?"
+
+
+
+
+
+The AWS DevOps Interview Cheatsheet: 2026 Edition
+
+10 Scenario-Based Questions for Mid-Senior Engineers
+🔥 Kubernetes (EKS) & Containerization
+1. The "Silent Crash" (CrashLoopBackOff)
+* Scenario: A pod crashes instantly; logs are empty. * The Senior Answer: Don't just restart. The app is likely exiting before writing to stdout. * Check kubectl describe pod for OOMKilled. * The Fix: Override the entrypoint. Run kubectl debug or edit the deployment to run sleep
+3600, then exec in to run the binary manually. 2. Zero Downtime Stateful Upgrade
+* Scenario: Upgrade EKS version with stateful apps running. * The Senior Answer: Rolling updates fail here. * Ensure Pod Disruption Budgets (PDB) are set. * Verify PVC retention policies. * Manually drain nodes one by one to flush data to disk before moving pods. 🛠 Infrastructure as Code (Terraform)
+3. Fixing "ClickOps" Drift
+* Scenario: Manual console change caused Terraform drift. * The Senior Answer: Never blind apply. * Run plan to see drift. * If manual fix was correct, import/update code. If incorrect, overwrite. * Fix: Restrict console write access via IAM. 4. Reducing Feedback Loops
+* Scenario: Terraform apply takes 45 minutes. * The Senior Answer: Monolithic state is the enemy. * Split State: Separate Network (VPC) from App layers. * Use -refresh=false on plan if confident no external changes occurred.
+🚀 CI/CD Strategies
+5. Preventing "Works on my Machine" * Scenario: Missing env var causes crash after deploy. * The Senior Answer: Shift Left. * The Fix: Use tools like kubeval or conftest in the CI pipeline to validate the manifest schema
+and required config maps before deployment. 6. Zero Downtime Schema Changes
+* Scenario: Deploying microservice with DB schema changes. * The Senior Answer: Use the Expand and Contract pattern. * Expand: Add new column, keep writing to old. * Deploy: App reads/writes to new column. * Contract: Remove old column once stable.
+☁ AWS Networking & Security
+7. Private Subnet Connection Issues
+* Scenario: Intermittent S3 timeouts from private EC2. * The Senior Answer: NAT Gateways are inefficient for S3. * The Fix: Check for a VPC Endpoint (Gateway Type). Ensure the Endpoint Policy isn't
+restricting specific buckets. Check MTU size. 8. Managing Secrets in EKS
+* Scenario: Injecting Secrets Manager secrets into Pods. * The Senior Answer: Avoid Env Vars (visible in logs). * The Strategy: Use Secrets Store CSI Driver to mount secrets as a volume (memory only). If
+the pod dies, the secret disappears.
+📊 Observability & System Design
+9. The CloudWatch Bill Spike
+* Scenario: Costs doubled overnight. * The Senior Answer: Usually "High Cardinality" or Debug logs. * The Fix: Use Cost Explorer -> Usage Type. Use Log Insights to find noisy groups. Install
+Agent filters to drop DEBUG logs at source. 10. Legacy Migration (Static IP)
+* Scenario: Move fragile monolith requiring Static IP. * The Senior Answer: Strategy = Rehost (Lift & Shift). * Implementation: Use AWS MGN to move to EC2. Attach an Elastic IP (EIP). Don't Refactor until the platform is stable.

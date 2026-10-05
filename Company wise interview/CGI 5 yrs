@@ -1,0 +1,13 @@
+Jenkins pipeline stages
+EC2 scenario based questions 
+Build succeeded but prod app fails
+Dev image works but prod image fails
+Latency user faces 
+Python code to first non repetitive char in string
+Throughput vs latency 
+Monitoring metrics to chk
+K8s namespace list by age
+How to know which servers are blue or green during deployment
+
+build jar  file once and pass the same for all envs through ecr? is this the standard cos we build seperate images for seperate envs using seperate ecr repos?
+

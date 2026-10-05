@@ -1,0 +1,33 @@
+Day 8 — AWS CloudTrail + Security & Compliance Logging
+
+STAR-based DevOps Interview Questions
+
+1️⃣ You need to track all API-level actions across multiple AWS accounts. How will you configure a multi-account CloudTrail setup?
+
+2️⃣ A critical resource (IAM user, security group, EC2) was modified unexpectedly. How will you use CloudTrail to investigate the root cause?
+
+3️⃣ Compliance requires storing logs for 7 years with immutability. How will you design CloudTrail + S3 + Glacier + Object Lock?
+
+4️⃣ CloudTrail costs are increasing rapidly. What optimizations will you apply while maintaining security visibility?
+
+5️⃣ You need near real-time alerts when suspicious actions occur (e.g., IAM policy changes). How will you integrate CloudTrail with EventBridge + SNS/Security Hub?
+
+6️⃣ Your organization has separate dev, QA, and prod accounts. How will you centralize CloudTrail logs securely?
+
+7️⃣ You must detect unauthorized access attempts. How will you design CloudTrail + GuardDuty integration?
+
+8️⃣ CloudTrail logs are not showing events from S3 or Lambda. What configuration changes will you check?
+
+9️⃣ A user denies performing a specific API call. How will you validate evidence using CloudTrail digest files?
+
+🔟 You need to analyze CloudTrail logs for trends and anomalies. Which AWS analytics services will you use?
+
+1️⃣1️⃣ You suspect a compromised access key. How will CloudTrail help you determine what resources were affected?
+
+1️⃣2️⃣ CloudTrail is creating duplicate events across multiple trails. How will you optimize the configuration?
+
+1️⃣3️⃣ You must prevent anyone from deleting or modifying audit logs. How will you enforce log integrity and permissions?
+
+1️⃣4️⃣ A partner organization needs read-only access to specific CloudTrail logs. How will you design fine-grained S3 + IAM access?
+
+1️⃣5️⃣ You need to automate compliance checks for CIS/NIST security frameworks. How will you combine CloudTrail with AWS Config?

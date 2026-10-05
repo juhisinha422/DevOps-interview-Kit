@@ -1,0 +1,11 @@
+Logs from multiple EC2 instances need to be centralized and searchable. How will you achieve this?  
+
+1.To centralize and make logs searchable from multiple EC2 instances, we can use Amazon CloudWatch Logs as the primary aggregation point 
+
+2.For advanced search capabilities we can use Amazon OpenSearch Service 
+ 
+3. we need to Install the Unified CloudWatch Agent on each EC2 instance. This agent can monitor local log files (e.g., /var/log/messages, application logs) and stream them to CloudWatch. 
+
+4.Attach an IAM role to each EC2 instance with the CloudWatchAgentServerPolicy managed policy, allowing the agent to create log groups and upload log events.
+ 
+5.If instances are spread across different AWS accounts or regions we use CloudWatch Logs Centralization rules to replicate log data from source accounts to a destination account. 

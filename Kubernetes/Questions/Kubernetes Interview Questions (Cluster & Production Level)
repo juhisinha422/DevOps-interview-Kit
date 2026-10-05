@@ -1,0 +1,80 @@
+TCS Kubernetes Interview Questions (Cluster & Production Level)
+
+1️⃣ How does Kubernetes internally handle a Pod creation request from kubectl apply until the Pod is running on a node?
+
+(Explain API Server, etcd, scheduler, kubelet, CNI, and container runtime flow.)
+
+2️⃣ What happens if the Kubernetes API Server goes down? Which components are impacted and which continue working?
+
+(Focus on control plane vs data plane behavior.)
+
+
+3️⃣ How does Kubernetes ensure high availability of the control plane in production clusters?
+
+(Asked heavily in SRE and platform engineering interviews.)
+
+
+4️⃣ What is etcd, why is it critical, and how do you back up and restore it safely in a production cluster?
+
+(Real-world outage recovery question.)
+
+
+5️⃣ Explain the difference between Pod restart, Pod rescheduling, and Pod recreation.
+
+(Trick question to test deep understanding.)
+
+
+6️⃣ How does Kubernetes handle node failure? Walk through what happens when a node suddenly goes down.
+
+(Expect details on node controller, taints, pod eviction, and rescheduling.)
+
+7️⃣ What are taints and tolerations, and how are they different from node selectors and affinity?
+
+(Design-level scheduling question.)
+
+
+8️⃣ How does Kubernetes networking work inside a cluster?
+
+(Explain CNI, Pod-to-Pod communication, Services, kube-proxy, and DNS.)
+
+
+9️⃣ What happens if a container inside a Pod crashes but the Pod is still running?
+
+(Probe understanding of container vs Pod lifecycle.)
+
+
+🔟 How does Kubernetes perform rolling updates and rollbacks?
+
+(Deployment strategy, maxSurge, maxUnavailable, and failure scenarios.)
+
+
+1️⃣1️⃣ How do readiness probes and liveness probes actually impact traffic and Pod lifecycle?
+
+(Production debugging question.)
+
+
+1️⃣2️⃣ What causes CrashLoopBackOff, and how do you debug it in a live cluster?
+
+(Expect real troubleshooting steps, not theory.)
+
+
+1️⃣3️⃣ How does Horizontal Pod Autoscaler (HPA) work internally?
+
+(Metrics server, resource metrics, scaling decisions.)
+
+
+1️⃣4️⃣ What is the difference between StatefulSet and Deployment, and when would you never use Deployment?
+
+(Commonly asked in database-related workloads.)
+
+1️⃣5️⃣ How does Kubernetes handle secrets internally, and why are they not truly encrypted by default?
+
+(Security-focused question.)
+
+1️⃣6️⃣ What happens when a Pod exceeds its memory limit?
+
+(Important: OOMKill vs eviction behavior.)
+
+1️⃣7️⃣ How do you safely upgrade a Kubernetes cluster with zero downtime?
+
+(Cluster-level, real-world question.)

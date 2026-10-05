@@ -1,0 +1,57 @@
+technical interview with #Virtusa.
+
+It was a truly insightful experience where the discussion went deep into real-time production scenarios rather than just theoretical questions.
+What I really appreciated was the focus on advanced, scenario-based problem solving across DevOps, Cloud, and SRE practices.
+
+Here are some of the advanced topics and scenarios discussed:
+
+🔹 AWS – Real Production Scenarios
+• How would you design a highly available 3-tier architecture across multiple AZs?
+ • If an ALB is healthy but users still get 502 errors, how would you troubleshoot?
+ • How would you implement cross-account access securely?
+ • Design DR strategy with RTO/RPO considerations.
+ • How would you reduce AWS cost in a Kubernetes-based production workload?
+ • Difference between NLB vs ALB in microservices architecture.
+
+🔹 Jenkins – Enterprise CI/CD
+• How do you design a scalable Jenkins architecture for 100+ microservices?
+ • How would you implement dynamic agents using Docker or Kubernetes?
+ • If a pipeline succeeds but deployment fails in production, how do you handle rollback?
+ • How do you secure secrets in Jenkins?
+ • How would you implement parallel stages efficiently?
+
+🔹 Docker – Production Challenges
+• How do you reduce Docker image size in production?
+ • Multi-stage builds – real use case?
+ • How do you handle container security vulnerabilities?
+ • What causes container OOMKilled and how to fix it?
+ • How would you debug a container that works locally but fails in Kubernetes?
+
+🔹 Kubernetes – Advanced Troubleshooting
+• Pod stuck in CrashLoopBackOff – debugging steps?
+ • How to design HPA for CPU + custom metrics?
+ • Difference between Deployment vs StatefulSet in real production?
+ • How to implement blue-green or canary deployment?
+ • If cluster nodes are under memory pressure, what actions will you take?
+ • How do you manage secrets securely in Kubernetes?
+
+🔹 Terraform – Infrastructure as Code
+• How do you manage remote state securely?
+ • How to handle drift detection?
+ • How do you structure Terraform modules for enterprise projects?
+ • What is the difference between count and for_each?
+ • How do you implement multi-environment (dev/stage/prod) architecture?
+
+🔹 SRE & Reliability Engineering
+• How do you define SLI, SLO, and SLA in production?
+ • How do you calculate error budget?
+ • Incident handling strategy in Sev-1 outage?
+ • How do you reduce MTTR?
+ • How would you design monitoring and alerting for microservices?
+ • Difference between reactive vs proactive reliability engineering?
+Overall, it was a strong reminder that:
+
+👉 Interviews today are not about “What is EC2?”
+ 👉 They are about “How will you solve a production outage at 2 AM?”
+Grateful for the learning experience and continuous growth in the DevOps & Cloud journey 🚀
+Looking forward to more such technical discussions.

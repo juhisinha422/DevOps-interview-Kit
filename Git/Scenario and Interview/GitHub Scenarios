@@ -1,0 +1,68 @@
+GitHub Real-Time Learnings: Scenarios, Issues & Fixes
+
+Over the past few weeks, I’ve been working closely with my team on GitHub, and we came across some real-world challenges that turned into great learning moments. Sharing a few here:
+
+🔹 Scenario 1: Merge Conflicts in Real-Time Collaboration
+
+Issue: While merging multiple feature branches into main, we hit complex conflicts due to overlapping changes in the same file.
+Fix:
+	•	Used git fetch and git rebase to align with the latest main.
+	•	Collaborated with contributors in real-time using GitHub Codespaces to resolve conflicts directly.
+	•	Added a branch protection rule to enforce PR reviews before merging.
+
+📌 Takeaway: Early sync with main and branch protection saves hours of rework.
+
+⸻
+
+🔹 Scenario 2: CI/CD Pipeline Failure on GitHub Actions
+
+Issue: A build kept failing due to missing environment variables in the GitHub Actions workflow.
+Fix:
+	•	Debugged by adding ACTIONS_STEP_DEBUG=true.
+	•	Updated repository secrets with required variables.
+	•	Added a pre-check step in workflow to validate environment before deployment.
+
+📌 Takeaway: Always keep sensitive values in GitHub Secrets and validate workflow configs before merge.
+
+⸻
+
+🔹 Scenario 3: Accidental Push to Master Branch
+
+Issue: A teammate pushed code directly to main without review, breaking production deployment.
+Fix:
+	•	Rolled back using git revert <commit-id>.
+	•	Enabled branch protection → disallow direct pushes, enforce PR + review.
+	•	Setup GitHub Environments with manual approval before production deploy.
+
+📌 Takeaway: Guardrails (branch protection + approvals) = safer codebase.
+
+⸻
+
+🔹 Scenario 4: Dependency Vulnerabilities
+
+Issue: GitHub Dependabot alerted multiple high-severity vulnerabilities in Node.js dependencies.
+Fix:
+	•	Ran npm audit fix and manually upgraded incompatible packages.
+	•	Used Dependabot auto-merge for minor safe upgrades.
+	•	Added security scanning step in CI to catch early.
+
+📌 Takeaway: Keep dependencies updated continuously, not just during release crunch.
+
+⸻
+
+🔹 Scenario 5: Large File Commit by Mistake
+
+Issue: A developer committed a large binary file (>100MB) causing push failures.
+Fix:
+	•	Removed from history using git filter-repo.
+	•	Added .gitignore for such files.
+	•	Enabled Git LFS (Large File Storage) for assets.
+
+📌 Takeaway: Proper .gitignore and LFS saves repo from bloat.
+
+🔹 Scenario 6: Jenkins Shared Library Update
+	•	Issue: A direct update was made to the Jenkins shared file in master branch without validation in the release branch. This broke multiple pipelines.
+	•	Fix: Identified the change, rolled back, and introduced rules:
+	•	No direct updates to master → all changes must go via feature → release → master flow.
+	•	Added PR validation + Jenkins pipeline test job for shared libraries.
+	•	Documented ownership & approval process before merging shared files.

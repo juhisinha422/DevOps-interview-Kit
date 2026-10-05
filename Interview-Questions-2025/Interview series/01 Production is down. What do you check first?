@@ -1,0 +1,39 @@
+One DevOps interview question that reveals real experience:
+
+“Production is down. What do you check first?”
+
+Many answers start with:
+
+• checking logs
+• restarting services
+• rolling back deployments
+
+But experienced engineers begin with one question:
+
+👉 What changed recently?
+
+Because most outages are triggered by:
+
+• new deployments
+• config updates
+• infrastructure changes
+• certificate expiry
+• sudden traffic spikes
+
+---
+
+A simple troubleshooting flow:
+
+1️⃣ Check recent deployments & changes
+2️⃣ Look at error rates and system metrics
+3️⃣ Correlate metrics with logs
+4️⃣ Validate dependencies (DB, cache, external APIs)
+5️⃣ Mitigate quickly, then fix the root cause
+
+---
+
+Anyone can run commands.
+
+Great engineers understand failure.
+
+Save this for your DevOps/SRE interviews.

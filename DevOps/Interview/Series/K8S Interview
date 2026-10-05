@@ -1,0 +1,47 @@
+DevOps Interview Preparation Series — Kubernetes (K8s) Scenarios 🚀
+#DevOps #Kubernetes #K8s
+
+If you’re preparing for a DevOps or Site Reliability Engineer (SRE) interview, you can’t skip Kubernetes (K8s) — the core of modern cloud-native infrastructure.
+
+ Kubernetes questions in interviews often go beyond theory — they test your hands-on troubleshooting, scaling, and automation experience.
+
+Here are real-world Kubernetes scenario-based interview questions you should master 👇
+
+What is Kubernetes and how does it differ from Docker Swarm?
+Explain the architecture of Kubernetes — API Server, Controller Manager, Scheduler, etc.
+What is a Pod and how is it different from a container?
+What are Deployments, ReplicaSets, and StatefulSets — and when would you use each?
+How do you perform a rolling update and rollback in Kubernetes?
+Your pod is stuck in “CrashLoopBackOff” — how do you troubleshoot it?
+How do you check which pod is consuming the most CPU or memory?
+Explain the difference between readiness and liveness probes.
+How can you restart a specific pod or deployment in Kubernetes?
+How do you expose an application running inside a pod to the outside world?
+What are the different types of Kubernetes services (ClusterIP, NodePort, LoadBalancer)?
+How do you secure communication between pods and services in Kubernetes?
+Explain the concept of ConfigMaps and Secrets — and how you’d use them.
+How can you perform zero-downtime deployment in Kubernetes?
+Your application is not resolving environment variables — what could be the issue?
+How do you use taints and tolerations in Kubernetes scheduling?
+What’s the difference between a DaemonSet and a Deployment?
+How do you restrict certain pods from communicating with others?
+Explain how Ingress works in Kubernetes.
+How can you perform a health check of pods and nodes using Bash or kubectl commands?
+How do you monitor Kubernetes clusters using Prometheus and Grafana?
+What are Init containers and when do you use them?
+How do you roll back to a previous Deployment version in Kubernetes?
+Explain what happens when you run kubectl apply -f deployment.yaml.
+How do you handle “ImagePullBackOff” or “OOMKilled” errors?
+What are Kubernetes Namespaces and why are they important?
+How do you integrate Kubernetes with Jenkins or GitHub Actions in a CI/CD pipeline?
+How do you implement pod auto-scaling in Kubernetes?
+How do you back up and restore your Kubernetes cluster and resources?
+What are some best practices for securing Kubernetes clusters in production?
+
+Pro Tip:
+Kubernetes mastery is not about memorizing commands — it’s about understanding how components interact.
+ Focus on:
+ ✅ Troubleshooting (kubectl describe, kubectl logs)
+ ✅ Health checks and monitoring
+ ✅ Deployment strategies (Blue-Green, Canary)
+ ✅ Security (RBAC, Network Policies)

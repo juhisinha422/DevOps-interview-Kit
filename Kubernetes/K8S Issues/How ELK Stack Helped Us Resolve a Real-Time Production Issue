@@ -1,0 +1,25 @@
+How ELK Stack Helped Us Resolve a Real-Time Production Issue
+
+In production environments, issues rarely come with clear signs. Sometimes the only clue you get is a message from users saying “the application is slow.” Recently we faced a similar situation where a few users started reporting slow API responses.
+
+At first glance, our infrastructure metrics looked normal — CPU and memory usage were within limits. But the application was still responding slowly, so it was clear the issue was somewhere deeper.
+
+Instead of manually checking logs across multiple servers, we turned to our ELK Stack (Elasticsearch, Logstash, Kibana) which collects and centralizes logs from all services.
+
+Using Kibana, we started filtering logs around the time when users reported the issue. Within a few minutes, we noticed a sudden increase in 500 errors coming from one of the backend services.
+
+When we drilled deeper into the logs, we saw repeated database connection timeout errors. The service was trying to connect to the database but the connection pool had already been exhausted.
+
+After correlating the logs and recent deployments, we realized that a new release had increased the number of API requests hitting the service, but the database connection pool size had not been adjusted accordingly.
+
+What we did to fix it:
+
+- Increased the database connection pool size.
+- Restarted the affected service to clear stuck connections.
+- Added additional log alerts in Kibana to detect similar patterns earlier.
+
+Within a short time, the API latency returned to normal and user requests were processed smoothly again.
+
+This incident once again showed the importance of centralized logging and observability tools. Without ELK, finding the root cause across distributed services would have taken much longer.
+
+Sometimes the fastest way to solve a production issue is simply having the right visibility into your logs.

@@ -1,0 +1,45 @@
+once asked this in a SonarQube / SonarCloud interview....
+
+Q: Your pipeline passes, but SonarQube shows the Quality Gate as failed. Why?
+
+A: The build can succeed while code quality checks fail. I’d review Quality Gate conditions like coverage, bugs, or code smells that block promotion.
+
+Q: SonarQube analysis works locally but fails in CI. What’s going on?
+
+A: CI may be missing authentication tokens, project keys, or proper branch configuration. I’d verify scanner settings and environment variables.
+
+Q: SonarCloud shows low code coverage even though tests ran. Why?
+
+A: Coverage reports might not be generated or correctly linked. I’d ensure the coverage report path is configured and matches the test framework output.
+
+Q: New code is failing Quality Gate, but legacy code is fine. Why?
+
+A: Quality Gates often enforce stricter rules on new code. I’d review new-code definitions and address issues introduced in recent changes.
+
+Q: SonarQube reports many false-positive issues. How do you handle it?
+
+A: I’d review and mark them as false positives or adjust rule severity and profiles to reduce noise without hiding real issues.
+
+Q: SonarCloud isn’t showing PR decoration. What could be wrong?
+
+A: The SCM integration may be missing permissions or webhook setup. I’d check repository access and PR analysis configuration.
+
+Q: SonarQube analysis is slow on large repositories. How do you optimize it?
+
+A: I’d exclude non-critical paths, tune analysis scope, and ensure adequate compute resources for the SonarQube server.
+
+Q: Secrets or credentials are flagged in Sonar scans. What’s your response?
+
+A: I’d remove the secrets immediately, rotate them, and add secure secret management to prevent future exposure.
+
+Q: SonarQube is not analyzing a specific module in a multi-module project. Why?
+
+A: The module may be excluded or misconfigured in the scanner settings. I’d verify module paths and project structure configuration.
+
+Q: SonarCloud analysis shows different results between branches. What’s the reason?
+
+A: Each branch has its own baseline and new-code definition. I’d compare branch settings and ensure consistent Quality Gate rules.
+
+Q: The Quality Gate status is “skipped” for a pipeline run. Why does this happen?
+
+A: The analysis might not be linked to the correct branch or PR. I’d check scanner parameters and ensure the pipeline is triggering the analysis properly.

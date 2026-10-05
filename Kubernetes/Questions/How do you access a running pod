@@ -1,0 +1,15 @@
+How do you access a running pod, and how do you define Kubernetes objects? 
+
+we can access a running pod's shell using the kubectl exec command, and Kubernetes objects are primarily defined using declarative YAML 
+
+kubectl exec -it <pod-name> -- /bin/bash  
+
+Kubernetes objects represent the desired state of our cluster and are defined using configuration files (often called manifests)  
+
+1.apiVersion: Specifies the version of the Kubernetes API we are  using (e.g., v1, apps/v1)
+
+2. kind: The type of object we want to create (e.g., Pod, Service, Deployment).
+
+3.metadata: Data to uniquely identify the object, including a name and optional labels and namespace
+
+ 4.spec: The specific configuration (desired state) for that object, which varies depending on the kind

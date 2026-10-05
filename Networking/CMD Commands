@@ -1,0 +1,16 @@
+Some cool CMD commands yo know: 💥 
+
+1️⃣ 𝗻𝗲𝘁𝘀𝘁𝗮𝘁 -𝗮𝗻𝗼
+View active connections, ports, and the PID using them (super useful for malware hunting).
+
+2️⃣ 𝘁𝗮𝘀𝗸𝗹𝗶𝘀𝘁 /𝘃
+Full list of processes with detailed info.
+
+3️⃣ 𝗽𝗼𝘄𝗲𝗿𝗰𝗳𝗴 /𝗲𝗻𝗲𝗿𝗴𝘆
+Generate a detailed power efficiency report.
+
+4️⃣ 𝗱𝗿𝗶𝘃𝗲𝗿𝗾𝘂𝗲𝗿𝘆 /𝘃
+Lists all drivers with versions and dates.
+
+5️⃣ 𝘁𝗶𝘁𝗹𝗲 𝗜 𝗔𝗠 𝗛𝗔𝗖𝗞𝗘𝗥𝗠𝗔𝗡
+Rename the command window title.

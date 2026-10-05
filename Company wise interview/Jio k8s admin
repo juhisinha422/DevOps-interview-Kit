@@ -1,0 +1,40 @@
+role:kubernetes admin
+company:jio
+
+Kubernetes Interview Questions
+Please introduce yourself.
+
+What are your day-to-day responsibilities in your current or previous role?
+Have you ever deployed Kubernetes on-premises? If yes, which setup did you use?
+What was the size of your Kubernetes cluster (number of nodes, workloads, etc.)?
+Have you ever created a cluster from scratch?
+What are the steps involved in creating a Kubernetes cluster?
+Which components are created automatically during cluster setup, and which components must be created manually?
+What are the main components of the Kubernetes control plane?
+What is the API server’s default port number and its function?
+What is the role of kube-proxy?
+Can kubelet run on the control plane node?
+What is the function of kubelet?
+What is a container runtime ?
+Are you familiar with other container runtimes apart from the one you’ve used?
+Do you know about Calico, and what is its purpose in a cluster?
+What is the difference between a ReplicaSet and a Deployment?
+What is the function of a DaemonSet?
+What is a StatefulSet, and how does it differ from a Deployment?
+What is a pod affinity, and why would you use it?
+How are applications deployed and managed inside the cluster?
+What are taints and tolerations, and how do they work?
+What is the difference between (labels and selectors) and (taints and tolerations)?
+Can selectors be used along with tolerations?
+How do pods communicate with each other inside the cluster?
+How can pods be accessed externally from outside the cluster?
+What is the difference between NodePort and ClusterIP services?
+What is the purpose of an Ingress, and what ports does it typically use?
+For ports 80 and 443, what are the corresponding protocol numbers?
+Why is the NodePort range set between 30000 and 32767?
+What is the process for scaling nodes in a Kubernetes cluster?
+What are the prerequisites for scaling nodes?
+How does the Cluster Autoscaler work?
+What other components or factors are involved in Cluster Autoscaler operation?
+Explain the “ImagePullBackOff” error.
+How can you check or list the events of a pod?

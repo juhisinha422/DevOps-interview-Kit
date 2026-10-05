@@ -1,0 +1,65 @@
+ Terraform Security – DevOps Interview Questions
+
+Infrastructure as Code can create or destroy security 🧨
+
+📌 Questions:
+
+What are Terraform security risks?
+
+Why is Terraform state file sensitive?
+
+How do you secure Terraform state?
+
+Why should state not be stored locally?
+
+How do you encrypt state files?
+
+How do you manage secrets in Terraform?
+
+Why should variables.tf not contain secrets?
+
+What is backend security in Terraform?
+
+How do you secure Terraform Cloud?
+
+What is IAM role usage in Terraform?
+
+How do you prevent misconfigurations using Terraform?
+
+What is IaC security scanning?
+
+What tools are used to scan Terraform code?
+
+What is policy-as-code in Terraform?
+
+What is Sentinel / OPA usage?
+
+How do you restrict Terraform access?
+
+How do you handle Terraform credentials securely?
+
+What is drift detection?
+
+How do you audit Terraform changes?
+
+What is least privilege in Terraform IAM?
+
+How do you manage multi-environment security?
+
+How do you protect Terraform pipelines?
+
+How do you prevent accidental deletes?
+
+What is terraform plan security review?
+
+How do you handle secrets rotation?
+
+How do you secure remote execution?
+
+How do you manage Terraform modules securely?
+
+How do you handle sensitive outputs?
+
+What is state locking security?
+
+Common Terraform security mistakes?

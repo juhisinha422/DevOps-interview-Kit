@@ -1,0 +1,90 @@
+1. How do you handle secrets in Kubernetes securely?
+
+Answer:
+ • Use Kubernetes Secrets (base64 encoded, not encrypted by default).
+ • Enable Encryption at Rest for secrets in etcd.
+ • Integrate with external secret stores like HashiCorp Vault, AWS Secrets Manager, Azure Key Vault using external secret controllers.
+ • Restrict access with RBAC.
+
+⸻
+
+2. How do you debug a pod stuck in Pending state?
+
+Answer:
+ • Check events → kubectl describe pod <name>
+ • Common issues:
+ • No available nodes (scheduler failure)
+ • Insufficient resources (CPU/Memory)
+ • Node selectors/taints not matching
+ • PVC claim not bound
+ • Use kubectl get events --sort-by=.metadata.creationTimestamp for detailed reasons.
+
+⸻
+
+3. How do you achieve multi-tenancy in Kubernetes?
+
+Answer:
+ • Separate workloads by Namespaces
+ • Apply ResourceQuotas and LimitRanges per namespace
+ • Use NetworkPolicies to isolate traffic
+ • Apply RBAC to restrict access
+ • Optionally use OPA Gatekeeper or Kyverno for policy enforcement
+
+⸻
+
+4. How would you implement canary deployments in Kubernetes?
+
+Answer:
+ • Create two deployments (stable + canary) with different labels
+ • Use a Service or Ingress with weighted routing (via Nginx ingress annotations or service mesh like Istio/Linkerd)
+ • Gradually shift traffic from stable to canary
+ • Rollback if metrics/logs show failures
+
+⸻
+
+5. How do you secure communication between microservices inside the cluster?
+
+Answer:
+ • Enable mTLS using a service mesh (Istio/Linkerd)
+ • Use NetworkPolicies for L3/L4 security
+ • Implement PodSecurityPolicy (deprecated → use Pod Security Admission)
+ • Rotate TLS certificates automatically with cert-manager
+
+⸻
+
+6. How do you scale Kubernetes clusters automatically?
+
+Answer:
+ • Horizontal Pod Autoscaler (HPA): scales pods based on CPU/memory/metrics
+ • Vertical Pod Autoscaler (VPA): adjusts resource requests/limits
+ • Cluster Autoscaler: adds/removes nodes based on pending pods
+ • Integrate with cloud providers (AWS, GCP, Azure) for dynamic node scaling
+
+⸻
+
+7. How do you manage Kubernetes manifests across environments (Dev, QA, Prod)?
+
+Answer:
+ • Use Helm charts with separate values.yaml per environment
+ • Use Kustomize with overlays (dev/, staging/, prod/)
+ • Use GitOps tools like ArgoCD or FluxCD to sync manifests from Git
+
+⸻
+
+8. How do you ensure zero downtime during Kubernetes upgrades?
+
+Answer:
+ • Upgrade control plane and worker nodes gradually
+ • Use PodDisruptionBudgets (PDBs) to control eviction
+ • Ensure Deployments use RollingUpdate strategy
+ • Use readiness probes so traffic only routes to healthy pods
+ • If using managed services (EKS/AKS/GKE), rely on cluster upgrade workflows
+
+9. How do you enforce security policies cluster-wide?
+
+Answer:
+ • Use RBAC for access control
+ • Use Pod Security Admission (PSA) to enforce pod-level restrictions
+ • Use OPA Gatekeeper or Kyverno for custom policy enforcement
+ • Scan container images with tools like Trivy, Aqua, or Clair
+ • Enable audit logging on API server

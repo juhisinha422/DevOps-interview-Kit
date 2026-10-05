@@ -1,0 +1,71 @@
+Day 14 of my DevOps Troubleshooting Series
+
+Jenkins Pipeline Stuck: “Waiting for next available executor”
+
+Imagine a developer pushes code to GitHub, which triggers a Jenkins pipeline.
+
+But the pipeline doesn't start.
+
+Instead, Jenkins shows:
+
+Waiting for next available executor
+
+As a DevOps Engineer, what would you check? 🤔
+
+🔍 My Troubleshooting Approach
+
+1️⃣ Check Jenkins Executors
+
+* Check whether all executors are busy.
+* Identify long-running or stuck builds.
+* Stop a stuck build if required.
+
+2️⃣ Check Jenkins Agents
+
+* Verify whether the required agent is online.
+* Check if the agent has available executors.
+* Investigate SSH/network connectivity if the agent is offline.
+
+3️⃣ Verify Node Labels
+If the pipeline uses a specific label:
+
+```groovy
+agent {
+ label 'docker-agent'
+}
+```
+
+Make sure an online agent with the `docker-agent` label is available.
+
+4️⃣ Check Server Resources
+Verify:
+
+* CPU utilization
+* Memory usage
+* Disk space
+
+5️⃣ Review Jenkins Logs
+Look for errors related to:
+
+* Agent connectivity
+* Executor allocation
+* Node availability
+* Jenkins plugins
+
+ 🎯 Common Root Causes
+
+✅ All executors are busy
+✅ Jenkins agent is offline
+✅ Incorrect node/agent label
+✅ Agent has no available executors
+✅ Stuck or long-running builds
+✅ Insufficient server resources
+✅ Too many concurrent builds
+
+💡 Interview Tip
+
+If you see Waiting for next available executor, don't immediately increase the number of executors.
+
+First understand why Jenkins cannot find an available executor that satisfies the job requirements.
+
+That's the real troubleshooting mindset of a DevOps Engineer. 🚀

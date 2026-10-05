@@ -1,0 +1,44 @@
+AWS DevOps Interview Preparation Series —  Amazon VPC 🚀
+
+Topic: Amazon VPC (Virtual Private Cloud)
+
+As part of my AWS DevOps Interview Preparation Series, today we’ll focus on one of the most critical networking services in AWS — Amazon VPC.
+ VPC forms the backbone of all AWS deployments, enabling you to build secure, isolated, and scalable network architectures for your cloud workloads.
+
+Here are real-world VPC interview questions to test and strengthen your networking fundamentals for DevOps and SRE interviews. 👇
+
+🔹 VPC — Top Interview Questions for DevOps Engineers
+
+What is Amazon VPC and why is it used in AWS?
+ What are the key components of a VPC?
+ What is the default VPC and how is it different from a custom VPC?
+ What are subnets and what is the difference between public and private subnets?
+ How do you associate a subnet with a route table?
+ What is an Internet Gateway and how does it work?
+ What is a NAT Gateway and why is it required?
+ What are route tables and how do they control network traffic?
+ What is the purpose of a Network ACL (NACL)?
+ What’s the difference between a Security Group and a NACL?
+ What are Elastic IPs and how are they used in VPC?
+ What is a VPC peering connection and when should you use it?
+ What is AWS Transit Gateway and how is it different from VPC Peering?
+ How can you connect your on-premises network to AWS VPC?
+ What is a VPN connection in AWS and what are its types?
+ What is AWS Direct Connect and how is it different from VPN?
+ How do you achieve high availability across multiple Availability Zones?
+ What is the CIDR block in VPC and how do you choose it?
+ How do you expand a VPC’s CIDR range after creation?
+ How do you restrict access between subnets or VPCs?
+ What is VPC Flow Logs and how is it used for monitoring?
+ How do you analyze VPC Flow Logs for security and performance?
+ What are endpoints in VPC and what types are available?
+ What is the difference between Gateway Endpoint and Interface Endpoint?
+ How do you configure PrivateLink in a VPC?
+ How do you integrate VPC with AWS Load Balancer and Auto Scaling?
+ What are the best practices for designing secure VPC architectures?
+ How can you create a multi-region VPC setup?
+ What are common VPC misconfigurations and how to troubleshoot them?
+ How do you automate VPC creation using Terraform or CloudFormation?
+
+💡 Pro Tip:
+ Mastering VPC, subnets, and network access controls is crucial for any DevOps or Cloud Engineer — they form the foundation of secure, scalable AWS infrastructure.

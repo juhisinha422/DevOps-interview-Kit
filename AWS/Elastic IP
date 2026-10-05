@@ -1,0 +1,9 @@
+In cloud environments, stable connectivity is essential. That’s where Elastic IP comes in.
+An Elastic IP is a static public IPv4 address designed for dynamic cloud computing. Unlike normal public IPs, it stays associated with your AWS account and can be quickly remapped to another instance whenever needed.
+
+ Key Benefits:
+ • Provides a permanent public IP address for your cloud resources
+ • Maintains consistent access to applications and servers
+ • Supports quick failover by reassigning the IP to another instance
+ • Commonly used for web servers, NAT gateways, and production workloads
+In simple terms, Elastic IP helps keep your applications reachable even when infrastructure changes. 

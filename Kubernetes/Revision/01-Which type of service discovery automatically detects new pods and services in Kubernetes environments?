@@ -1,0 +1,7 @@
+Which type of service discovery automatically detects new pods and services in Kubernetes environments? 
+A. Static discovery
+B. Dynamic discovery
+C. Manual discovery
+D. Exporter discovery
+
+ANS B

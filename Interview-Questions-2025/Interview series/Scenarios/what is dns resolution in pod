@@ -1,0 +1,7 @@
+what is dns resolution in pod?
+1. It is the process where an application inside a pod translates domain or service names into IP addresses using the cluster's internal DNS server
+2. Kubernetes automatically injects an /etc/resolv.conf file into every container inside a pod.
+3. Pod IPs in Kubernetes are ephemeral and change constantly when pods crash or scale, applications rely on stable Service names to talk to one another.
+To solve pod DNS resolution issues, we must check CoreDNS status
+example : Need to check if CoreDNS pods are running using kubectl get pods -n kube-system -l k8s-app=kube-dns
+Inspect CoreDNS logs for errors using kubectl logs -n kube-system -l k8s-app=kube-dns

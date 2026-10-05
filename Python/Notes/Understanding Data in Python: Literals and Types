@@ -1,0 +1,38 @@
+Understanding Data in Python: Literals and Types
+
+When we write code, we are constantly working with different types of data. In Python, these fixed values are called Literals. Understanding them is key to
+writing bug-free programs!
+
+Here is a quick breakdown of the most common types:
+
+1. Numbers (Integers & Floats)
+
+Integers (ints): These are whole numbers like 256 or -1. No decimals allowed.
+Floats: These are numbers with a fractional part, like 1.27. Even 2.0 is considered a float in Python.
+
+2. Number Systems
+
+Computers don't just use the decimal system (Base 10). Python also lets us work with:
+
+Binary: Base 2 (uses only 0s and 1s).
+Octal: Base 8.
+Hexadecimal: Base 16 (uses numbers 0-9 and letters A-F).
+
+3. Working with Strings & Quotes
+
+Ever wondered how to put a quote inside a sentence? You have two easy ways:
+
+The Escape Character: Use a backslash, like 'I\'m happy.'
+Opposite Quotes: If you need an apostrophe, wrap the whole string in double quotes: "I'm happy."
+
+4. Booleans: True or False
+
+Boolean values represent truth. In Python, we use True and False.
+
+Fun fact: In math contexts, Python treats True as 1 and False as 0.
+
+5. The None Literal
+
+Sometimes, you need to show that a value is missing. Python uses a special object called None. It does not mean zero it means nothing is here.
+
+Mastering these basics makes it much easier to handle data as your projects grow!

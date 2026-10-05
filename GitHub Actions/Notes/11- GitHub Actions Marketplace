@@ -1,0 +1,28 @@
+GitHub Actions Marketplace
+
+Today I explored how the Actions Marketplace helps reuse automation instead of building everything from scratch.
+
+🔹 Using Public Actions
+Public actions provide:
+Prebuilt automation
+Common CI/CD tasks
+Faster workflow setup
+They reduce pipeline complexity.
+
+🔹 Action Versions
+Actions are referenced using versions:
+Version tags
+Release numbers
+Commit SHAs
+Pinning versions improves stability.
+
+🔹 Trusted Actions
+Use verified publishers
+Review action source code
+Avoid untrusted repositories
+Security starts with trusted actions.
+
+🔥 3-Line Takeaway
+Reuse saves time.
+ Versions ensure stability.
+ Trust protects pipelines.

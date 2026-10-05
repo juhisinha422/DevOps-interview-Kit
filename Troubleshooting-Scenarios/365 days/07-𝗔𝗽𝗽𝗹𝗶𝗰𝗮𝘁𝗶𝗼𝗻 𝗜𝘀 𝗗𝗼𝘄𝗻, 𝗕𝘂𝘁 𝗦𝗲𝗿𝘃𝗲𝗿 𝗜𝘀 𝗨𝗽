@@ -1,0 +1,67 @@
+𝗗𝗮𝘆 𝟳/𝟯𝟲𝟱 — 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗜𝘀 𝗗𝗼𝘄𝗻, 𝗕𝘂𝘁 𝗦𝗲𝗿𝘃𝗲𝗿 𝗜𝘀 𝗨𝗽
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“The server is up, but the application is not accessible. How will you troubleshoot it?”
+
+I would not immediately restart the server.
+
+First, I want to understand where the request is failing.
+
+I would start by checking whether the application process is running:
+
+ps -ef | grep <app>
+
+If it is managed by systemd:
+
+systemctl status <service-name>
+
+Next, I would check whether the application is listening on the expected port:
+
+ss -lntp
+
+For example, if the application should run on port 8080, I would verify that something is actually listening there.
+
+Then I would test the application locally from the server:
+
+curl -I http://localhost:8080
+
+This is an important step.
+
+If localhost works but users cannot access the application, I would investigate the network path.
+
+I would check:
+
+• Firewall rules
+• AWS Security Groups / Network ACLs
+• Load balancer health checks
+• DNS resolution
+• Reverse proxy configuration
+• Network connectivity
+• Recent deployments or configuration changes
+
+I would also check application logs:
+
+tail -f /var/log/<application>.log
+
+or:
+
+journalctl -u <service-name> --since "30 minutes ago"
+
+Then I would compare the symptoms.
+
+Server → Application → Port → Local connectivity → Network → Load Balancer → DNS → Client
+
+If I identify the root cause, I would fix it according to the approved production procedure.
+
+After the fix, I would verify the application from both the server and the user-facing endpoint.
+
+Finally:
+
+Issue → Investigation → Root Cause → Resolution → Preventive Action
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+“Server is up” does not mean “application is healthy.”
+
+Good troubleshooting means following the request path and narrowing down exactly where the failure occurs.

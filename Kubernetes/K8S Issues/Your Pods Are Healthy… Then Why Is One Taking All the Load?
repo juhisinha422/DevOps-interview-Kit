@@ -1,0 +1,16 @@
+Your Pods Are Healthy… Then Why Is One Taking All the Load?
+
+Kubernetes native load balancing behaves differently for HTTP and gRPC applications.
+
+In HTTP-based systems, requests are created on every call and handled by web server threads. Each time a new connection is created, the request is distributed across replicas (typically round-robin at connection level). When a new replica comes up, new connections also start flowing to it. Over time, as old connections close and new ones are created, the load naturally gets balanced across all replicas.
+
+However, gRPC works on persistent connections. Requests are usually multiplexed or queued over a single long-lived connection. This behavior impacts load balancing significantly. Once connections are established, new connections are not created as long as existing ones can handle the load. This means even if new replicas are added, they may remain underutilized. Load does not automatically rebalance like HTTP
+
+Even readiness probe behavior differs:
+In HTTP, new requests stop going to pods that fail readinessIn gRPC, since connections are persistent, existing connections remain active, so requests continue to be served by the same pod even if readiness starts failing (only new connections are prevented)
+
+This difference can also make autoscaling behave unexpectedly.
+Since load is not evenly distributed.  One pod may get overloaded and trigger scaling. New pods may come up but receive little to no traffic. Metrics (CPU/latency) may not represent actual system-wide load correctly
+
+So while Scaling happens, but the problem doesn’t really get solved
+

@@ -1,0 +1,285 @@
+# Git_Golden_Questions (Scenario Based) (0–3 Years DevOps Engineer)
+
+These are real Git scenarios…
+
+Frequently asked in DevOps interviews 👇
+
+---
+
+## 1. You committed wrong code. How will you undo it?
+
+* Not pushed:
+
+```bash
+git reset --soft HEAD~1
+git reset --mixed HEAD~1
+git reset --hard HEAD~1
+```
+
+* Already pushed:
+
+```bash
+git revert <commit_id>
+```
+
+---
+
+## 2. You pushed to the wrong branch. What will you do?
+
+```bash
+git checkout correct-branch
+git cherry-pick <commit_id>
+git checkout wrong-branch
+git reset --hard HEAD~1
+git push --force
+```
+
+---
+
+## 3. Merge conflict occurred. How will you resolve it?
+
+* Open file → resolve conflict markers
+
+```bash
+git add .
+git commit
+```
+
+---
+
+## 4. You want to undo last commit but keep changes. How?
+
+```bash
+git reset --soft HEAD~1
+```
+
+---
+
+## 5. You want to discard local changes completely. What will you do?
+
+```bash
+git reset --hard
+git clean -fd
+```
+
+---
+
+## 6. You need to temporarily save changes without committing. How?
+
+```bash
+git stash
+git stash pop
+```
+
+---
+
+## 7. Your local branch is behind remote. How will you sync?
+
+```bash
+git pull
+# or
+git fetch
+git rebase origin/branch-name
+```
+
+---
+
+## 8. You accidentally deleted a branch. Can you recover it?
+
+```bash
+git reflog
+git checkout -b recovered-branch <commit_id>
+```
+
+---
+
+## 9. You want to revert a pushed commit. How will you do it?
+
+```bash
+git revert <commit_id>
+```
+
+---
+
+## 10. You want to delete last commit permanently. How?
+
+```bash
+git reset --hard HEAD~1
+git push --force
+```
+
+---
+
+## 11. Multiple developers changed same file. How will Git handle it?
+
+* Auto merge if different lines
+* Conflict if same lines → manual resolution
+
+---
+
+## 12. You want to see changes before commit. Which command?
+
+```bash
+git status
+git diff
+git diff --staged
+```
+
+---
+
+## 13. Commit history is messy. How will you clean it?
+
+```bash
+git rebase -i HEAD~n
+```
+
+---
+
+## 14. You want to move commits to another branch. How?
+
+```bash
+git checkout target-branch
+git cherry-pick <commit_id>
+```
+
+---
+
+## 15. You need to ignore certain files. What will you use?
+
+* `.gitignore` file
+
+---
+
+## 16. Your code is not updating after pull. Why?
+
+* Wrong branch
+* Local changes conflict
+* Detached HEAD
+* Remote not updated
+* Need rebase
+
+---
+
+## 17. You want to compare two branches. How?
+
+```bash
+git diff branch1..branch2
+```
+
+---
+
+## 18. You want to undo changes in a specific file. How?
+
+```bash
+git restore file.txt
+```
+
+---
+
+## 19. Repository size is too large. What will you do?
+
+* Remove large files
+* Use Git LFS
+* Clean history (BFG / filter-branch)
+
+---
+
+## 20. Credentials exposed in repo. What is your immediate action?
+
+* Revoke credentials
+* Rotate secrets
+* Remove from history
+* Force push cleaned repo
+* Inform team
+
+---
+
+## 21. You want to apply specific commit to another branch. How?
+
+```bash
+git cherry-pick <commit_id>
+```
+
+---
+
+## 22. You need to rename a branch. How?
+
+```bash
+git branch -m old-name new-name
+git push origin new-name
+git push origin --delete old-name
+```
+
+---
+
+## 23. You want to squash multiple commits. How?
+
+```bash
+git rebase -i HEAD~n
+```
+
+---
+
+## 24. Detached HEAD state. What does it mean?
+
+* Not on any branch
+* Working directly on commit
+
+---
+
+## 25. You want to restore deleted file. How?
+
+```bash
+git restore file.txt
+```
+
+---
+
+## 26. Git push rejected. How will you fix it?
+
+```bash
+git pull --rebase
+git push
+```
+
+---
+
+## 27. You want to see who changed a line in file. How?
+
+```bash
+git blame file.txt
+```
+
+---
+
+## 28. You want to clone specific branch only. How?
+
+```bash
+git clone -b branch-name --single-branch <repo-url>
+```
+
+---
+
+## 29. Git stash not working as expected. Why?
+
+* No changes to stash
+* Untracked files not included
+
+```bash
+git stash -u
+```
+
+---
+
+## 30. What is your step-by-step approach to handle Git issues in projects?
+
+1. Check `git status`, `git log`, `git diff`
+2. Verify branch
+3. Take backup branch
+4. Choose safe fix (prefer revert)
+5. Resolve conflicts
+6. Test locally
+7. Push safely
+8. Communicate with team
+
+---

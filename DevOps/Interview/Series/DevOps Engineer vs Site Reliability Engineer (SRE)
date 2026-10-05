@@ -1,0 +1,42 @@
+DevOps Interview Preparation Series — DevOps Engineer vs Site Reliability Engineer (SRE) ⚙️ 
+
+In today’s tech world, the roles of DevOps and SRE often overlap — both aim to bridge the gap between development and operations, but the approach, mindset, and daily responsibilities are very different.
+
+If you’re preparing for a DevOps or SRE interview, or planning your career growth path — this post will help you clearly understand the real-world difference 👇
+
+DevOps Engineer — The Builder & Automator
+A DevOps Engineer focuses on automation, CI/CD, infrastructure as code, and deployment pipelines.
+Their primary goal is to accelerate software delivery while maintaining stability and scalability.
+
+Core Responsibilities:
+Automate build, test, and deployment processes.
+Design CI/CD pipelines (Jenkins, GitHub Actions, GitLab CI).
+Manage Infrastructure as Code (Terraform, CloudFormation, Ansible).
+Work on containerization and orchestration (Docker, Kubernetes).
+Set up monitoring & alerting systems for deployments.
+Collaborate with developers for faster and reliable releases.
+Implement DevSecOps practices to integrate security in pipelines.
+
+Mindset:
+“How can we automate everything and deploy faster with confidence?”
+Example:
+A DevOps Engineer ensures code is tested, built, containerized, and deployed automatically — say, via Jenkins → Docker → EKS — with zero manual steps.
+
+
+Site Reliability Engineer (SRE) — The Guardian of Reliability
+A Site Reliability Engineer focuses on system reliability, scalability, performance, and incident response.
+ Their job is to maintain service uptime, ensure observability, and manage operational excellence at scale.
+
+Core Responsibilities:
+Maintain reliability of production systems and SLAs/SLOs.
+Implement monitoring, alerting, and incident management (Prometheus, Grafana, Datadog).
+Conduct root cause analysis and post-incident reviews.
+Develop automation to reduce toil and manual ops work.
+Manage capacity planning, scaling, and failover strategies.
+Enforce reliability metrics (SLOs, SLIs, error budgets).
+Collaborate with developers to improve fault tolerance in applications.
+
+Mindset:
+“How can we make the system reliable, observable, and self-healing?”
+Example:
+An SRE ensures a microservice in production automatically restarts on failure, scales based on load, and alerts only when meaningful — maintaining 99.9% uptime.

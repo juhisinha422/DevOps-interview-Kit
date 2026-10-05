@@ -1,0 +1,17 @@
+✨ DevOps Questions Series: Topic 1 — Jira ✨
+
+Jira — the backbone of Agile and DevOps project management!  
+Whether it’s issue tracking, sprint planning, or workflow automation — Jira plays a key role across CI/CD pipelines and release cycles 💡
+
+1️⃣ What are the different issue types available in Jira and how are they used in a DevOps project?  
+2️⃣ How do you create and customize workflows in Jira to fit CI/CD processes?  
+3️⃣ What is Jira Query Language (JQL) and how do you use it to filter specific issues?  
+4️⃣ How do you automate repetitive tasks or transitions in Jira using automation rules?  
+5️⃣ How can Jira be integrated with DevOps tools like Jenkins, GitLab, or Confluence?  
+6️⃣ What are components and labels in Jira, and how do they help in issue organization?  
+7️⃣ How do you manage user roles, permissions, and access control within Jira projects?  
+8️⃣ What are Jira dashboards, and how can they be customized to track development metrics?  
+9️⃣ How do you perform a bulk change operation in Jira, and when would you use it?  
+10️⃣ What is the difference between Jira Software, Jira Service Management, and Jira Core?  
+11️⃣ Write a sample JQL query to find all unresolved issues assigned to a specific user.  
+12️⃣ How do you handle sprint planning, backlog grooming, and release tracking in Jira?

@@ -1,0 +1,35 @@
+ Day 5 — AWS Lambda + Serverless Architecture
+
+Scenario-Based DevOps Interview Questions
+
+1️⃣ Your application needs to run backend logic without managing servers. How will you decide if Lambda is the right compute choice over EC2 or ECS?
+
+2️⃣ A Lambda function is frequently timing out due to long-running operations. What optimizations or architectural changes will you apply?
+
+3️⃣ You must process millions of S3 object upload events per day. How will you design a scalable concurrency and event-handling model?
+
+4️⃣ API latency is inconsistent because Lambda cold starts are high. What strategies will you use to reduce or avoid cold starts?
+
+5️⃣ A Lambda + API Gateway architecture is facing throttling during peak traffic. How will you troubleshoot and scale this solution?
+
+6️⃣ A Lambda function needs to connect to RDS inside a VPC. How will you configure networking and prevent slow ENI cold starts?
+
+7️⃣ You need to build a fan-out event architecture where one event triggers multiple workflows. How will you design this with SNS or EventBridge?
+
+8️⃣ A Lambda function must run automatically every hour. Which AWS service will you use to schedule it?
+
+9️⃣ Your Lambda function is hitting memory and time limits while processing large files. What architectural redesign will you propose?
+
+🔟 Lambda must call external APIs securely without exposing credentials. How will you manage secrets?
+
+1️⃣1️⃣ A Lambda deployment introduced a production outage. How will you implement safe deployment strategies like versioning and rollbacks?
+
+1️⃣2️⃣ You need full distributed tracing for Lambda-based microservices. Which AWS services will you use to enable this?
+
+1️⃣3️⃣ Lambda cost has increased due to high invocation volume. What techniques will you use to optimize cost?
+
+1️⃣4️⃣ A Lambda function must write to DynamoDB at extremely high throughput. How will you avoid throttling?
+
+1️⃣5️⃣ You need to design an event-driven workflow using S3 → Lambda → Step Functions. How will you implement retries and error handling?
+
+⸻

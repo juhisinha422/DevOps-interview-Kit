@@ -1,0 +1,48 @@
+Most commonly asked INTERVIEW QUESTIONS
+
+DIFFERENCE BETWEEN ADD and COPY 
+
+🧱 1️⃣ ADD vs COPY — both put files inside the Docker image
+
+Both ADD and COPY are used to move files from your local machine → into the image.
+
+⸻
+
+🪄 2️⃣ COPY – Simple and clean
+
+👉 COPY just copies files/folders from your system to the image.
+
+
+
+📘 Syntax:
+  
+
+COPY source destination
+
+📦 Example:
+
+COPY . /app
+
+It copies everything from your current folder into /app inside the image.
+🧠 Use COPY for normal file copying — nothing fancy.
+
+🧩 3️⃣ ADD – COPY + Extra Magic
+
+👉 ADD can do everything COPY does, plus:
+	1.	It can extract compressed files (.tar, .gz, .bz2) automatically.
+	2.	It can download files from a URL (http/https) directly.
+
+📘 Example 1 (auto extract):
+
+ADD app.tar.gz /app
+
+📘 Example 2 (from internet):
+
+ADD https://lnkd.in/g7wT5JRU /app/
+
+🌐 It downloads the file straight from the web.
+
+🧠 5️⃣ Easy Memory Trick
+
+🔹 C in COPY = Clean & Clear
+🔹 A in ADD = Advanced features (extract + URL)

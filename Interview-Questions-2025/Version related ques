@@ -1,0 +1,11 @@
+Terraform 1.5.x to 1.8.x
+
+Jenkis - 2.414.x to 2.440+ LTS range
+
+Q: What is the latest version of Kubernetes?
+
+Answer:
+As of June 2026, the latest stable version of Kubernetes is v1.36.1. Kubernetes releases new versions regularly, and only the latest three minor versions are officially supported.
+
+Additional Point:
+Managed Kubernetes services like Amazon EKS, Azure AKS, and Google GKE may support slightly older versions based on their release cycle.

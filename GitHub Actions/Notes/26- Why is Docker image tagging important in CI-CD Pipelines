@@ -1,0 +1,10 @@
+Q. Why is Docker image tagging important in CI/CD pipelines?
+Q. Why is Docker image tagging important in CI/CD pipelines?
+A. Reduce image size
+18%
+B. Track image versions
+73%
+C. Secure secrets
+9%
+D. Speed up builds
+0%

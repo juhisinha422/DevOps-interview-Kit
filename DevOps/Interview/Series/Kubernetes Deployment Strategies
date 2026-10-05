@@ -1,0 +1,65 @@
+Kubernetes Deployment Strategies — From Scratch to Production 🚀
+
+If you’re learning Kubernetes or working as a DevOps Engineer, understanding deployment strategies is a must. Here’s a simple, end-to-end view 👇
+
+🔹 1. Recreate Strategy
+
+Old pods are terminated first
+
+New pods are created afterward
+ Downtime expected
+
+ Simple & useful for non-critical apps
+
+🔹 2. Rolling Update (Default in K8s)
+
+Pods are updated gradually
+
+Zero or minimal downtime
+
+Controlled using maxSurge & maxUnavailable
+
+ Best for most production workloads
+
+🔹 3. Blue-Green Deployment
+
+Two environments: Blue (current) & Green (new)
+
+Switch traffic instantly
+
+Easy rollback
+
+ Ideal for critical applications
+
+🔹 4. Canary Deployment
+
+Release to a small % of users first
+
+Monitor metrics & logs
+
+Gradually increase traffic
+
+ Reduces production risk
+
+🔹 5. A/B Testing
+
+Multiple versions run simultaneously
+
+Traffic split based on rules
+
+Used for feature validation & experiments
+
+🔹 6. Shadow Deployment
+
+New version receives real traffic (without affecting users)
+
+Used for performance & behavior testing
+
+🔹 From Scratch to End – Real Flow
+ Build Image → Push to Registry
+ Create Deployment & Service
+ Choose Strategy (Rolling / Blue-Green / Canary)
+ Monitor (Logs, Metrics, Alerts)
+ Rollback if needed
+
+💡 Tip: Combine Kubernetes with Ingress, Service Mesh (Istio), CI/CD tools (Jenkins/GitHub Actions/GitLab) for advanced traffic control.

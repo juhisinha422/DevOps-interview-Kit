@@ -1,0 +1,76 @@
+Advanced Production Issues 🚨
+
+Why is CPU or memory usage suddenly high on pods or EC2 instances?
+Reason: Memory leaks, unoptimized code, or infinite loops.
+ 
+Why is disk usage reaching 100% suddenly?
+Reason: Old logs, temp data, or backups filling /var/log.
+
+Why are Kubernetes pods in CrashLoopBackOff state?
+Reason: Failed readiness/liveness probes or bad configuration.
+
+Why is my pod getting OOMKilled repeatedly?
+Reason: Container exceeds memory limit.
+
+Why is my Jenkins pipeline failing at random stages?
+Reason: Environment inconsistency or missing dependencies.
+
+Why is Terraform showing state lock or drift detected?
+Reason: Multiple users modifying infra or manual AWS console changes.
+
+Why did my EC2 instance crash during traffic spike?
+Reason: No autoscaling or CPU credit exhaustion.
+
+Why is the application not connecting to the database?
+Reason: Wrong credentials, security group, or parameter group issues.
+
+Why is API latency increasing after each deployment?
+Reason: Unoptimized queries or cold starts (Lambda).
+
+Why is the Docker image size too large?
+Reason: Unnecessary layers or base image bloat.
+
+Why is CloudWatch not showing logs from ECS tasks?
+Reason: Wrong IAM role or log driver misconfiguration.
+
+Why are Lambda functions timing out randomly?
+Reason: Cold starts or external service latency.
+
+Why is the S3 bucket filling too fast?
+Reason: No lifecycle policy or backup scripts flooding data.
+
+Why is Route 53 not routing traffic properly?
+Reason: TTL propagation or wrong health check configuration.
+
+Why is Jenkins build taking too long to complete?
+Reason: Inefficient builds, large dependencies, or lack of caching.
+
+Why did my Kubernetes node go into NotReady state?
+Reason: Network issue, kubelet crash, or resource exhaustion.
+
+Why is EKS failing to pull Docker images?
+Reason: Wrong ECR permissions or missing imagePullSecrets.
+
+Why are CloudFormation stacks stuck in UPDATE_ROLLBACK_FAILED?
+Reason: Resource dependencies or failed deletes.
+
+Why is the load balancer showing unhealthy targets?
+Reason: Wrong health check path or app not responding on target port.
+
+Why is my container restarting frequently?
+Reason: App crash or resource limits exceeded.
+
+Why are Prometheus alerts firing repeatedly?
+Reason: Incorrect threshold or noisy rules.
+
+Why is the CI/CD pipeline not deploying to production automatically?
+ Reason: Approval gates or permission issues.
+
+Why is SSL/TLS certificate expired or invalid?
+Reason: Missed renewal automation.
+
+Why are CloudWatch alarms not triggering even when metrics exceed threshold?
+Reason: Wrong metric namespace or missing data points.
+
+Why is my infrastructure cost increasing unexpectedly?
+Reason: Idle EC2/RDS, orphaned EBS, or unused load balancers.

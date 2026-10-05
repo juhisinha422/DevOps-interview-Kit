@@ -1,0 +1,83 @@
+ Most Common DevOps Interview Issues (Across All Tools)
+
+1️⃣ Application is Down but Infrastructure is Up
+
+Asked using: Linux, Docker, Kubernetes, AWS/GCP/Azure
+👉 How do you troubleshoot step by step when servers/pods are running but users can’t access the app?
+
+⸻
+
+2️⃣ High CPU / Memory but No Obvious Root Cause
+
+Asked using: Linux, Kubernetes, Cloud VMs, Prometheus
+👉 How do you identify whether the issue is OS, application, container, or infra related?
+
+⸻
+
+3️⃣ CI/CD Pipeline Works in Dev but Fails in Prod
+
+Asked using: Jenkins, GitLab CI, GitHub Actions, Azure DevOps
+👉 How do you debug environment-specific failures and prevent them?
+
+⸻
+
+4️⃣ Deployment Caused Outage – Rollback Required
+
+Asked using: Kubernetes, Helm, Jenkins, Terraform
+👉 How do you rollback safely without data loss or downtime?
+
+⸻
+
+5️⃣ Pods in CrashLoopBackOff / Pending State
+
+Asked using: Kubernetes, Docker
+👉 How do you troubleshoot image, config, resource, and node issues?
+
+⸻
+
+6️⃣ Secrets Exposed or Hardcoded
+
+Asked using: Git, CI/CD, Docker, Cloud IAM
+👉 What immediate actions do you take and how do you prevent recurrence?
+
+⸻
+
+7️⃣ Terraform State Drift / Unexpected Changes
+
+Asked using: Terraform, IaC
+👉 What happens when infra is changed manually and how do you recover?
+
+⸻
+
+8️⃣ Monitoring Alerts but No Clear Issue
+
+Asked using: Prometheus, Grafana, ELK
+👉 How do you differentiate false positives from real incidents?
+
+⸻
+
+9️⃣ Cloud Cost Suddenly Increased
+
+Asked using: AWS, Azure, GCP, FinOps
+👉 How do you investigate, optimize, and prevent cost overruns?
+
+⸻
+
+🔟 Access & Permission Issues in Production
+
+Asked using: IAM, RBAC, Kubernetes, Cloud Security
+👉 How do you implement least privilege while keeping teams productive?
+
+⸻
+
+🧠 Interviewer’s Hidden Expectation
+
+They are NOT checking:
+❌ Tool definitions
+❌ Exact commands
+
+They ARE checking:
+✅ Problem-solving flow
+✅ Production safety
+✅ Ownership mindset
+✅ Communication during incidents

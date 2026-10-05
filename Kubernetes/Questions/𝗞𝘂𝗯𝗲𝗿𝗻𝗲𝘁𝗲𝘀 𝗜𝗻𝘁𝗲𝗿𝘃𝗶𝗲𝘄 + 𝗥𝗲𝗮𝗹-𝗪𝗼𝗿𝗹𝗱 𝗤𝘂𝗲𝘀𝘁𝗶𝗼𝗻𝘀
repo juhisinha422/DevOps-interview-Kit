@@ -1,0 +1,57 @@
+𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 + 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀
+
+Over the years, these are the Kubernetes questions I’ve either been asked in interviews —or had to answer myself during real production incidents.
+
+Not theory. Not certification-style questions. These come straight from running clusters in enterprise environments.
+
+✨ 𝗖𝗹𝘂𝘀𝘁𝗲𝗿 & 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲
+* What actually happens when a node goes NotReady?
+* How does kubelet communicate with the control plane?
+* What breaks first when etcd becomes slow?
+* Can Kubernetes function without kube-proxy?
+* How do control plane issues show up at application level?
+* What’s the real difference between HA control plane and “multiple masters”?
+
+✨ 𝗣𝗼𝗱𝘀, 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁𝘀 & 𝗟𝗶𝗳𝗲𝗰𝘆𝗰𝗹𝗲
+* Why does a pod restart even when the node is healthy?
+* RestartPolicy vs actual pod recreation — what’s the difference?
+* When does Kubernetes terminate a pod gracefully vs forcefully?
+* What happens to traffic during rolling updates?
+* Why readiness probes matter more than liveness probes
+
+✨ 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴 (𝗪𝗵𝗲𝗿𝗲 𝗠𝗼𝘀𝘁 𝗜𝘀𝘀𝘂𝗲𝘀 𝗛𝗶𝗱𝗲)
+* How does a pod talk to another pod on a different node?
+* What breaks when CNI starts misbehaving?
+* Practical differences between ClusterIP, NodePort, and LoadBalancer
+* Why services work but DNS randomly fails
+
+✨ 𝗦𝘁𝗼𝗿𝗮𝗴𝗲 & 𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝗰𝗲
+* PV vs PVC vs StorageClass — real impact in production
+* What happens to data when a pod is rescheduled?
+* Why some volumes cannot move across nodes
+* How storage latency affects pod stability
+
+✨ 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 & 𝗔𝗰𝗰𝗲𝘀𝘀
+* Authentication vs authorization — where people get confused
+* What RBAC actually controls (and what it doesn’t)
+* Why cluster-admin is still overused
+* Common places where secrets leak from
+* Why least privilege is hard in real clusters
+
+✨ 𝗢𝗯𝘀𝗲𝗿𝘃𝗮𝗯𝗶𝗹𝗶𝘁𝘆 & 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴
+* Why kubectl logs is rarely enough
+* How to debug issues that only appear under load
+* Node-level vs pod-level issues — how to differentiate
+
+✨ 𝗨𝗽𝗴𝗿𝗮𝗱𝗲𝘀 & 𝗢𝗽𝗲𝗿𝗮𝘁𝗶𝗼𝗻𝘀
+* What usually breaks during Kubernetes upgrades
+* How to plan rollback for cluster upgrades
+* How to test upgrades without risking production traffic
+
+💥 𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 / 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼-𝗕𝗮𝘀𝗲𝗱 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀
+* App is slow but CPU & memory look fine — how do you debug?
+* Pods restart only in production, not lower env — why?
+* Traffic drops during deployment even with rolling updates — how?
+* Kubernetes is healthy but app is down — where do you start?
+* How would you design zero-downtime deployments in reality?
+* How do you rotate secrets without restarting pods?

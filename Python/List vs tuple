@@ -1,0 +1,27 @@
+Python Basics: List vs Tuple
+When working with collections in Python, we often use Lists and Tuples. They may look similar, but they have key differences 👇
+
+🔹 List
+Mutable → You can modify, add, or remove elements.
+Defined using square brackets [ ].
+
+Example:
+my_list = [1, 2, 3]
+my_list.append(4)  # ✅ Works
+print(my_list)  # [1, 2, 3, 4]
+
+🔹 Tuple
+Immutable → Once created, you cannot change its elements.
+Defined using parentheses ( ).
+
+Example:
+my_tuple = (1, 2, 3)
+my_tuple.append(4)  # ❌ Error: Tuples don’t support modification
+
+✅ Quick Summary:
+
+List → Flexible, slower, more memory.
+Tuple → Fixed, faster, memory-efficient.
+
+👉 Use Lists when your data changes.
+👉 Use Tuples when your data is constant.

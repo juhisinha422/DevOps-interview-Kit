@@ -1,0 +1,15 @@
+Today a 504 Gateway Timeout error came in one service.... Checked the logs and it showed heap memory was full.... How will this be resolved? It's a spring boot application. Cloud is azure
+
+Use XMX and XMS
+When you build java applications then it creates a .jar file, then you run the application by using java -jar command followed by the jar file that has been created.
+
+XMX is an argument which you pass in the command
+For e.g java -Xmx5Gi -jar test.jar
+
+Xmx specifies the max mem allocation and xms specifies initial mem allocation to start a Java application
+
+
+When we are getting this issue for temporary relief restart service 
+Later than allocate the xmx 
+I'm right
+

@@ -1,0 +1,57 @@
+ AWS DevOps Engineer (3–5 Years Experience) – Interview Questions 🚀
+
+These questions are tailored for mid to senior-level AWS DevOps Engineers focusing on real-world implementations, scalability, and security 👇
+
+🔹 CI/CD on AWS
+
+How does AWS CodePipeline work end to end?
+
+CodeBuild vs Jenkins – when would you choose each?
+
+How do you design multi-account CI/CD pipelines in AWS?
+
+How do you handle approvals and rollbacks in AWS pipelines?
+
+🔹 Source Control & Artifacts
+5. CodeCommit vs GitHub – what are the trade-offs?
+6. How do you manage versioning of build artifacts?
+7. How do you store and secure artifacts in AWS?
+
+🔹 Compute & Scaling
+8. EC2 Auto Scaling vs ECS vs EKS – when do you use each?
+9. How do you design highly available applications on AWS?
+10. Difference between ALB, NLB, and CLB with use cases?
+
+🔹 Infrastructure as Code
+11. CloudFormation vs Terraform – which one do you prefer and why?
+12. How do you manage Terraform remote state in AWS?
+13. How do you handle infrastructure drift in AWS?
+
+🔹 Containers & Kubernetes
+14. How does ECS differ from EKS in production workloads?
+15. How do you deploy applications to EKS using CI/CD?
+16. How do you manage secrets for containers on AWS?
+17. What are IRSA and their benefits in EKS?
+
+🔹 Monitoring & Logging
+18. How do CloudWatch metrics, logs, and alarms work together?
+19. How do you monitor containerized workloads on AWS?
+20. How do you implement centralized logging across accounts?
+
+🔹 Security & IAM
+21. How do you design least-privilege IAM policies?
+22. How do you secure CI/CD pipelines on AWS?
+23. How do you manage secrets using AWS Secrets Manager vs Parameter Store?
+
+🔹 Networking
+24. How do you design a secure VPC architecture?
+25. VPC Peering vs Transit Gateway – when do you use each?
+
+🔹 Real-World Scenarios
+26. How do you handle zero-downtime deployments on AWS?
+27. How do you troubleshoot failed EKS deployments?
+28. How do you optimize AWS cost for DevOps workloads?
+29. How do you implement blue-green or canary deployments?
+30. How do you manage disaster recovery in AWS?
+
+💡 Perfect for 3–5 years experienced AWS DevOps Engineers preparing for interviews or leadership roles.

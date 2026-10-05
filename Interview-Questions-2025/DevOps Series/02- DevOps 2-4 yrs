@@ -1,0 +1,18 @@
+Post 2: DevOps Engineer Interview 
+Intermediate Level (2–4 Years)
+
+💡 Common DevOps Interview Questions for 2–4 Years Experience:
+1️⃣ How do you design and maintain a reliable **CI/CD pipeline** (tools, stages, and triggers)? 
+2️⃣ What are the differences between **Jenkins**, **GitHub Actions**, and **GitLab CI/CD**? 
+3️⃣ How do you implement Infrastructure as Code using **Terraform** or **CloudFormation**? 
+4️⃣ How do you containerize a microservice‑based app, and what’s the role of **Docker Compose**? 
+5️⃣ Explain how you would deploy applications across multiple environments (Dev, QA, Prod). 
+6️⃣ How do you secure pipeline credentials and secrets during build/deploy stages? 
+7️⃣ What’s your process for monitoring deployment health and rollback strategies? 
+8️⃣ How would you integrate automated testing (unit, integration, security) inside a CI/CD workflow? 
+9️⃣ How do you handle configuration drift and environment consistency? 
+🔟 Describe a recent DevOps challenge you solved using automation or process improvement. 
+
+🎯 Pro Tip: 
+At the 2–4 year mark, your strength lies in **hands‑on experience**. 
+Interviewers love hearing *real examples* — talk about the pipelines you built, issues you debugged, and optimizations you achieved. 

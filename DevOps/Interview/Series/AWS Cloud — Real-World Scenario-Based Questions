@@ -1,0 +1,29 @@
+AWS Cloud — Real-World Scenario-Based Questions! 🚀
+#AWS #CloudComputing #DevOps
+
+Let’s test your AWS skills with some real-time use cases that reflect what Cloud Engineers face daily.
+
+Top AWS scenario based questions that you should know.
+
+Your company wants to migrate a monolithic app to microservices — which AWS services would you use to ensure scalability and loose coupling?
+An application needs to process millions of images per day — which architecture and services can help achieve cost-effective parallel processing?
+You notice your EC2 instance costs are increasing rapidly — what AWS tools can you use to identify and optimize the cost?
+A team needs to deploy the same infrastructure across multiple regions — how will you ensure configuration consistency and automation?
+You want to host a static website with low latency globally — which AWS services can you combine?
+During high traffic, your web app crashes randomly — how will you identify the root cause using AWS monitoring tools?
+You need to trigger a workflow whenever a file is uploaded to S3 — what’s the best way to automate this?
+A business wants near-zero downtime deployment for their production app — which AWS services and deployment strategies can help?
+You have a relational database that needs auto-scaling and high availability — which AWS service fits best and why?
+Sensitive data must be encrypted both at rest and in transit — which AWS features and services ensure this?
+Your Lambda functions start failing randomly due to timeout — how will you troubleshoot and fix this issue?
+You want to decouple backend components for reliability — which messaging service will you use and why?
+An API-based app must handle unpredictable traffic spikes — what combination of AWS services ensures high availability and performance?
+Your CI/CD pipeline should automatically deploy changes to production only after tests pass — how will you design this with AWS tools?
+Your analytics workload takes too long on EC2 — how can you optimize it using serverless or managed services?
+A company wants centralized monitoring for all AWS accounts — what’s your approach using native AWS services?
+An application in one region needs to access data stored in another region — how will you make it efficient and secure?
+You want to enforce security best practices and compliance across multiple AWS accounts — which services can help?
+An internal application requires private access to AWS services without using the public internet — what setup will you use?
+A startup wants to estimate their monthly AWS cost before deployment — which AWS tool provides the best forecast?
+
+💡 Pro Tip: Mastering scenario-based questions is the real key to cracking AWS interviews and excelling as a Cloud Engineer.

@@ -1,0 +1,23 @@
+Interviewer: You have 2 minutes. Explain why a deployment works in Dev but fails in Production.
+
+My answer: Challenge accepted, let’s go!
+
+➤ From a DevOps perspective, this is usually due to environment differences, configuration issues, or infrastructure gaps.
+➤ Environment mismatch - Dev and Prod configs (env vars, secrets, endpoints) are different.
+➤ Secrets issue - Missing or incorrect secrets (DB creds, API keys) in production.
+➤ Resource limits - CPU/memory limits in Prod may cause pods to crash (OOMKilled).
+➤ Image/version mismatch - Different image tags or outdated images deployed in Prod.
+➤ Database / dependency access - Prod services may not have access to DB, cache, or external APIs.
+➤ Networking issues - Security groups, firewall rules, or Kubernetes network policies blocking traffic.
+➤ Ingress / Load Balancer config - Wrong routing, host rules, or SSL issues.
+➤ Scaling differences - Works with 1 replica in Dev but fails under load in Prod.
+➤ Feature flags / configs - Some features enabled only in Prod causing failures.
+➤ Permissions (IAM/RBAC) - Application may not have required permissions in production.
+
+➤ How I debug as a DevOps Engineer:
+ • Check pod logs (kubectl logs)
+ • Describe resources (kubectl describe pod)
+ • Compare Dev vs Prod configs
+ • Verify secrets, env variables
+ • Check ingress / load balancer
+ • Monitor metrics (CPU, memory)

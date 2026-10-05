@@ -1,0 +1,16 @@
+Most Asked AWS EC2 Interview Questions (2025 Edition) 
+
+If you’re preparing for a DevOps, Cloud, or AWS Solutions Architect interview, mastering concepts is a must.
+Here’s a quick list of real interview questions — from basics to scenarios — that you should know 👇
+
+What happens when you stop vs terminate an EC2 instance?
+How do you connect to an EC2 instance securely using SSH?
+What is the use of EC2 user data and metadata?
+How do you attach and detach EBS volumes to running instances?
+What is an Elastic IP address and when should you use it?
+What are key pairs in EC2 and how are they managed?
+How can you monitor EC2 performance metrics using CloudWatch?
+What are the benefits of using EC2 launch templates over launch configurations?
+How do you automate EC2 provisioning with Terraform or CloudFormation?
+How do you troubleshoot EC2 instances that are unreachable via SSH?
+What is the difference between public and private EC2 instances in a VPC?

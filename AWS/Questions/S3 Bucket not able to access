@@ -1,0 +1,9 @@
+A user is unable to access an S3 bucket. How do you troubleshoot this issue?
+  
+1.To troubleshoot an S3 "Access Denied" (403 Forbidden) error, Need to verify that the IAM user/role has explicit s3:GetObject or s3:PutObject permissions and  need to check that the bucket policy does not contain explicit Deny rules.
+
+ 2. If we using ACLs, verify the object owner. If another account uploaded the object, it might be owned by them. we need to use "Bucket owner enforced" setting to simplify ownership. 
+
+3.we can check the IAM user has kms:Decrypt and kms:GenerateDataKey permissions for the specific key. 
+
+4.Need to check the correct AWS region is specified in the client/CLI, and that the credentials belong to the authorized user. 

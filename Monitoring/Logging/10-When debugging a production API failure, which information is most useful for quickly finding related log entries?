@@ -1,0 +1,7 @@
+When debugging a production API failure, which information is most useful for quickly finding related log entries? 
+A. Request ID
+B. Screen resolution
+C. CPU brand
+D. Monitor size
+
+ANS A

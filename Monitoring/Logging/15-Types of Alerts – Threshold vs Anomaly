@@ -1,0 +1,54 @@
+Types of Alerts – Threshold vs Anomaly
+
+🔹 Why Different Alert Types?
+Not every production problem can be detected using a fixed value.
+Two important approaches are:
+🎯 Threshold Alerts
+🔍 Anomaly Alerts
+
+
+🎯 Threshold Alerts
+A threshold alert triggers when a metric crosses a predefined limit.
+Example:
+CPU Usage > 90% for 5 minutes
+🚨 Condition met → Alert triggered
+Common uses:
+✔ High CPU
+✔ Low disk space
+✔ High memory usage
+✔ High error rate
+👉 Best when you know the expected limit.
+
+
+🔍 Anomaly Alerts
+Anomaly alerts detect unusual behavior compared with normal patterns.
+Example:
+Normally:
+📊 Traffic = 1,000 requests/min
+Suddenly:
+📈 Traffic = 10,000 requests/min
+Even if no fixed threshold was crossed, the system can identify this as unusual behavior.
+Common uses:
+✔ Traffic spikes
+✔ Unexpected latency
+✔ Unusual user activity
+✔ Abnormal resource usage
+
+
+💡 Real-world Example
+An e-commerce application normally receives:
+📊 5,000 requests/min
+During an unexpected event:
+📈 20,000 requests/min
+A threshold alert may detect the increase only if a predefined limit is crossed.
+An anomaly alert can identify that 20,000 requests/min is unusual compared with the normal pattern.
+
+
+🧠 Key Takeaways
+✔ Threshold = Fixed limit 🎯
+✔ Anomaly = Unusual behavior 🔍
+✔ Thresholds are simple and predictable
+✔ Anomaly detection helps identify unexpected patterns
+✔ Both are useful in production monitoring 🚀
+
+💡 Pro Tip: Use threshold alerts for known limits and anomaly detection when normal behavior changes over time.

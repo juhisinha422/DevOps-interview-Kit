@@ -1,0 +1,102 @@
+ Common Production Issues (Every DevOps/SRE Should Know)🚀 
+
+
+Working with Docker & Kubernetes in production is not just about deployments  it’s about handling real-world issues under pressure.
+
+Here are advanced, common issues I’ve seen in real production systems, along with what typically causes them and how you troubleshoot them.
+
+Whether you're a DevOps, SRE, Platform Engineer, or preparing for interviews, these scenarios will help you think like a real production engineer. 👇
+
+Docker – Advanced Production Issues
+
+Container running but application not accessible
+ Wrong EXPOSE port / host-port mismatch.
+
+High Docker image size causing slow deployments
+No multistage build, cache not used.
+
+ “ImagePullBackOff” in Kubernetes
+Private registry auth failure or wrong tag.
+
+ Docker daemon high CPU usage
+Too many logs, resource leaks, large layers.
+
+ Container keeps restarting
+ App crash loop, wrong CMD/ENTRYPOINT.
+
+ Disk full due to unused images
+ docker system prune not applied.
+
+ Can't connect container-to-container
+ Wrong network mode or misconfigured overlay network.
+
+ Timezone mismatch inside containers
+ Container running UTC, app expecting IST.
+
+ Permission denied writing files inside container
+Wrong user in Dockerfile (root vs non-root).
+
+ Docker build cache not working
+ COPY order issues.
+
+Slow startup due to large dependencies
+Heavy base images, unnecessary packages.
+
+ Secrets accidentally baked inside images
+ ENV variables hardcoded in Dockerfile.
+
+ Container unable to access external APIs
+ DNS issues or network policies.
+
+ Multi-architecture image issues
+ amd64 vs arm64 mismatch.
+
+ Docker Swarm node flapping (less common now)
+ Gossip failure / overlay network issues.
+
+ Kubernetes – Advanced Production Issues
+
+ CrashLoopBackOff
+ Misconfigured env variables, DB unreachable.
+
+ OOMKilled
+ Containers hitting memory limits.
+
+ Node Not Ready
+ Disk pressure, network plugin failure.
+
+ Pod stuck in Pending state
+ No matching node selector / taints & tolerations issue.
+
+ High etcd latency
+ Large clusters, huge objects stored.
+
+ DNS resolution failure inside pods
+ CoreDNS crash, network plugin issues.
+
+ Services not reachable
+ Wrong Service type (ClusterIP/NodePort), missing selectors.
+
+ Horizontal Pod Autoscaler not scaling
+ Metrics server not installed, wrong metrics API.
+
+ PVC stuck in Pending
+ StorageClass mismatch.
+
+ Pods evicted due to node resource pressure
+ MemoryPressure / DiskPressure.
+
+ ImagePullBackOff
+ Private registry authentication or incorrect image tag.
+
+ ReadinessProbe failures
+ App not ready, wrong probe path.
+
+ NetworkPolicy blocking traffic
+ Too restrictive ingress/egress.
+
+ Ingress not routing
+ Missing annotations, pathType issues.
+
+ ConfigMap not updating inside running pods
+ Pods need restart; volume mounts don’t auto-refresh.

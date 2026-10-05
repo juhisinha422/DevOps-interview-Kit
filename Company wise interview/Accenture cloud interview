@@ -1,0 +1,34 @@
+interview with Accenture for a Cloud/DevOps role. Here's a full breakdown of what was asked — sharing it for anyone preparing for similar roles
+
+🧑💼 Intro & Background
+Tell me about yourself + AWS services you've worked on
+
+☁️ AWS Core
+EKS architecture and main components
+How apps (DB + web) communicate inside EKS
+Types of load balancers
+Scaling concepts and where to attach scaling configs
+Internet Gateway vs NAT Gateway
+Subnets and private subnet connectivity (NAT deep dive)
+Route 53, DNS, and routing policies
+CloudFront edge locations
+S3 lifecycle policies for cost optimization
+Lambda trigger on S3 upload
+EBS vs EFS + what happens to EBS on EC2 termination
+Spot/right-sizing EC2 for batch jobs
+CloudWatch for EC2/VPC troubleshooting
+
+🛠️ IaC & CI/CD
+Terraform commands, backends, and modules
+Write a Terraform block to create an EC2 instance (live)
+Jenkins pipeline creation experience
+Canary vs Blue-Green deployment
+
+🐍 Python
+List vs tuple difference
+List comprehension + a short coding exercise (live)
+
+📌 Experience-Based
+Work with RDS
+Serverless / Lambda usage
+Overall it was well-rounded — fundamentals, architecture, hands-on IaC, and some quick coding. No surprises, but depth was tested on almost every topic.

@@ -1,0 +1,20 @@
+Terraform Import — Importing Real Infrastructure into Terraform State
+
+Terraform import is a simple but powerful command. It helps Terraform take control of resources that already exist in your cloud.
+
+Many teams use it when resources were created manually or during a migration to IaC. Instead of deleting and recreating, you just import them into the state.
+
+You define the resource block in your .tf file.
+Then run:
+
+terraform import <resource_address> <resource_id>
+
+This only updates the state file.
+It does not generate code or auto-fill configuration.
+
+After importing, always run a terraform plan.
+
+It shows whether your .tf file actually matches the real infrastructure.
+
+Import is not about creating resources.
+It’s about giving Terraform ownership of what already exists.

@@ -1,0 +1,11 @@
+How do you troubleshoot subnet issues such as insufficient ip addresses or overlapping CIDR Block 
+ 
+1. Troubleshooting subnet issues involves identifying IP exhaustion or CIDR overlaps via cloud dashboards (like VPC consoles) and CLI commands 
+
+2.Fix insufficient IPs by adding secondary CIDR blocks, resizing subnets, or freeing up unused Elastic Network Interfaces (ENIs). 
+
+3.Resolve overlapping CIDRs by reallocating subnets, using CGNAT ranges, or implementing NAT gateways between conflicting
+ 
+4.Investigate which workloads, services (e.g., App Runner, EKS), or resources are consuming excessive IPs.
+
+5.Utilize IP Address Management (IPAM) software or tools to visualize and manage network allocations

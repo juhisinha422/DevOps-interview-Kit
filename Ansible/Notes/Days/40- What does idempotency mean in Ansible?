@@ -1,0 +1,10 @@
+What does idempotency mean in Ansible?
+The author can see how you vote. Learn more
+What does idempotency mean in Ansible?
+Running tasks in parallel
+Running a Playbook only once
+Same result on repeated runs
+Skipping failed tasks
+
+ANS
+Same result on repeated runs

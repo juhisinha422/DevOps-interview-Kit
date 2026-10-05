@@ -1,0 +1,45 @@
+Ansible Tags
+
+🔹 PHASE 4: Advanced Ansible
+Today I learned about Ansible Tags, which help in running only specific tasks instead of executing the entire Playbook 🎯
+This is very useful in large automation projects where running full Playbooks every time is not efficient.
+ Tags make automation faster, flexible, and more controlled ⚡
+
+🔹 🏷️ Running Selective Tasks
+Tags allow us to execute only selected tasks in a Playbook.
+
+Example:
+- name: Install nginx
+ apt:
+ name: nginx
+ state: present
+ tags: install
+
+Run only tagged tasks using:
+ansible-playbook playbook.yml --tags install
+This saves time and avoids unnecessary task execution 🚀
+
+🔹 📊 Tag Strategies
+Good tag strategies improve Playbook management in real projects.
+Common tagging approaches:
+ • install → for installation tasks
+ • config → for configuration tasks
+ • deploy → for deployment tasks
+ • restart → for service-related tasks
+Proper tagging makes automation modular and easier to maintain 📦
+
+🔹 ⏭️ Skipping Tasks
+Ansible also allows skipping specific tagged tasks.
+Command:
+ansible-playbook playbook.yml --skip-tags install
+
+This is useful when:
+ • You want to avoid risky tasks
+ • Skip long-running steps
+ • Run only safe updates
+Skipping tasks gives better control over execution flow 🔄
+
+🔥 3-Line Takeaway
+Tags enable selective task execution.
+ Smart tagging improves automation control.
+ Skip or run tasks based on operational needs.

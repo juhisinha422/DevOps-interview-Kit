@@ -1,0 +1,27 @@
+Solugenix Interview Experience 
+Compensation: 15LPA
+Position: DevOps Engineer ( 3 - 5 years)
+
+𝐑𝐨𝐮𝐧𝐝 𝟏 & 𝟐 – 𝐓𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥 𝐃𝐞𝐞𝐩 𝐃𝐢𝐯𝐞
+Tell me about yourself.
+How your day to day activities as a DevOps Engineer.
+What are pre-requisites to upgrade K8s cluster?
+What in Pod Disruption Budget (PDB) in K8s?
+Write a shell script on factorial of a number.
+Tell me about the VPC structure setup in your project.
+How is the CI/CD pipeline is setup in your project? What are the security tools integrated?
+How do you manage them?
+Write a rough pipeline script for microservices architecture.
+What is multi stage docker build?
+What are manifest files?
+What is Ansible Vault?
+How do we make a K8s cluster highly available?
+What monitoring tools are setup? Have you set the alerts and tell me some common errors you faced related to pod management.
+Write a terraform script for VPC architecture for production.
+How do you unlock a Terraform state lock?
+What are Terraform workspaces and when would you use them?
+Explain Terraform state file and its importance. How do you manage remote state?
+What is the difference between Terraform taint and replace commands?
+How do you handle Terraform state file conflicts in a team environment?
+What are Ansible Roles?
+How do you find errors in the pipelines?

@@ -1,0 +1,36 @@
+Production-Level Errors in DevOps – What We See Frequently 🚨
+
+Every DevOps engineer knows that “production” is the ultimate truth.”
+ No matter how good your pipelines, tests, and staging environments are, production has its own surprises.
+
+Common production issues in DevOps:
+
+1. CrashLoopBackOff Pods → Due to misconfigured environment variables, missing dependencies, or bad application code.
+2. ImagePullBackOff → Wrong Docker image tag, private registry auth failure.
+3. OOMKilled → Container exceeds memory limits.
+4. CPU Throttling → Poorly tuned CPU requests/limits or noisy neighbors on the same node.
+5. Insufficient IP Addresses → Pod IP exhaustion in VPC/CNI networking.
+6. DNS Resolution Failures → CoreDNS issues, network policy misconfigurations.
+7. Database Latency/Connection Leaks → Max connections hit, slow queries blocking requests.
+8. SSL/TLS Certificate Expiry → Forgot renewal (ACM, Let’s Encrypt).
+9. PersistentVolume Stuck in Pending → Storage class misconfigured or no nodes with matching storage.
+10. Node Disk Pressure → Nodes running out of disk, causing pod evictions.
+11. Node NotReady / Node Evictions → Node failures, taints not handled, or auto-scaling misconfig.
+12. Configuration Drift → Infra changes in production not matching Git/IaC.
+13. Secrets Mismanagement → Expired API keys, secrets not rotated, or exposed secrets in logs.
+14. CI/CD Pipeline Failures → Failed deployments due to missing rollback or bad build artifacts.
+15. High Latency in Services → Caused by poor load balancing, bad code, or overloaded services.
+16. Network Partition / Split-Brain → Nodes unable to communicate due to firewall/VPC routing issues.
+17. Service Discovery Failures → Misconfigured Ingress, Service, or DNS policies.
+18. Canary/Blue-Green Deployment Failures → Incorrect traffic shifting causing downtime.
+19. Health Probe Misconfiguration → Wrong liveness/readiness probes causing healthy pods to restart.
+20. Pod Pending State → Due to resource limits (CPU/Memory not available in cluster).
+21. Log Flooding / Noisy Logs → Excessive logging consuming storage or making troubleshooting harder.
+22. Alert Fatigue → Too many false alerts causing critical issues to be missed.
+23. Node Autoscaling Failures → Cluster Autoscaler unable to provision new nodes due to quota limits.
+24. Security Incidents → Unrestricted IAM roles, exposed ports, or unpatched CVEs in container images.
+25. Rate Limiting from External APIs → Hitting external service limits, leading to app failures.
+26. Time Sync Issues (NTP drift) → Application failures due to inconsistent timestamps across systems.
+27. Application Memory Leaks → App not releasing memory, leading to gradual OOMKills.
+28. Indexing Issues in ELK/Databases → Queries slowing down due to unoptimized indexing.
+29. Cloud Provider Quota Limits → Hitting AWS/Azure/GCP service limits.

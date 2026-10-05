@@ -1,0 +1,29 @@
+DevOps Scenario Series
+
+Topic: TLS Certificates
+
+Scenario:
+You’re working as a DevOps Engineer.
+One day, a teammate says:
+"Bro, the app isn’t opening. Chrome is shouting ‘Your connection is not private’."
+
+You check… and yes, it’s a TLS/SSL certificate issue.
+
+
+Possible reasons:
+Certificate has expired.
+Domain name doesn’t match the cert.
+A self-signed cert is being used in prod.
+Intermediate/chain cert is missing.
+
+
+Solution:
+Check expiry date → Renew the cert if it’s expired.
+Verify domain mapping → Make sure the CN/SAN in the cert matches your site.
+Use CA-signed cert → Replace self-signed with a trusted CA certificate.
+Fix chain → Add missing intermediate certs in the server config.
+Prevent future issues → Automate renewals with Let’s Encrypt, Certbot, or Cloud provider cert managers.
+
+
+ Freshers Tip:
+ When TLS/SSL breaks, don’t panic. 90% of the time it’s expiry, mismatch, or missing chain. Start with these checks first

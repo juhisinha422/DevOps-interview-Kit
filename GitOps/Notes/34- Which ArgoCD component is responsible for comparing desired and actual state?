@@ -1,0 +1,9 @@
+Which ArgoCD component is responsible for comparing desired and actual state?
+A) API Server
+B) Repo Server
+C) UI Dashboard
+D) Application Controller
+
+
+ans D
+

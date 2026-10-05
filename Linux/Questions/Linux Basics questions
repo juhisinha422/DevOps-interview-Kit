@@ -1,0 +1,85 @@
+ Linux Basics
+
+🔹 Users & Groups
+Q1. How do you create a new user and assign them a home directory and default shell?
+sudo useradd -m -s /bin/bash john
+sudo passwd john
+
+-m → create home directory
+
+-s → specify shell
+
+Q2. What’s the difference between /etc/passwd and /etc/shadow?
+/etc/passwd → stores user account info (username, UID, GID, home dir, shell).
+
+/etc/shadow → stores encrypted passwords and password expiry details.
+
+/etc/shadow is readable only by root for security.
+
+Q3. How do you switch to another user without logging out?
+su - john
+sudo -u john -i
+
+Q4. How do you check the groups a user belongs to?
+groups john
+id john
+
+Q5. How do you lock/unlock a user account?
+sudo usermod -L john   # Lock
+sudo usermod -U john   # Unlock
+
+Q6. What happens to files when a user is deleted?
+sudo userdel john
+
+Files remain on the system with old UID ownership.
+
+To delete home directory as well:
+
+sudo userdel -r john
+
+Q7. What’s the difference between su and sudo?
+su → Switch user (needs target user password).
+
+sudo → Run commands as root or another user (needs your password, configured in /etc/sudoers).
+
+🔹 Permissions
+Q8. Explain the meaning of -rwxr-xr--.
+- → file type (regular file).
+
+rwx → owner has read, write, execute.
+
+r-x → group has read, execute.
+
+r-- → others have read only.
+
+Q9. What is the difference between absolute (numeric) and symbolic permissions?
+Numeric → chmod 755 file
+
+Symbolic → chmod u=rwx,g=rx,o=r file
+
+Both give same result.
+Q10. How do you change ownership of a file or directory?
+sudo chown john:developers file.txt
+
+Q11. What’s the difference between chmod 777 and chmod 755?
+777 → everyone can read, write, execute (least secure).
+
+755 → owner can read/write/execute, others can only read + execute (common for scripts/web files).
+
+Q12. What are SUID, SGID, and Sticky Bit?
+SUID (chmod 4755 file) → file runs with owner’s privileges. Example: /usr/bin/passwd.
+
+SGID (chmod 2755 dir) → new files inherit group ownership.
+
+Sticky Bit (chmod 1777 dir) → only file owner can delete (used in /tmp).
+
+Q13. How do you give only execute permission to the owner of a file?
+chmod u+x file.sh
+
+Q14. A file has rw-rw-r-- but the user still cannot edit it. Why?
+ Possible reasons:
+The user is not owner or in the group.
+
+File system is mounted read-only.
+
+ACLs (Access Control Lists) override normal permissions (getfacl file.txt).

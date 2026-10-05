@@ -1,0 +1,21 @@
+ capg interview experience-
+Asked me to explain my day-to-day activities in the project, followed by a detailed discussion on my roles and responsibilities.
+
+After that, I was asked to explain the entire CI/CD pipeline architecture for my project , including all the stages involved from source code to production deployment.
+
+Then came scenario-based questions on CI/CD, such as:
+
+	•	What steps I follow if a pipeline fails at any stage
+	•	How I approach troubleshooting
+	•	How I trace back the root cause of the issue
+
+They also asked a few basic questions on Terraform.
+
+Later, there were scenario-based Kubernetes questions, for example:
+
+	•	If a pod goes into a CrashLoopBackOff state due to storage issues, how do I access the Kubernetes cluster and investigate why it’s failing?
+
+Finally, I was asked how I verify whether the application is running fine after deployment — what checks I perform to ensure everything is working as expected.
+
+One important thing: they thoroughly went through my resume and asked questions based on whatever I had mentioned there.
+The interview was mainly focused on real-world, scenario-based questions, not just theoretical concepts.

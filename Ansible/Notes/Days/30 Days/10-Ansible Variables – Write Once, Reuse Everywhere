@@ -1,0 +1,86 @@
+30 Days of Ansible – Day 10/30
+
+Ansible Variables – Write Once, Reuse Everywhere
+
+Imagine you need to install Nginx on Development today and Apache on Production tomorrow.
+
+Would you create two different playbooks?
+
+No! That's where Ansible Variables come in.
+
+Variables allow you to write flexible, reusable, and dynamic playbooks by storing values that can be reused throughout your automation.
+
+Why Use Variables?
+
+✅ Avoid hardcoding values
+
+✅ Write reusable playbooks
+
+✅ Easily manage different environments
+
+✅ Simplify maintenance
+
+✅ Improve readability
+
+Defining Variables
+
+---
+- name: Install Web Server
+  hosts: webservers
+  become: yes
+
+  vars:
+    package_name: nginx
+    service_name: nginx
+
+  tasks:
+    - name: Install package
+      package:
+        name: "{{ package_name }}"
+        state: present
+
+    - name: Start service
+      service:
+        name: "{{ service_name }}"
+        state: started
+        enabled: yes
+
+Understanding "{{ }}"
+
+In Ansible, variables are referenced using Jinja2 syntax.
+
+name: "{{ package_name }}"
+
+Ansible replaces "{{ package_name }}" with the actual value during execution.
+
+For example:
+
+package_name: nginx
+
+becomes:
+
+name: nginx
+
+Real-World Example
+
+Suppose your company has three environments:
+
+- Development → Nginx
+- Testing → Apache
+- Production → Nginx
+
+Instead of maintaining three separate playbooks, you keep one playbook and change only the variable values. This makes your automation cleaner, faster, and easier to maintain.
+
+Best Practices
+
+✅ Use meaningful variable names.
+
+✅ Store environment-specific variables separately.
+
+✅ Avoid hardcoding usernames, package names, and file paths.
+
+✅ Use variables wherever values may change.
+
+Key Takeaway
+
+Variables make your Ansible playbooks dynamic, reusable, and easier to maintain. They are one of the most powerful features for building scalable automation.

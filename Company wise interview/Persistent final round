@@ -1,0 +1,42 @@
+Persistent Systems – Final Round Interview Experience (DevOps Engineer Role)🚀 
+
+I’m glad to share that I recently completed my final round interview with Persistent Systems for the DevOps Engineer position! 💼
+
+It was a great learning experience filled with scenario-based and practical questions around real-world DevOps challenges.
+
+Here’s a quick overview of what was asked 👇
+
+General Discussion
+Tell me about yourself and your daily roles & responsibilities in your current project.
+
+Kubernetes (K8s)
+What is the current version of K8s you are using in your project?
+What was the last production issue you faced and how did you resolve it?
+A pod is stuck in CrashLoopBackOff. Logs show failure during initialization — how do you troubleshoot?
+How do you enforce tenant isolation in a multi-tenant Kubernetes setup?
+During high traffic, your app shows intermittent 502 errors through Ingress — how do you debug?
+How do you prevent bad configs from reaching production in a CI/CD pipeline?
+How would you ensure zero-downtime deployment during a critical update?
+Helm deployment fails due to insufficient cluster resources — what’s your approach?
+How do you share Helm charts internally?
+What is Helm chart testing and how is it done?
+
+Docker
+How would you manage Docker workloads across multiple clouds?
+How do you handle image cleanup to prevent disk space issues?
+How do you manage multi-container dependencies using Docker Compose?
+How do you monitor container performance in production?
+Wrote a multi-stage Dockerfile during screen sharing.
+
+Terraform
+How do you manage Terraform provider versioning?
+How would you provision infra across 10 AWS regions simultaneously?
+What to do when your Terraform state file becomes too large?
+Terraform plan shows destroy + recreate for a critical DB — how to prevent downtime?
+
+GitHub Actions
+How do you reuse workflows across repositories?
+How to manage large workflow files efficiently?
+What’s the difference between public and private workflow repositories?
+How to implement workflow concurrency?
+How do you handle failed workflows?

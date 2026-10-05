@@ -1,0 +1,80 @@
+DevOps Interview Scenario (Terraform + Kubernetes)
+
+Scenario: Production Outage After a “Successful” Deployment
+
+Your organization uses:
+
+●Terraform for cloud infrastructure
+
+●Kubernetes for application workloads
+
+●CI/CD pipeline for automated deployments
+
+A pipeline runs successfully: ✔ Terraform plan → apply completed
+✔ Kubernetes manifests deployed
+✔ No errors in CI/CD logs
+
+But 15 minutes later:
+
+●Application pods start restarting
+
+●API latency spikes
+
+●HPA scales pods aggressively
+
+●Some nodes go NotReady
+
+●Rollback does not stabilize production
+
+
+Interview Questions:
+
+1. How will you isolate whether the issue is infra or application level?
+
+2. How do you verify if Terraform caused state drift after apply?
+
+3. Why would HPA worsen the situation instead of fixing it?
+
+4. What Kubernetes metrics would you immediately check?
+
+5. How can a successful Terraform apply still break production?
+
+6. What is your immediate mitigation to stop further damage?
+
+7. How do you safely rollback Kubernetes changes when infra is already modified?
+
+8. How do you prevent this scenario in future deployments?
+
+
+ Expected Senior-Level Thinking (No Definitions)
+
+✔ Check Terraform state vs actual cloud resources
+✔ Validate node resource limits vs pod requests
+✔ Identify misconfigured HPA metrics or CPU requests
+✔ Pause autoscaling to stabilize the cluster
+✔ Inspect etcd / control plane pressure
+✔ Use canary or blue-green deployment instead of direct rollout
+✔ Implement policy checks before apply
+
+🛡️ Root Cause (Typical Real-World Answer)
+
+A Terraform change increased node size but reduced node count,
+while Kubernetes CPU requests were too low.
+
+Result:
+
+●HPA scaled pods aggressively
+
+●Nodes became over-committed
+
+●kubelet evicted pods
+
+●Control plane got overloaded
+
+
+Everything was “correct” individually — but broken together.
+
+🔑 Key Learning (What Interviewers Want)
+
+●DevOps failures are rarely tool failures.
+They are system design failures.”

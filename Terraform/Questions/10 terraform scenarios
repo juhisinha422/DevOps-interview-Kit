@@ -1,0 +1,31 @@
+10 Terraform Scenarios Every DevOps Engineer Must Know !!!
+
+	1.	State file deleted → Terraform forgets infra, tries to recreate.
+👉 Use remote backend with versioning.
+
+	2.	Multiple applies at once → State corruption & drift.
+👉 Use state locking.
+
+	3.	Resource fails mid-apply → Partial infra + tainted resources.
+👉 Re-run apply or taint/replace.
+
+	4.	AWS rate limits → Throttling errors, partial deployment.
+👉 Lower parallelism or raise limits.
+
+	5.	Infra changed outside Terraform → Drift hidden until refresh.
+👉 Treat Terraform as single source of truth.
+
+	6.	Resource removed from config → Terraform destroys it.
+👉 Use prevent_destroy or state rm.
+
+	7.	Provider/API change → Plans break, forced recreation.
+👉 Pin provider versions, test upgrades.
+
+	8.	Circular dependencies → Plan fails with cycle error.
+👉 Refactor modules, break loops.
+
+	9.	AWS quotas exceeded → Resource creation fails.
+👉 Monitor & request quota increases early.
+
+	10.	Lost remote state access → No safe changes possible.
+👉 Secure & back up state backend.

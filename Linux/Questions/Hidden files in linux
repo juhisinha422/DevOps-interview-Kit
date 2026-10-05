@@ -1,0 +1,13 @@
+Ever wondered why some files in Linux start with a dot (.)?
+
+In Linux, any file beginning with a . is a hidden file — often used for configurations, environment settings, and system preferences. 
+
+👉 Example:
+
+ls -a
+
+This command reveals all files, including hidden ones like .bashrc, .gitignore, or .ssh/.
+
+Dotfiles may look small, but they hold the power to customize your Linux experience — from aliases to shell behavior! 
+
+Every DevOps engineer should know: .files = hidden secrets of Linux productivity. 

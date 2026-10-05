@@ -1,0 +1,42 @@
+AWS DevOps Interview Series 🚀 
+#AWS #AWSPricing #CloudCostOptimization 
+
+🔹 Topic: AWS Pricing & Cost Management — Optimize, Monitor & Control Your Cloud Spend 💰
+
+In DevOps and SRE roles, cost efficiency is just as important as performance and scalability. Understanding AWS’s pricing model and cost optimization tools can help you design smarter architectures, automate cost monitoring, and avoid billing surprises.
+
+Top AWS Pricing & Cost Management Interview Questions for DevOps Engineers
+
+What is AWS Pricing Model and its key components?
+What’s the difference between On-Demand, Reserved, and Spot Instances?
+What are Savings Plans, and how do they differ from Reserved Instances?
+What is the AWS Pricing Calculator, and how is it used?
+What is the AWS Free Tier, and what are its limitations?
+How do you monitor and analyze AWS spending?
+What is AWS Cost Explorer, and how do you use it?
+What’s the purpose of AWS Budgets?
+How do you set up billing alerts in AWS?
+What is AWS Cost and Usage Report (CUR)?
+How can AWS Organizations help with consolidated billing?
+What are resource tags, and how do they help in cost allocation?
+How do you identify and clean up unused resources to reduce cost?
+How does Auto Scaling help in cost optimization?
+What’s the difference between Compute Savings Plan and EC2 Instance Savings Plan?
+How do you use Trusted Advisor for cost optimization?
+How can you optimize S3 storage costs (Standard vs IA vs Glacier)?
+How can you reduce EBS and RDS costs?
+What are Reserved Capacity options in services like RDS and Redshift?
+How can AWS Lambda help save cost compared to EC2-based workloads?
+What is AWS Cost Anomaly Detection, and how does it work?
+How can you use CloudWatch metrics for cost visibility?
+What is Spot Fleet, and how does it reduce compute cost?
+What’s the impact of data transfer charges on AWS billing?
+How do you automate cost reporting using AWS CLI or SDKs?
+What is Compute Optimizer, and how does it help with cost optimization?
+How can you schedule EC2 instance start/stop to reduce costs?
+What are Savings Plans recommendations in Cost Explorer?
+What are AWS Billing alarms, and how do you configure them?
+Real-world scenario: How did you identify and fix cost spikes in your AWS environment?
+
+💬 Pro Tip:
+Always tag resources properly, use Auto Scaling wisely, and schedule non-prod instances to shut down during off-hours. Cost visibility + automation = true DevOps efficiency.

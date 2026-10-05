@@ -1,0 +1,28 @@
+AWS API Gateway Explained (A Core Service for Modern Applications)
+
+Modern applications need a secure and scalable way to expose APIs to users and services.
+
+That’s where Amazon API Gateway comes in.
+
+Amazon API Gateway is a fully managed service that allows developers to create, publish, secure, and manage APIs at any scale.
+
+It acts as the entry point for backend services running on AWS.
+
+Key capabilities engineers should know:
+
+🔹 Create REST and HTTP APIs easily
+🔹 Secure APIs using IAM, API keys, or authentication tokens
+🔹 Automatically scale to handle large numbers of requests
+🔹 Monitor API traffic and performance using CloudWatch
+🔹 Integrate with backend services like AWS Lambda, EC2, or DynamoDB
+
+Common use cases include:
+
+• Building serverless APIs
+• Connecting mobile or web apps to backend services
+• Creating microservice architectures
+• Managing public or internal APIs
+
+The main advantage is that developers can focus on building application logic while API Gateway handles traffic management, security, and scaling.
+
+Understanding API Gateway is essential for anyone working with cloud-native or serverless architectures.

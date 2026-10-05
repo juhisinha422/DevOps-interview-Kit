@@ -1,0 +1,29 @@
+AWS EC2 & Compute (0–1 Year Interview questions)
+
+These are real interview questions every fresher & junior AWS engineer must know 👇
+
+1. What is Amazon EC2?
+2. What are instance types in EC2?
+3. What is an AMI?
+4. What is the difference between EBS and Instance Store?
+5. What is a Security Group?
+6. What is a Key Pair in EC2?
+7. What is Elastic IP?
+8. What is Auto Scaling?
+9. What is an Application Load Balancer?
+10. What is the difference between ALB and NLB?
+11. What happens when an EC2 instance is stopped?
+12. What is EC2 User Data?
+13. How do you connect to a Linux EC2 instance?
+14. What is a launch template?
+15. What is a placement group?
+16. What is the default root volume of an EC2 instance?
+17. What is Spot Instance?
+18. What is Reserved Instance?
+19. What is EC2 hibernation?
+20. What is Elastic Load Balancing?
+21. How do you increase EC2 disk size?
+22. What is CloudWatch in EC2?
+23. What is EC2 termination protection?
+24. What is an EC2 snapshot?
+25. What is the difference between reboot and stop?

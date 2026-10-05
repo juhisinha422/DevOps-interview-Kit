@@ -1,0 +1,32 @@
+HELM (Kubernetes Packaging & Release Scenarios)
+
+These scenarios focus on real Helm failures, release issues, and production-safe deployments.
+
+⸻
+
+⎈ Helm – Real-World DevOps Scenarios
+	1.	A Helm release failed during upgrade. How do you troubleshoot and recover?
+	2.	Values work in dev but break in prod. How do you manage environment-specific configs?
+	3.	A Helm chart upgrade caused downtime. How do you prevent this?
+	4.	How do you roll back a failed Helm deployment safely?
+	5.	A Helm release is stuck in pending-upgrade. What do you do?
+	6.	How do you manage secrets securely with Helm?
+	7.	How do you version and manage Helm charts across teams?
+	8.	Helm templates are complex and hard to debug. How do you troubleshoot them?
+	9.	How do you ensure zero-downtime deployments using Helm?
+	10.	A Helm deployment succeeds, but pods are not created. How do you debug?
+	11.	How do you integrate Helm with CI/CD pipelines?
+	12.	How do you handle breaking changes in Helm chart upgrades?
+	13.	A Helm chart uses deprecated Kubernetes APIs. How do you fix it?
+	14.	How do you restrict who can install or upgrade Helm releases?
+	15.	How do you audit Helm release history and changes?
+
+⸻
+
+🧠 What Interviewers Are Testing
+
+✔ Kubernetes release management
+✔ Safe upgrades & rollbacks
+✔ Chart design best practices
+✔ CI/CD integration
+✔ Governance & access control

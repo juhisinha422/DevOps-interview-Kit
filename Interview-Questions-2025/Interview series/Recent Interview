@@ -1,0 +1,17 @@
+Recently, a colleague attended an interview for a 2-year experience role for DevOps, and these were some of the questions he encountered:
+
+1. Tell us about yourself.
+2. What are your daily tasks?
+3.  Can you explain what happens in the background when creating a pod?
+4. What is the git cherry-pick command, and what does it do?
+5. What is the difference between git rebase and git merge?
+6. What is the Terraform state file, and why is it important?
+7. What are Terraform workspaces, and why do we need them?
+8. How would you troubleshoot if one of the pods goes down? What steps are involved?
+9. What are health probes in Kubernetes, and what is their purpose?
+10. What is Canary Deployment, and what processes are involved?
+11. Why are Terraform Workspaces Used Instead of New Repositories? 
+
+The remaining questions were focused on my resume and practical experience.
+
+One key takeaway from this experience is that recruiters seem more interested in what we have done previously than in our practical knowledge and hands-on skills. With high expectations for candidates with just 2 years of experience, the job market has become very competitive.

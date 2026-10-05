@@ -1,0 +1,12 @@
+How do you manage Dev, QA, and Production environments using Helm?
+we will write one base Helm chart, and vary the configuration using environment-specific values files.
+Always deploy each environment into a isolated Kubernetes Namespace or entirely separate clusters (highly recommended for Production)
+Dev: Deployed via dev context into the dev namespace.
+QA: Deployed via qa context into the qa namespace.
+Prod: Deployed via an isolated, secure production cluster context.
+Deploy to Dev:
+helm upgrade --install my-app-dev ./my-app-chart -f values-dev.yaml --namespace dev --create-namespace
+Deploy to QA:
+helm upgrade --install my-app-qa ./my-app-chart -f values-qa.yaml --namespace qa --create-namespace
+Deploy to Production:
+helm upgrade --install my-app-prod ./my-app-chart -f values-prod.yaml --namespace prod --create-namespace

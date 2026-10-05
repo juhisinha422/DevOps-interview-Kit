@@ -1,0 +1,37 @@
+DevOps Interview Preparation Series — GCP (Google Cloud Platform) Edition 🚀
+#GCP #GoogleCloud #GoogleCloudPlatform
+
+Topic: Mastering Google Cloud Platform for DevOps & Site Reliability Engineers 🌍
+
+Let’s explore advanced, scenario-based GCP interview questions you might face in real-world DevOps or SRE interviews 👇
+
+Explain the difference between GCE (Compute Engine), GKE (Kubernetes Engine), and Cloud Run.
+ How do you manage Infrastructure as Code in GCP using Terraform or Deployment Manager?
+ What’s the difference between GCP Projects, Folders, and Organizations?
+ How do you handle IAM policies and service account permissions in large environments?
+ Explain how you would secure API keys and secrets in GCP.
+ What are VPC Peering and Shared VPCs, and when do you use each?
+ How do you connect an on-premises environment to GCP securely? (VPN / Interconnect)
+ How do you monitor GCP workloads using Cloud Monitoring and Cloud Logging?
+ Explain the architecture of GKE and how to troubleshoot failing pods.
+ How do you configure auto-scaling for a GKE cluster or instance group?
+ What is Cloud Build, and how do you implement a CI/CD pipeline using it?
+ How do you integrate Cloud Build with GitHub or Bitbucket?
+ Explain the use of Artifact Registry and Container Registry in GCP.
+ How do you implement canary or blue-green deployments in GKE?
+ What’s the best practice for handling Terraform state files in GCP backend?
+ How do you ensure compliance and governance across multiple projects? (using Organization Policy & Cloud Asset Inventory)
+ How do you manage secrets in GCP workloads securely? (Secret Manager / Workload Identity)
+ What is Workload Identity Federation and why is it used?
+ How do you perform cost optimization in GCP production environments?
+ How do you debug networking issues in GCP (VPC Flow Logs, Firewall Logs, etc.)?
+ How do you implement Cloud Functions or Cloud Run for serverless automation tasks?
+ What’s the difference between Cloud Pub/Sub and Cloud Tasks?
+ How do you set up monitoring and alerting for production workloads?
+ Real-world scenario: A pod in GKE keeps restarting — how will you find the root cause?
+ Real-world scenario: Your Terraform plan fails due to IAM denial — how do you fix and prevent this?
+ Real-world scenario: You suspect a billing spike — how do you trace which resources caused it?
+ How do you design a multi-region failover architecture in GCP?
+ What’s the difference between preemptible VMs and regular VMs?
+ How do you automate backups for Cloud SQL or Cloud Storage?
+ How do you implement DevSecOps in GCP pipelines using security scanning tools?

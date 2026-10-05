@@ -1,0 +1,51 @@
+Terms you should be knowing before joining a DevOps/SRE team:
+
+SRE - Site Reliability Engineer
+DevOps - Development & Operations
+Oncall - Production support rotation
+P0 - Sev 0, full outage
+P1 - High priority incident
+SLA - Service Level Agreement
+SLO - Service Level Objective
+SLI - Service Level Indicator
+RCA - Root Cause Analysis
+PIR - Post-Incident Review
+MTTR - Mean Time To Recovery
+MTTA - Mean Time To Acknowledge
+MTBF - Mean Time Between Failures
+MTTF - Mean Time To Failure
+CI - Continuous Integration
+CD - Continuous Delivery/Deployment
+IaC - Infrastructure as Code
+GitOps - Ops driven by Git workflows
+K8s - Kubernetes
+EKS - Elastic Kubernetes Service
+GKE - Google Kubernetes Engine
+AKS - Azure Kubernetes Service
+HPA - Horizontal Pod Autoscaler
+PDB - Pod Disruption Budget
+RBAC - Role-Based Access Control
+CNI - Container Network Interface
+CSI - Container Storage Interface
+VPC - Virtual Private Cloud
+CIDR - Classless Inter-Domain Routing
+ALB - Application Load Balancer
+NLB - Network Load Balancer
+ASG - Auto Scaling Group
+RDS - Relational Database Service
+S3 - Simple Storage Service
+EBS - Elastic Block Store
+EFS - Elastic File System
+DNS - Domain Name System
+TTL - Time To Live
+CDN - Content Delivery Network
+WAF - Web Application Firewall
+APM - Application Performance Monitoring
+RUM - Real User Monitoring
+OTel - OpenTelemetry
+JSON - JavaScript Object Notation
+YAML - Yet Another Markup Language
+JWT - JSON Web Token
+SSO - Single Sign-On
+MFA - Multi-Factor Authentication
+VPN - Virtual Private Network

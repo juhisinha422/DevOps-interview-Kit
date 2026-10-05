@@ -1,0 +1,45 @@
+Public vs Private Subnets — AWS Networking Basics
+
+As part of my AWS Cloud Architect learning, I explored a key VPC concept: Public and Private Subnets.
+Understanding this helps build secure, well-designed cloud architectures.
+
+⸻
+
+🔹 Public Subnet
+
+A subnet that has a route to the Internet Gateway (IGW).
+Resources here can communicate with the internet (inbound + outbound), depending on security groups.
+
+Best for:
+	•	Web servers
+	•	ALB / NLB
+	•	Bastion hosts
+
+⸻
+
+🔹 Private Subnet
+
+A subnet without direct internet access.
+If outbound internet is required, it goes through a NAT Gateway in the public subnet.
+
+Best for:
+	•	Databases (RDS)
+	•	Application servers
+	•	Internal microservices
+
+⸻
+
+🔹 Why Both Are Needed
+
+Using public + private subnets creates a layered architecture:
+✔ More security
+✔ Better isolation
+✔ Reduced attack surface
+✔ Aligns with AWS best practices
+
+⸻
+
+🔥 In Simple Words
+
+Public = “Can talk to the internet.”
+Private = “Protected inside the VPC.”

@@ -1,0 +1,66 @@
+ Beginner-Level DevOps Security Interview Questions (0–2 Years)
+
+Starting your DevOps journey?
+Security basics are mandatory, not optional 🚨
+
+📌 Questions:
+
+What is DevOps security?
+
+What does DevSecOps mean?
+
+Why is security important in DevOps?
+
+What is IAM in cloud computing?
+
+What is authentication vs authorization?
+
+What are secrets in DevOps?
+
+Why should passwords not be stored in code?
+
+What is HTTPS and why is it used?
+
+What is SSH and how is it secured?
+
+What is a firewall?
+
+What is port security?
+
+What is least privilege access?
+
+What is a public vs private IP?
+
+What is basic Linux file permission (chmod)?
+
+What is environment variable security?
+
+What is Git security?
+
+Why should .env files not be committed?
+
+What is a vulnerability?
+
+What is malware?
+
+What is a security patch?
+
+What is encryption?
+
+What is SSL/TLS?
+
+What is cloud shared responsibility model?
+
+What is S3 bucket security?
+
+What is logging?
+
+What is monitoring?
+
+What is backup and why is it important?
+
+What is MFA?
+
+What is password rotation?
+
+What are common beginner security mistakes?

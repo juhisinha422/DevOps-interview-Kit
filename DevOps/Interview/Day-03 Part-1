@@ -1,0 +1,112 @@
+Day 3 takeaway (Part 1/2)-  
+Git Advanced Questions & Answers
+
+1. What is the difference between git merge and git rebase?
+Answer:
+Merge: Combines changes from one branch into another by creating a new merge commit. Keeps history as it is (non-linear).
+ Example:
+
+ git checkout main
+git merge feature
+
+ → Creates a new commit that merges feature into main.
+
+Rebase: Moves or reapplies commits from one branch on top of another branch’s HEAD, creating a linear history.
+ Example:
+
+ git checkout feature
+git rebase main
+
+ → Rewrites commits of feature onto main.
+
+Key difference:
+Merge = preserves history, easy for collaboration.
+
+Rebase = cleaner history, but rewrites commits (dangerous in shared branches).
+
+2. When should you use rebase over merge?
+Answer:
+Use merge when:
+
+Working on a shared branch with multiple developers.
+
+You want to keep the exact history of merges.
+
+In long-lived branches where you don’t want to rewrite history.
+
+Use rebase when:
+
+You want a clean, linear history (e.g., before merging the feature into main).
+
+You are the only one working on the branch, so rewriting commits won’t affect others.
+
+You want to avoid unnecessary merge commits in the history.
+
+3. What are the risks of using git rebase?
+Answer:
+Rewriting history: Rebasing changes commit hashes, so if the branch is already pushed/shared, it may cause conflicts for others.
+
+Data loss: If not used carefully, commits can be lost (especially with git rebase --onto or git rebase --interactive).
+
+Harder debugging: Merge commits show the context of when branches diverged, which rebasing removes.
+
+4. How do you resolve conflicts during a git rebase?
+Answer:
+Start rebase:
+
+ git rebase main
+If conflict occurs:
+
+Git pauses rebase.
+
+Conflicted files will be marked (<<<<<<<, =======, >>>>>>>).
+Fix conflicts manually in the files.
+
+Mark file as resolved:
+
+ git add <file>
+Continue rebase:
+
+ git rebase --continue
+If stuck, you can abort:
+
+ git rebase --abort
+5. What is an interactive rebase and why is it useful?
+Answer:
+Command:
+
+ git rebase -i HEAD~5
+Interactive rebase lets you edit commit history:
+
+Reorder commits
+
+Squash multiple commits into one
+
+Edit commit messages
+
+Drop unwanted commits
+
+Use cases:
+
+Cleaning up history before pushing a feature branch.
+
+Combining “WIP” commits into meaningful commits.
+
+Splitting a large commit into smaller logical commits.
+
+6. How do you handle conflicts in git merge?
+Answer:
+Run:
+
+ git merge feature
+If conflict happens, Git stops the merge.
+Check conflicted files:
+
+ git status
+Manually resolve conflicts.
+Mark resolved:
+
+ git add <file>
+Complete merge:
+
+ git commit

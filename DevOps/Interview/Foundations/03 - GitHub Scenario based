@@ -1,0 +1,37 @@
+Tool 3 — GitHub (Scenario-Based)
+(DevOps Interview Real-Time Scenarios Questions)
+
+These scenarios are exactly what happens in real DevOps & SRE teams 👇
+
+GitHub – Scenario Based Interview Questions
+
+1. A developer directly pushed to main. How will you prevent this in future?
+2. A PR passed CI but broke production. What went wrong?
+3. Secrets were leaked in a public repo. What immediate steps will you take?
+4. How do you restrict deployments to production only after approvals?
+5. A GitHub Actions workflow was modified by mistake. How do you recover it?
+6. How do you stop untrusted PRs from accessing secrets?
+7. Your GitHub Actions usage cost is very high. How will you reduce it?
+8. CI pipelines are slow. How will you optimize them?
+9. How do you isolate CI jobs for different environments?
+10. How do you design multi-environment CI/CD in GitHub?
+11. A self-hosted runner got compromised. What actions will you take?
+12. How do you secure self-hosted runners?
+13. How do you implement approval gates before deployment?
+14. How do you restrict who can trigger workflows?
+15. How do you integrate GitHub with AWS without static credentials?
+16. How do you audit user actions in GitHub?
+17. How do you enforce commit signing across org?
+18. How do you handle monorepo CI pipelines?
+19. How do you share artifacts across workflows?
+20. How do you rollback a failed deployment using GitHub?
+21. How do you protect release branches?
+22. How do you restrict third-party GitHub Actions usage?
+23. How do you detect malicious workflows?
+24. How do you implement blue-green deployment with GitHub?
+25. How do you prevent secrets exposure in forked repos?
+26. How do you scale GitHub Actions for thousands of repos?
+27. How do you manage GitHub org access at scale?
+28. How do you comply with SOC2 using GitHub?
+29. How do you rotate secrets without downtime?
+30. How do you design GitHub as a secure enterprise CI/CD platform?

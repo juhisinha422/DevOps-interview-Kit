@@ -1,0 +1,86 @@
+ Grafana Alerts – Proactive Monitoring in Production
+
+🔹 What are Grafana Alerts? 🚨
+Alerts in Grafana help teams detect problems automatically and notify engineers before users are affected.
+Instead of continuously watching dashboards, Grafana can monitor metrics and trigger alerts when specific conditions are met.
+👉 "If something goes wrong, notify me immediately."
+
+🔹 Why are Alerts Important? 🏗️
+Production systems run 24×7, and engineers cannot monitor dashboards all the time.
+Grafana alerts help teams:
+✔ Detect issues early
+ ✔ Reduce downtime
+ ✔ Improve reliability
+ ✔ Respond faster to incidents
+ ✔ Prevent customer impact
+
+🔹 How Alerting Works ⚙️
+The alerting process is simple:
+1️⃣ Select a metric
+ 2️⃣ Define a threshold
+ 3️⃣ Set evaluation time
+ 4️⃣ Configure notifications
+ 5️⃣ Receive alerts when conditions match
+
+🔹 Setting Alerts in Grafana 📊
+An alert generally includes:
+✔ Metric to monitor
+ ✔ Condition or threshold
+ ✔ Evaluation interval
+ ✔ Notification channel
+Example:
+🚨 CPU Usage > 90% for 5 minutes
+If the condition remains true, Grafana sends an alert.
+
+🔹 Notification Channels 📩
+Grafana can send alerts through:
+✔ Email 📧
+ ✔ Slack 💬
+ ✔ Microsoft Teams 👥
+ ✔ Webhooks 🔗
+ ✔ Incident management tools 🚨
+This ensures the right team gets notified quickly.
+
+🔹 Real-world Example 💡
+An application server experiences high traffic.
+Monitoring shows:
+📊 CPU Usage = 95%
+ 📊 Memory Usage = 88%
+Grafana alert rule:
+👉 CPU > 90% for 5 minutes
+Result:
+🚨 Alert triggered
+ 📩 Notification sent to DevOps team
+ ⚡ Engineers investigate and scale the application.
+Downtime avoided.
+
+🔹 Common Production Alerts 🎯
+✔ High CPU usage
+ ✔ High memory consumption
+ ✔ Disk space low
+ ✔ Increased error rate
+ ✔ High API latency
+ ✔ Service unavailable
+
+🔹 Best Practices ⭐
+✔ Avoid too many alerts
+ ✔ Set meaningful thresholds
+ ✔ Prevent alert fatigue
+ ✔ Monitor critical services first
+ ✔ Test alerts regularly
+Remember:
+👉 Good alerts help engineers act.
+ 👉 Bad alerts create noise.
+
+🔹 Key Concepts to Remember 🧠
+✔ Alerts provide proactive monitoring 🚨
+ ✔ Thresholds define conditions 📊
+ ✔ Notifications reach teams quickly 📩
+ ✔ Reduce downtime ⚡
+ ✔ Improve system reliability 🚀
+
+💡 Pro Tip:
+ An alert should always answer two questions:
+1️⃣ Is there a real problem?
+ 2️⃣ Does someone need to take action?
+If the answer is "No," the alert probably shouldn't exist.

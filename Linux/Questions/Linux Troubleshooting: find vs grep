@@ -1,0 +1,19 @@
+Linux Troubleshooting Made Simple: find vs grep
+
+📌 Suppose your web server is failing and you need to check logs.
+Step 1: Locate the log file
+You don’t know where the log file is.
+👉 Use find:
+      find /var/log -name "nginx*.log"
+✅ It locates nginx-error.log.
+
+Step 2: Search inside the log file
+Now, you want to check only the error lines inside that file.
+👉 Use grep:
+      grep "critical" /var/log/nginx-error.log
+✅ It shows all lines with the word “critical”.
+
+📝 Summary
+find = “Where is my file?” 📂
+grep = “What’s inside my file?” 📜
+They complement each other — often you find first, then grep inside.

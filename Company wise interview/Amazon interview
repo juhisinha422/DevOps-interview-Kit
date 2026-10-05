@@ -1,0 +1,36 @@
+Amazon interview for a DevOps/Cloud role.
+And here's something nobody tells you clearly enough —
+Product-based companies like Amazon don't just test what you know. They test who you are under pressure.
+
+They handed me a broken Bash script and watched how I approached it. Not just "find the bug" — but how I think, where I start, what I prioritize, and how I explain my reasoning out loud.
+
+That's the real interview.
+👉 Product companies aren't hiring someone who memorized commands. They're hiring someone who stays calm when production is on fire and finds the root cause before pointing fingers.
+
+What they actually evaluate (beyond technical knowledge):
+👉Pressure handling — do you freeze or do you structure your thinking out loud?
+👉Prioritization — given 5 bugs, which 2 do you fix first and why?
+👉Problem-solving approach — do you jump to solutions or do you diagnose first?
+👉Root cause analysis — can you go beyond symptoms and find the actual failure point?
+👉Communication — can you explain a technical decision to someone non-technical?
+👉Ownership mindset — do you say "that's not my job" or do you own the problem end-to-end?
+👉Data-driven thinking — metrics, logs, traces — do you use data or do you guess?
+
+🧑💻 Technical topics covered:
+1. Bash script deep dive
+2. Identify bugs, inefficiencies, and prioritize fixes with exact line changes
+3. Refactor hardcoded values, fix overwrite bug (> vs >>), optimize with grep
+4. Implement streaming to avoid loading full logs into memory
+5. Handle missing default values when incrementing counters
+6. Full dry run walkthrough — explain error processing step-by-step
+Live coding
+7. Parse a log file, count unique error types, sort by frequency — written live
+GenAI project
+8. End-to-end project walkthrough, model choice, offline inference on low-cost Android devices
+9. Real example of learning a new GenAI capability to solve a production problem
+Production incidents & observability
+10. Real OOM + CrashLoopBackOff incident — what broke, exact commands used, how it was resolved
+11. Data-driven troubleshooting in distributed systems using metrics, logs, and traces
+
+🔰 The big lesson from this round:
+Your Bash and K8s knowledge gets you in the room. Your thought process gets you the offer. Practice talking through problems out loud — not just solving them silently.

@@ -1,0 +1,43 @@
+DevOps Q&A Series: Topic 12 — Prometheus 📊
+
+🚀 Prometheus is the backbone of cloud-native observability, enabling powerful time-series metrics collection, alerting, and real-time insights across distributed systems — from Kubernetes to microservices to infrastructure monitoring.
+
+1️⃣ What is Prometheus, and how does it differ from traditional monitoring tools like Nagios or Zabbix?
+
+2️⃣ Explain Prometheus’s pull-based architecture. Why does it rely on scraping instead of pushing metrics?
+
+3️⃣ What are Prometheus exporters, and when would you use popular ones like Node Exporter, Blackbox Exporter, or cAdvisor?
+
+4️⃣ What is a Prometheus metric? Explain the four metric types — Counter, Gauge, Histogram, and Summary — with examples.
+
+5️⃣ How does Prometheus store data internally, and what is the significance of its time-series format and TSDB?
+
+6️⃣ What is PromQL? Provide examples of queries used for rate calculations, filtering, and aggregations.
+
+7️⃣ How do Prometheus scrape configs work? Explain jobs, targets, relabeling, and service discovery.
+
+8️⃣ What is the role of Alertmanager in the Prometheus ecosystem? How does it handle silencing, grouping, and routing alerts?
+
+9️⃣ How do you integrate Prometheus with Kubernetes using ServiceMonitors and PodMonitors (via Prometheus Operator)?
+
+🔟 What are recording rules and alerting rules in Prometheus? When should you use them?
+
+1️⃣1️⃣ How does Prometheus manage scalability when monitoring large environments? What are federation and sharding?
+
+1️⃣2️⃣ What are Pushgateway and its use cases? When should you avoid it?
+
+1️⃣3️⃣ Explain the concept of labels in Prometheus. Why are labels critical for multi-dimensional monitoring?
+
+1️⃣4️⃣ How does Prometheus handle metric retention, and how can you configure retention periods for long-term storage?
+
+1️⃣5️⃣ How do you set up Prometheus with Grafana for visualization of dashboards and alerts?
+
+1️⃣6️⃣ What is the difference between static configs and service discovery (SD) in Prometheus? Why is SD preferred in Kubernetes and cloud-native environments?
+
+1️⃣7️⃣ How do you monitor application-level metrics? Explain instrumentation using Prometheus client libraries (Python, Go, Java, Node.js).
+
+1️⃣8️⃣ How do you troubleshoot common Prometheus issues — failed scrapes, high cardinality, and missing metrics?
+
+1️⃣9️⃣ What are best practices for Prometheus metrics design — naming conventions, avoiding cardinality explosions, and label hygiene?
+
+2️⃣0️⃣ How can you integrate Prometheus with long-term storage systems like Thanos or Cortex for global, highly-available, long-retention metrics?

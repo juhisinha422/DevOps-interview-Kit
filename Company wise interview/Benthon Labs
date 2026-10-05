@@ -1,0 +1,21 @@
+Real DevOps Interview Experience – Benthon Labs
+
+Here are some of the key questions from the interview:
+
+🔹 How do you integrate or deploy an Angular application using a Jenkins pipeline?
+🔹 How many Git repositories or Git tools have you used?
+🔹 Have you worked with Terraform?
+🔹 How do you pass values to a Terraform module?
+🔹 How do you check a DNS entry in a system?
+🔹 Can you explain your project in detail, including the CI/CD pipeline you implemented?
+🔹 What are the most important concepts in Terraform?
+🔹 How do you configure Security Groups using Terraform?
+🔹 How can you transfer data to an S3 bucket apart from the copy command?
+🔹 What are Terraform dependencies, and how do they work?
+🔹 Explain Terraform modules in detail.
+🔹 What is IAM and how do you assign permissions to a user?
+🔹 How do you ensure correct permissions are assigned to the correct users in IAM?
+🔹 What is IAM Access Analyzer?
+
+💡 Key takeaway:
+Companies are focusing heavily on Terraform fundamentals, IAM security concepts, CI/CD pipelines, and real project explanations rather than only theoretical knowledge.

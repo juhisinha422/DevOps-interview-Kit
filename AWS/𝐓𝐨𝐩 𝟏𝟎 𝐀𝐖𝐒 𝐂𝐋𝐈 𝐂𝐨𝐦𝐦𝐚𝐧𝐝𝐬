@@ -1,0 +1,18 @@
+𝐓𝐨𝐩 𝟏𝟎 𝐀𝐖𝐒 𝐂𝐋𝐈 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬 𝐄𝐯𝐞𝐫𝐲 𝐂𝐥𝐨𝐮𝐝 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 𝐒𝐡𝐨𝐮𝐥𝐝 𝐊𝐧𝐨𝐰 💪
+
+💻 While the AWS Console is beginner-friendly, real automation and DevOps workflows rely heavily on the AWS CLI.
+
+Here are 10 essential AWS CLI commands worth remembering:
+
+1. aws configure – Configure credentials and default region
+2. aws help – View command documentation
+3. aws ec2 describe-instances` – List EC2 instances
+4. aws s3 ls – List S3 buckets
+5. aws s3 cp – Upload or download files
+6. aws s3 sync – Synchronize local and S3 directories
+7. aws ec2 start-instances – Start EC2 instances
+8. aws ec2 stop-instances – Stop EC2 instances
+9. aws iam list-users – List IAM users
+10. aws cloudwatch list-metrics – Monitor metrics
+
+CLI proficiency is a key skill for DevOps engineers and cloud automation.

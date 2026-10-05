@@ -1,0 +1,42 @@
+Here are some highly asked Kubernetes questions with short recall answers you can keep handy 👇
+
+⸻
+
+🔹 Deployment vs StatefulSet
+	•	Deployment → stateless, interchangeable pods.
+	•	StatefulSet → stateful apps, stable ID + storage.
+
+🔹 When use StatefulSet?
+	•	Databases, Kafka, Zookeeper → need stable identity & ordered startup.
+
+🔹 Volumes
+	•	Deployment: shared/ephemeral PVCs.
+	•	StatefulSet: unique PVC per pod.
+
+🔹 Why StatefulSet pod fails in another AZ?
+	•	PV is AZ-bound → can’t attach outside zone.
+
+🔹 PV/PVC across zones
+	•	Default: zone-specific (EBS, PD).
+	•	Fix: multi-AZ storage (EFS, Portworx).
+
+🔹 DaemonSet
+	•	Ensures 1 pod per node → logging, monitoring, networking.
+
+🔹 Want 2 pods per node?
+	•	Use Deployment/StatefulSet with affinity rules (DaemonSet can’t do 2 per node).
+
+🔹 Pod Disruption Budget (PDB)
+	•	Ensures min pods stay up during voluntary disruptions (node drain/upgrade).
+
+🔹 Cert rotation (on-prem)
+	•	kubeadm cert renew or cert-manager + automation.
+
+🔹 Multi-AZ challenges
+	•	Storage constraints, cross-AZ latency/costs, affinity misconfigs.
+
+🔹 Scheduler logic
+	•	Filter → Score → Bind (resources, affinity, taints).
+
+🔹 StatefulSet pod volume issue
+	•	Pod stuck if volume is in another AZ → fix with multi-AZ storage or same-zone scheduling.

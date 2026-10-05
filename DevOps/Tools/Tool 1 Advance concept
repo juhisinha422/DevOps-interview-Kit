@@ -1,0 +1,34 @@
+DevOps Interview Preparation – Tool 1 Advance concept.
+
+Advanced Linux Concepts (0–2 Years Experience)
+
+After learning basic Linux commands, interviewers quickly move to real-world Linux scenarios.
+These questions test whether you can handle production systems, not just run commands.
+
+ Tool 1 Advance concept Focus: Advanced Linux Interview Questions
+
+• What happens when a Linux system boots?
+• Explain the Linux booting process step by step
+• What is systemd and why is it important?
+• Difference between systemctl and service
+• How do you start, stop, restart, and enable a service?
+• What are runlevels and targets?
+• What is a zombie process?
+• How do you find and troubleshoot high CPU or memory usage?
+• Difference between load average and CPU utilization
+• What is swap memory? When is it used?
+• How do you analyze disk space issues on a server?
+• How do you check inode usage?
+• What is log rotation? Why is it needed?
+• Explain logrotate
+• Where are system logs stored in Linux?
+• Difference between /var/log/messages and /var/log/syslog
+• How do you check application logs?
+• What is crontab? Give a real-world example
+• Difference between cron and at
+• How do you monitor Linux server health?
+
+💡 Real Interview Insight:
+Interviewers often ask:
+👉 “A production server is slow — how will you troubleshoot?”
+If you can confidently answer Linux troubleshooting steps, you already stand out.

@@ -1,0 +1,15 @@
+How would you split a 200MB Terraform state file without breaking dependencies? 
+ 
+1.Splitting a large (200MB) Terraform state file requires moving resources incrementally to new state files using terraform state mv 
+
+2.Immediately we need to create a backup of the remote state file 
+
+3.we need to identify logical groupings (e.g., networking, database, services) to reduce the blast radius and team conflicts. 
+
+4.we need to create a new directory for the new state and create .tf files containing the resources we plan to move.
+ 
+5.Need to use the terraform state mv command to move resources from the old state to the new state 
+terraform state mv -state=old.tfstate -state-out=new.tfstate \
+module.network.aws_vpc.main module.network.aws_vpc.main
+
+6.we need to run terraform plan in both directories to ensure no resources are being destroyed or recreated. 

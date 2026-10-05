@@ -1,0 +1,11 @@
+Using Environment Variables in Jenkins Pipelines
+
+Instead of hardcoding values into your Jenkinsfile, you can use environment variables to make your pipelines portable, secure, and easier to maintain.
+
+How they help:
+- Store values like credentials, branch names, or build IDs
+- Inject variables globally (environment { }) or at stage level
+- Use built-in variables like BUILD_NUMBER, JOB_NAME, and WORKSPACE
+- Combine with Jenkins Credentials for secure secret handling
+
+This keeps pipelines clean, reusable, and easier to adapt across environments.

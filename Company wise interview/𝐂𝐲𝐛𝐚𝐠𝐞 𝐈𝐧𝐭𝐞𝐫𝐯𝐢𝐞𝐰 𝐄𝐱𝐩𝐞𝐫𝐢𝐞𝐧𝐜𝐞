@@ -1,0 +1,34 @@
+𝐂𝐲𝐛𝐚𝐠𝐞 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐄𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞
+𝐏𝐨𝐬𝐢𝐭𝐢𝐨𝐧: DevOps Engineer
+
+Here are some scenario-based questions you should practice 👇
+
+1. Your application is running on multiple EC2 instances behind an Application Load Balancer, but one instance is receiving significantly more traffic than the others.
+ How would you troubleshoot this?
+
+2. A Kubernetes Pod is stuck in `Pending` state even though the cluster nodes are healthy.
+ What would you check first?
+
+3. Terraform shows unexpected infrastructure changes during `terraform plan`, even though nobody modified the Terraform code.
+ How would you investigate the drift?
+
+4. Your Jenkins pipeline takes 40 minutes to complete, but the development team wants deployments completed within 15 minutes.
+ How would you optimize the pipeline?
+
+5. An application deployed in Kubernetes suddenly starts getting `OOMKilled`.
+ How would you identify the root cause and fix it?
+
+6. Your production server disk utilization suddenly reaches 95%.
+ How would you identify what is consuming the space without affecting the running application?
+
+7. An EC2 instance in a private subnet needs to download packages from the internet but cannot connect.
+ What components and configurations would you verify?
+
+8. A Docker container works perfectly on a developer's laptop but fails after deployment to production.
+ How would you troubleshoot the difference between the two environments?
+
+9. Your Terraform state file is being accessed by multiple engineers and occasionally gets corrupted or conflicting updates.
+ How would you design Terraform state management for the team?
+
+10. A production application becomes unavailable immediately after a new release.
+ How would you decide whether to rollback, roll forward, or troubleshoot the current deployment?

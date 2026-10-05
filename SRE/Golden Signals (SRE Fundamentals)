@@ -1,0 +1,39 @@
+Golden Signals (SRE Fundamentals)
+
+🔹 What are Golden Signals? ⭐
+ Golden Signals are 4 key metrics used to monitor the health of any production system.
+ They help you quickly understand if your system is performing well or failing.
+
+🔹 Why it matters in real-world? 🏗️
+ Instead of tracking hundreds of metrics, engineers focus on these core signals to detect issues fast 🚨
+ 👉 These are widely used in SRE practices (popularized by Google)
+
+🔹 The 4 Golden Signals: ⚡
+✔ Latency ⏱️
+Time taken to respond to a request
+ 👉 Example: API response time = 200ms
+✔ Traffic 📈
+Number of requests coming to the system
+ 👉 Example: 1000 requests per second
+✔ Errors ❌
+Number of failed requests
+ 👉 Example: HTTP 500 errors
+✔ Saturation 🔥
+Resource usage (CPU, memory, etc.)
+ 👉 Example: CPU usage = 90%
+
+🔹 Real Production Importance: 💡
+Imagine your application slows down 🐢
+👉 Latency → High (slow response)
+ 👉 Traffic → Normal
+ 👉 Errors → Increasing
+ 👉 Saturation → CPU at 95% 🚨
+✅ Root cause → System is overloaded
+👉 These 4 signals quickly help you identify and diagnose issues
+
+🔹 Key Concepts to Remember: 🧠
+✔ Latency = Speed ⏱️
+ ✔ Traffic = Load 📈
+ ✔ Errors = Failures ❌
+ ✔ Saturation = Resource usage 🔥
+ ✔ Together = System health snapshot

@@ -1,0 +1,53 @@
+Lead DevOps Engineer & SRE Engineer. 
+
+1 hour 30 minutes deep-dive panel discussion covering Linux, AWS, Docker, Kubernetes, Jenkins, Terraform, and SRE.
+
+Here are the real questions:
+
+1. Linux
+How do you limit CPU/memory usage for a process in Linux?
+What is the difference between soft mount and hard mount in NFS?
+How do you capture and analyze system calls of a process?
+Your application is randomly freezing. How would you troubleshoot.
+A server with 64GB RAM is still swapping aggressively. How would you handle this?
+
+2. AWS
+Your ECS tasks are crashing frequently. How would you troubleshoot?
+How would you secure ECS tasks that need access to S3 and DynamoDB?
+How would you ensure compliance and auditability for RDS access?
+Explain a scenario where VPC peering is more appropriate than Transit Gateway.
+Your organization needs to grant cross-account access to a partner. How would you implement it securely?
+Your application has predictable daily peaks but also unexpected spikes. How would you combine scheduled and dynamic scaling?
+
+3. Docker
+How do you secure Docker against kernel privilege escalation exploits?
+You want to run thousands of containers per host. What Linux tuning do you apply?
+You must ensure data at rest encryption for container volumes. How?
+How do you handle multi-cloud Docker deployments with compliance restrictions?
+Write a complete multi-stage Dockerfile from scratch.
+
+4. Kubernetes (K8s)
+The Kubernetes control plane becomes completely unreachable. How do you recover the cluster?
+etcd data corruption occurs, and your cluster won’t start. What’s your recovery plan?
+A Pod is stuck in ImagePullBackOff. How do you troubleshoot?
+During high traffic, Ingress controller becomes a bottleneck. How do you fix this?
+A StatefulSet upgrade failed and left half the pods in crashloop. How do you roll back safely?
+
+5. Jenkins
+How do you reduce Jenkins pipeline execution time in large projects?
+How do you manage pipelines for multiple microservices with interdependencies?
+
+6. Terraform
+Rotate secrets used by Terraform-managed resources periodically. How?
+How to destroy only a specific resource safely?
+Difference between count and for_each.
+How to handle Terraform provider versioning?
+Terraform keeps recreating a resource unnecessarily. How do you debug it?
+How do you test Terraform code before production?
+
+7. SRE
+How would you handle a high-severity outage in production?
+Hot to calculate error budgets? and Difference between SLI vs SLO vs SLA.
+How do you reduce toil in incident response?
+How would you perform capacity planning for a rapidly growing service?
+How do you implement blameless postmortems?

@@ -1,0 +1,23 @@
+ Real-Time ArgoCD Error: “Out of Sync” – What I Learned 🔄
+
+Faced a real-time issue today while working with ArgoCD —
+ my application kept showing “Out of Sync” even though the Git repo looked perfectly fine 😅
+
+Here’s what I found after some digging 👇
+
+🔍 Root Cause:
+ The cluster had a few manual changes applied directly using kubectl.
+ ArgoCD detected a drift between the live state (in cluster) and the desired state (in Git).
+
+💡 Fix:
+ Simply ran the sync command:
+
+argocd app sync <app-name>
+
+and ArgoCD immediately restored the desired state from Git ✅
+
+💬 Lesson Learned:
+ Never make manual edits in the cluster when using GitOps.
+ Your Git repo is the single source of truth, and ArgoCD will always reconcile to match it.
+
+That’s the beauty (and the discipline) of GitOps — everything is versioned, auditable, and consistent 🚀

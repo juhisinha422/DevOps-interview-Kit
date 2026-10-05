@@ -1,0 +1,6 @@
+k8s node not ready ?? But why 
+
+Problem: Node goes into `NotReady` state.
+Impact: Pods scheduled on that node get stuck or evicted.
+Root Cause: Node resource exhaustion, network failure, kubelet crash.
+Solution: Check node status, restart kubelet, scale cluster if overloaded.

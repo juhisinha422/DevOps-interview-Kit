@@ -1,0 +1,29 @@
+GitHub Actions Limitations
+
+Today I learned about the limitations and constraints of GitHub Actions that affect cost, scale, and performance.
+
+🔹 Usage Limits
+GitHub Actions has limits on:
+Workflow run time
+Monthly minutes
+Storage usage
+Understanding limits avoids interruptions.
+
+🔹 Runner Limits
+Runner limitations include:
+Concurrent job limits
+OS availability
+Resource constraints
+These impact pipeline throughput.
+
+🔹 Cost Considerations
+Costs depend on:
+Runner type
+Execution time
+Storage consumption
+Optimized workflows reduce expenses.
+
+🔥 3-Line Takeaway
+Limits affect scale.
+ Runners affect speed.
+ Costs need planning.

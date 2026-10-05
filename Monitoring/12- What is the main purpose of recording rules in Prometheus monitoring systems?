@@ -1,0 +1,7 @@
+What is the main purpose of recording rules in Prometheus monitoring systems? 
+A. Store logs permanently
+B. Precompute query results
+C. Replace exporters
+D. Restart failed targets
+
+ANS B

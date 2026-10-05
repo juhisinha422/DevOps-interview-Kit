@@ -1,0 +1,21 @@
+Small Metric. Massive Impact.
+
+🚨 MTTR — Mean Time To Recovery
+
+It measures how quickly a system is restored after a failure.
+
+📉 Lower MTTR = Strong DevOps culture  
+📈 Higher MTTR = Slow detection & recovery
+
+How top teams reduce MTTR?  
+🔔 Real-time alerts  
+📊 Strong monitoring  
+📜 Centralized logs  
+🔁 Fast rollback strategies  
+🤖 Automated CI/CD pipelines
+
+💡 In production, failures are inevitable.  
+But long downtime is not.
+
+Great engineers don't just prevent failures…  
+They recover faster. 🚀

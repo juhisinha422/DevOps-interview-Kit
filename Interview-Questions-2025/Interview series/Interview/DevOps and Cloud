@@ -1,0 +1,27 @@
+Recent Interview Questions: DevOps & Cloud Focus**
+
+Here are key questions across Git, Kubernetes, Terraform, and Ansible to help you get ready:
+
+**Git:**  
+- What git strategy do you use?  
+- Difference between `git fetch` and `git pull`?  
+- Difference between `git clone` and `git rebase`?  
+- How do you undo a commit?  
+- How do you resolve merge conflicts with multiple collaborators?
+
+**Kubernetes:**  
+- What is the Kubernetes architecture?  
+- What are default vs external secrets?  
+- What is your preferred deployment strategy?  
+- Explain Deployments, ReplicaSets, Services, and DaemonSets.
+
+**Terraform:**  
+- What is `terraform taint`?  
+- How do you handle resource dependencies and creation order?  
+- How do you target a single resource in big Terraform projects?  
+- What backend do you use for state management?  
+- How do you manage drift detection and correction?
+
+**Ansible:**  
+- What is Ansible used for?  
+- Share a scenario of managing hosts with Ansible.

@@ -1,0 +1,21 @@
+I work on AWS infra ( Vpc, nsg, subnet,dns,vm) Ci/cd jenkins and gitalb, and K8s (AWS) troubleshooting and mangement, monitoring promethues and grafana
+
+How you do monitoring through Prometheus and grafana
+
+Promethues is deployed on each node and vm using helm chart which scraps the data and sends to grafana where we have dashboard for Cpu,ram, memory, pvc usage and alerts are setup for promethues
+
+Mostly day to day task is to setup appliaction in prod, troubleshoot deployment and k8s also few automations
+
+
+I mostly work on AWS, Gitlab and kubernetes.
+
+Working on multiple things right now. Creating CI/CD pipelines (Jenkins), setting up infra on AWS for applications, setting up, deploying and managing on-prem Gitlab in multiple environments. Creating alerts and monitors on Datadog, helping in migrations from Okta to AWS SSO and Pagerduty to Datadog on call.
+
+On call weeks has more troubleshooting in case of any prod/non-prod failures.
+
+
+++++
+
+Can you please tell me what are the important alert that you have configured in grfana
+
+Mostly for AWS EKS pods for java springboot apps, crashloopbackoff, pod restart count, PVC storage, memory utilisation, http server requests, 5xx error count, heap memory usage etc

@@ -1,0 +1,42 @@
+Top 10 Kubernetes Topics You MUST Master to Crack Any DevOps Interview
+
+1. Kubernetes Architecture (The Real Internals)
+API Server, etcd, Scheduler, Controller Manager, Kubelet.
+Not definitions, but the behaviour during failures.
+
+2. Pod Lifecycle & Probes
+CrashLoopBackOff patterns, liveness vs readiness vs startup.
+Explain why pods restart, not just how.
+
+3. Scheduler Logic & Node Selection
+Taints, tolerations, affinities, and scoring algorithm.
+If you can answer “Why did this pod land on that node?”, you’re senior.
+
+4. ReplicaSets, Deployments & Rollout Strategy
+Blue-green, canary, surge/unavailable, revision history.
+Expect: “What happens inside the cluster after kubectl apply?”
+
+5. Networking Deep Dive
+CNI vs kube-proxy, DNS, MTU, packet drops, node-to-node routing.
+Most rejections happen here.
+
+6. Services & Ingress
+ClusterIP, NodePort, LoadBalancer, and Ingress controllers.
+Be able to trace traffic:
+LB → Ingress → Service → Pod → App.
+
+7. Resource Requests, Limits & Throttling
+CPU throttling, memory eviction, QoS classes, and noisy neighbour issues.
+This is where real interviews get messy.
+
+8. ConfigMaps, Secrets & Environment Management
+Update propagation, immutability, mounted secrets, and encryption.
+Be ready for edge cases.
+
+9. Troubleshooting & Observability
+Events, logs, metrics, kubelet inspection, and CNI logs.
+A senior’s value is measured by how they debug.
+
+10. StatefulSets, PVCs & Storage Internals
+Binding logic, storage class behaviour, access modes, volume expansion.
+If you understand this deeply, you instantly stand out.

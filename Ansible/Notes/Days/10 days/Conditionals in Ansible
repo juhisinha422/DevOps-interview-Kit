@@ -1,0 +1,11 @@
+Conditionals in Ansible
+Automation becomes powerful when tasks run only when needed.
+Ansible uses when conditions.
+Example:
+name: Install nginx on Ubuntu
+apt:
+name: nginx
+state: present
+when: ansible_os_family == "Debian"
+Same playbook → works across multiple OS types.
+Smart automation is better automation.

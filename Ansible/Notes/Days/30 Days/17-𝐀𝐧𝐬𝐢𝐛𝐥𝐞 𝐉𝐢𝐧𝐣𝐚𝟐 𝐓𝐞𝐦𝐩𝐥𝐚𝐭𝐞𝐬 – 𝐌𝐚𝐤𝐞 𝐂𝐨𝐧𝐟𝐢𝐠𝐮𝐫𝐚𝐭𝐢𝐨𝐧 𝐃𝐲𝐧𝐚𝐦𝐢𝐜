@@ -1,0 +1,79 @@
+𝟑𝟎 𝐃𝐚𝐲𝐬 𝐨𝐟 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 – 𝐃𝐚𝐲 𝟏𝟕/𝟑𝟎
+
+🔥 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐉𝐢𝐧𝐣𝐚𝟐 𝐓𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬 – 𝐌𝐚𝐤𝐞 𝐂𝐨𝐧𝐟𝐢𝐠𝐮𝐫𝐚𝐭𝐢𝐨𝐧 𝐃𝐲𝐧𝐚𝐦𝐢𝐜
+
+When managing multiple servers and environments, maintaining separate configuration files can quickly become difficult.
+
+This is where 𝐉𝐢𝐧𝐣𝐚𝟐 𝐓𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬 become extremely useful in Ansible. 🚀
+
+Instead of hardcoding values:
+
+server {
+    listen 80;
+    server_name example.com;
+}
+
+We can create a dynamic .j2 template:
+
+server {
+    listen {{ nginx_port }};
+    server_name {{ server_name }};
+    root {{ document_root }};
+}
+
+Ansible replaces these variables with the appropriate values during execution.
+
+⚙️ 𝐔𝐬𝐢𝐧𝐠 𝐭𝐡𝐞 𝐭𝐞𝐦𝐩𝐥𝐚𝐭𝐞 𝐌𝐨𝐝𝐮𝐥𝐞
+
+- name: Deploy Nginx configuration
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify: Restart Nginx
+
+📌 src → Jinja2 template
+📌 dest → Target configuration file
+📌 {{ variable }} → Dynamic value
+
+🌍 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+Imagine you have:
+
+🔹 Development
+🔹 QA
+🔹 Staging
+🔹 Production
+
+Each environment may have different ports, URLs, paths, or other configuration values.
+
+Instead of maintaining multiple configuration files:
+
+❌ Duplicate files
+❌ Manual changes
+❌ Higher chance of mistakes
+
+With Jinja2:
+
+✅ One reusable template
+✅ Environment-specific variables
+✅ Consistent configuration
+✅ Automated deployment
+
+🔥 𝐉𝐢𝐧𝐣𝐚𝟐 𝐂𝐚𝐧 𝐃𝐨 𝐌𝐨𝐫𝐞
+
+Jinja2 supports:
+
+✅ Variables
+✅ Conditions
+✅ Loops
+✅ Filters
+✅ Expressions
+
+⚠️ 𝐂𝐨𝐩𝐲 𝐯𝐬 𝐓𝐞𝐦𝐩𝐥𝐚𝐭𝐞
+
+𝐜𝐨𝐩𝐲 → Static files
+𝐭𝐞𝐦𝐩𝐥𝐚𝐭𝐞 → Dynamic files
+
+🎯 𝐊𝐞𝐲 𝐓𝐚𝐤𝐞𝐚𝐰𝐚𝐲
+
+𝐉𝐢𝐧𝐣𝐚𝟐 𝐡𝐞𝐥𝐩𝐬 𝐮𝐬 𝐦𝐨𝐯𝐞 𝐟𝐫𝐨𝐦 𝐦𝐚𝐧𝐮𝐚𝐥 𝐜𝐨𝐧𝐟𝐢𝐠𝐮𝐫𝐚𝐭𝐢𝐨𝐧 𝐭𝐨 𝐝𝐲𝐧𝐚𝐦𝐢𝐜, 𝐫𝐞𝐮𝐬𝐚𝐛𝐥𝐞 𝐚𝐧𝐝 𝐚𝐮𝐭𝐨𝐦𝐚𝐭𝐞𝐝 𝐜𝐨𝐧𝐟𝐢𝐠𝐮𝐫𝐚𝐭𝐢𝐨𝐧.

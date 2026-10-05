@@ -1,0 +1,41 @@
+DevOps Interview #Questions Series #Terraform – Basic Level
+
+What is Terraform and why is it used?
+
+What is Infrastructure as Code (IaC)?
+
+Terraform vs CloudFormation vs ARM
+
+What is a Terraform provider?
+
+What is a resource in Terraform?
+
+What is a Terraform state file?
+
+Why is the state file important?
+
+Difference between local state and remote state
+
+What is terraform init?
+
+What is terraform plan?
+
+What is terraform apply?
+
+What is terraform destroy?
+
+What are variables in Terraform?
+
+Difference between terraform.tfvars and variables.tf
+
+What are outputs in Terraform?
+
+What is interpolation in Terraform?
+
+How does Terraform manage dependencies?
+
+What is the Terraform workflow?
+
+How do you handle credentials securely in Terraform?
+
+Real-world use cases of Terraform

@@ -1,0 +1,42 @@
+AWS Cloud Engineer Interview Prep | 0–2 Years Experience
+
+If you’re a fresher or early-career AWS Cloud Engineer (0–2 years) preparing for interviews, here are must-know AWS interview questions to test and strengthen your fundamentals 👇
+
+🔹 AWS Interview Questions (0–2 Years)
+
+
+What is cloud computing and what are its benefits?
+What are the different cloud service models (IaaS, PaaS, SaaS)?
+What is AWS and why is it popular?
+Explain AWS Global Infrastructure.
+What is an AWS Region and Availability Zone?
+What is an AMI?
+What is EC2 and its use cases?
+What are the different EC2 instance types?
+What is the difference between EBS and Instance Store?
+What is S3 and what are its storage classes?
+What is the difference between S3 and EBS?
+What is IAM and why is it important?
+Difference between IAM User, Group, Role, and Policy.
+What is a Security Group?
+What is a Network ACL?
+Difference between Security Group and NACL.
+What is VPC?
+What is a Subnet (public vs private)?
+What is an Internet Gateway?
+What is a NAT Gateway?
+What is Elastic Load Balancer (ELB)?
+What are the types of Load Balancers in AWS?
+What is Auto Scaling and why is it used?
+What is CloudWatch?
+What is CloudTrail?
+What is Route 53?
+What is RDS and supported database engines?
+Difference between RDS and DynamoDB.
+What is AWS Shared Responsibility Model?
+How do you secure AWS resources?
+
+ Perfect for:
+✔ Freshers
+✔ 0–2 years AWS Cloud Engineers
+✔ Interview preparation & revisions

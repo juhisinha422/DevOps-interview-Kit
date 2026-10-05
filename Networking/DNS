@@ -1,0 +1,25 @@
+What is DNS?
+DNS (Domain Name System) is like the directory service of the internet.
+
+- Every computer/server has an IP address (like 142.250.182.78).
+- But we humans prefer to remember names (like google.com).
+- DNS translates the name into the correct IP address so your browser knows where to connect.
+
+⚙️ Why is DNS important?
+- IPs of servers can change (when systems restart, autoscaling happens, or servers are replaced).
+- If applications use hardcoded IPs, you’d need to manually update them each time the IP changes.
+- With DNS, you only map the name to the new IP once (e.g., in Route 53).
+Applications just keep using the domain name — no need to touch the services.
+
+📞 Real-life Example — Phone Numbers
+Think about calling a friend:
+- You don’t memorize their phone number every time.
+- You just save their name in contacts.
+- When you click their name, your phone automatically finds the correct number and connects the call.
+
+👉 DNS works the same way:
+- You type google.com.
+- DNS looks up the IP address (like looking up the phone number).
+- Your system then connects to the right server.
+- Even if your friend changes their phone number, you just update it in contacts once. From then on, calling them still works.
+ That’s exactly how DNS saves us from updating IPs everywhere.

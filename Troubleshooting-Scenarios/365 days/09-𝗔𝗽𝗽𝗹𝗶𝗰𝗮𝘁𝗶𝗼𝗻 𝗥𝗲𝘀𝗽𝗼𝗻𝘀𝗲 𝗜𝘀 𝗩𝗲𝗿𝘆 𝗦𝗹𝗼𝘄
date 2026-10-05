@@ -1,0 +1,70 @@
+𝗗𝗮𝘆 𝟵/𝟯𝟲𝟱 — 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗥𝗲𝘀𝗽𝗼𝗻𝘀𝗲 𝗜𝘀 𝗩𝗲𝗿𝘆 𝗦𝗹𝗼𝘄
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“Your application is running, but response time has suddenly increased. How will you troubleshoot it?”
+
+I would not immediately restart the application.
+
+First, I want to understand where the latency is coming from.
+
+I would check whether the issue is affecting:
+
+• One user or many users?
+• One API or the entire application?
+• One server or multiple servers?
+• The application or an external dependency?
+
+I would first test the endpoint:
+
+curl -w "\nTime: %{time_total}s\n" -o /dev/null -s https://example.com/api
+
+Then I would check the server resources:
+
+top
+free -m
+df -h
+
+I would also check network connectivity and latency:
+
+ping <server>
+
+and, where appropriate:
+
+curl -v https://example.com
+
+Next, I would check the application logs for errors, timeouts, slow requests, or connection failures.
+
+If the application depends on a database, API, cache, or another service, I would investigate those dependencies as well.
+
+I would ask:
+
+• Did traffic suddenly increase?
+• Was there a recent deployment?
+• Are database queries becoming slow?
+• Are connections getting exhausted?
+• Is CPU or memory under pressure?
+• Is there network latency?
+• Are external APIs responding slowly?
+
+If monitoring tools are available, I would compare the current metrics with the normal baseline.
+
+Once I identify the bottleneck, I would follow the approved recovery procedure.
+
+After the fix, I would test the endpoint again and monitor response time to confirm that the issue is actually resolved.
+
+Finally:
+
+Issue → Investigation → Root Cause → Resolution → Preventive Action
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+When an application is slow, don't simply say:
+
+“The server is slow.”
+
+Find the bottleneck.
+
+𝗖𝗹𝗶𝗲𝗻𝘁 → 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 → 𝗟𝗼𝗮𝗱 𝗕𝗮𝗹𝗮𝗻𝗰𝗲𝗿 → 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 → 𝗗𝗮𝘁𝗮𝗯𝗮𝘀𝗲/𝗗𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝗰𝗶𝗲𝘀
+
+That is the troubleshooting mindset expected from a DevOps Engineer. 🚀

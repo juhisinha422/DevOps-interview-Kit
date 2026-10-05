@@ -1,0 +1,11 @@
+🔹 Have you used GKE or created landing zone in an environment?
+🔹 How do you manage Terraform state files in a team environment?
+🔹 What is difference between variables.tf and terraform.tfvars file?
+ 🔹 Can you create a Terraform file structure for backend configuration and show its contents?
+ 🔹 Write a Terraform block to provision a GKE cluster with autoscaling and monitoring enabled.
+ 🔹 What’s the difference between settings.xml and pom.xml in Maven?
+ 🔹 What is the default target directory used in Maven builds?
+ 🔹 How do you lock or restrict the Terraform version in your environment?
+ 🔹 How would you approach a situation where your CI/CD pipeline has crashed?
+ 🔹 What are some disadvantages of using load balancers?
+ 🔹 What are some advantages of using kubernetes?

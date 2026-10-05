@@ -1,0 +1,26 @@
+DevOps Interview Q&A Series — Rapid-Fire Edition
+📌 Practical • Tool-focused • Interview-ready
+
+⸻
+
+🔹 ServiceNow
+
+1️⃣ How does ServiceNow integrate with CI/CD tools like Jenkins, GitHub Actions, or GitLab?
+
+2️⃣ What is Change Management in ServiceNow, and how does it support DevOps release governance?
+
+3️⃣ How do you automate incident creation from monitoring tools like Prometheus, Grafana, or AppDynamics?
+
+4️⃣ What is the difference between Incident, Problem, and Change in ServiceNow?
+
+5️⃣ How do you handle emergency changes (ECAB) without breaking compliance?
+
+6️⃣ How does ServiceNow DevOps enable visibility across build, test, and deploy stages?
+
+7️⃣ What are CMDB and CSDM, and why are they critical for enterprise IT operations?
+
+8️⃣ How do you implement approval workflows for production deployments?
+
+9️⃣ How do you integrate ServiceNow with cloud platforms like AWS or GCP?
+
+🔟 How do you reduce MTTR using ServiceNow automation and orchestration?

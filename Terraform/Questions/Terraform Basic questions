@@ -1,0 +1,11 @@
+TERRAFORM
+What is Terraform?
+What is Infrastructure as Code (IaC)?
+Which resources have you created using Terraform?
+What is a provider in Terraform?
+Which Terraform providers have you used?
+Explain the creation of a VPC using Terraform.
+What is a Security Group?
+What are ingress and egress rules?
+What is the difference between Security Groups and NACLs?
+What is the output block in Terraform?

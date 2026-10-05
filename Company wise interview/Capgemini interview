@@ -1,0 +1,35 @@
+Interview Asked Questions Capegemini 
+What is the export command in Linux, and why do we use it?
+How do you print repeated values from a string using Python?
+What are subnets in AWS? Why do we use public and private subnets?
+What is a NAT Gateway, and why is it required?
+How does AWS Secrets Manager work with Kubernetes Secrets Store?
+What happens internally?
+Difference between IAM Role and IAM Policy with real-time scenarios.
+How do you create an EKS cluster?
+How do you access an EKS cluster after creation?
+Difference between NodePort and LoadBalancer in Kubernetes.
+How does DNS work end-to-end?
+How do you deploy multiple applications (frontend & backend)?
+How do they communicate?
+How do you expose them to the public?
+What Kubernetes components do you define in a YAML file?
+Write basic Terraform code (real-time usage).
+Terraform state locking:
+What happens when one person is using the state file?
+How can a second person get access?
+What exactly do you do using Prometheus?
+How does Prometheus access pod metrics?
+Have you created Prometheus dashboards? If yes, how?
+What is CrashLoopBackOff? Why does it occur?
+Difference between IAM User and IAM Role — when do you use each in projects?
+What are your day-to-day activities as a DevOps / SRE engineer?
+🔹 Key Takeaway
+👉 Interviews are project-driven and scenario-based
+👉 Strong fundamentals in AWS, Kubernetes, Terraform, Monitoring, and Linux are essential
+👉 Explaining why you use something matters more than what it is
+
+Signiance Technologies Interview Qns
+
+  
+

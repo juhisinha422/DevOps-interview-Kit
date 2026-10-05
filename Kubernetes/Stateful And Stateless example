@@ -1,0 +1,27 @@
+Stateful And Stateless example in kubernetes
+
+Ever ordered food online?
+
+You don’t care who the delivery guy is, right? As long as the food comes hot, any delivery person can bring it.
+
+- That’s 𝗦𝘁𝗮𝘁𝗲𝗹𝗲𝘀𝘀. Each request is handled independently. No memory of the past.
+
+Now think about your family doctor
+
+You go to them because they know your history. They remember your records, treatments, and visits.
+
+You can’t just swap them with a random doctor every time.
+- That’s 𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹. Identity and memory matter.
+
+In Kubernetes terms:
+- 𝗦𝘁𝗮𝘁𝗲𝗹𝗲𝘀𝘀 (𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁/𝗥𝗲𝗽𝗹𝗶𝗰𝗮𝗦𝗲𝘁): Any pod can serve the request, doesn’t matter which one.
+- 𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹 (𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹𝗦𝗲𝘁): Each pod has a fixed identity and keeps its data/history.
+
+Quick way to remember:
+- Delivery boy = Stateless
+- Family doctor = Stateful
+
+Next time you’re deploying, ask:
+“Does my app need memory of the past?”
+- 𝗜𝗳 𝗡𝗼 -> 𝗦𝘁𝗮𝘁𝗲𝗹𝗲𝘀𝘀
+- 𝗜𝗳 𝗬𝗲𝘀 -> 𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹

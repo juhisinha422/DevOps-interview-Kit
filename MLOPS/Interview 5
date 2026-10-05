@@ -1,0 +1,81 @@
+MLOps Interview Series – Part 5
+
+🔥 “Apache Airflow — The Most Important Tool Every MLOps Engineer Must Know”
+
+If you're preparing for MLOps, Data Engineering, or ML Platform roles, you MUST understand Airflow.
+ Here’s an interactive quiz-style breakdown that helps you learn exactly how Airflow works in real ML pipelines 👇
+
+1️⃣ Why is Apache Airflow so popular?
+
+Airflow gives you Python-based workflow orchestration with scheduling, retries, logs, monitoring, and dependency management — everything needed for reliable data & ML pipelines.
+
+2️⃣ Where does Airflow fit in the ML lifecycle?
+
+Airflow powers the automation layer of MLOps:
+ ✔ Data ingestion
+ ✔ Feature engineering
+ ✔ Scheduled training
+ ✔ Model evaluation
+ ✔ Drift detection
+ ✔ Retraining workflows
+
+3️⃣ What is the input to an Airflow DAG?
+
+Airflow does NOT ingest raw data.
+ Its input is Python code that calls your scripts, SQL queries, APIs, containers, or Spark jobs.
+ Airflow orchestrates — it doesn’t process.
+
+4️⃣ What are the main functions of Airflow?
+
+✔ Scheduling
+ ✔ Orchestration
+ ✔ Retries & error handling
+ ✔ Logging & monitoring
+ ✔ Backfills
+ ✔ Alerts
+ ✔ Dependency management
+ ✔ UI visibility
+
+5️⃣ What are the core components of Airflow?
+
+DAGs – workflow definitions
+Scheduler – decides what runs
+Executor – runs tasks
+Workers – execute workloads
+Webserver UI – observability
+Metastore DB – stores history
+
+6️⃣ What is a DAG?
+
+A Directed Acyclic Graph that defines task order and dependencies.
+ It describes what runs and in what sequence — but not the actual processing.
+
+7️⃣ What are Airflow Operators?
+
+Templates that define task behavior:
+ PythonOperator, BashOperator, DockerOperator, KubernetesPodOperator, SparkSubmitOperator, SQL operators, etc.
+
+8️⃣ How does Airflow scale for large ML pipelines?
+
+Airflow scales using different executors:
+LocalExecutor → local parallelism
+CeleryExecutor → distributed workers
+KubernetesExecutor → each task runs in its own pod
+ Perfect for data-heavy & ML-heavy workflows.
+
+9️⃣ Common MLOps Use Cases
+
+✔ Daily data ingestion
+ ✔ Feature computation
+ ✔ Model training jobs
+ ✔ Batch inference
+ ✔ Evaluation & drift detection
+ ✔ Scheduled retraining
+Airflow is the backbone of repeatable, production-grade ML.
+
+🔟 What is Airflow NOT good at?
+❌ Real-time inference
+ ❌ Streaming pipelines
+ ❌ Low-latency predictions
+ ❌ Heavy GPU workloads inside tasks
+Airflow = Batch Orchestration, not real-time.

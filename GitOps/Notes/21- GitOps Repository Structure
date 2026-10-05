@@ -1,0 +1,43 @@
+GitOps Repository Structure 
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring a very important topic for real-world DevOps projects: GitOps Repository Structure. 🚀
+A well-organized repository structure helps teams manage applications, configurations, and environments efficiently.
+
+🔹 App Repository
+ The application repository contains the actual application code.
+ Typical contents include:
+Source code
+Dockerfile
+Build configurations
+CI pipeline definitions
+This repository is mainly used by developers to build and update the application.
+
+🔹 Config Repository
+ The configuration repository stores infrastructure and deployment configurations.
+Examples include:
+Kubernetes YAML manifests
+Deployment configurations
+Service definitions
+GitOps tools monitor this repository and use it to deploy applications into the cluster.
+
+🔹 Environment Folders (Dev / Stage / Prod)
+ In real-world projects, deployments are separated by environments such as:
+Dev → for development and testing
+Stage → for pre-production validation
+Prod → for live production systems
+Each environment has its own configuration files to ensure controlled and safe deployments.
+
+Example structure:
+gitops-config/
+ ├── dev/
+ │ └── deployment.yaml
+ ├── stage/
+ │ └── deployment.yaml
+ └── prod/
+ └── deployment.yaml
+
+This structure allows teams to manage multiple environments while keeping everything version-controlled in Git.
+
+💡 Key Insight:
+ A clear GitOps repository structure improves deployment consistency, collaboration, and environment management.

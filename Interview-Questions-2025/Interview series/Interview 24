@@ -1,0 +1,15 @@
+🧠 Technical Questions:
+What do you understand by the OSI model?
+Difference between NLB and ALB in AWS – which one is faster and why?
+Your AWS Linux EC2 instance is not booting – how would you troubleshoot?
+Your Linux OS disk is full – what’s your approach to fix it?
+Explain your views on Terraform and Ansible.
+How would you create an EC2 instance using Terraform and check the version of a service on it?
+Have you ever configured Prometheus and Grafana from scratch?
+Explain DaemonSets, StatefulSets, and Deployments in Kubernetes.
+How would you expose an application to the internet in a Kubernetes deployment?
+What are Secrets in Kubernetes and how are they used?
+
+👥 General Questions:
+How big is your current team?
+How many Kubernetes worker nodes have you managed?

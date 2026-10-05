@@ -1,0 +1,39 @@
+Date: 11th December 2025
+🏢 Company Name: Capgemini
+🎯 Level Round: L1
+📝 Real-Time Interview Questions Asked Today
+
+---
+
+✅ 1️⃣ DevOps / Git / CI-CD / General
+
+1. Explain deployment release strategies in your project.
+2. How do you switch Blue to Green using a config file?
+3. Explain your version control process in GitLab.
+4. A wrong commit was merged into the release branch — how do you undo it?
+5. You have a commit ID — how do you undo that specific commit?
+6. Explain cherry-pick with a real-time example.
+7. A developer merges a feature to the release branch and gets conflicts — how do you resolve them?
+8. How do you handle specific commits in Git (partial fixes, single commit movement)?
+9. What are artifacts in a CI/CD pipeline?
+10. You have 10-stage pipeline — how do you pass output from stage 2 to stage 8?
+11. Pipeline takes 15 minutes — how do you reduce build time?
+12. You have 30 microservices — how do you manage only 2 pipelines (frontend + backend)?
+13. How do you deploy all 30 microservices from one pipeline?
+14. What is Jenkins Shared Library?
+---
+
+✅ 2️⃣ AWS / Cloud / Architecture
+
+15. How do you design a serverless architecture?
+16. How do you build a private AWS environment for a highly secure on-prem organisation?
+17. A VM runs 24/7 — how do you stop/start only during business hours?
+18. DB is in private subnet & frontend in public subnet — explain traffic flow.
+19. What is a NACL in AWS?
+20. How are API tokens handled securely in cloud?
+21. How does Jenkins handle secrets in real time?
+22. What are upstream & downstream pipelines?
+23. What is a self-hosted agent/runner in CI/CD?
+24. Explain StatefulSet deployment & data consistency.
+25. Which AWS services are used for stateful workloads?
+26. How do you integrate AWS infra logs with Prometheus & Grafana?

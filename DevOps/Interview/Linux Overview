@@ -1,0 +1,93 @@
+Linux Basics Quick Overview of the last two days 
+
+🔹 Users & Groups
+Q: How do you create a new user with home directory & shell?
+ A: sudo useradd -m -s /bin/bash user && sudo passwd user
+
+Q: File storing user info vs. passwords?
+ A: /etc/passwd (users), /etc/shadow (encrypted passwords).
+
+Q: Switch user without logging out?
+ A: su - user or sudo -u user -i
+
+Q: Check groups of a user?
+ A: id user or groups user
+
+Q: Lock/Unlock account?
+ A: usermod -L user / usermod -U user
+
+Q: Difference between su and sudo?
+ A: su → switch user (needs target password), sudo → run as root (your password).
+
+
+🔹 Permissions
+Q: What does -rwxr-xr-- mean?
+ A: Owner rwx, group r-x, others r--.
+
+Q: Numeric vs symbolic permissions?
+ A: Numeric → chmod 755 file; Symbolic → chmod u=rwx,g=rx,o=r file.
+
+Q: Change file ownership?
+ A: chown user:group file
+
+Q: SUID, SGID, Sticky Bit?
+ A: SUID → run as owner, SGID → inherit group, Sticky Bit → only owner can delete (e.g. /tmp).
+
+Q: Give execute permission only to owner?
+ A: chmod u+x file
+
+
+🔹 Services & Processes
+Q: Check if service is running?
+ A: systemctl status sshd
+
+Q: Enable service at boot?
+ A: systemctl enable nginx
+
+Q: Restart a service?
+ A: systemctl restart nginx
+
+Q: Show all running processes?
+ A: ps aux or top
+
+Q: Find process using port 80?
+ A: lsof -i :80 or ss -tulpn | grep 80
+
+Q: Difference between kill, pkill, killall?
+ A: kill PID, pkill name, killall name.
+
+
+🔹 Logs & Monitoring
+Q: Where are Linux logs stored?
+ A: /var/log/
+
+Q: Auth logs location?
+ A: /var/log/auth.log (Debian), /var/log/secure (RHEL).
+
+Q: View logs in real-time?
+ A: tail -f /var/log/syslog or journalctl -f
+
+Q: Kernel logs?
+ A: dmesg or journalctl -k
+
+Q: Show last 50 log lines?
+ A: tail -n 50 file.log
+
+Q: Clear a log file?
+ A: truncate -s 0 file.log
+
+🔹 Scenario-Based
+Q: User can’t log in → first checks?
+ A: passwd -S user, /var/log/auth.log, shell in /etc/passwd, disk space df -h.
+
+Q: Service running but port not responding?
+ A: Check systemctl status, ss -tulpn, firewall, journalctl -u service.
+
+Q: Fix “Permission denied” on directory?
+ A: ls -ld dir, check owner, perms, ACLs.
+
+Q: CPU at 100% → how to find culprit?
+ A: top or ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head.
+
+Q: Disk full → what do you check?
+ A: df -h, du -sh *, clear /var/log/, old files.

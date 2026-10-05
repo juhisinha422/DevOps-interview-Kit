@@ -1,0 +1,45 @@
+AWS DevOps Interview Preparation Series — SNS & SQS🚀
+
+Topic: Amazon SNS & Amazon SQS — Event-Driven and Messaging Services
+
+As part of my AWS DevOps Interview Preparation Series, today we’ll dive into two key AWS services that enable asynchronous communication between distributed systems — Amazon SNS (Simple Notification Service) and Amazon SQS (Simple Queue Service).
+
+ Both play a critical role in decoupling microservices, improving reliability, and scaling event-driven architectures in DevOps environments.
+Here are most-asked interview questions to help you master these services. 👇
+
+🔹 SNS & SQS — Top 30 Interview Questions for DevOps Engineers
+
+What is Amazon SNS and how does it work?
+ What is Amazon SQS and how does it differ from SNS?
+ What are the key components of SNS (topics, subscriptions, publishers)?
+ What are the key components of SQS (queues, messages, producers, consumers)?
+ What is the difference between Standard and FIFO queues in SQS?
+ What is the maximum message size allowed in SQS?
+ How does message retention work in SQS?
+ What is a Dead Letter Queue (DLQ) in SQS?
+ How do you ensure message ordering and exactly-once delivery in SQS?
+ How do you enable encryption for SNS and SQS messages?
+ How can SNS trigger Lambda functions or send messages to SQS?
+ What is the fan-out architecture in SNS?
+ How do you subscribe multiple endpoints to a single SNS topic?
+ What protocols are supported by SNS for message delivery?
+ What is message visibility timeout in SQS?
+ How do you handle duplicate messages in SQS?
+ What is long polling in SQS and why is it better than short polling?
+ How can CloudWatch be integrated with SNS for alerting?
+ What happens if an SNS message fails to deliver to a subscribed endpoint?
+ How do you monitor message delivery status in SNS?
+ How do you secure access to SNS topics and SQS queues using IAM policies?
+ How can you integrate SNS/SQS with CloudFormation or Terraform?
+ How do you implement retry logic for failed SQS message processing?
+ What are message attributes in SNS and SQS?
+ How do you use SNS for mobile push notifications?
+ How do you ensure fault tolerance and durability in SQS?
+ What’s the difference between SNS FIFO topics and SQS FIFO queues?
+ How can you connect SNS and SQS in a cross-region setup?
+ What are common use cases of SNS and SQS in DevOps pipelines?
+ How do SNS and SQS fit into a microservices or event-driven architecture?
+
+💡 Pro Tip:
+ Use SNS for real-time notifications and fan-out messaging, and SQS for decoupling components and reliable message queuing.
+ Together, they enable scalable, fault-tolerant, and event-driven application architectures — key principles in modern DevOps systems.

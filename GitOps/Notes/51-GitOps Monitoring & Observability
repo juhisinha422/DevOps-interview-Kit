@@ -1,0 +1,39 @@
+GitOps Monitoring & Observability
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring Monitoring & Observability in GitOps 🚀
+In real-world DevOps, it’s not enough to just deploy — we must also monitor, analyze, and respond to system behavior.
+
+🔹 Why Monitoring is Important in GitOps
+ Even though GitOps automates deployments, we still need to:
+Track application health
+Detect failures quickly
+Ensure system performance
+This is where monitoring tools come into play.
+
+🔹 Prometheus
+ Prometheus is widely used for metrics collection in Kubernetes.
+Collects real-time metrics
+Stores time-series data
+Helps track system performance
+
+🔹 Grafana
+ Grafana is used for visualizing metrics.
+Creates dashboards
+Displays graphs and insights
+Helps teams understand system behavior easily
+
+🔹 Alerts
+ Monitoring is incomplete without alerts.
+Trigger notifications on failures
+Alert on high CPU, memory, or downtime
+Helps teams respond quickly to issues
+
+🔹 Real DevOps Flow
+ GitOps Tool → Deploys application
+ Prometheus → Collects metrics
+ Grafana → Visualizes data
+ Alerts → Notify issues
+
+💡 Key Insight:
+ Monitoring ensures your GitOps system is not just automated, but also observable, reliable, and production-ready.

@@ -1,0 +1,9 @@
+Which Ansible keyword is used to execute a task on a different host than the target host?
+The author can see how you vote. Learn more
+Which Ansible keyword is used to execute a task on a different host than the target host?
+A) run_once
+B) delegate_to
+C) serial
+D) forks
+
+ANS: delegate_to

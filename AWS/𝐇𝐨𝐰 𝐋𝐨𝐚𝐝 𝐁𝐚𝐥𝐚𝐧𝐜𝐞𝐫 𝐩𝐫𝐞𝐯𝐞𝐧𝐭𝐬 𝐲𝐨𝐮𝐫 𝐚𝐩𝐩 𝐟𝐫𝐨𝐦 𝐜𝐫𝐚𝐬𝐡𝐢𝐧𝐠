@@ -1,0 +1,28 @@
+𝐇𝐨𝐰 𝐋𝐨𝐚𝐝 𝐁𝐚𝐥𝐚𝐧𝐜𝐞𝐫 𝐩𝐫𝐞𝐯𝐞𝐧𝐭𝐬 𝐲𝐨𝐮𝐫 𝐚𝐩𝐩 𝐟𝐫𝐨𝐦 𝐜𝐫𝐚𝐬𝐡𝐢𝐧𝐠
+Imagine 1 million users open your app at the same time.
+If all requests go to one server, it will crash.
+This is where Load Balancer saves the system.
+Here is how it works.
+𝐒𝐭𝐞𝐩 𝟏
+User sends request to Load Balancer
+Load Balancer acts as entry point
+𝐒𝐭𝐞𝐩 𝟐
+Load Balancer distributes requests across multiple servers
+Server 1 handles User A
+Server 2 handles User B
+Server 3 handles User C
+𝐒𝐭𝐞𝐩 𝟑
+If one server fails, Load Balancer redirects traffic to healthy servers
+User never sees failure.
+This provides:
+𝐇𝐢𝐠𝐡 𝐚𝐯𝐚𝐢𝐥𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+𝐇𝐢𝐠𝐡 𝐫𝐞𝐥𝐢𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+𝐇𝐢𝐠𝐡 𝐬𝐜𝐚𝐥𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+This is used by:
+Netflix
+Amazon
+Google
+Uber
+Without Load Balancer, modern apps cannot scale.
+Most beginners ignore this.
+𝐁𝐮𝐭 𝐭𝐨𝐩 𝐞𝐧𝐠𝐢𝐧𝐞𝐞𝐫𝐬 𝐦𝐚𝐬𝐭𝐞𝐫 𝐭𝐡𝐢𝐬 𝐟𝐢𝐫𝐬𝐭.

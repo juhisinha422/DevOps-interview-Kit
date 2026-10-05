@@ -1,0 +1,13 @@
+𝗧𝗵𝗲 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗘𝗱𝗶𝘁𝗶𝗼𝗻 
+
+1. If you need to provision 100 EC2 instances and install an application on them, how would you accomplish that using your CI/CD pipeline?
+2. If you have an existing complex infrastructure and want to introduce Terraform, how would you bring Terraform in line with the current setup?
+3. What is sed, and why is the -E (or -G, based on system) option used?
+4. How would you configure Argo CD to manage multiple environments?
+5. Are Docker image layers read-only or read-write, and how does that work?
+6. Can a VPC CIDR block go beyond /16? Why or why not?
+7. What metrics do you typically monitor in a CI/CD system, and how do you alert on failures?
+8. How does Argo CD enforce GitOps principles during deployments?
+9. What happens when manual changes are made directly in Kubernetes for resources managed by Argo CD?
+10. Suppose you are working with 30 AWS accounts, how are you managing those 30 accounts ?
+11. Give me one or two examples of what a loa

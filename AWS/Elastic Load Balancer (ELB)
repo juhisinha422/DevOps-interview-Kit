@@ -1,0 +1,86 @@
+## 🔁 What is **Elastic Load Balancer (ELB)**?
+
+**Elastic Load Balancer (ELB)** is an AWS service that **automatically distributes incoming application traffic** across multiple targets (like EC2 instances, containers, or IPs).
+Its main goal? 👉 **High availability, fault tolerance, and smooth performance**.
+
+In simple terms:
+
+> ELB acts like a smart traffic police 🚦—it ensures no single server gets overloaded and users always get fast responses.
+
+---
+
+## 🧠 Why ELB is important
+
+* Prevents **server overload**
+* Improves **application availability**
+* Automatically handles **traffic spikes**
+* Replaces unhealthy servers with healthy ones
+
+---
+
+## ⚙️ How ELB works
+
+1. Users send requests to your application
+2. ELB receives the requests
+3. ELB checks which targets are **healthy**
+4. Traffic is routed only to **healthy targets**
+5. If a server fails, ELB **stops sending traffic** to it
+
+---
+
+## 🧩 Types of Elastic Load Balancers
+
+### 1️⃣ **Application Load Balancer (ALB)**
+
+* Works at **Layer 7 (HTTP/HTTPS)**
+* Supports **path-based & host-based routing**
+* Best for **web apps, microservices, containers**
+
+👉 Example:
+`/login → Server A`
+`/payments → Server B`
+
+---
+
+### 2️⃣ **Network Load Balancer (NLB)**
+
+* Works at **Layer 4 (TCP/UDP)**
+* Ultra-fast & handles **millions of requests**
+* Best for **high-performance apps**
+
+---
+
+### 3️⃣ **Classic Load Balancer (CLB)** *(Legacy)*
+
+* Older generation
+* Supports both Layer 4 & 7
+* **Not recommended** for new applications
+
+---
+
+## 🔐 Key Features of ELB
+
+* ✅ Auto scaling
+* ✅ Health checks
+* ✅ High availability (Multi-AZ)
+* ✅ SSL/TLS termination
+* ✅ Integration with Auto Scaling
+
+---
+
+## 🧪 Real-world example
+
+Imagine an **online shopping website** during a sale 🛒
+Thousands of users visit at once.
+
+Without ELB ❌
+→ One server crashes
+
+With ELB ✅
+→ Traffic is evenly shared → website stays live 🎉
+
+---
+
+## 🧾 One-line interview answer
+
+> **Elastic Load Balancer is an AWS service that automatically distributes incoming traffic across multiple targets to ensure high availability and fault tolerance.**

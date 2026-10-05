@@ -1,0 +1,42 @@
+ Inventory Management in Ansible
+
+Today I learned how Ansible knows which servers to manage using inventories.
+
+ A well-structured inventory is the foundation of scalable automation.
+
+🔹 Static Inventory
+Static inventory is a file that:
+Lists managed hosts
+Defines IPs or hostnames
+Uses INI or YAML format
+It’s simple and commonly used for small to medium environments.
+
+🔹 Hosts & Groups
+
+Hosts can be:
+Individual servers
+Organized into groups
+
+Grouping helps:
+Apply tasks to multiple servers
+Separate environments like dev, test, prod
+This improves readability and control.
+
+🔹 Group Variables
+Group variables allow:
+Defining variables for a group of hosts
+Reusing configuration values
+Avoiding duplication
+They help maintain consistent configurations.
+
+🔹 Inventory Best Practices
+Good practices include:
+Meaningful group names
+Environment-based grouping
+Avoid hardcoding sensitive data
+Clean inventories reduce errors.
+
+🔥 3-Line Takeaway
+Inventory defines targets.
+ Groups simplify management.
+ Best practices ensure scale.

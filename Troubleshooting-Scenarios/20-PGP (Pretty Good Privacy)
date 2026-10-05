@@ -1,0 +1,97 @@
+ Day 20: DevOps Real-Time Scenario-Based Interview Questions | PGP
+
+Today’s topic: PGP (Pretty Good Privacy)
+
+PGP is commonly used in enterprise environments for secure file encryption, decryption, digital signatures, and SFTP-based file transfers.
+
+Here are 10 real-time scenarios every DevOps engineer should understand 👇
+
+🔹 Scenario 1: Encrypted file cannot be decrypted
+
+A vendor sends an encrypted file, but the production server cannot decrypt it.
+
+👉 What would you check?
+
+🔹 Scenario 2: Private key is missing
+
+A production server is rebuilt, and the PGP private key is no longer available.
+
+👉 How would you recover and validate the key securely?
+
+🔹 Scenario 3: PGP key has expired
+
+An automated file-transfer job suddenly fails because the PGP key has expired.
+
+👉 How would you troubleshoot and resolve it?
+
+🔹 Scenario 4: Vendor rotates their PGP key
+
+A vendor provides a new PGP public key.
+
+👉 What steps would you follow before using the new key in production?
+
+🔹 Scenario 5: PGP works manually but fails in Jenkins
+
+Encryption works when executed manually on the server, but the Jenkins pipeline fails.
+
+👉 What would you check?
+
+🔹 Scenario 6: PGP passphrase in CI/CD
+
+A Jenkins pipeline requires a PGP private-key passphrase.
+
+👉 Where would you securely store and retrieve the passphrase?
+
+🔹 Scenario 7: Decryption succeeds but application rejects the file
+
+The file decrypts successfully, but the application reports that the file is invalid or corrupted.
+
+👉 What would you investigate?
+
+🔹 Scenario 8: PGP signature verification fails
+
+A vendor sends a digitally signed file, but signature verification fails.
+
+👉 What could be the possible causes?
+
+🔹 Scenario 9: Multiple PGP keys exist
+
+The server contains multiple keys belonging to different vendors.
+
+👉 How would you make sure the automation uses the correct key?
+
+🔹 Scenario 10: PGP fails after server migration
+
+A PGP automation job worked on the old EC2 server but fails after migration to a new server.
+
+👉 What configuration and environment differences would you check?
+ 💡 Important PGP concepts for DevOps
+
+🔹 Public Key vs Private Key
+🔹 Encryption vs Digital Signature
+🔹 Key Expiration & Rotation
+🔹 Key Fingerprints
+🔹 GPG Keyrings
+🔹 SFTP Integration
+🔹 Jenkins/CI-CD Integration
+🔹 Secrets Management
+🔹 Production Troubleshooting
+
+🛠️ Useful GPG commands
+
+`gpg --list-keys`
+
+`gpg --list-secret-keys`
+
+`gpg --fingerprint`
+
+`gpg --import key.asc`
+
+`gpg --encrypt --recipient <key> file.txt`
+
+`gpg --decrypt file.txt.gpg`
+
+`gpg --verify file.sig file.txt`
+
+Key takeaway:
+As a DevOps engineer, knowing PGP is not just about encryption. You should also understand how to troubleshoot keys, integrate PGP with CI/CD, manage secrets securely, and handle key rotation in production.

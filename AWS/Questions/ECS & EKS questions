@@ -1,0 +1,16 @@
+#####ECS / ###EKS 15Questions.... 
+1. How do you deploy containers on ECS using Fargate? 
+2. How do you troubleshoot failing ECS tasks? 
+3. How do you scale ECS services automatically? 
+4. How do you manage container logs in ECS? 
+5. How do you integrate ECR with ECS deployments? 
+6. How do you monitor ECS cluster performance? 
+7. How do you troubleshoot pod restarts in EKS? 
+8. How do you secure Kubernetes API access in EKS? 
+9. How do you configure Ingress for services in EKS? 
+10. How do you automate deployments to EKS from Jenkins?
+ 11. How do you manage secrets in Kubernetes using Secrets Manager? 
+12. How do you handle node failures in EKS cluster? 
+13. How do you upgrade Kubernetes version in EKS? 
+14. How do you monitor EKS workloads using CloudWatch Container Insights? 
+15. How do you integrate EKS with ALB for HTTP routing? 

@@ -1,0 +1,36 @@
+🔁 AWS for DevOps – CI/CD Services 
+
+If you claim hands-on experience with AWS CI/CD, you should be comfortable answering these 👇
+
+🔹 CodeCommit
+ • Why would you choose CodeCommit over GitHub/GitLab?
+ • How do you manage repository access using IAM?
+ • What are the limitations of CodeCommit in real projects?
+
+🔹 CodeBuild
+ • How does CodeBuild handle build environments?
+ • Difference between buildspec.yml and Dockerfile?
+ • How do you cache dependencies to speed up builds?
+ • How do you pass secrets securely into CodeBuild?
+
+🔹 CodePipeline
+ • What happens if one stage in CodePipeline fails?
+ • How do you implement manual approval stages?
+ • Can CodePipeline deploy to multiple environments?
+ • How do you trigger pipelines on code changes?
+
+🔹 CodeDeploy
+ • Difference between in-place and blue/green deployments?
+ • How does CodeDeploy handle application rollback?
+ • What hooks are available during deployment lifecycle?
+ • How do you deploy to EC2 vs Lambda vs ECS?
+
+🔹 Artifacts & Storage
+ • Where are build artifacts stored in AWS CI/CD?
+ • How do you manage artifact versioning?
+ • What happens if the artifact bucket is deleted?
+
+🔹 Security in CI/CD
+ • How do you grant least-privilege access to pipelines?
+ • How do you rotate secrets used by pipelines?
+ • How do you audit CI/CD activity in AWS?

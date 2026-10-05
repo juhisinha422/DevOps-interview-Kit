@@ -1,0 +1,53 @@
+Production Issue: Ansible Deployment Broke Nginx on All Servers
+
+Recently during a production deployment using Ansible, we pushed an update to Nginx configuration across multiple servers.
+
+Playbook executed successfully ✅.
+No errors ❌
+But suddenly…
+
+🌐 Website went down on all production servers.
+
+HTTP 502 Bad Gateway.
+
+🔍 What happened?
+
+The new Nginx config file had a small syntax mistake.
+Since Ansible pushed the config to all servers at once, the broken configuration was deployed everywhere.
+
+And we did NOT validate the config before restart. 🤦‍♂️
+
+💥 Root Cause:
+
+We restarted Nginx without testing configuration using:
+
+nginx -t
+
+💡 Immediate Fix:
+
+Logged into one server
+
+Corrected the configuration
+
+Tested using nginx -t
+
+Updated playbook to include validation step before restart
+
+✅ Permanent Fix Implemented:
+
+- name: Validate nginx config
+ command: nginx -t
+ notify: Restart nginx
+
+Now Nginx only restarts if config validation passes.
+
+🔑 Lesson Learned:
+
+Automation in production without validation is dangerous.
+
+Just because Ansible shows "SUCCESS"
+Doesn’t mean your application is healthy.
+
+DevOps is not just automation.
+It’s safe automation.
+

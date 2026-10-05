@@ -1,0 +1,31 @@
+Kubernetes MUST KNOW Interview Questions.
+
+■ What are Persistent Volumes (PVs) and Persistent Volume Claims (PVCs)? 
+--> PV = storage resource, 
+--> PVC = request for storage. 
+--> Decouples storage from Pods, ensures data persistence. 
+■ What are init containers, and when should you use them? 
+--> Special containers that run before main containers to set up environment/configs/dependencies. 
+■ What is Kubernetes networking, and how does it work? 
+--> Each Pod gets a unique IP, all Pods can talk without NAT, Services provide stable DNS/IP. Implemented via CNI plugins. 
+■ What is Role-Based Access Control (RBAC) in Kubernetes? 
+--> Security mechanism that controls access to resources using Roles/ClusterRoles and RoleBindings. 
+■ How does Kubernetes autoscaling work? 
+--> HPA scales Pods based on metrics, 
+--> VPA adjusts resource requests, 
+--> Cluster Autoscaler adds/removes nodes. 
+■ How do you debug Kubernetes Pods? 
+--> Use kubectl describe, logs, exec, and get events to inspect issues. 
+■ How do you perform rolling updates and rollbacks in Kubernetes? 
+--> Rolling update upgrades Pods gradually (zero downtime), 
+--> rollback restores previous version using kubectl rollout. 
+■ What is an Ingress in Kubernetes, and how does it work? 
+--> API object managing HTTP/HTTPS external traffic using rules and Ingress Controllers. 
+■ How does Kubernetes handle resource limits and requests? 
+--> Requests = guaranteed resources, 
+--> Limits = max allowed; 
+exceeding memory kills Pod, CPU just throttles. 
+■ What happens if a Pod resource needs to grow beyond the assigned limits? 
+--> CPU over limit → throttling; Memory over limit → OOMKilled. 
+■ How does Kubernetes handle Pod disruptions and high availability? 
+--> Uses ReplicaSets, PodDisruptionBudgets, and rescheduling on healthy nodes for HA.

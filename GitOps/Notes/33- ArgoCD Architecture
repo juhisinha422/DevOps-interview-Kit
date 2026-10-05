@@ -1,0 +1,36 @@
+ArgoCD Architecture
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring the architecture of Argo CD 🚀
+Understanding its components helps in knowing how GitOps automation works internally.
+
+🔹 API Server
+ The API Server acts as the central component of ArgoCD.
+Handles user requests (UI/CLI)
+Manages application definitions
+Communicates with other components
+It is the entry point for interacting with ArgoCD.
+
+🔹 Repo Server
+ The Repo Server is responsible for:
+Fetching configurations from Git repositories
+Reading Kubernetes YAML manifests
+Preparing deployment data
+It ensures the system always uses the latest configuration from Git.
+
+🔹 Application Controller
+ This is the core component of ArgoCD.
+Compares desired state (Git) with actual state (cluster)
+Detects configuration drift
+Applies changes to match the desired state
+It enables continuous reconciliation and self-healing.
+
+🔹 UI (User Interface)
+ ArgoCD provides a web-based UI to:
+Visualize applications
+Monitor deployment status
+Trigger manual sync if needed
+It makes GitOps workflows easy to understand and manage visually.
+
+💡 Key Insight:
+ ArgoCD architecture works together to ensure that Kubernetes clusters always stay in sync with Git repositories automatically.

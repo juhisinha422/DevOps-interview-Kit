@@ -1,0 +1,40 @@
+ArgoCD UI and CLI Overview
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring the UI and CLI of Argo CD 🚀
+Understanding both UI and CLI helps in managing applications efficiently in real-world DevOps environments.
+
+🔹 ArgoCD Dashboard (UI)
+ ArgoCD provides a web-based dashboard to manage applications visually.
+From the dashboard, you can:
+View application status (Healthy / Degraded)
+Monitor sync status (Synced / OutOfSync)
+Trigger manual sync or rollback
+Visualize resources like pods, services, deployments
+This makes it easy to track and manage deployments in real time.
+
+🔹 CLI Commands
+ ArgoCD also provides a powerful CLI for automation and scripting.
+Common commands include:
+Login to ArgoCD
+Add Git repositories
+Create applications
+Sync applications
+
+Example:
+argocd login <server>
+argocd app list
+argocd app sync <app-name>
+
+CLI is especially useful for CI/CD pipeline integration and automation tasks.
+
+🔹 Application View
+ The application view shows:
+Application health status
+Resource hierarchy
+Deployment history
+Sync details
+It helps developers quickly identify issues and manage deployments effectively.
+
+💡 Key Insight:
+ ArgoCD UI provides visual control, while CLI enables automation and scripting, making both essential for DevOps workflows.

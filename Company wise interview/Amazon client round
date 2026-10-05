@@ -1,0 +1,14 @@
+1.How do you upgrade Terraform providers safely across environments?
+2.What is Terragrunt, and how does it simplify Terraform deployments?
+3.What are Terraform Workspaces, and when should they be used?
+4.What is the difference between Terraform Workspaces and Backends?
+5.What is the difference between providers.tf and versions.tf?
+6.How does OIDC (OpenID Connect) authentication work with Terraform?
+7. What are the benefits of using OIDC instead of long-lived cloud credentials?
+8. How can one Terraform module consume resources or outputs from another module?
+9. What is the recommended approach for exporting and sharing resources between modules and environments?
+10. What is AWS Cognito, and how does it support authentication and authorization?
+11. What is Amazon CloudFront, and what are its key use cases in modern architectures?
+12. What are GitHub-hosted runners and self-hosted runners? When should each be used?
+13. How do GitHub Actions webhooks trigger CI/CD pipelines, and what events are commonly used?
+14. What is HashiCorp Sentinel, and how does it help enforce governance and compliance in Infrastructure as Code?

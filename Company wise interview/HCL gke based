@@ -1,0 +1,21 @@
+interview experience at HCL 31 jan 
+
+It is a hackathon round 
+They have given one application which consist of java and node js 
+Microservices and asked me 
+
+To deploy into GKE and 
+Create infra using terraform and 
+Ci CD pipeline 
+
+And 
+Interviewr asked me questions on same assignment like what we have used and why
+
+Below extraa interview questions i got 
+
+Types of GitHub action triggers 
+What are runners 
+
+Types of docker volumes 
+How to restrict network access to gke cluster pods 
+Terraform verbocity

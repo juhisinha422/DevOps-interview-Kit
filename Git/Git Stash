@@ -1,0 +1,34 @@
+about the stash area in Git, a really handy feature when you need to pause your work without committing incomplete changes.
+
+What is Git Stash?
+Git stash temporarily saves your uncommitted changes.
+It clears your working directory, letting you switch branches or pull updates safely.
+Think of it as a locker where you store your work-in-progress until you’re ready to continue.
+
+Why use Git Stash?
+You’re in the middle of a feature but need to fix a production bug.
+You want to pull the latest code but don’t want to commit unfinished work.
+You want a clean workspace without losing progress.
+
+Real-life example
+Imagine you’re developing a discount feature for an e-commerce site on feature-discount:
+You’ve made some changes but not finished yet.
+Suddenly, a production bug needs fixing on main.
+Instead of committing half-done work, you run:
+git stash 
+Common Stash Commands
+1. Save changes to stash
+ git stash
+2. List all stashes
+ git stash list
+3. Reapply stashed changes
+ git stash apply
+4. Apply + remove stash
+ git stash pop
+5. Remove a stash
+ git stash drop stash@{0}
+6. Clear all stashes
+ git stash clear
+
+In Summary
+Git stash is a temporary storage box for your changes — perfect for multitasking, fixing urgent bugs, or switching tasks without losing work.

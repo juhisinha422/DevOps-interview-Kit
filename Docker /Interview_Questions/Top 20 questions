@@ -1,0 +1,90 @@
+Top 20 Docker Interview Questions & Answers — simple, clear, and interview-ready.
+🐳 Top 20 Docker Interview Questions & Answers
+1️⃣ What is Docker?
+Answer:
+ Docker is a containerization platform that packages applications and their dependencies into containers so they run consistently across environments. 
+2️⃣ What is a Docker Container?
+Answer:
+ A container is a lightweight, portable runtime unit created from a Docker image. It runs applications in isolation. 📦
+3️⃣ What is a Docker Image?
+Answer:
+ A Docker image is a read-only template used to create containers. It contains app code, libraries, and configurations. 🖼️
+4️⃣ Difference between Docker Image & Container?
+Answer:
+Image → Blueprint 🧱
+Container → Running instance 🏃
+5️⃣ What is Dockerfile?
+Answer:
+ A Dockerfile is a text file containing instructions to build a Docker image automatically. 📝
+6️⃣ What is Docker Hub?
+Answer:
+ Docker Hub is a cloud registry to store, share, and manage Docker images. ☁️
+7️⃣ What are Docker Volumes?
+Answer:
+ Volumes are used to persist data outside containers so data is not lost when containers stop. 💾
+8️⃣ What is Docker Compose?
+Answer:
+ Docker Compose is a tool to run multi-container applications using a docker-compose.yml file. 🔧
+9️⃣ What is the use of docker ps?
+Answer:
+ Displays running containers.
+ docker ps -a shows all containers (running + stopped). 📋
+🔟 What is docker run command?
+Answer:
+ Creates and starts a container from an image.
+ Example:
+
+docker run -d -p 80:80 nginx
+``` 🌐
+
+---
+
+### 1️⃣1️⃣ What is Docker Networking?  
+**Answer:**  
+Docker networking allows containers to communicate with each other and the outside world. 🌍
+
+---
+
+### 1️⃣2️⃣ What is the difference between COPY and ADD?  
+**Answer:**  
+- **COPY** → Copies files only 📁  
+- **ADD** → Can extract archives & download URLs ⚡
+
+---
+
+### 1️⃣3️⃣ What is a Docker Registry?  
+**Answer:**  
+A registry stores Docker images (public or private). Example: Docker Hub, AWS ECR. 🏬
+
+---
+
+### 1️⃣4️⃣ How do you check Docker version?  
+**Answer:**  
+```bash
+docker --version
+1️⃣5️⃣ What is `docker exec`?  
+Answer: 
+Used to run commands inside a running container.  
+bash
+docker exec -it container_name bash
+ 🖥️
+ 1️⃣6️⃣ What is Docker Swarm?  
+Answer: 
+Docker Swarm is Docker’s native container orchestration tool for managing clusters. 🐝
+1️⃣7️⃣ What is container orchestration?  
+Answer:  
+Automates deployment, scaling, and management of containers (Kubernetes, Docker Swarm). ⚙️
+1️⃣8️⃣ Difference between Docker and Virtual Machine?  
+Answer:  
+| Docker 🐳 | VM 🖥️ 
+| Lightweight | Heavy |
+| Shares OS kernel | Separate OS |
+| Fast startup | Slow startup |
+ 1️⃣9️⃣ What is `.dockerignore`?  
+Answer:  
+It prevents unnecessary files from being included in the Docker image during build. 
+2️⃣0️⃣ How do you remove Docker containers & images?  
+Answer:  
+bash
+docker rm container_id
+docker rmi image_id

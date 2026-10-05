@@ -1,0 +1,52 @@
+Senior DevOps Engineer REAL Interview Questions
+🏢 Company: Learningmate
+📅 Round 1 Technical Interview
+
+AWS & Cloud
+🔹 Which AWS services have you worked on and where have you used them?
+🔹 How do you approach AWS cost optimization and identify underutilized resources?
+🔹 What checks would you perform before moving an EC2 instance from C5 to T3 family?
+🔹 Difference between IAM Roles and IAM Policies?
+🔹 Have you worked with CloudFront, ECR, ECR Lifecycle Policies, and AWS Tags? Explain real-world use cases.
+🔹 How do you use CloudWatch Anomaly Detection and Cost Anomaly Detection?
+
+Kubernetes / EKS
+🔹 Explain the complete EKS upgrade process step-by-step.
+🔹 What should be checked before upgrading an EKS cluster?
+🔹 A Pod is restarting every 10–15 seconds. How would you troubleshoot and access the container?
+🔹 Which Kubernetes commands do you use to inspect namespace resources and troubleshoot workloads?
+🔹 Explain DaemonSet, Deployment, StatefulSet, and when to use each.
+🔹 How do microservices communicate inside Kubernetes when Pod IPs keep changing?
+🔹 How does internal service discovery work in Kubernetes?
+🔹 How do you monitor Kubernetes clusters using CloudWatch, Prometheus, and Grafana?
+
+Terraform
+🔹 How do you detect and fix Terraform drift?
+🔹 Difference between Terraform Refresh, Import, State File, and Remote State?
+🔹 Have you used Terraform Import in production? Explain the use case.
+
+Jenkins & CI/CD
+🔹 How do you roll back a failed deployment in Jenkins?
+🔹 Have you faced Jenkins permission issues? How did you troubleshoot them?
+🔹 Was Jenkins deployed manually or through Infrastructure as Code?
+
+Docker
+🔹 How do you create, test, optimize, and deploy Docker images?
+🔹 What are Dockerfile best practices?
+🔹 What are Multi-Stage Docker Builds and why are they important?
+
+Monitoring & Troubleshooting
+🔹 A service shows a spike in HTTP 500/505 errors but application logs are clean. How would you investigate?
+🔹 How do you monitor AWS resources, Kubernetes workloads, SLAs, and production systems?
+
+Security & Networking
+🔹 How would you protect applications against DDoS attacks in AWS?
+🔹 Difference between Reverse Proxy, Load Balancer, and API Gateway?
+🔹 Can API Gateway Rate Limiting prevent DDoS attacks?
+
+Production Support
+🔹 Describe a critical production issue you handled and your troubleshooting approach.
+🔹 How do you handle on-call support and incident management?
+
+AI & DevOps
+🔹 How do you use AI tools like ChatGPT, Copilot, or AI-assisted monitoring in your daily DevOps work?

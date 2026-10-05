@@ -1,0 +1,25 @@
+Docker Hub & Private Registries – What DevOps Engineers Should Know 🐳
+
+With 3.4 years of experience in DevOps, one thing I’ve learned is that container images are the backbone of modern application delivery. And to manage them, we rely on registries.
+
+🔹 Docker Hub
+Think of Docker Hub as the GitHub for container images.
+ It’s a public registry where you can:
+ ✅ Pull official images (e.g., Nginx, MySQL, Ubuntu)
+ ✅ Push your own application images
+ ✅ Share images with the community
+
+Perfect for learning, prototyping, and open-source projects.
+
+🔹 Private Registries
+In real-world production, companies often need more control and security.
+ That’s where private registries come in:
+ ✅ Store and distribute images securely
+ ✅ Control access with authentication & role-based permissions
+ ✅ Keep sensitive images (like internal apps, configs, or licensed software) private
+
+Examples: Amazon ECR, GitHub Container Registry, GitLab Registry, Harbor.
+
+💡 Rule of thumb:
+Use Docker Hub for open, shared, community-driven work.
+Use Private Registries when security, compliance, or enterprise control is required.

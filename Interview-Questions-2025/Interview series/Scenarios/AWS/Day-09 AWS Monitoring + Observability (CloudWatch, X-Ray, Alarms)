@@ -1,0 +1,33 @@
+Day 9 — AWS Monitoring + Observability (CloudWatch, X-Ray, Alarms)
+
+STAR-based DevOps Interview Questions
+
+1️⃣ A production application faces intermittent latency spikes. How will you design monitoring to detect, analyze, and alert on this proactively?
+
+2️⃣ You need centralized monitoring for EC2, Lambda, RDS, and EKS across multiple accounts. How will you architect this using AWS-native tools?
+
+3️⃣ CloudWatch alarms are triggering too frequently, causing alert fatigue. How will you tune thresholds and alarm strategies?
+
+4️⃣ You must monitor custom application metrics not available by default. How will you publish and visualize custom metrics?
+
+5️⃣ Logs from multiple services need to be searched quickly during incidents. How will you structure log groups, retention, and queries?
+
+6️⃣ A Lambda-based application needs end-to-end request tracing across services. How will you implement distributed tracing?
+
+7️⃣ You want alerts only when an error persists for 5 minutes, not on short spikes. How will you configure this in CloudWatch?
+
+8️⃣ A security team needs to track API calls and configuration changes. Which logs will you enable and how will you analyze them?
+
+9️⃣ Application logs are increasing costs rapidly. How will you optimize log ingestion, retention, and filtering?
+
+🔟 You need dashboards showing latency, error rate, throughput, and availability for leadership reviews. How will you design these dashboards?
+
+1️⃣1️⃣ An EC2 instance is running but the application is down. How will you design health checks beyond CPU and memory?
+
+1️⃣2️⃣ You need to detect anomalies automatically without defining static thresholds. Which AWS features will you use?
+
+1️⃣3️⃣ A microservices architecture needs correlation between logs and traces. How will you implement this effectively?
+
+1️⃣4️⃣ Monitoring data must be retained for compliance for more than one year. How will you manage retention and archival?
+
+1️⃣5️⃣ During a major outage, you need a clear incident timeline. How will monitoring and logging help in post-incident analysis?

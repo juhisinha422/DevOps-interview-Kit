@@ -1,0 +1,66 @@
+30 Days of Ansible – Day 5/30
+
+Ansible Ad-hoc Commands – Automate Tasks Without Writing a Playbook
+
+Did you know you can execute tasks on hundreds of servers without creating a playbook?
+
+That's exactly what Ansible Ad-hoc Commands are designed for.
+
+They are one-line commands that help you perform quick administrative tasks such as checking connectivity, installing packages, restarting services, copying files, and gathering system information.
+
+When should you use Ad-hoc Commands?
+
+Ad-hoc commands are perfect for:
+
+- Verifying server connectivity
+- Restarting services
+- Installing packages
+- Copying files
+- Creating users
+- Collecting system information
+
+For repetitive or complex tasks, use Ansible Playbooks instead.
+
+Common Ad-hoc Commands
+
+1️⃣ Check Connectivity
+
+ansible all -m ping
+
+2️⃣ Check Disk Space
+
+ansible all -a "df -h"
+
+3️⃣ Check Memory Usage
+
+ansible all -a "free -m"
+
+4️⃣ Restart Nginx Service
+
+ansible webservers -m service -a "name=nginx state=restarted" --become
+
+5️⃣ Install Git
+
+ansible all -m package -a "name=git state=present" --become
+
+Real-World Example
+
+Imagine your production team discovers that the Nginx service has stopped on 50 web servers.
+
+Without Ansible:
+
+- SSH into each server.
+- Restart the service manually.
+- Verify the status.
+
+With Ansible:
+
+ansible webservers -m service -a "name=nginx state=restarted" --become
+
+One command. Fifty servers. A few seconds.
+
+This is why DevOps engineers rely on Ansible for day-to-day operations.
+
+Key Takeaway
+
+Ad-hoc commands are ideal for quick, one-time tasks across multiple servers. They save time, reduce manual effort, and make infrastructure management much more efficient.

@@ -1,0 +1,142 @@
+The interview process was very detailed and focused on practical, real-time DevOps experience.
+They mainly asked questions around:
+
+🔹 AWS
+🔹 GCP
+🔹 GitLab CI/CD
+🔹 Docker
+🔹 Kubernetes
+🔹 Terraform
+
+Here are some of the important questions he was asked 👇
+
+AWS Questions
+What is the difference between Security Groups and NACLs?
+ How does Auto Scaling work and how do you troubleshoot scaling issues?
+Explain how ALB and NLB work internally.
+ What is VPC Peering? Can we do transitive peering?
+ How do you secure sensitive data in S3?
+
+ GCP Questions
+ What are VPC networks and how are they different from AWS VPC?
+Explain GKE components.
+How does Cloud Build work in GCP?
+ What are preemptible VMs and when do we use them?
+How do IAM roles differ in GCP compared to AWS?
+
+ GitLab CI/CD Questions
+ Explain the GitLab CI pipeline stages.
+ What is the purpose of .gitlab-ci.yml?
+ How do you implement environment-specific deployment in GitLab?
+ How do GitLab runners work?
+ Difference between shared runners and group runners.
+
+ Docker Questions
+ What happens internally when you run docker run?
+ Explain Docker layered architecture.
+ How do you troubleshoot container memory leaks?
+ Difference between Dockerfile COPY vs ADD.
+ How to reduce Docker image size using multistage builds?
+
+ Kubernetes Questions
+ Explain the difference between Deployment, DaemonSet and StatefulSet.
+ What happens when you run kubectl apply?
+ How does the Kubernetes scheduler work?
+ Explain liveness and readiness probes.
+How do you debug CrashLoopBackOff issues?
+
+ Terraform Questions
+ What is the difference between terraform plan and terraform apply?
+ How does the Terraform state file work internally?
+ What are Terraform workspaces and when do you use them?
+ How do you handle sensitive variables in Terraform?
+ What is the difference between locals, variables, and outputs?
+
+ The interview was highly scenario-based, focusing on problem-solving and real-time troubleshooting.
+
+
+----------------------
+
+Cleared final Round hashtag#Coforge DevOps interview.
+
+
+To help others preparing for similar opportunities, here are some of the real interview questions that were covered 👇
+
+Coforge Interview Questions (2nd & Final Round)
+
+Explain your CI/CD pipeline end to end.
+
+How do you handle zero-downtime deployments in Kubernetes?
+
+What troubleshooting steps do you follow when a pod is running but the service is unreachable?
+
+How do you manage secrets securely in AWS/GCP/Azure?
+
+How do you design a scalable architecture for high-traffic applications?
+
+What are the common reasons for node pressure in Kubernetes?
+
+How do you secure a Kubernetes cluster end-to-end?
+
+Explain the difference between ECR vs Docker Hub in real-time usage.
+
+What happens when a Terraform apply fails midway?
+
+How do you debug a failing Helm release?
+
+What is the difference between Git rebase and Git merge?
+
+How do you manage environment-specific variables in CI/CD?
+
+What’s the impact of using hostPath volumes in Kubernetes?
+
+What happens internally when you push code to GitHub and your pipeline triggers?
+
+Explain the lifecycle of a Pod.
+
+How do you track configuration drift in Ansible or Terraform?
+
+What is the difference between StatefulSet and Deployment?
+
+How do you design logging for microservices?
+
+What is an IAM Role vs IAM User vs IAM Policy?
+
+How do you optimize cost in cloud environments?
+
+Explain how service meshes like Istio or Linkerd work.
+
+What’s your approach to troubleshooting high CPU usage in a pod?
+
+How do you handle pipeline secrets in GitHub Actions/GitLab/Jenkins?
+Explain Canary Deployment with an example.
+
+How do you version and roll back Helm charts?
+
+What is a dead letter queue and where do you use it?
+
+How do you set up autoscaling using HPA?
+
+What is Blue/Green deployment and when not to use it?
+
+How do you perform load testing before production release?
+
+Explain Terraform state file — how do you protect it?
+
+Describe any production issue you faced and how you resolved it.
+
+How do you optimize Docker images for faster deployments?
+
+What is your rollback strategy in case of deployment failures?
+
+How do you monitor microservices in production?
+
+What are readiness & liveness probes in Kubernetes?
+
+Explain a scenario where Jenkins pipeline failed and how you fixed it.
+
+How do you handle drift in Terraform?
+
+What is the difference between blue-green and rolling deployment?
+
+Explain the concept of VPC, subnets, route tables, NAT & IGW.

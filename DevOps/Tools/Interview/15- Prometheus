@@ -1,0 +1,61 @@
+DevOps Interview Preparation #Prometheus 4–6 Years Experience | Tool 15
+
+Explain Prometheus architecture and core components
+
+Pull vs push model — why does Prometheus prefer pull?
+
+Prometheus server vs exporters — roles
+
+How does service discovery work in Prometheus?
+
+Prometheus data model — metrics, labels, time series
+
+Counter vs Gauge vs Histogram vs Summary
+
+Histogram vs Summary — when to use
+which?
+
+PromQL basics — how does query execution work?
+
+Writing efficient PromQL queries
+
+High cardinality — what is it and why is it dangerous?
+
+How does Prometheus store data on disk?
+
+Data retention and storage optimization
+
+Recording rules — why and when to use?
+
+Alerting rules vs recording rules
+
+Alertmanager architecture and workflow
+
+Alert routing and grouping in Alertmanager
+
+Handling alert fatigue in production
+
+How do you design SLOs and SLIs using Prometheus?
+Monitoring Kubernetes using Prometheus
+
+Monitoring cloud services with Prometheus
+
+Explain Grafana architecture
+
+Data sources vs dashboards vs panels
+
+Variables and templating in Grafana
+
+Alerting in Grafana — how does it work?
+
+Securing Grafana dashboards
+
+Prometheus scaling challenges and solutions
+
+Federation vs remote write — differences
+
+Troubleshooting missing metrics
+
+Monitoring system is down — how do you debug?
+
+When should Prometheus NOT be used?

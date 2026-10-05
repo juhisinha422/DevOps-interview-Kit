@@ -1,0 +1,36 @@
+Desired State vs Actual State
+
+✨ Hello DevOps Learners!
+Continuing my GitOps learning journey after completing Ansible, today I’m exploring another key GitOps concept: Desired State vs Actual State. 🚀
+This concept is what makes GitOps reliable and self-correcting in modern infrastructure management.
+
+🔹 Desired State
+ The desired state is the configuration defined in Git.
+ It describes how the system should look and behave.
+Examples include:
+Kubernetes YAML manifests
+Deployment configurations
+Infrastructure settings
+This state is stored in the Git repository and acts as the single source of truth.
+
+🔹 Actual State
+ The actual state is the real condition of the system currently running in the cluster or infrastructure environment.
+Sometimes the actual state may differ from the desired state due to:
+Manual changes
+Failed deployments
+Configuration errors
+
+🔹 Drift Detection
+ GitOps tools constantly compare the desired state (Git) with the actual state (cluster).
+If differences are detected, it means configuration drift has occurred.
+
+🔹 Self-Healing Systems
+ When drift happens, GitOps tools automatically correct the system state to match what is defined in Git.
+ This creates a self-healing infrastructure that maintains consistency.
+
+🔹 Continuous Reconciliation
+ GitOps controllers continuously monitor the system and reconcile differences between desired and actual state.
+This ensures the infrastructure always stays aligned with Git configurations.
+
+💡 Key Idea:
+ GitOps tools continuously ensure that the running system always matches the configuration defined in Git.

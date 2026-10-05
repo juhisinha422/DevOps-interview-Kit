@@ -1,0 +1,11 @@
+Q. Why are artifacts used in GitHub Actions workflows?
+The author can see how you vote. Learn more
+Q. Why are artifacts used in GitHub Actions workflows?
+A. Trigger workflows
+44%
+B. Share job outputs
+44%
+C. Manage secrets
+11%
+D. Run parallel jobs
+0%

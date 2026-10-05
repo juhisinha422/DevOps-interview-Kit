@@ -1,0 +1,6 @@
+Do you know what is the impact of CrashLoopBackOff ?
+ISSUES-1:
+Problem: Pod keeps restarting again and again.
+Impact: Application never becomes available.
+Root Cause: Misconfigured environment variables, missing secrets, or app bug.
+Solution: Check pod logs (`kubectl logs pod-name`), fix config/secrets, redeploy.

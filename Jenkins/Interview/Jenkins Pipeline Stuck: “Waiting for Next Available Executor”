@@ -1,0 +1,83 @@
+Jenkins Pipeline Stuck: “Waiting for Next Available Executor”
+
+Imagine this situation:
+
+Your Jenkins pipeline is triggered successfully, but the build is not starting.
+
+Instead, Jenkins shows:
+
+> “Still waiting to schedule task”
+> “Waiting for next available executor”
+
+As a DevOps Engineer, what would you check?
+
+### 🔍 My Troubleshooting Approach
+
+1️⃣ Check Jenkins Agents/Nodes**
+
+Go to Manage Jenkins → Nodes** and verify:
+
+• Agent is online
+• Agent is connected
+• Executors are available
+• Node is not temporarily offline
+
+2️⃣ Check Executor Availability
+
+If all executors are already being used by other builds, the new pipeline will remain in the queue.
+
+I would check which jobs are currently consuming the executors.
+
+3️⃣ Verify Job Labels
+
+For example:
+
+```groovy
+agent {
+    label 'linux-agent'
+}
+```
+
+I would verify that an online Jenkins agent actually has the `linux-agent` label.
+
+A label mismatch can cause the pipeline to wait indefinitely.
+
+4️⃣ Check if the Node is Offline
+
+Sometimes an agent may have been manually marked as temporarily offline.
+
+I would verify the reason before bringing it back online.
+
+5️⃣ Check Executor Configuration
+
+I would verify the number of executors configured on the node.
+
+If the workload has increased, additional executors or agents may be required, depending on available CPU and memory.
+
+6️⃣ Check the Build Queue
+
+The Jenkins build queue can provide useful information about why the job is waiting for scheduling.
+
+🛠️ Real-Time Example
+
+Suppose:
+
+• Jenkins Agent has 2 executors
+• Both executors are occupied by running builds
+• A third pipeline is triggered
+
+The third pipeline will remain in the queue until an executor becomes available.
+
+🎯 Interview Tip
+
+If asked:
+
+What would you do if a Jenkins pipeline is stuck waiting for an executor?
+
+A good answer is:
+
+> “I would first check the build queue, agent status, executor availability, and job labels. I would verify whether the required agent is online and whether all executors are occupied. Based on the root cause, I would free an executor, correct the label configuration, bring the agent online, or scale the Jenkins agents if required.”
+
+❌ Don't immediately restart Jenkins.
+
+First, identify the actual scheduling issue and fix the root cause.

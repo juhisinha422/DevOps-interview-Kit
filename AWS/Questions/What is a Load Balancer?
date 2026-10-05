@@ -1,0 +1,19 @@
+What is a Load Balancer?
+A load balancer is like a traffic controller for your app. It makes sure requests from users are evenly distributed across multiple servers (or pods), so no single server gets overloaded.
+
+
+Scenario :
+Imagine you run an online movie ticket booking app.
+On a normal day, 100 users visit — one server can handle it easily. 
+Suddenly, a big blockbuster movie is released. 10,000 users try to book tickets at the same time. 
+
+If all requests hit one server, it crashes — users see errors, app is down. 
+Enter the Load Balancer. It splits traffic across multiple servers/pods. Some requests go to Server A, some to Server B, some to Server C.
+If Server B fails, traffic automatically goes to healthy servers, keeping the app alive and fast.
+
+Result: All users can book tickets without delays, even under huge traffic spikes. 
+
+
+
+Key Takeaway:
+Load balancers ensure your app is scalable, reliable, and fault-tolerant, especially during high traffic or failures.

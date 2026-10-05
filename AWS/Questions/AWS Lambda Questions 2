@@ -1,0 +1,22 @@
+Most Important Topic - AWS LAMBDA 
+
+	1.	What is AWS Lambda, and how does it work?
+	2.	What are the key features and benefits of Lambda?
+	3.	What is the maximum execution timeout for a Lambda function?
+	4.	What are the supported languages for AWS Lambda?
+	5.	What is a cold start in Lambda, and how can it be reduced?
+	6.	How does Lambda pricing work?
+	7.	What are Lambda layers, and why are they used?
+	8.	How do you trigger a Lambda function? Name different event sources.
+	9.	What are environment variables in Lambda, and how are they used?
+	10.	What is the difference between synchronous and asynchronous Lambda invocation?
+	11.	How do you handle errors and retries in AWS Lambda?
+	12.	How can Lambda access resources inside a VPC?
+	13.	What is the maximum memory and storage you can configure for a Lambda function?
+	14.	How do you monitor and debug Lambda functions?
+	15.	What are concurrency and reserved concurrency in Lambda?
+	16.	What are Lambda execution roles, and why are they important?
+	17.	How do you package and deploy a Lambda function with external dependencies?
+	18.	What is the difference between Lambda and EC2?
+	19.	Can Lambda run Docker containers? How?
+	20.	How can you integrate Lambda with other AWS services like S3, API Gateway, DynamoDB, and SNS?

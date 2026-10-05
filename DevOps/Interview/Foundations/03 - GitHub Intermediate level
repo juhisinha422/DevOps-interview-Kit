@@ -1,0 +1,37 @@
+Tool 3 — GitHub (Intermediate Level)
+(DevOps Interview Questions Series)
+
+Now we go from basic usage to how GitHub is used inside real DevOps teams 
+
+GitHub – Intermediate Interview Questions
+
+1. What is a protected branch and why is it used?
+2. How do you enforce code reviews in GitHub?
+3. What are branch protection rules?
+4. What is required status check in GitHub?
+5. How does GitHub handle merge conflicts?
+6. What is squash and merge?
+7. What is rebase and merge?
+8. What is GitHub Actions?
+9. How does GitHub Actions work?
+10. What is a workflow file?
+11. What is a runner in GitHub Actions?
+12. What is self-hosted runner?
+13. What is secrets in GitHub?
+14. How do you store API keys securely in GitHub?
+15. What is a GitHub environment?
+16. What is GitHub project board?
+17. How do you automate CI using GitHub?
+18. What is code scanning in GitHub?
+19. What is Dependabot?
+20. What is vulnerability alert?
+21. What is GitHub audit log?
+22. What is GitHub role-based access control?
+23. How do you restrict force push?
+24. What is CODEOWNERS file?
+25. What is a pull request template?
+26. What is issue template?
+27. What is GitHub webhook?
+28. How do you integrate GitHub with Jenkins?
+29. What is GitHub API?
+30. How do enterprises manage GitHub at scale?

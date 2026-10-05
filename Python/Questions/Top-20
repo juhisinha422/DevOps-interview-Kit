@@ -1,0 +1,111 @@
+Here are Top 20 Python Interview Questions and Answers commonly asked for software, DevOps, and automation roles:
+
+1. What is Python?
+Answer: Python is a high-level, interpreted, object-oriented, and dynamically typed programming language known for simplicity and readability.
+
+2. What are Python’s key features?
+Answer:
+
+Easy syntax
+
+Interpreted language
+
+Large libraries
+
+Cross-platform
+
+OOP support
+
+Automatic memory management
+
+3. What is PEP 8?
+Answer: PEP 8 is Python’s style guide for writing clean and readable code.
+
+4. Difference: List vs Tuple?
+Answer:
+
+List: Mutable ([])
+
+Tuple: Immutable (())
+
+5. What is a dictionary?
+Answer: A collection of key-value pairs. Keys are unique.
+
+Example:
+
+data = {"name": "Amit", "age": 25}
+6. What is Python’s GIL?
+Answer: Global Interpreter Lock allows only one thread to execute Python bytecode at a time.
+
+7. What are decorators?
+Answer: Functions that modify another function’s behavior.
+
+8. What is Lambda function?
+Answer: Anonymous one-line function.
+
+Example:
+
+lambda x: x + 2
+9. What is list comprehension?
+Answer: Short syntax to create lists.
+
+Example:
+
+squares = [x*x for x in range(5)]
+10. Difference: == vs is?
+Answer:
+
+== compares values
+
+is compares memory location
+
+11. What is exception handling?
+Answer: Handling runtime errors using:
+
+try, except, finally
+12. What are Python modules?
+Answer: Files containing reusable code.
+
+Example:
+
+import math
+13. What is pip?
+Answer: Python package installer.
+
+14. What are generators?
+Answer: Functions using yield to produce values lazily.
+
+15. Difference: append() vs extend()?
+Answer:
+
+append(): adds one element
+
+extend(): adds multiple elements
+
+16. What is virtual environment?
+Answer: Isolated Python environment for managing dependencies.
+
+17. What is __init__?
+Answer: Constructor method called when object is created.
+
+18. What is slicing?
+Answer: Extracting part of a sequence.
+
+text[0:3]
+19. What is multithreading?
+Answer: Running multiple threads concurrently.
+
+20. Where is Python used?
+Answer:
+
+Web development
+
+DevOps automation
+
+Data science
+
+AI/ML
+
+Testing automation
+
+Cloud scripting

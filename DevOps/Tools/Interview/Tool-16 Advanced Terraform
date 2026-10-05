@@ -1,0 +1,38 @@
+DevOps Interview Preparation | Advanced Terraform| 2–4 Years Experience | Tool 16
+
+• What is Terraform state and why is it important?
+• Local state vs remote state
+• What is state locking and why do we need it?
+• How does Terraform handle resource dependency?
+• What is the Terraform graph?
+• What happens if the state file is deleted?
+• What are Terraform modules?
+• Difference between root module and child module
+• How do you version Terraform modules?
+• How do you pass variables between modules?
+• How do you manage multiple environments using modules?
+• What is a backend in Terraform?
+• Why do we use remote backends?
+• Terraform state file security best practices
+• How do you migrate local state to remote state?
+• How do you handle state corruption?
+• count vs for_each — differences and use cases
+• depends_on — when should it be used?
+• lifecycle rules in Terraform
+• What is terraform taint?
+• What is terraform import and when is it used?
+• terraform refresh vs terraform plan
+• How does Terraform detect drift?
+ Management
+• How do you manage multi-cloud infrastructure using Terraform?
+• How do you separate dev, stage, and prod environments?
+• Terraform workspaces — pros & cons
+• How do you handle different variables per environment?
+• How do you integrate Terraform with CI/CD pipelines?
+• How do you manage secrets in Terraform pipelines?
+• What are common Terraform pipeline failures?
+• How do you prevent accidental infrastructure deletion?
+• Terraform apply failed in mid-way — what will you do?
+• State file locked and pipeline is stuck — how to resolve?
+• Manual changes done in cloud — how will Terraform react?
+• Resource recreated unexpectedly — troubleshooting steps?

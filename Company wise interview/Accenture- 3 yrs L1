@@ -1,0 +1,26 @@
+L1 DevOps interview at Accenture
+
+YOE: 3     |      Role: DevOps Engineer
+
+Here are the questions they asked:
+
+1) Tell me about yourself.
+
+2) Explain the CI/CD pipeline of your current project.
+
+3) How would you build a CI/CD pipeline from scratch? What tools would you use?
+
+4) Given a list of Kubernetes pods, identify the problematic pod(s) and explain how you would troubleshoot them.
+
+5) How would you schedule a script to run every 2 hours?
+
+6) How do you troubleshoot a Kubernetes pod in CrashLoopBackOff?
+
+7) Why do we use monitoring tools like Prometheus and Zabbix?
+
+8) Why would you choose Terraform over AWS CloudFormation?
+
+9) Explain your current project.
+
+10) How do you manage secrets using HashiCorp Vault? Why use Vault?
+

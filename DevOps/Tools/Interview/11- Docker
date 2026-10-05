@@ -1,0 +1,65 @@
+ DevOps Interview Preparation hashtag#Docker 4–6 Years Experience | Tool 11
+
+Explain Docker architecture and core components
+
+Docker image vs container — internal differences
+
+How does Docker use namespaces and cgroups?
+
+What happens internally when you run docker run?
+
+Docker daemon failure — what happens to running containers?
+
+Dockerfile instructions execution order
+
+CMD vs ENTRYPOINT — real-world use
+cases
+
+COPY vs ADD — when to use each?
+
+Multi-stage builds — why and how?
+
+How do you optimize Docker image size?
+
+Docker networking modes explained
+
+Bridge vs host vs overlay network
+
+How does container DNS resolution work?
+
+Exposing ports vs publishing ports
+
+Docker networking issue — debugging steps
+
+Docker volumes vs bind mounts
+
+Data persistence strategy in containers
+
+How do you backup container data?
+
+Docker logging drivers — when to change?
+
+Container consuming high memory
+how to debug?
+
+Docker security best practices
+
+Running containers as non-root — why?
+
+Image vulnerability scanning — how do you do it?
+
+Docker secrets vs environment variables
+
+How do you secure Docker registry access?
+
+Docker build slow — optimization techniques
+
+Container works locally but fails in prod — why?
+
+Docker upgrade caused failures — rollback strategy
+
+When should Docker NOT be used?
+
+Docker vs Podman — why organizations migrate?
+Interview Tip (4–6 yrs):
+If you can explain internals, security, and production debugging, interviewers immediately know you’ve used Docker beyond tutorials.

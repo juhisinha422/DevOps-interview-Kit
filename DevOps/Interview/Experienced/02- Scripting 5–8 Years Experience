@@ -1,0 +1,33 @@
+DevOps Interview questions hashtag#Bashscript 5–8 Years Experience | Tool 2
+
+You have 200+ servers — how do you design bash scripts that are safe to run at scale?
+
+A bash script worked in staging but failed in production — how do you debug it?
+
+How do you make bash scripts idempotent in real environments?
+
+Explain how you handle error handling and retries in critical bash scripts.
+
+A cron-based bash job caused production outage — how do you investigate?
+
+How do you securely pass secrets to
+bash scripts in CI/CD pipelines?
+
+What bash scripting practices help prevent accidental data deletion?
+
+How do you log bash script execution for audit and debugging?
+
+A script runs fine manually but fails via cron — why does this happen?
+
+How do you optimize long-running bash scripts for performance?
+
+How do you write bash scripts that work across different Linux distributions?
+
+How do you detect and handle partial failures in automation scripts?
+
+When do you avoid bash and choose Python or Go instead?
+
+How do you test bash scripts before running them in production?
+
+What scripting practices separate a
+senior DevOps engineer from others?

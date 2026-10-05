@@ -1,0 +1,12 @@
+Questions/scenarios;
+
+1. Difference between CI, CD, and Continuous Deployment.
+2. Benefits of Jenkins pipelines.
+3. Handling secrets in Jenkins.
+4. Scenario: Deployment failed due to missing config.
+5. Job takes longer than expected—troubleshooting.
+6. Distribute load on overloaded Jenkins master.
+7. Multi-branch pipeline setup.
+8. Rollback strategies in pipelines.
+9. AWS integration for CI/CD.
+10. Error locations in Jenkins.

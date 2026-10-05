@@ -1,0 +1,24 @@
+L1 Interview Questions (Startup Company) – My Experience 
+Recently, I attended an interview for a DevOps Engineer role (2 years of experience) at a startup company. I’m sharing the questions I faced, which might help others preparing for DevOps/Linux/AWS/Kubernetes interviews 
+
+Interview Questions:
+1. Introduction about yourself
+2. What is Softlink and Hardlink?
+3. What are reusable files in Docker?
+4. How to check CPU and memory utilization and how to alert alarms without using monitoring tools?
+5. What is the difference between Grafana, Prometheus, and ELK?
+6. How to set up Prometheus and Grafana for EKS and EC2 servers (practical)?
+7.  Explain Kubernetes Architecture.
+8. What is the role of RBAC in Kubernetes?
+9. How to check the running processes and find a specific running process?
+10. Can you give an overview of how to design an application for High Availability (infrastructure setup end-to-end)?
+11. How do you maintain Disaster Recovery (DR) process?
+12. What is a Pre-signed URL in AWS? When do we use it?
+13. How to give temporary access to a user or service in AWS?
+14. How do you authenticate with ECR or Docker Hub on a server, and how do you push an image?
+15. What is the difference between NACL and Security Group in AWS?
+16. What was the toughest situation you faced in a company, and how did you troubleshoot it?
+17. What deployment strategies have you used?
+18. Explain Jenkins Master-Slave architecture.
+19. What are Shared Libraries in Jenkins?
+20. Can you write a basic Declarative Jenkins Pipeline?

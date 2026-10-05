@@ -1,0 +1,11 @@
+Q. Which command is used to verify Ansible installation on the control node?
+The author can see how you vote. Learn more
+Q. Which command is used to verify Ansible installation on the control node?
+A. ansible check
+8%
+B. ansible test
+0%
+C. ansible setup
+4%
+D. ansible --version
+88%

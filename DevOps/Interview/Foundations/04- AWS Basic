@@ -1,0 +1,37 @@
+Tool 4 — AWS (Basic Level)
+(DevOps Interview Series Questions)
+
+AWS is the foundation of Cloud & DevOps careers. If you’re weak here, scaling is impossible.
+
+AWS – Basic Interview Questions
+
+1. What is cloud computing?
+2. What is AWS?
+3. What are the advantages of AWS?
+4. What is an AWS Region?
+5. What is an Availability Zone (AZ)?
+6. Difference between Region and AZ?
+7. What is IAM?
+8. What is an IAM user?
+9. What is an IAM role?
+10. What is an IAM policy?
+11. What is EC2?
+12. What is an EC2 instance type?
+13. What is AMI?
+14. What is EBS?
+15. Difference between EBS and Instance Store?
+16. What is S3?
+17. What are S3 buckets?
+18. What is S3 object storage?
+19. What is VPC?
+20. What is a subnet?
+21. Difference between public and private subnet?
+22. What is an Internet Gateway?
+23. What is a security group?
+24. What is NACL?
+25. Difference between Security Group and NACL?
+26. What is Elastic IP?
+27. What is Auto Scaling?
+28. What is Load Balancer?
+29. Types of AWS Load Balancers?
+30. What is CloudWatch?

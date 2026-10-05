@@ -1,0 +1,70 @@
+Advanced + Scenario-Based AWS IAM Interview Questions (Must-Know for DevOps & Cloud Engineers!)🚀
+
+
+ Advanced AWS IAM Questions
+
+
+Explain IAM Permission Boundaries and when you will use them.
+
+When should you use STS AssumeRole instead of creating IAM users?
+
+How is IAM Role Chaining different from normal AssumeRole?
+
+What is the maximum session duration for IAM roles and how to extend it?
+
+Difference between IAM Roles, SAML Providers, and OIDC Providers.
+
+What are Service-Linked Roles?
+
+What is the difference between AWS Managed Policies, Customer Managed Policies, and Inline Policies?
+
+How do you enable MFA-Forced Conditions using IAM policies?
+
+How do SCPs (Service Control Policies) differ from IAM Policies?
+
+What is AWS Access Analyzer, and how does it help with IAM security?
+
+What is IAM Policy Simulator and when would you use it?
+
+How does IAM integrate with KMS Key Policies?
+
+What happens if an IAM user is attached to multiple policies with conflicting rules?
+
+A developer is unable to access an S3 bucket even after attaching AmazonS3FullAccess. What steps will you take to troubleshoot?
+
+You want an EC2 instance to read/write to an S3 bucket without using access keys. How do you design this?
+
+You need to allow cross-account S3 access without exposing Access Keys. How do you achieve this?
+
+A user must only be allowed to start/stop EC2 instances with a specific tag. Write the approach.
+
+How do you enforce that every AWS CLI/API request must use MFA?
+
+You need to give temporary access to a vendor for 3 hours only. What is the best IAM approach?
+
+In your organization, IAM users are created manually. How do you automate this following best practices?
+
+Your team wants read-only access to CloudWatch logs, but write access to only ECS logs. How will you design the policy?
+
+You want to block developers from deleting S3 buckets—even admins. Which IAM/OUs/SCP combination will you use?
+
+A Lambda function must access Secrets Manager and RDS with least privilege. How do you design roles and policies?
+
+You have a multi-account setup under AWS Organizations. How do you centrally restrict EC2 creation in certain accounts?
+
+How do you secure IAM access keys for CI/CD pipelines without storing them in plaintext?
+
+A user is complaining that they cannot AssumeRole into another account. What will you check?
+
+You want to audit who used STS AssumeRole and when. Where do you check?
+
+You need to restrict IAM users so they can rotate their own access keys but cannot modify others. How do you enforce this?
+
+ If you're preparing for DevOps/SRE roles
+Mastering IAM scenarios is one of the strongest ways to stand out. Most real interviews are less about definitions and more about:
+
+ Designing secure roles
+ Troubleshooting access issues
+ Cross-account security
+ Least privilege architecture
+ MFA, STS, SCP, and federation

@@ -1,0 +1,44 @@
+Senior DevOps / Cloud Engineer – 5 to 8 Years Experience
+
+Senior DevOps / Cloud Engineer 
+
+If you’re aiming for senior roles, these are the expectations interviewers have from 5–8 yrs professionals 👇
+
+🔹 Architecture & Design
+• How do you design a highly available and fault-tolerant system on AWS?
+• How do you choose between ECS, EKS, and Lambda for production workloads?
+• How do you handle multi-region architecture and DR strategy?
+
+🔹 CI/CD & Automation
+• How do you design scalable CI/CD pipelines for microservices?
+• How do you manage secrets securely in CI/CD?
+• How do you implement zero-downtime deployments?
+• How do you handle rollback strategies in production?
+
+🔹 Docker & Kubernetes
+• How do you optimize Docker images for production?
+• How do you troubleshoot Kubernetes pod crash loops?
+• How do you design Kubernetes for high availability?
+• How do you manage cluster upgrades with minimal downtime?
+🔹 Infrastructure as Code
+• How do you manage large Terraform codebases?
+• How do you handle Terraform state and locking in teams?
+• How do you manage multi-account AWS using Terraform?
+
+🔹 Monitoring, Logging & Reliability
+• How do you define SLIs, SLOs, and SLAs?
+• How do you design monitoring for microservices?
+• How do you handle alert fatigue?
+• How do you debug production incidents?
+
+🔹 Security & Cost Optimization
+• How do you implement DevSecOps in pipelines?
+• How do you manage IAM at scale?
+• How do you optimize cloud cost without impacting performance?
+
+🔹 Leadership & Ownership
+• How do you mentor junior DevOps engineers?
+• How do you handle production outages as a lead?
+• How do you communicate risks to stakeholders?
+
+💡 Senior roles are not about tools — they’re about decisions, ownership, and impact.

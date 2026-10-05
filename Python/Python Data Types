@@ -1,0 +1,22 @@
+Python Data Types:
+🚀 Python Basics – Data Types
+In Python, everything is an object, and data types define what kind of value a variable holds.
+🔹 Built-in Data Types in Python:
+ 1️⃣ Numeric → int, float, complex
+ 2️⃣ Sequence → list, tuple, range
+ 3️⃣ Text → str
+ 4️⃣ Mapping → dict
+ 5️⃣ Set → set, frozenset
+ 6️⃣ Boolean → bool
+ 7️⃣ Binary → bytes, bytearray, memoryview
+ 8️⃣ None → NoneType
+📌 Example:
+
+x = 10        # int
+y = 3.14      # float
+z = "Hello"   # str
+a = [1,2,3]   # list
+b = (4,5,6)   # tuple
+c = {"name":"Shiva", "role":"DevOps"}  # dict
+💡 Key takeaway: Python is dynamically typed — you don’t declare the type, Python decides it automatically at runtime.
+👉 Understanding Data Types + Operators together forms the foundation of Python programming.

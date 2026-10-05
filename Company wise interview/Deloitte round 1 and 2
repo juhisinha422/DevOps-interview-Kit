@@ -1,0 +1,56 @@
+R-1 round with a leading global consulting organization (Deloitte), Interview Questions.
+
+● Self introduction.
+● If you are not able to access the EC2 instance, what might be the issues?
+● What is your project architecture?
+● How many AWS accounts have you managed in your project?
+● How many types of S3 buckets are there?
+● What are Security Groups and NACLs, and what are the differences between them?
+● How do you reduce AWS costs in your project?
+● What is VPC peering and Transit Gateway, and how do you set them up?
+● Have you used load balancers? What kinds of load balancers have you used, and why are they important?
+● How do you set up a highly available application?
+● How do you reduce Docker images?
+● How do you secure the Terraform state file?
+● Cluster security.
+● If one service is consuming too much CPU and memory, how do you check which component is causing high usage?
+
+
+
+---
+R-2 interview discussion with a top service-based company (Deloitte).
+
+After successfully clearing my R-1 round, they was pushed to the R-2 round, and the style of questions was completely different from regular interviews.
+
+The interviewer did not ask direct “What is this?” or “How does this work?” questions. Instead, he asked in a very tricky and scenario-based way — testing deep understanding and internal concepts rather than definitions.
+
+Here are some of the questions I got:
+
+1️⃣ One team has 5 members and another team has 4 members. If both teams shake hands with each other, how many handshakes will happen in total?
+
+2️⃣ Consider a VPC with only one subnet. There are no route tables, no security groups, no configurations — it’s completely empty. Do you think it is a private subnet or a public subnet?
+
+3️⃣ What is EBS and EFS? Explain clearly.
+
+4️⃣ How do you set up a highly available application?
+
+5️⃣ How many accounts have you managed in your project, and how do you configure them with Jenkins?
+
+6️⃣ What are parameters in Jenkins?
+
+7️⃣ I have 5 pods — 3 are running and 2 are not running. What might be the issue?
+
+8️⃣ When creating EC2, S3, Lambda — how are resources created? Parallel or sequential? How does Terraform create resources?
+
+9️⃣ How do you create 10 resources one by one?
+
+🔟 Pod vs ReplicaSet vs Deployment — which one should you choose for application deployment?
+
+1️⃣1️⃣ How do you make applications highly available?
+
+💡 What I understood from this interview:
+
+👉 Not every interview is about direct definitions.
+👉 Some interviewers intentionally ask in confusing or tricky ways to test real-world understanding.
+👉 They want to know how deeply you understand internal behavior — not just theoretical answers.
+👉 Be ready for scenario-based, logic-driven questions.

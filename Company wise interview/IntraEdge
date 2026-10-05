@@ -1,0 +1,20 @@
+IntraEdge for an SRE role. The discussion was very detailed and covered a wide range of topics around incident management, monitoring, automation, and cloud operations.  
+
+Some of the key questions asked included:  
+- Handling critical/severe production incidents and explaining one in detail  
+- Critical issues resolved in recent months  
+- Linux & Kubernetes troubleshooting commands  
+- Kubernetes monitoring tools and practices  
+- Grafana & Prometheus ports, dashboards, and visualization  
+- AWS CloudWatch dashboards for CPU/memory monitoring  
+- Creating AWS resources like Load Balancers & Auto Scaling Groups  
+- Python scripting for automation (e.g., log backup)  
+- Data storage in S3 and its use cases  
+- Project architecture, customer, and overall responsibilities  
+- Difference between NOC and SRE roles  
+- SLA/ETA for incident response and resolution flow  
+- Handling incidents during deployment, traffic spikes, or when alone  
+- ServiceNow usage for ticketing and incident management  
+- Authentication troubleshooting and escalation  
+- Monitoring tools (Grafana, New Relic, CloudWatch, etc.)  
+- Deployment pipelines and post-deployment responsibilities  

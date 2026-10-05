@@ -1,0 +1,32 @@
+ELK STACK / LOGGING & OBSERVABILITY
+
+These scenarios focus on production incidents, missing logs, and root-cause analysis — very common in interviews.
+
+⸻
+
+🪵 ELK Stack – 15 Real-World DevOps Scenarios
+	1.	An application is down, but metrics look normal. How do logs help you find the issue?
+	2.	Logs are not appearing in Kibana. How do you troubleshoot the pipeline?
+	3.	Elasticsearch disk usage is growing rapidly. How do you fix and prevent it?
+	4.	Log ingestion suddenly stopped. What checks do you perform?
+	5.	Application logs are unstructured. How do you make them searchable?
+	6.	Kibana dashboards are slow or timing out. How do you optimize them?
+	7.	How do you implement log retention and archival?
+	8.	Logs are missing during a production incident. How do you prevent this in future?
+	9.	How do you correlate logs with metrics and traces?
+	10.	Elasticsearch cluster health is yellow/red. How do you investigate?
+	11.	How do you handle high-volume logs without impacting performance?
+	12.	Sensitive data is appearing in logs. What actions do you take?
+	13.	Log formats differ across microservices. How do you standardize them?
+	14.	How do you design centralized logging for Kubernetes?
+	15.	How do you secure access to logs and audit trails?
+
+⸻
+
+🧠 Interview Signals This Sends
+
+✔ Root-cause analysis skills
+✔ Logging pipeline understanding
+✔ Data retention & cost awareness
+✔ Security & compliance mindset
+✔ Observability maturity

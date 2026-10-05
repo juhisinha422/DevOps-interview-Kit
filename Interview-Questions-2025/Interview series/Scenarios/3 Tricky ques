@@ -1,0 +1,37 @@
+Tricky Interview Question of DevOps:
+
+Difference between Kubectl create and Kubectl apply?
+
+🔹 1. kubectl create:- 
+
+👉 Purpose: Create a resource only once.
+
+Key Points:
+• Creates a new resource from a YAML/JSON file.
+•❌ Fails if the resource already exists
+Does not track changes.
+
+Example Command:
+
+kubectl create -f deployment.yaml
+
+Behavior:
+First time → ✅ Success
+Second time → ❌ Error (Already exists)
+
+🔹 2. kubectl apply:-
+
+👉 Purpose: Create or update resources (Declarative way)
+
+Key Points:
+• Can create + update existing resources.
+• Keeps track of changes using last-applied-configuration.
+•Supports declarative approach
+
+Example Command:
+
+kubectl apply -f deployment.yaml
+
+Behavior:
+First time → ✅ Creates resource
+Next time → 🔄 Updates only changed fields

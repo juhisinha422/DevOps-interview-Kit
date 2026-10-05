@@ -1,0 +1,35 @@
+Cluster & Resource Exploration
+- kubectl get nodes – List all nodes in the cluster
+- kubectl get pods – List all pods in the current namespace
+- kubectl get services – List all services
+- kubectl get deployments – List all deployments
+- kubectl get all – Show all common resources (pods, services, deployments, etc.)
+
+---
+
+📦 Creating & Managing Resources
+- kubectl create -f <filename>.yaml – Create resources from a YAML file
+- kubectl apply -f <filename>.yaml – Apply changes from a YAML file (create or update)
+- kubectl delete -f <filename>.yaml – Delete resources defined in a YAML file
+- kubectl delete pod <pod-name> – Delete a specific pod
+
+---
+
+🔍 Inspecting & Debugging
+- kubectl describe pod <pod-name> – Detailed info about a pod
+- kubectl logs <pod-name> – View logs of a pod
+- kubectl exec -it <pod-name> -- /bin/bash – Access a pod’s shell interactively
+
+---
+
+📈 Scaling & Updating
+- kubectl scale deployment <deployment-name> --replicas=3 – Scale a deployment
+- kubectl rollout status deployment/<deployment-name> – Check rollout status
+- kubectl rollout undo deployment/<deployment-name> – Roll back to previous version
+
+---
+
+🧪 Useful Flags
+- -n <namespace> – Specify a namespace
+- -o wide – Get extended output (e.g., node IPs)
+- --all-namespaces – View resources across all namespaces

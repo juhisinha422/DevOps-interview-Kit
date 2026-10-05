@@ -1,0 +1,40 @@
+AWS DevOps Interview Preparation Series 🚀 
+#AWS #DevOps #CloudFront 
+
+Topic: Amazon CloudFront — Fast, Secure, and Global Content Delivery
+
+Today’s focus is on Amazon CloudFront, AWS’s Content Delivery Network (CDN) that securely delivers data, videos, applications, and APIs to users across the globe with low latency and high transfer speed.
+
+Whether it’s optimizing website performance, caching static content, or protecting your app from DDoS attacks — CloudFront is a must-know service for every DevOps Engineer.
+
+Top Amazon CloudFront Interview Questions for DevOps Engineers
+What is Amazon CloudFront and how does it work?
+ What are Edge Locations and Regional Edge Caches?
+ Explain how CloudFront reduces latency and improves performance.
+ What are Distributions in CloudFront?
+ Differentiate between Web and RTMP Distributions.
+ What is an Origin, and what types of origins can CloudFront support?
+ How does CloudFront integrate with S3, ALB, and EC2?
+ What is the role of Cache Behaviors in CloudFront?
+ How can you control caching using Cache-Control headers?
+ What is an Invalidation Request, and when would you use it?
+ How does CloudFront handle dynamic content?
+ What are Lambda@Edge and its use cases in CloudFront?
+ How can you restrict access to content using Signed URLs and Signed Cookies?
+ How does CloudFront work with AWS WAF for application protection?
+ Explain Geo-Restriction (Geo-Blocking) and its real-world use case.
+ How can you monitor CloudFront performance metrics?
+ How does CloudFront integrate with CloudWatch and CloudTrail?
+ What is the difference between viewer protocol policy and origin protocol policy?
+ How does CloudFront help improve security and compliance?
+ What are the benefits of using CloudFront with Route 53?
+ How can you enable HTTPS for your CloudFront distribution?
+ How do you configure custom SSL certificates with CloudFront?
+ Explain how CloudFront integrates with Elastic Beanstalk for content delivery.
+ What is the difference between TTL and Minimum TTL in CloudFront caching?
+ How do you automate CloudFront deployment with Terraform or CloudFormation?
+ How can you implement versioning and cache invalidation strategies?
+ What is the pricing model of CloudFront?
+ How can you debug 403 or 504 errors in CloudFront distributions?
+ What are Origin Groups, and how do they improve availability?
+ Share a real-world scenario where CloudFront improved your app’s performance or reliability.

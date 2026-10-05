@@ -1,0 +1,35 @@
+ Day 9 — GCP Monitoring + Logging + Alerting (Cloud Ops Suite)
+
+Scenario-Based DevOps real Interview Questions
+
+1️⃣ Your production service experiences random latency spikes. How will you design proactive monitoring using SLOs, SLIs, and alert policies?
+
+2️⃣ Logs from multiple GKE clusters and services are scattered. How will you centralize, structure, and route logs for analysis?
+
+3️⃣ You need real-time alerts only when error rate breaches a threshold for 5 minutes, not on single spikes. How will you configure the alerting condition?
+
+4️⃣ A team wants to filter logs generated only by specific microservices and export them to BigQuery. How will you design log-based routing?
+
+5️⃣ Your application crashed but logs were missing. How will you guarantee delivery and retention of logs for critical systems?
+
+6️⃣ You need to identify which user or service account deleted a VM or changed firewall rules. Where and how will you investigate?
+
+7️⃣ Alerts are firing too frequently causing alert fatigue. What steps will you take to refine policies and reduce noise?
+
+8️⃣ A developer needs access to logs of only two services without seeing logs of other environments. How will you design IAM + log views?
+
+9️⃣ Your SRE team wants dashboards showing CPU, latency, error rate, memory, traffic, and cost. How will you design a unified monitoring dashboard?
+
+🔟 You need anomaly detection (AI/ML-based) for production metrics. Which Cloud Monitoring features will you enable and why?
+
+1️⃣1️⃣ Logs ingestion cost is increasing rapidly. What optimizations can you apply without losing observability?
+
+1️⃣2️⃣ You need to track API usage, IAM changes, security events, and admin actions. Which logs will you enable and where will you store them?
+
+1️⃣3️⃣ A service running on Cloud Run must send structured logs with trace correlation. How will you implement this?
+
+1️⃣4️⃣ You want distributed tracing across microservices deployed on GKE + Cloud Run. Which GCP tools will you use and how will you integrate them?
+
+1️⃣5️⃣ You need uptime checks for both internal and external services. How will you configure them with appropriate alerting and failure thresholds?
+
+⸻

@@ -1,0 +1,40 @@
+Scenario: Terraform Gone Wrong Without State Locking & Remote Backend
+
+Imagine you're part of a DevOps team managing cloud infrastructure using Terraform. Your team is working on deploying a new microservice to AWS.
+
+🔥 The Problem:
+
+Two engineers, unaware of each other’s actions, run terraform apply at the same time from their local machines. Since the Terraform state file is stored locally:
+There’s no locking mechanism.
+The state file gets overwritten.
+One engineer’s changes are lost, and the infrastructure ends up in an inconsistent state.
+This leads to:
+Downtime in production
+Hours of debugging
+Loss of trust in automation
+
+✅ The Solution: Remote Backend + State Locking
+Now, let’s fix this with best practices.
+
+🗂️ Remote Backend:
+
+You configure Terraform to store the state file in AWS S3. This makes the state:
+Centralized and accessible to the whole team
+Versioned (you can roll back if needed)
+Secure with IAM policies
+
+🔐 State Locking:
+
+You enable DynamoDB-based locking. Now, when someone runs terraform apply:
+A lock is created in DynamoDB
+Others are blocked from making changes until the lock is released
+This prevents race conditions and state corruption
+
+💡 Why This Matters
+
+Remote Backend: Centralized, secure, and collaborative
+
+State Locking: Prevents concurrent changes and conflicts
+
+🧠 Key Takeaway
+If you're working in a team or managing production infrastructure, never store Terraform state locally. Use a remote backend with state locking to ensure safe, scalable, and collaborative infrastructure management.

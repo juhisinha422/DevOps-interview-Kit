@@ -1,0 +1,12 @@
+Questions/scenarios;
+
+1.	Role of Maven in build processes.
+2.	Maven vs other build tools.
+3.	POM.xml configuration basics.
+4.	Dependency management strategies.
+5.	Multi-module projects setup.
+6.	Plugins for testing and deployment.
+7.	Lifecycle phases explanation.
+8.	Repository managers integration.
+9.	Build profiles usage.
+10.	Troubleshooting common errors.

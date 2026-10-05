@@ -1,0 +1,22 @@
+20 Amazon RDS Interview Questions 
+
+ 1. What is Amazon RDS and why is it used?
+ 2. What are the supported database engines in RDS?
+ 3. What is the difference between RDS and a database running on EC2?
+ 4. What is Multi-AZ deployment in RDS and why is it important?
+ 5. What are Read Replicas, and how are they different from Multi-AZ?
+ 6. How does RDS handle backups?
+ 7. What is the difference between automated backups and manual snapshots?
+ 8. How do you enable high availability in RDS?
+ 9. Can you encrypt data in RDS? How?
+ 10. What are some ways to improve RDS performance?
+ 11. What are DB parameter groups and option groups in RDS?
+ 12. How does scaling work in RDS (vertical vs horizontal)?
+ 13. What is the maximum storage size supported by RDS?
+ 14. How can you secure your RDS instance?
+ 15. How does RDS integrate with VPC and security groups?
+ 16. What is the difference between storage types (General Purpose SSD, Provisioned IOPS, Magnetic) in RDS?
+ 17. Can you stop and start an RDS instance? What are the limitations?
+ 18. What is Amazon Aurora and how is it different from standard RDS engines?
+ 19. How do you migrate an on-premises database to RDS?
+ 20. What happens during a maintenance window in RDS?

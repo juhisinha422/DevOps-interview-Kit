@@ -1,0 +1,24 @@
+AWS Production Incident: CloudWatch Was Silent 🔕.
+
+Everything was running fine… until users complained 😐
+No alarms ❌
+No alerts ❌
+No emails ❌
+
+The issue 🔍 :
+CloudWatch alarms were created, but SNS was never confirmed 📭.
+
+ 🔹 Metrics existed 📊
+ 🔹 Alarm state changed 🔄
+ 🔹 But notifications never reached the team 🚫
+
+✅ Fix:
+
+Confirmed SNS email subscriptions ✔️
+Added a backup Slack webhook 💬
+Tested alarms using manual threshold breach 🧪
+
+📌 Lesson:
+
+ An alert that isn’t tested is as dangerous as no alert ⚠️
+Always trigger and verify your CloudWatch alarms in production 🔔

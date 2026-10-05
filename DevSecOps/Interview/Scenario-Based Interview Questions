@@ -1,0 +1,83 @@
+DevSecOps – Scenario-Based Interview Questions
+
+🔹 Source Code & Shift-Left Security
+
+1️⃣ A developer pushes code with a vulnerable dependency. How will you detect it before the build reaches production?
+
+2️⃣ Your team is skipping security scans to speed up releases. How will you enforce security without slowing CI/CD?
+
+3️⃣ How would you implement mandatory security gates in a Git-based CI pipeline?
+
+4️⃣ A critical vulnerability is reported in an open-source library used across multiple microservices. How will you handle remediation?
+
+⸻
+
+🔹 CI/CD Pipeline Security
+
+5️⃣ A malicious script was injected into the CI pipeline. How would you detect, prevent, and audit such incidents?
+
+6️⃣ Secrets are hardcoded in pipeline YAML files. How will you redesign the pipeline securely?
+
+7️⃣ How do you secure self-hosted CI runners from privilege escalation?
+
+8️⃣ Your pipeline uses multiple third-party plugins. How do you assess and control their security risk?
+
+⸻
+
+🔹 Container & Kubernetes Security
+
+9️⃣ A container image in production is found running as root. What steps will you take to fix and prevent this?
+
+🔟 How do you scan container images for vulnerabilities before deployment?
+
+1️⃣1️⃣ A Kubernetes pod is compromised. How do you isolate it and investigate the incident?
+
+1️⃣2️⃣ How will you enforce security policies like no privileged containers in Kubernetes?
+
+⸻
+
+🔹 Infrastructure as Code (IaC) Security
+
+1️⃣3️⃣ A Terraform change accidentally opens public access to a database. How can this be prevented?
+
+1️⃣4️⃣ How do you scan IaC templates for misconfigurations before applying them?
+
+1️⃣5️⃣ How would you manage different security baselines for dev, staging, and prod using IaC?
+
+⸻
+
+🔹 Secrets & Identity Management
+
+1️⃣6️⃣ Your application secrets are exposed in logs. How do you rotate and secure them immediately?
+
+1️⃣7️⃣ How do you implement short-lived credentials instead of static secrets?
+
+1️⃣8️⃣ How do you control and audit access to secrets across multiple teams?
+
+⸻
+
+🔹 Cloud & Network Security
+
+1️⃣9️⃣ How would you secure cloud workloads following least privilege principles?
+
+2️⃣0️⃣ A cloud service account is overly permissive. How will you detect and fix this?
+
+2️⃣1️⃣ How do you protect workloads from unauthorized public exposure?
+
+⸻
+
+🔹 Monitoring, Detection & Incident Response
+
+2️⃣2️⃣ How do you detect suspicious behavior in containers or CI pipelines?
+
+2️⃣3️⃣ What metrics and alerts would you set up for security monitoring?
+
+2️⃣4️⃣ A zero-day vulnerability is announced. What is your immediate DevSecOps response plan?
+
+⸻
+
+🔹 Governance, Compliance & Culture
+
+2️⃣5️⃣ How do you ensure compliance (ISO, SOC2, HIPAA, PCI-DSS) in CI/CD pipelines?
+
+2️⃣6️⃣ Developers see security as a blocker. How do you change the culture?

@@ -1,0 +1,35 @@
+Date: 15th January 2025
+🏢 Company Name: Mphasis 
+🎯 Level / Round: L1
+📝 Real-Time Interview Questions Asked Today
+
+
+what is the difference between alb, nlb, clb, and gateway load balancer?
+
+which protocols are supported by nlb and why?
+
+what is imagepullbackoff and how do you resolve it?
+
+what happens when an ec2 instance stops or crashes?
+
+how do you assign a public ip that does not change in aws?
+
+s3, ebs, and efs – when do you use each and why?
+
+what is the minimum and maximum object size in s3?
+
+vpc peering limitations and why transit gateway is preferred?
+
+how do you handle more than 15 vpc connections?
+
+git merge vs git rebase – differences and use cases
+
+docker image vs docker container
+
+when and why do you use multi-stage docker builds?
+
+blue-green vs canary deployment strategies
+
+terraform state file – why it is important and how to secure it
+
+terraform lifecycle steps (init, plan, apply, destroy)

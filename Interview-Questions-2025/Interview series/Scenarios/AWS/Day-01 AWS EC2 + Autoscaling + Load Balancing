@@ -1,0 +1,35 @@
+Day 1 — AWS EC2 + Autoscaling + Load Balancing
+
+Scenario-Based DevOps Interview Questions
+
+1️⃣ Your EC2 instances experience high CPU during peak hours but remain idle overnight. How will you design an Auto Scaling strategy with scheduled + dynamic scaling?
+
+2️⃣ You need zero-downtime deployment for an EC2-based web app. How will you design this using Launch Templates + ASG + ALB?
+
+3️⃣ An EC2 instance in a private subnet needs to download OS patches. What AWS components will you configure?
+
+4️⃣ Your application requires session stickiness for user logins. How will you configure stickiness on ALB or NLB?
+
+5️⃣ ASG scales out, but new instances fail health checks immediately. What will you check during troubleshooting?
+
+6️⃣ A workload needs GPUs for ML inference. How will you choose instance family, optimize cost, and configure placement groups?
+
+7️⃣ A critical VM crash caused data loss on an attached instance store. Which storage architecture should you choose instead?
+
+8️⃣ You must migrate 150 on-prem VMs to AWS with minimal downtime. Which AWS service will you use and how will you plan cutover?
+
+9️⃣ EC2 boot time is slow due to lengthy startup scripts. How will you optimize AMIs, user data, and configuration?
+
+🔟 Network traffic between two EC2 instances in different AZs is slow. What network-level factors will you analyze?
+
+1️⃣1️⃣ You need encrypted volumes, automatic snapshots, and cross-region DR. How will you design EBS strategy?
+
+1️⃣2️⃣ You want to isolate workload groups at the hardware level. When will you choose Dedicated Hosts or Dedicated Instances?
+
+1️⃣3️⃣ A legacy app needs static public IP even after instance replacement. What AWS features will you use?
+
+1️⃣4️⃣ Your ASG is scaling in aggressively and terminating instances too early. How will you tune cooldowns and lifecycle hooks?
+
+1️⃣5️⃣ A new version rollout introduced bugs. How will you roll back safely in an EC2-based architecture?
+
+⸻

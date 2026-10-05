@@ -1,0 +1,18 @@
+Neosoft for an SRE/DevOps role, and the discussion was both challenging and insightful. The panel focused on practical scenarios, tools, and real-world problem-solving.  
+
+Some of the key areas covered included:  
+- Tools and technologies currently used in SRE/DevOps  
+- Experience in DevOps and SRE  
+- Handling production incidents, war room calls, and P1/P2 responses  
+- Biggest production failure and lessons learned  
+- Follow-ups after incidents and severity review meetings  
+- Monitoring microservices on Kubernetes, common issues, and troubleshooting  
+- Kubernetes architecture, Ingress/Egress concepts, and default pods  
+- Error budgets, SLO/SLAs, and uptime calculations  
+- Handling partial failures, latency issues, and user-reported problems  
+- AWS services: Inspector, CIDR blocks, AMIs, Auto Scaling Groups, DR validation  
+- Securing Docker images and automation/scripting experience  
+- Circuit breakers, alert noise reduction, and rate limiting  
+- Migration experience (databases/services) and distributed system reliability  
+- Ticketing tools, incident management workflows, and team responsibilities (NOC, DB, SRE)  
+- Deployment pipelines and post-deployment activities  

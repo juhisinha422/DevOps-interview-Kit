@@ -1,0 +1,29 @@
+DevOps Lead Interview at Flipkart
+
+Round 1 – Platform Engineering, Networking, and Infra at Flipkart Scale 
+1. Flipkart handles 500k+ orders/hour during Big Billion Days. How would you design a burst-resilient queuing system with failure isolation and predictive autoscaling?
+2. You’re managing 2000+ K8s nodes across clusters. Walk us through zero-downtime CRI upgrades without draining the entire node group.
+3. Debug this: Persistent volumes (EBS) attach to pods, but randomly enter read-only mode under load. What would you trace at the kernel level or CSI driver, and how?
+4. How do you detect network partitioning between core payment APIs and third-party banks? How would you simulate and test it?
+5. You’ve got an intermittent 10-second delay in cart updates only for Android app users. Where do you start: CDN, API gateway, client SDK, DB lock, or cache churn?
+
+Round 2 – Real Incidents, RCA, and War Room Thinking
+1. During a Flipkart flash sale, K8s pods fail liveness probes at scale. Turns out the sidecar metrics exporter is spiking CPU. Your RCA and live hotfix?
+2. Orders API sees 2x traffic, but Redis latency tripled. CPU/memory are normal. What invisible factors could cause this?
+3. You roll out a new Kafka topic with idempotent producer settings. Downstream consumers start duplicating order records. Where’s the bug?
+4. Your observability team silently moved dashboards to a new Grafana namespace. Now alerts fail across all critical services. What’s your fire drill protocol?
+
+Round 3 – DevOps Leadership, Infra Strategy & Platform Influence
+1. Flipkart’s growth team wants new APIs pushed globally, but compliance says “India only”. How do you architect region-aware routing, identity, and data isolation?
+2. How do you drive infra cost optimization without losing engineering velocity?
+3. Describe your onboarding philosophy for new DevOps engineers in a high-velocity, high-stakes environment.
+4. How do you pitch infra modernization (eBPF, OTel, GitOps) to PMs who only care about features?
+
+💡 TL;DR:
+If you’ve never:
+1. Simulated a payment outage at 11:58 PM on the sale night
+2. Debugged Redis inconsistencies across AZs
+3. Used eBPF to trace internal LB retries
+4. Rolled back a bad mesh config mid-sale while traffic doubled
+5. Built pre-chaos gates before pipeline merge
+Then Flipkart interviews won’t just test your tech. They’ll test your nerve.

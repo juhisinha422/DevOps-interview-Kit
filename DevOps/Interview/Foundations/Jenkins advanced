@@ -1,0 +1,41 @@
+DevOps Interview Series | Jenkins – Advanced Level
+
+These questions are asked when interviewers want to check whether you can design, secure, scale, and troubleshoot Jenkins in production.
+
+Explain Jenkins master–agent architecture in depth
+
+How does Jenkins handle pipeline execution internally?
+How do you design Jenkins for high availability?
+
+Jenkins on VM vs Jenkins on Kubernetes — pros & cons
+
+How do you scale Jenkins for large teams?
+
+What are Jenkins shared libraries — internal working?
+
+How do you implement pipeline as code at scale?
+
+How do you secure Jenkins credentials end-to-end?
+
+How does Jenkins integrate with LDAP / SSO?
+
+How do you prevent Jenkins from becoming a single point of failure?
+
+How do you handle secrets in Jenkins pipelines?
+Jenkinsfile best practices for production pipelines
+
+How do you optimize Jenkins build performance?
+
+How do you clean up workspaces automatically?
+
+How do you manage plugin version conflicts?
+
+How do you upgrade Jenkins safely in production?
+
+How do you implement RBAC in Jenkins?
+
+Jenkins vs other CI tools — architectural comparison
+
+How do you debug a stuck or hanging Jenkins pipeline?
+
+Common Jenkins anti-patterns in real projects

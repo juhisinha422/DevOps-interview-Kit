@@ -1,0 +1,4 @@
+Can an EC2 instance in a private subnet communicate with another EC2 instance in a public subnet ?
+
+
+Yes, an EC2 instance in a private subnet can communicate with another EC2 instance in a public subnet, as long as the network is set up correctly. All subnets within the same Virtual Private Cloud (VPC) can talk to each other by default, as long as the right permissions are in place. The key things to check are the security groups (which control what traffic is allowed in and out of the instances), and the route tables (which determine how traffic moves between subnets). A public subnet instance usually has access to the internet through an Internet Gateway, but the private subnet doesn't. However, for communication between the two subnets, no internet connection is needed, since the traffic stays within the VPC. The private instance can use the public instance’s private IP to communicate, as long as the rules are set up to allow it.

@@ -1,0 +1,147 @@
+Linux interview questions and answers for Deloitte 
+Here are Linux Interview Questions & Answers commonly asked at Deloitte, especially for Support / DevOps / System Engineer roles. 
+
+Basic Linux Questions
+1. What is Linux?
+Answer:
+Linux is an open-source, Unix-based operating system used for servers, cloud, DevOps, and embedded systems. It is secure, stable, and highly customizable.
+
+2. Difference between Linux and Windows?
+Answer:
+
+Linux	Windows
+Open-source	Proprietary
+CLI + GUI	Mostly GUI
+More secure	More malware-prone
+Free	Paid license
+3. What is the Linux Kernel?
+Answer:
+The kernel is the core of Linux that manages CPU, memory, devices, and system calls.
+
+4. What is a Shell?
+Answer:
+A shell is a command-line interpreter that allows users to interact with the OS.
+Examples: bash, sh, zsh
+
+🔹 File & Directory Commands
+5. How do you list files?
+ls
+ls -l
+ls -a
+6. Difference between rm -r and rm -f?
+Answer:
+
+rm -r → deletes directories recursively
+
+rm -f → forces deletion without confirmation
+
+7. How to check file permissions?
+ls -l
+Example: -rwxr-xr--
+
+8. Explain chmod 755
+Answer:
+
+Owner → read, write, execute
+
+Group → read, execute
+
+Others → read, execute
+
+🔹 Process & System Management
+9. How to check running processes?
+ps -ef
+top
+htop
+10. How to kill a process?
+kill <PID>
+kill -9 <PID>
+11. Difference between kill and kill -9?
+Answer:
+
+kill → graceful termination
+
+kill -9 → force kill (no cleanup)
+
+12. How to check system uptime?
+uptime
+🔹 Disk & Memory
+13. How to check disk usage?
+df -h
+du -sh <dir>
+14. How to check memory usage?
+free -m
+top
+15. What is inode?
+Answer:
+An inode stores metadata of a file (size, owner, permissions), not the filename.
+
+🔹 Networking
+16. How to check IP address?
+ip a
+ifconfig
+17. How to test network connectivity?
+ping google.com
+18. What is SSH?
+Answer:
+SSH provides secure remote login over an encrypted connection.
+
+19. Default SSH port?
+Answer:
+Port 22
+
+🔹 Package Management
+20. How to install a package in Ubuntu?
+sudo apt install nginx
+21. Difference between apt and yum?
+Answer:
+
+apt → Debian/Ubuntu
+
+yum → RHEL/CentOS
+
+🔹 Logs & Troubleshooting (Very Important for Deloitte)
+22. Where are logs stored?
+Answer:
+
+/var/log/
+23. How to view logs in real time?
+tail -f /var/log/syslog
+24. What is crontab?
+Answer:
+Crontab schedules automated jobs.
+
+Example:
+
+0 2 * * * backup.sh
+🔹 Advanced / Scenario Questions
+25. Server is slow. What will you check?
+Answer:
+
+CPU → top
+
+Memory → free -m
+
+Disk → df -h
+
+Processes → ps -ef
+
+Logs → /var/log
+
+26. How to find a file?
+find / -name filename
+27. Difference between hard link and soft link?
+Answer:
+
+Hard link → same inode
+
+Soft link → shortcut (can break)
+
+28. What is sudo?
+Answer:
+Allows users to run commands as root securely.
+
+29. How to change file ownership?
+chown user:group file
+30. Why Deloitte asks Linux questions?
+Answer:works on cloud, DevOps, cybersecurity, and enterprise servers, where Linux is core.

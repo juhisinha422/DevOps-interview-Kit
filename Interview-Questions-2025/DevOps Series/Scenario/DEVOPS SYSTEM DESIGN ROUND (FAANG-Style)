@@ -1,0 +1,48 @@
+DEVOPS SYSTEM DESIGN ROUND (FAANG-Style)
+
+These questions test end-to-end thinking, not tools. Interviewers want to see how you design, reason, fail, recover, and communicate.
+
+⸻
+
+🏗️ DevOps System Design – High-Impact Scenarios
+ 1. Design a highly available, scalable web application on cloud with zero downtime deployments.
+ 2. How would you design a CI/CD platform that serves hundreds of teams?
+ 3. Design a Kubernetes platform for multi-tenant teams with security and isolation.
+ 4. How would you design observability (metrics, logs, traces) for a large microservices system?
+ 5. Design a disaster recovery strategy for a business-critical application.
+ 6. How do you design a secure secrets management system across environments?
+ 7. Design a cost-efficient architecture that can handle unpredictable traffic.
+ 8. How would you migrate a monolith to microservices safely?
+ 9. Design a multi-region deployment strategy with data consistency.
+ 10. How do you design infrastructure guardrails so teams don’t break production?
+ 11. Design a GitOps-based deployment model for Kubernetes.
+ 12. How would you design a self-healing system?
+ 13. Design a logging and audit system for compliance.
+ 14. How do you design networking for hybrid (on-prem + cloud) workloads?
+ 15. How do you measure DevOps success in an organization?
+
+⸻
+
+🧠 How Interviewers Evaluate Your Answer
+
+They look for:
+ • ✔ Clear assumptions
+ • ✔ Trade-off discussions
+ • ✔ Failure handling
+ • ✔ Security & cost awareness
+ • ✔ Communication clarity
+
+Not:
+ • ❌ Tool names
+ • ❌ Perfect architecture diagrams
+ • ❌ Buzzwords
+
+⸻
+
+🧩 Winning Answer Structure (Use This)
+
+1️⃣ Clarify requirements
+2️⃣ High-level design
+3️⃣ Failure scenarios
+4️⃣ Security & cost considerations
+5️⃣ Trade-offs & alternatives

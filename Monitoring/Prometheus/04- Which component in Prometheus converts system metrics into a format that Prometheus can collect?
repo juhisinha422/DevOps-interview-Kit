@@ -1,0 +1,3 @@
+Which component in Prometheus converts system metrics into a format that Prometheus can collect?
+
+Exporter

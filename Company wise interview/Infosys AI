@@ -1,0 +1,30 @@
+AI interview for a DevOps Engineer role at #Infosys. 
+
+These are some of the questions asked during the interview:
+
+1. In a well-designed CI/CD pipeline for a critical banking application, is it acceptable to push code directly to production without automated testing if the developer is confident and time is limited? (True/False)
+
+2. Can adhering strictly to the Single Responsibility Principle in large distributed systems increase overall system complexity and make maintenance more difficult? (True/False)
+
+3. As an AWS and DevOps Senior Consultant, design a secure, scalable, and highly available architecture for a global SaaS product.
+
+4. How would you structure the failover process during a regional outage?
+
+5. Your team is experiencing frequent production outages due to inconsistent environments and manual deployments. What DevOps strategy would you implement?
+
+6. How would you handle resistance from team members while adopting DevOps tools and practices?
+
+7. Design an end-to-end automated deployment solution for multiple environments.
+
+8. How would you measure the success of your automation initiative?
+
+9. How do Jenkins, Docker, Kubernetes, Terraform, Prometheus, and Grafana work together in a complete CI/CD pipeline?
+
+10. Design the architecture of a mission-critical platform that must scale rapidly and integrate with third-party APIs.
+
+11. How would you manage data consistency and transactions across microservices deployed in multiple Availability Zones?
+
+12. A cloud-based e-commerce application experiences unpredictable traffic spikes. How would you ensure responsiveness and reliability?
+
+Which Amazon CloudWatch metrics and alarms would you configure to detect performance bottlenecks during high-traffic periods?
+

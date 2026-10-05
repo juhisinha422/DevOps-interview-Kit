@@ -1,0 +1,29 @@
+🚀 Day 2 — GCP GKE (Kubernetes Engine):
+
+Scenario-Based DevOps Interview Questions
+
+1️⃣ What are the main differences between GKE Standard and GKE Autopilot? When would you choose one over the other in production?
+
+2️⃣ Your pods are frequently restarting with CrashLoopBackOff. How would you troubleshoot this in GKE?
+
+3️⃣ Explain how Node Pools work in GKE. Why would a DevOps team create multiple node pools?
+
+4️⃣ You need to ensure zero downtime deployment. Which deployment strategy in GKE would you use and why?
+
+5️⃣ Your GKE cluster needs to pull images from a private Artifact Registry. How do you configure authentication?
+
+6️⃣ What is the purpose of Cluster Autoscaler vs Horizontal Pod Autoscaler (HPA)? When do both work together?
+
+7️⃣ How do you secure GKE clusters using Workload Identity? Why is it preferred over service account keys?
+
+8️⃣ Your cluster’s control plane is public and security team wants it private. How do you convert to a private cluster or create one safely?
+
+9️⃣ A microservice in the cluster must be accessible externally with HTTPS. Which GKE Load Balancer type will you choose and why?
+
+🔟 Your application needs persistent storage for pods. How do you choose between PD Standard, PD Balanced, and PD Extreme?
+
+1️⃣1️⃣ You need to inject environment variables and secrets securely. Compare ConfigMaps vs Secrets in GKE.
+
+1️⃣2️⃣ Your team wants to implement GitOps for GKE. Which tools or GCP services would you recommend and why?
+
+⸻

@@ -1,0 +1,21 @@
+ Post 8: Azure Cloud Interview 
+Intermediate Level (1–2 Years)
+
+So, you’ve moved past the basics — now it’s about proving your **hands-on Azure skills!** ☁️ 
+Interviewers at this level love asking scenario-based questions that show how you solve real-world problems. Let’s see how many you can answer 💭👇 
+
+💡 Common Azure Interview Questions for 1–2 Years Experience:
+1️⃣ You notice rising costs in your Azure account — how do you identify and reduce them? 
+2️⃣ What’s the difference between Azure Load Balancer and Application Gateway? 
+3️⃣ How do you implement Role-Based Access Control (RBAC) for a least‑privilege model? 
+4️⃣ Explain how you’d automate VM start/stop schedules to save on cost. 
+5️⃣ What are ARM templates and Bicep, and how are they different? 
+6️⃣ How do you securely store application secrets in Azure? 
+7️⃣ What’s the role of Application Insights and Log Analytics in monitoring? 
+8️⃣ Describe how you’d build a basic CI/CD pipeline using **Azure DevOps**. 
+9️⃣ What is a Managed Identity, and why is it preferred over storing credentials manually? 
+🔟 How do you handle high availability for your web apps and databases in Azure? 
+
+🎯 Pro Tip: 
+At this stage, your goal is to show you can **translate theory into practice**. 
+Hands-on labs and mini-projects — even small deployments — can make a huge difference in interviews. 💪 

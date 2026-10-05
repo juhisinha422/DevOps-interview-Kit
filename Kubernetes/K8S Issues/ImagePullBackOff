@@ -1,0 +1,4 @@
+ImagePullBackOff error occur when,
+1. Image not present in ECR repo
+2. Repo authentication failed 
+3. Image tag name failed to fetch image

@@ -1,0 +1,29 @@
+GitHub Actions Pipeline Issue I Faced (Docker Deployment)
+
+While working on a project using GitHub Actions to build and deploy a Docker container, I faced a confusing issue.
+
+❌ Problem
+The GitHub Actions workflow succeeded, Docker image was built and pushed successfully.
+But after deployment, the application was still running old code.
+
+Pipeline logs showed everything green ✅
+But the UI didn’t reflect the latest changes.
+
+🔍 Root Cause
+I was using the same Docker image tag (latest) for every build.
+During deployment, Docker reused the existing image, instead of pulling the new one.
+
+So technically:
+Pipeline ✔️
+Deployment ✔️
+Application ❌ (still old version)
+
+🛠️ Fix
+I changed the pipeline to:
+Use unique image tags (GitHub commit SHA / run number)
+Pull the updated image during deployment
+After that, every deployment reflected the latest changes correctly.
+
+🧠 Lesson Learned
+A successful pipeline doesn’t always mean a successful deployment.
+Versioning Docker images properly is mandatory in CI/CD.

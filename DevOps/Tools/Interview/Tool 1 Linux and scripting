@@ -1,0 +1,45 @@
+DevOps Interview Preparation 2–4 Years Experience | Tool 1
+ Linux + Bash Scripting (Intermediate Level)
+
+ Focus: Production Linux + Automation
+
+🔹 Linux Interview Questions (2–4 yrs)
+
+• Difference between soft link and hard link (with real use case)
+• Explain Linux boot process
+• What happens when a Linux system runs out of memory?
+• Zombie vs orphan process
+• How do you find which process is using high CPU or memory?
+• How do you troubleshoot a slow Linux server?
+• How does top, htop, vmstat, iostat help in production?
+• How do you check open ports and active connections?
+• Explain file permissions with real scenarios
+• What is ulimit and why is it important?
+• How do you manage log rotation?
+• How do you secure a Linux server?
+
+🔹 Bash Scripting (Intermediate)
+
+• Difference between #!/bin/bash and #!/bin/sh
+• How do you pass arguments to a shell script?
+• $@ vs $*
+• Exit codes and error handling
+• How do you write reusable bash scripts?
+• Functions in bash
+• set -e, set -x, set -o pipefail
+• How do you schedule scripts using cron?
+• Bash script for monitoring disk usage
+• Bash script for application health check
+• Bash vs Python — when to use which?
+
+💡 Interview Tip (2–4 yrs):
+Always add real examples like:
+👉 “I used a bash script to monitor disk usage and trigger alerts in production.”
+
+Interview Prep & Career Growth Support
+I am providing interview preparation & upskilling training for:
+
+2–4 years DevOps engineers
+ People stuck in the same role / company
+Professionals aiming for product-based companies
+ Engineers transitioning from Support / SysAdmin / Cloud Ops

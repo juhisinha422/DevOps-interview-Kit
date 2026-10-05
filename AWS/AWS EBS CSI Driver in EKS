@@ -1,0 +1,19 @@
+Deep Dive to AWS EBS CSI Driver in EKS ☁️
+
+◾Since the AWS EBS CSI Driver runs inside the EKS cluster, it needs permission to create and manage storage in AWS.
+
+◾The IAM Policy defines what the driver is allowed to do:
+  - ec2:CreateVolume
+  - ec2:AttachVolume
+  - ec2:DetachVolume
+  - ec2:DeleteVolume
+  - ec2:CreateSnapshot
+  - ec2:DescribeVolumes
+
+◾The policy alone is not enough.
+◾It must be attached to an IAM Role.
+◾Role the CSI Driver  assumes to get AWS access.
+◾In EKS, this is  done with IRSA.
+◾The CSI Driver runs with a Kubernetes ServiceAccount.
+That ServiceAccount is trusted by the IAM Role.
+◾When the CSI Driver needs to call AWS, it assumes that role and receives temporary AWS credentials.

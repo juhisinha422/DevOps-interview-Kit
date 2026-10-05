@@ -1,0 +1,8 @@
+𝐖𝐡𝐚𝐭 𝐢𝐬 𝐚 𝐂𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫 𝐑𝐮𝐧𝐭𝐢𝐦𝐞?
+
+A container runtime in Kubernetes is the software layer responsible for running containers on each node. It handles the container lifecycle, such as pulling images, starting and stopping containers, and ensuring they run as defined. Kubernetes communicates with the container runtime through the Container Runtime Interface (CRI).
+
+Some popular runtimes are:
+containerd (commonly used and lightweight)
+CRI-O (built specifically for Kubernetes)
+Docker (used previously, but now replaced in modern Kubernetes by CRI-compatible runtimes).

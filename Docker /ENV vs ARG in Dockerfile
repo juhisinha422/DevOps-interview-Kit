@@ -1,0 +1,70 @@
+𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐂𝐨𝐧𝐜𝐞𝐭𝐩𝐬:
+
+❓𝐄𝐍𝐕 𝐯𝐬 𝐀𝐑𝐆 𝐢𝐧 𝐃𝐨𝐜𝐤𝐞𝐫𝐟𝐢𝐥𝐞.
+
+🧩 1️⃣ 𝐏𝐮𝐫𝐩𝐨𝐬𝐞 — 𝐁𝐮𝐢𝐥𝐝-𝐓𝐢𝐦𝐞 𝐯𝐬 𝐑𝐮𝐧-𝐓𝐢𝐦𝐞
+
+🔧 ARG → Build-Time Variable
+Used only while building the Docker image.
+Once the image is built, ARG disappears.
+
+🌍 ENV → Run-Time Variable
+Lives inside the final container and is available during and after the build.
+
+💡 Think of it as:
+ARG = temporary construction material
+ENV = permanent furniture in the house
+
+🏗️ 2️⃣ 𝐖𝐡𝐞𝐫𝐞 𝐓𝐡𝐞𝐲 𝐋𝐢𝐯𝐞 — 𝐕𝐢𝐬𝐢𝐛𝐢𝐥𝐢𝐭𝐲 𝐒𝐜𝐨𝐩𝐞
+
+ARG
+• Available only in Dockerfile during build
+• NOT available inside the final image (unless copied to ENV)
+
+ENV
+• Available to the container at runtime
+• Visible to your application, scripts, processes, shells
+
+✔ ENV persists
+✘ ARG evaporates
+
+🔒 3️⃣ 𝐒𝐞𝐜𝐮𝐫𝐢𝐭𝐲 — 𝐖𝐡𝐚𝐭 𝐍𝐨𝐭 𝐭𝐨 𝐔𝐬𝐞
+
+❌ Never store secrets in ARG or ENV
+Both end up in the image history (docker history) or environment.
+
+➡ But if you must pass a temp value (like a build flag), use ARG, because ENV persists longer.
+
+🔄 4️⃣ 𝐔𝐬𝐞 𝐂𝐚𝐬𝐞 𝐅𝐢𝐭 — 𝐖𝐡𝐞𝐧 𝐭𝐨 𝐔𝐬𝐞 𝐖𝐡𝐚𝐭
+ARG — Use When:
+
+• Installing OS-level packages
+• Choosing tool versions at build
+• Passing build flags
+• Multi-stage build decisions
+
+Example:
+
+ARG NODE_VERSION=18
+FROM node:${NODE_VERSION}-slim
+
+ENV — Use When:
+
+• Setting app configs
+• Defining default runtime values
+• Exposing app settings
+
+Example:
+
+ENV NODE_ENV=production
+
+🚀 5️⃣ 𝐁𝐞𝐬𝐭 𝐏𝐫𝐚𝐜𝐭𝐢𝐜𝐞 — 𝐓𝐡𝐞 𝐇𝐲𝐛𝐫𝐢𝐝 𝐀𝐩𝐩𝐫𝐨𝐚𝐜𝐡
+
+The most professional Dockerfiles use ARG → ENV handoff:
+
+ARG APP_ENV=production
+ENV APP_ENV=${APP_ENV}
+
+🔥𝐆𝐨𝐥𝐝𝐞𝐧 𝐑𝐮𝐥𝐞:
+👉 Use ARG for building the image.
+👉 Use ENV for running the container.

@@ -1,0 +1,41 @@
+DevOps Interview Command Series — Maven (Day 6) ☕
+
+Maven is a core build & dependency management tool in DevOps pipelines.
+From CI builds to artifact versioning, Maven sits at the heart of Java-based delivery.
+
+If you’re preparing for DevOps / SRE / Cloud interviews, these are the Maven commands you must know:
+ mvn -version
+
+mvn validate
+mvn compile
+mvn test
+mvn package
+mvn install
+mvn deploy
+
+mvn clean
+mvn clean install
+mvn clean package
+
+mvn test -DskipTests
+mvn package -DskipTests
+
+mvn dependency:tree
+mvn dependency:list
+mvn dependency:analyze
+
+mvn help:effective-pom
+mvn help:effective-settings
+
+mvn -X
+mvn -U
+
+mvn sonar:sonar
+
+🎯 Interview Focus
+• Maven build lifecycle & phases
+• Dependency conflict resolution
+• Local vs remote repositories
+• CI/CD integration with Jenkins/GitLab
+• Debugging failed builds
+• Versioning & artifact promotion

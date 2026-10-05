@@ -1,0 +1,7 @@
+Which monitoring model allows the monitoring system to check if a target is down by failing to receive a response? 
+A. Push model
+B. Pull model
+C. Event model
+D. Batch model
+
+ANS B

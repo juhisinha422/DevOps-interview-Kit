@@ -1,0 +1,47 @@
+DevOps Interview Preparation Series — Terraform Scenarios 🌍
+#DevOps #Terraform #InfrastructureAsCode
+
+If you’re preparing for a DevOps or SRE interview, you must understand Infrastructure as Code (IaC) — and Terraform is the most powerful and widely used tool for it.
+
+Interviewers love Terraform because it tests your ability to automate infrastructure, manage state, and apply best practices across cloud environments.
+
+Here are real-world Terraform scenario-based interview questions to master before your next interview 👇
+
+What is Terraform and how is it different from CloudFormation or Ansible?
+Explain the Terraform architecture — provider, state file, backend, and modules.
+What is the purpose of the Terraform state file (terraform.tfstate)?
+What happens when your Terraform state file gets deleted accidentally?
+How do you manage and version-control Terraform state files securely?
+What is the difference between terraform apply and terraform plan?
+How do you roll back infrastructure changes in Terraform?
+Explain the difference between count and for_each in Terraform.
+What are Terraform workspaces and when should you use them?
+How can you share reusable Terraform configurations across projects?
+How do you pass variables and sensitive data securely into Terraform?
+Explain the difference between local and remote state backends.
+How do you store Terraform state securely in an S3 bucket with DynamoDB locking?
+What are data sources in Terraform and how do you use them?
+How do you import existing AWS resources into Terraform?
+Explain the concept of dependencies and resource graphs in Terraform.
+How can you use Terraform to create multiple environments (Dev, QA, Prod)?
+What is terraform refresh and when do you use it?
+How do you handle Terraform drift between real infrastructure and code?
+How can you restrict certain team members from modifying critical Terraform resources?
+Explain the difference between null_resource and provisioners.
+How can you run Terraform in a CI/CD pipeline (e.g., Jenkins or GitHub Actions)?
+How do you modularize Terraform code for better reusability and structure?
+How do you validate and lint Terraform code before deployment?
+How can you automate cost estimation before applying Terraform changes?
+How do you manage secrets and credentials when using Terraform with AWS?
+How do you ensure Terraform code follows best practices and security compliance?
+What are the challenges of using Terraform in a multi-cloud setup?
+Explain a real-world use case where you automated infrastructure using Terraform.
+What are some Terraform best practices you follow in production environments?
+
+Pro Tip:
+ Terraform is all about consistency and collaboration.
+ Focus on mastering:
+ 🔹 Remote backends & locking (S3 + DynamoDB)
+ 🔹 Reusable modules
+ 🔹 Drift detection
+ 🔹 IaC automation via CI/CD

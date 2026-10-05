@@ -1,0 +1,87 @@
+COMMAND EXPLANATION
+===================
+
+Command:
+nohup bash /alert/update_loki_ip.sh >> /var/log/loki_updater.log 2>&1 &
+
+
+WORD BY WORD BREAKDOWN
+----------------------
+
+1. nohup
+   ------
+   Full form : "No Hang Up"
+   Meaning   : Normally when you close your terminal or logout, all
+               processes started from that terminal get killed.
+               nohup prevents that from happening.
+               The script keeps running even after you close SSH session
+               or log out of the server.
+
+2. bash /alert/update_loki_ip.sh
+   --------------------------------
+   Meaning   : Simply runs the script using bash shell.
+               bash    = the shell used to execute the script
+               /alert/update_loki_ip.sh = full path of the script
+
+3. >>
+   ---
+   Meaning   : Append output to a file.
+               >> adds new output to the END of the file.
+               Old logs are NOT deleted.
+               If you used > instead of >> it would overwrite
+               and delete all old logs every time script runs.
+
+4. /var/log/loki_updater.log
+   --------------------------
+   Meaning   : This is the log file where all output gets saved.
+               Every log(), echo, print statement from the script
+               gets written into this file.
+               You can read it anytime using:
+               tail -f /var/log/loki_updater.log
+
+5. 2>&1
+   -----
+   Meaning   : Redirect error output to same place as normal output.
+               2  = error output (stderr)
+               1  = normal output (stdout)
+               2>&1 means send errors to same destination as normal output.
+               Without this, error messages would be lost and not
+               saved in the log file. With this, both normal logs
+               AND errors go into the same log file.
+
+6. &
+   --
+   Meaning   : Run the script in the background.
+               Without & your terminal would be stuck/blocked
+               until the script finishes (which is never because
+               the script runs forever in a while true loop).
+               With & the script runs in background and your
+               terminal is immediately free to use.
+
+
+FULL COMMAND SUMMARY
+--------------------
+
+   nohup                          = don't kill when terminal closes
+   bash /alert/update_loki_ip.sh  = run this script
+   >>                             = append (don't overwrite) logs
+   /var/log/loki_updater.log      = save output to this log file
+   2>&1                           = save errors to same log file
+   &                              = run in background
+
+
+IMPORTANT NOTE
+--------------
+In your current setup the script is managed by systemd service
+(loki-ip-updater.service) which handles all of this automatically.
+
+You should NOT run the nohup command anymore.
+Running it will create a DUPLICATE instance of the script.
+
+Always use systemctl commands instead:
+
+   Start   : systemctl start loki-ip-updater.service
+   Stop    : systemctl stop loki-ip-updater.service
+   Restart : systemctl restart loki-ip-updater.service
+   Status  : systemctl status loki-ip-updater.service
+   Logs    : tail -f /var/log/loki_updater.log

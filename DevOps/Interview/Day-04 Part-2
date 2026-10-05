@@ -1,0 +1,57 @@
+Day 4 takeaway (Part 2/2)-
+
+🔹 Scenario-Based Git Rebase & Merge Challenges
+❓Scenario 6: Splitting a Large Commit into Two
+👉 You committed a big change (config + code) as one commit, but your team wants them to be separate.
+Solution (Interactive Rebase + Edit):
+git rebase -i HEAD~1
+
+   Change pick → edit
+   Reset the commit but keep changes:
+     git reset HEAD^
+   Stage & commit config files:
+     git add config/*
+	 git commit -m "Update configs"
+
+   Stage & commit code files:
+     git add src/*
+	 git commit -m "Implement feature X"
+
+Continue rebase:
+    git rebase --continue
+
+❓Scenario 7: Aborting a Wrong Rebase
+👉 You started rebasing but realized you’re rebasing onto the wrong branch.
+Solution:
+git rebase --abort
+
+This resets your branch to the state before the rebase started.
+
+
+❓Scenario 8: Two Developers Push Different Histories
+👉 You rebased your branch and force-pushed. Meanwhile, your teammate merged the same branch without rebasing → histories diverge.
+Solution:
+   Sync with remote:
+      git fetch origin
+   Rebase on top of remote again:
+      git rebase origin/main
+   Resolve conflicts, if any.
+   Force push safely:
+      git push --force-with-lease
+
+
+❓Scenario 9: Undo a Rebase or Merge Gone Wrong
+👉 You messed up during rebase/merge and want to go back.
+Solution (Use Reflog):
+    git reflog
+    git reset --hard <commit-hash>
+
+    git reflog shows all HEAD movements, even across rebases and resets.
+    Reset to the commit before the rebase started.
+
+❓Scenario 10: Merge Commit vs Rebase for Release Branch
+👉 Team policy: release/* branches must keep merge commits (audit/history), but feature/* branches must be linear.
+Answer in Interview:
+    For release branches → use git merge to preserve the history of hotfixes and merges.
+
+    For feature branches → use git rebase to keep history clean before merging into main.

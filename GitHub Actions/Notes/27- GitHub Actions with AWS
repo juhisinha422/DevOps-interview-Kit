@@ -1,0 +1,29 @@
+GitHub Actions with AWS
+
+Today I learned how GitHub Actions integrates with AWS to automate cloud deployments securely.
+
+🔹 AWS Credentials
+GitHub Actions uses AWS credentials to:
+Authenticate with AWS services
+Access required resources
+Perform deployments
+Credentials are stored securely as secrets.
+
+🔹 Deploy to EC2 / ECS
+Workflows can:
+Deploy applications to EC2 instances
+Push container images to ECS
+Automate release pipelines
+This enables end-to-end cloud automation.
+
+🔹 Secure Authentication
+Best practices include:
+Using IAM roles
+Least privilege access
+Avoid hardcoded keys
+Security is critical in cloud CI/CD.
+
+🔥 3-Line Takeaway
+CI meets cloud.
+ Automation deploys faster.
+ Security protects access.

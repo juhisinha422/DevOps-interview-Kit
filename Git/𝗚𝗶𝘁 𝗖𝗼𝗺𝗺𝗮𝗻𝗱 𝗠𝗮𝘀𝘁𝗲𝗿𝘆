@@ -1,0 +1,50 @@
+🔥 𝗚𝗶𝘁 𝗖𝗼𝗺𝗺𝗮𝗻𝗱 𝗠𝗮𝘀𝘁𝗲𝗿𝘆: 𝗦𝗮𝘃𝗲 𝗧𝗶𝗺𝗲, 𝗔𝘃𝗼𝗶𝗱 𝗠𝗶𝘀𝘁𝗮𝗸𝗲𝘀 ⚡
+
+Most of us have — and that’s exactly why understanding a few essential Git commands can dramatically improve your workflow and confidence.
+
+Here’s a clear, practical cheat-sheet that helps you move faster while avoiding costly mistakes:
+
+📌 𝗙𝗶𝗹𝗲 & 𝗗𝗶𝗿𝗲𝗰𝘁𝗼𝗿𝘆 𝗕𝗮𝘀𝗶𝗰𝘀
+𝘁𝗼𝘂𝗰𝗵 <𝗳𝗶𝗹𝗲> — create a new empty file.
+𝗺𝗸𝗱𝗶𝗿 <𝗱𝗶𝗿> — create a new directory.
+`𝗹𝗹` / `𝗹𝗹 -𝗮 — list files, including hidden ones like `.git` when using `-a`.
+
+📌 𝗥𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 𝗦𝗲𝘁𝘂𝗽
+𝗴𝗶𝘁 𝗶𝗻𝗶𝘁 — initialize a new Git repository.
+𝘃𝗶𝗺 .𝗴𝗶𝘁𝗶𝗴𝗻𝗼𝗿𝗲 — edit or create a `.gitignore` file to exclude files you don’t want tracked.
+
+📌 𝗦𝘁𝗮𝗴𝗶𝗻𝗴 & 𝗖𝗼𝗺𝗺𝗶𝘁𝘁𝗶𝗻𝗴
+𝗴𝗶𝘁 𝘀𝘁𝗮𝘁𝘂𝘀 — check changes and see what’s staged or unstaged.
+𝗴𝗶𝘁 𝗮𝗱𝗱 . — stage all changes in the current directory (recommended).
+𝗴𝗶𝘁 𝗮𝗱𝗱 * — stage files matching patterns (may skip dotfiles).
+𝗴𝗶𝘁 𝗮𝗱𝗱 <𝗳𝗶𝗹𝗲> — stage specific files.
+𝗴𝗶𝘁 𝗰𝗼𝗺𝗺𝗶𝘁 -𝗺 "𝗺𝗲𝘀𝘀𝗮𝗴𝗲"— commit with a clear message.
+𝗴𝗶𝘁 𝗰𝗼𝗺𝗺𝗶𝘁 — open editor to write a detailed commit message.
+𝗴𝗶𝘁 𝗰𝗼𝗺𝗺𝗶𝘁 --𝗮𝗺𝗲𝗻𝗱 -𝗺 "𝗻𝗲𝘄 𝗺𝗲𝘀𝘀𝗮𝗴𝗲" — update your last commit (avoid for pushed commits).
+
+📌 𝗥𝗲𝘃𝗶𝗲𝘄𝗶𝗻𝗴 𝗪𝗼𝗿𝗸
+𝗴𝗶𝘁 𝗹𝗼𝗴 — view the commit history.
+𝗴𝗶𝘁 𝗹𝗼𝗴 --𝗼𝗻𝗲𝗹𝗶𝗻𝗲 — compact, easy-to-read history.
+𝗴𝗶𝘁 𝘀𝗵𝗼𝘄 <𝗰𝗼𝗺𝗺𝗶𝘁> — view details of a specific commit.
+𝗰𝗮𝘁 <𝗳𝗶𝗹𝗲> — quickly preview file contents.
+
+📌 𝗕𝗿𝗮𝗻𝗰𝗵𝗶𝗻𝗴 & 𝗡𝗮𝘃𝗶𝗴𝗮𝘁𝗶𝗼𝗻
+𝗴𝗶𝘁 𝗯𝗿𝗮𝗻𝗰𝗵 — list or create branches.
+𝗴𝗶𝘁 𝗰𝗵𝗲𝗰𝗸𝗼𝘂𝘁 <𝗯𝗿𝗮𝗻𝗰𝗵> — switch branches.
+𝗴𝗶𝘁 𝗰𝗵𝗲𝗰𝗸𝗼𝘂𝘁 -𝗯 <𝗯𝗿𝗮𝗻𝗰𝗵> — create and switch to a new branch instantly.
+𝗴𝗶𝘁 𝗺𝗲𝗿𝗴𝗲 <𝗯𝗿𝗮𝗻𝗰𝗵> — merge another branch into your current one.
+𝗴𝗶𝘁 𝗯𝗿𝗮𝗻𝗰𝗵 -𝗱 <𝗯𝗿𝗮𝗻𝗰𝗵> — safely delete a merged branch.
+𝗴𝗶𝘁 𝗯𝗿𝗮𝗻𝗰𝗵 -𝗗 <𝗯𝗿𝗮𝗻𝗰𝗵> — force delete a branch (use with caution).
+
+📌 𝗨𝗻𝗱𝗼𝗶𝗻𝗴 & 𝗥𝗲𝗰𝗼𝘃𝗲𝗿𝘆
+𝗴𝗶𝘁 𝗿𝗲𝘀𝗲𝘁 --𝘀𝗼𝗳𝘁 𝗛𝗘𝗔𝗗~𝟭 — undo 1 commit but keep changes staged.
+𝗴𝗶𝘁 𝗿𝗲𝘀𝗲𝘁 --𝗵𝗮𝗿𝗱 𝗛𝗘𝗔𝗗~𝟭 — undo and discard changes (dangerous).
+𝗴𝗶𝘁 𝗿𝗲𝗳𝗹𝗼𝗴` — view all HEAD movements; perfect for recovering “lost” commits.
+𝗴𝗶𝘁 𝗰𝗵𝗲𝗿𝗿𝘆-𝗽𝗶𝗰𝗸 <𝗰𝗼𝗺𝗺𝗶𝘁>— apply a specific commit to your current branch.
+
+💡 𝗣𝗿𝗼 𝗧𝗶𝗽:
+Before using `--hard` resets or force deletes, always double-check with:
+`git log --oneline` and `git reflog`.
+
+𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆:
+Mastering these commands doesn’t just make you faster — it makes you safer. A strong Git foundation helps avoid mistakes, recover quickly, and keep your workflow clean.

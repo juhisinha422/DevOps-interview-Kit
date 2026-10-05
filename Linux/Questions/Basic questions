@@ -1,0 +1,39 @@
+Q. How do you find the 5 largest files in a directory (e.g., /var/log)?
+
+Answer:- find /var/log -type f -exec du -h {} + | sort -rh | head -n 5
+
+Q How do you check which process is using the most memory or CPU?
+
+Answer: ps aux --sort=-%mem | head
+
+Q How do you monitor live logs of a running application?
+
+Answer: tail -f /var/log/syslog
+
+Q. How do you check which ports are open and which process is using them?
+
+Answer: sudo netstat -tulnp
+
+Q. How do you find all files modified in the last 24 hours?
+
+Answer: find /home -type f -mtime -1
+
+Q. How do you check disk usage of all directories under /var?
+
+Answer: du -h --max-depth=1 /var
+
+Q. How do you extract specific columns from a file (e.g., access.log)?
+
+Answer: awk '{print $1, $9}' access.log
+
+Q. How do you replace a word in a file without opening it?
+
+Answer: sed -i 's/oldword/newword/g' file.txt
+
+Q. How do you find the number of times the word “error” appears in a log file?
+
+Answer: grep -o "error" /var/log/syslog | wc -l
+
+Q. How do you check which services are running or failed on a system?
+
+Answer: systemctl list-units --type=service --state=running
