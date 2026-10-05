@@ -1,0 +1,26 @@
+How do you implement cross-account access in Amazon Web Services using IAM roles? 
+ 
+Implementing cross-account access in AWS involves a "trusting" account (the resource owner) and a "trusted" account (where the users live).
+
+1.In IAM Console Choose Create role and select AWS account as the trusted entity type.
+  
+2.Enter the Account ID of the "trusted" account (where our users are). 
+
+3.Attach Permission Policies that define what the role can do (e.g., AmazonS3ReadOnlyAccess).
+
+4.Name the role and take note of its ARN (e.g., arn:aws:iam::Trusting-Account-ID:role/CrossAccountRole).
+
+5.In the account where our users live, select the specific user or group that needs access. 
+
+6.Attach an Identity-based Policy (inline or managed) that allows the sts:AssumeRole action. 
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Allow",
+    "Action": "sts:AssumeRole",
+    "Resource": "arn:aws:iam::Trusting-Account-ID:role/CrossAccountRole"
+  }
+}
+
+7.Log in to the trusted account, click our username in the top right, select Switch Role, and enter the trusting account ID and role name.
+

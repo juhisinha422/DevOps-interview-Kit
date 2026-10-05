@@ -1,0 +1,8 @@
+Which PromQL function is commonly used to calculate how quickly a counter metric increases over time? 
+
+A. avg()
+B. sum()
+C. rate()
+D. count()
+
+ANS C

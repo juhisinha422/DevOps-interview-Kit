@@ -1,0 +1,86 @@
+🚀 𝗗𝗮𝘆 𝟭𝟱/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗕𝗲𝗶𝗻𝗴 𝗞𝗶𝗹𝗹𝗲𝗱 𝗪𝗶𝘁𝗵 𝗢𝗢𝗠𝗞𝗶𝗹𝗹𝗲𝗱 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗖𝗵𝗲𝗰𝗸?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your production pod is restarting frequently, and you notice the container status shows OOMKilled. How will you troubleshoot it?”
+
+I wouldn't simply increase the memory limit immediately.
+
+First, I would understand why the container is consuming more memory than expected.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Confirm the OOMKilled status
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Look for:
+
+Reason: OOMKilled
+
+2️⃣ Check current resource usage
+
+kubectl top pod <pod-name> -n <namespace>
+
+Compare actual usage with the configured memory limit.
+
+3️⃣ Check resource requests & limits
+
+kubectl get pod <pod-name> -o yaml
+
+Look for:
+
+resources:
+  requests:
+    memory: "512Mi"
+  limits:
+    memory: "1Gi"
+
+If the application exceeds its memory limit, Kubernetes can terminate the container.
+
+4️⃣ Check application logs
+
+kubectl logs <pod-name> --previous -n <namespace>
+
+Look for:
+
+🔹 Memory-related errors
+🔹 Large requests
+🔹 Memory leaks
+🔹 Unexpected traffic
+🔹 Recent application changes
+
+5️⃣ Check whether usage is increasing over time
+
+I would use monitoring metrics to determine whether memory usage is:
+
+📈 Gradually increasing → possible memory leak
+📈 Suddenly increasing → traffic/configuration/change
+📊 Consistently near the limit → limit may be too low
+
+6️⃣ Check recent changes
+
+I would investigate recent:
+
+🔹 Deployments
+🔹 Configuration changes
+🔹 Traffic increases
+🔹 Application/library changes
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+OOMKilled → Usage → Limits → Logs → Trend → Recent Changes → Root Cause
+
+Only after understanding the cause would I decide whether to:
+
+✅ Fix an application memory leak
+✅ Optimize configuration
+✅ Adjust resource limits
+✅ Scale the application
+✅ Work with the development team
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Don't treat OOMKilled by simply increasing memory.

@@ -1,0 +1,36 @@
+📌 DevSecOps Interview Questions (3+ Years) – Ascent
+
+	1.	What is a Blue-Green Deployment? How does it reduce risk?
+	2.	How would you monitor and alert on a highly distributed microservices application running on Kubernetes?
+	3.	How would you securely inject sensitive configuration (database passwords, API keys) into a Kubernetes pod? Compare different approaches.
+	4.	What are the challenges of managing Terraform state at scale and how do you solve them?
+	5.	You notice high latency in production after a recent deployment. Walk through your troubleshooting steps in a Kubernetes environment.
+	6.	Write a complete Kubernetes Deployment + Service YAML for a microservice.
+	7.	Write a multi-stage Dockerfile for a Go or Java application to keep the final image small.
+	8.	How do you handle secrets securely when writing Dockerfiles and Kubernetes manifests?
+	9.	A candidate wrote this Dockerfile. What issues do you see and how would you improve it?
+	10.	A new version of your application is failing to start after deployment. The pods are in CrashLoopBackOff. What would you check in the Deployment YAML and how would you debug it?
+	11.	You run docker run nginx but the container starts and immediately exits. What are the first two things you would check and why?
+	12.	A Docker image build fails with “permission denied” when doing RUN apt-get update. What is the likely cause and how do you fix it?
+	13.	A container is running but you cannot access it on the exposed port. What are the first checks?
+	14.	After deploying a new version, pods are in CrashLoopBackOff. Walk through your troubleshooting steps.
+	15.	After enabling a new NetworkPolicy, some pods can no longer communicate with each other. How do you debug this?
+
+⸻
+
+📌 Cloud / AWS / Architecture Questions
+	16.	What is the difference between a Region and an Availability Zone (AZ) in AWS/Azure/GCP?
+	17.	What is the difference between Horizontal Scaling and Vertical Scaling? When would you choose each?
+	18.	How do you manage secrets securely in the cloud?
+	19.	How do you encrypt data at rest and in transit in AWS?
+	20.	What is Auto Scaling? Explain how it works with an example.
+	21.	Compare AWS S3, EBS, and EFS. When would you use each?
+	22.	Explain AWS IAM Roles vs IAM Users vs IAM Groups. Why should applications running on EC2 use IAM Roles instead of embedded credentials?
+	23.	A load balancer is healthy but traffic is not reaching EC2. Why?
+	24.	Scenario: E-commerce platform expects a spike during a flash sale. Design a scalable, highly available architecture using AWS services.
+	25.	Design a secure, multi-region, multi-account cloud architecture for a healthcare application compliant with regulations like HIPAA.
+	26.	Production application on AWS EKS is experiencing intermittent high latency. What could be the causes and how would you troubleshoot?
+	27.	Describe how AWS Lambda handles concurrency. What are Reserved Concurrency and Provisioned Concurrency?
+	28.	Explain how you would design a highly available 3-tier web application in AWS. What deployment strategies would you use?
+	29.	Describe a CI/CD pipeline you have built on AWS. Which services did you use and what were the stages?
+	30.	Describe at least five strategies you have used to reduce AWS costs in production (services, pricing models, architecture changes).

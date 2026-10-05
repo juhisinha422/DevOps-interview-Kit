@@ -1,0 +1,89 @@
+Namespace Commands 
+----------------------------------------
+Q1: 1. How to see the namespaces on the cluster?
+We use the command: # kubectl get namespaces
+This command displays all available namespaces in the cluster along with their status and age.
+
+Q2: How do you create a namespace in Kubernetes?
+We use: kubectl create namespace <namespace-name>
+This command creates a new namespace to logically separate resources inside the cluster.
+# kubectl create namespace dev
+
+Q3: How do you create a namespace using YAML?
+We define a Namespace object in a YAML file and apply it using kubectl.
+This approach is preferred in real-world DevOps because it supports Infrastructure as Code (IaC) and version control.
+
+apiVersion: v1
+kind: Namespace
+metadata:
+ name: prod
+ labels:
+  env: production
+  team: devops
+  
+kubectl apply -f namespace.yaml
+kubectl get ns
+kubectl describe ns prod
+kubectl get ns --show-labels
+
+Q4: How do you describe a namespace in Kubernetes?
+We use: kubectl describe namespace <namespace-name>
+This command provides detailed information about a specific namespace, including labels, annotations, resource quotas, and events.
+
+Q5: How do you delete a namespace in Kubernetes?
+We use: kubectl delete namespace <maspace-name>
+This command deletes the entire namespace along with all resources (pods, services, deployments, etc.) inside it.
+
+kubectl detete ns dev
+Delete using YAML: kubectl delete -f namespace.yaml
+kubectl get ns
+
+Q6: How do you get all resources in a specific namespace?
+We use: kubectl get all -n dev
+This command lists all major resources (pods, services, deployments, replica sets, etc.) in the given namespace
+
+kubectl get pods -n dev
+kubectl get svc -n dev
+
+Q7: What is kubectl apply -f app.yaml -n <namespace-name>?
+         (or)
+ How to create pod in specipic name space 
+we use kubectl apply -f app.yaml -n <namespace-name>
+This command is used to create or update Kubernetes resources defined in a YAML file inside a specific namespace.
+The -n flag ensures the resources are deployed to the target namespace instead of default.
+
+pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+ name: nginx-pod
+ labels:
+  app: nginx
+spec:
+ containers:
+ - name: nginx-container
+  image: nginx:latest
+  ports:
+  - containerPort: 80
+
+
+ Create the Pod : kubectl apply -f pod.yml
+ kubectl apply -f pod.yaml -n <namespace-name>
+ kubectl get pods
+ kubectl get all -n default
+ 
+ kubectl get pods -A
+ 
+ 
+Q8: How do you check the current namespace in Kubernetes?
+We use the command kubectl config view --minify | grep namespace to check the current active namespace.
+It shows the namespace set in the current context.
+If no namespace is set, Kubernetes uses the default namespace.
+This helps ensure commands are executed in the correct namespace.
+
+# kubectl config view --minify | grep namespace
+
+Q9: How do you switch from one namespace to another in Kubernetes?
+kubectl config set-context --current --namespace=dev
+kubectl config view --minify | grep namespace

@@ -1,0 +1,70 @@
+𝗗𝗮𝘆 𝟮𝟲/𝟯𝟬 – 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗘𝗿𝗿𝗼𝗿 𝗛𝗮𝗻𝗱𝗹𝗶𝗻𝗴 & 𝗥𝗲𝘀𝗶𝗹𝗶𝗲𝗻𝘁 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻
+
+Continuing my #30DaysOfAnsible journey! 🔥
+
+Today I focused on Error Handling in Ansible — because production automation should not simply fail; it should handle failures intelligently.
+
+❌ 𝗪𝗵𝗮𝘁 𝗛𝗮𝗽𝗽𝗲𝗻𝘀 𝗪𝗵𝗲𝗻 𝗮 𝗧𝗮𝘀𝗸 𝗙𝗮𝗶𝗹𝘀?
+
+By default, when a task fails on a host, Ansible stops executing subsequent tasks for that host.
+
+But we can control this behavior.
+
+🛠️ 𝗶𝗴𝗻𝗼𝗿𝗲_𝗲𝗿𝗿𝗼𝗿𝘀
+
+Continue execution even when a task fails:
+
+- name: Run command
+  ansible.builtin.command: /some/command
+  ignore_errors: true
+
+⚠️ Use this carefully — ignoring every error can hide real problems.
+
+🎯 𝗳𝗮𝗶𝗹𝗲𝗱_𝘄𝗵𝗲𝗻
+
+Define your own failure condition:
+
+- name: Check application
+  ansible.builtin.command: /usr/local/bin/check_app
+  register: result
+  failed_when: result.rc != 0
+
+🔄 𝗯𝗹𝗼𝗰𝗸 / 𝗿𝗲𝘀𝗰𝘂𝗲 / 𝗮𝗹𝘄𝗮𝘆𝘀
+
+One of the most useful patterns for structured error handling:
+
+- block:
+    - name: Deploy application
+      ansible.builtin.command: /opt/deploy.sh
+
+  rescue:
+    - name: Handle deployment failure
+      ansible.builtin.debug:
+        msg: "Deployment failed!"
+
+  always:
+    - name: Cleanup
+      ansible.builtin.debug:
+        msg: "Running cleanup..."
+
+𝗯𝗹𝗼𝗰𝗸 → Tasks that may fail
+𝗿𝗲𝘀𝗰𝘂𝗲 → What to do if they fail
+𝗮𝗹𝘄𝗮𝘆𝘀 → Runs regardless of success or failure
+
+🚨 𝗪𝗵𝘆 𝗘𝗿𝗿𝗼𝗿 𝗛𝗮𝗻𝗱𝗹𝗶𝗻𝗴 𝗠𝗮𝘁𝘁𝗲𝗿𝘀
+
+In real DevOps environments, deployments can fail because of:
+
+🔌 Network issues
+💾 Disk problems
+🔐 Permission issues
+📦 Package failures
+⚙️ Application errors
+
+Proper error handling helps automation recover, report failures clearly, and perform cleanup instead of leaving systems in an unexpected state.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+𝗥𝗲𝗹𝗶𝗮𝗯𝗹𝗲 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻 𝗶𝘀𝗻'𝘁 𝗮𝗯𝗼𝘂𝘁 𝗮𝘃𝗼𝗶𝗱𝗶𝗻𝗴 𝗳𝗮𝗶𝗹𝘂𝗿𝗲𝘀.
+
+It's about handling failures predictably when they happen. 🚀

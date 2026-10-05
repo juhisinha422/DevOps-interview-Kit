@@ -1,0 +1,54 @@
+𝗗𝗮𝘆 𝟮𝟭/𝟯𝟬 – 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗗𝗲𝗯𝘂𝗴𝗴𝗶𝗻𝗴 & 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴
+
+Continuing my #30DaysOfAnsible journey! 🔥
+
+Today I focused on something every DevOps Engineer needs to become comfortable with — debugging Ansible playbooks.
+
+Even well-written automation can fail. The important skill is knowing where and why it failed.
+
+🔍 𝗖𝗼𝗺𝗺𝗼𝗻 𝗗𝗲𝗯𝘂𝗴𝗴𝗶𝗻𝗴 𝗧𝗼𝗼𝗹𝘀
+
+𝗗𝗲𝗯𝘂𝗴 𝗠𝗼𝗱𝘂𝗹𝗲
+Useful for printing variables and understanding what Ansible is seeing.
+
+- name: Show variable
+  ansible.builtin.debug:
+    var: my_variable
+
+𝗖𝗵𝗲𝗰𝗸 𝗠𝗼𝗱𝗲
+
+Before making changes:
+
+ansible-playbook site.yml --check
+
+𝗗𝗶𝗳𝗳 𝗠𝗼𝗱𝗲
+
+See what will change:
+
+ansible-playbook site.yml --check --diff
+
+𝗩𝗲𝗿𝗯𝗼𝘀𝗲 𝗢𝘂𝘁𝗽𝘂𝘁
+
+For deeper troubleshooting:
+
+ansible-playbook site.yml -vvv
+
+Ansible verbosity levels can help identify problems with variables, connections, modules, and task execution.
+
+🛠️ 𝗔 𝗦𝗶𝗺𝗽𝗹𝗲 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check the failed task
+2️⃣ Read the error message carefully
+3️⃣ Verify variables
+4️⃣ Check inventory and connectivity
+5️⃣ Use debug when needed
+6️⃣ Run with -vvv for detailed output
+7️⃣ Fix → test → run again
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Don't just look at what failed.
+
+Understand why it failed.
+
+Good Ansible automation isn't only about writing playbooks — it's also about being able to troubleshoot them quickly in real-world environments. 🚀

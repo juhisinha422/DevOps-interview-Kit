@@ -1,0 +1,114 @@
+LINUX COMMAND LINE CHEAT SHEET
+
+BASIC NAVIGATION
+
+→ pwd = Show current directory
+→ ls = List files and directories
+→ ls -l = List with details
+→ ls -a = Show hidden files
+→ cd directory = Change directory
+→ cd .. = Go to parent directory
+→ cd ~ = Go to home directory
+→ clear = Clear terminal
+
+FILE & DIRECTORY MANAGEMENT
+
+→ touch file = Create empty file
+→ mkdir dir = Create directory
+→ mkdir -p dir/subdir = Create nested directories
+→ rm file = Delete file
+→ rm -r dir = Delete directory
+→ cp src dest = Copy file
+→ cp -r src dest = Copy directory
+→ mv src dest = Move or rename
+→ stat file = Show file details
+
+VIEWING & READING FILES
+
+→ cat file = View file contents
+→ less file = Scroll through file
+→ more file = View page by page
+→ head file = First 10 lines
+→ tail file = Last 10 lines
+→ tail -f file = Live log updates
+→ wc file = Count words/lines/chars
+
+PERMISSIONS & OWNERSHIP
+
+→ chmod 755 file = Change permissions
+→ chmod +x file = Make executable
+→ chown user file = Change owner
+→ chown user:group file = Change owner & group
+→ whoami = Current user
+
+SEARCH & FIND
+
+→ find . -name file = Find file
+→ grep "text" file = Search in file
+→ grep -r "text" dir = Recursive search
+→ which command = Locate command
+→ locate file = Fast file search
+
+PROCESS MANAGEMENT
+
+→ ps = Show processes
+→ ps aux = All processes
+→ top = Live monitor
+→ htop = Advanced monitor
+→ kill PID = Kill process
+→ kill -9 PID = Force kill
+→ jobs = Background jobs
+→ bg = Run in background
+→ fg = Bring to foreground
+
+NETWORKING COMMANDS
+
+→ ip a = Show interfaces
+→ ping host = Test connectivity
+→ curl url = Fetch data
+→ wget url = Download file
+→ netstat -tulpn = Open ports
+→ ss -tulpn = Modern netstat
+
+DISK & SYSTEM INFO
+
+→ df -h = Disk usage
+→ du -sh dir = Folder size
+→ free -h = Memory usage
+→ uname -a = System info
+→ uptime = System uptime
+→ lsblk = List disks
+
+PACKAGE MANAGEMENT (DEBIAN/UBUNTU)
+
+→ sudo apt update = Update packages
+→ sudo apt upgrade = Upgrade packages
+→ sudo apt install pkg = Install package
+→ sudo apt remove pkg = Remove package
+→ apt search pkg = Search packages
+
+COMPRESSION & ARCHIVES
+
+→ tar -cvf file.tar dir = Create archive
+→ tar -xvf file.tar = Extract archive
+→ zip file.zip files = Create zip
+→ unzip file.zip = Extract zip
+→ gzip file = Compress file
+→ gunzip file.gz = Decompress file
+
+REDIRECTION & PIPES
+
+→ command > file = Redirect output
+→ command >> file = Append output
+→ command < file = Input redirection
+→ command1 | command2 = Pipe commands
+→ tee file = Output to file + terminal
+
+OTHER USEFUL COMMANDS
+
+→ history = Command history
+→ !! = Repeat last command
+→ alias ll='ls -la' = Create alias
+→ man command = Manual page
+→ sudo command = Run as admin
+→ exit = Exit terminal

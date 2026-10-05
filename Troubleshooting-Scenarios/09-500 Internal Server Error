@@ -1,0 +1,96 @@
+Day 9 of my DevOps Troubleshooting Series
+
+🔥 Real-Time DevOps Scenario: 500 Internal Server Error
+
+Imagine users can access the application, but suddenly some requests are returning:
+
+500 Internal Server Error
+
+As a DevOps Engineer, I wouldn't immediately restart the application. I would first identify the actual root cause.
+
+🔍 My Troubleshooting Approach:
+
+1️⃣ Check Application Logs
+
+Start by checking the application logs for the exact exception or error.
+
+Look for:
+• Application exceptions
+• Database errors
+• Configuration issues
+• OutOfMemory errors
+• Dependency failures
+
+2️⃣ Check Recent Deployments
+
+Find out whether the issue started after a recent deployment.
+
+I would verify:
+• Latest code changes
+• Configuration changes
+• Environment variables
+• Dependency updates
+
+3️⃣ Check Application Health
+
+Even when the service is running, the application can still return 500 errors.
+
+```bash
+systemctl status <application-service>
+```
+
+4️⃣ Check Database Connectivity
+
+Verify whether the application can communicate with the database.
+
+```bash
+nc -zv <db-host> <db-port>
+```
+
+Also check database availability, credentials, connection pool, and slow queries.
+
+5️⃣ Check Environment Variables
+
+A missing or incorrect environment variable can cause application requests to fail.
+
+```bash
+env | grep <VARIABLE_NAME>
+```
+
+6️⃣ Check Server Resources
+
+```bash
+top
+free -m
+df -h
+```
+
+Check CPU, memory, and disk utilization.
+
+🧩 Example Root Cause
+
+Suppose the application was working normally before a deployment.
+
+After the deployment, users started receiving 500 errors.
+
+The application logs show that it cannot connect to the database because the database password/configuration was incorrect.
+
+🛠️ Resolution
+
+✅ Identify the exact exception from logs
+✅ Check recent deployment and configuration changes
+✅ Correct the database configuration
+✅ Restart/redeploy if required
+✅ Test the application
+✅ Monitor logs and metrics after recovery
+✅ Document the root cause and preventive action
+
+💡 Key Takeaway
+
+A 500 Internal Server Error doesn't necessarily mean the server is down.
+
+The important thing is to identify where the request is failing:
+
+Client → Load Balancer/Nginx → Application → Database/Dependencies → Logs
+
+As a DevOps Engineer, I believe the goal is not just to restore the application, but to understand why it failed and how to prevent it from happening again.

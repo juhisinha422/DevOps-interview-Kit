@@ -1,0 +1,15 @@
+What is journaling ? Difference between ext2 and ext fs?
+ 
+Journaling is a file system feature that protects data against corruption caused by unexpected system crashes or power failures.
+
+1. When a computer modifies a file, it must update both the file's actual data and its metadata (such as file size, timestamps, and storage directory pointers). If a power loss occurs midway through this process, the file system becomes inconsistent and corrupted 
+
+2.The system writes the intended changes to a dedicated, circular log on the disk (the journal). 
+
+3.Once the log entry is safe, the system marks the transaction as committed.
+
+4.The system safely copies the changes to their permanent locations on the storage drive. 
+
+5.Ext and Ext2 represent the first two historical generations of this family. The ext (Extended File System) family is a series of data layouts built natively for the Linux kernel. 
+
+6.The original ext was severely constrained, locking users to a maximum drive and file size of just 2 GB. Ext2 vastly expanded the inode architecture to accommodate terabyte-scale storage tiers. 

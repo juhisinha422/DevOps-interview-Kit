@@ -1,0 +1,15 @@
+Ansible Roles
+As playbooks grow, things can become messy.
+Roles help organize automation in a clean structure.
+Example role structure:
+roles/
+nginx/
+tasks/
+handlers/
+templates/
+vars/
+Then simply call the role:
+roles:
+nginx
+Reusable, modular, and production-ready automation.
+Roles make Ansible projects scalable.

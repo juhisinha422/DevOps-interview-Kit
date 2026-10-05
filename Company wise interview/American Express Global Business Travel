@@ -1,0 +1,56 @@
+deeply technical interview with American Express Global Business Travel for a DevOps Platform Engineer role — and honestly, this was one of the most real-world, scenario-driven DevOps discussions I’ve faced so far.
+Below were the questions!
+
+Tell us about yourself.
+Explain the Jenkins architecture used in your current project.
+How many Jenkins masters and agents do you have?
+How did you achieve high availability for Jenkins master?
+Is your Jenkins setup truly highly available?
+How would you add a new dynamic Jenkins agent?
+How does Jenkins pod template pull code from GitHub?
+Where do you specify the GitHub repository in Jenkins pipeline?
+Where do you specify the SCM checkout step?
+How does code pulling work in your current Jenkins environment?
+What kind of day-to-day Jenkins issues do you face?
+How did you reduce Jenkins deployment/pipeline time?
+Explain the relation between container image size and startup time.
+How are image size and startup time related?
+How much time does it take to download a 1GB Docker image?
+Explain bandwidth in simple terms.
+How does bandwidth affect Kubernetes image pulling?
+How can you optimize bandwidth usage for faster image downloads?
+How do you improve container image pull speed in Kubernetes?
+Do you manage EKS clusters?
+How do you handle CrashLoopBackOff issues?
+Explain StatefulSets backed by EBS.
+What happens to EBS data if the EC2 instance is deleted?
+How does a new pod access the old EBS volume data?
+How do PVC and PV work together?
+How does Kubernetes reattach EBS volumes to new nodes?
+How do multiple pods running on different EC2 machines access shared data?
+Why can’t the same EBS volume be attached to multiple EC2 instances?
+How do you ensure data consistency across pods?
+How do pods access storage after node replacement?
+How do additional pods on different EC2 machines access EBS data?
+What is the relationship between Docker image size and container startup time?
+Why do larger Docker images increase startup latency?
+How did you optimize Docker image size?
+Why is smaller image size important in Kubernetes?
+Why do we push Docker images to ECR?
+What happens if images are not pushed to ECR?
+Have you worked on artifact repository tools?
+Which artifact repository tools have you used?
+Where are your microservices artifacts maintained?
+What is the artifact format used in ECS?
+How do you manage artifact versioning and cleanup?
+Have you created CI/CD pipelines for .NET applications?
+Have you created pipelines for scripting languages?
+Which scripting languages have you worked with?
+How do you automate operational tasks using Python/Bash?
+How do you manage GitHub IP whitelist automation?
+How do you automate firewall or proxy updates?
+How do you validate and rollback whitelist updates?
+How do you secure Jenkins credentials and integrations?
+What observability tools have you worked with?
+How do you monitor Jenkins and Kubernetes environments?
+How do you manage CI/CD platform scalability?

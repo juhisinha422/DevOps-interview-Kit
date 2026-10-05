@@ -1,0 +1,19 @@
+𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼-𝗕𝗮𝘀𝗲𝗱 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗶𝗻 𝗦𝗥𝗘/𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝘀𝘂𝗽𝗽𝗼𝗿𝘁
+In SRE & Production Support roles, interviews are rarely about theory —
+they test 𝗵𝗼𝘄 𝘆𝗼𝘂 𝘁𝗵𝗶𝗻𝗸 𝗱𝘂𝗿𝗶𝗻𝗴 𝗿𝗲𝗮𝗹 𝗶𝗻𝗰𝗶𝗱𝗲𝗻𝘁𝘀.
+Here are some practical scenario-based questions with answers that every SRE/Support engineer should know 👇
+
+𝟭. 𝗔 𝗰𝗿𝗶𝘁𝗶𝗰𝗮𝗹 𝗮𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗶𝘀 𝗿𝘂𝗻𝗻𝗶𝗻𝗴 𝘀𝗹𝗼𝘄. 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝘁𝗵𝗲 𝗳𝗶𝗿𝘀𝘁 𝟱 𝘀𝘁𝗲𝗽𝘀 𝘆𝗼𝘂 𝘄𝗼𝘂𝗹𝗱 𝘁𝗮𝗸𝗲 𝘁𝗼 𝗶𝗻𝘃𝗲𝘀𝘁𝗶𝗴𝗮𝘁𝗲?
+
+🟢 𝗚𝗮𝘁𝗵𝗲𝗿 𝗜𝗻𝗳𝗼𝗿𝗺𝗮𝘁𝗶𝗼𝗻 (𝗧𝗿𝗶𝗮𝗴𝗲): I'd first ask for the specifics: Which part of the application is slow? Since when? Is it affecting all users or just some? I'd check for any recent deployments or changes.
+🟢 𝗖𝗵𝗲𝗰𝗸 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗟𝗼𝗴𝘀 (𝗞𝗶𝗯𝗮𝗻𝗮/𝗚𝗿𝗮𝗳𝗮𝗻𝗮): I'd immediately go to Kibana and filter for the impacted service. I'll look for an increase in error rates (5xx status codes), high response times, or specific exceptions like "TimeoutExceptions" or "OutOfMemoryError".
+🟢 𝗖𝗵𝗲𝗰𝗸 𝗦𝘆𝘀𝘁𝗲𝗺 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 (𝗟𝗶𝗻𝘂𝘅): I'd use commands like "top" or "htop" to check for high CPU or memory usage. I'll also check disk space with "df -h" and network I/O to see if there's a resource bottleneck.
+🟢 𝗖𝗵𝗲𝗰𝗸 𝗗𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗣𝗲𝗿𝗳𝗼𝗿𝗺𝗮𝗻𝗰𝗲 (𝗦𝗤𝗟): I would check the database monitoring tools for long-running queries. I'd run an "EXPLAIN PLAN" on those queries to see if they are using indexes properly.
+🟢 𝗖𝗵𝗲𝗰𝗸 𝗗𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝗦𝗲𝗿𝘃𝗶𝗰𝗲𝘀 (𝗠𝗶𝗰𝗿𝗼𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀): I'd check the health of downstream services it communicates with. If our service is waiting for a response from another slow service, the problem might be there. I'd use the "traceId" in Kibana to follow the request's journey.
+
+𝟮. 𝗗𝗲𝘀𝗰𝗿𝗶𝗯𝗲 𝗮 𝘁𝗶𝗺𝗲 𝘆𝗼𝘂 𝗵𝗮𝗻𝗱𝗹𝗲𝗱 𝗮 𝗺𝗮𝗷𝗼𝗿 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗶𝗻𝗰𝗶𝗱𝗲𝗻𝘁. 𝗪𝗵𝗮𝘁 𝘄𝗮𝘀 𝘁𝗵𝗲 𝗶𝘀𝘀𝘂𝗲, 𝘄𝗵𝗮𝘁 𝘄𝗮𝘀 𝘆𝗼𝘂𝗿 𝗿𝗼𝗹𝗲, 𝗮𝗻𝗱 𝘄𝗵𝗮𝘁 𝘄𝗮𝘀 𝘁𝗵𝗲 𝗼𝘂𝘁𝗰𝗼𝗺𝗲?
+The interviewer wants to see ownership and problem-solving skills. Use the 𝗦𝗧𝗔𝗥 𝗺𝗲𝘁𝗵𝗼𝗱 (𝗦𝗶𝘁𝘂𝗮𝘁𝗶𝗼𝗻, 𝗧𝗮𝘀𝗸, 𝗔𝗰𝘁𝗶𝗼𝗻, 𝗥𝗲𝘀𝘂𝗹𝘁).
+𝗦𝗶𝘁𝘂𝗮𝘁𝗶𝗼𝗻: "In my previous role, our primary payment processing service started failing for a specific type of credit card, causing a 20% drop in transaction success."
+𝗧𝗮𝘀𝗸: "Identify the root cause and resolve it without impacting other payment flows."
+𝗔𝗰𝘁𝗶𝗼𝗻: "Using Kibana, I isolated failed transactions to one vendor. Logs showed a CertificateException. With openssl, I found the SSL certificate had expired due to a failed renewal script."
+𝗥𝗲𝘀𝘂𝗹𝘁: "I escalated immediately to the infrastructure team with my findings. manually renewed the certificate, and services were restored within 15 minutes. Later, we implemented alerts for certificate expiry."

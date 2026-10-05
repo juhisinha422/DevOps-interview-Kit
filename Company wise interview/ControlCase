@@ -1,0 +1,44 @@
+REAL DevOps / Cloud Engineer Interview Experience
+
+🏢 Company: ControlCase
+📅 Interview Date: 9 March 2026
+
+🔹 How would you handle an EKS production issue?
+🔹 What are your day-to-day responsibilities and how do you receive work requests?
+🔹 Have you used AWS Lambda for infrastructure automation? Give an example.
+🔹 How would you stop 46 out of 50 EC2 instances every day while keeping 4 running?
+🔹 Would you use Instance IDs or Tags for automation and why?
+🔹 How do you make automation scripts resilient and production-safe?
+🔹 What manual task have you automated that saved the most time?
+🔹 If a Linux cron job is not running, how would you troubleshoot it?
+🔹 How do you identify which process is listening on port 8080?
+🔹 How do you troubleshoot a "No Space Left on Device" error when disk space appears available?
+🔹 How would you troubleshoot a process consuming 100% CPU?
+🔹 What if Apache inside a Kubernetes pod is consuming excessive CPU?
+🔹 Describe the worst production incident you owned and how you resolved it.
+🔹 Which metrics do you monitor during incidents?
+🔹 What CPU thresholds do you use for scaling?
+🔹 Have you migrated workloads between cloud providers?
+🔹 What are VPC Endpoints?
+🔹 Difference between Gateway Endpoint and Interface Endpoint?
+🔹 When would you use Transit Gateway instead of VPC Peering?
+🔹 How would you enable cross-account access between Lambda and S3?
+🔹 How do you structure Terraform code for Dev, UAT and Production?
+🔹 How do you handle Terraform state drift?
+🔹 What happens if someone manually deletes a Terraform-managed resource?
+🔹 How do you rename Terraform resources without recreation?
+🔹 How do you manage secrets inside Docker containers?
+🔹 How do you reduce Docker image size?
+🔹 How do you troubleshoot OOMKilled pods?
+🔹 How do you troubleshoot ECS memory issues?
+🔹 Would you choose one 8GB pod or multiple smaller pods and why?
+🔹 How would you load test an application for 150 concurrent users?
+🔹 What would you do if Kubernetes nodes show NotReady status?
+🔹 What are the most common reasons for NotReady nodes?
+🔹 How would you deploy changes to 200 pods with zero downtime?
+🔹 How do you determine Kubernetes resource requests and limits?
+🔹 Have you performed Disaster Recovery drills?
+🔹 What were your RPO and RTO targets?
+🔹 How do you achieve near-zero data loss for production databases?
+🔹 How would you implement cross-region failover?
+🔹 How do you automate AMI copy across AWS regions?

@@ -1,0 +1,6 @@
+What is Docker and why did you use it in your Nano Tech E Services microservices projects?
+
+Docker is a containerization platform that lets us package an application and all its dependencies into a lightweight, portable container.
+ In our microservices projects, we used Docker to ensure consistency across development, testing, and production environments.
+ It helped us deploy each microservice independently, scale faster, and reduce environment-related issues.
+ Overall, Docker improved release speed, resource utilization, and reliability in our CI/CD pipelines at Tata Consultancy Services.

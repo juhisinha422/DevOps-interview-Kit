@@ -1,0 +1,31 @@
+APPLE interview questions for SRE
+
+
+
+1.Explain your roles and responsibilities as an SRE/DevOps engineer
+
+2.How do you build a standard Linux image?
+
+3.What partitioning standards and security parameters do you follow while building Linux images?
+
+4.What are SSH hardening techniques you have implemented?
+
+5.How do you deploy multiple Linux servers using Ansible?
+
+6.How do you create a user and assign permissions to directories like /apps?
+
+7.How do you troubleshoot intermittent failures during image building?
+
+8.If disk shows 100% usage but actual data is less, what could be the issue?
+
+9.How do you troubleshoot memory or heap issues in Linux/Java applications?
+
+10.How do you configure applications to start automatically on system boot?
+
+11.What is your organization’s patch management process?
+
+12.How do you handle a production application outage?
+
+13.Explain your CI/CD pipeline process using Jenkins (Dev → UAT → Prod)
+
+14.How do you handle deployment failure in staging/UAT environment?

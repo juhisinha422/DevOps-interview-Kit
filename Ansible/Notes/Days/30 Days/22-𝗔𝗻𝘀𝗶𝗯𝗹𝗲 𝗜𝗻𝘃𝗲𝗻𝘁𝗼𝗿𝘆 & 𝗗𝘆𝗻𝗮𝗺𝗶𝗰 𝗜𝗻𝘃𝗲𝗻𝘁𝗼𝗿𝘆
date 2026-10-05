@@ -1,0 +1,71 @@
+ 𝗗𝗮𝘆 𝟮𝟮/𝟯𝟬 – 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝘆 & 𝗗𝘆𝗻𝗮𝗺𝗶𝗰 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝘆
+
+Continuing my hashtag#30DaysOfAnsible journey! 🔥
+
+Today I focused on one of the most important building blocks of Ansible — Inventory.
+
+🎯 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝘆?
+
+Ansible Inventory tells Ansible which machines to manage and how they are organized.
+
+A simple inventory can look like:
+
+[web]
+web01
+web02
+
+[db]
+db01
+db02
+
+Now we can target the web servers:
+
+ansible web -m ping
+
+Or run a playbook against them:
+
+- hosts: web
+ tasks:
+ - name: Install Nginx
+ ansible.builtin.apt:
+ name: nginx
+ state: present
+
+🔄 𝗦𝘁𝗮𝘁𝗶𝗰 𝘃𝘀 𝗗𝘆𝗻𝗮𝗺𝗶𝗰 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝘆
+
+📌 𝗦𝘁𝗮𝘁𝗶𝗰 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝘆
+
+Hosts are manually defined in an inventory file.
+
+Best for: ✔️ Small environments
+✔️ Stable infrastructure
+✔️ Simple setups
+
+📌 𝗗𝘆𝗻𝗮𝗺𝗶𝗰 𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝘆
+
+Hosts are discovered automatically from infrastructure platforms.
+
+This is especially useful in cloud environments where servers are constantly:
+
+➕ Created
+➖ Terminated
+🔄 Scaled
+
+☁️ 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗗𝗲𝘃𝗢𝗽𝘀 𝗘𝘅𝗮𝗺𝗽𝗹𝗲
+
+Imagine an AWS environment with:
+
+🌐 Web Servers
+⚙️ Application Servers
+🗄️ Database Servers
+
+Maintaining every server manually becomes difficult as the infrastructure grows.
+
+With Dynamic Inventory, Ansible can automatically discover the current infrastructure and manage the appropriate hosts.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+𝗜𝗻𝘃𝗲𝗻𝘁𝗼𝗿𝘆 = 𝗧𝗵𝗲 𝗯𝗿𝗶𝗱𝗴𝗲 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗮𝗻𝗱 𝘆𝗼𝘂𝗿 𝗶𝗻𝗳𝗿𝗮𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲.
+
+Static Inventory → Simple & predictable
+Dynamic Inventory → Scalable & automated

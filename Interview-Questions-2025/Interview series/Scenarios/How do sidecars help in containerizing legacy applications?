@@ -1,0 +1,13 @@
+How do sidecars help in containerizing legacy applications?
+
+By running a supporting container (the sidecar) alongside the main application container (the legacy--A legacy application is an outdated software program-- app) in the same Kubernetes pod, they share resources like network and storage, allowing them to communicate via localhost and share files 
+
+1.Legacy applications often only support HTTP. A sidecar proxy (like Nginx) can handle incoming HTTPS requests and pass them to the legacy app over localhost. 
+
+2.Sidecars can act as an authentication agent (e.g., OAuth2 Proxy), validating tokens and handling user identity before passing requests to the app. 
+
+3.Instead of changing the legacy code to log to a central system, a sidecar (e.g., Fluentd) can tail log files on a shared volume and ship them to modern logging backends (Elasticsearch, Splunk). 
+
+4.Sidecars can act as adapters, polling metrics from the legacy application or reading logs and exporting them into formats compatible with Prometheus.
+
+ 5.Instead of baking secrets into the image, a sidecar can pull secrets from a    secure vault (like HashiCorp Vault) and populate them at runtime. 

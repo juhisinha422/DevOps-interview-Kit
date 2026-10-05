@@ -1,0 +1,82 @@
+How AWS Manages Container Services 🧺
+
+→ AWS manages containerized applications using fully managed services that simplify deployment, scaling, and operations.
+→ These services remove the need to manage container hosts manually while providing high availability and security.
+
+🔴Core Container Services in AWS
+
+→ AWS provides two primary container orchestration platforms:
+→ Amazon ECS (Elastic Container Service)
+→ Amazon EKS (Elastic Kubernetes Service)
+→ Both integrate deeply with AWS networking, security, and monitoring services.
+
+◾Amazon ECS (Elastic Container Service)
+
+→ ECS is a native AWS container orchestration service.
+→ It supports Docker containers without requiring Kubernetes.
+→ AWS manages the control plane, scheduling, and scaling.
+→ ECS can run on:
+→ EC2 for full control over instances
+→ AWS Fargate for serverless container execution
+
+◾AWS Fargate (Serverless Containers)
+
+→ Fargate removes the need to manage servers or clusters.
+→ You define CPU, memory, and container images.
+→ AWS automatically provisions compute capacity and scales containers.
+→ Ideal for microservices and event-driven workloads.
+
+◾Amazon EKS (Elastic Kubernetes Service)
+
+→ EKS provides a fully managed Kubernetes control plane.
+→ AWS handles Kubernetes version upgrades, patches, and high availability.
+→ Worker nodes can run on EC2 or Fargate.
+→ Integrated with IAM for authentication and authorization.
+
+🔴Container Networking
+
+→ AWS uses VPC networking for container communication.
+→ Each container or pod can receive its own IP address.
+→ Security Groups and NACLs control inbound and outbound traffic.
+→ Load balancers distribute traffic across containers automatically.
+
+🔴Container Scaling
+
+→ AWS supports automatic scaling using:
+→ ECS Service Auto Scaling
+→ Kubernetes Horizontal Pod Autoscaler (HPA)
+→ AWS Auto Scaling integrates with CloudWatch metrics.
+→ Ensures containers scale based on demand.
+
+🔴Image Management
+
+→ AWS provides Amazon ECR (Elastic Container Registry) for storing container images.
+→ Images are encrypted, versioned, and scanned for vulnerabilities.
+→ IAM controls access to image repositories.
+
+🔴Security & Isolation
+
+→ Containers run in isolated environments using Linux namespaces and cgroups.
+→ Fargate provides stronger isolation by running each task in its own environment.
+→ IAM roles control container permissions without embedding credentials.
+
+🔴Monitoring & Logging
+
+→ AWS integrates container services with:
+→ CloudWatch Logs and metrics
+→ AWS X-Ray for tracing
+→ Container Insights for performance visibility
+
+🔴High Availability & Fault Tolerance
+
+→ Containers are distributed across multiple Availability Zones.
+→ Failed tasks or pods are automatically restarted.
+→ Load balancers redirect traffic to healthy containers.
+
+🔴CI/CD & Automation
+
+→ AWS integrates containers with:
+→ CodePipeline
+→ CodeBuild
+→ CodeDeploy
+→ Infrastructure as Code tools like CloudFormation and CDK

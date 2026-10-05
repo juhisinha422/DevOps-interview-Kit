@@ -1,0 +1,71 @@
+𝗗𝗮𝘆 𝟯/𝟯𝟲𝟱 — 𝗦𝗲𝗿𝘃𝗲𝗿 𝗗𝗶𝘀𝗸 𝗦𝗽𝗮𝗰𝗲 𝗜𝘀 𝟭𝟬𝟬%
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“Your production server is running out of disk space. How will you troubleshoot it?”
+
+I would not immediately delete files.
+
+First, I want to understand what is consuming the disk space.
+
+I would start with:
+
+df -h
+
+This tells me which filesystem is running out of space.
+
+Then I would identify the directories consuming the most space:
+
+du -sh /* 2>/dev/null | sort -h
+
+If /var is consuming significant space, I would investigate further:
+
+du -sh /var/* 2>/dev/null | sort -h
+
+Then I would check common causes such as:
+
+• Application logs
+• Large temporary files
+• Old backup files
+• Core dumps
+• Package/cache files
+• Large application data
+
+I would also check for deleted files that are still being held open by a running process:
+
+lsof +L1
+
+This is an important check because df can show high disk usage even when the corresponding file is no longer visible in the filesystem.
+
+I would also check inode usage:
+
+df -i
+
+Sometimes the disk has free space, but the server has run out of inodes because of a huge number of small files.
+
+Once I identify the root cause, I would follow the approved cleanup or recovery procedure.
+
+For example, if old logs are consuming space, I would not randomly delete active log files. I would use the organization's log rotation, retention, or cleanup process.
+
+After cleanup, I would verify:
+
+df -h
+df -i
+
+Then I would check whether the application and server are functioning normally.
+
+Finally, I would document:
+
+Issue → Investigation → Root Cause → Resolution → Preventive Action
+
+For prevention, I might consider proper log rotation, retention policies, monitoring alerts, and capacity planning.
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+When disk usage reaches 100%, don't just start deleting files.
+
+First understand:
+
+Which filesystem → What is consuming space → Why is it growing → What is safe to clean → How do we prevent it?
+
+That's the difference between running commands and troubleshooting a production system. 

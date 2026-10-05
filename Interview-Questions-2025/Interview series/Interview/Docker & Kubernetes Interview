@@ -1,0 +1,33 @@
+Docker & Kubernetes Interview Edition
+ 
+Most candidates prepare for Docker/K8s interviews by memorizing definitions.
+The ones who get hired explain why those definitions exist.
+ 
+Here's the gap, question by question:
+ 
+Q: What's the difference between a Docker image and a container?
+ 🔴 "An image is a blueprint, a container is a running instance."
+ 🟢 ↳ An image is a read-only layered filesystem built via union mount (OverlayFS). A container adds a thin writable layer on top plus isolated namespaces (PID, NET, MNT, UTS, IPC) and cgroup resource limits.
+ ↳ This is why containers start in milliseconds - you're not booting an OS, you're just creating new namespace + cgroup entries pointing at existing layers.
+ 
+Q: Why does my container keep restarting (CrashLoopBackOff)?
+ 🔴 "The container keeps crashing so Kubernetes restarts it."
+ 🟢 ↳ CrashLoopBackOff isn't a state - it's a symptom. The real question is what's underneath: OOMKilled (memory limit too low), a failing liveness probe (app slow to start, probe too aggressive), missing config/secret causing exit code 1, or the main process exiting because it wasn't PID 1 and never received signals properly.
+ ↳ kubectl describe pod and exit codes tell the real story before you touch YAML.
+ 
+Q: What happens when you kubectl apply a Deployment?
+ 🔴 "It creates pods based on the deployment spec."
+ 🟢 ↳ It's control loop reconciliation. The Deployment controller writes desired state to etcd. The ReplicaSet controller diffs desired vs actual and creates Pods. The scheduler binds pods to nodes based on resource requests/affinity. The kubelet on that node pulls images and starts containers via the container runtime interface.
+ ↳ Nothing "happens" in one step - it's a chain of independent controllers converging toward desired state, which is exactly why partial failures (stuck pods, node not ready) are so common and so debuggable if you know which controller owns which step.
+ 
+Q: Why use a Service instead of a Pod IP directly?
+ 🔴 "Pods are ephemeral, Services give a stable endpoint."
+ 🟢 ↳ Pod IPs change on every reschedule. A Service is a stable virtual IP backed by iptables/IPVS rules (via kube-proxy) that load-balance to healthy endpoints tracked by the Endpoints/EndpointSlice controller.
+ ↳ If a Service isn't routing traffic, the debugging path is: Service → Endpoints populated? → kube-proxy rules present? → readiness probe passing? Most "Service not working" issues are actually failed readiness probes silently excluding pods from the endpoint list.
+ 
+Q: What's the difference between a Deployment and a StatefulSet?
+ 🔴 "StatefulSets are for stateful apps."
+ 🟢 ↳ It's about identity guarantees, not just storage. StatefulSets provide stable network identity (predictable pod names + DNS), ordered startup/shutdown, and stable PersistentVolumeClaims per replica — critical for anything where replica identity matters (databases, Kafka brokers, Elasticsearch nodes).
+ ↳ Ask yourself: if I killed replica-2 right now, does anything break because of which replica it was? If yes, StatefulSet. If no, Deployment.
+ 
+The pattern across every one of these: interviewers aren't testing memorized definitions. They're testing whether you can trace a request or failure through the actual system layers - namespaces, control loops, controllers, probes - instead of reciting a glossary entry.

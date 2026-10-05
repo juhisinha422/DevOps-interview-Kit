@@ -1,0 +1,26 @@
+How do you fix a corrupted Terraform state?
+
+1. we never run a terraform apply or destroy while it is malformed or corrupted 
+
+2.we need to verify if the corruption is structural (invalid JSON) or semantic (bad values) using local command-line tools. 
+cat terraform.tfstate | jq empty 
+
+3.If we  store our state remotely with versioning enabled (e.g., AWS S3, Azure Blob, Google Cloud Storage), rolling back is the safest approach
+ 
+4.Overwrite the broken state with the last healthy version ID 
+
+5.If we run Terraform locally or our backend versioning is disabled, we can use the local backup engine 
+
+mv terraform.tfstate terraform.tfstate.corrupt 
+
+6.If the file is totally wiped or unrecoverable and no backups exist, we must re-import your cloud architecture 
+
+A.Initialize a blank configuration state file 
+B.Utilize native declarative import blocks inside our .tf  
+
+import {
+  to = aws_instance.web
+  id = "i-0123456789abcdef0"
+}  
+
+Execute terraform plan to continuously check our progress until the plan outputs 0 changes

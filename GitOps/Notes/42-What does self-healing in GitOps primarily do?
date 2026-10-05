@@ -1,0 +1,7 @@
+What does self-healing in GitOps primarily do?
+Builds application code
+Monitors CPU usage
+Fixes config drift automatic
+Creates new repositories
+
+ANS C

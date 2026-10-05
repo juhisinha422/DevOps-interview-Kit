@@ -1,0 +1,11 @@
+How does Docker Engine interact with container runtime? 
+
+1.The Docker Engine primarily using containerd as its high-level runtime and runc as its low-level executor. 
+
+2.A user issues a command (e.g., docker run) via the Docker CLI.The Docker Daemon (dockerd) receives this request through the Docker Engine API. It handles high-level concerns like image management and network setup. 
+
+3.The daemon sends an execution request to containerd via gRPC(Remote Procedure Call). containerd is responsible for the full container lifecycle, including image pulling and monitoring container health.
+
+4.containerd starts a shim process for each container. This shim acts as an intermediary that keeps the container's standard input/output (STDIO) open and allows the runtime to exit after starting the container. 
+
+5.The shim invokes runc, an Open Container Initiative (OCI)-compliant runtime. runc interacts directly with the Linux kernel to create namespaces and cgroups that isolate the container. 

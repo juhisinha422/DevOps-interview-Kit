@@ -1,0 +1,10 @@
+Q. Why did you choose Jenkins pipeline over freestyle jobs in your project?
+-------------------------------------------------------------------------------
+ We chose Jenkins pipeline because it gives better control, reusability, and governance.
+Key reasons:
+Pipeline as Code (Jenkinsfile) is versioned in Git, so changes are trackable and reviewable.
+Multi-stage workflows are clean: build, test, Sonar, Docker, push, deploy, notifications.
+Easier to standardize across 20+ microservices with shared libraries and templates.
+Better parameterization for environments and approvals.
+Supports automated rollback and controlled deployments.
+In my project, managing multiple microservices and consistent CI/CD standards was much easier with pipelines than maintaining multiple freestyle job configurations.

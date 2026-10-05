@@ -1,0 +1,68 @@
+Senior DevOps Interview Question
+Walk me through how you upgraded an Amazon EKS cluster from Kubernetes 1.32 to 1.34 without downtime.
+
+Here’s how I would explain it in an interview 👇
+
+Yeah, sure. In one of my projects, we had a customer-facing application running as microservices on Amazon EKS, and we had a requirement to upgrade Kubernetes from 1.32 to 1.34.
+Since it was Production, we couldn't afford application downtime, so we followed a proper upgrade runbook.
+
+1️⃣ Pre-checks
+Before touching the cluster, I checked:
+• EKS Upgrade Insights
+• Deprecated Kubernetes APIs
+• Helm chart and application compatibility
+• VPC CNI, CoreDNS and kube-proxy
+• AWS Load Balancer Controller
+• PDBs and replica counts
+• Monitoring components
+
+Once the pre-checks were clean, we tested the complete upgrade in a lower environment first.
+
+We never started directly with Production.
+
+2️⃣ Upgrade one version at a time
+Since EKS upgrades are performed one minor version at a time, we followed:
+1.32 → 1.33 → Validate → 1.34
+For each version, I first upgraded the EKS control plane.
+Once the control plane was healthy, I validated the cluster and then upgraded the required EKS add-ons.
+
+3️⃣ Replace the worker nodes
+For worker nodes, we didn't immediately terminate the existing node group.
+We created a new managed node group with an EKS-optimized AMI compatible with the new Kubernetes version.
+Once the new nodes joined the cluster and showed Ready, we started moving the workloads.
+Cordon old node → Drain one node at a time → Pods move to new nodes
+We didn't drain everything together.
+We moved the workloads gradually to maintain application availability.
+
+4️⃣ How did we avoid downtime?
+Our critical microservices had:
+✅ Multiple replicas
+✅ PodDisruptionBudgets
+✅ Readiness probes
+✅ Multi-AZ workload distribution
+So even when one node was being drained, healthy Pods on other nodes continued serving customer traffic.
+
+5️⃣ Monitor throughout the upgrade
+Using CloudWatch and Prometheus/Grafana, I continuously monitored:
+• Node health
+• Pod restarts
+• Pending Pods
+• CPU and memory
+• ALB target health
+• Application latency
+• 5xx errors
+
+6️⃣ Validate before removing anything
+Once all workloads were running on the new node group, we didn't immediately remove the old one.
+We first performed smoke testing and validated critical application flows:
+Customer Login → Account Information → API Connectivity → Transaction Processing
+Once everything was stable, we removed the old node group.
+Then we repeated the same process for:
+1.33 → 1.34
+
+💡 The key interview point:
+Zero downtime wasn't achieved just because we carefully upgraded EKS.
+
+It was possible because the application was already designed for high availability with multiple replicas, PDBs, readiness probes, Multi-AZ deployment, and controlled node draining.
+
+That’s how I would explain a real Production EKS upgrade in an interview.

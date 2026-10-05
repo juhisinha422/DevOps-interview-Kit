@@ -1,0 +1,80 @@
+𝟑𝟎 𝐃𝐚𝐲𝐬 𝐨𝐟 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 – 𝐃𝐚𝐲 𝟏𝟐/𝟑𝟎
+
+🔄 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐋𝐨𝐨𝐩𝐬 – 𝐒𝐭𝐨𝐩 𝐑𝐞𝐩𝐞𝐚𝐭𝐢𝐧𝐠 𝐭𝐡𝐞 𝐒𝐚𝐦𝐞 𝐓𝐚𝐬𝐤
+
+Imagine you need to create 10 users on 100 servers.
+
+Would you write the same Ansible task 10 times? ❌
+
+Of course not!
+
+This is where 𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐋𝐨𝐨𝐩𝐬 make automation cleaner, shorter, and easier to maintain. 🔥
+
+🔹 𝐁𝐚𝐬𝐢𝐜 𝐋𝐨𝐨𝐩 𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+- name: Install multiple packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - git
+    - curl
+    - vim
+    - wget
+
+Ansible runs the same task for every item in the list.
+
+One task → Multiple packages. 🚀
+
+🔹 𝐂𝐫𝐞𝐚𝐭𝐢𝐧𝐠 𝐌𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐔𝐬𝐞𝐫𝐬
+
+- name: Create users
+  user:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - devops
+    - developer
+    - tester
+    - monitoring
+
+Now Ansible creates all four users automatically.
+
+🔹 𝐋𝐨𝐨𝐩 𝐖𝐢𝐭𝐡 𝐕𝐚𝐫𝐢𝐚𝐛𝐥𝐞𝐬
+
+You can store the list in a variable and reuse it:
+
+packages:
+  - git
+  - curl
+  - vim
+
+loop: "{{ packages }}"
+
+This makes your playbooks more reusable and maintainable.
+
+🌍 𝐑𝐞𝐚𝐥-𝐖𝐨𝐫𝐥𝐝 𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+
+When provisioning an application server, you may need:
+
+✅ Git
+✅ Docker
+✅ Python
+✅ Unzip
+✅ Curl
+
+Instead of writing five separate tasks, use one loop.
+
+🔥 𝐎𝐧𝐞 𝐓𝐚𝐬𝐤 → 𝐌𝐮𝐥𝐭𝐢𝐩𝐥𝐞 𝐎𝐩𝐞𝐫𝐚𝐭𝐢𝐨𝐧𝐬
+
+⚠️ 𝐂𝐨𝐦𝐦𝐨𝐧 𝐌𝐢𝐬𝐭𝐚𝐤𝐞
+
+❌ Repeating the same task for every package or user.
+
+✅ Use a 𝐥𝐨𝐨𝐩 to eliminate unnecessary duplication.
+
+🎯 𝐊𝐞𝐲 𝐓𝐚𝐤𝐞𝐚𝐰𝐚𝐲
+
+𝐀𝐧𝐬𝐢𝐛𝐥𝐞 𝐋𝐨𝐨𝐩𝐬 𝐟𝐨𝐥𝐥𝐨𝐰 𝐭𝐡𝐞 𝐃𝐑𝐘 𝐩𝐫𝐢𝐧𝐜𝐢𝐩𝐥𝐞 — 𝐃𝐨𝐧'𝐭 𝐑𝐞𝐩𝐞𝐚𝐭 𝐘𝐨𝐮𝐫𝐬𝐞𝐥𝐟.
+
+They reduce duplicate code, improve readability, and make playbooks easier to maintain.

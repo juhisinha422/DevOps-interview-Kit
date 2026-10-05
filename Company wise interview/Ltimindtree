@@ -1,0 +1,21 @@
+first round of a technical interview with LTIMindtree for a DevOps Engineer role (3–5 years experience level).
+The discussion covered a wide range of real-time DevOps, Cloud, Terraform, Kubernetes, Jenkins, Docker, and Incident Management topics.
+Some of the questions asked were:
+• Tell me about yourself
+• Explain your project architecture
+• Why do you use EKS instead of ECS?
+• Have you handled cloud cost or budget management?
+• How do you set up monitoring tools like CloudWatch and Grafana?
+• Write a Bash script to check disk usage and CPU usage
+• Write a Terraform configuration to create an EC2 instance
+• What would you do if the Terraform state file is corrupted?
+• How do you handle infrastructure created outside Terraform?
+• What steps do you take to prevent accidental infrastructure deletion?
+• What do you do if a Jenkins pipeline fails?
+• Difference between CMD and RUN in Docker
+• How do you configure automatic Jenkins triggers from GitHub pushes?
+• Explain deployment strategies used in your projects
+• What actions do you take during a P1 incident?
+• How do you prevent multiple associates from running Terraform simultaneously?
+• How do you design a disaster recovery process for zero-downtime applications?
+It was a great experience discussing practical DevOps scenarios and real-world production challenges. Sharing these questions here may help other DevOps engineers preparing for interviews.

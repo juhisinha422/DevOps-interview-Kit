@@ -1,0 +1,55 @@
+Alerting Basics – Detect Problems Before Users Do
+
+🔹 What is Alerting?
+Alerting is the process of automatically notifying engineers when a system reaches a defined condition or becomes unhealthy.
+👉 Monitoring tells you what is happening.
+ 👉 Alerting tells you when action is required.
+
+❓ Why Do We Need Alerts?
+Production systems run 24/7, so engineers cannot watch dashboards continuously.
+Alerts help with:
+✔ Early problem detection 🚨
+ ✔ Faster incident response ⚡
+ ✔ Reduced downtime
+ ✔ Better reliability
+ ✔ Proactive monitoring
+
+🔔 Common Types of Alerts
+🖥️ Infrastructure Alerts
+CPU > 90%
+Memory usage too high
+Disk almost full
+
+🚀 Application Alerts
+High error rate
+API latency increased
+Application unavailable
+
+☸️ Kubernetes Alerts
+Pod CrashLoopBackOff
+Pod not ready
+Node unavailable
+
+💼 Business Alerts
+Payment failures increased
+Orders dropped
+Active users decreased
+
+💡 Real-world Example
+An application normally has a 2% error rate.
+Suddenly it reaches 15% 🚨
+Alert rule triggers:
+👉 Error rate > 10% for 5 minutes
+📩 DevOps team gets notified
+ 🔍 Engineers investigate
+ 🛠️ Issue is fixed
+Result → Faster recovery and reduced customer impact. 🚀
+
+🧠 Key Takeaways
+✔ Monitoring → Observes the system 📊
+ ✔ Alerting → Notifies about problems 🚨
+ ✔ Alerts should be actionable 🎯
+ ✔ Avoid unnecessary alerts to prevent alert fatigue
+
+💡 Pro Tip:
+ A good alert should tell you something is wrong and someone needs to do something about it.

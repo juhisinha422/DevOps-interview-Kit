@@ -1,0 +1,58 @@
+Scenario-Based DevOps Interview Questions & Answers
+#DevOps #Linux #AWS #Cloud #SRE #InterviewPrep
+Real-world scenarios are what interviewers actually test. Let’s dive in 👇
+🔹 Q1. Website is down – how will you troubleshoot?
+👉 Check server status: uptime, top
+👉 Verify service: systemctl status nginx
+👉 Check logs: /var/log/nginx/error.log
+👉 Validate port: ss -tulnp | grep 80
+👉 Check disk space: df -h
+💡 Explain: Start from system → service → logs → network
+🔹 Q2. High CPU usage on production server
+👉 top / htop
+👉 ps -eo pid,cmd,%cpu --sort=-%cpu | head
+👉 Identify process → restart or optimize
+💡 Bonus: Mention autoscaling if on cloud
+🔹 Q3. Application not accessible after deployment
+👉 Check service status
+👉 Verify port binding
+👉 Check firewall: iptables -L / firewalld
+👉 Validate DNS / Load Balancer
+💡 Explain dependency chain (App → Port → Network → DNS)
+🔹 Q4. Disk is full – what will you do?
+👉 df -h
+👉 du -sh /*
+👉 Clean logs: /var/log
+👉 Remove old backups
+💡 Bonus: Suggest log rotation (logrotate)
+🔹 Q5. CI/CD pipeline failed – how to debug?
+👉 Check pipeline logs
+👉 Validate build errors
+👉 Check environment variables
+👉 Re-run failed stage
+💡 Mention tools like Jenkins / GitHub Actions
+🔹 Q6. SSH access not working
+👉 Check service: systemctl status sshd
+👉 Check port (22): ss -tulnp
+👉 Verify firewall rules
+👉 Check /etc/ssh/sshd_config
+🔹 Q7. Pod not running in Kubernetes
+👉 kubectl get pods
+👉 kubectl describe pod <name>
+👉 kubectl logs <pod>
+💡 Explain: CrashLoopBackOff, image issues, resource limits
+🔹 Q8. How do you handle zero downtime deployment?
+👉 Blue-Green Deployment
+👉 Rolling Updates
+👉 Load Balancer switching
+🔹 Q9. Database is slow – what will you check?
+👉 CPU & Memory usage
+👉 Slow queries
+👉 Connection limits
+👉 Disk I/O
+🔹 Q10. How to secure a production server?
+👉 Disable root login
+👉 Use SSH keys
+👉 Enable firewall
+👉 Regular patching
+👉 Monitor logs

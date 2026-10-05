@@ -1,0 +1,41 @@
+Traces & Distributed Tracing
+
+🔹 What is Tracing? 🔍
+ Tracing is the process of tracking a request as it moves through different services in a system.
+ It helps you see the complete journey of a request from start to end.
+ 👉 “Where is my request going and where is it slowing down?”
+
+🔹 Why it matters in real-world? 🏗️
+ In microservices architecture, one request can pass through multiple services.
+ If something fails, it’s hard to find the issue without tracing.
+👉 Tracing helps you identify bottlenecks and failures quickly 🚨
+
+🔹 Request Flow Across Services: 🔄
+Example flow:
+ User Request → API Gateway → Auth Service → Payment Service → Database
+👉 Each step is recorded as a trace span
+ 👉 All spans together form a complete trace
+
+🔹 Tools Used: ⚙️
+✔ Jaeger
+Open-source tracing tool
+Used for monitoring microservices
+✔ Zipkin
+Helps visualize request flow
+Identifies latency issues
+
+🔹 Real-world Debugging Example: 💡
+Your application is slow 🐢
+👉 Metrics show: High latency
+ 👉 Logs show: No clear error
+👉 Tracing shows:
+API → Fast
+Auth Service → Fast
+Payment Service → Very slow 🚨
+✅ Root cause found → Payment service delay
+
+🔹 Key Concepts to Remember: 🧠
+✔ Tracing = Request journey 🔍
+ ✔ Span = Single operation
+ ✔ Trace = Complete request flow
+ ✔ Helps find bottlenecks 🚨

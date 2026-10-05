@@ -1,0 +1,36 @@
+AWS shipped session policies for EKS Pod Identity 
+
+🔴AWS EKS Pod Identity had a big issue before this
+
+◾If a pod gets compromised in your cluster. The attacker now has the full IAM role attached to it.
+
+◾That role had access to 10 S3 buckets. The pod only needed one. You just leaked data from 9 buckets you never intended to expose. This is called over-permissioning. 
+
+◾It happens in almost every production cluster I have seen. Now with session policies you can fix this.
+
+◾You attach an inline policy to the Pod Identity association. That policy says this pod can only touch this one bucket. 
+
+◾Even if the underlying IAM role has broader access. The attacker gets nothing extra.
+
+◾Think of it like a security guard with a master key. Session policy says you can only open room 4 today. The master key does not matter anymore.
+
+◾One hard rule AWS enforces. Session policies can never expand permissions. 
+
+◾They can only restrict. No engineer can accidentally grant more access than the role allows.
+
+◾This is the principle of least privilege.
+ Most teams talk about it. Very few actually implement it at the pod level.
+
+
+----
+If your team is still giving AWS Keys for pods to access AWS services, you are doing it wrong 🤯
+
+🚫That’s risky and an EKS anti-pattern.
+
+🔴You can use Amazon EKS Pod Identity, which helps in automatically handling the credentials :
+
+◾Pod → Service Account → IAM Role → Temporary AWS Credentials
+
+- No secrets in containers.
+- No credential rotation headaches.
+- Each pod gets least-privilege access to AWS resources.

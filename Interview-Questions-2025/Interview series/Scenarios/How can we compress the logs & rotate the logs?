@@ -1,0 +1,21 @@
+How can we compress the logs & rotate the logs?
+
+Without proper log rotation, log files can consume all available disk space and bring our system to its knees. Logrotate is the standard tool on Linux for automatically rotating, compressing, and removing old log files. 
+
+1.Logrotate configurations are typically found in /etc/logrotate.conf or in files within /etc/logrotate.d/ 
+
+2.we add the compress keyword to our logrotate configuration block to enable compression for rotated files. 
+
+3.we use delaycompress along with compress to postpone compression until the next rotation cycle. 
+
+4.we can use rotate <count> to define how many compressed logs to keep before deleting them 
+
+/var/log/myapp.log {
+    daily
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 root adm
+}

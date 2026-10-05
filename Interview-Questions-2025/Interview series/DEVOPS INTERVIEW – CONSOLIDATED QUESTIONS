@@ -1,0 +1,41 @@
+ DEVOPS INTERVIEW – CONSOLIDATED QUESTIONS (Linux | Git | Maven)
+
+Preparing for a DevOps role? Here’s a topic-wise structured question bank to help you revise quickly and crack interviews 💡
+
+🔹 1. LINUX
+
+Explain Linux directory structure (/bin, /sbin, /etc, /opt)
+How do you list files and directories in Linux?
+How do you create a file in Linux?
+How do you check system information in Linux?
+How do you check logged-in users?
+How do you check IP address details?
+How do you edit a file in Linux?
+What is a shell script?
+What is a shebang line?
+How do you check disk usage?
+What is Linux load average?
+How do you find long-running processes?
+What is log rotation and why is it required?
+How do you count words, lines, or grep a word from a file?
+How do you view first and last 10 lines of a file?
+
+🔹 2. GIT
+
+What is git cherry-pick and when is it used?
+Difference between git pull and git fetch?
+What are common Git branching strategies?
+How is a CI/CD pipeline triggered from Git?
+
+🔹 3. MAVEN
+
+What is pom.xml?
+How do you create a new Maven project?
+What are the types of Maven repositories?
+Explain Maven lifecycle phases
+
+💡 Pro Tip: Don’t just read — practice commands, build small projects, and understand real-time scenarios.
+
+
+
+Linux :- 1:- ls -ltrh , 2:- touch filename 3:- top,lscpu,free -gh,df -Th 3:- from w command we can check logged in users 4:- ip r 5:- vim command 6:- shell script is used to automate linux work 7:- she bang line tells script that this is a linux script 8:- df -Th 9:- top command 10:- top 11:- log rotation is a method from which you can zip the files which usges more space in disk from log rotate we can zip those log and send them to another server 12:- for counting wc -l and cat file | grep -i 'string' 13:- show first 10 lines use head coommand to view last 10 lines we uses tail command

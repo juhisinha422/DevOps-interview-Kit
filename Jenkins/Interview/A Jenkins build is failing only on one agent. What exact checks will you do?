@@ -1,0 +1,60 @@
+Q A Jenkins build is failing only on one agent. What exact checks will you do?
+-------------------------------------------------------------------------------------
+If a Jenkins build is failing only on one agent, we first compare that agent with the working agents and perform step-by-step troubleshooting.
+Checks we will do:
+Check agent status in JenkinsVerify whether the agent is online or disconnected.
+Check agent logs for connection errors.
+Ensure the agent has enough executors available.
+Verify workspace issuesCheck whether workspace is corrupted or full.
+Clean the workspace and rerun the build.
+Verify file permissions inside the workspace.
+Check disk space and memoryRun commands like:
+
+df -h
+free -m
+top
+
+Ensure the server is not running out of CPU, RAM, or storage.
+Compare software versionsVerify Java version, Maven, Gradle, NodeJS, Python, Docker, etc.
+Compare with working agents using:
+
+java -version
+mvn -version
+docker --version
+
+Check environment variablesVerify PATH, JAVA_HOME, MAVEN_HOME, and other variables.
+Compare environment settings with healthy agents.
+Validate network connectivityCheck whether the agent can access GitHub, artifact repositories, Docker registry, or target servers.
+Use:
+
+ping
+curl
+telnet
+nslookup
+
+Check permissionsEnsure Jenkins user has proper access to files, Docker socket, scripts, and deployment directories.
+Example:
+
+ls -ld /var/lib/jenkins
+
+Review Jenkins console logs carefullyIdentify exact error messages.
+Check whether failure happens during checkout, build, test, or deployment stage.
+Check running processes and port conflictsVerify whether another process is blocking required ports or resources.
+Commands:
+
+ps -ef
+netstat -tulnp
+
+Restart agent services if needed
+Restart Jenkins agent service or reconnect the node.
+Sometimes temporary cache or stale sessions cause failures.
+Check labels and node configuration
+Verify whether the job is running on the correct agent label.
+Ensure node configuration is not changed accidentally.
+Run build manually on the agent
+Login to the agent server and execute the same build commands manually.
+Helps identify OS-level or dependency issues quickly.
+
+simple answer 
+---------------
+If the Jenkins build fails only on one agent, we first compare it with working agents. We check agent health, workspace, disk space, software versions, permissions, network connectivity, and Jenkins logs. Finally, we run the build manually on that agent to isolate whether the issue is related to Jenkins configuration or the server itself.

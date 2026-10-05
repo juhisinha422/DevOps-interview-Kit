@@ -1,0 +1,7 @@
+Which part of a Prometheus alert rule defines the condition that must be true to trigger an alert?
+A. label
+B. target
+C. expr
+D. exporter
+
+ANS C

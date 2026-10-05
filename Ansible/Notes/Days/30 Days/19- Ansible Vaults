@@ -1,0 +1,61 @@
+30 Days of Ansible – Day 19/30
+
+🔐 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗩𝗮𝘂𝗹𝘁 – 𝗦𝗲𝗰𝘂𝗿𝗲 𝗬𝗼𝘂𝗿 𝗦𝗲𝗰𝗿𝗲𝘁𝘀
+
+Ansible automation often needs to handle:
+
+🔑 Database passwords
+🔐 API keys
+🎫 Access tokens
+☁️ Cloud credentials
+
+Would you store them directly in your playbook?
+
+❌ 𝗡𝗲𝘃𝗲𝗿.
+
+This is where Ansible Vault helps.
+
+🧩 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗩𝗮𝘂𝗹𝘁?
+
+Ansible Vault encrypts sensitive data so secrets aren't stored as plain text.
+
+🔐 𝗖𝗿𝗲𝗮𝘁𝗲 𝗮 𝗩𝗮𝘂𝗹𝘁 𝗙𝗶𝗹𝗲
+
+ansible-vault create secrets.yml
+
+Useful commands:
+
+ansible-vault view secrets.yml
+ansible-vault edit secrets.yml
+ansible-vault encrypt secrets.yml
+ansible-vault decrypt secrets.yml
+
+Run a playbook with:
+
+ansible-playbook site.yml --ask-vault-pass
+
+🏢 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗘𝘅𝗮𝗺𝗽𝗹𝗲
+
+Instead of:
+
+❌ Plaintext passwords in Git
+❌ Hardcoded API keys
+❌ Exposed credentials
+
+Use:
+
+Git → 🔐 Encrypted secrets → Ansible → Servers
+
+⚠️ 𝗕𝗲𝘀𝘁 𝗣𝗿𝗮𝗰𝘁𝗶𝗰𝗲𝘀
+
+✅ Encrypt sensitive variables
+✅ Protect Vault passwords
+✅ Never commit plaintext secrets
+✅ Avoid printing secrets with debug
+✅ Use no_log: true for sensitive tasks
+
+🎯 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+Automation is powerful, but security must come first.
+
+𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗩𝗮𝘂𝗹𝘁 = 𝗦𝗲𝗰𝘂𝗿𝗲 𝗦𝗲𝗰𝗿𝗲𝘁𝘀 + 𝗦𝗮𝗳𝗲𝗿 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻 🔐🚀

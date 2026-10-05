@@ -1,0 +1,3 @@
+which feature allow Prometheus to collect metrics by requesting data from targets at regular intervals ?
+
+Prometheus uses a pull-based scraping model, where it periodically collects metrics from targets using configured scrape intervals

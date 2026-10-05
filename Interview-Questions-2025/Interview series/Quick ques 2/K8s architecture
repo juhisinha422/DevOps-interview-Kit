@@ -1,0 +1,30 @@
+Understanding Kubernetes Architecture — From Control Plane to Worker Nodes
+
+One of the most important things I’ve learned while working with Kubernetes is that understanding the architecture makes troubleshooting much easier.
+
+At a high level, a Kubernetes cluster has two major parts:
+
+🔹 Control Plane (Master Node)
+This is the brain of the Kubernetes cluster. It includes components like:
+
+• API Server – The entry point for communicating with the cluster
+• Scheduler – Decides which worker node should run a Pod
+• etcd – Stores the cluster's configuration and state
+• Controllers – Continuously monitor and maintain the desired state
+• Cloud Controller Manager – Integrates Kubernetes with cloud infrastructure
+
+🔹 Worker Nodes
+These are the machines where our applications actually run.
+
+Key components include:
+
+• Kubelet – Communicates with the API Server and manages Pods
+• Container Runtime – Runs containers
+• Kube-proxy – Helps with networking and service communication
+
+The simple way I remember it:
+
+👉 Control Plane = Decides what should happen
+👉 Worker Node = Makes it happen
+
+Understanding this flow helped me connect the dots between Pods, Nodes, Scheduling, Networking, and Container Runtime instead of memorizing Kubernetes components individually.

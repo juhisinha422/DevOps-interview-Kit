@@ -1,0 +1,17 @@
+Terraform module working in dev but failing in prod. Why? 
+
+Terraform modules fail in production after working in development due to differences in permissions, environment states, or provider versions
+
+1.Prod IAM roles might block specific actions like creating public IPs or deleting databases.
+
+2.AWS Organizations often apply strict SCP Service Control Policies to Prod accounts that do not exist in Dev.
+
+3.Prod variables might request larger instance sizes or disk types that hit service quotas in that region. 
+
+4.Conditional logic (count or for_each) based on environment variables might trigger untested code paths in Prod. 
+
+5.If provider versions are not locked, Prod might be downloading a newer, breaking version of a provider
+
+6.Prod networks often have tighter security groups or firewalls that prevent resources from communicating during provisioning.
+
+4 reactions4

@@ -1,0 +1,56 @@
+PromQL Basics in Prometheus
+
+🔹 What is PromQL? 🧠
+ PromQL (Prometheus Query Language) is used to query and analyze metrics stored in Prometheus.
+ It helps engineers search, filter, and visualize monitoring data in real-time 📊
+👉 “How do we read monitoring data?”
+ 👉 The answer is: PromQL
+
+🔹 Why it matters in real-world? 🏗️
+ Without queries, metrics are just raw numbers.
+ PromQL helps you:
+✔ Analyze system performance
+ ✔ Create dashboards 📈
+ ✔ Build alerts 🚨
+ ✔ Troubleshoot issues quickly
+
+🔹 Basic Query Syntax: ⚡
+A PromQL query usually starts with a metric name.
+👉 Example:
+cpu_usage
+
+This returns CPU usage metrics.
+
+🔹 Filtering in PromQL: 🔍
+Filters help narrow down results using labels.
+👉 Example:
+cpu_usage{server="app1"}
+
+✔ Shows CPU usage only for server app1
+
+🔹 Basic Queries Examples: 📊
+✔ CPU Usage
+cpu_usage
+
+✔ Memory Usage
+memory_usage
+
+✔ HTTP Requests
+http_requests_total
+
+✔ Filter by Instance
+http_requests_total{instance="server1"}
+
+🔹 Real-world Example: 💡
+Your application becomes slow 🐢
+👉 PromQL helps you check:
+CPU usage
+Request rate
+Error count
+👉 You quickly identify the issue 🚨
+
+🔹 Key Concepts to Remember: 🧠
+✔ PromQL = Query language 🧠
+ ✔ Used to analyze metrics 📊
+ ✔ Filters use labels 🔍
+ ✔ Helps in dashboards & alerts 🚨

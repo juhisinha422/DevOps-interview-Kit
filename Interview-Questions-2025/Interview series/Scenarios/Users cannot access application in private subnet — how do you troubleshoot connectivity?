@@ -1,0 +1,11 @@
+Users cannot access application in private subnet — how do you troubleshoot connectivity?
+
+ 1.Troubleshooting application access in a private subnet requires validating the network path from the instance to the NAT Gateway, and verifying security controls 
+
+2.we can go to the VPC Console, select the Private Subnet, and review its Route Table. 
+
+3.Ensure the application's security group allows inbound traffic on the necessary ports (e.g., 80 or 443) from the correct source (like a Load Balancer's security group or a specific CIDR). 
+
+4.NACLs require rules for both inbound and outbound traffic. A common failure is forgetting to allow outbound traffic on ephemeral ports (1024-65535) for return traffic 
+
+5.If users access the app via a public Load Balancer, ensure it is healthy and correctly configured to route traffic to the private subnet instances

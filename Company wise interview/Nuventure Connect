@@ -1,0 +1,99 @@
+*Technical Screening Interview Questions Asked By Nuventure Connect*
+
+*Agenda* - To Check hands-on production experience across Linux administration, KVM virtualization, Proxmox, OpenStack, OpenShift, enterprise storage, networking, backup and recovery, workload migration, and infrastructure troubleshooting. The scenario-based questions are intended to evaluate your technical depth, troubleshooting approach, decision-making, risk assessment, and ability to handle complex production environments.
+
+*Questions* -
+
+1. Describe the largest production infrastructure environment you have personally administered.
+Please include the number of hosts/nodes, VMs/workloads, virtualization platform, storage architecture, networking, HA/DR setup, and your exact responsibilities.  
+
+2. A Linux KVM environment experiences intermittent VM performance degradation during peak hours, but CPU utilization appears normal.
+What would you investigate first, in what order, and why?
+
+3. You are managing an 8-node Proxmox cluster with hundreds of production VMs. One node begins showing unusually high I/O latency while CPU and memory remain normal.
+How would you isolate whether the issue is with the VM, hypervisor, storage, network, or underlying hardware?
+
+4. Some VMs in an OpenStack environment are created successfully, while others remain stuck in the BUILD state.
+Which OpenStack components would you investigate, and how would you systematically isolate the root cause?
+
+5. Describe your hands-on production experience with Red Hat OpenShift.
+What components have you administered, and what is the most complex OpenShift issue you have personally resolved?
+
+6. You are given 100 production VMware VMs that need to be migrated to Proxmox with minimal downtime.
+Explain your complete migration approach, including discovery, dependency mapping, VM conversion, storage, networking, testing, cutover, rollback and post-migration validation.
+
+7. A production VM is running but suddenly starts reporting I/O errors because its storage has become inaccessible. Restarting the VM is not an option.
+Walk us through your troubleshooting and recovery process.
+
+8. A production Ceph cluster reports HEALTH_WARN, but customers have not yet reported any issues.
+Would you treat this as an incident? What would you check before making any changes?
+
+9. Explain a production issue you have encountered involving SAN, NAS, iSCSI or storage connectivity.
+What was the symptom, how did you identify the root cause, and how did you resolve it?
+
+10. A customer reports:
+
+“The VM is running, but the application is unreachable.”
+
+Without immediately accessing the application console, explain your end-to-end troubleshooting path from the customer network to the application.
+
+11. A Veeam backup job has been reporting Successful for several months, but the VM fails during a recovery test.
+What could cause this, and how would you investigate it?
+
+12. You discover that a customer has successful backups but has never performed a restore test.
+What would you do first, and how would you communicate the risk to the customer?
+
+13. A customer asks you to make an urgent production change. You believe the proposed change could potentially cause a larger outage.
+How would you handle the situation while balancing customer urgency and production risk?
+
+14. Describe the most difficult production infrastructure incident you have personally resolved.
+
+Include:
+
+What happened? 
+Business impact
+Initial hypothesis
+Actual root cause
+How you identified it
+Resolution
+Preventive action
+
+15. Describe a production incident where your initial troubleshooting assumption was incorrect.
+How did you realize you were heading in the wrong direction, and what did you do next?
+
+16. You need to deploy a standardized Linux VM configuration across 50 customer environments.
+What would you use—Ansible, Terraform, cloud-init, another approach, or a combination—and why?
+Describe how you would design the solution.
+
+17. You are given a newly deployed Linux/KVM virtualization environment that will host customer workloads.
+What are the five security controls you would implement before onboarding production customers, and why?
+
+18. You are supporting multiple customer environments on shared infrastructure.
+How would you approach multi-tenant isolation, access control, network segregation, resource allocation and preventing one customer from affecting another?
+
+19. You are the senior engineer available and receive three simultaneous incidents:
+
+Customer A: Production VM is down
+Customer B: Multiple backup jobs are failing
+Customer C: Network latency is affecting several VMs
+
+
+How would you prioritize these incidents, what would you investigate first, and what would you communicate to each customer?
+
+20. You join Nuventure and inherit an environment where documentation is incomplete, monitoring has gaps, several tasks are manual, and infrastructure risks are not clearly documented.
+
+What would your first 30 days look like?
+
+Explain your priorities across:
+
+Infrastructure discovery
+Documentation
+Monitoring
+Backup/DR
+Security
+Automation
+Capacity
+Risk management
+SOPs
+
+*Hope it Helps in Your Interview Preparation*

@@ -1,0 +1,3 @@
+What is difference between Node affinity pod anti affinity ?
+
+Node affinity it schedule a pod at specific node and pod affinity will be schedule a Pod close to another Pod.

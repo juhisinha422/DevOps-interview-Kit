@@ -1,0 +1,83 @@
+AWS CloudWatch in Plain English ☁️
+
+Launching AWS resources is easy.
+Knowing what’s happening inside them is the real skill. That’s where CloudWatch comes in.
+
+♦️What CloudWatch actually does? 🤔
+
+CloudWatch helps you monitor:
+
+• CPU usage
+• Memory patterns
+• Logs
+• Errors
+• Alarms
+• Application health
+
+Basically:
+“What is my system doing right now?”
+
+♦️Why it matters? 🤔
+
+Without CloudWatch:
+
+❌ You don’t know why your app failed
+❌ You miss traffic spikes
+❌ You find issues too late
+❌ Debugging becomes guesswork
+
+With CloudWatch:
+
+✅ Logs are visible
+✅ Metrics are tracked
+✅ Alerts notify you early
+✅ Systems become easier to troubleshoot
+
+♦️Real example:
+
+If Your EC2 app slows down.
+
+CloudWatch can show:
+
+• CPU is 95%
+• Error logs increased
+• Traffic spiked
+• Alarm was triggered
+
+Now you know what happened.
+
+♦️Where it’s used? 🤔
+
+• EC2 monitoring
+• Lambda logs
+• API Gateway errors
+• RDS performance
+• Billing alarms
+• Production alerts
+
+🚨Beginner mistakes:
+
+❌ No alarms
+❌ Never checking logs
+❌ Monitoring only after something breaks
+❌ Not setting billing alerts
+
+💡Golden rule:
+If you deploy it, monitor it.
+...
+
+Real-time Issue You Should Fixed By AWS CloudWatch 💻
+
+“Your app is running fine… until it isn’t.
+Do you want to find out from your users or before your users?”
+
+That’s exactly what Amazon CloudWatch is for: it’s your early warning system in the cloud.
+
+Here’s the step by step guide to configure cloudwatch👇🏻
+
+1️⃣ Enable CloudWatch for your AWS resources
+•By default, AWS services like EC2, RDS, Lambda send basic metrics to CloudWatch (CPU, memory, disk, etc.).
+
+2️⃣ Create a CloudWatch Log Group
+•Go to CloudWatch Console → Logs → Create Log Group
+•Example: /app/logs

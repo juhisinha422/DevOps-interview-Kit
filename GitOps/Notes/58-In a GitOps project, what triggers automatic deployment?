@@ -1,0 +1,7 @@
+In a GitOps project, what triggers automatic deployment?
+A) Manual SSH command
+B) Server restart
+C) Git repository change
+D)Git commit detection by tool
+
+ANS D

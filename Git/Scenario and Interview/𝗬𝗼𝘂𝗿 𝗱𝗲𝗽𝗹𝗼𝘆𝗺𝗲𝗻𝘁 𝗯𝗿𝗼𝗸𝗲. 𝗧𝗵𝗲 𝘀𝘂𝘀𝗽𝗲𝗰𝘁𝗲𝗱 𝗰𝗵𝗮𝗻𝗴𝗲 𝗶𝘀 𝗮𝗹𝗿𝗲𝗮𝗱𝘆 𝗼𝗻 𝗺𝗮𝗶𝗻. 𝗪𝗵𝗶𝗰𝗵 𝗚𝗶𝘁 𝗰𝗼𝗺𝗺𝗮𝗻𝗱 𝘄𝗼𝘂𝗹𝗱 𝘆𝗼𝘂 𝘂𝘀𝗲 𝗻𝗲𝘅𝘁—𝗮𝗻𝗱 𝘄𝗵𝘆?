@@ -1,0 +1,71 @@
+𝗬𝗼𝘂𝗿 𝗱𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗯𝗿𝗼𝗸𝗲. 𝗧𝗵𝗲 𝘀𝘂𝘀𝗽𝗲𝗰𝘁𝗲𝗱 𝗰𝗵𝗮𝗻𝗴𝗲 𝗶𝘀 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝗼𝗻 𝗺𝗮𝗶𝗻.
+𝗪𝗵𝗶𝗰𝗵 𝗚𝗶𝘁 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 𝘄𝗼𝘂𝗹𝗱 𝘆𝗼𝘂 𝘂𝘀𝗲 𝗻𝗲𝘅𝘁—𝗮𝗻𝗱 𝘄𝗵𝘆?
+
+
+Use these commands in your DevOps workflow:
+
+1. Check before you change
+
+• git status
+→ Check your branch and changed files.
+
+• git diff
+→ Review unstaged changes.
+
+• git diff --staged
+→ Review your next commit. Check for secrets and unwanted edits.
+
+2. Check remote updates
+
+• git fetch origin
+→ Download updates without merging them.
+
+• git log --oneline HEAD..origin/main
+→ See commits on remote main missing from your current branch.
+
+• git pull --ff-only
+→ Update from your upstream branch; stop if histories diverge.
+
+3. Prepare a focused fix
+
+• git switch -c fix/health-check
+→ Create a branch from your current commit. Check your starting point first.
+
+• git add -p
+→ Stage selected changes.
+
+• git commit -m "Fix health-check endpoint"
+→ Record the staged fix.
+
+• git push -u origin fix/health-check
+→ Publish your branch, then open a pull request for review and CI.
+
+4. Investigate the failure
+
+• git log --oneline --graph --decorate -15
+→ Inspect recent history.
+
+• git show <commit-sha>
+→ Examine a suspected commit.
+
+• git diff <good-sha> <bad-sha> -- deployment.yaml
+→ Compare the file between working and failing revisions.
+
+Replace placeholders with actual commit IDs and your file path.
+
+5. Reverse a shared change
+
+• git revert <commit-sha>
+→ Create a new commit that reverses an earlier change while preserving history.
+
+Conflicts may need resolution. Reverting merge commits requires extra care.
+
+Interview scenario:
+“A bad commit reached main. What would you do?”
+
+“Identify the deployed commit, inspect the change, prepare a revert through review and CI, then deploy and verify recovery.”
+
+Remember: a Git revert alone does not roll back a running application.
+
+Practise this habit:
+Inspect → Change → Review → Verify.

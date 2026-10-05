@@ -1,0 +1,13 @@
+How to use driftctl for aws terraform ?
+
+1. driftctl is used to find differences between our AWS live infrastructure and our Terraform state files
+
+2. driftctl needs read-only permissions to scan our AWS environment. It automatically picks up standard AWS environment variables
+
+3.By default, running driftctl scan looks for a local terraform.tfstate file in our current working directory. 
+
+driftctl scan --from tfstate://terraform.tfstate
+
+4.If our AWS infrastructure is split across multiple state files, pass multiple --from flags 
+
+driftctl scan --from tfstate+s3://my-bucket/vpc.tfstate --from tfstate+s3://my-bucket/apps.tfstate

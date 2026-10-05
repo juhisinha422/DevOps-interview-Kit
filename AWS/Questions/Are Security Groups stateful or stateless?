@@ -1,0 +1,11 @@
+Are Security Groups stateful or stateless? Explain.
+  
+1. Security Groups are stateful they track the state of active network connections and automatically allow return traffic for allowed inbound requests, regardless of outbound rules. If an incoming request is allowed, the corresponding outbound response is permitted automatically 
+
+2. If we permit inbound traffic (e.g., port 80), the outbound traffic corresponding to that session is allowed back out, even if no outbound rules are explicitly defined. 
+
+3.security group operate at the instance (NIC) level rather than the subnet level.
+ 
+4.Security groups only have "allow" rules; traffic is blocked by default. 
+
+5.Network Access Control Lists (NACLs) are stateless, requiring explicit rules for both incoming and outgoing traffic. 

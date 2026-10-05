@@ -1,0 +1,69 @@
+𝗗𝗮𝘆 𝟰/𝟯𝟲𝟱 — 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗜𝘀 𝗗𝗼𝘄𝗻 𝗼𝗻 𝗟𝗶𝗻𝘂𝘅
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“An application service is down on a production server. How will you troubleshoot it?”
+
+I would not immediately restart the service.
+
+First, I want to understand why the service stopped.
+
+I would check the service status:
+
+systemctl status <service-name>
+
+Then I would check recent service logs:
+
+journalctl -u <service-name> --since "30 minutes ago"
+
+I would look for errors such as:
+
+• Configuration issues
+• Port conflicts
+• Permission problems
+• Missing files
+• Dependency failures
+• Out-of-memory issues
+• Recent deployments or configuration changes
+
+Next, I would verify whether the required port is listening:
+
+ss -lntp
+
+I would also check whether the server itself has resource issues:
+
+uptime
+free -m
+df -h
+
+If the service failed because of a configuration problem, I would fix the configuration according to the approved change procedure.
+
+If the service is safe to restart and restarting is the approved recovery action:
+
+systemctl restart <service-name>
+
+Then I would immediately verify:
+
+systemctl status <service-name>
+
+and check the application endpoint or health check.
+
+I would also monitor the logs to make sure the service remains stable.
+
+Finally, I would document:
+
+Issue → Investigation → Root Cause → Resolution → Preventive Action
+
+For example:
+
+Service down → Checked status → Found configuration error → Corrected configuration → Restarted service → Verified application → RCA
+
+💡 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+
+When a production service is down, don't just restart it and move on.
+
+Understand:
+
+𝗪𝗵𝘆 𝗱𝗶𝗱 𝗶𝘁 𝘀𝘁𝗼𝗽? → 𝗪𝗵𝗮𝘁 𝗳𝗮𝗶𝗹𝗲𝗱? → 𝗛𝗼𝘄 𝗱𝗼 𝗜 𝗿𝗲𝗰𝗼𝘃𝗲𝗿 𝗶𝘁? → 𝗛𝗼𝘄 𝗱𝗼 𝗜 𝗽𝗿𝗲𝘃𝗲𝗻𝘁 𝗶𝘁?
+
+That's the troubleshooting mindset expected from a DevOps Engineer. 🚀

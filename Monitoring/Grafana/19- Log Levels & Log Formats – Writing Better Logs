@@ -1,0 +1,53 @@
+ Log Levels & Log Formats – Writing Better Logs 📜
+
+🔹 What are Log Levels?
+Log levels categorize log messages based on their importance. They help developers and DevOps engineers quickly identify what's happening inside an application without reading every log.
+ℹ️ INFO
+Used to record normal application events.
+Examples:
+User logged in
+Server started
+Payment completed
+👉 Indicates everything is working as expected.
+
+🐞 DEBUG
+Provides detailed information useful during development and troubleshooting.
+Examples:
+Function execution
+Variable values
+API request details
+👉 Mostly used in development and usually disabled in production.
+
+❌ ERROR
+Records failures that require attention.
+Examples:
+Database connection failed
+API timeout
+Authentication failed
+👉 Helps engineers quickly identify production issues.
+
+📦 JSON Logs
+Modern applications prefer JSON (structured) logs because they're easy to search and analyze.
+Example:
+
+{
+ "level": "ERROR",
+ "service": "payment-api",
+ "message": "Database connection timeout"
+}
+
+Compared to plain text logs, JSON logs work much better with centralized logging tools like the ELK Stack.
+
+💡 Real-world Example
+An e-commerce application reports payment failures.
+INFO → Payment request received
+DEBUG → Connecting to database
+ERROR → Database connection timeout
+By filtering ERROR logs, engineers quickly identify and fix the issue, reducing downtime.
+
+🧠 Key Takeaways
+✔ INFO → Normal events
+ ✔ DEBUG → Troubleshooting details
+ ✔ ERROR → Failures and exceptions
+ ✔ JSON logs → Structured & searchable
+ ✔ Good logging = Faster debugging 🚀

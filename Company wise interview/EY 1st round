@@ -1,0 +1,62 @@
+EY first round interview questions I asked recently 🚀🔥
+Preparing for a DevOps role? Here’s a solid set of real-world questions to test yourself 👇
+🔹 #Linux 🐧
+• How do you create and manage users/groups in Linux?
+ • Explain file permissions (chmod) and ownership (chown).
+ • What is umask and how does it impact default permissions?
+ • How do you troubleshoot high CPU, memory, or disk usage?
+ • Write a Bash script to alert when disk usage exceeds a threshold.
+ • Difference between cron jobs and systemd timers.
+🔹 #Git 🔧
+• Difference between Fetch vs Pull vs Merge vs Rebase.
+ • Git Reset vs Git Revert — when to use each?
+ • How do you handle merge conflicts in a team environment?
+ • What branching strategy have you used (GitFlow / trunk-based)?
+ • How do you safely roll back a bad production commit?
+🔹 #Docker 🐳
+• Explain Docker architecture (Client, Daemon, Registry).
+ • Image vs Container vs Volume — key differences.
+ • What are Multi-stage builds and why use them?
+ • How do you reduce Docker image size?
+ • Explain Docker networking basics.
+ • Container keeps restarting — how do you debug it?
+🔹 #Kubernetes ☸️
+• Explain Kubernetes architecture (Control Plane + Nodes).
+ • Deployment vs StatefulSet vs DaemonSet vs Job.
+ • Services vs Ingress — how traffic flows?
+ • Troubleshooting CrashLoopBackOff — step-by-step approach.
+ • Requests vs Limits — why they matter?
+ • ConfigMaps vs Secrets — use cases.
+ • Liveness vs Readiness probes.
+ • Node Affinity, Taints & Tolerations — when to use?
+ • How do you upgrade an EKS cluster with minimal downtime?
+ • HPA vs Cluster Autoscaler.
+🔹 #Jenkins #CICD ⚙️
+• Explain your CI/CD pipeline design.
+ • Declarative vs Scripted pipelines.
+ • How do you implement CI/CD for microservices?
+ • How do you secure Jenkins pipelines?
+ • Pipeline suddenly fails — how do you debug?
+🔹 #AWS ☁️
+• Explain VPC architecture (subnets, routing, gateways).
+ • Security Groups vs NACLs.
+ • IAM Roles vs Policies.
+ • EC2 vs Auto Scaling vs Load Balancer.
+ • EBS vs EFS vs S3 — when to use what?
+ • How do private instances access the internet (NAT Gateway)?
+ • Which AWS services have you used in real projects?
+🔹 #Terraform 🏗️
+• Explain Terraform workflow (init, plan, apply).
+ • What is Terraform State and why is it critical?
+ • Remote backend — why and how?
+ • State locking — how it prevents conflicts?
+ • What is Terraform drift?
+ • Resource vs Data source.
+ • How do you manage secrets securely?
+🔹 #ScenarioBased 🧠
+• Pod stuck in CrashLoopBackOff — what’s your approach?
+ • CI/CD pipeline failing after recent changes — how do you debug?
+ • Terraform apply failed midway — recovery steps?
+ • Application not accessible after deployment — checklist?
+ • CPU suddenly spikes to 100% — investigation steps?
+ • One Availability Zone goes down — how does your system handle it?

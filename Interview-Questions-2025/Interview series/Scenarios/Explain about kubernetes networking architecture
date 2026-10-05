@@ -1,0 +1,21 @@
+Explain about kubernetes networking architecture  
+
+Kubernetes networking architecture provides a flat, routable network where all Pods can communicate with each other and with Services, regardless of their host node 
+
+1.All Pods are assigned their own IP addresses 
+
+2.Nodes run a root network namespace that bridges between the Pod interfaces. This allows all Pods to communicate with each other using their IP addresses 
+
+3.Communication does not depend on Network Address Translation (NAT), reducing complexity and improving portability. 
+
+4.Pods are assigned their own network namespaces and interfaces. All communications with Pods go through their assigned interfaces. 
+
+5.The cluster-level network layer maps the Node-level namespaces, allowing traffic to be correctly routed across Nodes. 
+
+The three main types of network components in Kubernetes are Pod networking, Service networking, and Ingress/Egress networking. 
+
+1.Pod Networking: Handles direct communication between Pods. Each Pod gets a unique IP address, and Pods communicate without NAT, using CNI plugins for routing and IP management. 
+
+2. Service Networking: Provides stable virtual IPs (ClusterIP) for accessing a group of Pods. Kube-proxy manages traffic routing to healthy Pods using iptables, IPVS, or eBPF. 
+
+3. Ingress/Egress Networking: Manages external access to the cluster. Ingress controllers handle HTTP/S routing to internal Services, while Egress defines how Pods reach resources outside the cluster, often using NAT or egress gateways. 

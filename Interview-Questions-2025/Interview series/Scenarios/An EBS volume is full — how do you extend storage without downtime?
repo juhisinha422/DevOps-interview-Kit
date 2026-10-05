@@ -1,0 +1,37 @@
+An EBS volume is full — how do you extend storage without downtime? 
+
+1.Take a snapshot of the volume before modification to prevent data loss.
+ 
+2.Navigate to EC2 > Volumes and select the volume. 
+
+3.Choose Actions > Modify Volume. 
+
+4.Increase the Size and click Modify. 
+
+5.Wait for the state to move from 'modifying' to 'optimizing' or 'in-use'. 
+
+6.Log in via SSH and run lsblk to confirm the block device shows the new size. 
+
+7.If we using an ext4 filesystem, run: sudo resize2fs /dev/xvda1 (replace /dev/xvda1 with our device name).
+
+8.Run df -h to confirm the new capacity 
+
+Note : we  can only modify a volume once every 6 hours. An EBS volume is full — how do you extend storage without downtime? 
+
+1.Take a snapshot of the volume before modification to prevent data loss.
+ 
+2.Navigate to EC2 > Volumes and select the volume. 
+
+3.Choose Actions > Modify Volume. 
+
+4.Increase the Size and click Modify. 
+
+5.Wait for the state to move from 'modifying' to 'optimizing' or 'in-use'. 
+
+6.Log in via SSH and run lsblk to confirm the block device shows the new size. 
+
+7.If we using an ext4 filesystem, run: sudo resize2fs /dev/xvda1 (replace /dev/xvda1 with our device name).
+
+8.Run df -h to confirm the new capacity 
+
+Note : we  can only modify a volume once every 6 hours. 

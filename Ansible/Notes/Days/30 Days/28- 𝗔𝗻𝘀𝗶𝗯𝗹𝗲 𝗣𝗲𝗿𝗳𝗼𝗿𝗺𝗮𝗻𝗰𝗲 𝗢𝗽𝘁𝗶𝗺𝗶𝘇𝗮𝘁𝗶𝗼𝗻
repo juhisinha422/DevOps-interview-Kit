@@ -1,0 +1,61 @@
+𝗗𝗮𝘆 𝟮𝟴/𝟯𝟬 – 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗣𝗲𝗿𝗳𝗼𝗿𝗺𝗮𝗻𝗰𝗲 𝗢𝗽𝘁𝗶𝗺𝗶𝘇𝗮𝘁𝗶𝗼𝗻
+
+Continuing my #30DaysOfAnsible journey! 🔥
+
+Today I focused on Ansible Performance Optimization — because when infrastructure grows, automation speed matters.
+
+⚡ 𝗪𝗵𝘆 𝗣𝗲𝗿𝗳𝗼𝗿𝗺𝗮𝗻𝗰𝗲 𝗠𝗮𝘁𝘁𝗲𝗿𝘀
+
+Running Ansible against 5 servers is very different from running it against 500 or 5,000 servers.
+
+Poorly optimized playbooks can lead to:
+
+❌ Longer deployment times
+❌ Higher resource usage
+❌ Unnecessary network communication
+❌ Slower CI/CD pipelines
+
+Here are some techniques I learned:
+
+🚀 𝗙𝗮𝗰𝘁 𝗚𝗮𝘁𝗵𝗲𝗿𝗶𝗻𝗴
+
+If facts aren't required, disable them:
+
+- hosts: web
+  gather_facts: false
+
+This can reduce unnecessary work at the beginning of a play.
+
+⚡ 𝗖𝗼𝗻𝗰𝘂𝗿𝗿𝗲𝗻𝗰𝘆
+
+Ansible can execute tasks across multiple hosts in parallel.
+
+Control the number of simultaneous hosts using:
+
+- hosts: web
+  serial: 10
+
+This is also useful for rolling deployments, where you don't want to update every server at once.
+
+🔄 𝗔𝘃𝗼𝗶𝗱 𝗨𝗻𝗻𝗲𝗰𝗲𝘀𝘀𝗮𝗿𝘆 𝗧𝗮𝘀𝗸𝘀
+
+Use Ansible modules instead of repeatedly executing shell commands where possible.
+
+For example:
+
+- name: Install Nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+
+Ansible can determine whether a change is actually required.
+
+📦 𝗥𝗲𝘂𝘀𝗲 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲𝘀 & 𝗥𝗼𝗹𝗲𝘀
+
+Well-structured roles and variables make playbooks easier to maintain and reduce duplicated logic.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Performance optimization isn't just about making Ansible faster.
+
+It's about designing automation that remains efficient, predictable, and scalable as infrastructure grows. 🚀

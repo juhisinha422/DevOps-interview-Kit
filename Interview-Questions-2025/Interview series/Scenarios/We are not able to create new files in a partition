@@ -1,0 +1,9 @@
+We are not able to create new files in a partition. We have enough disk space and permissions. What can be the possible reason ?
+
+If our partition has available storage space and correct permissions but we still cannot create new files, the issue is typically caused by a hidden limit on metadata (inodes), read-only file systems, or process-level locks. 
+
+1. we can run df -i in your terminal to check inode usage. If it shows 100%, we must delete excess small files or clear cached data 
+
+2.we run mount (or lsblk) to verify the partition status. If it is marked as ro (read-only), remount it in Read-Write mode 
+
+3.we can run sudo lsof +L1 to find unlinked files that are still open. we can restart the service locking the files, or reboot the system to reclaim the space.

@@ -1,0 +1,74 @@
+Day 11 of my DevOps Troubleshooting Series
+
+🔥 Scenario: Application is running, but users are getting 503 Service Unavailable
+
+Imagine you're the DevOps engineer on call. The EC2 instances are running, but users suddenly start seeing:
+
+503 Service Unavailable
+
+What would you check?
+
+Here’s my troubleshooting approach:
+
+🔹 1. Check Load Balancer Target Health
+First, verify whether the targets behind the Load Balancer are healthy.
+
+🔹 2. Check Health Check Configuration
+Verify:
+• Health check path
+• Port
+• Protocol
+• Expected HTTP status code
+
+🔹 3. Check Application Status
+Make sure the application process is actually running on the backend server.
+
+🔹 4. Check Application Logs
+Look for:
+• Application crashes
+• Database connection issues
+• Configuration errors
+• Port-related issues
+
+🔹 5. Check Server Resources
+Verify CPU, memory, and disk usage.
+
+Commands I commonly check:
+
+top
+free -m
+df -h
+
+🔹 6. Check Security Groups & Connectivity
+Make sure the Load Balancer can reach the backend application on the required port.
+
+🔹 7. Check Recent Changes
+Look for recent:
+• Deployments
+• Configuration changes
+• Security Group changes
+• Infrastructure changes
+
+If the issue started immediately after a deployment, rollback can be considered.
+
+💡 Key Learning:
+
+A 503 error doesn't always mean that the server is completely down.
+
+The correct approach is to troubleshoot layer by layer:
+
+Load Balancer
+⬇️
+Target Health
+⬇️
+Health Check
+⬇️
+Application
+⬇️
+Server Resources
+⬇️
+Network & Security
+⬇️
+Recent Changes
+⬇️
+Fix & Monitor

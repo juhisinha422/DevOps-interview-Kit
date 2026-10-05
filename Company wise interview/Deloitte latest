@@ -1,0 +1,9 @@
+focus on Kubernetes terraform Aws CI/cd 
+In first round they asked me to write the resource block for S3 bucket using terraform 
+And Ci/cd to pipeline using GitHub action
+
+ 2nd round they asked to End to pipeline and integration with Kubernetes 
+Usage helm chart, cloud watch
+Difference between IAm policy and inline policy 
+Many more
+Git merging stratergy

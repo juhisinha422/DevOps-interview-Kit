@@ -1,0 +1,8 @@
+How is rollback performed in GitOps?
+A) Restarting containers
+B) Running shell scripts
+C) Reverting Git commit
+D) Deleting cluster resources
+
+
+ANS C

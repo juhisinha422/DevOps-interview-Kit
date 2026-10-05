@@ -1,0 +1,56 @@
+Senior DevOps Engineer REAL Interview Questions
+🏢 Company: IAM Ops – 1st Round
+
+🔹 Introduce yourself and explain your current responsibilities.
+🔹 What tools and technologies have you worked on?
+🔹 What motivated you to transition from Technical Support to DevOps?
+🔹 How did you build your DevOps skills and get your first DevOps opportunity?
+🔹 Why do you want to leave your current organization?
+🔹 What are you looking for in your next organization?
+
+🔹 How do you structure Terraform code for multiple environments such as Dev, UAT, and Production?
+🔹 How do you design reusable Terraform modules?
+🔹 How do you manage Terraform state across environments?
+
+🔹 How do you monitor production environments?
+🔹 How do you handle production incidents?
+🔹 What is your approach to RCA?
+🔹 How do you use Dynatrace for application and infrastructure monitoring?
+🔹 How do you correlate logs, metrics, and traces during troubleshooting?
+
+🔹 Have you configured AWS IAM Roles, Policies, and Security Groups yourself?
+🔹 How do you design Security Group rules in AWS?
+🔹 What security best practices do you follow while configuring IAM permissions?
+
+🔹 Have you implemented vulnerability scanning in CI/CD pipelines?
+🔹 Which tools have you used for Static Code Analysis and Security Scanning?
+🔹 How do you integrate security checks into the deployment process?
+
+🔹 Explain a cloud migration or infrastructure project you have worked on.
+🔹 What was your specific contribution to the project?
+🔹 What were the biggest challenges and how did you overcome them?
+🔹 Explain the Docker setup used in your environment.
+
+🔹 How important is coding for a DevOps Engineer?
+🔹 How would you rate your coding skills and why?
+🔹 Which scripting language do you use most frequently?
+
+🔹 An AWS Amplify application shows intermittent SSL certificate errors for users in some regions despite valid certificates and correct DNS configuration. What could be the root cause and how would you resolve it?
+🔹 Which Redis-based distributed locking mechanism would you use to prevent split-brain scenarios during deployments?
+🔹 In a multi-cloud architecture, what is the most commonly overlooked cost factor?
+
+🔹 Have you handled a production incident outside your shift timing?
+🔹 What actions would you take if a critical incident occurs after your shift?
+🔹 When would you involve yourself versus relying on the on-call engineer?
+
+🔹 Have you ever disagreed with your manager on a technical decision?
+🔹 Can you share a real-world example of a technical disagreement?
+🔹 How do you manage conflicts with Development and QA teams?
+🔹 How do you work with cross-functional teams during releases and incidents?
+
+🔹 What is the size of your project team?
+🔹 How many DevOps engineers are part of your team?
+🔹 How do you collaborate with Development and QA teams?
+
+🔹 How do you evaluate a company before joining?
+🔹 If an MNC, Mid-sized Company, and Startup offer the same package, how would you choose between them?

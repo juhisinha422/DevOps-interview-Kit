@@ -1,0 +1,14 @@
+Gather Facts in Ansible
+Before running tasks, Ansible collects system information automatically.
+This incluGather Facts in Ansibledes:
+• OS type
+• IP address
+• CPU
+• Memory
+• Hostname
+Example:
+ansible all -m setup
+These facts allow dynamic automation like:
+Install package based on OS
+Configure services based on system specs
+Infrastructure awareness = smarter automation

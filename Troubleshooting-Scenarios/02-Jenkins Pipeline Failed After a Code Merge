@@ -1,0 +1,29 @@
+DevOps Real-Time Scenario Series | Day 2
+
+Scenario:Jenkins Pipeline Failed After a Code Merge
+
+A developer merged the latest code into the `main` branch, which automatically triggered the Jenkins CI/CD pipeline. However, the pipeline failed, and the application wasn't deployed to the UAT environment.
+
+🔍 As a DevOps Engineer, what would you check first?
+
+Here's the approach I would follow:
+
+✅ Review the Jenkins console logs to identify the exact stage where the pipeline failed.
+
+✅ Check whether the recent code changes introduced compilation or syntax errors.
+
+✅ Verify that all required environment variables, credentials, and secrets are configured correctly.
+
+✅ Ensure dependencies (Maven, Gradle, npm, etc.) are downloaded successfully.
+
+✅ Validate connectivity to external services such as Git repositories, artifact repositories, or Docker registries.
+
+✅ If Docker is part of the pipeline, confirm the image was built and pushed successfully.
+
+✅ Review the Jenkinsfile for any recent changes that may have caused the failure.
+
+✅ After resolving the issue, rerun the pipeline and verify that the deployment to UAT completes successfully.
+
+💡 Key Takeaway
+
+When a pipeline fails, don't start making assumptions. Let the logs guide your investigation. A structured troubleshooting approach helps you identify the root cause faster and minimizes downtime.

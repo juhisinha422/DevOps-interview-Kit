@@ -1,0 +1,13 @@
+Do you maintain a single CI/CD pipeline for all environments (Development, SIT, UAT, and Production), or do you use separate pipelines? How do you manage environment-specific configurations and deployments? 
+
+Maintaining separate, disconnected pipelines for each environment introduces a high risk of configuration drift, environment-specific script bugs, and deployment inconsistencies so we can maintain a single CI/CD pipeline for all environments (Development, SIT, UAT, and Production) 
+
+1.A single master pipeline file uses distinct, sequential Stages or Jobs to isolate environments. This enables the foundational DevOps rule Build once, deploy many times 
+
+2. The pipeline compiles code, runs unit tests, and creates a single immutable build artifact (e.g., a Docker image, a ZIP folder, or a compiled binary) just once.
+
+ 3.The pipeline promotes  exact same artifact sequentially through the environments. we do not rebuild code from source for Production, which ensures that what we tested in UAT is identically what goes live. 
+
+4.Moving from Dev to SIT might be fully automatic upon successful automated testing, while advancing to UAT and Production requires Manual Approval Gates from QA leads or product owners. 
+
+5.Platforms like GitHub Actions and GitLab CI/CD allow  to define "Environments". Variables and secrets (like DB_HOST or API_SECRET) are mapped to specific environments and only injected when that specific pipeline stage runs

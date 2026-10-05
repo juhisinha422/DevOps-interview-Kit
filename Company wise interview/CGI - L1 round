@@ -1,0 +1,26 @@
+L1 Technical Round for a DevOps Engineer role at CGI.
+
+
+1.How did you reduce a pipeline from 1 hour to 20 minutes? 
+
+2.Write a Git checkout stage in Jenkins using Git credentials. 
+
+3.If multiple teams need to use the same variables, what approach would you use? 
+
+4.How do you access/call variables in a Jenkins Pipeline? 
+
+5.What is a Jenkins Agent? 
+
+6.Write a sample multi-stage Dockerfile. 
+
+7.Explain how a multi-stage Dockerfile helps optimize image size. 
+
+8.A database connection is failing only from one Kubernetes pod. How would you troubleshoot it? 
+
+9.Database logs are not being written. How would you investigate the issue? 
+
+10.What are CVEs (Common Vulnerabilities and Exposures)? 
+
+11.Which CVEs have you encountered in production, and how did you remediate them? 
+
+12.Name at least five tools used to identify or remediate CVEs.

@@ -1,0 +1,55 @@
+🚀 Day 13 of My DevOps Troubleshooting Journey | Jenkins
+
+Today I worked on a common real-time Jenkins issue.
+
+🔴 Scenario: Jenkins Pipeline Fails During Docker Build
+
+The pipeline was working perfectly until yesterday, but suddenly the Docker build stage started failing.
+
+Pipeline status:
+
+✅ Git Clone
+✅ Maven Build
+✅ Unit Tests
+❌ Docker Build
+
+The error was:
+
+```text
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock
+Is the docker daemon running?
+```
+
+🔍 How would I troubleshoot it?
+
+As a DevOps Engineer, I would follow a systematic approach:
+
+1️⃣ Check whether the Docker service is running on the Jenkins agent.
+
+2️⃣ Verify Docker installation and version.
+
+3️⃣ Check whether the Jenkins user has permission to access Docker.
+
+4️⃣ Check the permissions of `/var/run/docker.sock`.
+
+5️⃣ Confirm that Jenkins is running the job on the expected agent/node.
+
+6️⃣ Verify Jenkins agent connectivity.
+
+7️⃣ Check Docker daemon and system logs for errors.
+
+8️⃣ Review the Jenkins console output to identify exactly where the failure occurs.
+
+9️⃣ Fix the actual root cause instead of immediately restarting Jenkins.
+
+🔟 Re-run the pipeline and verify that the Docker image is built successfully.
+
+💡 Key Learning
+
+A Jenkins pipeline failure doesn't always mean Jenkins itself is the problem.
+
+The issue could be with the Jenkins agent, Docker daemon, Docker socket permissions, or agent configuration.
+
+The important thing is to troubleshoot layer by layer and identify the actual root cause before applying a fix.
+
+DevOps is not just about building pipelines. It's also about knowing how to troubleshoot them when things break.💻

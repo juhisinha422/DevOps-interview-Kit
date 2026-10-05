@@ -1,0 +1,72 @@
+𝗗𝗮𝘆 𝟭𝟮/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥  𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗶𝘀 𝗨𝗽, 𝗕𝘂𝘁 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗶𝘀 𝗡𝗼𝘁 𝗔𝗰𝗰𝗲𝘀𝘀𝗶𝗯𝗹𝗲 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗖𝗵𝗲𝗰𝗸?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes Service exists, but users cannot access the application. How will you troubleshoot it?”
+
+I wouldn't immediately restart the pods or recreate the Service.
+
+First, I would trace the request path.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check the Service
+
+kubectl get svc -n <namespace>
+
+Verify the Service type, port and target port.
+
+2️⃣ Check Service details
+
+kubectl describe svc <service-name> -n <namespace>
+
+Look for selector and endpoint-related information.
+
+3️⃣ Check Endpoints
+
+kubectl get endpoints <service-name> -n <namespace>
+
+If there are no endpoints, I would investigate whether the Service selector matches the pod labels.
+
+4️⃣ Check Pod labels
+
+kubectl get pods --show-labels -n <namespace>
+
+Compare the pod labels with the Service selector.
+
+5️⃣ Test the application inside the cluster
+
+kubectl run test-pod --rm -it --image=curlimages/curl -- sh
+
+Then test the Service:
+
+curl http://<service-name>:<port>
+
+This helps determine whether the problem is with the application/Service or external access.
+
+6️⃣ Check the exposure layer
+
+If the Service is exposed externally, I would check:
+
+🔹 LoadBalancer
+🔹 Ingress
+🔹 Ingress Controller
+🔹 DNS
+🔹 Network policies
+🔹 Cloud load balancer configuration
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Client → DNS → Ingress/LB → Service → Endpoints → Pod → Application
+
+At every layer, I ask:
+
+“Where exactly is the request failing?”
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A Kubernetes Service being Running or existing successfully doesn't guarantee that traffic can reach the application.
+
+Always trace the complete request path before making changes. 🚀

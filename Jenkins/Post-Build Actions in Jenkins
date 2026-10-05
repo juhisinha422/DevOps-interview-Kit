@@ -1,0 +1,73 @@
+Understanding Post-Build Actions in Jenkins
+In Jenkins, a build is the process of compiling, testing, and packaging code. But what happens after the build completes? That’s where post-build actions come in.
+Post-build actions are automated tasks that Jenkins executes once a build finishes. They help teams stay informed and streamline workflows. Common examples include:
+Notifications: Sending emails or messages to developers about build success/failure.
+Archiving artifacts: Storing compiled files (like JAR/WAR) for deployment.
+Publishing reports: Sharing test results or coverage reports.
+Triggering downstream jobs: Starting another pipeline or deployment process.
+This ensures that the build process doesn’t stop at compilation—it extends into communication, reporting, and automation.
+
+📧 Simple Mail Transfer Protocol (SMTP) in Jenkins
+One of the most widely used post-build actions is email notification. Jenkins uses SMTP (Simple Mail Transfer Protocol) to send these emails.
+SMTP basics:
+It’s the standard protocol for sending emails across the internet.
+Works by transferring messages from a sender’s mail client/server to the recipient’s mail server.
+Typically uses servers like Gmail (smtp.gmail.com) or corporate mail servers.
+How Jenkins uses SMTP:
+Configure SMTP server details in Jenkins (host, port, credentials).
+Define recipients and message content in the job’s post-build actions.
+When the build completes, Jenkins sends an email via the SMTP server.
+
+📝 Example Pipeline Script
+Here’s a pipeline script that demonstrates post-build actions with SMTP email notifications:
+
+For Success, failure, Aborted:
+
+pipeline {
+  agent any
+
+  stages {
+    stage('Code') {
+      steps {
+        echo 'this is code stage'
+      }
+    }
+    stage('Build') {
+      steps {
+        echo 'this is build stage'
+      }
+    }
+    stage('Test') {
+      steps {
+        echo 'this is Test stage'
+      }
+    }
+    stage('Deploy') {
+      input {
+        message "can i deploy?"
+      }
+      steps {
+        echo 'this is Deploy stage'
+      }
+    }
+  }
+  post {
+    success {
+      mail to: 'sample@gmail.com',
+      subject: "Build Status: ${currentBuild.fullDisplayName}",
+      body: "The build ${env.BUILD_NUMBER} finished with status: ${currentBuild.currentResult}. View logs at: ${env.BUILD_URL}"
+    }
+    failure {
+      mail to: 'sample@gmail.com',
+      subject: "Build Status: ${currentBuild.fullDisplayName}",
+      body: "The build ${env.BUILD_NUMBER} finished with status: ${currentBuild.currentResult}. View logs at: ${env.BUILD_URL}"
+    }
+    aborted {
+      mail to: 'sample@gmail.com',
+      subject: "Build Status: ${currentBuild.fullDisplayName}",
+      body: "The build ${env.BUILD_NUMBER} finished with status: ${currentBuild.currentResult}. View logs at: ${env.BUILD_URL}"
+    }
+  }
+}
+
+By using "always" also it will send the mails for success, failure, aborted cases instead of writing individually for three cases

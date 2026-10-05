@@ -1,0 +1,77 @@
+Accenture Interview Questions 
+
+GitLab CI/CD
+
+1. Difference between Continuous Integration, Continuous Delivery, and Continuous Deployment?
+2. Explain your current CI/CD pipeline flow.
+3. What are the stages in your CI/CD pipeline?
+4. What problems does your CI/CD pipeline solve?
+5. How do you troubleshoot and resolve pipeline failures?
+6. Describe a GitLab pipeline failure and how you fixed it.
+7. Which Git branching strategy do you use?
+8. How do you manage Git branches?
+9. Do you use any backup/recovery before deleting stale branches?
+10. Explain your code review and merge approval process.
+11. Difference between Git Merge and Git Rebase? When do you use each?
+12. What is Git?
+13. Difference between Declarative and Scripted Pipelines in Jenkins?
+
+Terraform
+
+1. Why is Terraform used?
+2. Advantages over manual infrastructure provisioning?
+3. Experience with Terraform modules?
+4. How do you manage Terraform state files?
+5. Challenges faced in Terraform and how you resolved them?
+
+Docker
+
+1. What is Docker and why is it used?
+2. Difference between ENTRYPOINT and CMD?
+3. Difference between Docker images and containers?
+4. What are multi-stage builds?
+5. How do you reduce Docker image size and why?
+6. How do you optimize Docker images for performance and security?
+7. Explain the Dockerfile creation process.
+
+Kubernetes (K8s)
+
+1. What is Kubernetes and why is it used?
+2. Explain Kubernetes architecture.
+3. Difference between ConfigMap and Secret?
+4. Explain Kubernetes configuration changes/deployments you handled.
+5. How do you troubleshoot pod issues?
+6. Difference between Deployment, StatefulSet, and DaemonSet?
+7. How do you manage scaling and high availability?
+
+AWS
+
+1. Which AWS services have you worked with?
+2. What AWS improvements or changes have you implemented?
+3. Explain your experience with EC2, S3, IAM, and VPC.
+4. How do you monitor applications and infrastructure?
+5. Have you worked on AWS cost optimization?
+
+Monitoring & Ticketing
+
+1. Which monitoring tools do you use?
+2. How do you monitor application and infrastructure health?
+3. Experience with Prometheus, Grafana, CloudWatch, or ELK Stack?
+4. Which ticketing tool do you use?
+5. How do you handle production incidents and escalations?
+
+Shell Scripting & Linux
+
+1. Which Linux commands do you use regularly?
+2. What automation tasks have you implemented using shell scripting?
+3. Are your scripts used by the team? Explain their impact.
+4. How do you troubleshoot Linux server issues?
+5. Explain a shell script you developed for a real-time problem.
+
+
+
+
+
+​
+
+3

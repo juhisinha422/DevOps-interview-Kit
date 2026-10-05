@@ -1,0 +1,19 @@
+Why can an NLB handle millions of requests while an ALB hits scaling limits much earlier?  
+
+1.A Network Load Balancer (NLB) can handle millions of requests per second (RPS) while an Application Load Balancer (ALB) hits scaling limits because they operate at different layers of the OSI model 
+
+2.NLB operates at Layer 4 (Transport Layer), focusing on high-speed TCP/UDP packet forwarding. 
+
+3.ALB operates at Layer 7 (Application Layer), inspecting HTTP/HTTPS  requests, which requires more computational effort. 
+
+4.NLBs are built on AWS Hyperplane, a distributed network virtualization system. Each AZ in an NLB acts as an independent, high-capacity, and elastic network interface (ENI) that can immediately handle large traffic bursts without needing "warming". 
+
+5.ALBs are implemented as a cluster of nodes that must scale out based on request rates, throughput, and connection concurrency. This process is reactive, meaning rapid, massive spikes can overwhelm the ALB before it has scaled up.
+ 
+6.NLB Does not inspect the content of the packets (like URLs or headers). It uses a flow hash algorithm based on IP, port, and TCP sequence number to pass packets through almost instantly. 
+
+7.ALB Decrypts SSL/TLS traffic, reads HTTP headers, parses cookies, and interprets URL paths to make routing decisions. This inspection consumes significant CPU cycles per request. 
+
+8.NLB Designed for high connection counts and rapid connection establishment. It excels at long-lived TCP connections, making it ideal for WebSocket, gaming, or IoT applications. 
+
+9.ALB terminates the client connection and establishes a new one, acting as a proxy. This process, while advanced, introduces overhead that limits scalability under extreme loads. 

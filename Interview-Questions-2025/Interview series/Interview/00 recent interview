@@ -1,0 +1,14 @@
+1. Tell me about your projects?
+Ans:  I discussed my hands-on DevOps projects like CI/CD pipelines, Dockerized applications, and deployments on Kubernetes/AWS, focusing on tools used and challenges faced.
+
+2. How would you decrease the size of a Docker image?
+Ans: By using lightweight base images, multi-stage builds, removing unnecessary files, and optimizing layers.
+
+3. If two microservices are there and A depends on B, how would you run them?
+Ans: Ensure B runs first using Docker Compose (depends_on) or Kubernetes readiness probes/health checks.
+
+4. You have 4–5 test cases — how would you run them simultaneously without writing a script in Jenkinsfile?
+Ans: By enabling parallel execution using Jenkins executors, freestyle jobs, or test framework parallelism.
+
+5. What is Master-Agent Architecture?
+Ans: It’s a setup where the master manages jobs and agents execute them, enabling distributed and scalable builds.

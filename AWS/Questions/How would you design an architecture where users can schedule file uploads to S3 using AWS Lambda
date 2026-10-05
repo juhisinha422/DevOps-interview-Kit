@@ -1,0 +1,121 @@
+𝗔𝗪𝗦 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+“How would you design an architecture where users can schedule file uploads to S3 using AWS Lambda?”
+
+One of the most interesting AWS system design questions I was asked.
+
+At first, it sounded simple:
+
+“Users should be able to schedule uploads to S3 at a future time.”
+
+But the deeper we discussed it, the more it became a real architecture conversation.
+
+Here’s how I approached it 👇
+
+🧠 𝗥𝗲𝗾𝘂𝗶𝗿𝗲𝗺𝗲𝗻𝘁
+
+The system should allow users to:
+
+✅ Upload a file
+✅ Choose a future upload time
+✅ Automatically upload/store the file in S3
+✅ Handle retries/failures
+✅ Scale for many users
+
+🏗️ 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲
+
+API Gateway → Lambda → DynamoDB → EventBridge Scheduler → Lambda → S3
+
+𝗦𝘁𝗲𝗽 𝟭 — 𝗨𝘀𝗲𝗿 𝗥𝗲𝗾𝘂𝗲𝘀𝘁
+
+API Gateway triggers Lambda.
+
+Lambda validates:
+• file type
+• upload timestamp
+• authentication
+• request limits
+
+📦 𝗦𝘁𝗲𝗽 𝟮 — 𝗦𝘁𝗼𝗿𝗲 𝗠𝗲𝘁𝗮𝗱𝗮𝘁𝗮
+
+Store schedule details in DynamoDB:
+
+{
+ "jobId": "123",
+ "uploadTime": "2026-05-20T10:00:00Z",
+ "status": "PENDING"
+}
+
+
+Why DynamoDB?
+
+✅ Serverless
+✅ Highly scalable
+✅ Low latency
+
+⏰ 𝗦𝘁𝗲𝗽 𝟯 — 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗶𝗻𝗴
+
+Instead of polling continuously:
+
+EventBridge Scheduler → Lambda → S3
+
+This:
+✅ reduces compute overhead
+✅ scales efficiently
+✅ keeps architecture serverless
+
+☁️ 𝗦𝟯 𝗕𝗲𝘀𝘁 𝗣𝗿𝗮𝗰𝘁𝗶𝗰𝗲𝘀
+
+✅ Versioning
+✅ Lifecycle policies
+✅ SSE-KMS encryption
+✅ Access logging
+
+🚨 𝗧𝗵𝗲𝗻 𝘁𝗵𝗲 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝗲𝗿 𝗔𝘀𝗸𝗲𝗱:
+
+“What are the limitations of Lambda?”
+
+This is where interviews become interesting.
+
+Because designing architecture is easy.
+
+Designing around limitations shows experience.
+
+⚠️ 𝗟𝗮𝗺𝗯𝗱𝗮 𝗟𝗶𝗺𝗶𝘁𝗮𝘁𝗶𝗼𝗻𝘀
+
+⏱️ 15-minute timeout
+→ Use Step Functions / ECS Fargate
+
+💾 Limited `/tmp` storage
+→ Stream directly to S3
+
+🚀 Cold starts
+→ Provisioned concurrency
+
+📈 Concurrency limits
+→ EventBridge → SQS → Lambda → S3
+
+📦 Large package size
+→ Lambda Layers / containers
+
+🔁 Retry storms
+→ DLQ + idempotent processing
+
+🔐 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆
+
+✅ IAM least privilege
+✅ Pre-signed URLs
+✅ Encryption at rest + transit
+✅ CloudTrail auditing
+
+💡 𝗙𝗶𝗻𝗮𝗹 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+AWS interviews are rarely about memorizing services.
+
+They test:
+• scaling decisions
+• failure handling
+• tradeoff understanding
+• architectural thinking
+
+Because real cloud engineering starts when systems fail at scale.

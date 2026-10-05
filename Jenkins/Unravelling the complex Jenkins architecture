@@ -1,0 +1,18 @@
+Unravelling the complex Jenkins architecture 
+
+Jenkins Master Node (Controller) - Orchestrates all workflows defined in the multi-step pipeline. For example; handling tasks such as scheduling a job, monitoring the jobs etc.
+
+Jobs - collection of steps.
+
+Jenkins Plugins - community developed modules that you can add to Jenkins Server. It is a kind of extension to Jenkins which provides more features that are otherwise not available in Jenkins by default.
+
+Jenkins Credentials - With Jenkins pipelines, it can ask you to access a cloud account, a server, a database. Jenkins allows storing multiple types of secret keys as the credential. 
+
+For example; 
+Secret text
+Username & password
+SSH keys
+
+Executors - Looks for agents to run the jobs.
+
+Node - Jenkins agents are the working nodes. They are the ones that do all the Jenkins Job steps. These are dedicated machines or containers, which are used to perform build tasks.

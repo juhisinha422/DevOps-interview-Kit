@@ -1,0 +1,12 @@
+Two applications are running in different VPCs and need secure communication. How would you design the connectivity?
+
+
+
+1.VPC Peering connects two VPCs using the cloud providers internal, private backbone network. Traffic remains entirely private and never traverses the public internet.
+
+2.AWS PrivateLink is the ideal solution for Application B acts strictly as a "service" or API provider to Application A—or if both VPCs have overlapping IP address blocks
+
+3.If we require strict, fine-grained HTTP/HTTPS request-level authentication without managing complex routing tables, Amazon VPC Lattice provides a managed service mesh layer.
+
+
+

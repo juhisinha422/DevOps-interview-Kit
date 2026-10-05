@@ -1,0 +1,56 @@
+𝗗𝗲𝘃𝗢𝗽𝘀 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗘𝘅𝗽𝗲𝗿𝗶𝗲𝗻𝗰𝗲 | 𝟯+ 𝗬𝗲𝗮𝗿𝘀
+
+Company: Benchmark IT Solutions
+Role: DevOps Engineer
+Experience: 3+ Years
+
+ 𝗥𝗼𝘂𝗻𝗱 𝟭 — 𝗧𝗲𝗰𝗵𝗻𝗶𝗰𝗮𝗹
+
+1. AWS Troubleshooting**
+Your production application becomes slow. EC2 CPU/memory are normal, but RDS connections and network latency are high.
+👉 How would you troubleshoot this **end-to-end**? Which metrics, logs and AWS services would you check?
+
+2. CI/CD
+Explain the complete CI/CD pipeline you implemented:
+
+Git → Build → Test → SonarQube → Docker → Security Scan → ECR → Deploy → Monitor → Rollback
+ How did you manage secrets, approvals and rollback?
+
+3. Terraform Scenario
+An EC2 instance created by Terraform is manually terminated from the AWS Console.
+👉 What happens during `terraform plan` and `terraform apply`?
+👉 How does Terraform state detect the change?
+👉 What if someone manually modifies the instance instead?
+
+4. Git + Production Incident
+You have:
+
+`Dev → Test → Prod`
+A developer accidentally pushes incorrect code to the wrong branch, and production goes down.
+👉 How would you identify the bad commit, troubleshoot the deployment, rollback safely and prevent this from happening again?
+
+5. HTTP vs HTTPS
+HTTP works, but HTTPS intermittently fails.
+👉 Troubleshoot the complete flow:
+DNS → SSL/TLS → Port 443 → Load Balancer → Security Group → EC2 → Application
+
+6. Route 53
+You need to point `app.example.com` to an AWS ALB.
+👉 Alias or CNAME? Why?
+👉 Can CNAME be used for the root domain?
+
+---
+
+ 𝗥𝗼𝘂𝗻𝗱 𝟮 — 𝗛𝗮𝗻𝗱𝘀-𝗢𝗻
+
+The candidate was given broken files and asked to **fix them, identify the root cause and document all findings and observations.**
+
+1. Dockerfile — Fix issues with image, permissions, layers, ports and CMD/ENTRYPOINT.
+
+2. Docker Compose — Fix service dependencies, volumes, environment variables, ports and database connectivity.
+
+3. CI/CD — Debug failures involving Git branches, Docker builds, authentication, image tagging and deployment.
+
+AWS ECR — Build → Login → Tag → Push → Pull → Run an image.
+
+4.Bash Script — Fix failures involving variables, conditions, loops, permissions, exit codes and error handling.

@@ -1,0 +1,25 @@
+Question asked for wipro can someone help to answer it . 
+If someone does lot of configuration changes in AWS cloud portal like vnet changes , vm changes , db name changed etc , but now if I want to update my terraform state file with existing actual state what is there in AWS cloud infra what do I need to do it how I can get all the necessary configuration in one go in my terraform state file ? Will there be only option to manually update each configuration file by going into terraform state file then plan and apply?
+
+
+If u want just the state updated , the terraform now does it automatically while u do plan or apply, terraform refresh is deprecated now
+
+Only applies if the resources are managed by terraform if it's outside u will have to import them
+
+refresh-only : Resource already exists in state, but values changed manually
+terraform import : Resource doesn't exist in state at all, created manually outside Terraform
+
+Resources do exist but configuration changes are made but not present in .tf file now I want that .tf file should be updated as desired from my actual which is in AWS in that case ?
+
+Terraform commands sync the state file... but the .tf configuration file is always your responsibility to keep updated manually
+
+
+Use terraform import or you can use terraform state show to get live values 
+
+Compare it with ur current config 
+
+Bring the changes manually to ur tf files 
+
+There is no magic 1 command
+
+

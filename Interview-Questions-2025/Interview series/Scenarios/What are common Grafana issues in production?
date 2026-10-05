@@ -1,0 +1,17 @@
+What are common Grafana issues in production? 
+
+Common Grafana issues in production and DevOps environments typically revolve around data source connectivity, sluggish dashboard performance, alert storms, and configuration drift. 
+
+1.Panels pulling large, unfiltered datasets from Prometheus (PromQL) or SQL databases overload backend storage. 
+
+2.Dashboards with too many active panels or auto-refresh intervals set too low trigger "Query Timeout" or freeze the browser.
+ 
+3.Slow or blocked network connectivity between Grafana's backend and data sources (like Prometheus or AWS CloudWatch). 
+
+4.Deleting and recreating Grafana environments without properly provisioning data sources via YAML ruins observability. 
+
+5.A single core infrastructure outage (e.g., a shared database) generating hundreds of dependent alerts, overwhelming on-call engineers 
+
+6.Automated alerts and provisioned dashboards failing silently because the Service Account tokens expired or lack the correct permissions. 
+
+7.Grafana instances exceeding memory limits (often when generating large PDF/image reports) and being killed by Kubernetes.

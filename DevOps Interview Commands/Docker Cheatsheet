@@ -1,0 +1,100 @@
+💡Docker Cheatsheet
+
+💥Docker Basics
+
+→ docker --version → Check Docker version
+→ docker info → Display Docker system information
+→ docker help → Show Docker help menu
+→ docker version → Display client and server versions
+
+💥Images
+
+→ docker pull → Download an image
+→ docker images → List local images
+→ docker build → Build image from Dockerfile
+→ docker tag → Tag an image
+→ docker push → Push image to registry
+→ docker rmi → Remove an image
+→ docker image prune → Remove unused images
+
+💥Containers
+
+→ docker run → Create and start a container
+→ docker ps → List running containers
+→ docker ps -a → List all containers
+→ docker start → Start a stopped container
+→ docker stop → Stop a running container
+→ docker restart → Restart a container
+→ docker rm → Remove a container
+→ docker rename → Rename a container
+→ docker exec → Execute command inside container
+→ docker attach → Attach to a running container
+
+💥Logs & Monitoring
+
+→ docker logs → View container logs
+→ docker stats → Monitor resource usage
+→ docker top → Show running processes
+→ docker inspect → View detailed container information
+→ docker events → Stream Docker events
+
+💥Volumes
+
+→ docker volume create → Create a volume
+→ docker volume ls → List volumes
+→ docker volume inspect → View volume details
+→ docker volume rm → Remove a volume
+→ docker volume prune → Remove unused volumes
+
+💥Networks
+
+→ docker network ls → List networks
+→ docker network create → Create network
+→ docker network inspect → Inspect network
+→ docker network connect → Connect container to network
+→ docker network disconnect → Disconnect container
+→ docker network rm → Remove network
+
+💥Docker Compose
+
+→ docker compose up → Start services
+→ docker compose down → Stop and remove services
+→ docker compose ps → List services
+→ docker compose logs → View service logs
+→ docker compose build → Build services
+→ docker compose restart → Restart services
+→ docker compose exec → Run command in service
+
+💥Dockerfile
+
+→ FROM → Base image
+→ WORKDIR → Set working directory
+→ COPY → Copy files into image
+→ ADD → Copy files and URLs
+→ RUN → Execute command during build
+→ CMD → Default container command
+→ ENTRYPOINT → Main executable
+→ ENV → Set environment variables
+→ EXPOSE → Document exposed port
+→ VOLUME → Create mount point
+→ USER → Set execution user
+→ LABEL → Add image metadata
+
+💥Cleanup
+
+→ docker system df → Show Docker disk usage
+→ docker system prune → Remove unused resources
+→ docker container prune → Remove stopped containers
+→ docker image prune → Remove dangling images
+→ docker volume prune → Remove unused volumes
+→ docker network prune → Remove unused networks
+
+💥Advanced
+
+→ docker save → Export image to archive
+→ docker load → Import image archive
+→ docker export → Export container filesystem
+→ docker import → Create image from archive
+→ docker cp → Copy files between host and container
+→ docker diff → Show container filesystem changes
+→ docker history → Show image layer history

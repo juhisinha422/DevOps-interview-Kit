@@ -1,0 +1,25 @@
+Describe a real incident caused by Terraform state corruption. How did you fix it? 
+
+A common, severe scenario involves a monolithic state file becoming corrupted during a production update, leading to a loss of alignment between code and infrastructure.  
+
+1.A team was applying a network refactoring change on a Friday afternoon using a large, monolithic terraform.tfstate file stored in AWS S3, but without DynamoDB state locking properly enforced for all team members. 
+
+2. An engineer initiated a terraform apply to update an EKS node group.
+  
+3.The CI/CD pipeline hung due to a network timeout mid-execution. 
+
+4.The apply was "half-finished"—the S3 state file was partially written, leaving it in an inconsistent, invalid JSON state.
+ 
+5. Another engineer, seeing the hung job, initiated a second terraform apply from their local machine to try and "fix" it, without a lock in place 
+
+6. The state file was now completely broken and unreadable by Terraform.
+
+7. Because Terraform lost track of the existing EKS nodes, a subsequent terraform plan showed that it wanted to destroy all existing nodes and recreate them. 
+
+8.The recovery process focused on restoring the state without destroying the running production infrastructure. 
+
+9.All automated pipelines were paused, and the team was instructed not to run any terraform commands from local machines. 
+
+10.Fortunately, S3 versioning was enabled on the state bucket, which is the most reliable way to recover 
+
+ 11.Instead of letting Terraform recreate resources, we used terraform import to manually update the state for the specific resources that were created or modified during the failed 

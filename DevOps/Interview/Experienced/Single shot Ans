@@ -1,0 +1,31 @@
+Interviewer asks:
+What is VPC peering?
+Ans:
+It connects two VPCs.
+
+
+What are the use cases of VPC peering?
+
+
+How do you resolve team conflicts in Terraform?
+Ans:
+We use DynamoDB locking with a key ID to allow one apply at a time.
+
+What is Transit Gateway?
+It's a hub that helps connect multiple VPCs together and overcomes VPC peering limitations and connection complexity.
+
+
+Transit Gateway: Hub
+VPC Peering: Connects VPCs
+Terraform Drift: Manual changes in AWS Cloud
+S3 Security: Versioning, Public Access Block, ACLs, KMS keys, SSE-S3 encryption
+
+Question:
+My pipeline failed. How will you troubleshoot?
+Pipelines most of the time exit with codes like:
+127, 503, 404
+These can be related to authorization, authentication, service issues, agents going offline, and so on.
+"Maybe the image was not pulled, the version tag is wrong, and all..."
+It's already read.
+In real time, the pipeline exits with a code and a proper error message.
+

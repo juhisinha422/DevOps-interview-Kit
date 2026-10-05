@@ -1,0 +1,8 @@
+Which Kubernetes component exposes metrics about deployments, replicas, and pod status? 
+A. Node Exporter
+B. kube-state-metrics
+C. Alertmanager
+D. PromQL
+
+
+ANS B

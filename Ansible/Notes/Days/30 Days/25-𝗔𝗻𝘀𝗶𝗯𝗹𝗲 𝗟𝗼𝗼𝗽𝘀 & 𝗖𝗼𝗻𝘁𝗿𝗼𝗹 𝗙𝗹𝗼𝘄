@@ -1,0 +1,77 @@
+𝗗𝗮𝘆 𝟮𝟱/𝟯𝟬 – 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗟𝗼𝗼𝗽𝘀 & 𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗙𝗹𝗼𝘄
+
+Continuing my #30DaysOfAnsible journey! 🔥
+
+Today I focused on Loops and Control Flow — concepts that make Ansible playbooks more dynamic and reduce repetitive tasks.
+
+🔄 𝗔𝗻𝘀𝗶𝗯𝗹𝗲 𝗟𝗼𝗼𝗽𝘀
+
+Instead of writing the same task multiple times, we can use loop.
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - nginx
+    - git
+    - curl
+
+One task → multiple items. ⚡
+
+📋 𝗟𝗼𝗼𝗽𝗶𝗻𝗴 𝗢𝘃𝗲𝗿 𝗗𝗶𝗰𝘁𝗶𝗼𝗻𝗮𝗿𝗶𝗲𝘀
+
+Loops become even more useful when working with structured data:
+
+users:
+  - name: devuser
+    state: present
+  - name: testuser
+    state: present
+
+Then:
+
+- name: Manage users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  loop: "{{ users }}"
+
+🎯 𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗙𝗹𝗼𝘄 𝗶𝗻 𝗔𝗻𝘀𝗶𝗯𝗹𝗲
+
+We can control how tasks execute using:
+
+✔️ when → Conditional execution
+✔️ loop → Repeat tasks
+✔️ until → Retry until a condition is met
+✔️ retries → Number of retry attempts
+✔️ delay → Time between retries
+✔️ failed_when → Define custom failure conditions
+✔️ changed_when → Control whether a task reports changed
+
+🔁 𝗥𝗲𝘁𝗿𝘆 𝗘𝘅𝗮𝗺𝗽𝗹𝗲
+
+For situations where an application or service may take some time to become ready:
+
+- name: Check application
+  ansible.builtin.uri:
+    url: http://localhost:8080
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 5
+  delay: 10
+
+Ansible will retry the task instead of failing immediately. 🔥
+
+💡 𝗪𝗵𝘆 𝗧𝗵𝗶𝘀 𝗠𝗮𝘁𝘁𝗲𝗿𝘀
+
+Good automation isn't just about executing tasks.
+
+It's about controlling when, how many times, and under what conditions those tasks should run.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Loops reduce repetition.
+Conditions add intelligence.
+Retries improve reliability.

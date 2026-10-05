@@ -1,0 +1,59 @@
+DevOps Interview @ SquareOps 
+General / Behavioral
+Introduce yourself and walk me through your experience?
+Can you describe a typical day in your current role?
+
+CI/CD & Build Optimization
+How did you reduce the build time in your project?
+(Build time for application is 1.5 hr so Follow-up: Build still takes ~1.5 hours—what further optimizations would you suggest?)
+What are the benefits of using ephemeral agents in CI/CD pipelines? How are you handling the creation, connection & destruction of the agent? 
+How do you handle build artifacts creation and management?
+How did you migrate your codebase from one repository/system to another (e.g., Bitbucket to GitHub)?
+What is a divergent branch? How to handle them?
+What is the branching strategy you follow (e.g., GitFlow, trunk-based)?
+
+Docker & Containerization
+What are the different stages in a multi-stage Docker build?
+How do you reduce Docker image size?
+
+Terraform
+Suppose one of your team members has manually  changed the infrastructure from the AWS console, How will you handle the state drift? How will you ensure this does not happen again in future? 
+How to handle multiple cloud providers in a single terraform configuration?
+
+
+
+Logging, Monitoring & Observability
+How do you decide which logs should go to Prometheus vs. Splunk (or any logging system)?
+How do you handle log isolation and avoid high cardinality issues?
+How do you integrate Prometheus into your application?
+How are you using observability tools to improve application performance?
+Can you explain the complete EFK (Elasticsearch, Fluentd, Kibana) flow in your system?
+How do you manage logs in Kubernetes clusters?
+
+
+Security & Secrets Management
+Since you’ve worked with both CyberArk Conjur and AWS Secrets Manager, which would you choose for EKS and why?
+How do you securely manage application secrets in Kubernetes?
+
+
+Kubernetes (Core + Advanced)
+What is the current Kubernetes version you are working with?
+How do you perform a Kubernetes cluster upgrade?
+How does Kubernetes Ingress route traffic to services and pods?
+How does a pod get created when one replica is in a failed/pending state?
+How do you configure Horizontal Pod Autoscaler (HPA)?
+What is NLB (Network Load Balancer), and when would you use it?
+How do you expose Kubernetes services externally?
+In a Kubernetes Deployment with three replicas, if one pod enters a failed or stuck state (e.g., Pending, CrashLoopBackOff), how does Kubernetes detect and handle this situation? Can you explain the end-to-end flow, including how different components (kubelet, controller manager, scheduler) interact to evict and replace the pod?”
+How ingress is redirecting the traffic to target pods? (follow up: Since pods are ephemeral in nature how traffic is redirected to the target pods)
+Which problem does ingress solve & How? (In my answer I mentioned NLB so I got a follow up)
+If ingress is already there why do you need NLB?
+What are the different types of load balancers in AWS?
+We can use NLB to direct the external traffic as well then why do we need to use ALB ?
+Say I have an EC2 and I have lost my pem key how will I connect to it? (I mentioned Session Manager then a follow up ) How to enable Session manager on an EC2? (Here I made the interviewer clear that I am not sure of this but I have read it and want to make a guess)
+A client provides a GitHub repository and wants the application deployed on an Amazon EKS cluster. What Kubernetes manifests/resources would you create to achieve this deployment?
+
+Now. the interview was over (Asked if I have any questions)
+I asked him, what was his expectation on the Divergent branch?
+During the interview he mentioned multiple managed Kubernetes vendors, so I asked him which one is dominating the market & why?
+(Never skip a chance to engage more with the interviewer :)

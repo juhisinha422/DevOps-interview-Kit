@@ -1,0 +1,28 @@
+Peoplefy, and it was a great learning experience. The panel asked me a wide range of questions covering SRE, DevOps, Cloud, Kubernetes, Terraform, Linux troubleshooting, monitoring, and incident management.  
+
+Here are some of the key questions I was asked:  
+
+1. Tell me about yourself and your day-to-day tasks at Tech Mahindra.  
+2. How do you manage Terraform and Kubernetes together?  
+3. Share a production incident you handled.  
+4. You are alone on shift and an incident hits — what is your approach?  
+5. How did you mitigate a recurring incident and prevent it from happening again?  
+6. What resolution did you provide to the team and what was the impact?  
+7. How do you measure uptime and availability?  
+8. A user is reporting 50s response time — how do you troubleshoot?  
+9. Which Linux networking commands do you use for troubleshooting?  
+10. How do you troubleshoot a frontend issue?  
+11. How do you troubleshoot a Java-based application issue?  
+12. How do you capture and analyze Java memory issues?  
+13. What is your first step for service restoration during an unexpected outage?  
+14. How do you identify and troubleshoot database performance issues?  
+15. How do you handle multiple issues coming at the same time?  
+16. How do you do end-to-end tracing of a request?  
+17. A pod is in pending state — how do you troubleshoot?  
+18. How do you check if a node has enough resources for a pod?  
+19. How do you achieve zero downtime deployment in Kubernetes?  
+20. How do you monitor and generate reports using ELK stack?  
+21. Write a Python script to monitor disk usage and alert if it exceeds 80% using a cron job.  
+22. How do you enable and troubleshoot SSH connectivity to a server?  
+23. How do you validate last one week CPU and memory utilization of a server?  
+24. Do you have any questions for us?  

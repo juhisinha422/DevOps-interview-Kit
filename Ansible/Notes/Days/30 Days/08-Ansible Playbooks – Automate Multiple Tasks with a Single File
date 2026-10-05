@@ -1,0 +1,77 @@
+30 Days of Ansible – Day 8/30
+
+Ansible Playbooks – Automate Multiple Tasks with a Single File
+
+Have you ever wished you could configure an entire server with just one command?
+
+That's exactly what Ansible Playbooks are designed for.
+
+A playbook is a YAML file that contains a series of tasks Ansible executes on one or more target servers. Instead of running multiple ad-hoc commands, you define everything once and execute it repeatedly with consistent results.
+
+Why Use Playbooks?
+
+✅ Automate multiple tasks in sequence
+
+✅ Ensure consistent server configurations
+
+✅ Reusable and easy to maintain
+
+✅ Version control with Git
+
+✅ Perfect for Infrastructure as Code (IaC)
+
+Basic Playbook Structure
+
+---
+- name: Install and Start Nginx
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Install Nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Start Nginx Service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+Run the Playbook
+
+ansible-playbook nginx.yml
+
+With a single command, Ansible will:
+
+- Install Nginx (if it's not already installed)
+- Start the Nginx service
+- Enable it to start automatically after a reboot
+
+Real-World Example
+
+Imagine your company launches a new application.
+
+Instead of manually:
+
+- Installing packages
+- Creating users
+- Configuring services
+- Deploying the application
+
+You create one playbook that performs all these tasks in the correct order. Whether you're managing 5 servers or 500, the process remains the same—fast, repeatable, and reliable.
+
+Best Practices
+
+✅ Keep playbooks focused on a specific purpose.
+
+✅ Use descriptive task names.
+
+✅ Store playbooks in Git for version control.
+
+✅ Break large playbooks into reusable roles as your project grows.
+
+Key Takeaway
+
+Ansible Playbooks are the core of automation. They transform manual, repetitive operations into a single, repeatable workflow, making infrastructure management faster, more reliable, and easier to scale.

@@ -1,0 +1,22 @@
+GitHub Actions – Top 10 Interview Questions for DevOps Engineers
+
+
+1️⃣ What is GitHub Actions and how does it work?
+
+2️⃣ What are Workflows, Jobs, Steps, Actions, and Runners in GitHub Actions?
+
+3️⃣ What is the difference between GitHub-hosted and self-hosted runners?
+
+4️⃣ How do you configure secrets and environment variables in GitHub Actions?
+
+5️⃣ How do you trigger a workflow on push, pull request, or manually?
+
+6️⃣ What is a Matrix Strategy and when would you use it?
+
+7️⃣ How do you implement CI/CD for Docker applications using GitHub Actions?
+
+8️⃣ How do you deploy an application to AWS/Azure/Kubernetes using GitHub Actions?
+
+9️⃣ How do you implement approval before production deployment?
+
+🔟 How do you optimize GitHub Actions using caching, artifacts, reusable workflows, and environments?

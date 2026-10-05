@@ -1,0 +1,16 @@
+How would you debug a pod stuck in “ContainerCreating” during deployment? What are your next 3 CLI commands? 
+ 
+A pod stuck in ContainerCreating usually means Kubernetes is struggling to provision storage, pull the container image, or configure the network. 
+
+1. we need to Inspect the Pod Lifecycle Events 
+
+kubectl describe pod <pod-name> -n <namespace> 
+
+2. we need to check Cluster-Wide Resource Constraints  
+
+kubectl get nodes 
+
+3. we need to check Infrastructure and Storage Status
+
+kubectl get pvc,pv -n <namespace>
+  

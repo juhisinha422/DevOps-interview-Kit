@@ -1,0 +1,8 @@
+What are the different states in which a pod can exists on kubernetes cluster?
+-----------------------------------------------------------------------------------
+Pod in kubernetes cluster can exist in 5 different states, this is also refered as Pod lifecycle
+1. Pending = When we requested for creating a Pod, the API manager accepts request and invokes the scheduler for creating the Pod, during the time of identifying the Workernode in creating the Pod, the Pod status will be reported as "Pending"
+2. Running = Atleast one of the container inside the Pod has been started and readinessProbe for the Pod has been passed, then the Pod is reported as "Running"  
+3. Succeeded = All the containers within the Pod has been exited with an exitcode as 'Zero', then the Pod is reported as "Succeeded"
+4. Failed = When atleast one of the container within the Pod exited with an non-zero exitcode, then the Pod is reported as "Failed"
+5. crashloopbackoff = When a Pod is repeatedly failing for execution after a successive restarts, then to avoid further scheduling the pod for execution, kubernetes marks the pod with status as "crashloopbackoff" indicating the pod shouldnot be scheduled for further execution

@@ -1,0 +1,12 @@
+ DevOps Interview Scenario
+Imagine it's 2:00 AM, and you receive a critical production alert.
+📞 Users are reporting that the application is down and no one can access it.
+As a DevOps Engineer with around 1 year of experience, what would be your troubleshooting approach?
+Would you:
+Check monitoring dashboards first (CloudWatch, Prometheus, Grafana)?
+Verify whether the application or containers are running?
+Review recent deployments or CI/CD pipelines?
+Inspect application and system logs?
+Check the Load Balancer, DNS, and database connectivity?
+Roll back the deployment if a recent release caused the issue?
+Perform an RCA after restoring the service?

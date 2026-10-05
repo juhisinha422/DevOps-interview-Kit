@@ -1,0 +1,29 @@
+Why We Used an Inline IAM Policy Instead of a Managed Policy :
+Recently, during a production migration activity in Amazon Web Services, our team had to provide temporary access to an operations engineer for handling non-business-hour EC2 shutdown activities to reduce infra costs after deployment windows.
+Requirement was very specific:
+✅ User should only stop EC2 instances
+✅ Only in production account
+✅ No start/reboot/terminate permissions
+✅ Access should not be reusable for other users
+✅ Permission must automatically disappear once the user is removed
+Instead of creating a reusable managed policy, we implemented an Inline IAM Policy directly on the IAM user.
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowOnlyStopInstances",
+      "Effect": "Allow",
+      "Action": "ec2:StopInstances",
+      "Resource": "arn:aws:ec2:ap-south-1:123456789012:instance/*"
+    }
+  ]
+}
+💡 Why Inline Policy here?
+Because inline policies maintain a strict one-to-one relationship with the IAM entity.
+This helped us:
+Avoid accidental permission reuse
+Maintain least privilege access
+Improve audit compliance
+Simplify temporary access cleanup
+Reduce operational risk in production
+One small IAM design decision can significantly improve cloud security posture.

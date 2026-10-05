@@ -1,0 +1,20 @@
+HPE 2nd round interview question
+1.What type of scripting have you done in Python? Any recent script?
+2.  Do you have experience with Kubernetes clusters and applications?
+3.What steps do you follow to provision a Kubernetes cluster?
+4.Can you explain each step in detail?
+5.  How do you configure route tables?
+6.  How is IP addressing handled in your setup?
+7.  Do you have experience with databases? How do you troubleshoot connection issues?
+8.  Have you worked with MongoDB? Single node or cluster?
+9.  Tell me about Cloudflare integration
+10. Do you have experience with Rancher?
+11. What type of load balancers have you used?
+12. Tell me about your security-related experience
+13. How do you approach cost optimization?
+14. How do you set up ELK stack?
+15. Explain your Jenkins CI/CD pipeline
+16. What security tools have you used?
+17. What work have you done with Ansible?
+18. Have you troubleshooted runtime Java applications?
+19. Do you have any questions for me?

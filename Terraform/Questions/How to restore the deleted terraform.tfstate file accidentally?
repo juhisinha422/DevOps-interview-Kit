@@ -1,0 +1,17 @@
+ How to restore the deleted terraform.tfstate file accidentally?
+
+Follow below steps:
+
+1. Restore previous state version: This is the best option. If backend storage versioning is enabled, restore the latest known-good state version.
+
+2. Restore from replicated state: If you have cross-region/cross-account replication or another DR copy, restore the known-good state.
+
+3. Use local state/backup: If a valid terraform.tfstate or terraform.tfstate.backup exists locally, it may be recoverable.
+
+4. Reconstruct/import: If no usable state backup exists, import the existing infrastructure into Terraform state and ensure configuration matches it.
+ - Identify existing infrastructure
+ - Reconstruct Terraform configuration
+ - Import resources
+ - terraform plan
+ - Fix differences
+ - Repeat until plan is clean

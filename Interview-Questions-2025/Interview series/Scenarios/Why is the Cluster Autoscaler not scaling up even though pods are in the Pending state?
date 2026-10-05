@@ -1,0 +1,9 @@
+Why is the Cluster Autoscaler not scaling up even though pods are in the Pending state? 
+
+1. If a pod has strict scheduling requirements (e.g., nodeSelector, nodeAffinity, or tolerations) that do not match any available or deployable node in our cloud environment, the CA will refuse to scale up 
+
+2.If the CA requests a new node but our cloud provider limits are maxed out (e.g., AWS EC2 vCPU limit), the scale-up will fail. 
+
+3. The CA scales based purely on the resources.requests defined in the pod manifest, not actual hardware usage 
+
+4.The pod's CPU or memory requests are larger than the total allocatable capacity of the largest single node instance type available in our node groups. A pod cannot be split across multiple nodes.

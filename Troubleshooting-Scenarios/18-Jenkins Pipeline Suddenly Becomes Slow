@@ -1,0 +1,108 @@
+Day 18 of my DevOps Scenario-Based Interview Series
+
+🔥 Scenario: Jenkins Pipeline Suddenly Becomes Slow
+
+Imagine this:
+
+Your Jenkins pipeline normally takes 10 minutes to complete.
+
+But suddenly, the same pipeline starts taking 35–40 minutes.
+
+❌ No build failure
+❌ No deployment failure
+✅ Pipeline eventually completes successfully
+
+As a DevOps Engineer, what would you check?
+
+🔍 My Troubleshooting Approach
+
+I would troubleshoot step by step instead of immediately restarting Jenkins.
+
+1️⃣ Check Build History
+
+Compare the current build with previous successful builds.
+Identify which stage has increased in execution time.
+
+2️⃣ Check Jenkins Agent
+
+* CPU and memory utilization
+* Disk space and disk I/O
+* Number of builds running on the agent
+* Agent connectivity
+
+3️⃣ Analyze Individual Pipeline Stages
+
+For example:
+
+```text
+Checkout       → 1 min
+Maven Build    → 25 min  ❌
+Docker Build   → 3 min
+Docker Push    → 2 min
+Deployment     → 2 min
+```
+
+Now we know the Maven build is the bottleneck.
+
+4️⃣ Check External Dependencies
+
+* Maven dependency downloads
+* Git repository performance
+* Nexus/Artifactory availability
+* Docker registry/ECR performance
+* External APIs used during the build
+
+5️⃣ Check Disk & Workspace
+
+```bash
+df -h
+du -sh *
+```
+
+A full disk or unnecessarily large workspace can impact build performance.
+
+6️⃣ Check Jenkins Logs
+
+Look for:
+
+* Agent connection issues
+* Network timeouts
+* Plugin errors
+* Executor issues
+* Repeated retries
+
+7️⃣ Check Recent Changes
+
+I would investigate whether there were recent changes to:
+
+* Jenkinsfile
+* Maven configuration
+* Dockerfile
+* Dependencies
+* Jenkins plugins
+* Agent configuration
+
+🎯 Example Root Cause
+
+Suppose we discover that the Maven dependency cache was deleted on the Jenkins agent.
+
+As a result, every build is downloading dependencies again, increasing the build time significantly.
+
+✅ Possible Fix
+
+* Restore Maven dependency caching
+* Avoid unnecessarily deleting the `.m2` repository
+* Use an internal artifact repository
+* Monitor pipeline execution time after the fix
+
+💡 Interview Tip
+
+Don't immediately say:
+
+> "I will restart Jenkins."
+
+A better answer is:
+
+> "First, I would identify which pipeline stage is causing the delay, then check the Jenkins agent, system resources, network connectivity, external dependencies, logs, and recent configuration changes before applying a fix."
+
+That shows a structured troubleshooting mindset. which is very important in real-time DevOps environments.

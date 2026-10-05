@@ -1,0 +1,33 @@
+Deloitte Interview Experience
+Position: DevOps Engineer
+
+Round 1: Technical Screening
+1. Walk through the CI/CD workflow you actually run and how you define pipelines in Jenkins.
+2. What are shared libraries in Jenkins and how do you write and wire them?
+3. Which apps do you push through Jenkins pipelines and which deployment tools do you pair them with?
+4. Build fails even though the pipeline runs—what usually breaks?
+5. What’s a webhook and how do you use it in real pipelines?
+6. How do you spin up Kubernetes clusters with Terraform and what do the master and worker nodes actually do?
+7. CrashLoopBackOff, ImagePullError—name the Kubernetes errors you’ve fixed and how.
+8. How do you exec into a pod and what’s the right way to define objects?
+9. Break down a basic Helm chart folder and the commands you use to ship it.
+10. What happens in each stage of a Docker build and why do ENTRYPOINT and CMD matter?
+11. How do you wire DBs, EC2, EKS, and ECS together and what’s the command to hit ECS?
+12. Which container registry do you trust for your images?
+
+Round 2: In-depth Technical Screening
+1. What branching strategy keeps your release branch clean and how do you hotfix production?
+2. Walk me through your full deployment flow and the exact stages in your Jenkinsfile.
+3. How do shared libraries slot into your Jenkinsfiles?
+4. Which security scanning tools do you run on images at build and registry time?
+5. How do you inject environment variables during Docker builds and where do you store images?
+6. How do you connect databases in your infrastructure?
+7. How do you authenticate to EKS and keep secrets safe?
+8. How do you create Lambda functions and push artifacts?
+9. What’s signing for email and Helm charts and which tools do you use?
+
+Round 3: Hiring Manager Round
+1. Project history.
+2. Day-to-day work.
+3. Basic behavioral questions.
+4. Teamwork and culture fit.

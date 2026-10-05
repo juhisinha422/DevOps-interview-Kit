@@ -1,0 +1,49 @@
+DevOps / SRE Interview – Flipkart
+
+Round 1 – System Behavior (45 min)
+
+• Your system is stable at normal traffic but starts failing during spikes. What changes internally?
+• Your service depends on 3 downstream services. One becomes slow. What happens end-to-end?
+• Cache is enabled, but DB load is still high. What could be wrong?
+• Your API latency suddenly increases without CPU/memory spike. Why?
+
+⸻
+
+Round 2 – Production Debugging (60 min)
+
+• Deployment succeeded, but error rate increased. Where do you start?
+• Some users face issues, others don’t. What could cause this?
+• Autoscaling added more pods, but performance didn’t improve. Why?
+• Logs show no errors, but system is slow. What do you check next?
+
+⸻
+
+Round 3 – Real Engineering Thinking (30 min)
+
+• How do you design systems to avoid cascading failures?
+• How do you identify the first bottleneck in a failing system?
+• How do you reduce impact during partial failures?
+
+⸻
+
+💡 Reality
+
+Interviews don’t test:
+
+• tools
+• commands
+• definitions
+
+They test:
+
+• how systems behave under load
+• how failures spread
+• how you think under pressure
+
+⸻
+
+That’s where most engineers struggle.
+
+Because they prepare tools…
+
+but not system behavior.
