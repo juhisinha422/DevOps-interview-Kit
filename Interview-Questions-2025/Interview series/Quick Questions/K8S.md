@@ -1,3 +1,64 @@
+# Kubernetes Production Interview Questions & Answers
+
+## 1. Your pod is stuck in `CrashLoopBackOff`. How do you debug and fix it?
+
+When a pod is in `CrashLoopBackOff`, I first check the pod status and events using `kubectl get pods` and `kubectl describe pod <pod-name>`. Then I check the application logs using `kubectl logs <pod-name>` and, if the container restarted, I use `kubectl logs <pod-name> --previous` to see the logs from the previous crashed container. I mainly look for application startup errors, incorrect environment variables, missing secrets or ConfigMaps, database connectivity issues, permission problems, OOMKilled, and incorrect startup commands. I also verify the readiness, liveness, and startup probes because an incorrectly configured probe can continuously restart a healthy application. After identifying the root cause, I fix the deployment configuration, secret, resource limits, image, command, or application dependency and redeploy it. In production, I also check `kubectl describe`, container exit codes, events, and monitoring dashboards such as Prometheus, Grafana, and CloudWatch to understand whether the issue is application-level or infrastructure-related.
+
+---
+
+## 2. How do you perform zero-downtime deployments in Kubernetes?
+
+For zero-downtime deployments, I use Kubernetes `Deployment` with a rolling update strategy. I configure appropriate `maxUnavailable` and `maxSurge` values so Kubernetes starts new pods before terminating the old ones. I also make sure the application has correctly configured readiness probes so traffic is sent only to healthy and fully initialized pods. For critical applications, I use multiple replicas distributed across nodes or Availability Zones using anti-affinity or topology spread constraints. During deployment, I monitor the rollout using `kubectl rollout status deployment/<deployment-name>` and verify pod health, application metrics, logs, and ALB or ingress metrics. I also ensure database changes are backward compatible so the old and new application versions can run simultaneously during the rollout. In my production experience, this approach allows us to deploy new versions without taking the application offline.
+
+---
+
+## 3. Your service is not accessible externally - where do you start troubleshooting?
+
+I troubleshoot external connectivity from the outside inward. First, I check whether the DNS record is resolving correctly using tools such as `nslookup` or `dig`. Then I check the AWS ALB or load balancer, listener, target group health, security groups, and network connectivity. On the Kubernetes side, I check the Ingress using `kubectl get ingress` and `kubectl describe ingress`, then verify the Kubernetes Service and its endpoints using `kubectl get svc` and `kubectl get endpoints`. After that, I check whether the backend pods are running and ready using `kubectl get pods` and verify their logs. I also validate the service selector because an incorrect selector can result in no endpoints even when the pods are running. If the application is behind NGINX Ingress or AWS Load Balancer Controller, I check controller logs and ingress events as well. This helps me isolate whether the problem is DNS, ALB, security group, ingress, service, networking, or the application itself.
+
+---
+
+## 4. Explain how you’d handle a failed rollout during a deployment.
+
+When a deployment rollout fails, I first stop or pause further changes and check the rollout status using `kubectl rollout status`. I then inspect the deployment, ReplicaSets, pods, events, and application logs to understand why the new version is failing. I check for issues such as `ImagePullBackOff`, incorrect environment variables, missing secrets, failed readiness probes, insufficient resources, application startup failures, or configuration incompatibility. If the new version is causing production impact and the previous version is known to be stable, I immediately rollback using `kubectl rollout undo deployment/<deployment-name>`. After rollback, I verify that the previous ReplicaSet is healthy and traffic is restored. I then investigate the failed version in a lower environment, fix the root cause, and deploy it again through the CI/CD pipeline. I prefer automated health checks and progressive or controlled rollouts so a bad release can be detected before affecting all users.
+
+---
+
+## 5. How would you optimize resource requests and limits in a production cluster?
+
+I don't randomly increase CPU and memory values; I first analyze actual workload usage. I use Prometheus, Grafana, CloudWatch, and Kubernetes metrics to observe CPU and memory consumption over time, including normal traffic and peak traffic. Based on historical usage, I set CPU and memory requests close to the resources the application normally requires and set limits high enough to handle expected spikes without causing unnecessary contention. I also check for `OOMKilled`, CPU throttling, pending pods, and node utilization. For applications with highly variable traffic, I combine properly tuned resource requests with HPA and, where appropriate, VPA recommendations. I periodically review these values because workload behavior changes over time. The goal is to avoid over-provisioning, which wastes cluster capacity, while also avoiding under-provisioning, which can cause throttling, OOM kills, or scheduling failures.
+
+---
+
+## 6. How do you secure secrets in Kubernetes?
+
+I avoid storing sensitive credentials directly in application manifests or Git repositories. Kubernetes Secrets are better than plain ConfigMaps for sensitive values, but I don't consider base64 encoding itself to be encryption. In production, I prefer integrating Kubernetes with a dedicated secret-management solution such as AWS Secrets Manager or HashiCorp Vault, depending on the architecture. I use IAM-based access and mechanisms such as the Secrets Store CSI Driver where appropriate so applications can retrieve secrets securely. I also follow least-privilege RBAC and make sure only the required service accounts can access specific secrets. Secrets should not be exposed through source code, Docker images, CI/CD logs, or command-line output. I also enable encryption at rest for Kubernetes secrets through the cluster's supported encryption mechanism and regularly rotate sensitive credentials.
+
+---
+
+## 7. A node went down suddenly - what happens to the pods running on it?
+
+If a Kubernetes worker node suddenly goes down, the control plane detects that the node is unhealthy through the node heartbeats and eventually marks it as `NotReady`. Pods running on that node become unavailable, and Kubernetes controllers such as the Deployment or ReplicaSet create replacement pods on healthy nodes, provided the workload is managed by a controller and sufficient cluster resources are available. For critical workloads, I use multiple replicas, PodDisruptionBudgets, topology spread constraints, and node distribution across Availability Zones so that losing one node does not take down the entire service. For stateful applications, the behavior depends on persistent storage and the workload architecture. For example, EBS volumes are tied to an Availability Zone, so I need to consider volume attachment and scheduling constraints when recovering stateful workloads. I also monitor node health and capacity so the cluster can recover automatically when possible.
+
+---
+
+## 8. How do you handle database credentials rotation in Kubernetes?
+
+For database credential rotation, I avoid hardcoding credentials in Kubernetes manifests, Helm values, Git repositories, or application configuration files. I store the credentials in a secret-management system such as AWS Secrets Manager or Vault and provide applications with access through secure mechanisms. During rotation, I create or update the new database credential and make sure the application can obtain the new value. Depending on how the application consumes secrets, I either restart or reload the affected pods so they pick up the new credentials. For production systems, I prefer a process where the old and new credentials can temporarily coexist if the database and application support it, allowing rotation without downtime. I validate database connectivity and application health after rotation and only revoke the old credential after confirming that all workloads are using the new one. I also audit the rotation process and automate it wherever possible.
+
+---
+
+## 9. What’s your strategy for backup and restore in a cluster?
+
+My backup strategy covers both Kubernetes resources and persistent application data. For Kubernetes objects such as Deployments, Services, ConfigMaps, and other cluster resources, I prefer using a Kubernetes-aware backup solution such as Velero rather than depending only on manual YAML exports. For persistent workloads, I separately back up the underlying data using the appropriate storage or database backup mechanism. For example, databases should have automated snapshots, point-in-time recovery, and cross-region backup where required by the business RPO and RTO. I also store backups outside the primary cluster or region so that a cluster-level failure does not destroy both production and backups. Backup alone is not enough, so I regularly perform restore or disaster-recovery tests and verify that applications, persistent volumes, networking, secrets, and dependencies can be recovered successfully. I document the restore procedure and measure the actual recovery time against the defined RTO.
+
+---
+
+## 10. How do you implement auto-scaling when traffic fluctuates heavily?
+
+For fluctuating traffic, I normally use Kubernetes HPA as the first layer of application scaling. HPA can scale replicas based on CPU, memory, or custom/external metrics depending on the application requirement. For example, if traffic increases significantly, HPA can increase the number of pods and distribute traffic through the Kubernetes Service and load balancer. I also make sure the cluster itself has enough capacity because increasing pod replicas is useless if new pods cannot be scheduled. Therefore, I combine HPA with node-level autoscaling such as Karpenter or Cluster Autoscaler where appropriate. For applications where CPU is not a good indicator of load, I prefer custom metrics such as request rate, queue depth, or Kafka lag. I also configure stabilization windows and scaling behavior to prevent constant scale-up and scale-down during short traffic spikes. For critical production workloads, I validate scaling behavior under load before relying on it during real traffic spikes.
+
+
 # ☸️ Kubernetes Production Troubleshooting – 20 Interview Questions & Answers
 
 > **Experience Level:** 4 Years DevOps Engineer
