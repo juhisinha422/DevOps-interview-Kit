@@ -1,0 +1,47 @@
+🐧Linux Performance & Deep Debugging Commands Every Cloud & DevOps Engineer Should Know:
+
+When dashboards aren’t enough, you drop to the OS.
+
+These 10 commands are used during real production incidents 👇
+ 
+
+1. strace -p <PID> -c
+
+Trace system calls of a running process with summary counts. Find what it’s waiting on.
+
+2. perf top -p <PID>
+
+Live CPU profiling of a process.
+See hot functions instantly.
+
+3. tcpdump -i eth0 -w capture.pcap port 8080
+
+Capture traffic on port 8080.
+Deep network debugging.
+
+4. ab -n 10000 -c 100 http://localhost/
+
+Apache Bench load test.
+10k requests, 100 concurrent.
+
+5. kubectl debug node/node1 -it --image=busybox
+
+Attach ephemeral container to debug a node.
+
+6. dmesg -T | grep -i 'oom'
+
+Check kernel OOM kill events with timestamps.
+
+7. lsof -i :8080
+
+See which process is using port 8080.
+
+8. iostat -xz 1 5
+
+Disk I/O stats every second (5 intervals).
+
+9. vmstat -w 1 5
+
+Memory, swap, and CPU stats in real time.
+
+10. kubectl debug pod/app -it --copy-to=debug-pod --image=nicolaka/netshoot
