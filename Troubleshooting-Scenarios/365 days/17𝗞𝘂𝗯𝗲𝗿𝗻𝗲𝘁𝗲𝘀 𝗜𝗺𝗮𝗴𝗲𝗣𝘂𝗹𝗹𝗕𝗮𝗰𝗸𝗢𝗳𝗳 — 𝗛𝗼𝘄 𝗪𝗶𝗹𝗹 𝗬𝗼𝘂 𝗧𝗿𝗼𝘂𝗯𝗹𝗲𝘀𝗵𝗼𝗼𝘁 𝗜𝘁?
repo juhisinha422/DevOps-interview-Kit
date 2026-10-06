@@ -1,0 +1,73 @@
+𝗗𝗮𝘆 𝟭𝟳/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗜𝗺𝗮𝗴𝗲𝗣𝘂𝗹𝗹𝗕𝗮𝗰𝗸𝗢𝗳𝗳 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes pod is stuck in ImagePullBackOff. What will you check?”
+
+I wouldn't immediately restart the pod.
+
+First, I would identify why Kubernetes cannot pull the container image.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check pod status
+
+kubectl get pods -n <namespace>
+
+2️⃣ Check pod events
+
+kubectl describe pod <pod-name> -n <namespace>
+
+The Events section usually gives the first useful clue.
+
+Look for:
+
+🔹 Image not found
+🔹 Authentication failure
+🔹 Registry unavailable
+🔹 Invalid image name/tag
+🔹 Network/DNS issues
+
+3️⃣ Verify the image
+
+kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].image}'
+
+Check whether the image name and tag are correct.
+
+For example:
+
+myregistry/app:v2.0
+
+Does v2.0 actually exist in the registry?
+
+4️⃣ Check private registry credentials
+
+If the image is stored in a private registry, verify the imagePullSecrets configuration.
+
+kubectl get secret -n <namespace>
+
+Also check the ServiceAccount used by the pod.
+
+5️⃣ Check node connectivity
+
+If the image and credentials look correct, investigate whether the node can reach the container registry.
+
+Check:
+
+🔹 DNS resolution
+🔹 Network connectivity
+🔹 Proxy configuration
+🔹 Firewall rules
+🔹 Registry availability
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Pod → Events → Image Name/Tag → Registry → Authentication → Network → Root Cause
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+ImagePullBackOff is a symptom, not the root cause.
+
+The describe pod events are often the best starting point to understand exactly why the image pull is failing.
