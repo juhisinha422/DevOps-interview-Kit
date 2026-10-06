@@ -1,8 +1,5 @@
 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝗲𝗿: You have 2 minutes. Explain how a typical Java application works from code commit to production request.
 
-
-My answer:** Challenge accepted. 😎
-
 ➤ 1. CODE COMMIT
 A developer pushes Java code to GitHub/GitLab. This push triggers the CI/CD pipeline.
 
