@@ -1,0 +1,9 @@
+your application suddenly receives 10x normal traffic. how would you design aws infrastructure to handle the traffic?
+
+To handle a sudden 10x traffic increase, we design an elastic, multi-layered AWS architecture that scales compute dynamically, caches data at the edge, and protects backend databases from saturation
+1.Amazon Route 53 Routes traffic globally with latency-based or geoproximity routing to spread the load across multiple AWS Regions if necessary
+2. A 10x spike might be a DDoS(Distributed Denial-of-Service) attack. AWS WAF implements rate-limiting rules to block malicious traffic at the edge before it consumes backend bandwidth.
+3.ALBs scale automatically, but a sudden instantaneous 10x burst can outpace its scaling algorithm. If the spike is predictable (e.g., a flash sale), we must pre-warm the ALB via AWS Support to ensure it handles the immediate wall of traffic.
+4.Applications must be stateless so instances can be created or destroyed dynamically without losing user sessions
+5.A 10x traffic surge creates a massive flood of database connection requests, which can exhaust DB memory. RDS Proxy pools and shares these connections to keep the database from buckling under the overhead.
+
