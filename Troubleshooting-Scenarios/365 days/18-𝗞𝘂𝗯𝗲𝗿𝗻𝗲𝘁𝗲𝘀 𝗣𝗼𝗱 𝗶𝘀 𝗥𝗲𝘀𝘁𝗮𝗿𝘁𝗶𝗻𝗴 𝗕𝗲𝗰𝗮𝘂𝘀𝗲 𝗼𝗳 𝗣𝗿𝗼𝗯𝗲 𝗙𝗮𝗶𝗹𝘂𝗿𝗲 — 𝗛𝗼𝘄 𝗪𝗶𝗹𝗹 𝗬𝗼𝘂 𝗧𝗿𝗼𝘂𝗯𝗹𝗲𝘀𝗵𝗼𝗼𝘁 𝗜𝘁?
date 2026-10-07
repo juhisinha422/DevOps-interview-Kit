@@ -1,0 +1,87 @@
+ 𝗗𝗮𝘆 𝟭𝟴/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗕𝗲𝗰𝗮𝘂𝘀𝗲 𝗼𝗳 𝗣𝗿𝗼𝗯𝗲 𝗙𝗮𝗶𝗹𝘂𝗿𝗲 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes application is running, but the pod keeps restarting because of failed health probes. How will you troubleshoot it?”
+
+I wouldn't immediately remove the probe.
+
+First, I would understand which probe is failing and why.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check pod status
+
+kubectl get pods -n <namespace>
+
+Check the READY status and restart count.
+
+2️⃣ Describe the pod
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Check the Events section for messages such as:
+
+🔹 Liveness probe failed
+🔹 Readiness probe failed
+🔹 Connection refused
+🔹 Timeout
+🔹 HTTP error
+
+3️⃣ Identify the failing probe
+
+Check the Deployment configuration:
+
+kubectl get deployment <deployment-name> -o yaml
+
+Review:
+
+livenessProbe
+
+readinessProbe
+
+startupProbe
+
+
+4️⃣ Test the health endpoint
+
+If the probe uses an HTTP endpoint such as:
+
+/health
+
+I would test whether the application is actually responding on the expected port and path.
+
+For example:
+
+kubectl exec -it <pod-name> -- curl localhost:8080/health
+
+5️⃣ Check application logs
+
+kubectl logs <pod-name> -n <namespace>
+
+Look for slow startup, dependency failures, database connectivity, or application errors.
+
+6️⃣ Review probe configuration
+
+Check whether:
+
+🔹 Port is correct
+🔹 Path is correct
+🔹 Initial delay is sufficient
+🔹 Timeout is appropriate
+🔹 Failure threshold is reasonable
+🔹 Application startup time is considered
+
+For slow-starting applications, a properly configured startupProbe can prevent premature liveness failures.
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Pod → Events → Probe Type → Endpoint/Port → Application Logs → Configuration → Root Cause
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A failed probe doesn't always mean the application is broken.
+
+Sometimes the application is healthy but the probe configuration doesn't match the application's actual behavior.
