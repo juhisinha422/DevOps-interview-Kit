@@ -1,0 +1,19 @@
+Easy Launcher
+Associate DevOps Engineer
+Interview Questions — 3–5 Years
+
+What is IPAM in AWS?
+What is the difference between SSL and TLS?
+How do you set up a rollback strategy in a CI/CD pipeline?
+What is Terraform state file locking, and how does it prevent state corruption?
+What is Terraform state drift, and how do you detect it?
+What is the difference between ECS and EKS?
+What are Kubernetes Taints and Tolerations?
+What is Kubernetes Affinity and Anti-Affinity?
+What is the difference between Taints/Tolerations and Affinity?
+How would you troubleshoot a failed production deployment?
+How would you roll back a failed Kubernetes deployment?
+How would you prevent two engineers from modifying Terraform infrastructure simultaneously?
+How would you detect and resolve infrastructure drift?
+When would you choose ECS over EKS?
+How would you ensure Kubernetes Pods are distributed across different nodes?
