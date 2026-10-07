@@ -1,1 +1,7 @@
+Question: How do you identify DB connection leakage?
 
+👉 Answer:“Sure, to identify database connection leakage, I would approach it from both the application side and the database side.First, I would check the database metrics to see the number of active connections over time. If I observe that connections keep increasing without dropping, even when traffic is stable, that’s a strong indicator of a connection leak.Next, I would inspect database logs or monitoring tools to identify long-lived or idle connections that are not being released properly.
+
+From the application side, I would review how connections are being handled—specifically checking whether connections are being closed properly after use. In many cases, leaks happen due to missing close() calls or improper use of connection pools.I would also verify whether connection pooling is configured correctly. If pooling is not used, or pool size is too large, the application might keep opening new connections instead of reusing them.Additionally, I would use monitoring tools like APM (for example, New Relic or Datadog) to trace database calls and identify endpoints or services that are creating excessive or unclosed connections.
+
+Finally, I would try to reproduce the issue under load and monitor connection behavior in real time to confirm the root cause before applying fixes like proper connection handling or pool tuning.” 
