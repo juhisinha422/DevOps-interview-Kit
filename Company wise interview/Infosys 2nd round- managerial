@@ -1,0 +1,35 @@
+☸️ Kubernetes / EKS Questions
+So you mentioned about, you know, Kubernetes troubleshooting, right? Can you take an example of, you know, some recent?
+Big issue which happened. And, uh, how did you like arrive to solving it?
+Can you explain a little the gateway error you talked about?
+Do you have like some, uh, like central logging or, uh, how do you like LA?
+And, uh, how large is this cluster for you? Which you are managing?
+And how many microservices would be running in this cluster?
+In the EKS cluster, there is a term called gardening. What do you mean by that?
+Node gardening, like it's basically like, when we want to schedule some specific parts on and we don't want to schedule some specific parts on that node.
+I have seen my pod. One of the pod is in some state. Whenever the request is going to that pod, it is failing. I am getting intermittent failure in my application because the request goes to that particular pod. What can be the cause? And generally, how do you fix it?
+How do you troubleshoot intermittent application failures hitting a specific pod?
+Can you explain a little bit like what exactly? — regarding the 503 Gateway error / Ingress.
+☁️ AWS Questions
+So then it would be a on prem data center cluster, right?
+So you are familiar with other AWS services also?
+You are responsible for troubleshooting only on the EKS or you are responsible for other services also, like if there is an issue coming on the DocumentDB side, who takes care of that?
+Have you done any certifications on AWS?
+With ALBs NLB. / Do you have idea about ALB and NLB?
+In your case, are you using ELB or...?
+This is a public portal, right? Give me like how the flow happens. When the user from the browser tries to open on your side, the request comes to which layer?
+The backend DB is using DocumentDB only, yes?
+You know, your cluster is exposed through ALB and you have a public ALB and on the backend your EKS is talking to DocumentDB. How that flow is configured? Like it is a separate subnet or how is that?
+When such a requirement comes, you install a DB and enable the flow, this request comes to who, which team it comes to?
+🛠️ DevOps / Terraform / CI-CD Questions
+How do you deploy? Do you use some kind of CloudFormation templates or do you use Terraform?
+How do you do it? So we deploy it through Terraform. Also, as of now, we are using Jenkins for deployment like CI/CD purpose. But not just Jenkins will do it, right? Jenkins is just the pipeline. The configuration will be done. But how?
+How Terraform is executed through Jenkins CI/CD pipelines?
+But before doing it, you will update the Terraform code, right?
+So this Terraform code is written by developer only?
+You are familiar with, like, if you have to do something in Terraform, you are comfortable with?
+Have you written some modules also in Terraform?
+If there's a drift, how do you handle the drift?
+If somebody has already done some changes because of some urgent requirement or some issue was there to fix that, they have done it. Now it is running in production. There is a drift now. So what will be your next step?
+You have done like Terraform import?
+Can we use Terraform import also in such scenario when there is a drift?
