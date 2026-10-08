@@ -1,3 +1,44 @@
+## Core Kubernetes questions and answers 
+
+## 1. Explain the Kubernetes architecture.
+
+The control plane has the API server (the single entry point), etcd (the key-value store holding cluster state), the scheduler (assigns pods to nodes) and the controller manager (reconciles desired and actual state). Each worker node runs the kubelet (runs the pods), kube-proxy (service networking) and a container runtime such as containerd. On EKS, AWS manages the control plane and you manage the nodes (or use Fargate).
+
+## 2. What happens when you run kubectl apply -f deployment.yaml?
+
+kubectl authenticates to the API server, which validates and stores the object in etcd. The Deployment controller creates a ReplicaSet, and the ReplicaSet controller creates Pods. The scheduler assigns each Pod to a node, and the kubelet on that node pulls the image and starts the containers.
+
+## 3. Pod vs Deployment vs ReplicaSet vs StatefulSet vs DaemonSet?
+
+Pod: the smallest deployable unit.
+ReplicaSet: keeps N replicas running.
+Deployment: manages ReplicaSets and adds rolling updates and rollbacks.
+StatefulSet: stable identity, stable storage and ordered startup (databases).
+DaemonSet: one pod per node (log agents, monitoring agents).
+
+## 4. Types of Services?
+
+ClusterIP (internal only, default), NodePort (exposes a port on each node), LoadBalancer (provisions a cloud LB, an NLB or CLB on AWS), and ExternalName (DNS alias). Ingress sits above Services for HTTP/S routing, and on AWS the AWS Load Balancer Controller creates an ALB for it.
+
+## 5. A pod is stuck in CrashLoopBackOff. How do you troubleshoot?
+Run kubectl describe pod to check events, then kubectl logs <pod> --previous to see why the last run crashed. Common causes are a bad config or env var, a missing secret, a failing liveness probe, OOMKilled (check the exit code 137 and the memory limits), or an app error. Then fix and redeploy.
+
+## 6. A pod is Pending. Why?
+Usually insufficient CPU or memory on nodes, a node selector/affinity that can't be met, taints without tolerations, or an unbound PVC. kubectl describe pod shows the scheduler's reason in Events.
+
+## 7. ImagePullBackOff?
+Wrong image name or tag, missing registry credentials (imagePullSecrets), or on EKS the node role lacking ECR pull permissions, or no network path to ECR.
+
+## Administration
+
+## 8. How do you upgrade an EKS/Kubernetes cluster?
+
+Check API deprecations and add-on compatibility first, then upgrade the control plane one minor version at a time. Next upgrade add-ons (CoreDNS, kube-proxy, VPC CNI), then the nodes (managed node group rolling update or new node group with drain). Use PodDisruptionBudgets so apps stay available, test in lower environments first, and back up with Velero.
+
+## 9. How do you drain a node safely?
+kubectl cordon <node> to stop new scheduling, then kubectl drain <node> --ignore-daemonsets --delete-emptydir-data. Pods are evicted gracefully and respect PDBs. After maintenance, run kubectl uncordon <node>.
+
+
 # Kubernetes Production Interview Questions & Answers
 
 ## 1. Your pod is stuck in `CrashLoopBackOff`. How do you debug and fix it?
