@@ -1,0 +1,75 @@
+ 𝗗𝗮𝘆 𝟭𝟵/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗶𝘀 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 𝗯𝘂𝘁 𝗨𝘀𝗲𝗿𝘀 𝗖𝗮𝗻𝗻𝗼𝘁 𝗥𝗲𝗮𝗰𝗵 𝗧𝗵𝗲 𝗔𝗽𝗽 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗖𝗵𝗲𝗰𝗸?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your pod is Running and Ready, but users are still unable to access the application. How will you troubleshoot it?”
+
+At this point, I would stop focusing only on the pod.
+
+I would trace the complete network path from the user to the application.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check the Service
+
+kubectl get svc -n <namespace>
+
+Verify the Service type, ports and target port.
+
+2️⃣ Check Service endpoints
+
+kubectl get endpoints <service-name> -n <namespace>
+
+If there are no endpoints, I would check the Service selector and pod labels.
+
+3️⃣ Check Ingress
+
+kubectl get ingress -n <namespace>
+kubectl describe ingress <ingress-name> -n <namespace>
+
+Check:
+
+🔹 Hostname
+🔹 Backend service
+🔹 Port
+🔹 TLS configuration
+🔹 Ingress controller events
+
+4️⃣ Test DNS
+
+nslookup <application-domain>
+
+Verify that the domain resolves to the expected endpoint.
+
+5️⃣ Test the application internally
+
+From inside the cluster:
+
+curl http://<service-name>:<port>
+
+If the internal request works but external access fails, I would focus on the Ingress / Load Balancer / DNS / network layer.
+
+6️⃣ Check Load Balancer and network configuration
+
+Depending on the environment, I would check:
+
+🔹 Load Balancer
+🔹 Firewall rules
+🔹 Network policies
+🔹 Security groups
+🔹 Ingress controller
+🔹 TLS certificates
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+User → DNS → Load Balancer/Ingress → Service → Endpoint → Pod → Application
+
+The key is to identify exactly where the request stops.
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Pod Running + Ready does not guarantee external accessibility.
+
+Good DevOps troubleshooting means following the request path layer by layer instead of making random changes. 🚀
