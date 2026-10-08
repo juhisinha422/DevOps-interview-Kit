@@ -1,0 +1,11 @@
+How do you configure sticky sessions in Kubernetes?
+In Kubernetes, sticky sessions means the requests from the same client are repeatedly routed to the same Pod instead of being load-balanced across different Pods.
+1.Sticky sessions or session affinity is a convenient strategy to keep subsequent requests always reaching the same pod.
+2.The simplest Kubernetes-native approach is sessionAffinity: ClientIP. Kubernetes supports ClientIP and None; the default is None.
+# Enable sticky sessions
+sessionAffinity: ClientIP
+3.The default sticky-session timeout is 10,800 seconds (3 hours), and we can configure it with sessionAffinityConfig.clientIP.timeoutSeconds; the maximum is 86,400 seconds (24 hours).
+4.There are two common places where sticky sessions can be configured
+Kubernetes Service-------->sessionAffinity: ClientIP
+Ingress / external Load Balancer--------->Cookie-based or LB-specific stickiness
+5.Sticky sessions are often used for applications that store session state locally in the Pod
