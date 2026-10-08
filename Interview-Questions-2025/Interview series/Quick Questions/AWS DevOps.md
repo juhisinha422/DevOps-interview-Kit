@@ -1,3 +1,220 @@
+
+# 🚀 DevOps Interview Questions – Production Scenarios
+
+## 1. New pods are running, but traffic still hits old pods. Why?
+
+→ Service selectors, endpoints, readiness, deployment strategy
+
+### Answer:
+
+I would first check whether the Kubernetes Service selector matches the labels of the new pods. If the selector is still matching the old pods, traffic can continue going there.
+
+Then I would check the Service endpoints or EndpointSlices to verify which pod IPs are actually registered behind the Service.
+
+I would also check the readiness probes. A pod can be in `Running` state but not be considered ready, so Kubernetes will not send Service traffic to it.
+
+Finally, I would verify the Deployment strategy, rollout status, ReplicaSets, and whether an old ReplicaSet is still running.
+
+My troubleshooting flow would be:
+
+**Service → Selector → Endpoints/EndpointSlices → Pod Labels → Readiness → Deployment/ReplicaSets → Ingress/Load Balancer**
+
+---
+
+## 2. Pod works, but the Service cannot reach it. What do you check?
+
+→ Selector, targetPort, endpoints, NetworkPolicy
+
+### Answer:
+
+First, I check whether the Service selector matches the pod labels. If there is no label match, the Service will have no endpoints.
+
+Next, I verify the Service `port` and `targetPort`. The `targetPort` must point to the port where the application is actually listening inside the pod.
+
+Then I check the Service endpoints or EndpointSlices to confirm that the pod IP and port are registered.
+
+After that, I test connectivity from another pod inside the cluster and check NetworkPolicies that could be blocking traffic.
+
+I would also verify whether the application is listening on the expected interface and port.
+
+---
+
+## 3. Jenkins works locally but fails in CI. Why?
+
+→ Environment, credentials, dependencies, agent configuration
+
+### Answer:
+
+I would compare the local environment with the Jenkins agent environment.
+
+First, I check the Java, Maven, Docker, Git, or other required tool versions. Then I verify environment variables, PATH configuration, workspace permissions, and required dependencies.
+
+Next, I check whether Jenkins has the correct credentials and whether the credential IDs referenced in the pipeline are available.
+
+I would also verify the Jenkins agent configuration, Docker access, network connectivity, proxy configuration, and workspace state.
+
+I prefer reproducing the same command directly on the Jenkins agent because it helps identify whether the problem is related to the application or the CI environment.
+
+My approach is:
+
+**Pipeline logs → Agent → Tools/Versions → Environment Variables → Credentials → Permissions → Dependencies → Network**
+
+---
+
+## 4. Terraform wants to recreate a production resource. What do you check?**
+
+→ State drift, lifecycle rules, provider changes
+
+### Answer:
+
+I would never directly apply the Terraform plan in production when it shows a resource will be destroyed and recreated.
+
+First, I inspect the `terraform plan` output carefully to identify exactly which attribute is causing the replacement.
+
+Then I compare the Terraform configuration with the Terraform state and the actual infrastructure to identify possible state drift.
+
+I would also check recent provider version changes because provider updates can sometimes change resource behavior or ForceNew attributes.
+
+After that, I review lifecycle rules such as `create_before_destroy`, `prevent_destroy`, and `ignore_changes` where appropriate.
+
+If the resource was changed manually, I would determine whether the Terraform state needs to be refreshed or whether the configuration needs to be updated.
+
+For a production resource, I would validate the change in a lower environment first and take an approved change-management approach before applying it.
+
+---
+
+## 5. Node CPU is high, but traffic is normal. What’s happening?
+
+→ Resource limits, runaway pods, system workloads
+
+### Answer:
+
+If traffic is normal but node CPU is high, I would first determine which process or pod is consuming the CPU.
+
+I would check node-level CPU usage and then identify the top CPU-consuming pods. I would also check whether any pod has a CPU limit that is too high or missing completely.
+
+Next, I would check for runaway applications, CPU-intensive batch jobs, Kubernetes system components, DaemonSets, or unexpected workloads.
+
+I would review recent deployments and application metrics to see whether there was a change in behavior.
+
+I would also check whether the node is overcommitted and whether pods are properly distributed across the cluster.
+
+My flow would be:
+
+**Node metrics → Top CPU processes/pods → Resource requests/limits → Recent deployments → System workloads → Application metrics → Scheduling/distribution**
+
+---
+
+## 6. Docker container keeps restarting. Where do you start?
+
+→ Logs, exit code, health check, OOMKilled
+
+### Answer:
+
+I would first check the container status and restart count, then inspect the container logs.
+
+Next, I check the container exit code because it gives an indication of why the main process terminated.
+
+I would verify whether the application process is crashing, whether the Docker `CMD` or `ENTRYPOINT` is incorrect, or whether required environment variables or configuration are missing.
+
+Then I would check the health check configuration. A failing health check can cause a container to be considered unhealthy depending on how the container is managed.
+
+I would also check whether the container was killed because of memory exhaustion or resource limits.
+
+For example, if the container is getting OOMKilled, I would review its memory limit and application memory usage rather than simply increasing the restart policy.
+
+---
+
+## 7. CI/CD has production credentials. How would you secure them?
+
+→ OIDC, secret manager, short-lived credentials, least privilege
+
+### Answer:
+
+I would avoid storing long-lived production credentials directly in Jenkins or the CI/CD pipeline.
+
+For AWS deployments, I would prefer OIDC-based authentication where the CI system assumes an IAM role using short-lived credentials.
+
+Secrets that are still required should be stored in a dedicated secret manager rather than hardcoded in Jenkinsfiles, Git repositories, or Docker images.
+
+I would follow least-privilege IAM permissions and create separate roles for different environments such as development, staging, and production.
+
+I would also restrict who can trigger production deployments and implement approval gates where required.
+
+Additionally, I would enable auditing through services such as CloudTrail and regularly review IAM permissions and credential usage.
+
+The main principle is:
+
+**No hardcoded secrets → Short-lived credentials → OIDC → Secret Manager → Least Privilege → Auditing**
+
+---
+
+## 8. Staging works, but production fails. What do you compare?
+
+→ Config, secrets, resources, networking, dependencies
+
+### Answer:
+
+I would compare staging and production systematically instead of assuming that the application code is the issue.
+
+First, I compare application configuration and environment variables. Then I verify that the required secrets and credentials are available and valid in production.
+
+Next, I compare CPU and memory resources, replica counts, autoscaling configuration, and Kubernetes deployment settings.
+
+I would also check networking differences such as security groups, NetworkPolicies, DNS, load balancers, ingress configuration, and connectivity to databases or external services.
+
+Finally, I compare dependency versions and external service availability.
+
+I would use logs, metrics, traces, and deployment differences to identify the exact point where the behavior changes between environments.
+
+---
+
+## 9. Latency increased, but CPU and memory are normal. What next?
+
+→ Database, network, dependencies, connection pools, tracing
+
+### Answer:
+
+If CPU and memory are normal, I would not assume that the application is healthy because latency can be caused by external dependencies.
+
+I would first check application latency metrics and distributed traces to identify which part of the request is taking longer.
+
+Then I would investigate database performance, including slow queries, connection pool exhaustion, locks, and database latency.
+
+I would also check network latency, DNS resolution, load balancers, external APIs, and other downstream services.
+
+Connection pool exhaustion is another important area because the application may have sufficient CPU and memory but still be waiting for available connections.
+
+I would compare the latency with historical metrics and check whether a recent deployment or infrastructure change correlates with the increase.
+
+---
+
+## 10. Deployment is healthy, but users see intermittent failures. How do you debug?
+
+→ Logs, metrics, tr
+aces, timeouts, dependencies
+
+### Answer:
+
+I would first determine whether the failures are affecting all users or only a subset of requests.
+
+I would correlate application logs with metrics and distributed traces using request IDs or correlation IDs wherever available.
+
+Then I would check load balancer and ingress metrics, backend pod distribution, readiness status, and whether traffic is being sent to unhealthy or overloaded instances.
+
+I would investigate timeout settings between the client, load balancer, ingress, application, database, and downstream services.
+
+Next, I would check dependencies for intermittent failures, connection pool exhaustion, DNS issues, network problems, or throttling.
+
+I would also compare successful and failed requests to identify a pattern, such as failures coming from a specific pod, node, availability zone, or downstream service.
+
+My approach would be:
+
+**Logs → Metrics → Traces → Load Balancer/Ingress → Pods → Timeouts → Dependencies → Network → Recent Changes**
+
+The key is to identify the failure pattern instead of simply restarting the pods.
+
+
 # Git Interview Scenarios
 
 𝗬𝗼𝘂𝗿 𝗰𝗼𝗱𝗲 𝗶𝘀 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝗺𝗲𝗿𝗴𝗲𝗱 𝗶𝗻𝘁𝗼 𝗺𝗮𝗶𝗻. 𝗛𝗼𝘄 𝘄𝗼𝘂𝗹𝗱 𝘆𝗼𝘂 𝘂𝗻𝗱𝗼 𝗶𝘁 𝘀𝗮𝗳𝗲𝗹𝘆?”
