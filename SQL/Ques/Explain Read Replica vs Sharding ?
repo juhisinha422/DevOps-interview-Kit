@@ -1,0 +1,5 @@
+Explain Read Replica vs Sharding ?
+
+👉 Answer: “A read replica is a copy of the primary database used to offload read traffic. The primary handles writes, while replicas serve read requests, which helps in improving read scalability and availability.On the other hand, sharding is a horizontal scaling technique where data is distributed across multiple nodes, allowing both read and write scaling.
+
+So, read replicas are mainly used for scaling reads, while sharding is used when the dataset becomes very large or when write scalability is required.” 
