@@ -1,3 +1,41 @@
+# 🚀 DevOps Interview Questions (4.5 Years Experience)
+
+# Docker, Kubernetes, Jenkins, and Linux Scenario-Based Questions
+
+
+## 🔥 LINUX SCENARIO QUESTIONS
+
+## Scenario 1: One of our production servers is running out of disk space completely, and applications are crashing. How will you quickly identify what is consuming the space?
+Answer: I will first run the df -h command to check partition usage. Then, I will use du -sh * | sort -hr to find the largest directories. If disk usage is still not matching, I will check for deleted files that are still held by open processes using lsof +L1 and restart those services.
+
+## Scenario 2: The CPU utilization on a Linux server suddenly spiked to 100 percent. How will you troubleshoot this step by step?
+Answer: I will use top or htop to identify the process consuming high CPU. Once the PID is found, I will use ps -fp  to check details about the process. If it is a Java application, I will take a thread dump to analyze which thread is causing the issue.
+
+## 🐳 DOCKER SCENARIO QUESTIONS
+
+## Scenario 3: Your Docker container is exiting immediately after starting up. How do you troubleshoot this issue?
+Answer: Containers exit immediately if the main process (PID 1) stops. I will check the logs using docker logs . To debug, I will override the entrypoint or command to keep the container running interactively, like docker run -it --entrypoint /bin/bash .
+
+## Scenario 4: You need to optimize a Docker image for a Node.js application because the current size is over 1GB. What steps will you take?
+Answer: I will use a multi-stage build so that build tools are not present in the final production image. I will also use a lighter base image like alpine instead of the default ubuntu image, and make sure to include a .dockerignore file to exclude node_modules and logs.
+
+## ☸️ KUBERNETES SCENARIO QUESTIONS
+
+## Scenario 5: A deployment in Kubernetes is showing CrashLoopBackOff status. How will you debug this?
+Answer: First, I will check the pod description using kubectl describe pod  to check for OOMKilled or configuration errors. Then, I will check previous container logs using kubectl logs  --previous to see application startup errors.
+
+## Scenario 6: Your application pods cannot connect to an external database outside the Kubernetes cluster. How will you troubleshoot this networking issue?
+Answer: I will check if the DNS resolution is working inside the pod by running an nslookup or curl command. Since external services are not managed by K8s, I will check the Endpoints and Service definitions created for the external IP, and also verify network policies if any are blocking egress traffic.
+
+## 🛠️ JENKINS CI/CD SCENARIO QUESTIONS
+
+## Scenario 7: A Jenkins pipeline failed halfway through a deployment stage, leaving the server in an inconsistent state. How do you handle rollbacks in Jenkins?
+Answer: I design pipelines with error handling blocks using post { failure { ... } } or try-catch blocks in scripted/declarative pipelines. Inside the failure block, I trigger a rollback script or previous stable deployment artifact version.
+
+## Scenario 8: Multiple Jenkins jobs are waiting in the queue because all build agents are busy. How do you optimize Jenkins scalability?
+Answer: I would configure dynamic Jenkins agents using Kubernetes plugin. Instead of static VMs, Jenkins will spin up ephemeral pods inside a Kubernetes cluster as build agents on demand and terminate them after the job completes, saving resources and reducing queue time.
+
+
 # 🚀 DevOps Interview – Internal Working Questions & Answers
 
 ## 1. How does Kubernetes decide which node to schedule a pod on?
