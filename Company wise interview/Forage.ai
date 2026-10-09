@@ -1,0 +1,73 @@
+DevOps Interview Experience — Forage.ai | Scripting, AWS, Kubernetes & CI/CD
+
+
+
+🔹 Scripting & Automation
+
+1. You have multiple servers in your environment. How would you identify the servers that do not have the required tags? Explain your scripting/automation approach.
+
+2. You have 10,000 endpoints. How would you check whether all the endpoints are working or not? Explain your scripting approach.
+
+🔹 Kubernetes
+
+3. What is the difference between Deployment and StatefulSet?
+
+4. Why can't we use Deployment for a database?
+
+5. What is a DaemonSet?
+
+6. What are Kubernetes probes?
+
+7. What is the difference between Readiness Probe and Startup Probe?
+
+8. What are Taints and Tolerations?
+
+9. Explain HPA.
+
+10. Explain a CrashLoopBackOff scenario and your troubleshooting approach.
+
+11. A Pod is in Pending state. Why can this happen? Explain your troubleshooting approach.
+
+🔹 AWS — High Availability & Architecture
+
+12. Design a Highly Available 3-Tier Architecture for an application.
+
+13. What AWS services would you use to make the 3-tier application highly available?
+
+14. Where would you place the Web Server, Application Server and Database — public subnet or private subnet?
+
+15. Is a NAT Gateway required in this architecture?
+
+16. Can a private subnet communicate without a NAT Gateway?
+
+17. Explain the complete traffic flow of the architecture.
+
+18. How would you add a new Availability Zone to this architecture?
+
+19. If the customer requires high scalability, how would you configure Auto Scaling?
+
+🔹 CI/CD & Git
+
+20. Walk me through your CI/CD pipeline.
+
+21. How would you configure Quality Gates in your pipeline?
+
+22. Explain your Git repository structure for the project.
+
+🔹 S3 & Cost Optimization
+
+23. If 10,000 files are stored in S3 every day and the cost keeps increasing, what would be your action plan to reduce the cost?
+
+24. Which AWS tool/service would you use to compare the current month's billing with the previous month's billing?
+
+25. This month your AWS bill is 40% higher than the previous month. How would you analyze the situation?
+
+🔹 Linux & Monitoring
+
+26. A filesystem has reached 90% utilization. How would you troubleshoot and resolve it?
+
+27. Before filesystem utilization reaches 90%, how would you configure monitoring and alerts to notify the respective teams?
+
+🔹 Production & Traffic
+
+28. If you receive 10,000 requests, how will the traffic flow through your architecture?
