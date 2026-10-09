@@ -1,0 +1,74 @@
+🚀 𝗗𝗮𝘆 𝟮𝟬/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗙𝗮𝗶𝗹𝗲𝗱 𝗔𝗳𝘁𝗲𝗿 𝗮 𝗥𝗲𝗰𝗲𝗻𝘁 𝗖𝗵𝗮𝗻𝗴𝗲 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗗𝗼?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “A new application version was deployed to production, but users started facing errors immediately after the deployment. How will you troubleshoot and recover?”
+
+I wouldn't start making multiple changes at once.
+
+First, I would confirm the impact and identify what changed.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check deployment status
+
+kubectl rollout status deployment/<deployment-name>
+
+2️⃣ Check pods
+
+kubectl get pods -n <namespace>
+
+Look for:
+
+🔹 CrashLoopBackOff
+🔹 ImagePullBackOff
+🔹 Failed probes
+🔹 Increased restarts
+🔹 Pending pods
+
+3️⃣ Check application logs
+
+kubectl logs <pod-name> -n <namespace>
+
+If the pod restarted:
+
+kubectl logs <pod-name> --previous -n <namespace>
+
+4️⃣ Check what changed
+
+I would compare the current deployment with the previous working version:
+
+🔹 Container image
+🔹 Environment variables
+🔹 ConfigMaps/Secrets
+🔹 Resource requests/limits
+🔹 Application configuration
+
+5️⃣ Check rollout history
+
+kubectl rollout history deployment/<deployment-name>
+
+If the new release is confirmed as the cause and rollback is approved:
+
+kubectl rollout undo deployment/<deployment-name>
+
+Then verify:
+
+kubectl rollout status deployment/<deployment-name>
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Impact → Deployment → Pods → Logs → Recent Changes → Root Cause → Recovery → Verification
+
+After recovery, I would monitor the application and document the incident:
+
+Issue → Root Cause → Resolution → Preventive Action
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A rollback is a recovery action, not a root-cause analysis.
+
+The goal is not just to restore service, but also to understand why the new release caused the issue and prevent it from happening again. 🚀
+
