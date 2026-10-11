@@ -1,0 +1,20 @@
+𝗣𝗼𝗱 – The smallest deployable unit in Kubernetes.
+𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 – Manages application pods and their desired replicas.
+𝗥𝗲𝗽𝗹𝗶𝗰𝗮𝗦𝗲𝘁 – Maintains the required number of pod replicas.
+𝗦𝗲𝗿𝘃𝗶𝗰𝗲 – Provides stable network access to pods.
+𝗜𝗻𝗴𝗿𝗲𝘀𝘀 – Routes external HTTP/HTTPS traffic to services.
+𝗖𝗼𝗻𝗳𝗶𝗴𝗠𝗮𝗽 – Stores non-sensitive application configuration.
+𝗦𝗲𝗰𝗿𝗲𝘁 – Stores sensitive data like passwords and tokens.
+𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁𝗩𝗼𝗹𝘂𝗺𝗲 (PV) – Represents storage available in the cluster.
+𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁𝗩𝗼𝗹𝘂𝗺𝗲𝗖𝗹𝗮𝗶𝗺 (PVC) – Requests storage for an application.
+𝗡𝗮𝗺𝗲𝘀𝗽𝗮𝗰𝗲 – Organizes and isolates resources within a cluster.
+𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁 – Runs a pod on every selected node.
+𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹𝗦𝗲𝘁 – Manages applications that need stable identity and storage.
+𝗝𝗼𝗯 – Runs a task until it completes successfully.
+𝗖𝗿𝗼𝗻𝗝𝗼𝗯 – Runs tasks on a scheduled basis.
+𝗡𝗼𝗱𝗲 – A machine that runs Kubernetes workloads.
+𝗖𝗹𝘂𝘀𝘁𝗲𝗿 – A group of machines working together to run applications.
+𝗞𝘂𝗯𝗲𝗹𝗲𝘁 – Ensures pods run on their assigned nodes.
+𝗸𝘂𝗯𝗲-𝗽𝗿𝗼𝘅𝘆 – Helps implement Kubernetes Service networking.
+𝗲𝘁𝗰𝗱 – Stores Kubernetes cluster state and configuration data.
+𝗛𝗲𝗹𝗺 – Helps package, install, and manage Kubernetes applications.
