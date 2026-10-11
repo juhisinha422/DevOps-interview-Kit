@@ -1,0 +1,76 @@
+𝗗𝗮𝘆 𝟮𝟮/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗦𝘁𝘂𝗰𝗸 𝗶𝗻 𝗣𝗲𝗻𝗱𝗶𝗻𝗴 𝗔𝗳𝘁𝗲𝗿 𝗦𝗰𝗮𝗹𝗶𝗻𝗴 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗖𝗵𝗲𝗰𝗸?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “You increased the replicas of a Kubernetes Deployment, but the new pods are stuck in Pending. Existing pods are working fine. How will you troubleshoot it?”
+
+This is a common production scenario.
+
+I wouldn't touch the existing healthy pods first.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check pod status
+
+kubectl get pods -n <namespace>
+
+Identify which pods are Pending.
+
+2️⃣ Describe the Pending pod
+
+kubectl describe pod <pod-name> -n <namespace>
+
+The Events section is usually the first place I check.
+
+Look for:
+
+🔹 Insufficient CPU/Memory
+🔹 Node selector/affinity issues
+🔹 Taints and tolerations
+🔹 PVC/storage problems
+🔹 Scheduling constraints
+
+3️⃣ Check node capacity
+
+kubectl get nodes
+kubectl describe nodes
+
+I would compare the pod's resource requests with the available allocatable resources.
+
+4️⃣ Check resource requests
+
+A pod may remain Pending even when a node appears to have free resources if the requested CPU/memory cannot be satisfied.
+
+resources:
+  requests:
+    cpu: "500m"
+    memory: "512Mi"
+
+5️⃣ Check scheduling rules
+
+I would verify:
+
+🔹 nodeSelector
+🔹 Node affinity
+🔹 Taints & tolerations
+🔹 Pod affinity/anti-affinity
+
+6️⃣ Check storage
+
+If the pod requires persistent storage:
+
+kubectl get pvc -n <namespace>
+
+A PVC that cannot be bound can prevent the workload from being scheduled successfully.
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Pending Pod → Events → Node Capacity → Resource Requests → Scheduling Rules → Storage → Root Cause
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Scaling a Deployment doesn't guarantee that every new replica can be scheduled.
+
+Existing pods may be healthy while new replicas remain Pending because of capacity or scheduling constraints.
