@@ -1,0 +1,57 @@
+VPC deep dive : -
+
+𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗩P𝗖?
+
+A VPC is your private network inside AWS.
+Every resource you create — EC2, RDS, EKS nodes, Lambda — lives inside a VPC.
+Without a VPC, nothing talks to anything.
+
+But the part most engineers get wrong isn't the VPC itself.
+It's what lives inside it.
+
+𝗣𝘂𝗯𝗹𝗶𝗰 𝘀𝘂𝗯𝗻𝗲𝘁 𝘃𝘀 𝗣𝗿𝗶𝘃𝗮𝘁𝗲 𝘀𝘂𝗯𝗻𝗲𝘁
+
+Public subnet = has a route to the Internet Gateway.
+Resources here can reach the internet AND be reached from the internet.
+Use for: Load balancers, bastion hosts, NAT Gateways.
+
+Private subnet = no route to the Internet Gateway.
+Resources here are invisible to the internet.
+Use for: EKS nodes, RDS, application servers, Lambda in VPC.
+
+The most common mistake: putting EKS nodes or RDS in a public subnet.
+At Citi Bank, every application resource lived in private subnets. Non-negotiable for banking compliance.
+
+𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗡𝗔𝗧 𝗚𝗮𝘁𝗲𝘄𝗮𝘆?
+
+Private resources still need to reach the internet sometimes — to pull packages, call external APIs, download updates.
+But they can't go directly through the Internet Gateway — that would expose them.
+
+Solution: NAT Gateway sits in the PUBLIC subnet.
+Private resources route outbound traffic through NAT.
+NAT reaches the internet on their behalf.
+Inbound connections from the internet? Still blocked. Private resources stay invisible.
+
+Outbound only. One way. Secure.
+
+𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗚𝗿𝗼𝘂𝗽𝘀 𝘃𝘀 𝗡𝗔𝗖𝗟𝘀
+
+Security Groups = stateful firewall at the resource level.
+Allow port 443 inbound — the response automatically comes back. No extra rule needed.
+
+NACLs = stateless firewall at the subnet level.
+Allow port 443 inbound — you must ALSO explicitly allow the response outbound.
+Both inbound and outbound rules required. Always.
+
+Most teams only configure Security Groups and forget NACLs exist.
+At Citi Bank both were mandatory for every subnet. Defence in depth.
+
+𝗧𝗵𝗲 𝗿𝘂𝗹𝗲 𝗜 𝘂𝘀𝗲 𝗲𝘃𝗲𝗿𝘆𝘄𝗵𝗲𝗿𝗲:
+
+Internet-facing resources — public subnet.
+Everything else — private subnet.
+Outbound internet from private — NAT Gateway.
+Firewall at resource level — Security Groups.
+Firewall at subnet level — NACLs.
+
+Get these five right and your VPC will never be the reason for a 3am incident
