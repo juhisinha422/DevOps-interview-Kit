@@ -1,0 +1,35 @@
+Why did your organization migrate from a monolithic architecture to microservices?
+
+Here’s how I would answer it naturally in an interview:
+
+“Yeah, sure.
+
+The main reason wasn’t simply that microservices were popular. Our monolithic application had started creating practical problems as the application and development teams grew.
+
+The entire application was packaged and deployed as one unit. Even when developers changed only the reporting component, we had to rebuild, test and deploy the complete application. This increased deployment time and risk.
+
+Scaling was another challenge. If only the analytics service needed more capacity, we still had to scale the entire application, which wasn’t cost-effective.
+
+The tightly coupled architecture also made troubleshooting difficult. A failure or performance issue in one component could affect the whole application, and multiple teams couldn’t release their changes independently.
+
+So, we gradually divided the application into smaller microservices based on business functions. Each service was containerized using Docker and deployed to Kubernetes.
+
+This allowed us to:
+🔹 Develop and deploy services independently
+🔹 Scale only the services that needed more capacity
+🔹 Isolate failures and reduce their impact
+🔹 Give teams clearer service ownership
+🔹 Release changes more frequently with lower risk
+
+For example, if the reporting service received higher traffic, we could increase only its Pod replicas instead of scaling the entire application.
+
+However, microservices also introduced additional complexity, including service communication, centralized logging, monitoring, security and deployment management. We addressed these challenges using Kubernetes, Helm, Jenkins, Prometheus, Grafana and ELK.
+
+Overall, the migration improved scalability, deployment flexibility and fault isolation. But it 
+was a gradual business and engineering decision—not just a technology change.”
+
+A strong interview answer should explain:
+
+Problem → Reason for migration → Solution → Benefits → Trade-offs
+
+Don’t say, “Microservices are better than monoliths.”
