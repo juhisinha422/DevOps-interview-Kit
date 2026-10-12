@@ -1,0 +1,74 @@
+ 𝗗𝗮𝘆 𝟮𝟯/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗧𝗲𝗿𝗺𝗶𝗻𝗮𝘁𝗶𝗻𝗴 𝗜𝗺𝗺𝗲𝗱𝗶𝗮𝘁𝗲𝗹𝘆 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗖𝗵𝗲𝗰𝗸?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “A Kubernetes pod starts successfully but then terminates within a few seconds. How will you troubleshoot it?”
+
+I wouldn't immediately restart or redeploy the pod.
+
+First, I would identify why the container is exiting.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check pod status
+
+kubectl get pods -n <namespace>
+
+Look at the STATUS and RESTARTS columns.
+
+2️⃣ Describe the pod
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Check the Events and container state.
+
+Look for:
+
+🔹 Exit codes
+🔹 OOMKilled
+🔹 Probe failures
+🔹 Mount/configuration errors
+🔹 Container termination reasons
+
+3️⃣ Check application logs
+
+kubectl logs <pod-name> -n <namespace>
+
+If the container has already restarted:
+
+kubectl logs <pod-name> --previous -n <namespace>
+
+The previous logs can reveal why the last container instance exited.
+
+4️⃣ Check the container command
+
+I would verify the image's:
+
+🔹 command
+🔹 args
+🔹 Environment variables
+🔹 ConfigMaps/Secrets
+
+A container can terminate immediately if its main process finishes or the startup command is incorrect.
+
+5️⃣ Check the exit code
+
+The exit code can provide an important clue about how the process terminated.
+
+kubectl describe pod <pod-name> -n <namespace>
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Pod Status → Container State → Events → Previous Logs → Exit Code → Command/Args → Root Cause
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A container being Running briefly doesn't mean the application is healthy.
+
+The most important question is:
+
+👉 Why did the main process exit?
+
+Find the reason first, then take the recovery action. 🚀
