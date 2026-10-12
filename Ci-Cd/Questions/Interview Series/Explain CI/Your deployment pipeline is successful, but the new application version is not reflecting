@@ -1,0 +1,14 @@
+“Your deployment pipeline is successful, but the new application version is not reflecting in production. What would you check?”
+
+My approach would be:
+
+1. Verify whether the deployment actually reached the target environment.
+2. Check the deployment logs and the application version running on the server/container.
+3. If using Kubernetes, check the rollout status, pods, ReplicaSets and image version.
+4. Verify whether the deployment is pulling the latest image or using an older cached image.
+5. Check the service/ingress routing to make sure traffic is reaching the expected pods.
+6. Finally, check application logs and monitoring metrics for any runtime issue.
+
+A successful pipeline doesn't always mean a successful release.
+
+The important part is understanding where the deployment flow stopped — build, image, deployment, routing, or application runtime.
