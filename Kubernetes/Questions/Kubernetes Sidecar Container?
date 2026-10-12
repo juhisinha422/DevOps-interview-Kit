@@ -1,0 +1,19 @@
+What is a Kubernetes Sidecar Container? 🚀
+
+✅A Pod can contain more than one container.
+A Sidecar Container runs alongside the main application container to provide supporting functionality.
+✍️For example:
+Main container → Application
+Sidecar container → Log forwarding or proxy functionality
+Common use cases include:
+✅ Log collection
+✅ Service proxying
+✅ Supporting agents
+✅ Data synchronization
+✅ Security-related functionality
+
+Sidecars share the Pod's network environment and can share volumes when configured.
+
+However, adding unnecessary sidecars can increase resource consumption and operational complexity.
+Also, some sidecar functionality can now be implemented through native platform features or dedicated agents.
+Use sidecars when they solve a clear problem—not simply because the pattern exists.
