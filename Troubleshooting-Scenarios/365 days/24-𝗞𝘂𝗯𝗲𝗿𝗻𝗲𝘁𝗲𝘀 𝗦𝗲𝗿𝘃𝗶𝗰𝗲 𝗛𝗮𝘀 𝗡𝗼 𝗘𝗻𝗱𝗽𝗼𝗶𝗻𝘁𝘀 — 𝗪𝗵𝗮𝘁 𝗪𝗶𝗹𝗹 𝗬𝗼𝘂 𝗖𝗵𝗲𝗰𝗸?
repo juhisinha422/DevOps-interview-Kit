@@ -1,0 +1,66 @@
+𝗗𝗮𝘆 𝟮𝟰/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗛𝗮𝘀 𝗡𝗼 𝗘𝗻𝗱𝗽𝗼𝗶𝗻𝘁𝘀 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗖𝗵𝗲𝗰𝗸?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes Service exists, but kubectl get endpoints shows no endpoints. How will you troubleshoot it?”
+
+This is a common issue where the Service exists, but it isn't finding the expected pods.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check the Service
+
+kubectl get svc <service-name> -n <namespace>
+
+Check the Service configuration.
+
+2️⃣ Check the Service selector
+
+kubectl describe svc <service-name> -n <namespace>
+
+Look for:
+
+Selector: app=myapp
+
+3️⃣ Check pod labels
+
+kubectl get pods --show-labels -n <namespace>
+
+Compare the pod labels with the Service selector.
+
+For example:
+
+Service selector: app=myapp
+Pod label:        app=backend
+
+The Service won't select that pod.
+
+4️⃣ Check whether pods are Ready
+
+kubectl get pods -n <namespace>
+
+A pod may exist but still not be considered a usable endpoint if it isn't Ready.
+
+Check:
+
+kubectl describe pod <pod-name> -n <namespace>
+
+5️⃣ Check EndpointSlices
+
+kubectl get endpointslices -n <namespace>
+
+This can provide additional information about the endpoints associated with the Service.
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+Service → Selector → Pod Labels → Pod Readiness → EndpointSlices → Root Cause
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A Service existing doesn't mean it has healthy endpoints.
+
+When there are no endpoints, one of the first things I check is:
+
+👉 Does the Service selector actually match the pod labels?
