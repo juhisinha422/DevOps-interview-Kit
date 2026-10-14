@@ -1,0 +1,70 @@
+ 𝗗𝗮𝘆 𝟮𝟱/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗶𝗻 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 𝗦𝘁𝗮𝘁𝗲, 𝗕𝘂𝘁 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗖𝗣𝗨 𝗶𝘀 𝗛𝗶𝗴𝗵 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗗𝗼?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes application is running, but one pod is suddenly consuming very high CPU. How will you troubleshoot it?”
+
+I wouldn't immediately restart the pod.
+
+First, I would identify what is causing the CPU spike and whether it is affecting the application.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check pod CPU usage
+
+kubectl top pod <pod-name> -n <namespace>
+
+Compare the current usage with the pod's normal baseline.
+
+2️⃣ Check the pod configuration
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Review the CPU requests and limits.
+
+3️⃣ Check application logs
+
+kubectl logs <pod-name> -n <namespace>
+
+Look for:
+
+🔹 Error loops
+🔹 Excessive requests
+🔹 Repeated retries
+🔹 Background jobs
+🔹 Recent application changes
+
+4️⃣ Check whether traffic increased
+
+I would compare current traffic with the normal baseline.
+
+A sudden increase in requests can naturally cause higher CPU consumption.
+
+5️⃣ Check recent deployments
+
+I would investigate:
+
+🔹 New application version
+🔹 Configuration changes
+🔹 New features
+🔹 Dependency changes
+
+6️⃣ Check the node
+
+kubectl top node <node-name>
+
+I would determine whether the issue is isolated to one pod or whether the entire node is under CPU pressure.
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+CPU Spike → Pod Metrics → Limits → Logs → Traffic → Recent Changes → Node Health → Root Cause
+
+If the application is impacted, I would follow the approved production procedure for scaling or recovery.
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+High CPU is a symptom — not the root cause.
+
+Before increasing CPU limits or restarting the pod, understand why CPU usage increased. 🚀
