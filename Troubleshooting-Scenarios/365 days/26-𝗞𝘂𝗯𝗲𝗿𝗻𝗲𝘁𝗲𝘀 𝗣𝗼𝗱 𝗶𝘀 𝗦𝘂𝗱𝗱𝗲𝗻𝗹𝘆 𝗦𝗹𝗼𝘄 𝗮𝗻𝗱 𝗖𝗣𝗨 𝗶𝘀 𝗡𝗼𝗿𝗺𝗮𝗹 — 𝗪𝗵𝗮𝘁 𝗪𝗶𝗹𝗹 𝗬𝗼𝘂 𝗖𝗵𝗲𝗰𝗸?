@@ -1,0 +1,74 @@
+𝗗𝗮𝘆 𝟮𝟲/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗦𝘂𝗱𝗱𝗲𝗻𝗹𝘆 𝗦𝗹𝗼𝘄 𝗮𝗻𝗱 𝗖𝗣𝗨 𝗶𝘀 𝗡𝗼𝗿𝗺𝗮𝗹 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗖𝗵𝗲𝗰𝗸?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes application has suddenly become slow, but CPU and memory usage look normal. How will you troubleshoot it?”
+
+This is where I would look beyond pod resources.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check application logs
+
+kubectl logs <pod-name> -n <namespace>
+
+Look for:
+
+🔹 Timeouts
+🔹 Connection errors
+🔹 Slow requests
+🔹 Retries
+🔹 Dependency failures
+
+2️⃣ Check the Service
+
+kubectl get svc -n <namespace>
+kubectl get endpoints -n <namespace>
+
+Make sure traffic is reaching the expected pods.
+
+3️⃣ Check network connectivity
+
+Test communication between the application and its dependencies:
+
+kubectl exec -it <pod-name> -- curl <service>:<port>
+
+Check for DNS or network-related delays.
+
+4️⃣ Check dependencies
+
+If the application itself looks healthy, investigate:
+
+🔹 Database latency
+🔹 External APIs
+🔹 Cache
+🔹 Other microservices
+🔹 Network latency
+
+5️⃣ Check recent changes
+
+Look for:
+
+🔹 Recent deployment
+🔹 Configuration changes
+🔹 Database changes
+🔹 Increased traffic
+🔹 Infrastructure/network changes
+
+6️⃣ Compare with the baseline
+
+I would compare current response times with normal application metrics.
+
+The goal is to identify when the latency started and what changed around that time.
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄 𝗜 𝗙𝗼𝗹𝗹𝗼𝘄:
+
+User → Ingress/LB → Service → Pod → Application → Database/Dependencies
+
+𝗞𝗲𝘆 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Normal CPU + Memory does NOT always mean a healthy application.
+
+Sometimes the bottleneck is outside the pod — especially database, network, external APIs, or another microservice.
