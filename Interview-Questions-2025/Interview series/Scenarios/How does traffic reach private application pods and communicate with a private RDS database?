@@ -1,0 +1,11 @@
+How does traffic reach private application pods and communicate with a private RDS database?
+
+Traffic reaches private application pods in Amazon EKS and connects to a private Amazon RDS database through internal networking layers, private IP routing, and security group boundaries inside an AWS Virtual Private Cloud (VPC)
+
+1.External user traffic usually hits an internet-facing component—such as an Application Load Balancer (ALB), Network Load Balancer (NLB), or API Gateway—sitting in a public subnet.
+2. The load balancer forwards the request to worker nodes or containers (pods) running inside private subnets using internal cluster networking (such as Kubernetes ClusterIP or NodePort or CNI-assigned private IP addresses)
+3.Application pods reside in private subnets and do not have public IPv4 addresses; they receive traffic strictly through internal routing tables and load balancers.
+4.With the ALB IP target type, it can send traffic directly to pod IPs. With instance targets, it 
+forwards to worker-node NodePorts, which route traffic to the appropriate pods.
+5.A private pod does not need a public IP address. The public ALB is the entry point, and the VPC provides the private network path to the pod.
+6.The pods and RDS must be in the same VPC or connected networks with appropriate routes. In EKS, pod networking and the VPC CNI configuration determine how pod IPs reach the database.
