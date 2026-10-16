@@ -1,0 +1,73 @@
+🚀 𝗗𝗮𝘆 𝟮𝟳/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗶𝘀 𝗦𝗹𝗼𝘄 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes application is running, but requests through the Service are very slow. How will you troubleshoot it?”
+
+𝗜 𝘄𝗼𝘂𝗹𝗱𝗻’𝘁 𝗶𝗺𝗺𝗲𝗱𝗶𝗮𝘁𝗲𝗹𝘆 𝗿𝗲𝘀𝘁𝗮𝗿𝘁 𝘁𝗵𝗲 𝗽𝗼𝗱𝘀. First, I’d trace the request path.
+
+🔍 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check Service & Endpoints
+
+kubectl get svc -n <namespace>
+kubectl get endpoints <service-name> -n <namespace>
+
+Make sure the Service has the expected endpoints.
+
+2️⃣ Check Pod Health
+
+kubectl get pods -n <namespace>
+kubectl top pods -n <namespace>
+
+Check CPU, memory, restarts and readiness.
+
+3️⃣ Test Service Internally
+
+kubectl run test --rm -it --image=curlimages/curl -- \
+curl http://<service-name>:<port>
+
+This helps determine whether the latency exists inside the cluster.
+
+4️⃣ Check Application Logs
+
+kubectl logs <pod-name> -n <namespace>
+
+Look for:
+
+🔹 Timeouts
+🔹 Retries
+🔹 Database delays
+🔹 External API latency
+🔹 Connection errors
+
+5️⃣ Check Dependencies
+
+If pod resources are normal, investigate:
+
+🔹 Database
+🔹 Cache
+🔹 Other microservices
+🔹 External APIs
+🔹 Network/DNS latency
+
+6️⃣ Check Recent Changes
+
+Look for recent:
+
+🔹 Deployments
+🔹 Configuration changes
+🔹 Traffic increases
+🔹 Infrastructure/network changes
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄
+
+Client → Ingress/LB → Service → Endpoint → Pod → Application → Dependencies
+
+𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A healthy Pod does not always mean a healthy request path.
+
+Always isolate where the latency is introduced before taking recovery action.
