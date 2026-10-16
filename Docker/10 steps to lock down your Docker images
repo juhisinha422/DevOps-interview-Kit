@@ -1,0 +1,18 @@
+Most developers secure their code, nobody secures their Docker images 
+
+That's how containers ⛴️ get compromised.
+
+✅Here are 10 steps to lock down your Docker images right now:
+
+1. Keep Docker updated - outdated Docker = open vulnerabilities
+2. Use trusted base  images - never pull from unknown sources
+3. Update your images regularly - stale images are easy targets
+4. Slim down your image - less code = smaller attack surface
+5. Never run as root - create a non-root user in your Dockerfile
+6. Never hardcode secrets - use environment variables instead
+7. Scan your images - tools like Trivy catch threats before prod does
+8. Secure your host - SELinux or AppArmor add an extra layer
+9. Isolate your containers - separate networks, no cross-container snooping
+10. Monitor everything - Docker Bench for Security watches while you sleep
+
+Most freshers deploy Docker containers with zero security config.
