@@ -1,0 +1,75 @@
+𝗗𝗮𝘆 𝟮𝟴/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗥𝘂𝗻𝗻𝗶𝗻𝗴, 𝗯𝘂𝘁 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝘀 𝗮𝗿𝗲 𝗜𝗻𝗰𝗿𝗲𝗮𝘀𝗶𝗻𝗴 — 𝗪𝗵𝗮𝘁 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗖𝗵𝗲𝗰𝗸?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes pod is Running, but the restart count keeps increasing. How will you troubleshoot it?”
+
+𝗜 𝘄𝗼𝘂𝗹𝗱𝗻’𝘁 𝗷𝘂𝘀𝘁 𝗿𝗲𝘀𝘁𝗮𝗿𝘁 𝘁𝗵𝗲 𝗽𝗼𝗱. I’d first find why the container is restarting.
+
+🔍 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+1️⃣ Check pod status
+
+kubectl get pods -n <namespace>
+
+Check READY, STATUS and RESTARTS.
+
+2️⃣ Inspect pod events
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Look for:
+
+🔹 OOMKilled
+🔹 Liveness probe failures
+🔹 Failed mounts
+🔹 Container errors
+🔹 Scheduling/events
+
+3️⃣ Check current & previous logs
+
+kubectl logs <pod-name> -n <namespace>
+kubectl logs <pod-name> -n <namespace> --previous
+
+--previous is especially useful because the previous container instance may have crashed before you could inspect it.
+
+4️⃣ Check resource usage
+
+kubectl top pod <pod-name> -n <namespace>
+
+Compare actual usage with CPU/memory limits.
+
+5️⃣ Check health probes
+
+Review:
+
+🔹 Liveness probe
+🔹 Readiness probe
+🔹 Startup probe
+🔹 Initial delay
+🔹 Timeout
+🔹 Failure threshold
+
+A badly configured liveness probe can cause Kubernetes to repeatedly restart an otherwise working application.
+
+6️⃣ Check recent changes
+
+Investigate recent:
+
+🔹 Deployments
+🔹 ConfigMap/Secret changes
+🔹 Application changes
+🔹 Resource-limit changes
+🔹 Dependency failures
+
+🎯 𝗧𝗵𝗲 𝗙𝗹𝗼𝘄
+
+Restart Count → Events → Previous Logs → Resources → Probes → Configuration → Recent Changes → Root Cause
+
+𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Running ≠ Healthy.
+
+A pod can show Running while its container is repeatedly crashing and restarting.
