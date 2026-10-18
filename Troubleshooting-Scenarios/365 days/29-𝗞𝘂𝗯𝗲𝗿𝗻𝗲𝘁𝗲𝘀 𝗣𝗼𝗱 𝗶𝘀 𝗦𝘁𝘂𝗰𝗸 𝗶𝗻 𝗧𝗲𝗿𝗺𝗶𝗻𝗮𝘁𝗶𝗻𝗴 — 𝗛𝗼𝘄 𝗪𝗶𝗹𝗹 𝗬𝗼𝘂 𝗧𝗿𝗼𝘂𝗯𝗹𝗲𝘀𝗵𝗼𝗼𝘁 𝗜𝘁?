@@ -1,0 +1,67 @@
+ 𝗗𝗮𝘆 𝟮𝟵/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗦𝘁𝘂𝗰𝗸 𝗶𝗻 𝗧𝗲𝗿𝗺𝗶𝗻𝗮𝘁𝗶𝗻𝗴 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+🎯 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “You deleted a Kubernetes pod, but it has been stuck in Terminating for a long time. What will you do?”
+
+In production, I wouldn't immediately force-delete the pod. First, I'd understand what's preventing it from terminating gracefully.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝗽𝗼𝗱 𝘀𝘁𝗮𝘁𝘂𝘀
+
+"kubectl get pods -n <namespace>"
+
+Check how long the pod has been terminating.
+
+𝗦𝘁𝗲𝗽 𝟮: 𝗜𝗻𝘀𝗽𝗲𝗰𝘁 𝗽𝗼𝗱 𝗱𝗲𝘁𝗮𝗶𝗹𝘀
+
+"kubectl describe pod <pod-name> -n <namespace>"
+
+Look for termination events, container state and volume-related issues.
+
+𝗦𝘁𝗲𝗽 𝟯: 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗴𝗿𝗮𝗰𝗲 𝗽𝗲𝗿𝗶𝗼𝗱
+
+"kubectl get pod <pod-name> -n <namespace> -o yaml"
+
+Review "terminationGracePeriodSeconds" and any "preStop" lifecycle hook.
+
+The application may be waiting for active requests or connections to finish.
+
+𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗳𝗶𝗻𝗮𝗹𝗶𝘇𝗲𝗿𝘀
+
+"kubectl get pod <pod-name> -n <namespace> -o jsonpath='{.metadata.finalizers}'"
+
+A finalizer may be preventing deletion until the required cleanup is complete.
+
+𝗦𝘁𝗲𝗽 𝟱: 𝗖𝗵𝗲𝗰𝗸 𝗻𝗼𝗱𝗲 𝗵𝗲𝗮𝗹𝘁𝗵
+
+"kubectl get nodes"
+
+"kubectl describe node <node-name>"
+
+If the node is unreachable or the kubelet is unhealthy, Kubernetes may be unable to complete normal termination.
+
+Also investigate storage unmount issues and container runtime errors.
+
+𝗦𝘁𝗲𝗽 𝟲: 𝗧𝗮𝗸𝗲 𝗿𝗲𝗰𝗼𝘃𝗲𝗿𝘆 𝗮𝗰𝘁𝗶𝗼𝗻
+
+Once the cause is identified, follow the approved recovery procedure.
+
+Force deletion should be a last resort:
+
+"kubectl delete pod <pod-name> -n <namespace> --grace-period=0 --force"
+
+⚠️ Force deletion removes the pod object from the API without confirming that the process has stopped on the node. This can be dangerous for stateful applications.
+
+🎯 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗙𝗹𝗼𝘄
+
+Pod Status → Events → Grace Period → Lifecycle Hooks → Finalizers → Node Health → Storage → Root Cause
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+𝗗𝗲𝗹𝗲𝘁𝗶𝗻𝗴 𝗮 𝗽𝗼𝗱 𝗮𝗻𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 𝘁𝗲𝗿𝗺𝗶𝗻𝗮𝘁𝗶𝗻𝗴 𝗶𝘁 𝗮𝗿𝗲 𝘁𝘄𝗼 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝘁𝗵𝗶𝗻𝗴𝘀.
+
+In production, understanding the root cause is more important than making the pod disappear.
