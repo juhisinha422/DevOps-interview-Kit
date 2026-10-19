@@ -1,0 +1,55 @@
+𝗗𝗮𝘆 𝟯𝟬/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲 — 𝗛𝗼𝘄 𝗗𝗼 𝘁𝗵𝗲 𝗖𝗼𝗺𝗽𝗼𝗻𝗲𝗻𝘁𝘀 𝗪𝗼𝗿𝗸 𝗧𝗼𝗴𝗲𝘁𝗵𝗲𝗿?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Can you explain Kubernetes architecture and how its components work together?”
+
+When I started learning Kubernetes, I realized that memorizing component names wasn't enough. Understanding how they communicate makes troubleshooting much easier.
+
+A Kubernetes cluster has two major parts:
+
+🔹 𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗣𝗹𝗮𝗻𝗲 — 𝗧𝗵𝗲 𝗕𝗿𝗮𝗶𝗻
+
+It manages the cluster and makes decisions.
+
+• API Server – Entry point for Kubernetes API requests.
+• etcd – Stores cluster state and configuration.
+• Scheduler – Selects a suitable node for unscheduled Pods.
+• Controller Manager – Runs controllers that work to maintain the desired state.
+• Cloud Controller Manager – Integrates with supported cloud infrastructure.
+
+🔹 𝗪𝗼𝗿𝗸𝗲𝗿 𝗡𝗼𝗱𝗲𝘀 — 𝗪𝗵𝗲𝗿𝗲 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻𝘀 𝗥𝘂𝗻
+
+• Kubelet – Ensures Pods are running as specified.
+• Container Runtime – Runs containers.
+• Kube-proxy – Implements Service networking rules on nodes in clusters that use it.
+
+🎯 𝗛𝗼𝘄 𝗗𝗼 𝗧𝗵𝗲𝘆 𝗪𝗼𝗿𝗸 𝗧𝗼𝗴𝗲𝘁𝗵𝗲𝗿?
+
+Imagine deploying an application to Kubernetes:
+
+1️⃣ You submit a Deployment manifest through the API Server.
+
+2️⃣ The desired state is stored in etcd.
+
+3️⃣ Controllers work to create the required resources.
+
+4️⃣ The Scheduler assigns Pods to suitable nodes.
+
+5️⃣ The Kubelet on each node works with the container runtime to start the containers.
+
+6️⃣ Kubernetes continuously works to maintain the desired state.
+
+💡 𝗧𝗵𝗲 𝗦𝗶𝗺𝗽𝗹𝗲 𝗪𝗮𝘆 𝗜 𝗥𝗲𝗺𝗲𝗺𝗯𝗲𝗿 𝗜𝘁:
+
+👉 Control Plane = Makes decisions and manages the cluster.
+
+👉 Worker Nodes = Run the application workloads.
+
+Understanding this flow helps connect Pods, Nodes, Scheduling, Networking, and Container Runtime into one picture.
+
+𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Don't just memorize Kubernetes components. Understand what each component does and what happens when it fails.
