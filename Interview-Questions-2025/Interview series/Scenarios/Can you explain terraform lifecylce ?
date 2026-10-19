@@ -1,0 +1,28 @@
+Can you explain terraform lifecylce ?
+
+Terraform Lifecycle" refers to two distinct related concepts
+1.The Core Workflow Lifecycle
+[Write] ➔ [Init] ➔ [Plan] ➔ [Apply] ➔ [State Management] ➔ [Destroy]
+Write:--->we can write our .tf files according our requirements
+Initialize (terraform init)----->Prepares the directory by downloading the necessary cloud provider plugins (like AWS, Azure, or GCP) and setting up our state backend.
+Plan (terraform plan): ----->Compares our code against the current reality of our cloud environment. It prints a preview showing exactly what will be added, changed, or deleted.
+Apply (terraform apply):----> Executes the changes outlined in the plan. It calls the cloud provider APIs to spin up or modify our physical resources
+State Management: ---->Terraform updates a file (terraform.tfstate) that serves as a single source of truth, mapping our code definitions to the actual IDs of real-world resources
+Destroy (terraform destroy): ----->Cleans up our infrastructure by safely deleting all 
+resources tracked by that state file
+
+2. The lifecycle Configuration Block
+
+when we update an attribute that forces a resource to be recreated, Terraform deletes the old resource first and then creates the new one.To override this default behavior, we can insert a nested lifecycle block inside any resource configuration
+create_before_destroy = true---->Forces Terraform to stand up a new replacement resource before tearing down the old one.
+prevent_destroy = true--->Rejects any terraform apply or destroy command that attempts to delete this resource.
+ignore_changes = [attr]------>Tells Terraform to look away if specific attributes change outside of the code---->Resources modified by external tools (e.g., cloud auto-scaling groups modifying instance counts or replica tags).
+Example:
+resource "aws_instance" "web_server" {
+  ami           = "ami-123456"
+  instance_type = "t2.micro"
+  lifecycle {
+    create_before_destroy = true
+    prevent_destroy       = false
+  }
+}
