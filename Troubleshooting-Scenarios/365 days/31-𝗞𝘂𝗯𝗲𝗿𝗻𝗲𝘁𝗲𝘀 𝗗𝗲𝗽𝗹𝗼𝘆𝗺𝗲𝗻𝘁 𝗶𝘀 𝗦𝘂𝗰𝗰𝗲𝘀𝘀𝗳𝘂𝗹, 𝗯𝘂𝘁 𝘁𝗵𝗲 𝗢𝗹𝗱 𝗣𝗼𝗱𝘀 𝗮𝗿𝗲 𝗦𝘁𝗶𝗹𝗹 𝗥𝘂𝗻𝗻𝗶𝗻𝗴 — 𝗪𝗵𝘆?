@@ -1,0 +1,58 @@
+𝗗𝗮𝘆 𝟯𝟭/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗶𝘀 𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹, 𝗯𝘂𝘁 𝘁𝗵𝗲 𝗢𝗹𝗱 𝗣𝗼𝗱𝘀 𝗮𝗿𝗲 𝗦𝘁𝗶𝗹𝗹 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 — 𝗪𝗵𝘆?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “You updated your Kubernetes Deployment with a new image, but the old Pods are still running. How will you troubleshoot it?”
+
+In production, I wouldn’t immediately delete the old Pods. First, I’d check whether the Deployment update was actually applied.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Check the Deployment
+
+"kubectl get deployment -n <namespace>"
+
+Verify the desired and available replicas.
+
+2️⃣ Inspect the Deployment configuration
+
+"kubectl describe deployment <deployment-name> -n <namespace>"
+
+Check the container image, rollout status, events, and update strategy.
+
+3️⃣ Check ReplicaSets
+
+"kubectl get rs -n <namespace>"
+
+A new ReplicaSet is normally created when a Deployment's Pod template changes.
+
+4️⃣ Check rollout status
+
+"kubectl rollout status deployment/<deployment-name> -n <namespace>"
+
+If the rollout is stuck, inspect the events and new Pods to identify the cause.
+
+5️⃣ Check Pod images
+
+"kubectl get pods -n <namespace> -o wide"
+
+Confirm which Pods are running the old and new versions.
+
+6️⃣ Investigate the cause
+
+Look for:
+🔹 Image or configuration not updated
+🔹 New Pods failing to start
+🔹 Insufficient cluster resources
+🔹 Readiness probe failures
+🔹 Rolling update settings such as "maxSurge" and "maxUnavailable"
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+A successful manifest update does not necessarily mean the rollout is complete.
+
+Deployment → ReplicaSet → Pods
+
+Understand this relationship before taking recovery action, and always verify that the new version is healthy.
