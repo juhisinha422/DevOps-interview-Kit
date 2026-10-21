@@ -1,0 +1,58 @@
+ 𝗗𝗮𝘆 𝟯𝟮/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗥𝗼𝗹𝗹𝗯𝗮𝗰𝗸 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗥𝗲𝗰𝗼𝘃𝗲𝗿 𝗙𝗿𝗼𝗺 𝗮 𝗙𝗮𝗶𝗹𝗲𝗱 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “You deployed a new application version to production, but users started experiencing errors immediately. How will you recover?”
+
+In production, the priority is to restore service safely while understanding what went wrong.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Confirm the impact
+
+Identify affected services, users, error rates and when the issue started.
+
+2️⃣ Check the rollout
+
+kubectl rollout status deployment/<deployment-name> -n <namespace>
+kubectl get pods -n <namespace>
+
+Look for failed Pods, readiness issues and restart counts.
+
+3️⃣ Check application logs
+
+kubectl logs <pod-name> -n <namespace>
+kubectl logs <pod-name> -n <namespace> --previous
+
+Investigate errors, failed dependencies and configuration problems.
+
+4️⃣ Review deployment history
+
+kubectl rollout history deployment/<deployment-name> -n <namespace>
+
+Compare the current release with the previous working revision.
+
+5️⃣ Roll back if necessary
+
+If the new release is confirmed as the cause and rollback is approved:
+
+kubectl rollout undo deployment/<deployment-name> -n <namespace>
+
+6️⃣ Verify recovery
+
+kubectl rollout status deployment/<deployment-name> -n <namespace>
+kubectl get pods -n <namespace>
+
+Also verify application health, error rates and user-facing functionality.
+
+7️⃣ Perform Root Cause Analysis (RCA)
+
+Investigate the failed change, document the incident and define preventive actions before the next deployment.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Rollback restores a previous version; it does not automatically fix the root cause.
+
+Always follow the approved recovery process and verify the application after rollback.
