@@ -1,0 +1,54 @@
+𝗗𝗮𝘆 𝟯𝟯/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗛𝗣𝗔 — 𝗪𝗵𝘆 𝗜𝘀 𝗬𝗼𝘂𝗿 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗡𝗼𝘁 𝗦𝗰𝗮𝗹𝗶𝗻𝗴 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗰𝗮𝗹𝗹𝘆?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes application is experiencing high traffic, but the number of Pods is not increasing even though an HPA is configured. How will you troubleshoot it?”
+
+In production, I wouldn't immediately increase the replica count manually. First, I'd investigate why the Horizontal Pod Autoscaler (HPA) isn't scaling.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Check HPA status
+
+kubectl get hpa -n <namespace>
+kubectl describe hpa <hpa-name> -n <namespace>
+
+Look for current metrics, target values, events and scaling conditions.
+
+2️⃣ Check resource metrics
+
+kubectl top pods -n <namespace>
+
+If metrics are unavailable, check whether Metrics Server is installed and working.
+
+3️⃣ Verify CPU requests
+
+HPA CPU utilization is calculated relative to CPU requests. If CPU requests are missing, CPU-based utilization may be unavailable.
+
+kubectl describe deployment <deployment-name> -n <namespace>
+
+4️⃣ Check minimum and maximum replicas
+
+Review the HPA configuration for "minReplicas", "maxReplicas" and target utilization.
+
+The HPA cannot scale beyond its configured maximum.
+
+5️⃣ Check Deployment health
+
+kubectl get deployment -n <namespace>
+kubectl get pods -n <namespace>
+kubectl get events -n <namespace> --sort-by=.lastTimestamp
+
+Even when HPA requests more replicas, insufficient cluster capacity or scheduling problems can leave new Pods Pending.
+
+6️⃣ Check scaling behavior
+
+Investigate whether the workload's configured metrics, scaling policies or stabilization windows are affecting scaling decisions.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+HPA configured ≠ automatic scaling guaranteed.
+
+Always check metrics, resource requests, replica limits, HPA events and cluster capacity before changing production settings.
