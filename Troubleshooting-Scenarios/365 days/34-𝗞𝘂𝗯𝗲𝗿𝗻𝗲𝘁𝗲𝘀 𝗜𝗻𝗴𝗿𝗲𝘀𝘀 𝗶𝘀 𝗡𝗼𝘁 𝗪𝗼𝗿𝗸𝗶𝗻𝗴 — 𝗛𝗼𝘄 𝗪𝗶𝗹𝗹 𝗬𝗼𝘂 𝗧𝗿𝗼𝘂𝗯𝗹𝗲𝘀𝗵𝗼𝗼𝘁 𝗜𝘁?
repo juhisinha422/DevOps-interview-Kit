@@ -1,0 +1,58 @@
+𝗗𝗮𝘆 𝟯𝟰/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗜𝗻𝗴𝗿𝗲𝘀𝘀 𝗶𝘀 𝗡𝗼𝘁 𝗪𝗼𝗿𝗸𝗶𝗻𝗴 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes application works internally, but users cannot access it through the Ingress URL. How will you troubleshoot it?”
+
+In production, I wouldn't immediately restart the Ingress Controller. I'd trace the request path step by step.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Check the Ingress resource
+
+kubectl get ingress -n <namespace>
+kubectl describe ingress <ingress-name> -n <namespace>
+
+Verify the hostname, rules, paths and backend Service.
+
+2️⃣ Check the Ingress Controller
+
+kubectl get pods -A
+kubectl logs <controller-pod> -n <controller-namespace>
+
+Look for configuration errors and controller issues.
+
+3️⃣ Verify the Service and endpoints
+
+kubectl get svc -n <namespace>
+kubectl get endpoints <service-name> -n <namespace>
+
+Confirm that the Service has healthy, expected endpoints.
+
+4️⃣ Check DNS resolution
+
+nslookup <your-domain>
+
+Verify that the domain resolves to the expected IP address.
+
+5️⃣ Test the application internally
+
+Test the Service from inside the cluster to determine whether the issue is with the application or external access.
+
+6️⃣ Check external connectivity
+
+Investigate load balancer health, firewall rules, network policies, ports 80/443 and TLS certificate configuration.
+
+🎯 𝗧𝗵𝗲 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 𝗙𝗹𝗼𝘄
+
+User → DNS → Load Balancer → Ingress Controller → Service → Pod
+
+Check each layer until you identify where the request fails.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+An application working inside Kubernetes does not guarantee that it is accessible externally.
+
+Follow the request path, identify the failing layer, and fix the root cause.
