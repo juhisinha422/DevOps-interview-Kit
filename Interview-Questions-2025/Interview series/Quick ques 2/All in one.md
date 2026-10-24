@@ -1,3 +1,66 @@
+# AWS DevOps Interview Questions and Answers (4+ Years Experience)
+
+## AWS & Linux
+
+### 1. EC2 is running, but the application is unreachable. CPU and memory are normal. How would you troubleshoot?
+
+**Answer:**
+
+First, I would check whether the issue is at the application, network, or infrastructure level. I would verify the application process and listening port using `systemctl status` and `ss -tulnp`, and test locally using `curl localhost:<port>`. Next, I would validate the EC2 security group, network ACLs, route table, subnet configuration, and internet gateway or NAT gateway, depending on the architecture. I would also check the load balancer target health, listener rules, and health check configuration if traffic passes through an ALB. On the Linux side, I would review application logs, system logs, and firewall rules. Once the root cause is identified, I would fix the specific issue and validate application access from the client side rather than restarting services without evidence.
+
+### 2. Linux reports “No space left on device,” but df -h shows free space. What's the issue?
+
+**Answer:**
+
+I would first suspect inode exhaustion or deleted files that are still held open by running processes. I would run `df -i` to check inode utilization and `df -hT` to verify filesystem capacity and mount points. If inodes are exhausted, a large number of small files may prevent new files from being created even when disk space is available. I would investigate directories containing excessive temporary files, cache files, or application-generated files using appropriate filesystem inspection commands. I would also use `lsof +L1` to identify deleted files that are still open by processes and consuming disk space. If a process is holding a deleted file, I would safely restart or reload the relevant service during an appropriate maintenance window. Finally, I would validate disk and inode availability and implement log rotation, cleanup policies, and monitoring to prevent recurrence.
+
+### 3. An application fails after moving from a public to a private subnet. How would you debug it?
+
+**Answer:**
+
+I would compare the previous and current network configurations to identify dependencies on public internet access. First, I would check the private subnet's route table, security groups, network ACLs, and connectivity to required services. A private subnet typically does not have a direct route to an internet gateway, so if the application needs outbound internet access, I would verify whether a NAT gateway is configured and whether the route table points to it. I would also check DNS resolution, application environment variables, database connectivity, and access to AWS services such as S3 through VPC endpoints or appropriate network paths. If the application is behind an Application Load Balancer, I would validate target group health and security group rules between the load balancer and EC2 instances. After identifying the missing dependency or incorrect route, I would make the smallest required change and test application functionality and connectivity end to end.
+
+## Docker & Kubernetes
+
+### 1. A Docker container is running, but the application isn't accessible. What would you check?
+
+**Answer:**
+
+I would first verify that the application is actually running inside the container, because a running container does not necessarily mean the application is healthy. I would check `docker logs`, inspect the container configuration, and verify the listening port using tools available inside the container. Next, I would confirm that the application binds to `0.0.0.0` rather than only `127.0.0.1`, because binding to localhost can prevent external access. I would inspect the port mapping using `docker ps` and verify that the host port maps to the correct container port. I would also check host firewall rules, security groups if deployed on EC2, and Docker network connectivity if the application communicates with other containers. Once the issue is resolved, I would test the endpoint from both the host and the client side and add suitable health checks and monitoring.
+
+### 2. Kubernetes Pods are running, but the Service returns 503 errors. How would you find the root cause?
+
+**Answer:**
+
+I would first identify which component is returning the 503 error, such as the ingress controller, load balancer, service mesh, or application itself. Then I would check the Service configuration, selectors, and EndpointSlices using `kubectl describe svc` and `kubectl get endpointslices`. I would verify that the Service selectors match the Pod labels and that the target port matches the application's actual listening port. Although Pods may show a Running status, they might not be Ready, which can prevent them from receiving traffic. I would inspect readiness probes, Pod events, container logs, and ingress or load balancer target health. I would also test connectivity from inside the cluster using a temporary diagnostic Pod. After identifying the issue, I would correct the Service or probe configuration, validate endpoint readiness, and test the application through the original entry point.
+
+### 3. Pods enter CrashLoopBackOff after deployment. How would you troubleshoot and recover?
+
+**Answer:**
+
+I would begin by checking the Pod status, recent events, and container logs using `kubectl describe pod`, `kubectl logs`, and `kubectl logs --previous` to understand why the container is repeatedly restarting. Common causes include incorrect environment variables, missing secrets, application startup failures, dependency connectivity issues, incorrect commands, and failed liveness probes. I would also check whether the container was terminated due to an out-of-memory condition or an incorrect resource limit. If the problem started immediately after a new deployment, I would compare the new image, configuration, and deployment changes with the previous working version. If production impact is significant and the previous ReplicaSet is healthy, I would use `kubectl rollout undo deployment/<deployment-name>` after verifying the rollout history and deployment strategy. Finally, I would validate Pod readiness, application health, and traffic routing, then fix the underlying issue before attempting another release.
+
+## Terraform & CI/CD
+
+### 1. Terraform plans to recreate a production EC2 instance unexpectedly. What would you investigate before applying?
+
+**Answer:**
+
+I would not apply the plan until I understood why Terraform wants to replace the production instance. First, I would review the plan output to identify which attribute is marked as requiring replacement and determine whether the change is intentional. I would check recent code changes, provider versions, variable values, launch template settings, AMI IDs, and any immutable EC2 attributes that may have changed. Next, I would compare the Terraform state with the actual AWS resource to identify configuration drift or manual changes made outside Terraform. If the state is incorrect, I would investigate the state mapping and consider carefully using an import or state correction only after confirming the actual resource identity and taking a backup. I would also review lifecycle rules, dependencies, and the impact on availability, data, and attached storage. Once the root cause is clear, I would correct the configuration or state and review a fresh plan with the team before proceeding with any production change.
+
+### 2. Jenkins succeeds, but the old application version is still running. How would you debug it?
+
+**Answer:**
+
+I would trace the deployment pipeline from source code to the running production workload instead of assuming that a successful Jenkins build means the latest version was deployed. First, I would verify the Git commit, build artifact, and Docker image tag generated by the pipeline. Next, I would confirm that the image was pushed to the correct registry and that the deployment stage updated the intended environment. In Kubernetes, I would inspect the Deployment image, rollout status, ReplicaSets, and Pod image IDs to verify which version is actually running. I would also check whether an immutable tag or digest was updated correctly, whether the image pull policy and registry configuration are appropriate, and whether the load balancer or Service is routing traffic to the expected Pods. If the pipeline deployed to the wrong namespace or environment, I would correct the deployment target. After fixing the issue, I would verify the running image digest and application version through a health endpoint or release identifier.
+
+### 3. A new release breaks production. How would you roll back safely without unnecessary downtime?
+
+**Answer:**
+
+My first priority would be to restore service while minimizing customer impact. I would assess the failure using application logs, monitoring dashboards, error rates, and health checks, then determine whether rollback is safer than an immediate forward fix. For Kubernetes deployments, I would check the rollout history and use `kubectl rollout undo deployment/<deployment-name>` if the previous ReplicaSet is available and known to be healthy. I would ensure that the deployment strategy maintains sufficient healthy replicas and that readiness probes prevent unhealthy Pods from receiving traffic. For CI/CD-managed releases, I would trigger the approved rollback pipeline to redeploy the previously validated image by its immutable tag or digest. I would also check database migrations and backward compatibility, because rolling back application code may not reverse schema changes safely. After rollback, I would verify application availability, error rates, and critical business transactions. Finally, I would document the root cause, preserve relevant logs, and add appropriate automated tests or deployment checks before releasing the fix.
+
+
 # 🚀 DevOps Interview Questions (4.5 Years Experience)
 
 # Docker, Kubernetes, Jenkins, and Linux Scenario-Based Questions
