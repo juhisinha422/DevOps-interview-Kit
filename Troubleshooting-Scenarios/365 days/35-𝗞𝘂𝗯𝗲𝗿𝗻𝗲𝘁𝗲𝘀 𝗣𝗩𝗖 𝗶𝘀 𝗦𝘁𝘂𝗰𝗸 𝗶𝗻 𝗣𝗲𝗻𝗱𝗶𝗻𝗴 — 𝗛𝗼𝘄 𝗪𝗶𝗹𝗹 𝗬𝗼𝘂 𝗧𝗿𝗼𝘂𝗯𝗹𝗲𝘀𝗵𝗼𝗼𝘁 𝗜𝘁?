@@ -1,0 +1,49 @@
+𝗗𝗮𝘆 𝟯𝟱/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗩𝗖 𝗶𝘀 𝗦𝘁𝘂𝗰𝗸 𝗶𝗻 𝗣𝗲𝗻𝗱𝗶𝗻𝗴 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “You created a PersistentVolumeClaim (PVC), but its status remains Pending. Your application cannot start because storage is unavailable. What will you check?”
+
+In production, I wouldn't delete and recreate the PVC immediately. First, I'd identify why Kubernetes cannot provision or bind the requested storage.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Check the PVC status
+
+kubectl get pvc -n <namespace>
+kubectl describe pvc <pvc-name> -n <namespace>
+
+Check the Events section for provisioning or binding errors.
+
+2️⃣ Verify the StorageClass
+
+kubectl get storageclass
+kubectl describe storageclass <storageclass-name>
+
+Confirm that the requested StorageClass exists and supports the required configuration.
+
+3️⃣ Check available PersistentVolumes
+
+kubectl get pv
+
+For static provisioning, verify that a suitable PV exists and matches the PVC's storage capacity, access modes and StorageClass.
+
+4️⃣ Check dynamic provisioning
+
+If using dynamic provisioning, investigate the CSI provisioner, storage backend, permissions and provisioner logs.
+
+5️⃣ Review access modes and capacity
+
+Check whether the requested storage size and access modes are supported by the storage solution.
+
+6️⃣ Check volume binding and scheduling
+
+A PVC can remain Pending when its StorageClass uses "WaitForFirstConsumer", because provisioning or binding may wait for Pod scheduling constraints to be evaluated.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+PVC Pending ≠ Always a storage failure.
+
+The cause could be a missing StorageClass, unavailable PV, provisioning failure, unsupported access mode or scheduling constraint.
