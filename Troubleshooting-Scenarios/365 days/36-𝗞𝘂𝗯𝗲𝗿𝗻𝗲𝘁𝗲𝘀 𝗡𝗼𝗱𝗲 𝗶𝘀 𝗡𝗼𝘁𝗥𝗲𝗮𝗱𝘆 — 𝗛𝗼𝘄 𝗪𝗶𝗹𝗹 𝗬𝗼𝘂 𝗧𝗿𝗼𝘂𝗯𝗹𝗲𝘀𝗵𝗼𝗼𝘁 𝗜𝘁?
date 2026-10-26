@@ -1,0 +1,65 @@
+𝗗𝗮𝘆 𝟯𝟲/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗡𝗼𝗱𝗲 𝗶𝘀 𝗡𝗼𝘁𝗥𝗲𝗮𝗱𝘆 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “One of your Kubernetes worker nodes suddenly changes to "NotReady", and Pods running on that node are affected. How will you troubleshoot it?”
+
+In production, I wouldn't immediately reboot the node. First, I'd identify why Kubernetes considers it unhealthy.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Check node status
+
+kubectl get nodes
+kubectl describe node <node-name>
+
+Review node conditions, events, and "Ready" status.
+
+2️⃣ Check resource pressure
+
+kubectl top node
+df -h
+df -i
+free -m
+
+Look for memory pressure, disk pressure, inode exhaustion, or resource exhaustion.
+
+3️⃣ Check Kubelet
+
+On the affected node:
+
+systemctl status kubelet
+journalctl -u kubelet --since "30 minutes ago"
+
+Investigate service failures, certificate issues, and communication problems.
+
+4️⃣ Check the container runtime
+
+systemctl status containerd
+
+If your cluster uses containerd, verify that the runtime is healthy and inspect its logs if necessary.
+
+5️⃣ Check networking
+
+Investigate node connectivity, DNS, firewall rules, CNI components, and communication with the Kubernetes API Server.
+
+6️⃣ Check affected workloads
+
+kubectl get pods -A -o wide
+kubectl get events -A --sort-by=.lastTimestamp
+
+Identify affected Pods and review scheduling or eviction events.
+
+7️⃣ Recover safely
+
+If the node remains unhealthy, follow your incident procedure. Consider cordoning or draining it when appropriate, after evaluating workload availability and disruption risks.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+A "NotReady" node is a symptom, not the root cause.
+
+Node Status → Conditions → Resources → Kubelet → Runtime → Networking → Root Cause
+
+Always verify node health and workload recovery after taking corrective action.
