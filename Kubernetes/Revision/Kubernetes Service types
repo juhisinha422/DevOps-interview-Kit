@@ -1,0 +1,22 @@
+Kubernetes Service types 
+
+
+How do you let people reach your app? It depends on who you want to let in.
+
+ - ClusterIP
+
+A private IP inside the cluster. Use it when only other services in the cluster need to reach your app.
+
+ - NodePort
+
+Exposes your Service on a port (30000 to 32767) on every node in the cluster. Handy for testing.
+
+- LoadBalancer
+
+Creates a cloud load balancer with an external IP, usually public. Useful, but one for every Service gets expensive fast.
+
+ Common production approach
+
+Instead of giving every Service its own LoadBalancer, use an Ingress with an Ingress Controller. One entry point routes traffic to many applications:
+
+User → Load Balancer → Ingress Controller → Service → Pod
