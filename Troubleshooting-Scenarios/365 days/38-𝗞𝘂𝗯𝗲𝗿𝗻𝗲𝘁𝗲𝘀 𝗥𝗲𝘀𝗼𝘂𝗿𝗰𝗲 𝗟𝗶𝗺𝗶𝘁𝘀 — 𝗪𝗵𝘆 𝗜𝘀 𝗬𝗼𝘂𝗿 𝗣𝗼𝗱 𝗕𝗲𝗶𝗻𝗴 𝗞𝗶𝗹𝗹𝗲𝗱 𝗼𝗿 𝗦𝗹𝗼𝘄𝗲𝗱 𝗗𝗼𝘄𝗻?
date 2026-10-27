@@ -1,0 +1,54 @@
+🚀 𝗗𝗮𝘆 𝟯𝟴/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝗟𝗶𝗺𝗶𝘁𝘀 — 𝗪𝗵𝘆 𝗜𝘀 𝗬𝗼𝘂𝗿 𝗣𝗼𝗱 𝗕𝗲𝗶𝗻𝗴 𝗞𝗶𝗹𝗹𝗲𝗱 𝗼𝗿 𝗦𝗹𝗼𝘄𝗲𝗱 𝗗𝗼𝘄𝗻?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes application is experiencing performance issues, and some Pods are getting OOMKilled. How will you troubleshoot CPU and memory requests and limits?”
+
+In production, I wouldn't randomly increase resource limits. First, I'd understand how the application is using its resources.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Check current resource usage
+
+kubectl top pods -n <namespace>
+kubectl top nodes
+
+Identify Pods consuming unusually high CPU or memory.
+
+2️⃣ Inspect Pod events
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Look for "OOMKilled", resource pressure and container termination details.
+
+3️⃣ Review requests and limits
+
+kubectl get deployment <deployment-name> -n <namespace> -o yaml
+
+Check the container's CPU and memory configuration.
+
+🔹 Requests — Resources Kubernetes uses when scheduling Pods.
+
+🔹 Limits — Maximum CPU or memory a container can use.
+
+4️⃣ Understand CPU vs. memory behavior
+
+⚡ CPU limits can throttle a container when it reaches its limit.
+
+🧠 Exceeding a container's memory limit can cause it to be terminated with "OOMKilled".
+
+5️⃣ Compare usage with configuration
+
+Check whether resource requests are too low, memory usage is growing over time, or traffic has increased.
+
+6️⃣ Apply the right fix
+
+Adjust requests and limits based on monitoring data, application requirements and available cluster capacity. Investigate possible memory leaks before simply increasing memory.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Resource requests affect scheduling. Limits control resource consumption.
+
+Correct resource configuration improves workload stability, but blindly increasing limits can hide the real problem.
