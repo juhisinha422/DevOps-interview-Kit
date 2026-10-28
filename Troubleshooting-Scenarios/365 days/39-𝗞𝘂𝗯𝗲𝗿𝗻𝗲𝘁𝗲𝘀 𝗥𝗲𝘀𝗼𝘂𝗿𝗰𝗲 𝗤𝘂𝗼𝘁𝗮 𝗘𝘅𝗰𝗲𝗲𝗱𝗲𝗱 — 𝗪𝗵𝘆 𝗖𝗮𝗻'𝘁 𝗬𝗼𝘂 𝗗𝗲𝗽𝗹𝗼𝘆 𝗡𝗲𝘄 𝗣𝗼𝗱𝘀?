@@ -1,0 +1,56 @@
+ 𝗗𝗮𝘆 𝟯𝟵/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝗤𝘂𝗼𝘁𝗮 𝗘𝘅𝗰𝗲𝗲𝗱𝗲𝗱 — 𝗪𝗵𝘆 𝗖𝗮𝗻'𝘁 𝗬𝗼𝘂 𝗗𝗲𝗽𝗹𝗼𝘆 𝗡𝗲𝘄 𝗣𝗼𝗱𝘀?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “You are deploying an application to Kubernetes, but the deployment fails with "exceeded quota". How will you troubleshoot it?”
+
+In production, I wouldn't immediately delete existing workloads or increase the quota. First, I'd identify which resource limit has been reached.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Check the namespace quota
+
+kubectl get resourcequota -n <namespace>
+kubectl describe resourcequota -n <namespace>
+
+Review used versus hard limits for CPU, memory, Pods, PVCs and other quota-controlled resources.
+
+2️⃣ Check LimitRanges
+
+kubectl get limitrange -n <namespace>
+kubectl describe limitrange -n <namespace>
+
+A LimitRange can enforce default or maximum resource requests and limits for containers and Pods.
+
+3️⃣ Inspect the failed workload
+
+kubectl describe deployment <deployment-name> -n <namespace>
+kubectl get events -n <namespace> --sort-by=.lastTimestamp
+
+Look for quota-related errors, admission failures and resource configuration problems.
+
+4️⃣ Review resource requests
+
+Check the CPU and memory requests defined in your Deployment YAML. Even if actual usage is low, quota accounting for requested resources may prevent new Pods from being admitted.
+
+5️⃣ Identify the correct solution
+
+🔹 Remove genuinely unused workloads if approved.
+🔹 Optimize unnecessary CPU and memory requests.
+🔹 Review unused PVCs or other quota-consuming resources.
+🔹 Request a quota increase if the workload legitimately needs more capacity.
+
+6️⃣ Verify the deployment
+
+kubectl get deployment,pods -n <namespace>
+kubectl describe resourcequota -n <namespace>
+
+Confirm the workload is progressing and quota usage remains within the approved limits.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+ResourceQuota controls resource consumption at the namespace level.
+
+A quota error doesn't always mean the cluster has run out of physical resources. The namespace may have reached its configured limit.
