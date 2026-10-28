@@ -1,0 +1,8 @@
+Your company wants to migrate manually managed infrastructure to Terraform. How would you approach the migration without disrupting production?
+
+To migrate manually managed infrastructure to Terraform without disrupting production terraform apply must yield zero changes (0 to add, 0 to change, 0 to destroy)
+1.Always plan to migrate foundational components first (VPCs, IAM roles, Subnets) followed by downstream consumer resources (Databases, VMs).
+2.we need to run terraform plan -generate-config-out=generated.tf. This instructs Terraform to analyze the live state and generate the exact HCL syntax matching to our infrastructure.
+3.Inject lifecycle policies dynamically to protect resources while performing state alignment. Need to use prevent_destroy = true to guarantee nothing is accidentally deleted, and ignore_changes to bypass fast-moving live values like tags or metrics during the import phase.
+4. Continuously run terraform plan. Compare live realities against our drafted configurations and fix formatting, attributes, or variable discrepancies.
+5.Update identity policies (IAM) to change engineers' permissions to read-only for managed assets for Revoke Manual Write Access
