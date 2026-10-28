@@ -1,3 +1,81 @@
+# GitOps Interview Questions & Answers — 4+ Years of Experience
+
+## 1. GitOps Fundamentals
+
+### • What is GitOps, and how is it different from traditional CI/CD?
+
+GitOps is a deployment approach where Git acts as the single source of truth for application configurations and infrastructure definitions. In a Kubernetes environment, tools like Argo CD continuously compare the desired state stored in Git with the actual cluster state and reconcile any differences. In traditional CI/CD, pipelines often push changes directly to the environment, whereas GitOps uses a pull-based model in which an agent inside the cluster pulls the desired configuration from Git. I prefer GitOps because it improves traceability, consistency, rollback, and deployment security.
+
+### • What are the core principles of GitOps?
+
+The core principles of GitOps are declarative configuration, version control, automated reconciliation, and continuous monitoring. We define the desired state using Kubernetes manifests, Helm charts, or Kustomize and store everything in Git. Changes are reviewed through pull requests, and a GitOps controller continuously compares the desired state with the actual cluster state. This makes deployments repeatable, auditable, and easier to recover when something goes wrong.
+
+### • Why is Git considered the single source of truth?
+
+Git is considered the single source of truth because it stores the approved configuration that defines how applications should run. Every change is version-controlled, reviewed, and tracked through commit history. If someone changes a Kubernetes resource manually, the GitOps controller can detect the difference and reconcile the cluster with the approved configuration. This helps maintain consistency across environments and provides a reliable way to review or revert changes.
+
+## 2. GitOps Tools
+
+### • What is the difference between Argo CD and Flux CD?
+
+Argo CD and Flux CD are both Kubernetes-native GitOps tools that continuously reconcile cluster resources with configurations stored in Git. Argo CD provides a web UI, application health monitoring, sync status, and detailed deployment visibility, which makes it convenient for teams that prefer visual management. Flux CD is built around Kubernetes controllers and custom resources, with a strong focus on automation and composable reconciliation workflows. I would choose Argo CD when application visibility and UI-based troubleshooting are important, while Flux is a good option for teams that prefer a controller-driven, Kubernetes-native workflow. Both support GitOps automation and can be used in production environments.
+
+### • How does Argo CD work internally?
+
+Argo CD works through components such as the API server, repository server, application controller, and Redis cache. The repository server retrieves the application configuration from Git and renders manifests using tools such as Helm or Kustomize. The application controller compares these desired manifests with the live Kubernetes resources and identifies differences. The API server provides access to the UI, CLI, and API, while Redis helps cache application-related data. When a difference is detected, Argo CD marks the application as OutOfSync and can synchronize it automatically or manually, depending on the application configuration.
+
+### • What is the role of a GitOps operator in Kubernetes?
+
+A GitOps operator is responsible for continuously reconciling the Kubernetes cluster with the desired configuration stored in Git or another configured source. It monitors configuration changes, compares the desired and actual states, and applies the required updates. For example, Argo CD can deploy updated manifests after a Git commit, monitor application health, and restore the declared configuration when self-healing is enabled. This reduces manual deployments and helps keep environments consistent.
+
+## 3. Deployment & Synchronization
+
+### • What happens when someone manually changes a resource in Kubernetes?
+
+When someone manually changes a Kubernetes resource using `kubectl`, Argo CD can detect the difference between the live resource and the desired configuration in Git. The application may become OutOfSync. If automated synchronization and self-healing are configured, Argo CD can reconcile the resource back to the Git-defined state. Otherwise, the change may remain until synchronization occurs. During troubleshooting, I compare the live resource with the Git manifest, identify the reason for the change, and make any required correction through a reviewed Git commit rather than relying on manual cluster modifications.
+
+### • What is the difference between automated sync and manual sync in Argo CD?
+
+With automated sync, Argo CD applies changes to the cluster when the desired configuration in Git differs from the live state, subject to the application's configuration and sync policies. With manual sync, the application may show OutOfSync, but an authorized engineer must trigger synchronization through the UI or CLI. Automated sync is useful for development and staging environments, while manual sync or controlled promotion workflows can be appropriate for production when additional approval is required. The choice depends on the team's release process and governance requirements.
+
+### • What is self-healing in GitOps?
+
+Self-healing is the ability of a GitOps controller to restore the cluster to its declared desired state when resources drift from the configuration in Git. In Argo CD, this behavior can be enabled through automated synchronization with the self-heal option. For example, if someone manually changes the replica count from three to one, Argo CD can restore it to three if the Git configuration specifies three replicas. This reduces configuration drift and helps maintain consistency, although it does not replace application monitoring or incident investigation.
+
+### • How does pruning work in Argo CD?
+
+Pruning removes Kubernetes resources managed by an Argo CD application when those resources are no longer defined in the desired configuration. For example, if a deployment manifest is removed from Git and pruning is enabled for the synchronization operation, Argo CD can delete the corresponding managed resource from the cluster. I use pruning carefully, especially in production, because an incorrect Git change could remove important resources. Before enabling it, I review the changes, understand resource ownership, and consider sync options, approval controls, and safeguards for critical resources.
+
+## 4. Real-World Troubleshooting
+
+### • Argo CD shows an application as OutOfSync. How would you troubleshoot it?
+
+First, I check the application's sync status, health status, and diff in the Argo CD UI or CLI to identify which resources differ from Git. Then I verify whether a recent commit introduced configuration changes or someone modified resources directly in the cluster. I check the rendered Helm or Kustomize manifests, namespace, target cluster, resource ownership, and any ignored-difference rules. If the difference is expected, I update Git through the normal review process. If it is unintended, I correct the configuration and synchronize the application. I also check application-controller logs and Kubernetes events if the reason for the drift is unclear.
+
+### • A deployment fails after a Git commit. How would you identify the root cause?
+
+I start by identifying the latest commit and reviewing the changes to the manifests, Helm values, image tag, ConfigMaps, and Secrets references. Next, I check the Argo CD application status, synchronization result, and deployment health. I inspect Kubernetes events, pod status, container logs, and rollout history to identify issues such as invalid manifests, image-pull failures, insufficient resources, failed probes, or missing configuration. If necessary, I validate the manifests before applying them and compare the new deployment with the previous working version. Once the root cause is confirmed, I fix the configuration in Git or revert the faulty commit, then verify that the application becomes healthy.
+
+### • Argo CD shows Synced, but the application is not working. What would you check?
+
+A Synced status means the live resources match the desired configuration according to Argo CD's comparison rules; it does not guarantee that the application is functioning correctly. I first check the application's health status, pod readiness, container logs, Kubernetes events, and deployment rollout. Then I verify Service selectors, endpoints, Ingress or load balancer configuration, DNS, network policies, security groups where applicable, and connectivity to dependencies such as databases. I also check environment variables, secret references, application-level errors, and readiness and liveness probes. If Kubernetes resources look correct, I investigate application metrics and distributed traces to identify runtime issues.
+
+### • How would you manage secrets securely in a GitOps workflow?
+
+I avoid storing plaintext passwords, API keys, or tokens directly in Git because repository history can retain them even after deletion. Instead, I use a secret-management solution such as AWS Secrets Manager, HashiCorp Vault, or an encrypted GitOps secret workflow using tools such as External Secrets Operator or SOPS. For example, External Secrets Operator can retrieve secrets from AWS Secrets Manager and create Kubernetes Secrets based on configured resources. I apply least-privilege IAM permissions, restrict access through RBAC, encrypt data at rest and in transit, and rotate credentials regularly. I also ensure that CI/CD logs and Git diffs do not expose sensitive values.
+
+## 5. Advanced Scenarios
+
+### • How would you implement GitOps across multiple Kubernetes clusters?
+
+I would create a centralized Git repository structure that separates shared configuration from environment-specific and cluster-specific configuration. I would use Helm charts or Kustomize overlays to maintain reusable templates and customize values for development, staging, and production. With Argo CD, I could manage applications across clusters by configuring the appropriate cluster destinations and using an ApplicationSet to generate applications for multiple clusters. I would configure cluster-specific access controls, RBAC, network connectivity, monitoring, and secrets management. Production changes would follow a controlled promotion process with pull-request reviews and health verification, while automated reconciliation would maintain the desired state across all clusters.
+
+### • How would you roll back a faulty production deployment using GitOps?
+
+In a GitOps workflow, I would roll back the configuration in Git rather than making an isolated manual change directly in the cluster. First, I would identify the faulty commit and assess the impact using Argo CD status, Kubernetes events, application logs, and monitoring metrics. Then I would revert the faulty commit or submit a reviewed change that restores the last known-good image tag and configuration. Once the change is merged, Argo CD would reconcile the production cluster with the corrected desired state. I would verify the rollout, pod readiness, application health, error rates, and business functionality. For a critical incident, I would follow the team's emergency change process and confirm whether database or other stateful changes require a separate recovery plan.
+
+
+
 # AWS DevOps Interview Questions and Answers (4+ Years Experience)
 
 ## AWS & Linux
