@@ -1,0 +1,59 @@
+🚀 𝗗𝗮𝘆 𝟰𝟬/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗥𝗕𝗔𝗖 — 𝗪𝗵𝘆 𝗜𝘀 𝗬𝗼𝘂𝗿 𝗣𝗼𝗱 𝗨𝗻𝗮𝗯𝗹𝗲 𝘁𝗼 𝗔𝗰𝗰𝗲𝘀𝘀 𝗮 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “A developer runs a "kubectl" command but receives "Forbidden". How will you troubleshoot the Kubernetes RBAC permission issue?”
+
+In production, I wouldn't immediately grant cluster-admin access. First, I'd identify which identity is making the request and what permission is missing.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Identify the current context
+
+kubectl config current-context
+kubectl auth whoami
+
+Confirm the cluster and identity being used.
+
+2️⃣ Check the exact permission
+
+kubectl auth can-i get pods -n <namespace>
+kubectl auth can-i create deployments -n <namespace>
+
+These commands help determine whether the current identity is authorized to perform the requested actions.
+
+3️⃣ Inspect Roles and RoleBindings
+
+kubectl get role,rolebinding -n <namespace>
+kubectl describe rolebinding <binding-name> -n <namespace>
+
+Check whether the correct user, group or ServiceAccount is bound to a Role with the required permissions.
+
+4️⃣ Check ClusterRoleBindings
+
+kubectl get clusterrole,clusterrolebinding
+
+For cluster-wide resources or permissions, verify the relevant ClusterRole and ClusterRoleBinding.
+
+5️⃣ Verify the permission scope
+
+Remember:
+
+🔹 Role — Grants permissions within a namespace.
+🔹 ClusterRole — Can define namespace-level or cluster-wide permissions, depending on how it is bound.
+🔹 RoleBinding — Grants permissions within a namespace.
+🔹 ClusterRoleBinding — Grants permissions across the cluster.
+
+6️⃣ Apply the least-privilege fix
+
+Ask the cluster administrator to grant only the required permissions using an appropriate Role or ClusterRole and binding.
+
+Retest with "kubectl auth can-i" and verify the original operation.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Forbidden usually points to an authorization issue, not necessarily a connectivity problem.
+
+Identify the user, resource, verb and namespace before changing permissions. Avoid granting excessive access just to make the error disappear.
