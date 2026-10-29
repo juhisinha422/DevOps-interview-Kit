@@ -1,3 +1,101 @@
+# Production Troubleshooting Interview Questions & Answers — 4 Years of DevOps Experience
+
+## 1. LINUX & SYSTEMS
+
+### High load average, but low CPU usage. What could be the cause?
+
+A high load average with low CPU usage usually indicates that processes are waiting for resources rather than actively using the CPU. Common causes include disk I/O bottlenecks, NFS storage delays, blocked processes, or resource contention. I would check `uptime` and `top` to understand the load, `vmstat 1` to inspect blocked processes and CPU activity, and `iostat -xz 1` to identify disk latency. I would also use `ps` to look for processes in the D state and inspect system logs for storage or kernel errors. Once the bottleneck is identified, I would resolve the underlying storage, network, or resource issue and configure monitoring alerts to detect recurring problems.
+
+### An application cannot write to a directory despite correct permissions. How do you troubleshoot?
+
+If standard permissions look correct, I would check the directory's ownership, parent-directory permissions, ACLs, disk space, and inode availability. I would use `namei -l /path/to/directory`, `getfacl /path/to/directory`, `df -h`, and `df -i` to identify permission or filesystem problems. On systems with SELinux enabled, I would also inspect its status and audit logs because security policies can deny writes even when Unix permissions allow them. For containerized applications, I would verify the container's effective user, mounted volume permissions, and read-only filesystem settings. After identifying the exact denial, I would apply the minimum required permission or policy correction rather than broadly granting write access.
+
+### SSH connections to EC2 become unusually slow. Where do you look?
+
+I would first determine whether the delay occurs during connection establishment, authentication, or after the shell opens. I would use `ssh -vvv user@host` to identify where the connection is slowing down and check EC2 instance metrics for CPU, memory pressure, network activity, and burst-credit exhaustion where applicable. On the instance, I would inspect `top`, `free -m`, `df -h`, `journalctl -u sshd`, and authentication logs. I would also investigate DNS resolution, reverse DNS lookups, security group rules, network ACLs, and the route between the client and instance. Once the cause is confirmed, I would fix the specific bottleneck and establish CloudWatch alarms for relevant resource and connectivity metrics.
+
+### A service works after restarting but fails again hours later. How do you investigate?
+
+This usually indicates a recurring issue such as a memory leak, resource exhaustion, expired credentials, connection-pool exhaustion, or a scheduled task causing failures. I would compare application logs before and after the failure using `journalctl -u service-name`, inspect memory and CPU trends, check open file descriptors, and review service-specific metrics. I would also examine cron jobs, systemd timers, dependency availability, and application health checks around the time of failure. After identifying the root cause, I would correct the application or configuration issue instead of depending on repeated restarts. I would add monitoring for the relevant resource or error pattern and verify the fix through an extended observation period.
+
+### A Linux server reboots unexpectedly overnight. How do you find the cause?
+
+I would start by establishing the exact reboot time and checking the previous boot's logs using `last -x`, `journalctl --list-boots`, and `journalctl -b -1`. I would search for kernel panics, out-of-memory events, watchdog resets, shutdown commands, and systemd errors. I would also review cloud-provider events, EC2 scheduled maintenance notifications, CloudTrail events related to instance operations, and any automation or patch-management schedules. If the logs are missing because the system rebooted abruptly, I would enable persistent journaling and review cloud monitoring data. Once the cause is established, I would fix the triggering issue and configure alerts for unexpected reboots and critical system events.
+
+## 2. CI/CD & DEPLOYMENT
+
+### A pipeline deploys an older Docker image despite a successful build. Why?
+
+A successful build does not guarantee that the deployment uses the newly built image. The pipeline may be deploying a mutable tag such as `latest`, using an incorrect image reference, pushing to a different registry, or reusing cached artifacts. I would inspect the build logs, image tag, registry repository, deployment manifest, and the image digest running in Kubernetes. I would also check whether the deployment stage is consuming the artifact produced by the current build or an older pipeline run. To prevent recurrence, I would use unique version tags or commit-SHA tags, promote immutable image digests between environments, and verify the deployed image digest as part of the release pipeline.
+
+### Database migrations break production after deployment. How do you recover safely?
+
+My first priority would be to assess the impact, stop further risky deployments, and determine whether the migration changed the schema, data, or both. I would review migration logs, database errors, recent backups, and the compatibility of the new application version with the current schema. If the previous application version remains compatible, I would roll back the application while preserving the database state. If the migration caused data corruption or an incompatible schema change, I would follow the approved database recovery plan, which may involve restoring a backup or performing point-in-time recovery after assessing data loss risks. For prevention, I would use backward-compatible expand-and-contract migrations, test migrations in staging, verify backups, and separate destructive schema changes from application deployment.
+
+### Pipeline logs expose credentials. What are your immediate actions?
+
+I would treat the exposed credentials as compromised and immediately restrict access to the affected logs and pipeline artifacts. I would revoke or rotate the exposed credentials, check audit logs for unauthorized use, and identify every place where the secret was printed or stored. I would remove the secret from pipeline output and configuration, while recognizing that deleting a log line does not invalidate a credential or necessarily erase historical copies. I would move secrets into a secure secret manager or protected CI/CD credential store and mask sensitive values. To prevent recurrence, I would avoid printing environment variables or secret-bearing command output, use least-privilege credentials, enable secret scanning, and review pipeline permissions and retention policies.
+
+### Two pipelines deploy different versions simultaneously. How do you prevent conflicts?
+
+This is a deployment concurrency problem in which two pipelines can update the same environment in an unpredictable order. I would inspect the pipeline execution history and deployment logs to identify which release was applied last and whether the pipelines shared the same target. I would configure environment-level locks, serialized deployment stages, or CI/CD concurrency controls so that only one production deployment can proceed at a time. With GitOps, I would also ensure that production changes follow a controlled Git-based promotion process and that application configuration is not independently overwritten by competing pipelines. I would use immutable artifacts, release approvals, and post-deployment verification to ensure that the final running version matches the intended release.
+
+### You need to test a release with real traffic before full rollout. Which strategy would you use?
+
+I would use a canary deployment to expose the new version to a small percentage of real traffic while keeping most traffic on the stable version. For example, I might initially route 5% of traffic to the new version and gradually increase it after checking error rates, latency, resource usage, and business metrics. On AWS, I could use weighted routing or load-balancer traffic shifting, while Kubernetes environments could use a progressive delivery controller such as Argo Rollouts. If the canary exceeds defined error or latency thresholds, I would automatically or manually return traffic to the stable version. This approach reduces the impact of faulty releases and allows decisions to be based on production evidence.
+
+## 3. KUBERNETES & CONTAINERS
+
+### Pods are healthy, but requests through a Kubernetes Service time out. Where do you start?
+
+If pods are healthy but Service requests time out, I would investigate the network path between the client, Service, and backend pods. I would check `kubectl get svc`, `kubectl get endpointslices`, and `kubectl describe svc` to confirm that the Service has endpoints and its selectors match the pod labels. I would verify `port` and `targetPort`, the application listening address, readiness probes, and whether the application is actually accepting connections. Next, I would check NetworkPolicies, DNS resolution, CNI components, kube-proxy or the cluster's replacement networking implementation, and load-balancer configuration if external traffic is involved. I would use connectivity tests and application logs to isolate the failing hop, then add appropriate service-level monitoring and automated network checks.
+
+### Pods remain Pending despite available nodes. What do you check?
+
+Available nodes do not guarantee that a pod can be scheduled because the pod may have resource requirements or scheduling constraints that the nodes cannot satisfy. I would begin with `kubectl describe pod` and inspect Kubernetes events for messages such as insufficient CPU or memory, untolerated taints, node affinity conflicts, or unbound PersistentVolumeClaims. I would also check resource requests, node selectors, topology-spread constraints, pod affinity rules, storage capacity, and namespace quota limits. If a PVC is pending, I would investigate the StorageClass and volume provisioning. Once I identify the scheduling constraint, I would correct the workload configuration or provide suitable cluster capacity, then monitor scheduling and resource utilization to prevent recurrence.
+
+### HPA is configured but fails to scale during a traffic spike. How do you investigate?
+
+I would first inspect the HPA status using `kubectl describe hpa` and check whether metrics are available through the Kubernetes Metrics API. I would verify that the deployment defines appropriate CPU or memory resource requests, because CPU utilization-based scaling depends on those requests. I would also check the Metrics Server, custom-metrics adapters if used, the HPA target configuration, minimum and maximum replicas, and scaling behavior policies. If the replica count increases but new pods remain Pending, I would investigate cluster capacity and node autoscaling. I would correct the metrics or scaling configuration, load-test the workload, and configure alerts for unavailable metrics, maximum replica limits, and scaling delays.
+
+### An application loses database connectivity after a cluster upgrade. What do you check?
+
+I would first compare the application and database connectivity before and after the upgrade, including the exact error messages and the time the failures began. I would check pod logs, DNS resolution, database endpoint configuration, connection timeouts, NetworkPolicies, and any changes to the cluster's CNI, routing, or security controls. For an AWS-hosted database, I would also verify security group rules, subnet routing, and connectivity from the worker nodes and application pods. Next, I would check whether the upgrade changed service-account permissions, secret mounts, DNS behavior, or application configuration. After identifying the cause, I would restore the required connectivity or configuration and validate it with an end-to-end test before closing the incident.
+
+### A container works locally but fails because of environment configuration. How do you fix it?
+
+I would compare the local environment with the deployed container configuration to identify missing or inconsistent environment variables, configuration files, secrets, ports, or dependency URLs. I would inspect the container logs, image configuration, Kubernetes Deployment manifest, ConfigMaps, and Secret references. I would also check whether the application expects a particular working directory, file path, user permission, or runtime setting. I would move environment-specific configuration out of the image and inject it through the deployment configuration or a secret manager, without embedding sensitive values in the image. Finally, I would test the same image with development, staging, and production configuration to ensure the artifact behaves consistently across environments.
+
+## 4. CLOUD, IaC & PRODUCTION
+
+### EC2 has internet access but cannot reach S3. How do you troubleshoot IAM and networking?
+
+I would separate the investigation into network connectivity and authorization because internet access alone does not prove that S3 access is allowed. First, I would verify DNS resolution and test connectivity to the appropriate regional S3 endpoint. If the instance uses a public route, I would check its route table, security group egress rules, network ACLs, and NAT or Internet Gateway path as applicable. If it uses an S3 VPC endpoint, I would inspect the endpoint policy, route-table association for a gateway endpoint, or security group and private DNS configuration for an interface endpoint. I would then check the EC2 instance profile, IAM permissions, bucket policy, KMS permissions if applicable, and any explicit denies. I would use AWS CLI error messages and CloudTrail data events when available to identify the denied operation, then apply the minimum required network or IAM correction.
+
+### Terraform apply fails halfway, leaving resources behind. How do you recover safely?
+
+I would treat this as a partial infrastructure deployment and first inspect the Terraform error output, state, and actual resources in AWS. I would run `terraform plan` to understand what Terraform believes exists and what changes remain, without immediately rerunning destructive operations. I would check the remote state backend and locking mechanism, confirm that no other Terraform operation is running, and determine whether any resources were created but not recorded in state. If a resource exists outside the state, I would carefully import it when appropriate and verify its configuration before applying further changes. I would then correct the original failure, review the proposed plan, and apply it safely. For prevention, I would use remote state with locking, smaller controlled changes, reliable credentials, and clear recovery procedures.
+
+### Health checks pass, but customers experience intermittent failures across AWS Availability Zones. How do you investigate?
+
+I would compare metrics and logs by Availability Zone rather than relying only on overall health checks. I would inspect Application Load Balancer target health, response codes, latency, target distribution, and access logs, then correlate these with EC2, EKS, database, and network metrics. I would investigate whether failures are concentrated in a specific AZ, whether targets are overloaded, or whether connection pools, DNS behavior, cross-zone load balancing, or subnet capacity are contributing. I would also check AWS Health events and dependency failures. If a particular zone is confirmed to be unhealthy, I would follow the incident procedure to reduce traffic to affected targets where safe, restore capacity, and verify recovery. I would improve AZ-level dashboards, synthetic checks, and multi-AZ resilience testing to prevent repeated incidents.
+
+### AWS costs increase by 40% without significant traffic growth. How do you find the cause?
+
+I would start with AWS Cost Explorer to compare current spending with previous periods and identify which services, accounts, regions, and usage types contributed to the increase. I would then review detailed billing data or Cost and Usage Reports to find unexpected EC2 instance hours, EBS volumes and snapshots, NAT Gateway processing, data transfer, CloudWatch log ingestion, or Kubernetes resource consumption. I would compare infrastructure changes, autoscaling activity, and deployment history with the billing timeline. Once I identify the cost driver, I would right-size resources, remove unused infrastructure after verifying ownership, optimize storage and network traffic, or adjust logging and retention settings. I would also introduce cost-allocation tags, AWS Budgets, anomaly detection, and regular cost reviews to catch future increases early.
+
+### Your team repeatedly fixes the same production incidents. How would you prevent recurrence?
+
+Repeated incidents indicate that the team is resolving symptoms without consistently eliminating the underlying causes. I would review incident records, identify recurring failure patterns, and conduct a blameless root-cause analysis using logs, metrics, traces, deployment history, and infrastructure changes. For each recurring issue, I would create a permanent corrective action, such as fixing a resource leak, improving a health check, correcting an IAM policy, or adding automated rollback. I would also update runbooks, add monitoring and actionable alerts, automate repetitive recovery tasks, and include regression tests in CI/CD. Finally, I would assign owners and deadlines to corrective actions and track whether the incident rate decreases over time.
+
+## 5. Production Troubleshooting Approach
+
+For any production issue, I follow a structured troubleshooting process. First, I identify the customer impact, affected services, start time, and recent changes. Next, I collect evidence from logs, metrics, traces, deployment history, and infrastructure events instead of making assumptions. I isolate the failing component, take the safest action to restore service, and verify recovery using both technical health checks and customer-facing behavior. Afterward, I document the root cause, implement preventive controls, and review whether monitoring, automation, testing, or the runbook needs improvement.
+
+**My approach is to restore service safely, prove the root cause with evidence, and prevent the same failure from happening again.**
+
+
+
 # DevOps Interview Scenarios – 4 Years of Experience
 
 **Topics:** Linux, CI/CD, AWS, Terraform, Kubernetes, SRE, DevSecOps, Disaster Recovery
