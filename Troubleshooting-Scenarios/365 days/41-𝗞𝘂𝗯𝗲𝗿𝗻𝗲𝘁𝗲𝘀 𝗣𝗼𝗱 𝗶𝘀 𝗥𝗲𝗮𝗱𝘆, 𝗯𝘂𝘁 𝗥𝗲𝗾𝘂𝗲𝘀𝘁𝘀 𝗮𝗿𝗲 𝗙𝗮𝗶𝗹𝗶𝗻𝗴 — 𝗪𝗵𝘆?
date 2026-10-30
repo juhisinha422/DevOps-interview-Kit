@@ -1,0 +1,58 @@
+𝗗𝗮𝘆 𝟰𝟭/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗥𝗲𝗮𝗱𝘆, 𝗯𝘂𝘁 𝗥𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗮𝗿𝗲 𝗙𝗮𝗶𝗹𝗶𝗻𝗴 — 𝗪𝗵𝘆?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your Kubernetes Pods are Running and Ready, but users are getting intermittent "503 Service Unavailable" errors. How will you troubleshoot the issue?”
+
+In production, I wouldn't assume that a Ready Pod guarantees the application is healthy end to end. I'd trace the request path and look for intermittent failures.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Confirm the impact
+
+Identify which endpoints, users, and environments are affected. Check when the errors started and whether they correlate with traffic spikes or recent deployments.
+
+2️⃣ Check Pods and restarts
+
+kubectl get pods -n <namespace> -o wide
+kubectl describe pods -n <namespace>
+
+Look for restarts, readiness probe failures, and unstable Pods.
+
+3️⃣ Check Service endpoints
+
+kubectl get svc -n <namespace>
+kubectl get endpoints <service-name> -n <namespace>
+kubectl get endpointslices -n <namespace>
+
+Verify that the Service has the expected ready backends.
+
+4️⃣ Inspect application logs
+
+kubectl logs <pod-name> -n <namespace> --since=15m
+
+Look for timeouts, connection errors, application exceptions, and dependency failures.
+
+5️⃣ Investigate the Ingress or Load Balancer
+
+Check controller logs, backend health, routing configuration, connection limits, and timeout settings.
+
+6️⃣ Check dependencies and recent changes
+
+Investigate database connectivity, external APIs, network policies, traffic spikes, and recent application or configuration changes.
+
+7️⃣ Verify the fix
+
+Test the endpoint again, monitor error rates, and confirm that requests are reaching healthy backends.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Running ≠ Ready ≠ Guaranteed to serve every request successfully.
+
+Trace the complete request path:
+
+Client → Load Balancer/Ingress → Service → Pod → Application Dependencies
+
+Find the failing layer before making production changes.
