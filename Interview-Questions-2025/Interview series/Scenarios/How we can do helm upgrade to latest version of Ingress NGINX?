@@ -1,0 +1,12 @@
+How we can do helm upgrade to latest version of Ingress NGINX?
+
+1.Before upgrading, we must fetch the latest chart metadata from our repository provider. 
+----->helm repo update ingress-nginx
+2.To upgrade the release to the latest version, we can execute helm upgrade followed by our release name and the repository path
+----->helm upgrade <RELEASE_NAME> ingress-nginx/ingress-nginx
+? what is  RELEASE_NAME
+--->If our Application is named my-app, the Helm release will also be named my-app.
+### The release name is the handle we use to track, manage, upgrade, or uninstall that specific deployment
+3.If the latest version causes issues or application downtime, immediately revert to our last stable revision
+----->helm rollback <release-name> <revision-number> --namespace <namespace>
+
