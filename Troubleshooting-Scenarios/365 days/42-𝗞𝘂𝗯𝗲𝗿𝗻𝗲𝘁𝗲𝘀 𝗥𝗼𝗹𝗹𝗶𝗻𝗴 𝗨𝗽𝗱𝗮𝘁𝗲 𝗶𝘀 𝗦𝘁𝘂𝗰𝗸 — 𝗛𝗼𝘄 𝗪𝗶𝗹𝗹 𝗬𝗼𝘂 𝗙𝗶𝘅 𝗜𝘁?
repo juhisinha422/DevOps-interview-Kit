@@ -1,0 +1,61 @@
+𝗗𝗮𝘆 𝟰𝟮/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗥𝗼𝗹𝗹𝗶𝗻𝗴 𝗨𝗽𝗱𝗮𝘁𝗲 𝗶𝘀 𝗦𝘁𝘂𝗰𝗸 — 𝗛𝗼𝘄 𝗪𝗶𝗹𝗹 𝗬𝗼𝘂 𝗙𝗶𝘅 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “You updated a Kubernetes Deployment, but the rolling update is stuck. Some old Pods are still running, and the new Pods are not becoming Ready. How will you troubleshoot it?”
+
+In production, I wouldn't delete the old Pods immediately. First, I'd identify why the new version isn't becoming healthy.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Check rollout status
+
+kubectl rollout status deployment/<deployment-name> -n <namespace>
+kubectl get deployment -n <namespace>
+
+Check whether the Deployment has reached its desired number of available replicas.
+
+2️⃣ Inspect Pods
+
+kubectl get pods -n <namespace>
+kubectl describe pod <pod-name> -n <namespace>
+
+Look for "ImagePullBackOff", "CrashLoopBackOff", "Pending", or readiness probe failures.
+
+3️⃣ Check ReplicaSets
+
+kubectl get rs -n <namespace>
+
+Confirm whether the new ReplicaSet was created and whether it can create healthy Pods.
+
+4️⃣ Review application logs
+
+kubectl logs <pod-name> -n <namespace>
+kubectl logs <pod-name> -n <namespace> --previous
+
+Look for startup errors, missing configuration, failed dependencies, or application crashes.
+
+5️⃣ Check rollout events and configuration
+
+kubectl get events -n <namespace> --sort-by=.lastTimestamp
+kubectl rollout history deployment/<deployment-name> -n <namespace>
+
+Investigate resource shortages, image issues, probes, ConfigMaps, Secrets, and recent changes.
+
+6️⃣ Recover safely
+
+If the new release is causing the issue and rollback is approved:
+
+kubectl rollout undo deployment/<deployment-name> -n <namespace>
+
+Verify the rollback and confirm that the application is healthy.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+A rolling update can get stuck when new Pods fail to become Ready, preventing Kubernetes from progressing with the rollout.
+
+Deployment → ReplicaSet → Pods → Readiness → Rollout Status
+
+Understand the failure before taking action, and always verify application health after recovery.
