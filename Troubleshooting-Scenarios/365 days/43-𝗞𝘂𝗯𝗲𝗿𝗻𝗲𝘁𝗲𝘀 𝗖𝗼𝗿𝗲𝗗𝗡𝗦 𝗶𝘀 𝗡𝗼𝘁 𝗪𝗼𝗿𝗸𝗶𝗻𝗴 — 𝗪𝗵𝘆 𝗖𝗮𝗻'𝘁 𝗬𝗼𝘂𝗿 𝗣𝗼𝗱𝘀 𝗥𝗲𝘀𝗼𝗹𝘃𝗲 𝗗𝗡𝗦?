@@ -1,0 +1,63 @@
+𝗗𝗮𝘆 𝟰𝟯/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗖𝗼𝗿𝗲𝗗𝗡𝗦 𝗶𝘀 𝗡𝗼𝘁 𝗪𝗼𝗿𝗸𝗶𝗻𝗴 — 𝗪𝗵𝘆 𝗖𝗮𝗻'𝘁 𝗬𝗼𝘂𝗿 𝗣𝗼𝗱𝘀 𝗥𝗲𝘀𝗼𝗹𝘃𝗲 𝗗𝗡𝗦?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your application Pods cannot resolve Kubernetes Service names, but the Pods themselves are Running. How will you troubleshoot the DNS issue?”
+
+In production, I wouldn't immediately restart CoreDNS. First, I'd determine whether the issue affects one Pod, one namespace, or the entire cluster.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Test DNS from the affected Pod
+
+kubectl exec -it <pod-name> -n <namespace> -- nslookup kubernetes.default
+
+If "nslookup" is unavailable, use a suitable debugging container.
+
+2️⃣ Check the Pod's DNS configuration
+
+kubectl exec <pod-name> -n <namespace> -- cat /etc/resolv.conf
+
+Verify the nameserver and search domains.
+
+3️⃣ Check CoreDNS Pods
+
+kubectl get pods -n kube-system -l k8s-app=kube-dns
+kubectl logs -n kube-system -l k8s-app=kube-dns
+
+Look for unhealthy Pods, DNS errors, or upstream resolution failures.
+
+4️⃣ Check the DNS Service
+
+kubectl get svc -n kube-system
+kubectl get endpoints kube-dns -n kube-system
+
+Verify the DNS Service and its backend endpoints.
+
+5️⃣ Check CoreDNS configuration
+
+kubectl get configmap coredns -n kube-system -o yaml
+
+Review the Corefile for incorrect configuration or recent changes.
+
+6️⃣ Investigate networking
+
+Check NetworkPolicies, CNI health, and connectivity to the DNS Service on UDP/TCP port 53.
+
+Also verify whether external DNS names fail while internal Kubernetes Service names work.
+
+7️⃣ Verify the fix
+
+Retest internal and external name resolution from the affected workloads, then monitor CoreDNS health and application connectivity.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Pods Running ≠ DNS Working.
+
+Follow the troubleshooting path:
+
+Affected Pod → DNS Configuration → CoreDNS → DNS Service → Network → Root Cause
+
+Identify the failing layer before making production changes.
