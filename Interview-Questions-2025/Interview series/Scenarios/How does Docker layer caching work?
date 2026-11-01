@@ -1,0 +1,7 @@
+How does Docker layer caching work?
+
+1.Docker layer caching speeds up image build times by reusing unchanged intermediate layers from previous builds rather than executing every instruction in a Dockerfile from scratch
+2.Docker uses different criteria to check if a layer can be reused based on the instruction type
+--->If the text of the command (RUN, ENV, WORKDIR) has changed (even a simple argument change), the cache is invalidated.
+---> Docker (COPY, ADD) calculates a unique checksum for every file and directory being added. It compares this checksum against the files in the cached layer. If any contents, permissions, or modifications have changed, the cache is invalidated.
+---->For a command like RUN apt-get update, Docker only checks the command string. It does not know if the remote software repositories have new updates. It will pull from the cache anyway unless forced otherwise.
