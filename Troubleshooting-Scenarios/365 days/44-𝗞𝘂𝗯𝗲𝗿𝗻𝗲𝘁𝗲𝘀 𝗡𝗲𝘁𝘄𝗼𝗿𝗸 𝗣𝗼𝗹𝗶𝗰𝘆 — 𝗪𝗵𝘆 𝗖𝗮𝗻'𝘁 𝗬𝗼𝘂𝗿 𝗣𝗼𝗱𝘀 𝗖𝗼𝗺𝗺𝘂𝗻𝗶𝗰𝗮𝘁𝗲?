@@ -1,0 +1,63 @@
+𝗗𝗮𝘆 𝟰𝟰/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗣𝗼𝗹𝗶𝗰𝘆 — 𝗪𝗵𝘆 𝗖𝗮𝗻'𝘁 𝗬𝗼𝘂𝗿 𝗣𝗼𝗱𝘀 𝗖𝗼𝗺𝗺𝘂𝗻𝗶𝗰𝗮𝘁𝗲?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your application Pods are Running, but one Pod cannot communicate with another Pod in the same Kubernetes cluster. How will you troubleshoot it?”
+
+In production, I wouldn't immediately restart the Pods. First, I'd check whether the issue is caused by network policies, DNS, application ports, or the cluster network.
+
+🔍 𝗠𝘆 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Identify the affected Pods
+
+kubectl get pods -A -o wide
+
+Check Pod IPs, namespaces, and whether the issue affects specific workloads.
+
+2️⃣ Test connectivity
+
+From the source Pod, test the destination Pod or Service on the required application port.
+
+kubectl exec -it <source-pod> -n <namespace> -- sh
+
+Use available tools such as "curl" or "nc" to test connectivity.
+
+3️⃣ Check DNS resolution
+
+nslookup <service-name>
+
+Confirm whether the destination Service name resolves correctly.
+
+4️⃣ Inspect NetworkPolicies
+
+kubectl get networkpolicy -A
+kubectl describe networkpolicy <policy-name> -n <namespace>
+
+Check ingress and egress rules, Pod selectors, namespace selectors, and allowed ports.
+
+5️⃣ Verify Service configuration
+
+kubectl get svc -n <namespace>
+kubectl get endpoints <service-name> -n <namespace>
+
+Confirm the Service selector matches the intended Pods and that endpoints are available.
+
+6️⃣ Investigate cluster networking
+
+If the configuration looks correct, check CNI plugin health, node connectivity, routing, firewall rules, and relevant network logs.
+
+7️⃣ Verify the fix
+
+Retest communication from the affected source Pod and confirm the application works as expected.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Running Pods do not guarantee network connectivity.
+
+Follow the traffic path:
+
+Source Pod → DNS → NetworkPolicy → Cluster Network → Destination Pod
+
+Identify the failing layer before changing production configuration.
