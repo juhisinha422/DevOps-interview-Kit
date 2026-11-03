@@ -1,0 +1,50 @@
+𝗗𝗮𝘆 𝟰𝟲/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗥𝘂𝗻𝗻𝗶𝗻𝗴, 𝗯𝘂𝘁 𝗬𝗼𝘂𝗿 𝗔𝗽𝗽 𝗶𝘀 𝗡𝗼𝘁 𝗪𝗼𝗿𝗸𝗶𝗻𝗴!
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+A Kubernetes Pod shows "Running", but users report that the application is not responding. How would you troubleshoot this in a production environment?
+
+Here’s how I would investigate it step by step 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝗣𝗼𝗱 𝗦𝘁𝗮𝘁𝘂𝘀
+
+kubectl get pods -n <namespace> -o wide
+kubectl describe pod <pod-name> -n <namespace>
+
+"Running" only means the Pod has a running container. It does not guarantee that the application is healthy or serving requests.
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗖𝗵𝗲𝗰𝗸 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗟𝗼𝗴𝘀
+
+kubectl logs <pod-name> -n <namespace>
+kubectl logs <pod-name> -n <namespace> --previous
+
+Look for application errors, failed database connections, configuration issues, or startup problems. Use "--previous" if the container restarted.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗥𝗲𝗮𝗱𝗶𝗻𝗲𝘀𝘀
+
+kubectl get pods -n <namespace>
+
+Check whether the Pod is "Ready". A Pod can be Running but not Ready, meaning it may not receive traffic through a Service.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗮𝗻𝗱 𝗘𝗻𝗱𝗽𝗼𝗶𝗻𝘁𝘀
+
+kubectl get svc -n <namespace>
+kubectl get endpointslice -n <namespace>
+
+Verify the Service selector, target port, and whether the expected Pod IPs appear in the EndpointSlices.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗧𝗲𝘀𝘁 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗶𝘃𝗶𝘁𝘆
+
+Check whether the application is listening on the expected port and test it from an appropriate diagnostic environment. Verify the container port, Service "targetPort", Ingress configuration, and NetworkPolicy rules where applicable.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗖𝗵𝗲𝗰𝗸 𝗗𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝗰𝗶𝗲𝘀
+
+The application might be running but unable to connect to a database, API, or another backend service. Review logs, connection timeouts, and dependency health.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+Running ≠ Ready ≠ Working.
+
+Always troubleshoot layer by layer: Pod → Application → Service → Network → Dependencies.
+
+Don’t restart or delete Pods immediately. First identify the actual failure and its impact.
