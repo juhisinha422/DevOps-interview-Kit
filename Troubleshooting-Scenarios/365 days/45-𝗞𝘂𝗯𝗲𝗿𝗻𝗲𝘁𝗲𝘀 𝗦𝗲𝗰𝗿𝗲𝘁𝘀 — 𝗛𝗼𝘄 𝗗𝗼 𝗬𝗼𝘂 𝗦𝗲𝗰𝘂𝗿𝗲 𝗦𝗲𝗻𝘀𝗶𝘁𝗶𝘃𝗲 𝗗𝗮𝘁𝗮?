@@ -1,0 +1,51 @@
+𝗗𝗮𝘆 𝟰𝟱/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗰𝗿𝗲𝘁𝘀 — 𝗛𝗼𝘄 𝗗𝗼 𝗬𝗼𝘂 𝗦𝗲𝗰𝘂𝗿𝗲 𝗦𝗲𝗻𝘀𝗶𝘁𝗶𝘃𝗲 𝗗𝗮𝘁𝗮?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+👉 “Your application needs database credentials in Kubernetes. How will you store and manage them securely?”
+
+In production, I would never hardcode passwords, API keys, or tokens directly into application manifests or container images.
+
+🔍 𝗠𝘆 𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵
+
+1️⃣ Create a Kubernetes Secret
+
+kubectl create secret generic db-secret \
+  --from-literal=DB_USER=appuser \
+  --from-literal=DB_PASSWORD='<password>' \
+  -n <namespace>
+
+Use placeholders in examples and never expose real credentials in shell history or shared terminals.
+
+2️⃣ Verify the Secret
+
+kubectl get secrets -n <namespace>
+kubectl describe secret db-secret -n <namespace>
+
+Avoid printing Secret values unnecessarily.
+
+3️⃣ Inject secrets into the application
+
+Reference the Secret through environment variables or mount it as a file, depending on the application's requirements.
+
+4️⃣ Restrict access using RBAC
+
+Grant only the required users and ServiceAccounts permission to access Secrets in the appropriate namespace.
+
+5️⃣ Enable stronger protection
+
+Kubernetes Secrets are base64-encoded, not automatically encrypted at rest in every configuration.
+
+For production, enable encryption at rest and consider an external secrets manager such as a cloud secrets service or Vault.
+
+6️⃣ Rotate and audit credentials
+
+Establish a rotation process, review access permissions, and ensure sensitive values are not exposed in logs or CI/CD output.
+
+🎯 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴
+
+Storing a password in a Kubernetes Secret is only one part of securing it.
+
+Access control, encryption, rotation, auditing, and safe application handling are equally important.
