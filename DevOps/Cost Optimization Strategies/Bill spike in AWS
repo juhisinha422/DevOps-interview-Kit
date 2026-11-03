@@ -1,0 +1,35 @@
+A +966% bill spike. Here is the FinOps autopsy:
+
+In September, my AWS bill was $10.83.
+In October, it closed at $115.45.
+
+ the cloud’s biggest billing trap: Idle Resources.
+
+Here is what happened under the hood:
+🔹 1. The $98 Zombie Instance (85.6% of the bill)
+
+During a live session, I spun up a t2.xlarge in us-east-1 for a demo.
+The hourly rate: ~$0.1856/hr.
+The mistake: It ran continuously for ~532 hours (22 days) after class ended.
+Total damage: $98.80 for compute that did zero real work.
+
+🔹 2. The Hidden VPC Tax ($12.58)
+Compute wasn't alone. An idle NAT Gateway and unused networking configurations quietly racked up $12.58 just by existing.
+
+🔹 3. The Legacy Architecture Penalty
+t2 is a legacy generation. Running t3.xlarge or t3a.xlarge would have instantly cut compute costs by ~10% with better baseline performance. If moved to Graviton (t4g), savings jump another ~20%.
+
+🔹 4. Why Cost Anomaly Detection stayed silent
+AWS Cost Anomaly Detection didn't trigger because the account baseline was small and within broad thresholds. An automated alert never fired.
+
+How to prevent this in Staging and Production:
+
+1️⃣ Auto-Kill / Scheduled Shutdowns: For training/dev environments, never rely on human memory. Use AWS Instance Scheduler or an EventBridge rule + Lambda to stop all tagged non-prod EC2s at 8 PM daily.
+
+2️⃣ Modernize Instance Families: Audit your fleet. If you still have t2 instances running, migrating to t3/t3a or ARM-based t4g is free money and better performance.
+
+3️⃣ Audit VPC Endpoints vs NAT Gateways: Don’t route internal AWS traffic (like S3 or DynamoDB) through a paid NAT Gateway. Use free Gateway VPC Endpoints.
+
+4️⃣ Hard Budget Alarms: Set a strict AWS Budget at $20 with an SNS notification to email/Slack the moment forecasted spend deviates.
+
+A $115 lesson in a lab environment is a cheap reminder: Cloud cost is an architectural decision, not an afterthought.
