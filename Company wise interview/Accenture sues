@@ -1,0 +1,23 @@
+🔹Interview Questions Asked :
+
+How do you spend your day-to-day activities as a DevOps Engineer?
+What is a NAT Gateway? 
+Explain a practical use case  What are the prerequisites before upgrading a Kubernetes cluster?
+What is a Pod Disruption Budget (PDB)?Write a shell script to calculate the factorial of a number ?
+Explain the VPC architecture used in your project ?
+How is your CI/CD pipeline designed ?
+Which security tools are integrated into your pipeline?How do you manage pipeline configurations and permissions?
+Design a basic CI/CD pipeline for a microservices application ?
+What is a multi-stage Docker build, and why is it used ?
+What are Kubernetes manifest files? 
+What is Ansible Vault ?
+How do you build a highly available Kubernetes cluster ?
+Which monitoring tools have you used?
+How do you troubleshoot CrashLoopBackOff and ImagePullBackOff errors?
+Write or explain a Terraform script to create a VPC ?
+How many objects can an Amazon S3 bucket store?
+What is the difference between IAM Roles and IAM Policies?
+What are artifacts in CI/CD?
+What are SATS and DATS?
+How do you troubleshoot CI/CD pipeline failures?
+What are Ansible Roles?
