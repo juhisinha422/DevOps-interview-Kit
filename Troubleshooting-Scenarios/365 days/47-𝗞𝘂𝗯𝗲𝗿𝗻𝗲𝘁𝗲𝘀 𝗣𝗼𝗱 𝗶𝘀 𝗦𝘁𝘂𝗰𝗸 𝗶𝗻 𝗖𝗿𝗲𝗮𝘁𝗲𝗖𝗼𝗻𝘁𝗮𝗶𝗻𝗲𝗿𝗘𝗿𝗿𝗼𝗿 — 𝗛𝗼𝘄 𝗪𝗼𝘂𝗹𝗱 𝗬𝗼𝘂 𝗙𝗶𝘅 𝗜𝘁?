@@ -1,0 +1,56 @@
+𝗗𝗮𝘆 𝟰𝟳/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗦𝘁𝘂𝗰𝗸 𝗶𝗻 𝗖𝗿𝗲𝗮𝘁𝗲𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝗘𝗿𝗿𝗼𝗿 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗙𝗶𝘅 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+Your Kubernetes Pod is stuck in "CreateContainerError". The container is not starting, and the application is unavailable. How would you troubleshoot this in production?
+
+Here’s my step-by-step approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗣𝗼𝗱 𝗦𝘁𝗮𝘁𝘂𝘀
+
+kubectl get pods -n <namespace>
+kubectl describe pod <pod-name> -n <namespace>
+
+Check the Events section at the bottom of the output. It often reveals why Kubernetes cannot create the container.
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗜𝗱𝗲𝗻𝘁𝗶𝗳𝘆 𝘁𝗵𝗲 𝗘𝗿𝗿𝗼𝗿
+
+Common causes include:
+
+✅ Invalid volume mounts
+✅ Missing ConfigMaps or Secrets
+✅ Incorrect container configuration
+✅ Permission or filesystem issues
+✅ Problems creating the container runtime environment
+
+Don’t assume every "CreateContainerError" has the same root cause.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗖𝗼𝗻𝗳𝗶𝗴𝗠𝗮𝗽𝘀 𝗮𝗻𝗱 𝗦𝗲𝗰𝗿𝗲𝘁𝘀
+
+kubectl get configmap -n <namespace>
+kubectl get secrets -n <namespace>
+
+Confirm that the referenced objects exist in the correct namespace and that their keys match the Pod specification. Avoid printing sensitive Secret values.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗩𝗼𝗹𝘂𝗺𝗲𝘀 𝗮𝗻𝗱 𝗠𝗼𝘂𝗻𝘁𝘀
+
+kubectl get pod <pod-name> -n <namespace> -o yaml
+
+Review "volumes", "volumeMounts", mount paths, and referenced PVCs. Look for mismatched names, invalid paths, or configuration that prevents container creation.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻
+
+kubectl get deployment -n <namespace>
+kubectl describe deployment <deployment-name> -n <namespace>
+
+If the Pod belongs to a Deployment, inspect its template for incorrect environment variables, volume references, security settings, or other invalid configuration.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗙𝗶𝘅 𝘁𝗵𝗲 𝗥𝗼𝗼𝘁 𝗖𝗮𝘂𝘀𝗲
+
+Make the smallest safe correction to the configuration, then verify that the replacement container starts and becomes Ready.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+"CreateContainerError" means Kubernetes encountered an error while trying to create the container. Start with "kubectl describe pod" and its Events before changing anything.
