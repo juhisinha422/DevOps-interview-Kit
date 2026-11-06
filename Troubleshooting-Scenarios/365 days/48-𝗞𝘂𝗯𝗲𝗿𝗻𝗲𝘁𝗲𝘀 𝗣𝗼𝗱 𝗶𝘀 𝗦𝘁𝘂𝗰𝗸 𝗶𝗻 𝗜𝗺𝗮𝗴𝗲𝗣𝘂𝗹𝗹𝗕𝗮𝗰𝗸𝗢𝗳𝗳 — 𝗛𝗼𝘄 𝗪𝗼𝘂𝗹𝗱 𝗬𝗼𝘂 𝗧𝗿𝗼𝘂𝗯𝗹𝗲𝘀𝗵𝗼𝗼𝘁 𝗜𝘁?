@@ -1,0 +1,51 @@
+𝗗𝗮𝘆 𝟰𝟴/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗦𝘁𝘂𝗰𝗸 𝗶𝗻 𝗜𝗺𝗮𝗴𝗲𝗣𝘂𝗹𝗹𝗕𝗮𝗰𝗸𝗢𝗳𝗳 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+Your Kubernetes Pod is stuck in "ImagePullBackOff". The application is not starting because Kubernetes cannot pull the container image. How would you troubleshoot this in production?
+
+Here’s my practical approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗣𝗼𝗱 𝗦𝘁𝗮𝘁𝘂𝘀
+
+kubectl get pods -n <namespace>
+kubectl describe pod <pod-name> -n <namespace>
+
+Check the Events section for the exact image-pull error.
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗩𝗲𝗿𝗶𝗳𝘆 𝘁𝗵𝗲 𝗜𝗺𝗮𝗴𝗲 𝗡𝗮𝗺𝗲 𝗮𝗻𝗱 𝗧𝗮𝗴
+
+kubectl get pod <pod-name> -n <namespace> -o yaml
+
+Check the image repository, name, tag, and registry URL.
+
+A typo or a tag that does not exist can prevent Kubernetes from pulling the image.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗖𝗵𝗲𝗰𝗸 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆 𝗔𝗰𝗰𝗲𝘀𝘀
+
+If the image is stored in a private registry, verify the image-pull credentials and "imagePullSecrets" configuration.
+
+kubectl get pod <pod-name> -n <namespace> -o yaml
+kubectl get secrets -n <namespace>
+
+Remember: the referenced Secret must exist in the same namespace as the Pod.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗮𝗻𝗱 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆
+
+Check whether the worker node can reach the container registry. Investigate DNS resolution, firewall rules, proxy settings, and registry outages if the events indicate connectivity problems.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗖𝗵𝗲𝗰𝗸 𝗜𝗔𝗠 𝗮𝗻𝗱 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝘆 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻𝘀
+
+For cloud registries, verify that the node or workload identity has the required permissions to retrieve the image. The exact setup depends on the registry and cluster platform.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗙𝗶𝘅 𝗮𝗻𝗱 𝗩𝗲𝗿𝗶𝗳𝘆
+
+Correct the image reference, credentials, permissions, or connectivity issue identified in the Events. Then monitor the Pod:
+
+kubectl get pods -n <namespace> -w
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+"ImagePullBackOff" means Kubernetes is backing off and retrying after an image-pull failure. Always identify the actual pull error before changing the configuration.
