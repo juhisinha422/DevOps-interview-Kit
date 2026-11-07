@@ -1,0 +1,50 @@
+𝗗𝗮𝘆 𝟰𝟵/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗶𝗻 𝗖𝗿𝗮𝘀𝗵𝗟𝗼𝗼𝗽𝗕𝗮𝗰𝗸𝗢𝗳𝗳 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗗𝗲𝗯𝘂𝗴 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+Your application Pod starts, crashes after a few seconds, and keeps restarting. Kubernetes reports "CrashLoopBackOff". How would you troubleshoot this issue in production?
+
+Here’s my step-by-step approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗣𝗼𝗱 𝗦𝘁𝗮𝘁𝘂𝘀
+
+kubectl get pods -n <namespace>
+kubectl describe pod <pod-name> -n <namespace>
+
+Check the restart count, container state, exit code, termination reason, and Events.
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗖𝗵𝗲𝗰𝗸 𝗣𝗿𝗲𝘃𝗶𝗼𝘂𝘀 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗟𝗼𝗴𝘀
+
+kubectl logs <pod-name> -n <namespace> --previous
+
+This is one of the most useful commands when a container keeps restarting.
+
+Look for application exceptions, missing configuration, database connection failures, permission errors, or startup problems.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗖𝗵𝗲𝗰𝗸 𝗘𝘅𝗶𝘁 𝗖𝗼𝗱𝗲𝘀
+
+kubectl get pod <pod-name> -n <namespace> -o yaml
+
+Inspect "lastState.terminated", including the exit code and reason.
+
+For example, exit code "137" may indicate that the process was killed, commonly due to memory pressure or an OOM kill. Confirm the actual termination reason before deciding.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻
+
+Check environment variables, ConfigMaps, Secrets, mounted files, and application startup commands. A missing variable or incorrect configuration can cause the process to exit repeatedly.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗥𝗲𝘃𝗶𝗲𝘄 𝗣𝗿𝗼𝗯𝗲𝘀 𝗮𝗻𝗱 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀
+
+Check whether liveness probes are restarting the container before the application can initialize. Review memory limits and resource-related termination events.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗙𝗶𝘅 𝘁𝗵𝗲 𝗥𝗼𝗼𝘁 𝗖𝗮𝘂𝘀𝗲
+
+Correct the identified issue, then monitor the Pod and verify that it remains Ready without repeated restarts.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+"CrashLoopBackOff" is a restart-backoff state, not the root cause itself.
+
+Check previous logs → inspect termination details → validate configuration, probes, and resources → fix the actual problem.
