@@ -1,3 +1,128 @@
+# Kubernetes Scheduling – Scenario-Based Interview Questions & Answers
+## 4 Years of DevOps Experience
+
+## 1. Pod Scheduling & Pending State
+
+### 1. You deployed an application, but the Pod is stuck in Pending state. How will you troubleshoot it?
+
+First, I would check the Pod status using `kubectl get pods -o wide` and then run `kubectl describe pod <pod-name>` to inspect scheduling events. I would look for messages such as insufficient CPU or memory, node selector mismatch, untolerated taints, unbound PersistentVolumeClaims, or affinity rule conflicts. I would also check available node resources using `kubectl describe nodes` and verify storage provisioning if the Pod requires persistent volumes. Once I identify the scheduling issue, I would correct the resource requests, scheduling rules, or storage configuration and verify that the Pod gets scheduled successfully.
+
+### 2. Your Kubernetes cluster has 5 worker nodes, but a Pod is not getting scheduled on any node. What could be the reasons?
+
+Even if the cluster has five worker nodes, the Pod may not satisfy the scheduling requirements of any available node. Possible reasons include insufficient CPU or memory, node selectors that do not match node labels, untolerated taints, node affinity restrictions, pod affinity or anti-affinity conflicts, and unbound PVCs. I would start with `kubectl describe pod <pod-name>` and check the Events section for the exact scheduling failure. Then I would inspect node labels, taints, allocatable resources, and storage availability using `kubectl get nodes --show-labels` and `kubectl describe node <node-name>`. Based on the evidence, I would update the Pod configuration or provide suitable cluster capacity.
+
+### 3.A Pod is scheduled on a node that does not have enough CPU resources. How can you prevent this?
+
+I would configure appropriate CPU resource requests and limits in the Pod specification. Kubernetes uses CPU requests during scheduling to determine whether a node has enough allocatable resources for the Pod. For example, if a container requests 500m CPU, the scheduler considers that request before placing it on a node. CPU limits control how much CPU the container can consume after scheduling, but they do not reserve CPU capacity. I would also monitor node utilization and configure appropriate autoscaling so that workloads have sufficient capacity. This helps prevent overcommitment and improves application stability.
+
+### 4. You have three worker nodes. You want to deploy an application only on a specific node. How will you achieve this?
+
+I would use `nodeSelector` or required node affinity to schedule the application on a specific node. First, I would assign a label to the target node using `kubectl label nodes worker-node-1 app-node=frontend`. Then I would configure the Pod specification with `nodeSelector: app-node: frontend`. Kubernetes will schedule the Pod only on nodes matching that label. For more complex requirements, I would use node affinity because it supports more flexible matching expressions. I would also verify the placement using `kubectl get pods -o wide`.
+
+### 5. Your application should run only on nodes having SSD storage. How would you configure scheduling?
+
+I would label all SSD-enabled worker nodes with a label such as `storage=ssd` using `kubectl label nodes worker-node-1 storage=ssd`. Then I would configure node affinity or nodeSelector in the Pod specification to ensure that the application runs only on those nodes. If the application requires persistent storage, I would also configure an appropriate StorageClass that provisions SSD-backed volumes. This is important because scheduling a Pod on an SSD node does not automatically guarantee that its persistent volume uses SSD storage. I would validate both node placement and storage performance.
+
+### 6. You have separate worker nodes for production and development workloads. How will you isolate them?
+
+I would use node labels and taints to separate production and development workloads. For example, I would label production nodes with `environment=production` and development nodes with `environment=development`. I would also apply a `NoSchedule` taint to production nodes so that only Pods with the appropriate toleration can run there. Production workloads would use node affinity and matching tolerations, while development workloads would be scheduled on development nodes. I would additionally use Kubernetes namespaces, RBAC, resource quotas, and network policies to provide stronger workload isolation.
+
+## 2. Node Affinity, Taints & Tolerations
+
+### 7. A Pod is not scheduling because of a node taint. How will you resolve it?
+
+I would first inspect the node taints using `kubectl describe node <node-name>` and identify which taint is preventing scheduling. If the workload is expected to run on that node, I would add the corresponding toleration to its Pod specification. For example, if the node has a taint `dedicated=monitoring:NoSchedule`, the Pod needs a matching toleration. If the Pod should not run on that node, I would instead schedule it on another suitable node. I would avoid removing taints blindly because they may be intentionally configured to protect dedicated workloads.
+
+### 8. You want to ensure that only monitoring Pods run on monitoring nodes. What Kubernetes features will you use?
+
+I would combine node labels, taints, tolerations, and node affinity. First, I would label monitoring nodes with `workload=monitoring` and apply a `NoSchedule` taint to prevent unrelated workloads from being scheduled there. Then I would configure monitoring Pods with a matching toleration and required node affinity for the monitoring label. This ensures that monitoring workloads can run on those nodes while other workloads are prevented from using them. I would also use a dedicated namespace and RBAC policies to control access to monitoring resources.
+
+### 9. You have three replicas of an application, but all three Pods are running on the same node. How will you distribute them?
+
+I would use pod anti-affinity or topology spread constraints to distribute replicas across different nodes. For example, with pod anti-affinity, I can configure the scheduler to prefer or require that Pods with the same application label run on different nodes. Alternatively, topology spread constraints can distribute Pods across nodes or availability zones using `topologyKey: kubernetes.io/hostname` and appropriate `maxSkew` settings. I would prefer topology spread constraints when I need balanced distribution and pod anti-affinity when I need explicit separation rules. This improves availability and reduces the impact of a single-node failure.
+
+### 10. You want to ensure that two replicas of an application never run on the same worker node. How will you achieve this?
+
+I would configure required pod anti-affinity in the Deployment specification. I would use the application's label as the selector and `kubernetes.io/hostname` as the topology key. This tells the scheduler that Pods matching the same application label must not be placed on the same worker node. If only two replicas are required, Kubernetes will attempt to place them on two separate eligible nodes. If there is only one eligible node or insufficient scheduling capacity, the additional Pod will remain Pending rather than violating the rule.
+
+### 11. You have multiple availability zones. How will you distribute Pods across different zones?
+
+I would use topology spread constraints with the topology key `topology.kubernetes.io/zone` to distribute application Pods across availability zones. I would configure a suitable `maxSkew` and `whenUnsatisfiable` policy, such as `DoNotSchedule`, when strict distribution is required. I would also verify that worker nodes exist in all intended zones and have sufficient resources. For stateful applications, I would ensure that persistent volumes and storage configurations support the required availability-zone placement. This improves fault tolerance and helps maintain application availability during an AZ failure.
+
+### 12. A node becomes unhealthy, but some Pods are still running on it. What happens next?
+
+When a node becomes unhealthy, the Kubernetes control plane detects the condition through node heartbeats and marks the node as `NotReady` or `Unknown`. The node controller applies appropriate taints, and the scheduler stops placing new workloads on that node. Existing Pods may continue running temporarily if the node is still operational, but the control plane can eventually evict them according to the configured tolerations and eviction behavior. For Deployment-managed applications, replacement Pods can be scheduled on healthy nodes if sufficient resources are available. I would investigate the node using `kubectl describe node`, check kubelet and system logs, and verify the replacement Pods and application health.
+
+## 3. Resource Management & Scheduling Constraints
+
+### 13. A Pod is stuck in Pending because of insufficient memory. How will you investigate?
+
+I would first run `kubectl describe pod <pod-name>` and check the Events section for an `Insufficient memory` scheduling message. Then I would inspect node memory capacity and allocatable resources using `kubectl describe nodes` and compare them with the memory requests of existing and pending workloads. I would also check namespace resource quotas, LimitRanges, and whether workloads have unnecessarily high memory requests. If the application genuinely needs more memory, I would add worker-node capacity or configure cluster autoscaling. I would not simply reduce memory requests without understanding actual application requirements because that can increase the risk of OOMKilled incidents.
+
+### 14. Your cluster has enough total CPU, but Kubernetes still cannot schedule a Pod. Why?
+
+Kubernetes scheduling is based on available resources on individual eligible nodes, not just the total CPU across the entire cluster. For example, if the Pod requests 4 CPU cores but every available node has only 2 allocatable CPU cores free, the Pod cannot be scheduled even if the cluster has 10 CPU cores free in total. Other possible reasons include node affinity, taints, topology constraints, pod anti-affinity, and resource quotas. I would inspect Pod events, node allocatable resources, existing resource requests, and scheduling constraints to identify the exact reason. I would then adjust workload placement or increase suitable node capacity.
+
+### 15. You want to schedule batch workloads during specific hours. How would you design this?
+
+I would use Kubernetes CronJobs to schedule batch workloads at specific times using cron expressions. For example, if a job should execute every day at 2 AM, I would configure the schedule as `0 2 * * *`. I would also configure `startingDeadlineSeconds`, `concurrencyPolicy`, and job history limits to control execution behavior and avoid overlapping jobs. If the workload should run only on dedicated batch nodes, I would use node affinity and tolerations. I would also configure resource requests, retries, and monitoring so that failed jobs can be identified and handled safely. I would ensure the CronJob timezone is configured correctly for the cluster and Kubernetes version.
+
+### 16. Your application requires GPU resources. How will you ensure that Kubernetes schedules it only on GPU-enabled nodes?
+
+I would configure GPU-enabled worker nodes and install the appropriate GPU drivers and Kubernetes device plugin, such as the NVIDIA device plugin for NVIDIA GPUs. This allows Kubernetes to advertise GPU resources as extended resources such as `nvidia.com/gpu`. I would then specify the required GPU count in the container resources section. I could additionally label GPU nodes and use node affinity to ensure that the workload is placed only on the intended GPU-enabled nodes. Finally, I would verify GPU availability using `kubectl describe nodes` and check that the application can access the GPU from inside the container.
+
+### 17. You want to prioritize critical production Pods over low-priority workloads. How will you implement this?
+
+I would use Kubernetes PriorityClasses to assign higher scheduling priority to critical production workloads. I would create a PriorityClass for production applications with a higher value than development or batch workloads and reference it in the production Pod specification using `priorityClassName`. When resources are insufficient, the scheduler can prefer higher-priority Pods, and preemption may remove lower-priority Pods if necessary and if preemption is allowed. I would also use resource requests, quotas, and dedicated node pools to protect production capacity. I would configure this carefully because priority-based preemption can disrupt lower-priority workloads.
+
+### 18. Your Pod has both node affinity and pod anti-affinity rules that cannot be satisfied. What happens?
+
+If the Pod has required node affinity and required pod anti-affinity rules that cannot both be satisfied, the Kubernetes scheduler will not find an eligible node. The Pod will remain in Pending state, and the scheduling events will usually show that no available nodes satisfy the constraints. I would inspect the Pod specification using `kubectl describe pod` and verify node labels, existing Pod placements, and topology keys. I would then review whether the rules are too restrictive and adjust them based on actual application requirements. If the constraints are intentional, I would add suitable nodes or capacity instead of weakening important availability requirements.
+
+## 4. Node Taints & Eviction Behavior
+
+### 19. A node has a NoSchedule taint. What happens to existing Pods and new Pods?
+
+A `NoSchedule` taint prevents new Pods from being scheduled on the node unless they have a matching toleration. However, existing Pods that are already running on the node are not automatically evicted just because the taint is added. They can continue running unless another event or eviction mechanism affects them. I would inspect the taint using `kubectl describe node` and verify the tolerations of workloads that need access to the node. This behavior is useful when dedicating nodes to specific workloads without immediately disrupting existing applications.
+
+### 20. You want to prevent Pods from running on a particular node without immediately terminating existing Pods. Which taint effect would you use?
+
+I would use the `NoSchedule` taint effect because it prevents new Pods without matching tolerations from being scheduled on that node, while existing Pods continue running. For example, I could apply `kubectl taint nodes worker-node-1 maintenance=true:NoSchedule`. This is useful when preparing a node for maintenance without immediately terminating existing workloads. If I need to move existing Pods later, I would plan a controlled drain using `kubectl drain` after checking workload availability and PodDisruptionBudgets.
+
+---
+
+## 5. Important Kubernetes Scheduling Commands
+
+| Command | Purpose |
+|---|---|
+| `kubectl get pods -o wide` | Check Pod placement and status |
+| `kubectl describe pod <pod>` | Troubleshoot scheduling events |
+| `kubectl get nodes --show-labels` | Check node labels |
+| `kubectl describe node <node>` | Check taints and available resources |
+| `kubectl label nodes <node> key=value` | Add node labels |
+| `kubectl taint nodes <node> key=value:NoSchedule` | Apply a scheduling restriction |
+| `kubectl get events --sort-by=.lastTimestamp` | Review cluster events |
+| `kubectl get pods -A -o wide` | Check workloads across namespaces |
+| `kubectl top nodes` | Check node resource utilization |
+| `kubectl top pods -A` | Check Pod resource utilization |
+| `kubectl get pvc -A` | Check persistent volume claims |
+| `kubectl get hpa -A` | Check autoscaling configuration |
+
+## 6. Interview Approach – Production Troubleshooting
+
+When I troubleshoot Kubernetes scheduling issues in production, I follow a structured approach:
+
+1. **Identify the issue:** Check whether the Pod is Pending, unschedulable, or running on an unexpected node.
+2. **Check events:** Use `kubectl describe pod` to identify the exact scheduling failure.
+3. **Collect evidence:** Inspect node resources, labels, taints, affinity rules, PVCs, and resource quotas.
+4. **Take corrective action:** Update resource requests, scheduling policies, storage configuration, or node capacity based on the root cause.
+5. **Verify the fix:** Confirm Pod placement, readiness, application health, and service availability.
+6. **Prevent recurrence:** Use monitoring, resource planning, topology spread constraints, autoscaling, and appropriate scheduling policies.
+
+**My production approach:** I don't randomly modify scheduling configurations. I first identify why the scheduler rejected a Pod, validate the available evidence, apply the smallest safe correction, and verify that the workload is running as expected.
+
+
+
 # DevOps / SRE Production Troubleshooting Interview Guide
 
 ## Kubernetes | AWS EKS | Datadog | Kafka | Elasticsearch | MongoDB | Python | Shell
