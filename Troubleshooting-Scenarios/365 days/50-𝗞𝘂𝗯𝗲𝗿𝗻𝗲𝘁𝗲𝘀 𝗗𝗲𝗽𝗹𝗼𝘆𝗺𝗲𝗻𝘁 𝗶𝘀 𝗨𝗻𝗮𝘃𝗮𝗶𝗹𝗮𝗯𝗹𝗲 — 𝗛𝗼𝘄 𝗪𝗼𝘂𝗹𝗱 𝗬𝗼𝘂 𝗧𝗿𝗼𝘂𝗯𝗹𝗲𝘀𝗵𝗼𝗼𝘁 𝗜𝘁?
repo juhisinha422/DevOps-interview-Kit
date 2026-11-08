@@ -1,0 +1,58 @@
+𝗗𝗮𝘆 𝟱𝟬/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🎯 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗶𝘀 𝗨𝗻𝗮𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+You deployed a new application version to Kubernetes, but the Deployment is not becoming available. Users are experiencing downtime. How would you investigate and restore service in production?
+
+Here’s my practical approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁
+
+kubectl get deployments -n <namespace>
+kubectl describe deployment <deployment-name> -n <namespace>
+kubectl rollout status deployment/<deployment-name> -n <namespace>
+
+Check the desired replicas, available replicas, rollout status, and Events.
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗣𝗼𝗱𝘀
+
+kubectl get pods -n <namespace> -o wide
+kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp
+
+Look for "Pending", "CrashLoopBackOff", "ImagePullBackOff", failed scheduling, or readiness probe failures.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗜𝗻𝘀𝗽𝗲𝗰𝘁 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗟𝗼𝗴𝘀
+
+kubectl logs <pod-name> -n <namespace> --all-containers=true
+kubectl describe pod <pod-name> -n <namespace>
+
+Identify startup errors, invalid configuration, dependency failures, and resource-related problems.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗥𝗼𝗹𝗹𝗼𝘂𝘁 𝗛𝗶𝘀𝘁𝗼𝗿𝘆
+
+kubectl rollout history deployment/<deployment-name> -n <namespace>
+
+Determine whether the latest ReplicaSet is failing to become available and whether the previous version was healthy.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗥𝗲𝘀𝘁𝗼𝗿𝗲 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗶𝗳 𝗡𝗲𝗲𝗱𝗲𝗱
+
+If the new release is causing an outage and the previous revision is known to be healthy, consider a controlled rollback:
+
+kubectl rollout undo deployment/<deployment-name> -n <namespace>
+kubectl rollout status deployment/<deployment-name> -n <namespace>
+
+Follow your production change process and verify application health after rollback.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗥𝗲𝗰𝗼𝘃𝗲𝗿𝘆
+
+kubectl get deployments,pods,svc -n <namespace>
+
+Confirm the expected replicas are available, the Pods are Ready, and traffic is reaching the application.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+In production, investigate first, restore service safely, and then identify the root cause.
+
+A successful "kubectl apply" does not guarantee a successful deployment.
