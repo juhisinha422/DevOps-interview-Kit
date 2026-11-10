@@ -1,0 +1,61 @@
+𝗗𝗮𝘆 𝟱𝟮/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗦𝘁𝘂𝗰𝗸 𝗶𝗻 𝗧𝗲𝗿𝗺𝗶𝗻𝗮𝘁𝗶𝗻𝗴 𝗦𝘁𝗮𝘁𝗲 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗙𝗶𝘅 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+A Kubernetes Pod remains in "Terminating" state for several minutes, and a new Pod is not becoming available. How would you troubleshoot this in a production environment?
+
+Here’s my practical approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗣𝗼𝗱
+
+kubectl get pods -n <namespace>
+kubectl describe pod <pod-name> -n <namespace>
+
+Check the deletion timestamp, Events, termination grace period, and finalizers.
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗖𝗵𝗲𝗰𝗸 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗣𝗿𝗼𝗰𝗲𝘀𝘀𝗲𝘀
+
+Investigate whether the application is shutting down gracefully or stuck handling active requests.
+
+kubectl logs <pod-name> -n <namespace>
+
+Look for shutdown errors, long-running requests, or termination-handler issues.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗥𝗲𝘃𝗶𝗲𝘄 𝗟𝗶𝗳𝗲𝗰𝘆𝗰𝗹𝗲 𝗛𝗼𝗼𝗸𝘀
+
+Check the Pod specification for:
+
+- "preStop" lifecycle hooks
+- "terminationGracePeriodSeconds"
+- Application shutdown behavior
+
+A long-running or blocked "preStop" hook can delay termination.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗡𝗼𝗱𝗲 𝗮𝗻𝗱 𝗦𝘁𝗼𝗿𝗮𝗴𝗲 𝗛𝗲𝗮𝗹𝘁𝗵
+
+kubectl get nodes
+kubectl get pvc -n <namespace>
+kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp
+
+Investigate unhealthy nodes, volume unmount problems, and storage-related delays.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗖𝗵𝗲𝗰𝗸 𝗙𝗶𝗻𝗮𝗹𝗶𝘇𝗲𝗿𝘀
+
+kubectl get pod <pod-name> -n <namespace> -o yaml
+
+If finalizers are present, identify which controller owns them and why cleanup has not completed. Never remove finalizers blindly, as this can leave resources behind.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗪𝗼𝗿𝗸𝗹𝗼𝗮𝗱 𝗛𝗲𝗮𝗹𝘁𝗵
+
+kubectl get pods -n <namespace> -o wide
+kubectl get deployment -n <namespace>
+
+Confirm that replacement Pods are created and become Ready.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A Pod stuck in "Terminating" is not always an application issue. It can involve lifecycle hooks, finalizers, node health, or storage cleanup.
+
+Find the reason before forcing deletion.
