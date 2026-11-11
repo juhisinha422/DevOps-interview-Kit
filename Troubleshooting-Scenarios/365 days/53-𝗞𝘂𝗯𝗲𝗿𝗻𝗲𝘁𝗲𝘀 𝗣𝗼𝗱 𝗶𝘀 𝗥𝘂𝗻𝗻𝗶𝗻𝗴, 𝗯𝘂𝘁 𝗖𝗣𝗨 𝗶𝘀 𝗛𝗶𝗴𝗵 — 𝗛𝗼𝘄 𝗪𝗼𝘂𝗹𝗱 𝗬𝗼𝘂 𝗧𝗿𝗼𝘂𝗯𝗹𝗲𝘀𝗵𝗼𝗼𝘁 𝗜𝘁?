@@ -1,0 +1,64 @@
+ 𝗗𝗮𝘆 𝟱𝟯/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱 𝗶𝘀 𝗥𝘂𝗻𝗻𝗶𝗻𝗴, 𝗯𝘂𝘁 𝗖𝗣𝗨 𝗶𝘀 𝗛𝗶𝗴𝗵 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+Your Kubernetes application Pod is Running and Ready, but CPU utilization suddenly increases to 95–100%. Application response time is also increasing. How would you investigate this in production?
+
+Here’s my practical approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗜𝗱𝗲𝗻𝘁𝗶𝗳𝘆 𝘁𝗵𝗲 𝗛𝗶𝗴𝗵 𝗖𝗣𝗨 𝗣𝗼𝗱
+
+kubectl top pods -n <namespace> --sort-by=cpu
+
+Identify which Pods are consuming the most CPU.
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗖𝗵𝗲𝗰𝗸 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿-𝗟𝗲𝘃𝗲𝗹 𝗨𝘀𝗮𝗴𝗲
+
+kubectl top pod <pod-name> -n <namespace> --containers
+
+Identify the container responsible for high CPU consumption, especially in multi-container Pods.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗥𝗲𝘃𝗶𝗲𝘄 𝗖𝗣𝗨 𝗥𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗮𝗻𝗱 𝗟𝗶𝗺𝗶𝘁𝘀
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Check CPU requests and limits.
+
+Also investigate CPU throttling through container metrics and monitoring dashboards.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗟𝗼𝗴𝘀
+
+kubectl logs <pod-name> -n <namespace> --since=30m
+
+Look for:
+
+- Infinite loops or excessive retries
+- Increased request volume
+- Background jobs consuming CPU
+- Inefficient application processing
+- Repeated errors
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗖𝗵𝗲𝗰𝗸 𝗣𝗼𝗱 𝗔𝗻𝗱 𝗡𝗼𝗱𝗲 𝗠𝗲𝘁𝗿𝗶𝗰𝘀
+
+kubectl top nodes
+kubectl get pods -n <namespace> -o wide
+
+Determine whether the issue is isolated to one Pod or affects multiple workloads on the same node.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗧𝗮𝗸𝗲 𝗖𝗼𝗿𝗿𝗲𝗰𝘁𝗶𝘃𝗲 𝗔𝗰𝘁𝗶𝗼𝗻
+
+Depending on the root cause:
+
+- Fix inefficient application code.
+- Investigate abnormal traffic.
+- Tune CPU requests and limits.
+- Scale replicas if additional capacity is needed.
+- Configure HPA when scaling based on CPU utilization is appropriate.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A Pod can be Running and Ready while consuming excessive CPU.
+
+Don't just increase CPU limits. Identify why CPU consumption increased first.
