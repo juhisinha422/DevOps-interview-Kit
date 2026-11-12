@@ -1,0 +1,13 @@
+Learning GitHub Actions – Day 1: Workflows
+
+
+📌 What is a Workflow?
+A workflow is an automated process defined in a YAML file. It can run when specific events occur in a GitHub repository, such as pushing code or creating a pull request.
+
+🛠️ What I'm learning:
+How workflows are defined in a .github/workflows/ directory.
+How to configure workflow triggers.
+How automation starts when a specified event occurs.
+
+💡 Key Takeaway: Workflows are the foundation of GitHub Actions and help automate repetitive development tasks.
+One concept at a time, one step closer to mastering DevOps! 💻
