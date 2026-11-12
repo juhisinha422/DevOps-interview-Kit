@@ -1,0 +1,27 @@
+Learning GitHub Actions – Day 2: Events and Triggers
+
+
+📌 What are Events and Triggers?
+Events are activities that happen in a GitHub repository, while triggers define when a workflow should start running in response to those events.
+Common examples include:
+push – Runs a workflow when code is pushed to a repository.
+pull_request – Runs a workflow when a pull request event occurs.
+workflow_dispatch – Allows a workflow to be triggered manually.
+schedule – Runs a workflow on a defined schedule.
+
+🛠️ Practical Example:
+name: Event Trigger Demo  
+on:   
+     push:     
+             branches:       
+                 - main  
+
+jobs:   
+     demo:     
+             runs-on: ubuntu-latest     
+           steps:       
+               - name: Display Message        
+                run: echo "Workflow triggered by a push to main!"
+
+💡 Key Takeaway:
+Events and triggers help automate tasks at the right time, making CI/CD pipelines more efficient and reducing manual effort.
