@@ -1,0 +1,67 @@
+𝗗𝗮𝘆 𝟱𝟰/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗛𝗣𝗔 𝗶𝘀 𝗡𝗼𝘁 𝗦𝗰𝗮𝗹𝗶𝗻𝗴 𝗣𝗼𝗱𝘀 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+Your application is experiencing high traffic, but the Kubernetes Horizontal Pod Autoscaler (HPA) is not increasing the number of replicas. How would you troubleshoot this in production?
+
+Here’s my practical approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝗛𝗣𝗔 𝗦𝘁𝗮𝘁𝘂𝘀
+
+kubectl get hpa -n <namespace>
+kubectl describe hpa <hpa-name> -n <namespace>
+
+Check:
+
+- Current CPU/memory utilization
+- Target utilization
+- Minimum and maximum replicas
+- Events and scaling conditions
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗠𝗲𝘁𝗿𝗶𝗰𝘀 𝗔𝗣𝗜
+
+kubectl top pods -n <namespace>
+kubectl get apiservice v1beta1.metrics.k8s.io
+
+If metrics are unavailable, investigate whether Metrics Server is installed and healthy.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗖𝗵𝗲𝗰𝗸 𝗖𝗣𝗨 𝗥𝗲𝗾𝘂𝗲𝘀𝘁𝘀
+
+For CPU utilization-based HPA, CPU requests are important because utilization is calculated relative to the requested CPU.
+
+kubectl describe deployment <deployment-name> -n <namespace>
+
+Verify that CPU requests are configured correctly in the container specification.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗠𝗶𝗻 𝗮𝗻𝗱 𝗠𝗮𝘅 𝗥𝗲𝗽𝗹𝗶𝗰𝗮𝘀
+
+kubectl get hpa <hpa-name> -n <namespace> -o yaml
+
+Check:
+
+- "minReplicas"
+- "maxReplicas"
+- "metrics"
+- "scaleTargetRef"
+
+Your HPA may already be at its maximum replica limit.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗖𝗵𝗲𝗰𝗸 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗮𝗻𝗱 𝗖𝗹𝘂𝘀𝘁𝗲𝗿 𝗖𝗮𝗽𝗮𝗰𝗶𝘁𝘆
+
+kubectl get deployment -n <namespace>
+kubectl get pods -n <namespace>
+kubectl get nodes
+
+Even if HPA requests more replicas, Pods may remain Pending if the cluster has insufficient resources.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗖𝗵𝗲𝗰𝗸 𝗦𝗰𝗮𝗹𝗶𝗻𝗴 𝗕𝗲𝗵𝗮𝘃𝗶𝗼𝘂𝗿
+
+Review HPA scaling policies, stabilization windows, and scaling events. These settings can delay or limit scaling.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+HPA depends on metrics, resource requests, scaling configuration, and available cluster capacity.
+
+More traffic does not automatically mean more Pods. You must verify the complete scaling path.
