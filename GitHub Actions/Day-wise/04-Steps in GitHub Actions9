@@ -1,0 +1,41 @@
+Learning GitHub Actions – Day 4: Steps
+Continuing my GitHub Actions learning journey as part of my Cloud & DevOps roadmap!
+
+📌 What are Steps in GitHub Actions?
+Steps are individual tasks that run inside a job. They help execute commands, perform actions, and automate different stages of a CI/CD pipeline.
+Steps within a job execute sequentially on the same runner and can share data with each other.
+
+🛠️ Practical Example:
+
+name: Steps Demo  
+
+on:   
+    push:     
+          branches:       
+              - main  
+
+ jobs:   
+     demo:     
+          runs-on: ubuntu-latest     
+           steps:       
+                 - name: Checkout Code         
+                    uses: actions/checkout@v4        
+
+                 - name: Display Message        
+                    run: echo "Welcome to GitHub Actions!"        
+ 
+                 - name: Check Current Directory         
+                    run: pwd        
+ 
+                - name: List Files         
+                   run: ls -la
+
+🔍 How it works:
+steps: Defines individual tasks inside a job.
+name: Gives each step a readable name.
+uses: Executes a reusable action.
+run: Executes shell commands.
+Steps run one after another by default.
+
+💡 Key Takeaway:
+Steps break a job into smaller, manageable tasks, making CI/CD workflows easier to understand, execute, and troubleshoot.
