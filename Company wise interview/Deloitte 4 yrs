@@ -1,0 +1,70 @@
+DevOps Engineer Interview Experience at #Deloitte | 1st Round (4+ Years Experience)
+
+
+#AWS & #Azure Cloud
+
+1. Your production application is running on AWS EC2, but users suddenly start receiving 504 Gateway Timeout errors. How would you troubleshoot?
+2. An AWS Auto Scaling Group is configured correctly, but new instances are not launching during a traffic spike. What would you investigate?
+3. Your application is deployed across multiple Availability Zones, but an AZ failure causes downtime. How would you identify the architectural gaps?
+4. Your AWS RDS database suddenly reaches 100% CPU utilization. How would you troubleshoot without impacting production?
+5. An EC2 instance in a private subnet cannot access external services. How would you investigate the networking configuration?
+6. How would you design a multi-region disaster recovery architecture with minimum RTO and RPO?
+7. Your Azure VM is running, but the application is inaccessible through the Application Gateway. How would you troubleshoot?
+8. A production application experiences intermittent connectivity failures between AWS services. How would you investigate VPC networking, DNS and security configurations?
+
+#CICD – Jenkins & GitHub Actions
+
+9. Your Jenkins pipeline succeeds, but the latest application version is not reflected in production. How would you troubleshoot?
+10. How would you design an end-to-end CI/CD pipeline with automated testing, security scanning, approval gates and rollback?
+11. Your GitHub Actions pipeline takes 45 minutes to complete. How would you optimize it without compromising security?
+12. How would you deploy the exact same Docker image across Dev, QA and Production environments?
+13. A production deployment fails after 70% of the rollout is complete. How would you recover without affecting existing users?
+14. How would you implement zero-downtime deployments using Jenkins, Helm and Kubernetes?
+15. Your self-hosted GitHub Actions runner suddenly goes offline during a critical deployment. How would you troubleshoot and recover?
+16. How would you implement GitOps using GitHub Actions, Helm and ArgoCD with automated validation and controlled production promotion?
+
+#Kubernetes
+
+17. Your Kubernetes pods are Running and Ready, but users cannot access the application. How would you troubleshoot end-to-end?
+18. A production pod keeps restarting with CrashLoopBackOff, but application logs show no errors. What would you investigate?
+19. Your application works correctly with 5 replicas but starts failing when scaled to 50 replicas. How would you identify the bottleneck?
+20. Your Kubernetes HPA is configured, but pods are not scaling during high CPU utilization. How would you debug?
+21. Your Kubernetes nodes suddenly become NotReady during peak traffic. How would you restore service availability?
+22. During a rolling deployment, users start receiving intermittent 502 and 503 errors. How would you prevent downtime?
+23. Your Kubernetes pods are frequently OOMKilled even though the cluster has sufficient memory. What would you investigate?
+24. A Kubernetes Service is not forwarding traffic to healthy pods. How would you troubleshoot Services, EndpointSlices, DNS and network policies?
+25. How would you handle a production incident where an entire Kubernetes cluster becomes unavailable?
+
+#Terraform
+
+26. Two engineers execute Terraform apply simultaneously against production infrastructure. How would you prevent conflicts?
+27. Your Terraform plan unexpectedly shows that a critical production database will be destroyed and recreated. What would you do?
+28. Someone manually changes AWS infrastructure through the console. How would you detect and resolve Terraform drift?
+29. Terraform apply fails halfway through infrastructure provisioning. How would you safely recover?
+30. How would you structure Terraform modules for multiple AWS accounts, regions and environments?
+31. Your Terraform state file becomes corrupted. How would you recover and avoid infrastructure disruption?
+32. How would you integrate Terraform with CI/CD pipelines while implementing security scanning, policy enforcement and approval workflows?
+
+#RealTimeProductionTroubleshooting
+
+33. Your production application becomes unavailable immediately after deployment, but all Kubernetes pods and infrastructure dashboards appear healthy. How would you identify the actual issue?
+34. Application latency suddenly increases from 200 ms to 8 seconds without any significant CPU or memory spike. How would you investigate?
+35. Multiple microservices start failing simultaneously with connection timeout errors. How would you determine whether the issue is related to DNS, networking, databases or service dependencies?
+36. Your organization experiences a major production outage during a high-traffic event. How would you manage incident response, communication, recovery and RCA?
+37. Your Kubernetes deployment is successful, but the new application version is causing database connection exhaustion. How would you mitigate the incident?
+38. A production release introduces an intermittent issue that cannot be reproduced in lower environments. How would you investigate?
+39. Your monitoring system shows all services as healthy, but customers are reporting transaction failures. How would you improve troubleshooting and observability?
+40. Explain three critical production incidents you personally handled, including symptoms, business impact, root cause, resolution, automation and preventive measures.
+
+Interview Takeaway:
+
+For 4+ years of DevOps experience, interviewers are not just looking for theoretical knowledge.
+
+They want to understand:
+
+- How you troubleshoot real production incidents.
+- How you design reliable and scalable cloud infrastructure.
+- How you implement advanced CI/CD and GitOps automation.
+- How you manage infrastructure safely using Terraform.
+- How you reduce downtime, improve reliability and prevent recurring failures.
+
