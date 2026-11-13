@@ -1,0 +1,39 @@
+Learning GitHub Actions – Day 5: Actions
+Continuing my GitHub Actions learning journey as part of my Cloud & DevOps roadmap!
+
+📌 What are Actions in GitHub Actions?
+Actions are reusable units of code that perform specific tasks within a workflow. Instead of writing every command from scratch, we can use existing actions created by GitHub or the community.
+They help simplify automation and make CI/CD workflows more efficient.
+
+🛠️ Practical Example:
+
+name: Actions Demo
+
+  on:
+     push:
+          branches:
+              - main 
+      
+ jobs:   
+     demo:     runs-on: ubuntu-latest
+      steps:       
+         - name: Checkout Repository         
+           uses: actions/checkout@v4
+
+        - name: Set Up Python
+          uses: actions/setup-python@v5
+          with: 
+             python-version: '3.12' 
+  
+        - name: Display Python Version
+           run: python --version
+
+🔍 How it works:
+uses: Calls a reusable action.
+actions/checkout: Checks out repository code.
+actions/setup-python: Sets up the required Python version.
+with: Passes input parameters to an action.
+run: Executes shell commands.
+
+💡 Key Takeaway:
+Actions help us reuse existing automation logic instead of writing everything manually, making workflows cleaner, faster, and easier to maintain.
