@@ -51,6 +51,11 @@ nginx-5c9b8f7d64-k9mnq    # new ReplicaSet
 ```
 
 This is how Deployments do rolling updates and rollbacks: they scale the new ReplicaSet up while scaling the old one down, and keep old ReplicaSets around so `kubectl rollout undo` can switch back.
+It happens because a Deployment doesn't create Pods directly. It manages a ReplicaSet, which then creates the Pods. Each layer in that chain adds its own identifier to the name:
+
+**K8s flow:** Deployment ➔ ReplicaSet ➔ Pod
+
+**Pod name:** Deployment Name + Pod Template Hash + Unique Pod Suffix
 
 ## Why the random suffix is needed
 
