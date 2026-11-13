@@ -1,0 +1,67 @@
+𝗗𝗮𝘆 𝟱𝟱/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗼𝗱𝘀 𝗮𝗿𝗲 𝗣𝗲𝗻𝗱𝗶𝗻𝗴 𝗗𝘂𝗲 𝘁𝗼 𝗜𝗻𝘀𝘂𝗳𝗳𝗶𝗰𝗶𝗲𝗻𝘁 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗙𝗶𝘅 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+Your application is receiving more traffic. HPA increases the replica count, but the newly created Pods remain in "Pending" state. How would you troubleshoot this in production?
+
+Here’s my practical approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝗣𝗼𝗱 𝗦𝘁𝗮𝘁𝘂𝘀
+
+kubectl get pods -n <namespace> -o wide
+kubectl describe pod <pod-name> -n <namespace>
+
+Check the Events section for messages such as:
+
+- "Insufficient cpu"
+- "Insufficient memory"
+- "Too many pods"
+- Node selector or affinity mismatch
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗖𝗵𝗲𝗰𝗸 𝗡𝗼𝗱𝗲 𝗖𝗮𝗽𝗮𝗰𝗶𝘁𝘆
+
+kubectl get nodes
+kubectl describe nodes
+kubectl top nodes
+
+Review node allocatable CPU and memory, existing workloads, and available capacity.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗥𝗲𝘃𝗶𝗲𝘄 𝗣𝗼𝗱 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝗥𝗲𝗾𝘂𝗲𝘀𝘁𝘀
+
+kubectl get deployment <deployment-name> -n <namespace> -o yaml
+
+Check CPU and memory requests.
+
+Remember: Kubernetes scheduling is primarily based on resource requests, not simply the current resource usage shown by monitoring tools.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗡𝗼𝗱𝗲 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗶𝗻𝗴 𝗖𝗼𝗻𝘀𝘁𝗿𝗮𝗶𝗻𝘁𝘀
+
+Review:
+
+- Node selectors
+- Node affinity and anti-affinity
+- Taints and tolerations
+- Topology spread constraints
+
+A node may have free resources but still be unsuitable for the Pod.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗖𝗵𝗲𝗰𝗸 𝗖𝗹𝘂𝘀𝘁𝗲𝗿 𝗔𝘂𝘁𝗼𝘀𝗰𝗮𝗹𝗶𝗻𝗴
+
+If the cluster uses Cluster Autoscaler, verify whether it can add worker nodes and whether node-group limits or cloud quotas are blocking scale-up.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗶𝗻𝗴
+
+kubectl get pods -n <namespace> -o wide
+kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp
+
+Confirm that the Pods are scheduled successfully and become Ready.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+HPA scales Pods, but it does not guarantee that the cluster has enough capacity to run them.
+
+Always investigate the complete path:
+
+HPA → Pod creation → Scheduler → Worker Node → Application readiness.
