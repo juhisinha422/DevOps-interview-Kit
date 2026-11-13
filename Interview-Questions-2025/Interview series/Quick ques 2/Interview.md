@@ -1,4 +1,4 @@
-When I saw a $14,000 AWS bill land in my inbox, my heart sank.
+## When I saw a $14,000 AWS bill land in my inbox, my heart sank.
 
 Startups often operate on tight budgets, and such a spike can feel like a major setback. But sometimes, hidden inefficiencies are the real culprit, waiting to be uncovered.
 
