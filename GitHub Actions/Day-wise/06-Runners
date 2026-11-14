@@ -1,0 +1,40 @@
+Learning GitHub Actions – Day 6: Runners
+Continuing my GitHub Actions learning journey as part of my Cloud & DevOps roadmap!
+
+📌 What are Runners in GitHub Actions?
+Runners are servers or machines that execute the jobs defined in a GitHub Actions workflow.
+Whenever a workflow is triggered, GitHub assigns the job to an available runner, which provides the environment required to execute commands, build applications, run tests, and perform deployments.
+There are two main types of runners:
+GitHub-hosted runners: Machines managed by GitHub with preconfigured environments.
+Self-hosted runners: Machines that we configure and manage ourselves, such as an EC2 instance or an on-premises server.
+
+🛠️ Practical Example:
+
+name: Runners Demo  
+
+on:
+   push:
+      branches:       
+             - main  
+
+ jobs:
+    demo:     
+        runs-on: ubuntu-latest     
+        steps:
+           - name: Display Runner Information
+              run: |
+                    echo "Running on GitHub Actions Runner"
+                    echo "Operating System:"
+                     uname -a        
+
+          - name: Check Working Directory
+             run: pwd
+
+🔍 How it works:
+runs-on: Specifies which runner environment to use.
+ubuntu-latest: Uses a GitHub-hosted Ubuntu runner.
+run: Executes commands on the selected runner.
+The runner executes all steps within the assigned job.
+
+💡 Key Takeaway:
+Runners provide the execution environment for GitHub Actions jobs. Understanding GitHub-hosted and self-hosted runners helps us choose the right infrastructure for CI/CD automation.
