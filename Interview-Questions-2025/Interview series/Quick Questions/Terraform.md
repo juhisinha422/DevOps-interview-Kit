@@ -1,3 +1,86 @@
+# Top 10 Terraform Interview Questions & Answers – 4+ Years DevOps Experience
+
+## 1. What is the difference between terraform import and terraform taint?
+
+`terraform import` is used to bring an existing infrastructure resource under Terraform management without recreating it. For example, if an EC2 instance was created manually in AWS, I can import it into Terraform state using `terraform import aws_instance.web i-1234567890`. I then write the corresponding resource configuration and run `terraform plan` to make sure the configuration matches the existing infrastructure. On the other hand, `terraform taint` was historically used to mark a resource for recreation during the next apply. In modern Terraform, I use `terraform apply -replace="aws_instance.web"` instead because the taint command is deprecated. So, import is for managing existing resources, whereas replace is for recreating an existing managed resource when necessary.
+
+## 2. How do you manage secrets in Terraform without hardcoding them?
+
+I never hardcode sensitive values such as passwords, API keys, or database credentials directly into Terraform configuration files. In AWS environments, I prefer using AWS Secrets Manager or Systems Manager Parameter Store to securely store and retrieve sensitive values. I can also pass sensitive variables through environment variables such as `TF_VAR_db_password` or use a secure CI/CD credential store. In Terraform, I use the `sensitive = true` attribute to prevent sensitive values from being displayed in normal CLI output. However, marking a variable sensitive does not encrypt or remove it from Terraform state. Therefore, I use an encrypted remote backend with restricted IAM permissions and secure state access. I also avoid exposing secrets through logs, outputs, and command-line arguments.
+
+## 3. What’s the difference between count and for_each? Give a real-world use case.
+
+Both `count` and `for_each` are used to create multiple instances of a resource, but they work differently. `count` uses a numeric index to create resources, whereas `for_each` uses unique keys from a map or set. For example, if I need to create three identical development EC2 instances, I can use `count = 3`. However, if I need to create different S3 buckets for development, staging, and production, I prefer `for_each` because each resource gets a meaningful key. One important difference is that removing an item from a list used by `count` can shift resource indexes and cause unnecessary replacements, while `for_each` maintains resource identity through stable keys. In real-world infrastructure, I generally prefer `for_each` when managing named resources with different configurations.
+
+## 4. How do you handle drift detection in Terraform?
+
+Infrastructure drift occurs when someone manually changes an AWS resource outside Terraform, causing the actual infrastructure to differ from the configuration or state. I detect drift by running `terraform plan`, which refreshes the state information from the provider and compares the actual infrastructure with the desired configuration. For example, if someone manually changes an EC2 instance type from `t3.medium` to `t3.large`, Terraform can identify that difference and show the required corrective action. I review the plan to understand the change and decide whether to restore the original configuration or update Terraform code to reflect an approved change. For prevention, I use restricted IAM permissions, remote state, regular drift checks through CI/CD, and controlled infrastructure changes through pull requests.
+
+## 5. What is a Terraform remote backend, and why is it important?
+
+A Terraform remote backend stores Terraform state outside the local machine, allowing multiple team members and CI/CD pipelines to work with the same infrastructure state. In AWS, I commonly use an S3 bucket as a remote backend to store the state file. I configure encryption, versioning, restricted IAM access, and state locking to prevent concurrent modifications. With supported Terraform versions, S3 native state locking can be enabled using `use_lockfile = true`. This prevents two engineers or pipelines from modifying the same state simultaneously. Remote backends are important because they provide centralized state management, collaboration, recovery through state versions, and safer infrastructure automation.
+
+## 6. How do you manage multiple environments (dev, staging, prod) in Terraform?
+
+I manage multiple environments using reusable Terraform modules with separate environment-specific configurations and state files. For example, I create reusable modules for EC2, VPC, security groups, and RDS, then call those modules from separate development, staging, and production configurations with different variable values. Each environment has its own state file and backend key so that changes in development do not accidentally affect production. I maintain separate access permissions and approval workflows, especially for production. I can also use Terraform workspaces for simpler environment separation, but for critical production infrastructure, I generally prefer separate root configurations and isolated state files because they provide clearer access control and operational boundaries.
+
+## 7. Difference between local-exec and remote-exec provisioners.
+
+Both are Terraform provisioners used to execute commands during resource creation or destruction, but they execute in different locations. `local-exec` runs a command on the machine where Terraform is executed. For example, I could use it to trigger a local script after creating an infrastructure resource. `remote-exec` executes commands on a remote machine, usually through SSH or WinRM, after Terraform establishes the connection. For example, it could run a configuration script on an EC2 instance. However, I avoid relying heavily on provisioners because they are not as reliable or predictable as declarative configuration management. For application installation and server configuration, I prefer tools such as Ansible, cloud-init, or configuration-management pipelines.
+
+## 8. How do you safely roll back infrastructure changes after a failed deployment?
+
+Terraform does not provide a traditional automatic rollback mechanism like application deployment tools. If an infrastructure deployment fails, I first inspect the error logs and run `terraform plan` to understand which resources were successfully created or modified and which operations failed. I also verify the actual AWS infrastructure and Terraform state before making further changes. If the configuration change caused the issue, I revert the Terraform code to the last known-good version through Git and review the resulting plan before applying it. If state recovery is required, I can restore an appropriate previous state version from the versioned S3 backend, but only after carefully checking the real infrastructure and coordinating access to avoid overwriting newer state changes. I never blindly restore an old state file because that can cause state and infrastructure to become inconsistent. Finally, I verify the infrastructure and application health and improve the deployment validation process.
+
+## 9. Explain terraform refresh vs terraform plan.
+
+`terraform refresh` was historically used to update Terraform state by reading the current information from the actual infrastructure through the provider. However, the standalone `terraform refresh` command is deprecated, and I prefer using `terraform plan` because it refreshes the state and compares the actual infrastructure with the desired configuration. For example, if someone manually changes an EC2 instance type in AWS, running `terraform plan` can detect the difference and show whether Terraform intends to update the instance to match the configuration. If I only want to update the state to reflect the real infrastructure without proposing configuration changes, I can use `terraform plan -refresh-only` and then apply the reviewed refresh-only plan. This helps me detect infrastructure drift and maintain accurate Terraform state.
+
+## 10. How do you write reusable Terraform modules?
+
+I create reusable Terraform modules by grouping related infrastructure resources into separate directories with clearly defined inputs and outputs. For example, I can create an EC2 module containing `main.tf`, `variables.tf`, and `outputs.tf`. The main file defines the EC2 instance and related resources, the variables file accepts configurable values such as instance type, AMI ID, and subnet ID, and the outputs file exposes useful values such as the instance ID and private IP. I then call this module from different environment configurations and pass different values for development, staging, and production. I also use input validation, sensible defaults, consistent naming, version-controlled module releases, and documentation. This approach reduces code duplication, improves maintainability, and makes infrastructure provisioning consistent across environments.
+
+---
+
+## Important Terraform Commands for Interviews
+
+| Command | Purpose |
+|---|---|
+| `terraform init` | Initialize the working directory and providers |
+| `terraform fmt` | Format Terraform configuration files |
+| `terraform validate` | Validate Terraform configuration |
+| `terraform plan` | Preview infrastructure changes |
+| `terraform apply` | Apply infrastructure changes |
+| `terraform destroy` | Destroy managed infrastructure |
+| `terraform state list` | List resources tracked in state |
+| `terraform state show <resource>` | Inspect a resource in state |
+| `terraform import <address> <id>` | Import an existing resource into state |
+| `terraform apply -replace="aws_instance.web"` | Replace a specific resource |
+| `terraform plan -refresh-only` | Preview state refresh changes |
+| `terraform output` | Display Terraform outputs |
+| `terraform workspace list` | List available workspaces |
+| `terraform providers` | Display provider dependencies |
+
+## Production-Level Terraform Best Practices
+
+1. Store Terraform state in a secure remote backend such as S3 with encryption, versioning, and locking.
+2. Never commit passwords, access keys, or sensitive credentials to Git.
+3. Use reusable modules instead of duplicating infrastructure code.
+4. Maintain separate state files for development, staging, and production.
+5. Always review `terraform plan` before applying infrastructure changes.
+6. Use Git pull requests and approval workflows for production infrastructure.
+7. Pin Terraform and provider versions to maintain consistency.
+8. Use least-privilege IAM roles for Terraform execution.
+9. Detect configuration drift regularly and investigate unexpected changes.
+10. Maintain state backups and a tested infrastructure recovery procedure.
+
+## My Interview Approach
+
+When working with Terraform in a production AWS environment, I focus on infrastructure consistency, secure state management, reusable modules, and controlled deployments. I use Git for version control, CI/CD pipelines for automated validation and deployment, S3 for remote state management, and IAM roles for secure access. Before applying any infrastructure changes, I review the execution plan, verify the impact, and ensure that production changes follow the required approval process.
+
+**My goal is not just to provision infrastructure using Terraform, but to make infrastructure deployments secure, repeatable, scalable, and recoverable.**
+
+
 # Terraform Interview Scenario — `create_before_destroy`
 
 ## 𝗧𝗵𝗲 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄𝗲𝗿 𝗔𝘀𝗸𝘀
