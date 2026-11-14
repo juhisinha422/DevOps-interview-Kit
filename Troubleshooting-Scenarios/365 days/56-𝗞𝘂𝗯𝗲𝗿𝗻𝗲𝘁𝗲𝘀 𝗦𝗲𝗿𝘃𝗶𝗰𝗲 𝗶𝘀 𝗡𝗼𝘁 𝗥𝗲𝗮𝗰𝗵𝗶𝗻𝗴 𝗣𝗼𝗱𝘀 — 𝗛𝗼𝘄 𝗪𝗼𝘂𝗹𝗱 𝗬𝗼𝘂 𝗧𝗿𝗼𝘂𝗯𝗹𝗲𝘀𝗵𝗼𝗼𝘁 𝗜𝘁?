@@ -1,0 +1,78 @@
+𝗗𝗮𝘆 𝟱𝟲/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗶𝘀 𝗡𝗼𝘁 𝗥𝗲𝗮𝗰𝗵𝗶𝗻𝗴 𝗣𝗼𝗱𝘀 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+Your Kubernetes application Pods are Running and Ready, but users cannot access the application through its Service. How would you troubleshoot this issue in production?
+
+Here’s my practical approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗦𝗲𝗿𝘃𝗶𝗰𝗲
+
+kubectl get svc -n <namespace>
+kubectl describe svc <service-name> -n <namespace>
+
+Verify:
+
+- Service type
+- ClusterIP or external IP
+- Port and targetPort
+- Label selectors
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗖𝗵𝗲𝗰𝗸 𝗘𝗻𝗱𝗽𝗼𝗶𝗻𝘁𝗦𝗹𝗶𝗰𝗲𝘀
+
+kubectl get endpointslices -n <namespace>
+kubectl get endpoints <service-name> -n <namespace>
+
+Confirm that the Service has the expected Pod IP addresses as endpoints.
+
+If there are no endpoints, investigate the Service selector and Pod labels.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗣𝗼𝗱 𝗟𝗮𝗯𝗲𝗹𝘀
+
+kubectl get pods -n <namespace> --show-labels
+
+Compare the Pod labels with the Service selector.
+
+A mismatch means the Service cannot select the intended Pods.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗖𝗵𝗲𝗰𝗸 𝗣𝗼𝗿𝘁 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻
+
+Review the application container port and Service "targetPort".
+
+For example:
+
+- Application listens on port 8080.
+- Service port is 80.
+- Service targetPort should be 8080.
+
+A wrong port mapping can prevent traffic from reaching the application.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗧𝗲𝘀𝘁 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗶𝘃𝗶𝘁𝘆
+
+Test the Service from an appropriate diagnostic Pod:
+
+kubectl run test-curl --rm -it --restart=Never \
+  --image=curlimages/curl -n <namespace> \
+  -- curl -v http://<service-name>:<port>
+
+Check whether the application responds through the Service.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗜𝗻𝘃𝗲𝘀𝘁𝗶𝗴𝗮𝘁𝗲 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴
+
+If the configuration looks correct, investigate:
+
+- NetworkPolicies
+- CNI plugin health
+- kube-proxy or the cluster's Service dataplane
+- DNS resolution
+- Ingress or external load balancer configuration, if applicable
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A Running and Ready Pod does not guarantee that users can reach it.
+
+Troubleshoot the complete traffic path:
+
+Client → Service → EndpointSlice → Pod → Application Port.
