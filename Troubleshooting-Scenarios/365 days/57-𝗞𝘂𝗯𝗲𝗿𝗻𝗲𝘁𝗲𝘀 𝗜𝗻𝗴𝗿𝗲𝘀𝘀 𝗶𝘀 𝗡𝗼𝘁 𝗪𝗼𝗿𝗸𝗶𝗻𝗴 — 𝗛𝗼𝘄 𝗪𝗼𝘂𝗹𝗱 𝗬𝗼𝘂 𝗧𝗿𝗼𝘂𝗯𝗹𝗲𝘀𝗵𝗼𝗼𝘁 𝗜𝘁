@@ -1,0 +1,61 @@
+𝗗𝗮𝘆 𝟱𝟳/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗜𝗻𝗴𝗿𝗲𝘀𝘀 𝗶𝘀 𝗡𝗼𝘁 𝗪𝗼𝗿𝗸𝗶𝗻𝗴 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+Your application is working inside the Kubernetes cluster, and the Service is healthy. However, users cannot access it through the Ingress URL. How would you troubleshoot this in production?
+
+Here’s my practical approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗖𝗵𝗲𝗰𝗸 𝗜𝗻𝗴𝗿𝗲𝘀𝘀 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲
+
+kubectl get ingress -n <namespace>
+kubectl describe ingress <ingress-name> -n <namespace>
+
+Verify the hostname, path, backend Service, backend port, and Events.
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗖𝗵𝗲𝗰𝗸 𝗜𝗻𝗴𝗿𝗲𝘀𝘀 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿
+
+kubectl get pods -A | grep -i ingress
+kubectl get svc -A | grep -i ingress
+
+Confirm that the Ingress Controller is running and its Service is reachable.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗥𝗲𝘃𝗶𝗲𝘄 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 𝗟𝗼𝗴𝘀
+
+kubectl logs <controller-pod> -n <controller-namespace> --tail=100
+
+Look for configuration errors, backend connection failures, and rejected Ingress rules.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗕𝗮𝗰𝗸𝗲𝗻𝗱 𝗦𝗲𝗿𝘃𝗶𝗰𝗲
+
+kubectl get svc -n <namespace>
+kubectl get endpointslices -n <namespace>
+
+Confirm that the Ingress backend points to the correct Service and port, and that the Service has healthy endpoints.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗖𝗵𝗲𝗰𝗸 𝗗𝗡𝗦 𝗮𝗻𝗱 𝗧𝗟𝗦
+
+nslookup <your-domain>
+
+Verify that DNS resolves to the correct Ingress endpoint.
+
+If HTTPS is failing, inspect the TLS Secret and certificate configuration:
+
+kubectl get secrets -n <namespace>
+kubectl describe ingress <ingress-name> -n <namespace>
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗧𝗲𝘀𝘁 𝗧𝗵𝗲 𝗥𝗼𝘂𝘁𝗲
+
+curl -vk https://<your-domain>/<path>
+
+Check the HTTP response code, hostname routing, path rules, and backend response.
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+Ingress is not just a URL configuration. It depends on the Ingress Controller, routing rules, DNS, TLS, and backend Service.
+
+Always troubleshoot the complete traffic path:
+
+Client → DNS → Load Balancer → Ingress Controller → Service → Pod.
