@@ -1,0 +1,71 @@
+What is a Kafka Broker?
+====================
+  
+ A Kafka Broker is a Kafka server responsible for receiving, storing, and serving messages.
+  
+It manages topic partitions, handles producer requests, serves consumer requests, and participates in replication to provide fault tolerance.
+  
+A Kafka cluster consists of multiple brokers working together.
+  
+For example, in a banking application, when a Payment Service sends a payment event to Kafka, the broker receives the message and stores it in the appropriate topic partition.
+
+Kafka broker is a service and works in collaboration with other brokers. The cluster arranges broker to perform  topic- partition mapping, redirection to a right partition (Bootstrap brokers). Replication A Kafka broker is responsible to play its role in these responsibilities handing.  The messages are kept in logs in Network Cache that are replicated Page Cache of Linux. This provides so named Zero Copy reading. Under the carpet Kafka uses nmap and sendfile for logs handling. Partition is an abstraction, just division of a topic by channels, for parallel reading by a number of consumers, where sequence is guaranteed because just 1 consumer reads from the partition.
+
+In traditional Kafka consumer groups, a partition is assigned to only one consumer within the same consumer group at a time. However, multiple consumer groups can independently consume messages from the same partition.
+Kafka also introduced Share Groups, which allow multiple consumers within the same group to process records from a partition concurrently using record-level acknowledgements.
+From a resource-planning perspective, we need to consider consumer concurrency, partition distribution, broker capacity, throughput, and processing requirements before choosing the appropriate consumption model.
+The right approach depends on the application's use case and scalability requirements.
+
+View profile for Abhishek Pandey
+Abhishek Pandey  1st
+Software Engineer at Flipkaft(INDIA)| Java, Spring Boot,Microservice, Spring AI,REST API, React, Angular, JavaScript, AWS
+
+11h
+
+What is a Kafka Broker?
+====================
+  
+ A Kafka Broker is a Kafka server responsible for receiving, storing, and serving messages.
+  
+It manages topic partitions, handles producer requests, serves consumer requests, and participates in replication to provide fault tolerance.
+  
+A Kafka cluster consists of multiple brokers working together.
+  
+For example, in a banking application, when a Payment Service sends a payment event to Kafka, the broker receives the message and stores it in the appropriate topic partition.
+
+
+34
+4 Comments
+1 Repost
+Comment
+
+Share
+Simon Cantor, graphic
+Simon Cantor
+Design and Architecture consultant
+
+4h
+
+Kafka broker is a service and works in collaboration with other brokers. The cluster arranges broker to perform  topic- partition mapping, redirection to a right partition (Bootstrap brokers). Replication A Kafka broker is responsible to play its role in these responsibilities handing.  The messages are kept in logs in Network Cache that are replicated Page Cache of Linux. This provides so named Zero Copy reading. Under the carpet Kafka uses nmap and sendfile for logs handling. Partition is an abstraction, just division of a topic by channels, for parallel reading by a number of consumers, where sequence is guaranteed because just 1 consumer reads from the partition
+
+
+Like
+
+Reply
+1 Reaction
+Abhishek Pandey, graphic
+Abhishek Pandey
+Software Engineer at Flipkaft(INDIA)| Java, Spring Boot,Microservice, Spring AI,REST API, React, Angular, JavaScript, AWS
+
+35m
+
+Simon Cantor Thanks for sharing your perspective. That's a valid point.
+In traditional Kafka consumer groups, a partition is assigned to only one consumer within the same consumer group at a time. However, multiple consumer groups can independently consume messages from the same partition.
+Kafka also introduced Share Groups, which allow multiple consumers within the same group to process records from a partition concurrently using record-level acknowledgements.
+From a resource-planning perspective, we need to consider consumer concurrency, partition distribution, broker capacity, throughput, and processing requirements before choosing the appropriate consumption model.
+The right approach depends on the application's use case and scalability requirements.
+
+
+Kafka broker works as part of a cluster, where multiple brokers collaborate to manage topic partitions, replication, and message distribution.
+I would also like to add that Kafka uses the Linux page cache to efficiently store and serve log data, and zero-copy transfer helps improve message delivery performance by reducing unnecessary data copying.
+Also, each partition maintains message ordering, and within a consumer group, a partition is assigned to only one consumer at a time. This helps Kafka achieve parallel processing while maintaining ordering within a partition.
