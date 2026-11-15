@@ -68,3 +68,32 @@ They want to understand:
 - How you manage infrastructure safely using Terraform.
 - How you reduce downtime, improve reliability and prevent recurring failures.
 
+DevOps Engineer Interview Experience at #Deloitte | 2nd Round (3 to 6+ Years Experience)
+
+#CI/CD – Jenkins, GitHub Actions
+
+9. Your GitHub Actions pipeline successfully deploys an application, but production is still running the previous Docker image. How would you troubleshoot?
+10. How would you design an end-to-end CI/CD architecture for 100 microservices deployed across Dev, QA, Staging and Production?
+11. How would you ensure that the exact same Docker image digest is promoted across all environments without rebuilding it?
+
+#Kubernetes
+
+17. Your Kubernetes pods are Running and Ready, but users experience intermittent request failures. How would you troubleshoot end-to-end?
+18. A production Kubernetes deployment starts failing only when the application scales beyond 30 replicas. How would you investigate?
+19. Your EKS cluster experiences sudden CoreDNS latency, affecting communication between microservices. How would you restore normal service?
+20. Your Kubernetes HPA scales pods successfully, but request latency continues increasing. What would you investigate?
+21. During a rolling deployment, old pods terminate before existing requests are completed, causing HTTP 503 errors. How would you prevent this?
+
+#RealTimeProductionTroubleshooting
+
+34. A critical production service experiences high latency, but CPU, memory and network utilization appear normal. How would you troubleshoot?
+36. Multiple microservices experience connection timeouts simultaneously, but their pods and nodes remain healthy. How would you isolate the failure?
+37. Your production deployment succeeds, but database connection exhaustion causes cascading failures across multiple services. How would you mitigate the incident?
+38. Your application is experiencing intermittent failures only in one AWS Availability Zone. How would you identify whether the problem is related to networking, infrastructure or application dependencies?
+
+#AdvancedAutomation
+
+41. Explain an advanced automation project you implemented beyond traditional CI/CD, including its architecture, business impact and measurable results.
+42. How would you automate production incident detection, log correlation, remediation and post-incident reporting?
+43. How would you implement automated infrastructure remediation when cloud resources drift from approved configurations?
+44. Your production application has an SLO of 99.95%, but repeated deployments are consuming the error budget. How would you balance reliability and release velocity?
