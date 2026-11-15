@@ -1,0 +1,7 @@
+A developer raises a PR with a vulnerable package and a security check fails. What is the ideal way to handle it?
+I would treat the security scan as a mandatory quality gate in the CI/CD pipeline.
+If a developer raises a PR containing a vulnerable dependency, I would block the merge and notify the developer with the package name, CVE ID, and severity.
+I would ask the developer to upgrade the dependency to a secure version or apply an approved mitigation. Once the fix is committed, the pipeline automatically reruns the security scan.
+Only after the security checks pass and the required approvals are completed would I allow the PR to merge.
+For exceptions, I would follow a formal risk-acceptance process with security-team approval and a defined expiry date.
+My goal is to implement Shift-Left Security, identifying and fixing vulnerabilities as early as possible in the development lifecycle.
