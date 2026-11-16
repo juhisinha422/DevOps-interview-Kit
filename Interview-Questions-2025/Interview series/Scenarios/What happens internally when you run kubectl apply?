@@ -1,0 +1,8 @@
+What happens internally when you run kubectl apply?
+When we run kubectl apply, Kubernetes takes our YAML configuration, compares it with the existing cluster state, calculates the required changes, and sends those changes to the Kubernetes API Server.
+2.The API Server processes the request, stores the desired configuration in etcd, and Kubernetes controllers work continuously to make the actual cluster state match the desired state.
+The Kubernetes Controller Manager continuously watches the API Server.
+The Scheduler watches for newly created Pods that do not have a node assigned.
+The Kubelet running on each selected worker node detects the assigned Pod.
+The Kubelet reports Pod status back to the API Server.
+The Deployment Controller continues monitoring the state and ensures that the desired number of replicas is maintained.
