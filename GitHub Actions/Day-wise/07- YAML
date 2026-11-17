@@ -1,0 +1,33 @@
+ Learning GitHub Actions – Day 7: YAML Syntax
+
+ What is YAML?
+YAML stands for YAML Ain't Markup Language. It is a human-readable data serialization format used to define configurations and workflows in GitHub Actions.
+GitHub Actions uses YAML files to define workflow names, triggers, jobs, runners, and steps.
+
+🛠️ Practical Example:
+name: YAML Syntax Demo  
+on:
+   push:
+     branches:
+       - main
+
+  jobs:
+    demo:     
+        runs-on: ubuntu-latest     
+        steps:
+       - name: Display Message
+         run: echo "Learning YAML syntax!" 
+
+       - name: Check Current Directory
+         run: pwd
+
+🔍 Important YAML Syntax Rules:
+Key-value pairs: Use key: value to define configuration.
+Indentation: Use spaces to represent hierarchy; avoid tabs.
+Lists: Use - to define multiple items.
+Strings: Can be written with or without quotes, depending on the value.
+Comments: Use # to add comments.
+Case sensitivity: YAML keys and values are case-sensitive.
+
+💡 Key Takeaway:
+Understanding YAML syntax is essential for writing valid GitHub Actions workflows. Even a small indentation mistake can cause workflow configuration errors.
