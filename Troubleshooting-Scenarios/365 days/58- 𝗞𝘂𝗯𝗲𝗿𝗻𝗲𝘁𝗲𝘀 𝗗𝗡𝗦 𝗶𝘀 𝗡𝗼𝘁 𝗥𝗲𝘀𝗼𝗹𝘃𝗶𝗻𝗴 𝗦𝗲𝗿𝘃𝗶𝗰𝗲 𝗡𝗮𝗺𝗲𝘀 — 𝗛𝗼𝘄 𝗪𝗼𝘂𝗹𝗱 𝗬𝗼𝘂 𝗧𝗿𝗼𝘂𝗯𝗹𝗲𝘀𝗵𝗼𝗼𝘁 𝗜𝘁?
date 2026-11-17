@@ -1,0 +1,64 @@
+ 𝗗𝗮𝘆 𝟱𝟴/𝟯𝟲𝟱 — 𝗗𝗲𝘃𝗢𝗽𝘀 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗖𝗵𝗮𝗹𝗹𝗲𝗻𝗴𝗲
+
+🔥 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗗𝗡𝗦 𝗶𝘀 𝗡𝗼𝘁 𝗥𝗲𝘀𝗼𝗹𝘃𝗶𝗻𝗴 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗡𝗮𝗺𝗲𝘀 — 𝗛𝗼𝘄 𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁 𝗜𝘁?
+
+𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻:
+
+Your application Pods are Running, but they cannot communicate with other services using Kubernetes DNS names such as "backend.default.svc.cluster.local". How would you investigate this in production?
+
+Here’s my practical approach 👇
+
+🔹 𝗦𝘁𝗲𝗽 𝟭: 𝗩𝗲𝗿𝗶𝗳𝘆 𝘁𝗵𝗲 𝗗𝗡𝗦 𝗙𝗮𝗶𝗹𝘂𝗿𝗲
+
+Run a DNS lookup from an affected Pod:
+
+nslookup backend.default.svc.cluster.local
+
+Check whether the issue affects one Pod, one namespace, or the entire cluster.
+
+🔹 𝗦𝘁𝗲𝗽 𝟮: 𝗖𝗵𝗲𝗰𝗸 𝗖𝗼𝗿𝗲𝗗𝗡𝗦 𝗣𝗼𝗱𝘀
+
+kubectl get pods -n kube-system -l k8s-app=kube-dns
+kubectl get svc -n kube-system
+
+Verify that CoreDNS Pods are Running and Ready and that the "kube-dns" Service exists.
+
+🔹 𝗦𝘁𝗲𝗽 𝟯: 𝗖𝗵𝗲𝗰𝗸 𝗖𝗼𝗿𝗲𝗗𝗡𝗦 𝗟𝗼𝗴𝘀
+
+kubectl logs -n kube-system \
+  -l k8s-app=kube-dns --tail=100
+
+Look for DNS forwarding failures, upstream resolver errors, plugin issues, or repeated timeouts.
+
+🔹 𝗦𝘁𝗲𝗽 𝟰: 𝗩𝗲𝗿𝗶𝗳𝘆 𝗣𝗼𝗱 𝗗𝗡𝗦 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻
+
+kubectl exec -it <pod-name> -n <namespace> -- cat /etc/resolv.conf
+
+Check the nameserver, search domains, and DNS options.
+
+🔹 𝗦𝘁𝗲𝗽 𝟱: 𝗧𝗲𝘀𝘁 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗮𝗻𝗱 𝗗𝗡𝗦 𝗥𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻
+
+kubectl get svc backend -n default
+kubectl get endpointslices -n default
+
+Check whether the Service exists and has the expected endpoints.
+
+Also test DNS resolution from a diagnostic Pod to isolate the issue.
+
+🔹 𝗦𝘁𝗲𝗽 𝟲: 𝗜𝗻𝘃𝗲𝘀𝘁𝗶𝗴𝗮𝘁𝗲 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴
+
+If CoreDNS is healthy but lookups still fail, investigate:
+
+- NetworkPolicy rules
+- CNI plugin health
+- UDP/TCP port 53 connectivity
+- Upstream DNS configuration
+- Node-level networking issues
+
+💡 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+A Running Pod does not guarantee DNS resolution is working.
+
+Troubleshoot the complete DNS path:
+
+Application Pod → DNS Configuration → CoreDNS Service → CoreDNS Pods → Upstream DNS (for external names).
