@@ -1,0 +1,11 @@
+A Kubernetes drain that takes down too many replicas at once is not a node problem. It is a budget problem nobody set.
+
+PodDisruptionBudget is the small piece that makes maintenance boring:
+
+- Set a minimum available count per service, not per deployment, so a drain cannot empty a service while a node is being replaced.
+- Test the budget during a real drain, not just in a manifest review. A budget that blocks every drain is as broken as no budget at all.
+- Pair it with readiness probes that mean something. A pod that reports ready before it can serve traffic gets traffic it cannot handle, budget or not.
+- Watch the budget during upgrades, when several nodes drain in sequence and the margin shrinks with each one.
+- Review the numbers after a release changes replica counts. A budget written for three replicas does not fit a service that now runs ten, or one that now runs two.
+
+Availability during maintenance is decided before maintenance starts, in a few lines of config.
