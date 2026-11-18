@@ -1,0 +1,26 @@
+Barclays Interview Experience
+Position : DevOps Engineer
+
+
+
+Interview Questions:
+
+1. Your application is running normally, but CPU utilization suddenly reaches 95% during peak banking transactions. How would you identify the root cause and resolve it without impacting customers?
+
+2. A Kubernetes pod is in the Running state, but the banking application is not accessible to users. How would you troubleshoot the issue across pods, services, ingress, DNS, and networking?
+
+3. Your Jenkins pipeline has suddenly started taking 40 minutes instead of 10 minutes, delaying critical releases. How would you identify the bottleneck and optimize the pipeline?
+
+4. A Terraform deployment accidentally modifies critical production infrastructure. How would you identify the changes, assess the impact, and safely recover without disrupting banking services?
+
+5. Your Kubernetes cluster has sufficient CPU and memory, but newly created pods remain stuck in the Pending state. What would you investigate, and how would you resolve it?
+
+6. Your application works perfectly inside a Docker container but fails after deployment to Kubernetes. How would you troubleshoot configuration, networking, secrets, resource limits, and application dependencies?
+
+7. Your team needs to deploy a new version of a critical banking application without downtime. How would you design a zero-downtime deployment strategy with rollback capabilities?
+
+8. A critical security vulnerability is discovered in a production container image. What immediate actions would you take to secure the application, investigate exposure, and prevent similar vulnerabilities?
+
+9. Your AWS infrastructure costs suddenly increase by 40%, while application traffic remains almost unchanged. How would you identify unnecessary spending and optimize costs without affecting performance or availability?
+
+10. Describe a critical production outage you handled. How did you identify the root cause, restore services, communicate with stakeholders, and implement preventive measures?
