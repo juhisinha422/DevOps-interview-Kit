@@ -1,0 +1,46 @@
+🚀 Learning GitHub Actions – Day 8: Workflow Files and Directory Structure
+Continuing my GitHub Actions learning journey as part of my Cloud & DevOps roadmap!
+
+📌 What are Workflow Files and Where Are They Stored?
+GitHub Actions workflows are defined using YAML files with .yml or .yaml extensions.
+These files must be stored inside the .github/workflows/ directory at the root of a GitHub repository.
+GitHub automatically detects workflow files in this directory and uses their configurations to execute automated tasks.
+
+🛠️ Practical Example:
+Directory Structure:
+my-project/
+ │
+ ├── .github/ 
+ │           └── workflows/ 
+ │                         ├── ci.yml
+ │                         ├── cd.yml
+ │                         └── test.yml
+ ├── src/ 
+ ├── README.md 
+ └── Dockerfile
+
+Example: ci.yml
+name: CI Pipeline
+  on:
+     push:
+         branches:
+             - main  
+ jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+        - name: Display Message
+          run: echo "CI Workflow is running!"
+
+🔍 How it works:
+.github/ – Stores GitHub-specific configuration files.
+workflows/ – Contains GitHub Actions workflow definitions.
+ci.yml – Defines the Continuous Integration workflow.
+cd.yml – Can define a Continuous Deployment workflow.
+test.yml – Can define automated testing workflows.
+
+💡 Key Takeaway:
+The .github/workflows/ directory is the standard location for GitHub Actions workflow files. Organizing workflows properly makes CI/CD automation easier to manage and maintain.
