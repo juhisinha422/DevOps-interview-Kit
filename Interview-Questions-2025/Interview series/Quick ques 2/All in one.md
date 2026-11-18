@@ -1,3 +1,810 @@
+# Senior DevOps Engineer Interview Questions & Answers (4+ Years Experience)
+
+# 1. Load Balancing: What are the different types of load balancers available in AWS and Azure? Which load balancer would be appropriate for a Kubernetes cluster, and why?
+
+### Answer:
+
+Load balancing distributes incoming application traffic across multiple backend servers or application instances to improve availability, scalability, and performance.
+
+### AWS Load Balancers
+
+AWS provides the following load balancers through Elastic Load Balancing (ELB):
+
+**1. Application Load Balancer (ALB)**
+- Works at Layer 7 (Application Layer).
+- Supports HTTP and HTTPS traffic.
+- Supports host-based and path-based routing.
+- Supports SSL/TLS termination.
+- Commonly used for microservices and Kubernetes applications.
+
+**2. Network Load Balancer (NLB)**
+- Works primarily at Layer 4 (Transport Layer).
+- Supports TCP, UDP and TLS listeners.
+- Handles millions of requests with low latency.
+- Supports static IP addresses.
+- Suitable for high-performance and TCP-based applications.
+
+**3. Gateway Load Balancer (GWLB)**
+- Works at Layer 3.
+- Used to deploy and scale virtual network appliances such as firewalls and intrusion detection systems.
+- Supports transparent traffic inspection.
+
+**4. Classic Load Balancer (CLB)**
+- Legacy load balancer.
+- Supports basic Layer 4 and Layer 7 load balancing.
+- Generally, I would prefer ALB or NLB for new deployments.
+
+### Azure Load Balancers
+
+**1. Azure Application Gateway**
+- Layer 7 load balancer.
+- Supports HTTP/HTTPS routing.
+- Provides path-based and host-based routing.
+- Supports Web Application Firewall (WAF).
+- Commonly used for web applications and ingress traffic.
+
+**2. Azure Load Balancer**
+- Layer 4 load balancer.
+- Supports TCP and UDP.
+- Available in public and internal configurations.
+- Suitable for distributing traffic across virtual machines and backend pools.
+
+**3. Azure Front Door**
+- Global Layer 7 load balancing service.
+- Provides global traffic routing, acceleration, and application delivery.
+- Supports WAF and edge-based routing.
+
+**4. Azure Traffic Manager**
+- DNS-based global traffic distribution.
+- Routes users based on priority, performance, geographic location, and other routing methods.
+
+### Which Load Balancer Would You Use for Kubernetes?
+
+For an AWS EKS cluster, I would generally use:
+
+- **ALB:** When I need HTTP/HTTPS routing, host-based routing, path-based routing, and SSL termination.
+- **NLB:** When I need Layer 4 load balancing, TCP/UDP traffic, static IPs, or high-performance network connectivity.
+
+I would integrate ALB with Kubernetes using the AWS Load Balancer Controller.
+
+For Azure AKS, I would use:
+- Azure Application Gateway for Layer 7 ingress.
+- Azure Load Balancer for Layer 4 services.
+- Application Gateway for Containers or another supported ingress solution depending on the architecture.
+
+### Real-Time Architecture
+
+```text
+              Internet
+                  |
+             Route 53
+                  |
+              AWS ALB
+                  |
+          Target Group
+                  |
+          Kubernetes Ingress
+                  |
+             K8s Service
+                  |
+          -----------------
+          |       |       |
+         Pod     Pod     Pod
+```
+
+**My approach:** I choose ALB when the application requires HTTP routing and NLB when the application needs Layer 4 connectivity. The selection depends on application traffic, performance, security, and networking requirements.
+
+---
+
+# 2. Kubernetes Networking: EKS Pods are failing due to IP address exhaustion. How would you troubleshoot and resolve a similar issue in OpenShift?
+
+### Answer:
+
+IP address exhaustion occurs when the Kubernetes networking layer cannot allocate additional IP addresses to new Pods.
+
+In AWS EKS, this commonly happens because the AWS VPC CNI plugin allocates VPC IP addresses to Pods.
+
+In OpenShift, the issue depends on the configured network provider, such as OVN-Kubernetes.
+
+### Troubleshooting in OpenShift
+
+**Step 1: Check Pod status**
+
+```bash
+oc get pods -A
+```
+
+Check whether Pods are stuck in Pending or ContainerCreating.
+
+**Step 2: Describe the affected Pod**
+
+```bash
+oc describe pod <pod-name> -n <namespace>
+```
+
+Check events for errors related to:
+- FailedCreatePodSandBox
+- Failed to allocate IP address
+- Network plugin failures
+- CNI errors
+
+**Step 3: Check node status**
+
+```bash
+oc get nodes -o wide
+```
+
+Check whether nodes are Ready and whether the problem affects specific nodes.
+
+**Step 4: Check cluster network configuration**
+
+```bash
+oc get network.config.openshift.io cluster -o yaml
+```
+
+Review:
+- Network type.
+- Cluster network CIDR.
+- Host prefix.
+- Pod network configuration.
+
+**Step 5: Check node and network health**
+
+```bash
+oc describe node <node-name>
+```
+
+Check node conditions, capacity, allocatable resources, and events.
+
+For OVN-Kubernetes:
+
+```bash
+oc get pods -n openshift-ovn-kubernetes
+```
+
+```bash
+oc logs -n openshift-ovn-kubernetes <ovn-pod-name>
+```
+
+Also inspect relevant node networking and OVN components.
+
+### Resolution
+
+Depending on the root cause, I would:
+
+1. Verify whether the Pod CIDR has sufficient address capacity.
+2. Check the configured cluster network CIDR and host prefix.
+3. Check whether individual nodes have exhausted their Pod IP allocation.
+4. Review node density and Pod scheduling distribution.
+5. Scale the cluster by adding worker nodes if supported by the existing network configuration.
+6. Review network provider configuration and supported IP allocation limits.
+7. Plan a cluster network expansion or migration if the existing CIDR is insufficient.
+
+**Important:** OpenShift network CIDR changes are not always possible in-place. I would verify the OpenShift version, network provider, and supported migration procedure before changing production networking.
+
+### AWS EKS Comparison
+
+In EKS, I would additionally investigate:
+
+```bash
+kubectl describe node <node-name>
+kubectl get pods -A -o wide
+kubectl get events -A --sort-by=.lastTimestamp
+```
+
+Check the AWS VPC CNI:
+
+```bash
+kubectl get pods -n kube-system -l k8s-app=aws-node
+```
+
+I would also evaluate:
+- ENI limits of the EC2 instance type.
+- Available subnet IP addresses.
+- VPC CNI configuration.
+- Prefix delegation.
+- `maxPods` configuration.
+
+**My approach:** I first identify whether IP exhaustion is happening at the cluster CIDR, node-level allocation, or underlying network provider level. Then I apply the appropriate network expansion or node scaling solution.
+
+---
+
+# 3. Application Modernization: Suppose an application is currently running on a virtual machine and needs to be migrated to a cloud-based container platform. Which container platform would you recommend, and why?
+
+### Answer:
+
+First, I would assess the existing application before selecting a container platform.
+
+I would evaluate:
+- Application architecture.
+- Programming language and runtime.
+- Dependencies.
+- Database connectivity.
+- Storage requirements.
+- Network requirements.
+- Security requirements.
+- Scaling requirements.
+- Existing cloud infrastructure.
+
+### Recommended Platform
+
+For a customer already using AWS, I would generally recommend Amazon EKS.
+
+EKS provides:
+- Managed Kubernetes control plane.
+- Container orchestration.
+- Automatic workload scaling using HPA.
+- Integration with AWS IAM.
+- Integration with ALB and NLB.
+- Integration with CloudWatch.
+- Support for Helm and GitOps.
+- High availability across Availability Zones.
+
+For organizations requiring enterprise Kubernetes with hybrid or multi-cloud capabilities, I would also consider Red Hat OpenShift.
+
+### Migration Approach
+
+**Step 1: Application Assessment**
+
+Understand the existing VM-based application and identify dependencies.
+
+**Step 2: Containerization**
+
+Create a Dockerfile.
+
+Example:
+
+```dockerfile
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+COPY target/application.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+For production, I would use a trusted, pinned and scanned base image, a non-root user, and a minimal runtime image.
+
+**Step 3: Build and Push Image**
+
+```bash
+docker build -t myapp:v1 .
+```
+
+```bash
+docker tag myapp:v1 \
+123456789012.dkr.ecr.ap-south-1.amazonaws.com/myapp:v1
+```
+
+```bash
+docker push \
+123456789012.dkr.ecr.ap-south-1.amazonaws.com/myapp:v1
+```
+
+**Step 4: Deploy to Kubernetes**
+
+Create Kubernetes Deployment and Service manifests.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: myapp:v1
+          ports:
+            - containerPort: 8080
+```
+
+**Step 5: Configure Production Requirements**
+
+- Configure ConfigMaps and Secrets.
+- Configure readiness and liveness probes.
+- Configure resource requests and limits.
+- Configure HPA.
+- Configure Ingress and TLS.
+- Configure persistent storage if required.
+- Integrate monitoring and logging.
+
+**Step 6: Testing and Traffic Migration**
+
+Deploy the application in a lower environment, perform functional and performance testing, and gradually migrate traffic.
+
+**My approach:** I would prefer EKS for an AWS-native environment because of its integration with AWS services, scalability, managed control plane, and Kubernetes ecosystem. However, the final decision depends on business requirements and existing infrastructure.
+
+---
+
+# 4. Increasing the Number of Pods per Node: Suppose a customer requests an increase in the maximum number of Pods per node from 110 to 500. How would you approach this requirement?
+
+### Answer:
+
+I would not directly change the maximum Pod count from 110 to 500 without evaluating the infrastructure and networking limitations.
+
+The maximum number of Pods per node depends on:
+- Kubernetes configuration.
+- Kubelet `maxPods`.
+- CNI plugin limitations.
+- Available IP addresses.
+- EC2 instance type.
+- CPU and memory capacity.
+- Network bandwidth.
+- Node operating system and configuration.
+
+### Step 1: Understand the Existing Configuration
+
+```bash
+kubectl get nodes
+```
+
+```bash
+kubectl describe node <node-name>
+```
+
+Check:
+
+```text
+Capacity:
+  pods: 110
+
+Allocatable:
+  pods: 110
+```
+
+Also inspect the kubelet configuration and node bootstrap configuration.
+
+### Step 2: Check the EC2 Instance Type
+
+In EKS, the AWS VPC CNI uses ENIs and IP addresses to provide Pod networking.
+
+The number of Pods supported depends on the EC2 instance's networking capabilities.
+
+For traditional secondary-IP allocation, the commonly used theoretical calculation is:
+
+```text
+Maximum Pods = (Number of ENIs × (IPs per ENI - 1)) + 2
+```
+
+This is an AWS VPC CNI sizing formula for applicable instance types and configurations, not a universal Kubernetes formula.
+
+For example, if an instance supports:
+- 4 ENIs.
+- 15 IPv4 addresses per ENI.
+
+Then:
+
+```text
+Maximum Pods = (4 × (15 - 1)) + 2
+
+             = 58 Pods
+```
+
+Actual limits depend on the instance type and CNI configuration.
+
+### Step 3: Evaluate Prefix Delegation
+
+AWS VPC CNI supports prefix delegation for supported instance types and networking configurations.
+
+Instead of allocating individual secondary IP addresses, the CNI can allocate IPv4 prefixes to ENIs.
+
+Example:
+
+```bash
+kubectl set env daemonset aws-node \
+-n kube-system ENABLE_PREFIX_DELEGATION=true
+```
+
+However, enabling prefix delegation alone does not guarantee support for 500 Pods.
+
+I would verify:
+- Instance type ENI and prefix limits.
+- Subnet availability.
+- Contiguous `/28` IPv4 blocks.
+- CNI warm IP and prefix settings.
+- Node bootstrap `maxPods`.
+- Kubernetes and EKS supported limits.
+
+### Step 4: Check Subnet IP Availability
+
+```bash
+aws ec2 describe-subnets \
+--subnet-ids subnet-xxxxxxxx
+```
+
+Check the `AvailableIpAddressCount` field.
+
+I would also check for fragmented subnet address space because prefix delegation requires suitable contiguous address blocks.
+
+### Step 5: Evaluate Node Resources
+
+If a node runs 500 Pods, it must have sufficient CPU, memory, disk, and network capacity.
+
+For example:
+
+```bash
+kubectl top nodes
+kubectl top pods -A
+```
+
+Also review:
+- Pod CPU and memory requests.
+- Pod limits.
+- DaemonSet resource consumption.
+- Kubelet performance.
+- DNS and networking overhead.
+- Application workload characteristics.
+
+### Step 6: Update Node Configuration
+
+If the instance type, CNI, subnet capacity, and Kubernetes version support the requirement, I would update the appropriate node bootstrap or managed node group configuration.
+
+In EKS, the kubelet maximum Pod setting must be aligned with the actual CNI and infrastructure limits.
+
+I would use a new launch template or node group configuration, validate it in a non-production environment, and roll out new nodes gradually.
+
+### Important Consideration
+
+Setting:
+
+```text
+--max-pods=500
+```
+
+does not create 500 available Pod IP addresses.
+
+Kubelet capacity and CNI networking capacity must be compatible.
+
+Also, EKS and Kubernetes have version- and configuration-dependent supported limits. I would verify the exact supported Pod density before committing to 500 Pods per node.
+
+**My approach:** I would first perform a capacity assessment, validate CNI and instance networking limits, verify subnet IP capacity, and then test the configuration on a separate node group before implementing it in production.
+
+---
+
+# 5. Pod Failure Due to Storage Issues: How would you troubleshoot and resolve the problem?
+
+### Answer:
+
+Storage-related Pod failures commonly happen because of:
+- PVC stuck in Pending.
+- PV unavailable.
+- StorageClass misconfiguration.
+- EBS volume attachment failure.
+- Insufficient disk space.
+- Read-only filesystem.
+- Volume mount errors.
+- Filesystem corruption.
+- Incorrect access mode.
+
+### Step 1: Check Pod Status
+
+```bash
+kubectl get pods -n <namespace>
+```
+
+Check for:
+
+```text
+Pending
+ContainerCreating
+CrashLoopBackOff
+```
+
+### Step 2: Describe the Pod
+
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+
+Check events such as:
+
+```text
+FailedMount
+FailedAttachVolume
+MountVolume.SetUp failed
+Multi-Attach error
+```
+
+### Step 3: Check PVC
+
+```bash
+kubectl get pvc -n <namespace>
+```
+
+If the PVC is Pending:
+
+```bash
+kubectl describe pvc <pvc-name> -n <namespace>
+```
+
+Check:
+- StorageClass.
+- Requested capacity.
+- Access mode.
+- Provisioner.
+- Volume binding mode.
+- Events.
+
+### Step 4: Check PV and StorageClass
+
+```bash
+kubectl get pv
+kubectl get storageclass
+```
+
+```bash
+kubectl describe pv <pv-name>
+```
+
+Check whether the volume is correctly provisioned and bound.
+
+### Step 5: Check Node Disk Usage
+
+If the issue is related to node storage:
+
+```bash
+df -h
+```
+
+```bash
+df -i
+```
+
+```bash
+du -sh /var/lib/containerd/*
+```
+
+Check:
+- Disk capacity.
+- Inode availability.
+- Container runtime storage.
+- Kubelet directories.
+- Application logs.
+
+### Step 6: Resolve Based on Root Cause
+
+**Scenario 1: PVC Pending**
+
+Verify the StorageClass, provisioner, and cloud storage permissions.
+
+**Scenario 2: Volume Attachment Failure**
+
+Check CSI driver health, volume attachment objects, node state, and cloud provider attachment limits.
+
+For AWS EBS:
+
+```bash
+kubectl get pods -n kube-system | grep ebs
+```
+
+**Scenario 3: Disk Full**
+
+Identify large files and unnecessary logs.
+
+Clean up only safe, unused data. Configure log rotation and increase storage capacity if necessary.
+
+**Scenario 4: PVC Expansion**
+
+If the StorageClass supports volume expansion:
+
+```bash
+kubectl edit pvc <pvc-name> -n <namespace>
+```
+
+Update the requested storage size.
+
+For example:
+
+```yaml
+spec:
+  resources:
+    requests:
+      storage: 50Gi
+```
+
+Verify filesystem expansion and CSI driver support.
+
+**Important:** I would never manually delete a production PV or PVC without checking its reclaim policy, backup status, and application data requirements.
+
+**My approach:** I start with Pod events, PVC, PV, and StorageClass, then inspect CSI drivers and underlying storage infrastructure. I resolve the actual storage issue without risking persistent application data.
+
+---
+
+# 6. Cordon vs. Drain: What is the difference between the cordon and drain commands in Kubernetes? When would you use each?
+
+### Answer:
+
+Both commands are used for node maintenance, but they perform different operations.
+
+### Cordon
+
+Cordon marks a node as unschedulable.
+
+It prevents new Pods from being scheduled on that node, but existing Pods continue running.
+
+Command:
+
+```bash
+kubectl cordon <node-name>
+```
+
+Verify:
+
+```bash
+kubectl get nodes
+```
+
+The node status becomes:
+
+```text
+Ready,SchedulingDisabled
+```
+
+**Use cases:**
+- Preparing a node for maintenance.
+- Preventing new workloads from being scheduled.
+- Investigating a node issue.
+- Before upgrading a node.
+
+### Drain
+
+Drain safely evicts eligible Pods from a node so that the node can be maintained.
+
+Command:
+
+```bash
+kubectl drain <node-name> \
+--ignore-daemonsets
+```
+
+For workloads using emptyDir:
+
+```bash
+kubectl drain <node-name> \
+--ignore-daemonsets \
+--delete-emptydir-data
+```
+
+Drain respects PodDisruptionBudgets when performing eviction.
+
+It may be blocked by:
+- PodDisruptionBudgets.
+- Pods not managed by controllers.
+- Local storage restrictions.
+- DaemonSets.
+- Other eviction constraints.
+
+### Difference
+
+| Feature | Cordon | Drain |
+|---|---|---|
+| Stops new Pod scheduling | Yes | Yes |
+| Evicts existing Pods | No | Yes |
+| Used for maintenance | Yes | Yes |
+| Respects PDB | Not applicable | Yes |
+| Node becomes unschedulable | Yes | Yes |
+
+### Real-Time Production Scenario
+
+Suppose I need to upgrade a Kubernetes worker node.
+
+First:
+
+```bash
+kubectl cordon worker-node-01
+```
+
+Then:
+
+```bash
+kubectl drain worker-node-01 \
+--ignore-daemonsets
+```
+
+Perform maintenance or upgrade the node.
+
+After maintenance:
+
+```bash
+kubectl uncordon worker-node-01
+```
+
+**My approach:** I use cordon when I only want to stop new workloads from reaching a node. I use drain when I need to safely move existing workloads before maintenance.
+
+---
+
+# 7. Blue-Green vs. Canary Deployment: What is the difference? Which approach would you prefer, and why?
+
+### Answer:
+
+Both Blue-Green and Canary are deployment strategies used to release new application versions while minimizing production risk.
+
+### Blue-Green Deployment
+
+In Blue-Green deployment, we maintain two identical environments.
+
+- Blue represents the current production version.
+- Green represents the new application version.
+
+Example:
+
+```text
+             Users
+               |
+          Load Balancer
+               |
+         --------------
+         |            |
+      Blue           Green
+      v1.0           v2.0
+      Active         Standby
+```
+
+Initially, users access Blue.
+
+We deploy and test the new version in Green. After successful validation, we switch traffic to Green.
+
+If any issue occurs, we switch traffic back to Blue.
+
+**Advantages:**
+- Fast rollback.
+- Minimal downtime.
+- Easy validation before traffic switching.
+- Clear separation between versions.
+
+**Disadvantages:**
+- Requires additional infrastructure capacity.
+- Database compatibility can complicate rollback.
+- Both environments must be maintained.
+
+### Canary Deployment
+
+In Canary deployment, we release the new version to a small percentage of users first.
+
+Example:
+
+```text
+               Users
+                 |
+            Load Balancer
+                 |
+         ------------------
+         |                |
+       90%               10%
+         |                |
+       v1.0              v2.0
+```
+
+Initially, 90% of traffic goes to the old version and 10% to the new version.
+
+If metrics are healthy, we gradually increase traffic.
+
+For example:
+
+```text
+10% → 25% → 50% → 75% → 100%
+```
+
+We monitor:
+- Error rates.
+- Response time.
+- CPU and memory.
+- Application logs.
+- Bus
+
+
 # AWS DevOps Engineer – Scenario-Based Interview Questions & Answers
 ### Experience: 4 Years | AWS | DevOps | Cloud Infrastructure | CI/CD | Kubernetes
 
