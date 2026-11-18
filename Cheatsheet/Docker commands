@@ -1,0 +1,19 @@
+Some Important Commands in Docker 
+
+➡️List containers - docker ps -a
+
+➡️Logs - docker logs <container>
+
+➡️Inspect - docker inspect <container>
+
+➡️Exec inside - docker exec -it <container> sh
+
+➡️Disk usage - docker system df
+
+➡️Remove stopped containers - docker container prune
+
+➡️Remove unused images - docker image prune -a
+
+➡️Remove volumes (careful) - docker volume prune
+
+➡️Full cleanup - docker system prune -a
