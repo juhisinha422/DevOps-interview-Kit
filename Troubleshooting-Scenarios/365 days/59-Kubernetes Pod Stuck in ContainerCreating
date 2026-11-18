@@ -1,0 +1,64 @@
+𝗗𝗮𝘆 𝟱𝟵/𝟯𝟲𝟱 — Kubernetes Pod Stuck in ContainerCreating? 🔍
+
+Imagine this scenario:
+
+You deploy a new application to Kubernetes. The Pod is created successfully, but its status remains "ContainerCreating" for several minutes.
+
+The application is not starting, and there are no application logs available yet.
+
+How do you troubleshoot it?
+
+𝗦𝘁𝗲𝗽 𝟭: Describe the Pod
+
+Start by checking the Pod events:
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Look at the Events section at the bottom. It often reveals the actual reason.
+
+𝗦𝘁𝗲𝗽 𝟮: Check the common causes
+
+A Pod can remain in "ContainerCreating" because of:
+
+• Volume mount or PVC attachment issues
+• Image pulling delays
+• CNI network plugin failures
+• Container runtime problems
+• Secret or ConfigMap mount issues
+• Node-level resource or filesystem problems
+
+𝗦𝘁𝗲𝗽 𝟯: Verify PVC and volume mounts
+
+kubectl get pvc -n <namespace>
+kubectl describe pvc <pvc-name> -n <namespace>
+
+Check whether the PVC is "Bound" and whether the volume can be mounted.
+
+𝗦𝘁𝗲𝗽 𝟰: Check the image
+
+kubectl describe pod <pod-name> -n <namespace>
+
+Look for image pull errors in the Events section.
+
+Verify the image name, tag, registry access, and image pull secrets.
+
+𝗦𝘁𝗲𝗽 𝟱: Check the worker node
+
+kubectl get pod <pod-name> -n <namespace> -o wide
+kubectl describe node <node-name>
+
+Check node conditions, disk pressure, and whether the container runtime or CNI is healthy.
+
+𝗦𝘀𝘁𝗲𝗽 𝟲: Check events
+
+kubectl get events -n <namespace> --sort-by=.lastTimestamp
+
+Use the latest events to identify which initialization step is failing.
+
+𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴:
+
+"ContainerCreating" does not automatically mean the application has an issue.
+
+Kubernetes may still be preparing the container environment — networking, storage, image, and runtime setup must succeed before the container starts.
+
+Always investigate Pod events before making changes.
