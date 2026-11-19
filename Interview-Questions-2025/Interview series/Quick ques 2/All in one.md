@@ -1,3 +1,349 @@
+## 1. How do you design zero-downtime deployments for stateful applications on Kubernetes?
+
+**Answer:**
+
+In my experience, designing zero-downtime deployments for stateful applications requires careful planning because stateful applications maintain persistent data and cannot be treated like ordinary stateless microservices. First, I ensure that the application runs with multiple replicas wherever the architecture supports it and uses StatefulSets with PersistentVolumeClaims for persistent storage. I configure readiness and liveness probes so Kubernetes sends traffic only to healthy pods. I also use PodDisruptionBudgets (PDBs) to maintain minimum application availability during voluntary disruptions, along with rolling update strategies such as `maxUnavailable: 0` and controlled `maxSurge`. I configure graceful termination using preStop hooks and an appropriate terminationGracePeriodSeconds so that existing requests can finish before the pod terminates. For database schema changes, I follow backward-compatible migration strategies such as the expand-and-contract approach, where I first introduce compatible schema changes, deploy the updated application, migrate data if required, and remove old schema components only after confirming that the new version is stable. I also validate storage attachment, backup and recovery procedures, and application compatibility before deployment. In AWS EKS, I combine these Kubernetes configurations with Helm-based deployments and monitoring through Prometheus and Grafana to ensure application availability during releases.
+
+**Important configurations:**
+
+- StatefulSet for stateful workloads.
+- PersistentVolumeClaims for persistent storage.
+- Readiness and liveness probes.
+- PodDisruptionBudget.
+- RollingUpdate strategy.
+- preStop hooks and graceful shutdown.
+- Backward-compatible database migrations.
+- Application health monitoring.
+
+---
+
+## 2. Terraform state is huge (200MB) and plan takes 12 minutes. How do you fix it?
+
+**Answer:**
+
+If my Terraform state file grows to 200MB and Terraform plan takes around 12 minutes, I would first investigate why the state has become so large and identify which resources and modules are contributing to it. A large state file can increase state refresh time, backend operations, locking duration and overall Terraform execution time. My first approach would be to review the current infrastructure architecture and split the state into smaller independent states based on logical boundaries such as networking, EKS, databases, security and application infrastructure. I would create separate Terraform root modules and remote state configurations using an S3 backend with DynamoDB-based locking where supported by the existing Terraform version and backend setup. I would also review module dependencies and avoid unnecessary cross-state dependencies. For resource migration, I would use Terraform state mv or the appropriate state migration workflow to move resources safely without destroying existing infrastructure. I would enable S3 versioning for state recovery, ensure state encryption, and restrict access through IAM policies. Additionally, I would use targeted resource operations only for exceptional troubleshooting situations rather than as a permanent optimization. Finally, I would investigate unnecessary data sources, excessive resource refresh operations and provider configurations. The goal is to reduce the amount of infrastructure Terraform processes during each plan while maintaining a clean and manageable infrastructure architecture.
+
+**Important commands:**
+
+```bash
+terraform state list
+
+terraform state show aws_instance.example
+
+terraform state mv \
+  aws_instance.example \
+  module.compute.aws_instance.example
+
+terraform plan
+
+terraform state pull
+```
+
+**Best practices:**
+
+- Split large states by infrastructure boundaries.
+- Use reusable Terraform modules.
+- Configure remote state in S3.
+- Enable state versioning and encryption.
+- Use least-privilege IAM permissions.
+- Avoid unnecessary cross-state dependencies.
+- Back up state before migration.
+
+---
+
+## 3. Pods are Running but users see 503 errors. Where do you debug?
+
+**Answer:**
+
+If Kubernetes pods are showing Running status but users are receiving HTTP 503 errors, I would not assume that the application is healthy just because the pods are running. Running only indicates that the containers have started; it does not guarantee that the application can serve requests. I would start troubleshooting from the external traffic entry point and move toward the application. First, I would check the AWS Application Load Balancer or NGINX Ingress Controller to verify target health, listener rules, target group configuration and backend connectivity. Next, I would inspect the Ingress resources and Kubernetes Service to verify that the service selectors match the pod labels and that the correct service port and targetPort are configured. I would check whether the service has healthy endpoints using `kubectl get endpoints` or EndpointSlices. If there are no endpoints, I would investigate readiness probes, selector mismatches or pod readiness issues. Then I would inspect pod logs, events and application metrics to identify exceptions, connection pool exhaustion, database connectivity problems or upstream service failures. I would also verify DNS resolution, network policies and security group connectivity where required. In my production EKS troubleshooting approach, I use CloudWatch, Prometheus, Grafana and centralized application logs to correlate the 503 response with application errors, latency and infrastructure metrics. Once the root cause is identified, I fix the configuration or application issue and validate the complete request flow from ALB to Ingress, Service and application pod.
+
+**Important commands:**
+
+```bash
+kubectl get pods -n tcs-prod -o wide
+
+kubectl get svc -n tcs-prod
+
+kubectl get ingress -n tcs-prod
+
+kubectl get endpoints -n tcs-prod
+
+kubectl get endpointslices -n tcs-prod
+
+kubectl describe pod <pod-name> -n tcs-prod
+
+kubectl describe svc <service-name> -n tcs-prod
+
+kubectl logs <pod-name> -n tcs-prod
+
+kubectl get events -n tcs-prod --sort-by=.metadata.creationTimestamp
+
+kubectl exec -it <pod-name> -n tcs-prod -- sh
+```
+
+**Troubleshooting flow:**
+
+```text
+User Request
+     |
+     v
+AWS ALB / NGINX Ingress
+     |
+     v
+Ingress Rules and Backend
+     |
+     v
+Kubernetes Service
+     |
+     v
+Endpoints / EndpointSlices
+     |
+     v
+Readiness Probe
+     |
+     v
+Application Pod
+     |
+     v
+Database / Upstream Services
+```
+
+---
+
+## 4. How do you manage secrets across 50+ services without exposing Vault access?
+
+**Answer:**
+
+When managing secrets across more than 50 microservices, I would avoid providing direct Vault credentials or administrative access to every application team or service. Instead, I would implement centralized secret management using HashiCorp Vault integrated with Kubernetes authentication. Each application would have its own Kubernetes ServiceAccount, and Vault would use Kubernetes authentication to verify the service identity and issue access according to its associated Vault policy. I would configure Vault policies so that each service can access only its required secrets instead of having access to all application credentials. For secret injection, I can use the Vault Agent Injector, which retrieves secrets from Vault and makes them available to application pods through mounted files or supported templates. Another option is the External Secrets Operator, which synchronizes secrets from an external secret manager into Kubernetes Secrets according to configured access policies. For AWS EKS environments, I can also integrate AWS Secrets Manager with IAM Roles for Service Accounts (IRSA) or EKS Pod Identity, allowing applications to retrieve only their authorized secrets. I would enable encryption, TLS communication, secret rotation, audit logging and access monitoring. This approach reduces hardcoded credentials in Git repositories, Docker images, Helm values and CI/CD pipelines while maintaining centralized control and auditability.
+
+**Important components:**
+
+- HashiCorp Vault.
+- Kubernetes authentication.
+- Vault Agent Injector.
+- External Secrets Operator.
+- Kubernetes ServiceAccounts.
+- Vault policies and RBAC.
+- AWS Secrets Manager.
+- IRSA / EKS Pod Identity.
+- Secret rotation and audit logging.
+
+**Example Kubernetes ServiceAccount:**
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: payment-service
+  namespace: tcs-prod
+```
+
+**Best practices:**
+
+- Never hardcode secrets in Git.
+- Never store credentials inside Docker images.
+- Use service-specific Vault policies.
+- Apply least-privilege access.
+- Enable audit logging and secret rotation.
+- Avoid exposing Vault root credentials to application teams.
+
+---
+
+## 5. How do you design GitOps for multiple teams with independent releases?
+
+**Answer:**
+
+For multiple development teams working on independent microservices, I would implement a GitOps-based deployment architecture using ArgoCD. The main objective is to separate application development, infrastructure configuration and deployment responsibilities while maintaining centralized visibility. I would maintain separate repositories or clearly separated directories for application source code, Helm charts and environment-specific Kubernetes manifests. Each team would manage its own application configuration and release changes through pull requests. Once the application pipeline successfully builds, tests and scans the Docker image, it pushes the image to a container registry such as Amazon ECR. The pipeline then updates the image tag in the corresponding GitOps repository. ArgoCD continuously monitors the repository and automatically synchronizes the desired Kubernetes state with the actual cluster state. For multiple teams, I would use ArgoCD ApplicationSets or the App-of-Apps pattern to manage multiple applications and environments efficiently. I would configure separate projects, namespaces, RBAC permissions and repository access so that one team cannot accidentally modify another team's applications. Infrastructure-level configurations such as networking, cluster policies and shared monitoring components would be maintained separately from application releases. I would also configure sync policies, health checks, deployment approvals and rollback procedures. This approach provides version-controlled deployments, auditability, consistent environments and independent release cycles without requiring teams to manually execute kubectl commands in production.
+
+**GitOps architecture:**
+
+```text
+Developer
+    |
+    v
+Application Git Repository
+    |
+    v
+Jenkins / GitHub Actions
+    |
+    v
+Build + Test + Security Scan
+    |
+    v
+Docker Image
+    |
+    v
+Amazon ECR
+    |
+    v
+Update GitOps Repository
+    |
+    v
+ArgoCD
+    |
+    v
+Kubernetes EKS
+    |
+    v
+Application Pods
+```
+
+**Important concepts:**
+
+- ArgoCD App-of-Apps.
+- ArgoCD ApplicationSets.
+- Helm charts and Kustomize.
+- Separate application and infrastructure repositories.
+- Namespace-level isolation.
+- RBAC and project-level permissions.
+- Automated synchronization.
+- Git-based rollback.
+
+---
+
+## 6. Image passed scans but got exploited. What did you miss?
+
+**Answer:**
+
+If a Docker image passes vulnerability scanning but the application is still exploited at runtime, I would investigate security gaps beyond image-level vulnerability scanning. Tools such as Trivy and other container scanners identify known vulnerabilities, exposed packages and certain configuration issues, but passing a scan does not guarantee that an application is completely secure. The attack could originate from a vulnerable application dependency, exposed API, leaked secret, insecure container configuration, excessive Kubernetes permissions or a runtime exploit. I would first inspect the application logs, container events and security alerts to understand how the exploitation occurred. Then I would review the Dockerfile and ensure that containers run as non-root users, use minimal base images, avoid unnecessary packages and do not contain credentials. At the Kubernetes level, I would enforce RBAC, Pod Security Standards, restricted security contexts, seccomp profiles, read-only root filesystems and restricted Linux capabilities. I would also scan dependencies and source code, sign container images, verify image provenance and use admission policies to prevent untrusted images from running. For runtime protection, I would consider tools such as Falco to detect suspicious system calls and unexpected container behavior. I would also rotate potentially exposed secrets, patch affected components and perform a root cause analysis. My approach is to implement defense in depth, covering build-time, deployment-time and runtime security rather than relying only on image scanning.
+
+**Example secure container configuration:**
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secure-app
+spec:
+  containers:
+    - name: app
+      image: nginx:stable
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
+        seccompProfile:
+          type: RuntimeDefault
+```
+
+**Security practices:**
+
+- Trivy image scanning.
+- SAST and dependency scanning.
+- Non-root containers.
+- Read-only root filesystem.
+- Kubernetes RBAC.
+- Seccomp and Linux capabilities.
+- Image signing and verification.
+- Falco runtime monitoring.
+- Secret rotation.
+- Network policies.
+
+---
+
+## 7. How do you implement SLO-based alerting without alert fatigue?
+
+**Answer:**
+
+To implement SLO-based alerting, I would first understand the application's business requirements and define measurable Service Level Indicators (SLIs), such as availability, request success rate and response latency. Based on these indicators, I would establish Service Level Objectives (SLOs). For example, if an application has an availability SLO of 99.9% over a 30-day period, I would calculate the allowed error budget and monitor how quickly the application consumes it. Instead of triggering alerts for every minor CPU or memory fluctuation, I would configure alerts based on user-impacting symptoms such as increased HTTP 5xx errors, high latency and failed requests. I would use multi-window, multi-burn-rate alerting so that rapid error-budget consumption triggers immediate alerts, while slower degradation can be handled through less urgent notifications. Prometheus would collect application and infrastructure metrics, and Grafana would provide dashboards and alert visualization. Alertmanager could route notifications to the appropriate teams through email or supported incident-management integrations. I would also define alert severity levels, ownership and escalation policies. To reduce alert fatigue, I would eliminate duplicate alerts, configure meaningful thresholds, group related notifications and ensure that every critical alert has a documented action or runbook. This allows the team to focus on actual customer impact instead of reacting to every infrastructure metric.
+
+**Example SLO:**
+
+- Availability target: 99.9%.
+- Measurement period: 30 days.
+- Error budget: 0.1%.
+- SLIs: Request success rate, availability and latency.
+- Monitoring: Prometheus and Grafana.
+
+**Prometheus alert example:**
+
+```yaml
+groups:
+  - name: application-alerts
+    rules:
+      - alert: HighHTTP5xxRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status=~"5.."}[5m]))
+            /
+            sum(rate(http_requests_total[5m]))
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: High HTTP 5xx error rate detected
+          description: More than 5% of requests are failing.
+```
+
+---
+
+## 8. CI builds 40 Docker images and takes 18 minutes. How do you optimize?
+
+**Answer:**
+
+If my CI/CD pipeline takes around 18 minutes to build 40 Docker images, I would first analyze the pipeline execution time to identify whether the bottleneck is dependency installation, Docker image building, testing, image scanning or pushing images to the registry. I would optimize the Dockerfiles by using multi-stage builds, smaller base images and properly ordered layers so that frequently changing application code does not invalidate dependency layers unnecessarily. I would enable Docker BuildKit and remote build caching so that unchanged layers can be reused across pipeline executions. I would also implement parallel builds for independent microservices instead of building all 40 images sequentially. Another important optimization is selective builds: when a developer changes only one microservice, the pipeline should identify the affected service and rebuild only its Docker image rather than rebuilding all 40 images. I would use path-based change detection in GitHub Actions or Jenkins to achieve this. I would also optimize dependency caching, use reusable pipeline stages and avoid repeatedly downloading the same dependencies. Once the images are built, I would push them to Amazon ECR using parallel execution where appropriate. Finally, I would monitor pipeline duration, cache hit rates and build resource utilization to measure the improvements. These optimizations reduce unnecessary build operations, improve developer productivity and make CI/CD pipelines more efficient.
+
+**Docker BuildKit example:**
+
+```bash
+DOCKER_BUILDKIT=1 docker build \
+  --cache-from=myapp:latest \
+  --cache-to=type=inline \
+  -t myapp:v2 .
+```
+
+**Dockerfile example:**
+
+```dockerfile
+# Build stage
+FROM node:22-alpine AS builder
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci
+
+COPY . .
+
+RUN npm run build
+
+# Runtime stage
+FROM nginx:alpine
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+**Optimization techniques:**
+
+- Docker BuildKit.
+- Multi-stage Docker builds.
+- Layer caching.
+- Remote cache.
+- Parallel builds.
+- Selective microservice builds.
+- Dependency caching.
+- Smaller base images.
+- Optimized CI/CD runners.
+
+---
+
+## 9. How do you upgrade a Kubernetes cluster with zero downtime?
+
+**Answer:**
+
+For a Kubernetes cluster upgrade with minimal or zero application downtime, I would follow a controlled rolling upgrade approach rather than upgrading all worker nodes simultaneously. First, I would review the Kubernetes version compatibility requirements, deprecated APIs, add-on compatibility and application dependencies. I would take necessary backups, including etcd backups for self-managed clusters and relevant persistent data backups, and verify the cluster's current health. In AWS EKS, I would upgrade the control plane first using the supported version upgrade sequence. After the control plane upgrade, I would upgrade compatible components such as VPC CNI, CoreDNS and kube-proxy. For worker nodes, I would use a rolling node replacement strategy. I would introduce new nodes with the required Kubernetes version, verify that they are Ready, and then cordon and drain the older nodes one by one. Before draining a node, I would ensure that workloads have sufficient replicas, readiness probes and appropriate PodDisruptionBudgets. I would also verify that sufficient cluster capacity is available so that pods can be rescheduled without resource pressure. After workloads move to the new nodes, I would monitor application availability, pod health, node status and service metrics through CloudWatch, Prometheus and Grafana. Once the new nodes and workloads are stable, I would terminate the old nodes.
+
+
 # Senior DevOps Engineer Interview Questions & Answers (4+ Years Experience)
 
 # 1. Load Balancing: What are the different types of load balancers available in AWS and Azure? Which load balancer would be appropriate for a Kubernetes cluster, and why?
