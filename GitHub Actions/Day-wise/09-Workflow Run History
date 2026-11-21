@@ -1,0 +1,23 @@
+Learning GitHub Actions – Day 9: Workflow Run History
+Continuing my GitHub Actions learning journey as part of my Cloud & DevOps roadmap!
+
+📌 What is Workflow Run History?
+Workflow Run History allows us to view and track all the executions of GitHub Actions workflows in a repository.
+Whenever a workflow is triggered, GitHub records its execution details, including its status, start time, duration, jobs, and logs.
+It helps developers and DevOps engineers monitor automation and troubleshoot pipeline failures.
+
+🛠️ What I'm learning:
+How to access the Actions tab in a GitHub repository.
+How to view previous workflow executions.
+How to identify successful, failed, and in-progress workflow runs.
+How to inspect job details and step-by-step execution logs.
+How to identify errors and troubleshoot failed workflows.
+
+🔍 Common Workflow Run Statuses:
+<escape>🟢</escape> Success: Workflow completed successfully.
+<escape>🔴</escape> Failure: One or more required steps or jobs failed.
+<escape>🟡</escape> In Progress: Workflow is currently executing.
+Cancelled: Workflow execution was stopped.
+
+💡 Key Takeaway:
+Workflow Run History helps us monitor CI/CD pipeline executions, identify failures, analyze logs, and improve automation reliability.
