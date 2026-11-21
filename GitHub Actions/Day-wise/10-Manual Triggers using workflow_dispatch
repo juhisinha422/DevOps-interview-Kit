@@ -1,0 +1,38 @@
+Learning GitHub Actions – Day 10: Manual Triggers using workflow_dispatch
+Continuing my GitHub Actions learning journey as part of my Cloud & DevOps roadmap!
+
+📌 What is workflow_dispatch?
+workflow_dispatch is an event trigger in GitHub Actions that allows us to start a workflow manually instead of waiting for an automatic event like a code push or pull request.
+It is useful when we want to run specific tasks on demand, such as deploying an application, running tests, or performing maintenance activities.
+
+🛠️ Practical Example:
+name: Manual Workflow
+
+  on:
+   workflow_dispatch:
+
+  jobs:
+   demo:
+     runs-on: ubuntu-latest
+       steps: 
+         - name: Display Message
+           run: echo "Workflow triggered manually!"
+
+         - name: Check Current Date
+           run: date
+
+🔍 How it works:
+workflow_dispatch: Enables manual execution of the workflow.
+jobs: Defines the tasks to be executed.
+runs-on: Specifies the runner environment.
+run: Executes shell commands.
+
+How to trigger it manually:
+Push the workflow file to your GitHub repository.
+Navigate to the Actions tab.
+Select the workflow.
+Click Run workflow.
+Select the branch and start the execution.
+
+💡 Key Takeaway:
+Manual triggers give us control over when workflows execute. They are especially useful for on-demand deployments, testing, and maintenance tasks without requiring a new code commit.
