@@ -1,0 +1,38 @@
+Learning GitHub Actions – Day 11: Push Event
+Starting Phase 2: Workflow Configuration!
+Continuing my GitHub Actions learning journey by exploring how different events trigger automated workflows.
+
+📌 What is the Push Event?
+The push event is a GitHub Actions trigger that automatically starts a workflow whenever changes are pushed to a GitHub repository.
+We can also configure it to run only when changes are pushed to specific branches, such as main or develop.
+It is commonly used to automate build processes, run tests, and validate code changes.
+
+🛠️ Practical Example:
+name: Push Event Demo
+  on:
+   push:
+     branches:
+       - main
+
+  jobs:
+   demo:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout Repository
+         uses: actions/checkout@v4
+
+        - name: Display Message
+         run: echo "Code pushed to main branch!"
+
+        - name: Check Repository Files
+         run: ls -la
+
+🔍 How it works:
+push: Triggers the workflow when a push event occurs.
+branches: Specifies which branches should trigger the workflow.
+main: Runs the workflow only for pushes to the main branch.
+actions/checkout: Checks out the repository code onto the runner.
+run: Executes shell commands.
+
+💡 Key Takeaway:
+The push event helps automate CI processes whenever developers upload code changes, ensuring that every update can be automatically validated
