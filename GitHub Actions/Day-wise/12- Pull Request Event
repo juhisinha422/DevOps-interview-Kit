@@ -1,0 +1,37 @@
+Learning GitHub Actions – Day 12: Pull Request Event
+Continuing Phase 2: Workflow Configuration in my GitHub Actions learning journey!
+
+📌 What is the pull_request Event?
+The pull_request event is a GitHub Actions trigger that automatically starts a workflow when a pull request activity occurs in a repository.
+It is commonly used to validate code changes before merging them into the target branch.
+For example, when a developer creates a pull request to merge changes from a develop branch into main, GitHub Actions can automatically run build and test workflows.
+
+🛠️ Practical Example:
+name: Pull Request Demo
+  on:
+   pull_request:
+     branches:
+       - main
+
+  jobs:
+   test:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout Repository
+         uses: actions/checkout@v4
+
+        - name: Display Message
+         run: echo "Pull request detected!"
+
+        - name: Run Tests
+         run: echo "Running application tests..."
+
+🔍 How it works:
+pull_request: Triggers the workflow when a pull request event occurs.
+branches: Specifies the target branches for pull requests.
+main: Runs the workflow for pull requests targeting the main branch.
+actions/checkout: Checks out the repository code.
+run: Executes the specified commands.
+
+💡 Key Takeaway:
+The pull_request event helps automate code validation before merging changes, improving code quality and reducing the chances of introducing errors into the main branch.
