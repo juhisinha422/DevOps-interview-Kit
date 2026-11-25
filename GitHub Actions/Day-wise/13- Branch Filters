@@ -1,0 +1,33 @@
+Learning GitHub Actions – Day 13: Branch Filters
+Continuing Phase 2: Workflow Configuration in my GitHub Actions learning journey!
+
+📌 What are Branch Filters?
+Branch filters in GitHub Actions allow us to control which branches trigger a workflow.
+Instead of running a workflow for every push or pull request, we can specify particular branches such as main, develop, or feature/*.
+This helps avoid unnecessary workflow executions and keeps CI/CD pipelines organized.
+
+🛠️ Practical Example:
+name: Branch Filter
+ Demo
+  on:
+   push:
+     branches:
+       - main
+       - develop
+
+  jobs:
+   demo:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Display Message
+         run: echo "Workflow triggered by a selected branch!"
+
+🔍 How it works:
+push: Triggers the workflow when code is pushed.
+branches: Defines which branches should trigger the workflow.
+main: Runs the workflow when changes are pushed to the main branch.
+develop: Also runs the workflow when changes are pushed to the develop branch.
+Other branches will not trigger this workflow through the configured push event.
+
+💡 Key Takeaway:
+Branch filters help control workflow execution based on specific branches, making CI/CD automation more efficient and manageable.
