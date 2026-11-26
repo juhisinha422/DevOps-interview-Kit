@@ -1,0 +1,33 @@
+Learning GitHub Actions – Day 14: Path Filters
+Continuing Phase 2: Workflow Configuration in my GitHub Actions learning journey!
+
+📌 What are Path Filters?
+Path filters in GitHub Actions allow us to control when a workflow runs based on the files or directories that have changed in a repository.
+Instead of triggering a workflow for every code change, we can configure it to run only when specific files are modified.
+This helps reduce unnecessary workflow executions and makes CI/CD pipelines more efficient.
+
+🛠️ Practical Example:
+
+name: Path Filter Demo
+
+  on:
+   push:
+     paths:
+       - 'src/**'
+       - 'Dockerfile'
+
+  jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Display Message
+         run: echo "Changes detected in application files!"
+
+🔍 How it works:
+paths: Defines which file paths should trigger the workflow.
+src/**: Triggers the workflow when files inside the src directory or its subdirectories change.
+Dockerfile: Triggers the workflow when the root-level Dockerfile changes.
+Changes to unrelated files, such as README.md, will not trigger this workflow.
+
+💡 Key Takeaway:
+Path filters help run workflows only when relevant files change, saving CI/CD execution time and resources.
