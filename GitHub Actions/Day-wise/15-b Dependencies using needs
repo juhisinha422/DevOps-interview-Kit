@@ -1,0 +1,46 @@
+Learning GitHub Actions – Day 15: Job Dependencies using needs
+Continuing Phase 2: Workflow Configuration in my GitHub Actions learning journey!
+
+📌 What are Job Dependencies?
+In GitHub Actions, jobs run in parallel by default. But in a real CI/CD pipeline, some jobs must wait for other jobs to complete before starting.
+The needs keyword allows us to define dependencies between jobs and control their execution order.
+For example, an application should be built first, tested next, and deployed only after successful testing.
+
+🛠️ Practical Example:
+
+name: Job Dependencies Demo
+
+  on:
+   push:
+     branches:
+       - main
+
+  jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Build Application
+         run: echo "Building application..."
+
+    test:
+     runs-on: ubuntu-latest
+     needs: build
+     steps:
+       - name: Run Tests
+         run: echo "Testing application..."
+
+    deploy:
+     runs-on: ubuntu-latest
+     needs: test
+     steps:
+       - name: Deploy Application
+         run: echo "Deploying application..."
+
+🔍 How it works:
+build: Runs first.
+needs: build: Makes the test job wait for the build job to succeed.
+needs: test: Makes the deploy job wait for the test job to succeed.
+If a required job fails, its dependent job is skipped by default.
+
+💡 Key Takeaway:
+The needs keyword helps control job execution order and create structured CI/CD pipelines where build, test, and deployment tasks run in the correct sequence.
