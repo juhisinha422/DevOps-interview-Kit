@@ -1,0 +1,16 @@
+How does Kubernetes decide which node to schedule a pod on?
+
+1. Kubernetes decides which node to run a Pod on using a component called the Kubernetes Scheduler (kube-scheduler).
+2. The scheduler evaluates all available worker nodes, filters out nodes that cannot run the Pod, and selects the most suitable node.
+Filtering depends pn -->CPU requests--->Memory requests-->Node selector-->Taints and tolerations--->Node affinity-->Volume requirements
+3. Kubernetes scores the remaining nodes using scheduling plugins. 
+Suppose we have three worker nodes:
+Worker-1: 2 CPU, 4 GB RAM
+Worker-2: 4 CPU, 8 GB RAM
+Worker-3: 8 CPU, 16 GB RAM
+we deploy a Pod requesting 2 CPU and 4 GB RAM. By mention in yaml
+resources:         
+requests:           
+cpu: "2"           
+memory: "4Gi"
+4.kube-scheduler sends a Bind request to the Kubernetes API server, updating the Pod's spec.nodeName field.
