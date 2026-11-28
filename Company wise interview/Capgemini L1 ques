@@ -1,0 +1,55 @@
+Capgemini AWS DevOps Interview – All Questions
+
+1. Can you introduce yourself and explain your day-to-day activities in your current role?
+
+2. Are you comfortable writing a CI/CD pipeline from scratch using Jenkins or GitHub Actions?
+
+3. What are the stages and commands you would include in a basic CI/CD pipeline?
+
+4. Why do we pass the ECR registry parameter in the Docker build or login command?
+
+5. Is docker.build a function or a command?
+
+6. What parameters do you pass to the docker build command?
+
+7. What exactly are you doing in the docker.withRegistry command where you pass your ECR registry?
+
+8. Are authentication and pushing to the registry happening in the same command?
+
+9. What happens after the Docker image is pushed to the ECR registry in your pipeline?
+
+10. How do you create the infrastructure for Amazon ECS?
+
+11. Did you create the infrastructure yourself, or was it already there and you were just using it?
+
+12. Have you created Terraform modules yourself?
+
+13. What parameters did you add to the Terraform module you created?
+
+14. What happens if two team members run the same Terraform script at the same time? Will it create duplicate resources?
+
+15. How do you troubleshoot an ECS deployment failure due to a CrashLoop error?
+
+16. What is a CrashLoopBackOff error in Kubernetes or ECS?
+
+17. What are the common causes of a CrashLoopBackOff error?
+
+18. What specific Kubernetes commands do you use to troubleshoot a CrashLoopBackOff error?
+
+19. What are the different launch types available in Amazon ECS from an infrastructure point of view?
+
+20. When should you choose EC2 launch type versus Fargate in Amazon ECS? In which scenarios would you select each?
+
+21. Suppose after deployment you observe latency issues. How do you identify exactly where the bottleneck is?
+
+22. Have you worked on AWS Lambda? What was the use case?
+
+23. Which commands or API calls did you use in your script to take backups?
+
+24. Did you write the backup automation script yourself, or was it written by someone else?
+
+25. Have you architected a two-tier application? How would you make it secure and highly scalable?
+
+26. How can you ensure data is secure in transit in your application architecture?
+
+27. Do you have any questions for me?
