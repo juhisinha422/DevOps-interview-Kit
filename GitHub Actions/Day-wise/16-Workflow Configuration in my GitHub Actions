@@ -1,0 +1,35 @@
+Learning GitHub Actions – Day 16: Conditional Execution using if
+Continuing Phase 2: Workflow Configuration in my GitHub Actions learning journey!
+
+📌 What is Conditional Execution?
+Conditional execution in GitHub Actions allows us to control whether a job or step should run based on a specific condition.
+The if keyword evaluates a condition and executes the job or step only when that condition is true.
+It is useful for controlling deployments, running specific tasks on certain branches, and handling workflow failures.
+
+🛠️ Practical Example:
+
+name: Conditional Execution Demo
+  on:
+   push:
+     branches:
+       - main
+
+  jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Build Application
+         run: echo "Building application..."
+
+        - name: Deploy Application
+         if: ${{ success() }}
+         run: echo "Build successful! Deploying..."
+
+🔍 How it works:
+if: Defines the condition for executing a job or step.
+success(): Returns true when previous steps have succeeded.
+The deployment step runs only when the build step completes successfully.
+If the build step fails, the deployment step is skipped by default.
+
+💡 Key Takeaway:
+Conditional execution helps create intelligent CI/CD pipelines by controlling when specific jobs or steps should run based on workflow conditions.
